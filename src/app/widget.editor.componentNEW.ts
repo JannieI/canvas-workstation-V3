@@ -225,7 +225,7 @@ export interface dataSchemaInterface {
     graphHeader: string = 'Graph';
     graphHistory: GraphHistory[] = [];
     graphHistoryPosition: number = 0;
-    graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
+    graphLayers: number[] = [0, 1, 2, 3,];  // TODO - fix hardcoding
     isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
     isDragoverYField: boolean = false;
@@ -991,9 +991,22 @@ export interface dataSchemaInterface {
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
             this.localWidget.widgetType = 'Graph';
 
+
+
+
+            // this.localWidget.graphLayers[0]['graphMark'] = "bar0"
+            // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLayers[1]['graphMark'] = "bar1"
+
+
+
+
+            
+
+
             // Populate predefined dimensions, considering layouts
-            if (this.localWidget.graphColorScheme == ''  ||  this.localWidget.graphColorScheme == null) {
-                this.localWidget.graphColorScheme = 'None';
+            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''  
+                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme = 'None';
             };
             if (this.newWidgetContainerLeft > 0) {
                 this.localWidget.containerLeft = this.newWidgetContainerLeft;
@@ -1036,8 +1049,23 @@ export interface dataSchemaInterface {
             // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
-            if (this.localWidget.graphColorScheme == ''  ||  this.localWidget.graphColorScheme == null) {
-                this.localWidget.graphColorScheme = 'None';
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''  
+                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme = 'None';
             };
 
             // TODO - handle properly and close form
@@ -1130,7 +1158,7 @@ export interface dataSchemaInterface {
 
                 // Show graph
                 let graphIndex: number = this.widgetGraphs.findIndex(
-                    wgr => wgr.mark == this.localWidget.graphMark
+                    wgr => wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
                 );
                 this.showGraph(this.widgetGraphs[graphIndex].id);
             });
@@ -1192,11 +1220,13 @@ export interface dataSchemaInterface {
                 this.errorMessageEditor = 'Select at least one field.';
                 return;
         };
-        if (this.projectionField != dragFieldMessage
+        if (this.projectionField != ''
             &&
-            (this.projectionFieldLatitude == dragFieldMessage  ||  this.projectionFieldLatitude == null)
-            &&
-            (this.projectionFieldLongitude == dragFieldMessage  ||  this.projectionFieldLongitude == null)
+            (
+                (this.projectionFieldLatitude == dragFieldMessage  ||  this.projectionFieldLatitude == null)
+                ||
+                (this.projectionFieldLongitude == dragFieldMessage  ||  this.projectionFieldLongitude == null)
+                )
             ) {
                 this.errorMessageEditor = 'Select lat and long with Projection.';
                 return;
@@ -1209,39 +1239,39 @@ export interface dataSchemaInterface {
         this.showGraphAreaTitle = true;
 
         // Get the Vega-Lite aggregation
-        this.localWidget.graphXaggregate = '';
-        if (this.localWidget.graphXaggregateName != '') {
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregate = '';
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregateName != '') {
             let aggregationIndex: number = this.aggregations.findIndex(
-                agg => agg.displayName == this.localWidget.graphXaggregateName);
+                agg => agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregateName);
             if (aggregationIndex >= 0) {
-                this.localWidget.graphXaggregate = this.aggregations[aggregationIndex]
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregate = this.aggregations[aggregationIndex]
                     .vegaLiteName;
             };
         }
-        this.localWidget.graphYaggregate = '';
-        if (this.localWidget.graphYaggregateName != '') {
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregate = '';
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregateName != '') {
             let aggregationIndex: number = this.aggregations.findIndex(
-                agg => agg.displayName == this.localWidget.graphYaggregateName);
+                agg => agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregateName);
             if (aggregationIndex >= 0) {
-                this.localWidget.graphYaggregate = this.aggregations[aggregationIndex]
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregate = this.aggregations[aggregationIndex]
                     .vegaLiteName;
             };
         }
-        this.localWidget.graphColorAggregate = '';
-        if (this.localWidget.graphColorAggregateName != '') {
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregate = '';
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregateName != '') {
             let aggregationIndex: number = this.aggregations.findIndex(
-                agg => agg.displayName == this.localWidget.graphColorAggregateName);
+                agg => agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregateName);
             if (aggregationIndex >= 0) {
-                this.localWidget.graphColorAggregate = this.aggregations[aggregationIndex]
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregate = this.aggregations[aggregationIndex]
                     .vegaLiteName;
             };
         }
-        this.localWidget.graphSizeAggregate = '';
-        if (this.localWidget.graphSizeAggregateName != '') {
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregate = '';
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregateName != '') {
             let aggregationIndex: number = this.aggregations.findIndex(
-                agg => agg.displayName == this.localWidget.graphSizeAggregateName);
+                agg => agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregateName);
             if (aggregationIndex >= 0) {
-                this.localWidget.graphSizeAggregate = this.aggregations[aggregationIndex]
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregate = this.aggregations[aggregationIndex]
                     .vegaLiteName;
             };
         }
@@ -1256,7 +1286,7 @@ export interface dataSchemaInterface {
             this.errorMessageEditor = 'Graph type id = ' + graphID + ' does not exist in the DB';
             return;
         } else {
-            this.localWidget.graphMark = this.widgetGraphs[widgetGraphIndex]['mark'];
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark = this.widgetGraphs[widgetGraphIndex]['mark'];
         };
 
         // Startup
@@ -1267,41 +1297,41 @@ export interface dataSchemaInterface {
 
 
         // Set fields
-        this.localWidget.graphXfield = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield = '';
         if (this.xField != dragFieldMessage) {
-            this.localWidget.graphXfield = this.xField;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield = this.xField;
         };
-        this.localWidget.graphYfield = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield = '';
         if (this.yField != dragFieldMessage) {
-            this.localWidget.graphYfield = this.yField;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield = this.yField;
         };
-        this.localWidget.graphColorField = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField = '';
         if (this.colorField != dragFieldMessage) {
-            this.localWidget.graphColorField = this.colorField;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField = this.colorField;
         };
-        this.localWidget.graphSizeField = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField = '';
         if (this.sizeField != dragFieldMessage) {
-            this.localWidget.graphSizeField = this.sizeField;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField = this.sizeField;
         };
-        this.localWidget.graphRowField = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowField = '';
         if (this.rowField != dragFieldMessage) {
-            this.localWidget.graphRowField = this.rowField;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowField = this.rowField;
         };
-        this.localWidget.graphColumnField = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField = '';
         if (this.columnField != dragFieldMessage) {
-            this.localWidget.graphColumnField = this.columnField;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField = this.columnField;
         };
-        this.localWidget.graphDetailField = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField = '';
         if (this.detailField != dragFieldMessage) {
-            this.localWidget.graphDetailField = this.detailField;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField = this.detailField;
         };
-        this.localWidget.graphX2Field = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Field = '';
         if (this.x2Field != dragFieldMessage) {
-            this.localWidget.graphX2Field = this.x2Field;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Field = this.x2Field;
         };
-        this.localWidget.graphY2Field = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field = '';
         if (this.y2Field != dragFieldMessage) {
-            this.localWidget.graphY2Field = this.y2Field;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field = this.y2Field;
         };
 
         // Validation and Warnings - AFTER default settings
@@ -1312,33 +1342,33 @@ export interface dataSchemaInterface {
         };
 
         // Defaults
-        if (this.localWidget.graphXtype == ''  ||  this.localWidget.graphXtype == null) {
-            this.localWidget.graphXtype = 'ordinal';
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype == ''  ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype = 'ordinal';
         };
-        if (this.localWidget.graphYtype == ''  ||  this.localWidget.graphYtype == null) {
-            this.localWidget.graphYtype = 'ordinal';
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype == ''  ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype = 'ordinal';
         };
-        if (this.localWidget.graphColorType == ''  ||  this.localWidget.graphColorType == null) {
-            this.localWidget.graphColorType = 'ordinal';
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType == ''  ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType = 'ordinal';
         };
 
         if (this.graphColorAggregateVegaLiteName == null) {this.graphColorAggregateVegaLiteName = ""};
-        if (this.localWidget.graphColorFormat == null) {this.localWidget.graphColorFormat = ""};
-        if (this.localWidget.graphColorSort == null) {this.localWidget.graphColorSort = ""};
-        if (this.localWidget.graphColorStack == null) {this.localWidget.graphColorStack = ""};
-        if (this.localWidget.graphColorTimeUnit == null) {this.localWidget.graphColorTimeUnit = ""};
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat = ""};
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort = ""};
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack = ""};
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit = ""};
         if (this.localWidget.graphTitleAnchor == null) {this.localWidget.graphTitleAnchor = ""}
         if (this.localWidget.graphTitleBaseline == null) {this.localWidget.graphTitleBaseline = ""}
         if (this.localWidget.graphTitleOrientation == null) {this.localWidget.graphTitleOrientation = ""}
         // if (this.graphXaggregateVegaLiteName == null) {this.graphXaggregateVegaLiteName = ""}
-        if (this.localWidget.graphXformat == null) {this.localWidget.graphXformat = ""}
-        if (this.localWidget.graphXsort == null) {this.localWidget.graphXsort = ""}
-        if (this.localWidget.graphXtimeUnit == null) {this.localWidget.graphXtimeUnit = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit = ""}
         // if (this.graphYaggregateVegaLiteName == null) {this.graphYaggregateVegaLiteName = ""}
-        if (this.localWidget.graphYformat == null) {this.localWidget.graphYformat = ""}
-        if (this.localWidget.graphYsort == null) {this.localWidget.graphYsort = ""}
-        if (this.localWidget.graphYtimeUnit == null) {this.localWidget.graphYtimeUnit = ""}
-        if (this.localWidget.graphLegendTitle == null) {this.localWidget.graphLegendTitle = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle = ""}
 
         // Define Specification
         if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
@@ -1480,9 +1510,9 @@ export interface dataSchemaInterface {
         // Get the graphID
         let graphID: number = -1;
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
-            wg => wg.mark == this.localWidget.graphMark);
+            wg => wg.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark);
         if (widgetGraphIndex < 0) {
-            this.errorMessageEditor = 'Graph type mark = ' + this.localWidget.graphMark + ' does not exist in the DB';
+            this.errorMessageEditor = 'Graph type mark = ' + this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark + ' does not exist in the DB';
             return;
         } else {
             graphID = this.widgetGraphs[widgetGraphIndex]['id'];
@@ -1519,9 +1549,9 @@ export interface dataSchemaInterface {
         // Get the graphID
         let graphID: number = -1;
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
-            wg => wg.mark == this.localWidget.graphMark);
+            wg => wg.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark);
         if (widgetGraphIndex < 0) {
-            this.errorMessageEditor = 'Graph type mark = ' + this.localWidget.graphMark + ' does not exist in the DB';
+            this.errorMessageEditor = 'Graph type mark = ' + this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark + ' does not exist in the DB';
             return;
         } else {
             graphID = this.widgetGraphs[widgetGraphIndex]['id'];
@@ -1549,14 +1579,14 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         // Validate
-        if (this.localWidget.graphMark == ''  ||  this.localWidget.graphMark == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark == ''  ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark == null) {
             this.errorMessage = 'Please select a type of graph';
             return;
         };
 
         // Calc the graph dimensions
-        // this.localWidget.graphHeight = this.globalVariableService.calcGraphHeight(this.localWidget);
-        // this.localWidget.graphWidth = this.globalVariableService.calcGraphWidth(this.localWidget);
+        // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphHeight = this.globalVariableService.calcGraphHeight(this.localWidget);
+        // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphWidth = this.globalVariableService.calcGraphWidth(this.localWidget);
 
         // Update new/edit
         if (this.newWidget) {
@@ -1888,9 +1918,9 @@ export interface dataSchemaInterface {
         this.xField = fieldName;
 
         let fieldType:string = this.getFieldType(fieldName);
-        this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphXtypeName = this.defaultGraphTypeField(fieldType, 'name');
-        this.localWidget.graphXtimeUnit ='';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit ='';
 
     }
 
@@ -1922,14 +1952,14 @@ export interface dataSchemaInterface {
         this.showFieldYPropertiesTitle = true;
 
         this.yField = fieldName;
-        // this.localWidget.graphYfield = fieldName;
-        this.localWidget.graphYaxisTitle = fieldName;
+        // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield = fieldName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisTitle = fieldName;
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(fieldName);
-        this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphYtypeName = this.defaultGraphTypeField(fieldType, 'name');
-        this.localWidget.graphYtimeUnit ='';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit ='';
     }
 
     dropColour(ev, fieldName: string = '') {
@@ -1967,9 +1997,9 @@ export interface dataSchemaInterface {
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(fieldName);
-        this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphColorTypeName = this.defaultGraphTypeField(fieldType, 'name');
-        this.localWidget.graphColorTimeUnit ='';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit ='';
         this.localWidget.graphDimensionRight = 140;
     }
 
@@ -1997,8 +2027,8 @@ export interface dataSchemaInterface {
         this.sizeField = this.sizeField.substring(0, position != -1 ? position : this.sizeField.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphSizeType = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphSizeTypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeType = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeTypeName = this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphDimensionRight = 140;
     }
 
@@ -2026,8 +2056,8 @@ export interface dataSchemaInterface {
         this.rowField = this.rowField.substring(0, position != -1 ? position : this.rowField.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphRowType = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphRowTypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowType = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowTypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
     dropColumn(ev) {
@@ -2054,8 +2084,8 @@ export interface dataSchemaInterface {
         this.columnField = this.columnField.substring(0, position != -1 ? position : this.columnField.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphColumnType = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphColumnTypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnType = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnTypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
     dropDetail(ev) {
@@ -2082,8 +2112,8 @@ export interface dataSchemaInterface {
         this.detailField = this.detailField.substring(0, position != -1 ? position : this.detailField.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphDetailType = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphDetailTypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailType = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailTypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
     dropX2(ev) {
@@ -2110,8 +2140,8 @@ export interface dataSchemaInterface {
         this.x2Field = this.x2Field.substring(0, position != -1 ? position : this.x2Field.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphX2Type = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphX2TypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Type = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2TypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
     dropY2(ev) {
@@ -2138,8 +2168,8 @@ export interface dataSchemaInterface {
         this.y2Field = this.y2Field.substring(0, position != -1 ? position : this.y2Field.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphY2Type = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphY2TypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Type = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2TypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
     dropProjectionLatitude(ev) {
@@ -2167,7 +2197,7 @@ export interface dataSchemaInterface {
             0, position != -1 ? position : this.projectionFieldLatitude.length);
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphProjectionFieldLatitude = this.projectionFieldLatitude;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLatitude = this.projectionFieldLatitude;
     }
 
     dropProjectionLongitude(ev) {
@@ -2195,7 +2225,7 @@ export interface dataSchemaInterface {
             0, position != -1 ? position : this.projectionFieldLongitude.length);
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphProjectionFieldLongitude = this.projectionFieldLongitude;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLongitude = this.projectionFieldLongitude;
     }
 
     clickClearXField() {
@@ -2206,20 +2236,20 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
         this.showXDeleteIcon = false;
         this.xField = dragFieldMessage;
-        this.localWidget.graphXfield = '';
-        this.localWidget.graphXaxisTitle = '';
-        this.localWidget.graphXaggregateName = '';
-        this.localWidget.graphXaggregate = '';
-        this.localWidget.graphXbin = false;
-        this.localWidget.graphXMaxBins = 0;
-        this.localWidget.graphXformat = '';
-        this.localWidget.graphXaxisFormat = '';
-        this.localWidget.graphXimpute = '';
-        this.localWidget.graphXimputeValue = '';
-        this.localWidget.graphXstack = '';
-        this.localWidget.graphXsort = '';
-        this.localWidget.graphXtypeName = '';
-        this.localWidget.graphXtimeUnit = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisTitle = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregateName = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregate = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXbin = false;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXMaxBins = 0;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisFormat = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXimpute = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXimputeValue = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXstack = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtypeName = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit = '';
 
         // Hide the panel with properties
         this.showFieldXPropertiesTitle = false;
@@ -2237,20 +2267,20 @@ export interface dataSchemaInterface {
 
         this.showYDeleteIcon = false;
         this.yField = dragFieldMessage;
-        this.localWidget.graphYfield = '';
-        this.localWidget.graphYaxisTitle = '';
-        this.localWidget.graphYaggregateName = '';
-        this.localWidget.graphYaggregate = '';
-        this.localWidget.graphYbin = false;
-        this.localWidget.graphYMaxBins = 0;
-        this.localWidget.graphYformat = '';
-        this.localWidget.graphYaxisFormat = '';
-        this.localWidget.graphYimpute = '';
-        this.localWidget.graphYimputeValue = 0;
-        this.localWidget.graphYstack = '';
-        this.localWidget.graphYsort = '';
-        this.localWidget.graphYtypeName = '';
-        this.localWidget.graphYtimeUnit = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisTitle = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregateName = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregate = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYbin = false;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYMaxBins = 0;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisFormat = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYimpute = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYimputeValue = 0;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYstack = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtypeName = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit = '';
 
         // Hide the panel with properties
         this.showFieldYPropertiesTitle = false;
@@ -2266,22 +2296,22 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.localWidget.graphColorAggregateName = '';
-        this.localWidget.graphColorAggregate = '';
-        this.localWidget.graphColorBin = false;
-        this.localWidget.graphColorMaxBins = 0;
-        this.localWidget.graphColorFormat = '';
-        this.localWidget.graphLegendFormat = '';
-        this.localWidget.graphColorImpute = '';
-        this.localWidget.graphColorImputeValue = '';
-        this.localWidget.graphColorStack = '';
-        this.localWidget.graphColorSort = '';
-        this.localWidget.graphColorTypeName = '';
-        this.localWidget.graphColorTimeUnit = '';
-        this.localWidget.graphLegendTitle = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregateName = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregate = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorBin = false;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorMaxBins = 0;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendFormat = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorImpute = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorImputeValue = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTypeName = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle = '';
         this.showColourDeleteIcon = false;
         this.colorField = dragFieldMessage;
-        this.localWidget.graphColorField = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField = '';
 
 
         // Hide the panel with properties
@@ -2290,7 +2320,7 @@ export interface dataSchemaInterface {
         this.showFieldColorPropertiesField = false;
         this.showFieldColorPropertiesLegend = false;
 
-        if (this.localWidget.graphColorField == ''  &&  this.localWidget.graphSizeField == '') {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField == ''  &&  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField == '') {
             this.localWidget.graphDimensionRight = 0;
         };
 
@@ -2305,12 +2335,12 @@ export interface dataSchemaInterface {
 
         this.showSizeDeleteIcon = false;
         this.sizeField = dragFieldMessage;
-        this.localWidget.graphSizeField = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField = '';
 
-        this.localWidget.graphSizeAggregateName = '';
-        this.localWidget.graphSizeAggregate = '';
-        this.localWidget.graphSizeBin = false;
-        this.localWidget.graphSizeMaxBins = 0;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregateName = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregate = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeBin = false;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeMaxBins = 0;
 
         // Hide the panel with properties
         this.showFieldSizeProperties = false;
@@ -2326,7 +2356,7 @@ export interface dataSchemaInterface {
 
         this.showRowDeleteIcon = false;
         this.rowField = dragFieldMessage;
-        this.localWidget.graphRowField = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowField = '';
 
         // Hide the panel with properties
         this.showFieldRowProperties = false;
@@ -2342,7 +2372,7 @@ export interface dataSchemaInterface {
 
         this.showColumnDeleteIcon = false;
         this.columnField = dragFieldMessage;
-        this.localWidget.graphColumnField = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField = '';
 
         // Hide the panel with properties
         this.showFieldColumnProperties = false;
@@ -2358,7 +2388,7 @@ export interface dataSchemaInterface {
 
         this.showDetailDeleteIcon = false;
         this.detailField = dragFieldMessage;
-        this.localWidget.graphDetailField = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField = '';
 
         // Hide the panel with properties
         this.showFieldDetailProperties = false;
@@ -2374,11 +2404,11 @@ export interface dataSchemaInterface {
 
         this.showX2DeleteIcon = false;
         this.x2Field = dragFieldMessage;
-        this.localWidget.graphX2Field = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Field = '';
 
         // Hide the panel with properties
         this.showFieldX2Properties = false;
-        this.localWidget.graphX2AggregateName = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2AggregateName = '';
 
     }
 
@@ -2391,11 +2421,11 @@ export interface dataSchemaInterface {
 
         this.showY2DeleteIcon = false;
         this.y2Field = dragFieldMessage;
-        this.localWidget.graphY2Field = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field = '';
 
         // Hide the panel with properties
         this.showFieldY2Properties = false;
-        this.localWidget.graphY2AggregateName = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2AggregateName = '';
 
     }
 
@@ -2410,9 +2440,9 @@ export interface dataSchemaInterface {
         this.projectionField = '';
         this.projectionFieldLatitude = dragFieldMessage;
         this.projectionFieldLongitude = dragFieldMessage;
-        this.localWidget.graphProjectionType = '';
-        this.localWidget.graphProjectionFieldLatitude = '';
-        this.localWidget.graphProjectionFieldLongitude = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionType = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLatitude = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLongitude = '';
 
         // Hide the panel with properties
         this.showFieldProjectionProperties = false;
@@ -2428,7 +2458,7 @@ export interface dataSchemaInterface {
 
         this.showProjectionLatitudeDeleteIcon = false;
         this.projectionFieldLatitude = dragFieldMessage;
-        this.localWidget.graphProjectionFieldLatitude = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLatitude = '';
 
         // Hide the panel with properties
         this.showFieldProjectionProperties = false;
@@ -2444,7 +2474,7 @@ export interface dataSchemaInterface {
 
         this.showProjectionLongitudeDeleteIcon = false;
         this.projectionFieldLongitude = dragFieldMessage;
-        this.localWidget.graphProjectionFieldLatitude = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLatitude = '';
 
         // Hide the panel with properties
         this.showFieldProjectionProperties = false;
@@ -2458,12 +2488,12 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.localWidget.graphMarkLine = false;
-        this.localWidget.graphMarkPoint = false;
-        this.localWidget.graphMarkCornerRadius = 0;
-        this.localWidget.graphMarkOpacity = 1;
-        this.localWidget.graphMarkBinSpacing = 0;
-        this.localWidget.graphMarkOrient = 'Horizontal';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkLine = false;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPoint = false;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkCornerRadius = 0;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkOpacity = 1;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkBinSpacing = 0;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkOrient = 'Horizontal';
 
         // Hide the panel with properties
         this.showFieldMarkProperties = false;
@@ -3161,13 +3191,13 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.localWidget.graphXaxisGridColorName = ev.target.value;
-        this.localWidget.graphXaxisGridColor = this.localWidget.graphXaxisGridColorName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColorName = ev.target.value;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColor = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphXaxisGridColorName
+            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColorName
         );
         if (localIndex >= 0) {
-            this.localWidget.graphXaxisGridColor = this.backgroundcolors[localIndex].cssCode;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColor = this.backgroundcolors[localIndex].cssCode;
         };
     }
 
@@ -3178,13 +3208,13 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.localWidget.graphXaxisLabelColorName = ev.target.value;
-        this.localWidget.graphXaxisLabelColor = this.localWidget.graphXaxisLabelColorName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColorName = ev.target.value;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColor = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphXaxisLabelColorName
+            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColorName
         );
         if (localIndex >= 0) {
-            this.localWidget.graphXaxisLabelColor = this.backgroundcolors[localIndex].cssCode;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColor = this.backgroundcolors[localIndex].cssCode;
         };
     }
 
@@ -3195,13 +3225,13 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.localWidget.graphYaxisGridColorName = ev.target.value;
-        this.localWidget.graphYaxisGridColor = this.localWidget.graphYaxisGridColorName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColorName = ev.target.value;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColor = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphYaxisGridColorName
+            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColorName
         );
         if (localIndex >= 0) {
-            this.localWidget.graphYaxisGridColor = this.backgroundcolors[localIndex].cssCode;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColor = this.backgroundcolors[localIndex].cssCode;
         };
     }
 
@@ -3212,13 +3242,13 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.localWidget.graphLegendLabelColorName = ev.target.value;
-        this.localWidget.graphLegendLabelColor = this.localWidget.graphLegendLabelColorName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendLabelColorName = ev.target.value;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendLabelColor = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendLabelColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphLegendLabelColorName
+            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendLabelColorName
         );
         if (localIndex >= 0) {
-            this.localWidget.graphLegendLabelColor = this.backgroundcolors[localIndex].cssCode;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendLabelColor = this.backgroundcolors[localIndex].cssCode;
         };
     }
 
@@ -3229,13 +3259,13 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.localWidget.graphYaxisLabelColorName = ev.target.value;
-        this.localWidget.graphYaxisLabelColor = this.localWidget.graphYaxisLabelColorName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColorName = ev.target.value;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColor = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphYaxisLabelColorName
+            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColorName
         );
         if (localIndex >= 0) {
-            this.localWidget.graphYaxisLabelColor = this.backgroundcolors[localIndex].cssCode;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColor = this.backgroundcolors[localIndex].cssCode;
         };
     }
 
@@ -3280,13 +3310,13 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.localWidget.graphMarkColourName = ev.target.value;
-        this.localWidget.graphMarkColour = this.localWidget.graphMarkColourName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColourName = ev.target.value;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColour = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColourName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphMarkColourName
+            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColourName
         );
         if (localIndex >= 0) {
-            this.localWidget.graphMarkColour = this.backgroundcolors[localIndex].cssCode;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColour = this.backgroundcolors[localIndex].cssCode;
         };
     }
 
@@ -3297,13 +3327,13 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.localWidget.graphMarkPointColorName = ev.target.value;
-        this.localWidget.graphMarkPointColor = this.localWidget.graphMarkPointColorName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColorName = ev.target.value;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColor = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphMarkPointColorName
+            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColorName
         );
         if (localIndex >= 0) {
-            this.localWidget.graphMarkPointColor = this.backgroundcolors[localIndex].cssCode;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColor = this.backgroundcolors[localIndex].cssCode;
         };
     }
 
@@ -3314,8 +3344,8 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.localWidget.graphXbin) {
-            this.localWidget.graphXMaxBins = 0;
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXbin) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXMaxBins = 0;
         };
     }
 
@@ -3326,8 +3356,8 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.localWidget.graphYbin) {
-            this.localWidget.graphYMaxBins = 0;
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYbin) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYMaxBins = 0;
         };
     }
 
@@ -3338,8 +3368,8 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.localWidget.graphColorBin) {
-            this.localWidget.graphColorMaxBins = 0;
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorBin) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorMaxBins = 0;
         };
     }
 
@@ -3350,8 +3380,8 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.localWidget.graphSizeBin) {
-            this.localWidget.graphSizeMaxBins = 0;
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeBin) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeMaxBins = 0;
         };
     }
 
@@ -3410,10 +3440,10 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.localWidget.graphXtype =  ev.target.value.toLowerCase();
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype =  ev.target.value.toLowerCase();
 
-        if (this.localWidget.graphXtype != 'Temporal') {
-            this.localWidget.graphXtimeUnit = '';
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype != 'Temporal') {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit = '';
         };
     }
 
@@ -3424,10 +3454,10 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.localWidget.graphYtype =  ev.target.value.toLowerCase();
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype =  ev.target.value.toLowerCase();
 
-        if (this.localWidget.graphYtype != 'Temporal') {
-            this.localWidget.graphYtimeUnit = '';
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype != 'Temporal') {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit = '';
         };
     }
 
@@ -3438,10 +3468,10 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.localWidget.graphColorType =  ev.target.value.toLowerCase();
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType =  ev.target.value.toLowerCase();
 
-        if (this.localWidget.graphColorType != 'Temporal') {
-            this.localWidget.graphColorTimeUnit = '';
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType != 'Temporal') {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit = '';
         };
     }
 
@@ -4004,10 +4034,10 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.localWidget.graphXfield != ''   &&   this.localWidget.graphXfield != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield != null) {
             this.showXDeleteIcon = true;
             this.showFieldXPropertiesTitle = true;
-            this.xField = this.localWidget.graphXfield;
+            this.xField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield;
 
         } else {
             this.showXDeleteIcon = false;
@@ -4015,70 +4045,70 @@ export interface dataSchemaInterface {
             this.xField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphYfield != ''   &&   this.localWidget.graphYfield != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield != null) {
             this.showYDeleteIcon = true;
             this.showFieldYPropertiesTitle = true;
-            this.yField = this.localWidget.graphYfield;
+            this.yField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield;
         } else {
             this.showYDeleteIcon = false;
             this.showFieldYPropertiesTitle = false;
             this.yField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphColorField != ''   &&   this.localWidget.graphColorField != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField != null) {
             this.showColourDeleteIcon = true;
             this.showFieldColorPropertiesTitle = true;
-            this.colorField = this.localWidget.graphColorField;
+            this.colorField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField;
         } else {
             this.showColourDeleteIcon = false;
             this.showFieldColorPropertiesTitle = false;
             this.colorField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphSizeField != ''   &&   this.localWidget.graphSizeField != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField != null) {
             this.showSizeDeleteIcon = true;
-            this.sizeField = this.localWidget.graphSizeField;
+            this.sizeField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField;
         } else {
             this.showSizeDeleteIcon = false;
             this.sizeField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphRowField != ''   &&   this.localWidget.graphRowField != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowField != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowField != null) {
             this.showRowDeleteIcon = true;
-            this.rowField = this.localWidget.graphRowField;
+            this.rowField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowField;
         } else {
             this.showRowDeleteIcon = false;
             this.rowField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphColumnField != ''   &&   this.localWidget.graphColumnField != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField != null) {
             this.showColumnDeleteIcon = true;
-            this.columnField = this.localWidget.graphColumnField;
+            this.columnField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField;
         } else {
             this.showColumnDeleteIcon = false;
             this.columnField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphDetailField != ''   &&   this.localWidget.graphDetailField != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField != null) {
             this.showDetailDeleteIcon = true;
-            this.detailField = this.localWidget.graphDetailField;
+            this.detailField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField;
         } else {
             this.showDetailDeleteIcon = false;
             this.detailField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphX2Field != ''   &&   this.localWidget.graphX2Field != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Field != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Field != null) {
             this.showX2DeleteIcon = true;
-            this.x2Field = this.localWidget.graphX2Field;
+            this.x2Field = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Field;
 
         } else {
             this.showX2DeleteIcon = false;
             this.x2Field = dragFieldMessage;
         };
 
-        if (this.localWidget.graphY2Field != ''   &&   this.localWidget.graphY2Field != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field != null) {
             this.showY2DeleteIcon = true;
-            this.y2Field = this.localWidget.graphY2Field;
+            this.y2Field = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field;
 
         } else {
             this.showY2DeleteIcon = false;

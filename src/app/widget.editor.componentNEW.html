@@ -131,7 +131,7 @@
                     <div class="editorSampling">
                         <input type="number"
                             placeholder="Optional Random Sample (0 = All)"
-                            [(ngModel)]="localWidget.sampleNumberRows"
+                            [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].sampleNumberRows"
                             name="sampleNumberRows"
                             size="5"
                             style="border-radius: 5px; width: 100%;"
@@ -300,7 +300,7 @@
                                 <clr-dg-column>DataType</clr-dg-column>
                                 <clr-dg-column>Delete?</clr-dg-column>
 
-                                <clr-dg-row *clrDgItems="let row of localWidget.graphCalculations; let i = index"
+                                <clr-dg-row *clrDgItems="let row of localWidget.graphLayers[currentGraphLayer - 1].graphCalculations; let i = index"
                                     [style.background-color]="(i == selectedGraphCalculatedRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedGraphCalculatedRowIndex)? 'white' : 'gray'"
                                     (click)="clickGraphCalculatedRowSelect(i, row.id)"
@@ -994,7 +994,7 @@
 
                             <div class="editorWidgetEditorLiteCheckbox">
                                 I know what I am doing, show the full Editor:
-                                <input [(ngModel)]="localWidget.graphXbin"
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXbin"
                                     type="checkbox"
                                     name="graphXbin"
                                     (click)="clickShowFullEditor()"
@@ -1031,7 +1031,7 @@
                             <div class="editorTitleText" *ngIf="showFieldTitleProperties">
                                 <input type="text"
                                     placeholder="Text of title"
-                                    [(ngModel)]="localWidget.graphTitleText"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphTitleText"
                                     name="graphTitleText"
                                     style="border-radius: 5px; width: 100%;"
                                     title="Text of the Graph Title"
@@ -1048,7 +1048,7 @@
                                 title="Title Orientation"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphTitleAnchor"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphTitleAnchor"
                                     >
                                     <option>Start</option>
                                     <option>Middle</option>
@@ -1065,7 +1065,7 @@
                             <div class="editorTitleAngle" *ngIf="showFieldTitleProperties">
                                 <input type="number"
                                     placeholder="Angle of title"
-                                    [(ngModel)]="localWidget.graphTitleAngle"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphTitleAngle"
                                     min="0"
                                     max="360"
                                     name="titleAngle"
@@ -1080,7 +1080,7 @@
                                 Bg Color:
                             </div>
                             <div class="select editorTitleBackground" *ngIf="showFieldTitleProperties">
-                                <select [(ngModel)]="localWidget.graphBackgroundColorName"
+                                <select [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphBackgroundColorName"
                                     name="graphBackgroundColorName"
                                     (change)="clickSelectBackgroundColor($event)"
                                     title="Color of the Graph Background"
@@ -1103,7 +1103,7 @@
                                 title="Baseline of title"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphTitleBaseline"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphTitleBaseline"
                                     >
                                     <option>Top</option>
                                     <option>Middle</option>
@@ -1118,7 +1118,7 @@
                             Color:
                             </div>
                             <div class="select editorTitleColour" *ngIf="showFieldTitleProperties">
-                                <select [(ngModel)]="localWidget.graphTitleColorName"
+                                <select [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphTitleColorName"
                                     name="graphTitleColorName"
                                     (change)="clickSelectTitleColor($event)"
                                     title="Color of title text"
@@ -1140,7 +1140,7 @@
                             <div class="editorTitleFont" *ngIf="showFieldTitleProperties">
                                 <input type="text"
                                     placeholder="Font name"
-                                    [(ngModel)]="localWidget.graphTitleFont"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphTitleFont"
                                     name="graphTitleFont"
                                     title="Name of the font, ie Arial"
                                     >
@@ -1155,7 +1155,7 @@
                             <div class="editorTitleFontSize" *ngIf="showFieldTitleProperties">
                                 <input type="number"
                                     placeholder="Font Size"
-                                    [(ngModel)]="localWidget.graphTitleFontSize"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphTitleFontSize"
                                     min="0"
                                     max="300"
                                     name="graphTitleFontSize"
@@ -1172,7 +1172,7 @@
                             <div class="editorTitleFontWeight" *ngIf="showFieldTitleProperties">
                                 <input type="number"
                                     placeholder="Font Weight (100, 200..900)"
-                                    [(ngModel)]="localWidget.graphTitleFontWeight"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphTitleFontWeight"
                                     min="0"
                                     max="900"
                                     name="graphTitleFontWeight"
@@ -1189,7 +1189,7 @@
                             <div class="editorTitleLength" *ngIf="showFieldTitleProperties">
                                 <input type="number"
                                     placeholder="Max length in px"
-                                    [(ngModel)]="localWidget.graphTitleLength"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphTitleLength"
                                     name="graphTitleLength"
                                     min="0"
                                     max="500"
@@ -1207,7 +1207,7 @@
                                 title="Position where the title must be place on Graph"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphTitleOrientation"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphTitleOrientation"
                                     >
                                     <option>Top</option>
                                     <option>Bottom</option>
@@ -1263,7 +1263,7 @@
                                 title="How the X values must be aggregated, ie Count"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphXaggregateName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXaggregateName"
                                     name="graphXaggregateName"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
@@ -1279,7 +1279,7 @@
                                 Bin:
                             </div>
                             <div class="editorGraphXbin" *ngIf="showFieldXPropertiesField">
-                                <input [(ngModel)]="localWidget.graphXbin"
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXbin"
                                     type="checkbox"
                                     name="graphXbin"
                                     (click)="clickXBin()"
@@ -1298,7 +1298,7 @@
                                     max="10"
                                     size="5"
                                     style="width: 25px;"
-                                    [(ngModel)]="localWidget.graphXMaxBins"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXMaxBins"
                                     title="Estimated number of bins"
                                     >
                             </div>
@@ -1312,7 +1312,7 @@
                             <div class="editorGraphXformat" *ngIf="showFieldXPropertiesField">
                                 <input type="text"
                                     placeholder="Only for Text"
-                                    [(ngModel)]="localWidget.graphXformat"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXformat"
                                     name="graphXformat"
                                     title="Format of text values"
                                     >
@@ -1328,7 +1328,7 @@
                                 title="Fill in missing value, ie with the average of a column"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphXimpute"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXimpute"
                                     name="graphXimpute"
                                     >
                                     <option></option>
@@ -1345,9 +1345,9 @@
                                 >
                                 <input type="number"
                                     placeholder="Value"
-                                    [(ngModel)]="localWidget.graphXimputeValue"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXimputeValue"
                                     name="graphXimputeValue"
-                                    [disabled]="!(localWidget.graphXimpute=='Value')"
+                                    [disabled]="!(localWidget.graphLayers[currentGraphLayer - 1].graphXimpute=='Value')"
                                     size="5"
                                     title="Fixed value into missing values"
                                     >
@@ -1363,7 +1363,7 @@
                                 title="Specify how the X values must be stacked"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphXstack"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXstack"
                                     name="graphXstack"
                                     >
                                     <option>Zero</option>
@@ -1383,7 +1383,7 @@
                                 title="Specify how the X values must be sorted"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphXsort"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXsort"
                                     name="graphXsort"
                                     >
                                     <option>None</option>
@@ -1402,7 +1402,7 @@
                                 title="Type of the X field in the Graph (ordinal for strings)"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphXtypeName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXtypeName"
                                     (change)="changeXType($event)"
                                     name="graphXtypeName"
                                     >
@@ -1424,9 +1424,9 @@
                                 title="Time unit for Temporate (date) fields"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphXtimeUnit"
-                                    [disabled]="localWidget.graphXtypeName!='Temporal'
-                                             && localWidget.graphXtypeName!='Ordinal'"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXtimeUnit"
+                                    [disabled]="localWidget.graphLayers[currentGraphLayer - 1].graphXtypeName!='Temporal'
+                                             && localWidget.graphLayers[currentGraphLayer - 1].graphXtypeName!='Ordinal'"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -1462,7 +1462,7 @@
                                 *ngIf="showFieldXPropertiesAxis"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphXaxisScaleType"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisScaleType"
                                     >
                                     <option>Default</option>
                                     <option>Linear</option>
@@ -1478,7 +1478,7 @@
                                 Title:
                             </div>
                             <div class="editorGraphXaxisTitleCheckbox" *ngIf="showFieldXPropertiesAxis">
-                                <input [(ngModel)]="localWidget.graphXaxisTitleCheckbox"
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisTitleCheckbox"
                                     type="checkbox"
                                     name="graphXaxisTitleCheckbox"
                                     title="Show the Axis Title (T/F)"
@@ -1488,7 +1488,7 @@
                                 >
                                 <input type="text"
                                     placeholder="Blank = field name"
-                                    [(ngModel)]="localWidget.graphXaxisTitle"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisTitle"
                                     name="graphXaxisTitle"
                                     >
                             </div>
@@ -1501,7 +1501,7 @@
                             </div>
                             <div class="editorGraphXaxisLabelAngle" *ngIf="showFieldXPropertiesAxis">
                                 <input type="number"
-                                    [(ngModel)]="localWidget.graphXaxisLabelAngle"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisLabelAngle"
                                     name="graphXaxisLabelAngle"
                                     placeholder="Label Angle"
                                     >
@@ -1515,7 +1515,7 @@
                             </div>
                             <div class="editorGraphXaxisFormat" *ngIf="showFieldXPropertiesAxis">
                                 <input type="text"
-                                    [(ngModel)]="localWidget.graphXaxisFormat"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisFormat"
                                     name="graphXaxisFormat"
                                     placeholder="ie .2s +$,.2f"
                                     >
@@ -1529,13 +1529,13 @@
                             </div>
                             <div class="editorGraphXaxisGrid" *ngIf="showFieldXPropertiesAxis">
                                 <input type="checkbox"
-                                    [(ngModel)]="localWidget.graphXaxisGrid"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisGrid"
                                     name="graphXaxisGrid"
                                     title="Show Grid lines (T/F)"
                                     >
                             </div>
                             <div class="select editorGraphXaxisGridColor" *ngIf="showFieldXPropertiesAxis">
-                                <select [(ngModel)]="localWidget.graphXaxisGridColorName"
+                                <select [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisGridColorName"
                                     name="graphXaxisGridColorName"
                                     (change)="clickSelectXGridColor($event)"
                                     title="Color of the X gridlines"
@@ -1557,13 +1557,13 @@
                             </div>
                             <div class="editorGraphXaxisLabels" *ngIf="showFieldXPropertiesAxis">
                                 <input type="checkbox"
-                                    [(ngModel)]="localWidget.graphXaxisLabels"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisLabels"
                                     name="graphXaxisLabels"
                                     title="Show labels (T/F)"
                                     >
                             </div>
                             <div class="select editorGraphXaxisLabelsColor" *ngIf="showFieldXPropertiesAxis">
-                                <select [(ngModel)]="localWidget.graphXaxisLabelColorName"
+                                <select [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisLabelColorName"
                                     name="graphXaxisLabelColorName"
                                     (change)="clickSelectXLabelColor($event)"
                                     title="Color of the X labels"
@@ -1585,7 +1585,7 @@
                             <div class="editorGraphXaxisLabelLength" *ngIf="showFieldXPropertiesAxis">
                                 <input type="number"
                                     placeholder="Max length in px"
-                                    [(ngModel)]="localWidget.graphDimensionBottom"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphDimensionBottom"
                                     name="graphDimensionBottom"
                                     min="0"
                                     max="500"
@@ -1639,7 +1639,7 @@
                             </div>
                             <div class="select editorGraphYaggregate" *ngIf="showFieldYPropertiesField">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphYaggregateName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYaggregateName"
                                     name="graphYaggregateName"
                                     title="How Y values must be aggregated, ie Count"
                                     >
@@ -1656,7 +1656,7 @@
                                 Bin:
                             </div>
                             <div class="editorGraphYbin" *ngIf="showFieldYPropertiesField">
-                                <input [(ngModel)]="localWidget.graphYbin"
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYbin"
                                     type="checkbox"
                                     name="graphXbin"
                                     (click)="clickYBin()"
@@ -1672,7 +1672,7 @@
                                     placeholder="Est. nr of bins"
                                     size="5"
                                     style="width: 25px;"
-                                    [(ngModel)]="localWidget.graphYMaxBins"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYMaxBins"
                                     name="graphYMaxBins"
                                     title="Estimated number of bins"
                                     >
@@ -1687,7 +1687,7 @@
                             <div class="editorGraphYformat" *ngIf="showFieldYPropertiesField">
                                 <input type="text"
                                     placeholder="Only for Text"
-                                    [(ngModel)]="localWidget.graphYformat"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYformat"
                                     name="graphYformat"
                                     title="Format of text values"
                                     >
@@ -1703,7 +1703,7 @@
                                 title="Fill in missing value, ie with the average of a column"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphYimpute"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYimpute"
                                     name="graphYimpute"
                                     >
                                     <option></option>
@@ -1720,9 +1720,9 @@
                                 >
                                 <input type="number"
                                     placeholder="Value"
-                                    [(ngModel)]="localWidget.graphYimputeValue"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYimputeValue"
                                     name="graphYimputeValue"
-                                    [disabled]="!(localWidget.graphYimpute=='Value')"
+                                    [disabled]="!(localWidget.graphLayers[currentGraphLayer - 1].graphYimpute=='Value')"
                                     size="5"
                                     title="Fixed value into missing values"
                                     >
@@ -1738,7 +1738,7 @@
                                 title="How Y values must be stacked"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphYstack"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYstack"
                                     name="graphYstack"
                                     >
                                     <option>Zero</option>
@@ -1758,7 +1758,7 @@
                                 title="How Y values must be sorted"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphYsort"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYsort"
                                     name="graphYsort"
                                     >
                                     <option>None</option>
@@ -1777,7 +1777,7 @@
                                 title="Type of the X field in the Graph (ordinal for strings)"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphYtypeName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYtypeName"
                                     (change)="changeYType($event)"
                                     name="graphYtypeName"
                                     >
@@ -1799,9 +1799,9 @@
                                 title="Time unit for Temporate (date) fields"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphYtimeUnit"
-                                    [disabled]="localWidget.graphYtypeName!='Temporal'
-                                             && localWidget.graphYtypeName!='Ordinal'"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYtimeUnit"
+                                    [disabled]="localWidget.graphLayers[currentGraphLayer - 1].graphYtypeName!='Temporal'
+                                             && localWidget.graphLayers[currentGraphLayer - 1].graphYtypeName!='Ordinal'"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -1837,7 +1837,7 @@
                                 *ngIf="showFieldYPropertiesAxis"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphYaxisScaleType"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisScaleType"
                                     >
                                     <option>Default</option>
                                     <option>Linear</option>
@@ -1853,7 +1853,7 @@
                                 Title:
                             </div>
                             <div class="editorGraphYaxisTitleCheckbox" *ngIf="showFieldYPropertiesAxis">
-                                <input [(ngModel)]="localWidget.graphYaxisTitleCheckbox"
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisTitleCheckbox"
                                     type="checkbox"
                                     name="graphYaxisTitleCheckbox"
                                     title="Show the Axis Title (T/F)"
@@ -1863,7 +1863,7 @@
                                 >
                                 <input type="text"
                                     placeholder="Blank = field name"
-                                    [(ngModel)]="localWidget.graphYaxisTitle"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisTitle"
                                     name="graphYaxisTitle"
                                     >
                             </div>
@@ -1876,7 +1876,7 @@
                             </div>
                             <div class="editorGraphYaxisLabelAngle" *ngIf="showFieldYPropertiesAxis">
                                 <input type="number"
-                                    [(ngModel)]="localWidget.graphYaxisLabelAngle"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisLabelAngle"
                                     name="graphYaxisLabelAngle"
                                     placeholder="Label Angle"
                                     >
@@ -1890,7 +1890,7 @@
                             </div>
                             <div class="editorGraphYaxisFormat" *ngIf="showFieldYPropertiesAxis">
                                 <input type="text"
-                                    [(ngModel)]="localWidget.graphYaxisFormat"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisFormat"
                                     name="graphYaxisFormat"
                                     placeholder="ie .2s +$,.2f"
                                     >
@@ -1904,13 +1904,13 @@
                             </div>
                             <div class="editorGraphYaxisGrid" *ngIf="showFieldYPropertiesAxis">
                                 <input type="checkbox"
-                                    [(ngModel)]="localWidget.graphYaxisGrid"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisGrid"
                                     name="graphYaxisGrid"
                                     title="Show Grid lines (T/F)"
                                     >
                             </div>
                             <div class="select editorGraphYaxisGridColor" *ngIf="showFieldYPropertiesAxis">
-                                <select [(ngModel)]="localWidget.graphYaxisGridColorName"
+                                <select [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisGridColorName"
                                     name="graphYaxisGridColorName"
                                     (change)="clickSelectYGridColor($event)"
                                     title="Color of the Y gridlines"
@@ -1931,13 +1931,13 @@
                             </div>
                             <div class="editorGraphYaxisLabels" *ngIf="showFieldYPropertiesAxis">
                                 <input type="checkbox"
-                                    [(ngModel)]="localWidget.graphYaxisLabels"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisLabels"
                                     name="graphYaxisLabels"
                                     title="Show labels (T/F)"
                                     >
                             </div>
                             <div class="select editorGraphYaxisLabelsColor" *ngIf="showFieldYPropertiesAxis">
-                                <select [(ngModel)]="localWidget.graphYaxisLabelColorName"
+                                <select [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisLabelColorName"
                                     name="graphYaxisLabelColorName"
                                     (change)="clickSelectYLabelColor($event)"
                                     title="Color of the Y labels"
@@ -1959,7 +1959,7 @@
                             <div class="editorGraphYaxisLabelLength" *ngIf="showFieldYPropertiesAxis">
                                 <input type="number"
                                     placeholder="Max length in px"
-                                    [(ngModel)]="localWidget.graphDimensionLeft"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphDimensionLeft"
                                     name="graphDimensionLeft"
                                     min="0"
                                     max="500"
@@ -2017,7 +2017,7 @@
                                 title="How the Color values must be aggregated, ie Count"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphColorAggregateName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColorAggregateName"
                                     name="graphColorAggregateName"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
@@ -2033,7 +2033,7 @@
                                 Bin:
                             </div>
                             <div class="editorGraphColorBin" *ngIf="showFieldColorPropertiesField">
-                                <input [(ngModel)]="localWidget.graphColorBin"
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColorBin"
                                     type="checkbox"
                                     name="graphXbin"
                                     (click)="clickColorBin()"
@@ -2049,7 +2049,7 @@
                                     placeholder="Est. nr of bins"
                                     size="5"
                                     style="width: 25px;"
-                                    [(ngModel)]="localWidget.graphColorMaxBins"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColorMaxBins"
                                     name="graphColorMaxBins"
                                     title="Estimated number of bins"
                                     >
@@ -2064,7 +2064,7 @@
                             <div class="editorGraphColorFormat" *ngIf="showFieldColorPropertiesField">
                                 <input type="text"
                                     placeholder="ie .2s +$,.2f"
-                                    [(ngModel)]="localWidget.graphColorFormat"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColorFormat"
                                     name="graphColorFormat"
                                     >
                             </div>
@@ -2079,7 +2079,7 @@
                             </div>
                             <div class="select editorGraphColorImpute" *ngIf="showFieldColorPropertiesField">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphColorImpute"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColorImpute"
                                     name="graphColorImpute"
                                     >
                                     <option></option>
@@ -2096,9 +2096,9 @@
                                 >
                                 <input type="number"
                                     placeholder="Value"
-                                    [(ngModel)]="localWidget.graphColorImputeValue"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColorImputeValue"
                                     name="graphColorImputeValue"
-                                    [disabled]="!(localWidget.graphColorImpute=='Value')"
+                                    [disabled]="!(localWidget.graphLayers[currentGraphLayer - 1].graphColorImpute=='Value')"
                                     size="5"
                                     title="Fixed value into missing values"
                                     >
@@ -2112,7 +2112,7 @@
                             </div>
                             <div class="select editorGraphColorScheme" *ngIf="showFieldColorPropertiesField">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphColorScheme"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColorScheme"
                                     name="graphColorScheme"
                                     >
                                     <option *ngFor="let row of vegaColorSchemes; let i = index">
@@ -2129,7 +2129,7 @@
                             </div>
                             <div class="select editorGraphColorSort" *ngIf="showFieldColorPropertiesField">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphColorSort"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColorSort"
                                     name="graphColorSort"
                                     >
                                     <option>None</option>
@@ -2146,7 +2146,7 @@
                             </div>
                             <div class="select editorGraphColorStack" *ngIf="showFieldColorPropertiesField">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphColorStack"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColorStack"
                                     name="graphColorStack"
                                     >
                                     <option>Zero</option>
@@ -2166,7 +2166,7 @@
                                 title="Type of the Color field in the Graph (ordinal for strings)"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphColorTypeName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColorTypeName"
                                     (change)="changeColorType($event)"
                                     name="graphColorTypeName"
                                     >
@@ -2188,9 +2188,9 @@
                                 title="Time unit for Temporate (date) fields"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphColorTimeUnit"
-                                    [disabled]="localWidget.graphColorTypeName!='Temporal'
-                                             && localWidget.graphColorTypeName!='Ordinal'"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColorTimeUnit"
+                                    [disabled]="localWidget.graphLayers[currentGraphLayer - 1].graphColorTypeName!='Temporal'
+                                             && localWidget.graphLayers[currentGraphLayer - 1].graphColorTypeName!='Ordinal'"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -2226,7 +2226,7 @@
                             <div class="select editorGraphLegendAxisScaleType" *ngIf="showFieldColorPropertiesLegend"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphLegendAxisScaleType"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphLegendAxisScaleType"
                                     >
                                     <option>Default</option>
                                     <option>Linear</option>
@@ -2242,7 +2242,7 @@
                                 Hide:
                             </div>
                             <div class="editorGraphLegendHide" *ngIf="showFieldColorPropertiesLegend">
-                                <input [(ngModel)]="localWidget.graphLegendHide"
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphLegendHide"
                                     type="checkbox"
                                     name="graphLegendHide"
                                     title="Hide the whole Legend (T/F)"
@@ -2256,7 +2256,7 @@
                                 Title:
                             </div>
                             <div class="editorGraphLegendTitleCheckbox" *ngIf="showFieldColorPropertiesLegend">
-                                <input [(ngModel)]="localWidget.graphLegendTitleCheckbox"
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphLegendTitleCheckbox"
                                     type="checkbox"
                                     name="graphLegendTitleCheckbox"
                                     title="Show the Axis Title (T/F)"
@@ -2266,7 +2266,7 @@
                                 >
                                 <input type="text"
                                     placeholder="Blank = field name"
-                                    [(ngModel)]="localWidget.graphLegendTitle"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphLegendTitle"
                                     name="graphLegendTitle"
                                     title="Text of the Legend Title"
                                     >
@@ -2280,7 +2280,7 @@
                             </div>
                             <div class="editorGraphLegendFormat" *ngIf="showFieldColorPropertiesLegend">
                                 <input type="text"
-                                    [(ngModel)]="localWidget.graphLegendFormat"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphLegendFormat"
                                     name="graphLegendFormat"
                                     placeholder="ie .2s +$,.2f"
                                     title="Format (D3) of the legend, ie .1f for one decimal"
@@ -2295,13 +2295,13 @@
                             </div>
                             <div class="editorGraphLegendLabels" *ngIf="showFieldColorPropertiesLegend">
                                 <input type="checkbox"
-                                    [(ngModel)]="localWidget.graphLegendLabels"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphLegendLabels"
                                     name="graphLegendLabels"
                                     title="Show labels (T/F)"
                                     >
                             </div>
                             <div class="select editorGraphLegendLabelsColor" *ngIf="showFieldColorPropertiesLegend">
-                                <select [(ngModel)]="localWidget.graphLegendLabelColorName"
+                                <select [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphLegendLabelColorName"
                                     name="graphLegendLabelColorName"
                                     (change)="clickSelectLegendLabelColor($event)"
                                     title="Color of the X labels"
@@ -2323,7 +2323,7 @@
                             <div class="editorGraphLegendLabelLength" *ngIf="showFieldColorPropertiesLegend">
                                 <input type="number"
                                     placeholder="Max length in px"
-                                    [(ngModel)]="localWidget.graphDimensionRight"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphDimensionRight"
                                     name="graphDimensionRight"
                                     min="0"
                                     max="500"
@@ -2360,7 +2360,7 @@
                             <div class="select editorGraphMarkColour" *ngIf="showFieldMarkProperties"
                                 title="Color of the mark, ie red for a line Graph"
                                 >
-                                <select [(ngModel)]="localWidget.graphMarkColourName"
+                                <select [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkColourName"
                                     name="graphMarkColourName"
                                     (change)="clickSelectMarkColour($event)"
                                     >
@@ -2380,7 +2380,7 @@
                             </div>
                             <div class="editorGraphMarkCornerRadius" *ngIf="showFieldMarkProperties">
                                 <input type="number"
-                                    [(ngModel)]="localWidget.graphMarkCornerRadius"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkCornerRadius"
                                     name="graphMarkCornerRadius"
                                     placeholder="Mark corner radius"
                                     title="Radius of bar corners, in px"
@@ -2395,7 +2395,7 @@
                             </div>
                             <div class="select editorGraphMarkExtent" *ngIf="showFieldMarkProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphMarkExtent"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkExtent"
                                     name="graphMarkExtent"
                                     title="Extent of the Extent Band / Bar"
                                     >
@@ -2416,10 +2416,10 @@
                                 title="Specify how the values must be interpolated"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphMarkInterpolate"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkInterpolate"
                                     name="graphMarkInterpolate"
-                                    [disabled]="localWidget.graphMark!='line'
-                                                && localWidget.graphMark!='area'"
+                                    [disabled]="localWidget.graphLayers[currentGraphLayer - 1].graphMark!='line'
+                                                && localWidget.graphLayers[currentGraphLayer - 1].graphMark!='area'"
                                     >
                                     <option></option>
                                     <option>Step</option>
@@ -2433,7 +2433,7 @@
                                 Line:
                             </div>
                             <div class="editorGraphMarkLine" *ngIf="showFieldMarkProperties">
-                                <input [(ngModel)]="localWidget.graphMarkLine"
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkLine"
                                     type="checkbox"
                                     name="graphMarkLine"
                                     title="Add line to graph (T/F)"
@@ -2448,7 +2448,7 @@
                             </div>
                             <div class="editorGraphMarkOpacity" *ngIf="showFieldMarkProperties">
                                 <input type="number"
-                                    [(ngModel)]="localWidget.graphMarkOpacity"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkOpacity"
                                     name="graphMarkOpacity"
                                     min="0"
                                     max="1"
@@ -2466,7 +2466,7 @@
                             </div>
                             <div class="select editorGraphMarkOrient" *ngIf="showFieldMarkProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphMarkOrient"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkOrient"
                                     name="graphMarkOrient"
                                     title="Orientation, useful when both are Quantitative fields"
                                     >
@@ -2482,7 +2482,7 @@
                                 Point:
                             </div>
                             <div class="editorGraphMarkPoint" *ngIf="showFieldMarkProperties">
-                                <input [(ngModel)]="localWidget.graphMarkPoint"
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkPoint"
                                     type="checkbox"
                                     name="graphMarkPoint"
                                     title="Add Points to graph (T/F)"
@@ -2491,7 +2491,7 @@
                             <div class="select editorGraphMarkPointColour" *ngIf="showFieldMarkProperties"
                                 title="Color of the point on the line or area Graph"
                                 >
-                                <select [(ngModel)]="localWidget.graphMarkPointColorName"
+                                <select [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkPointColorName"
                                     name="graphMarkPointColorName"
                                     (change)="clickSelectMarkPointColour($event)"
                                     >
@@ -2511,7 +2511,7 @@
                             </div>
                             <div class="editorGraphMarkBinSpacing" *ngIf="showFieldMarkProperties">
                                 <input type="number"
-                                    [(ngModel)]="localWidget.graphMarkBinSpacing"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkBinSpacing"
                                     name="graphMarkBinSpacing"
                                     placeholder="Space between bars"
                                     title="Spacing between bars"
@@ -2578,7 +2578,7 @@
                                 title="Type of the Size field in the Graph (ordinal for strings)"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphSizeTypeName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphSizeTypeName"
                                     name="graphSizeTypeName"
                                     >
                                     <option>Ordinal</option>
@@ -2598,7 +2598,7 @@
                                 title="How the Size values must be aggregated, ie Count"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphSizeAggregateName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphSizeAggregateName"
                                     name="graphSizeAggregateName"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
@@ -2614,7 +2614,7 @@
                                 Bin:
                             </div>
                             <div class="editorGraphSizeBin" *ngIf="showFieldSizeProperties">
-                                <input [(ngModel)]="localWidget.graphSizeBin"
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphSizeBin"
                                     type="checkbox"
                                     name="graphSizeBin"
                                     (click)="clickSizeBin()"
@@ -2629,7 +2629,7 @@
                                     placeholder="Est. nr of bins"
                                     size="5"
                                     style="width: 25px;"
-                                    [(ngModel)]="localWidget.graphSizeMaxBins"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphSizeMaxBins"
                                     name="graphSizeMaxBins"
                                     title="Estimated number of bins"
                                     >
@@ -2713,7 +2713,7 @@
                                 title="Type of the Row field in the Graph (ordinal for strings)"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphRowTypeName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphRowTypeName"
                                     name="graphRowTypeName"
                                     >
                                     <option>Ordinal</option>
@@ -2783,7 +2783,7 @@
                                 title="Type of the Column field in the Graph (ordinal for strings)"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphColumnTypeName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColumnTypeName"
                                     name="graphColumnTypeName"
                                     >
                                     <option>Ordinal</option>
@@ -2853,7 +2853,7 @@
                                 title="Type of the Detail field in the Graph (ordinal for strings)"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphDetailTypeName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphDetailTypeName"
                                     name="graphDetailTypeName"
                                     >
                                     <option>Ordinal</option>
@@ -2923,7 +2923,7 @@
                                 title="How the X2 values must be aggregated, ie Count"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphX2AggregateName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphX2AggregateName"
                                     name="graphXaggregateName"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
@@ -2942,7 +2942,7 @@
                                 title="Type of the X2 field in the Graph (ordinal for strings)"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphX2TypeName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphX2TypeName"
                                     name="graphX2TypeName"
                                     >
                                     <option>Ordinal</option>
@@ -3012,7 +3012,7 @@
                                 title="How the Y2 values must be aggregated, ie Count"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphY2AggregateName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphY2AggregateName"
                                     name="graphXaggregateName"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
@@ -3031,7 +3031,7 @@
                                 title="Type of the Y2 field in the Graph (ordinal for strings)"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphY2TypeName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphY2TypeName"
                                     name="graphY2TypeName"
                                     >
                                     <option>Ordinal</option>
@@ -3078,7 +3078,7 @@
                                 title="Type of the type of geo Projection for the Graph"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphProjectionType"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphProjectionType"
                                     name="graphProjectionType"
                                     >
                                     <option></option>
@@ -3212,6 +3212,10 @@
 
                         <b *ngIf="!showGraphAreaTitle  &&  !showSpecification">
                             Graph
+                            <span *ngIf="localWidget.graphLayers[currentGraphLayer - 1].graphLayers">
+                                {{ localWidget.graphLayers[currentGraphLayer - 1].graphLayers[currentGraphLayer - 1].graphMark }}
+
+                            </span>
                         </b>
 
                         <b *ngIf="showGraphAreaTitle  &&  !showSpecification">
@@ -3430,7 +3434,7 @@
                                 <clr-dg-column>Active?</clr-dg-column>
                                 <clr-dg-column>Delete?</clr-dg-column>
 
-                                <clr-dg-row *clrDgItems="let row of localWidget.graphFilters; let i = index"
+                                <clr-dg-row *clrDgItems="let row of localWidget.graphLayers[currentGraphLayer - 1].graphFilters; let i = index"
                                     [style.background-color]="(i == selectedGraphFilterRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedGraphFilterRowIndex)? 'white' : 'gray'"
                                     (click)="clickGraphFilterRowSelect(i, row.id)"
@@ -3516,7 +3520,7 @@
                         Top:
                         <input type="number"
                             placeholder=""
-                            [(ngModel)]="localWidget.graphDimensionTop"
+                            [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphDimensionTop"
                             min="0"
                             max="1000"
                             name="graphDimensionTop"
@@ -3527,7 +3531,7 @@
                         Width:
                         <input type="number"
                             placeholder=""
-                            [(ngModel)]="localWidget.graphWidth"
+                            [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphWidth"
                             min="0"
                             max="1000"
                             name="graphWidth"
@@ -3538,7 +3542,7 @@
                         Height:
                         <input type="number"
                             placeholder=""
-                            [(ngModel)]="localWidget.graphHeight"
+                            [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphHeight"
                             min="0"
                             max="1000"
                             name="graphHeight"

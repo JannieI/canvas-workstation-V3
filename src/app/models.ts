@@ -1039,6 +1039,147 @@ export class GraphFilter {
     isActive: boolean;                      // True if activated, else not used
 }
 
+export class widgetGraphSpecification {
+
+    // Mark
+    graphMark: string;
+    graphMarkOrient: string;
+    graphMarkLine: boolean;
+    graphMarkPoint: boolean;
+    graphMarkPointColorName: string;
+    graphMarkPointColor: string;
+    graphMarkColourName: string;
+    graphMarkColour: string;
+    graphMarkCornerRadius: number;
+    graphMarkExtent: string;            // Extent: ci, stderr, stdev, irq for Error Band & -Bar
+    graphMarkOpacity: number;
+    graphMarkBinSpacing: number;
+    graphMarkInterpolate: string;
+
+    // X
+    graphXfield: string;
+    graphXaggregateName: string;
+    graphXaggregate: string;
+    graphXtimeUnit: string;
+    graphXbin: boolean;
+    graphXMaxBins: number;
+    graphXformat: string;
+    graphXimpute: string;
+    graphXimputeValue: string;
+    graphXstack: string;
+    graphXsort: string;
+    graphXtype: string;
+    graphXtypeName: string;
+
+    // Y
+    graphYfield: string;
+    graphYaggregateName: string;
+    graphYaggregate: string;
+    graphYbin: boolean;
+    graphYMaxBins: number;
+    graphYformat: string;
+    graphYimpute: string;
+    graphYimputeValue: number;
+    graphYstack: string;
+    graphYsort: string;
+    graphYtimeUnit: string;
+    graphYtype: string;
+    graphYtypeName: string;
+
+    // Color
+    graphColorField: string;
+    graphColorAggregateName: string;
+    graphColorAggregate: string;
+    graphColorBin: boolean;
+    graphColorMaxBins: number;
+    graphColorFormat: string;
+    graphColorImpute: string;
+    graphColorImputeValue: string;
+    graphColorScheme: string;
+    graphColorSort: string;
+    graphColorStack: string;
+    graphColorType: string;
+    graphColorTypeName: string;
+    graphColorTimeUnit: string;
+
+    // X Axis
+    graphXaxisFormat: string;
+    graphXaxisGrid: boolean;                        // True if X grid lines show
+    graphXaxisGridColorName: string;                // Name of color for X gridlines
+    graphXaxisGridColor: string;                    // Actual color of X gridline in hex, rgb, etc
+    graphXaxisLabels: boolean;
+    graphXaxisLabelAngle: number;
+    graphXaxisLabelColorName: string;               // Name of color for X labels
+    graphXaxisLabelColor: string;                   // Actual color of X labels in hex, rgb, etc
+    graphXaxisTitle: string;
+    graphXaxisTitleCheckbox: boolean;
+    graphXaxisScaleType: string;                    // Type of axis, ie linear, log, etc
+
+    // Y Axis
+    graphYaxisFormat: string;
+    graphYaxisGrid: boolean;
+    graphYaxisGridColorName: string;                // Name of color for Y gridlines
+    graphYaxisGridColor: string;                    // Actual color of Y gridline in hex, rgb, etc
+    graphYaxisLabels: boolean;
+    graphYaxisLabelAngle: number;
+    graphYaxisLabelColorName: string;               // Name of color for Y labels
+    graphYaxisLabelColor: string;                   // Actual color of Y labels in hex, rgb, etc
+    graphYaxisScaleType: string;
+    graphYaxisTitle: string;
+    graphYaxisTitleCheckbox: boolean;
+
+    // Legend
+    graphLegendAxisScaleType: string;               // Type of Axis, ie Linear, Log, etc
+    graphLegendHide: boolean;
+    graphLegendTitleCheckbox: boolean;
+    graphLegendTitle: string;
+    graphLegendFormat: string;
+    graphLegendLabels: boolean;
+    graphLegendLabelColorName: string;               // Name of color for Y labels
+    graphLegendLabelColor: string;                   // Actual color of Y labels in hex, rgb, etc
+
+    // Size
+    graphSizeField: string;
+    graphSizeType: string;
+    graphSizeTypeName: string;
+    graphSizeAggregateName: string;
+    graphSizeAggregate: string;    
+    graphSizeBin: boolean;
+    graphSizeMaxBins: number;
+
+    // Row
+    graphRowField: string;
+    graphRowType: string;
+    graphRowTypeName: string;
+
+    // Column
+    graphColumnField: string;
+    graphColumnType: string;
+    graphColumnTypeName: string;
+
+    // Detail
+    graphDetailField: string;
+    graphDetailType: string;
+    graphDetailTypeName: string;
+
+    // X2
+    graphX2Field: string;
+    graphX2Type: string;
+    graphX2TypeName: string;
+    graphX2AggregateName: string;
+
+    // Y2
+    graphY2Field: string;
+    graphY2Type: string;
+    graphY2TypeName: string;
+    graphY2AggregateName: string;
+
+    // Projection
+    graphProjectionType: string;            // Type of geo projection
+    graphProjectionFieldLatitude: string;   // Lat of geo projection
+    graphProjectionFieldLongitude: string;  // Long of geo projection
+}
+
 export class Widget {
 
     // Type
@@ -1216,6 +1357,7 @@ export class Widget {
     // Transformations: Time Unit
     // Transformations: Window
 
+    graphLayers?: widgetGraphSpecification[];
     // X
     graphXfield: string;
     graphXaggregateName: string;
