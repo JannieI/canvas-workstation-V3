@@ -4119,4 +4119,19 @@ export interface dataSchemaInterface {
 
         this.errorMessageEditor = 'This is only help text.'
     }
+
+    clickCompositionLayerAdd() {
+        // Add a second layer
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCompositionLayerAdd', '@Start');
+
+        // Validation
+        if (this.columnField != '') {
+            this.errorMessageEditor = 'Remove Column field before adding layers';
+            return;
+        }
+        if (this.rowField != '') {
+            this.errorMessageEditor = 'Remove Row field before adding layers';
+            return;
+        }
+    }
 }
