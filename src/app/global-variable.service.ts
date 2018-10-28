@@ -11670,7 +11670,11 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 };
             };
 
-            if (widget.graphLayers[currentGraphLayer - 1].graphLegendAxisScaleType != 'Default'  &&  widget.graphLayers[currentGraphLayer - 1].graphLegendAxisScaleType != undefined) {
+            if (widget.graphLayers[currentGraphLayer - 1].graphLegendAxisScaleType != 'Default'  
+                &&  
+                widget.graphLayers[currentGraphLayer - 1].graphLegendAxisScaleType != undefined
+                && 
+                widget.graphLayers[currentGraphLayer - 1].graphLegendAxisScaleType != '') {
                 specification['encoding']['color']['scale'] =
                 {"type": widget.graphLayers[currentGraphLayer - 1].graphLegendAxisScaleType.toLowerCase() };
             };
