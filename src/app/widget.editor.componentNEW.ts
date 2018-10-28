@@ -4019,7 +4019,9 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield != ''   
+            &&   
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield != null) {
             this.showXDeleteIcon = true;
             this.showFieldXPropertiesTitle = true;
             this.xField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield;
@@ -4030,7 +4032,9 @@ export interface dataSchemaInterface {
             this.xField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield != ''   
+            &&   
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield != null) {
             this.showYDeleteIcon = true;
             this.showFieldYPropertiesTitle = true;
             this.yField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield;
@@ -4040,7 +4044,9 @@ export interface dataSchemaInterface {
             this.yField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField != ''   
+            &&   
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField != null) {
             this.showColourDeleteIcon = true;
             this.showFieldColorPropertiesTitle = true;
             this.colorField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField;
@@ -4050,7 +4056,9 @@ export interface dataSchemaInterface {
             this.colorField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField != ''   
+            &&   
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField != null) {
             this.showSizeDeleteIcon = true;
             this.sizeField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField;
         } else {
@@ -4058,7 +4066,9 @@ export interface dataSchemaInterface {
             this.sizeField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowField != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowField != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowField != ''   
+            &&   
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowField != null) {
             this.showRowDeleteIcon = true;
             this.rowField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphRowField;
         } else {
@@ -4066,7 +4076,9 @@ export interface dataSchemaInterface {
             this.rowField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField != ''   
+            &&   
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField != null) {
             this.showColumnDeleteIcon = true;
             this.columnField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField;
         } else {
@@ -4074,7 +4086,9 @@ export interface dataSchemaInterface {
             this.columnField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField != ''   
+            &&   
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField != null) {
             this.showDetailDeleteIcon = true;
             this.detailField = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField;
         } else {
@@ -4082,7 +4096,9 @@ export interface dataSchemaInterface {
             this.detailField = dragFieldMessage;
         };
 
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Field != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Field != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Field != ''   
+            &&   
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Field != null) {
             this.showX2DeleteIcon = true;
             this.x2Field = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Field;
 
@@ -4091,7 +4107,9 @@ export interface dataSchemaInterface {
             this.x2Field = dragFieldMessage;
         };
 
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field != ''   &&   this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field != null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field != ''   
+            &&   
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field != null) {
             this.showY2DeleteIcon = true;
             this.y2Field = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field;
 
@@ -4283,5 +4301,10 @@ export interface dataSchemaInterface {
         });
         this.graphLayers.push(this.graphLayers.length + 1);
         this.currentGraphLayer = this.graphLayers.length;
+
+
+        // Load local Vars from localWidget
+        this.loadLocalVarsFromWidget()
+
     }
 }
