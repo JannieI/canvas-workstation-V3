@@ -171,7 +171,7 @@
 
                     <!-- COMPOSITION -->
                     <div class="editorComposition">
-                        <div class="editorCompositionTypeTitle">
+                        <!-- <div class="editorCompositionTypeTitle">
                             <b>
                                 Composition:
                             </b>
@@ -187,7 +187,7 @@
                                 <option>Hconcat</option>
                                 <option>Repeat</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="editorCompositionLayerTitle">
                             <b>
                                 Layer:
@@ -202,6 +202,12 @@
                                 </option>
                             </select>
                         </div>
+                        <span class="editorCompositionLayerButton">
+                            <button class="btn btn-link" (click)="clickCompositionLayerAdd()">
+                                Add
+                            </button>
+                        </span>
+
                     </div>
 
                     <div class="editorCalculatedArea" *ngIf="showCalculatedAreaProperties">
