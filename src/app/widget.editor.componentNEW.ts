@@ -4313,7 +4313,7 @@ export interface dataSchemaInterface {
         // Reset 
         this.errorMessageEditor = '';
 
-        this.currentGraphLayer = +ev.target.result;
+        this.currentGraphLayer = +ev.target.value;
 
         // Load local Vars from localWidget
         this.loadLocalVarsFromWidget()
