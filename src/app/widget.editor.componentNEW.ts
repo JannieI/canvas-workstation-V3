@@ -4323,6 +4323,15 @@ export interface dataSchemaInterface {
 
         // Load local Vars from localWidget
         this.loadLocalVarsFromWidget()
+
+        // Refresh
+        let graphIndex: number = this.widgetGraphs.findIndex(
+            wgr => wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
+        );
+        if (graphIndex >= 0) {
+            this.showGraph(this.widgetGraphs[graphIndex].id);
+        };
+
     }
 
     clickCompositionLayerDelete(ev: any) {
@@ -4354,10 +4363,12 @@ export interface dataSchemaInterface {
         this.loadLocalVarsFromWidget()
 
         // Refresh
-        let graphID: number = this.widgetGraphs.findIndex(
+        let graphIndex: number = this.widgetGraphs.findIndex(
             wgr => wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
         );
-        this.showGraph(graphID);
+        if (graphIndex >= 0) {
+            this.showGraph(this.widgetGraphs[graphIndex].id);
+        };
 
     }
 }
