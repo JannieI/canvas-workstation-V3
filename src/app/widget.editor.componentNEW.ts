@@ -1420,7 +1420,8 @@ export interface dataSchemaInterface {
                 this.localWidget, 
                 this.localWidget.graphHeight, 
                 this.localWidget.graphWidth,
-                this.showGraphLayers
+                this.showGraphLayers,
+                (this.currentGraphLayer - 1)
             );
 
             console.warn('xx @END of ShowGraph specification', this.specification, JSON.stringify(this.specification));

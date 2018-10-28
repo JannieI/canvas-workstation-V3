@@ -11137,7 +11137,8 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         widget: Widget,
         height: number = 0,
         width: number = 0,
-        showGraphLayers: boolean = true): dl.spec.TopLevelExtentedSpec {
+        showSpecificGraphLayer: boolean = false,
+        specificLayerToShow: number = 0): dl.spec.TopLevelExtentedSpec {
         let specification: any = {
             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
             "description": "A simple bar chart with embedded data.",
@@ -11803,8 +11804,9 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             console.warn('xx specificationInnerArray', specificationInnerArray)
         };
 
-        if (specificationInnerArray.length == 1) {
-            specification = {...specification, ...specificationInnerArray[0]}
+        // Put spec together from pieces, with or without layers
+        if (specificationInnerArray.length == 1  ||  showSpecificGraphLayer) {
+            specification = {...specification, ...specificationInnerArray[specificLayerToShow]}
         } else {
             specification = {...specification, "layer": specificationInnerArray}
         };
