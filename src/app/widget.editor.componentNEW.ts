@@ -205,7 +205,7 @@ export interface dataSchemaInterface {
     currentGraphID: number = -1;
 
     currentGraphLayer: number = 1;
-    // Note: this number is the LAYER as seen by the UserPaletteButtonBarComponent.  The Arrays are
+    // Note 14: this number is the LAYER as seen by the UserPaletteButtonBarComponent.  The Arrays are
     // however base 0.  So, take care in making changes to iterateListLike.
     
     dataSchema: dataSchemaInterface[] = [];
@@ -231,7 +231,8 @@ export interface dataSchemaInterface {
     graphHeader: string = 'Graph';
     graphHistory: GraphHistory[] = [];
     graphHistoryPosition: number = 0;
-    graphLayers: number[] = [0, 1, 2, 3,];  // TODO - fix hardcoding
+
+    graphLayers: number[] = [1];  // Note: see   Note 14   above
     isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
     isDragoverYField: boolean = false;

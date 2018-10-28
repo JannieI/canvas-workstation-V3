@@ -11155,33 +11155,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             "data": {
                 "values": []
             },
-            "mark": {
-                "type": "bar",
-                "tooltip": {
-                    "content": "data"
-            }
-            },
-            "encoding": {
-                "x": {
-                    "field": "",
-                    "type": "",
-                    "axis": ""
-                },
-                "y": {
-                    "field": "",
-                    "type": "",
-                    "axis": ""
-                },
-                "color": {
-                    "field": "",
-                    "type": "",
-                    "scale": "",
-                    "legend": ""
-                },
-                "size": {
-                    "field": ""
-                }
-            },
             "transform": []
         };
 
@@ -11452,343 +11425,390 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
         }
 
+        let currentGraphLayer: number = 0;
+        let specificationInnerArray: any[] = [];
 
-        let currentGraphLayer: number = 1;
+        for (currentGraphLayer = 0; currentGraphLayer < widget.graphLayers.length; currentGraphLayer++) {
 
-        // Mark
-        specification['mark']['type'] = widget.graphLayers[currentGraphLayer - 1].graphMark;
-        specification['mark']['orient'] = widget.graphLayers[currentGraphLayer - 1].graphMarkOrient.toLowerCase();
-        specification['mark']['line'] = widget.graphLayers[currentGraphLayer - 1].graphMarkLine;
-        if (widget.graphLayers[currentGraphLayer - 1].graphMarkPoint) {
-            specification['mark']['point'] = { "color": widget.graphLayers[currentGraphLayer - 1].graphMarkPointColor};
-        };
-        specification['mark']['color'] = widget.graphLayers[currentGraphLayer - 1].graphMarkColour;
-        specification['mark']['cornerRadius'] = widget.graphLayers[currentGraphLayer - 1].graphMarkCornerRadius;
-        specification['mark']['opacity'] = widget.graphLayers[currentGraphLayer - 1].graphMarkOpacity;
-        specification['mark']['binSpacing'] = widget.graphLayers[currentGraphLayer - 1].graphMarkBinSpacing;
-        if (widget.graphLayers[currentGraphLayer - 1].graphMarkInterpolate == "Step") {
-            specification['mark']['interpolate'] = "step-after";
-        };
-
-        let vegaGraphMarkExtent: string = 'stderr';
-        if (widget.graphLayers[currentGraphLayer - 1].graphMarkExtent == 'Confidence Interval') {
-            vegaGraphMarkExtent = 'ci';
-        };
-        if (widget.graphLayers[currentGraphLayer - 1].graphMarkExtent == 'Std Error') {
-            vegaGraphMarkExtent = 'stderr';
-        };
-        if (widget.graphLayers[currentGraphLayer - 1].graphMarkExtent == 'Std Deviation') {
-            vegaGraphMarkExtent = 'stdev';
-        };
-        if (widget.graphLayers[currentGraphLayer - 1].graphMarkExtent == 'Q1 and Q3') {
-            vegaGraphMarkExtent = 'iqr';
-        };
-
-        specification['mark']['extent'] = "";
-        if (widget.graphLayers[currentGraphLayer - 1].graphMark == 'errorband') {
-            specification['mark']['extent'] = vegaGraphMarkExtent;
-        };
-        if (widget.graphLayers[currentGraphLayer - 1].graphMark == 'errorbar') {
-            specification['mark']['extent'] = vegaGraphMarkExtent;
-            specification['mark']['ticks'] = true;
-        };
-
-
-        // X field
-        if (widget.graphLayers[currentGraphLayer - 1].graphXfield != '') {
-            specification['encoding']['x']['field'] = widget.graphLayers[currentGraphLayer - 1].graphXfield;
-            specification['encoding']['x']['aggregate'] = widget.graphLayers[currentGraphLayer - 1].graphXaggregate;
-            if (widget.graphLayers[currentGraphLayer - 1].graphXMaxBins > 0) {
-                specification['encoding']['x']['bin'] =
-                    {"maxbins": widget.graphLayers[currentGraphLayer - 1].graphXMaxBins};
-            } else {
-                specification['encoding']['x']['bin'] = widget.graphLayers[currentGraphLayer - 1].graphXbin;
+            // Define new innec Spec
+            let specificationInner: any = {
+                "mark": {
+                    "type": "bar",
+                    "tooltip": {
+                        "content": "data"
+                }
+                },
+                "encoding": {
+                    "x": {
+                        "field": "",
+                        "type": "",
+                        "axis": ""
+                    },
+                    "y": {
+                        "field": "",
+                        "type": "",
+                        "axis": ""
+                    },
+                    "color": {
+                        "field": "",
+                        "type": "",
+                        "scale": "",
+                        "legend": ""
+                    },
+                    "size": {
+                        "field": ""
+                    }
+                }
             };
-            specification['encoding']['x']['format'] = widget.graphLayers[currentGraphLayer - 1].graphXformat.toLowerCase();
-            if (widget.graphLayers[currentGraphLayer - 1].graphXimpute != '') {
-                if (widget.graphLayers[currentGraphLayer - 1].graphXimpute == 'Value') {
-                    specification['encoding']['x']['impute'] =
-                        {"value": widget.graphLayers[currentGraphLayer - 1].graphXimputeValue };
+
+            // Mark
+            specificationInner['mark']['type'] = widget.graphLayers[currentGraphLayer].graphMark;
+            specificationInner['mark']['orient'] = widget.graphLayers[currentGraphLayer].graphMarkOrient.toLowerCase();
+            specificationInner['mark']['line'] = widget.graphLayers[currentGraphLayer].graphMarkLine;
+            if (widget.graphLayers[currentGraphLayer].graphMarkPoint) {
+                specificationInner['mark']['point'] = { "color": widget.graphLayers[currentGraphLayer].graphMarkPointColor};
+            };
+            specificationInner['mark']['color'] = widget.graphLayers[currentGraphLayer].graphMarkColour;
+            specificationInner['mark']['cornerRadius'] = widget.graphLayers[currentGraphLayer].graphMarkCornerRadius;
+            specificationInner['mark']['opacity'] = widget.graphLayers[currentGraphLayer].graphMarkOpacity;
+            specificationInner['mark']['binSpacing'] = widget.graphLayers[currentGraphLayer].graphMarkBinSpacing;
+            if (widget.graphLayers[currentGraphLayer].graphMarkInterpolate == "Step") {
+                specificationInner['mark']['interpolate'] = "step-after";
+            };
+
+            let vegaGraphMarkExtent: string = 'stderr';
+            if (widget.graphLayers[currentGraphLayer].graphMarkExtent == 'Confidence Interval') {
+                vegaGraphMarkExtent = 'ci';
+            };
+            if (widget.graphLayers[currentGraphLayer].graphMarkExtent == 'Std Error') {
+                vegaGraphMarkExtent = 'stderr';
+            };
+            if (widget.graphLayers[currentGraphLayer].graphMarkExtent == 'Std Deviation') {
+                vegaGraphMarkExtent = 'stdev';
+            };
+            if (widget.graphLayers[currentGraphLayer].graphMarkExtent == 'Q1 and Q3') {
+                vegaGraphMarkExtent = 'iqr';
+            };
+
+            specificationInner['mark']['extent'] = "";
+            if (widget.graphLayers[currentGraphLayer].graphMark == 'errorband') {
+                specificationInner['mark']['extent'] = vegaGraphMarkExtent;
+            };
+            if (widget.graphLayers[currentGraphLayer].graphMark == 'errorbar') {
+                specificationInner['mark']['extent'] = vegaGraphMarkExtent;
+                specificationInner['mark']['ticks'] = true;
+            };
+
+
+            // X field
+            if (widget.graphLayers[currentGraphLayer].graphXfield != '') {
+                specificationInner['encoding']['x']['field'] = widget.graphLayers[currentGraphLayer].graphXfield;
+                specificationInner['encoding']['x']['aggregate'] = widget.graphLayers[currentGraphLayer].graphXaggregate;
+                if (widget.graphLayers[currentGraphLayer].graphXMaxBins > 0) {
+                    specificationInner['encoding']['x']['bin'] =
+                        {"maxbins": widget.graphLayers[currentGraphLayer].graphXMaxBins};
                 } else {
-                    specification['encoding']['x']['impute'] =
-                        {"method": widget.graphLayers[currentGraphLayer - 1].graphXimpute};
+                    specificationInner['encoding']['x']['bin'] = widget.graphLayers[currentGraphLayer].graphXbin;
                 };
-            };
-            specification['encoding']['x']['stack'] = widget.graphLayers[currentGraphLayer - 1].graphXstack;
-            specification['encoding']['x']['sort'] = widget.graphLayers[currentGraphLayer - 1].graphXsort.toLowerCase();
-            specification['encoding']['x']['type'] = widget.graphLayers[currentGraphLayer - 1].graphXtype.toLowerCase();
-            specification['encoding']['x']['timeUnit'] = widget.graphLayers[currentGraphLayer - 1].graphXtimeUnit.toLowerCase();
-
-            if (widget.graphLayers[currentGraphLayer - 1].graphXaxisScaleType != 'Default'  &&  widget.graphLayers[currentGraphLayer - 1].graphXaxisScaleType != undefined) {
-                specification['encoding']['x']['scale'] =
-                {"type": widget.graphLayers[currentGraphLayer - 1].graphXaxisScaleType.toLowerCase() };
-            };
-
-            specification['encoding']['x']['axis'] = {"grid": widget.graphLayers[currentGraphLayer - 1].graphXaxisGrid };
-            if (widget.graphLayers[currentGraphLayer - 1].graphXaxisGrid) {
-                specification['encoding']['x']['axis'] = {"gridColor": widget.graphLayers[currentGraphLayer - 1].graphXaxisGridColor };
-            };
-
-            specification['encoding']['x']['axis']['labels'] = widget.graphLayers[currentGraphLayer - 1].graphXaxisLabels;
-            if (widget.graphLayers[currentGraphLayer - 1].graphXaxisLabelAngle != 0){
-                specification['encoding']['x']['axis']['labelAngle'] = widget.graphLayers[currentGraphLayer - 1].graphXaxisLabelAngle;
-            };
-            if (widget.graphLayers[currentGraphLayer - 1].graphXaxisLabels) {
-                specification['encoding']['x']['axis']['labelColor'] = widget.graphLayers[currentGraphLayer - 1].graphXaxisLabelColor;
-                specification['encoding']['x']['axis']['tickColor'] = widget.graphLayers[currentGraphLayer - 1].graphXaxisLabelColor;
-                specification['encoding']['x']['axis']['titleColor'] = widget.graphLayers[currentGraphLayer - 1].graphXaxisLabelColor;
-            };
-
-            if (!widget.graphLayers[currentGraphLayer - 1].graphXaxisTitleCheckbox) {
-                specification['encoding']['x']['axis']['title'] = null;
-            } else {
-                if (widget.graphLayers[currentGraphLayer - 1].graphXaxisTitle != ''  &&  widget.graphLayers[currentGraphLayer - 1].graphXaxisTitle != undefined) {
-                    specification['encoding']['x']['axis']['title'] = widget.graphLayers[currentGraphLayer - 1].graphXaxisTitle;
-                };
-            };
-
-            if (widget.graphLayers[currentGraphLayer - 1].graphXaxisFormat != '') {
-                specification['encoding']['x']['axis']['format'] =  widget.graphLayers[currentGraphLayer - 1].graphXaxisFormat;
-            };
-
-            specification['encoding']['x']['axis']['maxExtent'] = widget.graphDimensionBottom;
-            specification['encoding']['x']['axis']['labelLimit'] = widget.graphDimensionBottom;
-        };
-
-
-        // Y field
-        if (widget.graphLayers[currentGraphLayer - 1].graphYfield != '') {
-            specification['encoding']['y']['field'] = widget.graphLayers[currentGraphLayer - 1].graphYfield;
-            specification['encoding']['y']['aggregate'] = widget.graphLayers[currentGraphLayer - 1].graphYaggregate;
-            if (widget.graphLayers[currentGraphLayer - 1].graphYMaxBins > 0) {
-                specification['encoding']['y']['bin'] =
-                    {"maxbins": widget.graphLayers[currentGraphLayer - 1].graphYMaxBins};
-            } else {
-                specification['encoding']['y']['bin'] = widget.graphLayers[currentGraphLayer - 1].graphYbin;
-            };
-            specification['encoding']['y']['format'] = widget.graphLayers[currentGraphLayer - 1].graphYformat.toLowerCase();
-            if (widget.graphLayers[currentGraphLayer - 1].graphYimpute != '') {
-                if (widget.graphLayers[currentGraphLayer - 1].graphYimpute == 'Value') {
-                    specification['encoding']['y']['impute'] =
-                        {"value": +widget.graphLayers[currentGraphLayer - 1].graphYimputeValue };
-                } else {
-                    specification['encoding']['y']['impute'] =
-                        {"method": widget.graphLayers[currentGraphLayer - 1].graphYimpute.toLowerCase() };
-                };
-            };
-            specification['encoding']['y']['stack'] = widget.graphLayers[currentGraphLayer - 1].graphYstack.toLowerCase();
-            specification['encoding']['y']['sort'] = widget.graphLayers[currentGraphLayer - 1].graphYsort.toLowerCase();
-            specification['encoding']['y']['type'] = widget.graphLayers[currentGraphLayer - 1].graphYtype.toLowerCase();
-            specification['encoding']['y']['timeUnit'] = widget.graphLayers[currentGraphLayer - 1].graphYtimeUnit.toLowerCase();
-
-            if (widget.graphLayers[currentGraphLayer - 1].graphYaxisScaleType != 'Default'  &&  widget.graphLayers[currentGraphLayer - 1].graphYaxisScaleType != undefined) {
-                specification['encoding']['y']['scale'] =
-                {"type": widget.graphLayers[currentGraphLayer - 1].graphYaxisScaleType.toLowerCase() };
-            };
-
-            specification['encoding']['y']['axis'] = {"grid": widget.graphLayers[currentGraphLayer - 1].graphYaxisGrid };
-            if (widget.graphLayers[currentGraphLayer - 1].graphYaxisGrid) {
-                specification['encoding']['y']['axis'] = {"gridColor": widget.graphLayers[currentGraphLayer - 1].graphYaxisGridColor };
-            };
-
-            specification['encoding']['y']['axis']['labels'] = widget.graphLayers[currentGraphLayer - 1].graphYaxisLabels;
-            if (widget.graphLayers[currentGraphLayer - 1].graphYaxisLabelAngle != 0){
-                specification['encoding']['y']['axis']['labelAngle'] =
-                    widget.graphLayers[currentGraphLayer - 1].graphYaxisLabelAngle;
-            };
-            if (widget.graphLayers[currentGraphLayer - 1].graphYaxisLabels) {
-                specification['encoding']['y']['axis']['labelColor'] = widget.graphLayers[currentGraphLayer - 1].graphYaxisLabelColor;
-                specification['encoding']['y']['axis']['tickColor'] = widget.graphLayers[currentGraphLayer - 1].graphYaxisLabelColor;
-                specification['encoding']['y']['axis']['titleColor'] = widget.graphLayers[currentGraphLayer - 1].graphYaxisLabelColor;
-            };
-
-            if (!widget.graphLayers[currentGraphLayer - 1].graphYaxisTitleCheckbox) {
-                specification['encoding']['y']['axis']['title'] = null;
-            } else {
-                if (widget.graphLayers[currentGraphLayer - 1].graphYaxisTitle != ''  &&  widget.graphLayers[currentGraphLayer - 1].graphYaxisTitle != undefined) {
-                    specification['encoding']['y']['axis']['title'] =
-                        widget.graphLayers[currentGraphLayer - 1].graphYaxisTitle;
-                };
-            };
-
-            if (widget.graphLayers[currentGraphLayer - 1].graphYaxisFormat != '') {
-                specification['encoding']['y']['axis']['format'] =  widget.graphLayers[currentGraphLayer - 1].graphYaxisFormat;
-            };
-            specification['encoding']['y']['axis']['maxExtent'] = widget.graphDimensionLeft;
-            specification['encoding']['y']['axis']['labelLimit'] = widget.graphDimensionLeft;
-
-        };
-
-
-        // Color field
-        if (widget.graphLayers[currentGraphLayer - 1].graphColorField != '') {
-            let colorBinMax: any = false;
-            if (widget.graphLayers[currentGraphLayer - 1].graphColorMaxBins > 0) {
-                colorBinMax = {"maxbins": widget.graphLayers[currentGraphLayer - 1].graphColorMaxBins};
-            } else {
-                colorBinMax = widget.graphLayers[currentGraphLayer - 1].graphColorBin;
-            };
-
-            specification['encoding']['color'] = {
-                "aggregate": widget.graphLayers[currentGraphLayer - 1].graphColorAggregate,
-                "bin": colorBinMax,
-                "field": widget.graphLayers[currentGraphLayer - 1].graphColorField,
-                "format": widget.graphLayers[currentGraphLayer - 1].graphColorFormat.toLowerCase(),
-                "legend": "",
-                "sort": widget.graphLayers[currentGraphLayer - 1].graphColorSort.toLowerCase(),
-                "stack": widget.graphLayers[currentGraphLayer - 1].graphColorStack.toLowerCase(),
-                "timeUnit": widget.graphLayers[currentGraphLayer - 1].graphColorTimeUnit.toLowerCase(),
-                "type": widget.graphLayers[currentGraphLayer - 1].graphColorType.toLowerCase(),
-                "scale": widget.graphLayers[currentGraphLayer - 1].graphColorScheme == 
-                    'None'?  null  :  {"scheme": widget.graphLayers[currentGraphLayer - 1].graphColorScheme.toLowerCase()}
-            };
-
-            if (widget.graphLayers[currentGraphLayer - 1].graphLegendHide) {
-                specification['encoding']['color']['legend'] = null;
-            } else {
-                if (!widget.graphLayers[currentGraphLayer - 1].graphLegendTitleCheckbox) {
-                    specification['encoding']['color']['legend'] =
-                        {
-                            "title": null
-                        };
-                } else {
-                    if (widget.graphLayers[currentGraphLayer - 1].graphLegendTitle != ''  
-                        &&  
-                        widget.graphLayers[currentGraphLayer - 1].graphLegendTitle != undefined) {
-                        specification['encoding']['color']['legend'] =
-                            {
-                                "labelLimit": widget.graphDimensionRight,
-                                "title": widget.graphLayers[currentGraphLayer - 1].graphLegendTitle
-                            };
-                        if (widget.graphLayers[currentGraphLayer - 1].graphLegendLabels) {
-                            specification['encoding']['color']['legend'].labelColor = widget.graphLayers[currentGraphLayer - 1].graphLegendLabelColor,
-                            specification['encoding']['color']['legend'].tickColor = widget.graphLayers[currentGraphLayer - 1].graphLegendLabelColor,
-                            specification['encoding']['color']['legend'].titleColor = widget.graphLayers[currentGraphLayer - 1].graphLegendLabelColor
-                        };
-
+                specificationInner['encoding']['x']['format'] = widget.graphLayers[currentGraphLayer].graphXformat.toLowerCase();
+                if (widget.graphLayers[currentGraphLayer].graphXimpute != '') {
+                    if (widget.graphLayers[currentGraphLayer].graphXimpute == 'Value') {
+                        specificationInner['encoding']['x']['impute'] =
+                            {"value": widget.graphLayers[currentGraphLayer].graphXimputeValue };
+                    } else {
+                        specificationInner['encoding']['x']['impute'] =
+                            {"method": widget.graphLayers[currentGraphLayer].graphXimpute};
                     };
                 };
+                specificationInner['encoding']['x']['stack'] = widget.graphLayers[currentGraphLayer].graphXstack;
+                specificationInner['encoding']['x']['sort'] = widget.graphLayers[currentGraphLayer].graphXsort.toLowerCase();
+                specificationInner['encoding']['x']['type'] = widget.graphLayers[currentGraphLayer].graphXtype.toLowerCase();
+                specificationInner['encoding']['x']['timeUnit'] = widget.graphLayers[currentGraphLayer].graphXtimeUnit.toLowerCase();
+
+                if (widget.graphLayers[currentGraphLayer].graphXaxisScaleType != 'Default'  &&  widget.graphLayers[currentGraphLayer].graphXaxisScaleType != undefined) {
+                    specificationInner['encoding']['x']['scale'] =
+                    {"type": widget.graphLayers[currentGraphLayer].graphXaxisScaleType.toLowerCase() };
+                };
+
+                specificationInner['encoding']['x']['axis'] = {"grid": widget.graphLayers[currentGraphLayer].graphXaxisGrid };
+                if (widget.graphLayers[currentGraphLayer].graphXaxisGrid) {
+                    specificationInner['encoding']['x']['axis'] = {"gridColor": widget.graphLayers[currentGraphLayer].graphXaxisGridColor };
+                };
+
+                specificationInner['encoding']['x']['axis']['labels'] = widget.graphLayers[currentGraphLayer].graphXaxisLabels;
+                if (widget.graphLayers[currentGraphLayer].graphXaxisLabelAngle != 0){
+                    specificationInner['encoding']['x']['axis']['labelAngle'] = widget.graphLayers[currentGraphLayer].graphXaxisLabelAngle;
+                };
+                if (widget.graphLayers[currentGraphLayer].graphXaxisLabels) {
+                    specificationInner['encoding']['x']['axis']['labelColor'] = widget.graphLayers[currentGraphLayer].graphXaxisLabelColor;
+                    specificationInner['encoding']['x']['axis']['tickColor'] = widget.graphLayers[currentGraphLayer].graphXaxisLabelColor;
+                    specificationInner['encoding']['x']['axis']['titleColor'] = widget.graphLayers[currentGraphLayer].graphXaxisLabelColor;
+                };
+
+                if (!widget.graphLayers[currentGraphLayer].graphXaxisTitleCheckbox) {
+                    specificationInner['encoding']['x']['axis']['title'] = null;
+                } else {
+                    if (widget.graphLayers[currentGraphLayer].graphXaxisTitle != ''  &&  widget.graphLayers[currentGraphLayer].graphXaxisTitle != undefined) {
+                        specificationInner['encoding']['x']['axis']['title'] = widget.graphLayers[currentGraphLayer].graphXaxisTitle;
+                    };
+                };
+
+                if (widget.graphLayers[currentGraphLayer].graphXaxisFormat != '') {
+                    specificationInner['encoding']['x']['axis']['format'] =  widget.graphLayers[currentGraphLayer].graphXaxisFormat;
+                };
+
+                specificationInner['encoding']['x']['axis']['maxExtent'] = widget.graphDimensionBottom;
+                specificationInner['encoding']['x']['axis']['labelLimit'] = widget.graphDimensionBottom;
             };
 
-            if (widget.graphLayers[currentGraphLayer - 1].graphLegendAxisScaleType != 'Default'  
-                &&  
-                widget.graphLayers[currentGraphLayer - 1].graphLegendAxisScaleType != undefined
-                && 
-                widget.graphLayers[currentGraphLayer - 1].graphLegendAxisScaleType != '') {
-                specification['encoding']['color']['scale'] =
-                {"type": widget.graphLayers[currentGraphLayer - 1].graphLegendAxisScaleType.toLowerCase() };
+
+            // Y field
+            if (widget.graphLayers[currentGraphLayer].graphYfield != '') {
+                specificationInner['encoding']['y']['field'] = widget.graphLayers[currentGraphLayer].graphYfield;
+                specificationInner['encoding']['y']['aggregate'] = widget.graphLayers[currentGraphLayer].graphYaggregate;
+                if (widget.graphLayers[currentGraphLayer].graphYMaxBins > 0) {
+                    specificationInner['encoding']['y']['bin'] =
+                        {"maxbins": widget.graphLayers[currentGraphLayer].graphYMaxBins};
+                } else {
+                    specificationInner['encoding']['y']['bin'] = widget.graphLayers[currentGraphLayer].graphYbin;
+                };
+                specificationInner['encoding']['y']['format'] = widget.graphLayers[currentGraphLayer].graphYformat.toLowerCase();
+                if (widget.graphLayers[currentGraphLayer].graphYimpute != '') {
+                    if (widget.graphLayers[currentGraphLayer].graphYimpute == 'Value') {
+                        specificationInner['encoding']['y']['impute'] =
+                            {"value": +widget.graphLayers[currentGraphLayer].graphYimputeValue };
+                    } else {
+                        specificationInner['encoding']['y']['impute'] =
+                            {"method": widget.graphLayers[currentGraphLayer].graphYimpute.toLowerCase() };
+                    };
+                };
+                specificationInner['encoding']['y']['stack'] = widget.graphLayers[currentGraphLayer].graphYstack.toLowerCase();
+                specificationInner['encoding']['y']['sort'] = widget.graphLayers[currentGraphLayer].graphYsort.toLowerCase();
+                specificationInner['encoding']['y']['type'] = widget.graphLayers[currentGraphLayer].graphYtype.toLowerCase();
+                specificationInner['encoding']['y']['timeUnit'] = widget.graphLayers[currentGraphLayer].graphYtimeUnit.toLowerCase();
+
+                if (widget.graphLayers[currentGraphLayer].graphYaxisScaleType != 'Default'  &&  widget.graphLayers[currentGraphLayer].graphYaxisScaleType != undefined) {
+                    specificationInner['encoding']['y']['scale'] =
+                    {"type": widget.graphLayers[currentGraphLayer].graphYaxisScaleType.toLowerCase() };
+                };
+
+                specificationInner['encoding']['y']['axis'] = {"grid": widget.graphLayers[currentGraphLayer].graphYaxisGrid };
+                if (widget.graphLayers[currentGraphLayer].graphYaxisGrid) {
+                    specificationInner['encoding']['y']['axis'] = {"gridColor": widget.graphLayers[currentGraphLayer].graphYaxisGridColor };
+                };
+
+                specificationInner['encoding']['y']['axis']['labels'] = widget.graphLayers[currentGraphLayer].graphYaxisLabels;
+                if (widget.graphLayers[currentGraphLayer].graphYaxisLabelAngle != 0){
+                    specificationInner['encoding']['y']['axis']['labelAngle'] =
+                        widget.graphLayers[currentGraphLayer].graphYaxisLabelAngle;
+                };
+                if (widget.graphLayers[currentGraphLayer].graphYaxisLabels) {
+                    specificationInner['encoding']['y']['axis']['labelColor'] = widget.graphLayers[currentGraphLayer].graphYaxisLabelColor;
+                    specificationInner['encoding']['y']['axis']['tickColor'] = widget.graphLayers[currentGraphLayer].graphYaxisLabelColor;
+                    specificationInner['encoding']['y']['axis']['titleColor'] = widget.graphLayers[currentGraphLayer].graphYaxisLabelColor;
+                };
+
+                if (!widget.graphLayers[currentGraphLayer].graphYaxisTitleCheckbox) {
+                    specificationInner['encoding']['y']['axis']['title'] = null;
+                } else {
+                    if (widget.graphLayers[currentGraphLayer].graphYaxisTitle != ''  &&  widget.graphLayers[currentGraphLayer].graphYaxisTitle != undefined) {
+                        specificationInner['encoding']['y']['axis']['title'] =
+                            widget.graphLayers[currentGraphLayer].graphYaxisTitle;
+                    };
+                };
+
+                if (widget.graphLayers[currentGraphLayer].graphYaxisFormat != '') {
+                    specificationInner['encoding']['y']['axis']['format'] =  widget.graphLayers[currentGraphLayer].graphYaxisFormat;
+                };
+                specificationInner['encoding']['y']['axis']['maxExtent'] = widget.graphDimensionLeft;
+                specificationInner['encoding']['y']['axis']['labelLimit'] = widget.graphDimensionLeft;
+
             };
 
 
-            // if (widget. != '') {
-            //     if (widget. == 'Value') {
-            //         specification['encoding']['color']['impute'] =
-            //             {"value":' + widget.Value + '};
-            //     } else {
-            //         specification['encoding']['color']['impute'] =
-            //             {"method": "' + widget. + '"};
-            //     };
-            // };
+            // Color field
+            if (widget.graphLayers[currentGraphLayer].graphColorField != '') {
+                let colorBinMax: any = false;
+                if (widget.graphLayers[currentGraphLayer].graphColorMaxBins > 0) {
+                    colorBinMax = {"maxbins": widget.graphLayers[currentGraphLayer].graphColorMaxBins};
+                } else {
+                    colorBinMax = widget.graphLayers[currentGraphLayer].graphColorBin;
+                };
 
-        };
+                specificationInner['encoding']['color'] = {
+                    "aggregate": widget.graphLayers[currentGraphLayer].graphColorAggregate,
+                    "bin": colorBinMax,
+                    "field": widget.graphLayers[currentGraphLayer].graphColorField,
+                    "format": widget.graphLayers[currentGraphLayer].graphColorFormat.toLowerCase(),
+                    "legend": "",
+                    "sort": widget.graphLayers[currentGraphLayer].graphColorSort.toLowerCase(),
+                    "stack": widget.graphLayers[currentGraphLayer].graphColorStack.toLowerCase(),
+                    "timeUnit": widget.graphLayers[currentGraphLayer].graphColorTimeUnit.toLowerCase(),
+                    "type": widget.graphLayers[currentGraphLayer].graphColorType.toLowerCase(),
+                    "scale": widget.graphLayers[currentGraphLayer].graphColorScheme == 
+                        'None'?  null  :  {"scheme": widget.graphLayers[currentGraphLayer].graphColorScheme.toLowerCase()}
+                };
+
+                if (widget.graphLayers[currentGraphLayer].graphLegendHide) {
+                    specificationInner['encoding']['color']['legend'] = null;
+                } else {
+                    if (!widget.graphLayers[currentGraphLayer].graphLegendTitleCheckbox) {
+                        specificationInner['encoding']['color']['legend'] =
+                            {
+                                "title": null
+                            };
+                    } else {
+                        if (widget.graphLayers[currentGraphLayer].graphLegendTitle != ''  
+                            &&  
+                            widget.graphLayers[currentGraphLayer].graphLegendTitle != undefined) {
+                            specificationInner['encoding']['color']['legend'] =
+                                {
+                                    "labelLimit": widget.graphDimensionRight,
+                                    "title": widget.graphLayers[currentGraphLayer].graphLegendTitle
+                                };
+                            if (widget.graphLayers[currentGraphLayer].graphLegendLabels) {
+                                specificationInner['encoding']['color']['legend'].labelColor = widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
+                                specificationInner['encoding']['color']['legend'].tickColor = widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
+                                specificationInner['encoding']['color']['legend'].titleColor = widget.graphLayers[currentGraphLayer].graphLegendLabelColor
+                            };
+
+                        };
+                    };
+                };
+
+                if (widget.graphLayers[currentGraphLayer].graphLegendAxisScaleType != 'Default'  
+                    &&  
+                    widget.graphLayers[currentGraphLayer].graphLegendAxisScaleType != undefined
+                    && 
+                    widget.graphLayers[currentGraphLayer].graphLegendAxisScaleType != '') {
+                    specificationInner['encoding']['color']['scale'] =
+                    {"type": widget.graphLayers[currentGraphLayer].graphLegendAxisScaleType.toLowerCase() };
+                };
 
 
-        // Size field
-        if (widget.graphLayers[currentGraphLayer - 1].graphSizeField != '') {
+                // if (widget. != '') {
+                //     if (widget. == 'Value') {
+                //         specificationInner['encoding']['color']['impute'] =
+                //             {"value":' + widget.Value + '};
+                //     } else {
+                //         specificationInner['encoding']['color']['impute'] =
+                //             {"method": "' + widget. + '"};
+                //     };
+                // };
 
-            specification['encoding']['size']['field'] = widget.graphLayers[currentGraphLayer - 1].graphSizeField;
-            specification['encoding']['size']['type'] = widget.graphLayers[currentGraphLayer - 1].graphSizeType.toLowerCase();
-            specification['encoding']['size']['aggregate'] = widget.graphLayers[currentGraphLayer - 1].graphSizeAggregate.toLowerCase();
-            if (widget.graphLayers[currentGraphLayer - 1].graphSizeMaxBins > 0) {
-                specification['encoding']['size']['bin'] =
-                    {"maxbins": widget.graphLayers[currentGraphLayer - 1].graphSizeMaxBins};
+            };
+
+
+            // Size field
+            if (widget.graphLayers[currentGraphLayer].graphSizeField != '') {
+
+                specificationInner['encoding']['size']['field'] = widget.graphLayers[currentGraphLayer].graphSizeField;
+                specificationInner['encoding']['size']['type'] = widget.graphLayers[currentGraphLayer].graphSizeType.toLowerCase();
+                specificationInner['encoding']['size']['aggregate'] = widget.graphLayers[currentGraphLayer].graphSizeAggregate.toLowerCase();
+                if (widget.graphLayers[currentGraphLayer].graphSizeMaxBins > 0) {
+                    specificationInner['encoding']['size']['bin'] =
+                        {"maxbins": widget.graphLayers[currentGraphLayer].graphSizeMaxBins};
+                } else {
+                    specificationInner['encoding']['size']['bin'] = widget.graphLayers[currentGraphLayer].graphSizeBin;
+                };
+
+
             } else {
-                specification['encoding']['size']['bin'] = widget.graphLayers[currentGraphLayer - 1].graphSizeBin;
+                specificationInner['encoding']['size'] = {
+                    "field": ""
+                };
             };
 
 
+            // Row field
+            if (widget.graphLayers[currentGraphLayer].graphRowField != '') {
+
+                specificationInner['encoding']['row'] = {
+                    "field": widget.graphLayers[currentGraphLayer].graphRowField,
+                    "type": widget.graphLayers[currentGraphLayer].graphRowType.toLowerCase()
+                };
+
+            };
+
+
+            // Column field
+            if (widget.graphLayers[currentGraphLayer].graphColumnField != '') {
+
+                specificationInner['encoding']['column'] = {
+                    "field": widget.graphLayers[currentGraphLayer].graphColumnField,
+                    "type": widget.graphLayers[currentGraphLayer].graphColumnType.toLowerCase()
+                };
+
+            };
+
+
+            // Detail field
+            if (widget.graphLayers[currentGraphLayer].graphDetailField != '') {
+
+                specificationInner['encoding']['detail'] = {
+                    "field": widget.graphLayers[currentGraphLayer].graphDetailField,
+                    "type": widget.graphLayers[currentGraphLayer].graphDetailType
+                };
+
+            };
+
+
+            // X2 field
+            if (widget.graphLayers[currentGraphLayer].graphX2Field != '') {
+
+                specificationInner['encoding']['x2'] = {
+                    "field": widget.graphLayers[currentGraphLayer].graphX2Field,
+                    "type": widget.graphLayers[currentGraphLayer].graphX2Type
+                };
+
+            };
+
+
+            // Y2 field
+            if (widget.graphLayers[currentGraphLayer].graphY2Field != '') {
+
+                specificationInner['encoding']['y2'] = {
+                    "field": widget.graphLayers[currentGraphLayer].graphY2Field,
+                    "type": widget.graphLayers[currentGraphLayer].graphY2Type
+                };
+
+            };
+
+
+            // Projection
+            if (widget.graphLayers[currentGraphLayer].graphProjectionType != ''  &&  widget.graphLayers[currentGraphLayer].graphProjectionType != null) {
+                let projection: string = 'albersUsa';
+                if (widget.graphLayers[currentGraphLayer].graphProjectionType != ''  &&  widget.graphLayers[currentGraphLayer].graphProjectionType != null) {
+                    projection = widget.graphLayers[currentGraphLayer].graphProjectionType;
+                };
+                specificationInner['projection'] = {
+                    "type":  widget.graphLayers[currentGraphLayer].graphProjectionType
+                };
+                specificationInner['encoding']['latitude'] = {
+                    "field": widget.graphLayers[currentGraphLayer].graphProjectionFieldLatitude,
+                    "type": "quantitative"
+                };
+                specificationInner['encoding']['longitude'] = {
+                    "field": widget.graphLayers[currentGraphLayer].graphProjectionFieldLongitude,
+                    "type": "quantitative"
+                };
+                    // "size": {"value": 10}
+                // };
+            };
+
+            // Add to Inner Array
+            specificationInnerArray.push(specificationInner);
+            console.warn('xx specificationInner', specificationInner)
+            console.warn('xx specificationInnerArray', specificationInnerArray)
+        };
+
+        if (specificationInnerArray.length == 1) {
+            specification = {...specification, ...specificationInnerArray[0]}
         } else {
-            specification['encoding']['size'] = {
-                "field": ""
-            };
+            specification = {...specification, "layer": specificationInnerArray}
         };
 
-
-        // Row field
-        if (widget.graphLayers[currentGraphLayer - 1].graphRowField != '') {
-
-            specification['encoding']['row'] = {
-                "field": widget.graphLayers[currentGraphLayer - 1].graphRowField,
-                "type": widget.graphLayers[currentGraphLayer - 1].graphRowType.toLowerCase()
-            };
-
-        };
-
-
-        // Column field
-        if (widget.graphLayers[currentGraphLayer - 1].graphColumnField != '') {
-
-            specification['encoding']['column'] = {
-                "field": widget.graphLayers[currentGraphLayer - 1].graphColumnField,
-                "type": widget.graphLayers[currentGraphLayer - 1].graphColumnType.toLowerCase()
-            };
-
-        };
-
-
-        // Detail field
-        if (widget.graphLayers[currentGraphLayer - 1].graphDetailField != '') {
-
-            specification['encoding']['detail'] = {
-                "field": widget.graphLayers[currentGraphLayer - 1].graphDetailField,
-                "type": widget.graphLayers[currentGraphLayer - 1].graphDetailType
-            };
-
-        };
-
-
-        // X2 field
-        if (widget.graphLayers[currentGraphLayer - 1].graphX2Field != '') {
-
-            specification['encoding']['x2'] = {
-                "field": widget.graphLayers[currentGraphLayer - 1].graphX2Field,
-                "type": widget.graphLayers[currentGraphLayer - 1].graphX2Type
-            };
-
-        };
-
-
-        // Y2 field
-        if (widget.graphLayers[currentGraphLayer - 1].graphY2Field != '') {
-
-            specification['encoding']['y2'] = {
-                "field": widget.graphLayers[currentGraphLayer - 1].graphY2Field,
-                "type": widget.graphLayers[currentGraphLayer - 1].graphY2Type
-            };
-
-        };
-
-
-        // Projection
-        if (widget.graphLayers[currentGraphLayer - 1].graphProjectionType != ''  &&  widget.graphLayers[currentGraphLayer - 1].graphProjectionType != null) {
-            let projection: string = 'albersUsa';
-            if (widget.graphLayers[currentGraphLayer - 1].graphProjectionType != ''  &&  widget.graphLayers[currentGraphLayer - 1].graphProjectionType != null) {
-                projection = widget.graphLayers[currentGraphLayer - 1].graphProjectionType;
-            };
-            specification['projection'] = {
-                "type":  widget.graphLayers[currentGraphLayer - 1].graphProjectionType
-            };
-            specification['encoding']['latitude'] = {
-                "field": widget.graphLayers[currentGraphLayer - 1].graphProjectionFieldLatitude,
-                "type": "quantitative"
-            };
-            specification['encoding']['longitude'] = {
-                "field": widget.graphLayers[currentGraphLayer - 1].graphProjectionFieldLongitude,
-                "type": "quantitative"
-            };
-                // "size": {"value": 10}
-            // };
-        };
+        console.warn('xx specification', specification)
 
         // Tooltip setting
         // specification['mark']['tooltip']['content'] = "";
