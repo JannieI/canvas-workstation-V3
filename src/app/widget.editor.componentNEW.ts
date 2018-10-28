@@ -4299,7 +4299,13 @@ export interface dataSchemaInterface {
             "graphProjectionFieldLatitude": "",
             "graphProjectionFieldLongitude": ""
         });
-        this.graphLayers.push(this.graphLayers.length + 1);
+
+        // Rebuild list to display
+        this.graphLayers = [];
+        for (let i = 0; i < this.localWidget.graphLayers.length; i++) {
+            this.graphLayers.push(i + 1);
+        };
+        // this.graphLayers.push(this.graphLayers.length + 1);
         this.currentGraphLayer = this.graphLayers.length;
 
         // Load local Vars from localWidget
@@ -4335,7 +4341,13 @@ export interface dataSchemaInterface {
         let layerToDelete: number = +ev.target.value;
         this.localWidget.graphLayers.splice(layerToDelete - 1, 1);
 
-        this.currentGraphLayer = 0;
+        // Rebuild list to display
+        this.graphLayers = [];
+        for (let i = 0; i < this.localWidget.graphLayers.length; i++) {
+            this.graphLayers.push(i + 1);
+        };
+
+        this.currentGraphLayer = 1;
 
         // Load local Vars from localWidget
         this.loadLocalVarsFromWidget()
