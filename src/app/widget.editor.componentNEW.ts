@@ -232,7 +232,7 @@ export interface dataSchemaInterface {
     graphHistory: GraphHistory[] = [];
     graphHistoryPosition: number = 0;
 
-    graphLayers: number[] = [1];  // Note: see   Note 14   above
+    graphLayers: number[] = [];  // Note: see   Note 14   above
     isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
     isDragoverYField: boolean = false;
@@ -1043,6 +1043,10 @@ export interface dataSchemaInterface {
 
             // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+            for (let i = 0; i < this.localWidget.graphLayers.length; i++){
+                this.graphLayers.push(i + 1);
+            };
 
             if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''
                 ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
