@@ -303,8 +303,8 @@ clr-dg-cell {
             }
             .editorCompositionLayerCheckBox {
                 display: inline-block;
-                margin-left: 4px;
-                width: 80px;
+                margin-left: 12px;
+                width: 15px;
             }
             .editorCompositionLayerButton {
                 font-size: 0.55rem;
