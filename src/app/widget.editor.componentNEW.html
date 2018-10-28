@@ -196,6 +196,7 @@
                         <div class="select editorCompositionLayer">
                             <select id="currentGraphLayer"
                                 [(ngModel)]="currentGraphLayer"
+                                (click)="clickCompositionLayerSelect($event)"
                                 >
                                 <option *ngFor="let row of graphLayers; let i = index">
                                     {{ row }}

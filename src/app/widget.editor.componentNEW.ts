@@ -4302,9 +4302,20 @@ export interface dataSchemaInterface {
         this.graphLayers.push(this.graphLayers.length + 1);
         this.currentGraphLayer = this.graphLayers.length;
 
+        // Load local Vars from localWidget
+        this.loadLocalVarsFromWidget()
+    }
+
+    clickCompositionLayerSelect(ev: any) {
+        // Select an existing layer
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCompositionLayerSelect', '@Start');
+
+        // Reset 
+        this.errorMessageEditor = '';
+
+        this.currentGraphLayer = +ev.target.result;
 
         // Load local Vars from localWidget
         this.loadLocalVarsFromWidget()
-
     }
 }
