@@ -295,7 +295,7 @@ export interface dataSchemaInterface {
     showFieldX2Properties: boolean = false;
     showFieldY2Properties: boolean = false;
     showFieldProjectionProperties: boolean = false;
-    showGraphLayers: boolean = false;
+    showSpecificGraphLayer: boolean = false;
     showPreview: boolean = false;
     showProjectionDeleteIcon: boolean = false;
     showProjectionLatitudeDeleteIcon: boolean = false;
@@ -1420,7 +1420,7 @@ export interface dataSchemaInterface {
                 this.localWidget, 
                 this.localWidget.graphHeight, 
                 this.localWidget.graphWidth,
-                this.showGraphLayers,
+                this.showSpecificGraphLayer,
                 (this.currentGraphLayer - 1)
             );
 
