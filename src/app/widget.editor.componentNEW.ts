@@ -28,6 +28,8 @@ import { GlobalVariableService }      from './global-variable.service';
 import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
+import { UserPaletteButtonBarComponent } from './user.palette.buttonbar.component';
+import { iterateListLike } from '@angular/core/src/change_detection/change_detection_util';
 
 const graphHeight: number = 260;
 const graphWidth: number = 372;
@@ -201,7 +203,11 @@ export interface dataSchemaInterface {
     currentData: any = [];
     currentGraphComposition: string = 'Single';
     currentGraphID: number = -1;
+
     currentGraphLayer: number = 1;
+    // Note: this number is the LAYER as seen by the UserPaletteButtonBarComponent.  The Arrays are
+    // however base 0.  So, take care in making changes to iterateListLike.
+    
     dataSchema: dataSchemaInterface[] = [];
     detailField: string = dragFieldMessage;
     draggedField: string = '';
@@ -991,18 +997,6 @@ export interface dataSchemaInterface {
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
             this.localWidget.widgetType = 'Graph';
 
-
-
-
-            // this.localWidget.graphLayers[0]['graphMark'] = "bar0"
-            // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLayers[1]['graphMark'] = "bar1"
-
-
-
-
-            
-
-
             // Populate predefined dimensions, considering layouts
             if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''  
                 ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
@@ -1048,20 +1042,6 @@ export interface dataSchemaInterface {
 
             // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
 
             if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''  
                 ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
