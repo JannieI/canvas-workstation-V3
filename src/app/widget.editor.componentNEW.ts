@@ -207,7 +207,7 @@ export interface dataSchemaInterface {
     currentGraphLayer: number = 1;
     // Note 14: this number is the LAYER as seen by the UserPaletteButtonBarComponent.  The Arrays are
     // however base 0.  So, take care in making changes to iterateListLike.
-    
+
     dataSchema: dataSchemaInterface[] = [];
     detailField: string = dragFieldMessage;
     draggedField: string = '';
@@ -999,7 +999,7 @@ export interface dataSchemaInterface {
             this.localWidget.widgetType = 'Graph';
 
             // Populate predefined dimensions, considering layouts
-            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''  
+            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''
                 ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme = 'None';
             };
@@ -1044,7 +1044,7 @@ export interface dataSchemaInterface {
             // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
-            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''  
+            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''
                 ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme = 'None';
             };
@@ -4124,14 +4124,160 @@ export interface dataSchemaInterface {
         // Add a second layer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCompositionLayerAdd', '@Start');
 
+        // Reset 
+        this.errorMessageEditor = '';
+
         // Validation
-        if (this.columnField != '') {
+        if (this.columnField != dragFieldMessage) {
             this.errorMessageEditor = 'Remove Column field before adding layers';
             return;
         }
-        if (this.rowField != '') {
+        if (this.rowField != dragFieldMessage) {
             this.errorMessageEditor = 'Remove Row field before adding layers';
             return;
         }
+
+        // Add new layer, and set
+        this.localWidget.graphLayers.push(            {
+            // Mark
+            "graphMark": "",
+            "graphMarkOrient": "",
+            "graphMarkLine": false,
+            "graphMarkPoint": false,
+            "graphMarkPointColorName": "",
+            "graphMarkPointColor": "",
+            "graphMarkColourName": "",
+            "graphMarkColour": "",
+            "graphMarkCornerRadius": 0,
+            "graphMarkExtent": "",
+            "graphMarkOpacity": 1,
+            "graphMarkBinSpacing": 0,
+            "graphMarkInterpolate": "",
+
+            // X
+            "graphXfield": "",
+            "graphXaggregateName": "",
+            "graphXaggregate": "",
+            "graphXtimeUnit": "",
+            "graphXbin": false,
+            "graphXMaxBins": 0,
+            "graphXformat": "",
+            "graphXimpute": "",
+            "graphXimputeValue": "",
+            "graphXstack": "",
+            "graphXsort": "",
+            "graphXtype": "",
+            "graphXtypeName": "",
+
+            // Y
+            "graphYfield": "",
+            "graphYaggregateName": "",
+            "graphYaggregate": "",
+            "graphYbin": false,
+            "graphYMaxBins": 0,
+            "graphYformat": "",
+            "graphYimpute": "",
+            "graphYimputeValue": 0,
+            "graphYstack": "",
+            "graphYsort": "",
+            "graphYtimeUnit": "",
+            "graphYtype": "",
+            "graphYtypeName": "",
+
+            // Color
+            "graphColorField": "",
+            "graphColorAggregateName": "",
+            "graphColorAggregate": "",
+            "graphColorBin": false,
+            "graphColorMaxBins": 0,
+            "graphColorFormat": "",
+            "graphColorImpute": "",
+            "graphColorImputeValue": "",
+            "graphColorScheme": "blues",
+            "graphColorSort": "",
+            "graphColorStack": "",
+            "graphColorType": "",
+            "graphColorTypeName": "",
+            "graphColorTimeUnit": "",
+
+            // X Axis
+            "graphXaxisFormat": "",
+            "graphXaxisGrid": true,
+            "graphXaxisGridColorName": "",
+            "graphXaxisGridColor": "",
+            "graphXaxisLabels": true,
+            "graphXaxisLabelAngle": 0,
+            "graphXaxisLabelColorName": "",
+            "graphXaxisLabelColor": "",
+            "graphXaxisTitle": "",
+            "graphXaxisTitleCheckbox": true,
+            "graphXaxisScaleType": "",
+
+            // Y Axis
+            "graphYaxisFormat": "",
+            "graphYaxisGrid": true,
+            "graphYaxisGridColorName": "",
+            "graphYaxisGridColor": "",
+            "graphYaxisLabels": true,
+            "graphYaxisLabelAngle": 0,
+            "graphYaxisLabelColorName": "",
+            "graphYaxisLabelColor": "",
+            "graphYaxisScaleType": "",
+            "graphYaxisTitle": "",
+            "graphYaxisTitleCheckbox": true,
+
+            // Legend
+            "graphLegendAxisScaleType": "",
+            "graphLegendHide": false,
+            "graphLegendTitleCheckbox": true,
+            "graphLegendTitle": "",
+            "graphLegendFormat": "",
+            "graphLegendLabels": true,
+            "graphLegendLabelColorName": "",
+            "graphLegendLabelColor": "",
+
+            // Size
+            "graphSizeField": "",
+            "graphSizeType": "",
+            "graphSizeTypeName": "",
+            "graphSizeAggregateName": "",
+            "graphSizeAggregate": "",
+            "graphSizeBin": false,
+            "graphSizeMaxBins": 0,
+
+            // Row
+            "graphRowField": "",
+            "graphRowType": "",
+            "graphRowTypeName": "",
+
+            // Column
+            "graphColumnField": "",
+            "graphColumnType": "",
+            "graphColumnTypeName": "",
+
+            // Detail
+            "graphDetailField": "",
+            "graphDetailType": "",
+            "graphDetailTypeName": "",
+
+            // X2
+            "graphX2Field": "",
+            "graphX2Type": "",
+            "graphX2TypeName": "",
+            "graphX2AggregateName": "",
+
+            // Y2
+            "graphY2Field": "",
+            "graphY2Type": "",
+            "graphY2TypeName": "",
+            "graphY2AggregateName": "",
+
+            // Projection
+            "graphProjectionType": "",
+            "graphProjectionFieldLatitude": "",
+            "graphProjectionFieldLongitude": ""
+        });
+        this.graphLayers.push(this.graphLayers.length + 1);
+        this.currentGraphLayer = this.graphLayers.length;
     }
 }
