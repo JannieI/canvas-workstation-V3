@@ -4318,4 +4318,26 @@ export interface dataSchemaInterface {
         // Load local Vars from localWidget
         this.loadLocalVarsFromWidget()
     }
+
+    clickCompositionLayerDelete(ev: any) {
+        // Delete selected layer
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCompositionLayerDelete', '@Start');
+
+        // Reset 
+        this.errorMessageEditor = '';
+
+        // Validation
+        if (this.localWidget.graphLayers.length == 1) {
+            this.errorMessageEditor = 'Cannot delete last layer';
+            return;
+        };
+
+        let layerToDelete: number = +ev.target.value;
+        this.localWidget.graphLayers.splice(layerToDelete - 1, 1);
+
+        this.currentGraphLayer = 0;
+
+        // Load local Vars from localWidget
+        this.loadLocalVarsFromWidget()
+    }
 }
