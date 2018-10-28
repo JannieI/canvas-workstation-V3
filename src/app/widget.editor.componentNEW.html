@@ -203,6 +203,14 @@
                                 </option>
                             </select>
                         </div>
+                        <div class="editorCompositionLayerCheckBox">
+                            <input [(ngModel)]="showGraphLayers"
+                                type="checkbox"
+                                name="showGraphLayers"
+                                title="Show all the Layers of the graph (T/F)"
+                                >
+
+                        </div>
                         <span class="editorCompositionLayerButton">
                             <button class="btn btn-link" (click)="clickCompositionLayerAdd()">
                                 Add

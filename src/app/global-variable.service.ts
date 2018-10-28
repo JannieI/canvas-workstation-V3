@@ -11136,7 +11136,8 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
     createVegaLiteSpec(
         widget: Widget,
         height: number = 0,
-        width: number = 0): dl.spec.TopLevelExtentedSpec {
+        width: number = 0,
+        showGraphLayers: boolean = true): dl.spec.TopLevelExtentedSpec {
         let specification: any = {
             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
             "description": "A simple bar chart with embedded data.",

@@ -287,9 +287,9 @@ clr-dg-cell {
                 display: inline-block;
                 font-size: 0.55rem;
                 line-height: 0.8rem;
-                margin-left: 14px;
+                margin-left: 4px;
                 margin-top: 3px;
-                width: 80px;
+                width: 44px;
             }
             .editorCompositionLayer {
                 border: 1px solid steelblue;
@@ -297,8 +297,13 @@ clr-dg-cell {
                 display: inline-block;
                 font-size: 0.55rem;
                 line-height: 0.8rem;
-                margin-left: 14px;
+                margin-left: 4px;
                 margin-top: 3px;
+                width: 80px;
+            }
+            .editorCompositionLayerCheckBox {
+                display: inline-block;
+                margin-left: 4px;
                 width: 80px;
             }
             .editorCompositionLayerButton {

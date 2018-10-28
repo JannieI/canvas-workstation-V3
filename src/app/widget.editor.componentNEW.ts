@@ -295,6 +295,7 @@ export interface dataSchemaInterface {
     showFieldX2Properties: boolean = false;
     showFieldY2Properties: boolean = false;
     showFieldProjectionProperties: boolean = false;
+    showGraphLayers: boolean = false;
     showPreview: boolean = false;
     showProjectionDeleteIcon: boolean = false;
     showProjectionLatitudeDeleteIcon: boolean = false;
@@ -1416,7 +1417,10 @@ export interface dataSchemaInterface {
 
             // Create Spec
             this.specification = this.globalVariableService.createVegaLiteSpec(
-                this.localWidget, this.localWidget.graphHeight, this.localWidget.graphWidth
+                this.localWidget, 
+                this.localWidget.graphHeight, 
+                this.localWidget.graphWidth,
+                this.showGraphLayers
             );
 
             console.warn('xx @END of ShowGraph specification', this.specification, JSON.stringify(this.specification));
