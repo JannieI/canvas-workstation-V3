@@ -44,7 +44,6 @@ import { Datasource }                 from './models';
 import { DataQualityIssue}            from './models';
 import { DataOwnership}               from './models';
 import { DatasourcePermission}        from './models';
-import { DatasourcePivot }            from './models';
 import { GraphCalculation }        from './models';
 import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
@@ -871,7 +870,6 @@ export class GlobalVariableService {
     dataQualityIssues: DataQualityIssue[] = [];
     datasets: any = [];                                 // List of dSets, NO data
     datasourcePermissions: DatasourcePermission[] = [];
-    datasourcePivots: DatasourcePivot[] = [];
     datasourceTransformations: DatasourceTransformation[] = [];
     dataTables: DataTable[] = [];
     finalFields: any = finalFields;
@@ -897,7 +895,6 @@ export class GlobalVariableService {
     currentDataQualityIssues: DataQualityIssue[] = [];
     currentDatasources: Datasource[] = [];
     currentDatasourcePermissions: DatasourcePermission[] = [];
-    currentDatasourcePivots: DatasourcePivot[] = [];
     currentDatasourceSchedules: DatasourceSchedule[] = [];
     currentPaletteButtonBar: PaletteButtonBar[];
     currentTransformations: Transformation[] = [];
@@ -998,7 +995,6 @@ export class GlobalVariableService {
     isDirtyDataQualityIssues: boolean = true;
     isDirtyDatasets: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
-    isDirtyDatasourcePivots: boolean = true;
     isDirtyDatasources: boolean = true;
     isDirtyDataTables: boolean = true;
     isDirtyDatasourceSchedules: boolean = true;
@@ -1172,15 +1168,13 @@ export class GlobalVariableService {
             this.getCurrentDatasourcePermissions(datasourceID).then(k =>
             // Load Transformations
             this.getCurrentTransformations(datasourceID).then(l =>
-            // Load Pivots
-            this.getCurrentDatasourcePivots(datasourceID).then(m =>
             // Load dataQuality Issues
             this.getCurrentDataQualityIssues(datasourceID).then( o =>
                 // Reset Global Vars
                 {
                     resolve(true)
                 }
-        )))));
+        ))));
         });
     }
 
@@ -1235,9 +1229,6 @@ export class GlobalVariableService {
 
         // Load Current DatasourcePermissions
         this.getCurrentDatasourcePermissions(1);
-
-        // Load Current DatasourcePivots
-        this.getCurrentDatasourcePivots(1);
 
     }
 
