@@ -14,7 +14,6 @@ This document describes items for later versions of Canvas.
     Outstanding Forms:
     ------------
         - Usage Stats form
-        - Data Qual form
         - Print
         - Theme
         - Tablist
