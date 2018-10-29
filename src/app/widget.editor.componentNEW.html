@@ -98,9 +98,6 @@
 
                             <clr-dg-column *ngFor="let col of dataSchema; let i = index;">
                                 {{ col.name }}
-                                <clr-icon shape="times" *ngIf="i==1"
-                                    (click)="clickClearRowField(i)">
-                                </clr-icon>
                                 <clr-signpost>
                                     <clr-icon shape="info-circle"
                                               size="12" 
@@ -109,7 +106,19 @@
                                               >
                                     </clr-icon>
                                     <clr-signpost-content [clrPosition]="'bottom-middle'" *clrIfOpen>
-                                        {{ col.name }}
+                                        <b>Help for {{ col.name }}: </b>
+                                        <div>
+                                            Type: {{ col.typeName}}
+                                        </div>
+                                        <div>                                            
+                                            Length: {{ col.length }}
+                                        </div>
+                                        <div>
+                                            Is Calculated: {{ col.isCalculated }}
+                                        </div>
+                                        <div *ngIf="col.isCalculated">
+                                            Calculation: {{ col.calculatedExpression }}
+                                        </div>
                                     </clr-signpost-content>
                                 </clr-signpost>                                
                                 <!-- <clr-signpost>
