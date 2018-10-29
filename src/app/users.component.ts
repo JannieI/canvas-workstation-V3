@@ -76,23 +76,7 @@ export class UsersComponent implements OnInit {
             if (u.length > 0) {
                 this.groups = u[0].groups;
             };
-            console.warn('xx users', this.users)
-
-            // Reduce Permissions to current User (only direct, not indirect via Groups)
-            this.globalVariableService.getDashboards().then(d => {
-                this.dashboards = d;
-                this.dashboardPermissions = this.globalVariableService.dashboardPermissions
-                    .filter(dp => dp.userID == this.globalVariableService.currentUser.userID);
-
-                this.dashboardPermissions.forEach(dp => {
-                    this.dashboards.forEach(d => {
-                        if (d.id == dp.dashboardID) {
-                            dp.dashboardName = d.name;
-                        };
-                    });
-                });
-            });
-        });
+         });
 
 
     }
@@ -113,7 +97,23 @@ export class UsersComponent implements OnInit {
             if (u.userID == userID) {
                 this.groups = u.groups;
             };
-        })
+        });
+
+        // Reduce Permissions to current User (only direct, not indirect via Groups)
+        this.globalVariableService.getDashboards().then(d => {
+            this.dashboards = d;
+            this.dashboardPermissions = this.globalVariableService.dashboardPermissions
+                .filter(dp => dp.userID == userID);
+
+            this.dashboardPermissions.forEach(dp => {
+                this.dashboards.forEach(d => {
+                    if (d.id == dp.dashboardID) {
+                        dp.dashboardName = d.name;
+                    };
+                });
+            });
+        });
+
     }
 
 

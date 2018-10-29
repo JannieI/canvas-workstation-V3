@@ -81,7 +81,7 @@
         grid-column-end: 16;
         grid-row-start: 19;
         grid-row-end: 20;
-        margin-top: -2px;
+        margin-top: -1px;
         max-height: 15rem;
         text-align: center;
     }
@@ -106,4 +106,15 @@
         grid-row-end: 19;
         text-align: left;
     }
+
+    .errorMessage {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 25;
+        grid-row-end: 26;
+        margin-top: 12px;
+        text-align: left;
+    }
+
 
