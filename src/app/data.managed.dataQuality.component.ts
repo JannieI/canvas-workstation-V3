@@ -108,13 +108,12 @@ export class DataManageDataQualityComponent implements OnInit {
             let datasourceIndex: number = this.globalVariableService.datasources.findIndex(ds =>
                 ds.id == this.dataQualityIssues[selectedDatasourceIndex].datasourceID
             );
-            this.selectedLinkedDatasource = this.globalVariableService.datasources[datasourceIndex]
-                .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
-            console.warn('xx ds', this.selectedLinkedDatasource, datasourceIndex, this.selectedLinkedDatasource)
+            this.selectedLinkedDatasource = 'Unknown';
+            if (datasourceIndex >= 0) {
+                this.selectedLinkedDatasource = this.globalVariableService.datasources[datasourceIndex]
+                    .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
+            };
 
-            // this.selectedDataQualityIssue = Object.assign({},
-            //     this.dataQualityIssues[selectedDatasourceIndex]
-            // );
             this.selectedDataQualityIssue = JSON.parse(JSON.stringify(
                 this.dataQualityIssues[selectedDatasourceIndex]
             ));
