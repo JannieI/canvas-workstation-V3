@@ -98,9 +98,35 @@
 
                             <clr-dg-column *ngFor="let col of dataSchema; let i = index;">
                                 {{ col.name }}
-                            <clr-icon shape="times" *ngIf="i==1"
-                                (click)="clickClearRowField(i)">
-                            </clr-icon>
+                                <clr-icon shape="times" *ngIf="i==1"
+                                    (click)="clickClearRowField(i)">
+                                </clr-icon>
+                                <clr-signpost>
+                                    <clr-icon shape="info-circle"
+                                              size="12" 
+                                              class="is-solid has-badge-info" 
+                                              clrSignpostTrigger
+                                              >
+                                    </clr-icon>
+                                    <clr-signpost-content [clrPosition]="'bottom-middle'" *clrIfOpen>
+                                        {{ col.name }}
+                                    </clr-signpost-content>
+                                </clr-signpost>                                
+                                <!-- <clr-signpost>
+                                    <clr-icon shape="info-circle"
+                                        clrSignpostTrigger>
+                                    </clr-icon>
+                                    <clr-signpost-content *clrIfOpen
+                                        [clrPosition]="'bottom-middle'">
+                                        <p style="margin-top: 0; color:gray;">
+                                            <b>Help for {{ row.name }}:</b> 
+                                        </p>
+                                        <p>
+                                            Fields: {{ nrRows }}
+                                        </p>
+                                    </clr-signpost-content>
+                                </clr-signpost> -->
+
                             </clr-dg-column>
                             <clr-dg-row *ngFor="let row of currentData">
 
