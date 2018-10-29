@@ -7079,51 +7079,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         );
     }
 
-    getDatasourcePivots(): Promise<DatasourcePivot[]> {
-        // Description: Gets all DS-P
-        // Returns: this.datasourcePivots array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDatasourcePivots ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        let pathUrl: string = 'datasourcePivots';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasourcePivots.json';
-
-        return new Promise<DatasourcePivot[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.datasourcePivots.length == 0)  ||  (this.isDirtyDatasourcePivots) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.datasourcePivots = res;
-                        this.isDirtyDatasourcePivots = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDatasourcePivots 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.datasourcePivots)
-                        };
-
-                        resolve(this.datasourcePivots);
-                    });
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDatasourcePivots 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.datasourcePivots)
-                };
-
-                resolve(this.datasourcePivots);
-            }
-        });
-    }
-
-
     getSystemSettings(): Promise<CanvasSettings> {
         // Description: Gets system settings
         // Returns: this.canvasSettings object, unless:
