@@ -425,16 +425,6 @@ export class DataOwnership {
     datasourceName: string;                 // Name of the linked DS
 }
 
-export class DatasourcePivot {
-    id: number;
-    datasourceID: number;
-    columnFieldName: string;
-    rowFieldName: string;
-    aggregateFieldName: string;
-    aggregateType: string;              // Sum, Average, etc
-    refreshAlways: boolean;             // If True, will refresh after each change to rows, cols, etc
-}
-
 export class Dataset {
     id: number;
     datasourceID: number;
