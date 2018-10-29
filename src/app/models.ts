@@ -947,6 +947,7 @@ export class DashboardScheduleLog {
 export class DashboardPermission {
     id: number;                         // Unique ID
     dashboardID: number;                // FK to D
+    dashboardName?: string;             // Filled in @RunTime
     userID: string;                     // UserID - NB: 1 of usr/grp filled in, one blank
     groupID: number;                    // Group ID
     groupName: string;                  // Filled in @RunTime
