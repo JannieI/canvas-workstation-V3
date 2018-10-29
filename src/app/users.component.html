@@ -96,10 +96,10 @@
                 </div>
                 <div class="gridDashboardPermssions">
                     <clr-datagrid>
-                        <clr-dg-column
-                        [style.text-align]="center">Remove</clr-dg-column>
-                        <clr-dg-column [clrDgField]="userID">User ID (single)</clr-dg-column>
-                        <clr-dg-column [clrDgField]="name">Group Name (applies to all its members)</clr-dg-column>
+                        <clr-dg-column [style.text-align]="center">
+                            Remove
+                        </clr-dg-column>
+                        <clr-dg-column [clrDgField]="dashboardName">Name</clr-dg-column>
                         <clr-dg-column [clrDgField]="canViewRight" class="checkCell">View</clr-dg-column>
                         <clr-dg-column [clrDgField]="canEditRight">Edit</clr-dg-column>
                         <clr-dg-column [clrDgField]="canSaveRight">Save</clr-dg-column>
@@ -122,8 +122,7 @@
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
-                            <clr-dg-cell>{{row.userID}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.groupName}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.dashboardName}}</clr-dg-cell>
                             <clr-dg-cell class="checkCell">
                                 <clr-icon shape="check" *ngIf="row.canViewRight"
                                     size="16"
