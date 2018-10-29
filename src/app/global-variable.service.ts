@@ -7123,57 +7123,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         });
     }
 
-    getCurrentDatasourcePivots(datasourceID: number): Promise<DatasourcePivot[]> {
-        // Description: Gets DS-P for current DS
-        // Returns: this.datasourcePivots.value array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDatasourcePivots ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {datasourceID});
-        };
-
-        let pathUrl: string = 'datasourcePivots';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data..datasourcePivots.json';
-
-        if ( (this.currentDatasourcePivots.length == 0)  ||  (this.isDirtyDatasourcePivots) ) {
-            return new Promise<DatasourcePivot[]>((resolve, reject) => {
-                this.getDatasourcePivots()
-                    .then(res => {
-                        res = res.filter(
-                            i => i.datasourceID == datasourceID
-                        );
-                        this.currentDatasourcePivots = res;
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDatasourcePivots 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {datasourceID}, {res})
-                        };
-
-                        resolve(this.currentDatasourcePivots);
-                })
-             })
-        } else {
-            return new Promise<DatasourcePivot[]>((resolve, reject) => {
-                let returnData: DatasourcePivot[];
-                returnData = this.datasourcePivots.filter(
-                    i => i.datasourceID == datasourceID
-                );
-                this.currentDatasourcePivots = returnData;
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDatasourcePivots 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {datasourceID}, {returnData})
-                };
-
-                resolve(this.currentDatasourcePivots);
-            });
-        };
-
-    }
 
     getSystemSettings(): Promise<CanvasSettings> {
         // Description: Gets system settings
