@@ -123,13 +123,13 @@ export class UsersComponent implements OnInit {
 
         this.errorMessage = '';
 
+        // Can only do this if user has Grant Access
         if (!this.globalVariableService.dashboardPermissionCheck(
             id, 'cangrantaccess') ) {
                 this.errorMessage = 'You cannot Grant access to others';
                 return;
         };
 
-        // Can only do this if user has Grant Access
         // Toggle access
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
