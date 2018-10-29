@@ -38,24 +38,6 @@ export class GlobalFunctionService {
         }
     }
 
-    convertArrayToPivot(inputArray: string[]): string[] {
-        let returnArray: string[] = [];
-        console.log('GROUPBY start:')
-        let startNow: number;
-
-        startNow = Date.now()
-        // returnArray = dl.groupby('symbol')
-        //     .summarize( [
-        //         {name: 'symbol', ops: ['valid']},
-        //         {name: 'price',  ops: ['sum', 'median'], as: ['s', 'm']}
-        //         ] )
-        //     .execute(inputArray);
-        // console.log('     END groupby: ', (Date.now() - startNow) / 1000)
-
-        // Return
-        return returnArray;
-    }
-
     sleep(milliseconds) {
         var start = new Date().getTime();
         for (var i = 0; i < 1e7; i++) {
