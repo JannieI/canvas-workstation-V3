@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
             <div class="gridOverall">
@@ -111,9 +111,6 @@
 
                         <clr-dg-row *clrDgItems="let row of dashboardPermissions;
                             let i = index"
-                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
-                            (click)="clickRow(i)"
                             >
                             <clr-dg-cell>
                                 <clr-icon shape="trash"
