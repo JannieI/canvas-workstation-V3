@@ -76,12 +76,14 @@ export class UsersComponent implements OnInit {
             if (u.length > 0) {
                 this.groups = u[0].groups;
             };
-                console.warn('xx users', this.users)
+            console.warn('xx users', this.users)
+
+            this.globalVariableService.getDashboards().then(d => {
+                this.dashboards = d
+            })
+            this.dashboardPermissions = this.globalVariableService.dashboardPermissions;
         });
 
-        this.globalVariableService.getDashboards().then(d => {
-            this.dashboards = d
-        })
 
     }
 
