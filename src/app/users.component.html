@@ -90,7 +90,7 @@
                 <div>
                     {{ errorMessage }}
                 </div>
-                
+
                 <div class="gridDashboardPermssionsTitle">
                     <b>Dashboard Permissions</b>
                 </div>
@@ -106,7 +106,7 @@
                             <clr-dg-cell>{{row.id}}</clr-dg-cell>
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
                             <clr-dg-cell>
-                                <span (dblclick)="clickToggleView(row.id">
+                                <span (dblclick)="clickToggleView(row.id)">
                                     CanView 
                                 </span>
                             </clr-dg-cell>
@@ -130,18 +130,18 @@
                                     CanView 
                                 </span>
                             </clr-dg-cell>
-                            </clr-dg-cell>
+                            <clr-dg-cell>
                                 <span>
                                     CanEdit
                                 </span> 
                             </clr-dg-cell>
                         </clr-dg-row>
 
-                        <clr-dg-footer>
+                        <!-- <clr-dg-footer>
                             {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                             of {{pagination.totalItems}} rows
                             <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
-                        </clr-dg-footer>
+                        </clr-dg-footer> -->
 
                     </clr-datagrid>
                 </div>
