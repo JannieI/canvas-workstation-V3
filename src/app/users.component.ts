@@ -180,5 +180,36 @@ export class UsersComponent implements OnInit {
         };
     }
 
+    clickToggleSave(id: number, $event) {
+        // User dblclicked Save - so toggle it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleSave', '@Start');
+
+        this.errorMessage = '';
+
+        // Can only do this if user has Grant Access
+        if (!this.globalVariableService.dashboardPermissionCheck(id, 'cangrantaccess') ) {
+                this.errorMessage = 'You cannot Grant access to others';
+                return;
+        };
+
+        let index: number = -1;
+        for(var i = 0; i < this.dashboardPermissions.length; i++) {
+            if (this.dashboardPermissions[i].id == id) {
+                this.dashboardPermissions[i].canSaveRight = ! this.dashboardPermissions[i].canSaveRight;
+                index = i;
+
+                // Update Grantor and -On
+                this.dashboardPermissions[i].grantor = this.globalVariableService.currentUser.userID;
+                this.dashboardPermissions[i].grantedOn = new Date();
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDashboardPermission(
+                this.dashboardPermissions[index])
+                ;
+        };
+    }
+
 }
 
