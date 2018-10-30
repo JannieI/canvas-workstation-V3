@@ -930,6 +930,9 @@ This document describes items for later versions of Canvas.
     - add handles to arrows, lines, etc => use this to position and rotate and make longer / resize !
     - curved lines, bazier curves
 
+    Users and Groups:
+    ----------------
+    - enhance granting of permissions on the form: can add new Dashboards to a user, group, OR show all of them and check / uncheck.  Think clearly about UI and use case.
 
     Widget Groups:
     --------------

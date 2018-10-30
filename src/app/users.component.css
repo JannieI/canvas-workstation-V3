@@ -108,12 +108,13 @@
     }
 
     .errorMessage {
+        color: red;
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 16;
         grid-row-start: 25;
         grid-row-end: 26;
-        margin-top: 12px;
+        margin-top: 18px;
         text-align: left;
     }
 

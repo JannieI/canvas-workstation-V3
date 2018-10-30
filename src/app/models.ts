@@ -1353,7 +1353,9 @@ export class Widget {
     // Transformations: Time Unit
     // Transformations: Window
 
+    // Layers
     graphLayers?: widgetGraphSpecification[];
+    
     // X
     graphXfield: string;
     graphXaggregateName: string;
