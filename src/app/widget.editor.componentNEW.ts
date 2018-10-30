@@ -204,7 +204,7 @@ export interface dataSchemaInterface {
     currentGraphComposition: string = 'Single';
     currentGraphID: number = -1;
 
-    currentGraphLayer: number = 1;
+    currentGraphLayer: number = 1;              // Current layer being defined
     // Note 14: this number is the LAYER as seen by the UserPaletteButtonBarComponent.  The Arrays are
     // however base 0.  So, take care in making changes to iterateListLike.
 
@@ -232,7 +232,7 @@ export interface dataSchemaInterface {
     graphHistory: GraphHistory[] = [];
     graphHistoryPosition: number = 0;
 
-    graphLayers: number[] = [];  // Note: see   Note 14   above
+    graphLayers: number[] = [];  // Layers to display with *ngFor - see   Note 14   above
     isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
     isDragoverYField: boolean = false;
@@ -2827,7 +2827,9 @@ export interface dataSchemaInterface {
         this.localWidget.graphCalculations = [];
         this.localWidget.graphFilters = [];
         this.localWidget.graphLayers = [];
+        this.graphLayers = [1];
         this.localWidget.graphLayers.push(this.globalVariableService.widgetTemplateInner);
+        this.currentGraphLayer = 1;
         this.filterNrActive = 0;
         this.clickClearXField();
         this.clickClearYField();
