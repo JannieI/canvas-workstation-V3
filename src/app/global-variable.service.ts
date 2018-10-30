@@ -156,6 +156,146 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     };
 
 // Widget template
+const widgetTemplateInner: any = {
+    // Mark
+    "graphMark": "",
+    "graphMarkOrient": "",
+    "graphMarkLine": false,
+    "graphMarkPoint": false,
+    "graphMarkPointColorName": "",
+    "graphMarkPointColor": "",
+    "graphMarkColourName": "",
+    "graphMarkColour": "",
+    "graphMarkCornerRadius": 0,
+    "graphMarkExtent": "",
+    "graphMarkOpacity": 1,
+    "graphMarkBinSpacing": 0,
+    "graphMarkInterpolate": "",
+
+    // X
+    "graphXfield": "",
+    "graphXaggregateName": "",
+    "graphXaggregate": "",
+    "graphXtimeUnit": "",
+    "graphXbin": false,
+    "graphXMaxBins": 0,
+    "graphXformat": "",
+    "graphXimpute": "",
+    "graphXimputeValue": "",
+    "graphXstack": "",
+    "graphXsort": "",
+    "graphXtype": "",
+    "graphXtypeName": "",
+
+    // Y
+    "graphYfield": "",
+    "graphYaggregateName": "",
+    "graphYaggregate": "",
+    "graphYbin": false,
+    "graphYMaxBins": 0,
+    "graphYformat": "",
+    "graphYimpute": "",
+    "graphYimputeValue": 0,
+    "graphYstack": "",
+    "graphYsort": "",
+    "graphYtimeUnit": "",
+    "graphYtype": "",
+    "graphYtypeName": "",
+
+    // Color
+    "graphColorField": "",
+    "graphColorAggregateName": "",
+    "graphColorAggregate": "",
+    "graphColorBin": false,
+    "graphColorMaxBins": 0,
+    "graphColorFormat": "",
+    "graphColorImpute": "",
+    "graphColorImputeValue": "",
+    "graphColorScheme": "blues",
+    "graphColorSort": "",
+    "graphColorStack": "",
+    "graphColorType": "",
+    "graphColorTypeName": "",
+    "graphColorTimeUnit": "",
+
+    // X Axis
+    "graphXaxisFormat": "",
+    "graphXaxisGrid": true,
+    "graphXaxisGridColorName": "",
+    "graphXaxisGridColor": "",
+    "graphXaxisLabels": true,
+    "graphXaxisLabelAngle": 0,
+    "graphXaxisLabelColorName": "",
+    "graphXaxisLabelColor": "",
+    "graphXaxisTitle": "",
+    "graphXaxisTitleCheckbox": true,
+    "graphXaxisScaleType": "",
+
+    // Y Axis
+    "graphYaxisFormat": "",
+    "graphYaxisGrid": true,
+    "graphYaxisGridColorName": "",
+    "graphYaxisGridColor": "",
+    "graphYaxisLabels": true,
+    "graphYaxisLabelAngle": 0,
+    "graphYaxisLabelColorName": "",
+    "graphYaxisLabelColor": "",
+    "graphYaxisScaleType": "",
+    "graphYaxisTitle": "",
+    "graphYaxisTitleCheckbox": true,
+
+    // Legend
+    "graphLegendAxisScaleType": "",
+    "graphLegendHide": false,
+    "graphLegendTitleCheckbox": true,
+    "graphLegendTitle": "",
+    "graphLegendFormat": "",
+    "graphLegendLabels": true,
+    "graphLegendLabelColorName": "",
+    "graphLegendLabelColor": "",
+
+    // Size
+    "graphSizeField": "",
+    "graphSizeType": "",
+    "graphSizeTypeName": "",
+    "graphSizeAggregateName": "",
+    "graphSizeAggregate": "",
+    "graphSizeBin": false,
+    "graphSizeMaxBins": 0,
+
+    // Row
+    "graphRowField": "",
+    "graphRowType": "",
+    "graphRowTypeName": "",
+
+    // Column
+    "graphColumnField": "",
+    "graphColumnType": "",
+    "graphColumnTypeName": "",
+
+    // Detail
+    "graphDetailField": "",
+    "graphDetailType": "",
+    "graphDetailTypeName": "",
+
+    // X2
+    "graphX2Field": "",
+    "graphX2Type": "",
+    "graphX2TypeName": "",
+    "graphX2AggregateName": "",
+
+    // Y2
+    "graphY2Field": "",
+    "graphY2Type": "",
+    "graphY2TypeName": "",
+    "graphY2AggregateName": "",
+
+    // Projection
+    "graphProjectionType": "",
+    "graphProjectionFieldLatitude": "",
+    "graphProjectionFieldLongitude": ""
+};
+
 const widgetTemplate: Widget =
     {
         "widgetType": "",
@@ -11000,8 +11140,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             this.currentWidgets[currentWidgetIndex] =
             JSON.parse(JSON.stringify(changedWidget));
         };
-
-        console.warn('xx widgetReplace END', this.currentWidgets, this.widgets)
     }
 
     sleep(milliseconds: number) {
@@ -11059,8 +11197,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         if (widget.sampleNumberRows != 0) {
             specification['transform']['sample'] = widget.sampleNumberRows;
         };
-
-        console.warn('xx gv spec', specification);
 
         // General
         specification['description'] = widget.graphDescription;
@@ -11695,8 +11831,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
             // Add to Inner Array
             specificationInnerArray.push(specificationInner);
-            console.warn('xx specificationInner', specificationInner)
-            console.warn('xx specificationInnerArray', specificationInnerArray)
         };
 
         // Put spec together from pieces, with or without layers
@@ -11705,8 +11839,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         } else {
             specification = {...specification, "layer": specificationInnerArray}
         };
-
-        console.warn('xx specification', specification)
 
         // Tooltip setting
         // specification['mark']['tooltip']['content'] = "";

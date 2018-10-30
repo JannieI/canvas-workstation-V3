@@ -2826,6 +2826,7 @@ export interface dataSchemaInterface {
         // Reset
         this.localWidget.graphCalculations = [];
         this.localWidget.graphFilters = [];
+        this.localWidget.graphLayers = [];
         this.filterNrActive = 0;
         this.clickClearXField();
         this.clickClearYField();
