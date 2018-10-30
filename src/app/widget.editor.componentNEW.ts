@@ -1100,8 +1100,6 @@ export interface dataSchemaInterface {
                 alert('Datasource for current Dashboard not found in global currentDatasources')
             };
 
-            this.constructDataSchema(arrayIndex);
-
             // Reset, Highlight selected row
             this.selectedRowIndex = arrayIndex;
             this.selectedRowID = this.localDatasources[arrayIndex].id;
@@ -1110,6 +1108,9 @@ export interface dataSchemaInterface {
             this.selectedDescription = this.localDatasources[arrayIndex].description;
             this.errorMessage = '';
             this.currentData = null;
+
+            // Construct Schema
+            this.constructDataSchema(this.selectedRowIndex);
 
             // Determine if data in Glob Var
             let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
@@ -1263,7 +1264,7 @@ export interface dataSchemaInterface {
         }
 
         // Fields and data schema
-        this.localWidget.dataschema = this.dataSchema;
+        this.localWidget.dataschema = this.dataSchema;  // TODO - make .dataSchema consistent
 
         // Get the widgetGraph
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
@@ -2756,8 +2757,8 @@ export interface dataSchemaInterface {
         );
         if (dataSetIndex >= 0) {
 
-            // Load local arrays for ngFor
-            this.constructDataSchema(arrayIndex);
+            // // Load local arrays for ngFor
+            // this.constructDataSchema(arrayIndex);
 
             // Load first few rows into preview
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
@@ -2775,8 +2776,8 @@ export interface dataSchemaInterface {
         // Add DS to current DS (no action if already there)
         this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
 
-            // Load local arrays for ngFor
-            this.constructDataSchema(arrayIndex);
+            // // Load local arrays for ngFor
+            // this.constructDataSchema(arrayIndex);
 
             // Determine if data obtains in Glob Var
             dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
@@ -2814,7 +2815,7 @@ export interface dataSchemaInterface {
         };
 
         // Remember ID for next time
-        this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
+        // this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
 
         // Fill in data info
         this.localWidget.datasourceID = this.selectedRowID;
@@ -2824,8 +2825,14 @@ export interface dataSchemaInterface {
             .currentDatasets[dataSetIndex].data;
 
         // Reset
-        this.localWidget.graphCalculations = [];
-        this.localWidget.graphFilters = [];
+        if (this.globalVariableService.previousGraphEditDSID != this.selectedRowID) {
+            this.localWidget.graphCalculations = [];
+            this.localWidget.graphFilters = [];
+
+            // Load local arrays for ngFor
+            this.constructDataSchema(this.selectedRowIndex);
+        };
+
         this.localWidget.graphLayers = [];
         this.graphLayers = [1];
         this.localWidget.graphLayers.push(this.globalVariableService.widgetTemplateInner);
@@ -2843,6 +2850,9 @@ export interface dataSchemaInterface {
         this.clickClearMark();
         this.clickClearProjectionField();
 
+        this.clickCalculatedClear();
+        this.clickFilterClear();
+
         // Clear History
         this.graphHistory = [];
         this.graphHistoryPosition = 0;
@@ -2851,6 +2861,9 @@ export interface dataSchemaInterface {
 
         // Show the Editor form
         this.showDatasourceMain = false;
+
+        // Remember ID for next time
+        this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
 
     }
 
