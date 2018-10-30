@@ -221,7 +221,15 @@ clr-dg-cell {
             text-align: left;
         }
 
-        .datasourceMainButton {
+        .datasourceMainButtonCancel {
+            grid-column-start: 42;
+            /* autoprefixer: off */
+            grid-column-end: 44;
+            grid-row-start: 26;
+            grid-row-end: 27;
+        }
+
+        .datasourceMainButtonContinue {
             grid-column-start: 45;
             /* autoprefixer: off */
             grid-column-end: 47;

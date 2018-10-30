@@ -174,7 +174,15 @@
                             >
                     </div>
 
-                    <div class="datasourceMainButton">
+
+                    <div class="datasourceMainButtonCancel">
+                        <button *ngIf="showPreview"
+                            class="btn btn-sm btn-primary datasourceButton"
+                            (click)="clickClose()">
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="datasourceMainButtonContinue">
                         <button *ngIf="showPreview"
                             class="btn btn-sm btn-primary datasourceButton"
                             (click)="clickContinue()">
