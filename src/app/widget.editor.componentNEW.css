@@ -222,9 +222,9 @@ clr-dg-cell {
         }
 
         .datasourceMainButtonCancel {
-            grid-column-start: 42;
+            grid-column-start: 40;
             /* autoprefixer: off */
-            grid-column-end: 44;
+            grid-column-end: 42;
             grid-row-start: 26;
             grid-row-end: 27;
         }

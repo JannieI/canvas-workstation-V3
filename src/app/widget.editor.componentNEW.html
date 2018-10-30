@@ -177,14 +177,14 @@
 
                     <div class="datasourceMainButtonCancel">
                         <button *ngIf="showPreview"
-                            class="btn btn-sm btn-primary datasourceButton"
+                            class="btn btn-sm btn-secondary"
                             (click)="clickClose()">
                             Cancel
                         </button>
                     </div>
                     <div class="datasourceMainButtonContinue">
                         <button *ngIf="showPreview"
-                            class="btn btn-sm btn-primary datasourceButton"
+                            class="btn btn-sm btn-primary"
                             (click)="clickContinue()">
                             Continue
                         </button>
@@ -231,12 +231,12 @@
                                 <option>Repeat</option>
                             </select>
                         </div> -->
-                        <div class="editorCompositionLayerTitle">
+                        <div class="editorCompositionLayerTitle" *ngIf="!showWidgetEditorLite">
                             <b>
                                 Layer:
                             </b>
                         </div>
-                        <div class="select editorCompositionLayer">
+                        <div class="select editorCompositionLayer" *ngIf="!showWidgetEditorLite">
                             <select id="currentGraphLayer"
                                 [(ngModel)]="currentGraphLayer"
                                 (click)="clickCompositionLayerSelect($event)"
@@ -246,7 +246,7 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="editorCompositionLayerCheckBox">
+                        <div class="editorCompositionLayerCheckBox" *ngIf="!showWidgetEditorLite">
                             <input [(ngModel)]="showSpecificGraphLayer"
                                 type="checkbox"
                                 name="showSpecificGraphLayer"
@@ -254,12 +254,12 @@
                                 >
 
                         </div>
-                        <span class="editorCompositionLayerButton">
+                        <span class="editorCompositionLayerButton" *ngIf="!showWidgetEditorLite">
                             <button class="btn btn-link" (click)="clickCompositionLayerAdd()">
                                 Add
                             </button>
                         </span>
-                        <span class="editorCompositionLayerButton">
+                        <span class="editorCompositionLayerButton" *ngIf="!showWidgetEditorLite">
                             <button class="btn btn-link"
                             (click)="clickCompositionLayerDelete($event)"
                             >
@@ -802,7 +802,8 @@
                                     (click)="sortOrder=sortOrder * -1"
                                     >
                                     Name
-                                    <clr-icon style="margin-left: 6px; padding: 0;"
+                                    <clr-icon *ngIf="!showWidgetEditorLite"
+                                        style="margin-left: 6px; padding: 0;"
                                         shape="plus-circle"
                                         size="18"
                                         [style.color]="'black'"
