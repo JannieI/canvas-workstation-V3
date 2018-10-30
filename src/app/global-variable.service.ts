@@ -157,6 +157,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
 // Widget template
 const widgetTemplateInner: any = {
+
     // Mark
     "graphMark": "",
     "graphMarkOrient": "",
@@ -733,7 +734,7 @@ const widgetTemplate: Widget =
         "widgetCreatedBy": "",
         "widgetUpdatedOn": null,
         "widgetUpdatedBy": ""
-    }
+    };
 
 // Dashboard template
 const dashboardTemplate: Dashboard =
@@ -918,6 +919,7 @@ export class GlobalVariableService {
     // Templates and Constants
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
+    widgetTemplateInner: any = widgetTemplateInner;
     dashboardTemplate: Dashboard = dashboardTemplate;
     dashboardTabTemplate: DashboardTab = dashboardTabTemplate;
     serverTypes: TributaryServerType[] =
