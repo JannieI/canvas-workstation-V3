@@ -2730,7 +2730,7 @@ export interface dataSchemaInterface {
         this.currentData = null;
 
         // Warn user
-        if (this.globalVariableService.previousGraphEditDSID != datasourceID) {
+        if (!this.newWidget  &&  this.globalVariableService.previousGraphEditDSID != datasourceID) {
             this.errorMessage = 'Warning: if you click Continue, calculated fields on this Graph will be lost!';
         };
 
