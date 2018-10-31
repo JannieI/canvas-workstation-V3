@@ -1046,7 +1046,12 @@ export interface dataSchemaInterface {
             // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
+            // Populate the visible layers, and set Defaults
             for (let i = 0; i < this.localWidget.graphLayers.length; i++){
+                if (this.localWidget.graphLayers[i].graphMarkSize == null) {
+                    this.localWidget.graphLayers[i].graphMarkSize = 20;
+                };
+    
                 this.graphLayers.push(i + 1);
             };
 
@@ -1085,7 +1090,7 @@ export interface dataSchemaInterface {
             if (this.localWidget.graphDimensionBottom == null) {
                 this.localWidget.graphDimensionBottom = 70;
             };
-
+            
             // Load local Vars from localWidget
             this.loadLocalVarsFromWidget()
 
