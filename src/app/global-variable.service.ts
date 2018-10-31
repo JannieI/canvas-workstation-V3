@@ -171,6 +171,7 @@ const widgetTemplateInner: any = {
     "graphMarkExtent": "",
     "graphMarkOpacity": 1,
     "graphMarkBinSpacing": 0,
+    "graphMarkSize": "",
     "graphMarkInterpolate": "",
 
     // X
@@ -370,6 +371,7 @@ const widgetTemplate: Widget =
                 "graphMarkExtent": "",
                 "graphMarkOpacity": 1,
                 "graphMarkBinSpacing": 0,
+                "graphMarkSize": null,
                 "graphMarkInterpolate": "",
 
                 // X

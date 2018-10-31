@@ -1050,6 +1050,7 @@ export class widgetGraphSpecification {
     graphMarkExtent: string;            // Extent: ci, stderr, stdev, irq for Error Band & -Bar
     graphMarkOpacity: number;
     graphMarkBinSpacing: number;
+    graphMarkSize: number;
     graphMarkInterpolate: string;
 
     // X
