@@ -1148,6 +1148,8 @@ export class widgetGraphSpecification {
     graphRowField: string;
     graphRowType: string;
     graphRowTypeName: string;
+    graphRowTitleCheckbox: boolean;                 // False to remove the Row Title
+    graphRowTitle: string;                          // User-defined Row Title
 
     // Column
     graphColumnField: string;

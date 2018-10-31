@@ -469,6 +469,8 @@ const widgetTemplate: Widget =
                 "graphRowField": "",
                 "graphRowType": "",
                 "graphRowTypeName": "",
+                "graphRowTitleCheckbox" : true,
+                "graphRowTitle" : "",
 
                 // Column
                 "graphColumnField": "",
@@ -11793,8 +11795,18 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     "field": widget.graphLayers[currentGraphLayer].graphRowField,
                     "type": widget.graphLayers[currentGraphLayer].graphRowType.toLowerCase()
                 };
-                specificationInner['encoding']['row']['header'] = {"title": null};
-                // specificationInner['encoding']['row']['header'] = {"labels": null};
+                // specificationInner['encoding']['row']['header'] = {"title": null};
+                // "graphRowTitleCheckbox" : true,
+                // "graphRowTitle" : "",
+                if (!widget.graphLayers[currentGraphLayer].graphRowTitleCheckbox) {
+                    specificationInner['encoding']['row']['header'] = {"title": null};
+                } else {
+                    if (widget.graphLayers[currentGraphLayer].graphRowTitle != ''  &&  widget.graphLayers[currentGraphLayer].graphRowTitle != undefined) {
+                        specificationInner['encoding']['row']['header'] = {"title": widget.graphLayers[currentGraphLayer].graphRowTitle};
+                    };
+                };
+
+
             };
 
 
