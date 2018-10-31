@@ -332,8 +332,8 @@
                             </div>
                         </div>
 
-                        <div *ngIf="!showWidgetEditorLite">
-                            <div class="btn-group btn-link">
+                        <div>
+                            <div class="btn-group btn-link" *ngIf="!showWidgetEditorLite">
                                 <button class="btn" (click)="clickCalculatedClear()">
                                     Clear
                                 </button>
@@ -3415,6 +3415,7 @@
                                     <option>Less Than</option>
                                     <option>Less Than Equal</option>
                                     <option>Equal</option>
+                                    <option>Not Equal</option>
                                     <option>Greater Than</option>
                                     <option>Greater Than Equal</option>
                                     <option>Range</option>

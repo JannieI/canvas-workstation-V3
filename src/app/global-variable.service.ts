@@ -11260,6 +11260,32 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 filterFieldDataType = widget.dataschema[filterFieldDataTypeIndex].type;
             };
 
+
+            if (graphFilters[i].filterOperator == 'Not Equal') {
+                if (filterFieldDataType == 'string'  
+                    ||  
+                    graphFilters[i].filterTimeUnit.toLowerCase() == 'month') {
+                    filterSpec =
+                        {"filter":
+                            
+                                "datum." + graphFilters[i].filterFieldName + " != '" 
+                                + graphFilters[i].filterValue + "'"
+                            
+                        };
+                } else {
+                    filterSpec =
+                        {"filter":
+                            
+                                "datum." + graphFilters[i].filterFieldName + " != " 
+                                + +graphFilters[i].filterValue
+                            
+                        };
+                };
+            };
+
+
+
+
             if (graphFilters[i].filterOperator == 'Equal') {
                 if (filterFieldDataType == 'string'  
                     ||  
