@@ -11559,7 +11559,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 specificationInner['mark']['extent'] = vegaGraphMarkExtent;
                 specificationInner['mark']['ticks'] = true;
             };
-
+            specificationInner['mark']['size'] = 35;
 
             // X field
             if (widget.graphLayers[currentGraphLayer].graphXfield != '') {

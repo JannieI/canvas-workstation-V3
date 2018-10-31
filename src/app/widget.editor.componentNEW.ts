@@ -1426,7 +1426,7 @@ export interface dataSchemaInterface {
                 (this.currentGraphLayer - 1)
             );
 
-            console.warn('xx @END of ShowGraph specification', this.specification, JSON.stringify(this.specification));
+            console.warn('xx @END of ShowGraph specification', this.specification);
 
             // Render graph for Vega-Lite
             if (graphVisualGrammar == 'Vega-Lite') {
@@ -3927,7 +3927,7 @@ export interface dataSchemaInterface {
             this.calculatedErrorMessage = 'New field name cannot start with a number.';
             return;
         };
-        
+
         let regex: any = /[a-z]/g;;
         let found = this.calculatedAs.toLowerCase().match(regex)
         if (found == null  ||  found.length != this.calculatedAs.length) {

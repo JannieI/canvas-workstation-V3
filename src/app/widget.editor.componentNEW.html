@@ -2585,6 +2585,21 @@
                             </div>
                         </div>
 
+                        <!-- Mark Properties Size -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphMarkSizeTitle" *ngIf="showFieldMarkProperties">
+                                Space:
+                            </div>
+                            <div class="editorGraphMarkSize" *ngIf="showFieldMarkProperties">
+                                <input type="number"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkSize"
+                                    name="graphMarkSize"
+                                    placeholder="Size"
+                                    title="Size of mark in px"
+                                    >
+                            </div>
+                        </div>
+
 
 
                         <!-- Size: Channel Title Bar -->
