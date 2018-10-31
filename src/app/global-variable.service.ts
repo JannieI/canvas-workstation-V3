@@ -11891,7 +11891,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         if (specificationInnerArray.length == 1  ||  showSpecificGraphLayer) {
             specification = {...specification, ...specificationInnerArray[specificLayerToShow]}
         } else {
-            specification = {...specification, "hconcat": specificationInnerArray}
+            specification = {...specification, [widget.graphLayerFacet]: specificationInnerArray}
         };
 
         // Tooltip setting

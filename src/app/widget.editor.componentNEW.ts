@@ -202,7 +202,6 @@ export interface dataSchemaInterface {
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
     currentData: any = [];
-    currentGraphComposition: string = 'Single';
     currentGraphID: number = -1;
 
     currentGraphLayer: number = 1;              // Current layer being defined
@@ -4432,7 +4431,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.currentGraphComposition == 'Single'  &&  this.graphLayers.length > 0) {
+        if (this.localWidget.graphLayerFacet == 'Single'  &&  this.graphLayers.length > 0) {
             this.errorMessageEditor = 'Layers 2 and above deleted.  Used History to go back';
             
             this.currentGraphLayer = 1;
