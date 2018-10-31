@@ -4413,4 +4413,20 @@ export interface dataSchemaInterface {
         };
 
     }
+
+    changeFacet() {
+        // Change Facet
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeFacet', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        if (this.graphLayers.length > 0) {
+            this.errorMessageEditor = 'Layers 2 and above deleted.  Used History to go back';
+            
+            this.graphLayers.splice(1);
+            this.currentGraphLayer = 1;
+        };
+    };
+
 }
