@@ -3927,9 +3927,10 @@ export interface dataSchemaInterface {
             this.calculatedErrorMessage = 'New field name cannot start with a number.';
             return;
         };
-        let regex: any  = RegExp('[a-z]+');
-        console.warn('xx tpO', regex.test(this.calculatedAs.substring(0, 1).toLowerCase()) )
-        if (!regex.test(this.calculatedAs.substring(0, 1).toLowerCase())) {
+        
+        let regex: any = /[a-z]/g;;
+        let found = this.calculatedAs.toLowerCase().match(regex)
+        if (found == null  ||  found.length != this.calculatedAs.length) {
             this.calculatedErrorMessage = 'New field name must only consist of letters.';
             return;
         };
