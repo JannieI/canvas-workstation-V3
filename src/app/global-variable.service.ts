@@ -11565,7 +11565,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 specificationInner['mark']['size'] = 
                     widget.graphLayers[currentGraphLayer].graphMarkSize;
             };
-            
+
             // X field
             if (widget.graphLayers[currentGraphLayer].graphXfield != '') {
                 specificationInner['encoding']['x']['field'] = widget.graphLayers[currentGraphLayer].graphXfield;
@@ -11793,7 +11793,8 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     "field": widget.graphLayers[currentGraphLayer].graphRowField,
                     "type": widget.graphLayers[currentGraphLayer].graphRowType.toLowerCase()
                 };
-
+                specificationInner['encoding']['row']['header'] = {"title": null};
+                // specificationInner['encoding']['row']['header'] = {"labels": null};
             };
 
 

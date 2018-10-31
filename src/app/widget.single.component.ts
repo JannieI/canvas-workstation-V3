@@ -178,7 +178,7 @@ export class WidgetSingleComponent {
                 .hover()
                 .run()
                 .finalize();
-            console.log('TEST refreshWidget render done', specification)
+
         } else {
             alert('The visualGrammar of widget is not == Vega-Lite' )
         };

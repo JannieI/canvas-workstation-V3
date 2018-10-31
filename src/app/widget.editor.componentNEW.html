@@ -2588,14 +2588,14 @@
                         <!-- Mark Properties Size -->
                         <div class="editorLineContainer">
                             <div class="editorGraphMarkSizeTitle" *ngIf="showFieldMarkProperties">
-                                Space:
+                                Size:
                             </div>
                             <div class="editorGraphMarkSize" *ngIf="showFieldMarkProperties">
                                 <input type="number"
                                     [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkSize"
                                     name="graphMarkSize"
                                     placeholder="Size"
-                                    title="Size of mark in px"
+                                    title="Relative Size of mark"
                                     >
                             </div>
                         </div>
@@ -2802,6 +2802,28 @@
                                     <option>Temporal</option>
                                     <option>Nominal</option>
                                 </select>
+                            </div>
+                        </div>
+
+                        <!-- Row Title -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphRowTitleTitle" *ngIf="showFieldRowProperties">
+                                Title:
+                            </div>
+                            <div class="editorGraphRowTitleCheckbox" *ngIf="showFieldRowProperties">
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphRowTitleCheckbox"
+                                    type="checkbox"
+                                    name="graphRowTitleCheckbox"
+                                    title="Show the Axis Title (T/F)"
+                                    >
+                            </div>
+                            <div class="editorGraphRowTitle" *ngIf="showFieldRowProperties"
+                                >
+                                <input type="text"
+                                    placeholder="Blank = field name"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphRowTitle"
+                                    name="graphRowTitle"
+                                    >
                             </div>
                         </div>
 
