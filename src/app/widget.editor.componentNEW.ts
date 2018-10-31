@@ -1089,7 +1089,10 @@ export interface dataSchemaInterface {
             if (this.localWidget.graphDimensionBottom == null) {
                 this.localWidget.graphDimensionBottom = 70;
             };
-            
+            if (this.localWidget.graphLayerFacet == null  ||  this.localWidget.graphLayerFacet == '') {
+                this.localWidget.graphLayerFacet == 'Single';
+            };
+
             // Load local Vars from localWidget
             this.loadLocalVarsFromWidget()
 
