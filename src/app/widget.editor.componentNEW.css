@@ -273,13 +273,13 @@ clr-dg-cell {
             grid-row-end: 5;
             text-align: left;
         }
-            /* .editorCompositionTypeTitle {
+            .editorCompositionTypeTitle {
                 display: inline-block;
                 font-size: 0.55rem;
                 line-height: 0.8rem;
-                margin-left: 14px;
+                margin-left: 4px;
                 margin-top: 16px;
-                width: 80px;
+                width: 38px;
             }
             .editorCompositionType {
                 border: 1px solid steelblue;
@@ -287,10 +287,10 @@ clr-dg-cell {
                 display: inline-block;
                 font-size: 0.55rem;
                 line-height: 0.8rem;
-                margin-left: 14px;
+                margin-left: 4px;
                 margin-top: 16px;
-                width: 30%;
-            } */
+                width: 80px;
+            }
             .editorCompositionLayerTitle {
                 display: inline-block;
                 font-size: 0.55rem;
@@ -307,7 +307,7 @@ clr-dg-cell {
                 line-height: 0.8rem;
                 margin-left: 4px;
                 margin-top: 3px;
-                width: 80px;
+                width: 40px;
             }
             .editorCompositionLayerCheckBox {
                 display: inline-block;
@@ -319,6 +319,7 @@ clr-dg-cell {
                 line-height: 0.8rem;
                 margin-left: 4px;
                 margin-top: 3px;
+                padding: 0;
                 width: 15px;
             }
 

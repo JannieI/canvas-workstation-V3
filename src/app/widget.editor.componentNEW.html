@@ -213,10 +213,10 @@
 
 
                     <!-- COMPOSITION -->
-                    <div class="editorComposition">
-                        <!-- <div class="editorCompositionTypeTitle">
+                    <div class="editorComposition" *ngIf="!showWidgetEditorLite">
+                        <div class="editorCompositionTypeTitle">
                             <b>
-                                Composition:
+                                Facet:
                             </b>
                         </div>
                         <div class="select editorCompositionType">
@@ -230,23 +230,26 @@
                                 <option>Hconcat</option>
                                 <option>Repeat</option>
                             </select>
-                        </div> -->
-                        <div class="editorCompositionLayerTitle" *ngIf="!showWidgetEditorLite">
-                            <b>
-                                Layer:
-                            </b>
                         </div>
-                        <div class="select editorCompositionLayer" *ngIf="!showWidgetEditorLite">
+                        <!-- <div class="editorCompositionLayerTitle" *ngIf="!showWidgetEditorLite">
+                            <b>
+                                Nr:
+                            </b>
+                        </div> -->
+                        <div class="select editorCompositionLayer" *ngIf="currentGraphComposition != 'Single'">
                             <select id="currentGraphLayer"
-                                [(ngModel)]="currentGraphLayer"
+                                style="width: 15px; min-width: 1.5rem;"
                                 (click)="clickCompositionLayerSelect($event)"
+                                [(ngModel)]="currentGraphLayer"
                                 >
-                                <option *ngFor="let row of graphLayers; let i = index">
+                                <option *ngFor="let row of graphLayers; let i = index"
+                                    style="width: 15px; min-width: 1.5rem;"
+                                    >
                                     {{ row }}
                                 </option>
                             </select>
                         </div>
-                        <div class="editorCompositionLayerCheckBox" *ngIf="!showWidgetEditorLite">
+                        <div class="editorCompositionLayerCheckBox" *ngIf="currentGraphComposition != 'Single'">
                             <input [(ngModel)]="showSpecificGraphLayer"
                                 type="checkbox"
                                 name="showSpecificGraphLayer"
@@ -254,15 +257,17 @@
                                 >
 
                         </div>
-                        <span class="editorCompositionLayerButton" *ngIf="!showWidgetEditorLite">
-                            <button class="btn btn-link" (click)="clickCompositionLayerAdd()">
+                        <span class="editorCompositionLayerButton" *ngIf="currentGraphComposition != 'Single'">
+                            <button class="btn btn-link" style="padding: 0 !important; width: 40px !important;"
+                                (click)="clickCompositionLayerAdd()"
+                                >
                                 Add
                             </button>
                         </span>
-                        <span class="editorCompositionLayerButton" *ngIf="!showWidgetEditorLite">
-                            <button class="btn btn-link"
-                            (click)="clickCompositionLayerDelete($event)"
-                            >
+                        <span class="editorCompositionLayerButton" *ngIf="currentGraphComposition != 'Single'">
+                            <button class="btn btn-link" style="padding: 0 !important;"
+                                (click)="clickCompositionLayerDelete($event)"
+                                >
                                 Delete
                             </button>
                         </span>

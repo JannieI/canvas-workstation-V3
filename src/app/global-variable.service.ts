@@ -11523,7 +11523,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                         "legend": ""
                     },
                     "size": {
-                        "field": ""
+                        "field": 20
                     }
                 }
             };
@@ -11890,7 +11890,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         if (specificationInnerArray.length == 1  ||  showSpecificGraphLayer) {
             specification = {...specification, ...specificationInnerArray[specificLayerToShow]}
         } else {
-            specification = {...specification, "layer": specificationInnerArray}
+            specification = {...specification, "hconcat": specificationInnerArray}
         };
 
         // Tooltip setting
