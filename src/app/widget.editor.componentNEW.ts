@@ -3923,11 +3923,17 @@ export interface dataSchemaInterface {
             this.calculatedErrorMessage = 'New field name (As) is required.';
             return;
         };
-        console.warn('xx tpO', isNaN(parseInt(this.calculatedAs.substring(0, 1))) )
         if (!isNaN(parseInt(this.calculatedAs.substring(0, 1)))) {
             this.calculatedErrorMessage = 'New field name cannot start with a number.';
             return;
         };
+        let regex: any  = RegExp('[a-z]+');
+        console.warn('xx tpO', regex.test(this.calculatedAs.substring(0, 1).toLowerCase()) )
+        if (!regex.test(this.calculatedAs.substring(0, 1).toLowerCase())) {
+            this.calculatedErrorMessage = 'New field name must only consist of letters.';
+            return;
+        };
+
         if (this.calculatedDataType == ''  ||  this.calculatedDataType == undefined) {
             this.calculatedErrorMessage = 'Field data type is required.';
             return;
