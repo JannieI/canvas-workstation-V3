@@ -476,6 +476,8 @@ const widgetTemplate: Widget =
                 "graphColumnField": "",
                 "graphColumnType": "",
                 "graphColumnTypeName": "",
+                "graphColumnTitleCheckbox" : true,
+                "graphColumnTitle" : "",
 
                 // Detail
                 "graphDetailField": "",

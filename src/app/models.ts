@@ -1155,6 +1155,8 @@ export class widgetGraphSpecification {
     graphColumnField: string;
     graphColumnType: string;
     graphColumnTypeName: string;
+    graphColumnTitleCheckbox: boolean;              // False to remove the Column Title
+    graphColumnTitle: string;                       // User-defined Column Title
 
     // Detail
     graphDetailField: string;
