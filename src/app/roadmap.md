@@ -1413,6 +1413,9 @@ This document describes items for later versions of Canvas.
         - Consider showing Spec with data as well - first determine if use case for it.
         - Python and R brings back data sets !!!
 
+    - Row & Column:
+        - get setting for labels = null -> does not show
+
 
 
 

@@ -11795,9 +11795,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     "field": widget.graphLayers[currentGraphLayer].graphRowField,
                     "type": widget.graphLayers[currentGraphLayer].graphRowType.toLowerCase()
                 };
-                // specificationInner['encoding']['row']['header'] = {"title": null};
-                // "graphRowTitleCheckbox" : true,
-                // "graphRowTitle" : "",
+
                 if (!widget.graphLayers[currentGraphLayer].graphRowTitleCheckbox) {
                     specificationInner['encoding']['row']['header'] = {"title": null};
                 } else {

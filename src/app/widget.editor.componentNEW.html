@@ -2897,6 +2897,28 @@
                             </div>
                         </div>
 
+                        <!-- Column Title -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphColumnTitleTitle" *ngIf="showFieldColumnProperties">
+                                Title:
+                            </div>
+                            <div class="editorGraphColumnTitleCheckbox" *ngIf="showFieldColumnProperties">
+                                <input [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColumnTitleCheckbox"
+                                    type="checkbox"
+                                    name="graphColumnTitleCheckbox"
+                                    title="Show the Axis Title (T/F)"
+                                    >
+                            </div>
+                            <div class="editorGraphColumnTitle" *ngIf="showFieldColumnProperties"
+                                >
+                                <input type="text"
+                                    placeholder="Blank = field name"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphColumnTitle"
+                                    name="graphColumnTitle"
+                                    >
+                            </div>
+                        </div>
+
 
                         <!-- Detail: Channel Title Bar -->
                         <div class="editorDetailContainerTitle"
