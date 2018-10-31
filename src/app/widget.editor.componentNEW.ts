@@ -30,6 +30,7 @@ import { parse }                      from 'vega';
 import { View }                       from 'vega';
 import { UserPaletteButtonBarComponent } from './user.palette.buttonbar.component';
 import { iterateListLike } from '@angular/core/src/change_detection/change_detection_util';
+import { warn } from 'vega-lite/build/src/log';
 
 const graphHeight: number = 260;
 const graphWidth: number = 372;
@@ -3920,6 +3921,11 @@ export interface dataSchemaInterface {
         };
         if (this.calculatedAs == ''  ||  this.calculatedAs == undefined) {
             this.calculatedErrorMessage = 'New field name (As) is required.';
+            return;
+        };
+        console.warn('xx tpO', isNaN(parseInt(this.calculatedAs.substring(0, 1))) )
+        if (!isNaN(parseInt(this.calculatedAs.substring(0, 1)))) {
+            this.calculatedErrorMessage = 'New field name cannot start with a number.';
             return;
         };
         if (this.calculatedDataType == ''  ||  this.calculatedDataType == undefined) {
