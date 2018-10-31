@@ -4421,11 +4421,12 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.graphLayers.length > 0) {
+        if (this.currentGraphComposition == 'Single'  &&  this.graphLayers.length > 0) {
             this.errorMessageEditor = 'Layers 2 and above deleted.  Used History to go back';
             
-            this.graphLayers.splice(1);
             this.currentGraphLayer = 1;
+            this.localWidget.graphLayers.splice(1);
+            this.graphLayers = [1];
         };
     };
 
