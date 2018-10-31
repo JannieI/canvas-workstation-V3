@@ -11806,7 +11806,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     };
                 };
 
-
             };
 
 
@@ -11816,6 +11815,14 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 specificationInner['encoding']['column'] = {
                     "field": widget.graphLayers[currentGraphLayer].graphColumnField,
                     "type": widget.graphLayers[currentGraphLayer].graphColumnType.toLowerCase()
+                };
+
+                if (!widget.graphLayers[currentGraphLayer].graphColumnTitleCheckbox) {
+                    specificationInner['encoding']['column']['header'] = {"title": null};
+                } else {
+                    if (widget.graphLayers[currentGraphLayer].graphColumnTitle != ''  &&  widget.graphLayers[currentGraphLayer].graphColumnTitle != undefined) {
+                        specificationInner['encoding']['column']['header'] = {"title": widget.graphLayers[currentGraphLayer].graphColumnTitle};
+                    };
                 };
 
             };
