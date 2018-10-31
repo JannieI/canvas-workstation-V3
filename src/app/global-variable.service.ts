@@ -356,6 +356,7 @@ const widgetTemplate: Widget =
         "containerWidth": 410,
         "containerZindex": 50,
 
+        "graphLayerFacet": "Single",
         "graphLayers": [
             {
                 // Mark

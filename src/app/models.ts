@@ -1359,6 +1359,7 @@ export class Widget {
     // Transformations: Window
 
     // Layers
+    graphLayerFacet: string;                // Facet: Single, Layer, Hconcet, Vconcat
     graphLayers?: widgetGraphSpecification[];
     
     // X

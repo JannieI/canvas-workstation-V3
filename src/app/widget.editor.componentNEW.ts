@@ -1504,6 +1504,12 @@ export interface dataSchemaInterface {
         };
         this.localWidget = JSON.parse(JSON.stringify(newWidgetSpec));
 
+        // Populate the visible layers
+        this.graphLayers = [];
+        for (let i = 0; i < this.localWidget.graphLayers.length; i++){
+            this.graphLayers.push(i + 1);
+        };
+
         // Get the graphID
         let graphID: number = -1;
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
