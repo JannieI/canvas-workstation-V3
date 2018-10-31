@@ -11524,7 +11524,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                         "legend": ""
                     },
                     "size": {
-                        "field": 20
+                        "field": ""
                     }
                 }
             };

@@ -1047,7 +1047,9 @@ export interface dataSchemaInterface {
 
             // Populate the visible layers, and set Defaults
             for (let i = 0; i < this.localWidget.graphLayers.length; i++){
-                if (this.localWidget.graphLayers[i].graphMarkSize == null) {
+                if (this.localWidget.graphLayers[i].graphMarkSize == null  
+                    ||  
+                    this.localWidget.graphLayers[i].graphMarkSize == 0) {
                     this.localWidget.graphLayers[i].graphMarkSize = 20;
                 };
     
@@ -1090,7 +1092,7 @@ export interface dataSchemaInterface {
                 this.localWidget.graphDimensionBottom = 70;
             };
             if (this.localWidget.graphLayerFacet == null  ||  this.localWidget.graphLayerFacet == '') {
-                this.localWidget.graphLayerFacet == 'Single';
+                this.localWidget.graphLayerFacet = 'Single';
             };
 
             // Load local Vars from localWidget
@@ -1364,6 +1366,14 @@ export interface dataSchemaInterface {
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort = ""}
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit = ""}
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle = ""}
+
+        for (let i = 0; i < this.localWidget.graphLayers.length; i++){
+            if (this.localWidget.graphLayers[i].graphMarkSize == null  
+                ||  
+                this.localWidget.graphLayers[i].graphMarkSize == 0) {
+                this.localWidget.graphLayers[i].graphMarkSize = 20;
+            };
+        };
 
         // Define Specification
         if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
