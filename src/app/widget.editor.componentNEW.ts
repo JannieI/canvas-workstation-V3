@@ -1566,7 +1566,7 @@ export interface dataSchemaInterface {
         for (let i = 0; i < this.localWidget.graphLayers.length; i++){
             this.graphLayers.push(i + 1);
         };
-        
+
         // Get the graphID
         let graphID: number = -1;
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
@@ -4405,7 +4405,7 @@ export interface dataSchemaInterface {
 
     }
 
-    clickCompositionLayerDelete(ev: any) {
+    clickCompositionLayerDelete() {
         // Delete selected layer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCompositionLayerDelete', '@Start');
 
@@ -4418,8 +4418,7 @@ export interface dataSchemaInterface {
             return;
         };
 
-        let layerToDelete: number = +ev.target.value;
-        this.localWidget.graphLayers.splice(layerToDelete - 1, 1);
+        this.localWidget.graphLayers.splice(this.currentGraphLayer - 1, 1);
 
         // Rebuild list to display
         this.graphLayers = [];
