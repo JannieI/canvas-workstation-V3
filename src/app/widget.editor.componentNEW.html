@@ -468,43 +468,52 @@
                             <b>Date/Time Functions:</b>
                         </div>
                         <div class="editorCalculatedHelpBody">
-                            <b>now</b>()
-                            Returns the timestamp for the current time.
+                            <b class="calculateHelpText" (click)="calculatedExpression='now()'">now</b>
+                            ()Returns the timestamp for the current time.
                             <br>
 
-                            <b>datetime</b>(<i>year, month[, day, hour, min, sec, millisec]</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='datetime(year, month ...)'">datetime</b>
+                            (<i>year, month[, day, hour, min, sec, millisec]</i>)
                             Returns a new Date instance. The month is 0-based, such that 1 represents February.
                             <br>
 
-                            <b>date</b>(<i>datetime</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='date()'">date</b>
+                            (<i>datetime</i>)
                             Returns the day of the month for the given datetime value, in local time.
                             <br>
 
-                            <b>day</b>(<i>datetime</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='day()'">day</b>
+                            (<i>datetime</i>)
                             Returns the day of the week for the given datetime value, in local time.
                             <br>
 
-                            <b>year</b>(<i>datetime</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='year()'">year</b>
+                            (<i>datetime</i>)
                             Returns the year for the given datetime value, in local time.
                             <br>
 
-                            <b>quarter</b>(<i>datetime</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='quarter()'">quarter</b>
+                            (<i>datetime</i>)
                             Returns the quarter of the year (0-3) for the given datetime value, in local time.
                             <br>
 
-                            <b>month</b>(<i>datetime</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='month()'">month</b>
+                            (<i>datetime</i>)
                             Returns the (zero-based) month for the given datetime value, in local time.
                             <br>
 
-                            <b>hours</b>(<i>datetime</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='hours(datum.YOURFIELD)'">hours</b>
+                            (<i>datetime</i>)
                             Returns the hours component for the given datetime value, in local time.
                             <br>
 
-                            <b>minutes</b>(<i>datetime</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='minutes(datum.YOURFIELD)'">minutes</b>
+                            (<i>datetime</i>)
                             Returns the minutes component for the given datetime value, in local time.
                             <br>
 
-                            <b>seconds</b>(<i>datetime</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='seconds(datum.YOURFIELD)'">seconds</b>
+                            (<i>datetime</i>)
                             Returns the seconds component for the given datetime value, in local time.
                             <br>
 
