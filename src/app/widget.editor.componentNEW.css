@@ -453,6 +453,10 @@ clr-dg-cell {
                     font-size: 0.55rem;
                     margin: 6px 6px 6px 12px;
                 }
+                .calculateHelpText {
+                    color: blue;
+                    cursor: pointer;
+                }
 
         /* FIELDS */
         .editorFieldsDSname {
