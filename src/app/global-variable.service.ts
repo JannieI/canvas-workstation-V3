@@ -11244,6 +11244,12 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             let calcFields: string[] = [];
             let sortFields: string[] = [];
             let frameFields: string[] = [];
+
+            // Take out spaces typed by user
+            widget.graphCalculations[i].calculatedExpression = 
+                widget.graphCalculations[i].calculatedExpression.replace(/ /gi,"");
+
+            // Get brackets and extract Formula and Fields
             let bracketLeftIndex: number = widget.graphCalculations[i].calculatedExpression.indexOf('(');
             let bracketRightIndex: number = widget.graphCalculations[i].calculatedExpression.indexOf(')');
 
@@ -11258,39 +11264,45 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             console.warn('xx splitted', bracketLeftIndex, bracketRightIndex, calcFunction, calcFields, sortFields, frameFields)
 
             // Cumulation Function
-            if (calcFunction.toLowerCase() == 'sum') {
+            if (calcFunction.toLowerCase() == 'sum'  &&  calcFields.length > 0) {
                 specification['transform'].push(
                     {
                         "window": [{
                             "op": "sum",
-                            "field": "price",
-                            "as": "TotalTime"
+                            "field": calcFields[0],
+                            "as": widget.graphCalculations[i].calculatedAs
                         }],
                         "frame": [null, null]
                     }
                 );
 
-            } else if (calcFunction.toLowerCase() == 'cumulate') {
+            } else if (calcFunction.toLowerCase() == 'cumulate'  &&  calcFields.length > 0) {
                 specification['transform'].push(            
                     {
-                        "sort": [{"field": "price"}],
-                        "window": [{"op": "count", "field": "price", "as": "cumulative_price"}],
+                        "sort": [{"field": calcFields[0]}],
+                        "window": [
+                            {
+                                "op": "count", 
+                                "field": calcFields[0],
+                                "as": widget.graphCalculations[i].calculatedAs
+                            }
+                        ],
                         "frame": [null, 0]
                     }
                 );
 
-            } else if (calcFunction.toLowerCase() == 'rank') {
+            } else if (calcFunction.toLowerCase() == 'rank'  &&  calcFields.length > 1) {
                 specification['transform'].push(            
                     {
                         "sort": [
-                        {"field": "symbol", "order": "descending"},
-                        {"field": "price", "order": "descending"}
+                            {"field": calcFields[0], "order": "descending"},
+                            {"field": calcFields[1], "order": "descending"}
                         ],
                         "window": [{
                         "op": "rank",
-                        "as": "rank"
+                        "as": widget.graphCalculations[i].calculatedAs
                         }],
-                        "groupby": ["symbol"]
+                        "groupby": [calcFields[1]]
                     }
                 );
             } else {
