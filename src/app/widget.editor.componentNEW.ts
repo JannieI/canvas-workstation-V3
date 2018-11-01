@@ -972,7 +972,6 @@ export interface dataSchemaInterface {
 
         // Start afresh for new W~
         if (this.newWidget) {
-            console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
             // Get Widget Graph Specs
             this.globalVariableService.getWidgetGraphs().then(res => {
@@ -1159,7 +1158,11 @@ export interface dataSchemaInterface {
                 );
                 this.showGraph(this.widgetGraphs[graphIndex].id);
             });
-        console.warn('xx locaW', this.localWidget, this.currentGraphLayer, this.graphLayers)
+
+            // Switch if Complex graph in Lite mode
+            if (this.localWidget.graphLayerFacet != 'Single'  &&  this.showWidgetEditorLite) {
+                this.showWidgetEditorLite = false;
+            };
         }
 
     }
@@ -1434,8 +1437,6 @@ export interface dataSchemaInterface {
             // // Tooltip setting
             // // specification['mark']['tooltip']['content'] = "";
 
-            console.warn('xx locaW Pre CreateVegaSpec', this.localWidget.graphLayers, this.currentGraphLayer, this.graphLayers)
-
             // Create Spec
             this.specification = this.globalVariableService.createVegaLiteSpec(
                 this.localWidget,
@@ -1495,8 +1496,6 @@ export interface dataSchemaInterface {
             (this.graphHistoryPosition + 1).toString() + ' of ' +
             this.graphHistory[layerIndex].widgetSpec.length.toString();
 
-        console.warn('xx locaW @END', this.localWidget.graphLayers, this.currentGraphLayer, this.graphLayers)
-
     }
 
     clickBrowsePreviousGraph() {
@@ -1536,8 +1535,6 @@ export interface dataSchemaInterface {
         } else {
             graphID = this.widgetGraphs[widgetGraphIndex]['id'];
         };
-
-        console.warn('xx newWidgetSpec', newWidgetSpec, graphID, this.localWidget)
 
         // Show graph
         this.loadLocalVarsFromWidget();
@@ -1581,8 +1578,6 @@ export interface dataSchemaInterface {
         } else {
             graphID = this.widgetGraphs[widgetGraphIndex]['id'];
         };
-
-        console.warn('xx newWidgetSpec', newWidgetSpec, graphID)
 
         // Show graph
         this.loadLocalVarsFromWidget();
@@ -2905,7 +2900,6 @@ export interface dataSchemaInterface {
 
         // Remember ID for next time
         this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
-        console.warn('xx locaW', this.localWidget, this.currentGraphLayer, this.graphLayers)
 
     }
 
