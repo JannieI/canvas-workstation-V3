@@ -2093,6 +2093,12 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
+        // Can only create this channel for Single facetted graphs
+        if (this.localWidget.graphLayerFacet != 'Single') {
+            this.errorMessageEditor = 'Can only add Row to Single facet graphs';
+            return;
+        };
+
         // Show X icon
         this.showColumnDeleteIcon = true;
 
