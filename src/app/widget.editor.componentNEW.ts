@@ -4332,6 +4332,14 @@ export interface dataSchemaInterface {
             this.graphLayers = [1];
 
             this.errorMessageEditor = 'Layers 2+, Row, Col deleted.  Used History to go back';
+
+            let widgetGraphIndex: number = this.widgetGraphs.findIndex(
+                wg => wg.mark == this.localWidget.graphLayers[0].graphMark
+            );
+            if (widgetGraphIndex >= 0) {
+                this.showGraph(widgetGraphIndex);
+            };
+
         };
     };
 
