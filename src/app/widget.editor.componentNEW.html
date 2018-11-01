@@ -465,6 +465,24 @@
 
 
                         <div class="editorCalculatedHelpTitle">
+                            <b>Constants:</b>
+                        </div>
+                        <div class="editorCalculatedHelpBody">
+                            <b class="calculateHelpText" (click)="calculatedExpression='Cumulate(datum.YOURFIELD)'">Cumulate</b>
+                            Cumulate the count of a field (for Cumulative Frequency Distribution).
+                            <br>
+
+                            <b class="calculateHelpText" (click)="calculatedExpression='Rank(datum.YOURFIELD, GroupbyField)'">Rank</b>
+                            Rank on a field, grouped by another field (which becomes the window).
+                            <br>
+
+                            <b class="calculateHelpText" (click)="calculatedExpression='Sum(datum.YOURFIELD)'">Sum</b>
+                            Sum a field; useful to calculate % of total.
+                            <br>
+                        </div>
+
+
+                        <div class="editorCalculatedHelpTitle">
                             <b>Date/Time Functions:</b>
                         </div>
                         <div class="editorCalculatedHelpBody">

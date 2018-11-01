@@ -11640,6 +11640,18 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 specificationInner['mark']['size'] =
                     widget.graphLayers[currentGraphLayer].graphMarkSize;
             };
+            if (widget.graphLayers[currentGraphLayer].graphMark == 'text') {
+                if (widget.graphLayers[currentGraphLayer].graphXfield != '') {
+                    specificationInner['encoding']['text'] = {
+                        "field": widget.graphLayers[currentGraphLayer].graphXfield, 
+                        "type": widget.graphLayers[currentGraphLayer].graphXtype.toLowerCase(),
+                        "aggregate": widget.graphLayers[currentGraphLayer].graphXaggregate,
+                        "align": "left",
+                        "baseline": "middle",
+                        "dx": 3
+                    };        
+                };
+            };
 
             // X field
             if (widget.graphLayers[currentGraphLayer].graphXfield != '') {

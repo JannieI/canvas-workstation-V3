@@ -1388,6 +1388,7 @@ This document describes items for later versions of Canvas.
     - Window
         - add this!
         - How to show comparison between current and previous period ?
+        - Make rank without a GroupBy field - is there a use case for this?
 
     - Filters
         - Show value range in fields: Select Total field in dropdown, then it shows that Total values ranges from say 0 to 100, and maybe even some stats like average...  Only if usecase.
