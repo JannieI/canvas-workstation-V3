@@ -4312,11 +4312,14 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         if (this.localWidget.graphLayerFacet == 'Single'  &&  this.graphLayers.length > 0) {
-            this.errorMessageEditor = 'Layers 2 and above deleted.  Used History to go back';
 
+            this.clickClearRowField();
+            this.clickClearColumnField();
             this.currentGraphLayer = 1;
             this.localWidget.graphLayers.splice(1);
             this.graphLayers = [1];
+
+            this.errorMessageEditor = 'Layers 2+, Row, Col deleted.  Used History to go back';
         };
     };
 
