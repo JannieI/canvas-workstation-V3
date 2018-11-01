@@ -11249,13 +11249,13 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
             if ( (bracketLeftIndex > 0)  ||  ( (bracketRightIndex - bracketLeftIndex) > 1) ) {
                 calcFunction = widget.graphCalculations[i].calculatedExpression
-                    .substring(0, bracketLeftIndex - 1);
+                    .substring(0, bracketLeftIndex);
                 calcFields = widget.graphCalculations[i].calculatedExpression
-                    .substring(bracketLeftIndex + 1, bracketRightIndex - bracketLeftIndex - 1)
+                    .substring(bracketLeftIndex + 1, bracketRightIndex)
                     .split(",");
             };
 
-            console.warn('xx splitted', calcFunction, calcFields, sortFields, frameFields)
+            console.warn('xx splitted', bracketLeftIndex, bracketRightIndex, calcFunction, calcFields, sortFields, frameFields)
 
             // Cumulation Function
             if (calcFunction.toLowerCase() == 'sum') {
