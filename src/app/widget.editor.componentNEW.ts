@@ -1333,6 +1333,13 @@ export interface dataSchemaInterface {
         if (this.y2Field != dragFieldMessage) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field = this.y2Field;
         };
+        // Trail not effective if size too large, and default is 20
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark.toLowerCase() == 'trail') {
+            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkSize > 2) {
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkSize = 1;
+            };
+        };
+
 
         // Validation and Warnings - AFTER default settings
         if (this.sizeField != dragFieldMessage
@@ -4337,7 +4344,7 @@ export interface dataSchemaInterface {
                 wg => wg.mark == this.localWidget.graphLayers[0].graphMark
             );
             if (widgetGraphIndex >= 0) {
-                this.showGraph(widgetGraphIndex);
+                this.showGraph(this.widgetGraphs[widgetGraphIndex].id);
             };
 
         };

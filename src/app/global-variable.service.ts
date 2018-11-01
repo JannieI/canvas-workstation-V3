@@ -11240,7 +11240,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "type": "interval", "bind": "scales"
                 }
             };
-            
+
         // Calculated Fields
         if (widget.graphCalculations == null) {
             widget.graphCalculations = [];
