@@ -409,7 +409,7 @@
                             <b>Control Flow Functions:</b>
                         </div>
                         <div class="editorCalculatedHelpBody">
-                            <b>if</b>(<i>test, thenValue, elseValue</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='now()'">if</b>(<i>test, thenValue, elseValue</i>)
                             If test is truthy, returns thenValue. Otherwise, returns elseValue. The <b>if</b> function is equivalent to the ternary operator a ? b : c
                         </div>
 
@@ -418,47 +418,47 @@
                             <b>Constants:</b>
                         </div>
                         <div class="editorCalculatedHelpBody">
-                            <b>NaN</b>
+                            <b class="calculateHelpText" (click)="calculatedExpression='NaN'">NaN</b>
                             Not a number. Same as the JavaScript literal <u>NaN</u>
                             <br>
 
-                            <b>E</b>
+                            <b class="calculateHelpText" (click)="calculatedExpression='E'">E</b>
                             The transcendental number e. Same as JavaScript’s <u>Math.E</u>
                             <br>
 
-                            <b>LN2</b>
+                            <b class="calculateHelpText" (click)="calculatedExpression='LN2'">LN2</b>
                             The natural log of 2. Same as JavaScript’s <u>Math.LN2</u>
                             <br>
 
-                            <b>LN10</b>
+                            <b class="calculateHelpText" (click)="calculatedExpression='LN10'">LN10</b>
                             The natural log of 10. Same as JavaScript’s <u>Math.LN10</u>
                             <br>
 
-                            <b>LOG2E</b>
+                            <b class="calculateHelpText" (click)="calculatedExpression='LOG2E'">LOG2E</b>
                             The base 2 logarithm of e. Same as JavaScript’s <u>Math.LOG2E</u>
                             <br>
 
-                            <b>LOG10E</b>
+                            <b class="calculateHelpText" (click)="calculatedExpression='LOG10E'">LOG10E</b>
                             The base 10 logarithm e. Same as JavaScript’s <u>Math.LOG10E</u>
                             <br>
 
-                            <b>MAX_VALUE</b>
+                            <b class="calculateHelpText" (click)="calculatedExpression='MAX_VALUE'">MAX_VALUE</b>
                             The largest positive numeric value. Same as JavaScript’s <u>Number.MAX_VALUE</u>
                             <br>
 
-                            <b>MIN_VALUE</b>
+                            <b class="calculateHelpText" (click)="calculatedExpression='MIN_VALUE'">MIN_VALUE</b>
                             The smallest positive numeric value. Same as JavaScript’s <u>Number.MIN_VALUE</u>
                             <br>
 
-                            <b>PI</b>
+                            <b class="calculateHelpText" (click)="calculatedExpression='PI'">PI</b>
                             The transcendental number π. Same as JavaScript’s <u>Math.PI</u>
                             <br>
 
-                            <b>SQRT1_2</b>
+                            <b class="calculateHelpText" (click)="calculatedExpression='SQRT1_2'">SQRT1_2</b>
                             The square root of 0.5. Same as JavaScript’s <u>Math.SQRT1_2</u>
                             <br>
 
-                            <b>SQRT2</b>
+                            <b class="calculateHelpText" (click)="calculatedExpression='SQRT2'">SQRT2</b>
                             The square root of 2. Same as JavaScript’s <u>Math.SQRT2</u>
                             <br>
                         </div>
@@ -557,7 +557,7 @@
                             Returns the hours component for the given datetime value, in UTC time.
                             <br>
 
-                            <b>utcminutes</b>(<i>datetime</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='utcminutes(datum.YOURFIELD)'">utcminutes</b>(<i>datetime</i>)
                             Returns the minutes component for the given datetime value, in UTC time.
                             <br>
 
@@ -575,7 +575,7 @@
                             <b>Mathematical Functions:</b>
                         </div>
                         <div class="editorCalculatedHelpBody">
-                            <b class="calculateHelpText" (click)="calculatedExpression='isFinite(datum.YOURFIELD)'">isNaN</b>(<i>value</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='isNaN(datum.YOURFIELD)'">isNaN</b>(<i>value</i>)
                             Returns true if value is not a number. Same as JavaScript’s <u>isNaN</u>
                             <br>
 
@@ -599,7 +599,7 @@
                             Trigonometric arctangent. Same as JavaScript’s <u>Math.atan</u>
                             <br>
 
-                            <b class="calculateHelpText" (click)="calculatedExpression='atan2(datum.YOURFIELD)'">atan2</b>(<i>dy, dx</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='atan2(dy, dx)'">atan2</b>(<i>dy, dx</i>)
                             Returns the arctangent of dy / dx. Same as JavaScript’s <u>Math.atan2</u>
                             <br>
 
@@ -607,7 +607,7 @@
                             Rounds value to the nearest integer of equal or greater value. Same as JavaScript’s <u>Math.ceil</u>
                             <br>
 
-                            <b class="calculateHelpText" (click)="calculatedExpression='clamp(datum.YOURFIELD)'">clamp</b>(<i>value, min, max</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='clamp(datum.YOURFIELD, min, max)'">clamp</b>(<i>value, min, max</i>)
                             Restricts value to be between the specified min and max.
                             <br>
 
@@ -627,15 +627,15 @@
                             Returns the natural logarithm of value. Same as JavaScript’s <u>Math.log</u>
                             <br>
 
-                            <b class="calculateHelpText" (click)="calculatedExpression='max(datum.YOURFIELD)'">max</b>(<i>value1, value2, …</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='max(datum.value1, value2, …)'">max</b>(<i>value1, value2, …</i>)
                             Returns the maximum argument value. Same as JavaScript’s <u>Math.max</u>
                             <br>
 
-                            <b class="calculateHelpText" (click)="calculatedExpression='min(datum.YOURFIELD)'">min</b>(<i>value1, value2, …</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='min(value1, value2, …)'">min</b>(<i>value1, value2, …</i>)
                             Returns the minimum argument value. Same as JavaScript’s <u>Math.min</u>
                             <br>
 
-                            <b class="calculateHelpText" (click)="calculatedExpression='pow(datum.YOURFIELD)'">pow</b>(<i>value, exponent</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='pow(datum.YOURFIELD, exponent)'">pow</b>(<i>value, exponent</i>)
                             Returns value raised to the given exponent. Same as JavaScript’s <u>Math.pow</u>
                             <br>
 
@@ -666,11 +666,11 @@
                             <b>String Functions:</b>
                         </div>
                         <div class="editorCalculatedHelpBody">
-                            <b class="calculateHelpText" (click)="calculatedExpression='indexof(datum.YOURFIELD)'">indexof</b>(<i>string, substring</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='indexof(datum.YOURFIELD, substring)'">indexof</b>(<i>string, substring</i>)
                             Returns the first index of substring in the input string.
                             <br>
 
-                            <b class="calculateHelpText" (click)="calculatedExpression='lastindexof(datum.YOURFIELD)'">lastindexof</b>(<i>string, substring</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='lastindexof(datum.YOURFIELD, substring)'">lastindexof</b>(<i>string, substring</i>)
                             Returns the last index of substring in the input string.
                             <br>
 
@@ -682,7 +682,7 @@
                             Transforms string to lower-case letters.
                             <br>
 
-                            <b class="calculateHelpText" (click)="calculatedExpression='pad(datum.YOURFIELD)'">pad</b>(<i>string, length[, character, align]</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='pad(datum.YOURFIELD, length[, character, align])'">pad</b>(<i>string, length[, character, align]</i>)
                             Pads a string value with repeated instances of a character up to a specified length. If character is not specified, a space (‘ ‘) is used. By default, padding is added to the end of a string. An optional align parameter specifies if padding should be added to the 'left' (beginning), 'center', or 'right' (end) of the input string.
                             <br>
 
@@ -694,23 +694,23 @@
                             Parses the input string to an integer value. Same as JavaScript’s <u>parseInt</u>
                             <br>
 
-                            <b class="calculateHelpText" (click)="calculatedExpression='replace(datum.YOURFIELD)'">replace</b>(<i>string, pattern, replacement</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='replace(datum.YOURFIELD, pattern, replacement)'">replace</b>(<i>string, pattern, replacement</i>)
                             Returns a new string with some or all matches of pattern replaced by a replacement string. The pattern can be a string or a regular expression. If pattern is a string, only the first instance will be replaced. Same as JavaScript’s <u>String.replace</u>
                             <br>
 
-                            <b class="calculateHelpText" (click)="calculatedExpression='slice(datum.YOURFIELD)'">slice</b>(<i>string, start[, end]</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='slice(datum.YOURFIELD, start[, end])'">slice</b>(<i>string, start[, end]</i>)
                             Returns a section of string between the start and end indices. If the end argument is negative, it is treated as an offset from the end of the string (length(string) + end).
                             <br>
 
-                            <b class="calculateHelpText" (click)="calculatedExpression='split(datum.YOURFIELD)'">split</b>(<i>string, separator[, limit]</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='split(datum.YOURFIELD, separator[, limit])'">split</b>(<i>string, separator[, limit]</i>)
                             Returns an array of tokens created by splitting the input string according to a provided separator pattern. The result can optionally be constrained to return at most limit tokens.
                             <br>
 
-                            <b class="calculateHelpText" (click)="calculatedExpression='substring(datum.YOURFIELD)'">substring</b>(<i>string, start[, end]</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='substring(datum.YOURFIELD, start[, end])'">substring</b>(<i>string, start[, end]</i>)
                             Returns a section of string between the start and end indices.
                             <br>
 
-                            <b class="calculateHelpText" (click)="calculatedExpression='truncate(datum.YOURFIELD)'">truncate</b>(<i>string, length[, align, ellipsis]</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='truncate(datum.YOURFIELD, length[, align, ellipsis])'">truncate</b>(<i>string, length[, align, ellipsis]</i>)
                             Truncates an input string to a target length. The optional align argument indicates what part of the string should be truncated: 'left' (the beginning), 'center', or 'right' (the end). By default, the 'right' end of the string is truncated. The optional ellipsis argument indicates the string to use to indicate truncated content; by default the ellipsis character … (\u2026) is used.
                             <br>
 
@@ -772,7 +772,7 @@
                             Coerces the input value to a number. Null values and empty strings are mapped to null.
                             <br>
 
-                            <b>toString</b>(<i>value</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='toString(datum.YOURFIELD)'">toString</b>(<i>value</i>)
                             Coerces the input value to a string. Null values and empty strings are mapped to null.
                             <br>
                         </div>
