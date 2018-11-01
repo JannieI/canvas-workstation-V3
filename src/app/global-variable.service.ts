@@ -11239,13 +11239,71 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
         for (var i = 0; i < widget.graphCalculations.length; i++) {
 
-            // Add to the transformation channel
-            specification['transform'].push(
-                {
-                        "calculate": widget.graphCalculations[i].calculatedExpression,
-                        "as": widget.graphCalculations[i].calculatedAs
-                }
-            );
+            // Split function
+            let calcFunction: string = '';
+            let calcFields: string[] = [];
+            let sortFields: string[] = [];
+            let frameFields: string[] = [];
+            let bracketLeftIndex: number = widget.graphCalculations[i].calculatedExpression.indexOf('(');
+            let bracketRightIndex: number = widget.graphCalculations[i].calculatedExpression.indexOf(')');
+
+            if ( (bracketLeftIndex > 0)  ||  ( (bracketRightIndex - bracketLeftIndex) > 1) ) {
+                calcFunction = widget.graphCalculations[i].calculatedExpression
+                    .substring(0, bracketLeftIndex - 1);
+                calcFields = widget.graphCalculations[i].calculatedExpression
+                    .substring(bracketLeftIndex + 1, bracketRightIndex - bracketLeftIndex - 1)
+                    .split(",");
+            };
+
+            console.warn('xx splitted', calcFunction, calcFields, sortFields, frameFields)
+
+            // Cumulation Function
+            if (calcFunction.toLowerCase() == 'sum') {
+                specification['transform'].push(
+                    {
+                        "window": [{
+                            "op": "sum",
+                            "field": "price",
+                            "as": "TotalTime"
+                        }],
+                        "frame": [null, null]
+                    }
+                );
+
+            } else if (calcFunction.toLowerCase() == 'cumulate') {
+                specification['transform'].push(            
+                    {
+                        "sort": [{"field": "price"}],
+                        "window": [{"op": "count", "field": "price", "as": "cumulative_price"}],
+                        "frame": [null, 0]
+                    }
+                );
+
+            } else if (calcFunction.toLowerCase() == 'rank') {
+                specification['transform'].push(            
+                    {
+                        "sort": [
+                        {"field": "symbol", "order": "descending"},
+                        {"field": "price", "order": "descending"}
+                        ],
+                        "window": [{
+                        "op": "rank",
+                        "as": "rank"
+                        }],
+                        "groupby": ["symbol"]
+                    }
+                );
+            } else {
+
+                // Add Calculation Formula the transformation channel
+                specification['transform'].push(
+                    {
+                            "calculate": widget.graphCalculations[i].calculatedExpression,
+                            "as": widget.graphCalculations[i].calculatedAs
+                    }
+                );
+
+            };
         };
 
 
@@ -11269,23 +11327,23 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
 
             if (graphFilters[i].filterOperator == 'Not Equal') {
-                if (filterFieldDataType == 'string'  
-                    ||  
+                if (filterFieldDataType == 'string'
+                    ||
                     graphFilters[i].filterTimeUnit.toLowerCase() == 'month') {
                     filterSpec =
                         {"filter":
-                            
-                                "datum." + graphFilters[i].filterFieldName + " != '" 
+
+                                "datum." + graphFilters[i].filterFieldName + " != '"
                                 + graphFilters[i].filterValue + "'"
-                            
+
                         };
                 } else {
                     filterSpec =
                         {"filter":
-                            
-                                "datum." + graphFilters[i].filterFieldName + " != " 
+
+                                "datum." + graphFilters[i].filterFieldName + " != "
                                 + +graphFilters[i].filterValue
-                            
+
                         };
                 };
             };
@@ -11294,8 +11352,8 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
 
             if (graphFilters[i].filterOperator == 'Equal') {
-                if (filterFieldDataType == 'string'  
-                    ||  
+                if (filterFieldDataType == 'string'
+                    ||
                     graphFilters[i].filterTimeUnit.toLowerCase() == 'month') {
                     filterSpec =
                         {"filter":
@@ -11567,7 +11625,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 specificationInner['mark']['ticks'] = true;
             };
             if (widget.graphLayers[currentGraphLayer].graphMarkSize != null) {
-                specificationInner['mark']['size'] = 
+                specificationInner['mark']['size'] =
                     widget.graphLayers[currentGraphLayer].graphMarkSize;
             };
 
@@ -11716,7 +11774,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     "stack": widget.graphLayers[currentGraphLayer].graphColorStack.toLowerCase(),
                     "timeUnit": widget.graphLayers[currentGraphLayer].graphColorTimeUnit.toLowerCase(),
                     "type": widget.graphLayers[currentGraphLayer].graphColorType.toLowerCase(),
-                    "scale": widget.graphLayers[currentGraphLayer].graphColorScheme == 
+                    "scale": widget.graphLayers[currentGraphLayer].graphColorScheme ==
                         'None'?  null  :  {"scheme": widget.graphLayers[currentGraphLayer].graphColorScheme.toLowerCase()}
                 };
 
@@ -11729,8 +11787,8 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                                 "title": null
                             };
                     } else {
-                        if (widget.graphLayers[currentGraphLayer].graphLegendTitle != ''  
-                            &&  
+                        if (widget.graphLayers[currentGraphLayer].graphLegendTitle != ''
+                            &&
                             widget.graphLayers[currentGraphLayer].graphLegendTitle != undefined) {
                             specificationInner['encoding']['color']['legend'] =
                                 {
@@ -11747,10 +11805,10 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     };
                 };
 
-                if (widget.graphLayers[currentGraphLayer].graphLegendAxisScaleType != 'Default'  
-                    &&  
+                if (widget.graphLayers[currentGraphLayer].graphLegendAxisScaleType != 'Default'
+                    &&
                     widget.graphLayers[currentGraphLayer].graphLegendAxisScaleType != undefined
-                    && 
+                    &&
                     widget.graphLayers[currentGraphLayer].graphLegendAxisScaleType != '') {
                     specificationInner['encoding']['color']['scale'] =
                     {"type": widget.graphLayers[currentGraphLayer].graphLegendAxisScaleType.toLowerCase() };
