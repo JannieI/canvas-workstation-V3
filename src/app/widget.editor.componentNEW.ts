@@ -1047,12 +1047,12 @@ export interface dataSchemaInterface {
 
             // Populate the visible layers, and set Defaults
             for (let i = 0; i < this.localWidget.graphLayers.length; i++){
-                if (this.localWidget.graphLayers[i].graphMarkSize == null  
-                    ||  
+                if (this.localWidget.graphLayers[i].graphMarkSize == null
+                    ||
                     this.localWidget.graphLayers[i].graphMarkSize == 0) {
                     this.localWidget.graphLayers[i].graphMarkSize = 20;
                 };
-    
+
                 this.graphLayers.push(i + 1);
             };
 
@@ -1159,7 +1159,7 @@ export interface dataSchemaInterface {
                 );
                 this.showGraph(this.widgetGraphs[graphIndex].id);
             });
-
+        console.warn('xx locaW', this.localWidget, this.currentGraphLayer, this.graphLayers)
         }
 
     }
@@ -1274,7 +1274,7 @@ export interface dataSchemaInterface {
         }
 
         // Fields and data schema
-        this.localWidget.dataschema = this.dataSchema;  // TODO - make .dataSchema consistent
+        this.localWidget.dataschema = this.dataSchema.slice();  // TODO - make .dataSchema consistent
 
         // Get the widgetGraph
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
@@ -1368,8 +1368,8 @@ export interface dataSchemaInterface {
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle = ""}
 
         for (let i = 0; i < this.localWidget.graphLayers.length; i++){
-            if (this.localWidget.graphLayers[i].graphMarkSize == null  
-                ||  
+            if (this.localWidget.graphLayers[i].graphMarkSize == null
+                ||
                 this.localWidget.graphLayers[i].graphMarkSize == 0) {
                 this.localWidget.graphLayers[i].graphMarkSize = 20;
             };
@@ -1434,10 +1434,12 @@ export interface dataSchemaInterface {
             // // Tooltip setting
             // // specification['mark']['tooltip']['content'] = "";
 
+            console.warn('xx locaW Pre CreateVegaSpec', this.localWidget.graphLayers, this.currentGraphLayer, this.graphLayers)
+
             // Create Spec
             this.specification = this.globalVariableService.createVegaLiteSpec(
-                this.localWidget, 
-                this.localWidget.graphHeight, 
+                this.localWidget,
+                this.localWidget.graphHeight,
                 this.localWidget.graphWidth,
                 this.showSpecificGraphLayer,
                 (this.currentGraphLayer - 1)
@@ -1492,6 +1494,8 @@ export interface dataSchemaInterface {
         this.graphHeader = 'History: showing ' +
             (this.graphHistoryPosition + 1).toString() + ' of ' +
             this.graphHistory[layerIndex].widgetSpec.length.toString();
+
+        console.warn('xx locaW @END', this.localWidget.graphLayers, this.currentGraphLayer, this.graphLayers)
 
     }
 
@@ -2870,7 +2874,9 @@ export interface dataSchemaInterface {
 
         this.localWidget.graphLayers = [];
         this.graphLayers = [1];
-        this.localWidget.graphLayers.push(this.globalVariableService.widgetTemplateInner);
+        this.localWidget.graphLayers.push(
+            JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplateInner))
+        );
         this.currentGraphLayer = 1;
         this.filterNrActive = 0;
         this.clickClearXField();
@@ -2899,6 +2905,7 @@ export interface dataSchemaInterface {
 
         // Remember ID for next time
         this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
+        console.warn('xx locaW', this.localWidget, this.currentGraphLayer, this.graphLayers)
 
     }
 
@@ -4229,146 +4236,8 @@ export interface dataSchemaInterface {
         }
 
         // Add new layer, and set
-        this.localWidget.graphLayers.push(this.globalVariableService.widgetTemplateInner
-        // {
-        //     // Mark
-        //     "graphMark": "",
-        //     "graphMarkOrient": "",
-        //     "graphMarkLine": false,
-        //     "graphMarkPoint": false,
-        //     "graphMarkPointColorName": "",
-        //     "graphMarkPointColor": "",
-        //     "graphMarkColourName": "",
-        //     "graphMarkColour": "",
-        //     "graphMarkCornerRadius": 0,
-        //     "graphMarkExtent": "",
-        //     "graphMarkOpacity": 1,
-        //     "graphMarkBinSpacing": 0,
-        //     "graphMarkInterpolate": "",
-
-        //     // X
-        //     "graphXfield": "",
-        //     "graphXaggregateName": "",
-        //     "graphXaggregate": "",
-        //     "graphXtimeUnit": "",
-        //     "graphXbin": false,
-        //     "graphXMaxBins": 0,
-        //     "graphXformat": "",
-        //     "graphXimpute": "",
-        //     "graphXimputeValue": "",
-        //     "graphXstack": "",
-        //     "graphXsort": "",
-        //     "graphXtype": "",
-        //     "graphXtypeName": "",
-
-        //     // Y
-        //     "graphYfield": "",
-        //     "graphYaggregateName": "",
-        //     "graphYaggregate": "",
-        //     "graphYbin": false,
-        //     "graphYMaxBins": 0,
-        //     "graphYformat": "",
-        //     "graphYimpute": "",
-        //     "graphYimputeValue": 0,
-        //     "graphYstack": "",
-        //     "graphYsort": "",
-        //     "graphYtimeUnit": "",
-        //     "graphYtype": "",
-        //     "graphYtypeName": "",
-
-        //     // Color
-        //     "graphColorField": "",
-        //     "graphColorAggregateName": "",
-        //     "graphColorAggregate": "",
-        //     "graphColorBin": false,
-        //     "graphColorMaxBins": 0,
-        //     "graphColorFormat": "",
-        //     "graphColorImpute": "",
-        //     "graphColorImputeValue": "",
-        //     "graphColorScheme": "blues",
-        //     "graphColorSort": "",
-        //     "graphColorStack": "",
-        //     "graphColorType": "",
-        //     "graphColorTypeName": "",
-        //     "graphColorTimeUnit": "",
-
-        //     // X Axis
-        //     "graphXaxisFormat": "",
-        //     "graphXaxisGrid": true,
-        //     "graphXaxisGridColorName": "",
-        //     "graphXaxisGridColor": "",
-        //     "graphXaxisLabels": true,
-        //     "graphXaxisLabelAngle": 0,
-        //     "graphXaxisLabelColorName": "",
-        //     "graphXaxisLabelColor": "",
-        //     "graphXaxisTitle": "",
-        //     "graphXaxisTitleCheckbox": true,
-        //     "graphXaxisScaleType": "",
-
-        //     // Y Axis
-        //     "graphYaxisFormat": "",
-        //     "graphYaxisGrid": true,
-        //     "graphYaxisGridColorName": "",
-        //     "graphYaxisGridColor": "",
-        //     "graphYaxisLabels": true,
-        //     "graphYaxisLabelAngle": 0,
-        //     "graphYaxisLabelColorName": "",
-        //     "graphYaxisLabelColor": "",
-        //     "graphYaxisScaleType": "",
-        //     "graphYaxisTitle": "",
-        //     "graphYaxisTitleCheckbox": true,
-
-        //     // Legend
-        //     "graphLegendAxisScaleType": "",
-        //     "graphLegendHide": false,
-        //     "graphLegendTitleCheckbox": true,
-        //     "graphLegendTitle": "",
-        //     "graphLegendFormat": "",
-        //     "graphLegendLabels": true,
-        //     "graphLegendLabelColorName": "",
-        //     "graphLegendLabelColor": "",
-
-        //     // Size
-        //     "graphSizeField": "",
-        //     "graphSizeType": "",
-        //     "graphSizeTypeName": "",
-        //     "graphSizeAggregateName": "",
-        //     "graphSizeAggregate": "",
-        //     "graphSizeBin": false,
-        //     "graphSizeMaxBins": 0,
-
-        //     // Row
-        //     "graphRowField": "",
-        //     "graphRowType": "",
-        //     "graphRowTypeName": "",
-
-        //     // Column
-        //     "graphColumnField": "",
-        //     "graphColumnType": "",
-        //     "graphColumnTypeName": "",
-
-        //     // Detail
-        //     "graphDetailField": "",
-        //     "graphDetailType": "",
-        //     "graphDetailTypeName": "",
-
-        //     // X2
-        //     "graphX2Field": "",
-        //     "graphX2Type": "",
-        //     "graphX2TypeName": "",
-        //     "graphX2AggregateName": "",
-
-        //     // Y2
-        //     "graphY2Field": "",
-        //     "graphY2Type": "",
-        //     "graphY2TypeName": "",
-        //     "graphY2AggregateName": "",
-
-        //     // Projection
-        //     "graphProjectionType": "",
-        //     "graphProjectionFieldLatitude": "",
-        //     "graphProjectionFieldLongitude": ""
-        // }
+        this.localWidget.graphLayers.push(
+            JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplateInner))
         );
 
         // Rebuild list to display
@@ -4427,7 +4296,6 @@ export interface dataSchemaInterface {
         };
 
         this.currentGraphLayer = 1;
-        console.warn('xx localW', this.localWidget)
 
         // Load local Vars from localWidget
         this.loadLocalVarsFromWidget()
@@ -4451,7 +4319,7 @@ export interface dataSchemaInterface {
 
         if (this.localWidget.graphLayerFacet == 'Single'  &&  this.graphLayers.length > 0) {
             this.errorMessageEditor = 'Layers 2 and above deleted.  Used History to go back';
-            
+
             this.currentGraphLayer = 1;
             this.localWidget.graphLayers.splice(1);
             this.graphLayers = [1];
