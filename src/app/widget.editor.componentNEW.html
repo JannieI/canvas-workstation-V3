@@ -236,7 +236,7 @@
                                 Nr:
                             </b>
                         </div> -->
-                        <div class="select editorCompositionLayer" *ngIf="currentGraphComposition != 'Single'">
+                        <div class="select editorCompositionLayer" *ngIf="localWidget.graphLayerFacet != 'Single'">
                             <select id="currentGraphLayer"
                                 style="width: 15px; min-width: 1.5rem;"
                                 (click)="clickCompositionLayerSelect($event)"
@@ -249,7 +249,7 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="editorCompositionLayerCheckBox" *ngIf="currentGraphComposition != 'Single'">
+                        <div class="editorCompositionLayerCheckBox" *ngIf="localWidget.graphLayerFacet != 'Single'">
                             <input [(ngModel)]="showSpecificGraphLayer"
                                 type="checkbox"
                                 name="showSpecificGraphLayer"
@@ -257,14 +257,14 @@
                                 >
 
                         </div>
-                        <span class="editorCompositionLayerButton" *ngIf="currentGraphComposition != 'Single'">
+                        <span class="editorCompositionLayerButton" *ngIf="localWidget.graphLayerFacet != 'Single'">
                             <button class="btn btn-link" style="padding: 0 !important; width: 40px !important;"
                                 (click)="clickCompositionLayerAdd()"
                                 >
                                 Add
                             </button>
                         </span>
-                        <span class="editorCompositionLayerButton" *ngIf="currentGraphComposition != 'Single'">
+                        <span class="editorCompositionLayerButton" *ngIf="localWidget.graphLayerFacet != 'Single'">
                             <button class="btn btn-link" style="padding: 0 !important;"
                                 (click)="clickCompositionLayerDelete()"
                                 >
