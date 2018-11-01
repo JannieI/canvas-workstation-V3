@@ -11246,7 +11246,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             let frameFields: string[] = [];
 
             // Take out spaces typed by user
-            widget.graphCalculations[i].calculatedExpression = 
+            widget.graphCalculations[i].calculatedExpression =
                 widget.graphCalculations[i].calculatedExpression.replace(/ /gi,"");
 
             // Get brackets and extract Formula and Fields
@@ -11277,13 +11277,13 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 );
 
             } else if (calcFunction.toLowerCase() == 'cumulate'  &&  calcFields.length > 0) {
-                specification['transform'].push(            
+                specification['transform'].push(
                     {
                         "sort": [{"field": calcFields[0]}],
                         "window": [
                             {
-                                "op": "count", 
-                                "field": calcFields[0],
+                                "op": "count",
+                                "field": "count",
                                 "as": widget.graphCalculations[i].calculatedAs
                             }
                         ],
@@ -11292,7 +11292,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 );
 
             } else if (calcFunction.toLowerCase() == 'rank'  &&  calcFields.length > 1) {
-                specification['transform'].push(            
+                specification['transform'].push(
                     {
                         "sort": [
                             {"field": calcFields[0], "order": "descending"},
