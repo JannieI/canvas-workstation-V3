@@ -11969,8 +11969,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     "field": widget.graphLayers[currentGraphLayer].graphProjectionFieldLongitude,
                     "type": "quantitative"
                 };
-                    // "size": {"value": 10}
-                // };
             };
 
             // Add to Inner Array

@@ -1336,7 +1336,8 @@ export interface dataSchemaInterface {
         // Trail not effective if size too large, and default is 20
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark.toLowerCase() == 'trail') {
             if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkSize > 2) {
-                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkSize = 1;
+                // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkSize = 1;
+                this.errorMessageEditor = 'Use Resize ...'
             };
         };
 
