@@ -11231,8 +11231,16 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             specification['data'] = {"url": widget.graphUrl};
         } else {
             specification['data'] = {"values": widget.graphData};
-        }
+        };
 
+        // Selection
+        specification['selection'] = 
+            {
+                "grid": {
+                "type": "interval", "bind": "scales"
+                }
+            };
+            
         // Calculated Fields
         if (widget.graphCalculations == null) {
             widget.graphCalculations = [];
