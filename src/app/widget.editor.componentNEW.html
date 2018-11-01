@@ -726,31 +726,31 @@
                         </div>
                         <div class="editorCalculatedHelpBody">
 
-                            <b>isArray</b>(<i>value</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='isArray(datum.YOURFIELD)'">isArray</b>(<i>value</i>)
                             Returns true if value is an array, false otherwise.
                             <br>
 
-                            <b>isBoolean</b>(<i>value</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='isBoolean(datum.YOURFIELD)'">isBoolean</b>(<i>value</i>)
                             Returns true if value is a boolean (true or false), false otherwise.
                             <br>
 
-                            <b>isDate</b>(<i>value</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='isDate(datum.YOURFIELD)'">isDate</b>(<i>value</i>)
                             Returns true if value is a Date object, false otherwise. This method will return false for timestamp numbers or date-formatted strings; it recognizes Date objects only.
                             <br>
 
-                            <b>isNumber</b>(<i>value</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='isNumber(datum.YOURFIELD)'">isNumber</b>(<i>value</i>)
                             Returns true if value is a number, false otherwise. NaN and Infinity are considered numbers.
                             <br>
 
-                            <b>isObject</b>(<i>value</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='isObject(datum.YOURFIELD)'">isObject</b>(<i>value</i>)
                             Returns true if value is an object, false otherwise. Following JavaScript typeof convention, null values are considered objects.
                             <br>
 
-                            <b>isRegExp</b>(<i>value</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='isRegExp(datum.YOURFIELD)'">isRegExp</b>(<i>value</i>)
                             Returns true if value is a RegExp (regular expression) object, false otherwise.
                             <br>
 
-                            <b>isString</b>(<i>value</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='isString(datum.YOURFIELD)'">isString</b>(<i>value</i>)
                             Returns true if value is a string, false otherwise.
                             <br>
                         </div>
@@ -760,15 +760,15 @@
                             <b>Type Coercion Functions:</b>
                         </div>
                         <div class="editorCalculatedHelpBody">
-                            <b>toBoolean</b>(<i>value</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='toBoolean(datum.YOURFIELD)'">toBoolean</b>(<i>value</i>)
                             Coerces the input value to a string. Null values and empty strings are mapped to null.
                             <br>
 
-                            <b>toDate</b>(<i>value</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='toDate(datum.YOURFIELD)'">toDate</b>(<i>value</i>)
                             Coerces the input value to a Date instance. Null values and empty strings are mapped to null. If an optional parser function is provided, it is used to perform date parsing, otherwise Date.parse is used. Be aware that Date.parse has different implementations across browsers!
                             <br>
 
-                            <b>toNumber</b>(<i>value</i>)
+                            <b class="calculateHelpText" (click)="calculatedExpression='toNumber(datum.YOURFIELD)'">toNumber</b>(<i>value</i>)
                             Coerces the input value to a number. Null values and empty strings are mapped to null.
                             <br>
 
