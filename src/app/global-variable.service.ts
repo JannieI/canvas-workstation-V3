@@ -11234,12 +11234,14 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         // Selection
-        specification['selection'] = 
-            {
-                "grid": {
-                "type": "interval", "bind": "scales"
-                }
-            };
+        if (widget.graphPanAndZoom) {
+            specification['selection'] = 
+                {
+                    "grid": {
+                    "type": "interval", "bind": "scales"
+                    }
+                };
+        };
 
         // Calculated Fields
         if (widget.graphCalculations == null) {
@@ -11367,9 +11369,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                         };
                 };
             };
-
-
-
 
             if (graphFilters[i].filterOperator == 'Equal') {
                 if (filterFieldDataType == 'string'
