@@ -249,12 +249,15 @@ export class DataDirectSQLEditorComponent implements OnInit {
         let driver: string = this.serverTypes
             .filter(styp => styp.serverType == this.selectedDatasource.serverType)
             .map(styp => styp.driverName)[0];
+        let connector: string = this.serverTypes
+            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+            .map(styp => styp.connector)[0];
 
         // Set up specification for Connector
         this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
         let specificationConnect: any = {
             "source": {
-                "connector": "tributary.connectors.sql:SqlConnector",
+                "connector": connector,
                 "specification": {
                     "drivername": driver,
                     "username": this.selectedDatasource.username,
