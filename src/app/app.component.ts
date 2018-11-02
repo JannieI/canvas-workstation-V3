@@ -123,7 +123,7 @@ export class LocalDataCachingTable implements IDataCachingTable {
     serverLastUpdatedDateTime: Date;
     serverExpiryDateTime: Date;
     serverLastWSsequenceNr: number;
-    serverUtl: string; 
+    serverUtl: string;
     localCacheable: boolean;
     localLastUpdatedDateTime: Date;
     localExpiryDateTime: Date;
@@ -748,7 +748,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                     this.companyName = this.globalVariableService.canvasSettings.companyName;
                     this.hasDashboard = true;
-                    
+
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID)
@@ -769,7 +769,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                                         });
                                     };
                                 });
-                                
+
                                 let dashboardIndex: number = this.globalVariableService
                                     .dashboards.findIndex(
                                         d => d.id == this.globalVariableService.
@@ -983,7 +983,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.showModalManageColours = false;
     }
-    
+
     handleCloseWidgetContainerStylesEdit() {
         // Handle close of ContainerStyles Edit form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainerStylesEdit', '@Start');
@@ -1255,10 +1255,10 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             let deleteWidget: Widget;
 
             for (var i = 0; i < this.currentWidgets.length; i++) {
-    
+
                 // Delete ALL the Shapes
                 if ( this.currentWidgets[i].widgetType == 'Shape') {
-    
+
                     this.deleteWidget('Shape', this.currentWidgets[i].id);
                 };
             };
@@ -2461,7 +2461,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             );
 
             console.warn('xx AFTER this.globalVariableService.actionUpsert filteredActions[0]', filteredActions[0]);
-            
+
             if (filteredActions[0].objectType == 'Widget') {
                 if (filteredActions[0].oldWidget == null) {
                     this.deleteWidget(null, filteredActions[0].newWidget.id);
@@ -2497,7 +2497,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     if (filteredActions[0].action == 'Delete') {
                         this.globalVariableService.addWidget(filteredActions[0].oldWidget);
                     console.warn('xx IN DELETE', filteredActions[0].oldWidget.id);
-                    
+
                     } else {
                         this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
                         console.warn('xx IN SAVE', filteredActions[0].oldWidget.id);
@@ -2512,7 +2512,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         } else {
             // Get highest DO id < (undoID - 1)
             console.warn('xx IN Else: undoID != null');
-            
+
             let lastUndoID: number = filteredActions[0].undoID;
             let undoActID: number = 1;
             let tempActionIDs: number[] = [];
@@ -2738,13 +2738,13 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     }
 
     clickMenuEditContainerStylesAdd() {
-        // Show popup to Add new Container Styles 
+        // Show popup to Add new Container Styles
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditContainerStylesAdd', '@Start');
 
         // Reset popup menu
         this.showWidgetContextMenu = false;
 
-        // TODO - Permissions could be added here, based on user role 
+        // TODO - Permissions could be added here, based on user role
 
         this.menuOptionClickPreAction();
 
@@ -2758,7 +2758,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Reset popup menu
         this.showWidgetContextMenu = false;
 
-        // TODO - Permissions could be added here, based on user role 
+        // TODO - Permissions could be added here, based on user role
 
         this.menuOptionClickPreAction();
 
@@ -2772,7 +2772,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Reset popup menu
         this.showWidgetContextMenu = false;
 
-        // TODO - Permissions could be added here, based on user role 
+        // TODO - Permissions could be added here, based on user role
 
         this.menuOptionClickPreAction();
 
@@ -5903,7 +5903,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         };
 
         this.menuOptionClickPreAction();
-        
+
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Shape') {
                 this.selectedWidget = w;
@@ -6200,7 +6200,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                     // Add to Action log
                     if (oldWidget != null) {
                         this.globalVariableService.actionUpsert(
@@ -6219,7 +6219,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             false
                         );
                     };
-    
+
                 });
 
                 // Refresh the Dashboard
@@ -6254,7 +6254,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                     // Add to Action log
                     if (oldWidget != null) {
                         this.globalVariableService.actionUpsert(
@@ -6273,7 +6273,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             false
                         );
                     };
-    
+
                 });
 
                 // Refresh the Dashboard
@@ -6307,7 +6307,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                     // Add to Action log
                     if (oldWidget != null) {
                         this.globalVariableService.actionUpsert(
@@ -6326,7 +6326,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             false
                         );
                     };
-    
+
                 });
 
                 // Refresh the Dashboard
@@ -6360,7 +6360,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                     // Add to Action log
                     if (oldWidget != null) {
                         this.globalVariableService.actionUpsert(
@@ -6379,7 +6379,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             false
                         );
                     };
-    
+
                 });
 
                 // Refresh the Dashboard
@@ -6417,10 +6417,10 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     this.currentWidgets[i].containerLeft = x;
                     newWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
                 };
-              
+
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                     // Add to Action log
                     if (oldWidget != null) {
                         this.globalVariableService.actionUpsert(
@@ -6478,7 +6478,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                     // Add to Action log
                     if (oldWidget != null) {
                         this.globalVariableService.actionUpsert(
@@ -6535,7 +6535,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                     // Add to Action log
                     if (oldWidget != null) {
                         this.globalVariableService.actionUpsert(
@@ -6591,7 +6591,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                     // Add to Action log
                     if (oldWidget != null) {
                         this.globalVariableService.actionUpsert(
@@ -6649,7 +6649,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                     // Add to Action log
                     if (oldWidget != null) {
                         this.globalVariableService.actionUpsert(
@@ -6707,7 +6707,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                     // Add to Action log
                     if (oldWidget != null) {
                         this.globalVariableService.actionUpsert(
@@ -6761,7 +6761,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
             // Save to DB
             this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                 // Add to Action log
                 if (oldWidget != null) {
                     this.globalVariableService.actionUpsert(
@@ -6813,7 +6813,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
             // Save to DB
             this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                 // Add to Action log
                 if (oldWidget != null) {
                     this.globalVariableService.actionUpsert(
@@ -6985,13 +6985,13 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     .position]));
             } else {
                 // selectedOnes[i].newLeft = selectedOnes[i].newLeft;
-                
+
             };
 
             // Save to DB
             this.globalVariableService.saveWidget(this.currentWidgets[selectedOnes[i
                 ].position]).then(res => {
-                    
+
                 // Add to Action log
                 if (oldWidget != null) {
                     this.globalVariableService.actionUpsert(
@@ -7108,7 +7108,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
             // Save to DB
             this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                 // Add to Action log
                 if (oldWidget != null) {
                     this.globalVariableService.actionUpsert(
@@ -7154,10 +7154,10 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
-                
+
                 if (x == -1) {
                     x = this.currentWidgets[i].containerWidth;
-                    y = this.currentWidgets[i].containerHeight;                    
+                    y = this.currentWidgets[i].containerHeight;
                 } else {
                     oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
 
@@ -7179,7 +7179,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                     // Save to DB
                     this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                         // Add to Action log
                         if (oldWidget != null) {
                             this.globalVariableService.actionUpsert(
@@ -7198,7 +7198,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                                 false
                             );
                         };
-        
+
                     });
                 };
             };
@@ -7245,7 +7245,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                     // Save to DB
                     this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                         // Add to Action log
                         if (oldWidget != null) {
                             this.globalVariableService.actionUpsert(
@@ -7264,7 +7264,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                                 false
                             );
                         };
-        
+
                     });
                 };
             };
@@ -7310,7 +7310,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                     // Save to DB
                     this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
-                    
+
                         // Add to Action log
                         if (oldWidget != null) {
                             this.globalVariableService.actionUpsert(
@@ -7329,7 +7329,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                                 false
                             );
                         };
-        
+
                     });
                 };
             };
@@ -8196,7 +8196,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         // Delete from DB and Filter local Array
         this.globalVariableService.deleteWidgetLayout(widgetLayoutID, localDashboardID)
-            .then(res => 
+            .then(res =>
                 {
                     this.widgetLayouts = this.widgetLayouts.
                         filter(wl => wl.id != widgetLayoutID);
@@ -8716,7 +8716,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     // );
 
                     let oldWidget: Widget = JSON.parse(JSON.stringify(w));
-                     
+
                     // Move the container
                     w.containerLeft = w.containerLeft - this.startX + this.endX;
                     w.containerTop =  w.containerTop - this.startY + this.endY;
@@ -8951,11 +8951,11 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         };
 
         // Calc the graph dimensions
-        this.currentWidgets[index].graphHeight =
-        this.globalVariableService.calcGraphHeight(this.currentWidgets[index]);
+        // this.currentWidgets[index].graphHeight =
+        // this.globalVariableService.calcGraphHeight(this.currentWidgets[index]);
 
-        this.currentWidgets[index].graphWidth =
-        this.globalVariableService.calcGraphWidth(this.currentWidgets[index]);
+        // this.currentWidgets[index].graphWidth =
+        // this.globalVariableService.calcGraphWidth(this.currentWidgets[index]);
 
         // Add to Action log
         this.globalVariableService.actionUpsert(
@@ -9122,7 +9122,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                             // TODO - decide if this must stay or go; inherit original or not ??
                             // wc.widgetSpec.containerBackgroundcolor = w.containerBackgroundcolor
-                            // wc.widgetSpec.containerBackgroundcolorName = w.containerBackgroundcolorName;                            
+                            // wc.widgetSpec.containerBackgroundcolorName = w.containerBackgroundcolorName;
                             // wc.widgetSpec.containerBorder = w.containerBorder
                             // wc.widgetSpec.containerBorderRadius = w.containerBorderRadius
                             // wc.widgetSpec.containerBoxshadow = w.containerBoxshadow
@@ -9331,7 +9331,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 null,
                 deleteWidget,
                 null
-            );            
+            );
         });
 
         // Filter the data in the dSets to which the Sl points.
