@@ -22,9 +22,9 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
-                                    Canvas has a built in set of colours.  Use this form to 
+                                    Canvas has a built in set of colours.  Use this form to
                                     specify what colours are available.  These can be used to
-                                    define any colour property in Canvas, like background or 
+                                    define any colour property in Canvas, like background or
                                     line colour.
                                     Click the X or press Escape to close this form.
                                 </p>
@@ -58,6 +58,11 @@
                             [style.color]="!newCodeVar.valid ? 'red' : 'gray'"
                             placeholder="Enter new HEX colour code with #, ie #000000"
                             >
+                    </div>
+
+                    <div class="gridColourBlock"
+                        [style.background-color]="newColorCode"
+                        >
                     </div>
 
                     <div class="gridButtonAdd">

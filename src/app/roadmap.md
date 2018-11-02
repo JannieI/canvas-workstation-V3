@@ -1418,6 +1418,10 @@ This document describes items for later versions of Canvas.
         - get setting for labels = null -> does not show
 
 
+    - Colour Editor / Manage Colours:
+    --------------------------------
+        - after ADD, the colour goes to right hand side.  It seems okay - means not part of the original colours.  What are the downsides to this?
+
 
 
 

@@ -48,6 +48,15 @@
         grid-row-start: 3;
         grid-row-end: 4;
     }
+    .gridColourBlock {
+        border: 1px solid gray;
+        grid-column-start: 12;
+        /* autoprefixer: off */
+        grid-column-end: 13;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+
     .gridButtonAdd {
         grid-column-start: 13;
         /* autoprefixer: off */
