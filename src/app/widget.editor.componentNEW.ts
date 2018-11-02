@@ -230,7 +230,7 @@ export interface dataSchemaInterface {
     graphHistoryPosition: number = 0;
 
     graphLayers: number[] = [];  // Layers to display with *ngFor - see   Note 14   above
-    hasTemporaryCalcChanges: boolean = false;
+    hasCalculationsOrFilters: boolean = false;
     isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
     isDragoverYField: boolean = false;
@@ -1160,6 +1160,13 @@ export interface dataSchemaInterface {
             // Switch if Complex graph in Lite mode
             if (this.localWidget.graphLayerFacet != 'Single'  &&  this.showWidgetEditorLite) {
                 this.showWidgetEditorLite = false;
+            };
+
+            // Indicate calulations and filters present
+            if (this.localWidget.graphCalculations.length > 0  
+                ||  
+                this.localWidget.graphFilters.length > 0) {
+                    this.hasCalculationsOrFilters = true;
             };
         }
 
@@ -2777,9 +2784,9 @@ export interface dataSchemaInterface {
         this.currentData = null;
 
         // Warn user
-        if (!this.newWidget  &&  this.hasTemporaryCalcChanges  
+        if (!this.newWidget  &&  this.hasCalculationsOrFilters  
             && this.globalVariableService.previousGraphEditDSID != datasourceID) {
-            this.errorMessage = 'Warning: if you click Continue, calculated fields on this Graph will be lost!';
+            this.errorMessage = 'Warning: if you click Continue, calculated fields and filters of this graph will be lost!';
         } else {
             this.errorMessage = '';
         };
@@ -2881,6 +2888,9 @@ export interface dataSchemaInterface {
 
         // Reset
         if (this.globalVariableService.previousGraphEditDSID != this.selectedRowID) {
+
+            // Reset
+            this.hasCalculationsOrFilters = false;
             this.localWidget.graphCalculations = [];
             this.localWidget.graphFilters = [];
 
@@ -4042,7 +4052,7 @@ export interface dataSchemaInterface {
         };
 
         // Set flag for temporary Calcs
-        this.hasTemporaryCalcChanges = true;
+        this.hasCalculationsOrFilters = true;
 
     }
 
