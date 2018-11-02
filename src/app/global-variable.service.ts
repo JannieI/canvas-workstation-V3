@@ -12680,7 +12680,7 @@ console.warn('xx ds perm', dp);
             // this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/',
 
 
-            this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/jwt-create/',
+            this.http.post<Token>(this.ENVCanvasEZALServerUrl + 'accounts/jwt-create/',
                 {username, password}).subscribe(token => {
 
                 // Store locally
@@ -12703,7 +12703,7 @@ console.warn('xx ds perm', dp);
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
         };
 
-        let pathUrl: string = 'https://eazl-rest.xyz/eazl/canvas/enqueue/';
+        let pathUrl: string = this.ENVCanvasEZALServerUrl + 'canvas/enqueue/';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboards.json';
 
@@ -12745,7 +12745,7 @@ console.warn('xx ds perm', dp);
                 {graphQLquery});
         };
 
-        let pathUrl: string = 'https://eazl-rest.xyz/eazl/accounts/graphql/';
+        let pathUrl: string = this.ENVCanvasEZALServerUrl + 'accounts/graphql/';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboards.json';
 
@@ -12786,7 +12786,7 @@ console.warn('xx ds perm', dp);
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
         };
 
-        let pathUrl: string = 'https://eazl-rest.xyz/eazl/canvas/inspect/';
+        let pathUrl: string = this.ENVCanvasEZALServerUrl + 'canvas/inspect/';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboards.json';
 
