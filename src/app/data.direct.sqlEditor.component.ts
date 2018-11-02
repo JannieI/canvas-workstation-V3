@@ -179,7 +179,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                     "port": +this.selectedDatasource.port,
                     "username": this.selectedDatasource.username,
                     "password": this.selectedDatasource.password,
-                    "database": this.selectedDatasource.databaseName,
+                    "database": this.selectedDatasource.databaseName
                 }
             }
         };

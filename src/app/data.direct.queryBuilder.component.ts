@@ -208,7 +208,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                     "port": +this.selectedDatasource.port,
                     "username": this.selectedDatasource.username,
                     "password": this.selectedDatasource.password,
-                    "database": this.selectedDatasource.databaseName,
+                    "database": this.selectedDatasource.databaseName
                 }
             }
         };
@@ -388,12 +388,13 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             "source": {
                 "connector": "tributary.connectors.sql:SqlConnector",
                 "specification": {
-                    "drivername": "postgresql",
+                    "drivername": driver,
                     "host": this.selectedDatasource.serverName,         // "postgres",
                     "port": +this.selectedDatasource.port,              // 5000,
                     "username": this.selectedDatasource.username,       // "postgres",
                     "password":  this.selectedDatasource.password,      //"postgres",
                     "database": this.selectedDatasource.databaseName,   //"data"
+                    "query": this.selectedDatasource.dataSQLStatement
                 }
             }
         };

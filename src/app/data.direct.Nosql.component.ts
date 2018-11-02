@@ -88,8 +88,8 @@ export class DataDirectNoSQLComponent implements OnInit {
                 subType: '',
                 typeVersion: '',
                 name: '',
-                username: '',
-                password: '',
+                username: 'mongodb',
+                password: 'pass',
                 description: '',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,
@@ -125,10 +125,10 @@ export class DataDirectNoSQLComponent implements OnInit {
                 connectionID: 0,
                 dataTableID: 0,
                 nrWidgets: 0,
-                databaseName: '',
-                port: '',
+                databaseName: 'data',
+                port: '27017',
                 serverType: 'Mongo',
-                serverName: '',
+                serverName: 'mongodb',
                 dataTableName: '',
                 dataSQLStatement: '',
                 dataNoSQLStatement: 'db.bios.find( { _id: 5 } )',
@@ -161,19 +161,29 @@ export class DataDirectNoSQLComponent implements OnInit {
             .map(styp => styp.driverName)[0];
 
         // TODO - At moment, Mongo does not have an Inspector
+        // let specificationInspect: any = {
+        //     "source": {
+        //         "inspector": "tributary.inspectors.mongodb:MongoDBInspector",
+        //         "specification": {
+        //             "username": this.selectedDatasource.username,
+        //             "password": this.selectedDatasource.password,
+        //             "database": this.selectedDatasource.databaseName,
+        //             "host": this.selectedDatasource.serverName,
+        //             "port": +this.selectedDatasource.port
+        //         }
+        //     }
+        // };
         let specificationInspect: any = {
             "source": {
-                "inspector": "tributary.inspectors.sql:SqlInspector",
+                "inspector": "tributary.inspectors.mongodb:MongoDBInspector",
                 "specification": {
-                    "collection": '',
-                    "username": this.selectedDatasource.username,
-                    "password": this.selectedDatasource.password,
                     "database": this.selectedDatasource.databaseName,
                     "host": this.selectedDatasource.serverName,
                     "port": +this.selectedDatasource.port
                 }
             }
         };
+
         // Call Tributary
         this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
             console.warn('xx res I', res)
@@ -182,9 +192,9 @@ export class DataDirectNoSQLComponent implements OnInit {
             this.selectedDatasource.dataNoSQLStatement = this.selectedDatasource.dataNoSQLStatement.trim();
             let specificationConnect: any = {
                 "source": {
-                    "connector": "tributary.connectors.sql:SqlConnector",
+                    "connector": "tributary.connectors.mongodb:MongoDBConnector",
                     "specification": {
-                        "collection": '',
+                        "collection": 'cars',
                         "username": this.selectedDatasource.username,
                         "password": this.selectedDatasource.password,
                         "database": this.selectedDatasource.databaseName,
