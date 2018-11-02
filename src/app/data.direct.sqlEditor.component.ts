@@ -184,8 +184,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
             }
         };
 
-
-
         // Call Tributary Inspector
         this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
 

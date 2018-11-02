@@ -191,11 +191,11 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         //         "inspector": "tributary.inspectors.sql:SqlInspector",
         //         "specification": {
         //             "drivername": "postgresql",
-        //             "username": "ftfhgfzh",
-        //             "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
-        //             "database": "ftfhgfzh",
-        //             "host": "pellefant.db.elephantsql.com",
-        //             "port": 5432
+        //             "host": "postgres",
+        //             "port": 5000,
+        //             "username": "postgres",
+        //             "password": "postgres",
+        //             "database": "data"
         //         }
         //     }
         // };
@@ -204,15 +204,14 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 "inspector": "tributary.inspectors.sql:SqlInspector",
                 "specification": {
                     "drivername": "postgresql",
-                    "host": "postgres",
-                    "port": 5000,
-                    "username": "postgres",
-                    "password": "postgres",
-                    "database": "data"
+                    "host": this.selectedDatasource.serverName,
+                    "port": +this.selectedDatasource.port,
+                    "username": this.selectedDatasource.username,
+                    "password": this.selectedDatasource.password,
+                    "database": this.selectedDatasource.databaseName,
                 }
             }
         };
-
 
         this.globalVariableService.getTributaryInspect(specificationInspect)
             .then(res => {
