@@ -1160,8 +1160,8 @@ export interface dataSchemaInterface {
             };
 
             // Indicate calulations and filters present
-            if (this.localWidget.graphCalculations.length > 0  
-                ||  
+            if (this.localWidget.graphCalculations.length > 0
+                ||
                 this.localWidget.graphFilters.length > 0) {
                     this.hasCalculationsOrFilters = true;
             };
@@ -2781,7 +2781,7 @@ export interface dataSchemaInterface {
         this.currentData = null;
 
         // Warn user
-        if (!this.newWidget  &&  this.hasCalculationsOrFilters  
+        if (!this.newWidget  &&  this.hasCalculationsOrFilters
             && this.globalVariableService.previousGraphEditDSID != datasourceID) {
             this.errorMessage = 'Warning: if you click Continue, calculated fields and filters of this graph will be lost!';
         } else {
