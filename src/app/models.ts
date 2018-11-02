@@ -1292,6 +1292,7 @@ export class Widget {
     graphHasSignals: boolean;
     graphFillColor: string;
     graphHoverColor: string;
+    graphPanAndZoom: boolean;           // True if selection = grid, with pan and zoom
     graphSpecification: any;
     graphDescription: string;
 

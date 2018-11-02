@@ -570,6 +570,7 @@ const widgetTemplate: Widget =
         "graphHasSignals": false,
         "graphFillColor": "",
         "graphHoverColor": "",
+        "graphPanAndZoom": false,
         "graphSpecification": "",
         "graphDescription": "",
 
