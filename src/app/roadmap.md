@@ -1319,8 +1319,10 @@ This document describes items for later versions of Canvas.
     --------------------
     - General
         - look at use case: do we need a little pic / icon next to each bar (title, x, etc) to make it easier to recognise?
+        - save config / style of stuff, say Title, X, etc so that graphs can look and feel the same.
 
-
+    - Title
+        - can save and re-use style, ie graphs for Finance will then all look the same
     - Pan & Zoom:
         - how!?
 
