@@ -135,7 +135,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.clickExplore();
         };
 
-        console.warn('xx dates', 
+        console.warn('xx dates',
     this.globalVariableService.dateDiff(new Date(), new Date('2018-08-09'), 'day'))
     }
 
@@ -155,7 +155,10 @@ export class DataDirectSQLEditorComponent implements OnInit {
         let driver: string = this.serverTypes
             .filter(styp => styp.serverType == this.selectedDatasource.serverType)
             .map(styp => styp.driverName)[0];
-        
+        let inpector: string = this.serverTypes
+            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+            .map(styp => styp.inspector)[0];
+            
         // let specificationInspect: any = {
         //     "source": {
         //         "inspector": "tributary.inspectors.sql:SqlInspector",
@@ -172,9 +175,9 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
         let specificationInspect: any = {
             "source": {
-                "inspector": "tributary.inspectors.sql:SqlInspector",
+                "inspector": inpector, // "tributary.inspectors.sql:SqlInspector",
                 "specification": {
-                    "drivername": "postgresql",
+                    "drivername": driver,  //"postgresql",
                     "host": this.selectedDatasource.serverName,
                     "port": +this.selectedDatasource.port,
                     "username": this.selectedDatasource.username,

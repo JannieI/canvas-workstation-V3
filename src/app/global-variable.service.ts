@@ -934,6 +934,7 @@ export class GlobalVariableService {
         {
             serverType: 'MySQL',
             driverName: 'mysql',
+            inspector: 'tributary.inspectors.sql:SqlInspector',
             connector: 'tributary.connectors.sql:SqlConnector',
             editedBy: '',
             editedOn: null,
@@ -944,6 +945,7 @@ export class GlobalVariableService {
         {
             serverType: 'PostgresSQL',
             driverName: 'postgresql',
+            inspector: 'tributary.inspectors.sql:SqlInspector',
             connector: 'tributary.connectors.sql:SqlConnector',
             editedBy: '',
             editedOn: null,
@@ -954,6 +956,7 @@ export class GlobalVariableService {
         {
             serverType:'Microsoft SQL',
             driverName: 'mssql',    // "mssql+pyodbc", "mssql+pymssql"
+            inspector: 'tributary.inspectors.sql:SqlInspector',
             connector: 'tributary.connectors.sql:SqlConnector',
             editedBy: '',
             editedOn: null,
@@ -964,6 +967,7 @@ export class GlobalVariableService {
         {
             serverType:'SQLite',
             driverName: 'sqlite',
+            inspector: 'tributary.inspectors.sql:SqlInspector',
             connector: 'tributary.connectors.sql:SqlConnector',
             editedBy: '',
             editedOn: null,
@@ -974,7 +978,19 @@ export class GlobalVariableService {
         {
             serverType:'Oracle',
             driverName: 'oracle',
+            inspector: 'tributary.inspectors.sql:SqlInspector',
             connector: 'tributary.connectors.sql:SqlConnector',
+            editedBy: '',
+            editedOn: null,
+            createdBy: '',
+            createdOn: null
+
+        },
+        {
+            serverType:'Mongo',
+            driverName: 'mongo',
+            inspector: 'tributary.inspectors.mongodb:MongoDBInspector',
+            connector: 'tributary.connectors.mongodb:MongoDBConnector',
             editedBy: '',
             editedOn: null,
             createdBy: '',
@@ -11235,7 +11251,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
         // Selection
         if (widget.graphPanAndZoom) {
-            specification['selection'] = 
+            specification['selection'] =
                 {
                     "grid": {
                     "type": "interval", "bind": "scales"
@@ -11650,13 +11666,13 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             if (widget.graphLayers[currentGraphLayer].graphMark == 'text') {
                 if (widget.graphLayers[currentGraphLayer].graphXfield != '') {
                     specificationInner['encoding']['text'] = {
-                        "field": widget.graphLayers[currentGraphLayer].graphXfield, 
+                        "field": widget.graphLayers[currentGraphLayer].graphXfield,
                         "type": widget.graphLayers[currentGraphLayer].graphXtype.toLowerCase(),
                         "aggregate": widget.graphLayers[currentGraphLayer].graphXaggregate,
                         "align": "left",
                         "baseline": "middle",
                         "dx": 3
-                    };        
+                    };
                 };
             };
 
