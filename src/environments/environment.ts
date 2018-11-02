@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   
-  ENVCanvasEZALServerUrl: "eazl",
+  ENVCanvasEazlServerUrl: "eazl",
   ENVCanvasDatabaseUseLocal: true,
   ENVCanvasDatabaseServerUrl: "canvasServer",
   ENVCanvasDatabaseLocalUrlS1: "http://localhost:3001/",

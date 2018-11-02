@@ -1076,7 +1076,7 @@ export class GlobalVariableService {
     selectedWidgetIDs: number[] = [];
 
     // Session
-    ENVCanvasEZALServerUrl: string = environment.ENVCanvasEZALServerUrl;
+    ENVCanvasEZALServerUrl: string = environment.ENVCanvasEazlServerUrl;
     ENVCanvasDatabaseUseLocal: boolean = environment.ENVCanvasDatabaseUseLocal;
     ENVCanvasDatabaseServerUrl: string = environment.ENVCanvasDatabaseServerUrl;
     ENVCanvasDatabaseLocalUrlS1: string = environment.ENVCanvasDatabaseLocalUrlS1;
