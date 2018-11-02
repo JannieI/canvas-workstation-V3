@@ -230,6 +230,7 @@ export interface dataSchemaInterface {
     graphHistoryPosition: number = 0;
 
     graphLayers: number[] = [];  // Layers to display with *ngFor - see   Note 14   above
+    hasTemporaryCalcChanges: boolean = false;
     isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
     isDragoverYField: boolean = false;
@@ -2776,7 +2777,8 @@ export interface dataSchemaInterface {
         this.currentData = null;
 
         // Warn user
-        if (!this.newWidget  &&  this.globalVariableService.previousGraphEditDSID != datasourceID) {
+        if (!this.newWidget  &&  this.hasTemporaryCalcChanges  
+            && this.globalVariableService.previousGraphEditDSID != datasourceID) {
             this.errorMessage = 'Warning: if you click Continue, calculated fields on this Graph will be lost!';
         } else {
             this.errorMessage = '';
@@ -4038,6 +4040,9 @@ export interface dataSchemaInterface {
         } else {
             this.localWidget.graphCalculations.push(graphCalculation);
         };
+
+        // Set flag for temporary Calcs
+        this.hasTemporaryCalcChanges = true;
 
     }
 
