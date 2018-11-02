@@ -12704,7 +12704,6 @@ console.warn('xx ds perm', dp);
         };
 
         let pathUrl: string = this.ENVCanvasEZALServerUrl + 'canvas/enqueue/';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
