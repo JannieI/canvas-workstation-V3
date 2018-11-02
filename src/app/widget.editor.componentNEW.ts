@@ -1076,9 +1076,6 @@ export interface dataSchemaInterface {
             if (this.localWidget.graphWidth == null) {
                 this.localWidget.graphWidth = 240;
             };
-            if (this.localWidget.graphDimensionTop == null) {
-                this.localWidget.graphDimensionTop = 35;
-            };
             if (this.localWidget.graphDimensionRight == null) {
                 this.localWidget.graphDimensionRight = 140;
             };
