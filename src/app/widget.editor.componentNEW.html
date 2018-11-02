@@ -100,8 +100,8 @@
                                 {{ col.name }}
                                 <clr-signpost>
                                     <clr-icon shape="info-circle"
-                                              size="12" 
-                                              class="is-solid has-badge-info" 
+                                              size="12"
+                                              class="is-solid has-badge-info"
                                               clrSignpostTrigger
                                               >
                                     </clr-icon>
@@ -110,7 +110,7 @@
                                         <div>
                                             Type: {{ col.typeName}}
                                         </div>
-                                        <div>                                            
+                                        <div>
                                             Length: {{ col.length }}
                                         </div>
                                         <div>
@@ -120,22 +120,7 @@
                                             Calculation: {{ col.calculatedExpression }}
                                         </div>
                                     </clr-signpost-content>
-                                </clr-signpost>                                
-                                <!-- <clr-signpost>
-                                    <clr-icon shape="info-circle"
-                                        clrSignpostTrigger>
-                                    </clr-icon>
-                                    <clr-signpost-content *clrIfOpen
-                                        [clrPosition]="'bottom-middle'">
-                                        <p style="margin-top: 0; color:gray;">
-                                            <b>Help for {{ row.name }}:</b> 
-                                        </p>
-                                        <p>
-                                            Fields: {{ nrRows }}
-                                        </p>
-                                    </clr-signpost-content>
-                                </clr-signpost> -->
-
+                                </clr-signpost>
                             </clr-dg-column>
                             <clr-dg-row *ngFor="let row of currentData">
 

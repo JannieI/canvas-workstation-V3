@@ -28,9 +28,6 @@ import { GlobalVariableService }      from './global-variable.service';
 import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
-import { UserPaletteButtonBarComponent } from './user.palette.buttonbar.component';
-import { iterateListLike } from '@angular/core/src/change_detection/change_detection_util';
-import { warn } from 'vega-lite/build/src/log';
 
 const graphHeight: number = 260;
 const graphWidth: number = 372;
@@ -2781,6 +2778,8 @@ export interface dataSchemaInterface {
         // Warn user
         if (!this.newWidget  &&  this.globalVariableService.previousGraphEditDSID != datasourceID) {
             this.errorMessage = 'Warning: if you click Continue, calculated fields on this Graph will be lost!';
+        } else {
+            this.errorMessage = '';
         };
 
         // Clear previous selected fields
@@ -2811,8 +2810,8 @@ export interface dataSchemaInterface {
         );
         if (dataSetIndex >= 0) {
 
-            // // Load local arrays for ngFor
-            // this.constructDataSchema(arrayIndex);
+            // Load local arrays for ngFor - this is required for the Preview
+            this.constructDataSchema(arrayIndex);
 
             // Load first few rows into preview
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
@@ -2830,8 +2829,8 @@ export interface dataSchemaInterface {
         // Add DS to current DS (no action if already there)
         this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
 
-            // // Load local arrays for ngFor
-            // this.constructDataSchema(arrayIndex);
+            // Load local arrays for ngFor - this is required for the Preview
+            this.constructDataSchema(arrayIndex);
 
             // Determine if data obtains in Glob Var
             dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
