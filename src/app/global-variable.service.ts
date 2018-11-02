@@ -562,7 +562,6 @@ const widgetTemplate: Widget =
         "graphLeft": 1,
         "graphTop": 1,
         "graphWidth": 240,
-        "graphDimensionTop": 35,
         "graphDimensionRight": 140,
         "graphDimensionLeft": 80,
         "graphDimensionBottom": 70,

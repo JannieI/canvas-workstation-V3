@@ -1284,7 +1284,6 @@ export class Widget {
     graphLeft: number;                  // in px
     graphTop: number;                   // in px
     graphWidth: number;                 // in px
-    graphDimensionTop: number;          // Space for title in px (adds to height of total area)
     graphDimensionRight: number;        // Space for legend in px (adds to width)
     graphDimensionLeft: number;         // Space for x axis in px
     graphDimensionBottom: number;       // Space for y axis in px
@@ -1292,7 +1291,7 @@ export class Widget {
     graphHasSignals: boolean;
     graphFillColor: string;
     graphHoverColor: string;
-    graphPanAndZoom: boolean;           // True if selection = grid, with pan and zoom
+    graphPanAndZoom: boolean;           // True if selection = grid, with pan and zoom.  Only applies to single layer graphs
     graphSpecification: any;
     graphDescription: string;
 
