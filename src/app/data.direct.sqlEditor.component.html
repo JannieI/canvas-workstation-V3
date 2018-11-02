@@ -181,6 +181,13 @@
                         >SELECT "InvoiceDate", "BillingCity" FROM invoices
                     </textarea>
 
+                    <div class="gridSQLParametersTitle">
+                        <b>SQL Parameters</b>
+                    </div>
+                    <div class="gridSQLParameters">
+                        Params for SQL
+                    </div>
+
                     <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                         {{ errorMessage }}
                     </div>

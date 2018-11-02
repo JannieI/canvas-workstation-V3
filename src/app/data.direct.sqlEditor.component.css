@@ -251,13 +251,37 @@
     .gridSQLTextTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 8;
+        grid-column-end: 3;
         grid-row-start: 13;
         grid-row-end: 14;
+        margin-top: -2px;
         height: 100%;
         width: 100%;
     }
     .gridSQLText {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 8;
+        grid-row-start: 14;
+        grid-row-end: 25;
+        height: 100%;
+        overflow-y: scroll;
+        width: 100%;
+    }
+
+    .gridSQLParametersTitle {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 6;
+        grid-row-start: 13;
+        grid-row-end: 14;
+        margin-top: -2px;
+        height: 100%;
+        width: 100%;
+    }
+    .gridSQLParameters {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
@@ -284,7 +308,7 @@
     .gridButtonExport {
         grid-column-start: 2;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 25;
         grid-row-end: 26;
         text-align: left;
