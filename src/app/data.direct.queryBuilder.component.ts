@@ -186,19 +186,33 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         let localSelectedTableRowIndex = this.selectedTableRowIndex;
 
         // Build Spec
+        // let specificationInspect: any = {
+        //     "source": {
+        //         "inspector": "tributary.inspectors.sql:SqlInspector",
+        //         "specification": {
+        //             "drivername": "postgresql",
+        //             "username": "ftfhgfzh",
+        //             "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
+        //             "database": "ftfhgfzh",
+        //             "host": "pellefant.db.elephantsql.com",
+        //             "port": 5432
+        //         }
+        //     }
+        // };
         let specificationInspect: any = {
             "source": {
                 "inspector": "tributary.inspectors.sql:SqlInspector",
                 "specification": {
                     "drivername": "postgresql",
-                    "username": "ftfhgfzh",
-                    "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
-                    "database": "ftfhgfzh",
-                    "host": "pellefant.db.elephantsql.com",
-                    "port": 5432
+                    "host": "postgres",
+                    "port": 5000,
+                    "username": "postgres",
+                    "password": "postgres",
+                    "database": "data"
                 }
             }
         };
+
 
         this.globalVariableService.getTributaryInspect(specificationInspect)
             .then(res => {
@@ -357,17 +371,30 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         console.warn('xx',this.selectedDatasource.dataSQLStatement)
 
         // Build source string
+        // let specificationConnect: any = {
+        //     "source": {
+        //         "connector": "tributary.connectors.sql:SqlConnector",
+        //         "specification": {
+        //             "drivername": driver,
+        //             "username": this.selectedDatasource.username,
+        //             "password": this.selectedDatasource.password,
+        //             "database": this.selectedDatasource.databaseName,
+        //             "host": this.selectedDatasource.serverName,
+        //             "port": +this.selectedDatasource.port,
+        //             "query": this.selectedDatasource.dataSQLStatement
+        //         }
+        //     }
+        // };
         let specificationConnect: any = {
             "source": {
                 "connector": "tributary.connectors.sql:SqlConnector",
                 "specification": {
-                    "drivername": driver,
-                    "username": this.selectedDatasource.username,
-                    "password": this.selectedDatasource.password,
-                    "database": this.selectedDatasource.databaseName,
-                    "host": this.selectedDatasource.serverName,
-                    "port": +this.selectedDatasource.port,
-                    "query": this.selectedDatasource.dataSQLStatement
+                    "drivername": "postgresql",
+                    "host": this.selectedDatasource.serverName,         // "postgres",
+                    "port": +this.selectedDatasource.port,              // 5000,
+                    "username": this.selectedDatasource.username,       // "postgres",
+                    "password":  this.selectedDatasource.password,      //"postgres",
+                    "database": this.selectedDatasource.databaseName,   //"data"
                 }
             }
         };
