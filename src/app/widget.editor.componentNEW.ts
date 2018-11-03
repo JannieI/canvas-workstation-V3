@@ -199,9 +199,13 @@ export interface dataSchemaInterface {
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
     conditionErrorMessage = '';
+    conditionFieldName: string = '';
+    conditionOperator: string = '';
+    conditionValue: string = '';
+    conditionValueFrom: string = '';
+    conditionValueTo: string = '';
     currentData: any = [];
     currentGraphID: number = -1;
-
     currentGraphLayer: number = 1;              // Current layer being defined
     // Note 14: this number is the LAYER as seen by the UserPaletteButtonBarComponent.  The Arrays are
     // however base 0.  So, take care in making changes to iterateListLike.
@@ -3689,23 +3693,6 @@ export interface dataSchemaInterface {
         this.selectedGraphFilterRowIndex = -1;
     }
 
-    clickConditionDelete() {
-        // Clear the Condition fields
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionDelete', '@Start');
-
-        // Reset
-        this.errorMessageEditor = '';
-
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName = '';
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionOperator = '';
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValue = '';
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValueFrom = '';
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValueTo = '';
-
-        // Unselect the highlighted row
-        this.selectedGraphFilterRowIndex = -1;
-    }
-
     dblClickFilterMakeInActive(filterID: number) {
         // Make selected Filter inActive
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFilterMakeInActive', '@Start');
@@ -3864,104 +3851,66 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionAdd', '@Start');
 
         // Reset
-        this.filterErrorMessage = '';
+        this.conditionErrorMessage = '';
 
         // Get field type.tolower()
-        let fieldTypeLower: string = this.getFieldType(this.filterFieldName).toLowerCase();
+        let fieldTypeLower: string = this.getFieldType(this.conditionFieldName).toLowerCase();
 
         // Validation
-        if (this.filterFieldName == ''  ||  this.filterFieldName == undefined) {
-            this.filterErrorMessage = 'Filter field is required.';
+        if (this.conditionFieldName == ''  ||  this.conditionFieldName == undefined) {
+            this.conditionErrorMessage = 'Condition field is required.';
             return;
         };
-        if (this.filterOperator == ''  ||  this.filterOperator == undefined) {
-            this.filterErrorMessage = 'Filter Operator is required.';
+        if (this.conditionOperator == ''  ||  this.conditionOperator == undefined) {
+            this.conditionErrorMessage = 'Condition Operator is required.';
             return;
         };
-        if (this.filterOperator != 'Valid'  &&  this.filterOperator != 'Range') {
-            if (this.filterValue == ''  ||  this.filterValue == undefined) {
-                this.filterErrorMessage = 'Filter Value is required.';
+        if (this.conditionOperator != 'Valid'  &&  this.conditionOperator != 'Range') {
+            if (this.conditionValue == ''  ||  this.conditionValue == undefined) {
+                this.conditionErrorMessage = 'Condition Value is required.';
                 return;
             };
         };
-        if (this.filterOperator == 'Range') {
-            if (this.filterValueFrom == ''  ||  this.filterValueFrom == undefined) {
-                this.filterErrorMessage = 'Filter From Value is required.';
+        if (this.conditionOperator == 'Range') {
+            if (this.conditionValueFrom == ''  ||  this.conditionValueFrom == undefined) {
+                this.conditionErrorMessage = 'Condition From Value is required.';
                 return;
             };
-            if (this.filterValueTo == ''  ||  this.filterValueTo == undefined) {
-                this.filterErrorMessage = 'Filter To Value is required.';
+            if (this.conditionValueTo == ''  ||  this.conditionValueTo == undefined) {
+                this.conditionErrorMessage = 'Condition To Value is required.';
                 return;
             };
         };
-        if (this.filterOperator == 'Range'
+        if (this.conditionOperator == 'Range'
             &&
             fieldTypeLower != 'number') {
-            this.filterErrorMessage = 'Range only applies to Numbers.';
+            this.conditionErrorMessage = 'Range only applies to Numbers.';
             return;
         };
-        if (this.filterOperator == 'Valid'
+        if (this.conditionOperator == 'Valid'
             &&
             fieldTypeLower != 'number') {
-            this.filterErrorMessage = 'Valid only applies to Numbers.';
+            this.conditionErrorMessage = 'Valid only applies to Numbers.';
             return;
         };
-        if (this.filterOperator == 'One Of'
+        if (this.conditionOperator == 'One Of'
             &&
             fieldTypeLower != 'string') {
-            this.filterErrorMessage = 'One Of only applies to Strings.';
+            this.conditionErrorMessage = 'One Of only applies to Strings.';
             return;
         };
 
-        // Create the filter spec with Max ID
-        if (this.localWidget.graphFilters == null) {
-            this.localWidget.graphFilters = [];
-            this.filterNrActive = 0;
-        };
-        if (this.filterID == -1) {
-
-            let graphFilterID: number = 0;
-            this.localWidget.graphFilters.forEach(gflt => {
-                if(gflt.id > graphFilterID) {
-                    graphFilterID = gflt.id;
-                };
-                graphFilterID = graphFilterID + 1;
-            });
-            this.filterID = graphFilterID;
-
-            let graphFilter: GraphFilter = {
-                id: this.filterID,
-                sequence: 0,        // For LATER use
-                filterFieldName: this.filterFieldName,
-                filterOperator: this.filterOperator,
-                filterTimeUnit: this.filterTimeUnit,
-                filterValue: this.filterValue,
-                filterValueFrom: this.filterValueFrom,
-                filterValueTo: this.filterValueTo,
-                isActive: true
-            };
-
-            // Update the localWidget
-            this.localWidget.graphFilters.push(graphFilter);
-        } else {
-            let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
-                gflt.id == this.filterID);
-            if (gridFilterIndex >= 0) {
-                this.localWidget.graphFilters[gridFilterIndex].filterFieldName =
-                    this.filterFieldName;
-                this.localWidget.graphFilters[gridFilterIndex].filterOperator =
-                    this.filterOperator;
-                this.localWidget.graphFilters[gridFilterIndex].filterTimeUnit =
-                    this.filterTimeUnit;
-                this.localWidget.graphFilters[gridFilterIndex].filterValue =
-                    this.filterValue;
-                this.localWidget.graphFilters[gridFilterIndex].filterValueFrom =
-                    this.filterValueFrom;
-                this.localWidget.graphFilters[gridFilterIndex].filterValueTo =
-                    this.filterValueTo;
-            };
-
-        };
+        // Create the condition spec
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName =
+            this.conditionFieldName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionOperator =
+            this.conditionOperator;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValue =
+            this.conditionValue;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValueFrom =
+            this.conditionValueFrom;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValueTo =
+            this.conditionValueTo;
 
         // Clear out form
         this.clickFilterClear()
