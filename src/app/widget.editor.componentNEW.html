@@ -3657,9 +3657,9 @@
                                 title="Select the field for conditional colour"
                                 >
                                 <select id="selects_3" *ngIf="dataSchema"
-                                    [(ngModel)]="filterFieldName"
-                                    (change)="filterFieldSelected($event)"
-                                    name="filterFieldName"
+                                    [(ngModel)]="conditionFieldName"
+                                    (change)="conditionFieldSelected($event)"
+                                    name="conditionFieldName"
                                     >
                                     <option *ngFor="let row of dataSchema; let i = index">
                                         {{ row.name }}
@@ -3674,9 +3674,9 @@
                                 title="Select the operator for the test"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="filterOperator"
-                                    (change)="filterOperatorSelected($event)"
-                                    name="filterOperator"
+                                    [(ngModel)]="conditionOperator"
+                                    (change)="conditionOperatorSelected($event)"
+                                    name="conditionOperator"
                                     >
                                     <option>Less Than</option>
                                     <option>Less Than Equal</option>
@@ -3690,27 +3690,27 @@
                             </div>
                         </div>
 
-                        <div class="editorConditionValueTitle" *ngIf="filterOperator!='Range'">
+                        <div class="editorConditionValueTitle" *ngIf="conditionOperator!='Range'">
                             Value:
                         </div>
 
-                        <div class="editorConditionValue" *ngIf="filterOperator!='Range'">
+                        <div class="editorConditionValue" *ngIf="conditionOperator!='Range'">
                             <input type="text"
-                                [(ngModel)]="filterValue"
-                                name="filterValue"
+                                [(ngModel)]="conditionValue"
+                                name="conditionValue"
                                 placeholder="12 Japan  1,5  a,b,c  true feb"
                                 title="Enter a value for the condition.  Ranges use x,y for from,to"
                                 >
                         </div>
 
-                        <div *ngIf="filterOperator=='Range'">
+                        <div *ngIf="conditionOperator=='Range'">
                             <div class="editorConditionValueFromTitle">
                                 From:
                             </div>
                             <div class="editorConditionValueFrom">
                                 <input type="text"
-                                    [(ngModel)]="filterValueFrom"
-                                    name="filterValueFrom"
+                                    [(ngModel)]="conditionValueFrom"
+                                    name="conditionValueFrom"
                                     placeholder="12 Japan  1,5  a,b,c  true"
                                     title="Enter a From value for the condition for the Range"
                                     >
@@ -3720,8 +3720,8 @@
                             </div>
                             <div class="editorConditionValueTo">
                                 <input type="text"
-                                    [(ngModel)]="filterValueTo"
-                                    name="filterValueTo"
+                                    [(ngModel)]="conditionValueTo"
+                                    name="conditionValueTo"
                                     placeholder="12 Japan  1,5  a,b,c  true"
                                     title="Enter a To value for the condition for the Range"
                                     >
@@ -3730,21 +3730,21 @@
 
                         <div>
                             <div class="btn-group btn-link">
-                                <button class="btn" (click)="clickFilterClear()">
+                                <button class="btn" (click)="clickconditionClear()">
                                     Clear
                                 </button>
-                                <button class="btn" (click)="clickFilterAdd()">
-                                    <span *ngIf="filterID==-1">
+                                <button class="btn" (click)="clickconditionAdd()">
+                                    <span *ngIf="conditionID==-1">
                                         Add
                                     </span>
-                                    <span *ngIf="filterID!=-1">
+                                    <span *ngIf="conditionID!=-1">
                                         Save
                                     </span>
                                 </button>
                             </div>
 
                             <button class="btn btn-secondary editorConditionCloseButton"
-                                (click)="clickFilterClose()">
+                                (click)="clickconditionClose()">
                                 Close
                             </button>
                             <span class="editorConditionErrorMessage">
