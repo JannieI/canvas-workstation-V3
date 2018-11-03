@@ -198,6 +198,7 @@ export interface dataSchemaInterface {
     calculatedExpression: string = '';
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
+    conditionError = '';
     currentData: any = [];
     currentGraphID: number = -1;
 
@@ -228,7 +229,6 @@ export interface dataSchemaInterface {
     graphHeader: string = 'Graph';
     graphHistory: GraphHistory[] = [];
     graphHistoryPosition: number = 0;
-
     graphLayers: number[] = [];  // Layers to display with *ngFor - see   Note 14   above
     hasCalculationsOrFilters: boolean = false;
     isBusyRetrievingData: boolean = false;
@@ -261,6 +261,7 @@ export interface dataSchemaInterface {
     sizeField: string = dragFieldMessage;
     showCalculatedAreaProperties: boolean = false;
     showCalculatedHelp: boolean = false;
+    showConditionAreaProperties: boolean = false;
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
     showDetailDeleteIcon: boolean = false;
@@ -3210,6 +3211,17 @@ export interface dataSchemaInterface {
         this.showFieldFilter = !this.showFieldFilter;
     }
 
+    clickShowCondition() {
+        // Show Condition Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowCondition', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        // Toggle
+        this.showCondition = !this.showCondition;
+    }
+
     clickShowSelection() {
         // Show Selection Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSelection', '@Start');
@@ -3557,6 +3569,22 @@ export interface dataSchemaInterface {
         this.filterErrorMessage = '';
 
         this.showFilterAreaProperties = true;
+        this.showConditionAreaProperties = false;
+        this.showCalculatedAreaProperties = false;
+    }
+
+    clickShowConditionArea() {
+        // Show Condition Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowConditionArea', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        // Reset
+        this.conditionErrorMessage = '';
+
+        this.showConditionAreaProperties = true;
+        this.showFilterAreaProperties = false;
         this.showCalculatedAreaProperties = false;
     }
 
@@ -3572,6 +3600,7 @@ export interface dataSchemaInterface {
 
         this.showCalculatedAreaProperties = true;
         this.showFilterAreaProperties = false;
+        this.showConditionAreaProperties = false;
     }
 
     calculatedFieldTypeSelected(ev) {
