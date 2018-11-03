@@ -3200,18 +3200,6 @@ export interface dataSchemaInterface {
         this.showFieldYPropertiesAxis = false;
     }
 
-
-    clickShowCondition() {
-        // Show Condition Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowCondition', '@Start');
-
-        // Reset
-        this.errorMessageEditor = '';
-
-        // Toggle
-        this.showCondition = !this.showCondition;
-    }
-
     clickShowSelection() {
         // Show Selection Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSelection', '@Start');
