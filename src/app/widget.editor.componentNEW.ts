@@ -198,7 +198,7 @@ export interface dataSchemaInterface {
     calculatedExpression: string = '';
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
-    conditionError = '';
+    conditionErrorMessage = '';
     currentData: any = [];
     currentGraphID: number = -1;
 
@@ -3200,16 +3200,6 @@ export interface dataSchemaInterface {
         this.showFieldYPropertiesAxis = false;
     }
 
-    clickShowFilter() {
-        // Show Filter Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFilter', '@Start');
-
-        // Reset
-        this.errorMessageEditor = '';
-
-        // Toggle
-        this.showFieldFilter = !this.showFieldFilter;
-    }
 
     clickShowCondition() {
         // Show Condition Area
