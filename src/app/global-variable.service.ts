@@ -683,6 +683,12 @@ const widgetTemplate: Widget =
         "graphProjectionFieldLatitude": "",
         "graphProjectionFieldLongitude": "",
 
+        "conditionFieldName": "",
+        "conditionOperator": "",
+        "conditionValue": "",
+        "conditionValueFrom": "",
+        "conditionValueTo": "",
+
         "tableBackgroundColor" : "",
         "tableBackgroundColorName" : "",
         "tableColor": "",

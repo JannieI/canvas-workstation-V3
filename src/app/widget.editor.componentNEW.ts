@@ -201,10 +201,10 @@ export interface dataSchemaInterface {
     conditionErrorMessage = '';
     conditionFieldName: string = '';
     conditionNrActive: number = 0;
-    conditionOperator = '';
-    conditionValue = '';
-    conditionValueFrom = '';
-    conditionValueTo = '';
+    conditionOperator: string = '';
+    conditionValue: string = '';
+    conditionValueFrom: string = '';
+    conditionValueTo: string = '';
     currentData: any = [];
     currentGraphID: number = -1;
 

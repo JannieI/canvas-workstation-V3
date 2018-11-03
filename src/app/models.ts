@@ -1180,6 +1180,14 @@ export class widgetGraphSpecification {
     graphProjectionType: string;            // Type of geo projection
     graphProjectionFieldLatitude: string;   // Lat of geo projection
     graphProjectionFieldLongitude: string;  // Long of geo projection
+
+    // Condition
+    conditionFieldName: string;             // Field to put condition on
+    conditionOperator: string;              // Condition Operator
+    conditionValue: string;                 // Condition Value
+    conditionValueFrom: string;             // Condition From Value
+    conditionValueTo: string;               // Condition To Value
+
 }
 
 export class Widget {
