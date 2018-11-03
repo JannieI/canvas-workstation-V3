@@ -3211,7 +3211,6 @@ export interface dataSchemaInterface {
         this.showSelectionFilter = !this.showSelectionFilter;
     }
 
-
     clickShowSizeProperties() {
         // Show Size Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSizeProperties', '@Start');
@@ -3623,6 +3622,20 @@ export interface dataSchemaInterface {
 
         this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
         this.showFilterAreaProperties = false;
+    }
+
+    clickConditionClose() {
+        // Close the Condition Area, with no changes to the Conditions
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionClose', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        // Reset
+        this.conditionErrorMessage = '';
+
+        this.conditionNrActive = this.localWidget.graphConditions.Condition(gflt => gflt.isActive).length;
+        this.showConditionAreaProperties = false;
     }
 
     clickGraphFilterRowSelect(index: number, selectedFilterID : number) {

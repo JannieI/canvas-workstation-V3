@@ -3636,19 +3636,16 @@
                         </button>
                     </div>
 
-                    <div class="editorConditionArea" *ngIf="showFilterAreaProperties">
+                    <div class="editorConditionArea" *ngIf="showConditionAreaProperties">
                         <div class="editorConditionHeader">
-                            <b>Filters</b>
+                            <b>Conditions</b>
                         </div>
                         <div style="padding: 8px;">
                             <i>
-                                Filters are applied to the data before calculations, and before the
-                                graph is constructed.  Select the field to filter on, then the operator
-                                and type a Value(s).  Note: the values are case-sensitive, ie, Origin
-                                Equal "Europe".  Click <b>Add</b> to append the filter.  Filters can be
-                                de-activated (definition remains here, but the data is not filtered
-                                with it).  Click a filter to edit it.  Double click the Delete icon
-                                to delete a filter.
+                                Conditions are used to colour one or more values a specific colour.
+                                For example, a bar graph has Country on the X axis and the Mark
+                                colour is gray.  Then a condition can be added to say Denmark must
+                                show in red.
                             </i>
                         </div>
 
@@ -3657,7 +3654,7 @@
                                 Field:
                             </div>
                             <div class="select editorConditionField"
-                                title="Select the field to filter on"
+                                title="Select the field for conditional colour"
                                 >
                                 <select id="selects_3" *ngIf="dataSchema"
                                     [(ngModel)]="filterFieldName"
@@ -3674,7 +3671,7 @@
                                 Operator:
                             </div>
                             <div class="select editorConditionOperator"
-                                title="Select the operator for the filter"
+                                title="Select the operator for the test"
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="filterOperator"
@@ -3689,8 +3686,6 @@
                                     <option>Greater Than Equal</option>
                                     <option>Range</option>
                                     <option>One Of</option>
-                                    <option>Valid</option>
-                                    <option>Selection</option>
                                 </select>
                             </div>
                         </div>
@@ -3704,7 +3699,7 @@
                                 [(ngModel)]="filterValue"
                                 name="filterValue"
                                 placeholder="12 Japan  1,5  a,b,c  true feb"
-                                title="Enter a value for the filter.  Ranges use x,y for from,to"
+                                title="Enter a value for the condition.  Ranges use x,y for from,to"
                                 >
                         </div>
 
@@ -3717,7 +3712,7 @@
                                     [(ngModel)]="filterValueFrom"
                                     name="filterValueFrom"
                                     placeholder="12 Japan  1,5  a,b,c  true"
-                                    title="Enter a From value for the filter for the Range"
+                                    title="Enter a From value for the condition for the Range"
                                     >
                             </div>
                             <div class="editorConditionValueToTitle">
@@ -3728,7 +3723,7 @@
                                     [(ngModel)]="filterValueTo"
                                     name="filterValueTo"
                                     placeholder="12 Japan  1,5  a,b,c  true"
-                                    title="Enter a To value for the filter for the Range"
+                                    title="Enter a To value for the condition for the Range"
                                     >
                             </div>
                         </div>
@@ -3753,7 +3748,7 @@
                                 Close
                             </button>
                             <span class="editorConditionErrorMessage">
-                                {{ filterErrorMessage }}
+                                {{ conditionErrorMessage }}
                             </span>
                         </div>
                     </div>
