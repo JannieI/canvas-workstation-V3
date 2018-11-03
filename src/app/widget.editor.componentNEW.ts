@@ -199,6 +199,11 @@ export interface dataSchemaInterface {
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
     conditionErrorMessage = '';
+    conditionFieldName: string = '';
+    conditionOperator = '';
+    conditionValue = '';
+    conditionValueFrom = '';
+    conditionValueTo = '';
     currentData: any = [];
     currentGraphID: number = -1;
 
@@ -3851,6 +3856,16 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         this.filterFieldName = ev.target.value;
+    }
+
+    conditionFieldSelected(ev) {
+        // Selected a Condition Field
+        this.globalFunctionService.printToConsole(this.constructor.name,'conditionFieldSelected', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.conditionFieldName = ev.target.value;
     }
 
     filterOperatorSelected(ev) {
