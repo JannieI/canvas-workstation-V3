@@ -3695,6 +3695,23 @@ export interface dataSchemaInterface {
         this.selectedGraphFilterRowIndex = -1;
     }
 
+    clickConditionClear() {
+        // Clear the Condition fields
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionClear', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.conditionFieldName = '';
+        this.conditionOperator = '';
+        this.conditionValue = '';
+        this.conditionValueFrom = '';
+        this.conditionValueTo = '';
+
+        // Unselect the highlighted row
+        this.selectedGraphFilterRowIndex = -1;
+    }
+
     dblClickFilterMakeInActive(filterID: number) {
         // Make selected Filter inActive
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFilterMakeInActive', '@Start');
@@ -3741,6 +3758,114 @@ export interface dataSchemaInterface {
     }
 
     clickFilterAdd() {
+        // Add a Filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterAdd', '@Start');
+
+        // Reset
+        this.filterErrorMessage = '';
+
+        // Get field type.tolower()
+        let fieldTypeLower: string = this.getFieldType(this.filterFieldName).toLowerCase();
+
+        // Validation
+        if (this.filterFieldName == ''  ||  this.filterFieldName == undefined) {
+            this.filterErrorMessage = 'Filter field is required.';
+            return;
+        };
+        if (this.filterOperator == ''  ||  this.filterOperator == undefined) {
+            this.filterErrorMessage = 'Filter Operator is required.';
+            return;
+        };
+        if (this.filterOperator != 'Valid'  &&  this.filterOperator != 'Range') {
+            if (this.filterValue == ''  ||  this.filterValue == undefined) {
+                this.filterErrorMessage = 'Filter Value is required.';
+                return;
+            };
+        };
+        if (this.filterOperator == 'Range') {
+            if (this.filterValueFrom == ''  ||  this.filterValueFrom == undefined) {
+                this.filterErrorMessage = 'Filter From Value is required.';
+                return;
+            };
+            if (this.filterValueTo == ''  ||  this.filterValueTo == undefined) {
+                this.filterErrorMessage = 'Filter To Value is required.';
+                return;
+            };
+        };
+        if (this.filterOperator == 'Range'
+            &&
+            fieldTypeLower != 'number') {
+            this.filterErrorMessage = 'Range only applies to Numbers.';
+            return;
+        };
+        if (this.filterOperator == 'Valid'
+            &&
+            fieldTypeLower != 'number') {
+            this.filterErrorMessage = 'Valid only applies to Numbers.';
+            return;
+        };
+        if (this.filterOperator == 'One Of'
+            &&
+            fieldTypeLower != 'string') {
+            this.filterErrorMessage = 'One Of only applies to Strings.';
+            return;
+        };
+
+        // Create the filter spec with Max ID
+        if (this.localWidget.graphFilters == null) {
+            this.localWidget.graphFilters = [];
+            this.filterNrActive = 0;
+        };
+        if (this.filterID == -1) {
+
+            let graphFilterID: number = 0;
+            this.localWidget.graphFilters.forEach(gflt => {
+                if(gflt.id > graphFilterID) {
+                    graphFilterID = gflt.id;
+                };
+                graphFilterID = graphFilterID + 1;
+            });
+            this.filterID = graphFilterID;
+
+            let graphFilter: GraphFilter = {
+                id: this.filterID,
+                sequence: 0,        // For LATER use
+                filterFieldName: this.filterFieldName,
+                filterOperator: this.filterOperator,
+                filterTimeUnit: this.filterTimeUnit,
+                filterValue: this.filterValue,
+                filterValueFrom: this.filterValueFrom,
+                filterValueTo: this.filterValueTo,
+                isActive: true
+            };
+
+            // Update the localWidget
+            this.localWidget.graphFilters.push(graphFilter);
+        } else {
+            let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
+                gflt.id == this.filterID);
+            if (gridFilterIndex >= 0) {
+                this.localWidget.graphFilters[gridFilterIndex].filterFieldName =
+                    this.filterFieldName;
+                this.localWidget.graphFilters[gridFilterIndex].filterOperator =
+                    this.filterOperator;
+                this.localWidget.graphFilters[gridFilterIndex].filterTimeUnit =
+                    this.filterTimeUnit;
+                this.localWidget.graphFilters[gridFilterIndex].filterValue =
+                    this.filterValue;
+                this.localWidget.graphFilters[gridFilterIndex].filterValueFrom =
+                    this.filterValueFrom;
+                this.localWidget.graphFilters[gridFilterIndex].filterValueTo =
+                    this.filterValueTo;
+            };
+
+        };
+
+        // Clear out form
+        this.clickFilterClear()
+    }
+
+    clickConditionAdd() {
         // Add a Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterAdd', '@Start');
 
