@@ -199,12 +199,6 @@ export interface dataSchemaInterface {
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
     conditionErrorMessage = '';
-    conditionFieldName: string = '';
-    conditionNrActive: number = 0;
-    conditionOperator: string = '';
-    conditionValue: string = '';
-    conditionValueFrom: string = '';
-    conditionValueTo: string = '';
     currentData: any = [];
     currentGraphID: number = -1;
 
@@ -3695,18 +3689,18 @@ export interface dataSchemaInterface {
         this.selectedGraphFilterRowIndex = -1;
     }
 
-    clickConditionClear() {
+    clickConditionDelete() {
         // Clear the Condition fields
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionClear', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionDelete', '@Start');
 
         // Reset
         this.errorMessageEditor = '';
 
-        this.conditionFieldName = '';
-        this.conditionOperator = '';
-        this.conditionValue = '';
-        this.conditionValueFrom = '';
-        this.conditionValueTo = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionOperator = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValue = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValueFrom = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValueTo = '';
 
         // Unselect the highlighted row
         this.selectedGraphFilterRowIndex = -1;
@@ -3990,7 +3984,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.conditionFieldName = ev.target.value;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName = ev.target.value;
     }
 
     filterOperatorSelected(ev) {
@@ -4010,7 +4004,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        this.conditionOperator = ev.target.value;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionOperator = ev.target.value;
     }
 
     filterTimeUnitSelected(ev) {

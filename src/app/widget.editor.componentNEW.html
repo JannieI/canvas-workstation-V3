@@ -3635,7 +3635,7 @@
                             Condition
 
                             <span *ngIf="conditionNrActive > 0"
-                                class="badge badge-5">{{ conditionNrActive }}
+                                class="badge badge-5">{{ 1 }}
                             </span>
 
                         </button>
@@ -3662,7 +3662,7 @@
                                 title="Select the field for conditional colour"
                                 >
                                 <select id="selects_3" *ngIf="dataSchema"
-                                    [(ngModel)]="conditionFieldName"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].conditionFieldName"
                                     (change)="conditionFieldSelected($event)"
                                     name="conditionFieldName"
                                     >
@@ -3679,7 +3679,7 @@
                                 title="Select the operator for the test"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="conditionOperator"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].conditionOperator"
                                     (change)="conditionOperatorSelected($event)"
                                     name="conditionOperator"
                                     >
@@ -3701,7 +3701,7 @@
 
                         <div class="editorConditionValue" *ngIf="conditionOperator!='Range'">
                             <input type="text"
-                                [(ngModel)]="conditionValue"
+                                [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].conditionValue"
                                 name="conditionValue"
                                 placeholder="12 Japan  1,5  a,b,c  true feb"
                                 title="Enter a value for the condition.  Ranges use x,y for from,to"
@@ -3714,7 +3714,7 @@
                             </div>
                             <div class="editorConditionValueFrom">
                                 <input type="text"
-                                    [(ngModel)]="conditionValueFrom"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].conditionValueFrom"
                                     name="conditionValueFrom"
                                     placeholder="12 Japan  1,5  a,b,c  true"
                                     title="Enter a From value for the condition for the Range"
@@ -3725,7 +3725,7 @@
                             </div>
                             <div class="editorConditionValueTo">
                                 <input type="text"
-                                    [(ngModel)]="conditionValueTo"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].conditionValueTo"
                                     name="conditionValueTo"
                                     placeholder="12 Japan  1,5  a,b,c  true"
                                     title="Enter a To value for the condition for the Range"
@@ -3735,14 +3735,14 @@
 
                         <div>
                             <div class="btn-group btn-link">
-                                <button class="btn" (click)="clickConditionClear()">
+                                <button class="btn" (click)="clickConditionDelete()">
                                     Clear
                                 </button>
                                 <button class="btn" (click)="clickConditionAdd()">
-                                    <span *ngIf="conditionID==-1">
+                                    <span *ngIf="localWidget.graphLayers[currentGraphLayer - 1].conditionFieldName==''">
                                         Add
                                     </span>
-                                    <span *ngIf="conditionID!=-1">
+                                    <span *ngIf="localWidget.graphLayers[currentGraphLayer - 1].conditionFieldName!=''">
                                         Save
                                     </span>
                                 </button>

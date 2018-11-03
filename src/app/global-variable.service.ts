@@ -500,7 +500,15 @@ const widgetTemplate: Widget =
                 // Projection
                 "graphProjectionType": "",
                 "graphProjectionFieldLatitude": "",
-                "graphProjectionFieldLongitude": ""
+                "graphProjectionFieldLongitude": "",
+
+                // Condition
+
+                "conditionFieldName": "",
+                "conditionOperator": "",
+                "conditionValue": "",
+                "conditionValueFrom": "",
+                "conditionValueTo": "",
             }
         ],
 
@@ -682,12 +690,6 @@ const widgetTemplate: Widget =
         "graphProjectionType": "",
         "graphProjectionFieldLatitude": "",
         "graphProjectionFieldLongitude": "",
-
-        "conditionFieldName": "",
-        "conditionOperator": "",
-        "conditionValue": "",
-        "conditionValueFrom": "",
-        "conditionValueTo": "",
 
         "tableBackgroundColor" : "",
         "tableBackgroundColorName" : "",
