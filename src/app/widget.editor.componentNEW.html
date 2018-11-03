@@ -3627,12 +3627,17 @@
                             class="btn btn-sm btn-secondary"
                             (click)="clickShowConditionArea()"
                             >
-                            Condition
                             <clr-icon (click)="clickShowConditionArea()"
                                 shape="angle up"
                                 size="12"
                                 >
                             </clr-icon>
+                            Condition
+
+                            <span *ngIf="conditionNrActive > 0"
+                                class="badge badge-5">{{ conditionNrActive }}
+                            </span>
+
                         </button>
                     </div>
 
@@ -3643,9 +3648,9 @@
                         <div style="padding: 8px;">
                             <i>
                                 Conditions are used to colour one or more values a specific colour.
-                                For example, a bar graph has Country on the X axis and the Mark
-                                colour is gray.  Then a condition can be added to say Denmark must
-                                show in red.
+                                For example, lets say we have a bar graph with Country on the X axis
+                                and the Mark colour is gray (showing all bars in gray).  Then a 
+                                condition can be added to specify that Denmark must shown in red.
                             </i>
                         </div>
 

@@ -200,6 +200,7 @@ export interface dataSchemaInterface {
     columnField: string = dragFieldMessage;
     conditionErrorMessage = '';
     conditionFieldName: string = '';
+    conditionNrActive: number = 0;
     conditionOperator = '';
     conditionValue = '';
     conditionValueFrom = '';
@@ -3639,7 +3640,6 @@ export interface dataSchemaInterface {
         // Reset
         this.conditionErrorMessage = '';
 
-        this.conditionNrActive = this.localWidget.graphConditions.Condition(gflt => gflt.isActive).length;
         this.showConditionAreaProperties = false;
     }
 
@@ -3866,8 +3866,8 @@ export interface dataSchemaInterface {
     }
 
     clickConditionAdd() {
-        // Add a Filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterAdd', '@Start');
+        // Add a Condition
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionAdd', '@Start');
 
         // Reset
         this.filterErrorMessage = '';
