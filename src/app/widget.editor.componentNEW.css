@@ -1394,7 +1394,7 @@ clr-dg-cell {
                     margin: 3px;
                     width: 68%;
                 }
-                
+
                 .editorGraphMarkInterpolateTitle {
                     display: inline-block;
                     font-size: 0.5rem;
@@ -1854,7 +1854,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 margin-top: 5px;
             }
-            
+
             .editorGraphLegendAxisScaleTypeTitle {
                 display: inline-block;
                 font-size: 0.5rem;
@@ -2358,7 +2358,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     margin-top: 5px;
                 }
-    
+
                     .editorGraphProjectionTypeTitle {
                         display: inline-block;
                         font-size: 0.5rem;
@@ -2375,7 +2375,7 @@ clr-dg-cell {
                         margin: 3px;
                         width: 68%;
                     }
-    
+
                     .editorGraphLatitudeTitle {
                         display: inline-block;
                         font-size: 0.5rem;
@@ -2392,7 +2392,7 @@ clr-dg-cell {
                         margin: 3px;
                         width: 68%;
                     }
-    
+
                     .editorGraphLongitudeTitle {
                         display: inline-block;
                         font-size: 0.5rem;
@@ -2409,7 +2409,7 @@ clr-dg-cell {
                         margin: 3px;
                         width: 68%;
                     }
-    
+
 
 
 
@@ -2640,7 +2640,7 @@ clr-dg-cell {
                     width: 98%;
                 }
 
-        .editorSelection {
+        .editorCondition {
             grid-column-start: 40;
             /* autoprefixer: off */
             grid-column-end: 42;

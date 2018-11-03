@@ -191,20 +191,33 @@ export class DataDirectNoSQLComponent implements OnInit {
 
             // Set up specification
             this.selectedDatasource.dataNoSQLStatement = this.selectedDatasource.dataNoSQLStatement.trim();
+            // let specificationConnect: any = {
+            //     "source": {
+            //         "connector": "tributary.connectors.mongodb:MongoDBConnector",
+            //         "specification": {
+            //             "collection": 'cars',
+            //             "username": this.selectedDatasource.username,
+            //             "password": this.selectedDatasource.password,
+            //             "database": this.selectedDatasource.databaseName,
+            //             "host": this.selectedDatasource.serverName,
+            //             "port": +this.selectedDatasource.port,
+            //             "query": this.selectedDatasource.dataNoSQLStatement
+            //         }
+            //     }
+            // };
             let specificationConnect: any = {
                 "source": {
                     "connector": "tributary.connectors.mongodb:MongoDBConnector",
                     "specification": {
                         "collection": 'cars',
-                        "username": this.selectedDatasource.username,
-                        "password": this.selectedDatasource.password,
                         "database": this.selectedDatasource.databaseName,
                         "host": this.selectedDatasource.serverName,
                         "port": +this.selectedDatasource.port,
-                        "query": this.selectedDatasource.dataNoSQLStatement
+                        "query": {}
                     }
                 }
             };
+
 
             this.globalVariableService.getTributaryData(specificationConnect).then(res => {
 

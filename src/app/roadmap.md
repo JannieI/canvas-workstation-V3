@@ -180,9 +180,8 @@ This document describes items for later versions of Canvas.
             - test all Calc Formulae
 
         Tooltip:
-            - make work Vega style
-
-        
+            - make work Vega style tooltip work
+       
 
         Make ONE month red, or colour ONE legend option RED
 
