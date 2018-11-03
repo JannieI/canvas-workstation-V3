@@ -3878,6 +3878,16 @@ export interface dataSchemaInterface {
         this.filterOperator = ev.target.value;
     }
 
+    conditionOperatorSelected(ev) {
+        // Selected a Condition Operator
+        this.globalFunctionService.printToConsole(this.constructor.name,'conditionOperatorSelected', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.conditionOperator = ev.target.value;
+    }
+
     filterTimeUnitSelected(ev) {
         // Selected a Filter TimeUnit
         this.globalFunctionService.printToConsole(this.constructor.name,'filterTimeUnitSelected', '@Start');
