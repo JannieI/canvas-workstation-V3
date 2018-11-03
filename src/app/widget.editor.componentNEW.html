@@ -3554,11 +3554,11 @@
                                 </button>
                             </div>
 
-                            <button class="btn btn-secondary filterCloseButton"
+                            <button class="btn btn-secondary editorFilterCloseButton"
                                 (click)="clickFilterClose()">
                                 Close
                             </button>
-                            <span class="filterErrorMessage">
+                            <span class="editorFilterErrorMessage">
                                 {{ filterErrorMessage }}
                             </span>
                         </div>
@@ -3621,7 +3621,7 @@
                     </div>
 
                     <!-- CONDITION -->
-                    <div class="editorCondition" *ngIf="!showWidgetEditorLite">
+                    <div class="editorConditionButton" *ngIf="!showWidgetEditorLite">
                         <button
                             style="border: 1px solid transparent; color: gray;"
                             class="btn btn-sm btn-secondary"
@@ -3635,6 +3635,129 @@
                             </clr-icon>
                         </button>
                     </div>
+
+                    <div class="editorConditionArea" *ngIf="showFilterAreaProperties">
+                        <div class="editorConditionHeader">
+                            <b>Filters</b>
+                        </div>
+                        <div style="padding: 8px;">
+                            <i>
+                                Filters are applied to the data before calculations, and before the
+                                graph is constructed.  Select the field to filter on, then the operator
+                                and type a Value(s).  Note: the values are case-sensitive, ie, Origin
+                                Equal "Europe".  Click <b>Add</b> to append the filter.  Filters can be
+                                de-activated (definition remains here, but the data is not filtered
+                                with it).  Click a filter to edit it.  Double click the Delete icon
+                                to delete a filter.
+                            </i>
+                        </div>
+
+                        <div>
+                            <div class="editorConditionFieldTitle">
+                                Field:
+                            </div>
+                            <div class="select editorConditionField"
+                                title="Select the field to filter on"
+                                >
+                                <select id="selects_3" *ngIf="dataSchema"
+                                    [(ngModel)]="filterFieldName"
+                                    (change)="filterFieldSelected($event)"
+                                    name="filterFieldName"
+                                    >
+                                    <option *ngFor="let row of dataSchema; let i = index">
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="editorConditionOperatorTitle">
+                                Operator:
+                            </div>
+                            <div class="select editorConditionOperator"
+                                title="Select the operator for the filter"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="filterOperator"
+                                    (change)="filterOperatorSelected($event)"
+                                    name="filterOperator"
+                                    >
+                                    <option>Less Than</option>
+                                    <option>Less Than Equal</option>
+                                    <option>Equal</option>
+                                    <option>Not Equal</option>
+                                    <option>Greater Than</option>
+                                    <option>Greater Than Equal</option>
+                                    <option>Range</option>
+                                    <option>One Of</option>
+                                    <option>Valid</option>
+                                    <option>Selection</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="editorConditionValueTitle" *ngIf="filterOperator!='Range'">
+                            Value:
+                        </div>
+
+                        <div class="editorConditionValue" *ngIf="filterOperator!='Range'">
+                            <input type="text"
+                                [(ngModel)]="filterValue"
+                                name="filterValue"
+                                placeholder="12 Japan  1,5  a,b,c  true feb"
+                                title="Enter a value for the filter.  Ranges use x,y for from,to"
+                                >
+                        </div>
+
+                        <div *ngIf="filterOperator=='Range'">
+                            <div class="editorConditionValueFromTitle">
+                                From:
+                            </div>
+                            <div class="editorConditionValueFrom">
+                                <input type="text"
+                                    [(ngModel)]="filterValueFrom"
+                                    name="filterValueFrom"
+                                    placeholder="12 Japan  1,5  a,b,c  true"
+                                    title="Enter a From value for the filter for the Range"
+                                    >
+                            </div>
+                            <div class="editorConditionValueToTitle">
+                                To:
+                            </div>
+                            <div class="editorConditionValueTo">
+                                <input type="text"
+                                    [(ngModel)]="filterValueTo"
+                                    name="filterValueTo"
+                                    placeholder="12 Japan  1,5  a,b,c  true"
+                                    title="Enter a To value for the filter for the Range"
+                                    >
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="btn-group btn-link">
+                                <button class="btn" (click)="clickFilterClear()">
+                                    Clear
+                                </button>
+                                <button class="btn" (click)="clickFilterAdd()">
+                                    <span *ngIf="filterID==-1">
+                                        Add
+                                    </span>
+                                    <span *ngIf="filterID!=-1">
+                                        Save
+                                    </span>
+                                </button>
+                            </div>
+
+                            <button class="btn btn-secondary editorConditionCloseButton"
+                                (click)="clickFilterClose()">
+                                Close
+                            </button>
+                            <span class="editorConditionErrorMessage">
+                                {{ filterErrorMessage }}
+                            </span>
+                        </div>
+                    </div>
+
 
                     <!-- SPEC -->
                     <div class="editorShowGraphOrSpecification" *ngIf="!showWidgetEditorLite">

@@ -2619,14 +2619,14 @@ clr-dg-cell {
                     width: 200px;
                 }
 
-                .filterErrorMessage {
+                .editorFilterErrorMessage {
                     color: red;
                     font-size: 0.54rem;
                     margin: 0px;
                     padding: 0px;
                     width: 40%;
                 }
-                .filterCloseButton {
+                .editorFilterCloseButton {
                     margin-left: 60px;
                     right: 12px;
                 }
@@ -2640,7 +2640,7 @@ clr-dg-cell {
                     width: 98%;
                 }
 
-        .editorCondition {
+        .editorConditionButton {
             grid-column-start: 40;
             /* autoprefixer: off */
             grid-column-end: 42;
@@ -2648,6 +2648,139 @@ clr-dg-cell {
             grid-row-end: 22;
             text-align: left;
         }
+
+            .editorConditionArea {
+                background-color: rgb(232, 228, 247);
+                border: 1px solid black;
+                box-shadow: 2px 2px lightgray;
+                border-radius: 6px;
+                box-shadow: 2px 2px gray;
+                font-size: 0.55rem;
+                grid-column-start: 20;
+                /* autoprefixer: off */
+                grid-column-end: 49;
+                grid-row-start: 4;
+                grid-row-end: 26;
+                margin: 2px;
+                padding-left: 12px;
+                text-align: left;
+                z-index: 101;
+            }
+                .editorConditionHeader {
+                    font-size: 0.65rem;
+                    margin: 6px;
+                    text-align: center;
+                }
+                .editorConditionFieldTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 14px;
+                    text-align: left;
+                    width: 64px;
+                }
+                .editorConditionField {
+                    background-color: white;
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 200px;
+                }
+                .editorConditionTimeUnitTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 14px;
+                    width: 50px;
+                }
+
+                .editorConditionOperatorTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 34px;
+                    width: 64px;
+                }
+                .editorConditionOperator {
+                    background-color: white;
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 125px;
+                }
+
+                .editorConditionValueTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 14px;
+                    width: 64px;
+                }
+                .editorConditionValue {
+                    background-color: white;
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 200px;
+                }
+
+                .editorConditionValueFromTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 14px;
+                    width: 64px;
+                }
+                .editorConditionValueFrom {
+                    background-color: white;
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 200px;
+                }
+
+                .editorConditionValueToTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 44px;
+                    width: 64px;
+                }
+                .editorConditionValueTo {
+                    background-color: white;
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 200px;
+                }
+
+                .editorConditionErrorMessage {
+                    color: red;
+                    font-size: 0.54rem;
+                    margin: 0px;
+                    padding: 0px;
+                    width: 40%;
+                }
+                .editorConditionCloseButton {
+                    margin-left: 60px;
+                    right: 12px;
+                }
+
 
         .editorShowGraphOrSpecification {
             grid-column-start: 46;
