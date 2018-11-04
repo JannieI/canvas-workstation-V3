@@ -3899,9 +3899,6 @@ export interface dataSchemaInterface {
         // Reset
         this.conditionErrorMessage = '';
 
-        // Get field type.tolower()
-        let fieldTypeLower: string = this.getFieldType(this.conditionFieldName).toLowerCase();
-
         // Validation
         if (this.conditionFieldName == ''  ||  this.conditionFieldName == undefined) {
             this.conditionErrorMessage = 'Condition field is required.';
@@ -3917,34 +3914,6 @@ export interface dataSchemaInterface {
                 return;
             };
         };
-        if (this.conditionOperator == 'Range') {
-            if (this.conditionValueFrom == ''  ||  this.conditionValueFrom == undefined) {
-                this.conditionErrorMessage = 'Condition From Value is required.';
-                return;
-            };
-            if (this.conditionValueTo == ''  ||  this.conditionValueTo == undefined) {
-                this.conditionErrorMessage = 'Condition To Value is required.';
-                return;
-            };
-        };
-        if (this.conditionOperator == 'Range'
-            &&
-            fieldTypeLower != 'number') {
-            this.conditionErrorMessage = 'Range only applies to Numbers.';
-            return;
-        };
-        if (this.conditionOperator == 'Valid'
-            &&
-            fieldTypeLower != 'number') {
-            this.conditionErrorMessage = 'Valid only applies to Numbers.';
-            return;
-        };
-        if (this.conditionOperator == 'One Of'
-            &&
-            fieldTypeLower != 'string') {
-            this.conditionErrorMessage = 'One Of only applies to Strings.';
-            return;
-        };
 
         // Create the condition spec
         this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColourName =
@@ -3957,10 +3926,6 @@ export interface dataSchemaInterface {
             this.conditionOperator;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValue =
             this.conditionValue;
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValueFrom =
-            this.conditionValueFrom;
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValueTo =
-            this.conditionValueTo;
 
         // Clear out form
         this.clickFilterClear()
