@@ -4361,6 +4361,18 @@ export interface dataSchemaInterface {
             this.y2Field = dragFieldMessage;
         };
 
+        // Condition Info
+        this.conditionColourName =
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColourName;
+        this.conditionColour =
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColour;
+        this.conditionFieldName =
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName;
+        this.conditionOperator =
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionOperator;
+        this.conditionValue =
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValue;
+
     }
 
     clickShowFullEditor() {

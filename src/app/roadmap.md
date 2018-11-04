@@ -181,9 +181,6 @@ This document describes items for later versions of Canvas.
 
         Tooltip:
             - make work Vega style tooltip work
-       
-
-        Make ONE month red, or colour ONE legend option RED
 
 
 
