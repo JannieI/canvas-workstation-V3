@@ -2667,28 +2667,29 @@ clr-dg-cell {
                 z-index: 101;
             }
 
-                .editorConditionColourTitle {
-                    display: inline-block;
-                    font-size: 0.5rem;
-                    line-height: 0.8rem;
-                    margin-left: 4px;
-                    width: 38px;
-                }
-                .editorConditionColour {
-                    border: 1px solid steelblue;
-                    border-radius: 5px;
-                    display: inline-block;
-                    font-size: 0.5rem;
-                    line-height: 0.5rem;
-                    margin: 3px;
-                    width: 68%;
-                }
-
                 .editorConditionHeader {
                     font-size: 0.65rem;
                     margin: 6px;
                     text-align: center;
                 }
+
+                .editorConditionColourTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 14px;
+                    width: 38px;
+                }
+                .editorConditionColour {
+                    border: 1px solid white;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.5rem;
+                    margin: 3px;
+                    width: 80px;
+                }
+
                 .editorConditionFieldTitle {
                     display: inline-block;
                     font-size: 0.5rem;
@@ -2707,6 +2708,7 @@ clr-dg-cell {
                     margin: 3px;
                     width: 200px;
                 }
+                
                 .editorConditionTimeUnitTitle {
                     display: inline-block;
                     font-size: 0.5rem;
@@ -2719,7 +2721,7 @@ clr-dg-cell {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 34px;
+                    margin-left: 14px;
                     width: 64px;
                 }
                 .editorConditionOperator {
@@ -2773,7 +2775,7 @@ clr-dg-cell {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 44px;
+                    margin-left: 14px;
                     width: 64px;
                 }
                 .editorConditionValueTo {

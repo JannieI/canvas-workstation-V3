@@ -3656,14 +3656,14 @@
 
                         <div>
 
-                            <div class="editorConditionColourTitle" *ngIf="showFieldMarkProperties">
+                            <div class="editorConditionColourTitle">
                                 Color:
                             </div>
-                            <div class="select editorConditionColour" *ngIf="showFieldMarkProperties"
+                            <div class="select editorConditionColour"
                                 title="Color of the mark, ie red for a line Graph"
                                 >
-                                <select [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkColourName"
-                                    name="graphMarkColourName"
+                                <select [(ngModel)]="conditionColourName"
+                                    name="conditionColourName"
                                     (change)="clickSelectMarkColour($event)"
                                     >
                                     <option *ngFor="let row of backgroundcolors"
@@ -3673,8 +3673,9 @@
                                     </option>
                                 </select>
                             </div>
-            
+                        </div>
 
+                        <div>
                             <div class="editorConditionFieldTitle">
                                 Field:
                             </div>
@@ -3691,7 +3692,9 @@
                                     </option>
                                 </select>
                             </div>
+                        </div>
 
+                        <div>
                             <div class="editorConditionOperatorTitle">
                                 Operator:
                             </div>
@@ -3715,41 +3718,47 @@
                             </div>
                         </div>
 
-                        <div class="editorConditionValueTitle" *ngIf="conditionOperator!='Range'">
-                            Value:
-                        </div>
-
-                        <div class="editorConditionValue" *ngIf="conditionOperator!='Range'">
-                            <input type="text"
-                                [(ngModel)]="conditionValue"
-                                name="conditionValue"
-                                placeholder="12 Japan  1,5  a,b,c  true feb"
-                                title="Enter a value for the condition.  Ranges use x,y for from,to"
-                                >
-                        </div>
-
-                        <div *ngIf="conditionOperator=='Range'">
-                            <div class="editorConditionValueFromTitle">
-                                From:
+                        <div>
+                            <div class="editorConditionValueTitle" *ngIf="conditionOperator!='Range'">
+                                Value:
                             </div>
-                            <div class="editorConditionValueFrom">
+                            <div class="editorConditionValue" *ngIf="conditionOperator!='Range'">
                                 <input type="text"
-                                    [(ngModel)]="conditionValueFrom"
-                                    name="conditionValueFrom"
-                                    placeholder="12 Japan  1,5  a,b,c  true"
-                                    title="Enter a From value for the condition for the Range"
+                                    [(ngModel)]="conditionValue"
+                                    name="conditionValue"
+                                    placeholder="12 Japan  1,5  a,b,c  true feb"
+                                    title="Enter a value for the condition.  Ranges use x,y for from,to"
                                     >
                             </div>
-                            <div class="editorConditionValueToTitle">
-                                To:
+                        </div>
+
+                        <div>
+                            <div *ngIf="conditionOperator=='Range'">
+                                <div class="editorConditionValueFromTitle">
+                                    From:
+                                </div>
+                                <div class="editorConditionValueFrom">
+                                    <input type="text"
+                                        [(ngModel)]="conditionValueFrom"
+                                        name="conditionValueFrom"
+                                        placeholder="12 Japan  1,5  a,b,c  true"
+                                        title="Enter a From value for the condition for the Range"
+                                        >
+                                </div>
                             </div>
-                            <div class="editorConditionValueTo">
-                                <input type="text"
-                                    [(ngModel)]="conditionValueTo"
-                                    name="conditionValueTo"
-                                    placeholder="12 Japan  1,5  a,b,c  true"
-                                    title="Enter a To value for the condition for the Range"
-                                    >
+
+                            <div *ngIf="conditionOperator=='Range'">    
+                                <div class="editorConditionValueToTitle">
+                                    To:
+                                </div>
+                                <div class="editorConditionValueTo">
+                                    <input type="text"
+                                        [(ngModel)]="conditionValueTo"
+                                        name="conditionValueTo"
+                                        placeholder="12 Japan  1,5  a,b,c  true"
+                                        title="Enter a To value for the condition for the Range"
+                                        >
+                                </div>
                             </div>
                         </div>
 
