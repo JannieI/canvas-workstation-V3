@@ -1056,6 +1056,8 @@ export class GlobalVariableService {
     widgetGraphs: WidgetGraph[] =[];
 
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
+    conditionFieldDataType: string = '';
+    conditionOperator: string = '';
     currentCanvasGroups: CanvasGroup[] = [];
     currentDashboards: Dashboard[] = [];
     currentDashboardPermissions: DashboardPermission[] = [];
@@ -11811,6 +11813,32 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             };
 
 
+            // Conditional pre-work
+            this.conditionFieldDataType = 'string';
+            this.conditionOperator = '==';
+            if (widget.graphLayers[currentGraphLayer].conditionFieldName != ''
+            && widget.graphLayers[currentGraphLayer].conditionFieldName != null) {
+
+                let conditionFieldDataTypeIndex: number = widget.dataschema.findIndex(
+                    dat => dat.name == widget.graphLayers[currentGraphLayer].conditionFieldName
+                );
+                if (conditionFieldDataTypeIndex >= 0) {
+                    this.conditionFieldDataType = widget.dataschema[conditionFieldDataTypeIndex].type;
+                };
+                if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Less Than') {
+                    this.conditionOperator = '<';
+                };
+                if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Less Than Equal') {
+                    this.conditionOperator = '<=';
+                };
+                if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Greater Than') {
+                    this.conditionOperator = '>';
+                };
+                if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Greater Than Equal') {
+                    this.conditionOperator = '>=';
+                };
+            };
+
             // Color field
             if (widget.graphLayers[currentGraphLayer].graphColorField != '') {
                 let colorBinMax: any = false;
@@ -11837,32 +11865,11 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 if (widget.graphLayers[currentGraphLayer].conditionFieldName != ''
                     && widget.graphLayers[currentGraphLayer].conditionFieldName != null) {
 
-                        let conditionFieldDataType: string = 'string';
-                        let conditionFieldDataTypeIndex: number = widget.dataschema.findIndex(
-                            dat => dat.name == widget.graphLayers[currentGraphLayer].conditionFieldName
-                        );
-                        if (conditionFieldDataTypeIndex >= 0) {
-                            conditionFieldDataType = widget.dataschema[conditionFieldDataTypeIndex].type;
-                        };
-                        let conditionOperator: string = '==';
-                        if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Less Than') {
-                            conditionOperator = '<';
-                        };
-                        if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Less Than Equal') {
-                            conditionOperator = '<=';
-                        };
-                        if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Greater Than') {
-                            conditionOperator = '>';
-                        };
-                        if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Greater Than Equal') {
-                            conditionOperator = '>=';
-                        };
-
-                        if (conditionFieldDataType.toLowerCase() == 'string') {
+                        if (this.conditionFieldDataType.toLowerCase() == 'string') {
                             specificationInner['encoding']['color']['condition'] = 
                             {
                                 "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName 
-                                + " " + conditionOperator + " '" + widget.graphLayers[currentGraphLayer].conditionValue
+                                + " " + this.conditionOperator + " '" + widget.graphLayers[currentGraphLayer].conditionValue
                                 + "'", 
                                 "value": widget.graphLayers[currentGraphLayer].conditionColour
                             };
@@ -11870,34 +11877,13 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                             specificationInner['encoding']['color']['condition'] = 
                             {
                                 "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName 
-                                + " " + conditionOperator + " " + widget.graphLayers[currentGraphLayer].conditionValue, 
+                                + " " + this.conditionOperator + " " + widget.graphLayers[currentGraphLayer].conditionValue, 
                                 "value": widget.graphLayers[currentGraphLayer].conditionColour
                             };
 
                         };
                 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                //     "condition": 
-            // {
-            //   "test": "datum.age == 70", 
-            //   "value": "red"
-            // },
                 if (widget.graphLayers[currentGraphLayer].graphLegendHide) {
                     specificationInner['encoding']['color']['legend'] = null;
                 } else {
@@ -11944,6 +11930,35 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 //             {"method": "' + widget. + '"};
                 //     };
                 // };
+
+            } else {
+
+                if (widget.graphLayers[currentGraphLayer].conditionFieldName != ''
+                    && widget.graphLayers[currentGraphLayer].conditionFieldName != null) {
+
+                        if (this.conditionFieldDataType.toLowerCase() == 'string') {
+                            specificationInner['encoding']['color'] =
+                            { "condition":  
+                            {
+                                "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName 
+                                + " " + this.conditionOperator + " '" + widget.graphLayers[currentGraphLayer].conditionValue
+                                + "'", 
+                                "value": widget.graphLayers[currentGraphLayer].conditionColour
+                            }
+                            };
+                        } else {
+                            specificationInner['encoding']['color']['condition'] = 
+                            specificationInner['encoding']['color'] =
+                            { "condition":  
+                            {
+                                "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName 
+                                + " " + this.conditionOperator + " " + widget.graphLayers[currentGraphLayer].conditionValue, 
+                                "value": widget.graphLayers[currentGraphLayer].conditionColour
+                            }
+                            };
+
+                        };
+                };
 
             };
 
