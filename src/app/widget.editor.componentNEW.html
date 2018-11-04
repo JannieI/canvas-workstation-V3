@@ -1174,6 +1174,14 @@
                                     </option>
                                 </select>
                             </div>
+                            <clr-icon *ngIf="showFieldTitleProperties"
+                                shape="circle"
+                                size="14"
+                                [style.background-color]="localWidget.graphBackgroundColorName"
+                                [style.color]="localWidget.graphBackgroundColorName"
+                                >
+                            </clr-icon>
+
                         </div>
 
                         <!-- Title Vertical text baseline for title text. -->
