@@ -3730,36 +3730,6 @@
                         </div>
 
                         <div>
-                            <div *ngIf="conditionOperator=='Range'">
-                                <div class="editorConditionValueFromTitle">
-                                    From:
-                                </div>
-                                <div class="editorConditionValueFrom">
-                                    <input type="text"
-                                        [(ngModel)]="conditionValueFrom"
-                                        name="conditionValueFrom"
-                                        placeholder="12 Japan  1,5  a,b,c  true"
-                                        title="Enter a From value for the condition for the Range"
-                                        >
-                                </div>
-                            </div>
-
-                            <div *ngIf="conditionOperator=='Range'">    
-                                <div class="editorConditionValueToTitle">
-                                    To:
-                                </div>
-                                <div class="editorConditionValueTo">
-                                    <input type="text"
-                                        [(ngModel)]="conditionValueTo"
-                                        name="conditionValueTo"
-                                        placeholder="12 Japan  1,5  a,b,c  true"
-                                        title="Enter a To value for the condition for the Range"
-                                        >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
                             <div class="btn-group btn-link">
                                 <button class="btn" (click)="clickConditionDelete()">
                                     Clear
