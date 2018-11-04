@@ -1182,6 +1182,8 @@ export class widgetGraphSpecification {
     graphProjectionFieldLongitude: string;  // Long of geo projection
 
     // Condition
+    conditionColourName: string;            // Name of Colour when condition met
+    conditionColour: string;                // Actual Colour when condition met
     conditionFieldName: string;             // Field to put condition on
     conditionOperator: string;              // Condition Operator
     conditionValue: string;                 // Condition Value

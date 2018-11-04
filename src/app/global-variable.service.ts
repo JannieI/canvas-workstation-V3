@@ -503,7 +503,8 @@ const widgetTemplate: Widget =
                 "graphProjectionFieldLongitude": "",
 
                 // Condition
-
+                "conditionColourName": "",
+                "conditionColour": "",
                 "conditionFieldName": "",
                 "conditionOperator": "",
                 "conditionValue": "",
