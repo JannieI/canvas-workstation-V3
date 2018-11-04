@@ -2678,10 +2678,11 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 14px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorConditionColour {
-                    border: 1px solid white;
+                    background-color: white;
+                    border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
                     font-size: 0.5rem;
@@ -2707,14 +2708,6 @@ clr-dg-cell {
                     line-height: 0.8rem;
                     margin: 3px;
                     width: 200px;
-                }
-                
-                .editorConditionTimeUnitTitle {
-                    display: inline-block;
-                    font-size: 0.5rem;
-                    line-height: 0.8rem;
-                    margin-left: 14px;
-                    width: 50px;
                 }
 
                 .editorConditionOperatorTitle {
