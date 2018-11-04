@@ -1220,6 +1220,13 @@
                                     </option>
                                 </select>
                             </div>
+                            <clr-icon *ngIf="showFieldTitleProperties"
+                                shape="circle"
+                                size="14"
+                                [style.background-color]="localWidget.graphTitleColorName"
+                                [style.color]="localWidget.graphTitleColorName"
+                                >
+                            </clr-icon>
                         </div>
 
                         <!-- Title Font name for title text. -->
