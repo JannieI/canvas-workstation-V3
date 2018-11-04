@@ -199,6 +199,8 @@ export interface dataSchemaInterface {
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
     conditionErrorMessage = '';
+    conditionColourName: string = '';
+    conditionColour: string = '';
     conditionFieldName: string = '';
     conditionOperator: string = '';
     conditionValue: string = '';
@@ -3368,8 +3370,8 @@ export interface dataSchemaInterface {
     }
 
     clickSelectMarkColour(ev: any) {
-        // Select Background Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleColor', '@Start');
+        // Select Background Colour for the Mark, if Color field not used
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectMarkColour', '@Start');
 
         // Reset
         this.errorMessageEditor = '';
@@ -3612,6 +3614,23 @@ export interface dataSchemaInterface {
 
         this.showSpecification =!this.showSpecification;
 
+    }
+
+    clickSelectConditionColour(ev: any) {
+        // Select Background Colour for the Condition
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectConditionColour', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.conditionColourName = ev.target.value;
+        this.conditionColour = this.conditionColourName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.conditionColourName
+        );
+        if (localIndex >= 0) {
+            this.conditionColour = this.backgroundcolors[localIndex].cssCode;
+        };
     }
 
     clickFilterClose() {

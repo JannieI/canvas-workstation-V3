@@ -3660,11 +3660,11 @@
                                 Color:
                             </div>
                             <div class="select editorConditionColour"
-                                title="Color of the mark, ie red for a line Graph"
+                                title="Color of the element that satisfies the Condition"
                                 >
                                 <select [(ngModel)]="conditionColourName"
                                     name="conditionColourName"
-                                    (change)="clickSelectMarkColour($event)"
+                                    (change)="clickSelectConditionColour($event)"
                                     >
                                     <option *ngFor="let row of backgroundcolors"
                                         [style.background-color]="row.cssCode"
