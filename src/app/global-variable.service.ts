@@ -11226,7 +11226,14 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             "data": {
                 "values": []
             },
-            "transform": []
+            "transform": [],
+            "config": {
+                "style": {
+                  "cell": {
+                    "stroke": "transparent"
+                  }
+                }
+            }
         };
 
         // Optional Sampling
