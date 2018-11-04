@@ -1104,17 +1104,17 @@ export interface dataSchemaInterface {
             this.showWidgetEditorLite = this.globalVariableService.currentUser
                 .preferenceShowWidgetEditorLite;
 
-            this.conditionColourName = 
+            this.conditionColourName =
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColourName;
-            this.conditionColour = 
+            this.conditionColour =
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColour;
-            this.conditionFieldName = 
+            this.conditionFieldName =
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName;
-            this.conditionOperator = 
+            this.conditionOperator =
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionOperator;
-            this.conditionValue = 
+            this.conditionValue =
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValue;
-    
+
             let arrayIndex: number = this.localDatasources.findIndex(
                 ds => ds.id == this.localWidget.datasourceID
             );
@@ -2935,6 +2935,13 @@ export interface dataSchemaInterface {
         this.clickCalculatedClear();
         this.clickFilterClear();
 
+        // Clear condition fields
+        this.conditionColour = '';
+        this.conditionColourName = '';
+        this.conditionFieldName = '';
+        this.conditionOperator = '';
+        this.conditionValue = '';
+
         // Clear History
         this.graphHistory = [];
         this.graphHistoryPosition = 0;
@@ -3906,6 +3913,7 @@ export interface dataSchemaInterface {
     clickConditionDelete() {
         // Delete a Condition
         this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionDelete', '@Start');
+
         this.conditionColour = '';
         this.conditionColourName = '';
         this.conditionFieldName = '';
