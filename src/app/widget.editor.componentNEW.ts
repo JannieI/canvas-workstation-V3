@@ -3892,9 +3892,9 @@ export interface dataSchemaInterface {
         };
     }
 
-    clickConditionAdd() {
+    clickConditionSave() {
         // Add a Condition
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionSave', '@Start');
 
         // Reset
         this.conditionErrorMessage = '';
