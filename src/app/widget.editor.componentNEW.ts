@@ -3616,23 +3616,6 @@ export interface dataSchemaInterface {
 
     }
 
-    clickSelectConditionColour(ev: any) {
-        // Select Background Colour for the Condition
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectConditionColour', '@Start');
-
-        // Reset
-        this.errorMessageEditor = '';
-
-        this.conditionColourName = ev.target.value;
-        this.conditionColour = this.conditionColourName;
-        let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.conditionColourName
-        );
-        if (localIndex >= 0) {
-            this.conditionColour = this.backgroundcolors[localIndex].cssCode;
-        };
-    }
-
     clickFilterClose() {
         // Close the Filter Area, with no changes to the filters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClose', '@Start');
@@ -3645,19 +3628,6 @@ export interface dataSchemaInterface {
 
         this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
         this.showFilterAreaProperties = false;
-    }
-
-    clickConditionClose() {
-        // Close the Condition Area, with no changes to the Conditions
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionClose', '@Start');
-
-        // Reset
-        this.errorMessageEditor = '';
-
-        // Reset
-        this.conditionErrorMessage = '';
-
-        this.showConditionAreaProperties = false;
     }
 
     clickGraphFilterRowSelect(index: number, selectedFilterID : number) {
@@ -3865,6 +3835,63 @@ export interface dataSchemaInterface {
         this.clickFilterClear()
     }
 
+    filterFieldSelected(ev) {
+        // Selected a Filter Field
+        this.globalFunctionService.printToConsole(this.constructor.name,'filterFieldSelected', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.filterFieldName = ev.target.value;
+    }
+
+    filterOperatorSelected(ev) {
+        // Selected a Filter Operator
+        this.globalFunctionService.printToConsole(this.constructor.name,'filterOperatorSelected', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.filterOperator = ev.target.value;
+    }
+
+    filterTimeUnitSelected(ev) {
+        // Selected a Filter TimeUnit
+        this.globalFunctionService.printToConsole(this.constructor.name,'filterTimeUnitSelected', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.filterTimeUnit = ev.target.value;
+    }
+
+    conditionFieldSelected(ev) {
+        // Selected a Condition Field
+        this.globalFunctionService.printToConsole(this.constructor.name,'conditionFieldSelected', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName = ev.target.value;
+    }
+
+    clickSelectConditionColour(ev: any) {
+        // Select Background Colour for the Condition
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectConditionColour', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.conditionColourName = ev.target.value;
+        this.conditionColour = this.conditionColourName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.conditionColourName
+        );
+        if (localIndex >= 0) {
+            this.conditionColour = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
     clickConditionAdd() {
         // Add a Condition
         this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionAdd', '@Start');
@@ -3935,34 +3962,17 @@ export interface dataSchemaInterface {
         this.clickFilterClear()
     }
 
-    filterFieldSelected(ev) {
-        // Selected a Filter Field
-        this.globalFunctionService.printToConsole(this.constructor.name,'filterFieldSelected', '@Start');
+    clickConditionClose() {
+        // Close the Condition Area, with no changes to the Conditions
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionClose', '@Start');
 
         // Reset
         this.errorMessageEditor = '';
 
-        this.filterFieldName = ev.target.value;
-    }
-
-    conditionFieldSelected(ev) {
-        // Selected a Condition Field
-        this.globalFunctionService.printToConsole(this.constructor.name,'conditionFieldSelected', '@Start');
-
         // Reset
-        this.errorMessageEditor = '';
+        this.conditionErrorMessage = '';
 
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName = ev.target.value;
-    }
-
-    filterOperatorSelected(ev) {
-        // Selected a Filter Operator
-        this.globalFunctionService.printToConsole(this.constructor.name,'filterOperatorSelected', '@Start');
-
-        // Reset
-        this.errorMessageEditor = '';
-
-        this.filterOperator = ev.target.value;
+        this.showConditionAreaProperties = false;
     }
 
     conditionOperatorSelected(ev) {
@@ -3973,16 +3983,6 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionOperator = ev.target.value;
-    }
-
-    filterTimeUnitSelected(ev) {
-        // Selected a Filter TimeUnit
-        this.globalFunctionService.printToConsole(this.constructor.name,'filterTimeUnitSelected', '@Start');
-
-        // Reset
-        this.errorMessageEditor = '';
-
-        this.filterTimeUnit = ev.target.value;
     }
 
     clickCalculatedClose() {
