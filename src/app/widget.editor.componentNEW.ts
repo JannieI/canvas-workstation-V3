@@ -3892,6 +3892,28 @@ export interface dataSchemaInterface {
         };
     }
 
+    clickConditionDelete() {
+        // Delete a Condition
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionDelete', '@Start');
+        this.conditionColour = '';
+        this.conditionColourName = '';
+        this.conditionFieldName = '';
+        this.conditionOperator = '';
+        this.conditionValue = '';
+
+        // Save
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColourName =
+            this.conditionColourName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColour =
+            this.conditionColour;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName =
+            this.conditionFieldName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionOperator =
+            this.conditionOperator;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValue =
+            this.conditionValue;
+
+    }
     clickConditionSave() {
         // Add a Condition
         this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionSave', '@Start');
@@ -3928,7 +3950,7 @@ export interface dataSchemaInterface {
             this.conditionValue;
 
         // Clear out form
-        this.clickFilterClear()
+        this.clickConditionClose()
     }
 
     clickConditionClose() {
