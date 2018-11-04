@@ -2656,7 +2656,7 @@ clr-dg-cell {
                 border-radius: 6px;
                 box-shadow: 2px 2px gray;
                 font-size: 0.55rem;
-                grid-column-start: 20;
+                grid-column-start: 29;
                 /* autoprefixer: off */
                 grid-column-end: 49;
                 grid-row-start: 4;
@@ -2666,6 +2666,24 @@ clr-dg-cell {
                 text-align: left;
                 z-index: 101;
             }
+
+                .editorConditionColourTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorConditionColour {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.5rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+
                 .editorConditionHeader {
                     font-size: 0.65rem;
                     margin: 6px;

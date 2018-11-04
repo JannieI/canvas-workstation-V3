@@ -3655,6 +3655,26 @@
                         </div>
 
                         <div>
+
+                            <div class="editorConditionColourTitle" *ngIf="showFieldMarkProperties">
+                                Color:
+                            </div>
+                            <div class="select editorConditionColour" *ngIf="showFieldMarkProperties"
+                                title="Color of the mark, ie red for a line Graph"
+                                >
+                                <select [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkColourName"
+                                    name="graphMarkColourName"
+                                    (change)="clickSelectMarkColour($event)"
+                                    >
+                                    <option *ngFor="let row of backgroundcolors"
+                                        [style.background-color]="row.cssCode"
+                                        >
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
+            
+
                             <div class="editorConditionFieldTitle">
                                 Field:
                             </div>

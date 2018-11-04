@@ -185,19 +185,8 @@ This document describes items for later versions of Canvas.
 
         Make ONE month red, or colour ONE legend option RED
 
-        Layered graphs - consider VERY carefully as this may be a huge amount of work
 
 
-        Filter:
-            - add timeUnit & date
-
-
-
-        SUMMARY:
-            - Summary of n charts - design UI 
-            - new Data Science tool
-            - fields: count#, any - see Voyager
-            - wildcards
 
 
     Table (Bradley SmartTable):
@@ -238,8 +227,12 @@ This document describes items for later versions of Canvas.
         - central logging and handling: server will do server stuff, add frontend stuff
         - error bubbling strategy - show each one on a form
 
-    Trends:
+    Data Summaries:
         - DATA SUMMARIES, aka CompassQL ...
+            - Summary of n charts - design UI 
+            - new Data Science tool
+            - fields: count#, any - see Voyager
+            - wildcards
 
     Layout:
         - review design
