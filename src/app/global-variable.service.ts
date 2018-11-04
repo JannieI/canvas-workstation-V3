@@ -11836,14 +11836,64 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
                 if (widget.graphLayers[currentGraphLayer].conditionFieldName != ''
                     && widget.graphLayers[currentGraphLayer].conditionFieldName != null) {
-                        specificationInner['encoding']['color']['condition'] = 
-                        {
-                            "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName + 
-                                " == '" + widget.graphLayers[currentGraphLayer].conditionValue + "'", 
-                            "value": widget.graphLayers[currentGraphLayer].conditionColour
+
+                        let conditionFieldDataType: string = 'string';
+                        let conditionFieldDataTypeIndex: number = widget.dataschema.findIndex(
+                            dat => dat.name == widget.graphLayers[currentGraphLayer].conditionFieldName
+                        );
+                        if (conditionFieldDataTypeIndex >= 0) {
+                            conditionFieldDataType = widget.dataschema[conditionFieldDataTypeIndex].type;
+                        };
+                        let conditionOperator: string = '==';
+                        if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Less Than') {
+                            conditionOperator = '<';
+                        };
+                        if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Less Than Equal') {
+                            conditionOperator = '<=';
+                        };
+                        if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Greater Than') {
+                            conditionOperator = '>';
+                        };
+                        if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Greater Than Equal') {
+                            conditionOperator = '>=';
+                        };
+
+                        if (conditionFieldDataType.toLowerCase() == 'string') {
+                            specificationInner['encoding']['color']['condition'] = 
+                            {
+                                "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName 
+                                + " " + conditionOperator + " '" + widget.graphLayers[currentGraphLayer].conditionValue
+                                + "'", 
+                                "value": widget.graphLayers[currentGraphLayer].conditionColour
+                            };
+                        } else {
+                            specificationInner['encoding']['color']['condition'] = 
+                            {
+                                "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName 
+                                + " " + conditionOperator + " " + widget.graphLayers[currentGraphLayer].conditionValue, 
+                                "value": widget.graphLayers[currentGraphLayer].conditionColour
+                            };
+
                         };
                 };
-            //     "condition": 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //     "condition": 
             // {
             //   "test": "datum.age == 70", 
             //   "value": "red"
