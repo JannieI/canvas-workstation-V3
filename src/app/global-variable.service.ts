@@ -11834,6 +11834,20 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                         'None'?  null  :  {"scheme": widget.graphLayers[currentGraphLayer].graphColorScheme.toLowerCase()}
                 };
 
+                if (widget.graphLayers[currentGraphLayer].conditionFieldName != ''
+                    && widget.graphLayers[currentGraphLayer].conditionFieldName != null) {
+                        specificationInner['encoding']['color']['condition'] = 
+                        {
+                            "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName + 
+                                " == '" + widget.graphLayers[currentGraphLayer].conditionValue + "'", 
+                            "value": widget.graphLayers[currentGraphLayer].conditionColour
+                        };
+                };
+            //     "condition": 
+            // {
+            //   "test": "datum.age == 70", 
+            //   "value": "red"
+            // },
                 if (widget.graphLayers[currentGraphLayer].graphLegendHide) {
                     specificationInner['encoding']['color']['legend'] = null;
                 } else {
