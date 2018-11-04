@@ -1104,6 +1104,17 @@ export interface dataSchemaInterface {
             this.showWidgetEditorLite = this.globalVariableService.currentUser
                 .preferenceShowWidgetEditorLite;
 
+            this.conditionColourName = 
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColourName;
+            this.conditionColour = 
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColour;
+            this.conditionFieldName = 
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName;
+            this.conditionOperator = 
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionOperator;
+            this.conditionValue = 
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValue;
+    
             let arrayIndex: number = this.localDatasources.findIndex(
                 ds => ds.id == this.localWidget.datasourceID
             );
