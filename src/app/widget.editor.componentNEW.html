@@ -2453,6 +2453,13 @@
                                     </option>
                                 </select>
                             </div>
+                            <clr-icon *ngIf="showFieldMarkProperties"
+                                shape="circle"
+                                size="14"
+                                [style.background-color]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkColour"
+                                [style.color]="localWidget.graphLayers[currentGraphLayer - 1].graphMarkColour"
+                                >
+                            </clr-icon>
                         </div>
 
                         <!-- Mark Properties Corner Radius -->
