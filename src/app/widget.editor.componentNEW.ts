@@ -3947,6 +3947,10 @@ export interface dataSchemaInterface {
         };
 
         // Create the condition spec
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColourName =
+            this.conditionColourName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColour =
+            this.conditionColour;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName =
             this.conditionFieldName;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionOperator =
