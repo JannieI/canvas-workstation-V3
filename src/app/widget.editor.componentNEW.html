@@ -1678,6 +1678,13 @@
                                     </option>
                                 </select>
                             </div>
+                            <clr-icon *ngIf="showFieldXPropertiesAxis"
+                                shape="circle"
+                                size="14"
+                                [style.background-color]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisLabelColor"
+                                [style.color]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisLabelColor"
+                                >
+                            </clr-icon>
                         </div>
 
                         <!-- X Axis: The maximum allowed length in pixels of the labels.-->
