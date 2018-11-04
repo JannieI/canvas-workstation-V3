@@ -3865,9 +3865,9 @@ export interface dataSchemaInterface {
         this.filterTimeUnit = ev.target.value;
     }
 
-    conditionFieldSelected(ev) {
+    changeConditionFieldSelected(ev) {
         // Selected a Condition Field
-        this.globalFunctionService.printToConsole(this.constructor.name,'conditionFieldSelected', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeConditionFieldSelected', '@Start');
 
         // Reset
         this.errorMessageEditor = '';
@@ -3966,9 +3966,9 @@ export interface dataSchemaInterface {
         this.showConditionAreaProperties = false;
     }
 
-    conditionOperatorSelected(ev) {
+    changeConditionOperatorSelected(ev) {
         // Selected a Condition Operator
-        this.globalFunctionService.printToConsole(this.constructor.name,'conditionOperatorSelected', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeConditionOperatorSelected', '@Start');
 
         // Reset
         this.errorMessageEditor = '';

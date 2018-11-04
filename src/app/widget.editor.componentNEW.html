@@ -3684,7 +3684,7 @@
                                 >
                                 <select id="selects_3" *ngIf="dataSchema"
                                     [(ngModel)]="conditionFieldName"
-                                    (change)="conditionFieldSelected($event)"
+                                    (change)="changeConditionFieldSelected($event)"
                                     name="conditionFieldName"
                                     >
                                     <option *ngFor="let row of dataSchema; let i = index">
@@ -3703,7 +3703,7 @@
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="conditionOperator"
-                                    (change)="conditionOperatorSelected($event)"
+                                    (change)="changeConditionOperatorSelected($event)"
                                     name="conditionOperator"
                                     >
                                     <option>Less Than</option>
