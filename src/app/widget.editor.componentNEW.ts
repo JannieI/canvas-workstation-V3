@@ -1398,13 +1398,13 @@ export interface dataSchemaInterface {
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit = ""}
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle = ""}
 
-        for (let i = 0; i < this.localWidget.graphLayers.length; i++){
-            if (this.localWidget.graphLayers[i].graphMarkSize == null
-                ||
-                this.localWidget.graphLayers[i].graphMarkSize == 0) {
-                this.localWidget.graphLayers[i].graphMarkSize = 20;
-            };
-        };
+        // for (let i = 0; i < this.localWidget.graphLayers.length; i++){
+        //     if (this.localWidget.graphLayers[i].graphMarkSize == null
+        //         ||
+        //         this.localWidget.graphLayers[i].graphMarkSize == 0) {
+        //         this.localWidget.graphLayers[i].graphMarkSize = 20;
+        //     };
+        // };
 
         // Define Specification
         if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==

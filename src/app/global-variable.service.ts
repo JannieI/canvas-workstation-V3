@@ -11680,7 +11680,9 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 specificationInner['mark']['extent'] = vegaGraphMarkExtent;
                 specificationInner['mark']['ticks'] = true;
             };
-            if (widget.graphLayers[currentGraphLayer].graphMarkSize != null) {
+            if (widget.graphLayers[currentGraphLayer].graphMarkSize != null
+                &&
+                widget.graphLayers[currentGraphLayer].graphMarkSize != 0) {
                 specificationInner['mark']['size'] =
                     widget.graphLayers[currentGraphLayer].graphMarkSize;
             };
