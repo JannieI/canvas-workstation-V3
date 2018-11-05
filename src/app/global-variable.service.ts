@@ -11252,15 +11252,21 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
         // Title
         specification['title']['text'] = widget.graphTitleText;
-        specification['title']['anchor'] = widget.graphTitleAnchor.toLowerCase();
+        if (widget.graphTitleAnchor != null) {
+            specification['title']['anchor'] = widget.graphTitleAnchor.toLowerCase();
+        };
         specification['title']['angle'] = widget.graphTitleAngle;
-        specification['title']['baseline'] = widget.graphTitleBaseline.toLowerCase();
+        if (widget.graphTitleBaseline != null) {
+            specification['title']['baseline'] = widget.graphTitleBaseline.toLowerCase();
+        };
         specification['title']['color'] = widget.graphTitleColor;
         specification['title']['font'] = widget.graphTitleFont;
         specification['title']['fontSize'] = widget.graphTitleFontSize;
         specification['title']['fontWeight'] = widget.graphTitleFontWeight;
         specification['title']['limit'] = widget.graphTitleLength;
-        specification['title']['orient'] = widget.graphTitleOrientation.toLowerCase();
+        if (widget.graphTitleOrientation != null) {
+            specification['title']['orient'] = widget.graphTitleOrientation.toLowerCase();
+        };
 
 
         // Data
