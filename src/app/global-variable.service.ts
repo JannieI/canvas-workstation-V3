@@ -77,7 +77,7 @@ import { facetSortFieldName } from 'vega-lite/build/src/compile/facet';
 // Vega template
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
     {
-        "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+        "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
 
         // Properties for top-level specification (e.g., standalone single view specifications)
         "background": "",
