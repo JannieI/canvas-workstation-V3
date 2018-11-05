@@ -3370,6 +3370,23 @@ export interface dataSchemaInterface {
         };
     }
 
+    clickSelectBorderColor(ev: any) {
+        // Select Border Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBorderColor', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.localWidget.graphBorderColorName = ev.target.value;
+        this.localWidget.graphBorderColor = this.localWidget.graphBorderColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.graphBorderColorName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.graphBorderColor = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
     clickSelectTitleColor(ev: any) {
         // Select Title Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleColor', '@Start');

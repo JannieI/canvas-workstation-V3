@@ -11233,7 +11233,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             "config": {
                 "style": {
                   "cell": {
-                    "stroke": "lightgray"
+                    "stroke": widget.graphBorderColor
                   }
                 }
             }
