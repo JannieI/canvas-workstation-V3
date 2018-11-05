@@ -1184,6 +1184,34 @@
 
                         </div>
 
+                        <!-- Title Border color for GRAPH  -->
+                        <div class="editorLineContainer">
+                            <div class="editorTitleBorderTitle" *ngIf="showFieldTitleProperties">
+                                Bg Color:
+                            </div>
+                            <div class="select editorTitleBorder" *ngIf="showFieldTitleProperties">
+                                <select [(ngModel)]="localWidget.graphBorderColorName"
+                                    name="graphBorderColorName"
+                                    (change)="clickSelectBorderColor($event)"
+                                    title="Color of the Graph Border"
+                                    >
+                                    <option *ngFor="let row of Bordercolors"
+                                        [style.background-color]="row.cssCode"
+                                        >
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
+                            <clr-icon *ngIf="showFieldTitleProperties"
+                                shape="circle"
+                                size="14"
+                                [style.background-color]="localWidget.graphBorderColorName"
+                                [style.color]="localWidget.graphBorderColorName"
+                                >
+                            </clr-icon>
+
+                        </div>
+    
                         <!-- Title Vertical text baseline for title text. -->
                         <div class="editorLineContainer">
                             <div class="editorTitleBaselineTitle" *ngIf="showFieldTitleProperties">
