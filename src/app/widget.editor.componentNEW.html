@@ -2066,6 +2066,13 @@
                                     </option>
                                 </select>
                             </div>
+                            <clr-icon *ngIf="showFieldYPropertiesAxis"
+                                shape="circle"
+                                size="14"
+                                [style.background-color]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisLabelColorName"
+                                [style.color]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisLabelColorName"
+                                >
+                            </clr-icon>
                         </div>
 
                         <!-- Y Axis: The maximum allowed length in pixels of the labels.-->
