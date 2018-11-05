@@ -11230,7 +11230,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             "config": {
                 "style": {
                   "cell": {
-                    "stroke": "transparent"
+                    "stroke": "lightgray"
                   }
                 }
             }
