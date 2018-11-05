@@ -1254,7 +1254,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
             let deleteWidget: Widget;
 
-            for (var i = 0; i < this.currentWidgets.length; i++) {
+            for (var i = this.currentWidgets.length - 1; i >= 0 ; i--) {
 
                 // Delete ALL the Shapes
                 if ( this.currentWidgets[i].widgetType == 'Shape') {
