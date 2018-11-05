@@ -1291,6 +1291,8 @@ export class Widget {
     // graphType: string;                  // bar, pie, etc
     graphBackgroundColorName: string;   // Name of Bg color for graph
     graphBackgroundColor: string;       // Bg color for graph in hex, rgb, etc
+    graphBorderColorName: string;       // Name of Border Color Border for graph
+    graphBorderColor: string;           // Border Border Color for graph in hex, rgb, etc
     graphHeight: number;                // in px
     graphLeft: number;                  // in px
     graphTop: number;                   // in px
