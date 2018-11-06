@@ -69,12 +69,12 @@ export class WidgetDeleteComponent implements OnInit {
         let localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
         // Rescale and limit amount of detail on the graph
-        localWidget.containerLeft = 100;
-        localWidget.containerTop = 100;
-        localWidget.containerHeight = 300;
-        localWidget.graphHeight = 280;
-        localWidget.containerWidth = 300;
-        localWidget.graphWidth = 280;
+        // localWidget.containerLeft = 100;
+        // localWidget.containerTop = 100;
+        // localWidget.containerHeight = 300;
+        // localWidget.graphHeight = 280;
+        // localWidget.containerWidth = 300;
+        // localWidget.graphWidth = 280;
         localWidget.containerBoxshadow = 'none';
         localWidget.containerBorder = 'none';
         localWidget.isSelected = false;
@@ -86,7 +86,7 @@ export class WidgetDeleteComponent implements OnInit {
         localWidget.containerBackgroundcolor = 'white';
         localWidget.containerBackgroundcolorName = 'white';
 
-        let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
+        let definition = this.globalVariableService.createVegaLiteSpec(localWidget, 200, 220);
         console.warn('xx def', definition)
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
