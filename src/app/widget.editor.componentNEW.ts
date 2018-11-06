@@ -585,6 +585,7 @@ export interface dataSchemaInterface {
         "yelloworangered-9"
 
     ];
+    widgetGraphsLite: string[] = ['area', 'bar', 'line', 'point'];
     widgetGraphs: WidgetGraph[] =[];
     widgetGraphsFull: WidgetGraph[] =[];
     xField: string = dragFieldMessage;
@@ -984,9 +985,8 @@ export interface dataSchemaInterface {
                 this.widgetGraphs = res
 
                 if (this.showWidgetEditorLite) {
-                    let widgetGraphsLite: string[] = ['area', 'bar', 'line'];
                     this.widgetGraphs = this.widgetGraphs
-                        .filter(wgr => widgetGraphsLite.indexOf(wgr.mark) >= 0 );
+                        .filter(wgr => this.widgetGraphsLite.indexOf(wgr.mark) >= 0 );
                 };
             });
 
@@ -1160,9 +1160,8 @@ export interface dataSchemaInterface {
                 this.widgetGraphs = res
 
                 if (this.showWidgetEditorLite) {
-                    let widgetGraphsLite: string[] = ['area', 'bar', 'line', 'point'];
                     this.widgetGraphs = this.widgetGraphs
-                        .filter(wgr => widgetGraphsLite.indexOf(wgr.mark) >= 0 );
+                        .filter(wgr => this.widgetGraphsLite.indexOf(wgr.mark) >= 0 );
                 };
 
                 // Show graph
