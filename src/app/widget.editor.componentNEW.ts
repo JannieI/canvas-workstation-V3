@@ -1182,6 +1182,10 @@ export interface dataSchemaInterface {
                 ||
                 this.colorField != dragFieldMessage
                 ||
+                this.sizeField != dragFieldMessage
+                || 
+                this.detailField != dragFieldMessage
+                ||
                 this.projectionFieldLatitude != dragFieldMessage
                 ||
                 this.projectionFieldLongitude != dragFieldMessage

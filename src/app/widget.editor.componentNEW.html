@@ -3502,7 +3502,9 @@
                         </button>
                     </div>
 
-                    <div class="editorFilterArea" *ngIf="showFilterAreaProperties">
+                    <div class="editorFilterArea" *ngIf="showFilterAreaProperties"
+                        style="user-select: none;"
+                        >
                         <div class="editorFilterHeader">
                             <b>Filters</b>
                         </div>
@@ -3518,8 +3520,8 @@
                             </i>
                         </div>
 
-                        <div>
-                            <div class="editorFilterFieldTitle">
+                        <div style="user-select: none;">
+                            <div>
                                 Field:
                             </div>
                             <div class="select editorFilterField"
