@@ -11902,32 +11902,58 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                         };
                 };
 
+                // if (widget.graphLayers[currentGraphLayer].graphLegendHide) {
+                //     specificationInner['encoding']['color']['legend'] = null;
+                // } else {
+                //     if (!widget.graphLayers[currentGraphLayer].graphLegendTitleCheckbox) {
+                //         specificationInner['encoding']['color']['legend'] =
+                //             {
+                //                 "title": null
+                //             };
+                //     } else {
+                //         if (widget.graphLayers[currentGraphLayer].graphLegendTitle != ''
+                //             &&
+                //             widget.graphLayers[currentGraphLayer].graphLegendTitle != undefined) {
+                //             specificationInner['encoding']['color']['legend'] =
+                //                 {
+                //                     "labelLimit": widget.graphDimensionRight,
+                //                     "title": widget.graphLayers[currentGraphLayer].graphLegendTitle
+                //                 };
+                //             if (widget.graphLayers[currentGraphLayer].graphLegendLabels) {
+                //                 specificationInner['encoding']['color']['legend'].labelColor = widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
+                //                 specificationInner['encoding']['color']['legend'].tickColor = widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
+                //                 specificationInner['encoding']['color']['legend'].titleColor = widget.graphLayers[currentGraphLayer].graphLegendLabelColor
+                //             };
+
+                //         };
+                //     };
+                // };
+
+
+
+
+
                 if (widget.graphLayers[currentGraphLayer].graphLegendHide) {
                     specificationInner['encoding']['color']['legend'] = null;
                 } else {
-                    if (!widget.graphLayers[currentGraphLayer].graphLegendTitleCheckbox) {
-                        specificationInner['encoding']['color']['legend'] =
-                            {
-                                "title": null
-                            };
-                    } else {
-                        if (widget.graphLayers[currentGraphLayer].graphLegendTitle != ''
-                            &&
-                            widget.graphLayers[currentGraphLayer].graphLegendTitle != undefined) {
-                            specificationInner['encoding']['color']['legend'] =
-                                {
-                                    "labelLimit": widget.graphDimensionRight,
-                                    "title": widget.graphLayers[currentGraphLayer].graphLegendTitle
-                                };
-                            if (widget.graphLayers[currentGraphLayer].graphLegendLabels) {
-                                specificationInner['encoding']['color']['legend'].labelColor = widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
-                                specificationInner['encoding']['color']['legend'].tickColor = widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
-                                specificationInner['encoding']['color']['legend'].titleColor = widget.graphLayers[currentGraphLayer].graphLegendLabelColor
-                            };
-
-                        };
+                    if (widget.graphLayers[currentGraphLayer].graphLegendTitle == null) {
+                        widget.graphLayers[currentGraphLayer].graphLegendTitle = '';
                     };
+                    specificationInner['encoding']['color']['legend'] =
+                        {
+                            "labelColor" : widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
+                            "tickColor" : widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
+                            "titleColor" : widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
+                            "labelLimit": widget.graphDimensionRight,
+                            "title": widget.graphLayers[currentGraphLayer].graphLegendTitleCheckbox? 
+                                        widget.graphLayers[currentGraphLayer].graphLegendTitle  
+                                        :  null
+                        };
                 };
+
+
+
+
 
                 if (widget.graphLayers[currentGraphLayer].graphLegendAxisScaleType != 'Default'
                     &&
