@@ -11941,9 +11941,15 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     };
                     specificationInner['encoding']['color']['legend'] =
                         {
-                            "labelColor" : widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
-                            "tickColor" : widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
-                            "titleColor" : widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
+                            "labelColor" : widget.graphLayers[currentGraphLayer].graphLegendLabels?
+                                           widget.graphLayers[currentGraphLayer].graphLegendLabelColor
+                                           : 'transparent',
+                            "tickColor" : widget.graphLayers[currentGraphLayer].graphLegendLabels?
+                                          widget.graphLayers[currentGraphLayer].graphLegendLabelColor
+                                          : 'transparent',
+                            "titleColor" : widget.graphLayers[currentGraphLayer].graphLegendLabels?
+                                           widget.graphLayers[currentGraphLayer].graphLegendLabelColor
+                                           : 'transparent',
                             "labelLimit": widget.graphDimensionRight,
                             "title": widget.graphLayers[currentGraphLayer].graphLegendTitleCheckbox? 
                                         widget.graphLayers[currentGraphLayer].graphLegendTitle  
