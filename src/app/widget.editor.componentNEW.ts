@@ -1172,7 +1172,20 @@ export interface dataSchemaInterface {
             });
 
             // Switch if Complex graph in Lite mode
-            if (this.localWidget.graphLayerFacet != 'Single'  &&  this.showWidgetEditorLite) {
+            if (this.localWidget.graphLayerFacet != 'Single'
+                ||
+                this.x2Field != dragFieldMessage
+                || 
+                this.y2Field != dragFieldMessage
+                ||
+                this.rowField != dragFieldMessage
+                ||
+                this.colorField != dragFieldMessage
+                ||
+                this.projectionFieldLatitude != dragFieldMessage
+                ||
+                this.projectionFieldLongitude != dragFieldMessage
+                )  {
                 this.showWidgetEditorLite = false;
             };
 
