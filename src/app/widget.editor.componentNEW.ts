@@ -1160,7 +1160,7 @@ export interface dataSchemaInterface {
                 this.widgetGraphs = res
 
                 if (this.showWidgetEditorLite) {
-                    let widgetGraphsLite: string[] = ['area', 'bar', 'line'];
+                    let widgetGraphsLite: string[] = ['area', 'bar', 'line', 'point'];
                     this.widgetGraphs = this.widgetGraphs
                         .filter(wgr => widgetGraphsLite.indexOf(wgr.mark) >= 0 );
                 };
