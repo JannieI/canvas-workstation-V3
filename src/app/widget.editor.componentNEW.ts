@@ -4378,6 +4378,28 @@ export interface dataSchemaInterface {
             this.y2Field = dragFieldMessage;
         };
 
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLatitude != ''
+            &&
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLatitude != null) {
+            this.showProjectionLatitudeDeleteIcon = true;
+            this.projectionFieldLatitude = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLatitude;
+
+        } else {
+            this.showProjectionLatitudeDeleteIcon = false;
+            this.projectionFieldLatitude = dragFieldMessage;
+        };
+
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLongitude != ''
+            &&
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLongitude != null) {
+            this.showProjectionLongitudeDeleteIcon = true;
+            this.projectionFieldLongitude = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLongitude;
+
+        } else {
+            this.showProjectionLongitudeDeleteIcon = false;
+            this.projectionFieldLongitude = dragFieldMessage;
+        };
+
         // Condition Info
         this.conditionColourName =
             this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColourName;
