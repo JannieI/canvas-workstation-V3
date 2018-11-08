@@ -1409,19 +1409,19 @@ export class Widget {
     // graphXtypeName: string;
 
     // Y
-    graphYfield: string;
-    graphYaggregateName: string;
-    graphYaggregate: string;
-    graphYbin: boolean;
-    graphYMaxBins: number;
-    graphYformat: string;
-    graphYimpute: string;
-    graphYimputeValue: number;
-    graphYstack: string;
-    graphYsort: string;
-    graphYtimeUnit: string;
-    graphYtype: string;
-    graphYtypeName: string;
+    // graphYfield: string;
+    // graphYaggregateName: string;
+    // graphYaggregate: string;
+    // graphYbin: boolean;
+    // graphYMaxBins: number;
+    // graphYformat: string;
+    // graphYimpute: string;
+    // graphYimputeValue: number;
+    // graphYstack: string;
+    // graphYsort: string;
+    // graphYtimeUnit: string;
+    // graphYtype: string;
+    // graphYtypeName: string;
 
     // Color
     graphColorField: string;
