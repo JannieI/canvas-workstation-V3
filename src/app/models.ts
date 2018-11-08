@@ -1424,20 +1424,20 @@ export class Widget {
     // graphYtypeName: string;
 
     // Color
-    graphColorField: string;
-    graphColorAggregateName: string;
-    graphColorAggregate: string;
-    graphColorBin: boolean;
-    graphColorMaxBins: number;
-    graphColorFormat: string;
-    graphColorImpute: string;
-    graphColorImputeValue: string;
-    graphColorScheme: string;
-    graphColorSort: string;
-    graphColorStack: string;
-    graphColorType: string;
-    graphColorTypeName: string;
-    graphColorTimeUnit: string;
+    // graphColorField: string;
+    // graphColorAggregateName: string;
+    // graphColorAggregate: string;
+    // graphColorBin: boolean;
+    // graphColorMaxBins: number;
+    // graphColorFormat: string;
+    // graphColorImpute: string;
+    // graphColorImputeValue: string;
+    // graphColorScheme: string;
+    // graphColorSort: string;
+    // graphColorStack: string;
+    // graphColorType: string;
+    // graphColorTypeName: string;
+    // graphColorTimeUnit: string;
 
     // X Axis
     graphXaxisFormat: string;

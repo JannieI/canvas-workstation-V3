@@ -615,20 +615,20 @@ const widgetTemplate: Widget =
         // "graphYtype": "",
         // "graphYtypeName": "",
 
-        "graphColorField": "",
-        "graphColorAggregateName": "",
-        "graphColorAggregate": "",
-        "graphColorBin": false,
-        "graphColorMaxBins": 0,
-        "graphColorFormat": "",
-        "graphColorImpute": "",
-        "graphColorImputeValue": "",
-        "graphColorScheme": "blues",
-        "graphColorSort": "Default",
-        "graphColorStack": "",
-        "graphColorType": "",
-        "graphColorTypeName": "",
-        "graphColorTimeUnit": "",
+        // "graphColorField": "",
+        // "graphColorAggregateName": "",
+        // "graphColorAggregate": "",
+        // "graphColorBin": false,
+        // "graphColorMaxBins": 0,
+        // "graphColorFormat": "",
+        // "graphColorImpute": "",
+        // "graphColorImputeValue": "",
+        // "graphColorScheme": "blues",
+        // "graphColorSort": "Default",
+        // "graphColorStack": "",
+        // "graphColorType": "",
+        // "graphColorTypeName": "",
+        // "graphColorTimeUnit": "",
 
         "graphXaxisScaleType": "",
         "graphXaxisTitle": "",
@@ -13146,12 +13146,13 @@ console.warn('xx ds perm', dp);
         let graphWidth: number;
 
         // Set Graph Width and Width - Assume font size 12 for now
-        if (widget.graphColorField != ''
-            &&  widget.graphColorField != null) {
-            graphWidth = widget.containerWidth - 35;
-        } else {
-            graphWidth = widget.containerWidth - 35;
-        };
+        // if (widget.graphColorField != ''
+        //     &&  widget.graphColorField != null) {
+        //     graphWidth = widget.containerWidth - 35;
+        // } else {
+        //     graphWidth = widget.containerWidth - 35;
+        // };
+        graphWidth = widget.containerWidth - 35;
 
         // Return
         return graphWidth;
