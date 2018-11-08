@@ -1512,9 +1512,9 @@ export class Widget {
     // graphY2AggregateName: string;
 
     // Projection
-    graphProjectionType: string;            // Type of geo projection
-    graphProjectionFieldLatitude: string;   // Lat of geo projection
-    graphProjectionFieldLongitude: string;  // Long of geo projection
+    // graphProjectionType: string;            // Type of geo projection
+    // graphProjectionFieldLatitude: string;   // Lat of geo projection
+    // graphProjectionFieldLongitude: string;  // Long of geo projection
 
     // Table - to be determined later ...
     tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)

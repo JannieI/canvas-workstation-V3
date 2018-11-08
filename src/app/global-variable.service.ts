@@ -693,9 +693,9 @@ const widgetTemplate: Widget =
         // "graphY2TypeName": "",
         // "graphY2AggregateName": "",
 
-        "graphProjectionType": "",
-        "graphProjectionFieldLatitude": "",
-        "graphProjectionFieldLongitude": "",
+        // "graphProjectionType": "",
+        // "graphProjectionFieldLatitude": "",
+        // "graphProjectionFieldLongitude": "",
 
         "tableBackgroundColor" : "",
         "tableBackgroundColorName" : "",
