@@ -1490,9 +1490,9 @@ export class Widget {
     // graphRowTypeName: string;
 
     // Column
-    graphColumnField: string;
-    graphColumnType: string;
-    graphColumnTypeName: string;
+    // graphColumnField: string;
+    // graphColumnType: string;
+    // graphColumnTypeName: string;
 
     // Detail
     graphDetailField: string;
