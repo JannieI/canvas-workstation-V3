@@ -74,8 +74,16 @@ export interface dataSchemaInterface {
             this.showGraph(this.currentGraphID);
             return;
         };
+        if (event.code == 'ArrowLeft'  &&  (event.ctrlKey)  &&  (!event.shiftKey)  ) {
+            this.clickBrowsePreviousGraph();
+            return;
+        };
+        if (event.code == 'ArrowRight'  &&  (event.ctrlKey)  &&  (!event.shiftKey)  ) {
+            this.clickBrowseNextGraph();
+            return;
+        };
 
-
+        
         // if (this.currentGraphID >= 0  &&  event.code == 'KeyS'  &&  (event.ctrlKey)  
         //     &&  (!event.shiftKey)  ) {
         // //    console.warn('xx');
