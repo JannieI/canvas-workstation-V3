@@ -1164,9 +1164,10 @@ export interface dataSchemaInterface {
                         .filter(wgr => this.widgetGraphsLite.indexOf(wgr.mark) >= 0 );
                 };
 
+                // TODO - fix
                 // Show graph
-                let graphIndex: number = this.widgetGraphs.findIndex(
-                    wgr => wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
+                let graphIndex: number = this.widgetGraphs.findIndex(wgr => 
+                    wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
                 );
                 this.showGraph(this.widgetGraphs[graphIndex].id);
             });
@@ -1609,6 +1610,7 @@ export interface dataSchemaInterface {
             this.graphLayers.push(i + 1);
         };
 
+                // TODO - fix
         // Get the graphID
         let graphID: number = -1;
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
@@ -1654,6 +1656,7 @@ export interface dataSchemaInterface {
             this.graphLayers.push(i + 1);
         };
 
+                // TODO - fix
         // Get the graphID
         let graphID: number = -1;
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
@@ -3486,12 +3489,14 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColourName = ev.target.value;
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColour = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColourName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColour = 
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColourName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
             bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColourName
         );
         if (localIndex >= 0) {
-            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColour = this.backgroundcolors[localIndex].cssCode;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColour = 
+                this.backgroundcolors[localIndex].cssCode;
         };
     }
 
@@ -3503,7 +3508,8 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColorName = ev.target.value;
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColor = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColorName;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColor = 
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
             bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColorName
         );
@@ -4556,9 +4562,10 @@ export interface dataSchemaInterface {
         // Load local Vars from localWidget
         this.loadLocalVarsFromWidget()
 
+                // TODO - fix
         // Refresh
-        let graphIndex: number = this.widgetGraphs.findIndex(
-            wgr => wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
+        let graphIndex: number = this.widgetGraphs.findIndex(wgr => 
+                wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
         );
         if (graphIndex >= 0) {
             this.showGraph(this.widgetGraphs[graphIndex].id);
@@ -4592,9 +4599,10 @@ export interface dataSchemaInterface {
         // Load local Vars from localWidget
         this.loadLocalVarsFromWidget()
 
+                // TODO - fix
         // Refresh
-        let graphIndex: number = this.widgetGraphs.findIndex(
-            wgr => wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
+        let graphIndex: number = this.widgetGraphs.findIndex(wgr => 
+            wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
         );
         if (graphIndex >= 0) {
             this.showGraph(this.widgetGraphs[graphIndex].id);
@@ -4619,7 +4627,8 @@ export interface dataSchemaInterface {
 
             this.errorMessageEditor = 'Layers 2+, Row, Col deleted.  Used History to go back';
 
-            let widgetGraphIndex: number = this.widgetGraphs.findIndex(
+                // TODO - fix
+                let widgetGraphIndex: number = this.widgetGraphs.findIndex(
                 wg => wg.mark == this.localWidget.graphLayers[0].graphMark
             );
             if (widgetGraphIndex >= 0) {

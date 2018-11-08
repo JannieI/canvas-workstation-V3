@@ -1039,20 +1039,37 @@ export class GraphFilter {
 export class widgetGraphSpecification {
 
     // Mark
-    graphMark: string;
-    graphMarkOrient: string;
-    graphMarkLine: boolean;
-    graphMarkPoint: boolean;
-    graphMarkPointColorName: string;
-    graphMarkPointColor: string;
-    graphMarkColourName: string;
-    graphMarkColour: string;
-    graphMarkCornerRadius: number;
+    // graphMark: string;
+    // graphMarkOrient: string;
+    // graphMarkLine: boolean;
+    // graphMarkPoint: boolean;
+    // graphMarkPointColorName: string;
+    // graphMarkPointColor: string;
+    // graphMarkColourName: string;
+    // graphMarkColour: string;
+    // graphMarkCornerRadius: number;
+    // graphMarkExtent: string;            // Extent: ci, stderr, stdev, irq for Error Band & -Bar
+    // graphMarkOpacity: number;
+    // graphMarkBinSpacing: number;
+    // graphMarkSize: number;
+    // graphMarkInterpolate: string;
+
+    graphMarkID: number;                // Unique ID of Mark, as per lookup table
+    graphMark: string;                  // Filled in from lookup table, based on graphMarkID
+    graphMarkOrient: string;            // Horisontal/Verticle - ie for bar when both axis numbers
+    graphMarkLine: boolean;             // True to add line, ie for Area graph
+    graphMarkPoint: boolean;            // True to add point, ie for Area graph
+    graphMarkPointColorName: string;    // Name of Point colour
+    graphMarkPointColor: string;        // Actual Point colour in hex
+    graphMarkColourName: string;        // Name of Mark colour (if colour channel not used)
+    graphMarkColour: string;            // Actual Mark colour in hex
+    graphMarkCornerRadius: number;      // Size of corner radius, ie for bar
     graphMarkExtent: string;            // Extent: ci, stderr, stdev, irq for Error Band & -Bar
-    graphMarkOpacity: number;
-    graphMarkBinSpacing: number;
-    graphMarkSize: number;
-    graphMarkInterpolate: string;
+    graphMarkOpacity: number;           // Opacity of Mark, 0 to 1
+    graphMarkBinSpacing: number;        // Space between bins, ie 0 or 1 (stats or nice)
+    graphMarkInterpolate: string;       // Interpolation
+    graphMarkSize: number;              // Size of the Mark
+
 
     // X
     graphXfield: string;
@@ -1309,19 +1326,20 @@ export class Widget {
     graphDescription: string;
 
     // Mark
-    graphMark: string;
-    graphMarkOrient: string;
-    graphMarkLine: boolean;
-    graphMarkPoint: boolean;
-    graphMarkPointColorName: string;
-    graphMarkPointColor: string;
-    graphMarkColourName: string;
-    graphMarkColour: string;
-    graphMarkCornerRadius: number;
+    graphMarkID: number;                // Unique ID of Mark, as per lookup table
+    graphMark: string;                  // Filled in from lookup table, based on graphMarkID
+    graphMarkOrient: string;            // Horisontal/Verticle - ie for bar when both axis numbers
+    graphMarkLine: boolean;             // True to add line, ie for Area graph
+    graphMarkPoint: boolean;            // True to add point, ie for Area graph
+    graphMarkPointColorName: string;    // Name of Point colour
+    graphMarkPointColor: string;        // Actual Point colour in hex
+    graphMarkColourName: string;        // Name of Mark colour (if colour channel not used)
+    graphMarkColour: string;            // Actual Mark colour in hex
+    graphMarkCornerRadius: number;      // Size of corner radius, ie for bar
     graphMarkExtent: string;            // Extent: ci, stderr, stdev, irq for Error Band & -Bar
-    graphMarkOpacity: number;
-    graphMarkBinSpacing: number;
-    graphMarkInterpolate: string;
+    graphMarkOpacity: number;           // Opacity of Mark, 0 to 1
+    graphMarkBinSpacing: number;        // Space between bins, ie 0 or 1 (stats or nice)
+    graphMarkInterpolate: string;       // Interpolation
 
     // Data
     graphUrl: string;

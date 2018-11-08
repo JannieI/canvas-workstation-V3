@@ -360,6 +360,7 @@ const widgetTemplate: Widget =
         "graphLayers": [
             {
                 // Mark
+                "graphMarkID": 0,
                 "graphMark": "",
                 "graphMarkOrient": "",
                 "graphMarkLine": false,
@@ -513,6 +514,7 @@ const widgetTemplate: Widget =
             }
         ],
 
+        "graphMarkID": 0,
         "graphMark": "tick",
         "graphMarkOrient": "Verticle",
         "graphMarkLine": false,
