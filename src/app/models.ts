@@ -1500,10 +1500,10 @@ export class Widget {
     // graphDetailTypeName: string;
 
     // X2
-    graphX2Field: string;
-    graphX2Type: string;
-    graphX2TypeName: string;
-    graphX2AggregateName: string;
+    // graphX2Field: string;
+    // graphX2Type: string;
+    // graphX2TypeName: string;
+    // graphX2AggregateName: string;
 
     // Y2
     graphY2Field: string;

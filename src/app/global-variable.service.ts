@@ -683,10 +683,10 @@ const widgetTemplate: Widget =
         // "graphDetailType": "",
         // "graphDetailTypeName": "",
 
-        "graphX2Field": "",
-        "graphX2Type": "",
-        "graphX2TypeName": "",
-        "graphX2AggregateName": "",
+        // "graphX2Field": "",
+        // "graphX2Type": "",
+        // "graphX2TypeName": "",
+        // "graphX2AggregateName": "",
 
         "graphY2Field": "",
         "graphY2Type": "",
