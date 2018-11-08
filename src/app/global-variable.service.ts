@@ -630,17 +630,17 @@ const widgetTemplate: Widget =
         // "graphColorTypeName": "",
         // "graphColorTimeUnit": "",
 
-        "graphXaxisScaleType": "",
-        "graphXaxisTitle": "",
-        "graphXaxisTitleCheckbox": true,
-        "graphXaxisGrid": true,
-        "graphXaxisGridColorName": "gray",
-        "graphXaxisGridColor": "gray",
-        "graphXaxisFormat": "",
-        "graphXaxisLabels": true,
-        "graphXaxisLabelAngle": 0,
-        "graphXaxisLabelColorName": "",
-        "graphXaxisLabelColor": "",
+        // "graphXaxisScaleType": "",
+        // "graphXaxisTitle": "",
+        // "graphXaxisTitleCheckbox": true,
+        // "graphXaxisGrid": true,
+        // "graphXaxisGridColorName": "gray",
+        // "graphXaxisGridColor": "gray",
+        // "graphXaxisFormat": "",
+        // "graphXaxisLabels": true,
+        // "graphXaxisLabelAngle": 0,
+        // "graphXaxisLabelColorName": "",
+        // "graphXaxisLabelColor": "",
 
         "graphYaxisScaleType": "Default",
         "graphYaxisTitleCheckbox": true,
@@ -13118,13 +13118,14 @@ console.warn('xx ds perm', dp);
         let graphHeight: number;
 
         // Set Graph Height and Width
-        if (widget.graphXaxisTitle != ''
-            &&
-            widget.graphXaxisTitle != null) {
-                graphHeight = widget.containerHeight - 55;
-        } else {
-            graphHeight = widget.containerHeight - 15;
-        };
+        // if (widget.graphXaxisTitle != ''
+        //     &&
+        //     widget.graphXaxisTitle != null) {
+        //         graphHeight = widget.containerHeight - 55;
+        // } else {
+        //     graphHeight = widget.containerHeight - 15;
+        // };
+        graphHeight = widget.containerHeight - 15;
 
         // Return
         return graphHeight;

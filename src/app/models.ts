@@ -1440,17 +1440,17 @@ export class Widget {
     // graphColorTimeUnit: string;
 
     // X Axis
-    graphXaxisFormat: string;
-    graphXaxisGrid: boolean;                        // True if X grid lines show
-    graphXaxisGridColorName: string;                // Name of color for X gridlines
-    graphXaxisGridColor: string;                    // Actual color of X gridline in hex, rgb, etc
-    graphXaxisLabels: boolean;
-    graphXaxisLabelAngle: number;
-    graphXaxisLabelColorName: string;               // Name of color for X labels
-    graphXaxisLabelColor: string;                   // Actual color of X labels in hex, rgb, etc
-    graphXaxisTitle: string;
-    graphXaxisTitleCheckbox: boolean;
-    graphXaxisScaleType: string;                    // Type of axis, ie linear, log, etc
+    // graphXaxisFormat: string;
+    // graphXaxisGrid: boolean;                        // True if X grid lines show
+    // graphXaxisGridColorName: string;                // Name of color for X gridlines
+    // graphXaxisGridColor: string;                    // Actual color of X gridline in hex, rgb, etc
+    // graphXaxisLabels: boolean;
+    // graphXaxisLabelAngle: number;
+    // graphXaxisLabelColorName: string;               // Name of color for X labels
+    // graphXaxisLabelColor: string;                   // Actual color of X labels in hex, rgb, etc
+    // graphXaxisTitle: string;
+    // graphXaxisTitleCheckbox: boolean;
+    // graphXaxisScaleType: string;                    // Type of axis, ie linear, log, etc
 
     // Y Axis
     graphYaxisFormat: string;
