@@ -1326,6 +1326,7 @@ This document describes items for later versions of Canvas.
         - look at use case: do we need a little pic / icon next to each bar (title, x, etc) to make it easier to recognise?
         - save config / style of stuff, say Title, X, etc so that graphs can look and feel the same.
     - add url to open a web page
+    - consider conditional formatting on the field - ie show in blue or show icon.  Issues: 1. what if more than one conditional format?  2. too many icons on field bar.
 
     - Title
         - can save and re-use style, ie graphs for Finance will then all look the same
@@ -1423,6 +1424,7 @@ This document describes items for later versions of Canvas.
         - for numbers: show range min to max ?
         - add dates: maybe add calendar drop down, with {"filter": {"field": "date", "range": [{"year": 2006, "month": "jan", "date": 1}, {"year": 2008, "month": "feb", "date": 20}] }} checks if the date’s value is between Jan 1, 2006 and Feb 20, 2008
         - add PRE and POST filter, like WHERE and HAVING, at start and end of Transformation[]
+        - consider showing them: 1. with a filter symbol next to + symbol for Calculated fields  2. per field affect, ie in blue.  Not sure how to manage more than one filter per field, or seeing the full picture if 50 fields with 3 filter scattered through the list.  Think use Case.
 
     - CONFIG:
         - how and where used?

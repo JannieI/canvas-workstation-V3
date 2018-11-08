@@ -237,6 +237,7 @@ export interface dataSchemaInterface {
     detailField: string = dragFieldMessage;
     draggedField: string = '';
     dragoverColours: boolean = false;
+    dsFilterMessage: string = '(filtered)';
     errorMessage: string = '';
     errorMessageEditor: string = '';
     filterErrorMessage: string = ' ';
