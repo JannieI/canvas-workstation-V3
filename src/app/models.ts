@@ -1453,17 +1453,17 @@ export class Widget {
     // graphXaxisScaleType: string;                    // Type of axis, ie linear, log, etc
 
     // Y Axis
-    graphYaxisFormat: string;
-    graphYaxisGrid: boolean;
-    graphYaxisGridColorName: string;                // Name of color for Y gridlines
-    graphYaxisGridColor: string;                    // Actual color of Y gridline in hex, rgb, etc
-    graphYaxisLabels: boolean;
-    graphYaxisLabelAngle: number;
-    graphYaxisLabelColorName: string;               // Name of color for Y labels
-    graphYaxisLabelColor: string;                   // Actual color of Y labels in hex, rgb, etc
-    graphYaxisScaleType: string;
-    graphYaxisTitle: string;
-    graphYaxisTitleCheckbox: boolean;
+    // graphYaxisFormat: string;
+    // graphYaxisGrid: boolean;
+    // graphYaxisGridColorName: string;                // Name of color for Y gridlines
+    // graphYaxisGridColor: string;                    // Actual color of Y gridline in hex, rgb, etc
+    // graphYaxisLabels: boolean;
+    // graphYaxisLabelAngle: number;
+    // graphYaxisLabelColorName: string;               // Name of color for Y labels
+    // graphYaxisLabelColor: string;                   // Actual color of Y labels in hex, rgb, etc
+    // graphYaxisScaleType: string;
+    // graphYaxisTitle: string;
+    // graphYaxisTitleCheckbox: boolean;
 
     // Legend
     graphLegendAxisScaleType: string;               // Type of Axis, ie Linear, Log, etc
