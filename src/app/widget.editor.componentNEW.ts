@@ -1286,20 +1286,22 @@ export interface dataSchemaInterface {
         }
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregate = '';
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregateName != '') {
-            let aggregationIndex: number = this.aggregations.findIndex(
-                agg => agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregateName);
+            let aggregationIndex: number = this.aggregations.findIndex(agg => 
+                agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1]
+                    .graphYaggregateName);
             if (aggregationIndex >= 0) {
-                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregate = this.aggregations[aggregationIndex]
-                    .vegaLiteName;
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregate = 
+                    this.aggregations[aggregationIndex].vegaLiteName;
             };
         }
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregate = '';
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregateName != '') {
-            let aggregationIndex: number = this.aggregations.findIndex(
-                agg => agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregateName);
+            let aggregationIndex: number = this.aggregations.findIndex(agg => 
+                    agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1]
+                        .graphColorAggregateName);
             if (aggregationIndex >= 0) {
-                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregate = this.aggregations[aggregationIndex]
-                    .vegaLiteName;
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregate = 
+                    this.aggregations[aggregationIndex].vegaLiteName;
             };
         }
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregate = '';
@@ -1377,7 +1379,7 @@ export interface dataSchemaInterface {
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark.toLowerCase() == 'trail') {
             if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkSize > 2) {
                 // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkSize = 1;
-                this.errorMessageEditor = 'Use Resize ...'
+                this.errorMessageEditor = 'Use Mark-Size to reduce ...'
             };
         };
 
@@ -1612,7 +1614,9 @@ export interface dataSchemaInterface {
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
             wg => wg.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark);
         if (widgetGraphIndex < 0) {
-            this.errorMessageEditor = 'Graph type mark = ' + this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark + ' does not exist in the DB';
+            this.errorMessageEditor = 'Graph type mark = ' + 
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark + 
+                ' does not exist in the DB';
             return;
         } else {
             graphID = this.widgetGraphs[widgetGraphIndex]['id'];
@@ -1655,7 +1659,9 @@ export interface dataSchemaInterface {
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
             wg => wg.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark);
         if (widgetGraphIndex < 0) {
-            this.errorMessageEditor = 'Graph type mark = ' + this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark + ' does not exist in the DB';
+            this.errorMessageEditor = 'Graph type mark = ' + 
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark + 
+                ' does not exist in the DB';
             return;
         } else {
             graphID = this.widgetGraphs[widgetGraphIndex]['id'];
@@ -1681,7 +1687,9 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         // Validate
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark == ''  ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark == ''  
+            ||  
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark == null) {
             this.errorMessage = 'Please select a type of graph';
             return;
         };
@@ -2020,8 +2028,10 @@ export interface dataSchemaInterface {
         this.xField = fieldName;
 
         let fieldType:string = this.getFieldType(fieldName);
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype = 
+            this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtypeName = 
+            this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit ='';
 
     }
@@ -2059,8 +2069,10 @@ export interface dataSchemaInterface {
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(fieldName);
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype = 
+            this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtypeName = 
+            this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit ='';
     }
 
@@ -2099,8 +2111,10 @@ export interface dataSchemaInterface {
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(fieldName);
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType = 
+            this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTypeName = 
+            this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit ='';
         this.localWidget.graphDimensionRight = 140;
     }
@@ -2254,8 +2268,10 @@ export interface dataSchemaInterface {
         this.x2Field = this.x2Field.substring(0, position != -1 ? position : this.x2Field.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Type = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2TypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Type = 
+            this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2TypeName = 
+            this.defaultGraphTypeField(fieldType, 'name');
     }
 
     dropY2(ev) {
@@ -2282,8 +2298,10 @@ export interface dataSchemaInterface {
         this.y2Field = this.y2Field.substring(0, position != -1 ? position : this.y2Field.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Type = this.defaultGraphTypeField(fieldType, 'type');
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2TypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Type = 
+            this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2TypeName = 
+            this.defaultGraphTypeField(fieldType, 'name');
     }
 
     dropProjectionLatitude(ev) {
@@ -2311,7 +2329,8 @@ export interface dataSchemaInterface {
             0, position != -1 ? position : this.projectionFieldLatitude.length);
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLatitude = this.projectionFieldLatitude;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLatitude = 
+            this.projectionFieldLatitude;
     }
 
     dropProjectionLongitude(ev) {
@@ -2339,7 +2358,8 @@ export interface dataSchemaInterface {
             0, position != -1 ? position : this.projectionFieldLongitude.length);
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLongitude = this.projectionFieldLongitude;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLongitude = 
+            this.projectionFieldLongitude;
     }
 
     clickClearXField() {
