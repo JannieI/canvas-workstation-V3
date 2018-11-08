@@ -822,7 +822,7 @@ const graphWidth: number = 420;
 
         this.showType = false;
 
-        this.localWidget.graphMark = graph;
+        // this.localWidget.graphMark = graph;
         let definition = this.globalVariableService.createVegaLiteSpec(
             this.localWidget, graphHeight, graphWidth
         );

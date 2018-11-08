@@ -1394,19 +1394,19 @@ export class Widget {
     graphLayers?: widgetGraphSpecification[];
     
     // X
-    graphXfield: string;
-    graphXaggregateName: string;
-    graphXaggregate: string;
-    graphXtimeUnit: string;
-    graphXbin: boolean;
-    graphXMaxBins: number;
-    graphXformat: string;
-    graphXimpute: string;
-    graphXimputeValue: string;
-    graphXstack: string;
-    graphXsort: string;
-    graphXtype: string;
-    graphXtypeName: string;
+    // graphXfield: string;
+    // graphXaggregateName: string;
+    // graphXaggregate: string;
+    // graphXtimeUnit: string;
+    // graphXbin: boolean;
+    // graphXMaxBins: number;
+    // graphXformat: string;
+    // graphXimpute: string;
+    // graphXimputeValue: string;
+    // graphXstack: string;
+    // graphXsort: string;
+    // graphXtype: string;
+    // graphXtypeName: string;
 
     // Y
     graphYfield: string;
