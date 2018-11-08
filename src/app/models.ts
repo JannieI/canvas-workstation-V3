@@ -1506,10 +1506,10 @@ export class Widget {
     // graphX2AggregateName: string;
 
     // Y2
-    graphY2Field: string;
-    graphY2Type: string;
-    graphY2TypeName: string;
-    graphY2AggregateName: string;
+    // graphY2Field: string;
+    // graphY2Type: string;
+    // graphY2TypeName: string;
+    // graphY2AggregateName: string;
 
     // Projection
     graphProjectionType: string;            // Type of geo projection

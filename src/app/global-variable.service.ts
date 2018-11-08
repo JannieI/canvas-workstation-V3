@@ -688,10 +688,10 @@ const widgetTemplate: Widget =
         // "graphX2TypeName": "",
         // "graphX2AggregateName": "",
 
-        "graphY2Field": "",
-        "graphY2Type": "",
-        "graphY2TypeName": "",
-        "graphY2AggregateName": "",
+        // "graphY2Field": "",
+        // "graphY2Type": "",
+        // "graphY2TypeName": "",
+        // "graphY2AggregateName": "",
 
         "graphProjectionType": "",
         "graphProjectionFieldLatitude": "",
