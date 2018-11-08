@@ -1495,9 +1495,9 @@ export class Widget {
     // graphColumnTypeName: string;
 
     // Detail
-    graphDetailField: string;
-    graphDetailType: string;
-    graphDetailTypeName: string;
+    // graphDetailField: string;
+    // graphDetailType: string;
+    // graphDetailTypeName: string;
 
     // X2
     graphX2Field: string;

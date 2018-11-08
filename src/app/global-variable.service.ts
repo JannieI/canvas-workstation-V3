@@ -679,9 +679,9 @@ const widgetTemplate: Widget =
         // "graphColumnType": "",
         // "graphColumnTypeName": "",
 
-        "graphDetailField": "",
-        "graphDetailType": "",
-        "graphDetailTypeName": "",
+        // "graphDetailField": "",
+        // "graphDetailType": "",
+        // "graphDetailTypeName": "",
 
         "graphX2Field": "",
         "graphX2Type": "",
