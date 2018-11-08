@@ -2559,6 +2559,19 @@
                             >
                             <b>
                                 Mark
+                                <clr-signpost>
+                                    <clr-icon shape="info-circle"
+                                        clrSignpostTrigger>
+                                    </clr-icon>
+                                    <clr-signpost-content *clrIfOpen
+                                        [clrPosition]="'bottom-middle'">
+                                        <p style="margin-top: 0; color:gray;">
+                                            Click the Mark Properties bar to hide / expand the area
+                                            for the relevant properties.  Once completed, click 
+                                            the graph type to show the result.
+                                        </p>
+                                    </clr-signpost-content>
+                                </clr-signpost>
                             </b>
                             <clr-icon shape="angle down" *ngIf="!showFieldMarkProperties"
                                 size="12"
