@@ -471,7 +471,7 @@ clr-dg-cell {
             margin: 1px 1px 1px 3px;
             text-align: center;
             overflow: hidden;
-            z-index: 101;
+            z-index: 100;
         }
         .editorFieldsTitle {
             grid-column-start: 1;
