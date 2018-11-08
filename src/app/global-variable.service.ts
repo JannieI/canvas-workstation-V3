@@ -11700,7 +11700,8 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                         "aggregate": widget.graphLayers[currentGraphLayer].graphXaggregate,
                         "align": "left",
                         "baseline": "middle",
-                        "dx": 3
+                        "dx": 3,
+                        "format": widget.graphLayers[currentGraphLayer].graphXformat
                     };
                 };
             };
