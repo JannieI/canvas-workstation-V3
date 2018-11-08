@@ -447,6 +447,7 @@ This document describes items for later versions of Canvas.
     - consider Guest login - can do 1 private Dashboard, access to files ?  Is this useful?
     - Word and Pdf readers
     - function (on Eazl) to add lat/long to a DS
+    - MELT function (Pandas) to un-pivot data, and then test with the World Bank (or other economical data)
 
 
     Data Confidentiallity:
@@ -1485,6 +1486,7 @@ This document describes items for later versions of Canvas.
     - See shiny interactive form and filter on side !!! 
     - Qlik and power bi integrates with r - use data frame or embed plot
     - Want to make dashboard available to clients globally - how will the login and security work
+    - have an easy way to share a Canvas graph: code to embed Vega and link to Spec, access to data.  Thus, can be created anywhere.  Use case?  May be better to have web components.
 
     End of One day stuff:
 

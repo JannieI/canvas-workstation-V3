@@ -70,6 +70,19 @@ export interface dataSchemaInterface {
             this.clickClose('Close');
             return;
         };
+        if (event.code == 'KeyS'  &&  (event.ctrlKey)  &&  (event.shiftKey)  ) {
+            this.showGraph(this.currentGraphID);
+            return;
+        };
+
+
+        // if (this.currentGraphID >= 0  &&  event.code == 'KeyS'  &&  (event.ctrlKey)  
+        //     &&  (!event.shiftKey)  ) {
+        // //    console.warn('xx');
+        //     this.showGraph(this.currentGraphID);
+        //     return;
+        // };
+
         if (
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
             &&
