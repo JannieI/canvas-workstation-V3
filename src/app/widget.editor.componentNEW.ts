@@ -1304,11 +1304,12 @@ export interface dataSchemaInterface {
         }
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregate = '';
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregateName != '') {
-            let aggregationIndex: number = this.aggregations.findIndex(
-                agg => agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregateName);
+            let aggregationIndex: number = this.aggregations.findIndex(agg => 
+                agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1]
+                    .graphSizeAggregateName);
             if (aggregationIndex >= 0) {
-                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregate = this.aggregations[aggregationIndex]
-                    .vegaLiteName;
+                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregate = 
+                    this.aggregations[aggregationIndex].vegaLiteName;
             };
         }
 
@@ -1322,14 +1323,15 @@ export interface dataSchemaInterface {
             this.errorMessageEditor = 'Graph type id = ' + graphID + ' does not exist in the DB';
             return;
         } else {
-            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark = this.widgetGraphs[widgetGraphIndex]['mark'];
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark = 
+                this.widgetGraphs[widgetGraphIndex]['mark'];
         };
 
         // Startup
-        let width: number = 372;
-        let height: number = 260;
+        // let width: number = 372;
+        // let height: number = 260;
         let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
-        let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
+        // let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
 
 
         // Set fields
@@ -1355,11 +1357,13 @@ export interface dataSchemaInterface {
         };
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField = '';
         if (this.columnField != dragFieldMessage) {
-            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField = this.columnField;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColumnField = 
+                this.columnField;
         };
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField = '';
         if (this.detailField != dragFieldMessage) {
-            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField = this.detailField;
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphDetailField = 
+                this.detailField;
         };
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphX2Field = '';
         if (this.x2Field != dragFieldMessage) {
@@ -1386,33 +1390,67 @@ export interface dataSchemaInterface {
         };
 
         // Defaults
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype == ''  ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype == ''  
+            ||  
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype = 'ordinal';
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype == ''  ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype == ''  
+            ||  
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype = 'ordinal';
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType == ''  ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType == ''  
+            ||  
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType = 'ordinal';
         };
 
         if (this.graphColorAggregateVegaLiteName == null) {this.graphColorAggregateVegaLiteName = ""};
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat = ""};
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort = ""};
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack = ""};
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit = ""};
-        if (this.localWidget.graphTitleAnchor == null) {this.localWidget.graphTitleAnchor = ""}
-        if (this.localWidget.graphTitleBaseline == null) {this.localWidget.graphTitleBaseline = ""}
-        if (this.localWidget.graphTitleOrientation == null) {this.localWidget.graphTitleOrientation = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat = "";
+        };
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort = "";
+        };
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack = "";
+        };
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit = "";
+        };
+        if (this.localWidget.graphTitleAnchor == null) {
+            this.localWidget.graphTitleAnchor = "";
+        };
+        if (this.localWidget.graphTitleBaseline == null) {
+            this.localWidget.graphTitleBaseline = "";
+    };
+        if (this.localWidget.graphTitleOrientation == null) {
+            this.localWidget.graphTitleOrientation = ""
+        };
         // if (this.graphXaggregateVegaLiteName == null) {this.graphXaggregateVegaLiteName = ""}
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat = ""}
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort = ""}
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat = "";
+        };
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort = "";
+        };
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit = "";
+        };
         // if (this.graphYaggregateVegaLiteName == null) {this.graphYaggregateVegaLiteName = ""}
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat = ""}
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort = ""}
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit = ""}
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle == null) {this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat = "";
+        };
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort = "";
+        };
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit = "";
+        };
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle = "";
+        };
 
         // for (let i = 0; i < this.localWidget.graphLayers.length; i++){
         //     if (this.localWidget.graphLayers[i].graphMarkSize == null

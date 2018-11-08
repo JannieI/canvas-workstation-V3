@@ -1581,7 +1581,7 @@ export class WidgetGraph {
     specificationType: string;          // Type of spec: standard (ie bar) which uses spec
                         // defined in code, custom (use specification specified here)
     mark: string;                       // Vega-lite: area, bar, line, etc
-    specification: any;                 // Grammar spec (template)
+    specification: any;                 // Grammar spec (template) - for custom
     imageUrl: string;                   // Url where image lives
 
     // @RunTime

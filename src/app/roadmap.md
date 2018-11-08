@@ -1376,6 +1376,7 @@ This document describes items for later versions of Canvas.
         - color per bar
         - more graph types, ie D3.js
         - suggest graph types based on fields and their types selected?
+        - add more properties for Text mark, ie dx, dy, etc on form
 
     - Fields:
         - symbol
