@@ -1485,9 +1485,9 @@ export class Widget {
     // graphSizeMaxBins: number;
 
     // Row
-    graphRowField: string;
-    graphRowType: string;
-    graphRowTypeName: string;
+    // graphRowField: string;
+    // graphRowType: string;
+    // graphRowTypeName: string;
 
     // Column
     graphColumnField: string;

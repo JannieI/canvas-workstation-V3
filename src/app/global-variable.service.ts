@@ -671,9 +671,9 @@ const widgetTemplate: Widget =
         // "graphSizeBin": true,
         // "graphSizeMaxBins": 0,
 
-        "graphRowField": "",
-        "graphRowType": "",
-        "graphRowTypeName": "",
+        // "graphRowField": "",
+        // "graphRowType": "",
+        // "graphRowTypeName": "",
 
         "graphColumnField": "",
         "graphColumnType": "",
