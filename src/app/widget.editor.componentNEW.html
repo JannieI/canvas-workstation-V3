@@ -214,11 +214,6 @@
                                 <option>Hconcat</option>
                             </select>
                         </div>
-                        <!-- <div class="editorCompositionLayerTitle" *ngIf="!showWidgetEditorLite">
-                            <b>
-                                Nr:
-                            </b>
-                        </div> -->
                         <div class="select editorCompositionLayer" *ngIf="localWidget.graphLayerFacet != 'Single'">
                             <select id="currentGraphLayer"
                                 style="width: 15px; min-width: 1.5rem;"
@@ -1093,9 +1088,23 @@
                             >
                             <b>
                                 Title
+                                <clr-signpost>
+                                    <clr-icon shape="info-circle"
+                                        clrSignpostTrigger>
+                                    </clr-icon>
+                                    <clr-signpost-content *clrIfOpen
+                                        [clrPosition]="'bottom-middle'">
+                                        <p style="margin-top: 0; color:gray;">
+                                            Click the Title bar to hide / expand the area
+                                            for the title properties.  Once completed, click 
+                                            the graph type to show the result.
+                                        </p>
+                                    </clr-signpost-content>
+                                </clr-signpost>
                             </b>
                             <clr-icon shape="angle down" *ngIf="!showFieldTitleProperties"
                                 size="12"
+                                style="margin-left: 4px;"
                                 >
                             </clr-icon>
                             <clr-icon shape="angle up" *ngIf="showFieldTitleProperties"
