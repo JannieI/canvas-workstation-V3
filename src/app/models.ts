@@ -1476,13 +1476,13 @@ export class Widget {
     // graphLegendLabelColor: string;                   // Actual color of Y labels in hex, rgb, etc
 
     // Size
-    graphSizeField: string;
-    graphSizeType: string;
-    graphSizeTypeName: string;
-    graphSizeAggregateName: string;
-    graphSizeAggregate: string;    
-    graphSizeBin: boolean;
-    graphSizeMaxBins: number;
+    // graphSizeField: string;
+    // graphSizeType: string;
+    // graphSizeTypeName: string;
+    // graphSizeAggregateName: string;
+    // graphSizeAggregate: string;    
+    // graphSizeBin: boolean;
+    // graphSizeMaxBins: number;
 
     // Row
     graphRowField: string;
