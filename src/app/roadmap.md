@@ -338,6 +338,12 @@ This document describes items for later versions of Canvas.
     ---------
     - have different renderers, other than browser (for same Dashboard)!
 
+
+    General:
+    -------
+    - Add a demo in the cloud
+
+
     Image:
     -----
     - add image via File input box - Tributary gives back url?
@@ -347,6 +353,12 @@ This document describes items for later versions of Canvas.
 
     Dashboard:
     ----------
+    - DS and filters defined and in use -> is this in the Tree view?
+    - new Thumbnail images !
+    - can the business Glossary be read from the Clients data?
+    - Need to explain the Datasource, Dashboard, Tab, Widget link better, maybe use Excel as an analogy.
+    - Embedding may be more complicated than meets the eye looking at the tech stack and permissioning.  Consider how to obtain filters in their system, produce graph and pass this back to them (web components ?)
+    - Premade Dashboards and also Widgets
     - Have DOWN arrow to go the second page on same tab ??!!!
     - Legend and tooltips - drag field here
     - Import Vega spec automatically
@@ -433,6 +445,8 @@ This document describes items for later versions of Canvas.
     ----
     - consider a REST API for Eazl Accounts => other users can add, delete stuff ...
     - consider Guest login - can do 1 private Dashboard, access to files ?  Is this useful?
+    - Word and Pdf readers
+    - function (on Eazl) to add lat/long to a DS
 
 
     Data Confidentiallity:
@@ -568,6 +582,7 @@ This document describes items for later versions of Canvas.
     - store alignVertically, alignHorisontally on W -> after the text in bullet is changed, it will automatically align V or H
 
     - Slicer:
+    - Consider Slicer per User on the Dashboard
     - all ALL, NONE options to list of checkboxes (or the heading, or the caret dropdown menu)
     - ie checkbox for multiple select, radio button for single selection
     - make typing / changing text easier - type into box like PowerPoint
@@ -1309,6 +1324,7 @@ This document describes items for later versions of Canvas.
     - General
         - look at use case: do we need a little pic / icon next to each bar (title, x, etc) to make it easier to recognise?
         - save config / style of stuff, say Title, X, etc so that graphs can look and feel the same.
+    - add url to open a web page
 
     - Title
         - can save and re-use style, ie graphs for Finance will then all look the same
@@ -1327,6 +1343,22 @@ This document describes items for later versions of Canvas.
         and http://svgdiscovery.com/HMI/Button/AnalogGauge/buttonGauge.htm  !!!
         - For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target).  Try to use Clarity CARDS for this.
         - embed graphs created in Python and R - ie. Seaborn
+        - Add layers of projections, each one with specific info: crime, lightning, etc
+        - Have a key indicator (dot) on a map, and click it to open a graph or snippet (of say historic crime rates).  Would need cloropleth - maybe with right click menu to open different graphs / popups.  
+        - add network plot / graph
+        - Consider graph render: with each change (option to check this ability)
+        - Render graph with a keystroke (ctrl-R)
+        - Move in history with ctrl-z and ctrl-shft-z.  
+        - Make Calc Help searchable, with even dropdown to find things.  
+        - Colour_Scheme: show dots with range.  
+        - Store Widget filters and conditional formatting with predefined names per DS.  
+        - Angle not intuitive: maybe slider
+        - opacity: maybe slider with blockie to indicate change 
+        - Consider restrictive colours - may only use this given set of colours, and make a scheme for the corporate CI.  
+        - Col and Row not intuitive - add help.
+        - Surface temp since 1650 - can canvas do it ?
+        - Can we normalize data - relative to starting point ?
+        - Need data point annotations - ie what happened here? Can we have TEXT write something here which can be used for tooltip?
 
     - Local Names
         - Investigate if this make sense: user can name a field (per DS or even per Widget?) over and above what is done at DS level - use case?
@@ -1454,3 +1486,5 @@ This document describes items for later versions of Canvas.
     - Want to make dashboard available to clients globally - how will the login and security work
 
     End of One day stuff:
+
+
