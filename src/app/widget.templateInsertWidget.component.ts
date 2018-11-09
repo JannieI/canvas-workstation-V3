@@ -7,7 +7,6 @@ import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { OnInit }                     from '@angular/core';
-import { Input }                      from '@angular/core';
 import { Output }                     from '@angular/core';
 
 // Our Functions
@@ -20,8 +19,6 @@ import { GlobalVariableService}       from './global-variable.service';
 import { Widget }                     from './models';
 import { WidgetStoredTemplate }             from './models';
 
-// Other
-import { Subscription }               from 'rxjs';
 
 @Component({
     selector: 'widget-templateInsertWidget',
@@ -42,27 +39,11 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&
-            (!event.ctrlKey)
-            &&
-            (!event.shiftKey)
-           ) {
-            this.clickSave();
-            return;
-        };
 
     }
 
-    deleteSnapshots: boolean = true;
-    isFirstTimeDashboardSave: boolean;
-    // dashboards: Dashboard[];
-    dashboardsSubscription: Subscription;
     sortOrder: number = 1;
     widgetStoredTemplates: WidgetStoredTemplate[] = [];
-    widgetStoreTemplateDescription: string = '';
-    widgetStoreTemplateName: string = '';
 
 
 	constructor(
@@ -73,11 +54,6 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
     ngOnInit() {
         // Initials
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
-        // this.dashboards = this.globalVariableService.dashboards.slice();
-        this.dashboardsSubscription = this.globalVariableService.isFirstTimeDashboardSave.subscribe(
-            i => this.isFirstTimeDashboardSave = i
-        )
 
         // Load Stored Widget Templates, adding DS Name for user
         this.globalVariableService.getWidgetStoredTemplates()
@@ -99,11 +75,10 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         );        
     }
 
-    dblClickFieldRow() {
+    dblClickRow() {
         // Show graph for row that the user clicked on
-        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFieldRow', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickRow', '@Start');
 
-        this.dashboardsSubscription.unsubscribe();
     }
 
     clickClose(action: string) {
@@ -113,17 +88,10 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
 		this.formWidgetTemplateInsertWidgetClosed.emit(action);
     }
 
-    clickSave() {
-        // Save the D (replace the original as Completed and delete the Draft)
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+    clickInsertWidget() {
+        // Insert the Widget for the selected Widget Template record
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickInsertWidget', '@Start');
 
-        this.globalVariableService.saveDraftDashboard(this.deleteSnapshots).then(res => {
-            this.globalVariableService.refreshCurrentDashboard(
-                'discardDashboard-clickDiscard', res, -1, ''
-            );
-            this.globalVariableService.editMode.next(false);
-            this.formWidgetTemplateInsertWidgetClosed.emit('Saved');
-        });
 
     }
 }

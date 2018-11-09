@@ -8,6 +8,29 @@
                 </button>
                 <div class="gridTitle">
                     <b>Insert new Widget from Templates:</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                This form shows a list of previously created Widget Templates.
+                                These templates can be created from any existing Widget, in any
+                                existing Dashboard.  Select the desired template row (a sample
+                                will be shown on the right).  Then click Insert to add this to
+                                your current Dashboard.  There is currently no relationship back
+                                to the template: when the template is changed, your widget will
+                                NOT change automatically.  Conversely, if you change your Widget
+                                the original template will NOT change.  
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+    
                 </div>
                 <div class="gridSubTitle">
                     <i>
@@ -45,7 +68,7 @@
                         </clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of widgetStoredTemplates; let i = index"
-                            (dblclick)="dblClickFieldRow(row.widgetID)"
+                            (dblclick)="dblClickRow(row.widgetID)"
                             [clrDgItem]="row"
                             >
                             <clr-dg-cell style="margin-left: 2px; padding: 0;"
