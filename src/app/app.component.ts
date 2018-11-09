@@ -4687,6 +4687,41 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.showModalWidgetHyperlinks = true;
     }
 
+    clickMenuWidgetTemplateAdd() {
+        // Add the selected W to list of Templates
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetTemplateAdd', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        if (!this.checkForOnlyOneWidget('Graph')) {
+            return;
+        };
+
+        this.menuOptionClickPreAction();
+
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == 'Graph') {
+                this.selectedWidget = w;
+            };
+        });
+
+        this.showModalWidgetTemplateSave = true;
+    }
+
+
+    clickMenuWidgetTemplateInsertWidget
     clickMenuWidgetRefresh() {
         // Refresh the DS for the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetRefresh', '@Start');
