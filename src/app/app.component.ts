@@ -4721,7 +4721,53 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     }
 
 
-    clickMenuWidgetTemplateInsertWidget
+    clickMenuWidgetTemplateInsertWidget() {
+        // Insert a W Template into current D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetTemplateInsertWidget', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        // Must have access to this D
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            'CanEdit')) {
+                this.showMessage(
+                    'No Edit access to this Dashboard',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+        };
+
+        if (!this.checkForOnlyOneWidget('Graph')) {
+            return;
+        };
+
+        this.menuOptionClickPreAction();
+
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == 'Graph') {
+                this.selectedWidget = w;
+            };
+        });
+
+        this.showModalWidgetTemplateInsertWidget = true;
+    }
+
     clickMenuWidgetRefresh() {
         // Refresh the DS for the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetRefresh', '@Start');
