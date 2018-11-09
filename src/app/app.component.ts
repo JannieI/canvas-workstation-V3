@@ -447,8 +447,8 @@ export class AppComponent implements OnInit {
     showModalDashboardUsageStats: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataDeleteDatasource: boolean = false;
-    showModalWidgetTemplateSave: boolean = false
-    showModalWidgetTemplateInsertWidget: boolean = false
+    showModalWidgetStoredTemplateSave: boolean = false
+    showModalWidgetStoredTemplateInsertWidget: boolean = false
     showModalDataDictionary: boolean = false;
     showModalDataDirectExport: boolean = false;
     showModalDataDirectFileCSV: boolean = false;
@@ -1901,23 +1901,23 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.showModalDataDeleteDatasource = false;
     }
 
-    handleCloseWidgetTemplateSave(action: string) {
+    handleCloseWidgetStoredTemplateSave(action: string) {
         // Hanlde close of Widget Template Save form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetTemplateSave', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetStoredTemplateSave', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalWidgetTemplateSave = false;
+        this.showModalWidgetStoredTemplateSave = false;
     }
 
 
-    handleCloseWidgetTemplateInsertWidget(action: string) {
+    handleCloseWidgetStoredTemplateInsertWidget(action: string) {
         // Hanlde close of Widget Template Insert Widget form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetTemplateInsertWidget', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetStoredTemplateInsertWidget', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalWidgetTemplateInsertWidget = false;
+        this.showModalWidgetStoredTemplateInsertWidget = false;
     }
 
     
@@ -4687,9 +4687,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.showModalWidgetHyperlinks = true;
     }
 
-    clickMenuWidgetTemplateAdd() {
+    clickMenuWidgetStoredTemplateAdd() {
         // Add the selected W to list of Templates
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetTemplateAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetStoredTemplateAdd', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -4717,13 +4717,13 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             };
         });
 
-        this.showModalWidgetTemplateSave = true;
+        this.showModalWidgetStoredTemplateSave = true;
     }
 
 
-    clickMenuWidgetTemplateInsertWidget() {
+    clickMenuWidgetStoredTemplateInsertWidget() {
         // Insert a W Template into current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetTemplateInsertWidget', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetStoredTemplateInsertWidget', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -4765,7 +4765,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             };
         });
 
-        this.showModalWidgetTemplateInsertWidget = true;
+        this.showModalWidgetStoredTemplateInsertWidget = true;
     }
 
     clickMenuWidgetRefresh() {

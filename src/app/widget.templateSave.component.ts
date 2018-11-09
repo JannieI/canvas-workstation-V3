@@ -109,7 +109,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
         };
 
         // Create new W template
-        if (this.isEditing = false) {
+        if (!this.isEditing) {
 
             let dt = new Date();
 

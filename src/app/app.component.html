@@ -936,14 +936,14 @@
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
                                 <button type="button"
                                     clrDropdownItem
-                                    (click)="clickMenuWidgetTemplateAdd()"
+                                    (click)="clickMenuWidgetStoredTemplateAdd()"
                                     title="Add the selected Widget as a Widget Template"
                                     >
                                     Add Template
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
-                                    (click)="clickMenuWidgetTemplateInsertWidget()"
+                                    (click)="clickMenuWidgetStoredTemplateInsertWidget()"
                                     title="Select a template and insert as a Widget"
                                     >
                                     Insert Template
@@ -4752,18 +4752,18 @@
 <!-- Modal: Widget Add to Templates -->
 <widget-templateSave
     class="formPopupDashboard"
-    *ngIf="showModalWidgetTemplateSave"
+    *ngIf="showModalWidgetStoredTemplateSave"
     [selectedWidget]="selectedWidget"
-    (formWidgetTemplateSavedClosed)="handleCloseWidgetTemplateSave($event)">Load Widget add to Templates ...
+    (formWidgetTemplateSavedClosed)="handleCloseWidgetStoredTemplateSave($event)">Load Widget add to Templates ...
 </widget-templateSave>
 
 
 <!-- Modal: Load Widget from Templates -->
 <widget-templateInsertWidget
     class="formPopupDashboard"
-    *ngIf="showModalWidgetTemplateInsertWidget"
+    *ngIf="showModalWidgetStoredTemplateInsertWidget"
     [selectedWidget]="selectedWidget"
-    (formWidgetTemplateInsertWidgetClosed)="handleCloseWidgetTemplateInsertWidget($event)">Load Widget from Templates ...
+    (formWidgetTemplateInsertWidgetClosed)="handleCloseWidgetStoredTemplateInsertWidget($event)">Load Widget from Templates ...
 </widget-templateInsertWidget>
 
 
