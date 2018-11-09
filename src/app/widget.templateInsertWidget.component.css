@@ -41,20 +41,10 @@
         text-align: left;
     }
 
-    .gridTextMain {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 18;
-        grid-row-start: 4;
-        grid-row-end: 6;
-        margin-left: 20px;
-        text-align: left;
-    }
-
     .gridWidgetStoredTemplates {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 8;
+        grid-column-end: 10;
         grid-row-start: 3;
         grid-row-end: 18;
         margin-left: 8px;
@@ -66,6 +56,17 @@
         grid-column-end: 18;
         grid-row-start: 4;
         grid-row-end: 17;
+        margin-left: 8px;
+        text-align: left;
+    }
+    
+    .gridErrorMessage {
+        color: red;
+        grid-column-start: 10;
+        /* autoprefixer: off */
+        grid-column-end: 18;
+        grid-row-start: 3;
+        grid-row-end: 4;
         margin-left: 8px;
         text-align: left;
     }

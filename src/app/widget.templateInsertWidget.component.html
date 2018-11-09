@@ -38,15 +38,6 @@
                     </i>
                 </div>
 
-                <div class="gridTextMain">
-                    The changes applied to this Dashboard has been saved to the Draft
-                    version (which is currently open).  The original version has been
-                    kept unchanged.  These changes (to the Draft version) can now be made
-                    visible to other users with the relevant rights by Saving it.  To see
-                    who has rights to the Dashboard, see the Dashboards -> Share menu
-                    option.
-                </div>
-
                 <div class="gridWidgetStoredTemplates">
                     <clr-datagrid class="datagrid-compact">
                         <clr-dg-column clrDgField="name"
@@ -92,10 +83,15 @@
 
                 </div>
 
-                <div class="gridShowWidget">
+                <div class="gridShowWidget"
                     #Widget
+                    >
                 </div>
 
+                <div class="gridErrorMessage">
+                    errorMessage
+                </div>
+                
                 <div class="gridButtonCancel">
                     <button
                         type="button"

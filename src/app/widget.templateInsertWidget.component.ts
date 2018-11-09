@@ -42,6 +42,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
 
     }
 
+    errorMessage: string = '';
     sortOrder: number = 1;
     widgetStoredTemplates: WidgetStoredTemplate[] = [];
 
@@ -75,9 +76,72 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         );        
     }
 
-    dblClickRow() {
+    dblClickRow(widgetID: number) {
         // Show graph for row that the user clicked on
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickRow', '@Start');
+
+        this.errorMessage = '';
+
+        // Create new W
+        let widgetIndex: number = this.globalVariableService.widgets.findIndex(w =>
+            w.id == widgetID
+        );
+
+        if (widgetIndex < 0) {
+            this.errorMessage = 'Error: selected Widget does not exist any more';
+            return;
+        };
+        this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.currentWidgets[6]));
+        this.localWidget.id = null;
+        this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+        this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+    
+        // Add DS to current DS (no action if already there)
+        this.globalVariableService.addCurrentDatasource(
+            this.localWidget.datasourceID).then(res => {
+
+            // Update local and global vars
+            this.localWidget.dashboardTabIDs.push(this.globalVariableService.
+                currentDashboardInfo.value.currentDashboardTabID);
+
+            this.globalVariableService.addWidget(this.localWidget).then(res => {
+                this.localWidget.id = res.id;
+
+                // Action
+                // TODO - cater for errors + make more generic
+                let actID: number = this.globalVariableService.actionUpsert(
+                    null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    this.localWidget.id,
+                    'Widget',
+                    'Edit',
+                    'Update Title',
+                    'W Title clickSave',
+                    null,
+                    null,
+                    null,
+                    this.localWidget,
+                    false               // Dont log to DB yet
+                );
+
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Graph Added',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+
+                // Return to main menu
+                this.formWidgetEditorClosed.emit(this.localWidget);
+
+            });
+
+        });
 
     }
 
