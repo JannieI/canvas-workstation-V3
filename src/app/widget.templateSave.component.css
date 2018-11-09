@@ -79,6 +79,17 @@
         margin-left: 20px;
         text-align: left;
     }
+
+    .gridErrorMessage {
+        color: red;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 17;
+        grid-row-start: 13;
+        grid-row-end: 14;
+        margin-left: 20px;
+        text-align: left;
+    }
     
     .gridButtonCancel {
         grid-column-start: 4;

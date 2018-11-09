@@ -54,6 +54,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
 
     }
 
+    errorMessage: string = '';
     widgetStoredTemplates: WidgetStoredTemplate[] = [];
     widgetStoreTemplateDescription: string = '';
     widgetStoreTemplateName: string = '';
@@ -71,7 +72,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
         this.globalVariableService.getWidgetStoredTemplates()
             .then(res => {
                 this.widgetStoredTemplates = res.filter(wst => 
-                    wst.id == this.selectedWidget.id
+                    wst.widgetID == this.selectedWidget.id
                 );
                  
                 if (this.widgetStoredTemplates.length > 0) {
@@ -94,13 +95,35 @@ export class WidgetTemplateSaveComponent implements OnInit {
         // Save the D (replace the original as Completed and delete the Draft)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // this.globalVariableService.saveDraftDashboard(this.deleteSnapshots).then(res => {
-        //     this.globalVariableService.refreshCurrentDashboard(
-        //         'discardDashboard-clickDiscard', res, -1, ''
-        //     );
-        //     this.globalVariableService.editMode.next(false);
-        //     this.formWidgetTemplateSavedClosed.emit('Saved');
-        // });
+        // Validation
+        this.errorMessage = '';
+        if (this.widgetStoreTemplateName == '') {
+            this.errorMessage = 'The name is compulsory.'
+            return;
+        };
+        if (this.widgetStoreTemplateDescription == '') {
+            this.errorMessage = 'The description is compulsory.'
+            return;
+        };
+
+        // Create new W template
+        let dt = new Date();
+
+        let newWidgetStoredTemplate: WidgetStoredTemplate = {
+            id: null,
+            widgetID: this.selectedWidget.id,
+            name: this.widgetStoreTemplateName,
+            description: this.widgetStoreTemplateDescription,
+            datasourceName: '',
+            widgetStoredTemplateCreatedOn: dt,
+            widgetStoredTemplateCreatedBy: this.globalVariableService.currentUser.userID,
+            widgetStoredTemplateUpdatedOn: null,
+            widgetStoredTemplateUpdatedBy: '',
+        };
+
+        this.globalVariableService.saveWidgetStoredTemplate(newWidgetStoredTemplate).then(res => {
+            this.formWidgetTemplateSavedClosed.emit('Saved');
+        });
 
     }
 }
