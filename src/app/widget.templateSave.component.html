@@ -11,38 +11,22 @@
                 </div>
                 <div class="gridSubTitle">
                     <i>
-                        Replace original version with the current Draft version.
+                        Add selected Widget to the list of Widget Templates.
                     </i>
                 </div>
 
                 <div class="gridTextMain">
-                    The changes applied to this Dashboard has been saved to the Draft
-                    version (which is currently open).  The original version has been
-                    kept unchanged.  These changes (to the Draft version) can now be made
-                    visible to other users with the relevant rights by Saving it.  To see
-                    who has rights to the Dashboard, see the Dashboards -> Share menu
-                    option.
-                </div>
-                <div class="gridTextSub">
-                    When you Save this Dashboard, the Original will be replaced with
-                    the Draft version, and the Draft will be deleted.  Saving is irreversable,
-                    and cannot be undone.  In order to make more changes, simply start another
-                    edit.  <b>Note: </b> during editing (for example resize a Widget)
-                    all changes are saved automatically to the Draft version without
-                    any input from the editor.
-                </div>
-                <div class="gridQaRequired" *ngIf="qaRequired">
-                    This Dashboard is flagged with QA Required, which means that the
-                    same user who started editing it, may not Save it.
-                </div>
-                <div class="gridQaRequired" *ngIf="!qaRequired">
-                    The QA Required for this Dashboard has not been set, which means that
-                    the same user who started editing it, may also Save it.
+                    The selected Widget will be added to the list of predefined Widget Templates.
+                    Widget Templates simplify the creation of Widgets on a Dashboard:
+                    the user simply selects a predefined Widget Template, which is then
+                    inserted into the Dashboard without any further work required.
                 </div>
 
-                <div class="gridDeleteSnapshots">
-                        <input [(ngModel)]="deleteSnapshots"
-                        type="checkbox"
+                <div class="gridWidgetTemplateNameTitle">
+                </div>
+                <div class="gridWidgetTemplateName">
+                    <input [(ngModel)]="deleteSnapshots"
+                        type="text"
                         name="deleteSnapshots"
                         #deleteSnapshotsVar="ngModel"
                         title="Delete Snapshots created during Draft (T/F)"

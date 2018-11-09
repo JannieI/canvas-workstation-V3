@@ -4752,7 +4752,7 @@
 <!-- Modal: Widget Add to Templates -->
 <widget-templateSave
     class="formPopupDashboard"
-    *ngIf="showModalWidgetExport"
+    *ngIf="showModalWidgetTemplateSave"
     [selectedWidget]="selectedWidget"
     (formWidgetTemplateSavedClosed)="handleCloseWidgetTemplateSave($event)">Load Widget add to Templates ...
 </widget-templateSave>
@@ -4761,7 +4761,7 @@
 <!-- Modal: Load Widget from Templates -->
 <widget-templateInsertWidget
     class="formPopupDashboard"
-    *ngIf="showModalWidgetExport"
+    *ngIf="showModalWidgetTemplateInsertWidget"
     [selectedWidget]="selectedWidget"
     (formWidgetTemplateInsertWidgetClosed)="handleCloseWidgetTemplateInsertWidget($event)">Load Widget from Templates ...
 </widget-templateInsertWidget>

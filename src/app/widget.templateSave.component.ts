@@ -19,8 +19,6 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Widget }                     from './models';
 
-// Other
-import { Subscription }               from 'rxjs';
 
 @Component({
     selector: 'widget-templateSave',
@@ -55,10 +53,6 @@ export class WidgetTemplateSaveComponent implements OnInit {
 
     }
 
-    deleteSnapshots: boolean = true;
-    isFirstTimeDashboardSave: boolean;
-    // dashboards: Dashboard[];
-    dashboardsSubscription: Subscription;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -70,18 +64,6 @@ export class WidgetTemplateSaveComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // this.dashboards = this.globalVariableService.dashboards.slice();
-        this.dashboardsSubscription = this.globalVariableService.isFirstTimeDashboardSave.subscribe(
-            i => this.isFirstTimeDashboardSave = i
-        )
-    }
-
-    ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component.
-        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
-        // Called just before Angular destroys the directive/component.
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
-
-        this.dashboardsSubscription.unsubscribe();
     }
 
     clickClose(action: string) {
@@ -95,13 +77,13 @@ export class WidgetTemplateSaveComponent implements OnInit {
         // Save the D (replace the original as Completed and delete the Draft)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        this.globalVariableService.saveDraftDashboard(this.deleteSnapshots).then(res => {
-            this.globalVariableService.refreshCurrentDashboard(
-                'discardDashboard-clickDiscard', res, -1, ''
-            );
-            this.globalVariableService.editMode.next(false);
-            this.formWidgetTemplateSavedClosed.emit('Saved');
-        });
+        // this.globalVariableService.saveDraftDashboard(this.deleteSnapshots).then(res => {
+        //     this.globalVariableService.refreshCurrentDashboard(
+        //         'discardDashboard-clickDiscard', res, -1, ''
+        //     );
+        //     this.globalVariableService.editMode.next(false);
+        //     this.formWidgetTemplateSavedClosed.emit('Saved');
+        // });
 
     }
 }
