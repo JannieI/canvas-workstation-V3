@@ -1326,6 +1326,9 @@ This document describes items for later versions of Canvas.
         - look at use case: do we need a little pic / icon next to each bar (title, x, etc) to make it easier to recognise?
         - save config / style of stuff, say Title, X, etc so that graphs can look and feel the same.
     - add url to open a web page
+    - keep widgetStoredTemplateID on Widget => we know where it came from
+    - Widget Stored Templates: consider auto-update checkbox.  When checked, and template changes, ALL Widgets created from it will change (using widgetStoredTemplateID).  Can consider the converse: when the Widget from which the Template was created changes,
+    the Template will be updated.  This could trigger auto-update.  Consider use Case first.
     - consider conditional formatting on the field - ie show in blue or show icon.  Issues: 1. what if more than one conditional format?  2. too many icons on field bar.
 
     - Title

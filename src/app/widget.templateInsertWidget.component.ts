@@ -91,7 +91,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                     })
                 });
                 if (this.widgetStoredTemplates.length > 0) {
-                    this.clickRow(0, this.widgetGraphs[0].id);
+                    this.clickRow(0, this.widgetStoredTemplates[0].widgetID);
                 };
             }
         );        

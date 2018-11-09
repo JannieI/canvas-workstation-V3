@@ -81,6 +81,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
                     this.widgetStoreTemplateName = this.widgetStoredTemplates[0].name;
                     this.widgetStoreTemplateDescription = 
                         this.widgetStoredTemplates[0].description;
+                    this.errorMessage = 'This template was saved before';
                 };
             }
         );

@@ -85,7 +85,8 @@
                         class="btn btn-primary"
                         (click)="clickSave()"
                         >
-                        Save
+                        <span *ngIf="!isEditing">Add</span>
+                        <span *ngIf="isEditing">Save</span>
                     </button>
                 </div>
 
