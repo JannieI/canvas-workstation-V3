@@ -320,12 +320,12 @@ import { GlobalVariableService }      from './global-variable.service';
 
         // Set width, depending on ColorField change
         if (this.newWidget) {
-            if (this.localWidget.graphColorField != ''
-                    &&  this.localWidget.graphColorField != null) {
-                this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
-            } else {
-                this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
-            };
+            // if (this.localWidget.graphColorField != ''
+            //         &&  this.localWidget.graphColorField != null) {
+            //     this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
+            // } else {
+            //     this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
+            // };
 
             // TODO - improve this when using a DB!
             // let newID: number = 1;
@@ -382,19 +382,19 @@ import { GlobalVariableService }      from './global-variable.service';
             });
 
         } else {
-            if (this.selectedWidget.graphColorField != ''
-                &&  this.selectedWidget.graphColorField != null) {
-                    if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
-                        this.localWidget.graphWidth = this.selectedWidget.graphWidth + 70;
-                    };
-            };
-            if (this.selectedWidget.graphColorField == ''
-                ||  this.selectedWidget.graphColorField == null) {
-                    if (this.localWidget.graphColorField != ''
-                        &&  this.localWidget.graphColorField != null) {
-                        this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
-                    };
-            };
+            // if (this.selectedWidget.graphColorField != ''
+            //     &&  this.selectedWidget.graphColorField != null) {
+            //         if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
+            //             this.localWidget.graphWidth = this.selectedWidget.graphWidth + 70;
+            //         };
+            // };
+            // if (this.selectedWidget.graphColorField == ''
+            //     ||  this.selectedWidget.graphColorField == null) {
+            //         if (this.localWidget.graphColorField != ''
+            //             &&  this.localWidget.graphColorField != null) {
+            //             this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
+            //         };
+            // };
 
             // Replace the W
             // this.globalVariableService.widgetReplace(this.localWidget);
