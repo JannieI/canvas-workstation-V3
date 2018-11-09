@@ -55,9 +55,10 @@
         /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 5;
-        grid-row-end: 17;
+        grid-row-end: 18;
         margin-left: 8px;
         text-align: left;
+        overflow: scroll;
     }
     
     .gridErrorMessage {

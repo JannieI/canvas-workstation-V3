@@ -1911,11 +1911,16 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     }
 
 
-    handleCloseWidgetStoredTemplateInsertWidget(action: string) {
+    handleCloseWidgetStoredTemplateInsertWidget(changedWidget: Widget) {
         // Hanlde close of Widget Template Insert Widget form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetStoredTemplateInsertWidget', '@Start');
 
         this.menuOptionClickPostAction();
+
+        // Refresh
+        if (changedWidget != null) {
+            this.globalVariableService.changedWidget.next(changedWidget);
+        };
 
         this.showModalWidgetStoredTemplateInsertWidget = false;
     }
