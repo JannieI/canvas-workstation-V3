@@ -53,6 +53,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
     errorMessage: string = '';
     graphVisualGrammar: string = 'Vega-Lite';
     localWidget: Widget;
+    selectedRow: number = 0;
     selectedWidgetID: number;
     sortOrder: number = 1;
     specification: any;              // Vega-Lite, Vega, or other grammar
@@ -92,11 +93,13 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         );        
     }
 
-    clickRow(widgetID: number) {
+    clickRow(index: number, widgetID: number) {
         // Show graph for row that the user clicked on
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
+        // Reset
         this.errorMessage = '';
+        this.selectedRow = index;
 
         // Create new W
         this.selectedWidgetID = widgetID;
@@ -122,8 +125,8 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             // Create Spec
             this.specification = this.globalVariableService.createVegaLiteSpec(
                 this.localWidget,
-                this.localWidget.graphHeight,
-                this.localWidget.graphWidth
+                200,
+                300
             );
 
             console.warn('xx @END of ShowGraph specification', this.specification);
@@ -137,12 +140,25 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                 );
                 if (widgetGraphIndex < 0) {
                     this.errorMessage = 'Graph type id = ' + graphID + ' does not exist in the DB';
-                    return;
                 } else {
                     this.graphVisualGrammar = this.widgetGraphs[widgetGraphIndex].visualGrammar;
                 };
             };
 
+            // Render graph for Vega-Lite
+            if (this.graphVisualGrammar == 'Vega-Lite') {
+                if (this.specification != undefined) {
+                    let vegaSpecification = compile(this.specification).spec;
+                    let view = new View(parse(vegaSpecification));
+
+                    view.renderer('svg')
+                        .initialize(this.domWidget.nativeElement)
+                        .width(372)
+                        .hover()
+                        .run()
+                        .finalize();
+                };
+            };
         });
 
     }

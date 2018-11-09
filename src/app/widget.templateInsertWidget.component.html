@@ -59,7 +59,9 @@
                         </clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of widgetStoredTemplates; let i = index"
-                            (click)="clickRow(row.widgetID)"
+                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                            (click)="clickRow(i, row.widgetID)"
                             [clrDgItem]="row"
                             >
                             <clr-dg-cell style="margin-left: 2px; padding: 0;"
