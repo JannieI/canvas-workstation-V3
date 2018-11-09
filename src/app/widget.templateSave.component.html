@@ -8,7 +8,29 @@
                 </button>
                 <div class="gridTitle">
                     <b>Save Widget as Template:</b>
-                </div>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                This form registers the selected Widget as a Stored Widget
+                                Template.  Once stored, it can be inserted on any Dashboard.
+                                They aim to simplify the process of creating new Widgets.
+                                Add a name and description (both are compulsory), and click 
+                                Add.  If you selected a Widget that has already been stored,
+                                the new Widget specification will be stored when you click 
+                                Save.  Widgets created previously from this template will 
+                                NOT be affected.  
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                    </div>
 
                 <div class="gridTextMain">
                     The selected Widget will be added to the list of predefined Widget Templates.
