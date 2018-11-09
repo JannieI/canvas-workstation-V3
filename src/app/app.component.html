@@ -925,6 +925,43 @@
                         </clr-dropdown>
 
 
+
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Submenu for Widget Templates"
+                                >
+                                Templates
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuWidgetTemplateAdd()"
+                                    title="Add the selected Widget as a Widget Template"
+                                    >
+                                    Add Template
+                                </button>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuWidgetTemplateInsertWidget()"
+                                    title="Select a template and insert as a Widget"
+                                    >
+                                    Insert Template
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+
+
+
+
+
+
+
+
+                        <div class="dropdown-divider"></div>
                         <clr-dropdown>
                             <button
                                 type="button"

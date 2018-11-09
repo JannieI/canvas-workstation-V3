@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Save the selected Widget as a Widget Template, for later use
  */
 
 // Angular
@@ -22,11 +22,11 @@ import { Dashboard }                  from './models';
 import { Subscription }               from 'rxjs';
 
 @Component({
-    selector: 'dashboard-save',
-    templateUrl: './dashboard.save.component.html',
-    styleUrls: ['./dashboard.save.component.css']
+    selector: 'widget-templateSave',
+    templateUrl: './widget.templateSave.component.html',
+    styleUrls: ['./widget.templateSave.component.css']
 })
-export class DashboardSaveComponent implements OnInit {
+export class WidgetTemplateSaveComponent implements OnInit {
 
     @Output() formDashboardSaveClosed: EventEmitter<string> = new EventEmitter();
 
