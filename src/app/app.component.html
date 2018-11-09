@@ -924,9 +924,6 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
 
-
-
-
                         <clr-dropdown>
                             <button
                                 type="button"
@@ -953,13 +950,6 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-
-
-
-
-
-
-
 
                         <div class="dropdown-divider"></div>
                         <clr-dropdown>
@@ -4758,6 +4748,23 @@
     (formDataDeleteDatasourceClosed)="handleCloseDataDeleteDatasource($event)">Load Data Delete Datasource ...
 </data-deleteDatasource>
 
+
+<!-- Modal: Widget Add to Templates -->
+<widget-templateSave
+    class="formPopupDashboard"
+    *ngIf="showModalWidgetExport"
+    [selectedWidget]="selectedWidget"
+    (formWidgetTemplateSavedClosed)="handleCloseWidgetTemplateSave($event)">Load Widget add to Templates ...
+</widget-templateSave>
+
+
+<!-- Modal: Load Widget from Templates -->
+<widget-templateInsertWidget
+    class="formPopupDashboard"
+    *ngIf="showModalWidgetExport"
+    [selectedWidget]="selectedWidget"
+    (formWidgetTemplateInsertWidgetClosed)="handleCloseWidgetTemplateInsertWidget($event)">Load Widget from Templates ...
+</widget-templateInsertWidget>
 
 
 <!-- Modal: Widget Expand -->

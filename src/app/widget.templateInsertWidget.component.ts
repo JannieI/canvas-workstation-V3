@@ -28,7 +28,7 @@ import { Subscription }               from 'rxjs';
 })
 export class WidgetTemplateInsertWidgetComponent implements OnInit {
 
-    @Output() formDashboardSaveClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formWidgetTemplateInsertWidgetClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -86,7 +86,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         // Close the form, without saving anything
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formDashboardSaveClosed.emit(action);
+		this.formWidgetTemplateInsertWidgetClosed.emit(action);
     }
 
     clickSave() {
@@ -98,7 +98,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                 'discardDashboard-clickDiscard', res, -1, ''
             );
             this.globalVariableService.editMode.next(false);
-            this.formDashboardSaveClosed.emit('Saved');
+            this.formWidgetTemplateInsertWidgetClosed.emit('Saved');
         });
 
     }
