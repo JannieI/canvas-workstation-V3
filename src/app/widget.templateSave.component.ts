@@ -55,6 +55,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
     }
 
     errorMessage: string = '';
+    isEditing: boolean = false;
     widgetStoredTemplates: WidgetStoredTemplate[] = [];
     widgetStoreTemplateDescription: string = '';
     widgetStoreTemplateName: string = '';
@@ -76,6 +77,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
                 );
                  
                 if (this.widgetStoredTemplates.length > 0) {
+                    this.isEditing = true;
                     this.widgetStoreTemplateName = this.widgetStoredTemplates[0].name;
                     this.widgetStoreTemplateDescription = 
                         this.widgetStoredTemplates[0].description;
@@ -107,23 +109,45 @@ export class WidgetTemplateSaveComponent implements OnInit {
         };
 
         // Create new W template
-        let dt = new Date();
+        if (this.isEditing = false) {
 
-        let newWidgetStoredTemplate: WidgetStoredTemplate = {
-            id: null,
-            widgetID: this.selectedWidget.id,
-            name: this.widgetStoreTemplateName,
-            description: this.widgetStoreTemplateDescription,
-            datasourceName: '',
-            widgetStoredTemplateCreatedOn: dt,
-            widgetStoredTemplateCreatedBy: this.globalVariableService.currentUser.userID,
-            widgetStoredTemplateUpdatedOn: null,
-            widgetStoredTemplateUpdatedBy: '',
+            let dt = new Date();
+
+            let newWidgetStoredTemplate: WidgetStoredTemplate = {
+                id: null,
+                widgetID: this.selectedWidget.id,
+                name: this.widgetStoreTemplateName,
+                description: this.widgetStoreTemplateDescription,
+                datasourceName: '',
+                widgetStoredTemplateCreatedOn: dt,
+                widgetStoredTemplateCreatedBy: this.globalVariableService.currentUser.userID,
+                widgetStoredTemplateUpdatedOn: null,
+                widgetStoredTemplateUpdatedBy: '',
+            };
+
+            this.globalVariableService.addWidgetStoredTemplate(newWidgetStoredTemplate)
+                .then(res => {this.formWidgetTemplateSavedClosed.emit('Saved')})
+                .catch(err => {this.errorMessage = 'Adding failed ...'});
+        } else {
+            let dt = new Date();
+
+            let newWidgetStoredTemplate: WidgetStoredTemplate = {
+                id: this.widgetStoredTemplates[0].id,
+                widgetID: this.widgetStoredTemplates[0].widgetID,
+                name: this.widgetStoreTemplateName,
+                description: this.widgetStoreTemplateDescription,
+                datasourceName: this.widgetStoredTemplates[0].datasourceName,
+                widgetStoredTemplateCreatedOn: this.widgetStoredTemplates[0].widgetStoredTemplateCreatedOn,
+                widgetStoredTemplateCreatedBy: this.widgetStoredTemplates[0].widgetStoredTemplateCreatedBy,
+                widgetStoredTemplateUpdatedOn: dt,
+                widgetStoredTemplateUpdatedBy: this.globalVariableService.currentUser.userID,
+            };
+
+            this.globalVariableService.saveWidgetStoredTemplate(newWidgetStoredTemplate)
+                .then(res => {this.formWidgetTemplateSavedClosed.emit('Saved')})
+                .catch(err => {this.errorMessage = 'Saving failed ...'});
+
         };
-
-        this.globalVariableService.saveWidgetStoredTemplate(newWidgetStoredTemplate)
-            .then(res => {this.formWidgetTemplateSavedClosed.emit('Saved')})
-            .catch(err => {this.errorMessage = err.message});
 
     }
 }
