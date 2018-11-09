@@ -121,9 +121,9 @@ export class WidgetTemplateSaveComponent implements OnInit {
             widgetStoredTemplateUpdatedBy: '',
         };
 
-        this.globalVariableService.saveWidgetStoredTemplate(newWidgetStoredTemplate).then(res => {
-            this.formWidgetTemplateSavedClosed.emit('Saved');
-        });
+        this.globalVariableService.saveWidgetStoredTemplate(newWidgetStoredTemplate)
+            .then(res => {this.formWidgetTemplateSavedClosed.emit('Saved')})
+            .catch(err => {this.errorMessage = err.message});
 
     }
 }
