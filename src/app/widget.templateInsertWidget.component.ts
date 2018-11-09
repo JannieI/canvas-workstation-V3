@@ -4,10 +4,12 @@
 
 // Angular
 import { Component }                  from '@angular/core';
+import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
+import { ViewChild }                  from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -17,8 +19,13 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Widget }                     from './models';
-import { WidgetStoredTemplate }             from './models';
+import { WidgetGraph }                from './models';
+import { WidgetStoredTemplate }       from './models';
 
+// Functions
+import { compile }                    from 'vega-lite';
+import { parse }                      from 'vega';
+import { View }                       from 'vega';
 
 @Component({
     selector: 'widget-templateInsertWidget',
@@ -28,6 +35,7 @@ import { WidgetStoredTemplate }             from './models';
 export class WidgetTemplateInsertWidgetComponent implements OnInit {
 
     @Output() formWidgetTemplateInsertWidgetClosed: EventEmitter<string> = new EventEmitter();
+    @ViewChild('domWidget', {read: ElementRef}) domWidget: ElementRef;  //Vega graph
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -43,7 +51,11 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
     }
 
     errorMessage: string = '';
+    graphVisualGrammar: string = 'Vega-Lite';
+    localWidget: Widget;
     sortOrder: number = 1;
+    specification: any;              // Vega-Lite, Vega, or other grammar
+    widgetGraphs: WidgetGraph[] =[];
     widgetStoredTemplates: WidgetStoredTemplate[] = [];
 
 
@@ -72,6 +84,9 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                         };
                     })
                 });
+                this.globalVariableService.getWidgetGraphs().then(res => {
+                    this.widgetGraphs = res;
+                });
             }
         );        
     }
@@ -91,7 +106,9 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             this.errorMessage = 'Error: selected Widget does not exist any more';
             return;
         };
-        this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.currentWidgets[6]));
+        this.localWidget = JSON.parse(JSON.stringify(
+            this.globalVariableService.widgets[widgetIndex])
+        );
         this.localWidget.id = null;
         this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
@@ -99,6 +116,58 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         // Add DS to current DS (no action if already there)
         this.globalVariableService.addCurrentDatasource(
             this.localWidget.datasourceID).then(res => {
+
+
+
+            // Create Spec
+            this.specification = this.globalVariableService.createVegaLiteSpec(
+                this.localWidget,
+                this.localWidget.graphHeight,
+                this.localWidget.graphWidth
+            );
+
+            console.warn('xx @END of ShowGraph specification', this.specification);
+
+
+            // Get the widgetGraph
+            this.graphVisualGrammar = 'Vega-Lite';
+            if (this.localWidget.graphLayers != null) {
+                let graphID: number = this.localWidget.graphLayers[0].graphMarkID;
+                let widgetGraphIndex: number = this.widgetGraphs.findIndex(
+                    wg => wg.id == graphID
+                );
+                if (widgetGraphIndex < 0) {
+                    this.errorMessage = 'Graph type id = ' + graphID + ' does not exist in the DB';
+                    return;
+                } else {
+                    this.graphVisualGrammar = this.widgetGraphs[widgetGraphIndex].visualGrammar;
+                };
+            };
+
+
+            
+
+            // Render graph for Vega-Lite
+            if (this.graphVisualGrammar == 'Vega-Lite') {
+                if (this.specification != undefined) {
+                    let vegaSpecification = compile(this.specification).spec;
+                    let view = new View(parse(vegaSpecification));
+
+                    // Catch events
+                    view.addEventListener('click', (event, item) => {
+                        console.warn('xx Click !!', event, item)
+                     })
+
+                    view.renderer('svg')
+                        .initialize(this.domWidget.nativeElement)
+                        .hover()
+                        .run()
+                        .finalize();
+                };
+            };
+
+
+
 
             // Update local and global vars
             this.localWidget.dashboardTabIDs.push(this.globalVariableService.
@@ -137,13 +206,14 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                 );
 
                 // Return to main menu
-                this.formWidgetEditorClosed.emit(this.localWidget);
+                this.formWidgetTemplateInsertWidgetClosed.emit('Added');
 
             });
 
         });
 
     }
+
 
     clickClose(action: string) {
         // Close the form, without saving anything
