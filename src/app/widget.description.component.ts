@@ -42,6 +42,7 @@ export class WidgetDescriptionComponent implements OnInit {
 
     }
 
+    hasTemplate: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -51,6 +52,12 @@ export class WidgetDescriptionComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        this.globalVariableService.getWidgetStoredTemplates().then(wst => {
+            if (wst != null  &&  wst.length > 0) {
+                this.hasTemplate = true;
+            };
+        });
 
     }
 

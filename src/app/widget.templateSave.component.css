@@ -85,8 +85,8 @@
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 17;
-        grid-row-start: 13;
-        grid-row-end: 14;
+        grid-row-start: 14;
+        grid-row-end: 15;
         margin-left: 20px;
         text-align: left;
     }
@@ -95,8 +95,8 @@
         grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 7;
-        grid-row-start: 14;
-        grid-row-end: 15;
+        grid-row-start: 15;
+        grid-row-end: 16;
         margin-left: 20px;
         margin-top: 5px;
         text-align: left;
@@ -106,8 +106,8 @@
         grid-column-start: 12;
         /* autoprefixer: off */
         grid-column-end: 14;
-        grid-row-start: 14;
-        grid-row-end: 15;
+        grid-row-start: 15;
+        grid-row-end: 16;
         margin-left: 20px;
         margin-top: 5px;
         text-align: left;

@@ -80,6 +80,14 @@
                         </select>
                     </div>
 
+                    <div class="gridHasTemplate">
+                        <b>Has Template:</b>
+                        <input [(ngModel)]="hasTemplate"
+                            type="checkbox"
+                            disabled
+                            >
+                    </div>
+    
                     <div class="gridCreator">
                         <b>Creator:</b>
                         {{ selectedWidget.widgetCreatedBy }}
