@@ -845,7 +845,7 @@ export class DashboardTag {
 
 export class DashboardLayout {
     id: number;                         // Unique ID
-    dashboardID: number                 // D to which these belong
+    dashboardID: number;                // D to which these belong
     name: string;                       // Short Name, ie 3 x 5 with 5 blocks
     description: string;                // More detailed description
     imageUrl?: string;                  // Optional Image url, only used in definition
@@ -1591,8 +1591,15 @@ export class Widget {
 
 }
 
+export class widgetTemplate {
+    id: number;                         // Unique ID
+    widgetID: number;                   // FK to Widgets, where all the data is stored
+    name: string                        // Name
+    description: string;                // Description
+}
+
 export class WidgetGraph {
-    id: number                          // Unique ID
+    id: number;                         // Unique ID
     visualGrammar: string;              // Vega-Lite, Vega, etc
     visualGrammarVersion: number;       // Version, ie 2.0
     shortName: string;                  // Short name to display
