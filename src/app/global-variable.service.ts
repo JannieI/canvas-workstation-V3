@@ -6339,6 +6339,9 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     });
                 };
             };
+
+            // Already there
+            resolve('DS already in locals');
         });
 
     }

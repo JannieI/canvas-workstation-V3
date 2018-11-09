@@ -2982,6 +2982,7 @@ export interface dataSchemaInterface {
 
         // Create new W
         this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.currentWidgets[6]));
+        this.localWidget.id = null;
         this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
     
@@ -3036,46 +3037,6 @@ export interface dataSchemaInterface {
 
 
 
-
-        // Update local and global vars
-        this.localWidget.dashboardTabIDs.push(this.globalVariableService.
-            currentDashboardInfo.value.currentDashboardTabID);
-
-        this.globalVariableService.addWidget(this.localWidget).then(res => {
-            this.localWidget.id = res.id;
-
-            // Action
-            // TODO - cater for errors + make more generic
-            let actID: number = this.globalVariableService.actionUpsert(
-                null,
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                this.localWidget.id,
-                'Widget',
-                'Edit',
-                'Update Title',
-                'W Title clickSave',
-                null,
-                null,
-                null,
-                this.localWidget,
-                false               // Dont log to DB yet
-            );
-
-            // Tell user
-            this.globalVariableService.showStatusBarMessage(
-                {
-                    message: 'Graph Added',
-                    uiArea: 'StatusBar',
-                    classfication: 'Info',
-                    timeout: 3000,
-                    defaultMessage: ''
-                }
-            );
-
-            // Return to main menu
-            this.formWidgetEditorClosed.emit(this.localWidget);
-        });
 
 
 
