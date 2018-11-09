@@ -1592,10 +1592,15 @@ export class Widget {
 }
 
 export class WidgetStoredTemplate {
-    id: number;                         // Unique ID
-    widgetID: number;                   // FK to Widgets, where all the data is stored
-    name: string                        // Name
-    description: string;                // Description
+    id: number;                             // Unique ID
+    widgetID: number;                       // FK to Widgets, where all the data is stored
+    name: string                            // Name
+    description: string;                    // Description
+    datasourceName: string;                 // Added at RunTime
+    widgetStoredTemplateCreatedOn: Date;    // Created on
+    widgetStoredTemplateCreatedBy: string;  // Created by
+    widgetStoredTemplateUpdatedOn: Date;    // Updated on
+    widgetStoredTemplateUpdatedBy: string;  // Updated by
 }
 
 export class WidgetGraph {
