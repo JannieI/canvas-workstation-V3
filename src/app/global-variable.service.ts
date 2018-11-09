@@ -10433,6 +10433,48 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
     }
 
+    addWidgetTemplate(data: WidgetTemplate): Promise<any> {
+        // Description: Adds a new WidgetTemplate
+        // Returns: Added Data or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addWidgetTemplate ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        let pathUrl: string = 'widgetTemplates';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        this.filePath = './assets/data.WidgetTemplates.json';
+
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post(finalUrl, data, {headers})
+                .subscribe(
+                    res => {
+
+                        // Update Global vars to make sure they remain in sync
+                        this.widgetTemplates.push(JSON.parse(JSON.stringify(res)));
+
+                        if (this.sessionDebugging) {
+                            console.log('addWidgetTemplate ADDED', {res})
+                        };
+
+                        resolve(res);
+                    },
+                    err => {
+                        if (this.sessionDebugging) {
+                            console.log('Error addWidgetTemplate FAILED', {err});
+                        };
+
+                        reject(err);
+                    }
+                )
+        });
+    }
+
     saveWidgetTemplate(data: WidgetTemplate): Promise<string> {
         // Description: Saves WidgetTemplate
         // Returns: 'Saved' or error message
