@@ -59,7 +59,7 @@
                         </clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of widgetStoredTemplates; let i = index"
-                            (dblclick)="dblClickRow(row.widgetID)"
+                            (click)="clickRow(row.widgetID)"
                             [clrDgItem]="row"
                             >
                             <clr-dg-cell style="margin-left: 2px; padding: 0;"

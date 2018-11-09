@@ -92,9 +92,9 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         );        
     }
 
-    dblClickRow(widgetID: number) {
+    clickRow(widgetID: number) {
         // Show graph for row that the user clicked on
-        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickRow', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         this.errorMessage = '';
 
@@ -119,8 +119,6 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.globalVariableService.addCurrentDatasource(
             this.localWidget.datasourceID).then(res => {
 
-
-
             // Create Spec
             this.specification = this.globalVariableService.createVegaLiteSpec(
                 this.localWidget,
@@ -129,7 +127,6 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             );
 
             console.warn('xx @END of ShowGraph specification', this.specification);
-
 
             // Get the widgetGraph
             this.graphVisualGrammar = 'Vega-Lite';
@@ -145,72 +142,6 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                     this.graphVisualGrammar = this.widgetGraphs[widgetGraphIndex].visualGrammar;
                 };
             };
-
-
-            
-
-            // Render graph for Vega-Lite
-            if (this.graphVisualGrammar == 'Vega-Lite') {
-                if (this.specification != undefined) {
-                    let vegaSpecification = compile(this.specification).spec;
-                    let view = new View(parse(vegaSpecification));
-
-                    // Catch events
-                    view.addEventListener('click', (event, item) => {
-                        console.warn('xx Click !!', event, item)
-                     })
-
-                    view.renderer('svg')
-                        .initialize(this.domWidget.nativeElement)
-                        .hover()
-                        .run()
-                        .finalize();
-                };
-            };
-
-
-
-
-            // Update local and global vars
-            this.localWidget.dashboardTabIDs.push(this.globalVariableService.
-                currentDashboardInfo.value.currentDashboardTabID);
-
-            this.globalVariableService.addWidget(this.localWidget).then(res => {
-                this.localWidget.id = res.id;
-
-                // Action
-                // TODO - cater for errors + make more generic
-                let actID: number = this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    this.localWidget.id,
-                    'Widget',
-                    'Edit',
-                    'Update Title',
-                    'W Title clickSave',
-                    null,
-                    null,
-                    null,
-                    this.localWidget,
-                    false               // Dont log to DB yet
-                );
-
-                // Tell user
-                this.globalVariableService.showStatusBarMessage(
-                    {
-                        message: 'Graph Added',
-                        uiArea: 'StatusBar',
-                        classfication: 'Info',
-                        timeout: 3000,
-                        defaultMessage: ''
-                    }
-                );
-
-                // Return to main menu
-                this.formWidgetTemplateInsertWidgetClosed.emit('Added');
-
-            });
 
         });
 
@@ -248,58 +179,6 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.globalVariableService.addCurrentDatasource(
             this.localWidget.datasourceID).then(res => {
 
-
-
-            // Create Spec
-            this.specification = this.globalVariableService.createVegaLiteSpec(
-                this.localWidget,
-                this.localWidget.graphHeight,
-                this.localWidget.graphWidth
-            );
-
-            console.warn('xx @END of ShowGraph specification', this.specification);
-
-
-            // Get the widgetGraph
-            this.graphVisualGrammar = 'Vega-Lite';
-            if (this.localWidget.graphLayers != null) {
-                let graphID: number = this.localWidget.graphLayers[0].graphMarkID;
-                let widgetGraphIndex: number = this.widgetGraphs.findIndex(
-                    wg => wg.id == graphID
-                );
-                if (widgetGraphIndex < 0) {
-                    this.errorMessage = 'Graph type id = ' + graphID + ' does not exist in the DB';
-                    return;
-                } else {
-                    this.graphVisualGrammar = this.widgetGraphs[widgetGraphIndex].visualGrammar;
-                };
-            };
-
-
-            
-
-            // Render graph for Vega-Lite
-            if (this.graphVisualGrammar == 'Vega-Lite') {
-                if (this.specification != undefined) {
-                    let vegaSpecification = compile(this.specification).spec;
-                    let view = new View(parse(vegaSpecification));
-
-                    // Catch events
-                    view.addEventListener('click', (event, item) => {
-                        console.warn('xx Click !!', event, item)
-                     })
-
-                    view.renderer('svg')
-                        .initialize(this.domWidget.nativeElement)
-                        .hover()
-                        .run()
-                        .finalize();
-                };
-            };
-
-
-
-
             // Update local and global vars
             this.localWidget.dashboardTabIDs.push(this.globalVariableService.
                 currentDashboardInfo.value.currentDashboardTabID);
@@ -344,7 +223,6 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         });
 
     }
-
 
     clickClose(action: string) {
         // Close the form, without saving anything
