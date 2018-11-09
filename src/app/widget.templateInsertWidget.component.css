@@ -83,7 +83,7 @@
         text-align: left;
     }
 
-    .gridButtonSave {
+    .gridButtonAdd {
         grid-column-start: 12;
         /* autoprefixer: off */
         grid-column-end: 14;

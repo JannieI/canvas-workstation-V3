@@ -199,8 +199,8 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             this.localWidget.dashboardTabIDs.push(this.globalVariableService.
                 currentDashboardInfo.value.currentDashboardTabID);
 
-            this.globalVariableService.addWidget(this.localWidget).then(res => {
-                this.localWidget.id = res.id;
+            this.globalVariableService.addWidget(this.localWidget).then(addedWidget => {
+                this.localWidget.id = addedWidget.id;
 
                 // Action
                 // TODO - cater for errors + make more generic
@@ -232,7 +232,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                 );
 
                 // Return to main menu
-                this.formWidgetTemplateInsertWidgetClosed.emit('Added');
+                this.formWidgetTemplateInsertWidgetClosed.emit(addedWidget);
 
             });
 
@@ -244,7 +244,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         // Close the form, without saving anything
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formWidgetTemplateInsertWidgetClosed.emit(action);
+		this.formWidgetTemplateInsertWidgetClosed.emit(null);
     }
 
     clickInsertWidget() {
