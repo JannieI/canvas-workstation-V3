@@ -10397,10 +10397,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         });
     }
 
-
-
-
-
     getWidgetTemplates(): Promise<WidgetTemplate[]> {
         // Description: Gets WidgetTemplates.
         // Returns: this.WidgetTemplates object, unless:
@@ -10435,6 +10431,52 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
         });
 
+    }
+
+    saveWidgetTemplate(data: WidgetTemplate): Promise<string> {
+        // Description: Saves WidgetTemplate
+        // Returns: 'Saved' or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveWidgetTemplate ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        let pathUrl: string = 'WidgetTemplates';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        this.filePath = './assets/data.WidgetTemplate.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.widgetTemplates.findIndex(d =>
+                        d.id == data.id
+                    );
+                    if (localIndex >= 0) {
+                        this.widgetTemplates[localIndex] = data;
+                    };
+
+                    if (this.sessionDebugging) {
+                        console.log('saveWidgetTemplate SAVED', {res})
+                    };
+
+                    resolve('Saved');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error saveWidgetTemplate FAILED', {err});
+                    };
+
+                    reject(err);
+                }
+            )
+        });
     }
 
 
