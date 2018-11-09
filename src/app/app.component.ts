@@ -1899,6 +1899,17 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.showModalDataDeleteDatasource = false;
     }
 
+    handleCloseWidgetTemplateSave(action: string) {
+        // Hanlde close of Widget Template Save form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetTemplateSave', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataDeleteDatasource = false;
+    }
+
+
+    handleCloseWidgetTemplateSave
     handleCloseWidgetContainer(changedWidget: Widget) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainer', '@Start');
