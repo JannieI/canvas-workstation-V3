@@ -108,7 +108,7 @@ export class DashboardTreeviewComponent implements OnInit {
                 if (w.widgetType == 'Graph') {
                     this.objectTree[i].children[0].grandchildren.push({
                         icon: "line-chart",
-                        name: 'Graph (' + w.graphYtype + ') ' + w.titleText + ' (' + w.description + ')',
+                        name: 'Graph (' + w.graphLayers[0].graphYtype + ') ' + w.titleText + ' (' + w.description + ')',
                         active: false
                     });
                 };

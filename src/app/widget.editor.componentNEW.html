@@ -169,6 +169,11 @@
                     <div class="datasourceMainButtonContinue">
                         <button *ngIf="showPreview"
                             class="btn btn-sm btn-primary"
+                            (click)="clickTempory()">
+                            W Templ
+                        </button>
+                        <button *ngIf="showPreview"
+                            class="btn btn-sm btn-primary"
                             (click)="clickContinue()">
                             Continue
                         </button>

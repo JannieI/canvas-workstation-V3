@@ -1425,6 +1425,7 @@ This document describes items for later versions of Canvas.
         - add dates: maybe add calendar drop down, with {"filter": {"field": "date", "range": [{"year": 2006, "month": "jan", "date": 1}, {"year": 2008, "month": "feb", "date": 20}] }} checks if the date’s value is between Jan 1, 2006 and Feb 20, 2008
         - add PRE and POST filter, like WHERE and HAVING, at start and end of Transformation[]
         - consider showing them: 1. with a filter symbol next to + symbol for Calculated fields  2. per field affect, ie in blue.  Not sure how to manage more than one filter per field, or seeing the full picture if 50 fields with 3 filter scattered through the list.  Think use Case.
+        - if a field is used in a Widget filter (>= 1 time), then show visual clue on Fields list, ie in blue.  There are too many suggestions to make this blue - so think which one to use, if any.
 
     - CONFIG:
         - how and where used?
