@@ -10521,11 +10521,51 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         });
     }
 
+    deleteWidgetTemplate(id: number, dashboardTemplateID: number): Promise<string> {
+        // Description: Deletes a WidgetTemplate
+        // Returns: 'Deleted' or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteWidgetTemplate ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
+        let pathUrl: string = 'widgetTemplates';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        this.filePath = './assets/data.WidgetTemplate.json';
 
+        return new Promise<any>((resolve, reject) => {
 
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
 
+            this.http.delete(finalUrl + '/' + id, {headers})
+            .subscribe(
+                res => {
+                    this.widgetTemplates = this.widgetTemplates.filter(wl => wl.id != id);
 
+                    // TODO - do this better in DB as we are checking local Array length
+                    //        which may be diff to DB
+                    // Delete the DashboardTemplate if last one
+                    if (this.widgetTemplates.length == 0) {
+                        this.deleteDashboardTemplate(dashboardTemplateID);
+                    };
+
+                    if (this.sessionDebugging) {
+                        console.log('deleteWidgetTemplate DELETED id: ', {id})
+                    };
+
+                    resolve('Deleted');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteWidgetTemplate FAILED', {err});
+                    };
+
+                    reject(err);
+                }
+            )
+        });
+    }
 
     get<T>(pathUrl: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
