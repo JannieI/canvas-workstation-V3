@@ -51,22 +51,22 @@
         text-align: left;
     }
 
-    .gridDeleteSnapshotsTitle {
+    .gridWidgetStoredTemplates {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 18;
-        grid-row-start: 18;
-        grid-row-end: 19;
-        margin-left: 20px;
+        grid-column-end: 8;
+        grid-row-start: 3;
+        grid-row-end: 18;
+        margin-left: 8px;
         text-align: left;
     }
-    .gridDeleteSnapshots {
-        grid-column-start: 1;
+    .gridShowWidget {
+        grid-column-start: 10;
         /* autoprefixer: off */
         grid-column-end: 18;
-        grid-row-start: 18;
-        grid-row-end: 19;
-        margin-left: 20px;
+        grid-row-start: 4;
+        grid-row-end: 17;
+        margin-left: 8px;
         text-align: left;
     }
     

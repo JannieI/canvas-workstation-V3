@@ -30,7 +30,6 @@ import { Subscription }               from 'rxjs';
 })
 export class WidgetTemplateInsertWidgetComponent implements OnInit {
 
-    @Input() selectedWidget: Widget;
     @Output() formWidgetTemplateInsertWidgetClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -60,11 +59,12 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
     isFirstTimeDashboardSave: boolean;
     // dashboards: Dashboard[];
     dashboardsSubscription: Subscription;
+    sortOrder: number = 1;
     widgetStoredTemplates: WidgetStoredTemplate[] = [];
     widgetStoreTemplateDescription: string = '';
     widgetStoreTemplateName: string = '';
 
-    
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -79,16 +79,13 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             i => this.isFirstTimeDashboardSave = i
         )
 
+        // Load Stored Widget Templates, adding DS Name for user
         this.globalVariableService.getWidgetStoredTemplates()
             .then(res => {
                 this.widgetStoredTemplates = res.slice();
 
                 this.widgetStoredTemplates.forEach(wst => {
                     this.globalVariableService.widgets.forEach(w => {
-                        if (w.id == this.selectedWidget.id) {
-                            this.widgetStoreTemplateName = wst.name;
-                            this.widgetStoreTemplateDescription = wst.description;
-                        };
                         if (w.id == wst.widgetID) {
                             this.globalVariableService.datasources.forEach(ds => {
                                 if (w.datasourceID == ds.id) {
@@ -102,11 +99,9 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         );        
     }
 
-    ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component.
-        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
-        // Called just before Angular destroys the directive/component.
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
+    dblClickFieldRow() {
+        // Show graph for row that the user clicked on
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFieldRow', '@Start');
 
         this.dashboardsSubscription.unsubscribe();
     }

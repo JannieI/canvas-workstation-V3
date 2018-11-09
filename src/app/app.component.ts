@@ -4753,17 +4753,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 return;
         };
 
-        if (!this.checkForOnlyOneWidget('Graph')) {
-            return;
-        };
-
         this.menuOptionClickPreAction();
-
-        this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Graph') {
-                this.selectedWidget = w;
-            };
-        });
 
         this.showModalWidgetStoredTemplateInsertWidget = true;
     }
