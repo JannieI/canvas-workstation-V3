@@ -73,6 +73,10 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         // Load Stored Widget Templates, adding DS Name for user
         this.globalVariableService.getWidgetStoredTemplates()
             .then(res => {
+                this.globalVariableService.getWidgetGraphs().then(graphs => {
+                    this.widgetGraphs = graphs;
+                });
+
                 this.widgetStoredTemplates = res.slice();
 
                 this.widgetStoredTemplates.forEach(wst => {
@@ -86,9 +90,9 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                         };
                     })
                 });
-                this.globalVariableService.getWidgetGraphs().then(res => {
-                    this.widgetGraphs = res;
-                });
+                if (this.widgetStoredTemplates.length > 0) {
+                    this.clickRow(0, this.widgetGraphs[0].id);
+                };
             }
         );        
     }
