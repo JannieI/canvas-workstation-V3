@@ -53,6 +53,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
     errorMessage: string = '';
     graphVisualGrammar: string = 'Vega-Lite';
     localWidget: Widget;
+    selectedWidgetID: number;
     sortOrder: number = 1;
     specification: any;              // Vega-Lite, Vega, or other grammar
     widgetGraphs: WidgetGraph[] =[];
@@ -98,8 +99,138 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.errorMessage = '';
 
         // Create new W
+        this.selectedWidgetID = widgetID;
         let widgetIndex: number = this.globalVariableService.widgets.findIndex(w =>
             w.id == widgetID
+        );
+
+        if (widgetIndex < 0) {
+            this.errorMessage = 'Error: selected Widget does not exist any more';
+            return;
+        };
+        this.localWidget = JSON.parse(JSON.stringify(
+            this.globalVariableService.widgets[widgetIndex])
+        );
+        this.localWidget.id = null;
+        this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+        this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+    
+        // Add DS to current DS (no action if already there)
+        this.globalVariableService.addCurrentDatasource(
+            this.localWidget.datasourceID).then(res => {
+
+
+
+            // Create Spec
+            this.specification = this.globalVariableService.createVegaLiteSpec(
+                this.localWidget,
+                this.localWidget.graphHeight,
+                this.localWidget.graphWidth
+            );
+
+            console.warn('xx @END of ShowGraph specification', this.specification);
+
+
+            // Get the widgetGraph
+            this.graphVisualGrammar = 'Vega-Lite';
+            if (this.localWidget.graphLayers != null) {
+                let graphID: number = this.localWidget.graphLayers[0].graphMarkID;
+                let widgetGraphIndex: number = this.widgetGraphs.findIndex(
+                    wg => wg.id == graphID
+                );
+                if (widgetGraphIndex < 0) {
+                    this.errorMessage = 'Graph type id = ' + graphID + ' does not exist in the DB';
+                    return;
+                } else {
+                    this.graphVisualGrammar = this.widgetGraphs[widgetGraphIndex].visualGrammar;
+                };
+            };
+
+
+            
+
+            // Render graph for Vega-Lite
+            if (this.graphVisualGrammar == 'Vega-Lite') {
+                if (this.specification != undefined) {
+                    let vegaSpecification = compile(this.specification).spec;
+                    let view = new View(parse(vegaSpecification));
+
+                    // Catch events
+                    view.addEventListener('click', (event, item) => {
+                        console.warn('xx Click !!', event, item)
+                     })
+
+                    view.renderer('svg')
+                        .initialize(this.domWidget.nativeElement)
+                        .hover()
+                        .run()
+                        .finalize();
+                };
+            };
+
+
+
+
+            // Update local and global vars
+            this.localWidget.dashboardTabIDs.push(this.globalVariableService.
+                currentDashboardInfo.value.currentDashboardTabID);
+
+            this.globalVariableService.addWidget(this.localWidget).then(res => {
+                this.localWidget.id = res.id;
+
+                // Action
+                // TODO - cater for errors + make more generic
+                let actID: number = this.globalVariableService.actionUpsert(
+                    null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    this.localWidget.id,
+                    'Widget',
+                    'Edit',
+                    'Update Title',
+                    'W Title clickSave',
+                    null,
+                    null,
+                    null,
+                    this.localWidget,
+                    false               // Dont log to DB yet
+                );
+
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Graph Added',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+
+                // Return to main menu
+                this.formWidgetTemplateInsertWidgetClosed.emit('Added');
+
+            });
+
+        });
+
+    }
+
+    clickAdd() {
+        // Add the selected Widget to the current Dashboard
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        this.errorMessage = '';
+
+        // Validate
+        if (this.selectedWidgetID == null) {
+            this.errorMessage = 'Select a Widget to add';
+            return;
+        };
+
+        // Create new W
+        let widgetIndex: number = this.globalVariableService.widgets.findIndex(w =>
+            w.id == this.selectedWidgetID
         );
 
         if (widgetIndex < 0) {
