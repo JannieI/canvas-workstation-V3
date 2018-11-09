@@ -54,6 +54,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
 
     }
 
+    widgetStoredTemplates: WidgetStoredTemplate[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -64,7 +65,11 @@ export class WidgetTemplateSaveComponent implements OnInit {
         // Initials
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // this.dashboards = this.globalVariableService.dashboards.slice();
+        this.globalVariableService.getWidgetStoredTemplates()
+            .then(res => {
+                this.widgetStoredTemplates = res.slice();
+            }
+        );
     }
 
     clickClose(action: string) {

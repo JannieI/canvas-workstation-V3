@@ -10397,18 +10397,18 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         });
     }
 
-    getWidgetTemplates(): Promise<WidgetStoredTemplate[]> {
-        // Description: Gets WidgetTemplates.
-        // Returns: this.WidgetTemplates object, unless:
+    getWidgetStoredTemplates(): Promise<WidgetStoredTemplate[]> {
+        // Description: Gets WidgetStoredTemplates.
+        // Returns: this.WidgetStoredTemplates object, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getWidgetTemplates ...',
+            console.log('%c    Global-Variables getWidgetStoredTemplates ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
         let pathUrl: string = 'widgetTemplates';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.WidgetTemplates.json';
+        this.filePath = './assets/data.widgetTemplates.json';
 
         return new Promise<WidgetStoredTemplate[]>((resolve, reject) => {
 
@@ -10421,7 +10421,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     this.widgetStoredTemplates = res;
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getWidgetTemplates 1',
+                        console.log('%c    Global-Variables getWidgetStoredTemplates 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.widgetStoredTemplates);
                     };
@@ -10433,17 +10433,17 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
     }
 
-    addWidgetTemplate(data: WidgetStoredTemplate): Promise<any> {
-        // Description: Adds a new WidgetTemplate
+    addWidgetStoredTemplate(data: WidgetStoredTemplate): Promise<any> {
+        // Description: Adds a new WidgetStoredTemplate
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addWidgetTemplate ...',
+            console.log('%c    Global-Variables addWidgetStoredTemplate ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'widgetTemplates';
+        let pathUrl: string = 'widgetStoredTemplates';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.WidgetTemplates.json';
+        this.filePath = './assets/data.widgetStoredTemplates.json';
 
 
         return new Promise<any>((resolve, reject) => {
@@ -10459,7 +10459,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                         this.widgetStoredTemplates.push(JSON.parse(JSON.stringify(res)));
 
                         if (this.sessionDebugging) {
-                            console.log('addWidgetTemplate ADDED', {res})
+                            console.log('addWidgetStoredTemplate ADDED', {res})
                         };
 
                         resolve(res);
@@ -10475,17 +10475,17 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         });
     }
 
-    saveWidgetTemplate(data: WidgetStoredTemplate): Promise<string> {
-        // Description: Saves WidgetTemplate
+    saveWidgetStoredTemplate(data: WidgetStoredTemplate): Promise<string> {
+        // Description: Saves WidgetStoredTemplate
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveWidgetTemplate ...',
+            console.log('%c    Global-Variables saveWidgetStoredTemplate ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'WidgetTemplates';
+        let pathUrl: string = 'widgetStoredTemplates';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.WidgetTemplate.json';
+        this.filePath = './assets/data.WidgetStoredTemplate.json';
 
         return new Promise<string>((resolve, reject) => {
 
@@ -10505,14 +10505,14 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('saveWidgetTemplate SAVED', {res})
+                        console.log('saveWidgetStoredTemplate SAVED', {res})
                     };
 
                     resolve('Saved');
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error saveWidgetTemplate FAILED', {err});
+                        console.log('Error saveWidgetStoredTemplate FAILED', {err});
                     };
 
                     reject(err);
@@ -10521,15 +10521,15 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         });
     }
 
-    deleteWidgetTemplate(id: number): Promise<string> {
-        // Description: Deletes a WidgetTemplate
+    deleteWidgetStoredTemplate(id: number): Promise<string> {
+        // Description: Deletes a WidgetStoredTemplate
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteWidgetTemplate ...',
+            console.log('%c    Global-Variables deleteWidgetStoredTemplate ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let pathUrl: string = 'widgetTemplates';
+        let pathUrl: string = 'widgetStoredTemplates';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.WidgetTemplate.json';
 
@@ -10545,14 +10545,14 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                         wst => wst.id != id);
 
                     if (this.sessionDebugging) {
-                        console.log('deleteWidgetTemplate DELETED id: ', {id})
+                        console.log('deleteWidgetStoredTemplate DELETED id: ', {id})
                     };
 
                     resolve('Deleted');
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error deleteWidgetTemplate FAILED', {err});
+                        console.log('Error deleteWidgetStoredTemplate FAILED', {err});
                     };
 
                     reject(err);
