@@ -447,6 +447,8 @@ export class AppComponent implements OnInit {
     showModalDashboardUsageStats: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataDeleteDatasource: boolean = false;
+    showModalWidgetTemplateSave: boolean = false
+    showModalWidgetTemplateInsertWidget: boolean = false
     showModalDataDictionary: boolean = false;
     showModalDataDirectExport: boolean = false;
     showModalDataDirectFileCSV: boolean = false;
@@ -1905,11 +1907,20 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataDeleteDatasource = false;
+        this.showModalWidgetTemplateSave = false;
     }
 
 
-    handleCloseWidgetTemplateSave
+    handleCloseWidgetTemplateInsertWidget(action: string) {
+        // Hanlde close of Widget Template Insert Widget form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetTemplateInsertWidget', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalWidgetTemplateInsertWidget = false;
+    }
+
+    
     handleCloseWidgetContainer(changedWidget: Widget) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainer', '@Start');

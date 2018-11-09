@@ -7,6 +7,7 @@ import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { OnInit }                     from '@angular/core';
+import { Input }                      from '@angular/core';
 import { Output }                     from '@angular/core';
 
 // Our Functions
@@ -16,7 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
+import { Widget }                     from './models';
 
 // Other
 import { Subscription }               from 'rxjs';
@@ -28,6 +29,7 @@ import { Subscription }               from 'rxjs';
 })
 export class WidgetTemplateInsertWidgetComponent implements OnInit {
 
+    @Input() selectedWidget: Widget;
     @Output() formWidgetTemplateInsertWidgetClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -55,7 +57,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
 
     deleteSnapshots: boolean = true;
     isFirstTimeDashboardSave: boolean;
-    dashboards: Dashboard[];
+    // dashboards: Dashboard[];
     dashboardsSubscription: Subscription;
 
 	constructor(
@@ -67,7 +69,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         // Initials
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards.slice();
+        // this.dashboards = this.globalVariableService.dashboards.slice();
         this.dashboardsSubscription = this.globalVariableService.isFirstTimeDashboardSave.subscribe(
             i => this.isFirstTimeDashboardSave = i
         )
