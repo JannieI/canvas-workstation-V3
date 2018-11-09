@@ -57,6 +57,7 @@ import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 import { WidgetLayout }               from './models';
 import { WidgetGraph }                from './models';
+import { WidgetTemplate }             from './models';
 
 // Dexie
 import Dexie from 'dexie';
@@ -539,7 +540,7 @@ const widgetTemplate: Widget =
         "graphBackgroundColor": "transparent",
         "graphBorderColorName": "lightgray",
         "graphBorderColor": "lightgray",
-    
+
         "graphTitleBaseline": "Bottom",
         "graphTitleColorName": "Gray",
         "graphTitleColor": "Gray",
@@ -1059,6 +1060,7 @@ export class GlobalVariableService {
     widgets: Widget[] = [];
     widgetLayouts: WidgetLayout[] = [];
     widgetGraphs: WidgetGraph[] =[];
+    widgetTemplates: WidgetTemplate[] =[];
 
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
     conditionFieldDataType: string = '';
@@ -10395,6 +10397,52 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         });
     }
 
+
+
+
+
+    getWidgetTemplates(): Promise<WidgetTemplate[]> {
+        // Description: Gets WidgetTemplates.
+        // Returns: this.WidgetTemplates object, unless:
+        //   If not cached or if dirty, get from File
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getWidgetTemplates ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        let pathUrl: string = 'widgetTemplates';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        this.filePath = './assets/data.WidgetTemplates.json';
+
+        return new Promise<WidgetTemplate[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+            this.get(pathUrl)
+                .then(res => {
+
+                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                    this.widgetTemplates = res;
+
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getWidgetTemplates 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.widgetTemplates);
+                    };
+
+                    resolve(this.widgetTemplates);
+                });
+
+        });
+
+    }
+
+
+
+
+
+
+
     get<T>(pathUrl: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         if (this.sessionDebugging) {
@@ -11890,18 +11938,18 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     && widget.graphLayers[currentGraphLayer].conditionFieldName != null) {
 
                         if (this.conditionFieldDataType.toLowerCase() == 'string') {
-                            specificationInner['encoding']['color']['condition'] = 
+                            specificationInner['encoding']['color']['condition'] =
                             {
-                                "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName 
+                                "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName
                                 + " " + this.conditionOperator + " '" + widget.graphLayers[currentGraphLayer].conditionValue
-                                + "'", 
+                                + "'",
                                 "value": widget.graphLayers[currentGraphLayer].conditionColour
                             };
                         } else {
-                            specificationInner['encoding']['color']['condition'] = 
+                            specificationInner['encoding']['color']['condition'] =
                             {
-                                "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName 
-                                + " " + this.conditionOperator + " " + widget.graphLayers[currentGraphLayer].conditionValue, 
+                                "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName
+                                + " " + this.conditionOperator + " " + widget.graphLayers[currentGraphLayer].conditionValue,
                                 "value": widget.graphLayers[currentGraphLayer].conditionColour
                             };
 
@@ -11955,8 +12003,8 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                                           : 'transparent',
                             "titleColor" : widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
                             "labelLimit": widget.graphDimensionRight,
-                            "title": widget.graphLayers[currentGraphLayer].graphLegendTitleCheckbox? 
-                                        widget.graphLayers[currentGraphLayer].graphLegendTitle  
+                            "title": widget.graphLayers[currentGraphLayer].graphLegendTitleCheckbox?
+                                        widget.graphLayers[currentGraphLayer].graphLegendTitle
                                         :  null
                         };
                 };
@@ -11992,21 +12040,21 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
                         if (this.conditionFieldDataType.toLowerCase() == 'string') {
                             specificationInner['encoding']['color'] =
-                            { "condition":  
+                            { "condition":
                             {
-                                "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName 
+                                "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName
                                 + " " + this.conditionOperator + " '" + widget.graphLayers[currentGraphLayer].conditionValue
-                                + "'", 
+                                + "'",
                                 "value": widget.graphLayers[currentGraphLayer].conditionColour
                             }
                             };
                         } else {
-                            specificationInner['encoding']['color']['condition'] = 
+                            specificationInner['encoding']['color']['condition'] =
                             specificationInner['encoding']['color'] =
-                            { "condition":  
+                            { "condition":
                             {
-                                "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName 
-                                + " " + this.conditionOperator + " " + widget.graphLayers[currentGraphLayer].conditionValue, 
+                                "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName
+                                + " " + this.conditionOperator + " " + widget.graphLayers[currentGraphLayer].conditionValue,
                                 "value": widget.graphLayers[currentGraphLayer].conditionColour
                             }
                             };
