@@ -57,7 +57,7 @@ import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 import { WidgetLayout }               from './models';
 import { WidgetGraph }                from './models';
-import { WidgetTemplate }             from './models';
+import { WidgetStoredTemplate }             from './models';
 
 // Dexie
 import Dexie from 'dexie';
@@ -1060,7 +1060,7 @@ export class GlobalVariableService {
     widgets: Widget[] = [];
     widgetLayouts: WidgetLayout[] = [];
     widgetGraphs: WidgetGraph[] =[];
-    widgetTemplates: WidgetTemplate[] =[];
+    widgetStoredTemplates: WidgetStoredTemplate[] =[];
 
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
     conditionFieldDataType: string = '';
@@ -10397,7 +10397,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         });
     }
 
-    getWidgetTemplates(): Promise<WidgetTemplate[]> {
+    getWidgetTemplates(): Promise<WidgetStoredTemplate[]> {
         // Description: Gets WidgetTemplates.
         // Returns: this.WidgetTemplates object, unless:
         //   If not cached or if dirty, get from File
@@ -10410,7 +10410,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.WidgetTemplates.json';
 
-        return new Promise<WidgetTemplate[]>((resolve, reject) => {
+        return new Promise<WidgetStoredTemplate[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
@@ -10418,22 +10418,22 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 .then(res => {
 
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                    this.widgetTemplates = res;
+                    this.widgetStoredTemplates = res;
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getWidgetTemplates 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.widgetTemplates);
+                            this.widgetStoredTemplates);
                     };
 
-                    resolve(this.widgetTemplates);
+                    resolve(this.widgetStoredTemplates);
                 });
 
         });
 
     }
 
-    addWidgetTemplate(data: WidgetTemplate): Promise<any> {
+    addWidgetTemplate(data: WidgetStoredTemplate): Promise<any> {
         // Description: Adds a new WidgetTemplate
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
@@ -10456,7 +10456,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     res => {
 
                         // Update Global vars to make sure they remain in sync
-                        this.widgetTemplates.push(JSON.parse(JSON.stringify(res)));
+                        this.widgetStoredTemplates.push(JSON.parse(JSON.stringify(res)));
 
                         if (this.sessionDebugging) {
                             console.log('addWidgetTemplate ADDED', {res})
@@ -10475,7 +10475,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         });
     }
 
-    saveWidgetTemplate(data: WidgetTemplate): Promise<string> {
+    saveWidgetTemplate(data: WidgetStoredTemplate): Promise<string> {
         // Description: Saves WidgetTemplate
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
@@ -10497,11 +10497,11 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 res => {
 
                     // Replace local
-                    let localIndex: number = this.widgetTemplates.findIndex(d =>
+                    let localIndex: number = this.widgetStoredTemplates.findIndex(d =>
                         d.id == data.id
                     );
                     if (localIndex >= 0) {
-                        this.widgetTemplates[localIndex] = data;
+                        this.widgetStoredTemplates[localIndex] = data;
                     };
 
                     if (this.sessionDebugging) {
@@ -10521,7 +10521,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         });
     }
 
-    deleteWidgetTemplate(id: number, dashboardTemplateID: number): Promise<string> {
+    deleteWidgetTemplate(id: number): Promise<string> {
         // Description: Deletes a WidgetTemplate
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
@@ -10541,14 +10541,11 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
-                    this.widgetTemplates = this.widgetTemplates.filter(wl => wl.id != id);
+                    this.widgetStoredTemplates = this.widgetStoredTemplates.filter(wl => wl.id != id);
 
-                    // TODO - do this better in DB as we are checking local Array length
-                    //        which may be diff to DB
-                    // Delete the DashboardTemplate if last one
-                    if (this.widgetTemplates.length == 0) {
-                        this.deleteDashboardTemplate(dashboardTemplateID);
-                    };
+                    this.widgetTemplate = this.widgetTemplate.filter(
+                        w => w.id != id
+                    );
 
                     if (this.sessionDebugging) {
                         console.log('deleteWidgetTemplate DELETED id: ', {id})

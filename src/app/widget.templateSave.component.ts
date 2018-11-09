@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Widget }                     from './models';
-import { WidgetTemplate }             from './models';
+import { WidgetStoredTemplate }             from './models';
 
 
 @Component({

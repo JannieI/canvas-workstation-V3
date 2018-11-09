@@ -1591,7 +1591,7 @@ export class Widget {
 
 }
 
-export class WidgetTemplate {
+export class WidgetStoredTemplate {
     id: number;                         // Unique ID
     widgetID: number;                   // FK to Widgets, where all the data is stored
     name: string                        // Name
