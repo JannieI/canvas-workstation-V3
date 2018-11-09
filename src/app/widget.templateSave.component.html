@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
             <div class="gridOverall">
@@ -9,29 +9,37 @@
                 <div class="gridTitle">
                     <b>Save Widget as Template:</b>
                 </div>
-                <div class="gridSubTitle">
-                    <i>
-                        Add selected Widget to the list of Widget Templates.
-                    </i>
-                </div>
 
                 <div class="gridTextMain">
                     The selected Widget will be added to the list of predefined Widget Templates.
                     Widget Templates simplify the creation of Widgets on a Dashboard:
                     the user simply selects a predefined Widget Template, which is then
-                    inserted into the Dashboard without any further work required.
+                    inserted into the Dashboard without any further work required.  It 
+                    automatically adds the relevant Datasource if not already added.
                 </div>
 
                 <div class="gridWidgetTemplateNameTitle">
+                    <b>Name:</b>
                 </div>
                 <div class="gridWidgetTemplateName">
                     <input [(ngModel)]="deleteSnapshots"
                         type="text"
-                        name="deleteSnapshots"
+                        name="templateName"
                         #deleteSnapshotsVar="ngModel"
-                        title="Delete Snapshots created during Draft (T/F)"
+                        title="Descriptive Name of the Template"
                         >
-                        Delete all Snapshots created during editing
+                </div>
+
+                <div class="gridWidgetTemplateDescriptionTitle">
+                    <b>Description:</b>
+                </div>
+                <div class="gridWidgetTemplateDescription">
+                    <input [(ngModel)]="deleteSnapshots"
+                        type="text"
+                        name="templateDescription"
+                        #deleteSnapshotsVar="ngModel"
+                        title="Description of the Template (ie what it is used for)"
+                        >
                 </div>
 
                 <div class="gridButtonCancel">
