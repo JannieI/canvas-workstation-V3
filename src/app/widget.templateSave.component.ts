@@ -55,6 +55,9 @@ export class WidgetTemplateSaveComponent implements OnInit {
     }
 
     widgetStoredTemplates: WidgetStoredTemplate[] = [];
+    widgetStoreTemplateDescription: string = '';
+    widgetStoreTemplateName: string = '';
+
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -67,7 +70,15 @@ export class WidgetTemplateSaveComponent implements OnInit {
 
         this.globalVariableService.getWidgetStoredTemplates()
             .then(res => {
-                this.widgetStoredTemplates = res.slice();
+                this.widgetStoredTemplates = res.filter(wst => 
+                    wst.id == this.selectedWidget.id
+                );
+                 
+                if (this.widgetStoredTemplates.length > 0) {
+                    this.widgetStoreTemplateName = this.widgetStoredTemplates[0].name;
+                    this.widgetStoreTemplateDescription = 
+                        this.widgetStoredTemplates[0].description;
+                };
             }
         );
     }

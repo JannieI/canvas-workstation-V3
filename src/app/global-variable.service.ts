@@ -57,7 +57,7 @@ import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 import { WidgetLayout }               from './models';
 import { WidgetGraph }                from './models';
-import { WidgetStoredTemplate }             from './models';
+import { WidgetStoredTemplate }       from './models';
 
 // Dexie
 import Dexie from 'dexie';
@@ -2813,7 +2813,6 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables getCurrentDashboards ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {dashboardID});
         };
-console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseUseLocal, this.ENVCanvasDatabaseLocalUrlS1);
 
         // Refresh from source at start, or if dirty
         if (
@@ -10406,7 +10405,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'widgetTemplates';
+        let pathUrl: string = 'widgetStoredTemplates';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.widgetTemplates.json';
 
@@ -10729,6 +10728,8 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             } else if (pathUrl == 'canvasBackgroundcolorsDefault') {
                 baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'canvasBackgroundcolors') {
+                baseUrl = 'http://localhost:3001/';
+            } else if (pathUrl == 'widgetStoredTemplates') {
                 baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'paletteButtonsSelecteds') {
                 baseUrl = 'http://localhost:3001/';

@@ -18,6 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Widget }                     from './models';
+import { WidgetStoredTemplate }             from './models';
 
 // Other
 import { Subscription }               from 'rxjs';
@@ -59,7 +60,11 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
     isFirstTimeDashboardSave: boolean;
     // dashboards: Dashboard[];
     dashboardsSubscription: Subscription;
+    widgetStoredTemplates: WidgetStoredTemplate[] = [];
+    widgetStoreTemplateDescription: string = '';
+    widgetStoreTemplateName: string = '';
 
+    
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -73,6 +78,28 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.dashboardsSubscription = this.globalVariableService.isFirstTimeDashboardSave.subscribe(
             i => this.isFirstTimeDashboardSave = i
         )
+
+        this.globalVariableService.getWidgetStoredTemplates()
+            .then(res => {
+                this.widgetStoredTemplates = res.slice();
+
+                this.widgetStoredTemplates.forEach(wst => {
+                    this.globalVariableService.widgets.forEach(w => {
+                        if (w.id == this.selectedWidget.id) {
+                            this.widgetStoreTemplateName = wst.name;
+                            this.widgetStoreTemplateDescription = wst.description;
+                        };
+                        if (w.id == wst.widgetID) {
+                            this.globalVariableService.datasources.forEach(ds => {
+                                if (w.datasourceID == ds.id) {
+                                    wst.datasourceName = ds.name;
+                                };
+                            });
+                        };
+                    })
+                });
+            }
+        );        
     }
 
     ngOnDestroy() {
