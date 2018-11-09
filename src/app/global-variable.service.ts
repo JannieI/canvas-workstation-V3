@@ -10541,11 +10541,8 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
-                    this.widgetStoredTemplates = this.widgetStoredTemplates.filter(wl => wl.id != id);
-
-                    this.widgetTemplate = this.widgetTemplate.filter(
-                        w => w.id != id
-                    );
+                    this.widgetStoredTemplates = this.widgetStoredTemplates.filter(
+                        wst => wst.id != id);
 
                     if (this.sessionDebugging) {
                         console.log('deleteWidgetTemplate DELETED id: ', {id})
