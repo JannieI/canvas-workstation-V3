@@ -55,7 +55,6 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
     localWidget: Widget;
     selectedRow: number = 0;
     selectedWidgetID: number;
-    sortOrder: number = 1;
     specification: any;              // Vega-Lite, Vega, or other grammar
     widgetGraphs: WidgetGraph[] =[];
     widgetStoredTemplates: WidgetStoredTemplate[] = [];
@@ -77,7 +76,17 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                     this.widgetGraphs = graphs;
                 });
 
-                this.widgetStoredTemplates = res.slice();
+                this.widgetStoredTemplates = res
+                    .slice()
+                    .sort( (obj1, obj2) => {
+                        if (obj1.name < obj2.name) {
+                            return -1;
+                        };
+                        if (obj1.name > obj2.name) {
+                            return 1;
+                        };
+                        return 0;
+                    });
 
                 this.widgetStoredTemplates.forEach(wst => {
                     this.globalVariableService.widgets.forEach(w => {

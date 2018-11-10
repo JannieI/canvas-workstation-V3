@@ -84,7 +84,7 @@
     }
 
     .gridButtonAdd {
-        grid-column-start: 12;
+        grid-column-start: 11;
         /* autoprefixer: off */
         grid-column-end: 14;
         grid-row-start: 19;

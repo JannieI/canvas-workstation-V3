@@ -40,21 +40,13 @@
 
                 <div class="gridWidgetStoredTemplates">
                     <clr-datagrid class="datagrid-compact">
-                        <clr-dg-column clrDgField="name"
-                            [(clrDgSortOrder)]="sortOrder"
-                            (click)="sortOrder=sortOrder * -1"
-                            >
+                        <clr-dg-column clrDgField="name">
                             Name
                         </clr-dg-column>
-                        <clr-dg-column clrDgField="datasourceName"
-                            [(clrDgSortOrder)]="sortOrder"
-                            (click)="sortOrder=sortOrder * -1"
-                            >
+                        <clr-dg-column clrDgField="datasourceName">
                             Datasource
                         </clr-dg-column>
-                        <clr-dg-column
-                            (click)="sortOrder=sortOrder * -1"
-                            >
+                        <clr-dg-column>
                             Delete
                         </clr-dg-column>
 
@@ -75,8 +67,7 @@
                             <clr-dg-cell style="margin-left: 2px; padding: 0;"
                                 id="fld"
                                 >
-                                <clr-icon shape="trash" size="14">
-                                </clr-icon>
+                                <clr-icon shape="trash" size="14"></clr-icon>
                             </clr-dg-cell>
 
                         </clr-dg-row>
