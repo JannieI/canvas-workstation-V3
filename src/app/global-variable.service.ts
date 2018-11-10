@@ -6427,6 +6427,17 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
+                    // Delete where DS was used in Stored Template
+                    this.getWidgetStoredTemplates().then(swt => {
+                        swt.forEach(swt => {
+                            this.widgets.forEach(w => {
+                                if (swt.widgetID == w.id  &&  w.datasourceID == id) {
+                                    this.deleteWidgetStoredTemplate(swt.id);
+                                };
+                            });
+                        });
+                    });
+
                     if (this.sessionDebugging) {
                         console.log('deleteDatasource DELETED id: ', {id})
                     };
