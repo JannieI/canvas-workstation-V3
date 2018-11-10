@@ -2093,7 +2093,7 @@ export interface dataSchemaInterface {
 
         this.yField = fieldName;
         // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield = fieldName;
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisTitle = fieldName;
+        // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisTitle = fieldName;
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(fieldName);
