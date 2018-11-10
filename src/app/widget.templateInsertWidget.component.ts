@@ -107,7 +107,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         );        
     }
 
-    clickColumn(i: any, row: any) {
+    clickColumn() {
         // Unselect the row and unshow the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickColumn', '@Start');
 
@@ -270,10 +270,4 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
 		this.formWidgetTemplateInsertWidgetClosed.emit(null);
     }
 
-    clickInsertWidget() {
-        // Insert the Widget for the selected Widget Template record
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickInsertWidget', '@Start');
-
-
-    }
 }

@@ -41,10 +41,13 @@
                 <div class="gridWidgetStoredTemplates">
                     <clr-datagrid class="datagrid-compact">
                         <clr-dg-column clrDgField="name"
-                            (click)="clickColumn(i, row)">
+                            (click)="clickColumn()"
+                            >
                             Name
                         </clr-dg-column>
-                        <clr-dg-column clrDgField="datasourceName">
+                        <clr-dg-column clrDgField="datasourceName"
+                            (click)="clickColumn()"
+                            >
                             Datasource
                         </clr-dg-column>
                         <clr-dg-column>
@@ -77,7 +80,7 @@
 
                 </div>
 
-                <div class="gridShowWidget" *ngIF="selectedRow>=0"
+                <div class="gridShowWidget" *ngIf="selectedRow>=0"
                     #domWidget
                     >
                 </div>
