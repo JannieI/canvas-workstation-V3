@@ -1039,8 +1039,7 @@ export class GraphFilter {
 export class widgetGraphSpecification {
 
     // Mark
-    graphMarkID: number;                   // Unique ID of Mark, as per lookup table
-    graphMark: string;                     // Filled in from lookup table, based on graphMarkID
+    graphMark: string;                     // Mark, ie bar, line, etc
     graphMarkOrient: string;               // Horisontal/Verticle - ie for bar when both axis numbers
     graphMarkLine: boolean;                // True to add line, ie for Area graph
     graphMarkPoint: boolean;               // True to add point, ie for Area graph

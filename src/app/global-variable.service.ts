@@ -361,7 +361,6 @@ const widgetTemplate: Widget =
         "graphLayers": [
             {
                 // Mark
-                "graphMarkID": 0,
                 "graphMark": "",
                 "graphMarkOrient": "",
                 "graphMarkLine": false,
@@ -514,21 +513,6 @@ const widgetTemplate: Widget =
                 "conditionValueTo": "",
             }
         ],
-
-        // "graphMarkID": 0,
-        // "graphMark": "tick",
-        // "graphMarkOrient": "Verticle",
-        // "graphMarkLine": false,
-        // "graphMarkPoint": false,
-        // "graphMarkPointColorName": "",
-        // "graphMarkPointColor": "",
-        // "graphMarkColourName": "",
-        // "graphMarkColour": "",
-        // "graphMarkCornerRadius": 0,
-        // "graphMarkExtent": "",
-        // "graphMarkOpacity": 1,
-        // "graphMarkBinSpacing": 0,
-        // "graphMarkInterpolate": "",
 
         "graphUrl": "",
         "graphData": "",
