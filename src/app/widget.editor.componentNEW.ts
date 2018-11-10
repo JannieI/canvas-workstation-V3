@@ -1118,8 +1118,10 @@ export interface dataSchemaInterface {
             if (this.localWidget.graphLayerFacet == null  ||  this.localWidget.graphLayerFacet == '') {
                 this.localWidget.graphLayerFacet = 'Single';
             };
-            if (this.localWidget.visualGrammar == 'vLite') {
-                this.localWidget.visualGrammar = 'vLite';
+            if (this.localWidget.visualGrammar == ''  
+                ||  
+                this.localWidget.visualGrammar == null) {
+                this.localWidget.visualGrammar = 'Vega-Lite';
             };
 
             // Load local Vars from localWidget
