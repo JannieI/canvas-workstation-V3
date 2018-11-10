@@ -168,6 +168,19 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                         .finalize();
                 };
             };
+            // Render graph for Vega
+            if (this.localWidget.visualGrammar == 'Vega') {
+                if (this.localWidget.graphSpecification != undefined) {
+                    let view = new View(parse(this.localWidget.graphSpecification));
+
+                    view.renderer('svg')
+                        .initialize(this.domWidget.nativeElement)
+                        .width(372)
+                        .hover()
+                        .run()
+                        .finalize();
+                };
+            };            
         });
 
     }

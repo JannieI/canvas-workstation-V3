@@ -181,7 +181,7 @@ export class WidgetSingleComponent {
 
         } else if (this.widget.visualGrammar == 'Vega') {
 
-            // Render graph for Veg
+            // Render graph for Vega
             if (this.widget.visualGrammar == 'Vega') {
                 if (this.widget.graphSpecification != undefined) {
                     let view = new View(parse(this.widget.graphSpecification));
