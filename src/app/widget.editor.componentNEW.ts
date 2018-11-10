@@ -1024,6 +1024,7 @@ export interface dataSchemaInterface {
             this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
             this.localWidget.widgetType = 'Graph';
+            this.localWidget.visualGrammar = 'vLite';
 
             // Populate predefined dimensions, considering layouts
             if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''
@@ -1116,6 +1117,9 @@ export interface dataSchemaInterface {
             };
             if (this.localWidget.graphLayerFacet == null  ||  this.localWidget.graphLayerFacet == '') {
                 this.localWidget.graphLayerFacet = 'Single';
+            };
+            if (this.localWidget.visualGrammar == 'vLite') {
+                this.localWidget.visualGrammar = 'vLite';
             };
 
             // Load local Vars from localWidget

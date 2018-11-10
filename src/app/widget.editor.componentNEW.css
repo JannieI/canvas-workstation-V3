@@ -273,6 +273,16 @@ clr-dg-cell {
             grid-row-end: 5;
             text-align: left;
         }
+            .editorCompositionVisGrammar {
+                border: 1px solid steelblue;
+                border-radius: 5px;
+                display: inline-block;
+                font-size: 0.55rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                margin-top: 16px;
+                width: 60px;
+            }
             .editorCompositionTypeTitle {
                 display: inline-block;
                 font-size: 0.55rem;
@@ -311,8 +321,8 @@ clr-dg-cell {
             }
             .editorCompositionLayerCheckBox {
                 display: inline-block;
-                margin-left: 12px;
-                width: 15px;
+                margin-left: 8px;
+                width: 12px;
             }
             .editorCompositionLayerButton {
                 font-size: 0.55rem;
@@ -320,6 +330,7 @@ clr-dg-cell {
                 margin-left: 4px;
                 margin-top: 3px;
                 padding: 0;
+                min-width: 15px;
                 width: 15px;
             }
 

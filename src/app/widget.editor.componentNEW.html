@@ -198,11 +198,21 @@
 
                     <!-- COMPOSITION -->
                     <div class="editorComposition" *ngIf="!showWidgetEditorLite">
+                        <div class="select editorCompositionVisGrammar">
+                            <select id="selects_3"
+                                [(ngModel)]="localWidget.visualGrammar"
+                                (change)="changeFacet()"
+                                >
+                                <option>vLite</option>
+                                <option>Vega</option>
+                            </select>
+                        </div>
+
                         <div class="editorCompositionTypeTitle">
                             <b>
                                 Facet:
                             </b>
-                        </div>
+                        </div>        
                         <div class="select editorCompositionType">
                             <select id="selects_3"
                                 [(ngModel)]="localWidget.graphLayerFacet"
@@ -227,26 +237,32 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="editorCompositionLayerCheckBox" *ngIf="localWidget.graphLayerFacet != 'Single'">
+                        <div class="editorCompositionLayerCheckBox" 
+                            *ngIf="localWidget.graphLayerFacet != 'Single'"
+                            style="min-width: 12px; width: 12px"
+                            >
                             <input [(ngModel)]="showSpecificGraphLayer"
                                 type="checkbox"
                                 name="showSpecificGraphLayer"
+                                style="min-width: 12px; width: 12px"
                                 title="Show all the Layers of the graph (T/F)"
                                 >
-
                         </div>
-                        <span class="editorCompositionLayerButton" *ngIf="localWidget.graphLayerFacet != 'Single'">
-                            <button class="btn btn-link" style="padding: 0 !important; width: 40px !important;"
+
+                        <span class="editorCompositionLayerButton" 
+                            *ngIf="localWidget.graphLayerFacet != 'Single'"
+                            >
+                            <button class="btn btn-link" style="padding: 0 !important; min-width: 15px; width: 40px !important;"
                                 (click)="clickCompositionLayerAdd()"
                                 >
                                 Add
                             </button>
                         </span>
                         <span class="editorCompositionLayerButton" *ngIf="localWidget.graphLayerFacet != 'Single'">
-                            <button class="btn btn-link" style="padding: 0 !important;"
+                            <button class="btn btn-link" style="padding: 0 !important; min-width: 15px; width: 40px !important;"
                                 (click)="clickCompositionLayerDelete()"
                                 >
-                                Delete
+                                Del
                             </button>
                         </span>
 
