@@ -66,27 +66,21 @@ export class WidgetDeleteComponent implements OnInit {
     ngOnInit() {
         // Init routine
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        
+        // let localWidget = Object.assign({}, this.selectedWidget);
+        let localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+        localWidget.containerBoxshadow = 'none';
+        localWidget.containerBorder = 'none';
+        localWidget.isSelected = false;
 
         // Count Widget Stored Templates linked to this W
         this.globalVariableService.getWidgetStoredTemplates().then(res => {
             if (res != null  && res.length > 0) {
+                res = res.filter(wst => wst.widgetID == localWidget.id)
                 this.nrWidgetStoredTemplates = res.length;
             };
         });
-        
-        // let localWidget = Object.assign({}, this.selectedWidget);
-        let localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
-        // Rescale and limit amount of detail on the graph
-        // localWidget.containerLeft = 100;
-        // localWidget.containerTop = 100;
-        // localWidget.containerHeight = 300;
-        // localWidget.graphHeight = 280;
-        // localWidget.containerWidth = 300;
-        // localWidget.graphWidth = 280;
-        localWidget.containerBoxshadow = 'none';
-        localWidget.containerBorder = 'none';
-        localWidget.isSelected = false;
         // TODO - a huge graph shows too big - change Vega param to fix this.
         localWidget.graphTitle = '';
         localWidget.graphXaxisTitle = '';
