@@ -337,7 +337,7 @@ export interface dataSchemaInterface {
     showYDeleteIcon: boolean = false;
     showY2DeleteIcon: boolean = false;
     sortOrder: number = 1;
-    specification: any;              // Vega-Lite, Vega, or other grammar
+    specification: any;              // Full spec for Vega, or other grammar
     specificationJSON: any = 'Graph Specification';
     vegaColorSchemes: string[] = [
         "None",
@@ -1365,7 +1365,7 @@ export interface dataSchemaInterface {
         // Startup
         // let width: number = 372;
         // let height: number = 260;
-        let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
+        // let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
         // let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
 
 
@@ -1415,7 +1415,6 @@ export interface dataSchemaInterface {
                 this.errorMessageEditor = 'Use Mark-Size to reduce ...'
             };
         };
-
 
         // Validation and Warnings - AFTER default settings
         if (this.sizeField != dragFieldMessage
@@ -1519,7 +1518,7 @@ export interface dataSchemaInterface {
             };
 
             // Render graph for Vega-Lite
-            if (graphVisualGrammar == 'Vega-Lite') {
+            if (this.localWidget.visualGrammar == 'Vega-Lite') {
                 if (this.specification != undefined) {
                     let vegaSpecification = compile(this.specification).spec;
                     let view = new View(parse(vegaSpecification));
@@ -1534,10 +1533,8 @@ export interface dataSchemaInterface {
             };
 
             // Render graph for Veg
-            if (graphVisualGrammar == 'Vega') {
-
+            if (this.localWidget.visualGrammar == 'Vega') {
                 if (this.specification != undefined) {
-
                     let view = new View(parse(this.specification));
 
                     view.renderer('svg')
@@ -1566,7 +1563,7 @@ export interface dataSchemaInterface {
             console.warn('xx @END of ShowGraph specification', this.specification);
 
             // Render graph for Vega-Lite
-            if (graphVisualGrammar == 'Vega-Lite') {
+            if (this.localWidget.visualGrammar == 'Vega-Lite') {
                 if (this.specification != undefined) {
                     let vegaSpecification = compile(this.specification).spec;
                     let view = new View(parse(vegaSpecification));

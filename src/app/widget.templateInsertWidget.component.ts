@@ -51,7 +51,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
     }
 
     errorMessage: string = '';
-    graphVisualGrammar: string = 'Vega-Lite';
+    // graphVisualGrammar: string = 'Vega-Lite';
     localWidget: Widget;
     selectedRow: number = 0;
     selectedWidgetID: number;
@@ -155,21 +155,21 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             console.warn('xx @END of ShowGraph specification', this.specification);
 
             // Get the widgetGraph
-            this.graphVisualGrammar = 'Vega-Lite';
-            if (this.localWidget.graphLayers != null) {
-                let graphID: number = this.localWidget.graphLayers[0].graphMarkID;
-                let widgetGraphIndex: number = this.widgetGraphs.findIndex(
-                    wg => wg.id == graphID
-                );
-                if (widgetGraphIndex < 0) {
-                    this.errorMessage = 'Graph type id = ' + graphID + ' does not exist in the DB';
-                } else {
-                    this.graphVisualGrammar = this.widgetGraphs[widgetGraphIndex].visualGrammar;
-                };
-            };
+            // this.graphVisualGrammar = 'Vega-Lite';
+            // if (this.localWidget.graphLayers != null) {
+            //     let graphID: number = this.localWidget.graphLayers[0].graphMarkID;
+            //     let widgetGraphIndex: number = this.widgetGraphs.findIndex(
+            //         wg => wg.id == graphID
+            //     );
+            //     if (widgetGraphIndex < 0) {
+            //         this.errorMessage = 'Graph type id = ' + graphID + ' does not exist in the DB';
+            //     } else {
+            //         this.graphVisualGrammar = this.widgetGraphs[widgetGraphIndex].visualGrammar;
+            //     };
+            // };
 
             // Render graph for Vega-Lite
-            if (this.graphVisualGrammar == 'Vega-Lite') {
+            if (this.localWidget.visualGrammar == 'Vega-Lite') {
                 if (this.specification != undefined) {
                     let vegaSpecification = compile(this.specification).spec;
                     let view = new View(parse(vegaSpecification));
