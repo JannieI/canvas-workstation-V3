@@ -179,8 +179,23 @@ export class WidgetSingleComponent {
                 .run()
                 .finalize();
 
+        } else if (this.widget.visualGrammar == 'Vega') {
+
+            // Render graph for Veg
+            if (this.widget.visualGrammar == 'Vega') {
+                if (this.widget.graphSpecification != undefined) {
+                    let view = new View(parse(this.widget.graphSpecification));
+
+                    view.renderer('svg')
+                        .initialize(this.graphDOM.nativeElement)
+                        .width(372)
+                        .hover()
+                        .run()
+                        .finalize();
+                };
+            };
         } else {
-            alert('The visualGrammar of widget is not == Vega-Lite' )
+            alert('The visualGrammar of widget is not == Vega or Vega-Lite' )
         };
         console.log('TEST refreshWidget end')
     }

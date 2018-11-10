@@ -1362,13 +1362,6 @@ export interface dataSchemaInterface {
                 this.widgetGraphs[widgetGraphIndex]['mark'];
         };
 
-        // Startup
-        // let width: number = 372;
-        // let height: number = 260;
-        // let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
-        // let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
-
-
         // Set fields
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield = '';
         if (this.xField != dragFieldMessage) {
@@ -1458,7 +1451,7 @@ export interface dataSchemaInterface {
         };
         if (this.localWidget.graphTitleBaseline == null) {
             this.localWidget.graphTitleBaseline = "";
-    };
+        };
         if (this.localWidget.graphTitleOrientation == null) {
             this.localWidget.graphTitleOrientation = ""
         };
