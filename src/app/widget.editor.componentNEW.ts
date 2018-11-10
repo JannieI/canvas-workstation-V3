@@ -1515,8 +1515,8 @@ export interface dataSchemaInterface {
 
             // Render graph for Vega-Lite
             if (this.localWidget.visualGrammar == 'Vega-Lite') {
-                if (this.specification != undefined) {
-                    let vegaSpecification = compile(this.specification).spec;
+                if (this.localWidget.graphSpecification != undefined) {
+                    let vegaSpecification = compile(this.localWidget.graphSpecification).spec;
                     let view = new View(parse(vegaSpecification));
 
                     view.renderer('svg')
@@ -1528,7 +1528,7 @@ export interface dataSchemaInterface {
                 };
             };
 
-            // Render graph for Veg
+            // Render graph for Vega
             if (this.localWidget.visualGrammar == 'Vega') {
                 if (this.specification != undefined) {
                     let view = new View(parse(this.specification));
