@@ -17,7 +17,7 @@
 
 .overall {
     display: grid;
-    grid-template-columns: repeat(21, 2rem);
+    grid-template-columns: repeat(11, 2rem);
     grid-template-rows:  repeat(22, 0.8rem);
     margin-top: 2px;
 }
@@ -35,10 +35,11 @@
     .widget {
         grid-column-start: 2;
         /* autoprefixer: off */
-        grid-column-end: 18;
+        grid-column-end: 10;
         grid-row-start: 3;
         grid-row-end: 18;
         margin-left: 4px;
+        overflow: scroll;
     }
 
     .gridWarning {

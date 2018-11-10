@@ -111,11 +111,14 @@ export class WidgetDeleteComponent implements OnInit {
             // Render graph for Vega
             if (localWidget.visualGrammar == 'Vega') {
                 if (localWidget.graphSpecification != undefined) {
+                    localWidget.graphSpecification.width = 200;
+                    localWidget.graphSpecification.height = 200;
                     let view = new View(parse(localWidget.graphSpecification));
 
                     view.renderer('svg')
                         .initialize(this.widgetDOM.nativeElement)
-                        .width(372)
+                        .width(200)
+                        .height(220)
                         .hover()
                         .run()
                         .finalize();
