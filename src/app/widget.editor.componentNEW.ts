@@ -1241,9 +1241,9 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
         // Render if Editing an existing one
-        let definition = this.globalVariableService.createVegaLiteSpec(
-            this.localWidget, graphHeight, graphWidth
-        );
+        // let definition = this.globalVariableService.createVegaLiteSpec(
+        //     this.localWidget, graphHeight, graphWidth
+        // );
         // if (!this.newWidget) {
         //     this.renderGraph(definition);
         // }
