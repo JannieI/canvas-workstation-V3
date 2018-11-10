@@ -4666,4 +4666,15 @@ export interface dataSchemaInterface {
         };
     };
 
+    changeVisGrammar() {
+         // Change List of visible graphs
+         this.globalFunctionService.printToConsole(this.constructor.name,'changeVisGrammar', '@Start');
+
+         // Reset
+         this.errorMessageEditor = '';
+ 
+        this.widgetGraphs = this.widgetGraphsFull.filter(
+            wg => wg.visualGrammar==this.localWidget.visualGrammar
+        );
+    };
 }

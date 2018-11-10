@@ -201,7 +201,7 @@
                         <div class="select editorCompositionVisGrammar">
                             <select id="selects_3"
                                 [(ngModel)]="localWidget.visualGrammar"
-                                (change)="changeFacet()"
+                                (change)="changeVisGrammar()"
                                 >
                                 <option>Vega-Lite</option>
                                 <option>Vega</option>
@@ -252,14 +252,16 @@
                         <span class="editorCompositionLayerButton" 
                             *ngIf="localWidget.graphLayerFacet != 'Single'"
                             >
-                            <button class="btn btn-link" style="padding: 0 !important; min-width: 15px; width: 35px !important;"
+                            <button class="btn btn-link" 
+                                style="padding: 0 !important; min-width: 15px; width: 35px !important;"
                                 (click)="clickCompositionLayerAdd()"
                                 >
                                 Add
                             </button>
                         </span>
                         <span class="editorCompositionLayerButton" *ngIf="localWidget.graphLayerFacet != 'Single'">
-                            <button class="btn btn-link" style="padding: 0 !important; min-width: 15px; width: 35px !important;"
+                            <button class="btn btn-link" 
+                                style="padding: 0 !important; min-width: 15px; width: 35px !important;"
                                 (click)="clickCompositionLayerDelete()"
                                 >
                                 Del
@@ -3598,13 +3600,13 @@
                         <div class="editorTypeImages" *ngFor="let row of widgetGraphs"
                             [style.border]="currentGraphID==row.id?  '2px solid red'  :  '1px solid gray'"
                             >
-                            <span
-                                (click)="showGraph(row.id)"
-                                >
-                                <i>
+                            <!-- <span -->
+                                <!-- (click)="showGraph(row.id)" -->
+                                <!-- > -->
+                                <!-- <i> -->
                                     <!-- {{ row.shortName }}: -->
-                                </i>
-                            </span>
+                                <!-- </i> -->
+                            <!-- </span> -->
                             <img
                                 [style.width.px]="85"
                                 [style.height.px]="65"
