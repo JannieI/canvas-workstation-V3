@@ -56,6 +56,8 @@ export class WidgetDeleteComponent implements OnInit {
     }
 
 
+    nrWidgetStoredTemplates: number = 0;
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -65,6 +67,13 @@ export class WidgetDeleteComponent implements OnInit {
         // Init routine
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Count Widget Stored Templates linked to this W
+        this.globalVariableService.getWidgetStoredTemplates().then(res => {
+            if (res != null  && res.length > 0) {
+                this.nrWidgetStoredTemplates = res.length;
+            };
+        });
+        
         // let localWidget = Object.assign({}, this.selectedWidget);
         let localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 

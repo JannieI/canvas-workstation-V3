@@ -41,6 +41,16 @@
         margin-left: 4px;
     }
 
+    .gridWarning {
+        color: orange;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 12;
+        grid-row-start: 18;
+        grid-row-end: 19;
+        text-align: left;
+    }
+
     .gridConfirmation {
         grid-column-start: 1;
         /* autoprefixer: off */

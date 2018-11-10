@@ -80,13 +80,13 @@
 
                 </div>
 
-                <div class="gridShowWidget" *ngIf="selectedRow>=0"
+                <div class="gridShowWidget" [hidden]="selectedRow<0"
                     #domWidget
                     >
                 </div>
 
                 <div class="gridErrorMessage">
-                    errorMessage
+                    {{ errorMessage }}
                 </div>
 
                 <div class="gridButtonCancel">
