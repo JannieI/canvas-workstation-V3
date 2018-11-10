@@ -55,6 +55,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
     localWidget: Widget;
     selectedRow: number = 0;
     selectedWidgetID: number;
+    sortOrderName: number = 1;      
     specification: any;              // Vega-Lite, Vega, or other grammar
     widgetGraphs: WidgetGraph[] =[];
     widgetStoredTemplates: WidgetStoredTemplate[] = [];
@@ -104,6 +105,15 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                 };
             }
         );        
+    }
+
+    clickColumn(i: any, row: any) {
+        // Unselect the row and unshow the graph
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickColumn', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.selectedRow = -1;
     }
 
     clickRow(index: number, widgetID: number) {
