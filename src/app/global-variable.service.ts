@@ -8210,11 +8210,19 @@ export class GlobalVariableService {
                         w => w.id != id
                     );
 
-                    // Delete where D was used in Chkpnt
+                    // Delete where W was used in Chkpnt
                     this.widgetCheckpoints.forEach(chk => {
                         if (chk.widgetID == id) {
                             this.deleteWidgetCheckpoint(chk.id);
                         };
+                    });
+
+                    // Delete where W was used in Stored Template
+                    this.getWidgetStoredTemplates().then(swt => {
+                        swt = swt.filter(w1 => w1.widgetID == id);
+                        swt.forEach(w2 => {
+                            this.deleteWidgetStoredTemplate(w2.id);
+                        });
                     });
 
                     if (this.sessionDebugging) {
