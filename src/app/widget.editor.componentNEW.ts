@@ -1510,6 +1510,9 @@ export interface dataSchemaInterface {
                 this.specification['data'][0]['values'] = xColumnValues;
             };
 
+            // Store the final spec
+            this.localWidget.graphSpecification = this.specification;
+
             // Render graph for Vega-Lite
             if (this.localWidget.visualGrammar == 'Vega-Lite') {
                 if (this.specification != undefined) {
