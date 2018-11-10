@@ -2,29 +2,29 @@
 
 // CA Datagrid
 export class DatagridColumn {
-    id: number;                             // Unique ID, for later use
-    displayName: string;                    // Text displayed in Grid header
-    fieldName: string;                      // Field name in Array
-    databaseDBTableName: string;            // Optional Table name in DB
-    databaseDBFieldName: string;            // Optional Field name in DB
-    tooltip: string;                        // Text string as tooltip
-    datatype: string;                       // string, number, boolean
-    prefix: string;                         // ie RK, or Rm
-    divideBy: number;                       // 1000, 1000 000.  If <=0 => no action
-    displayLength: number;                  // Max lenght in Grid, even if field is wider
-    maxLength: number;                      // 0 means ignore
-    sortOrder: string;                      // For later use - maybe add sort on startup
-    filter: string;                         //  For later use - maybe add filter on startup
-    backgroundColor: string;                // ie 'beige'
-    color: string;                          // ie 'black'
-    conditionalFormatColor: string;         // If '' then no condFmt.  ie 'blue'
-    nrDataQualityIssues: number;            // Optional nr of DataQual issues
-    maxValue: number;                       // Optional Max value in this col
-    minValue: number;                       // Optional Min value in this col
-    average: number;                        // Optional Avg value in this col
-    linkedDashboardID: number;              // Optional ID of linked Dashboard
-    linkedDashboardTabID: number;           // Optional ID of linked Tab
-    isFrozen: boolean;                      // Optional: true if freeze col
+    id: number;                                 // Unique ID, for later use
+    displayName: string;                        // Text displayed in Grid header
+    fieldName: string;                          // Field name in Array
+    databaseDBTableName: string;                // Optional Table name in DB
+    databaseDBFieldName: string;                // Optional Field name in DB
+    tooltip: string;                            // Text string as tooltip
+    datatype: string;                           // string, number, boolean
+    prefix: string;                             // ie RK, or Rm
+    divideBy: number;                           // 1000, 1000 000.  If <=0 => no action
+    displayLength: number;                      // Max lenght in Grid, even if field is wider
+    maxLength: number;                          // 0 means ignore
+    sortOrder: string;                          // For later use - maybe add sort on startup
+    filter: string;                             //  For later use - maybe add filter on startup
+    backgroundColor: string;                    // ie 'beige'
+    color: string;                              // ie 'black'
+    conditionalFormatColor: string;             // If '' then no condFmt.  ie 'blue'
+    nrDataQualityIssues: number;                // Optional nr of DataQual issues
+    maxValue: number;                           // Optional Max value in this col
+    minValue: number;                           // Optional Min value in this col
+    average: number;                            // Optional Avg value in this col
+    linkedDashboardID: number;                  // Optional ID of linked Dashboard
+    linkedDashboardTabID: number;               // Optional ID of linked Tab
+    isFrozen: boolean;                          // Optional: true if freeze col
     datagridColumnHidden?: any;
 }
 
@@ -140,7 +140,7 @@ export class StatusBarMessageLog {
 export class CurrentDashboardInfo {
     currentDashboardID: number = 0;         // Current D we are working with
     currentDashboardState: string;          // Current D state
-    currentDashboardTabID: number = 0;
+    currentDashboardTabID: number = 0;      // Current TabID
     currentDashboardTabIndex: number = 0;   // Index in [T]
     widgetsToRefresh: number[] = [];        // Optional list of W to refresh, [] = All
     refreshingRoutine: string;              // Component-Function that called to refresh
@@ -148,41 +148,41 @@ export class CurrentDashboardInfo {
 }
 
 export class PaletteButtonsSelected {
-    id: number;
+    id: number;                             // Unique record ID
     userID: string;                         // FK to User, to which Button belongs
     paletteButtonBarID: number;             // FK to PaletteButtonBar
-    mainmenuItem: string;
-    menuText: string;
-    shape: string;
-    size: number;
+    mainmenuItem: string;                   // True if belongs to main menu
+    menuText: string;                       // Text that appears on menu
+    shape: string;                          // Clarity shape of icon
+    size: number;                           // Size of icon
     class: string;
-    backgroundColor: string;
-    accesskey: string;
-    sortOrder: number;
+    backgroundColor: string;;               // Bg Colour of button
+    accesskey: string;                      // Shortcut key
+    sortOrder: number;                      // Nr (used for sorting)
     sortOrderSelected: number;              // SortOrder once selected, null ind DB, calced @Runtime
-    isDefault: boolean;
-    functionName: string;
-    params: string;
-    tooltipContent: string;
+    isDefault: boolean;                     // True if in initial system setting
+    functionName: string;                   // Typescript function to call when clicked
+    params: string;                         // Parameters to pass the TS function
+    tooltipContent: string;                 // Text in tooltip
     isSelected: boolean;                    // Toggled at Runtime
 
 }
 
 export class PaletteButtonBar {
-    id: number;
-    mainmenuItem: string;
-    menuText: string;
-    shape: string;
-    size: number;
-    class: string;
-    backgroundColor: string;
-    accesskey: string;
-    sortOrder: number;
+    id: number;                             // Unique record ID
+    mainmenuItem: string;                   // True if belongs to main menu
+    menuText: string;                       // Text that appears on menu
+    shape: string;                          // Clarity shape of icon
+    size: number;                           // Size of icon
+    class: string;                          // 
+    backgroundColor: string;                // Bg Colour of button
+    accesskey: string;                      // Shortcut key
+    sortOrder: number;                      // Nr (used for sorting)
     sortOrderSelected: number;              // SortOrder once selected, null ind DB, calced @Runtime
-    isDefault: boolean;
-    functionName: string;
-    params: string;
-    tooltipContent: string;
+    isDefault: boolean;                     // True if in initial system setting
+    functionName: string;                   // Typescript function to call when clicked
+    params: string;                         // Parameters to pass the TS function
+    tooltipContent: string;                 // Text in tooltip
     isSelected: boolean;                    // Toggled at Runtime
 }
 
@@ -252,8 +252,8 @@ export class CanvasMessage {
     sentOn: Date;               // DateTime message was sent
     recipients: [               // Original list of Users, groups are split into users @time
         {
-            userID: string;
-            readOn: Date;     // dateTime read, null if not read
+            userID: string;     // UserID of recipient
+            readOn: Date;       // dateTime read, null if not read
         }
     ];
     toGroups: string[];         // Original list of Groups
@@ -288,49 +288,49 @@ export class CanvasComment {
 }
 
 export class CanvasUser {
-    id: number;
-    userID: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    nickName: string;
-    email: string;
-    workNumber: string;
-    cellNumber: string;
-    groups: string[];
+    id: number;                             // Unique record ID
+    userID: string;                         // Unique UserID
+    password: string;                       // Password
+    firstName: string;                      // First Name
+    lastName: string;                       // Last Name
+    nickName: string;                       // Nickname
+    email: string;                          // Email Address
+    workNumber: string;                     // Work Telephone number
+    cellNumber: string;                     // Cell number
+    groups: string[];                       // Groups to which user belongs
     isSuperuser: boolean;                   // Systems supervisor - has ALL powers
     isStaff: boolean;                       // Is a staff member (and not Guest)
     isActive: boolean;                      // When False, cannot work on system (ie left company)
-    dateJoined: Date;
-    lastLogin: Date;
+    dateJoined: Date;                       // Dt when first registered
+    lastLogin: Date;                        // Dt last logged in
     colorScheme: string;                    // Color scheme for Canvas - for later use
     gridSize: number;                       // Size of Grid on Dashboard in px
     environment: string;                    // Live, Test-Environment-Name
-    profilePicture: string;
+    profilePicture: string;                     
     queryRuntimeWarning: number;            // Minutes: Warn user if a report is known to run longer
     snapToGrid: boolean;                    // True: snap Widgets to the grid points on Dashboard
     favouriteDashboards: number[];          // IDs of D that are fav of this user
     isFirstTimeUser: boolean;               // True if not created a D
     isAdministrator: boolean;               // Role can add/delete users to the group,
         // and assign roles).  Must be at least one administrator role at all times.
-    dashboardCanCreateRole: boolean;        // Role can create Dashboards
-    dashboardCanViewRole: boolean;          // Role can view Dashboards
-    dashboardCanEditRole: boolean;          // Role can change / edit Dashboards
-    dashboardCanSaveRole : boolean;         // Role can save changes to a Dashboards
-    dashboardCanDeleteRole: boolean;        // Role can delete a Dashboard
-    dashboardCanGrantAccessRole: boolean;   // Role can change access to a Dashboard
-    dashboardCanAddDatasourceRole: boolean; // Role can change add DS to a Dashboard
+    dashboardCanCreateRole: boolean;            // Role can create Dashboards
+    dashboardCanViewRole: boolean;              // Role can view Dashboards
+    dashboardCanEditRole: boolean;              // Role can change / edit Dashboards
+    dashboardCanSaveRole : boolean;             // Role can save changes to a Dashboards
+    dashboardCanDeleteRole: boolean;            // Role can delete a Dashboard
+    dashboardCanGrantAccessRole: boolean;       // Role can change access to a Dashboard
+    dashboardCanAddDatasourceRole: boolean;     // Role can change add DS to a Dashboard
     datasourceCanCreateRole: boolean;           // Role can create Datasource
     datasourceCanViewRole: boolean;             // Role can view Datasource
     datasourceCanEditRole: boolean;             // Role can change / edit Datasource
     datasourceCanDeleteRole: boolean;           // Role can delete a Datasource
     datasourceCanGrantAccessRole: boolean;      // Role can change access to a Datasource
-    canManageGroupRole: boolean;            // Role can add/delete users to Group
-    lastPaletteLeft: number;                // Last value saved
-    lastPaletteTop: number;                 // Last value saved
-    lastAppShowPopupMessageGotIt: boolean;  // Last value saved
-    cleanCacheOnLogin: boolean;             // True to clean cache at login
-    cleanCacheOnLogout: boolean;            // True to clean cache at logout
+    canManageGroupRole: boolean;                // Role can add/delete users to Group
+    lastPaletteLeft: number;                    // Last value saved
+    lastPaletteTop: number;                     // Last value saved
+    lastAppShowPopupMessageGotIt: boolean;      // Last value saved
+    cleanCacheOnLogin: boolean;                 // True to clean cache at login
+    cleanCacheOnLogout: boolean;                // True to clean cache at logout
     preferencePaletteHorisontal: boolean;                   // T/F - Palette Horisontal (else Vertial)
     preferenceAutoSync: boolean;                            // T/F - can auto sync
     preferenceShowOpenStartupMessage: boolean;              // T/F - show open startup msg
@@ -397,7 +397,7 @@ export class CombinationDetail {
 }
 
 export class DataQualityIssue {
-    id: number;                             // Unique ID
+    id: number;                             // Unique record ID
     name: string;                           // Short name to identify issue
     datasourceID: number;                   // DS to which the issue relates
     status: string;                         // Status: Logged, InProgress, Solved
@@ -411,7 +411,7 @@ export class DataQualityIssue {
 }
 
 export class DataOwnership {
-    id: number;                             // Unique ID
+    id: number;                             // Unique record ID
     datasourceID: number;                   // DS for which the ownership is defined
     userID: string;                         // Short name to identify issue
     type: string;                           // User-defined ownership role, ie Owner, Steward, etc
@@ -426,17 +426,17 @@ export class DataOwnership {
 }
 
 export class Dataset {
-    id: number;
-    datasourceID: number;
-    sourceLocation: string;             // Where data lives: file, localDB, MSSQL, etc
-    url: string;                        // URL for http request
-    folderName: string;                 // Optional folder name where data is stored
-    fileName: string;                   // Optional file name where data is stored
-    cacheServerStorageID: string;       // s-id on Server of cached results
-    cacheLocalStorageID: string;        // s-id Locally of cached results
-    isLocalDirty: boolean;              // True means must get from server (cannot use local)
-    data: any;                          // Filtered data as json
-    dataRaw: any;                       // Unfiltered data as json
+    id: number;                             // Unique record ID
+    datasourceID: number;                   // FK to DS to which this belongs
+    sourceLocation: string;                 // Where data lives: file, localDB, MSSQL, etc
+    url: string;                            // URL for http request
+    folderName: string;                     // Optional folder name where data is stored
+    fileName: string;                       // Optional file name where data is stored
+    cacheServerStorageID: string;           // s-id on Server of cached results
+    cacheLocalStorageID: string;            // s-id Locally of cached results
+    isLocalDirty: boolean;                  // True means must get from server (cannot use local)
+    data: any;                              // Filtered data as json
+    dataRaw: any;                           // Unfiltered data as json
 }
 
 export class DataCachingTable {
@@ -536,10 +536,10 @@ export class Datasource {
 }
 
 export class DatasourceSchedule {
-    id: number;
-    datasourceID: number;
-    name: string;
-    description: string;
+    id: number;                         // Unique record ID
+    datasourceID: number;               // FK to Datasource
+    name: string;                       // Name
+    description: string;                // Description of Schedule
     repeatFrequency: string;            // Occurs: Daily, Weekly, Monthly, Yearly
     repeatsEvery: number;               // Repeats every x of Frequency, ie 2 = every 2nd Month
     weeklyMonday: boolean;              // For Weekly: occurs on this weekday
@@ -634,23 +634,23 @@ export class Transformation {
     parameterType: string[];            // Type of field (string, numeric, boolean).  Blank means any
 
     // Generated by the system
-    editedBy: string;                       // Last user who edited this task
-    editedOn: Date;                         // Date this task was last edited
-    createdBy: string;                      // UserID who created this task, can be System
-    createdOn: Date;                        // Date task was created
+    editedBy: string;                   // Last user who edited this task
+    editedOn: Date;                     // Date this task was last edited
+    createdBy: string;                  // UserID who created this task, can be System
+    createdOn: Date;                    // Date task was created
 }
 
 export class TributaryServerType {
-    serverType: string;             // Type of Server, ie PostgresSQL
-    driverName: string;             // Tributary driver string, ie postgres
-    inspector: string;              // Tributary inspector: tributary.inspectors.mongodb:MongoDBInspector
-    connector: string               // Tributary connector, ie tributary.connectors.sql:SqlConnector
+    serverType: string;                 // Type of Server, ie PostgresSQL
+    driverName: string;                 // Tributary driver string, ie postgres
+    inspector: string;                  // Tributary inspector: tributary.inspectors.mongodb:MongoDBInspector
+    connector: string                   // Tributary connector, ie tributary.connectors.sql:SqlConnector
 
     // Generated by the system
-    editedBy: string;                       // Last user who edited this task
-    editedOn: Date;                         // Date this task was last edited
-    createdBy: string;                      // UserID who created this task, can be System
-    createdOn: Date;                        // Date task was created
+    editedBy: string;                   // Last user who edited this task
+    editedOn: Date;                     // Date this task was last edited
+    createdBy: string;                  // UserID who created this task, can be System
+    createdOn: Date;                    // Date task was created
 }
 
 export class TributarySource {
@@ -677,7 +677,7 @@ export class DataConnection {
     description: string;        // Description of Connection
 
     // For later use
-    defaultDatabase?: string;
+    defaultDatabase?: string;  
     logFolder?: string;
     logfileName?: string;
     characterSet?: string;
@@ -755,53 +755,53 @@ export class DataField {
 export class Dashboard {
 
     // Identification and description
-    id: number;
+    id: number;                 // Unique ID
     originalID: number;         // ID of the original (Completed state) for a draft
     draftID: number;            // ID of the Draft version for a Complete
-    version: number;
-    state: string;
-    code: string;
-    name: string;
-    description: string;
+    version: number;            // Version of the Dashboard
+    state: string;              // State, ie Complete, Draft
+    code: string;               // Short code for D
+    name: string;               // Dashboard Name
+    description: string;        // User description
 
     // Access Type
     accessType: string;         // How to access D: Private, Public, AccessList
 
     // Overall properties
-    password: string;
+    password: string;           // Optional password to lock Dashboard
     refreshMode: string;        // OnDemand, OnOpen, Repeatedly
     refreshTimer: number;       // Nr seconds to repeat, if refreshMode = Repeatedly
-    defaultTabID: number;
-    defaultExportFileType: string;
-    url: string;
-    qaRequired: boolean;
+    defaultTabID: number;       
+    defaultExportFileType: string;  // Default file type on export
+    url: string;            
+    qaRequired: boolean;    
     isSample: boolean;          // True if this is a sample
 
     // Overlay looks
-    backgroundColor: string;
+    backgroundColor: string;    
     backgroundImage: string;
     templateDashboardID: number;
 
     // Creation, update and refresh
-    creator: string;
-    dateCreated: Date;
-    editor: string;
-    dateEdited: Date;
-    refresher: string;
-    dateRefreshed: Date;
+    creator: string;            // Creator UserID
+    dateCreated: Date;          // Dt created
+    editor: string;             // Last UserID who edited this Dashboard
+    dateEdited: Date;           // Last Edit dt
+    refresher: string;          // Last UserID who refreshed this Dashboard, and it data
+    dateRefreshed: Date;        // Last refresh dt
 
     // 2nd normal form - calculated at DB level
-    nrWidgets: number;
-    nrShapes: number;
-    nrRecords: number;
-    nrTimesOpened: number;
-    nrTimesChanged: number;
-    tabs: number[];
-    permissions: string[];
+    nrWidgets: number;          // Nr of Widgets on Dashboard
+    nrShapes: number;           // Nr of Shapes on Dashboard
+    nrRecords: number;          
+    nrTimesOpened: number;      // Nr of times this Dashboard has been opened
+    nrTimesChanged: number;     // Nr of times this Dashboard has been edited
+    tabs: number[];             // Array of TabIDs in this Dashboard
+    permissions: string[];      
 }
 
 export class DashboardTab {
-    id: number;
+    id: number;                         // Unique record ID
     originalID: number;                 // Optional T-id from which this T was copied
     dashboardID: number;                // FK to DashboardID to which widget belongs
     name: string;                       // Short Name
@@ -832,15 +832,15 @@ export class DashboardRecent {
 }
 
 export class DashboardTag {
-    id: number;
-    dashboardID: number;
-    tag: string;
+    id: number;                         // Unique ID
+    dashboardID: number;                // FK to Dashboard to which this tag applies
+    tag: string;                        // Tag name / text
 
     // Generated by the system
-    editedBy: string;                       // Last user who edited this task
-    editedOn: Date;                         // Date this task was last edited
-    createdBy: string;                      // UserID who created this task, can be System
-    createdOn: Date;                        // Date task was created
+    editedBy: string;                   // Last user who edited this task
+    editedOn: Date;                     // Date this task was last edited
+    createdBy: string;                  // UserID who created this task, can be System
+    createdOn: Date;                    // Date task was created
 }
 
 export class DashboardLayout {
@@ -858,9 +858,9 @@ export class DashboardLayout {
 }
 
 export class DashboardTheme {
-    id: number;
-    name: string;
-    description: string;
+    id: number;                         // Unique ID
+    name: string;                       // Name
+    description: string;                // Description
 
     // Generated by the system
     editedBy: string;                    // Last user who edited this task
@@ -1039,159 +1039,143 @@ export class GraphFilter {
 export class widgetGraphSpecification {
 
     // Mark
-    // graphMark: string;
-    // graphMarkOrient: string;
-    // graphMarkLine: boolean;
-    // graphMarkPoint: boolean;
-    // graphMarkPointColorName: string;
-    // graphMarkPointColor: string;
-    // graphMarkColourName: string;
-    // graphMarkColour: string;
-    // graphMarkCornerRadius: number;
-    // graphMarkExtent: string;            // Extent: ci, stderr, stdev, irq for Error Band & -Bar
-    // graphMarkOpacity: number;
-    // graphMarkBinSpacing: number;
-    // graphMarkSize: number;
-    // graphMarkInterpolate: string;
-
-    graphMarkID: number;                // Unique ID of Mark, as per lookup table
-    graphMark: string;                  // Filled in from lookup table, based on graphMarkID
-    graphMarkOrient: string;            // Horisontal/Verticle - ie for bar when both axis numbers
-    graphMarkLine: boolean;             // True to add line, ie for Area graph
-    graphMarkPoint: boolean;            // True to add point, ie for Area graph
-    graphMarkPointColorName: string;    // Name of Point colour
-    graphMarkPointColor: string;        // Actual Point colour in hex
-    graphMarkColourName: string;        // Name of Mark colour (if colour channel not used)
-    graphMarkColour: string;            // Actual Mark colour in hex
-    graphMarkCornerRadius: number;      // Size of corner radius, ie for bar
-    graphMarkExtent: string;            // Extent: ci, stderr, stdev, irq for Error Band & -Bar
-    graphMarkOpacity: number;           // Opacity of Mark, 0 to 1
-    graphMarkBinSpacing: number;        // Space between bins, ie 0 or 1 (stats or nice)
-    graphMarkInterpolate: string;       // Interpolation
-    graphMarkSize: number;              // Size of the Mark
-
+    graphMarkID: number;                   // Unique ID of Mark, as per lookup table
+    graphMark: string;                     // Filled in from lookup table, based on graphMarkID
+    graphMarkOrient: string;               // Horisontal/Verticle - ie for bar when both axis numbers
+    graphMarkLine: boolean;                // True to add line, ie for Area graph
+    graphMarkPoint: boolean;               // True to add point, ie for Area graph
+    graphMarkPointColorName: string;       // Name of Point colour
+    graphMarkPointColor: string;           // Actual Point colour in hex
+    graphMarkColourName: string;           // Name of Mark colour (if colour channel not used)
+    graphMarkColour: string;               // Actual Mark colour in hex
+    graphMarkCornerRadius: number;         // Size of corner radius, ie for bar
+    graphMarkExtent: string;               // Extent: ci, stderr, stdev, irq for Error Band & -Bar
+    graphMarkOpacity: number;              // Opacity of Mark, 0 to 1
+    graphMarkBinSpacing: number;           // Space between bins, ie 0 or 1 (stats or nice)
+    graphMarkInterpolate: string;          // Interpolation
+    graphMarkSize: number;                 // Size of the Mark
 
     // X
-    graphXfield: string;
-    graphXaggregateName: string;
-    graphXaggregate: string;
-    graphXtimeUnit: string;
-    graphXbin: boolean;
-    graphXMaxBins: number;
-    graphXformat: string;
-    graphXimpute: string;
-    graphXimputeValue: string;
-    graphXstack: string;
-    graphXsort: string;
-    graphXtype: string;
-    graphXtypeName: string;
+    graphXfield: string;                   // Field name on the X Channel
+    graphXaggregateName: string;           // Aggregation Name on X Channel, ie Average
+    graphXaggregate: string;               // Aggregation on X Channel, ie average
+    graphXtimeUnit: string;                // Time Unit, ie Year, Month, etc 
+    graphXbin: boolean;                    // True if channel is binned
+    graphXMaxBins: number;                 // Max nr of ESTIMATED bins
+    graphXformat: string;                  // Format in D3-format
+    graphXimpute: string;                  // Calculate missing values based on method/value
+    graphXimputeValue: string;             // Value if impute = VALUE
+    graphXstack: string;                   // Way that field is stacked, ie Normalised
+    graphXsort: string;                    // Sort order of field
+    graphXtype: string;                    // Graph type, ie nominal
+    graphXtypeName: string;                // Name of the graph type, ie Nominal
 
     // Y
-    graphYfield: string;
-    graphYaggregateName: string;
-    graphYaggregate: string;
-    graphYbin: boolean;
-    graphYMaxBins: number;
-    graphYformat: string;
-    graphYimpute: string;
-    graphYimputeValue: number;
-    graphYstack: string;
-    graphYsort: string;
-    graphYtimeUnit: string;
-    graphYtype: string;
-    graphYtypeName: string;
+    graphYfield: string;                   // Field name on the Y Channel
+    graphYaggregateName: string;           // Aggregation Name on Y, ie Average
+    graphYaggregate: string;               // Aggregation on Y Channel, ie average
+    graphYbin: boolean;                    // True if channel is binned
+    graphYMaxBins: number;                 // Max nr of ESTIMATED bins
+    graphYformat: string;                  // Format in D3-format
+    graphYimpute: string;                  // Calculate missing values based on method/value
+    graphYimputeValue: number;             // Value if impute = VALUE
+    graphYstack: string;                   // Way that field is stacked, ie Normalised
+    graphYsort: string;                    // Sort order of field
+    graphYtimeUnit: string;                // Time unit, ie Year, Month, etc
+    graphYtype: string;                    // Graph type, ie nominal
+    graphYtypeName: string;                // Name of the graph type, ie Nominal
 
     // Color
-    graphColorField: string;
-    graphColorAggregateName: string;
-    graphColorAggregate: string;
-    graphColorBin: boolean;
-    graphColorMaxBins: number;
-    graphColorFormat: string;
-    graphColorImpute: string;
-    graphColorImputeValue: string;
-    graphColorScheme: string;
-    graphColorSort: string;
-    graphColorStack: string;
-    graphColorType: string;
-    graphColorTypeName: string;
-    graphColorTimeUnit: string;
+    graphColorField: string;                // Field name on the Y Channel
+    graphColorAggregateName: string;        // Aggregation Name on Y Channel, ie Average
+    graphColorAggregate: string;            // Aggregation on Y Channel, ie average
+    graphColorBin: boolean;                 // True if channel is binned
+    graphColorMaxBins: number;              // Max nr of ESTIMATED bins
+    graphColorFormat: string;               // Format in D3-format
+    graphColorImpute: string;               // Calculate missing values based on method/value
+    graphColorImputeValue: string;          // Value if impute = VALUE
+    graphColorScheme: string;               // Preselected colour scheme
+    graphColorSort: string;                 // Sort order of field
+    graphColorStack: string;                // Way that field is stacked, ie Normalised
+    graphColorType: string;                 // Graph type, ie nominal
+    graphColorTypeName: string;             // Name of the graph type, ie Nominal
+    graphColorTimeUnit: string;             // Time unit, ie Year, Month, etc
 
     // X Axis
-    graphXaxisFormat: string;
-    graphXaxisGrid: boolean;                        // True if X grid lines show
-    graphXaxisGridColorName: string;                // Name of color for X gridlines
-    graphXaxisGridColor: string;                    // Actual color of X gridline in hex, rgb, etc
-    graphXaxisLabels: boolean;
-    graphXaxisLabelAngle: number;
-    graphXaxisLabelColorName: string;               // Name of color for X labels
-    graphXaxisLabelColor: string;                   // Actual color of X labels in hex, rgb, etc
-    graphXaxisTitle: string;
-    graphXaxisTitleCheckbox: boolean;
-    graphXaxisScaleType: string;                    // Type of axis, ie linear, log, etc
+    graphXaxisFormat: string;               // Format in D3-format
+    graphXaxisGrid: boolean;                // True if X grid lines show
+    graphXaxisGridColorName: string;        // Name of color for X gridlines
+    graphXaxisGridColor: string;            // Actual color of X gridline in hex, rgb, etc
+    graphXaxisLabels: boolean;              // True to show X axis labels
+    graphXaxisLabelAngle: number;           // Angle of X axis labels in degrees
+    graphXaxisLabelColorName: string;       // Name of color for X labels
+    graphXaxisLabelColor: string;           // Actual color of X labels in hex, rgb, etc
+    graphXaxisTitle: string;                // Title of X axis
+    graphXaxisTitleCheckbox: boolean;       // True to show axis title
+    graphXaxisScaleType: string;            // Type of axis, ie linear, log, etc
 
     // Y Axis
-    graphYaxisFormat: string;
-    graphYaxisGrid: boolean;
-    graphYaxisGridColorName: string;                // Name of color for Y gridlines
-    graphYaxisGridColor: string;                    // Actual color of Y gridline in hex, rgb, etc
-    graphYaxisLabels: boolean;
-    graphYaxisLabelAngle: number;
-    graphYaxisLabelColorName: string;               // Name of color for Y labels
-    graphYaxisLabelColor: string;                   // Actual color of Y labels in hex, rgb, etc
-    graphYaxisScaleType: string;
-    graphYaxisTitle: string;
-    graphYaxisTitleCheckbox: boolean;
+    graphYaxisFormat: string;               // Format in D3-format
+    graphYaxisGrid: boolean;                // True to show gridlines
+    graphYaxisGridColorName: string;        // Name of color for Y gridlines
+    graphYaxisGridColor: string;            // Actual color of Y gridline in hex, rgb, etc
+    graphYaxisLabels: boolean;              // True to show Y axis labels
+    graphYaxisLabelAngle: number;           // Angle of Y axis labels in degrees
+    graphYaxisLabelColorName: string;       // Name of color for Y labels
+    graphYaxisLabelColor: string;           // Actual color of Y labels in hex, rgb, etc
+    graphYaxisScaleType: string;            // Type of scale, ie Linear, Log, etc
+    graphYaxisTitle: string;                // Title of Y axis
+    graphYaxisTitleCheckbox: boolean;       // True to show axis title
 
     // Legend
-    graphLegendAxisScaleType: string;               // Type of Axis, ie Linear, Log, etc
-    graphLegendHide: boolean;
-    graphLegendTitleCheckbox: boolean;
-    graphLegendTitle: string;
-    graphLegendFormat: string;
-    graphLegendLabels: boolean;
-    graphLegendLabelColorName: string;               // Name of color for Y labels
-    graphLegendLabelColor: string;                   // Actual color of Y labels in hex, rgb, etc
+    graphLegendAxisScaleType: string;       // Type of Axis, ie Linear, Log, etc
+    graphLegendHide: boolean;               // True to hide the WHOLE Legend
+    graphLegendTitleCheckbox: boolean;      // True to show Legend Title text
+    graphLegendTitle: string;               // Title text of the Legend
+    graphLegendFormat: string;              // Format in D3-format
+    graphLegendLabels: boolean;             // True to show Legend Labels
+    graphLegendLabelColorName: string;      // Name of color for Legend labels
+    graphLegendLabelColor: string;          // Actual color of Legend labels in hex, rgb, etc
 
     // Size
-    graphSizeField: string;
-    graphSizeType: string;
-    graphSizeTypeName: string;
-    graphSizeAggregateName: string;
-    graphSizeAggregate: string;    
-    graphSizeBin: boolean;
-    graphSizeMaxBins: number;
+    graphSizeField: string;                 // Field name on the Size Channel
+    graphSizeType: string;                  // Graph type, ie nominal
+    graphSizeTypeName: string;              // Name of the graph type, ie Nominal
+    graphSizeAggregateName: string;         // Aggregation Name on Size Channel, ie Average
+    graphSizeAggregate: string;             // Aggregation on Size Channel, ie average
+    graphSizeBin: boolean;                  // True if channel is binned
+    graphSizeMaxBins: number;               // Max nr of ESTIMATED bins
 
     // Row
-    graphRowField: string;
-    graphRowType: string;
-    graphRowTypeName: string;
-    graphRowTitleCheckbox: boolean;                 // False to remove the Row Title
-    graphRowTitle: string;                          // User-defined Row Title
+    graphRowField: string;                  // Field name on the Row Channel
+    graphRowType: string;                   // Graph type, ie nominal
+    graphRowTypeName: string;               // Name of the graph type, ie Nominal
+    graphRowTitleCheckbox: boolean;         // False to remove the Row Title
+    graphRowTitle: string;                  // User-defined Row Title
 
     // Column
-    graphColumnField: string;
-    graphColumnType: string;
-    graphColumnTypeName: string;
-    graphColumnTitleCheckbox: boolean;              // False to remove the Column Title
-    graphColumnTitle: string;                       // User-defined Column Title
+    graphColumnField: string;               // Field name on the Column Channel
+    graphColumnType: string;                // Graph type, ie nominal
+    graphColumnTypeName: string;            // Name of the graph type, ie Nominal
+    graphColumnTitleCheckbox: boolean;      // False to remove the Column Title
+    graphColumnTitle: string;               // User-defined Column Title
 
     // Detail
-    graphDetailField: string;
-    graphDetailType: string;
-    graphDetailTypeName: string;
+    graphDetailField: string;               // Field name on the Detail channel
+    graphDetailType: string;                // Graph type, ie nominal
+    graphDetailTypeName: string;            // Name of the graph type, ie Nominal
 
     // X2
-    graphX2Field: string;
-    graphX2Type: string;
-    graphX2TypeName: string;
-    graphX2AggregateName: string;
+    graphX2Field: string;                   // Field name on the secondary X
+    graphX2Type: string;                    // Graph type, ie nominal
+    graphX2TypeName: string;                // Name of the graph type, ie Nominal
+    graphX2AggregateName: string;           // Aggregation on Secondary X, ie Avg
 
     // Y2
-    graphY2Field: string;
-    graphY2Type: string;
-    graphY2TypeName: string;
-    graphY2AggregateName: string;
+    graphY2Field: string;                   // Field name on the secondary Y
+    graphY2Type: string;                    // Graph type, ie nominal
+    graphY2TypeName: string;                // Name of the graph type, ie Nominal
+    graphY2AggregateName: string;           // Aggregation on Secondary Y, ie Avg
 
     // Projection
     graphProjectionType: string;            // Type of geo projection
@@ -1225,21 +1209,21 @@ export class Widget {
     isLocked: boolean;                  // True if this W is temporary locked
 
     // Identification and Description
-    id: number;
+    id: number;                         // Unique ID
     originalID: number;                 // Original ID from which W was copied
-    name: string;
-    description: string;
+    name: string;                       // Name of Widget
+    description: string;                // Description of Widget
     annotation: string;                 // Optional annotation per W, deeper info about W
     annotationLastUserID: string;       // Last UserID who updated this annotation
     annotationLastUpdated: Date;        // Last date-time this annotation was updated
     visualGrammar: string;              // Gramar for graphs, default = Vega
-    version: number;
+    version: number;                    // Version of visual grammar
 
     // Properties loaded @Runtime
     isLiked: boolean;                   // @RunTime: True if Widget is liked by me
-    isSelected: boolean;
-    nrDataQualityIssues: number;
-    nrComments: number;
+    isSelected: boolean;                // True if W is currently selected
+    nrDataQualityIssues: number;        // Nr of related data Quality issues
+    nrComments: number;                 // Nr of related Comments
     showCheckpoints: boolean;           // True is use is showing Checkpoints in Presentation Mode
     checkpointIDs: number[];            // Array of FKs to widgetCheckpoints
     currentCheckpoint: number;          // Index of current Checkpoint in checkpointIDs
@@ -1275,18 +1259,18 @@ export class Widget {
     // Container
     containerBackgroundcolor: string;   // Actual colour (CSS name or HEX code)
     containerBackgroundcolorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
-    containerBorder: string;
+    containerBorder: string;            // HTML Border def, is 1px solid gray
     containerBorderColourName: string;  // Name - CSS (ie black) or Custome Name (Our company blue)
-    containerBorderRadius: string;
-    containerBoxshadow: string;
-    containerFontsize: number;
-    containerHeight: number;
-    containerLeft: number;
+    containerBorderRadius: string;      // Border radius of container in px
+    containerBoxshadow: string;         // HTML shadow def, is 2px 2px gray
+    containerFontsize: number;          // Font size inside container
+    containerHeight: number;            // Height of container in px
+    containerLeft: number;              // Left of container in px
     containerHasContextMenus: boolean = true;  // True to display context menu at top of W
     containerHasTitle: boolean;         // True to display Title at top of container
-    containerTop: number;
-    containerWidth: number;
-    containerZindex: number;
+    containerTop: number;               // Top of container in px
+    containerWidth: number;             // Width of container in px
+    containerZindex: number;            // Z-index of container
 
     // Title
     titleText: string;                  // Text, can include HTML & keywords (##today##)
@@ -1305,7 +1289,6 @@ export class Widget {
     titleWidth: number;                 // in %: 0 means it adapts to container
 
     // Graph
-    // graphType: string;                  // bar, pie, etc
     graphBackgroundColorName: string;   // Name of Bg color for graph
     graphBackgroundColor: string;       // Bg color for graph in hex, rgb, etc
     graphBorderColorName: string;       // Name of Border Color Border for graph
@@ -1317,205 +1300,51 @@ export class Widget {
     graphDimensionRight: number;        // Space for legend in px (adds to width)
     graphDimensionLeft: number;         // Space for x axis in px
     graphDimensionBottom: number;       // Space for y axis in px
-    graphGraphPadding: number;
-    graphHasSignals: boolean;
-    graphFillColor: string;
-    graphHoverColor: string;
+    graphGraphPadding: number;          // How many px graph is padded
+    graphHasSignals: boolean;           // If graph has signals
+    graphFillColor: string;             // Fill colour of the graph area
+    graphHoverColor: string;            // 
     graphPanAndZoom: boolean;           // True if selection = grid, with pan and zoom.  Only applies to single layer graphs
-    graphSpecification: any;
-    graphDescription: string;
-
-    // Mark
-    // graphMarkID: number;                // Unique ID of Mark, as per lookup table
-    // graphMark: string;                  // Filled in from lookup table, based on graphMarkID
-    // graphMarkOrient: string;            // Horisontal/Verticle - ie for bar when both axis numbers
-    // graphMarkLine: boolean;             // True to add line, ie for Area graph
-    // graphMarkPoint: boolean;            // True to add point, ie for Area graph
-    // graphMarkPointColorName: string;    // Name of Point colour
-    // graphMarkPointColor: string;        // Actual Point colour in hex
-    // graphMarkColourName: string;        // Name of Mark colour (if colour channel not used)
-    // graphMarkColour: string;            // Actual Mark colour in hex
-    // graphMarkCornerRadius: number;      // Size of corner radius, ie for bar
-    // graphMarkExtent: string;            // Extent: ci, stderr, stdev, irq for Error Band & -Bar
-    // graphMarkOpacity: number;           // Opacity of Mark, 0 to 1
-    // graphMarkBinSpacing: number;        // Space between bins, ie 0 or 1 (stats or nice)
-    // graphMarkInterpolate: string;       // Interpolation
+    graphSpecification: any;            // Vega specification
+    graphDescription: string;           // Description of graph for users
 
     // Data
-    graphUrl: string;
-    graphData: any;
+    graphUrl: string;                       // URL of data
+    graphData: any;                         // Actual data as an Array
 
     // Title
-    graphTitleText: string;
-    graphTitleAnchor: string;
-    graphTitleAngle: number;
-    graphTitleBaseline: string;
-    graphTitleColorName: string;
-    graphTitleColor: string;
-    graphTitleFont: string;
-    graphTitleFontSize: number;
-    graphTitleFontWeight: number;
-    graphTitleLength: number;
-    graphTitleOrientation: string;
+    graphTitleText: string;                 // Text to show in Title
+    graphTitleAnchor: string;               // Alignment of text: start, middle, end
+    graphTitleAngle: number;                // Angle of title text in degrees, default is 0
+    graphTitleBaseline: string;             // Top, Middel, Bottom of Title relative to graph
+    graphTitleColorName: string;            // Name of colour of Text
+    graphTitleColor: string;                // Actual text colour in HEX
+    graphTitleFont: string;                 // Font name of text
+    graphTitleFontSize: number;             // Size of text font
+    graphTitleFontWeight: number;           // Weight, 100, 200 ... 900
+    graphTitleLength: number;               // Max length, rest with ellipses
+    graphTitleOrientation: string;          // Postion of text Top, Right, Bottm, Left
 
     // Transformation: Overall Array for later user when many different types and sequences
     graphTransformations: [
         {
-            id: number;                             // Unique ID
-            sequence: number;                       // Sequence Nr
-            transformationType: "";                 // ie Calculat, Filter aka Vega-Lite spec 
+            id: number;                     // Unique ID
+            sequence: number;               // Sequence Nr
+            transformationType: "";         // ie Calculat, Filter aka Vega-Lite spec 
         }
     ];
 
-    // Transformations: is an Array of different types of transformation, each shown below
-    // Transformations: Aggregate
-    // Transformations: Bin
-
-    // Transformations: Calculate
-    graphCalculations: GraphCalculation[];   // Array of calculations
+    // Calculations
+    graphCalculations: GraphCalculation[];  // Array of calculations
 
     // Transformations: Filter
     graphFilters: GraphFilter[];            // Array of filters
-
-    // Transformations: Flatten
-    // Transformations: Fold
-    // Transformations: Impute
-    // Transformations: Lookup
-
-    // Transformations: Sample
     sampleNumberRows: number;               // Random rows to sample EACH time, 0 means all rows
-
-    // Transformations: Stack
-    // Transformations: Time Unit
-    // Transformations: Window
 
     // Layers
     graphLayerFacet: string;                // Facet: Single, Layer, Hconcet, Vconcat
     graphLayers?: widgetGraphSpecification[];
     
-    // X
-    // graphXfield: string;
-    // graphXaggregateName: string;
-    // graphXaggregate: string;
-    // graphXtimeUnit: string;
-    // graphXbin: boolean;
-    // graphXMaxBins: number;
-    // graphXformat: string;
-    // graphXimpute: string;
-    // graphXimputeValue: string;
-    // graphXstack: string;
-    // graphXsort: string;
-    // graphXtype: string;
-    // graphXtypeName: string;
-
-    // Y
-    // graphYfield: string;
-    // graphYaggregateName: string;
-    // graphYaggregate: string;
-    // graphYbin: boolean;
-    // graphYMaxBins: number;
-    // graphYformat: string;
-    // graphYimpute: string;
-    // graphYimputeValue: number;
-    // graphYstack: string;
-    // graphYsort: string;
-    // graphYtimeUnit: string;
-    // graphYtype: string;
-    // graphYtypeName: string;
-
-    // Color
-    // graphColorField: string;
-    // graphColorAggregateName: string;
-    // graphColorAggregate: string;
-    // graphColorBin: boolean;
-    // graphColorMaxBins: number;
-    // graphColorFormat: string;
-    // graphColorImpute: string;
-    // graphColorImputeValue: string;
-    // graphColorScheme: string;
-    // graphColorSort: string;
-    // graphColorStack: string;
-    // graphColorType: string;
-    // graphColorTypeName: string;
-    // graphColorTimeUnit: string;
-
-    // X Axis
-    // graphXaxisFormat: string;
-    // graphXaxisGrid: boolean;                        // True if X grid lines show
-    // graphXaxisGridColorName: string;                // Name of color for X gridlines
-    // graphXaxisGridColor: string;                    // Actual color of X gridline in hex, rgb, etc
-    // graphXaxisLabels: boolean;
-    // graphXaxisLabelAngle: number;
-    // graphXaxisLabelColorName: string;               // Name of color for X labels
-    // graphXaxisLabelColor: string;                   // Actual color of X labels in hex, rgb, etc
-    // graphXaxisTitle: string;
-    // graphXaxisTitleCheckbox: boolean;
-    // graphXaxisScaleType: string;                    // Type of axis, ie linear, log, etc
-
-    // Y Axis
-    // graphYaxisFormat: string;
-    // graphYaxisGrid: boolean;
-    // graphYaxisGridColorName: string;                // Name of color for Y gridlines
-    // graphYaxisGridColor: string;                    // Actual color of Y gridline in hex, rgb, etc
-    // graphYaxisLabels: boolean;
-    // graphYaxisLabelAngle: number;
-    // graphYaxisLabelColorName: string;               // Name of color for Y labels
-    // graphYaxisLabelColor: string;                   // Actual color of Y labels in hex, rgb, etc
-    // graphYaxisScaleType: string;
-    // graphYaxisTitle: string;
-    // graphYaxisTitleCheckbox: boolean;
-
-    // Legend
-    // graphLegendAxisScaleType: string;               // Type of Axis, ie Linear, Log, etc
-    // graphLegendHide: boolean;
-    // graphLegendTitleCheckbox: boolean;
-    // graphLegendTitle: string;
-    // graphLegendFormat: string;
-    // graphLegendLabels: boolean;
-    // graphLegendLabelColorName: string;               // Name of color for Y labels
-    // graphLegendLabelColor: string;                   // Actual color of Y labels in hex, rgb, etc
-
-    // Size
-    // graphSizeField: string;
-    // graphSizeType: string;
-    // graphSizeTypeName: string;
-    // graphSizeAggregateName: string;
-    // graphSizeAggregate: string;    
-    // graphSizeBin: boolean;
-    // graphSizeMaxBins: number;
-
-    // Row
-    // graphRowField: string;
-    // graphRowType: string;
-    // graphRowTypeName: string;
-
-    // Column
-    // graphColumnField: string;
-    // graphColumnType: string;
-    // graphColumnTypeName: string;
-
-    // Detail
-    // graphDetailField: string;
-    // graphDetailType: string;
-    // graphDetailTypeName: string;
-
-    // X2
-    // graphX2Field: string;
-    // graphX2Type: string;
-    // graphX2TypeName: string;
-    // graphX2AggregateName: string;
-
-    // Y2
-    // graphY2Field: string;
-    // graphY2Type: string;
-    // graphY2TypeName: string;
-    // graphY2AggregateName: string;
-
-    // Projection
-    // graphProjectionType: string;            // Type of geo projection
-    // graphProjectionFieldLatitude: string;   // Lat of geo projection
-    // graphProjectionFieldLongitude: string;  // Long of geo projection
-
     // Table - to be determined later ...
     tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)
     tableBackgroundColorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
@@ -1545,13 +1374,13 @@ export class Widget {
     slicerType: string;                 // Type of Slicer, ie List, Bin
 
     // Shape
-    shapeBullet:
+    shapeBullet:                        // Bullets, with info
         {
-            text: string;
-            linkedTabID: number;
-            color: string;
-            jumpedColor: string
-        }[];                            // Bullets, with info
+            text: string;               // Text to show
+            linkedTabID: number;        // Optionally lined TabID
+            color: string;              // Colour of text
+            jumpedColor: string         // Colour when jumped
+        }[]; 
     shapeBulletStyleType: string;       // List marker: disc, circle, square, none
     shapeBulletsOrdered: boolean;       // True if the list is ordered
     shapeBulletMarginBottom: number;    // Margin-Top in px
