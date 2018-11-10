@@ -1001,10 +1001,19 @@ export interface dataSchemaInterface {
         // Start afresh for new W~
         if (this.newWidget) {
 
+            // Create new W
+            this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
+            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+            this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+            this.localWidget.widgetType = 'Graph';
+            this.localWidget.visualGrammar = 'Vega-Lite';
+
             // Get Widget Graph Specs
             this.globalVariableService.getWidgetGraphs().then(res => {
                 this.widgetGraphsFull = res
-                this.widgetGraphs = res
+                this.widgetGraphs = res.filter(
+                    wg => wg.visualGrammar==this.localWidget.visualGrammar
+                );
 
                 if (this.showWidgetEditorLite) {
                     this.widgetGraphs = this.widgetGraphs
@@ -1018,13 +1027,6 @@ export interface dataSchemaInterface {
                 widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
                 ds.nrWidgets = widgets.length;
             });
-
-            // Create new W
-            this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
-            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-            this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
-            this.localWidget.widgetType = 'Graph';
-            this.localWidget.visualGrammar = 'vLite';
 
             // Populate predefined dimensions, considering layouts
             if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''
@@ -1185,7 +1187,9 @@ export interface dataSchemaInterface {
             // Get Widget Graph Specs
             this.globalVariableService.getWidgetGraphs().then(res => {
                 this.widgetGraphsFull = res
-                this.widgetGraphs = res
+                this.widgetGraphs = res.filter(
+                    wg => wg.visualGrammar==this.localWidget.visualGrammar
+                );
 
                 if (this.showWidgetEditorLite) {
                     this.widgetGraphs = this.widgetGraphs
@@ -4533,7 +4537,10 @@ export interface dataSchemaInterface {
         this.globalVariableService.updateCurrentUserProperties(
             { preferenceShowWidgetEditorLite: false }
         );
-        this.widgetGraphs = this.widgetGraphsFull.slice();
+        this.widgetGraphs = this.widgetGraphsFull.slice().filter(
+            wg => wg.visualGrammar==this.localWidget.visualGrammar
+        );
+
         this.showWidgetEditorLite = false;
     }
 
