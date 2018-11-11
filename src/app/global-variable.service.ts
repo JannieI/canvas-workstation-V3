@@ -11398,24 +11398,38 @@ export class GlobalVariableService {
                 "color: black; background: lightgray; font-size: 10px", {widgetID});
         };
 
-
-        this.specification = this.widgetGraphs[widgetGraphIndex].specification;
-
-        // Replace the data in the spec - each custom one is different
-        if (this.widgetGraphs[widgetGraphIndex].shortName == 'Donut with Sliders') {
-            let xDataValues: any = this.localWidget.graphData.map(x => {
-                let obj: any = {
-                    "id": x[this.xField],
-                    "field": x[this.yField]
-                };
-                return obj;
-            });
-
-            this.specification['data'][0]['values'] = xDataValues;
+        // Sanitiy Check
+        let specification: any = {};
+        if (widget.graphLayers == null  ||  widget.graphLayers.length == 0) {
+            return;
         };
-        if (this.widgetGraphs[widgetGraphIndex].shortName == 'Word Cloud') {
-            let xColumnValues: any = this.localWidget.graphData.map(x => x[this.xField]);
-            this.specification['data'][0]['values'] = xColumnValues;
+
+        // Custom visualGrammarType - return after each one
+        if (widget.visualGrammarType.toLowerCase() == 'custom') {
+            specification = widget.graphLayers[0].graphSpecification;
+
+            // Replace the data in the spec - each custom one is different
+            if (widget.graphLayers[0].graphMark == 'donutSliders') {
+                let xDataValues: any = widget.graphData.map(x => {
+                    let obj: any = {
+                        "id": x[widget.graphLayers[0].graphXfield],
+                        "field": x[widget.graphLayers[0].graphYfield]
+                    };
+                    return obj;
+                });
+
+                specification['data'][0]['values'] = xDataValues;
+
+                return;
+            };
+            if (widget.graphLayers[0].graphMark == 'wordCloud') {
+                let xColumnValues: any = widget.graphData.map(
+                    x => x[widget.graphLayers[0].graphXfield]
+                );
+                specification['data'][0]['values'] = xColumnValues;
+
+                return;
+            };
         };
 
     }

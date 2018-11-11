@@ -1487,7 +1487,9 @@ export interface dataSchemaInterface {
         //     };
         // };
 
-        // Define Specification
+        // Define Specification Type
+        this.localWidget.visualGrammarType = this.widgetGraphs[widgetGraphIndex]
+            .specificationType.toLowerCase();
         if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
             'custom') {
 
