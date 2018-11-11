@@ -39,10 +39,11 @@ export class WidgetSingleComponent {
     endWidgetNumber: number;
     isBusyResizing: boolean = false;
     refreshGraphs: boolean = false;
+    selectedWidgetIDs: number[] = [];
+    specification: any;
     startX: number;
     startY: number;
     startWidgetNumber: number;
-    selectedWidgetIDs: number[] = [];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -88,115 +89,158 @@ export class WidgetSingleComponent {
             this.widget = w;
         }
 
+
+        // Render graph for Vega-Lite
         if (this.widget.visualGrammar == 'Vega-Lite') {
 
-            // Use the spec inside the Widget, or the properties
-            let definition: any = null;
-            if (this.widget.graphSpecification != ''  &&
-                this.widget.graphSpecification != null) {
-                    definition = this.widget.graphSpecification;
+            // Create specification
+            this.specification = this.globalVariableService.createVegaLiteSpec(
+                this.widget,
+                this.widget.graphHeight,
+                this.widget.graphWidth
+            );
 
-                    // TODO - fix this, as datalib reads children as object object ...
-                    definition = definition.replace(/@/g,'"');
-                    // "data": {"url": "../assets/vega-datasets/cars.json"},
+            // Render in DOM
+            let vegaSpecification = compile(this.specification).spec;
+            let view = new View(parse(vegaSpecification));
 
-                    definition = {
-                        "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-                        "description": "Shows the relationship between horsepower and the numbver of cylinders using tick marks.",
-                        "data": {"url": "../assets/vega-datasets/cars.json"},
-                        "mark": "tick",
-                        "encoding": {
-                        "x": {"field": "Horsepower", "type": "quantitative"},
-                        "y": {"field": "Cylinders", "type": "ordinal"}
-                        }
-                    }
-
-                    definition = {
-                        "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-                        "description": "A bar chart showing the US population distribution of age groups and gender in 2000.",
-                        "data": { "url": "../assets/vega-datasets/population.json"},
-                        "transform": [
-                        {"filter": "datum.year == 2000"},
-                        {"calculate": "datum.sex == 2 ? 'Female' : 'Male'", "as": "gender"}
-                        ],
-                        "mark": "bar",
-                        "encoding": {
-                        "x": {
-                            "field": "age", "type": "ordinal",
-                            "scale": {"rangeStep": 17}
-                        },
-                        "y": {
-                            "aggregate": "sum", "field": "people", "type": "quantitative",
-                            "axis": {"title": "population"},
-                            "stack": null
-                        },
-                        "color": {
-                            "field": "gender", "type": "nominal",
-                            "scale": {"range": ["#e377c2","#1f77b4"]}
-                        },
-                        "opacity": {"value": 0.7}
-                        }
-                    }
-
-                    definition = {
-                        "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-                        "data": { "url": "../assets/vega-datasets/github.csv"},
-                        "mark": "circle",
-                        "encoding": {
-                        "y": {
-                            "field": "time",
-                            "type": "ordinal",
-                            "timeUnit": "day"
-                        },
-                        "x": {
-                            "field": "time",
-                            "type": "ordinal",
-                            "timeUnit": "hours"
-                        },
-                        "size": {
-                            "field": "count",
-                            "type": "quantitative",
-                            "aggregate": "sum"
-                        }
-                        }
-                    }
-
-                    console.log('definition', definition)
-            } else {
-                definition = this.globalVariableService.createVegaLiteSpec(
-                    this.widget,
-                    this.widget.graphHeight,
-                    this.widget.graphWidth
-                );
-            };
-            
-            let specification = compile(definition).spec;
-            let view = new View(parse(specification));
-            // Note: not .width and .heigth here as we use W.graphWidth parsed into definition
             view.renderer('svg')
                 .initialize(this.graphDOM.nativeElement)
+                .width(372)
                 .hover()
                 .run()
                 .finalize();
-
-        } else if (this.widget.visualGrammar == 'Vega') {
-
-            // Render graph for Vega
-            if (this.widget.visualGrammar == 'Vega') {
-                if (this.widget.graphSpecification != undefined) {
-                    let view = new View(parse(this.widget.graphSpecification));
-
-                    view.renderer('svg')
-                        .initialize(this.graphDOM.nativeElement)
-                        .width(372)
-                        .hover()
-                        .run()
-                        .finalize();
-                };
-            };
-        } else {
-            alert('The visualGrammar of widget is not == Vega or Vega-Lite' )
         };
+
+        // Render graph for Vega
+        if (this.widget.visualGrammar == 'Vega') {
+
+            // Create specification
+            this.specification = this.globalVariableService.createVegaSpec(
+                this.widget,
+                this.widget.graphHeight,
+                this.widget.graphWidth
+            );
+
+            // Render in DOM
+            let view = new View(parse(this.specification));
+            view.renderer('svg')
+                .initialize(this.graphDOM.nativeElement)
+                .width(372)
+                .hover()
+                .run()
+                .finalize();
+        };
+
+        // if (this.widget.visualGrammar == 'Vega-Lite') {
+
+        //     // Use the spec inside the Widget, or the properties
+        //     let definition: any = null;
+        //     if (this.widget.graphSpecification != ''  &&
+        //         this.widget.graphSpecification != null) {
+        //             definition = this.widget.graphSpecification;
+
+        //             // TODO - fix this, as datalib reads children as object object ...
+        //             definition = definition.replace(/@/g,'"');
+        //             // "data": {"url": "../assets/vega-datasets/cars.json"},
+
+        //             definition = {
+        //                 "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+        //                 "description": "Shows the relationship between horsepower and the numbver of cylinders using tick marks.",
+        //                 "data": {"url": "../assets/vega-datasets/cars.json"},
+        //                 "mark": "tick",
+        //                 "encoding": {
+        //                 "x": {"field": "Horsepower", "type": "quantitative"},
+        //                 "y": {"field": "Cylinders", "type": "ordinal"}
+        //                 }
+        //             }
+
+        //             definition = {
+        //                 "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+        //                 "description": "A bar chart showing the US population distribution of age groups and gender in 2000.",
+        //                 "data": { "url": "../assets/vega-datasets/population.json"},
+        //                 "transform": [
+        //                 {"filter": "datum.year == 2000"},
+        //                 {"calculate": "datum.sex == 2 ? 'Female' : 'Male'", "as": "gender"}
+        //                 ],
+        //                 "mark": "bar",
+        //                 "encoding": {
+        //                 "x": {
+        //                     "field": "age", "type": "ordinal",
+        //                     "scale": {"rangeStep": 17}
+        //                 },
+        //                 "y": {
+        //                     "aggregate": "sum", "field": "people", "type": "quantitative",
+        //                     "axis": {"title": "population"},
+        //                     "stack": null
+        //                 },
+        //                 "color": {
+        //                     "field": "gender", "type": "nominal",
+        //                     "scale": {"range": ["#e377c2","#1f77b4"]}
+        //                 },
+        //                 "opacity": {"value": 0.7}
+        //                 }
+        //             }
+
+        //             definition = {
+        //                 "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+        //                 "data": { "url": "../assets/vega-datasets/github.csv"},
+        //                 "mark": "circle",
+        //                 "encoding": {
+        //                 "y": {
+        //                     "field": "time",
+        //                     "type": "ordinal",
+        //                     "timeUnit": "day"
+        //                 },
+        //                 "x": {
+        //                     "field": "time",
+        //                     "type": "ordinal",
+        //                     "timeUnit": "hours"
+        //                 },
+        //                 "size": {
+        //                     "field": "count",
+        //                     "type": "quantitative",
+        //                     "aggregate": "sum"
+        //                 }
+        //                 }
+        //             }
+
+        //             console.log('definition', definition)
+        //     } else {
+        //         definition = this.globalVariableService.createVegaLiteSpec(
+        //             this.widget,
+        //             this.widget.graphHeight,
+        //             this.widget.graphWidth
+        //         );
+        //     };
+            
+        //     let specification = compile(definition).spec;
+        //     let view = new View(parse(specification));
+        //     // Note: not .width and .heigth here as we use W.graphWidth parsed into definition
+        //     view.renderer('svg')
+        //         .initialize(this.graphDOM.nativeElement)
+        //         .hover()
+        //         .run()
+        //         .finalize();
+
+        // } else if (this.widget.visualGrammar == 'Vega') {
+
+        //     // Render graph for Vega
+        //     if (this.widget.visualGrammar == 'Vega') {
+        //         if (this.widget.graphSpecification != undefined) {
+        //             let view = new View(parse(this.widget.graphSpecification));
+
+        //             view.renderer('svg')
+        //                 .initialize(this.graphDOM.nativeElement)
+        //                 .width(372)
+        //                 .hover()
+        //                 .run()
+        //                 .finalize();
+        //         };
+        //     };
+        // } else {
+        //     alert('The visualGrammar of widget is not == Vega or Vega-Lite' )
+        // };
         console.log('TEST refreshWidget end')
     }
 
