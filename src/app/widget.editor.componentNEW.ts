@@ -1491,27 +1491,38 @@ export interface dataSchemaInterface {
         if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
             'custom') {
 
-            this.specification = this.widgetGraphs[widgetGraphIndex].specification;
+            // this.specification = this.widgetGraphs[widgetGraphIndex].specification;
 
-            // Replace the data in the spec - each custom one is different
-            if (this.widgetGraphs[widgetGraphIndex].shortName == 'Donut with Sliders') {
-                let xDataValues: any = this.localWidget.graphData.map(x => {
-                    let obj: any = {
-                        "id": x[this.xField],
-                        "field": x[this.yField]
-                    };
-                    return obj;
-                });
+            // // Replace the data in the spec - each custom one is different
+            // if (this.widgetGraphs[widgetGraphIndex].shortName == 'Donut with Sliders') {
+            //     let xDataValues: any = this.localWidget.graphData.map(x => {
+            //         let obj: any = {
+            //             "id": x[this.xField],
+            //             "field": x[this.yField]
+            //         };
+            //         return obj;
+            //     });
 
-                this.specification['data'][0]['values'] = xDataValues;
-            };
-            if (this.widgetGraphs[widgetGraphIndex].shortName == 'Word Cloud') {
-                let xColumnValues: any = this.localWidget.graphData.map(x => x[this.xField]);
-                this.specification['data'][0]['values'] = xColumnValues;
-            };
+            //     this.specification['data'][0]['values'] = xDataValues;
+            // };
+            // if (this.widgetGraphs[widgetGraphIndex].shortName == 'Word Cloud') {
+            //     let xColumnValues: any = this.localWidget.graphData.map(x => x[this.xField]);
+            //     this.specification['data'][0]['values'] = xColumnValues;
+            // };
 
-            // Store the final spec
-            this.localWidget.graphSpecification = this.specification;
+            // // Store the final spec
+            // this.localWidget.graphSpecification = this.specification;
+
+
+
+            this.specification = this.globalVariableService.createVegaSpec(
+                this.localWidget,
+                this.localWidget.graphHeight,
+                this.localWidget.graphWidth,
+                this.showSpecificGraphLayer,
+                (this.currentGraphLayer - 1)
+            )
+
 
             // Render graph for Vega-Lite
             if (this.localWidget.visualGrammar == 'Vega-Lite') {

@@ -315,6 +315,7 @@ const widgetTemplate: Widget =
         "annotationLastUserID": "",
         "annotationLastUpdated": null,
         "visualGrammar": "Vega-Lite",
+        "visualGrammarType": 'standard',
         "version": 1,
         "isSelected": false,
         "isLiked": false,
@@ -360,6 +361,9 @@ const widgetTemplate: Widget =
         "graphLayerFacet": "Single",
         "graphLayers": [
             {
+                // Optional Specification, used for Custom graphTypes
+                "graphSpecification": null,
+
                 // Mark
                 "graphMark": "",
                 "graphMarkOrient": "",
@@ -11380,13 +11384,50 @@ export class GlobalVariableService {
         }
     }
 
+    createVegaSpec(
+        widget: Widget,
+        height: number = 0,
+        width: number = 0,
+        showSpecificGraphLayer: boolean = false,
+        specificLayerToShow: number = 0): dl.spec.TopLevelExtentedSpec {
+
+        // Creates and returns a specification for Vega visual grammar
+        if (this.sessionDebugging) {
+            let widgetID: number = widget.id;
+            console.log('%c    Global-Variables createVegaSpec ...',
+                "color: black; background: lightgray; font-size: 10px", {widgetID});
+        };
+
+
+        this.specification = this.widgetGraphs[widgetGraphIndex].specification;
+
+        // Replace the data in the spec - each custom one is different
+        if (this.widgetGraphs[widgetGraphIndex].shortName == 'Donut with Sliders') {
+            let xDataValues: any = this.localWidget.graphData.map(x => {
+                let obj: any = {
+                    "id": x[this.xField],
+                    "field": x[this.yField]
+                };
+                return obj;
+            });
+
+            this.specification['data'][0]['values'] = xDataValues;
+        };
+        if (this.widgetGraphs[widgetGraphIndex].shortName == 'Word Cloud') {
+            let xColumnValues: any = this.localWidget.graphData.map(x => x[this.xField]);
+            this.specification['data'][0]['values'] = xColumnValues;
+        };
+
+    }
+
     createVegaLiteSpec(
         widget: Widget,
         height: number = 0,
         width: number = 0,
         showSpecificGraphLayer: boolean = false,
         specificLayerToShow: number = 0): dl.spec.TopLevelExtentedSpec {
-        // Sleep for a while
+
+        // Creates and returns a specification for Vega-Lite visual grammar
         if (this.sessionDebugging) {
             let widgetID: number = widget.id;
             console.log('%c    Global-Variables createVegaLiteSpec ...',
@@ -11874,6 +11915,9 @@ export class GlobalVariableService {
                 specificationInner['mark']['size'] =
                     widget.graphLayers[currentGraphLayer].graphMarkSize;
             };
+
+
+            // Text Channel
             if (widget.graphLayers[currentGraphLayer].graphMark == 'text') {
                 if (widget.graphLayers[currentGraphLayer].graphXfield != '') {
                     specificationInner['encoding']['text'] = {
@@ -11887,6 +11931,7 @@ export class GlobalVariableService {
                     };
                 };
             };
+
 
             // X field
             if (widget.graphLayers[currentGraphLayer].graphXfield != '') {
@@ -12085,37 +12130,7 @@ export class GlobalVariableService {
                         };
                 };
 
-                // if (widget.graphLayers[currentGraphLayer].graphLegendHide) {
-                //     specificationInner['encoding']['color']['legend'] = null;
-                // } else {
-                //     if (!widget.graphLayers[currentGraphLayer].graphLegendTitleCheckbox) {
-                //         specificationInner['encoding']['color']['legend'] =
-                //             {
-                //                 "title": null
-                //             };
-                //     } else {
-                //         if (widget.graphLayers[currentGraphLayer].graphLegendTitle != ''
-                //             &&
-                //             widget.graphLayers[currentGraphLayer].graphLegendTitle != undefined) {
-                //             specificationInner['encoding']['color']['legend'] =
-                //                 {
-                //                     "labelLimit": widget.graphDimensionRight,
-                //                     "title": widget.graphLayers[currentGraphLayer].graphLegendTitle
-                //                 };
-                //             if (widget.graphLayers[currentGraphLayer].graphLegendLabels) {
-                //                 specificationInner['encoding']['color']['legend'].labelColor = widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
-                //                 specificationInner['encoding']['color']['legend'].tickColor = widget.graphLayers[currentGraphLayer].graphLegendLabelColor,
-                //                 specificationInner['encoding']['color']['legend'].titleColor = widget.graphLayers[currentGraphLayer].graphLegendLabelColor
-                //             };
-
-                //         };
-                //     };
-                // };
-
-
-
-
-
+                // Legend
                 if (widget.graphLayers[currentGraphLayer].graphLegendHide) {
                     specificationInner['encoding']['color']['legend'] = null;
                 } else {
@@ -12137,9 +12152,6 @@ export class GlobalVariableService {
                                         :  null
                         };
                 };
-
-
-
 
 
                 if (widget.graphLayers[currentGraphLayer].graphLegendAxisScaleType != 'Default'

@@ -1038,6 +1038,9 @@ export class GraphFilter {
 
 export class widgetGraphSpecification {
 
+    // Optional Specification, used for Custom graphTypes
+    graphSpecification: any;               // Vega specification
+
     // Mark
     graphMark: string;                     // Mark, ie bar, line, etc
     graphMarkOrient: string;               // Horisontal/Verticle - ie for bar when both axis numbers
@@ -1216,10 +1219,6 @@ export class Widget {
     annotationLastUserID: string;       // Last UserID who updated this annotation
     annotationLastUpdated: Date;        // Last date-time this annotation was updated
 
-    // Visual Grammer / plotting library
-    visualGrammar: string;              // Gramar for graphs, default = Vega
-    version: number;                    // Version of visual grammar
-
     // Properties loaded @Runtime
     isLiked: boolean;                   // @RunTime: True if Widget is liked by me
     isSelected: boolean;                // True if W is currently selected
@@ -1289,6 +1288,19 @@ export class Widget {
     titleTextAlign: string;             // left, right, center
     titleWidth: number;                 // in %: 0 means it adapts to container
 
+    // Visual Grammer / plotting library
+    // Layout 101: one Widget can have:
+    // - 1 visual graph or visualisation that is shown on the form
+    // - 1 visual grammar, ie Vega or Vega-Lite.  Later, another plotting library
+    // - 1 specification that is rendered - this is recreated and not stored
+    // - 1 or more layers, each with:
+    //   - graph
+    //   - info (x, y, etc) and 
+    //   - 
+    visualGrammar: string;              // Gramar for graphs, default = Vega
+    version: number;                    // Version of visual grammar
+    visualGrammarType: string;          // Type, Standard or Custom
+
     // Graph
     graphBackgroundColorName: string;   // Name of Bg color for graph
     graphBackgroundColor: string;       // Bg color for graph in hex, rgb, etc
@@ -1344,7 +1356,7 @@ export class Widget {
 
     // Layers
     graphLayerFacet: string;                // Facet: Single, Layer, Hconcet, Vconcat
-    graphLayers?: widgetGraphSpecification[];
+    graphLayers?: widgetGraphSpecification[]; // Info and optional spec for each Layer 
     
     // Table - to be determined later ...
     tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)
