@@ -134,36 +134,6 @@ export class WidgetDeleteComponent implements OnInit {
                 .finalize();
         };
 
-        // if (localWidget.visualGrammar == 'Vega-Lite') {
-
-        //     let definition = this.globalVariableService.createVegaLiteSpec(localWidget, 200, 220);
-
-        //     let specification = compile(definition).spec;
-        //     let view = new View(parse(specification));
-        //     view.renderer('svg')
-        //         .initialize(this.widgetDOM.nativeElement)
-        //         .hover()
-        //         .run()
-        //         .finalize();
-        // } else {
-
-        //     // Render graph for Vega
-        //     if (localWidget.visualGrammar == 'Vega') {
-        //         if (localWidget.graphSpecification != undefined) {
-        //             localWidget.graphSpecification.width = 200;
-        //             localWidget.graphSpecification.height = 200;
-        //             let view = new View(parse(localWidget.graphSpecification));
-
-        //             view.renderer('svg')
-        //                 .initialize(this.widgetDOM.nativeElement)
-        //                 .width(200)
-        //                 .height(220)
-        //                 .hover()
-        //                 .run()
-        //                 .finalize();
-        //         };
-        //     };
-        // };
     }
 
     ngAfterViewInit() {

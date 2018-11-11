@@ -1479,14 +1479,6 @@ export interface dataSchemaInterface {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle = "";
         };
 
-        // for (let i = 0; i < this.localWidget.graphLayers.length; i++){
-        //     if (this.localWidget.graphLayers[i].graphMarkSize == null
-        //         ||
-        //         this.localWidget.graphLayers[i].graphMarkSize == 0) {
-        //         this.localWidget.graphLayers[i].graphMarkSize = 20;
-        //     };
-        // };
-
         // Define Specification & Type 
         this.localWidget.visualGrammarType = this.widgetGraphs[widgetGraphIndex]
             .visualGrammarType.toLowerCase();
@@ -1540,108 +1532,6 @@ export interface dataSchemaInterface {
                 .run()
                 .finalize();
         };
-
-
-        // if (this.widgetGraphs[widgetGraphIndex].visualGrammarType.toLowerCase() ==
-        //     'custom') {
-
-            // this.specification = this.widgetGraphs[widgetGraphIndex].specification;
-
-            // // Replace the data in the spec - each custom one is different
-            // if (this.widgetGraphs[widgetGraphIndex].shortName == 'Donut with Sliders') {
-            //     let xDataValues: any = this.localWidget.graphData.map(x => {
-            //         let obj: any = {
-            //             "id": x[this.xField],
-            //             "field": x[this.yField]
-            //         };
-            //         return obj;
-            //     });
-
-            //     this.specification['data'][0]['values'] = xDataValues;
-            // };
-            // if (this.widgetGraphs[widgetGraphIndex].shortName == 'Word Cloud') {
-            //     let xColumnValues: any = this.localWidget.graphData.map(x => x[this.xField]);
-            //     this.specification['data'][0]['values'] = xColumnValues;
-            // };
-
-            // // Store the final spec
-            // this.localWidget.graphSpecification = this.specification;
-
-
-
-        //     this.specification = this.globalVariableService.createVegaSpec(
-        //         this.localWidget,
-        //         this.localWidget.graphHeight,
-        //         this.localWidget.graphWidth,
-        //         this.showSpecificGraphLayer,
-        //         (this.currentGraphLayer - 1)
-        //     )
-
-
-        //     // Render graph for Vega-Lite
-        //     if (this.localWidget.visualGrammar == 'Vega-Lite') {
-        //         if (this.localWidget.graphSpecification != undefined) {
-        //             let vegaSpecification = compile(this.localWidget.graphSpecification).spec;
-        //             let view = new View(parse(vegaSpecification));
-
-        //             view.renderer('svg')
-        //                 .initialize(this.dragWidget.nativeElement)
-        //                 .width(372)
-        //                 .hover()
-        //                 .run()
-        //                 .finalize();
-        //         };
-        //     };
-
-        //     // Render graph for Vega
-        //     if (this.localWidget.visualGrammar == 'Vega') {
-        //         if (this.specification != undefined) {
-        //             let view = new View(parse(this.specification));
-
-        //             view.renderer('svg')
-        //                 .initialize(this.dragWidget.nativeElement)
-        //                 .width(372)
-        //                 .hover()
-        //                 .run()
-        //                 .finalize();
-        //         };
-        //     };
-
-        // } else {
-
-            // // Tooltip setting
-            // // specification['mark']['tooltip']['content'] = "";
-
-        //     // Create Spec
-        //     this.specification = this.globalVariableService.createVegaLiteSpec(
-        //         this.localWidget,
-        //         this.localWidget.graphHeight,
-        //         this.localWidget.graphWidth,
-        //         this.showSpecificGraphLayer,
-        //         (this.currentGraphLayer - 1)
-        //     );
-
-        //     console.warn('xx @END of ShowGraph specification', this.specification);
-
-        //     // Render graph for Vega-Lite
-        //     if (this.localWidget.visualGrammar == 'Vega-Lite') {
-        //         if (this.specification != undefined) {
-        //             let vegaSpecification = compile(this.specification).spec;
-        //             let view = new View(parse(vegaSpecification));
-
-        //             // Catch events
-        //             view.addEventListener('click', (event, item) => {
-        //                 console.warn('xx Click !!', event, item)
-        //              })
-
-        //             view.renderer('svg')
-        //                 .initialize(this.dragWidget.nativeElement)
-        //                 .hover()
-        //                 .run()
-        //                 .finalize();
-        //         };
-        //     };
-        // };
 
         // Append to history
         let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer == this.currentGraphLayer);
