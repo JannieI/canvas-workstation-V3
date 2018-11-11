@@ -11392,6 +11392,7 @@ export class GlobalVariableService {
         specificLayerToShow: number = 0): dl.spec.TopLevelExtentedSpec {
 
         // Creates and returns a specification for Vega visual grammar
+        // The specification All the information needed to create
         if (this.sessionDebugging) {
             let widgetID: number = widget.id;
             console.log('%c    Global-Variables createVegaSpec ...',
@@ -11400,6 +11401,9 @@ export class GlobalVariableService {
 
         // Sanitiy Check
         let specification: any = {};
+        if (widget.visualGrammarType == null) {
+            widget.visualGrammarType = 'standard';
+        };
         if (widget.graphLayers == null  ||  widget.graphLayers.length == 0) {
             return;
         };
@@ -11486,6 +11490,9 @@ export class GlobalVariableService {
         };
 
         // Custom visualGrammarType - RETURN after each one
+        if (widget.visualGrammarType == null) {
+            widget.visualGrammarType = 'standard';
+        };
         if (widget.visualGrammarType.toLowerCase() == 'custom') {
             specification = widget.graphLayers[0].graphSpecification;
 
