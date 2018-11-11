@@ -57,6 +57,8 @@ export class WidgetDeleteComponent implements OnInit {
 
 
     nrWidgetStoredTemplates: number = 0;
+    specification: any;
+
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -89,36 +91,79 @@ export class WidgetDeleteComponent implements OnInit {
         localWidget.containerBackgroundcolor = 'white';
         localWidget.containerBackgroundcolorName = 'white';
 
+
+        // Render graph for Vega-Lite
         if (localWidget.visualGrammar == 'Vega-Lite') {
 
-            let definition = this.globalVariableService.createVegaLiteSpec(localWidget, 200, 220);
+            // Create specification
+            this.specification = this.globalVariableService.createVegaLiteSpec(
+                localWidget,
+                localWidget.graphHeight,
+                localWidget.graphWidth
+            );
 
-            let specification = compile(definition).spec;
-            let view = new View(parse(specification));
+            // Render in DOM
+            let vegaSpecification = compile(this.specification).spec;
+            let view = new View(parse(vegaSpecification));
+
             view.renderer('svg')
                 .initialize(this.widgetDOM.nativeElement)
+                .width(372)
                 .hover()
                 .run()
                 .finalize();
-        } else {
-
-            // Render graph for Vega
-            if (localWidget.visualGrammar == 'Vega') {
-                if (localWidget.graphSpecification != undefined) {
-                    localWidget.graphSpecification.width = 200;
-                    localWidget.graphSpecification.height = 200;
-                    let view = new View(parse(localWidget.graphSpecification));
-
-                    view.renderer('svg')
-                        .initialize(this.widgetDOM.nativeElement)
-                        .width(200)
-                        .height(220)
-                        .hover()
-                        .run()
-                        .finalize();
-                };
-            };
         };
+
+        // Render graph for Vega
+        if (localWidget.visualGrammar == 'Vega') {
+
+            // Create specification
+            this.specification = this.globalVariableService.createVegaSpec(
+                localWidget,
+                localWidget.graphHeight,
+                localWidget.graphWidth
+            );
+
+            // Render in DOM
+            let view = new View(parse(this.specification));
+            view.renderer('svg')
+                .initialize(this.widgetDOM.nativeElement)
+                .width(372)
+                .hover()
+                .run()
+                .finalize();
+        };
+
+        // if (localWidget.visualGrammar == 'Vega-Lite') {
+
+        //     let definition = this.globalVariableService.createVegaLiteSpec(localWidget, 200, 220);
+
+        //     let specification = compile(definition).spec;
+        //     let view = new View(parse(specification));
+        //     view.renderer('svg')
+        //         .initialize(this.widgetDOM.nativeElement)
+        //         .hover()
+        //         .run()
+        //         .finalize();
+        // } else {
+
+        //     // Render graph for Vega
+        //     if (localWidget.visualGrammar == 'Vega') {
+        //         if (localWidget.graphSpecification != undefined) {
+        //             localWidget.graphSpecification.width = 200;
+        //             localWidget.graphSpecification.height = 200;
+        //             let view = new View(parse(localWidget.graphSpecification));
+
+        //             view.renderer('svg')
+        //                 .initialize(this.widgetDOM.nativeElement)
+        //                 .width(200)
+        //                 .height(220)
+        //                 .hover()
+        //                 .run()
+        //                 .finalize();
+        //         };
+        //     };
+        // };
     }
 
     ngAfterViewInit() {

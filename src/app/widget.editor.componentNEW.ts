@@ -1487,10 +1487,13 @@ export interface dataSchemaInterface {
         //     };
         // };
 
-        // Define Specification Type
+        // Define Specification & Type 
         this.localWidget.visualGrammarType = this.widgetGraphs[widgetGraphIndex]
             .visualGrammarType.toLowerCase();
-
+        if (this.localWidget.visualGrammarType == 'custom') {
+            this.localWidget.graphLayers[0].graphSpecification = 
+                this.widgetGraphs[widgetGraphIndex].specification;
+        };
 
         // Render graph for Vega-Lite
         if (this.localWidget.visualGrammar == 'Vega-Lite') {
@@ -1520,8 +1523,6 @@ export interface dataSchemaInterface {
         if (this.localWidget.visualGrammar == 'Vega') {
 
             // Create specification
-            this.localWidget.graphLayers[0].graphSpecification = 
-                this.widgetGraphs[widgetGraphIndex].specification;
             this.specification = this.globalVariableService.createVegaSpec(
                 this.localWidget,
                 this.localWidget.graphHeight,
