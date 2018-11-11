@@ -1489,8 +1489,8 @@ export interface dataSchemaInterface {
 
         // Define Specification Type
         this.localWidget.visualGrammarType = this.widgetGraphs[widgetGraphIndex]
-            .specificationType.toLowerCase();
-        if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
+            .visualGrammarType.toLowerCase();
+        if (this.widgetGraphs[widgetGraphIndex].visualGrammarType.toLowerCase() ==
             'custom') {
 
             // this.specification = this.widgetGraphs[widgetGraphIndex].specification;

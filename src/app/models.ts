@@ -1447,11 +1447,11 @@ export class WidgetStoredTemplate {
 
 export class WidgetGraph {
     id: number;                         // Unique ID
+    shortName: string;                  // Short name to display
     visualGrammar: string;              // Vega-Lite, Vega, etc
     visualGrammarVersion: number;       // Version, ie 2.0
-    shortName: string;                  // Short name to display
-    specificationType: string;          // Type of spec: standard (ie bar) which uses spec
-                        // defined in code, custom (use specification specified here)
+    visualGrammarType: string;          // Type of spec: standard (ie bar) which uses spec
+       // defined in code, custom (use specification specified here)
     mark: string;                       // Vega-lite: area, bar, line, etc
     specification: any;                 // Grammar spec (template) - for custom
     imageUrl: string;                   // Url where image lives

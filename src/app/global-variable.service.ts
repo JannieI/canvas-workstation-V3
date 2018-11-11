@@ -11430,6 +11430,11 @@ export class GlobalVariableService {
 
                 return;
             };
+            if (widget.graphLayers[0].graphMark == 'network') {
+
+                return;
+            };
+
         };
 
     }
@@ -11475,6 +11480,10 @@ export class GlobalVariableService {
                 }
             }
         };
+
+        waterfall
+        marginalHistogram
+        geoshape
 
         // Optional Sampling
         if (widget.sampleNumberRows != 0) {
