@@ -35,7 +35,7 @@ import { View }                       from 'vega';
 export class WidgetTemplateInsertWidgetComponent implements OnInit {
 
     @Output() formWidgetTemplateInsertWidgetClosed: EventEmitter<string> = new EventEmitter();
-    @ViewChild('domWidget', {read: ElementRef}) domWidget: ElementRef;  //Vega graph
+    @ViewChild('widgetDOM', {read: ElementRef}) widgetDOM: ElementRef;  //Vega graph
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -145,42 +145,84 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.globalVariableService.addCurrentDatasource(
             this.localWidget.datasourceID).then(res => {
 
-            // Create Spec
-            this.specification = this.globalVariableService.createVegaLiteSpec(
-                this.localWidget,
-                200,
-                300
-            );
-
-            console.warn('xx @END of ShowGraph specification', this.specification);
-
             // Render graph for Vega-Lite
             if (this.localWidget.visualGrammar == 'Vega-Lite') {
-                if (this.specification != undefined) {
-                    let vegaSpecification = compile(this.specification).spec;
-                    let view = new View(parse(vegaSpecification));
 
-                    view.renderer('svg')
-                        .initialize(this.domWidget.nativeElement)
-                        .width(372)
-                        .hover()
-                        .run()
-                        .finalize();
-                };
+                // Create specification
+                this.specification = this.globalVariableService.createVegaLiteSpec(
+                    this.localWidget,
+                    this.localWidget.graphHeight,
+                    this.localWidget.graphWidth
+                );
+
+                // Render in DOM
+                let vegaSpecification = compile(this.specification).spec;
+                let view = new View(parse(vegaSpecification));
+
+                view.renderer('svg')
+                    .initialize(this.widgetDOM.nativeElement)
+                    .width(372)
+                    .hover()
+                    .run()
+                    .finalize();
             };
+
             // Render graph for Vega
             if (this.localWidget.visualGrammar == 'Vega') {
-                if (this.localWidget.graphSpecification != undefined) {
-                    let view = new View(parse(this.localWidget.graphSpecification));
 
-                    view.renderer('svg')
-                        .initialize(this.domWidget.nativeElement)
-                        .width(372)
-                        .hover()
-                        .run()
-                        .finalize();
-                };
-            };            
+                // Create specification
+                this.specification = this.globalVariableService.createVegaSpec(
+                    this.localWidget,
+                    this.localWidget.graphHeight,
+                    this.localWidget.graphWidth
+                );
+
+                // Render in DOM
+                let view = new View(parse(this.specification));
+                view.renderer('svg')
+                    .initialize(this.widgetDOM.nativeElement)
+                    .width(372)
+                    .hover()
+                    .run()
+                    .finalize();
+            };
+
+            // // Create Spec
+            // this.specification = this.globalVariableService.createVegaLiteSpec(
+            //     this.localWidget,
+            //     200,
+            //     300
+            // );
+
+            // console.warn('xx @END of ShowGraph specification', this.specification);
+
+            // // Render graph for Vega-Lite
+            // if (this.localWidget.visualGrammar == 'Vega-Lite') {
+            //     if (this.specification != undefined) {
+            //         let vegaSpecification = compile(this.specification).spec;
+            //         let view = new View(parse(vegaSpecification));
+
+            //         view.renderer('svg')
+            //             .initialize(this.domWidget.nativeElement)
+            //             .width(372)
+            //             .hover()
+            //             .run()
+            //             .finalize();
+            //     };
+            // };
+            // // Render graph for Vega
+            // if (this.localWidget.visualGrammar == 'Vega') {
+            //     if (this.localWidget.graphSpecification != undefined) {
+            //         let view = new View(parse(this.localWidget.graphSpecification));
+
+            //         view.renderer('svg')
+            //             .initialize(this.domWidget.nativeElement)
+            //             .width(372)
+            //             .hover()
+            //             .run()
+            //             .finalize();
+            //     };
+            // };            
         });
 
     }

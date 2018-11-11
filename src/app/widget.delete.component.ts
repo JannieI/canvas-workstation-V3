@@ -91,7 +91,6 @@ export class WidgetDeleteComponent implements OnInit {
         localWidget.containerBackgroundcolor = 'white';
         localWidget.containerBackgroundcolorName = 'white';
 
-
         // Render graph for Vega-Lite
         if (localWidget.visualGrammar == 'Vega-Lite') {
 
