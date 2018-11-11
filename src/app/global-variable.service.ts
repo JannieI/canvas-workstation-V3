@@ -11386,6 +11386,13 @@ export class GlobalVariableService {
         width: number = 0,
         showSpecificGraphLayer: boolean = false,
         specificLayerToShow: number = 0): dl.spec.TopLevelExtentedSpec {
+        // Sleep for a while
+        if (this.sessionDebugging) {
+            let widgetID: number = widget.id;
+            console.log('%c    Global-Variables createVegaLiteSpec ...',
+                "color: black; background: lightgray; font-size: 10px", {widgetID});
+        };
+
         let specification: any = {
             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
             "description": "A simple bar chart with embedded data.",

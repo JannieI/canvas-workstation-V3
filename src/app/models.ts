@@ -1215,6 +1215,8 @@ export class Widget {
     annotation: string;                 // Optional annotation per W, deeper info about W
     annotationLastUserID: string;       // Last UserID who updated this annotation
     annotationLastUpdated: Date;        // Last date-time this annotation was updated
+
+    // Visual Grammer / plotting library
     visualGrammar: string;              // Gramar for graphs, default = Vega
     version: number;                    // Version of visual grammar
 
