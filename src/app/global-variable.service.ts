@@ -11424,7 +11424,7 @@ export class GlobalVariableService {
 
                 specification['data'][0]['values'] = xDataValues;
 
-                return;
+                return specification;
             };
             if (widget.graphLayers[0].graphMark == 'wordCloud') {
                 let xColumnValues: any = widget.graphData.map(
@@ -11432,11 +11432,11 @@ export class GlobalVariableService {
                 );
                 specification['data'][0]['values'] = xColumnValues;
 
-                return;
+                return specification;
             };
-            if (widget.graphLayers[0].graphMark == 'network') {
+            if (widget.graphLayers[0].graphMark == 'networkCircle') {
 
-                return;
+                return specification;
             };
 
         };
@@ -11508,15 +11508,15 @@ export class GlobalVariableService {
 
                 // specification['data'][0]['values'] = xDataValues;
 
-                return;
+                return specification;
             };
             if (widget.graphLayers[0].graphMark == 'marginalHistogram') {
 
-                return;
+                return specification;
             };
             if (widget.graphLayers[0].graphMark == 'geoshape') {
 
-                return;
+                return specification;
             };
         };
     

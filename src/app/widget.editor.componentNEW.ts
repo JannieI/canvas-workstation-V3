@@ -1520,6 +1520,8 @@ export interface dataSchemaInterface {
         if (this.localWidget.visualGrammar == 'Vega') {
 
             // Create specification
+            this.localWidget.graphLayers[0].graphSpecification = 
+                this.widgetGraphs[widgetGraphIndex].specification;
             this.specification = this.globalVariableService.createVegaSpec(
                 this.localWidget,
                 this.localWidget.graphHeight,
