@@ -289,7 +289,19 @@ export class DataDirectFileCSVComponent implements OnInit {
             this.errorMessage = 'Please select a file using the Browse button';
             return;
         };
+        this.fields.forEach(f => {
+            if (f.indexOf(' ') >= 0) {
+                if (this.errorMessage == '') {
+                    this.errorMessage = "Field Name '" + f + "' containts a space.  Please correct and reload.";
+                } else {
+                    this.errorMessage = "More than one field Name contain spaces.  Please correct and reload."
+                };
+            };
+        })
 
+        if (this.errorMessage != '') {
+            return;
+        };
         // Construct DS and add to DB
         let today: Date = new Date();
 
@@ -452,9 +464,6 @@ export class DataDirectFileCSVComponent implements OnInit {
                 this.savedMessage = 'Datasource created';
             });
         };
-
-
-
 
     }
 }
