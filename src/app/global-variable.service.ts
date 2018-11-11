@@ -11437,6 +11437,10 @@ export class GlobalVariableService {
 
         };
 
+        
+        // NB - the rest of the Code deals ONLY with the STANDARD visualGrammarType
+        
+        return;
     }
 
     createVegaLiteSpec(
@@ -11481,9 +11485,38 @@ export class GlobalVariableService {
             }
         };
 
-        waterfall
-        marginalHistogram
-        geoshape
+        // Custom visualGrammarType - RETURN after each one
+        if (widget.visualGrammarType.toLowerCase() == 'custom') {
+            specification = widget.graphLayers[0].graphSpecification;
+
+            // Replace the data in the spec - each custom one is different
+            if (widget.graphLayers[0].graphMark == 'waterfall') {
+                // let xDataValues: any = widget.graphData.map(x => {
+                //     let obj: any = {
+                //         "id": x[widget.graphLayers[0].graphXfield],
+                //         "field": x[widget.graphLayers[0].graphYfield]
+                //     };
+                //     return obj;
+                // });
+
+                // specification['data'][0]['values'] = xDataValues;
+
+                return;
+            };
+            if (widget.graphLayers[0].graphMark == 'marginalHistogram') {
+
+                return;
+            };
+            if (widget.graphLayers[0].graphMark == 'geoshape') {
+
+                return;
+            };
+        };
+    
+        
+        // NB - the rest of the Code deals ONLY with the STANDARD visualGrammarType
+        
+        
 
         // Optional Sampling
         if (widget.sampleNumberRows != 0) {
