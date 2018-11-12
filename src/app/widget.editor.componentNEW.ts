@@ -4636,6 +4636,12 @@ export interface dataSchemaInterface {
     };
 
     exportAsXLSX():void {
+         // Export current Dataset to Excel file
+         this.globalFunctionService.printToConsole(this.constructor.name,'exportAsXLSX', '@Start');
+
+         // Reset
+         this.errorMessageEditor = '';
+ 
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
             ds => ds.datasourceID == this.selectedRowID
         );
