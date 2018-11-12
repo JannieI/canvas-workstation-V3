@@ -331,6 +331,7 @@
         ]
         ...
 
+
     Issue with auto file change detection:
         Consider that, when having large number of files, there is a Limit at INotify Watches on Linux. So increasing the watches limit to 512K for example can solve this.
 

@@ -139,6 +139,7 @@ This document describes items for later versions of Canvas.
         - Similtaneous update of LOCAL and GLOBAL vars!  Ie: app sends [widgets] to widget component, which is the local widgets.  Who and where are Global widgets synced !!!!????  Maybe use observables where the local ones just subscribe to the global ones.  Anyway, make this method standard across app.
         - Allow own profile pic upload! - currently hardcoded to JannieProfile pic ...
         - export to csv, Excel, etc
+            - for CSV export, tried https://www.npmjs.com/package/angular5-csv - worked with example, but seems old.
         - has currency
         - consider Excel-like format => many users can use it already
         - data bars inside text values
@@ -1078,7 +1079,7 @@ This document describes items for later versions of Canvas.
 
     PDF / IMAGE:
     ------------
-    - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF.
+    - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF.  Works but messes up the html - probably Angular and Clarity that cause it.  Tried canvas2html - does not seem to work too well either.
     - See: https://stackoverflow.com/questions/14552112/html-to-pdf-with-node-js
     - also, SVG-> PDF see http://svgdiscovery.com/C/svg-print-save-PDF.htm
         Rather: https://stackoverflow.com/questions/38996376/generate-pdf-file-from-html-using-angular2-typescript,  or  https://stackoverflow.com/questions/42900319/how-to-convert-html-to-pdf-in-angular2  or  https://www.npmjs.com/package/jspdf
