@@ -191,7 +191,16 @@ import { GlobalVariableService }      from './global-variable.service';
         this.selectedDatasourceID = id;
 
         // Get fields in this DS
-        this.dataFields = this.currentDatasources[index].dataFields;
+        this.dataFields = this.currentDatasources[index].dataFields
+            .sort( (obj1,obj2) => {
+                if (obj1 < obj2) {
+                    return -1;
+                };
+                if (obj1 > obj2) {
+                    return 1;
+                };
+                return 0;
+            });
         this.dataFieldTypes = this.currentDatasources[index].dataFieldTypes;
 
     }
