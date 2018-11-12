@@ -469,7 +469,7 @@ export class StatusbarComponent {
         let widgetCount: number = 0;
         let firstDashboardID: number = null;
         this.globalVariableService.widgets.forEach(w => {
-            if(w.hyperlinkDashboardTabID == 
+            if(w.hyperlinkDashboardTabID ==
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID) {
                     widgetCount = widgetCount + 1;
                     if (firstDashboardID == null) {

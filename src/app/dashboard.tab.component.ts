@@ -59,6 +59,7 @@ export class DashboardTabComponent {
     colorName: string = 'Black';          // Name of CSS color of T
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
+    displayOrder: number;
     dashboardID: number;                  // FK to DashboardID to which widget belongs
     description: string = '';             // T description
     errorMessageText: string = '';
@@ -93,6 +94,8 @@ export class DashboardTabComponent {
                 this.color = this.globalVariableService.currentDashboardTabs[tabIndex].color;
                 this.colorName = this.globalVariableService.currentDashboardTabs[tabIndex]
                     .colorName;
+                this.displayOrder = this.globalVariableService.currentDashboardTabs[tabIndex]
+                    .displayOrder;
             };
         };
 
