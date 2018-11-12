@@ -152,6 +152,7 @@ import { PipeFilterDSType }                     from './pipe.filter.component';
 import { AuthGuard }                  from './authguard.service';
 import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService }      from './global-function.service';
+import { ExcelService }               from './excel.service';
 
 // Testing
 import { DelayDirective }             from './test.delay.directive';
@@ -308,6 +309,7 @@ import { StatusbarComponent }         from './statusbar.component';
         AuthGuard,
         GlobalVariableService,
         GlobalFunctionService,
+        ExcelService,
 
     ],
     bootstrap: [AppComponent]
