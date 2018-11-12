@@ -4621,12 +4621,12 @@ export class AppComponent implements OnInit {
         let localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
         // Rescale and limit amount of detail on the graph
-        localWidget.containerLeft = 50;
-        localWidget.containerTop = 50;
-        localWidget.containerHeight = 530;
-        localWidget.graphHeight = 500;
-        localWidget.containerWidth = 600;
-        localWidget.graphWidth = 550;
+        localWidget.containerLeft = 20;
+        localWidget.containerTop = 20;
+        localWidget.containerHeight = 450;
+        localWidget.graphHeight = 430;
+        localWidget.containerWidth = 540;
+        localWidget.graphWidth = 490;
         localWidget.containerBoxshadow = 'none';
         localWidget.containerBorder = 'none';
         localWidget.isSelected = false;
