@@ -126,8 +126,6 @@ export class WidgetSingleComponent {
                 .run()
                 .finalize();
         };
-
-        console.log('TEST refreshWidget end')
     }
 
     clickSingleWidget(index: number, id: number) {

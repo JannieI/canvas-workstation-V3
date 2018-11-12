@@ -4812,6 +4812,7 @@
     [style.border]="showWidgetFullScreenBorder"
     [style.height.%]="showWidgetFullScreenHeight"
     [style.width.%]="showWidgetFullScreenWidth"
+    [hidden]="!showWidgetFullScreen"
     >
     <div class="widgetFullScreenClose"
         (click)="clickCloseFullScreen()"
@@ -4824,7 +4825,14 @@
         >
         {{ showWidgetFullScreenCopy }}
     </button>
-    <div class="widgetFullScreenGraph" #widgetFullDOM></div>
+    <div class="widgetFullScreenGraph" 
+        [style.border]="showWidgetFullScreenBorder"
+        [style.height.%]="showWidgetFullScreenHeight"
+        [style.width.%]="showWidgetFullScreenWidth"
+        #widgetFullDOM
+        [hidden]="!showWidgetFullScreen"
+        >
+    </div>
 </div>
 
 

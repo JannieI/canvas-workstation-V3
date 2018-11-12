@@ -46,6 +46,7 @@ import { WebSocketSubject }           from 'rxjs/webSocket';
 
 // Dexie
 import Dexie from 'dexie';
+import { AnimationStyleMetadata } from '@angular/animations';
 
 class CanvasAppDatabase extends Dexie {
     // Declare implicit table properties.
@@ -4633,16 +4634,60 @@ export class AppComponent implements OnInit {
         localWidget.containerBackgroundcolor = 'white';
         localWidget.containerBackgroundcolorName = 'white';
 
-        let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
+        // let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
 
-        let specification = compile(definition).spec;
-        this.view = new View(parse(specification));
+        // let specification = compile(definition).spec;
+        // this.view = new View(parse(specification));
 
-        this.view.renderer('svg')
-            .initialize(this.widgetFullDOM.nativeElement)
-            .hover()
-            .run()
-            .finalize();
+        // this.view.renderer('svg')
+        //     .initialize(this.widgetFullDOM.nativeElement)
+        //     .hover()
+        //     .run()
+        //     .finalize();
+
+
+        // Render graph for Vega-Lite
+        if (localWidget.visualGrammar == 'Vega-Lite') {
+
+            // Create specification
+            let specification: any = this.globalVariableService.createVegaLiteSpec(
+                localWidget,
+                localWidget.graphHeight,
+                localWidget.graphWidth
+            );
+
+            // Render in DOM
+            let vegaSpecification = compile(specification).spec;
+            let view = new View(parse(vegaSpecification));
+
+            view.renderer('svg')
+                .initialize(this.widgetFullDOM.nativeElement)
+                .width(372)
+                .hover()
+                .run()
+                .finalize();
+        };
+
+        // Render graph for Vega
+        if (localWidget.visualGrammar == 'Vega') {
+
+            // Create specification
+            let specification: any = this.globalVariableService.createVegaSpec(
+                localWidget,
+                localWidget.graphHeight,
+                localWidget.graphWidth
+            );
+
+            // Render in DOM
+            let view = new View(parse(specification));
+            view.renderer('svg')
+                .initialize(this.widgetFullDOM.nativeElement)
+                .width(372)
+                .hover()
+                .run()
+                .finalize();
+        };
+
     }
 
     clickMenuWidgetHyperlinks() {
@@ -8482,14 +8527,98 @@ export class AppComponent implements OnInit {
         this.showWidgetFullScreenBorder = '';
         this.showWidgetFullScreenX = '';
         this.showWidgetFullScreenCopy = '';
+        // this.showWidgetFullScreen = false;
 
-        this.view.renderer('svg')
-            .initialize(this.widgetFullDOM.nativeElement)
-            .hover()
-            .run()
-            .width(0)
-            .height(0)
-            .finalize();
+        // this.view.renderer('svg')
+        //     .initialize(this.widgetFullDOM.nativeElement)
+        //     .hover()
+        //     .run()
+        //     .width(0)
+        //     .height(0)
+        //     .finalize();
+
+
+        // let localWidget = Object.assign({}, this.selectedWidget);
+        let localWidget: Widget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+        // Rescale and limit amount of detail on the graph
+        localWidget.containerLeft = 1;
+        localWidget.containerTop = 1;
+        localWidget.containerHeight = 1;
+        localWidget.graphHeight = 1;
+        localWidget.containerWidth = 1;
+        localWidget.graphWidth = 1;
+        localWidget.containerBoxshadow = 'none';
+        localWidget.containerBorder = 'none';
+        localWidget.isSelected = false;
+        localWidget.containerBorder = '';
+        localWidget.containerBackgroundcolor = 'white';
+        localWidget.containerBackgroundcolorName = 'white';
+        localWidget.graphLayers = localWidget.graphLayers.slice(0, 1); // Remove other layers
+        localWidget.graphLayers[0].graphXfield = '';
+        localWidget.graphLayers[0].graphX2Field = '';
+        localWidget.graphLayers[0].graphYfield = '';
+        localWidget.graphLayers[0].graphX2Field = '';
+        localWidget.graphLayers[0].graphY2Field = '';
+        localWidget.graphLayers[0].graphRowField = '';
+        localWidget.graphLayers[0].graphColumnField = '';
+        localWidget.graphLayers[0].graphProjectionFieldLatitude = '';
+        localWidget.graphLayers[0].graphProjectionFieldLongitude = '';
+        localWidget.graphLayers[0].graphMark = 'circle';
+
+        // let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
+
+        // let specification = compile(definition).spec;
+        // this.view = new View(parse(specification));
+
+        // this.view.renderer('svg')
+        //     .initialize(this.widgetFullDOM.nativeElement)
+        //     .hover()
+        //     .run()
+        //     .finalize();
+
+        // TODO - this should be done more efficiently, but simply clearing the SVG object
+        // Render graph for Vega-Lite
+        if (localWidget.visualGrammar == 'Vega-Lite') {
+
+            // Create specification
+            let specification: any = this.globalVariableService.createVegaLiteSpec(
+                localWidget,
+                localWidget.graphHeight,
+                localWidget.graphWidth
+            );
+
+            // Render in DOM
+            let vegaSpecification = compile(specification).spec;
+            let view = new View(parse(vegaSpecification));
+
+            view.renderer('svg')
+                .initialize(this.widgetFullDOM.nativeElement)
+                .width(1)
+                .hover()
+                .run()
+                .finalize();
+        };
+
+        // Render graph for Vega
+        if (localWidget.visualGrammar == 'Vega') {
+
+            // Create specification
+            let specification: any = this.globalVariableService.createVegaSpec(
+                localWidget,
+                localWidget.graphHeight,
+                localWidget.graphWidth
+            );
+
+            // Render in DOM
+            let view = new View(parse(specification));
+            view.renderer('svg')
+                .initialize(this.widgetFullDOM.nativeElement)
+                .width(1)
+                .hover()
+                .run()
+                .finalize();
+        };        
     }
 
     actionmenuWidgetDescription(ev: MouseEvent, index: number, id: number) {
