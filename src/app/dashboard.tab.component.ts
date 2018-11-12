@@ -272,7 +272,7 @@ export class DashboardTabComponent {
                     .currentDashboardID,
                 name: this.name,
                 description: this.description,
-                displayOrder: 0,
+                displayOrder: this.displayOrder,
                 backgroundColor: this.backgroundColor,
                 backgroundColorName: this.backgroundColorName,
                 color: this.color,
