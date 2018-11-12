@@ -166,6 +166,14 @@
                             Cancel
                         </button>
                     </div>
+                    <div class="datasourceMainButtonExportToExcel">
+                        <button *ngIf="showPreview"
+                            class="btn btn-sm btn-secondary"
+                            (click)="exportAsXLSX()"
+                            >
+                            To Excel
+                        </button>
+                    </div>
                     <div class="datasourceMainButtonContinue">
                         <button *ngIf="showPreview"
                             class="btn btn-sm btn-primary"
@@ -4116,14 +4124,6 @@
                             (click)="clickClose()"
                             >
                             Cancel
-                        </button>
-                    </div>
-                    <div class="editorButtonExportToExcel">
-                        <button *ngIf="showPreview"
-                            class="btn btn-sm btn-secondary"
-                            (click)="exportAsXLSX()"
-                            >
-                            To Excel
                         </button>
                     </div>
                     <div class="editorButtonSave">

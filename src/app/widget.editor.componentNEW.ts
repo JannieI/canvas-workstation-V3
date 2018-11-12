@@ -4646,6 +4646,7 @@ export interface dataSchemaInterface {
             ds => ds.datasourceID == this.selectedRowID
         );
         this.excelService.exportAsExcelFile(this.globalVariableService
-            .currentDatasets[dataSetIndex].data, 'sample');
+            .currentDatasets[dataSetIndex].data, this.globalVariableService
+            .currentDatasets[dataSetIndex].name);
     }
 }

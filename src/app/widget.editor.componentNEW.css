@@ -222,13 +222,19 @@ clr-dg-cell {
         }
 
         .datasourceMainButtonCancel {
+            grid-column-start: 35;
+            /* autoprefixer: off */
+            grid-column-end: 37;
+            grid-row-start: 26;
+            grid-row-end: 27;
+        }
+        .datasourceMainButtonExportToExcel {
             grid-column-start: 40;
             /* autoprefixer: off */
             grid-column-end: 42;
             grid-row-start: 26;
             grid-row-end: 27;
         }
-
         .datasourceMainButtonContinue {
             grid-column-start: 45;
             /* autoprefixer: off */
@@ -2902,14 +2908,6 @@ clr-dg-cell {
             text-align: left;
         }
         .editorButtonCancel {
-            grid-column-start: 36;
-            /* autoprefixer: off */
-            grid-column-end: 38;
-            grid-row-start: 26;
-            grid-row-end: 27;
-            text-align: left;
-        }
-        .editorButtonExportToExcel {
             grid-column-start: 41;
             /* autoprefixer: off */
             grid-column-end: 43;
