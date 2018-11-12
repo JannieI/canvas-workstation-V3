@@ -2920,7 +2920,7 @@ export interface dataSchemaInterface {
                 ds => ds.datasourceID == datasourceID
             );
             if (dataSetIndex < 0) {
-                this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
+                this.errorMessage = 'The Data not yet available ...';
                 return;
             };
 
@@ -4645,8 +4645,9 @@ export interface dataSchemaInterface {
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
             ds => ds.datasourceID == this.selectedRowID
         );
-        this.excelService.exportAsExcelFile(this.globalVariableService
-            .currentDatasets[dataSetIndex].data, this.globalVariableService
-            .currentDatasets[dataSetIndex].name);
+        this.excelService.exportAsExcelFile(
+            this.globalVariableService.currentDatasets[dataSetIndex].data, 
+            this.selectedDSName?  this.selectedDSName  :  'Data'
+        );
     }
 }
