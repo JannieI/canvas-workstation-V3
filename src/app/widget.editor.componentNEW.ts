@@ -24,10 +24,11 @@ import { WidgetGraph }                from './models';
 import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
-// Functions
+// Functions, 3rd Party
 import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
+import { ExcelService }               from './excel.service';
 
 const graphHeight: number = 260;
 const graphWidth: number = 372;
@@ -970,6 +971,7 @@ export interface dataSchemaInterface {
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private excelService: ExcelService,
     ) {}
 
     ngOnInit() {
@@ -4632,4 +4634,12 @@ export interface dataSchemaInterface {
             wg => wg.visualGrammar==this.localWidget.visualGrammar
         );
     };
+
+    exportAsXLSX():void {
+        let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+            ds => ds.datasourceID == this.selectedRowID
+        );
+        this.excelService.exportAsExcelFile(this.globalVariableService
+            .currentDatasets[dataSetIndex].data, 'sample');
+    }
 }
