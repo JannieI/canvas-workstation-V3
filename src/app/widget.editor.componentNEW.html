@@ -82,6 +82,15 @@
                                     <span *ngIf="row.nrWidgets > 0"
                                         class="badge badge-5">{{row.nrWidgets}}
                                     </span>
+                                    <clr-icon *ngIf="row.datasourceFilterForThisDashboard"
+                                        shape="info"
+                                        size="12"
+                                        class="is-solid"
+                                        clrSignpostTrigger
+                                        style="float: right;"
+                                        >
+                                    </clr-icon>
+                                    
                                 </clr-dg-cell>
                             </clr-dg-row>
 
