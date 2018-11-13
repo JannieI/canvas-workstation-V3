@@ -459,7 +459,7 @@ export class DataCachingTable {
 
 export class DatasourceFilter {
     id: number;                         // Unique ID
-    datasourceID: number;               // FK to Datasource
+    dashboardID: number;                // FK to Dashboard
     sequence: number;                   // Sequence Nr - for LATER user
     filterFieldName: string;            // Name (text) of field
     filterOperator: string;             // ie Equal, Less Than, etc
@@ -486,7 +486,8 @@ export class Datasource {
     dataFieldLengths: number[];         // Max field lengths, same order as dataFields
 
 	// Parameters and Filters
-    dsFilters?: string[];
+    datasourceFilters?: DatasourceFilter[];  // Optional Array of DS-Filters per Dashboard
+
     // Access Type
     accessType: string;                 // How to access D: Private, Public, AccessList
 
