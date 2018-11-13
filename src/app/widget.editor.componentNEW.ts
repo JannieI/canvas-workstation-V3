@@ -2921,7 +2921,7 @@ export interface dataSchemaInterface {
                 ds => ds.datasourceID == datasourceID
             );
             if (dataSetIndex < 0) {
-                this.errorMessage = 'The Data not yet available ...';
+                this.errorMessage = 'The Data not yet available (click again to retry) ...';
                 return;
             };
 
@@ -2953,7 +2953,7 @@ export interface dataSchemaInterface {
         // Close the DS Filter Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSfilterClose', '@Start');
 
-        this.showDSfilterArea = false;
+         this.showDSfilterArea = false;
     }
 
     clickContinue() {
