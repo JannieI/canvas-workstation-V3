@@ -2518,7 +2518,7 @@ clr-dg-cell {
             overflow-x: scroll;
         }
 
-        .editorFilterButton {
+        .editorWidgetFilterButton {
             grid-column-start: 34;
             /* autoprefixer: off */
             grid-column-end: 36;
@@ -2526,7 +2526,7 @@ clr-dg-cell {
             grid-row-end: 22;
             text-align: left;
         }
-            .editorFilterArea {
+            .editorWidgetFilterArea {
                 background-color: rgb(232, 228, 247);
                 border: 1px solid black;
                 box-shadow: 2px 2px lightgray;
@@ -2543,12 +2543,12 @@ clr-dg-cell {
                 text-align: left;
                 z-index: 101;
             }
-                .editorFilterHeader {
+                .editorWidgetFilterHeader {
                     font-size: 0.65rem;
                     margin: 6px;
                     text-align: center;
                 }
-                .editorFilterFieldTitle {
+                .editorWidgetFilterFieldTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
@@ -2556,7 +2556,7 @@ clr-dg-cell {
                     text-align: left;
                     width: 64px;
                 }
-                .editorFilterField {
+                .editorWidgetFilterField {
                     background-color: white;
                     border: 1px solid steelblue;
                     border-radius: 5px;
@@ -2566,14 +2566,14 @@ clr-dg-cell {
                     margin: 3px;
                     width: 200px;
                 }
-                .editorFilterTimeUnitTitle {
+                .editorWidgetFilterTimeUnitTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 14px;
                     width: 50px;
                 }
-                .editorFilterTimeUnit {
+                .editorWidgetFilterTimeUnit {
                     background-color: white;
                     border: 1px solid steelblue;
                     border-radius: 5px;
@@ -2584,14 +2584,14 @@ clr-dg-cell {
                     width: 68px;
                 }
 
-                .editorFilterOperatorTitle {
+                .editorWidgetFilterOperatorTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 34px;
                     width: 64px;
                 }
-                .editorFilterOperator {
+                .editorWidgetFilterOperator {
                     background-color: white;
                     border: 1px solid steelblue;
                     border-radius: 5px;
@@ -2602,14 +2602,14 @@ clr-dg-cell {
                     width: 125px;
                 }
 
-                .editorFilterValueTitle {
+                .editorWidgetFilterValueTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 14px;
                     width: 64px;
                 }
-                .editorFilterValue {
+                .editorWidgetFilterValue {
                     background-color: white;
                     border: 1px solid steelblue;
                     border-radius: 5px;
@@ -2620,14 +2620,14 @@ clr-dg-cell {
                     width: 200px;
                 }
 
-                .editorFilterValueFromTitle {
+                .editorWidgetFilterValueFromTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 14px;
                     width: 64px;
                 }
-                .editorFilterValueFrom {
+                .editorWidgetFilterValueFrom {
                     background-color: white;
                     border: 1px solid steelblue;
                     border-radius: 5px;
@@ -2638,14 +2638,14 @@ clr-dg-cell {
                     width: 200px;
                 }
 
-                .editorFilterValueToTitle {
+                .editorWidgetFilterValueToTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 44px;
                     width: 64px;
                 }
-                .editorFilterValueTo {
+                .editorWidgetFilterValueTo {
                     background-color: white;
                     border: 1px solid steelblue;
                     border-radius: 5px;
@@ -2656,19 +2656,19 @@ clr-dg-cell {
                     width: 200px;
                 }
 
-                .editorFilterErrorMessage {
+                .editorWidgetFilterErrorMessage {
                     color: red;
                     font-size: 0.54rem;
                     margin: 0px;
                     padding: 0px;
                     width: 40%;
                 }
-                .editorFilterCloseButton {
+                .editorWidgetFilterCloseButton {
                     margin-left: 60px;
                     right: 12px;
                 }
 
-                .editorFilterGrid {
+                .editorWidgetFilterGrid {
                     font-size: 0.5rem;
                     height: 60px !important;
                     line-height: 0.8rem;

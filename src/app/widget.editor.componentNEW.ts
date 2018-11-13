@@ -293,8 +293,9 @@ export interface dataSchemaInterface {
     showConditionAreaProperties: boolean = false;
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
-    showDetailDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
+    showDetailDeleteIcon: boolean = false;
+    showDSfilter: boolean = false;
     showFieldTitleProperties: boolean = false;
     showFieldXPropertiesInfo: boolean = false;
     showFieldXPropertiesField: boolean = false;
@@ -2935,6 +2936,17 @@ export interface dataSchemaInterface {
             this.showPreview = true;
 
         });
+    }
+
+    clickDSfilter(index, datasourceID: number) {
+        // Show the DS Filter icon for a DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSfilter', '@Start');
+
+        this.selectedRowIndex = index;
+        let arrayIndex: number = this.localDatasources.findIndex(ds => ds.id == datasourceID);
+        this.selectedRowID = datasourceID;
+
+        this.showDSfilter = true;
     }
 
     clickContinue() {

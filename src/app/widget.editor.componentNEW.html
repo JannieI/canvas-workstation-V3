@@ -82,12 +82,11 @@
                                     <span *ngIf="row.nrWidgets > 0"
                                         class="badge badge-5">{{row.nrWidgets}}
                                     </span>
-                                    <clr-icon *ngIf="row.datasourceFilterForThisDashboard"
-                                        shape="info"
-                                        size="12"
-                                        class="is-solid"
-                                        clrSignpostTrigger
-                                        style="float: right;"
+                                    <clr-icon *ngIf="!row.datasourceFilterForThisDashboard"
+                                        shape="filter-grid"
+                                        size="20"
+                                        style="color: blue; float: right;"
+                                        (click)="clickDSfilter(i, row.id)"
                                         >
                                     </clr-icon>
                                     
@@ -3698,8 +3697,8 @@
 
 
 
-                    <!-- FILTER -->
-                    <div class="editorFilterButton" *ngIf="!showWidgetEditorLite">
+                    <!-- WIDGET FILTER -->
+                    <div class="editorWidgetFilterButton" *ngIf="!showWidgetEditorLite">
                         <button
                             style="border: 1px solid transparent; color: gray;"
                             class="btn btn-sm btn-secondary"
@@ -3719,10 +3718,10 @@
                         </button>
                     </div>
 
-                    <div class="editorFilterArea" *ngIf="showFilterAreaProperties"
+                    <div class="editorWidgetFilterArea" *ngIf="showFilterAreaProperties"
                         style="user-select: none;"
                         >
-                        <div class="editorFilterHeader">
+                        <div class="editorWidgetFilterHeader">
                             <b>Filters</b>
                         </div>
                         <div style="padding: 8px;">
@@ -3741,7 +3740,7 @@
                             <div>
                                 Field:
                             </div>
-                            <div class="select editorFilterField"
+                            <div class="select editorWidgetFilterField"
                                 title="Select the field to filter on"
                                 >
                                 <select id="selects_3" *ngIf="dataSchema"
@@ -3755,10 +3754,10 @@
                                 </select>
                             </div>
 
-                            <div class="editorFilterTimeUnitTitle">
+                            <div class="editorWidgetFilterTimeUnitTitle">
                                 TimeUnit:
                             </div>
-                            <div class="select editorFilterTimeUnit"
+                            <div class="select editorWidgetFilterTimeUnit"
                                 title="Select the operator for the filter"
                                 >
                                 <select id="selects_3"
@@ -3772,10 +3771,10 @@
                                 </select>
                             </div>
 
-                            <div class="editorFilterOperatorTitle">
+                            <div class="editorWidgetFilterOperatorTitle">
                                 Operator:
                             </div>
-                            <div class="select editorFilterOperator"
+                            <div class="select editorWidgetFilterOperator"
                                 title="Select the operator for the filter"
                                 >
                                 <select id="selects_3"
@@ -3797,11 +3796,11 @@
                             </div>
                         </div>
 
-                        <div class="editorFilterValueTitle" *ngIf="filterOperator!='Range'">
+                        <div class="editorWidgetFilterValueTitle" *ngIf="filterOperator!='Range'">
                             Value:
                         </div>
 
-                        <div class="editorFilterValue" *ngIf="filterOperator!='Range'">
+                        <div class="editorWidgetFilterValue" *ngIf="filterOperator!='Range'">
                             <input type="text"
                                 [(ngModel)]="filterValue"
                                 name="filterValue"
@@ -3811,10 +3810,10 @@
                         </div>
 
                         <div *ngIf="filterOperator=='Range'">
-                            <div class="editorFilterValueFromTitle">
+                            <div class="editorWidgetFilterValueFromTitle">
                                 From:
                             </div>
-                            <div class="editorFilterValueFrom">
+                            <div class="editorWidgetFilterValueFrom">
                                 <input type="text"
                                     [(ngModel)]="filterValueFrom"
                                     name="filterValueFrom"
@@ -3822,10 +3821,10 @@
                                     title="Enter a From value for the filter for the Range"
                                     >
                             </div>
-                            <div class="editorFilterValueToTitle">
+                            <div class="editorWidgetFilterValueToTitle">
                                 To:
                             </div>
-                            <div class="editorFilterValueTo">
+                            <div class="editorWidgetFilterValueTo">
                                 <input type="text"
                                     [(ngModel)]="filterValueTo"
                                     name="filterValueTo"
@@ -3850,16 +3849,16 @@
                                 </button>
                             </div>
 
-                            <button class="btn btn-secondary editorFilterCloseButton"
+                            <button class="btn btn-secondary editorWidgetFilterCloseButton"
                                 (click)="clickFilterClose()">
                                 Close
                             </button>
-                            <span class="editorFilterErrorMessage">
+                            <span class="editorWidgetFilterErrorMessage">
                                 {{ filterErrorMessage }}
                             </span>
                         </div>
 
-                        <div class="editorFilterGrid">
+                        <div class="editorWidgetFilterGrid">
                             <clr-datagrid class="datagrid-compact"
                                 style="height: 160px !important;"
                                 >
