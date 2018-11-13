@@ -38,11 +38,15 @@
                 <!-- DATASOURCES -->
                 <div class="datasourceMain" *ngIf="showDatasourceMain">
 
+
+                    <!-- DS HELP -->
                     <div class="datasourceMainHelp">
                         Select a <b>Datasources</b> on which a Widget must be created.  Details
                         about the datasource is shown on the right:
                     </div>
 
+
+                    <!-- DS TITLE -->
                     <div class="datasourceMainDescriptionTitle">
                         <b>Description:</b>
                     </div>
@@ -54,6 +58,8 @@
                         {{ errorMessage }}
                     </div>
 
+
+                    <!-- LIST OF DATASOURCES AREA -->
                     <div class="datasourceMainListTitle">
                         <b>Datasources:</b>
                     </div>
@@ -96,6 +102,206 @@
                         </clr-datagrid>
                     </div>
 
+
+                    <!-- DS-FILTER AREA -->
+                    <div class="editorWidgetFilterArea" *ngIf="showDSfilterArea"
+                        style="user-select: none;"
+                        >
+                        <div class="editorWidgetFilterHeader">
+                            <b>Filters</b>
+                        </div>
+                        <div style="padding: 8px;">
+                            <i>
+                                Filters are applied to the data before calculations, and before the
+                                graph is constructed.  Select the field to filter on, then the operator
+                                and type a Value(s).  Note: the values are case-sensitive, ie, Origin
+                                Equal "Europe".  Click <b>Add</b> to append the filter.  Filters can be
+                                de-activated (definition remains here, but the data is not filtered
+                                with it).  Click a filter to edit it.  Double click the Delete icon
+                                to delete a filter.
+                            </i>
+                        </div>
+
+                        <div class="editorWidgetFilterFieldTitle">
+                            <div>
+                                Field:
+                            </div>
+                            <div class="select editorWidgetFilterField"
+                                title="Select the field to filter on"
+                                >
+                                <select id="selects_3" *ngIf="dataSchema"
+                                    [(ngModel)]="filterFieldName"
+                                    (change)="filterFieldSelected($event)"
+                                    name="filterFieldName"
+                                    >
+                                    <option *ngFor="let row of dataSchema; let i = index">
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="editorWidgetFilterTimeUnitTitle">
+                                TimeUnit:
+                            </div>
+                            <div class="select editorWidgetFilterTimeUnit"
+                                title="Select the operator for the filter"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="filterTimeUnit"
+                                    (change)="filterTimeUnitSelected($event)"
+                                    name="filterTimeUnit"
+                                    >
+                                    <option>Year</option>
+                                    <option>Month</option>
+                                    <option>Day</option>
+                                </select>
+                            </div>
+
+                            <div class="editorWidgetFilterOperatorTitle">
+                                Operator:
+                            </div>
+                            <div class="select editorWidgetFilterOperator"
+                                title="Select the operator for the filter"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="filterOperator"
+                                    (change)="filterOperatorSelected($event)"
+                                    name="filterOperator"
+                                    >
+                                    <option>Less Than</option>
+                                    <option>Less Than Equal</option>
+                                    <option>Equal</option>
+                                    <option>Not Equal</option>
+                                    <option>Greater Than</option>
+                                    <option>Greater Than Equal</option>
+                                    <option>Range</option>
+                                    <option>One Of</option>
+                                    <option>Valid</option>
+                                    <option>Selection</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="editorWidgetFilterValueTitle" *ngIf="filterOperator!='Range'">
+                            Value:
+                        </div>
+
+                        <div class="editorWidgetFilterValue" *ngIf="filterOperator!='Range'">
+                            <input type="text"
+                                [(ngModel)]="filterValue"
+                                name="filterValue"
+                                placeholder="12 Japan  1,5  a,b,c  true feb"
+                                title="Enter a value for the filter.  Ranges use x,y for from,to"
+                                >
+                        </div>
+
+                        <div *ngIf="filterOperator=='Range'">
+                            <div class="editorWidgetFilterValueFromTitle">
+                                From:
+                            </div>
+                            <div class="editorWidgetFilterValueFrom">
+                                <input type="text"
+                                    [(ngModel)]="filterValueFrom"
+                                    name="filterValueFrom"
+                                    placeholder="12 Japan  1,5  a,b,c  true"
+                                    title="Enter a From value for the filter for the Range"
+                                    >
+                            </div>
+                            <div class="editorWidgetFilterValueToTitle">
+                                To:
+                            </div>
+                            <div class="editorWidgetFilterValueTo">
+                                <input type="text"
+                                    [(ngModel)]="filterValueTo"
+                                    name="filterValueTo"
+                                    placeholder="12 Japan  1,5  a,b,c  true"
+                                    title="Enter a To value for the filter for the Range"
+                                    >
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="btn-group btn-link">
+                                <button class="btn" (click)="clickFilterClear()">
+                                    Clear
+                                </button>
+                                <button class="btn" (click)="clickFilterAdd()">
+                                    <span *ngIf="filterID==-1">
+                                        Add
+                                    </span>
+                                    <span *ngIf="filterID!=-1">
+                                        Save
+                                    </span>
+                                </button>
+                            </div>
+
+                            <button class="btn btn-secondary editorWidgetFilterCloseButton"
+                                (click)="clickFilterClose()">
+                                Close
+                            </button>
+                            <span class="editorWidgetFilterErrorMessage">
+                                {{ filterErrorMessage }}
+                            </span>
+                        </div>
+
+                        <div class="editorWidgetFilterGrid">
+                            <clr-datagrid class="datagrid-compact"
+                                style="height: 160px !important;"
+                                >
+                                <clr-dg-column>FieldName</clr-dg-column>
+                                <clr-dg-column>TimeUnit</clr-dg-column>
+                                <clr-dg-column>Operator</clr-dg-column>
+                                <clr-dg-column>Value</clr-dg-column>
+                                <clr-dg-column>From</clr-dg-column>
+                                <clr-dg-column>To</clr-dg-column>
+                                <clr-dg-column>Active?</clr-dg-column>
+                                <clr-dg-column>Delete?</clr-dg-column>
+
+                                <clr-dg-row *clrDgItems="let row of localWidget.graphFilters; let i = index"
+                                    [style.background-color]="(i == selectedGraphFilterRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedGraphFilterRowIndex)? 'white' : 'gray'"
+                                    (click)="clickGraphFilterRowSelect(i, row.id)"
+                                    >
+                                    <clr-dg-cell>{{ row.filterFieldName }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterTimeUnit }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterOperator }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterValue }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterValueFrom }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterValueTo }}</clr-dg-cell>
+                                    <clr-dg-cell style="text-align: center !important;">
+                                        <span>
+                                            <clr-icon *ngIf="row.isActive"
+                                                shape="check"
+                                                size="12"
+                                                (dblclick)="dblClickFilterMakeInActive()"
+                                                >
+                                            </clr-icon>
+                                            <clr-icon *ngIf="!row.isActive"
+                                                shape="times"
+                                                size="12"
+                                                (dblclick)="dblClickFilterMakeActive(row.id)"
+                                                >
+                                            </clr-icon>
+                                        </span>
+                                    </clr-dg-cell>
+                                    <clr-dg-cell style="text-align: center !important;">
+                                        <span>
+                                            <clr-icon
+                                                shape="trash"
+                                                size="12"
+                                                (dblclick)="dblClickFilterDelete(row.id)"
+                                                >
+                                            </clr-icon>
+                                        </span>
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+
+                            </clr-datagrid>
+                        </div>
+
+                    </div>
+
+                    <!-- PREVIEW AREA -->
                     <div class="datasourceMainPreviewTitle">
                         <b>Preview:</b>
                     </div>
@@ -286,6 +492,8 @@
 
                     </div>
 
+
+                    <!-- CALCULATED AREA -->
                     <div class="editorCalculatedArea" *ngIf="showCalculatedAreaProperties">
                         <div class="editorCalculatedHeader">
                             <b>Calculated</b>
@@ -407,6 +615,7 @@
 
                     </div>
 
+                    <!-- CALCULATED HELP AREA -->
                     <div class="editorCalculatedHelpArea" *ngIf="showCalculatedHelp">
                         <div class="editorCalculatedHelpHeader">
                             <button type="button" class="btn btn-link editorCalculatedHelpButton"
@@ -3697,7 +3906,7 @@
 
 
 
-                    <!-- WIDGET FILTER -->
+                    <!-- WIDGET FILTER BUTTON -->
                     <div class="editorWidgetFilterButton" *ngIf="!showWidgetEditorLite">
                         <button
                             style="border: 1px solid transparent; color: gray;"
@@ -3718,6 +3927,7 @@
                         </button>
                     </div>
 
+                    <!-- WIDGET FILTER AREA -->
                     <div class="editorWidgetFilterArea" *ngIf="showFilterAreaProperties"
                         style="user-select: none;"
                         >
@@ -3736,7 +3946,7 @@
                             </i>
                         </div>
 
-                        <div style="user-select: none;">
+                        <div class="editorWidgetFilterFieldTitle">
                             <div>
                                 Field:
                             </div>

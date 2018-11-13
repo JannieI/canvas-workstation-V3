@@ -295,7 +295,7 @@ export interface dataSchemaInterface {
     showColumnDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
     showDetailDeleteIcon: boolean = false;
-    showDSfilter: boolean = false;
+    showDSfilterArea: boolean = false;
     showFieldTitleProperties: boolean = false;
     showFieldXPropertiesInfo: boolean = false;
     showFieldXPropertiesField: boolean = false;
@@ -2946,7 +2946,7 @@ export interface dataSchemaInterface {
         let arrayIndex: number = this.localDatasources.findIndex(ds => ds.id == datasourceID);
         this.selectedRowID = datasourceID;
 
-        this.showDSfilter = true;
+        this.showDSfilterArea = true;
     }
 
     clickContinue() {
