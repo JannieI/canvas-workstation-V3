@@ -487,6 +487,7 @@ export class Datasource {
 
 	// Parameters and Filters
     datasourceFilters?: DatasourceFilter[];  // Optional Array of DS-Filters per Dashboard
+    datasourceFilterForThisDashboard: boolean;  // @ RunTime, changes: true if THIS D has filters on THIS DS
 
     // Access Type
     accessType: string;                 // How to access D: Private, Public, AccessList

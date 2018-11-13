@@ -119,6 +119,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
                 datasourceFilters: [],
+                datasourceFilterForThisDashboard: false,
                 accessType: '',
                 cacheResultsOnServer: true,
                 unRefreshable: true,
@@ -503,6 +504,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             dataFieldTypes: dataFieldTypes,
             dataFieldLengths: dataFieldLengths,
             datasourceFilters: [],         // TODO - fix this
+            datasourceFilterForThisDashboard: false,
             accessType: this.selectedDatasource.accessType,
             cacheResultsOnServer: this.selectedDatasource.cacheResultsOnServer,
             unRefreshable: this.selectedDatasource.unRefreshable,
