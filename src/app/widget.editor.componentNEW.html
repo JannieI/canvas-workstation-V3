@@ -104,147 +104,22 @@
 
 
                     <!-- DS-FILTER AREA -->
-                    <div class="editorWidgetFilterArea" *ngIf="showDSfilterArea"
+                    <div class="datasourceMainDSFilterArea" *ngIf="showDSfilterArea"
                         style="user-select: none;"
                         >
-                        <div class="editorWidgetFilterHeader">
-                            <b>Filters</b>
+                        <div class="datasourceMainDSFilterHeader">
+                            <b>DS Filters</b>
                         </div>
                         <div style="padding: 8px;">
                             <i>
-                                Filters are applied to the data before calculations, and before the
-                                graph is constructed.  Select the field to filter on, then the operator
-                                and type a Value(s).  Note: the values are case-sensitive, ie, Origin
-                                Equal "Europe".  Click <b>Add</b> to append the filter.  Filters can be
-                                de-activated (definition remains here, but the data is not filtered
-                                with it).  Click a filter to edit it.  Double click the Delete icon
-                                to delete a filter.
+                                DS Filters are applied to the data that is extracted from the server,
+                                and affects ALL the Widgets in the current Dashboard. 
+                                DS Filters can be changes in the <b>Data -> Data Filters</b> menu
+                                option, provided that you have the necessary rights.
                             </i>
                         </div>
 
-                        <div class="editorWidgetFilterFieldTitle">
-                            <div>
-                                Field:
-                            </div>
-                            <div class="select editorWidgetFilterField"
-                                title="Select the field to filter on"
-                                >
-                                <select id="selects_3" *ngIf="dataSchema"
-                                    [(ngModel)]="filterFieldName"
-                                    (change)="filterFieldSelected($event)"
-                                    name="filterFieldName"
-                                    >
-                                    <option *ngFor="let row of dataSchema; let i = index">
-                                        {{ row.name }}
-                                    </option>
-                                </select>
-                            </div>
-
-                            <div class="editorWidgetFilterTimeUnitTitle">
-                                TimeUnit:
-                            </div>
-                            <div class="select editorWidgetFilterTimeUnit"
-                                title="Select the operator for the filter"
-                                >
-                                <select id="selects_3"
-                                    [(ngModel)]="filterTimeUnit"
-                                    (change)="filterTimeUnitSelected($event)"
-                                    name="filterTimeUnit"
-                                    >
-                                    <option>Year</option>
-                                    <option>Month</option>
-                                    <option>Day</option>
-                                </select>
-                            </div>
-
-                            <div class="editorWidgetFilterOperatorTitle">
-                                Operator:
-                            </div>
-                            <div class="select editorWidgetFilterOperator"
-                                title="Select the operator for the filter"
-                                >
-                                <select id="selects_3"
-                                    [(ngModel)]="filterOperator"
-                                    (change)="filterOperatorSelected($event)"
-                                    name="filterOperator"
-                                    >
-                                    <option>Less Than</option>
-                                    <option>Less Than Equal</option>
-                                    <option>Equal</option>
-                                    <option>Not Equal</option>
-                                    <option>Greater Than</option>
-                                    <option>Greater Than Equal</option>
-                                    <option>Range</option>
-                                    <option>One Of</option>
-                                    <option>Valid</option>
-                                    <option>Selection</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="editorWidgetFilterValueTitle" *ngIf="filterOperator!='Range'">
-                            Value:
-                        </div>
-
-                        <div class="editorWidgetFilterValue" *ngIf="filterOperator!='Range'">
-                            <input type="text"
-                                [(ngModel)]="filterValue"
-                                name="filterValue"
-                                placeholder="12 Japan  1,5  a,b,c  true feb"
-                                title="Enter a value for the filter.  Ranges use x,y for from,to"
-                                >
-                        </div>
-
-                        <div *ngIf="filterOperator=='Range'">
-                            <div class="editorWidgetFilterValueFromTitle">
-                                From:
-                            </div>
-                            <div class="editorWidgetFilterValueFrom">
-                                <input type="text"
-                                    [(ngModel)]="filterValueFrom"
-                                    name="filterValueFrom"
-                                    placeholder="12 Japan  1,5  a,b,c  true"
-                                    title="Enter a From value for the filter for the Range"
-                                    >
-                            </div>
-                            <div class="editorWidgetFilterValueToTitle">
-                                To:
-                            </div>
-                            <div class="editorWidgetFilterValueTo">
-                                <input type="text"
-                                    [(ngModel)]="filterValueTo"
-                                    name="filterValueTo"
-                                    placeholder="12 Japan  1,5  a,b,c  true"
-                                    title="Enter a To value for the filter for the Range"
-                                    >
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="btn-group btn-link">
-                                <button class="btn" (click)="clickFilterClear()">
-                                    Clear
-                                </button>
-                                <button class="btn" (click)="clickFilterAdd()">
-                                    <span *ngIf="filterID==-1">
-                                        Add
-                                    </span>
-                                    <span *ngIf="filterID!=-1">
-                                        Save
-                                    </span>
-                                </button>
-                            </div>
-
-                            <button class="btn btn-secondary editorWidgetFilterCloseButton"
-                                (click)="clickFilterClose()">
-                                Close
-                            </button>
-                            <span class="editorWidgetFilterErrorMessage">
-                                {{ filterErrorMessage }}
-                            </span>
-                        </div>
-
-                        <div class="editorWidgetFilterGrid">
+                        <div class="datasourceMainDSFilterGrid">
                             <clr-datagrid class="datagrid-compact"
                                 style="height: 160px !important;"
                                 >
@@ -3932,12 +3807,13 @@
                         style="user-select: none;"
                         >
                         <div class="editorWidgetFilterHeader">
-                            <b>Filters</b>
+                            <b>Widget Filters</b>
                         </div>
                         <div style="padding: 8px;">
                             <i>
-                                Filters are applied to the data before calculations, and before the
-                                graph is constructed.  Select the field to filter on, then the operator
+                                Widget Filters only affect the current Widget, and are applied to the data
+                                before calculations, and before this graph is constructed.  Select the field
+                                to filter on, then the operator
                                 and type a Value(s).  Note: the values are case-sensitive, ie, Origin
                                 Equal "Europe".  Click <b>Add</b> to append the filter.  Filters can be
                                 de-activated (definition remains here, but the data is not filtered
