@@ -164,7 +164,7 @@ clr-dg-cell {
             overflow-y: scroll;
         }
 
-        .editorWidgetFilterArea {
+        .datasourceMainDSFilterArea {
             background-color: rgb(232, 228, 247);
             border: 1px solid black;
             box-shadow: 2px 2px lightgray;

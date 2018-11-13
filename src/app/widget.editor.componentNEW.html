@@ -95,7 +95,7 @@
                                         (click)="clickDSfilter(i, row.id)"
                                         >
                                     </clr-icon>
-                                    
+
                                 </clr-dg-cell>
                             </clr-dg-row>
 
@@ -108,12 +108,20 @@
                         style="user-select: none;"
                         >
                         <div class="datasourceMainDSFilterHeader">
+                            <button type="button"
+                                class="closeButton"
+                                style="float: right;"
+                                (click)="clickDSfilterClose()"
+                                >
+                                <b>X</b>
+                            </button>
+
                             <b>DS Filters</b>
                         </div>
                         <div style="padding: 8px;">
                             <i>
                                 DS Filters are applied to the data that is extracted from the server,
-                                and affects ALL the Widgets in the current Dashboard. 
+                                and affects ALL the Widgets in the current Dashboard.
                                 DS Filters can be changes in the <b>Data -> Data Filters</b> menu
                                 option, provided that you have the necessary rights.
                             </i>
@@ -309,7 +317,7 @@
                             <b>
                                 Facet:
                             </b>
-                        </div>        
+                        </div>
                         <div class="select editorCompositionType">
                             <select id="selects_3"
                                 [(ngModel)]="localWidget.graphLayerFacet"
@@ -334,7 +342,7 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="editorCompositionLayerCheckBox" 
+                        <div class="editorCompositionLayerCheckBox"
                             *ngIf="localWidget.graphLayerFacet != 'Single'"
                             style="min-width: 12px; width: 12px"
                             >
@@ -346,10 +354,10 @@
                                 >
                         </div>
 
-                        <span class="editorCompositionLayerButton" 
+                        <span class="editorCompositionLayerButton"
                             *ngIf="localWidget.graphLayerFacet != 'Single'"
                             >
-                            <button class="btn btn-link" 
+                            <button class="btn btn-link"
                                 style="padding: 0 !important; min-width: 15px; width: 35px !important;"
                                 (click)="clickCompositionLayerAdd()"
                                 >
@@ -357,7 +365,7 @@
                             </button>
                         </span>
                         <span class="editorCompositionLayerButton" *ngIf="localWidget.graphLayerFacet != 'Single'">
-                            <button class="btn btn-link" 
+                            <button class="btn btn-link"
                                 style="padding: 0 !important; min-width: 15px; width: 35px !important;"
                                 (click)="clickCompositionLayerDelete()"
                                 >
@@ -1215,8 +1223,8 @@
                                         [clrPosition]="'bottom-middle'">
                                         <p style="margin-top: 0; color:gray;">
                                             Click the Title bar to hide / expand the area
-                                            for the title properties.  These describe the 
-                                            title of the graph.  Once completed, click 
+                                            for the title properties.  These describe the
+                                            title of the graph.  Once completed, click
                                             the graph type to show the result.
                                         </p>
                                     </clr-signpost-content>
@@ -1340,7 +1348,7 @@
                             </clr-icon>
 
                         </div>
-    
+
                         <!-- Title Vertical text baseline for title text. -->
                         <div class="editorLineContainer">
                             <div class="editorTitleBaselineTitle" *ngIf="showFieldTitleProperties">
@@ -1898,8 +1906,8 @@
                                         [clrPosition]="'bottom-middle'">
                                         <p style="margin-top: 0; color:gray;">
                                             Click the Y Properties bar to hide / expand the area
-                                            for the relevant properties.  This field is shown on 
-                                            the Y (left) axis.  Once completed, click 
+                                            for the relevant properties.  This field is shown on
+                                            the Y (left) axis.  Once completed, click
                                             the graph type to show the result.
                                         </p>
                                     </clr-signpost-content>
@@ -2306,8 +2314,8 @@
                                         <p style="margin-top: 0; color:gray;">
                                             Click the Color Properties bar to hide / expand the area
                                             for the relevant properties.  This field splits the graph
-                                            into different values.  A legend on the right shows the 
-                                            colour for each different value.  Once completed, click 
+                                            into different values.  A legend on the right shows the
+                                            colour for each different value.  Once completed, click
                                             the graph type to show the result.
                                         </p>
                                     </clr-signpost-content>
@@ -2691,8 +2699,8 @@
                                         [clrPosition]="'bottom-middle'">
                                         <p style="margin-top: 0; color:gray;">
                                             Click the Mark Properties bar to hide / expand the area
-                                            for the relevant properties.  This describes the type of 
-                                            graph, for example Line graph.  Once completed, click 
+                                            for the relevant properties.  This describes the type of
+                                            graph, for example Line graph.  Once completed, click
                                             the graph type to show the result.
                                         </p>
                                     </clr-signpost-content>
@@ -2917,7 +2925,7 @@
                                         <p style="margin-top: 0; color:gray;">
                                             Click the Size Properties bar to hide / expand the area
                                             for the relevant properties.  This field determines the size
-                                            of each mark.  A legend is shown on the right.  Once completed, click 
+                                            of each mark.  A legend is shown on the right.  Once completed, click
                                             the graph type to show the result.
                                         </p>
                                     </clr-signpost-content>
@@ -3049,7 +3057,7 @@
                                         <p style="margin-top: 0; color:gray;">
                                             Click the Row Properties bar to hide / expand the area
                                             for the relevant properties.  The graph is duplicated (repeated)
-                                            vertically for each value in this field.  Once completed, click 
+                                            vertically for each value in this field.  Once completed, click
                                             the graph type to show the result.
                                         </p>
                                     </clr-signpost-content>
@@ -3157,7 +3165,7 @@
                                         <p style="margin-top: 0; color:gray;">
                                             Click the Column Properties bar to hide / expand the area
                                             for the relevant properties.    The graph is duplicated (repeated)
-                                            horisontally for each value in this field.  Once completed, click 
+                                            horisontally for each value in this field.  Once completed, click
                                             the graph type to show the result.
                                         </p>
                                     </clr-signpost-content>
@@ -3265,7 +3273,7 @@
                                         <p style="margin-top: 0; color:gray;">
                                             Click the Detail Properties bar to hide / expand the area
                                             for the relevant properties.  This groups values similar to the
-                                            Color field, but no legend is shown.  Once completed, click 
+                                            Color field, but no legend is shown.  Once completed, click
                                             the graph type to show the result.
                                         </p>
                                     </clr-signpost-content>
@@ -3350,8 +3358,8 @@
                                         [clrPosition]="'top-middle'">
                                         <p style="margin-top: 0; color:gray;">
                                             Click the X2 Properties bar to hide / expand the area
-                                            for the relevant properties.  This is the field that is shown on 
-                                            the secondary axis.  Once completed, click 
+                                            for the relevant properties.  This is the field that is shown on
+                                            the secondary axis.  Once completed, click
                                             the graph type to show the result.
                                         </p>
                                     </clr-signpost-content>
@@ -3455,8 +3463,8 @@
                                         [clrPosition]="'top-middle'">
                                         <p style="margin-top: 0; color:gray;">
                                             Click the Y2 Properties bar to hide / expand the area
-                                            for the relevant properties.  This is the field that is shown on 
-                                            the secondary axis.  Once completed, click 
+                                            for the relevant properties.  This is the field that is shown on
+                                            the secondary axis.  Once completed, click
                                             the graph type to show the result.
                                         </p>
                                     </clr-signpost-content>
@@ -3561,8 +3569,8 @@
                                         [clrPosition]="'top-middle'">
                                         <p style="margin-top: 0; color:gray;">
                                             Click the Projection Properties bar to hide / expand the area
-                                            for the relevant properties.  Project the values of latitude and 
-                                            longitude on a graph.  Once completed, click 
+                                            for the relevant properties.  Project the values of latitude and
+                                            longitude on a graph.  Once completed, click
                                             the graph type to show the result.
                                         </p>
                                     </clr-signpost-content>
@@ -4030,7 +4038,7 @@
                             <i>
                                 Conditions are used to colour one or more values a specific colour.
                                 For example, lets say we have a bar graph with Country on the X axis
-                                and the Mark colour is gray (showing all bars in gray).  Then a 
+                                and the Mark colour is gray (showing all bars in gray).  Then a
                                 condition can be added to specify that Denmark must shown in red.
                             </i>
                         </div>
