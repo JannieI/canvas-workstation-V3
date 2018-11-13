@@ -456,6 +456,19 @@ export class DataCachingTable {
     localLastWebSocketNumber: number;       // Last WS number processed
 }
 
+
+export class DatasourceFilter {
+    id: number;                         // Unique ID
+    datasourceID: number;               // FK to Datasource
+    sequence: number;                   // Sequence Nr - for LATER user
+    filterFieldName: string;            // Name (text) of field
+    filterOperator: string;             // ie Equal, Less Than, etc
+    filterValue: string;                // ie. 12 Japan  1,5  a,b,c  true
+    filterValueFrom: string;            // From value for Range
+    filterValueTo: string;              // To value for Range
+    isActive: boolean;                  // True if activated, else not used
+}
+
 export class Datasource {
     
 	// Descriptive info
@@ -472,9 +485,8 @@ export class Datasource {
     dataFieldTypes: string[];           // Field Types, same order as dataFields
     dataFieldLengths: number[];         // Max field lengths, same order as dataFields
 
-	// Parameters
-    parameters: string;                 // Parameters to pass into SQL query
-
+	// Parameters and Filters
+    dsFilters?: string[];
     // Access Type
     accessType: string;                 // How to access D: Private, Public, AccessList
 

@@ -4613,7 +4613,7 @@ export class AppComponent implements OnInit {
         this.showWidgetFullScreen = true;
         this.showWidgetFullScreenWidth = 98;
         this.showWidgetFullScreenHeight = 98;
-        this.showWidgetFullScreenBorder = '1px solid black';
+        this.showWidgetFullScreenBorder = 'none';  //'1px solid black';
         this.showWidgetFullScreenX = 'X';
         this.showWidgetFullScreenCopy = 'Copy Image';
 
