@@ -2939,7 +2939,7 @@ export interface dataSchemaInterface {
     }
 
     clickDSfilter(index, datasourceID: number) {
-        // Show the DS Filter icon for a DS
+        // Show the DS Filter Area for a DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSfilter', '@Start');
 
         this.selectedRowIndex = index;
@@ -2947,6 +2947,13 @@ export interface dataSchemaInterface {
         this.selectedRowID = datasourceID;
 
         this.showDSfilterArea = true;
+    }
+
+    clickDSfilterClose() {
+        // Close the DS Filter Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSfilterClose', '@Start');
+
+        this.showDSfilterArea = false;
     }
 
     clickContinue() {
