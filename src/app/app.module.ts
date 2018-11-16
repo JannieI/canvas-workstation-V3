@@ -92,7 +92,7 @@ import { DataDirectServiceComponent }           from './data.direct.service.comp
 import { DataDirectWebComponent }               from './data.direct.web.component';
 import { DataDirectImportComponent }            from './data.direct.import.component';
 import { DataDirectExportComponent }            from './data.direct.export.component';
-import { DataConnectorSQLEditorComponent }      from './data.connector.sqlEditor';
+import { DataConnectorSQLEditorComponent }      from './data.connector.sqlEditor.component';
 
 import { DataManagedConnectionComponent }       from './data.managed.connection.component';
 import { DataManagedQueryBuilderComponent }     from './data.managed.queryBuilder.component';
