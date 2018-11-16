@@ -1,0 +1,284 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <form #f="ngForm" role="form" novalidate>
+
+                <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
+                    <div class="gridTitle">
+                        <b>SQL Editor</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;">
+                                    Add / Edit a Datasource from a SQL Database: identify
+                                    the Connection, type the SQL string, and see the results
+                                    with GO.
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+                    </div>
+
+                    <div class="gridDatasourceNameTitle">
+                        <b>Name:</b>
+                    </div>
+                    <div class="gridDatasourceName">
+                        <input [(ngModel)]="selectedDatasource.name"
+                            type="text"
+                            name="name"
+                            title="Name of the Datasource"
+                            >
+                    </div>
+
+                    <div class="gridDescriptionTitle">
+                        <b>Description:</b>
+                    </div>
+                    <div class="gridDescription">
+                            <input [(ngModel)]="selectedDatasource.description"
+                            type="text"
+                            name="description"
+                            title="Description of the Datasource"
+                            >
+                    </div>
+
+                    <div class="gridServerTypeTitle">
+                        <b>Type:</b>
+                    </div>
+                    <div class="select gridServerType">
+                        <select
+                            [(ngModel)]="selectedDatasource.serverType"
+                            name="serverType"
+                            (change)="clickTemplateDashboard($event)"
+                            placeholder="Select a Type of server, ie MySQL"
+                            >
+                            <option *ngFor="let row of serverTypes">
+                                {{ row.serverType }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="gridServerNameTitle">
+                        <b>Server:</b>
+                    </div>
+                    <div class="gridServerName">
+                        <input [(ngModel)]="selectedDatasource.serverName"
+                            type="text"
+                            name="serverName"
+                            title="Name of the Server / Host"
+                            >
+                    </div>
+
+                    <div class="gridServerPortTitle">
+                        <b>Port:</b>
+                    </div>
+                    <div class="gridServerPort">
+                            <input [(ngModel)]="selectedDatasource.port"
+                            type="text"
+                            name="port"
+                            title="Name of the port on the DB Server"
+                            >
+                    </div>
+
+                    <div class="gridDatabaseTitle">
+                        <b>Database:</b>
+                    </div>
+                    <div class="gridDatabase">
+                            <input [(ngModel)]="selectedDatasource.databaseName"
+                            type="text"
+                            name="databaseName"
+                            title="Name of the Database or Host"
+                            >
+                    </div>
+
+                    <div class="gridUsernameTitle">
+                        <b>Username:</b>
+                    </div>
+                    <div class="gridUsername">
+                        <input [(ngModel)]="selectedDatasource.username"
+                            type="text"
+                            name="username"
+                            title="Name of the connection"
+                            >
+                    </div>
+
+                    <div class="gridPasswordTitle">
+                        <b>Password:</b>
+                    </div>
+                    <div class="gridPassword">
+                        <input [(ngModel)]="selectedDatasource.password"
+                            type="password"
+                            name="password"
+                            title="User Password"
+                            >
+                    </div>
+
+                    <div class="gridDatasourceIsCachedTitle">
+                        <b>Cache?:</b>
+                    </div>
+                    <div class="gridDatasourceIsCached">
+                        <input [(ngModel)]="selectedDatasource.cacheResults"
+                        type="checkbox"
+                        name="dashboardQArequired"
+                        title="Cached results for this Datasource (T/F)"
+                        >
+                    </div>
+
+                    <div class="gridButtonExplore">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickExplore()"
+                            >
+                            Explore
+                        </button>
+                    </div>
+
+                    <div class="gridTablesTitle">
+                        <b>Tables</b>
+                    </div>
+                    <div class="select gridTables">
+                        <select
+                            [(ngModel)]="selectedTable"
+                            name="serverType"
+                            (change)="clickSelectTable($event)"
+                            placeholder="Tables in the DB"
+                            >
+                            <option *ngFor="let row of dataSchemas">
+                                {{ row.tableName }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="gridFieldsTitle">
+                        <b>Fields</b>
+                    </div>
+                    <div class="select gridFields">
+                        <select
+                            [(ngModel)]="selectedField"
+                            name="serverType"
+                            placeholder="Fields in the selected Table"
+                            >
+                            <option *ngFor="let row of fieldsInTable">
+                                {{ row }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="gridSQLTextTitle">
+                        <b>SQL Statement</b>
+                    </div>
+                    <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataSQLStatement"
+                        name="textArea"
+                        >SELECT "InvoiceDate", "BillingCity" FROM invoices
+                    </textarea>
+
+                    <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="gridGoButton">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickGo()"
+                            >
+                            Go
+                            <clr-icon shape="arrow right" size="12"></clr-icon>
+                        </button>
+                    </div>
+
+                    <span class="spinner spinner-inline gridSpinner" *ngIf="spinner">
+                        Loading...
+                    </span>
+
+                    <div class="gridData" *ngIf="showPreview">
+                        <clr-datagrid class="gridPreviewData">
+
+                            <clr-dg-column *ngFor="let row of selectedDatasource.dataFields">
+                                {{ row }}
+                            </clr-dg-column>
+
+                            <clr-dg-row *clrDgItems="let row of fileData">
+                                <clr-dg-cell *ngFor="let col of selectedDatasource.dataFields; let i = index">
+                                        {{ row[col] }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
+
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
+                            </clr-dg-footer>
+
+                        </clr-datagrid>
+                    </div>
+
+                    <div class="gridButtonExport">
+                            <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickExport('Close')"
+                            >
+                            Export
+                        </button>
+                    </div>
+                    <div class="gridButtonCancel">
+                            <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose('Close')"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+
+                    <div *ngIf="savedMessage!=''" class="gridSavedMessage">
+                        {{ savedMessage }}
+                    </div>
+
+                    <div class="gridButtonSave" *ngIf="showPreview">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickAdd('Saved')"
+                            >
+                            <span *ngIf="!editingDS">
+                                Add
+                            </span>
+                            <span *ngIf="editingDS">
+                                Save
+                            </span>
+
+                        </button>
+                    </div>
+
+                    <div class="gridButtonTransformation" *ngIf="showPreview">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickAdd('Transformation')"
+                            >
+                            <span *ngIf="!editingDS">
+                                Add
+                            </span>
+                            <span *ngIf="editingDS">
+                                Save
+                            </span>
+                             and open Transformations
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

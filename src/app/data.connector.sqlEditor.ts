@@ -21,11 +21,11 @@ import { Datasource }                 from './models';
 import { TributaryServerType }        from './models';
 
 @Component({
-    selector: 'data-direct-sqlEditor',
-    templateUrl: './data.direct.sqlEditor.component.html',
-    styleUrls:  ['./data.direct.sqlEditor.component.css']
+    selector: 'data-connector-sqlEditor',
+    templateUrl: './data.connector.sqlEditor.component.html',
+    styleUrls:  ['./data.connector.sqlEditor.component.css']
 })
-export class DataDirectSQLEditorComponent implements OnInit {
+export class DataConnectorSQLEditorComponent implements OnInit {
 
     @Input() editingDS: boolean;
     @Input() selectedDatasource: Datasource;
