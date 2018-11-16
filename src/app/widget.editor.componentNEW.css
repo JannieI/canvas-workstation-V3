@@ -2564,7 +2564,7 @@ clr-dg-cell {
                 border-radius: 6px;
                 box-shadow: 2px 2px gray;
                 font-size: 0.55rem;
-                grid-column-start: 20;
+                grid-column-start: 18;
                 /* autoprefixer: off */
                 grid-column-end: 49;
                 grid-row-start: 4;
