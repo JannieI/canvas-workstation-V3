@@ -30,8 +30,6 @@ import { parse }                      from 'vega';
 import { View }                       from 'vega';
 import { ExcelService }               from './excel.service';
 
-const graphHeight: number = 260;
-const graphWidth: number = 372;
 const dragFieldMessage: string = 'Drag a field here ...';
 
 export interface dataSchemaInterface {
