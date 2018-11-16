@@ -101,7 +101,7 @@ export class WidgetSingleComponent {
 
             view.renderer('svg')
                 .initialize(this.graphDOM.nativeElement)
-                .width(372)
+                // .width(372)
                 .hover()
                 .run()
                 .finalize();
