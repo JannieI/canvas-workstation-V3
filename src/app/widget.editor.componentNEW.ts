@@ -1506,8 +1506,6 @@ export interface dataSchemaInterface {
 
             view.renderer('svg')
                 .initialize(this.dragWidget.nativeElement)
-                .height(this.localWidget.graphHeight)
-                .width(this.localWidget.graphWidth)
                 .hover()
                 .run()
                 .finalize();
@@ -1529,8 +1527,6 @@ export interface dataSchemaInterface {
             let view = new View(parse(this.specification));
             view.renderer('svg')
                 .initialize(this.dragWidget.nativeElement)
-                .height(this.localWidget.graphHeight)
-                .width(this.localWidget.graphWidth)
                 .hover()
                 .run()
                 .finalize();
