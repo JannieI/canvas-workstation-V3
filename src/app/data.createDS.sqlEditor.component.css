@@ -195,7 +195,7 @@
             margin-top: 5px;
         }
 
-        .errorWhereMessage {
+        .whereErrorMessage {
             color: red;
             grid-column-start: 13;
             /* autoprefixer: off */

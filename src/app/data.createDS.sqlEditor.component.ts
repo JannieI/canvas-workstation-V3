@@ -50,8 +50,8 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     canSave: boolean = false;
     dataConnections: DataConnection[];
     dataSchemas: DataSchema[] = [];
-    errorMessage: string = "";
-    errorWhereMessage: string = 'Error Testing';
+    whereErrorMessage: string = 'Error Testing Where';
+    whatErrorMessage: string = 'Error Testing What';
     fieldsInTable: string[];
     fileData: any = [];
     fileDataFull: any = [];
@@ -153,7 +153,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickExplore',           '@Start');
 
         // Reset
-        this.errorMessage = '';
+        this.whereErrorMessage = '';
         this.showPreview = false;
         this.canSave = false;
 
@@ -236,7 +236,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         .catch(err => {
             console.warn('xx err', err)
             this.spinner = false;
-            this.errorMessage = 'Error connecting to server: check login or permissions'
+            this.whereErrorMessage = 'Error connecting to server: check login or permissions'
                 + err.message;
         });
 
@@ -247,7 +247,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGo',           '@Start');
 
         // Reset
-        this.errorMessage = '';
+        this.whereErrorMessage = '';
         this.showPreview = false;
         this.canSave = false;
 
@@ -308,7 +308,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             })
             .catch(err => {
                 this.spinner = false;
-                this.errorMessage = 'Error connecting to server: check login or permissions'
+                this.whereErrorMessage = 'Error connecting to server: check login or permissions'
                     + err.message;
             });
 
@@ -355,7 +355,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         // Reset
-        this.errorMessage = '';
+        this.whereErrorMessage = '';
         this.savedMessage = '';
 
         // Save changes to the Datasource
@@ -363,11 +363,11 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
         // Validation
         if (this.selectedDatasource.name == ''  ||  this.selectedDatasource.name == null) {
-            this.errorMessage = 'The name is compulsory';
+            this.whereErrorMessage = 'The name is compulsory';
             return;
         };
         if (this.selectedDatasource.description == ''  ||  this.selectedDatasource.description == null) {
-            this.errorMessage = 'The description is compulsory';
+            this.whereErrorMessage = 'The description is compulsory';
             return;
         };
 
