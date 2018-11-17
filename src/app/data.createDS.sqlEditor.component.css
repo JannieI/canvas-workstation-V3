@@ -31,365 +31,396 @@
         text-align: left;
     }
 
-    .gridConnectionsTable {
-        border: 1px solid gray;
-        border-radius: 4px;
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 21;
-        grid-row-start: 12;
-        grid-row-end: 27;
-        overflow-y: scroll;
-        width: 100%;
-    }
-
-    .gridDatasourceNameTitle {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 2;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-    .gridDatasourceName {
-        grid-column-start: 2;
-        /* autoprefixer: off */
-        grid-column-end: 7;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-
-    .gridDescriptionTitle {
-        grid-column-start: 7;
-        /* autoprefixer: off */
-        grid-column-end: 9;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-    .gridDescription {
-        grid-column-start: 9;
-        /* autoprefixer: off */
-        grid-column-end: 13;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-
-    .gridServerTypeTitle {
-        grid-column-start: 14;
-        /* autoprefixer: off */
-        grid-column-end: 16;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-    .gridServerType {
-        grid-column-start: 16;
-        /* autoprefixer: off */
-        grid-column-end: 20;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-
-    .gridServerNameTitle {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 2;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin-top: 5px;
-    }
-    .gridServerName {
-        grid-column-start: 2;
-        /* autoprefixer: off */
-        grid-column-end: 7;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin-top: 5px;
-    }
-
-    .gridServerPortTitle {
-        grid-column-start: 7;
-        /* autoprefixer: off */
-        grid-column-end: 9;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin-top: 5px;
-    }
-    .gridServerPort {
-        grid-column-start: 9;
-        /* autoprefixer: off */
-        grid-column-end: 14;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin-top: 5px;
-    }
-
-    .gridDatabaseTitle {
-        grid-column-start: 14;
-        /* autoprefixer: off */
-        grid-column-end: 16;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin-top: 5px;
-    }
-    .gridDatabase {
-        grid-column-start: 16;
-        /* autoprefixer: off */
-        grid-column-end: 21;
-        grid-row-start: 5;
-        grid-row-end: 6;
-    }
-
-    .gridUsernameTitle {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 2;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-top: 5px;
-    }
-    .gridUsername {
-        grid-column-start: 2;
-        /* autoprefixer: off */
-        grid-column-end: 7;
-        grid-row-start: 7;
-        grid-row-end: 8;
-    }
-
-    .gridPasswordTitle {
-        grid-column-start: 7;
-        /* autoprefixer: off */
-        grid-column-end: 9;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-top: 5px;
-    }
-    .gridPassword {
-        grid-column-start: 9;
-        /* autoprefixer: off */
-        grid-column-end: 15;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-top: 5px;
-    }
-
-    .gridDatasourceIsCachedTitle {
-        grid-column-start: 14;
-        /* autoprefixer: off */
-        grid-column-end: 16;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-top: 5px;
-    }
-    .gridDatasourceIsCached {
-        grid-column-start: 16;
-        /* autoprefixer: off */
-        grid-column-end: 17;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-top: 5px;
-    }
-
-    .gridButtonExplore {
-        grid-column-start: 18;
-        /* autoprefixer: off */
-        grid-column-end: 20;
-        grid-row-start: 6;
-        grid-row-end: 7;
-        margin-top: 12px;
-    }
-
-    .gridErrorMessage {
+    /* WHAT Container */
+    .gridWhereContainer {
         color: red;
-        grid-column-start: 13;
+        grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 21;
-        grid-row-start: 9;
-        grid-row-end: 13;
+        grid-row-start: 2;
+        grid-row-end: 21;
+        grid-template-columns: repeat(20, 1fr);
+        grid-template-rows: repeat(26, 0.8rem);
     }
-
-    .gridGoButton {
-        grid-column-start: 8;
-        /* autoprefixer: off */
-        grid-column-end: 9;
-        grid-row-start: 18;
-        grid-row-end: 19;
-    }
-
-    .gridSpinner {
-        grid-column-start: 15;
-        /* autoprefixer: off */
-        grid-column-end: 16;
-        grid-row-start: 17;
-        grid-row-end: 18;
-    }
-
-    .gridTablesTitle {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 2;
-        grid-row-start: 9;
-        grid-row-end: 10;
-        height: 100%;
-        width: 100%;
-    }
-    .gridTables {
-        grid-column-start: 2;
-        /* autoprefixer: off */
-        grid-column-end: 8;
-        grid-row-start: 9;
-        grid-row-end: 10;
-        width: 100%;
-    }
-
-    .gridFieldsTitle {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 2;
-        grid-row-start: 10;
-        grid-row-end: 11;
-        height: 100%;
-        margin-top: 6px;
-        width: 100%;
-    }
-    .gridFields {
-        grid-column-start: 2;
-        /* autoprefixer: off */
-        grid-column-end: 8;
-        grid-row-start: 10;
-        grid-row-end: 11;
-        margin-top: 6px;
-        width: 100%;
-    }
-
-    .gridSQLTextTitle {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 3;
-        grid-row-start: 13;
-        grid-row-end: 14;
-        margin-top: -2px;
-        height: 100%;
-        width: 100%;
-    }
-    .gridSQLText {
-        border: 1px solid gray;
-        border-radius: 4px;
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 8;
-        grid-row-start: 14;
-        grid-row-end: 25;
-        height: 100%;
-        overflow-y: scroll;
-        width: 100%;
-    }
-
-    .gridSQLParameterAreaTitle {
-        color: blue;
-        grid-column-start: 13;
-        /* autoprefixer: off */
-        grid-column-end: 16;
-        grid-row-start: 13;
-        grid-row-end: 14;
-        margin-top: -2px;
-        height: 100%;
-        width: 100%;
-    }
-
-    .gridSQLParameterArea {
-        background-color: rgb(232, 228, 247);
-        border: 1px solid black;
-        box-shadow: 2px 2px lightgray;
-        border-radius: 6px;
-        box-shadow: 2px 2px gray;
-        font-size: 0.55rem;
-        grid-column-start: 9;
-        /* autoprefixer: off */
-        grid-column-end: 21;
-        grid-row-start: 9;
-        grid-row-end: 25;
-        margin: 2px;
-        padding-left: 12px;
-        text-align: left;
-        z-index: 101;
-    }
-        .gridSQLParametersHeader {
-            font-size: 0.65rem;
-            margin: 6px;
-            text-align: center;
+        .gridDatasourceNameTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 2;
+            grid-row-start: 3;
+            grid-row-end: 4;
         }
-        .gridSQLParametersTitle {
-            display: inline-block;
-            font-size: 0.5rem;
-            line-height: 0.8rem;
-            margin-left: 4px;
-            width: 64px;
-        }
-        .gridSQLParameters {
-            background-color: white;
-            border: 1px solid steelblue;
-            border-radius: 5px;
-            display: inline-block;
-            font-size: 0.5rem;
-            line-height: 0.8rem;
-            margin: 3px;
-            width: 80%;
-        }
-        .gridSQLParametersValueTitle {
-            display: inline-block;
-            font-size: 0.5rem;
-            line-height: 0.8rem;
-            margin-left: 4px;
-            width: 64px;
-        }
-        .gridSQLParametersValue {
-            background-color: white;
-            border: 1px solid steelblue;
-            border-radius: 5px;
-            display: inline-block;
-            font-size: 0.5rem;
-            line-height: 0.8rem;
-            margin: 3px;
-            width: 90px;
+        .gridDatasourceName {
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 7;
+            grid-row-start: 3;
+            grid-row-end: 4;
         }
 
-        .gridSQLParametersTypeTitle {
-            display: inline-block;
-            font-size: 0.5rem;
-            line-height: 0.8rem;
-            margin-left: 14px;
-            width: 64px;
+        .gridDescriptionTitle {
+            grid-column-start: 7;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 3;
+            grid-row-end: 4;
         }
-        .gridSQLParametersType {
-            background-color: white;
-            border: 1px solid steelblue;
-            border-radius: 5px;
-            display: inline-block;
-            font-size: 0.5rem;
-            line-height: 0.8rem;
-            margin: 3px;
-            width: 80px;
+        .gridDescription {
+            grid-column-start: 9;
+            /* autoprefixer: off */
+            grid-column-end: 13;
+            grid-row-start: 3;
+            grid-row-end: 4;
         }
 
-        .gridSQLParametersErrorMessage {
+        .gridServerTypeTitle {
+            grid-column-start: 14;
+            /* autoprefixer: off */
+            grid-column-end: 16;
+            grid-row-start: 3;
+            grid-row-end: 4;
+        }
+        .gridServerType {
+            grid-column-start: 16;
+            /* autoprefixer: off */
+            grid-column-end: 20;
+            grid-row-start: 3;
+            grid-row-end: 4;
+        }
+
+        .gridServerNameTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 2;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin-top: 5px;
+        }
+        .gridServerName {
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 7;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin-top: 5px;
+        }
+
+        .gridServerPortTitle {
+            grid-column-start: 7;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin-top: 5px;
+        }
+        .gridServerPort {
+            grid-column-start: 9;
+            /* autoprefixer: off */
+            grid-column-end: 14;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin-top: 5px;
+        }
+
+        .gridDatabaseTitle {
+            grid-column-start: 14;
+            /* autoprefixer: off */
+            grid-column-end: 16;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin-top: 5px;
+        }
+        .gridDatabase {
+            grid-column-start: 16;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 5;
+            grid-row-end: 6;
+        }
+
+        .gridUsernameTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 2;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            margin-top: 5px;
+        }
+        .gridUsername {
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 7;
+            grid-row-start: 7;
+            grid-row-end: 8;
+        }
+
+        .gridPasswordTitle {
+            grid-column-start: 7;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            margin-top: 5px;
+        }
+        .gridPassword {
+            grid-column-start: 9;
+            /* autoprefixer: off */
+            grid-column-end: 15;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            margin-top: 5px;
+        }
+
+        .gridDatasourceIsCachedTitle {
+            grid-column-start: 14;
+            /* autoprefixer: off */
+            grid-column-end: 16;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            margin-top: 5px;
+        }
+        .gridDatasourceIsCached {
+            grid-column-start: 16;
+            /* autoprefixer: off */
+            grid-column-end: 17;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            margin-top: 5px;
+        }
+
+        .gridErrorMessage {
             color: red;
-            font-size: 0.54rem;
-            margin: 0px;
-            padding: 0px;
-            width: 40%;
+            grid-column-start: 13;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 9;
+            grid-row-end: 13;
         }
-        .gridSQLParametersCloseButton {
-            margin-left: 60px;
-            right: 12px;
+    
+        .gridConnectionsTable {
+            border: 1px solid gray;
+            border-radius: 4px;
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 12;
+            grid-row-end: 27;
+            overflow-y: scroll;
+            width: 100%;
         }
 
-        .gridSQLParametersGrid {
-            font-size: 0.5rem;
-            height: 60px !important;
-            line-height: 0.8rem;
-            margin: 3px;
-            margin-top: -20px;
-            width: 98%;
+        .gridButtonExplore {
+            grid-column-start: 18;
+            /* autoprefixer: off */
+            grid-column-end: 20;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            margin-top: 12px;
         }
+
+    .gridWhatContainer {
+        color: red;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 2;
+        grid-row-end: 21;
+        grid-template-columns: repeat(20, 1fr);
+        grid-template-rows: repeat(26, 0.8rem);
+    }
+
+        .gridErrorMessage {
+            color: red;
+            grid-column-start: 13;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 9;
+            grid-row-end: 13;
+        }
+
+        .gridGoButton {
+            grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 18;
+            grid-row-end: 19;
+        }
+
+        .gridSpinner {
+            grid-column-start: 15;
+            /* autoprefixer: off */
+            grid-column-end: 16;
+            grid-row-start: 17;
+            grid-row-end: 18;
+        }
+
+        .gridTablesTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 2;
+            grid-row-start: 9;
+            grid-row-end: 10;
+            height: 100%;
+            width: 100%;
+        }
+        .gridTables {
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 8;
+            grid-row-start: 9;
+            grid-row-end: 10;
+            width: 100%;
+        }
+
+        .gridFieldsTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 2;
+            grid-row-start: 10;
+            grid-row-end: 11;
+            height: 100%;
+            margin-top: 6px;
+            width: 100%;
+        }
+        .gridFields {
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 8;
+            grid-row-start: 10;
+            grid-row-end: 11;
+            margin-top: 6px;
+            width: 100%;
+        }
+
+        .gridSQLTextTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 3;
+            grid-row-start: 13;
+            grid-row-end: 14;
+            margin-top: -2px;
+            height: 100%;
+            width: 100%;
+        }
+        .gridSQLText {
+            border: 1px solid gray;
+            border-radius: 4px;
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 8;
+            grid-row-start: 14;
+            grid-row-end: 25;
+            height: 100%;
+            overflow-y: scroll;
+            width: 100%;
+        }
+
+        .gridSQLParameterAreaTitle {
+            color: blue;
+            grid-column-start: 13;
+            /* autoprefixer: off */
+            grid-column-end: 16;
+            grid-row-start: 13;
+            grid-row-end: 14;
+            margin-top: -2px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .gridSQLParameterArea {
+            background-color: rgb(232, 228, 247);
+            border: 1px solid black;
+            box-shadow: 2px 2px lightgray;
+            border-radius: 6px;
+            box-shadow: 2px 2px gray;
+            font-size: 0.55rem;
+            grid-column-start: 9;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 9;
+            grid-row-end: 25;
+            margin: 2px;
+            padding-left: 12px;
+            text-align: left;
+            z-index: 101;
+        }
+            .gridSQLParametersHeader {
+                font-size: 0.65rem;
+                margin: 6px;
+                text-align: center;
+            }
+            .gridSQLParametersTitle {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                width: 64px;
+            }
+            .gridSQLParameters {
+                background-color: white;
+                border: 1px solid steelblue;
+                border-radius: 5px;
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin: 3px;
+                width: 80%;
+            }
+            .gridSQLParametersValueTitle {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                width: 64px;
+            }
+            .gridSQLParametersValue {
+                background-color: white;
+                border: 1px solid steelblue;
+                border-radius: 5px;
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin: 3px;
+                width: 90px;
+            }
+
+            .gridSQLParametersTypeTitle {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 14px;
+                width: 64px;
+            }
+            .gridSQLParametersType {
+                background-color: white;
+                border: 1px solid steelblue;
+                border-radius: 5px;
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin: 3px;
+                width: 80px;
+            }
+
+            .gridSQLParametersErrorMessage {
+                color: red;
+                font-size: 0.54rem;
+                margin: 0px;
+                padding: 0px;
+                width: 40%;
+            }
+            .gridSQLParametersCloseButton {
+                margin-left: 60px;
+                right: 12px;
+            }
+
+            .gridSQLParametersGrid {
+                font-size: 0.5rem;
+                height: 60px !important;
+                line-height: 0.8rem;
+                margin: 3px;
+                margin-top: -20px;
+                width: 98%;
+            }
 
 
 

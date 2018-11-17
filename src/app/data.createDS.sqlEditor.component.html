@@ -30,7 +30,7 @@
 
 
                     <!-- WHERE IS DATA: define location, and credentials -->
-                    <div *ngIf="step='Where'">
+                    <div class="gridWhereContainer" *ngIf="step=='Where'">
 
                         <div class="gridDatasourceNameTitle">
                             <b>Name:</b>
@@ -174,7 +174,7 @@
 
 
                     <!-- WHAT DATA to extract: Define SQL statement to  -->
-                    <div *ngIf="step='What'">
+                    <div class="gridWhatContainer" *ngIf="step=='What'">
                         <div class="gridButtonExplore">
                             <button
                                 type="button"
