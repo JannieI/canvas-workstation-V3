@@ -15,17 +15,18 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
+import { DataConnection }             from './models';
 import { DataSchema }                 from './models';
 import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 import { TributaryServerType }        from './models';
 
 @Component({
-    selector: 'data-connector-sqlEditor',
-    templateUrl: './data.connector.sqlEditor.component.html',
-    styleUrls:  ['./data.connector.sqlEditor.component.css']
+    selector: 'data-createDS-sqlEditor',
+    templateUrl: './data.createDS.sqlEditor.component.html',
+    styleUrls:  ['./data.createDS.sqlEditor.component.css']
 })
-export class DataConnectorSQLEditorComponent implements OnInit {
+export class DataCreateDSSQLEditorComponent implements OnInit {
 
     @Input() editingDS: boolean;
     @Input() selectedDatasource: Datasource;
