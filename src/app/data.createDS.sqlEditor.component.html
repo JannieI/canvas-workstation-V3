@@ -142,9 +142,8 @@
                             >
                         </div>
 
-                        
                         <div *ngIf="whereErrorMessage!=''" class="whereErrorMessage">
-                            {{ errorMessage }}
+                            {{ whereErrorMessage }}
                         </div>
        
                         <div class="whereConnectionsTable">
@@ -193,7 +192,7 @@
                         <div class="whereButtonContinue">
                             <button
                                 type="button"
-                                class="btn btn-secondary"
+                                class="btn btn-primary"
                                 (click)="clickContinue()"
                                 >
                                 Continue
@@ -245,7 +244,7 @@
                         </textarea>
 
                         <div *ngIf="whatErrorMessage!=''" class="whatErrorMessage">
-                            {{ errorMessage }}
+                            {{ whatErrorMessage }}
                         </div>
 
                         <div class="whatGoButton">
