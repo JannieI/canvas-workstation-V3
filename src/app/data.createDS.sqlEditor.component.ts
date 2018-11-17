@@ -61,7 +61,9 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     serverTypes: TributaryServerType[];
     showPreview: boolean = false;
     spinner: boolean = false;
+    step: string = 'Where';
 
+    
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
