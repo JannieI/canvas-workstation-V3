@@ -51,6 +51,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     dataConnections: DataConnection[];
     dataSchemas: DataSchema[] = [];
     errorMessage: string = "";
+    errorWhereMessage: string = 'Error Testing';
     fieldsInTable: string[];
     fileData: any = [];
     fileDataFull: any = [];
@@ -63,7 +64,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     spinner: boolean = false;
     step: string = 'Where';
 
-    
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,

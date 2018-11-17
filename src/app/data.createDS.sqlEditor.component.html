@@ -136,6 +136,21 @@
                             >
                         </div>
 
+                        
+                        <div *ngIf="errorWhereMessage!=''" class="gridWhereErrorMessage">
+                            {{ errorMessage }}
+                        </div>
+    
+                        <div class="gridButtonExplore">
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickExplore()"
+                                >
+                                Continue
+                            </button>
+                        </div>
+    
                         <div class="gridConnectionsTable">
                             <clr-datagrid>
                                 <clr-dg-placeholder>
@@ -175,15 +190,6 @@
 
                     <!-- WHAT DATA to extract: Define SQL statement to  -->
                     <div class="gridWhatContainer" *ngIf="step=='What'">
-                        <div class="gridButtonExplore">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="clickExplore()"
-                                >
-                                Explore
-                            </button>
-                        </div>
 
                         <div class="gridTablesTitle">
                             <b>Tables</b>

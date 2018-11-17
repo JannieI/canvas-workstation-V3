@@ -33,11 +33,11 @@
 
     /* WHAT Container */
     .gridWhereContainer {
-        color: red;
+        display: grid;
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 21;
-        grid-row-start: 2;
+        grid-row-start: 1;
         grid-row-end: 21;
         grid-template-columns: repeat(20, 1fr);
         grid-template-rows: repeat(26, 0.8rem);
@@ -187,13 +187,13 @@
             margin-top: 5px;
         }
 
-        .gridErrorMessage {
+        .gridWhereErrorMessage {
             color: red;
             grid-column-start: 13;
             /* autoprefixer: off */
             grid-column-end: 21;
-            grid-row-start: 9;
-            grid-row-end: 13;
+            grid-row-start: 10;
+            grid-row-end: 11;
         }
     
         .gridConnectionsTable {
@@ -203,7 +203,7 @@
             /* autoprefixer: off */
             grid-column-end: 21;
             grid-row-start: 12;
-            grid-row-end: 27;
+            grid-row-end: 24;
             overflow-y: scroll;
             width: 100%;
         }
@@ -212,17 +212,17 @@
             grid-column-start: 18;
             /* autoprefixer: off */
             grid-column-end: 20;
-            grid-row-start: 6;
-            grid-row-end: 7;
+            grid-row-start: 10;
+            grid-row-end: 11;
             margin-top: 12px;
         }
 
     .gridWhatContainer {
-        color: red;
+        display: grid;
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 21;
-        grid-row-start: 2;
+        grid-row-start: 1;
         grid-row-end: 21;
         grid-template-columns: repeat(20, 1fr);
         grid-template-rows: repeat(26, 0.8rem);
