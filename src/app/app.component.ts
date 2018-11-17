@@ -1414,6 +1414,21 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDescription = false;
     }
 
+    handleCloseDataCreateSQLEditor(returnDS: Datasource) {
+        // Handle close of SQL Editor form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataCreateSQLEditor', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataCreateSQLEditor = false;
+
+        // Open Transformations if so requested
+        if (returnDS != null) {
+            this.selectedDatasource = returnDS;
+            this.showModalDataTransformation = true;
+        };
+    }
+
     handleCloseDataDirectFileCSV(returnDS: Datasource) {
         // Handle close of Direct File CSV file load
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileCSV', '@Start');
@@ -1927,7 +1942,7 @@ export class AppComponent implements OnInit {
         this.showModalWidgetStoredTemplateInsertWidget = false;
     }
 
-    
+
     handleCloseWidgetContainer(changedWidget: Widget) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainer', '@Start');
@@ -8646,7 +8661,7 @@ export class AppComponent implements OnInit {
                 .hover()
                 .run()
                 .finalize();
-        };        
+        };
     }
 
     actionmenuWidgetDescription(ev: MouseEvent, index: number, id: number) {
