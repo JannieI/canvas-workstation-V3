@@ -4478,6 +4478,16 @@
 </dashboard-print>
 
 
+<!-- Modal: Data SQL Editor -->
+<data-connector-sqlEditor
+    class="formPopupDashboard"
+    *ngIf="showModalDataCreateSQLEditor"
+    [editingDS]="editingDS"
+    [selectedDatasource]="selectedDatasource"
+    (formDataConnectorSQLEditorClosed)="handleCloseDataCreateSQLEditor($event)">Load Data SQL Editor ...
+</data-connector-sqlEditor>
+
+
 <!-- Modal: Data Direct From CSV -->
 <data-direct-fileCSV
     class="formPopupDashboard"

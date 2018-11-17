@@ -30,7 +30,7 @@ export class DataConnectorSQLEditorComponent implements OnInit {
     @Input() editingDS: boolean;
     @Input() selectedDatasource: Datasource;
 
-    @Output() formDataDirectSQLEditorClosed: EventEmitter<Datasource> = new EventEmitter();
+    @Output() formDataConnectorSQLEditorClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -338,7 +338,7 @@ export class DataConnectorSQLEditorComponent implements OnInit {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataDirectSQLEditorClosed.emit(null);
+        this.formDataConnectorSQLEditorClosed.emit(null);
 
     }
 
@@ -454,10 +454,10 @@ export class DataConnectorSQLEditorComponent implements OnInit {
 
         // Close form and open Transitions if requested
         if (action == 'Saved') {
-            this.formDataDirectSQLEditorClosed.emit(null);
+            this.formDataConnectorSQLEditorClosed.emit(null);
 
         } else {
-            this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
+            this.formDataConnectorSQLEditorClosed.emit(this.selectedDatasource);
 
         };
     }
