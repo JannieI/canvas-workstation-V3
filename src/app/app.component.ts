@@ -3753,7 +3753,30 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectFileCSV = true;
     }
 
+    clickMenuDataCreateSQLEditor() {
+        // Open form to create a DS using the SQL Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCreateSQLEditor', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanCreateRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You cannot add a new Datasource (role must be added to your user)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        this.menuOptionClickPreAction();
+
+        this.editingDS = false;
+        this.selectedDatasource = null;
+        this.showModalDataCreateSQLEditor = true;
+    }
 
     clickMenuDataDirectFileJSON() {
         // Open form to create a DS with data that comes from a JSON file.
