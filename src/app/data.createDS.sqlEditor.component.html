@@ -28,6 +28,44 @@
                         </clr-signpost>
                     </div>
 
+                    <div class="gridConnectionsTable">
+                        <clr-datagrid>
+                            <clr-dg-placeholder>
+                                No records ...
+                            </clr-dg-placeholder>
+                            <clr-dg-column>Delete</clr-dg-column>
+                            <clr-dg-column>Name</clr-dg-column>
+                            <clr-dg-column>Type</clr-dg-column>
+                            <clr-dg-column>Server</clr-dg-column>
+                            <clr-dg-column>Auth</clr-dg-column>
+                            <clr-dg-column>Description</clr-dg-column>
+                            <clr-dg-row
+                                *ngFor="let row of dataConnections; let i = index"
+                                [style.background-color]="(i == selectedConnectionRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedConnectionRowIndex)? 'white' : 'gray'"
+                                (click)="clickRow(i, row.id)"
+                                >
+                                <clr-dg-cell>
+                                    <clr-icon shape="trash"
+                                        class="selectIcon1"
+                                        size="18"
+                                        (dblclick)="clickDelete(i, row.id)"
+                                        >
+                                    </clr-icon>
+                                </clr-dg-cell>
+                                <clr-dg-cell>{{ row.connectionName }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.serverType }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.serverName }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.authentication }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                            </clr-dg-row>
+                        </clr-datagrid>
+                    </div>
+    
+
+
+
+
                     <div class="gridDatasourceNameTitle">
                         <b>Name:</b>
                     </div>

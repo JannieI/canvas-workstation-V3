@@ -31,6 +31,18 @@
         text-align: left;
     }
 
+    .gridConnectionsTable {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 12;
+        grid-row-end: 27;
+        overflow-y: scroll;
+        width: 100%;
+    }
+
     .gridDatasourceNameTitle {
         grid-column-start: 1;
         /* autoprefixer: off */

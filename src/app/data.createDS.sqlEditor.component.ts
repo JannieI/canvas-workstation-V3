@@ -48,6 +48,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
 
     canSave: boolean = false;
+    dataConnections: DataConnection[];
     dataSchemas: DataSchema[] = [];
     errorMessage: string = "";
     fieldsInTable: string[];
@@ -72,6 +73,9 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
         // Set base info
         this.serverTypes = this.globalVariableService.serverTypes.slice();
+        this.globalVariableService.getDataConnections().then(dc => {
+            this.dataConnections = dc.slice();
+        });
 
         if (this.selectedDatasource == null) {
             let today: Date = new Date();
