@@ -43,11 +43,12 @@
         grid-template-rows: repeat(26, 0.8rem);
     }
         .whereHelp {
-            grid-column-start: 1;
+            grid-column-start: 2;
             /* autoprefixer: off */
             grid-column-end: 21;
             grid-row-start: 1;
             grid-row-end: 2;
+            margin-top: 6px;
         }
 
         .whereNameTitle {
@@ -197,7 +198,7 @@
 
         .whereErrorMessage {
             color: red;
-            grid-column-start: 13;
+            grid-column-start: 2;
             /* autoprefixer: off */
             grid-column-end: 21;
             grid-row-start: 10;

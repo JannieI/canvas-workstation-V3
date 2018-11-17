@@ -32,10 +32,11 @@
                     <!-- WHERE IS DATA: define location, and credentials -->
                     <div class="gridWhereContainer" *ngIf="step=='Where'">
 
-                            
-                        <div class="whereHelp">   
-                            Enter the details to a new SQL source, or selected from a 
-                            previously defined connection.
+                        <div class="whereHelp">
+                            <i>
+                                Enter the details to a new SQL source, or selected from a
+                                previously defined connection.
+                            </i>
                         </div>
 
                         <div class="whereNameTitle">
@@ -145,7 +146,7 @@
                         <div *ngIf="whereErrorMessage!=''" class="whereErrorMessage">
                             {{ whereErrorMessage }}
                         </div>
-       
+
                         <div class="whereConnectionsTable">
                             <clr-datagrid>
                                 <clr-dg-placeholder>
@@ -307,7 +308,7 @@
                                 Cancel
                             </button>
                         </div>
-        
+
                         <div class="whatButtonSave" *ngIf="showPreview">
                             <button
                                 type="button"

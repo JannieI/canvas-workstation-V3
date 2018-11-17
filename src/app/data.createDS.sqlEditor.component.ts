@@ -141,21 +141,23 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
             };
         } else {
-            this.clickExplore();
+            this.clickContinue();
         };
 
         console.warn('xx dates',
     this.globalVariableService.dateDiff(new Date(), new Date('2018-08-09'), 'day'))
     }
 
-    clickExplore() {
+    clickContinue() {
         // Load the Tables and Fields, using the Tributary Inspector
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickExplore',           '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue',           '@Start');
 
         // Reset
         this.whereErrorMessage = '';
+        this.whatErrorMessage = '';
         this.showPreview = false;
         this.canSave = false;
+        this.step = 'What';
 
         // Show user
         this.spinner = true;
@@ -201,7 +203,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
             // Fill the tables and Fields
             this.dataSchemas = [];
-            res.forEach(row => {
+            res.results.forEach(row => {
 
                 this.dataSchemas.push(
                 {
@@ -236,7 +238,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         .catch(err => {
             console.warn('xx err', err)
             this.spinner = false;
-            this.whereErrorMessage = 'Error connecting to server: check login or permissions'
+            this.whereErrorMessage = 'Error connecting to server (1st check login or permissions) '
                 + err.message;
         });
 
