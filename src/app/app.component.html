@@ -39,7 +39,7 @@
                             >
                             {{ editMenuText }}
                         </button>
-                        
+
                         <div class="dropdown-divider"></div>
                         <button type="button"
                             clrDropdownItem
@@ -408,12 +408,47 @@
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
 
+
+
+
+                            <clr-dropdown>
+                                <button
+                                    type="button"
+                                    class="btn btn-link btn-sm"
+                                    clrDropdownTrigger
+                                    title="Create a new Datasource"
+                                    >
+                                    Create Datasource
+                                </button>
+                                <clr-dropdown-menu
+                                    clrPosition="right-top"
+                                    *clrIfOpen
+                                    >
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
+                                        title="Create a new Datasources using the SQL Editor"
+                                        (click)="clickMenuDataCreateSQLEditor()"
+                                        >
+                                        Using SQL Editor
+                                    </button>
+                                </clr-dropdown-menu>
+                            </clr-dropdown>
+        
+
+
+
+
+
+
+
+
                         <clr-dropdown>
                             <button
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
-                                title="Create a new Datasources (direct method)"
+                                title="Create a new Datasource (direct method)"
                                 >
                                 Create
                             </button>
@@ -522,7 +557,7 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
-                                title="Create a new Managed Datasources"
+                                title="Create a new Managed Datasource"
                                 >
                                 Managed
                             </button>
@@ -1987,19 +2022,19 @@
             [style.line-height.px]="row.height"
             >
             Click
-            <clr-icon shape="trash" 
+            <clr-icon shape="trash"
                 size="16"
                 style="color: red; margin: 3px;"
                 (click)="clickMenuWidgetContainerDelete(i, row.id)"
                 >
             </clr-icon>
-            <clr-icon shape="line-chart" 
+            <clr-icon shape="line-chart"
                 size="20"
                 style="color: blue; margin: 3px;"
                 (click)="clickMenuWidgetContainerAddGraph(i, row.id)"
                 >
             </clr-icon>
-            <clr-icon shape="text" 
+            <clr-icon shape="text"
                 size="24"
                 style="color: green; margin: 3px;"
                 (click)="clickMenuWidgetContainerAddShape(i, row.id)"
@@ -2018,7 +2053,7 @@
         [style.top.px]="popupTop"
         >
         <!-- Container for This Widget -->
-        <clr-icon shape="keyboard" 
+        <clr-icon shape="keyboard"
             (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
             >
         </clr-icon>
@@ -4825,7 +4860,7 @@
         >
         {{ showWidgetFullScreenCopy }}
     </button>
-    <div class="widgetFullScreenGraph" 
+    <div class="widgetFullScreenGraph"
         [style.border]="showWidgetFullScreenBorder"
         [style.height.%]="showWidgetFullScreenHeight-20"
         [style.width.%]="showWidgetFullScreenWidth-30"

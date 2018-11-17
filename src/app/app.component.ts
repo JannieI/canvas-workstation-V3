@@ -452,6 +452,7 @@ export class AppComponent implements OnInit {
     showModalWidgetStoredTemplateInsertWidget: boolean = false
     showModalDataDictionary: boolean = false;
     showModalDataDirectExport: boolean = false;
+    showModalDataCreateSQLEditor: boolean = false;
     showModalDataDirectFileCSV: boolean = false;
     showModalDataDirectFileJSON: boolean = false;
     showModalDataDirectFileSpreadsheet: boolean = false;
@@ -3725,6 +3726,8 @@ export class AppComponent implements OnInit {
         this.showModalDataRefreshRepeat = true;
     }
 
+
+
     clickMenuDataDirectFileCSV() {
         // Open form to create a DS with data that comes from a CSV file.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileCSV', '@Start');
@@ -3749,6 +3752,8 @@ export class AppComponent implements OnInit {
         this.selectedDatasource = null;
         this.showModalDataDirectFileCSV = true;
     }
+
+
 
     clickMenuDataDirectFileJSON() {
         // Open form to create a DS with data that comes from a JSON file.
