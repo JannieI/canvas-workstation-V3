@@ -32,10 +32,16 @@
                     <!-- WHERE IS DATA: define location, and credentials -->
                     <div class="gridWhereContainer" *ngIf="step=='Where'">
 
-                        <div class="gridDatasourceNameTitle">
+                            
+                        <div class="whereHelp">   
+                            Enter the details to a new SQL source, or selected from a 
+                            previously defined connection.
+                        </div>
+
+                        <div class="whereNameTitle">
                             <b>Name:</b>
                         </div>
-                        <div class="gridDatasourceName">
+                        <div class="whereName">
                             <input [(ngModel)]="selectedDatasource.name"
                                 type="text"
                                 name="name"
@@ -43,10 +49,10 @@
                                 >
                         </div>
 
-                        <div class="gridDescriptionTitle">
+                        <div class="whereDescriptionTitle">
                             <b>Description:</b>
                         </div>
-                        <div class="gridDescription">
+                        <div class="whereDescription">
                                 <input [(ngModel)]="selectedDatasource.description"
                                 type="text"
                                 name="description"
@@ -54,10 +60,10 @@
                                 >
                         </div>
 
-                        <div class="gridServerTypeTitle">
+                        <div class="whereServerTypeTitle">
                             <b>Type:</b>
                         </div>
-                        <div class="select gridServerType">
+                        <div class="select whereServerType">
                             <select
                                 [(ngModel)]="selectedDatasource.serverType"
                                 name="serverType"
@@ -70,10 +76,10 @@
                             </select>
                         </div>
 
-                        <div class="gridServerNameTitle">
+                        <div class="whereServerNameTitle">
                             <b>Server:</b>
                         </div>
-                        <div class="gridServerName">
+                        <div class="whereServerName">
                             <input [(ngModel)]="selectedDatasource.serverName"
                                 type="text"
                                 name="serverName"
@@ -81,10 +87,10 @@
                                 >
                         </div>
 
-                        <div class="gridServerPortTitle">
+                        <div class="whereServerPortTitle">
                             <b>Port:</b>
                         </div>
-                        <div class="gridServerPort">
+                        <div class="whereServerPort">
                                 <input [(ngModel)]="selectedDatasource.port"
                                 type="text"
                                 name="port"
@@ -92,10 +98,10 @@
                                 >
                         </div>
 
-                        <div class="gridDatabaseTitle">
+                        <div class="whereDatabaseTitle">
                             <b>Database:</b>
                         </div>
-                        <div class="gridDatabase">
+                        <div class="whereDatabase">
                                 <input [(ngModel)]="selectedDatasource.databaseName"
                                 type="text"
                                 name="databaseName"
@@ -103,10 +109,10 @@
                                 >
                         </div>
 
-                        <div class="gridUsernameTitle">
+                        <div class="whereUsernameTitle">
                             <b>Username:</b>
                         </div>
-                        <div class="gridUsername">
+                        <div class="whereUsername">
                             <input [(ngModel)]="selectedDatasource.username"
                                 type="text"
                                 name="username"
@@ -114,10 +120,10 @@
                                 >
                         </div>
 
-                        <div class="gridPasswordTitle">
+                        <div class="wherePasswordTitle">
                             <b>Password:</b>
                         </div>
-                        <div class="gridPassword">
+                        <div class="wherePassword">
                             <input [(ngModel)]="selectedDatasource.password"
                                 type="password"
                                 name="password"
@@ -125,10 +131,10 @@
                                 >
                         </div>
 
-                        <div class="gridDatasourceIsCachedTitle">
+                        <div class="whereDatasourceIsCachedTitle">
                             <b>Cache?:</b>
                         </div>
-                        <div class="gridDatasourceIsCached">
+                        <div class="whereDatasourceIsCached">
                             <input [(ngModel)]="selectedDatasource.cacheResults"
                             type="checkbox"
                             name="dashboardQArequired"
@@ -137,21 +143,11 @@
                         </div>
 
                         
-                        <div *ngIf="errorWhereMessage!=''" class="gridWhereErrorMessage">
+                        <div *ngIf="errorWhereMessage!=''" class="whereErrorMessage">
                             {{ errorMessage }}
                         </div>
-    
-                        <div class="gridButtonExplore">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="clickExplore()"
-                                >
-                                Continue
-                            </button>
-                        </div>
-    
-                        <div class="gridConnectionsTable">
+       
+                        <div class="whereConnectionsTable">
                             <clr-datagrid>
                                 <clr-dg-placeholder>
                                     No records ...
@@ -184,6 +180,25 @@
                                 </clr-dg-row>
                             </clr-datagrid>
                         </div>
+
+                        <div class="whereButtonCancel">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    (click)="clickClose('Close')"
+                                    >
+                                    Cancel
+                                </button>
+                            </div>
+                            <div class="whereButtonContinue">
+                                <button
+                                    type="button"
+                                    class="btn btn-link"
+                                    (click)="clickContinue()"
+                                    >
+                                    Continue
+                                </button>
+                            </div>
     
                     </div>
 
@@ -280,15 +295,6 @@
                                 Export
                             </button>
                         </div>
-                        <div class="gridButtonCancel">
-                                <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickClose('Close')"
-                                >
-                                Cancel
-                            </button>
-                        </div>
 
                         <div *ngIf="savedMessage!=''" class="gridSavedMessage">
                             {{ savedMessage }}
@@ -326,19 +332,22 @@
                             </button>
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
+
+                <div class="gridButtonCancel">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose('Close')"
+                        >
+                        Cancel
+                    </button>
+                </div>
+
+
+
+
+
             </form>
         </div>
     </div>

@@ -38,18 +38,26 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 1;
-        grid-row-end: 21;
+        grid-row-end: 27;
         grid-template-columns: repeat(20, 1fr);
         grid-template-rows: repeat(26, 0.8rem);
     }
-        .gridDatasourceNameTitle {
+        .whereHelp {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        .whereNameTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 2;
             grid-row-start: 3;
             grid-row-end: 4;
         }
-        .gridDatasourceName {
+        .whereName {
             grid-column-start: 2;
             /* autoprefixer: off */
             grid-column-end: 7;
@@ -57,14 +65,14 @@
             grid-row-end: 4;
         }
 
-        .gridDescriptionTitle {
+        .whereDescriptionTitle {
             grid-column-start: 7;
             /* autoprefixer: off */
             grid-column-end: 9;
             grid-row-start: 3;
             grid-row-end: 4;
         }
-        .gridDescription {
+        .whereDescription {
             grid-column-start: 9;
             /* autoprefixer: off */
             grid-column-end: 13;
@@ -72,14 +80,14 @@
             grid-row-end: 4;
         }
 
-        .gridServerTypeTitle {
+        .whereServerTypeTitle {
             grid-column-start: 14;
             /* autoprefixer: off */
             grid-column-end: 16;
             grid-row-start: 3;
             grid-row-end: 4;
         }
-        .gridServerType {
+        .whereServerType {
             grid-column-start: 16;
             /* autoprefixer: off */
             grid-column-end: 20;
@@ -87,7 +95,7 @@
             grid-row-end: 4;
         }
 
-        .gridServerNameTitle {
+        .whereServerNameTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 2;
@@ -95,7 +103,7 @@
             grid-row-end: 6;
             margin-top: 5px;
         }
-        .gridServerName {
+        .whereServerName {
             grid-column-start: 2;
             /* autoprefixer: off */
             grid-column-end: 7;
@@ -104,7 +112,7 @@
             margin-top: 5px;
         }
 
-        .gridServerPortTitle {
+        .whereServerPortTitle {
             grid-column-start: 7;
             /* autoprefixer: off */
             grid-column-end: 9;
@@ -112,7 +120,7 @@
             grid-row-end: 6;
             margin-top: 5px;
         }
-        .gridServerPort {
+        .whereServerPort {
             grid-column-start: 9;
             /* autoprefixer: off */
             grid-column-end: 14;
@@ -121,7 +129,7 @@
             margin-top: 5px;
         }
 
-        .gridDatabaseTitle {
+        .whereDatabaseTitle {
             grid-column-start: 14;
             /* autoprefixer: off */
             grid-column-end: 16;
@@ -129,7 +137,7 @@
             grid-row-end: 6;
             margin-top: 5px;
         }
-        .gridDatabase {
+        .whereDatabase {
             grid-column-start: 16;
             /* autoprefixer: off */
             grid-column-end: 21;
@@ -137,7 +145,7 @@
             grid-row-end: 6;
         }
 
-        .gridUsernameTitle {
+        .whereUsernameTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 2;
@@ -145,7 +153,7 @@
             grid-row-end: 8;
             margin-top: 5px;
         }
-        .gridUsername {
+        .whereUsername {
             grid-column-start: 2;
             /* autoprefixer: off */
             grid-column-end: 7;
@@ -153,7 +161,7 @@
             grid-row-end: 8;
         }
 
-        .gridPasswordTitle {
+        .wherePasswordTitle {
             grid-column-start: 7;
             /* autoprefixer: off */
             grid-column-end: 9;
@@ -161,7 +169,7 @@
             grid-row-end: 8;
             margin-top: 5px;
         }
-        .gridPassword {
+        .wherePassword {
             grid-column-start: 9;
             /* autoprefixer: off */
             grid-column-end: 15;
@@ -170,7 +178,7 @@
             margin-top: 5px;
         }
 
-        .gridDatasourceIsCachedTitle {
+        .whereDatasourceIsCachedTitle {
             grid-column-start: 14;
             /* autoprefixer: off */
             grid-column-end: 16;
@@ -178,7 +186,7 @@
             grid-row-end: 8;
             margin-top: 5px;
         }
-        .gridDatasourceIsCached {
+        .whereDatasourceIsCached {
             grid-column-start: 16;
             /* autoprefixer: off */
             grid-column-end: 17;
@@ -187,7 +195,7 @@
             margin-top: 5px;
         }
 
-        .gridWhereErrorMessage {
+        .errorWhereMessage {
             color: red;
             grid-column-start: 13;
             /* autoprefixer: off */
@@ -196,7 +204,7 @@
             grid-row-end: 11;
         }
     
-        .gridConnectionsTable {
+        .whereConnectionsTable {
             border: 1px solid gray;
             border-radius: 4px;
             grid-column-start: 1;
@@ -208,12 +216,21 @@
             width: 100%;
         }
 
-        .gridButtonExplore {
+        .whereButtonCancel {
+            grid-column-start: 6;
+            /* autoprefixer: off */
+            grid-column-end: 8;
+            grid-row-start: 25;
+            grid-row-end: 26;
+            text-align: left;
+        }
+    
+        .whereButtonContinue {
             grid-column-start: 18;
             /* autoprefixer: off */
             grid-column-end: 20;
-            grid-row-start: 10;
-            grid-row-end: 11;
+            grid-row-start: 9;
+            grid-row-end: 10;
             margin-top: 12px;
         }
 
