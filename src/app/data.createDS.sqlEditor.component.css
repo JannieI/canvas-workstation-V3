@@ -37,7 +37,7 @@
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 21;
-        grid-row-start: 1;
+        grid-row-start: 2;
         grid-row-end: 27;
         grid-template-columns: repeat(20, 1fr);
         grid-template-rows: repeat(26, 0.8rem);
@@ -245,32 +245,7 @@
         grid-template-rows: repeat(26, 0.8rem);
     }
 
-        .gridErrorMessage {
-            color: red;
-            grid-column-start: 13;
-            /* autoprefixer: off */
-            grid-column-end: 21;
-            grid-row-start: 9;
-            grid-row-end: 13;
-        }
-
-        .gridGoButton {
-            grid-column-start: 8;
-            /* autoprefixer: off */
-            grid-column-end: 9;
-            grid-row-start: 18;
-            grid-row-end: 19;
-        }
-
-        .gridSpinner {
-            grid-column-start: 15;
-            /* autoprefixer: off */
-            grid-column-end: 16;
-            grid-row-start: 17;
-            grid-row-end: 18;
-        }
-
-        .gridTablesTitle {
+        .whatTablesTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 2;
@@ -279,7 +254,7 @@
             height: 100%;
             width: 100%;
         }
-        .gridTables {
+        .whatTables {
             grid-column-start: 2;
             /* autoprefixer: off */
             grid-column-end: 8;
@@ -288,7 +263,7 @@
             width: 100%;
         }
 
-        .gridFieldsTitle {
+        .whatFieldsTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 2;
@@ -298,7 +273,7 @@
             margin-top: 6px;
             width: 100%;
         }
-        .gridFields {
+        .whatFields {
             grid-column-start: 2;
             /* autoprefixer: off */
             grid-column-end: 8;
@@ -308,7 +283,7 @@
             width: 100%;
         }
 
-        .gridSQLTextTitle {
+        .whatSQLTextTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 3;
@@ -318,7 +293,7 @@
             height: 100%;
             width: 100%;
         }
-        .gridSQLText {
+        .whatSQLText {
             border: 1px solid gray;
             border-radius: 4px;
             grid-column-start: 1;
@@ -329,6 +304,88 @@
             height: 100%;
             overflow-y: scroll;
             width: 100%;
+        }
+
+        .whatErrorMessage {
+            color: red;
+            grid-column-start: 13;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 9;
+            grid-row-end: 13;
+        }
+
+        .whatGoButton {
+            grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 18;
+            grid-row-end: 19;
+        }
+
+        .whatSpinner {
+            grid-column-start: 15;
+            /* autoprefixer: off */
+            grid-column-end: 16;
+            grid-row-start: 17;
+            grid-row-end: 18;
+        }
+
+        .whatData {
+            border: 1px solid gray;
+            border-radius: 4px;
+            grid-column-start: 9;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 9;
+            grid-row-end: 25;
+            width: 100%;
+        }
+
+        .whatButtonExport {
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 4;
+            grid-row-start: 25;
+            grid-row-end: 26;
+            text-align: left;
+        }
+
+        .whatSavedMessage {
+            grid-column-start: 9;
+            /* autoprefixer: off */
+            grid-column-end: 12;
+            grid-row-start: 25;
+            grid-row-end: 26;
+            padding-top: 4px;
+            text-align: left;
+        }
+
+        .whatButtonCancel {
+            grid-column-start: 6;
+            /* autoprefixer: off */
+            grid-column-end: 8;
+            grid-row-start: 25;
+            grid-row-end: 26;
+            text-align: left;
+        }
+
+        .whatButtonSave {
+            grid-column-start: 13;
+            /* autoprefixer: off */
+            grid-column-end: 15;
+            grid-row-start: 25;
+            grid-row-end: 26;
+            text-align: left;
+        }
+
+        .whatButtonTransformation {
+            grid-column-start: 15;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 25;
+            grid-row-end: 26;
+            padding-top: 4px;
         }
 
         .gridSQLParameterAreaTitle {
@@ -342,7 +399,6 @@
             height: 100%;
             width: 100%;
         }
-
         .gridSQLParameterArea {
             background-color: rgb(232, 228, 247);
             border: 1px solid black;
@@ -399,7 +455,6 @@
                 margin: 3px;
                 width: 90px;
             }
-
             .gridSQLParametersTypeTitle {
                 display: inline-block;
                 font-size: 0.5rem;
@@ -417,7 +472,6 @@
                 margin: 3px;
                 width: 80px;
             }
-
             .gridSQLParametersErrorMessage {
                 color: red;
                 font-size: 0.54rem;
@@ -429,7 +483,6 @@
                 margin-left: 60px;
                 right: 12px;
             }
-
             .gridSQLParametersGrid {
                 font-size: 0.5rem;
                 height: 60px !important;
@@ -440,74 +493,3 @@
             }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    .gridData {
-        border: 1px solid gray;
-        border-radius: 4px;
-        grid-column-start: 9;
-        /* autoprefixer: off */
-        grid-column-end: 21;
-        grid-row-start: 9;
-        grid-row-end: 25;
-        width: 100%;
-    }
-
-    .gridButtonExport {
-        grid-column-start: 2;
-        /* autoprefixer: off */
-        grid-column-end: 4;
-        grid-row-start: 25;
-        grid-row-end: 26;
-        text-align: left;
-    }
-
-    .gridButtonCancel {
-        grid-column-start: 6;
-        /* autoprefixer: off */
-        grid-column-end: 8;
-        grid-row-start: 25;
-        grid-row-end: 26;
-        text-align: left;
-    }
-
-    .gridSavedMessage {
-        grid-column-start: 9;
-        /* autoprefixer: off */
-        grid-column-end: 12;
-        grid-row-start: 25;
-        grid-row-end: 26;
-        padding-top: 4px;
-        text-align: left;
-    }
-
-    .gridButtonSave {
-        grid-column-start: 13;
-        /* autoprefixer: off */
-        grid-column-end: 15;
-        grid-row-start: 25;
-        grid-row-end: 26;
-        text-align: left;
-    }
-
-    .gridButtonTransformation {
-        grid-column-start: 15;
-        /* autoprefixer: off */
-        grid-column-end: 21;
-        grid-row-start: 25;
-        grid-row-end: 26;
-        padding-top: 4px;
-    }

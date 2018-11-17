@@ -182,34 +182,33 @@
                         </div>
 
                         <div class="whereButtonCancel">
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    (click)="clickClose('Close')"
-                                    >
-                                    Cancel
-                                </button>
-                            </div>
-                            <div class="whereButtonContinue">
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    (click)="clickContinue()"
-                                    >
-                                    Continue
-                                </button>
-                            </div>
-    
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickClose('Close')"
+                                >
+                                Cancel
+                            </button>
+                        </div>
+                        <div class="whereButtonContinue">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickContinue()"
+                                >
+                                Continue
+                            </button>
+                        </div>
                     </div>
 
 
                     <!-- WHAT DATA to extract: Define SQL statement to  -->
                     <div class="gridWhatContainer" *ngIf="step=='What'">
 
-                        <div class="gridTablesTitle">
+                        <div class="whatTablesTitle">
                             <b>Tables</b>
                         </div>
-                        <div class="select gridTables">
+                        <div class="select whatTables">
                             <select
                                 [(ngModel)]="selectedTable"
                                 name="serverType"
@@ -222,10 +221,10 @@
                             </select>
                         </div>
 
-                        <div class="gridFieldsTitle">
+                        <div class="whatFieldsTitle">
                             <b>Fields</b>
                         </div>
-                        <div class="select gridFields">
+                        <div class="select whatFields">
                             <select
                                 [(ngModel)]="selectedField"
                                 name="serverType"
@@ -237,19 +236,19 @@
                             </select>
                         </div>
 
-                        <div class="gridSQLTextTitle">
+                        <div class="whatSQLTextTitle">
                             <b>SQL Statement</b>
                         </div>
-                        <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataSQLStatement"
+                        <textarea class="whatSQLText" [(ngModel)]="selectedDatasource.dataSQLStatement"
                             name="textArea"
                             >SELECT "InvoiceDate", "BillingCity" FROM invoices
                         </textarea>
 
-                        <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                        <div *ngIf="whatErrorMessage!=''" class="whatErrorMessage">
                             {{ errorMessage }}
                         </div>
 
-                        <div class="gridGoButton">
+                        <div class="whatGoButton">
                             <button
                                 type="button"
                                 class="btn btn-link"
@@ -260,12 +259,12 @@
                             </button>
                         </div>
 
-                        <span class="spinner spinner-inline gridSpinner" *ngIf="spinner">
+                        <span class="spinner spinner-inline whatSpinner" *ngIf="spinner">
                             Loading...
                         </span>
 
-                        <div class="gridData" *ngIf="showPreview">
-                            <clr-datagrid class="gridPreviewData">
+                        <div class="whatData" *ngIf="showPreview">
+                            <clr-datagrid>
 
                                 <clr-dg-column *ngFor="let row of selectedDatasource.dataFields">
                                     {{ row }}
@@ -286,7 +285,7 @@
                             </clr-datagrid>
                         </div>
 
-                        <div class="gridButtonExport">
+                        <div class="whatButtonExport">
                                 <button
                                 type="button"
                                 class="btn btn-link"
@@ -296,11 +295,21 @@
                             </button>
                         </div>
 
-                        <div *ngIf="savedMessage!=''" class="gridSavedMessage">
+                        <div *ngIf="savedMessage!=''" class="whatSavedMessage">
                             {{ savedMessage }}
                         </div>
 
-                        <div class="gridButtonSave" *ngIf="showPreview">
+                        <div class="whatButtonCancel">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickClose('Close')"
+                                >
+                                Cancel
+                            </button>
+                        </div>
+        
+                        <div class="whatButtonSave" *ngIf="showPreview">
                             <button
                                 type="button"
                                 class="btn btn-primary"
@@ -316,7 +325,7 @@
                             </button>
                         </div>
 
-                        <div class="gridButtonTransformation" *ngIf="showPreview">
+                        <div class="whatButtonTransformation" *ngIf="showPreview">
                             <button
                                 type="button"
                                 class="btn btn-link"
@@ -332,16 +341,6 @@
                             </button>
                         </div>
                     </div>
-                </div>
-
-                <div class="gridButtonCancel">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        (click)="clickClose('Close')"
-                        >
-                        Cancel
-                    </button>
                 </div>
 
 
