@@ -1509,6 +1509,10 @@ export interface dataSchemaInterface {
                 .hover()
                 .run()
                 .finalize();
+
+            // Set H & W to fit around svg, which depends on labels, colour field length, etc
+            this.localWidget.containerHeight = this.dragWidget.nativeElement.children[0].clientHeight + 20;
+            this.localWidget.containerWidth = this.dragWidget.nativeElement.children[0].clientWidth + 20;
         };
 
         // Render graph for Vega
