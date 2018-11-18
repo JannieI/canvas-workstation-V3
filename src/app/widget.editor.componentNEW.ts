@@ -1511,8 +1511,10 @@ export interface dataSchemaInterface {
                 .finalize();
 
             // Set H & W to fit around svg, which depends on labels, colour field length, etc
-            this.localWidget.containerHeight = this.dragWidget.nativeElement.children[0].clientHeight + 20;
-            this.localWidget.containerWidth = this.dragWidget.nativeElement.children[0].clientWidth + 20;
+            this.localWidget.containerHeight = 
+                this.dragWidget.nativeElement.children[0].clientHeight + 40;
+            this.localWidget.containerWidth = 
+                this.dragWidget.nativeElement.children[0].clientWidth + 20;
         };
 
         // Render graph for Vega
@@ -2960,77 +2962,78 @@ export interface dataSchemaInterface {
         // Continue to design / edit the W, and close the form for the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
 
-        // Determine if data obtains in Glob Var
-        let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-            ds => ds.datasourceID == this.selectedRowID
-        );
-        if (dataSetIndex < 0) {
-            this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
-            return;
-        };
-
-        // Remember ID for next time
-        // this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
-
-        // Fill in data info
-        this.localWidget.datasourceID = this.selectedRowID;
-        this.localWidget.datasetID = this.globalVariableService.
-            currentDatasets[dataSetIndex].id;
-        this.localWidget.graphData = this.globalVariableService
-            .currentDatasets[dataSetIndex].data;
-
-        // Reset
+        // If a new DS, clear out info for old one
         if (this.globalVariableService.previousGraphEditDSID != this.selectedRowID) {
 
+                // Determine if data obtains in Glob Var
+            let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+                ds => ds.datasourceID == this.selectedRowID
+            );
+            if (dataSetIndex < 0) {
+                this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
+                return;
+            };
+
+            // Fill in data info
+            this.localWidget.datasourceID = this.selectedRowID;
+            this.localWidget.datasetID = this.globalVariableService.
+                currentDatasets[dataSetIndex].id;
+            this.localWidget.graphData = this.globalVariableService
+                .currentDatasets[dataSetIndex].data;
+
             // Reset
-            this.hasCalculationsOrFilters = false;
-            this.localWidget.graphCalculations = [];
-            this.localWidget.graphFilters = [];
+            if (this.globalVariableService.previousGraphEditDSID != this.selectedRowID) {
 
-            // Load local arrays for ngFor
-            this.constructDataSchema(this.selectedRowIndex);
+                // Reset
+                this.hasCalculationsOrFilters = false;
+                this.localWidget.graphCalculations = [];
+                this.localWidget.graphFilters = [];
+
+                // Load local arrays for ngFor
+                this.constructDataSchema(this.selectedRowIndex);
+            };
+
+            this.localWidget.graphLayers = [];
+            this.graphLayers = [1];
+            this.localWidget.graphLayers.push(
+                JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplateInner))
+            );
+            this.currentGraphLayer = 1;
+            this.filterNrActive = 0;
+            this.clickClearXField();
+            this.clickClearYField();
+            this.clickClearColourField();
+            this.clickClearSizeField();
+            this.clickClearDetailField();
+            this.clickClearColumnField();
+            this.clickClearRowField();
+            this.clickClearX2Field();
+            this.clickClearY2Field();
+            this.clickClearMark();
+            this.clickClearProjectionField();
+
+            this.clickCalculatedClear();
+            this.clickFilterClear();
+
+            // Clear condition fields
+            this.conditionColour = '';
+            this.conditionColourName = '';
+            this.conditionFieldName = '';
+            this.conditionOperator = '';
+            this.conditionValue = '';
+
+            // Clear History
+            this.graphHistory = [];
+            this.graphHistoryPosition = 0;
+            this.graphHeader = '';
+            this.showGraphAreaTitle = false;
+
+            // Remember ID for next time
+            this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
         };
-
-        this.localWidget.graphLayers = [];
-        this.graphLayers = [1];
-        this.localWidget.graphLayers.push(
-            JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplateInner))
-        );
-        this.currentGraphLayer = 1;
-        this.filterNrActive = 0;
-        this.clickClearXField();
-        this.clickClearYField();
-        this.clickClearColourField();
-        this.clickClearSizeField();
-        this.clickClearDetailField();
-        this.clickClearColumnField();
-        this.clickClearRowField();
-        this.clickClearX2Field();
-        this.clickClearY2Field();
-        this.clickClearMark();
-        this.clickClearProjectionField();
-
-        this.clickCalculatedClear();
-        this.clickFilterClear();
-
-        // Clear condition fields
-        this.conditionColour = '';
-        this.conditionColourName = '';
-        this.conditionFieldName = '';
-        this.conditionOperator = '';
-        this.conditionValue = '';
-
-        // Clear History
-        this.graphHistory = [];
-        this.graphHistoryPosition = 0;
-        this.graphHeader = '';
-        this.showGraphAreaTitle = false;
 
         // Show the Editor form
         this.showDatasourceMain = false;
-
-        // Remember ID for next time
-        this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
 
     }
 
