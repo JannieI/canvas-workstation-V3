@@ -2868,27 +2868,27 @@ export interface dataSchemaInterface {
             this.errorMessage = '';
         };
 
-        // Clear previous selected fields
-        this.showXDeleteIcon = false;
-        this.xField = dragFieldMessage;
+        // // Clear previous selected fields
+        // this.showXDeleteIcon = false;
+        // this.xField = dragFieldMessage;
 
-        this.showYDeleteIcon = false;
-        this.yField = dragFieldMessage;
+        // this.showYDeleteIcon = false;
+        // this.yField = dragFieldMessage;
 
-        this.showColourDeleteIcon = false;
-        this.colorField = dragFieldMessage;
+        // this.showColourDeleteIcon = false;
+        // this.colorField = dragFieldMessage;
 
-        this.showSizeDeleteIcon = false;
-        this.sizeField = dragFieldMessage;
+        // this.showSizeDeleteIcon = false;
+        // this.sizeField = dragFieldMessage;
 
-        this.showRowDeleteIcon = false;
-        this.rowField = dragFieldMessage;
+        // this.showRowDeleteIcon = false;
+        // this.rowField = dragFieldMessage;
 
-        this.showColumnDeleteIcon = false;
-        this.columnField = dragFieldMessage;
+        // this.showColumnDeleteIcon = false;
+        // this.columnField = dragFieldMessage;
 
-        this.showDetailDeleteIcon = false;
-        this.detailField = dragFieldMessage;
+        // this.showDetailDeleteIcon = false;
+        // this.detailField = dragFieldMessage;
 
         // Determine if data already in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
