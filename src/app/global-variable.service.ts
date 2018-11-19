@@ -13143,6 +13143,47 @@ console.warn('xx ds perm', dp);
       
     }
 
+    tributaryExecute(executeURL: string, source: any) {
+        // Executes a DS using the given URL
+        // - inspectURL - url obtained from tributaryCreateSession()
+        // - source = specification for Tributary
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables tributaryExecute ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {executeURL});
+        };
+        
+        let pathUrl: string = executeURL;
+
+        return new Promise<any>((resolve, reject) => {
+
+            let localToken: Token = JSON.parse(localStorage.getItem('eazl-token'));
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + localToken.token);
+            this.http.post(pathUrl, source, {headers})
+            .subscribe(
+                res => {
+
+                    if (this.sessionDebugging) {
+                        console.log('tributaryExecute Data', {res})
+                    };
+
+                    resolve(res);
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error tributaryExecute FAILED', {err});
+                    };
+                    reject(err);
+                }
+            )
+        });
+      
+    }
+
     getTributaryData(source: any): Promise<any> {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
