@@ -354,7 +354,11 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             .then(res => {
 
                 // Fill the data
-                this.fileData = res.slice(0,10);
+                console.warn('xx res', res);
+                console.warn('xx res.sample', res.sample);
+                console.warn('xx res.sample.results', res.sample.results);
+                
+                this.fileData = res.sample.results.slice(0,10);
                 this.fileDataFull = res;
 
                 // Construct a list of field name / column headings from the data
