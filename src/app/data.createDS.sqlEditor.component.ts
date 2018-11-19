@@ -44,6 +44,27 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             return;
         };
 
+
+        if (
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
+           ) {
+
+            if (this.step == 'Where') {
+                this.clickContinue();
+                return;
+            } else {
+                if (this.step == 'What') {
+                    // this.clickCalculatedApply();
+                    return;
+                };
+                // this.clickSave('Saved');
+                return;
+            }
+        };        
     }
 
 
@@ -218,7 +239,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 console.warn('xx res', res)
 
                 // Call Tributary Inspector
-                this.globalVariableService.getTributaryInspect(specificationInspect)
+                this.globalVariableService.tributaryInspect(res.inspect, specificationInspect)
                 .then(res => {
 
                     // Fill the tables and Fields
