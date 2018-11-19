@@ -110,8 +110,8 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 subType: '',
                 typeVersion: '',
                 name: '',
-                username: 'ftfhgfzh',
-                password: 'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl',
+                username: 'postgres',     //'ftfhgfzh',
+                password: 'postgres',     //'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl',
                 description: '',
                 dataFieldIDs: [0],
                 dataFields: [''],
@@ -148,12 +148,12 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 connectionID: 0,
                 dataTableID: 0,
                 nrWidgets: 0,
-                databaseName: 'ftfhgfzh',
-                port: '5432',
+                databaseName: 'data',       //'ftfhgfzh',
+                port: '5000',               //'5432',
                 serverType: 'PostgresSQL',
-                serverName: 'pellefant.db.elephantsql.com',
+                serverName: 'postgres',     //'pellefant.db.elephantsql.com',
                 dataTableName: 'ftfhgfzh',
-                dataSQLStatement: 'SELECT "InvoiceDate", "BillingCity"  FROM invoices',
+                dataSQLStatement:  'SELECT \"SalePrice", \"FullBath\", \"HalfBath\", \"TotRmsAbvGrd\", \"LotArea\" FROM \"kaggle_house_prices\"',  //'SELECT "InvoiceDate", "BillingCity"  FROM invoices',
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
@@ -196,6 +196,9 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     clickContinue() {
         // Load the Tables and Fields, using the Tributary Inspector
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue',           '@Start');
+
+        // Reset
+        this.whereErrorMessage = '';
 
         // Get drivers
         let driver: string = this.serverTypes
@@ -244,7 +247,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
                     // Fill the tables and Fields
                     this.dataSchemas = [];
-                    res.results.forEach(row => {
+                    res.forEach(row => {
 
                         this.dataSchemas.push(
                         {
