@@ -152,16 +152,6 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         // Load the Tables and Fields, using the Tributary Inspector
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue',           '@Start');
 
-        // Reset
-        this.whereErrorMessage = '';
-        this.whatErrorMessage = '';
-        this.showPreview = false;
-        this.canSave = false;
-        this.step = 'What';
-
-        // Show user
-        this.spinner = true;
-
         // Get drivers
         let driver: string = this.serverTypes
             .filter(styp => styp.serverType == this.selectedDatasource.serverType)
@@ -252,6 +242,16 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             this.whereErrorMessage = 'Error connecting to server (1st check login or permissions) '
                 + err.message;
         });
+
+        // Reset
+        this.whereErrorMessage = '';
+        this.whatErrorMessage = '';
+        this.showPreview = false;
+        this.canSave = false;
+        this.step = 'What';
+
+        // Show user
+        this.spinner = true;
 
     }
 
