@@ -192,66 +192,65 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         this.globalVariableService.tributaryCreateSession()
             .then(res => {
                 console.warn('xx res', res)
+
+                // Call Tributary Inspector
+                this.globalVariableService.getTributaryInspect(specificationInspect)
+                .then(res => {
+
+                    // Fill the tables and Fields
+                    this.dataSchemas = [];
+                    res.results.forEach(row => {
+
+                        this.dataSchemas.push(
+                        {
+                            serverName: this.selectedDatasource.serverName,
+                            tableName: row.name,
+                            tableDescription: row.name,
+                            tableFields: [],
+                            tableMetadata: []
+                        });
+                        row.fields.forEach(fld => {
+                            this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
+                                {
+                                    fieldName: fld.name,
+                                    fieldType: fld.dtype
+                                }
+                            )
+                        });
+                    });
+
+                    // Fill the fields
+                    if (this.dataSchemas.length > 0) {
+                        // this.clickSelectTable(this.dataSchemas[0].tableName);
+                        this.fieldsInTable = this.dataSchemas[0].tableFields.map(tf => tf.fieldName);
+                        console.warn('xx this.dataSchemas', this.dataSchemas)
+                    };
+
+                    console.warn('xx res I', res, this.dataSchemas)
+
+                    // Reset
+                    this.whereErrorMessage = '';
+                    this.whatErrorMessage = '';
+                    this.showPreview = false;
+                    this.canSave = false;
+                    this.step = 'What';
+
+                    // Show user
+                    this.spinner = true;
+
+                })
+                .catch(err => {
+                    console.warn('xx err', err)
+                    this.spinner = false;
+                    this.whereErrorMessage = 'Error connecting to server (1st check login or permissions) '
+                        + err.message;
+                });
             })
             .catch(err => {
                 console.warn('xx err', err);
-                this.whatErrorMessage = err.message;
+                this.whereErrorMessage = err.message;
                 return;
             });
-
-        // Call Tributary Inspector
-        this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
-
-            // Fill the tables and Fields
-            this.dataSchemas = [];
-            res.results.forEach(row => {
-
-                this.dataSchemas.push(
-                {
-                    serverName: this.selectedDatasource.serverName,
-                    tableName: row.name,
-                    tableDescription: row.name,
-                    tableFields: [],
-                    tableMetadata: []
-                });
-                row.fields.forEach(fld => {
-                    this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
-                        {
-                            fieldName: fld.name,
-                            fieldType: fld.dtype
-                        }
-                    )
-                });
-            });
-
-            // Fill the fields
-            if (this.dataSchemas.length > 0) {
-                // this.clickSelectTable(this.dataSchemas[0].tableName);
-                this.fieldsInTable = this.dataSchemas[0].tableFields.map(tf => tf.fieldName);
-                console.warn('xx this.dataSchemas', this.dataSchemas)
-            };
-
-            // Reset
-            this.spinner = false;
-            console.warn('xx res I', res, this.dataSchemas)
-
-        })
-        .catch(err => {
-            console.warn('xx err', err)
-            this.spinner = false;
-            this.whereErrorMessage = 'Error connecting to server (1st check login or permissions) '
-                + err.message;
-        });
-
-        // Reset
-        this.whereErrorMessage = '';
-        this.whatErrorMessage = '';
-        this.showPreview = false;
-        this.canSave = false;
-        this.step = 'What';
-
-        // Show user
-        this.spinner = true;
 
     }
 
