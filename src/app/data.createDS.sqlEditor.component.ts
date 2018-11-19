@@ -85,6 +85,8 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     showPreview: boolean = false;
     spinner: boolean = false;
     step: string = 'Where';
+    tributarySessionInspectURL: string = '';
+    tributarySessionExecuteURL: string = '';
 
 
 	constructor(
@@ -241,8 +243,13 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             .then(res => {
                 console.warn('xx res', res)
 
+                // Store URLs
+                this.tributarySessionInspectURL = res.inspect;
+                this.tributarySessionExecuteURL = res.execute;
+
                 // Call Tributary Inspector
-                this.globalVariableService.tributaryInspect(res.inspect, specificationInspect)
+                this.globalVariableService.tributaryInspect(
+                    this.tributarySessionInspectURL, specificationInspect)
                 .then(res => {
 
                     // Fill the tables and Fields
@@ -340,7 +347,10 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         };
 
         // Get Tributary data
-        this.globalVariableService.getTributaryData(specificationConnect)
+        this.globalVariableService.tributaryExecute(
+                this.tributarySessionExecuteURL, 
+                specificationConnect
+            )
             .then(res => {
 
                 // Fill the data
