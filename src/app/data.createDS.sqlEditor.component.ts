@@ -50,7 +50,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     canSave: boolean = false;
     dataConnections: DataConnection[];
     dataSchemas: DataSchema[] = [];
-    whereErrorMessage: string = 'Error Testing Where';
+    whereErrorMessage: string = '';
     whatErrorMessage: string = 'Error Testing What';
     fieldsInTable: string[];
     fileData: any = [];
@@ -260,7 +260,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                     this.step = 'What';
 
                     // Show user
-                    this.spinner = true;
+                    this.spinner = false;
 
                 })
                 .catch(err => {

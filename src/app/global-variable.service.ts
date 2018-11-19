@@ -13061,7 +13061,8 @@ console.warn('xx ds perm', dp);
     };
 
     tributaryCreateSession(sampleSize: number = null) {
-        // If so, set currentUser object and return true
+        // Create a new Tributary Session
+        // - sampleSize = optional nr of rows to return
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables tributaryCreateSession ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -13085,7 +13086,7 @@ console.warn('xx ds perm', dp);
                 res => {
 
                     if (this.sessionDebugging) {
-                        console.log('Tributary Data', {res})
+                        console.log('tributaryCreateSession Data', {res})
                     };
 
                     resolve(res);
@@ -13100,6 +13101,48 @@ console.warn('xx ds perm', dp);
         });
       
     }
+
+    tributaryInspect(inspectURL: string, source: any) {
+        // Inspect a DS using the given URL
+        // - inspectURL - url obtained from tributaryCreateSession()
+        // - source = specification for Tributary
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables tributaryInspect ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {inspectURL});
+        };
+        
+        let pathUrl: string = inspectURL;
+
+        return new Promise<any>((resolve, reject) => {
+
+            let localToken: Token = JSON.parse(localStorage.getItem('eazl-token'));
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + localToken.token);
+            this.http.post(pathUrl, source, {headers})
+            .subscribe(
+                res => {
+
+                    if (this.sessionDebugging) {
+                        console.log('tributaryInspect Data', {res})
+                    };
+
+                    resolve(res);
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error tributaryInspect FAILED', {err});
+                    };
+                    reject(err);
+                }
+            )
+        });
+      
+    }
+
     getTributaryData(source: any): Promise<any> {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
