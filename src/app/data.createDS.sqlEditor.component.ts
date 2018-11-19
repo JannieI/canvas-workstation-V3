@@ -361,17 +361,19 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 this.fileData = res.sample.results.slice(0,10);
                 this.fileDataFull = res;
 
+                console.warn('xx this.fileData', this.fileData);
+
                 // Construct a list of field name / column headings from the data
                 this.selectedDatasource.dataFields = [];
 
-                if (res.length > 0) {
-                    console.warn('xx res[0]', res[0])
-                    for(var key in res[0]) {
+                if (res.sample.results.length > 0) {
+                    console.warn('xx res.sample.results[0]', res.sample.results[0])
+                    for(var key in res.sample.results[0]) {
                         console.warn('xx key', key)
                         this.selectedDatasource.dataFields.push(key);
                     }
                 };
-
+                console.warn('xx this.selectedDatasource.dataFields', this.selectedDatasource.dataFields)
                 // Show the results
                 this.showPreview = true;
                 this.spinner = false;
