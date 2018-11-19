@@ -198,6 +198,17 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             }
         };
 
+        // Create a Tributary Session
+        this.globalVariableService.tributaryCreateSession()
+            .then(res => {
+                console.warn('xx res', res)
+            })
+            .catch(err => {
+                console.warn('xx err', err);
+                this.whatErrorMessage = err.message;
+                return;
+            });
+
         // Call Tributary Inspector
         this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
 

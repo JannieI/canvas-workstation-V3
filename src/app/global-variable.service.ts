@@ -13060,6 +13060,46 @@ console.warn('xx ds perm', dp);
         });
     };
 
+    tributaryCreateSession(sampleSize: number = null) {
+        // If so, set currentUser object and return true
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables tributaryCreateSession ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {sampleSize});
+        };
+        
+        let pathUrl: string = this.ENVCanvasEZALServerUrl + 
+            'canvas/datasources/sessions/create-session/';
+
+        return new Promise<any>((resolve, reject) => {
+
+            let localToken: Token = JSON.parse(localStorage.getItem('eazl-token'));
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + localToken.token);
+            const sampleString: any = { "sample_size": sampleSize };
+            this.http.post(pathUrl, sampleString, {headers})
+            .subscribe(
+                res => {
+
+                    if (this.sessionDebugging) {
+                        console.log('Tributary Data', {res})
+                    };
+
+                    resolve(res);
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error tributaryCreateSession FAILED', {err});
+                    };
+                    reject(err);
+                }
+            )
+        });
+      
+    }
     getTributaryData(source: any): Promise<any> {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
