@@ -57,8 +57,9 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     fileDataFull: any = [];
     reader = new FileReader();
     savedMessage: string = '';
-    selectedTable: string = '';
     selectedField: string = '';
+    selectedConnectionRowIndex: number = -1;
+    selectedTable: string = '';
     serverTypes: TributaryServerType[];
     showPreview: boolean = false;
     spinner: boolean = false;
@@ -146,6 +147,29 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
         console.warn('xx dates',
     this.globalVariableService.dateDiff(new Date(), new Date('2018-08-09'), 'day'))
+    }
+
+    clickRow(index: number, connectionID: number) {
+        // Fill in detail for the selected Connection Row
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+        let dataConnectionIndex: number =  this.dataConnections.findIndex(
+            dc => dc.id == connectionID
+        );
+        if (dataConnectionIndex < 0) {
+            return;
+        };
+        let selectedDataConnection: DataConnection =  this.dataConnections[dataConnectionIndex];
+        
+        this.selectedDatasource.description = this.selectedDatasource.description==''?
+            selectedDataConnection.description  :  this.selectedDatasource.description;
+        this.selectedDatasource.serverType = selectedDataConnection.serverType;
+        this.selectedDatasource.serverName = selectedDataConnection.serverName;
+        this.selectedDatasource.port = selectedDataConnection.port;
+        this.selectedDatasource.databaseName = selectedDataConnection.database;
+
+        // Set selected Row
+        this.selectedConnectionRowIndex = index;
     }
 
     clickContinue() {
