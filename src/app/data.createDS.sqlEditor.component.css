@@ -289,11 +289,11 @@
 
         .whatErrorMessage {
             color: red;
-            grid-column-start: 2;
+            grid-column-start: 9;
             /* autoprefixer: off */
             grid-column-end: 21;
-            grid-row-start: 3;
-            grid-row-end: 4;
+            grid-row-start: 23;
+            grid-row-end: 25;
         }
 
         .whatTablesTitle {

@@ -168,8 +168,6 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             this.clickContinue();
         };
 
-        console.warn('xx dates',
-    this.globalVariableService.dateDiff(new Date(), new Date('2018-08-09'), 'day'))
     }
 
     clickRow(index: number, connectionID: number) {
@@ -241,7 +239,6 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         // Create a Tributary Session
         this.globalVariableService.tributaryCreateSession()
             .then(res => {
-                console.warn('xx res', res)
 
                 // Store URLs
                 this.tributarySessionInspectURL = res.inspect;
@@ -278,10 +275,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                     if (this.dataSchemas.length > 0) {
                         // this.clickSelectTable(this.dataSchemas[0].tableName);
                         this.fieldsInTable = this.dataSchemas[0].tableFields.map(tf => tf.fieldName);
-                        console.warn('xx this.dataSchemas', this.dataSchemas)
                     };
-
-                    console.warn('xx res I', res, this.dataSchemas)
 
                     // Reset
                     this.whereErrorMessage = '';
@@ -354,26 +348,18 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             .then(res => {
 
                 // Fill the data
-                console.warn('xx res', res);
-                console.warn('xx res.sample', res.sample);
-                console.warn('xx res.sample.results', res.sample.results);
-                
                 this.fileData = res.sample.results.slice(0,10);
                 this.fileDataFull = res;
 
-                console.warn('xx this.fileData', this.fileData);
 
                 // Construct a list of field name / column headings from the data
                 this.selectedDatasource.dataFields = [];
 
                 if (res.sample.results.length > 0) {
-                    console.warn('xx res.sample.results[0]', res.sample.results[0])
                     for(var key in res.sample.results[0]) {
-                        console.warn('xx key', key)
                         this.selectedDatasource.dataFields.push(key);
                     }
                 };
-                console.warn('xx this.selectedDatasource.dataFields', this.selectedDatasource.dataFields)
                 // Show the results
                 this.showPreview = true;
                 this.spinner = false;
@@ -384,7 +370,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             })
             .catch(err => {
                 this.spinner = false;
-                this.whereErrorMessage = 'Error connecting to server: check login or permissions'
+                this.whatErrorMessage = 'Error connecting to server: check login or permissions'
                     + err.message;
             });
 
@@ -398,12 +384,10 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         let selectedDataSchema: DataSchema[] = this.dataSchemas.filter(
             dsch => dsch.tableName == ev.target.value
         );
-        console.warn('xx selectedDataSchema',selectedDataSchema, this.dataSchemas, ev.target.value )
 
         if (selectedDataSchema.length > 0) {
             this.fieldsInTable = selectedDataSchema[0].tableFields.map(tf => tf.fieldName);
         };
-        console.warn('xx this.fieldsInTable',ev, this.selectedTable, this.fieldsInTable )
     }
 
     clickExport() {
