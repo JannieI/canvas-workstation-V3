@@ -83,10 +83,12 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     selectedTable: string = '';
     serverTypes: TributaryServerType[];
     showPreview: boolean = false;
+    specificationConnect: any;
     spinner: boolean = false;
     step: string = 'Where';
     tributarySessionInspectURL: string = '';
     tributarySessionExecuteURL: string = '';
+    tributarySessionCreateDatasourceURL: string = '';
 
 
 	constructor(
@@ -243,6 +245,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 // Store URLs
                 this.tributarySessionInspectURL = res.inspect;
                 this.tributarySessionExecuteURL = res.execute;
+                this.tributarySessionCreateDatasourceURL = res.create_datasource;
 
                 // Call Tributary Inspector
                 this.globalVariableService.tributaryInspect(
@@ -326,7 +329,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
         // Set up specification for Connector
         this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
-        let specificationConnect: any = {
+        this.specificationConnect = {
             "source": {
                 "connector": connector,
                 "specification": {
@@ -344,7 +347,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         // Get Tributary data
         this.globalVariableService.tributaryExecute(
                 this.tributarySessionExecuteURL, 
-                specificationConnect
+                this.specificationConnect
             )
             .then(res => {
 
@@ -419,6 +422,29 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         this.whereErrorMessage = '';
         this.savedMessage = '';
 
+        // Set up specification for Connector
+        this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
+        let specificationCreateDatasource: any = {
+            "name": "Test One",
+            "description": "Test One",
+            "specification": this.specificationConnect,
+            "cachable": false
+        };
+
+        // Get Tributary data
+        this.globalVariableService.tributaryAddDatasource(
+                this.tributarySessionCreateDatasourceURL, 
+                specificationCreateDatasource
+            )
+            .then(res => {
+                console.warn('xx res', res)
+            })
+            .catch(err => {
+                this.spinner = false;
+                this.whatErrorMessage = 'Error connecting to server: check login or permissions'
+                    + err.message;
+            });
+    }
 
     clickAdd(action: string) {
         // Add the DS, with data, to the DB
