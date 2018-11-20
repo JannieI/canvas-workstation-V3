@@ -54,7 +54,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
            ) {
 
             if (this.step == 'Where') {
-                this.clickContinue();
+                this.clickNextToWhat();
                 return;
             } else {
                 if (this.step == 'What') {
@@ -167,7 +167,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
             };
         } else {
-            this.clickContinue();
+            this.clickNextToWhat();
         };
 
     }
@@ -195,9 +195,9 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         this.selectedConnectionRowIndex = index;
     }
 
-    clickContinue() {
+    clickNextToWhat() {
         // Load the Tables and Fields, using the Tributary Inspector
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue',           '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNextToWhat',           '@Start');
 
         // Reset
         this.whereErrorMessage = '';
