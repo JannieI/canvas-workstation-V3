@@ -245,12 +245,21 @@
         grid-template-rows: repeat(26, 0.8rem);
     }
 
+        .whatHelp {
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 20;
+            grid-row-start: 2;
+            grid-row-end: 3;
+        }
+
         .whatTablesTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 2;
-            grid-row-start: 9;
-            grid-row-end: 10;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            margin-left: 12px;
             height: 100%;
             width: 100%;
         }
@@ -258,8 +267,9 @@
             grid-column-start: 2;
             /* autoprefixer: off */
             grid-column-end: 8;
-            grid-row-start: 9;
-            grid-row-end: 10;
+            grid-row-start: 4;
+            margin-left: 12px;
+            grid-row-end: 5;
             width: 100%;
         }
 
@@ -267,8 +277,9 @@
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 2;
-            grid-row-start: 10;
-            grid-row-end: 11;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin-left: 12px;
             height: 100%;
             margin-top: 6px;
             width: 100%;
@@ -277,8 +288,9 @@
             grid-column-start: 2;
             /* autoprefixer: off */
             grid-column-end: 8;
-            grid-row-start: 10;
-            grid-row-end: 11;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin-left: 12px;
             margin-top: 6px;
             width: 100%;
         }
@@ -287,9 +299,9 @@
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 3;
-            grid-row-start: 13;
-            grid-row-end: 14;
-            margin-top: -2px;
+            grid-row-start: 8;
+            grid-row-end: 9;
+            margin-top: 12px;
             height: 100%;
             width: 100%;
         }
@@ -299,20 +311,21 @@
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 8;
-            grid-row-start: 14;
-            grid-row-end: 25;
+            grid-row-start: 9;
+            grid-row-end: 24;
             height: 100%;
+            margin-left: 12px;
             overflow-y: scroll;
             width: 100%;
         }
 
         .whatErrorMessage {
             color: red;
-            grid-column-start: 13;
+            grid-column-start: 2;
             /* autoprefixer: off */
             grid-column-end: 21;
-            grid-row-start: 9;
-            grid-row-end: 13;
+            grid-row-start: 3;
+            grid-row-end: 4;
         }
 
         .whatGoButton {
@@ -332,13 +345,13 @@
         }
 
         .whatData {
-            border: 1px solid gray;
-            border-radius: 4px;
+            /* border: 1px solid gray;
+            border-radius: 4px; */
             grid-column-start: 9;
             /* autoprefixer: off */
             grid-column-end: 21;
-            grid-row-start: 9;
-            grid-row-end: 25;
+            grid-row-start: 5;
+            grid-row-end: 24;
             width: 100%;
         }
 
