@@ -13145,7 +13145,7 @@ console.warn('xx ds perm', dp);
 
     tributaryExecute(executeURL: string, source: any) {
         // Executes a DS using the given URL
-        // - inspectURL - url obtained from tributaryCreateSession()
+        // - executeURL - url obtained from tributaryCreateSession()
         // - source = specification for Tributary
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables tributaryExecute ...',
@@ -13176,6 +13176,47 @@ console.warn('xx ds perm', dp);
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error tributaryExecute FAILED', {err});
+                    };
+                    reject(err);
+                }
+            )
+        });
+      
+    }
+
+    tributaryAddDatasource(createDatasourceURL: string, source: any) {
+        // Adds a DS using the given URL
+        // - createDatasourceURL - url obtained from tributaryCreateSession()
+        // - source = DS specification for Tributary
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables tributaryAddDatasource ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {createDatasourceURL});
+        };
+        
+        let pathUrl: string = createDatasourceURL;
+
+        return new Promise<any>((resolve, reject) => {
+
+            let localToken: Token = JSON.parse(localStorage.getItem('eazl-token'));
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + localToken.token);
+            this.http.post(pathUrl, source, {headers})
+            .subscribe(
+                res => {
+
+                    if (this.sessionDebugging) {
+                        console.log('tributaryAddDatasource Data', {res})
+                    };
+
+                    resolve(res);
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error tributaryAddDatasource FAILED', {err});
                     };
                     reject(err);
                 }

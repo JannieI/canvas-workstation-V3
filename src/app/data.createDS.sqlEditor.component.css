@@ -403,7 +403,15 @@
             grid-row-end: 26;
             text-align: left;
         }
-
+        .whatButtonAddUpdate {
+            grid-column-start: 10;
+            /* autoprefixer: off */
+            grid-column-end: 11;
+            grid-row-start: 25;
+            grid-row-end: 26;
+            text-align: left;
+        }
+        
         .whatButtonTransformation {
             grid-column-start: 15;
             /* autoprefixer: off */

@@ -336,7 +336,22 @@
 
                             </button>
                         </div>
+                        <div class="whatButtonAddUpdate" *ngIf="showPreview">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                (click)="clickAddUpdate('Saved')"
+                                >
+                                <span *ngIf="!editingDS">
+                                    Add ...
+                                </span>
+                                <span *ngIf="editingDS">
+                                    Update ...
+                                </span>
 
+                            </button>
+                        </div>
+    
                         <div class="whatButtonTransformation" *ngIf="showPreview">
                             <button
                                 type="button"

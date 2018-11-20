@@ -309,6 +309,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
         // Reset
         this.whereErrorMessage = '';
+        this.whatErrorMessage = '';
         this.showPreview = false;
         this.canSave = false;
 
@@ -409,6 +410,15 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         this.formDataConnectorSQLEditorClosed.emit(null);
 
     }
+
+    clickAddUpdate(action: string) {
+        // Add the DS, with data, to the DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Reset
+        this.whereErrorMessage = '';
+        this.savedMessage = '';
+
 
     clickAdd(action: string) {
         // Add the DS, with data, to the DB
