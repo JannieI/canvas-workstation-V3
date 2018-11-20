@@ -148,7 +148,7 @@
                         </div>
 
                         <div class="whereConnectionsTable">
-                            <clr-datagrid>
+                            <clr-datagrid class="datagrid-compact">
                                 <clr-dg-placeholder>
                                     No records ...
                                 </clr-dg-placeholder>
@@ -207,6 +207,7 @@
                         <div class="whatHelp">
                             <i>
                                 Enter the SQL statement, and then click GO to see the results.
+                                Click ADD to create a new Datasource.
                             </i>
                         </div>
 
@@ -244,6 +245,16 @@
                         <div class="whatSQLTextTitle">
                             <b>SQL Statement</b>
                         </div>
+                        <div class="whatButtonExport">
+                                <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickExport()"
+                                >
+                                Export SQL
+                            </button>
+                        </div>
+
                         <textarea class="whatSQLText" [(ngModel)]="selectedDatasource.dataSQLStatement"
                             name="textArea"
                             >SELECT "InvoiceDate", "BillingCity" FROM invoices
@@ -269,7 +280,7 @@
                         </span>
 
                         <div class="whatData" *ngIf="showPreview">
-                            <clr-datagrid>
+                            <clr-datagrid class="datagrid-compact">
 
                                 <clr-dg-column *ngFor="let row of selectedDatasource.dataFields">
                                     {{ row }}
@@ -281,23 +292,13 @@
                                     </clr-dg-cell>
                                 </clr-dg-row>
 
-                                <clr-dg-footer>
+                                <!-- <clr-dg-footer>
                                     {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                                     of {{pagination.totalItems}} rows
                                     <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
-                                </clr-dg-footer>
+                                </clr-dg-footer> -->
 
                             </clr-datagrid>
-                        </div>
-
-                        <div class="whatButtonExport">
-                                <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="clickExport('Close')"
-                                >
-                                Export
-                            </button>
                         </div>
 
                         <div *ngIf="savedMessage!=''" class="whatSavedMessage">
