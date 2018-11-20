@@ -253,54 +253,12 @@
             grid-row-end: 3;
         }
 
-        .whatTablesTitle {
-            grid-column-start: 1;
-            /* autoprefixer: off */
-            grid-column-end: 2;
-            grid-row-start: 4;
-            grid-row-end: 5;
-            margin-left: 12px;
-            height: 100%;
-            width: 100%;
-        }
-        .whatTables {
-            grid-column-start: 2;
-            /* autoprefixer: off */
-            grid-column-end: 8;
-            grid-row-start: 4;
-            margin-left: 12px;
-            grid-row-end: 5;
-            width: 100%;
-        }
-
-        .whatFieldsTitle {
-            grid-column-start: 1;
-            /* autoprefixer: off */
-            grid-column-end: 2;
-            grid-row-start: 5;
-            grid-row-end: 6;
-            margin-left: 12px;
-            height: 100%;
-            margin-top: 6px;
-            width: 100%;
-        }
-        .whatFields {
-            grid-column-start: 2;
-            /* autoprefixer: off */
-            grid-column-end: 8;
-            grid-row-start: 5;
-            grid-row-end: 6;
-            margin-left: 12px;
-            margin-top: 6px;
-            width: 100%;
-        }
-
         .whatSQLTextTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 3;
-            grid-row-start: 7;
-            grid-row-end: 8;
+            grid-row-start: 3;
+            grid-row-end: 4;
             margin-left: 12px;
             margin-top: 12px;
             height: 100%;
@@ -311,8 +269,8 @@
             grid-column-start: 6;
             /* autoprefixer: off */
             grid-column-end: 8;
-            grid-row-start: 7;
-            grid-row-end: 8;
+            grid-row-start: 3;
+            grid-row-end: 4;
             text-align: left;
         }        
         .whatSQLText {
@@ -321,8 +279,8 @@
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 8;
-            grid-row-start: 9;
-            grid-row-end: 24;
+            grid-row-start: 5;
+            grid-row-end: 21;
             height: 100%;
             margin-left: 12px;
             overflow-y: scroll;
@@ -338,12 +296,54 @@
             grid-row-end: 4;
         }
 
+        .whatTablesTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 2;
+            grid-row-start: 22;
+            grid-row-end: 23;
+            margin-left: 12px;
+            height: 100%;
+            width: 100%;
+        }
+        .whatTables {
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 8;
+            grid-row-start: 22;
+            grid-row-end: 23;
+            margin-left: 12px;
+            width: 100%;
+        }
+
+        .whatFieldsTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 2;
+            grid-row-start: 23;
+            grid-row-end: 24;
+            margin-left: 12px;
+            height: 100%;
+            margin-top: 6px;
+            width: 100%;
+        }
+        .whatFields {
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 8;
+            grid-row-start: 23;
+            grid-row-end: 24;
+            margin-left: 12px;
+            margin-top: 6px;
+            width: 100%;
+        }
+
         .whatGoButton {
             grid-column-start: 8;
             /* autoprefixer: off */
             grid-column-end: 9;
-            grid-row-start: 18;
-            grid-row-end: 19;
+            grid-row-start: 14;
+            grid-row-end: 15;
             margin-left: 12px;
         }
 
@@ -355,15 +355,24 @@
             grid-row-end: 18;
         }
 
+        .whatDataTitle {
+            /* border: 1px solid gray;
+            border-radius: 4px; */
+            grid-column-start: 9;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            width: 100%;
+        }
         .whatData {
             /* border: 1px solid gray;
             border-radius: 4px; */
             grid-column-start: 9;
             /* autoprefixer: off */
             grid-column-end: 21;
-            grid-row-start: 5;
+            grid-row-start: 4;
             grid-row-end: 24;
-            margin-left: 12px;
             width: 100%;
         }
 

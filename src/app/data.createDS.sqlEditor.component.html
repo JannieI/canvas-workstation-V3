@@ -206,8 +206,9 @@
                     <div class="gridWhatContainer" *ngIf="step=='What'">
                         <div class="whatHelp">
                             <i>
-                                Enter the SQL statement, and then click GO to see the results.
-                                Click ADD to create a new Datasource.
+                                Enter the SQL statement with quotes around the fields.  
+                                Click GO to see the results.  Once done, click ADD to 
+                                create a new Datasource.
                             </i>
                         </div>
 
@@ -279,6 +280,11 @@
                             Loading...
                         </span>
 
+                        <div class="whatDataTitle">
+                            <b>
+                                Preview of data
+                            </b>
+                        </div>
                         <div class="whatData" *ngIf="showPreview">
                             <clr-datagrid class="datagrid-compact">
 
