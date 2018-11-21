@@ -210,34 +210,6 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             .filter(styp => styp.serverType == this.selectedDatasource.serverType)
             .map(styp => styp.inspector)[0];
 
-        // let specificationInspect: any = {
-        //     "source": {
-        //         "inspector": "tributary.inspectors.sql:SqlInspector",
-        //         "specification": {
-        //             "drivername": "postgresql",
-        //             "host": "postgres",
-        //             "port": 5000,
-        //             "username": "postgres",
-        //             "password": "postgres",
-        //             "database": "data"
-        //         }
-        //     }
-        // };
-
-        let specificationInspect: any = {
-            "source": {
-                "inspector": inpector, // "tributary.inspectors.sql:SqlInspector",
-                "specification": {
-                    "drivername": driver,  //"postgresql",
-                    "host": this.selectedDatasource.serverName,
-                    "port": +this.selectedDatasource.port,
-                    "username": this.selectedDatasource.username,
-                    "password": this.selectedDatasource.password,
-                    "database": this.selectedDatasource.databaseName
-                }
-            }
-        };
-
         // Create a Tributary Session
         this.globalVariableService.tributaryCreateSession()
             .then(res => {
@@ -247,12 +219,27 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 this.tributarySessionExecuteURL = res.execute;
                 this.tributarySessionCreateDatasourceURL = res.create_datasource;
 
+                // Define the Tributary Specification
+                let specificationInspect: any = {
+                    "source": {
+                        "inspector": inpector, // "tributary.inspectors.sql:SqlInspector",
+                        "specification": {
+                            "drivername": driver,  //"postgresql",
+                            "host": this.selectedDatasource.serverName,
+                            "port": +this.selectedDatasource.port,
+                            "username": this.selectedDatasource.username,
+                            "password": this.selectedDatasource.password,
+                            "database": this.selectedDatasource.databaseName
+                        }
+                    }
+                };
+
                 // Call Tributary Inspector
                 this.globalVariableService.tributaryInspect(
                     this.tributarySessionInspectURL, specificationInspect)
                 .then(res => {
 
-                    // Fill the tables and Fields
+                    // Fill the Data Schemas (tables and fields)
                     this.dataSchemas = [];
                     res.forEach(row => {
 
@@ -274,7 +261,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                         });
                     });
 
-                    // Fill the fields
+                    // Fill the Array of Fields (for ngFor)
                     if (this.dataSchemas.length > 0) {
                         // this.clickSelectTable(this.dataSchemas[0].tableName);
                         this.fieldsInTable = this.dataSchemas[0].tableFields.map(tf => tf.fieldName);
