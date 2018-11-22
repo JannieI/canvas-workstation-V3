@@ -71,12 +71,11 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     canSave: boolean = false;
     dataConnections: DataConnection[];
     dataSchemas: DataSchema[] = [];
-    whereErrorMessage: string = '';
-    howErrorMessage: string = '';
-    whatErrorMessage: string = 'Error Testing What';
     fieldsInTable: string[];
     fileData: any = [];
     fileDataFull: any = [];
+    howErrorMessage: string = '';
+    isEditing: boolean = false;
     reader = new FileReader();
     savedMessage: string = '';
     selectedField: string = '';
@@ -90,6 +89,8 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     tributarySessionInspectURL: string = '';
     tributarySessionExecuteURL: string = '';
     tributarySessionCreateDatasourceURL: string = '';
+    whatErrorMessage: string = 'Error Testing What';
+    whereErrorMessage: string = '';
 
 
 	constructor(
@@ -108,7 +109,9 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         });
 
         if (this.selectedDatasource == null) {
+            this.isEditing = false;
             let today: Date = new Date();
+
             this.selectedDatasource = {
                 id: null,
                 type: 'Server',
@@ -168,6 +171,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
             };
         } else {
+            this.isEditing = true;
             this.clickNextToWhat();
         };
 

@@ -8,7 +8,11 @@
                         <b>X</b>
                     </button>
                     <div class="gridTitle">
-                        <b>SQL Editor</b>
+                        <b>SQL Editor
+                            <span *ngIf="selectedDatasource.name">
+                                {{ - selectedDatasource.name }}
+                            </span>
+                        </b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
                                 clrSignpostTrigger>
@@ -33,9 +37,27 @@
                     <div class="gridWhereContainer" *ngIf="step=='Where'">
 
                         <div class="whereHelp">
-                            <i>
-                                Enter the details to a new SQL source, or selected from a
+                            <i *ngIf="step=='Where'  &&  isEditing">
+                                Amend the details to the SQL source as required.  Optionally,
+                                select from a previously defined connection.
+                            </i>
+                            <i *ngIf="step=='Where'  &&  !isEditing">
+                                Enter the details to a new SQL source, or select from a
                                 previously defined connection.
+                            </i>
+                            <i *ngIf="step=='What'  &&  isEditing">
+                                Amend what data must be returned.  Select the table & fields, or
+                                enter a SQL statement.  Then click Go.
+                            </i>
+                            <i *ngIf="step=='What'  &&  !isEditing">
+                                Define what data must be returned.  Select the table & fields, or
+                                enter a SQL statement.  Then click Go.
+                            </i>
+                            <i *ngIf="step=='How'  &&  isEditing">
+                                Amend the transformation that must be applied to the data.
+                            </i>
+                            <i *ngIf="step=='How'  &&  !isEditing">
+                                Select the transformation that must be applied to the data.
                             </i>
                         </div>
 
