@@ -320,22 +320,6 @@
                                 Cancel
                             </button>
                         </div>
-
-                        <div class="whatButtonSave" *ngIf="showPreview">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                (click)="clickAdd('Saved')"
-                                >
-                                <span *ngIf="!editingDS">
-                                    Add
-                                </span>
-                                <span *ngIf="editingDS">
-                                    Save
-                                </span>
-
-                            </button>
-                        </div>
                         <div class="whatButtonAddUpdate" *ngIf="showPreview">
                             <button
                                 type="button"
@@ -347,6 +331,22 @@
                                 </span>
                                 <span *ngIf="editingDS">
                                     Update ...
+                                </span>
+
+                            </button>
+                        </div>
+    
+                        <div class="whatButtonSave" *ngIf="showPreview">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                (click)="clickAdd('Saved')"
+                                >
+                                <span *ngIf="!editingDS">
+                                    Add
+                                </span>
+                                <span *ngIf="editingDS">
+                                    Save
                                 </span>
 
                             </button>
@@ -368,6 +368,12 @@
                             </button>
                         </div>
                     </div>
+
+
+                    <!-- HOW the data must be transformed (and filtered)  -->
+                    <div class="gridWhatContainer" *ngIf="step=='How'">
+
+                    </div>        
                 </div>
 
 
