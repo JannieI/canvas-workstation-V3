@@ -72,6 +72,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     dataConnections: DataConnection[];
     dataSchemas: DataSchema[] = [];
     whereErrorMessage: string = '';
+    howErrorMessage: string = '';
     whatErrorMessage: string = 'Error Testing What';
     fieldsInTable: string[];
     fileData: any = [];
@@ -440,7 +441,9 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
         // Reset
         this.whereErrorMessage = '';
+        this.howErrorMessage = '';
         this.savedMessage = '';
+        this.step = 'How';
 
         // Save changes to the Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
@@ -494,19 +497,19 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.saveData(updatedData).then(resData => {
+            // this.globalVariableService.saveData(updatedData).then(resData => {
 
-                updatedDataset.url = 'data/' + dataID;
-                this.globalVariableService.saveDatasource(this.selectedDatasource).then(
-                    resDS => {
-                        updatedDataset.datasourceID = this.selectedDatasource.id;
-                        this.globalVariableService.saveDataset(updatedDataset);
-                });
+            //     updatedDataset.url = 'data/' + dataID;
+            //     this.globalVariableService.saveDatasource(this.selectedDatasource).then(
+            //         resDS => {
+            //             updatedDataset.datasourceID = this.selectedDatasource.id;
+            //             this.globalVariableService.saveDataset(updatedDataset);
+            //     });
 
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource updated';
-            });
+            //     // Indicate to the user
+            //     this.canSave = false;
+            //     this.savedMessage = 'Datasource updated';
+            // });
 
         } else {
             // Add new one
@@ -529,21 +532,24 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData).then(resData => {
+            // this.globalVariableService.addData(newData).then(resData => {
 
-                newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addDatasource(this.selectedDatasource).then(resDS => {
-                    newdDataset.datasourceID = resDS.id;
-                    this.globalVariableService.addDataset(newdDataset);
+            //     newdDataset.url = 'data/' + resData.id.toString();
+            //     this.globalVariableService.addDatasource(this.selectedDatasource).then(resDS => {
+            //         newdDataset.datasourceID = resDS.id;
+            //         this.globalVariableService.addDataset(newdDataset);
 
-                });
+            //     });
 
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource created';
-            });
+            //     // Indicate to the user
+            //     this.canSave = false;
+            //     this.savedMessage = 'Datasource created';
+            // });
+
         };
-
+        
+        this.step = 'How';
+        
         // Close form and open Transitions if requested
         if (action == 'Saved') {
             this.formDataCreateDSSQLEditorClosed.emit(null);
