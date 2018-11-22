@@ -556,6 +556,16 @@
                             </clr-datagrid>
                         </div>
 
+                        <div class="howButtonCancel">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickClose('Close')"
+                                >
+                                Cancel
+                            </button>
+                        </div>
+    
                         <div class="whatButtonTransformation" *ngIf="showPreview">
                             <button
                                 type="button"

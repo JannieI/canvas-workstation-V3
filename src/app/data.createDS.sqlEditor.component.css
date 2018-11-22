@@ -633,4 +633,12 @@
             margin-left: 12px;
             width: 100%;
         }
-    
+        
+        .howButtonCancel {
+            grid-column-start: 6;
+            /* autoprefixer: off */
+            grid-column-end: 8;
+            grid-row-start: 25;
+            grid-row-end: 26;
+            text-align: left;
+        }
