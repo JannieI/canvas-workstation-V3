@@ -324,13 +324,13 @@
                             <button
                                 type="button"
                                 class="btn btn-primary"
-                                (click)="clickAddUpdate('Saved')"
+                                (click)="clickAddUpdateCloseDatasource('Saved')"
                                 >
                                 <span *ngIf="!editingDS">
-                                    Add ...
+                                    Add & Close
                                 </span>
                                 <span *ngIf="editingDS">
-                                    Update ...
+                                    Update & Close
                                 </span>
 
                             </button>
@@ -340,23 +340,34 @@
                             <button
                                 type="button"
                                 class="btn btn-primary"
-                                (click)="clickAdd('Saved')"
+                                (click)="clickAddUpdateNextTransform('Saved')"
                                 >
                                 <span *ngIf="!editingDS">
-                                    Add
+                                    Add & Transform
                                 </span>
                                 <span *ngIf="editingDS">
-                                    Save
+                                    Save & Transform
                                 </span>
 
                             </button>
                         </div>
-    
+                    </div>  
+
+                    
+                    <!-- HOW the data must be transformed (and filtered)  -->
+                    <div class="gridWhatContainer" *ngIf="step=='How'">
+
+
+
+
+
+
+
                         <div class="whatButtonTransformation" *ngIf="showPreview">
                             <button
                                 type="button"
                                 class="btn btn-link"
-                                (click)="clickAdd('Transformation')"
+                                (click)="clickAddUpdateTransformation('Transformation')"
                                 >
                                 <span *ngIf="!editingDS">
                                     Add
@@ -367,19 +378,9 @@
                                 and open Transformations
                             </button>
                         </div>
-                    </div>
-
-
-                    <!-- HOW the data must be transformed (and filtered)  -->
-                    <div class="gridWhatContainer" *ngIf="step=='How'">
-
+    
                     </div>        
                 </div>
-
-
-
-
-
             </form>
         </div>
     </div>

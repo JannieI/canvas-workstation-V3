@@ -31,7 +31,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     @Input() editingDS: boolean;
     @Input() selectedDatasource: Datasource;
 
-    @Output() formDataConnectorSQLEditorClosed: EventEmitter<Datasource> = new EventEmitter();
+    @Output() formDataCreateDSSQLEditorClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -397,13 +397,13 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataConnectorSQLEditorClosed.emit(null);
+        this.formDataCreateDSSQLEditorClosed.emit(null);
 
     }
 
-    clickAddUpdate(action: string) {
-        // Add the DS, with data, to the DB
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+    clickAddUpdateCloseDatasource(action: string) {
+        // Add / Update the DS, save to the DB and Close the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAddUpdateCloseDatasource', '@Start');
 
         // Reset
         this.whereErrorMessage = '';
@@ -419,23 +419,24 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         };
 
         // Get Tributary data
-        this.globalVariableService.tributaryAddDatasource(
-                this.tributarySessionCreateDatasourceURL, 
-                specificationCreateDatasource
-            )
-            .then(res => {
-                console.warn('xx res', res)
-            })
-            .catch(err => {
-                this.spinner = false;
-                this.whatErrorMessage = 'Error connecting to server: check login or permissions'
-                    + err.message;
-            });
+        // this.globalVariableService.tributaryAddDatasource(
+        //         this.tributarySessionCreateDatasourceURL, 
+        //         specificationCreateDatasource
+        //     )
+        //     .then(res => {
+        //         console.warn('xx res', res)
+        //     })
+        //     .catch(err => {
+        //         this.spinner = false;
+        //         this.whatErrorMessage = 'Error connecting to server: check login or permissions'
+        //             + err.message;
+        //     });
+
     }
 
-    clickAdd(action: string) {
+    clickAddUpdateNextTransform(action: string) {
         // Add the DS, with data, to the DB
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAddUpdateNextTransform', '@Start');
 
         // Reset
         this.whereErrorMessage = '';
@@ -545,10 +546,10 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
         // Close form and open Transitions if requested
         if (action == 'Saved') {
-            this.formDataConnectorSQLEditorClosed.emit(null);
+            this.formDataCreateDSSQLEditorClosed.emit(null);
 
         } else {
-            this.formDataConnectorSQLEditorClosed.emit(this.selectedDatasource);
+            this.formDataCreateDSSQLEditorClosed.emit(this.selectedDatasource);
 
         };
     }

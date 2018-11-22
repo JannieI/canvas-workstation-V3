@@ -1414,9 +1414,9 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDescription = false;
     }
 
-    handleCloseDataCreateSQLEditor(returnDS: Datasource) {
+    handleCloseDataCreateDSSQLEditor(returnDS: Datasource) {
         // Handle close of SQL Editor form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataCreateSQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataCreateDSSQLEditor', '@Start');
 
         this.menuOptionClickPostAction();
 
