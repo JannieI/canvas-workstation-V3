@@ -353,11 +353,208 @@
                         </div>
                     </div>  
 
-                    
+
                     <!-- HOW the data must be transformed (and filtered)  -->
                     <div class="gridWhatContainer" *ngIf="step=='How'">
 
+                        <div class="gridTransformationButtonAdd">
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickAdd()"
+                                >
+                                Add
+                            </button>
+                        </div>
 
+                        <div class="select gridTransformationSelect" *ngIf="adding">
+                            <select
+                                [(ngModel)]="transformationName"
+                                name="transformationName"
+                                placeholder="Select a valid Transformation"
+                                (click)="clickSelectedTransformation()"
+                                >
+                                <option *ngFor="let row of transformations">
+                                    {{ row.name }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="gridTransformationSignpost" *ngIf="adding">
+                            <clr-signpost>
+                                <clr-icon shape="info-circle"
+                                    clrSignpostTrigger>
+                                </clr-icon>
+                                    <clr-signpost-content *clrIfOpen [clrPosition]="position">
+                                    <h4 style="margin-top: 0">Annotation</h4>
+                                    <p>
+                                        {{ transitionDescription }}
+                                    </p>
+                                </clr-signpost-content>
+                            </clr-signpost>
+                        </div>
+
+                        <div class="gridParameter1Title">
+                            <b>{{ parameter1Heading }}</b>
+                        </div>
+                        <div class="gridParameter1" *ngIf="nrParameters>=1">
+                            <input [(ngModel)]="parameter1Value"
+                                type="parameter1Value"
+                                name="parameter1Value"
+                                [placeholder]="parameter1Placeholder"
+                                [title]="parameter1Title"
+                                [disabled]="!adding  &&  !editing"
+                                >
+                        </div>
+
+                        <div class="gridParameter2Title">
+                            <b>{{ parameter2Heading }}</b>
+                        </div>
+                        <div class="gridParameter2" *ngIf="nrParameters>=2">
+                            <input [(ngModel)]="parameter2Value"
+                                type="parameter2Value"
+                                name="parameter2Value"
+                                [placeholder]="parameter2Placeholder"
+                                [title]="parameter2Title"
+                                [disabled]="!adding  &&  !editing"
+
+                                >
+                        </div>
+
+                        <div class="gridParameter3Title">
+                            <b>{{ parameter3Heading }}</b>
+                        </div>
+                        <div class="gridParameter3" *ngIf="nrParameters>=3">
+                            <input [(ngModel)]="parameter3Value"
+                                type="parameter3Value"
+                                name="parameter3Value"
+                                [placeholder]="parameter3Placeholder"
+                                [title]="parameter3Title"
+                                [disabled]="!adding  &&  !editing"
+                                >
+                        </div>
+
+                        <div class="gridParameter4Title">
+                            <b>{{ parameter4Heading }}</b>
+                        </div>
+                        <div class="gridParameter4" *ngIf="nrParameters>=4">
+                            <input [(ngModel)]="parameter4Value"
+                                type="parameter4Value"
+                                name="parameter4Value"
+                                [placeholder]="parameter4Placeholder"
+                                [title]="parameter4Title"
+                                [disabled]="!adding  &&  !editing"
+                                >
+                        </div>
+
+                        <div class="gridParameter5Title">
+                            <b>{{ parameter5Heading }}</b>
+                        </div>
+                        <div class="gridParameter5" *ngIf="nrParameters>=5">
+                            <input [(ngModel)]="parameter5Value"
+                                type="parameter51Value"
+                                name="parameter5Value"
+                                [placeholder]="parameter5Placeholder"
+                                [title]="parameter5Title"
+                                [disabled]="!adding  &&  !editing"
+                                >
+                        </div>
+
+                        <div class="gridParameter6Title">
+                            <b>{{ parameter6Heading }}</b>
+                        </div>
+                        <div class="gridParameter6" *ngIf="nrParameters>=6">
+                            <input [(ngModel)]="parameter6Value"
+                                type="parameter6Value"
+                                name="parameter6Value"
+                                [placeholder]="parameter6Placeholder"
+                                [title]="parameter6Title"
+                                [disabled]="!adding  &&  !editing"
+                                >
+                        </div>
+
+                        <div class="gridTransformationButtonCancel">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                [disabled]="!adding  &&  !editing"
+                                (click)="clickCancel()"
+                                >
+                                Cancel
+                            </button>
+                        </div>
+
+                        <div class="gridTransformationButtonSave">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                [disabled]="!adding  &&  !editing"
+                                (click)="clickSave()"
+                                >
+                                Save
+                            </button>
+                        </div>
+
+                        <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                            {{ errorMessage }}
+                        </div>
+
+                        <div class="gridTransformations">
+                            <clr-datagrid>
+                                <clr-dg-placeholder>
+                                    Show Data here ...
+                                </clr-dg-placeholder>
+
+                                <clr-dg-column [clrDgField]="nameDB">Transformation</clr-dg-column>
+
+                                <clr-dg-row
+                                    *clrDgItems="let row of datasourceTransformations; let i = index"
+                                    [style.background-color]="(i == selectedDataRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedDataRowIndex)? 'white' : 'gray'"
+                                    (click)="clickRow(i, row.id)"
+                                    >
+                                    <clr-dg-cell>
+                                        <clr-icon shape="pencil"
+                                            size="12"
+                                            (click)="clickEdit()">
+                                        </clr-icon>
+                                        <clr-icon shape="arrow"
+                                            size="12"
+                                            (click)="clickMoveUp(i, row.id)">
+                                        </clr-icon>
+                                        <clr-icon shape="arrow down"
+                                            size="12"
+                                            (click)="clickMoveDown(i, row.id)">
+                                        </clr-icon>
+                                        {{ row.name }}
+                                        <clr-icon shape="trash"
+                                            size="12"
+                                            (dblclick)="dblclickDelete(i, row.id)">
+                                        </clr-icon>
+                                    </clr-dg-cell>
+
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>
+
+                        <div class="gridResult">
+                            <clr-datagrid>
+                                <clr-dg-placeholder>
+                                    Show Data here ...
+                                </clr-dg-placeholder>
+
+                                <clr-dg-column [clrDgField]="nameDB">name (DB)</clr-dg-column>
+                                <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
+
+                                <clr-dg-row
+                                    *clrDgItems="let row of dataFields; let i = index"
+                                    >
+                                    <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
+
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>
 
 
 
