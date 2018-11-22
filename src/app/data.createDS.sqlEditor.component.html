@@ -355,9 +355,9 @@
 
 
                     <!-- HOW the data must be transformed (and filtered)  -->
-                    <div class="gridWhatContainer" *ngIf="step=='How'">
+                    <div class="gridHowContainer" *ngIf="step=='How'">
 
-                        <div class="gridTransformationButtonAdd">
+                        <div class="howTransformationButtonAdd">
                             <button
                                 type="button"
                                 class="btn btn-link"
@@ -367,7 +367,7 @@
                             </button>
                         </div>
 
-                        <div class="select gridTransformationSelect" *ngIf="adding">
+                        <div class="select howTransformationSelect" *ngIf="adding">
                             <select
                                 [(ngModel)]="transformationName"
                                 name="transformationName"
@@ -380,7 +380,7 @@
                             </select>
                         </div>
 
-                        <div class="gridTransformationSignpost" *ngIf="adding">
+                        <div class="howTransformationSignpost" *ngIf="adding">
                             <clr-signpost>
                                 <clr-icon shape="info-circle"
                                     clrSignpostTrigger>
@@ -394,10 +394,10 @@
                             </clr-signpost>
                         </div>
 
-                        <div class="gridParameter1Title">
+                        <div class="howParameter1Title">
                             <b>{{ parameter1Heading }}</b>
                         </div>
-                        <div class="gridParameter1" *ngIf="nrParameters>=1">
+                        <div class="howParameter1" *ngIf="nrParameters>=1">
                             <input [(ngModel)]="parameter1Value"
                                 type="parameter1Value"
                                 name="parameter1Value"
@@ -407,10 +407,10 @@
                                 >
                         </div>
 
-                        <div class="gridParameter2Title">
+                        <div class="howParameter2Title">
                             <b>{{ parameter2Heading }}</b>
                         </div>
-                        <div class="gridParameter2" *ngIf="nrParameters>=2">
+                        <div class="howParameter2" *ngIf="nrParameters>=2">
                             <input [(ngModel)]="parameter2Value"
                                 type="parameter2Value"
                                 name="parameter2Value"
@@ -421,10 +421,10 @@
                                 >
                         </div>
 
-                        <div class="gridParameter3Title">
+                        <div class="howParameter3Title">
                             <b>{{ parameter3Heading }}</b>
                         </div>
-                        <div class="gridParameter3" *ngIf="nrParameters>=3">
+                        <div class="howParameter3" *ngIf="nrParameters>=3">
                             <input [(ngModel)]="parameter3Value"
                                 type="parameter3Value"
                                 name="parameter3Value"
@@ -434,10 +434,10 @@
                                 >
                         </div>
 
-                        <div class="gridParameter4Title">
+                        <div class="howParameter4Title">
                             <b>{{ parameter4Heading }}</b>
                         </div>
-                        <div class="gridParameter4" *ngIf="nrParameters>=4">
+                        <div class="howParameter4" *ngIf="nrParameters>=4">
                             <input [(ngModel)]="parameter4Value"
                                 type="parameter4Value"
                                 name="parameter4Value"
@@ -447,10 +447,10 @@
                                 >
                         </div>
 
-                        <div class="gridParameter5Title">
+                        <div class="howParameter5Title">
                             <b>{{ parameter5Heading }}</b>
                         </div>
-                        <div class="gridParameter5" *ngIf="nrParameters>=5">
+                        <div class="howParameter5" *ngIf="nrParameters>=5">
                             <input [(ngModel)]="parameter5Value"
                                 type="parameter51Value"
                                 name="parameter5Value"
@@ -460,10 +460,10 @@
                                 >
                         </div>
 
-                        <div class="gridParameter6Title">
+                        <div class="howParameter6Title">
                             <b>{{ parameter6Heading }}</b>
                         </div>
-                        <div class="gridParameter6" *ngIf="nrParameters>=6">
+                        <div class="howParameter6" *ngIf="nrParameters>=6">
                             <input [(ngModel)]="parameter6Value"
                                 type="parameter6Value"
                                 name="parameter6Value"
@@ -473,7 +473,7 @@
                                 >
                         </div>
 
-                        <div class="gridTransformationButtonCancel">
+                        <div class="howTransformationButtonCancel">
                             <button
                                 type="button"
                                 class="btn btn-secondary"
@@ -484,7 +484,7 @@
                             </button>
                         </div>
 
-                        <div class="gridTransformationButtonSave">
+                        <div class="howTransformationButtonSave">
                             <button
                                 type="button"
                                 class="btn btn-primary"
@@ -499,7 +499,7 @@
                             {{ howErrorMessage }}
                         </div>
 
-                        <div class="gridTransformations">
+                        <div class="howTransformations">
                             <clr-datagrid>
                                 <clr-dg-placeholder>
                                     Show Data here ...
@@ -537,7 +537,7 @@
                             </clr-datagrid>
                         </div>
 
-                        <div class="gridResult">
+                        <div class="howResult">
                             <clr-datagrid>
                                 <clr-dg-placeholder>
                                     Show Data here ...
@@ -555,10 +555,6 @@
                                 </clr-dg-row>
                             </clr-datagrid>
                         </div>
-
-
-
-
 
                         <div class="whatButtonTransformation" *ngIf="showPreview">
                             <button

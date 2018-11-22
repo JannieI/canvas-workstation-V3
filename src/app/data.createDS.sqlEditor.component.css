@@ -31,7 +31,8 @@
         text-align: left;
     }
 
-    /* WHAT Container */
+
+    /* WHERE Container */
     .gridWhereContainer {
         display: grid;
         grid-column-start: 1;
@@ -234,6 +235,8 @@
             grid-row-end: 25;
         }
 
+
+    /* WHAT Container */
     .gridWhatContainer {
         display: grid;
         grid-column-start: 1;
@@ -421,4 +424,213 @@
         }
 
 
+    /* HOW Container */
+    .gridHowContainer {
+        display: grid;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 21;
+        grid-template-columns: repeat(20, 1fr);
+        grid-template-rows: repeat(26, 0.8rem);
+    }
 
+        .howParameter1Title {
+            font-size: 12px;
+            grid-column-start: 7;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            margin-top: 5px;
+            margin-left: 12px;
+        }
+        .howParameter1 {
+            grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 13;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            margin-top: 5px;
+            margin-left: 12px;
+        }
+    
+        .howParameter2Title {
+            font-size: 12px;
+            grid-column-start: 14;
+            /* autoprefixer: off */
+            grid-column-end: 15;
+            grid-row-start: 4;
+            grid-row-end: 5;
+        }
+        .howParameter2 {
+            grid-column-start: 15;
+            /* autoprefixer: off */
+            grid-column-end: 20;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            margin-left: 2px;
+        }
+    
+        .howParameter3Title {
+            font-size: 12px;
+            grid-column-start: 7;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            margin-top: 5px;
+            margin-left: 12px;
+        }
+        .howParameter3 {
+            grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 13;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            margin-top: 5px;
+            margin-left: 12px;
+        }
+    
+        .howParameter4Title {
+            font-size: 12px;
+            grid-column-start: 14;
+            /* autoprefixer: off */
+            grid-column-end: 15;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            margin-top: 5px;
+        }
+        .howParameter4 {
+            grid-column-start: 15;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            margin-top: 5px;
+            margin-left: 2px;
+        }
+    
+        .howParameter5Title {
+            font-size: 12px;
+            grid-column-start: 7;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 8;
+            grid-row-end: 9;
+            margin-top: 5px;
+            margin-left: 12px;
+        }
+        .howParameter5 {
+            grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 13;
+            grid-row-start: 8;
+            grid-row-end: 9;
+            margin-top: 5px;
+            margin-left: 12px;
+        }
+    
+        .howParameter6Title {
+            font-size: 12px;
+            grid-column-start: 14;
+            /* autoprefixer: off */
+            grid-column-end: 15;
+            grid-row-start: 8;
+            grid-row-end: 9;
+            margin-top: 5px;
+        }
+        .howParameter6 {
+            grid-column-start: 15;
+            /* autoprefixer: off */
+            grid-column-end: 19;
+            grid-row-start: 8;
+            grid-row-end: 9;
+            margin-top: 5px;
+            margin-left: 2px;
+        }
+    
+        .howTransformationButtonCancel {
+            grid-column-start: 19;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            margin-top: 5px;
+            margin-left: 12px;
+        }
+        .howTransformationButtonSave {
+            grid-column-start: 19;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            margin-top: 5px;
+            margin-left: 12px;
+        }
+    
+        .howErrorMessage {
+            color: red;
+            grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 20;
+            grid-row-start: 9;
+            grid-row-end: 10;
+            margin-left: 12px;
+        }
+    
+        .howTransformations {
+            border: 1px solid gray;
+            border-radius: 4px;
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 7;
+            grid-row-start: 4;
+            grid-row-end: 25;
+            height: 100%;
+            overflow-y: scroll;
+            text-align: left;
+            width: 100%;
+        }
+    
+        .howTransformationButtonAdd {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 3;
+            grid-row-start: 26;
+            grid-row-end: 27;
+            margin-left: 22px;
+        }
+        .howTransformationSelect {
+            grid-column-start: 3;
+            /* autoprefixer: off */
+            grid-column-end: 6;
+            grid-row-start: 26;
+            grid-row-end: 27;
+            margin-left: 12px;
+            z-index: 100;
+        }
+        .howTransformationSignpost {
+            grid-column-start: 6;
+            /* autoprefixer: off */
+            grid-column-end: 7;
+            grid-row-start: 26;
+            grid-row-end: 27;
+            margin-left: 2px;
+        }
+    
+        .howResult {
+            border: 1px solid gray;
+            border-radius: 4px;
+            grid-column-start: 7;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 10;
+            grid-row-end: 25;
+            height: 100%;
+            overflow-y: scroll;
+            margin-left: 12px;
+            width: 100%;
+        }
+    
