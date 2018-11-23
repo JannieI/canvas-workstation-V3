@@ -1868,6 +1868,22 @@ export interface dataSchemaInterface {
         };
     }
 
+    clickFilSizeField(fieldName: string) {
+        // Click icon to fill this field into X field
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilSizeField', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        let oldSizeField: string = this.colorField;
+        if (this.colorField != dragFieldMessage) {
+            this.clickClearSizeField();
+        };
+        if (oldSizeField != fieldName) {
+            this.dropSize(null, fieldName);
+        };
+    }
+
     dragstartField(ev) {
         // Event trigger when start Dragging a Field in the list
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstartField', '@Start');
