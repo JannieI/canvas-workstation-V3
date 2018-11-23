@@ -1385,7 +1385,7 @@ This document describes items for later versions of Canvas.
         - For a GAUGE, see    https://gist.github.com/anilkpatro/0cf0503b581556a14aab
         - For SVG Gauge, see http://svgdiscovery.com/HMI/AnalogGaugeObject/analogGaugeObject.htm
         and http://svgdiscovery.com/HMI/Button/AnalogGauge/buttonGauge.htm  !!!
-        - For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target).  Try to use Clarity CARDS for this.
+        - For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target).  Try to use Clarity CARDS for this - else just a simple TEXT box.  The TRICK is the period (current and comparative and scale), ie. show Total Sales (sum of field Sales) for Oct (current month), and green up arrow if bigger than Total Sales for Sep (previous period).  Could also be Show Average Income YTD compare to a set value (read from another file / table) with or without a period next to it ...  So, need a whole store here.  Advanced version: a small line graph of the Total Sales per month for last 12 months ...
         - embed graphs created in Python and R - ie. Seaborn
         - Add layers of projections, each one with specific info: crime, lightning, etc
         - Have a key indicator (dot) on a map, and click it to open a graph or snippet (of say historic crime rates).  Would need cloropleth - maybe with right click menu to open different graphs / popups.  
