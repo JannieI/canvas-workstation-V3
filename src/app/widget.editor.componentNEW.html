@@ -1021,6 +1021,12 @@
                                                     >
                                                     C
                                                 </span>
+                                                <span style="cursor: pointer"
+                                                    [style.color]="row.name==colorField?  'red'  :  'gray'"
+                                                    (click)="clickFillColorField(row.name)"
+                                                    >
+                                                    S
+                                                </span>
                                             </b>
                                         </span>
                                     </clr-dg-cell>
