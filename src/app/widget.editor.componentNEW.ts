@@ -2123,27 +2123,42 @@ export interface dataSchemaInterface {
         this.localWidget.graphDimensionRight = 140;
     }
 
-    dropSize(ev) {
+    dropSize(ev, fieldName: string = '') {
         // Event trigger when the dragged Field is dropped the Size field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropSize', '@Start');
 
         // Reset
         this.errorMessageEditor = '';
 
+        // Set
+        if (fieldName == '') {
+            fieldName = this.draggedField;
+        };
+        if (ev != null) {
+            ev.preventDefault();
+            ev.dataTransfer.dropEffect = "move"
+            var data = ev.dataTransfer.getData("text");
+        };
+
+
         // Show X icon
         this.showSizeDeleteIcon = true;
 
-        ev.preventDefault();
-        ev.dataTransfer.dropEffect = "move"
+        // ev.preventDefault();
+        // ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
 
-        var data = ev.dataTransfer.getData("text");
+        // var data = ev.dataTransfer.getData("text");
 
-        this.sizeField = this.draggedField;
+        // this.sizeField = this.draggedField;
+        this.sizeField = fieldName;
         this.isDragoverSizes = false;
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let position: number = this.sizeField.indexOf(' X Y C');
+        let position: number = this.sizeField.indexOf(' X Y C S');
+        this.sizeField = this.sizeField.substring(0, position != -1 ? position : this.sizeField.length)
+
+        position = this.sizeField.indexOf(' X Y C');
         this.sizeField = this.sizeField.substring(0, position != -1 ? position : this.sizeField.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
