@@ -1021,9 +1021,9 @@
                                                     >
                                                     C
                                                 </span>
-                                                <span style="cursor: pointer"
-                                                    [style.color]="row.name==colorField?  'red'  :  'gray'"
-                                                    (click)="clickFillColorField(row.name)"
+                                                <span style="cursor: pointer" *ngIf="showWidgetEditorLite"
+                                                    [style.color]="row.name==sizeField?  'red'  :  'gray'"
+                                                    (click)="clickFilSizeField(row.name)"
                                                     >
                                                     S
                                                 </span>

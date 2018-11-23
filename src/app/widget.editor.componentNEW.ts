@@ -2155,11 +2155,11 @@ export interface dataSchemaInterface {
         this.isDragoverSizes = false;
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let position: number = this.sizeField.indexOf(' X Y C S');
+        let position: number = this.sizeField.indexOf(' X Y C');
         this.sizeField = this.sizeField.substring(0, position != -1 ? position : this.sizeField.length)
 
-        position = this.sizeField.indexOf(' X Y C');
-        this.sizeField = this.sizeField.substring(0, position != -1 ? position : this.sizeField.length)
+        // position = this.sizeField.indexOf(' X Y C');
+        // this.sizeField = this.sizeField.substring(0, position != -1 ? position : this.sizeField.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeType = this.defaultGraphTypeField(fieldType, 'type');
