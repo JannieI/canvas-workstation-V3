@@ -65,7 +65,7 @@
                     </div>
                     <div class="datasourceMainList">
                         <clr-datagrid class="datagrid-compact" id="my-datagrid">
-                            <clr-dg-column clrDgField="name"
+                            <clr-dg-column [clrDgField]="'name'"
                                 [(clrDgSortOrder)]="sortOrder"
                                 (click)="sortOrder=sortOrder * -1"
                                 [style.color]="'orange'"
