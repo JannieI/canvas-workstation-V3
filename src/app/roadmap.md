@@ -1034,6 +1034,19 @@ This document describes items for later versions of Canvas.
     - Add Named-Transformations: have a CRUD form where user specifies a name, and a list of transformations to be performed with it.  Maybe give a start DS -> can only work if the requested DS has this layout, plus has field types, etc to calc and also know it will work.  Seems best solution to have a start DS.
     - Show Transformations and Spec as json !!
     - Transform with IF this then that value Statement !
+    - Content / Context filtering:
+        - create a Transition called ContentFilter (or ContextFilter), which takes 2 params: field name (say Region), table name (say TN).  
+        - TN must be loaded before from a file, and contain two fields: the field name, and userID that may see the data.  For example:
+
+        Region         UserID
+        Gauteng       JohnM
+        Free State    AnneS
+        ...
+
+        - the filter is not applied generally, but only applied when created explicit by the user on a DS.
+        - during the transformation pipeline, table TN will be joined to the data (in SQLite or Pandas), and UserID filtered on the current userid.
+        - the result is only the records that the current user may see.
+
 
     Create DS via File:
     -------------------
