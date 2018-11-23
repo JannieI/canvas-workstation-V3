@@ -9073,6 +9073,14 @@ export class AppComponent implements OnInit {
         return;
     }
 
+    clickWidgetGraph(ev: any, index: number, widgetID: number) {
+        // Click Graph in W
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetGraph', '@Start');
+
+        console.warn('xxclickWidgetGraph', ev);
+        
+    }
+
     clickWidget(ev: MouseEvent, index: number, id: number) {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');

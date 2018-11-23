@@ -97,6 +97,7 @@ This document describes items for later versions of Canvas.
     ----------
         - Combinations must also be done here
         - Add token management forms: forgot password, refresh token ...
+        - for Data Services: add Movie API ala Express Course!  Just for fun
 
 
 
@@ -1028,6 +1029,14 @@ This document describes items for later versions of Canvas.
     Tributary:
     ----------
     - consider a much larger project, say with a visual GUI to show processes / transformations
+    - connector for S3 - https://github.com/andrewrk/node-s3-client
+    - connector for Analytics Services - https://docs.microsoft.com/en-us/javascript/api/overview/azure/analysis-services?view=azure-node-latest
+    - connector for Outlook
+    - connector for Git
+    - consider language equivalent to DAX or M
+    - chart Real Time data, maybe via Web Sockets
+    - authenticate via their system, ie AD
+    - must be able to create new Widget
     - consider: get the SQL for an Overlay query, might be useful
     - get SQL back from an Overlay query -> show on screen so user can see
     - consider data filters - then we have to store this and include in SQL Where clause ...
@@ -1092,6 +1101,8 @@ This document describes items for later versions of Canvas.
     Tributary:
     ----------
     - Read more - see Pentaho ETL / Data Integration for features.
+    - consider Views on DS: one DS definition, many views which could be aggregations. 
+    - make an Aggregation Transformation: fld3, SUM(fld1 AS xxx, fld2 As yyy) GROUP BY fld3
 
     Authentication:
     ---------------
@@ -1350,6 +1361,10 @@ This document describes items for later versions of Canvas.
         - look at use case: do we need a little pic / icon next to each bar (title, x, etc) to make it easier to recognise?
         - save config / style of stuff, say Title, X, etc so that graphs can look and feel the same.
     - add url to open a web page
+    - add click (and right click?) events to graph -> can DRILL or can apply Graph Conditional Filter !
+    - look at DAX and M for the Graph Calculated Fields.  Maybe datum.Field is written as [Field] as this is more known ...
+    - must be able to create new Widget - trick is to make a simple way to specify how and what fields to add, it X or Y ...
+    - have Market Place for Dashboards and Widget, can export and import to there - so can reause and learn from others
     - keep widgetStoredTemplateID on Widget => we know where it came from
     - Widget Stored Templates: consider auto-update checkbox.  When checked, and template changes, ALL Widgets created from it will change (using widgetStoredTemplateID).  Can consider the converse: when the Widget from which the Template was created changes,
     the Template will be updated.  This could trigger auto-update.  Consider use Case first.
