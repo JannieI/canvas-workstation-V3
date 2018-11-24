@@ -390,7 +390,7 @@ const widgetTemplate: Widget =
                 "graphXMaxBins": 0,
                 "graphXformat": "",
                 "graphXimpute": "",
-                "graphXimputeValue": "",
+                "graphXimputeValue": 0,
                 "graphXstack": "",
                 "graphXsort": "",
                 "graphXtype": "",

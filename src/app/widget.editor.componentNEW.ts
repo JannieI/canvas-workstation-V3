@@ -2429,7 +2429,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXMaxBins = 0;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXimpute = '';
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXimputeValue = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXimputeValue = 0;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXstack = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype = '';

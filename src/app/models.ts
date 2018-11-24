@@ -1080,7 +1080,7 @@ export class widgetGraphSpecification {
     graphXMaxBins: number;                 // Max nr of ESTIMATED bins
     graphXformat: string;                  // Format in D3-format
     graphXimpute: string;                  // Calculate missing values based on method/value
-    graphXimputeValue: string;             // Value if impute = VALUE
+    graphXimputeValue: number;             // Value if impute = VALUE
     graphXstack: string;                   // Way that field is stacked, ie Normalised
     graphXsort: string;                    // Sort order of field
     graphXtype: string;                    // Graph type, ie nominal
