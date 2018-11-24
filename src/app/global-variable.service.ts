@@ -11987,34 +11987,6 @@ export class GlobalVariableService {
                     {"type": widget.graphLayers[currentGraphLayer].graphXaxisScaleType.toLowerCase() };
                 };
 
-                
-                if (widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart != ''  
-                    &&
-                    widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart != null
-                    && 
-                    widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd != ''
-                    && 
-                    widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd != null) {
-
-                //     if(specificationInner['encoding']['y']['scale'] == "") {
-                        specificationInner['encoding']['y']['scale'] = { 
-                            "domain":  
-                            [
-                                Number(widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart),
-                                Number(widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd)
-                            ]
-                        };
-                //     } else {
-                //         specificationInner['encoding']['y']['scale']['domain'] = 
-                //             [
-                //                 widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart,
-                //                 widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd
-                //             ];
-                //         specificationInner['mark']['clip'] = true;
-                //     };
-                };
-
-
                 specificationInner['encoding']['x']['axis'] = {"grid": widget.graphLayers[currentGraphLayer].graphXaxisGrid };
                 if (widget.graphLayers[currentGraphLayer].graphXaxisGrid) {
                     specificationInner['encoding']['x']['axis'] = {"gridColor": widget.graphLayers[currentGraphLayer].graphXaxisGridColor };
@@ -12108,6 +12080,31 @@ export class GlobalVariableService {
                 specificationInner['encoding']['y']['axis']['maxExtent'] = widget.graphDimensionLeft;
                 specificationInner['encoding']['y']['axis']['labelLimit'] = widget.graphDimensionLeft;
 
+                if (widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart != ''  
+                    &&
+                    widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart != null
+                    && 
+                    widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd != ''
+                    && 
+                    widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd != null) {
+
+                    if(specificationInner['encoding']['y']['scale'] == "") {
+                        specificationInner['encoding']['y']['scale'] = { 
+                            "domain":  
+                            [
+                                Number(widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart),
+                                Number(widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd)
+                            ]
+                        };
+                    } else {
+                        specificationInner['encoding']['y']['scale']['domain'] = 
+                            [
+                                widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart,
+                                widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd
+                            ];
+                        specificationInner['mark']['clip'] = true;
+                    };
+                };
             };
 
 
