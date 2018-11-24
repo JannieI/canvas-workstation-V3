@@ -419,7 +419,7 @@ const widgetTemplate: Widget =
                 "graphColorMaxBins": 0,
                 "graphColorFormat": "",
                 "graphColorImpute": "",
-                "graphColorImputeValue": "",
+                "graphColorImputeValue": 0,
                 "graphColorScheme": "blues",
                 "graphColorSort": "",
                 "graphColorStack": "",

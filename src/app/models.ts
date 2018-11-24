@@ -1109,7 +1109,7 @@ export class widgetGraphSpecification {
     graphColorMaxBins: number;              // Max nr of ESTIMATED bins
     graphColorFormat: string;               // Format in D3-format
     graphColorImpute: string;               // Calculate missing values based on method/value
-    graphColorImputeValue: string;          // Value if impute = VALUE
+    graphColorImputeValue: number;          // Value if impute = VALUE
     graphColorScheme: string;               // Preselected colour scheme
     graphColorSort: string;                 // Sort order of field
     graphColorStack: string;                // Way that field is stacked, ie Normalised

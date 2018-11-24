@@ -2516,7 +2516,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendFormat = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorImpute = '';
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorImputeValue = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorImputeValue = 0;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTypeName = '';
