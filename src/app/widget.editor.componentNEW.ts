@@ -2448,7 +2448,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabels = true;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColor = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColorName = '';
-        // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelsLength = 0;
+        // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelsLength = 0;
 
         // Hide the panel with properties
         this.showFieldXPropertiesTitle = false;

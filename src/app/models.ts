@@ -1142,6 +1142,7 @@ export class widgetGraphSpecification {
     graphYaxisLabelAngle: number;           // Angle of Y axis labels in degrees
     graphYaxisLabelColorName: string;       // Name of color for Y labels
     graphYaxisLabelColor: string;           // Actual color of Y labels in hex, rgb, etc
+    graphYaxisLabelsLength: number;         // Max length of labels in px
     graphYaxisScaleType: string;            // Type of scale, ie Linear, Log, etc
     graphYaxisScaleDomainStart: string;     // Start of Scale Domain
     graphYaxisScaleDomainEnd: string;       // End of Scale Domain

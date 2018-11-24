@@ -452,6 +452,7 @@ const widgetTemplate: Widget =
                 "graphYaxisLabelAngle": 0,
                 "graphYaxisLabelColorName": "",
                 "graphYaxisLabelColor": "",
+                "graphYaxisLabelsLength": 0,
                 "graphYaxisScaleType": "",
                 "graphYaxisScaleDomainStart": "",
                 "graphYaxisScaleDomainEnd": "",
