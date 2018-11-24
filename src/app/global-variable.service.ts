@@ -11988,10 +11988,15 @@ export class GlobalVariableService {
                 };
 
 
-                specificationInner['encoding']['x']['scale']['domain'] = [200,400];
-                specificationInner['mark']['clip'] = true;
-
-
+                if (widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart !''  
+                    && widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd != '') {
+                    specificationInner['encoding']['y']['scale']['domain'] = 
+                        [
+                            widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart,
+                            widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd
+                        ];
+                    specificationInner['mark']['clip'] = true;
+                    };
 
                 specificationInner['encoding']['x']['axis'] = {"grid": widget.graphLayers[currentGraphLayer].graphXaxisGrid };
                 if (widget.graphLayers[currentGraphLayer].graphXaxisGrid) {

@@ -1302,11 +1302,11 @@ export interface dataSchemaInterface {
                 return;
         };
         if (isNaN(Number(this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisScaleDomainStart))) {
-            this.errorMessageEditor = 'Y axis Start domain must be numeric.';
+            this.errorMessageEditor = 'X axis Start domain must be numeric.';
             return;
         };
         if (isNaN(Number(this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisScaleDomainEnd))) {
-            this.errorMessageEditor = 'Y axis End domain must be numeric.';
+            this.errorMessageEditor = 'X axis End domain must be numeric.';
             return;
         };
         if (isNaN(Number(this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisScaleDomainStart))) {

@@ -1716,7 +1716,7 @@ clr-dg-cell {
                     line-height: 0.8rem;
                     margin: 3px;
                     margin-left: 8px;
-                    width: 25px;
+                    width: 35px;
                 }
                 .editorGraphXaxisDomainEnd {
                     display: inline-block;
@@ -1724,7 +1724,7 @@ clr-dg-cell {
                     line-height: 0.8rem;
                     margin: 3px;
                     margin-left: 8px;
-                    width: 25px;
+                    width: 35px;
                 }
 
                 .editorGraphXaxisFormatTitle {
@@ -1883,7 +1883,7 @@ clr-dg-cell {
                     line-height: 0.8rem;
                     margin: 3px;
                     margin-left: 8px;
-                    width: 30px;
+                    width: 35px;
                 }
                 .editorGraphYaxisDomainEnd {
                     display: inline-block;
@@ -1891,7 +1891,7 @@ clr-dg-cell {
                     line-height: 0.8rem;
                     margin: 3px;
                     margin-left: 8px;
-                    width: 30px;
+                    width: 35px;
                 }
 
                 .editorGraphYaxisFormatTitle {
