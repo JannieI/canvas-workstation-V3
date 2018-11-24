@@ -3782,7 +3782,7 @@ export interface dataSchemaInterface {
     }
 
     clickGraphFilterRowSelect(index: number, selectedFilterID : number) {
-        // Delete the selected Filter
+        // Selected a Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGraphFilterRowSelect', '@Start');
 
         // Reset
@@ -4219,6 +4219,11 @@ export interface dataSchemaInterface {
         if (schemaIndex >= 0) {
             this.dataSchema.splice(schemaIndex, 1);
         };
+
+        // Remove if used as Filter
+        this.localWidget.graphFilters = this.localWidget.graphFilters.filter(gf => 
+            gf.filterFieldName != this.calculatedAs
+        );
 
         // Reset
         this.clickCalculatedClear();
