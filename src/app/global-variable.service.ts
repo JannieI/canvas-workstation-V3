@@ -12101,7 +12101,7 @@ export class GlobalVariableService {
                 };
                 if (widget.graphLayers[currentGraphLayer].graphYaxisLabelsLength != null
                     && widget.graphLayers[currentGraphLayer].graphYaxisLabelsLength > 0) {
-                        specificationInner['encoding']['x']['axis']['labelLimit'] =
+                        specificationInner['encoding']['y']['axis']['labelLimit'] =
                             widget.graphLayers[currentGraphLayer].graphYaxisLabelsLength;
                 };
 
