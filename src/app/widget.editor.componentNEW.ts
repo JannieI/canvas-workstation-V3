@@ -3150,7 +3150,8 @@ export interface dataSchemaInterface {
             };
             this.dataSchema.push(newDataSchema);
         });
-
+        console.warn('xx this.dataSchema', this.dataSchema);
+        
     }
 
     clickShowDatasources() {
@@ -4303,7 +4304,7 @@ export interface dataSchemaInterface {
         let graphCalculation: GraphCalculation = {
             id: 0,
             sequence: 0,               // Sequence Nr - for LATER user
-            calculatedDataType: this.calculatedDataTypeName,
+            calculatedDataType: this.calculatedDataType,
             calculatedExpression: this.calculatedExpression,
             calculatedAs: this.calculatedAs,
         };
