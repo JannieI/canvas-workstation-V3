@@ -12016,7 +12016,33 @@ export class GlobalVariableService {
 
                 specificationInner['encoding']['x']['axis']['maxExtent'] = widget.graphDimensionBottom;
                 specificationInner['encoding']['x']['axis']['labelLimit'] = widget.graphDimensionBottom;
-            };
+
+
+                if (widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainStart != ''  
+                    &&
+                    widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainStart != null
+                    && 
+                    widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainEnd != ''
+                    && 
+                    widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainEnd != null) {
+
+                    if(specificationInner['encoding']['x']['scale'] == "") {
+                        specificationInner['encoding']['x']['scale'] = { 
+                            "domain":  
+                            [
+                                Number(widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainStart),
+                                Number(widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainEnd)
+                            ]
+                        };
+                    } else {
+                        specificationInner['encoding']['x']['scale']['domain'] = 
+                            [
+                                widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainStart,
+                                widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainEnd
+                            ];
+                        specificationInner['mark']['clip'] = true;
+                    };
+                };            };
 
 
             // Y field
