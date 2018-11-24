@@ -2214,6 +2214,29 @@
                             </div>
                         </div>
 
+                        <!-- Y Axis Domain -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphYaxisDomainTitle" *ngIf="showFieldYPropertiesAxis">
+                            Domain:
+                            </div>
+                            <div class="editorGraphYaxisDomainStart" *ngIf="showFieldYPropertiesAxis">
+                                <input type="text"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisDomain"
+                                    name="graphYaxisDomain"
+                                    size="10"
+                                    placeholder="Start"
+                                    >
+                            </div>
+                            <div class="editorGraphYaxisDomainEnd" *ngIf="showFieldYPropertiesAxis">
+                                <input type="text"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphYaxisDomain"
+                                    name="graphYaxisDomain"
+                                    size="10"
+                                    placeholder="End"
+                                    >
+                            </div>
+                        </div>
+
                         <!-- Y Axis LabelAngle -->
                         <div class="editorLineContainer">
                             <div class="editorGraphYaxisLabelAngleTitle" *ngIf="showFieldYPropertiesAxis">
