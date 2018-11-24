@@ -1126,9 +1126,11 @@ export class widgetGraphSpecification {
     graphXaxisLabelAngle: number;           // Angle of X axis labels in degrees
     graphXaxisLabelColorName: string;       // Name of color for X labels
     graphXaxisLabelColor: string;           // Actual color of X labels in hex, rgb, etc
+    graphXaxisScaleType: string;            // Type of axis, ie linear, log, etc
+    graphXaxisScaleDomainStart: string;     // Start of Scale Domain
+    graphXaxisScaleDomainEnd: string;       // End of Scale Domain
     graphXaxisTitle: string;                // Title of X axis
     graphXaxisTitleCheckbox: boolean;       // True to show axis title
-    graphXaxisScaleType: string;            // Type of axis, ie linear, log, etc
 
     // Y Axis
     graphYaxisFormat: string;               // Format in D3-format
@@ -1140,6 +1142,8 @@ export class widgetGraphSpecification {
     graphYaxisLabelColorName: string;       // Name of color for Y labels
     graphYaxisLabelColor: string;           // Actual color of Y labels in hex, rgb, etc
     graphYaxisScaleType: string;            // Type of scale, ie Linear, Log, etc
+    graphYaxisScaleDomainStart: string;     // Start of Scale Domain
+    graphYaxisScaleDomainEnd: string;       // End of Scale Domain
     graphYaxisTitle: string;                // Title of Y axis
     graphYaxisTitleCheckbox: boolean;       // True to show axis title
 

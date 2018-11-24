@@ -435,9 +435,11 @@ const widgetTemplate: Widget =
                 "graphXaxisLabelAngle": 0,
                 "graphXaxisLabelColorName": "",
                 "graphXaxisLabelColor": "",
+                "graphXaxisScaleType": "",
+                "graphXaxisScaleDomainStart": "",
+                "graphXaxisScaleDomainEnd": "",
                 "graphXaxisTitle": "",
                 "graphXaxisTitleCheckbox": true,
-                "graphXaxisScaleType": "",
 
                 // Y Axis
                 "graphYaxisFormat": "",
@@ -449,6 +451,8 @@ const widgetTemplate: Widget =
                 "graphYaxisLabelColorName": "",
                 "graphYaxisLabelColor": "",
                 "graphYaxisScaleType": "",
+                "graphYaxisScaleDomainStart": "",
+                "graphYaxisScaleDomainEnd": "",
                 "graphYaxisTitle": "",
                 "graphYaxisTitleCheckbox": true,
 
