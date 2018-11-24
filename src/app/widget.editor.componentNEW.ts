@@ -2422,20 +2422,32 @@ export interface dataSchemaInterface {
         this.showXDeleteIcon = false;
         this.xField = dragFieldMessage;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield = '';
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisTitle = '';
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregateName = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregate = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregateName = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXbin = false;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXMaxBins = 0;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat = '';
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisFormat = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXimpute = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXimputeValue = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXstack = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtypeName = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit = '';
 
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisTitleCheckbox = false;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisTitle = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelAngle = 0;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisScaleDomainStart = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisScaleDomainEnd = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisFormat = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGrid = false;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColor = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColorName = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabels = true;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColor = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColorName = '';
+        // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelsLength = 0;
         // Hide the panel with properties
         this.showFieldXPropertiesTitle = false;
         this.showFieldXProperties = false;
