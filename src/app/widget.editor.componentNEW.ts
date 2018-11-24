@@ -1875,8 +1875,8 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        let oldSizeField: string = this.colorField;
-        if (this.colorField != dragFieldMessage) {
+        let oldSizeField: string = this.sizeField;
+        if (this.sizeField != dragFieldMessage) {
             this.clickClearSizeField();
         };
         if (oldSizeField != fieldName) {
