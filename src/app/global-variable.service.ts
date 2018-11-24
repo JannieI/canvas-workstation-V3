@@ -12004,6 +12004,11 @@ export class GlobalVariableService {
                     specificationInner['encoding']['x']['axis']['labelColor'] = widget.graphLayers[currentGraphLayer].graphXaxisLabelColor;
                     specificationInner['encoding']['x']['axis']['tickColor'] = widget.graphLayers[currentGraphLayer].graphXaxisLabelColor;
                     specificationInner['encoding']['x']['axis']['titleColor'] = widget.graphLayers[currentGraphLayer].graphXaxisLabelColor;
+                    if (widget.graphLayers[currentGraphLayer].graphXaxisLabelsLength != null
+                        && widget.graphLayers[currentGraphLayer].graphXaxisLabelsLength > 0) {
+                            specificationInner['encoding']['x']['axis']['labelLimit'] =
+                                widget.graphLayers[currentGraphLayer].graphXaxisLabelsLength;
+                        };
                 };
 
                 if (!widget.graphLayers[currentGraphLayer].graphXaxisTitleCheckbox) {
@@ -12019,7 +12024,7 @@ export class GlobalVariableService {
                 };
 
                 specificationInner['encoding']['x']['axis']['maxExtent'] = widget.graphDimensionBottom;
-                specificationInner['encoding']['x']['axis']['labelLimit'] = widget.graphDimensionBottom;
+                // specificationInner['encoding']['x']['axis']['labelLimit'] = widget.graphDimensionBottom;
 
 
                 if (widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainStart != ''  
