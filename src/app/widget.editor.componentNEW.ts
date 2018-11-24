@@ -4340,6 +4340,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
+        // Deal with Calculatd Fields
         let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
             gflt.calculatedAs == formCalculatedFieldName);
         this.selectedGraphCalculatedRowIndex = gridCalculatedIndex;
@@ -4355,6 +4356,8 @@ export interface dataSchemaInterface {
                 this.localWidget.graphCalculations[gridCalculatedIndex].calculatedDataType
             );
             this.showCalculatedAreaProperties = true;
+            this.showFilterAreaProperties = false;
+            this.showConditionAreaProperties = false;
         } else {
             this.calculatedID = -1;
             this.calculatedExpression = '';
