@@ -12008,7 +12008,7 @@ export class GlobalVariableService {
                         && widget.graphLayers[currentGraphLayer].graphXaxisLabelsLength > 0) {
                             specificationInner['encoding']['x']['axis']['labelLimit'] =
                                 widget.graphLayers[currentGraphLayer].graphXaxisLabelsLength;
-                        };
+                    };
                 };
 
                 if (!widget.graphLayers[currentGraphLayer].graphXaxisTitleCheckbox) {
@@ -12099,6 +12099,11 @@ export class GlobalVariableService {
                     specificationInner['encoding']['y']['axis']['tickColor'] = widget.graphLayers[currentGraphLayer].graphYaxisLabelColor;
                     specificationInner['encoding']['y']['axis']['titleColor'] = widget.graphLayers[currentGraphLayer].graphYaxisLabelColor;
                 };
+                if (widget.graphLayers[currentGraphLayer].graphYaxisLabelsLength != null
+                    && widget.graphLayers[currentGraphLayer].graphYaxisLabelsLength > 0) {
+                        specificationInner['encoding']['x']['axis']['labelLimit'] =
+                            widget.graphLayers[currentGraphLayer].graphYaxisLabelsLength;
+                };
 
                 if (!widget.graphLayers[currentGraphLayer].graphYaxisTitleCheckbox) {
                     specificationInner['encoding']['y']['axis']['title'] = null;
@@ -12113,7 +12118,7 @@ export class GlobalVariableService {
                     specificationInner['encoding']['y']['axis']['format'] =  widget.graphLayers[currentGraphLayer].graphYaxisFormat;
                 };
                 specificationInner['encoding']['y']['axis']['maxExtent'] = widget.graphDimensionLeft;
-                specificationInner['encoding']['y']['axis']['labelLimit'] = widget.graphDimensionLeft;
+                // specificationInner['encoding']['y']['axis']['labelLimit'] = widget.graphDimensionLeft;
 
                 if (widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart != ''  
                     &&
