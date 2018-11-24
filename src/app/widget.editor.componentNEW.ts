@@ -1301,6 +1301,14 @@ export interface dataSchemaInterface {
                 this.errorMessageEditor = 'Select lat and long with Projection.';
                 return;
         };
+        if (isNaN(Number(this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisScaleDomainStart))) {
+                this.errorMessageEditor = 'Y axis Start domain must be numeric.';
+                return;
+        };
+        if (isNaN(Number(this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisScaleDomainEnd))) {
+            this.errorMessageEditor = 'Y axis End domain must be numeric.';
+            return;
+        };
 
         // Keep graphID
         this.currentGraphID = graphID;
