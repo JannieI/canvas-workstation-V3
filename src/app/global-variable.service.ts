@@ -11988,7 +11988,7 @@ export class GlobalVariableService {
                 };
 
 
-                if (widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart !''  
+                if (widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart != ''  
                     && widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd != '') {
                     specificationInner['encoding']['y']['scale']['domain'] = 
                         [
@@ -11997,6 +11997,7 @@ export class GlobalVariableService {
                         ];
                     specificationInner['mark']['clip'] = true;
                     };
+
 
                 specificationInner['encoding']['x']['axis'] = {"grid": widget.graphLayers[currentGraphLayer].graphXaxisGrid };
                 if (widget.graphLayers[currentGraphLayer].graphXaxisGrid) {
