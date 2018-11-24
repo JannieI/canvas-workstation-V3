@@ -2613,9 +2613,12 @@ export interface dataSchemaInterface {
         this.projectionFieldLatitude = dragFieldMessage;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLatitude = '';
 
-        // Hide the panel with properties
-        this.showFieldProjectionProperties = false;
-
+        // Hide the panel with properties if not fields selected
+        if (this.projectionFieldLatitude == dragFieldMessage  
+            &&  
+            this.projectionFieldLongitude == dragFieldMessage) {
+            this.showFieldProjectionProperties = false;
+        };
     }
 
     clickClearProjectionFieldLongitude() {
