@@ -11871,12 +11871,14 @@ export class GlobalVariableService {
                     "x": {
                         "field": "",
                         "type": "",
-                        "axis": ""
+                        "axis": "",
+                        "scale": ""
                     },
                     "y": {
                         "field": "",
                         "type": "",
-                        "axis": ""
+                        "axis": "",
+                        "scale": ""
                     },
                     "color": {
                         "field": "",
@@ -11889,7 +11891,7 @@ export class GlobalVariableService {
                     }
                 }
             };
-
+            
             // Mark
             specificationInner['mark']['type'] = widget.graphLayers[currentGraphLayer].graphMark;
             specificationInner['mark']['orient'] = widget.graphLayers[currentGraphLayer].graphMarkOrient.toLowerCase();
@@ -11980,6 +11982,12 @@ export class GlobalVariableService {
                     specificationInner['encoding']['x']['scale'] =
                     {"type": widget.graphLayers[currentGraphLayer].graphXaxisScaleType.toLowerCase() };
                 };
+
+
+                specificationInner['encoding']['x']['scale']['domain'] = [200,400];
+                specificationInner['mark']['clip'] = true;
+
+
 
                 specificationInner['encoding']['x']['axis'] = {"grid": widget.graphLayers[currentGraphLayer].graphXaxisGrid };
                 if (widget.graphLayers[currentGraphLayer].graphXaxisGrid) {

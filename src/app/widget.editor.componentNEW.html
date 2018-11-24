@@ -1797,6 +1797,29 @@
                             </div>
                         </div>
 
+                        <!-- X Axis Domain -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphXaxisDomainTitle" *ngIf="showFieldXPropertiesAxis">
+                            Domain:
+                            </div>
+                            <div class="editorGraphXaxisDomainStart" *ngIf="showFieldXPropertiesAxis">
+                                <input type="text"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisDomain"
+                                    name="graphXaxisDomain"
+                                    size="10"
+                                    placeholder="Start"
+                                    >
+                            </div>
+                            <div class="editorGraphXaxisDomainEnd" *ngIf="showFieldXPropertiesAxis">
+                                <input type="text"
+                                    [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].graphXaxisDomain"
+                                    name="graphXaxisDomain"
+                                    size="10"
+                                    placeholder="End"
+                                    >
+                            </div>
+                        </div>
+
                         <!-- X Axis Format -->
                         <div class="editorLineContainer">
                             <div class="editorGraphXaxisFormatTitle" *ngIf="showFieldXPropertiesAxis">
