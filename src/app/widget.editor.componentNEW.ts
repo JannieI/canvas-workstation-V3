@@ -4224,6 +4224,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphFilters = this.localWidget.graphFilters.filter(gf => 
             gf.filterFieldName != this.calculatedAs
         );
+        this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
 
         // Reset
         this.clickCalculatedClear();
