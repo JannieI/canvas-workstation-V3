@@ -1157,6 +1157,7 @@ export class widgetGraphSpecification {
     graphLegendFormat: string;              // Format in D3-format
     graphLegendLabels: boolean;             // True to show Legend Labels
     graphLegendLabelColorName: string;      // Name of color for Legend labels
+    graphLegendLabelsLength: number;        // Length of the label in px
     graphLegendLabelColor: string;          // Actual color of Legend labels in hex, rgb, etc
 
     // Size

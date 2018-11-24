@@ -468,6 +468,7 @@ const widgetTemplate: Widget =
                 "graphLegendLabels": true,
                 "graphLegendLabelColorName": "",
                 "graphLegendLabelColor": "",
+                "graphLegendLabelsLength" : 0,
 
                 // Size
                 "graphSizeField": "",
