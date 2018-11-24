@@ -11987,16 +11987,27 @@ export class GlobalVariableService {
                     {"type": widget.graphLayers[currentGraphLayer].graphXaxisScaleType.toLowerCase() };
                 };
 
+                
+                // if (widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart != ''  
+                //     && widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd != '') {
 
-                if (widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart != ''  
-                    && widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd != '') {
-                    specificationInner['encoding']['y']['scale']['domain'] = 
-                        [
-                            widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart,
-                            widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd
-                        ];
-                    specificationInner['mark']['clip'] = true;
-                    };
+                //     if(specificationInner['encoding']['y']['scale'] == "") {
+                //         specificationInner['encoding']['y']['scale'] = { 
+                //             "domain":  
+                //             [
+                //                 widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart,
+                //                 widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd
+                //             ]
+                //         };
+                //     } else {
+                //         specificationInner['encoding']['y']['scale']['domain'] = 
+                //             [
+                //                 widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart,
+                //                 widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd
+                //             ];
+                //         specificationInner['mark']['clip'] = true;
+                //     };
+                // };
 
 
                 specificationInner['encoding']['x']['axis'] = {"grid": widget.graphLayers[currentGraphLayer].graphXaxisGrid };
