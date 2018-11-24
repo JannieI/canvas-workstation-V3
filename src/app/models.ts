@@ -1126,6 +1126,7 @@ export class widgetGraphSpecification {
     graphXaxisLabelAngle: number;           // Angle of X axis labels in degrees
     graphXaxisLabelColorName: string;       // Name of color for X labels
     graphXaxisLabelColor: string;           // Actual color of X labels in hex, rgb, etc
+    graphXaxisLabelsLength: number;         // Max length of label text in px
     graphXaxisScaleType: string;            // Type of axis, ie linear, log, etc
     graphXaxisScaleDomainStart: string;     // Start of Scale Domain
     graphXaxisScaleDomainEnd: string;       // End of Scale Domain
