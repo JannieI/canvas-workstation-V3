@@ -2421,6 +2421,7 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
         this.showXDeleteIcon = false;
         this.xField = dragFieldMessage;
+
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXfield = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregate = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregateName = '';
@@ -2448,6 +2449,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColor = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColorName = '';
         // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelsLength = 0;
+
         // Hide the panel with properties
         this.showFieldXPropertiesTitle = false;
         this.showFieldXProperties = false;
@@ -2464,20 +2466,34 @@ export interface dataSchemaInterface {
 
         this.showYDeleteIcon = false;
         this.yField = dragFieldMessage;
+
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYfield = '';
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisTitle = '';
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregateName = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregate = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregateName = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYbin = false;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYMaxBins = 0;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat = '';
-        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisFormat = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYimpute = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYimputeValue = 0;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYstack = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtypeName = '';
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit = '';
+
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisTitleCheckbox = false;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisTitle = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelAngle = 0;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisScaleDomainStart = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisScaleDomainEnd = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisFormat = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGrid = false;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColor = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColorName = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabels = true;
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColor = '';
+        this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColorName = '';
+        // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelsLength = 0;
 
         // Hide the panel with properties
         this.showFieldYPropertiesTitle = false;
