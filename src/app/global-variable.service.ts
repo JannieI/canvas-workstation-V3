@@ -1137,7 +1137,7 @@ export class GlobalVariableService {
     previousGraphEditDSID: number = -1;
     sessionDateTimeLoggedin: string = '';
     sessionDebugging: boolean = true;      // True to log multiple messages to Console
-    sessionLogging: boolean = false;
+    sessionLogging: boolean = true;
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
 
@@ -1309,6 +1309,16 @@ export class GlobalVariableService {
                             })
                         })
                     })
+
+
+
+
+                    this.getWidgetsXXX().then(res => {
+                        console.warn('xx WORKS !!!', res)
+                    })
+
+
+
                 })
                 })
                 })
@@ -8028,8 +8038,10 @@ export class GlobalVariableService {
         };
 
         return new Promise<any>( (resolve, reject) => {
-
-            this.http.get('http://localhost:8000/background?query=%22;%22&page=2').subscribe(
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+            this.http.get('http://localhost:8000/background?query=%22;%22&page=2', {headers}).subscribe(
                 res => 
                 {
                     resolve(res);
@@ -10706,12 +10718,12 @@ export class GlobalVariableService {
                 baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'widgetGraphs') {
                 baseUrl = 'http://localhost:3001/';
-            } else if (pathUrl == 'dashboardSnapshots') {
-                baseUrl = 'http://localhost:3000/';
-            } else if (pathUrl == 'widgetCheckpoints') {
-                baseUrl = 'http://localhost:3000/';
-            } else if (pathUrl == 'datasets') {
-                baseUrl = 'http://localhost:3000/';
+            // } else if (pathUrl == 'dashboardSnapshots') {
+            //     baseUrl = 'http://localhost:3000/';
+            // } else if (pathUrl == 'widgetCheckpoints') {
+            //     baseUrl = 'http://localhost:3000/';
+            // } else if (pathUrl == 'datasets') {
+            //     baseUrl = 'http://localhost:3000/';
             } else if (pathUrl == 'statusBarMessageLogs') {
                 baseUrl = 'http://localhost:3002/';
             } else if (pathUrl == 'canvasAuditTrails') {
@@ -10740,7 +10752,7 @@ export class GlobalVariableService {
                 baseUrl = 'http://localhost:3006/';
 
             } else {
-                baseUrl = 'http://localhost:3000/';
+                baseUrl = 'http://localhost:3007/';
             };
         } else {
             baseUrl = this.ENVCanvasDatabaseServerUrl;
