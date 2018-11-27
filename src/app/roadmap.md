@@ -198,8 +198,8 @@ This document describes items for later versions of Canvas.
 
 
 
-    Table (Bradley SmartTable):
-    ---------------------------
+    Table:
+    ------
         - add drag fields - to X = Add, Drag away = delete from headers
         - add drag field to Y = Pivot!  Decide local or in backend
         - add functionality = filter, sort, etc.  Decide here OR in app component ... Maybe only here

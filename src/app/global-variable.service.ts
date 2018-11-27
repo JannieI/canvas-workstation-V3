@@ -8016,6 +8016,35 @@ export class GlobalVariableService {
 
     }
 
+
+    getWidgetsXXX(): Promise<Widget[]> {
+        // Description: Gets all W
+        // Returns: this.widgets array, unless:
+        //   If not cached or if dirty, get from File
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getWidgets XXXXXXXXXXXXXXXXXX ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.widgets.length);
+        };
+
+        return new Promise<any>( (resolve, reject) => {
+
+            this.http.get('http://localhost:8000/background?query=%22;%22&page=2').subscribe(
+                res => 
+                {
+                    resolve(res);
+                },
+                (err: HttpErrorResponse) => {
+                    if (err.error instanceof Error) {
+                      console.log("Client-side error occured.");
+                    };
+                }
+            );
+        });
+
+    }
+
+
     getCurrentWidgets(dashboardID: number, dashboardTabID: number): Promise<Widget[]> {
         // Description: Gets all W for current D
         // Params:
