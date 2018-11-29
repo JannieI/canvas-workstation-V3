@@ -1313,9 +1313,10 @@ export class GlobalVariableService {
 
 
 
-                    this.getWidgetsXXX().then(res => {
-                        console.warn('xx WORKS !!!', res)
-                    })
+                    this.getWidgetsXXX('CanvasGroups').then(res => {
+                        let data: any[] = res.results;
+                        console.warn('xx WORKS !!!', res, data)
+                    });
 
 
 
@@ -8027,7 +8028,7 @@ export class GlobalVariableService {
     }
 
 
-    getWidgetsXXX(): Promise<Widget[]> {
+    getWidgetsXXX(collection: string): Promise<any> {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
@@ -8041,7 +8042,8 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-            this.http.get('http://localhost:8000/background?query=%22;%22&page=2', {headers}).subscribe(
+            // this.http.get('http://localhost:8000/background?query=%22;%22&page=2', {headers}).subscribe(
+            this.http.get('http://localhost:8000/users/mongo:' + collection, {headers}).subscribe(
                 res => 
                 {
                     resolve(res);
