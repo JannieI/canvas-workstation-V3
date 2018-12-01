@@ -1,7 +1,53 @@
+<!-- http://webdevzoom.com/create-login-form-using-html5-css3/ -->
+
 <div class="modal modalBox">
     <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
-            <form #f="ngForm" role="form" novalidate>
+
+            <div class="login-form-container" id="login-form">
+                <div class="login-form-content">
+                    <div class="login-form-header">
+                        <div class="logo">
+                            <img src="img/logo.png"/>
+                        </div>
+                        <h3>Login Into Your Account</h3>
+                    </div>
+
+                    <div class="input-container">
+                        <i class="fa fa-envelope"></i>
+                        <input type="email" class="input" name="email" placeholder="Email"/>
+                    </div>
+                    <div class="input-container">
+                        <i class="fa fa-lock"></i>
+                        <input type="password"  id="login-password" class="input" name="password" placeholder="Password"/>
+                        <i id="show-password" class="fa fa-eye"></i>
+                    </div>
+                    <div class="rememberme-container">
+                        <input type="checkbox" name="rememberme" id="rememberme"/>
+                        <label for="rememberme" class="rememberme"><span>Remember me</span></label>
+                        <a class="forgot-password" href="#">Forgot Password?</a>
+                    </div>
+                    <input type="submit" name="login" value="Login" class="button"/>
+                    <a href="#" class="register">Register</a>
+
+                    <div class="separator">
+                        <span class="separator-text">OR</span>
+                    </div>
+                    <div class="socmed-login">
+                        <a href="#facebook" class="socmed-btn facebook-btn">
+                            <i class="fa fa-facebook"></i>
+                            <span>Login with Github</span>
+                        </a>
+                        <a href="#g-plus" class="socmed-btn google-btn">
+                            <i class="fa fa-google"></i>
+                            <span>Login with Google</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- <form #f="ngForm" role="form" novalidate>
 
                 <div class="gridOverall">
                     <button type="button" class="closeButton" (click)="clickClose()">
@@ -92,7 +138,7 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> -->
         </div>
     </div>
 </div>
