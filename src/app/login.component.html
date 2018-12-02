@@ -5,12 +5,12 @@
         <div class="modal-content modalContent">
             <form #f="ngForm" role="form" novalidate>
 
-                <div class="login-form">
+                <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
 
-                    <span class="login-title">
-                        <button type="button" class="closeButton" (click)="clickClose()">
-                            <b>X</b>
-                        </button>
+                    <div class="gridTitle">
                         <b>Login</b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
@@ -30,53 +30,87 @@
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
-                    </span>
-                    <div class="login-body">
+                    </div>
+                    <div class="gridLogo">
                         <div class="logo">
                             <img src="../images/Logo Clarity Analytics.png"
                                 width="50px"/>
                         </div>
                     </div>
 
-                    <div class="select"
+                    <div class="gridServerTitle"
                         name="localCloud"
                         >
-                        <span>Canvas Server:</span>
+                        Canvas Server:
+                    </div>
+
+                    <div class="select gridServer"
+                        name="localServer"
+                        >
                         <select [(ngModel)]="localServer"
                             name="localServer"
                             (change)="clickLocalServer($event)"
                             >
                             <option>Local</option>
-                            <option>Cloud</option>
+                            <option>Server</option>
                         </select>
                     </div>
 
-                    <div class="input-container">
-                        <i class="fa fa-envelope"></i>
-                        <input type="email" class="input" name="email" placeholder="Email"/>
+                    <div class="gridUserNameTitle">
+                        <b>UserName:</b>
                     </div>
-                    <div class="input-container">
-                        <i class="fa fa-lock"></i>
-                        <input type="password"  id="login-password" class="input" name="password" placeholder="Password"/>
-                        <i id="show-password" class="fa fa-eye"></i>
+                    <div class="gridUserName">
+                        <input [(ngModel)]="currentUserID"
+                            type="text"
+                            name="currentUserID"
+                            placeholder="UserName"
+                            #dashboardDescriptionVar="ngModel"
+                            required
+                            minlength="2"
+                            maxlength="250"
+                            [style.color]="!dashboardDescriptionVar.valid ? 'red' : 'gray'"
+                            >
                     </div>
-                    <div class="rememberme-container">
-                        <input type="checkbox" name="rememberme" id="rememberme"/>
-                        <label for="rememberme" class="rememberme"><span>Remember me</span></label>
-                        <a class="forgot-password" href="#">Forgot Password?</a>
-                    </div>
-                    <input type="submit" name="login" value="Login" class="button"/>
-                    <a href="#" class="register">Register</a>
 
-                    <div class="separator">
-                        <span class="separator-text">OR</span>
+                    <div class="gridPasswordTitle">
+                        <b>Password:</b>
                     </div>
-                    <div class="socmed-login">
-                        <a href="#facebook" class="socmed-btn facebook-btn">
+                    <div class="gridPassword">
+                        <input [(ngModel)]="password"
+                            type="text"
+                            name="password"
+                            placeholder="Password"
+                            >
+                    </div>
+                    
+                    <div class="gridButtonLogin">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickLogin()"
+                            >
+                            Login
+                        </button>
+                    </div>
+                    <div class="gridButtonLogin">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickLogin()"
+                            >
+                            Register
+                        </button>
+                    </div>
+
+                    <div class="gridSeparator">
+                        <span class="gridSeparatorText">OR</span>
+                    </div>
+                    <div class="gridGitHubLogin">
+                        <a href="#facebook" class="socmed-btn">
                             <i class="fa fa-facebook"></i>
                             <span>Login with Github</span>
                         </a>
-                        <a href="#g-plus" class="socmed-btn google-btn">
+                        <a href="#g-plus" class="gridGoogleogin">
                             <i class="fa fa-google"></i>
                             <span>Login with Google</span>
                         </a>
