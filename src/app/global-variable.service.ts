@@ -1314,7 +1314,11 @@ export class GlobalVariableService {
 
 
                     this.getWidgetsXXX('CanvasGroups').then(res => {
-                        let data: any[] = res.results;
+                        let data: any[] = [];
+                        if (res != null) {
+                            data = resolve(localRes.results);
+                        };
+    
                         console.warn('xx WORKS !!!', res, data)
                     });
 

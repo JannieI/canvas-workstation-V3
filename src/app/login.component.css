@@ -64,7 +64,7 @@
     .gridServer {
         grid-column-start: 4;
         /* autoprefixer: off */
-        grid-column-end: 10;
+        grid-column-end: 8;
         grid-row-start: 5;
         grid-row-end: 6;
         margin: 2px 2px 2px 20px;
