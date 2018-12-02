@@ -1,14 +1,52 @@
 <!-- http://webdevzoom.com/create-login-form-using-html5-css3/ -->
-<!-- 
+
 <div class="modal modalBox">
     <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
-        <div class="modal-content modalContent"> -->
+        <div class="modal-content modalContent">
+            <form #f="ngForm" role="form" novalidate>
 
-            <div class="login-form-container" id="login-form">
-                <div class="login-form-content">
+                <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
+
+                    <div class="gridTitle">
+                        <b>Login</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;">
+                                    Log into a server (if available), or as a local user.
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+                    </div>
+                    <div class="gridSubHeader">
+                    </div>
+
+                    <div class="select gridServer"
+                        name="localServer"
+                        >
+                        <select [(ngModel)]="localServer"
+                            name="localServer"
+                            (change)="clickLocalServer($event)"
+                            >
+                            <option>Local</option>
+                            <option>Server</option>
+                        </select>
+                    </div>
+
                     <div class="login-form-header">
                         <div class="logo">
-                            <img src="img/logo.png"/>
+                            <img src="../images/Logo Clarity Analytics.png"
+                                width="50px"/>
                         </div>
                         <h3>Login Into Your Account</h3>
                     </div>
@@ -43,9 +81,9 @@
                             <span>Login with Google</span>
                         </a>
                     </div>
-                </div>
-            </div>
 
+                </div>
+            </form>
 
             <!-- <form #f="ngForm" role="form" novalidate>
 
@@ -139,7 +177,7 @@
                     </div>
                 </div>
             </form> -->
-        <!-- </div>
+        </div>
     </div>
 </div>
- -->
+
