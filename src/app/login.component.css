@@ -118,8 +118,8 @@
         font-size: 15px;
         height: 32px;
         margin-top: 12px;
-        padding: 10px;
         padding-top: 4px;
+        padding: 10px;
         transition: background .3s;
         text-align: center;
     
@@ -139,7 +139,8 @@
         font-size: 15px;
         height: 32px;
         margin-top: 12px;
-        padding: 8px;
+        padding-top: 4px;
+        padding: 10px;
         text-align: center;
     
         grid-column-start: 2;
@@ -169,7 +170,8 @@
         top: -11px;
         left: 50%;
         margin-left: -22px;
-        padding: 0px 10px;
+        padding-top: 4px;
+        padding: 10px;
         background: #FFFFFF;
         color: #8a8a8a;
     }
@@ -181,7 +183,8 @@
         display: block;
         height: 32px;
         margin-top: 5px;
-        padding: 10px 25px;
+        padding-top: 4px;
+        padding: 10px;
         text-align: center;
     
         grid-column-start: 2;
@@ -192,6 +195,9 @@
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
+        .gridGitHubLoginText {
+            margin-left: 10px;
+        }
 
     .gridGoogleLogin {
         border: 1px solid gray;
@@ -210,4 +216,7 @@
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
+        .gridGoogleLoginText {
+            margin-left: 10px;
+        }
 
