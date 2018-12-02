@@ -49,10 +49,11 @@
                         >
                         <select [(ngModel)]="localServer"
                             name="localServer"
-                            (change)="clickLocalServer($event)"
+                            (change)="clickSelectServer($event)"
                             >
-                            <option>Local</option>
-                            <option>Server</option>
+                            <option>Canvas Local</option>
+                            <option>Canvas Server</option>
+                            <option>Eazl</option>
                         </select>
                     </div>
 
