@@ -119,7 +119,6 @@
         height: 32px;
         margin-top: 12px;
         padding-top: 4px;
-        padding: 10px;
         transition: background .3s;
         text-align: center;
     
@@ -140,7 +139,6 @@
         height: 32px;
         margin-top: 12px;
         padding-top: 4px;
-        padding: 10px;
         text-align: center;
     
         grid-column-start: 2;
@@ -165,25 +163,24 @@
         width: 100%;
     }
     .gridSeparatorText {
-        display: block;
-        position: absolute;
-        top: -11px;
-        left: 50%;
-        margin-left: -22px;
-        padding-top: 4px;
-        padding: 10px;
         background: #FFFFFF;
         color: #8a8a8a;
+        display: block;
+        left: 50%;
+        margin-left: -22px;
+        position: absolute;
+        top: -11px;
     }
 
     .gridGitHubLogin {
         border: 1px solid gray;
         border-radius: 6px;
-        color: #FFFFFF;
+        color: gray;
+        cursor: pointer;
         display: block;
         height: 32px;
         margin-top: 5px;
-        padding-top: 4px;
+        padding-top: 2px;
         padding: 10px;
         text-align: center;
     
@@ -193,6 +190,7 @@
         grid-row-start: 15;
         grid-row-end: 17;
         margin: 2px 2px 2px 20px;
+        padding-top: 4px;
         width: 100%;
     }
         .gridGitHubLoginText {
@@ -202,10 +200,12 @@
     .gridGoogleLogin {
         border: 1px solid gray;
         border-radius: 6px;
-        color: #FFFFFF;
+        color: gray;
+        cursor: pointer;
         height: 32px;
         margin-top: 5px;
-        padding: 10px 25px;
+        padding-top: 2px;
+        padding: 10px;
         text-align: center;
     
         grid-column-start: 2;
