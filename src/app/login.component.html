@@ -86,10 +86,10 @@
                     <div class="gridButtonLogin"
                             (click)="clickLogin()"
                             >
-                            Login
+                            <b>Login</b>
                     </div>
                     <div class="gridButtonRegister"
-                            (click)="clickLogin()"
+                            (click)="clickRegister()"
                             >
                             Register
                     </div>
@@ -97,12 +97,17 @@
                     <div class="gridSeparator">
                         <span class="gridSeparatorText">OR</span>
                     </div>
-                    <div class="gridGitHubLogin">
+
+                    <div class="gridGitHubLogin"
+                        (click)="clickLoginGitHub()"
+                        >
                         <img src="../images/Logo Github.png" width="20px" alt="">
                         <span class="gridGitHubLoginText">Login with Github</span>
                     </div>
-                    <div class="gridGoogleLogin">
-                        <img src="../images/Logo Google.png" width="20px" alt="">
+                    <div class="gridGoogleLogin"
+                        (click)="clickLoginGoogle()"
+                        >
+                    <img src="../images/Logo Google.png" width="20px" alt="">
                         <span class="gridGoogleLoginText">Login with Google</span>
                     </div>
 

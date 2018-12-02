@@ -124,10 +124,9 @@
     
         grid-column-start: 2;
         /* autoprefixer: off */
-        grid-column-end: 11;
+        grid-column-end: 12;
         grid-row-start: 9;
-        grid-row-end: 11;
-        margin: 2px 2px 2px 20px;
+        grid-row-end: 12;
         width: 100%;
     }
     .gridButtonRegister {
@@ -143,10 +142,9 @@
     
         grid-column-start: 2;
         /* autoprefixer: off */
-        grid-column-end: 11;
+        grid-column-end: 12;
         grid-row-start: 11;
         grid-row-end: 13;
-        margin: 2px 2px 2px 20px;
         width: 100%;
     }
     .gridSeparator {
@@ -156,10 +154,10 @@
     
         grid-column-start: 2;
         /* autoprefixer: off */
-        grid-column-end: 11;
+        grid-column-end: 12;
         grid-row-start: 14;
         grid-row-end: 15;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 2px;
         width: 100%;
     }
     .gridSeparatorText {
@@ -167,7 +165,6 @@
         color: #8a8a8a;
         display: block;
         left: 50%;
-        margin-left: -22px;
         position: absolute;
         top: -11px;
     }
@@ -180,17 +177,14 @@
         display: block;
         height: 32px;
         margin-top: 5px;
-        padding-top: 2px;
-        padding: 10px;
+        padding: 2px 10px 10px 10px;
         text-align: center;
     
         grid-column-start: 2;
         /* autoprefixer: off */
-        grid-column-end: 11;
+        grid-column-end: 12;
         grid-row-start: 15;
         grid-row-end: 17;
-        margin: 2px 2px 2px 20px;
-        padding-top: 4px;
         width: 100%;
     }
         .gridGitHubLoginText {
@@ -202,18 +196,17 @@
         border-radius: 6px;
         color: gray;
         cursor: pointer;
+        display: block;
         height: 32px;
         margin-top: 5px;
-        padding-top: 2px;
-        padding: 10px;
+        padding: 2px 10px 10px 10px;
         text-align: center;
     
         grid-column-start: 2;
         /* autoprefixer: off */
-        grid-column-end: 11;
+        grid-column-end: 12;
         grid-row-start: 17;
         grid-row-end: 19;
-        margin: 2px 2px 2px 20px;
         width: 100%;
     }
         .gridGoogleLoginText {
