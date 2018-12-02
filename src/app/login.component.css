@@ -3,11 +3,20 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
+.login-form {
+    margin-top: 2px;
+}
 
+.login-title {
+    font-size: 0.75rem;
+    margin-left: 30px;
+    width: 100%;
+}
 
-.login-form-header {
+.login-body {
     text-align: center;
 }
+
 .login-form .input-container {
 	border-bottom: 1px solid #CCCCCC;
     margin-top: 15px;
