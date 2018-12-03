@@ -1126,19 +1126,22 @@ export class GlobalVariableService {
     >(null);
     continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
+
+    // 
     currentUser: CanvasUser;                            // Current logged in user
     currentUserID = new BehaviorSubject<string>('');
+    loggedIntoServer = new BehaviorSubject<boolean>(true);
+
     dashboardsRecent: DashboardRecent[] = [];           // List of Recent Dashboards
     dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     dontDisturb = new BehaviorSubject<boolean>(false);   // True means dont disturb display
     dsIDs: number[] = [];           // Dataset IDs
     firstAction: boolean = true;               // True if 1st action per D
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
-    loggedIntoServer = new BehaviorSubject<boolean>(true);
     previousGraphEditDSID: number = -1;
     sessionDateTimeLoggedin: string = '';
     sessionDebugging: boolean = true;      // True to log multiple messages to Console
-    sessionLogging: boolean = true;
+    sessionLogging: boolean = false;
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
 
@@ -1311,15 +1314,15 @@ export class GlobalVariableService {
 
 
 
-
-                    this.getWidgetsXXX('CanvasGroups').then(res => {
-                        let data: any[] = [];
-                        if (res != null) {
-                            data = res;
-                        };
+                    //  xxx MONGO testing ...
+                    // this.getWidgetsXXX('CanvasGroups').then(res => {
+                    //     let data: any[] = [];
+                    //     if (res != null) {
+                    //         data = res;
+                    //     };
     
-                        console.warn('xx WORKS !!!', res, data)
-                    });
+                    //     console.warn('xx WORKS !!!', res, data)
+                    // });
 
 
 

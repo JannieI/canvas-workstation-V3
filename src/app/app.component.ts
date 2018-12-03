@@ -2337,7 +2337,10 @@ export class AppComponent implements OnInit {
             );
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Exceed 4 ...
         this.stuckCount = 5;
@@ -2468,7 +2471,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Get last actionID for it
         let tempActionIDs: number[] = [];
@@ -2682,7 +2688,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Loop back, 1 at a time, and stop at first non-Undo
         let redoIDs: number[] = [];
@@ -2754,7 +2763,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         if (size == 'None') {
             this.currentWidgets.forEach(w => {w.isSelected  = false});
@@ -2790,7 +2802,10 @@ export class AppComponent implements OnInit {
 
         // TODO - Permissions could be added here, based on user role
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalWidgetContainerStylesAdd = true;
     }
@@ -2804,7 +2819,10 @@ export class AppComponent implements OnInit {
 
         // TODO - Permissions could be added here, based on user role
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalManageColours = true;
     }
@@ -2818,7 +2836,10 @@ export class AppComponent implements OnInit {
 
         // TODO - Permissions could be added here, based on user role
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalWidgetContainerStylesEdit = true;
     }
@@ -2847,7 +2868,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
         this.editMode = true;
         this.hasDashboard = true;
         console.log('App clickDashboardNew')
@@ -2870,7 +2894,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         console.log('App clickDashboardOpen')
         this.showModalDashboardOpen = true;
@@ -2919,7 +2946,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardDiscard = true;
     }
@@ -2956,7 +2986,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set D
         this.globalVariableService.currentDashboards.forEach(d => {
@@ -3017,7 +3050,10 @@ export class AppComponent implements OnInit {
             };
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardSave = true;
     }
@@ -3058,7 +3094,10 @@ export class AppComponent implements OnInit {
             };
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardSaveAs = true;
     }
@@ -3081,7 +3120,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardExport = true;
     }
@@ -3102,7 +3144,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
         this.showModalDashboardSnapshots = true;
     }
 
@@ -3124,7 +3169,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardRename = true;
     }
@@ -3159,7 +3207,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set D
         this.globalVariableService.currentDashboards.forEach(d => {
@@ -3177,7 +3228,10 @@ export class AppComponent implements OnInit {
         // Toggle Fav for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailFavourite', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.
             currentDashboardID;
@@ -3222,7 +3276,10 @@ export class AppComponent implements OnInit {
         // Manage Tags for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTags', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set D
         this.globalVariableService.currentDashboards.forEach(d => {
@@ -3239,7 +3296,10 @@ export class AppComponent implements OnInit {
         // Manage Comments for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailComments', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.selectedWidgetID = -1;
         this.showModalDashboardComments = true;
@@ -3249,7 +3309,10 @@ export class AppComponent implements OnInit {
         // Show the form of Data Quality Issues
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDataQuality', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
         this.selectedDatasourceID = -1;
         this.showModalDashboardDataQuality = true;
     }
@@ -3270,7 +3333,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardTheme = true;
     }
@@ -3291,7 +3357,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardTemplate = true;
     }
@@ -3300,7 +3369,10 @@ export class AppComponent implements OnInit {
         // Manage Schedules for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardSchedule', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardSchedule = true;
     }
@@ -3309,7 +3381,10 @@ export class AppComponent implements OnInit {
         // Manage Schedules for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardScheduleEdit', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardScheduleEdit = true;
     }
@@ -3318,7 +3393,10 @@ export class AppComponent implements OnInit {
         // Print the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardPrint', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardPrint = true;
     }
@@ -3368,7 +3446,10 @@ export class AppComponent implements OnInit {
                 return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardDelete = true;
     }
@@ -3403,7 +3484,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardDeleteBulk = true;
     }
@@ -3412,7 +3496,10 @@ export class AppComponent implements OnInit {
         // Show the current D as a Treeview
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardTreeview', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardTreeview = true;
     }
@@ -3421,7 +3508,10 @@ export class AppComponent implements OnInit {
         // Manage Subscription to the current D, ie get notified when it changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardSubscribe', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardSubscribe = true;
     }
@@ -3430,7 +3520,10 @@ export class AppComponent implements OnInit {
         // Manage Subscription to the current D, ie get notified when it changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardUsageStats', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardUsageStats = true;
     }
@@ -3460,7 +3553,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataManagedConnection = true;
     }
@@ -3483,7 +3579,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.selectedDatasource = null;
         this.showModalDataManagedQueryBuilder = true;
@@ -3507,7 +3606,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataManagedSQLEditor = true;
     }
@@ -3530,7 +3632,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataManagedGraphQLEditor = true;
     }
@@ -3553,7 +3658,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataManagedNoSQLEditor = true;
     }
@@ -3576,7 +3684,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataManagedNeo4jEditor = true;
     }
@@ -3599,7 +3710,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataManagedOverlayEditor = true;
     }
@@ -3608,7 +3722,10 @@ export class AppComponent implements OnInit {
         // Transformations
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataTransformation', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // let dataConnection: = ...
         // let dataTableID: = ...
@@ -3634,7 +3751,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.selectedDatasource = null;
         this.showModalDataEditDatasource = true;
@@ -3658,7 +3778,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.selectedDatasource = null;
         this.showModalDataDatasourceDescription = true;
@@ -3668,7 +3791,10 @@ export class AppComponent implements OnInit {
         // Show an overview of a DS, ie data quality, fields, etc
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceOverview', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataOverview = true;
     }
@@ -3691,7 +3817,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalCombinationAppend = true;
     }
@@ -3700,7 +3829,10 @@ export class AppComponent implements OnInit {
         // Show an Usage of a DS, ie data quality, fields, etc
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceUsage', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataUsage = true;
     }
@@ -3709,7 +3841,10 @@ export class AppComponent implements OnInit {
         // Edit Schedule for DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceScheduleEdit', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataScheduleEdit = true;
     }
@@ -3718,7 +3853,10 @@ export class AppComponent implements OnInit {
         // Show DS Schedules
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceSchedule', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataSchedule = true;
     }
@@ -3727,7 +3865,10 @@ export class AppComponent implements OnInit {
         // Refresh selected DS Once off
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceRefreshOnce', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataRefreshOnce = true;
     }
@@ -3736,7 +3877,10 @@ export class AppComponent implements OnInit {
         // Refresh selected DS Repeat off
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceRefreshRepeat', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataRefreshRepeat = true;
     }
@@ -3761,7 +3905,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.editingDS = false;
         this.selectedDatasource = null;
@@ -3786,7 +3933,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.editingDS = false;
         this.selectedDatasource = null;
@@ -3811,7 +3961,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.editingDS = false;
         this.selectedDatasource = null;
@@ -3836,7 +3989,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.editingDS = false;
         this.selectedDatasource = null;
@@ -3861,7 +4017,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.editingDS = false;
         this.selectedDatasource = null;
@@ -3886,7 +4045,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.editingDS = false;
         this.selectedDatasource = null;
@@ -3911,7 +4073,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.editingDS = false;
         this.selectedDatasource = null;
@@ -3936,7 +4101,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.editingDS = false;
         this.selectedDatasource = null;
@@ -3961,7 +4129,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.editingDS = false;
         this.selectedDatasource = null;
@@ -3986,7 +4157,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.editingDS = false;
         this.selectedDatasource = null;
@@ -4025,7 +4199,10 @@ export class AppComponent implements OnInit {
         // Manage Data Quality Issues for a DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataQuality', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalManagedDataDataQuality = true;
 
@@ -4035,7 +4212,10 @@ export class AppComponent implements OnInit {
         // Manage Dictionary for a DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataDictionary', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalManagedDataDataDictionary = true;
 
@@ -4045,7 +4225,10 @@ export class AppComponent implements OnInit {
         // Manage Ownership for a DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataOwnership', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalManagedDataOwnership = true;
 
@@ -4055,7 +4238,10 @@ export class AppComponent implements OnInit {
         // Manage Dictionary for a DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataBussGlossary', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalManageBussGlossary = true;
 
@@ -4081,7 +4267,10 @@ export class AppComponent implements OnInit {
 
         this.combinationType = joinType;
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataCombination = true;
     }
@@ -4104,7 +4293,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataShare = true;
     }
@@ -4113,7 +4305,10 @@ export class AppComponent implements OnInit {
         // Shows Data Dictionary
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDictionary', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataDictionary = true;
     }
@@ -4122,7 +4317,10 @@ export class AppComponent implements OnInit {
         // Shows Data Dictionary
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuBusinessGlossary', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalBusinessGlossary = true;
     }
@@ -4131,7 +4329,10 @@ export class AppComponent implements OnInit {
         // Shows Data Summary
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSummary', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataSummary = true;
     }
@@ -4154,7 +4355,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataDeleteDatasource = true;
     }
@@ -4194,7 +4398,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Reset position if not dragged.
         if (!this.paletteDrag) {
@@ -4326,7 +4533,10 @@ export class AppComponent implements OnInit {
             };
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.newWidget = false;
         this.newWidgetContainerLeft = 0;
@@ -4392,7 +4602,10 @@ export class AppComponent implements OnInit {
             };
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // this.currentWidgets.forEach(w => {
         //     if (w.isSelected  &&  w.widgetType == widgetType) {
@@ -4439,7 +4652,10 @@ export class AppComponent implements OnInit {
             };
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set the selected W
         this.currentWidgets.forEach(w => {
@@ -4483,7 +4699,10 @@ export class AppComponent implements OnInit {
                 return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set the selected W
         this.currentWidgets.forEach(w => {
@@ -4510,7 +4729,10 @@ export class AppComponent implements OnInit {
             return
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set the selected W id
         this.selectedWidgetID = -1;
@@ -4532,7 +4754,10 @@ export class AppComponent implements OnInit {
             return
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.selectedDatasourceID = -1;
         this.currentWidgets.forEach(w => {
@@ -4566,7 +4791,10 @@ export class AppComponent implements OnInit {
             this.selectedWidget = this.currentWidgets[widgetIndex];
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataDictionary = true;
     }
@@ -4594,7 +4822,10 @@ export class AppComponent implements OnInit {
             this.selectedWidget = this.currentWidgets[widgetIndex];
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalBusinessGlossary = true;
     }
@@ -4623,7 +4854,10 @@ export class AppComponent implements OnInit {
             this.selectedWidget = this.currentWidgets[widgetIndex];
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDataSummary = true;
     }
@@ -4651,7 +4885,10 @@ export class AppComponent implements OnInit {
             this.selectedWidget = this.currentWidgets[widgetIndex];
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showWidgetFullScreen = true;
         this.showWidgetFullScreenWidth = 98;
@@ -4769,7 +5006,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Graph') {
@@ -4802,7 +5042,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Graph') {
@@ -4846,7 +5089,10 @@ export class AppComponent implements OnInit {
                 return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalWidgetStoredTemplateInsertWidget = true;
     }
@@ -4859,7 +5105,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Graph') {
                 this.selectedWidget = w;
@@ -4941,7 +5190,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -4973,7 +5225,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Checked above that only one is selected, so the loop is okay
         this.currentWidgets.forEach(w => {
@@ -5064,7 +5319,10 @@ export class AppComponent implements OnInit {
 
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.clipboardWidget.dashboardTabID = this.globalVariableService.
             currentDashboardInfo.value.currentDashboardTabID;
@@ -5086,7 +5344,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -5106,7 +5367,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Graph') {
                 this.selectedWidget = w;
@@ -5167,7 +5431,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Graph') {
                 this.selectedWidget = w;
@@ -5239,7 +5506,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.newWidget = true;
         this.showDatasourcePopup = true;
@@ -5316,7 +5586,10 @@ export class AppComponent implements OnInit {
             }
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
@@ -5340,7 +5613,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set the selected W id
         this.currentWidgets.forEach(w => {
@@ -5361,7 +5637,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.selectedDatasourceID = -1;
         this.currentWidgets.forEach(w => {
@@ -5383,7 +5662,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -5406,7 +5688,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalWidgetExport = true;
     }
@@ -5463,7 +5748,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set selectedWidget, for action log afterwards
         this.currentWidgets.forEach(w => {
@@ -5537,7 +5825,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.newWidget = true;
 
@@ -5613,7 +5904,10 @@ export class AppComponent implements OnInit {
             }
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
@@ -5645,7 +5939,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Send list of current Tabs it belongs to
         this.currentWidgets.forEach(w => {
@@ -5715,7 +6012,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set the selected W id
         this.currentWidgets.forEach(w => {
@@ -5739,7 +6039,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set the selected W id
         this.currentWidgets.forEach(w => {
@@ -5760,7 +6063,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.selectedDatasourceID = -1;
         this.currentWidgets.forEach(w => {
@@ -5782,7 +6088,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -5805,7 +6114,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalWidgetExport = true;
     }
@@ -5862,7 +6174,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set selectedWidget, for action log afterwards
         this.currentWidgets.forEach(w => {
@@ -5925,7 +6240,10 @@ export class AppComponent implements OnInit {
                 return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set Dimensions
         this.selectedWidgetLayout = widgetLayout;
@@ -6018,7 +6336,10 @@ export class AppComponent implements OnInit {
             }
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Check if Locked
         if (this.selectedWidget.isLocked) {
@@ -6049,7 +6370,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set the selected W id
         this.currentWidgets.forEach(w => {
@@ -6088,7 +6412,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Shape') {
@@ -6130,7 +6457,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Assume we want to have a title either way
         this.selectedWidget.containerHasTitle = true;
@@ -6189,7 +6519,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set selectedWidget, for action log afterwards
         this.currentWidgets.forEach(w => {
@@ -6257,7 +6590,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Set selectedWidget, for action log afterwards
         this.currentWidgets.forEach(w => {
@@ -6290,7 +6626,10 @@ export class AppComponent implements OnInit {
         // Hides menu
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewHideMenu', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Settings, ie Mode
         this.showMainMenu = false;
@@ -6302,7 +6641,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPrintPreview', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.menuOptionClickPostAction();
     }
@@ -6311,7 +6653,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowPalette', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.globalVariableService.showPalette.next(!this.showPalette);
 
@@ -6322,7 +6667,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.globalVariableService.showGrid.next(!this.showGrid);
 
@@ -6333,7 +6681,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewSnapToGrid', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.snapToGrid = !this.snapToGrid;
         this.globalVariableService.canvasSettings.snapToGrid = this.snapToGrid;
@@ -6344,7 +6695,10 @@ export class AppComponent implements OnInit {
         // Zoom Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewZoom', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         if (zoomPercentage == null  ||  zoomPercentage == undefined) {
             zoomPercentage = 0.6;
@@ -6366,7 +6720,10 @@ export class AppComponent implements OnInit {
         // Decrease z-index of selected Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBackward', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Deep copy of old-, newW
         let oldWidget: Widget = null;
@@ -6420,7 +6777,10 @@ export class AppComponent implements OnInit {
         // Increase z-index of selected Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeForward', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Deep copy of old-, newW
         let oldWidget: Widget = null;
@@ -6475,7 +6835,10 @@ export class AppComponent implements OnInit {
         /// Move selected Ws to the lowest z-index
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBack', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Deep copy of old-, newW
         let oldWidget: Widget = null;
@@ -6528,7 +6891,10 @@ export class AppComponent implements OnInit {
         // Move selected Ws to the highest z-index
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeFront', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Deep copy of old-, newW
         let oldWidget: Widget = null;
@@ -6585,7 +6951,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         let x: number = -1;
 
@@ -6640,7 +7009,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         let x: number = -1;
 
@@ -6698,7 +7070,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         let x: number = -1;
 
@@ -6756,7 +7131,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         let x: number = -1;
 
@@ -6812,7 +7190,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         let x: number = -1;
 
@@ -6870,7 +7251,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         let x: number = -1;
 
@@ -6928,7 +7312,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         let x: number = window.innerWidth / 2;
 
@@ -6981,7 +7368,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         let x: number = window.innerHeight / 2;
 
@@ -7033,7 +7423,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Clear, and add
         this.widgetGroup = [];
@@ -7063,7 +7456,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeUnGroup', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Clear
         this.widgetGroup = [];
@@ -7124,7 +7520,10 @@ export class AppComponent implements OnInit {
             return;
         }
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         selectedOnes.sort( (obj1,obj2) => {
             if (obj1.left > obj2.left) {
@@ -7243,7 +7642,10 @@ export class AppComponent implements OnInit {
             return;
         }
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         selectedOnes.sort( (obj1,obj2) => {
             if (obj1.top > obj2.top) {
@@ -7329,7 +7731,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         let x: number = -1;
         let y: number = -1;
@@ -7401,7 +7806,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         let y: number = -1;
 
@@ -7467,7 +7875,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         let x: number = -1;
 
@@ -7534,7 +7945,10 @@ export class AppComponent implements OnInit {
         // Help: Demo
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuHelpDemo', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // this.router.navigate(['/help']);
 
@@ -7995,7 +8409,10 @@ export class AppComponent implements OnInit {
         // Show list of Canvas AuditTrail
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateAuditTrail', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalCollaborateAuditTrail = true;
 
@@ -8006,7 +8423,10 @@ export class AppComponent implements OnInit {
         // Show list of Canvas Messages
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateMessages', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalCollaborateMessages = true;
 
@@ -8017,7 +8437,10 @@ export class AppComponent implements OnInit {
         // Show list of Canvas Tasks
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateTasks', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // this.showModalCollaborateActivities = true;
         this.showModalCollaborateTasks = true;
@@ -8029,7 +8452,10 @@ export class AppComponent implements OnInit {
         // Add a new Task
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateTaskAdd', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalCollaborateTasksNew = true;
 
@@ -8040,7 +8466,10 @@ export class AppComponent implements OnInit {
         // Toggle Dont Disturb
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewDontDisturb', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.dontDisturb = !this.globalVariableService.dontDisturb.value;
         this.globalVariableService.dontDisturb.next(
@@ -8053,7 +8482,10 @@ export class AppComponent implements OnInit {
         // Toggle Dont Disturb
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewSystemMessages', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalCollaborateSystemMessages = true;
 
@@ -8064,7 +8496,10 @@ export class AppComponent implements OnInit {
         // Send a Canvas Message
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateSendMessage', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalCollaborateSendMessage = true;
 
@@ -8075,7 +8510,10 @@ export class AppComponent implements OnInit {
         // Send an Email
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateSendEmail', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalCollaborateSendEmail = true;
 
@@ -8090,7 +8528,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserLogin', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardLogin = true;
     }
@@ -8100,8 +8541,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserMyProfile', '@Start');
 
-        this.menuOptionClickPreAction();
-
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
+        if (!this.showModalDashboardLogin) {
+            this.showModalDashboardLogin = true
+            return;
+        };
+        console.warn('xx here !!!');
+        
         // Set D
         this.globalVariableService.currentDashboards.forEach(d => {
             if (d.id == this.globalVariableService.currentDashboardInfo
@@ -8117,7 +8566,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserPreferences', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalUserPreferences = true;
     }
@@ -8126,7 +8578,10 @@ export class AppComponent implements OnInit {
         // Show My Permissions form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserMyPermissions', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalUserMyPermissions = true;
     }
@@ -8135,7 +8590,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserPaletteButtonBar', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalUserPaletteButtonBar = true;
     }
@@ -8144,7 +8602,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUsers', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalUsers = true;
     }
@@ -8153,7 +8614,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGroups', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalGroups = true;
     }
@@ -8162,7 +8626,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserSystemSettings', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalUserSystemSettings = true;
     }
@@ -8171,7 +8638,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserLogout', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.showModalDashboardLogout = true;
     }
@@ -8354,7 +8824,10 @@ export class AppComponent implements OnInit {
                 this.clickMenuWidgetDuplicate('Graph');
             }
 
-            this.menuOptionClickPreAction();
+            if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
             // Indicate edit W and open Editor, which will work with selected W
             this.currentWidgets.forEach(w => {
@@ -8503,7 +8976,10 @@ export class AppComponent implements OnInit {
         // Call the function
         // this.clickMenuDashboardDetailDataQuality();
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.selectedDatasourceID = -1;
         this.currentWidgets.forEach(w => {
@@ -8675,7 +9151,10 @@ export class AppComponent implements OnInit {
         // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetEditTitle', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
@@ -8691,7 +9170,10 @@ export class AppComponent implements OnInit {
         // Change type to Graph for a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetFlipToTable', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
@@ -8707,7 +9189,10 @@ export class AppComponent implements OnInit {
         // Change type to Table for a Graph
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetFlipToGraph', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
@@ -8893,7 +9378,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.startX = ev.x;
         this.startY = ev.y;
@@ -8920,7 +9408,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Get final coordinates of cursor after move
         this.endX = ev.x;
@@ -9125,7 +9616,10 @@ export class AppComponent implements OnInit {
         // Jump to the linked Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletJump', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         this.globalVariableService.refreshCurrentDashboard(
             'app-clickBulletJump',
@@ -9140,7 +9634,10 @@ export class AppComponent implements OnInit {
         // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetDown', '@Start');
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Indicate that we are resizing - thus block the dragging action
         this.isBusyResizing = true;
@@ -9178,7 +9675,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Deep copy existing W
         // let oldWidget: Widget = Object.assign({}, this.currentWidgets[index]);
@@ -9672,7 +10172,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Checked above that only one is selected, so the loop is okay
         this.currentWidgets.forEach(w => {
@@ -9835,7 +10338,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Checked above that only one is selected, so the loop is okay
         this.currentWidgets.forEach(w => {
@@ -9890,7 +10396,10 @@ export class AppComponent implements OnInit {
                 return;
         };
 
-        this.menuOptionClickPreAction();
+        if (!this.menuOptionClickPreAction()) {
+            this.showModalDashboardLogin = true
+            return;
+        };
 
         // Apply to all selected Ws
         this.currentWidgets.forEach(w => {
