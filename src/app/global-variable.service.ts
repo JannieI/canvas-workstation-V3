@@ -1150,8 +1150,6 @@ export class GlobalVariableService {
     statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
     statusBarMessage = new BehaviorSubject<StatusBarMessage>(null)
 
-    dataGetFromSwitch = new BehaviorSubject<string>('File');
-
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     isDirtyBackgroundColors: boolean = true;
     isDirtyBackgroundColorsDefault: boolean = true;
