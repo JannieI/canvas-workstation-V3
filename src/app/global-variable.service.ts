@@ -1106,6 +1106,7 @@ export class GlobalVariableService {
     selectedWidgetIDs: number[] = [];
 
     // Server info, ie Url
+    ENVCanvasDatabaseUseLocal: boolean = true;
     ENVCanvasEazlServerUrl: string = environment.ENVCanvasEazlServerUrl;
     ENVCanvasServerCloudUrl: string = environment.ENVCanvasServerCloudUrl;
     ENVCanvasServerLocalUrl: string = environment.ENVCanvasServerLocalUrl;
@@ -9780,7 +9781,9 @@ export class GlobalVariableService {
                     let localIndex: number = this.canvasUsers.findIndex(u =>
                         u.id == data.id
                     );
-                    this.canvasUsers[localIndex] = data;
+                    if (localIndex >= 0) {
+                        this.canvasUsers[localIndex] = data;
+                    };
 
                     if (this.sessionDebugging) {
                         console.log('saveCanvasUser SAVED', {res})
