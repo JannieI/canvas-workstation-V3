@@ -42,7 +42,6 @@ export class StatusbarComponent {
     editModeSubscription: Subscription;
     loggedIntoServerText: string;
     loggedIntoServerSubscription: Subscription;
-    menuActionResize: boolean;
     newTab: boolean = true;                     // True if Add, False if Edit existing
     showDashboardDescription: boolean = false;
     showDashboardTabDescription: boolean = false;

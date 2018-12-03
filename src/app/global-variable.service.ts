@@ -1136,7 +1136,6 @@ export class GlobalVariableService {
     firstAction: boolean = true;               // True if 1st action per D
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
     loggedIntoServer = new BehaviorSubject<boolean>(true);
-    menuActionResize = new BehaviorSubject<boolean>(false);
     previousGraphEditDSID: number = -1;
     sessionDateTimeLoggedin: string = '';
     sessionDebugging: boolean = true;      // True to log multiple messages to Console
