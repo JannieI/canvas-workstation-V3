@@ -1105,15 +1105,17 @@ export class GlobalVariableService {
     showModalLanding = new BehaviorSubject<boolean>(true);  // Shows Landing page
     selectedWidgetIDs: number[] = [];
 
-    // Session
-    ENVCanvasEZALServerUrl: string = environment.ENVCanvasEazlServerUrl;
-    ENVCanvasDatabaseUseLocal: boolean = environment.ENVCanvasDatabaseUseLocal;
-    ENVCanvasDatabaseServerUrl: string = environment.ENVCanvasDatabaseServerUrl;
+    // Server info, ie Url
+    ENVCanvasEazlServerUrl: string = environment.ENVCanvasEazlServerUrl;
+    ENVCanvasServerCloudUrl: string = environment.ENVCanvasServerCloudUrl;
+    ENVCanvasServerLocalUrl: string = environment.ENVCanvasServerLocalUrl;
     ENVCanvasDatabaseLocalUrlS1: string = environment.ENVCanvasDatabaseLocalUrlS1;
     ENVCanvasDatabaseLocalUrlS2: string = environment.ENVCanvasDatabaseLocalUrlS2;
     ENVCanvasDatabaseLocalUrlS3: string = environment.ENVCanvasDatabaseLocalUrlS3;
     ENVCanvasDatabaseLocalUrlS4: string = environment.ENVCanvasDatabaseLocalUrlS4;
     ENVCanvasDatabaseLocalUrlS5: string = environment.ENVCanvasDatabaseLocalUrlS5;
+
+    // Session
     colourPickerClosed = new BehaviorSubject<
         {
             callingRoutine: string;
@@ -10761,7 +10763,7 @@ export class GlobalVariableService {
                 baseUrl = 'http://localhost:3007/';
             };
         } else {
-            baseUrl = this.ENVCanvasDatabaseServerUrl;
+            baseUrl = this.ENVCanvasServerLocalUrl;
         };
 
         // Return
@@ -13163,7 +13165,7 @@ console.warn('xx ds perm', dp);
             // this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/',
 
 
-            this.http.post<Token>(this.ENVCanvasEZALServerUrl + 'accounts/jwt-create/',
+            this.http.post<Token>(this.ENVCanvasEazlServerUrl + 'accounts/jwt-create/',
                 {username, password}).subscribe(token => {
 
                 // Store locally
@@ -13187,7 +13189,7 @@ console.warn('xx ds perm', dp);
                 {sampleSize});
         };
         
-        let pathUrl: string = this.ENVCanvasEZALServerUrl + 
+        let pathUrl: string = this.ENVCanvasEazlServerUrl + 
             'canvas/datasources/sessions/create-session/';
 
         return new Promise<any>((resolve, reject) => {
@@ -13351,7 +13353,7 @@ console.warn('xx ds perm', dp);
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
         };
 
-        let pathUrl: string = this.ENVCanvasEZALServerUrl + 'canvas/enqueue/';
+        let pathUrl: string = this.ENVCanvasEazlServerUrl + 'canvas/enqueue/';
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -13392,7 +13394,7 @@ console.warn('xx ds perm', dp);
                 {graphQLquery});
         };
 
-        let pathUrl: string = this.ENVCanvasEZALServerUrl + 'accounts/graphql/';
+        let pathUrl: string = this.ENVCanvasEazlServerUrl + 'accounts/graphql/';
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -13432,7 +13434,7 @@ console.warn('xx ds perm', dp);
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
         };
 
-        let pathUrl: string = this.ENVCanvasEZALServerUrl + 'canvas/inspect/';
+        let pathUrl: string = this.ENVCanvasEazlServerUrl + 'canvas/inspect/';
 
         return new Promise<any>((resolve, reject) => {
 
