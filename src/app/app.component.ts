@@ -609,10 +609,27 @@ export class AppComponent implements OnInit {
         // Current user
         this.globalVariableService.currentUserID.subscribe(usr => {
             this.currentUserID = usr;
-            console.warn('xx currentUserID', this.currentUserID)
         })
 
         // TODO - fix hard coding, must be done via Login
+        // 1. get currentUserID, currentCanvasServer, lastLoginDt, token from:
+        //    dexie CanvasAppDatabase
+        //    If lastLoginDt > 24hrs old  -->  login
+        //    If currentUserID == null --> Login
+        //    If currentCanvasServer == null --> Login
+        //
+        // 2. connect to currentCanvasServer using token to get profile for currentUserID
+        //    If fail  -->  login
+        //    Else complete:
+        //        GV.currentUser = profile
+        //        GV.currentUserID.next
+        //        GV.currentCanvasServer = currentCanvasServer
+        //        load users, do snapshots, etc below
+        // ...
+        //  getDashboardNew for all, +++ 3x GET (depending on Server)
+
+
+        
         this.globalVariableService.getCanvasUsers().then(res => {
             this.globalVariableService.currentUserID.next('JannieI');
             this.globalVariableService.setCurrentCanvasUser('JannieI');
@@ -2338,7 +2355,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -2472,7 +2488,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -2689,7 +2704,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -2764,7 +2778,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -2803,7 +2816,6 @@ export class AppComponent implements OnInit {
         // TODO - Permissions could be added here, based on user role
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -2820,7 +2832,6 @@ export class AppComponent implements OnInit {
         // TODO - Permissions could be added here, based on user role
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -2837,7 +2848,6 @@ export class AppComponent implements OnInit {
         // TODO - Permissions could be added here, based on user role
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -2869,7 +2879,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
         this.editMode = true;
@@ -2895,7 +2904,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -2947,7 +2955,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -2987,7 +2994,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3051,7 +3057,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3095,7 +3100,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3121,7 +3125,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3145,7 +3148,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
         this.showModalDashboardSnapshots = true;
@@ -3170,7 +3172,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3208,7 +3209,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3229,7 +3229,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailFavourite', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3277,7 +3276,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTags', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3297,7 +3295,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailComments', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3310,7 +3307,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDataQuality', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
         this.selectedDatasourceID = -1;
@@ -3334,7 +3330,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3358,7 +3353,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3370,7 +3364,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardSchedule', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3382,7 +3375,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardScheduleEdit', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3394,7 +3386,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardPrint', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3447,7 +3438,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3485,7 +3475,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3497,7 +3486,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardTreeview', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3509,7 +3497,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardSubscribe', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3521,7 +3508,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardUsageStats', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3554,7 +3540,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3580,7 +3565,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3607,7 +3591,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3633,7 +3616,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3659,7 +3641,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3685,7 +3666,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3711,7 +3691,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3723,7 +3702,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataTransformation', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3752,7 +3730,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3779,7 +3756,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3792,7 +3768,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceOverview', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3818,7 +3793,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3830,7 +3804,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceUsage', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3842,7 +3815,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceScheduleEdit', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3854,7 +3826,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceSchedule', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3866,7 +3837,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceRefreshOnce', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3878,7 +3848,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceRefreshRepeat', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3906,7 +3875,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3934,7 +3902,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3962,7 +3929,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -3990,7 +3956,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4018,7 +3983,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4046,7 +4010,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4074,7 +4037,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4102,7 +4064,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4130,7 +4091,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4158,7 +4118,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4200,7 +4159,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataQuality', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4213,7 +4171,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataDictionary', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4226,7 +4183,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataOwnership', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4239,7 +4195,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataBussGlossary', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4268,7 +4223,6 @@ export class AppComponent implements OnInit {
         this.combinationType = joinType;
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4294,7 +4248,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4306,7 +4259,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDictionary', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4318,7 +4270,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuBusinessGlossary', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4330,7 +4281,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSummary', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4356,7 +4306,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4399,7 +4348,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4534,7 +4482,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4603,7 +4550,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4653,7 +4599,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4700,7 +4645,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4730,7 +4674,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4755,7 +4698,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4792,7 +4734,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4823,7 +4764,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4855,7 +4795,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -4886,7 +4825,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5007,7 +4945,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5043,7 +4980,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5090,7 +5026,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5106,7 +5041,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
         this.currentWidgets.forEach(w => {
@@ -5191,7 +5125,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5226,7 +5159,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5320,7 +5252,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5345,7 +5276,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5368,7 +5298,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
         this.currentWidgets.forEach(w => {
@@ -5432,7 +5361,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
         this.currentWidgets.forEach(w => {
@@ -5507,7 +5435,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5587,7 +5514,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5614,7 +5540,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5638,7 +5563,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5663,7 +5587,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5689,7 +5612,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5749,7 +5671,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5826,7 +5747,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5905,7 +5825,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -5940,7 +5859,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6013,7 +5931,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6040,7 +5957,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6064,7 +5980,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6089,7 +6004,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6115,7 +6029,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6175,7 +6088,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6241,7 +6153,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6337,7 +6248,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6371,7 +6281,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6413,7 +6322,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6458,7 +6366,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6520,7 +6427,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6591,7 +6497,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6627,7 +6532,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewHideMenu', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6642,7 +6546,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPrintPreview', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6654,7 +6557,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowPalette', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6668,7 +6570,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6682,7 +6583,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewSnapToGrid', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6696,7 +6596,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewZoom', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6721,7 +6620,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBackward', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6778,7 +6676,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeForward', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6836,7 +6733,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBack', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6892,7 +6788,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeFront', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -6952,7 +6847,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7010,7 +6904,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7071,7 +6964,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7132,7 +7024,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7191,7 +7082,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7252,7 +7142,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7313,7 +7202,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7369,7 +7257,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7424,7 +7311,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7457,7 +7343,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeUnGroup', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7521,7 +7406,6 @@ export class AppComponent implements OnInit {
         }
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7643,7 +7527,6 @@ export class AppComponent implements OnInit {
         }
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7732,7 +7615,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7807,7 +7689,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7876,7 +7757,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -7946,7 +7826,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuHelpDemo', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8410,7 +8289,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateAuditTrail', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8424,7 +8302,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateMessages', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8438,7 +8315,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateTasks', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8453,7 +8329,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateTaskAdd', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8467,7 +8342,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewDontDisturb', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8483,7 +8357,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewSystemMessages', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8497,7 +8370,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateSendMessage', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8511,7 +8383,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateSendEmail', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8529,27 +8400,19 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserLogin', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
         this.showModalDashboardLogin = true;
     }
 
-
     clickMenuUserMyProfile() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserMyProfile', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
-        if (!this.showModalDashboardLogin) {
-            this.showModalDashboardLogin = true
-            return;
-        };
-        console.warn('xx here !!!');
         
         // Set D
         this.globalVariableService.currentDashboards.forEach(d => {
@@ -8567,7 +8430,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserPreferences', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8579,7 +8441,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserMyPermissions', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8591,7 +8452,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserPaletteButtonBar', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8603,7 +8463,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUsers', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8615,7 +8474,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGroups', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8627,7 +8485,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserSystemSettings', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8639,7 +8496,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserLogout', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8825,7 +8681,6 @@ export class AppComponent implements OnInit {
             }
 
             if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -8977,7 +8832,6 @@ export class AppComponent implements OnInit {
         // this.clickMenuDashboardDetailDataQuality();
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -9152,7 +9006,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetEditTitle', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -9171,7 +9024,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetFlipToTable', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -9190,7 +9042,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetFlipToGraph', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -9379,7 +9230,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -9409,7 +9259,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -9617,7 +9466,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletJump', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -9635,7 +9483,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetDown', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -9676,7 +9523,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -10130,6 +9976,12 @@ export class AppComponent implements OnInit {
         this.modalFormOpen = true;
         this.showPopupMessage = false;
 
+        // If no user logged in, then must login first
+        if (this.currentUserID == ''  ||  this.currentUserID == null) {
+            this.showModalDashboardLogin = true;
+            return false;
+        };
+        
         // Return
         return true;
     }
@@ -10176,7 +10028,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -10342,7 +10193,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
@@ -10400,7 +10250,6 @@ export class AppComponent implements OnInit {
         };
 
         if (!this.menuOptionClickPreAction()) {
-            this.showModalDashboardLogin = true
             return;
         };
 
