@@ -10123,12 +10123,15 @@ export class AppComponent implements OnInit {
 
     }
 
-    menuOptionClickPreAction() {
+    menuOptionClickPreAction(): boolean {
         // Actions performed at the START of a menu item click, PRE any other work
         this.globalFunctionService.printToConsole(this.constructor.name,'menuOptionClickPreAction', '@Start');
 
         this.modalFormOpen = true;
         this.showPopupMessage = false;
+
+        // Return
+        return true;
     }
 
     menuOptionClickPostAction() {
