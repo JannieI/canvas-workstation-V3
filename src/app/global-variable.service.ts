@@ -1130,7 +1130,6 @@ export class GlobalVariableService {
     currentUserID = new BehaviorSubject<string>('');
     dashboardsRecent: DashboardRecent[] = [];           // List of Recent Dashboards
     dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
-    datasourceToEditID = new BehaviorSubject<number>(null);
     dontDisturb = new BehaviorSubject<boolean>(false);   // True means dont disturb display
     dsIDs: number[] = [];           // Dataset IDs
     firstAction: boolean = true;               // True if 1st action per D
