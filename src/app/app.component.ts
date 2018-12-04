@@ -611,22 +611,36 @@ export class AppComponent implements OnInit {
             this.currentUserID = usr;
         })
 
-        // TODO - fix hard coding, must be done via Login
-        // 1. get currentUserID, currentCanvasServer, lastLoginDt, token from:
-        //    dexie CanvasAppDatabase
-        //    If lastLoginDt > 24hrs old  -->  login
-        //    If currentUserID == null --> Login
-        //    If currentCanvasServer == null --> Login
+        // Notes in app.ts:
         //
-        // 2. connect to currentCanvasServer using token to get profile for currentUserID
+        // 1. get currentUserID, currentCanvasServer, lastLoginDt, token from:
+        //   Dexie CanvasAppDatabase
+        //    If nothing found  -->  login
+        //    If lastLoginDt > 24hrs old  -->  login
+        //    If currentUserID == null or ''  -->  Login
+        //    If currentCanvasServer == null or ''  -->  Login
+        //
+        // 2a.  use token 
+        //  connect to currentCanvasServer using token to get profile for currentUserID
         //    If fail  -->  login
         //    Else complete:
-        //        GV.currentUser = profile
-        //        GV.currentUserID.next
+        //        get back profile: CanvasUser
+        //        update Dexie with currentUserID, currentCanvasServer, lastLoginDt
+        //        GV.currentUser = profile    NB: fix setCurrentCanvasUser
+        //        GV.currentUserID.next(profile.userID)
         //        GV.currentCanvasServer = currentCanvasServer
         //        load users, do snapshots, etc below
-        // ...
-        //  getDashboardNew for all, +++ 3x GET (depending on Server)
+        //        proceed to Landing page   NB: consider option to skip (ie D in url)
+        //
+        // 2b.  user fill in login form
+        //  use username/password  or  Google/Github auth to connect to specified server
+        //    If fail  -->  stay on login form with error
+        //    Else complete:
+        //        get back token
+        //        store token in Dexie
+        //        proceed to 2a above
+        // 
+        //  NB fix getDashboardNew for all 3 server, +++ 3x GET (depending on Server)
 
 
         
