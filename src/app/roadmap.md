@@ -132,6 +132,7 @@ This document describes items for later versions of Canvas.
     Data:
     -----
         - Make sure terminology is consitent: Datasource -> Transform -> Dataset
+        - import / initial load facility: can create DS in bulk from an existing DB or folder -> see mongoimport function
         - Have TestConnectivity method - can TEST connection
         - I used FieldNames (string) in ie Pivot - is that okay?
         - Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields, FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...

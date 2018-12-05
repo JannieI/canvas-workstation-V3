@@ -613,6 +613,14 @@ export class AppComponent implements OnInit {
 
         // Notes in app.ts:
         //
+        // The user signs up (to be done later) and then logs in using:
+        //  - username and password (which is stored in the server in encrypted format)
+        //  - authentication via a third party ie Google or GitHub
+        // After the user has logged in, a JSON web token is returned to the user.
+        // The user stores this token locally in localStorage.
+        // This token is send by the user with each request / route.
+        // The server will verify the token in each request.
+        //
         // 1. get currentUserID, currentCanvasServer, lastLoginDt, token from:
         //   Dexie CanvasAppDatabase
         //    If nothing found  -->  login
