@@ -57,16 +57,17 @@
     }
 
     .gridServerTitle {
-        grid-column-start: 2;
+        grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 4;
         grid-row-start: 5;
         grid-row-end: 6;
         margin: 2px 2px 2px 20px;
+        text-align: left;
         width: 100%;
     }
     .gridServer {
-        grid-column-start: 5;
+        grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 9;
         grid-row-start: 5;
@@ -76,7 +77,7 @@
     }
 
     .gridCompanyNameTitle {
-        grid-column-start: 2;
+        grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 4;
         grid-row-start: 6;
@@ -85,7 +86,7 @@
         width: 100%;
     }
     .gridCompanyName {
-        grid-column-start: 5;
+        grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 10;
         grid-row-start: 6;
@@ -96,7 +97,7 @@
 
 
     .gridUserNameTitle {
-        grid-column-start: 2;
+        grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 4;
         grid-row-start: 7;
@@ -105,7 +106,7 @@
         width: 100%;
     }
     .gridUserName {
-        grid-column-start: 5;
+        grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 10;
         grid-row-start: 7;
@@ -115,7 +116,7 @@
     }
 
     .gridPasswordTitle {
-        grid-column-start: 2;
+        grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 4;
         grid-row-start: 8;
@@ -124,7 +125,7 @@
         width: 100%;
     }
     .gridPassword {
-        grid-column-start: 5;
+        grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 10;
         grid-row-start: 8;
