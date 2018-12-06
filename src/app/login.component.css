@@ -71,7 +71,7 @@
         width: 100%;
     }
 
-    .gridUserNameTitle {
+    .gridCompanyNameTitle {
         grid-column-start: 2;
         /* autoprefixer: off */
         grid-column-end: 4;
@@ -80,7 +80,7 @@
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
-    .gridUserName {
+    .gridCompanyName {
         grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 10;
@@ -90,7 +90,8 @@
         width: 100%;
     }
 
-    .gridPasswordTitle {
+
+    .gridUserNameTitle {
         grid-column-start: 2;
         /* autoprefixer: off */
         grid-column-end: 4;
@@ -99,12 +100,31 @@
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
-    .gridPassword {
+    .gridUserName {
         grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 10;
         grid-row-start: 7;
         grid-row-end: 8;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+
+    .gridPasswordTitle {
+        grid-column-start: 2;
+        /* autoprefixer: off */
+        grid-column-end: 4;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+    .gridPassword {
+        grid-column-start: 4;
+        /* autoprefixer: off */
+        grid-column-end: 10;
+        grid-row-start: 8;
+        grid-row-end: 9;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
@@ -125,7 +145,7 @@
         grid-column-start: 2;
         /* autoprefixer: off */
         grid-column-end: 12;
-        grid-row-start: 9;
+        grid-row-start: 10;
         grid-row-end: 12;
         width: 100%;
     }

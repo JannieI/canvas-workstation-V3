@@ -56,6 +56,21 @@
                             <option>Eazl</option>
                         </select>
                     </div>
+                    <div class="gridCompanyNameTitle">
+                        <b>CompanyName:</b>
+                    </div>
+                    <div class="gridCompanyName">
+                        <input [(ngModel)]="currentCompanyName"
+                            type="text"
+                            name="currentUserID"
+                            placeholder="CompanyName"
+                            #dashboardDescriptionVar="ngModel"
+                            required
+                            minlength="2"
+                            maxlength="250"
+                            [style.color]="!dashboardDescriptionVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
 
                     <div class="gridUserNameTitle">
                         <b>UserName:</b>
