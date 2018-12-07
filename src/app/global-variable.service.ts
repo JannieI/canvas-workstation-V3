@@ -1110,6 +1110,7 @@ export class GlobalVariableService {
         serverName: string,
         serverHostURI: string
     }[] = environment.ENVCanvasServerList;
+    ENVStartupCanvasServer: string = environment.ENVStartupCanvasServer;
     ENVCanvasDatabaseUseLocal: boolean = true;
     ENVCanvasEazlServerUrl: string = environment.ENVCanvasEazlServerUrl;
     ENVCanvasServerCloudUrl: string = environment.ENVCanvasServerCloudUrl;

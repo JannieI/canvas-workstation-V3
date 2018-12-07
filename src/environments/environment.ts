@@ -22,7 +22,7 @@ export const environment = {
 			serverName: "Eazl",
 			serverHostURI: "https://eazl-rest.xyz/eazl/api/"
 	  	}
-	]
+	],
 
 	// Eazl Server
 	ENVCanvasEazlServerUrl: "https://eazl-rest.xyz/eazl/api/",
