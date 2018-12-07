@@ -1195,33 +1195,32 @@ export class GlobalVariableService {
     isDirtyWidgets: boolean = true;
     isDirtyWidgetGraphs: boolean = true;
 
-    dbDataCachingTable;
+    dbDataCachingTableDatabase;
     dbCanvasAppDatabase;
-
 
     constructor(
         private http: HttpClient,
     ) {
-        // // Local App info DB
-        // this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
-        // this.dbCanvasAppDatabase.version(1).stores(
-        //     {
-        //         contacts: 'id, first, last',
-        //         localDashboards: 'id'
-        //     }
-        // );
-        // this.dbCanvasAppDatabase.open();
+        // Local App info DB
+        this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
+        this.dbCanvasAppDatabase.version(1).stores(
+            {
+                contacts: 'id, first, last',
+                localDashboards: 'id'
+            }
+        );
+        this.dbCanvasAppDatabase.open();
 
-        // // Local CachingTable DB
-        // this.dbDataCachingTable = new Dexie("DataCachingTable");
-        // this.dbDataCachingTable.version(1).stores(
-        //     {
-        //         localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
-        //     }
-        // );
-        // this.dbDataCachingTable.open();
+        // Local CachingTable DB
+        this.dbDataCachingTableDatabase = new Dexie("DataCachingTable");
+        this.dbDataCachingTableDatabase.version(1).stores(
+            {
+                localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
+            }
+        );
+        this.dbDataCachingTableDatabase.open();
 
-        // console.warn('xx local DBs created');
+        console.warn('xx local DBs created');
 
     }
 
@@ -1241,19 +1240,20 @@ export class GlobalVariableService {
         this.dbCanvasAppDatabase.version(1).stores(
             {
                 contacts: 'id, first, last',
-                localDashboards: 'id'
+                localDashboards: 'id',
+                currentCanvasUser: 'canvasServerName, canvasServerURI, currentCompany, currentUserName, currentToken'
             }
         );
         this.dbCanvasAppDatabase.open();
 
         // Local CachingTable DB
-        this.dbDataCachingTable = new Dexie("DataCachingTable");
-        this.dbDataCachingTable.version(1).stores(
+        this.dbDataCachingTableDatabase = new Dexie("DataCachingTable");
+        this.dbDataCachingTableDatabase.version(1).stores(
             {
                 localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
             }
         );
-        this.dbDataCachingTable.open();
+        this.dbDataCachingTableDatabase.open();
     }
 
      refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number):
