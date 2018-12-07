@@ -1111,10 +1111,8 @@ export class GlobalVariableService {
         serverHostURI: string
     }[] = environment.ENVCanvasServerList;
     ENVStartupCanvasServer: string = environment.ENVStartupCanvasServer;
-    ENVCanvasDatabaseUseLocal: boolean = true;
-    ENVCanvasEazlServerUrl: string = environment.ENVCanvasEazlServerUrl;
-    ENVCanvasServerCloudUrl: string = environment.ENVCanvasServerCloudUrl;
-    ENVCanvasServerLocalUrl: string = environment.ENVCanvasServerLocalUrl;
+    currentCanvasServerURI: string = '';
+    currentCanvasServerName: string = '';
     ENVCanvasDatabaseLocalUrlS1: string = environment.ENVCanvasDatabaseLocalUrlS1;
     ENVCanvasDatabaseLocalUrlS2: string = environment.ENVCanvasDatabaseLocalUrlS2;
     ENVCanvasDatabaseLocalUrlS3: string = environment.ENVCanvasDatabaseLocalUrlS3;
@@ -10709,8 +10707,8 @@ export class GlobalVariableService {
         };
 
         // CanvasDatabase: Local or Server
-        let baseUrl: string = '';
-        if (this.ENVCanvasDatabaseUseLocal) {
+        let baseUrl: string = this.currentCanvasServerURI;
+        if (this.currentCanvasServerName == 'Json-Server') {
 
             // Cater for different Servers
             if (pathUrl == 'dashboardsRecent') {
@@ -10769,8 +10767,6 @@ export class GlobalVariableService {
             } else {
                 baseUrl = 'http://localhost:3007/';
             };
-        } else {
-            baseUrl = this.ENVCanvasServerLocalUrl;
         };
 
         // Return
@@ -13164,7 +13160,7 @@ console.warn('xx ds perm', dp);
         };
 
         return new Promise<string>((resolve, reject) => {
-            this.http.post<Token>(this.ENVCanvasEazlServerUrl + 'auth/local/signup',
+            this.http.post<Token>(this.currentCanvasServerURI + 'auth/local/signup',
                 {username, password}).subscribe(token => {
 
                 // Store locally
@@ -13197,7 +13193,7 @@ console.warn('xx ds perm', dp);
             // this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/',
 
 
-            this.http.post<Token>(this.ENVCanvasEazlServerUrl + 'accounts/jwt-create/',
+            this.http.post<Token>(this.currentCanvasServerURI + 'accounts/jwt-create/',
                 {username, password}).subscribe(token => {
 
                 // Store locally
@@ -13221,7 +13217,7 @@ console.warn('xx ds perm', dp);
                 {sampleSize});
         };
         
-        let pathUrl: string = this.ENVCanvasEazlServerUrl + 
+        let pathUrl: string = this.currentCanvasServerURI + 
             'canvas/datasources/sessions/create-session/';
 
         return new Promise<any>((resolve, reject) => {
@@ -13385,7 +13381,7 @@ console.warn('xx ds perm', dp);
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
         };
 
-        let pathUrl: string = this.ENVCanvasEazlServerUrl + 'canvas/enqueue/';
+        let pathUrl: string = this.currentCanvasServerURI + 'canvas/enqueue/';
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -13426,7 +13422,7 @@ console.warn('xx ds perm', dp);
                 {graphQLquery});
         };
 
-        let pathUrl: string = this.ENVCanvasEazlServerUrl + 'accounts/graphql/';
+        let pathUrl: string = this.currentCanvasServerURI + 'accounts/graphql/';
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -13466,7 +13462,7 @@ console.warn('xx ds perm', dp);
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
         };
 
-        let pathUrl: string = this.ENVCanvasEazlServerUrl + 'canvas/inspect/';
+        let pathUrl: string = this.currentCanvasServerURI + 'canvas/inspect/';
 
         return new Promise<any>((resolve, reject) => {
 

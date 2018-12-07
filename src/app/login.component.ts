@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
 
     }
 
-    canvasServer: string = '';                  // Canvas Local
+    canvasServer: string = '';                  // Canvas Server selected
+    canvasServerURI: string = '';               // Canvas Server URI
     canvasServerList: string[] = [];
     companyName: string = 'Clarity Analytics';  // Clarity Analytics
     errorMessage: string = '';
@@ -72,14 +73,13 @@ export class LoginComponent implements OnInit {
 
         // Validate
         if (this.canvasServerList == null) {
-            this.errorMessage = 'Canvas Servers in env. file empty'
+            this.errorMessage = 'Set Canvas Servers in environment file';
         };
-        if (this.canvasServerList.length < 4) {
-            this.errorMessage = 'Canvas Servers in env. file empty'
+        if (this.canvasServerList.length == 0) {
+            this.errorMessage = 'Set Canvas Servers in environment file';
         };
 
         this.canvasServer = this.globalVariableService.ENVStartupCanvasServer;
-        console.warn('xx canvasServerList', this.canvasServerList)
     }
 
     clickClose(action: string) {
@@ -177,7 +177,15 @@ export class LoginComponent implements OnInit {
             this.errorMessage = 'Please enter a password';
             return;
         }
-        console.warn('xx ENVCanvasServerList', this.globalVariableService.ENVCanvasServerList);
+
+        // Set current Server Name and URI
+        this.canvasServerURI = '';
+        let serverIndex: number = this.globalVariableService.ENVCanvasServerList.findIndex(
+            sl => sl.serverName == this.canvasServer);
+        if (serverIndex >= 0) {
+            this.canvasServerURI = this.globalVariableService.ENVCanvasServerList[serverIndex].serverName;
+        };
+        console.warn('xx ENVCanvasServerList', this.globalVariableService.ENVCanvasServerList, this.canvasServerURI)
         
     }
 }

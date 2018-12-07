@@ -7,36 +7,32 @@
 // has ENV parameters to indicate where their data is, etc
 export const environment = {
   	production: false,
-  
-	// Valid Servers
-	ENVCanvasServerList: [ 
+
+	// Valid Servers (NB: Json-Server hard coded in TypeScript for now ...)
+	ENVCanvasServerList: [
 		{
-			serverName: "Canvas Local",
+			serverName: "Canvas Server Local",
 			serverHostURI: "http://localhost:8000"
 	  	},
 		{
-			serverName: "Canvas Server", 
+			serverName: "Canvas Server Cloud",
 			serverHostURI: "http://localhost:8000"
 	  	},
 		{
-			serverName: "Eazl",
+			serverName: "Eazl Server",
 			serverHostURI: "https://eazl-rest.xyz/eazl/api/"
-	  	}
+	  	},
+		{
+			serverName: "Json-Server",
+			serverHostURI: "http://localhost:3000"
+		}
+
 	],
 
 	// Default Startup CanvasServer
-	ENVStartupCanvasServer: "Canvas Local",
+	ENVStartupCanvasServer: "Canvas Server Local",
 
-	// Eazl Server
-	ENVCanvasEazlServerUrl: "https://eazl-rest.xyz/eazl/api/",
-
-	// Canvas Server Cloud
-	ENVCanvasServerCloudUrl: "http://localhost:8000",
-
-	// Canvas Server Local
-	ENVCanvasServerLocalUrl: "http://localhost:8000",
-
-	// JSON-SERVER Urls
+	// JSON-SERVER Urls (NB: Hard coded for now ...)
 	ENVCanvasDatabaseLocalUrlS1: "http://localhost:3001",
 	ENVCanvasDatabaseLocalUrlS2: "http://localhost:3000",
 	ENVCanvasDatabaseLocalUrlS3: "http://localhost:3002",
