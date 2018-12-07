@@ -6,21 +6,24 @@
 // The Eazl/Canvas server indicates where Canvas will get data from.  Each of these
 // has ENV parameters to indicate where their data is, etc
 export const environment = {
-  production: false,
+  	production: false,
   
-  // Eazl Server
-  ENVCanvasEazlServerUrl: "https://eazl-rest.xyz/eazl/api/",
+	// Valid Servers
+	ENVCanvasServerList: [ 'Canvas Local', 'Canvas Server', 'Eazl' ],
 
-  // Canvas Server Cloud
-  ENVCanvasServerCloudUrl: "http://localhost:8000",
+	// Eazl Server
+	ENVCanvasEazlServerUrl: "https://eazl-rest.xyz/eazl/api/",
 
-  // Canvas Server Local
-  ENVCanvasServerLocalUrl: "http://localhost:8000",
+	// Canvas Server Cloud
+	ENVCanvasServerCloudUrl: "http://localhost:8000",
 
-  // JSON-SERVER Urls
-  ENVCanvasDatabaseLocalUrlS1: "http://localhost:3001",
-  ENVCanvasDatabaseLocalUrlS2: "http://localhost:3000",
-  ENVCanvasDatabaseLocalUrlS3: "http://localhost:3002",
-  ENVCanvasDatabaseLocalUrlS4: "http://localhost:3005",
-  ENVCanvasDatabaseLocalUrlS5: "http://localhost:3006"
+	// Canvas Server Local
+	ENVCanvasServerLocalUrl: "http://localhost:8000",
+
+	// JSON-SERVER Urls
+	ENVCanvasDatabaseLocalUrlS1: "http://localhost:3001",
+	ENVCanvasDatabaseLocalUrlS2: "http://localhost:3000",
+	ENVCanvasDatabaseLocalUrlS3: "http://localhost:3002",
+	ENVCanvasDatabaseLocalUrlS4: "http://localhost:3005",
+	ENVCanvasDatabaseLocalUrlS5: "http://localhost:3006"
 };

@@ -163,5 +163,7 @@ export class LoginComponent implements OnInit {
             this.errorMessage = 'Please enter a password';
             return;
         }
+        console.warn('xx ENVCanvasServerList', this.globalVariableService.ENVCanvasServerList);
+        
     }
 }
