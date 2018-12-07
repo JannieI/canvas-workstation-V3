@@ -1202,26 +1202,26 @@ export class GlobalVariableService {
     constructor(
         private http: HttpClient,
     ) {
-        // Local App info DB
-        this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
-        this.dbCanvasAppDatabase.version(1).stores(
-            {
-                contacts: 'id, first, last',
-                localDashboards: 'id'
-            }
-        );
-        this.dbCanvasAppDatabase.open();
+        // // Local App info DB
+        // this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
+        // this.dbCanvasAppDatabase.version(1).stores(
+        //     {
+        //         contacts: 'id, first, last',
+        //         localDashboards: 'id'
+        //     }
+        // );
+        // this.dbCanvasAppDatabase.open();
 
-        // Local CachingTable DB
-        this.dbDataCachingTable = new Dexie("DataCachingTable");
-        this.dbDataCachingTable.version(1).stores(
-            {
-                localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
-            }
-        );
-        this.dbDataCachingTable.open();
+        // // Local CachingTable DB
+        // this.dbDataCachingTable = new Dexie("DataCachingTable");
+        // this.dbDataCachingTable.version(1).stores(
+        //     {
+        //         localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
+        //     }
+        // );
+        // this.dbDataCachingTable.open();
 
-        console.warn('xx local DBs created');
+        // console.warn('xx local DBs created');
 
     }
 
