@@ -180,7 +180,7 @@ export class LoginComponent implements OnInit {
         }
 
         // Set current Server Name and URI
-        if (this.globalVariableService.setCanvasServerState(
+        if (this.globalVariableService.setCurrentCanvasServer(
             this.canvasServer, this.companyName, this.userID)
         ) {
             this.message = 'User Registered'

@@ -1206,7 +1206,8 @@ export class GlobalVariableService {
         this.dbCanvasAppDatabase.version(1).stores(
             {
                 contacts: 'id, first, last',
-                localDashboards: 'id'
+                localDashboards: 'id',
+                currentCanvasUser: 'canvasServerName, canvasServerURI, currentCompany, currentUserName, currentToken'
             }
         );
         this.dbCanvasAppDatabase.open();
@@ -1235,25 +1236,25 @@ export class GlobalVariableService {
         // this[type+'_count'] = 1000;  // in a function we use "this";
         // alert(this.article_count);
 
-        // Local App info DB
-        this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
-        this.dbCanvasAppDatabase.version(1).stores(
-            {
-                contacts: 'id, first, last',
-                localDashboards: 'id',
-                currentCanvasUser: 'canvasServerName, canvasServerURI, currentCompany, currentUserName, currentToken'
-            }
-        );
-        this.dbCanvasAppDatabase.open();
+        // // Local App info DB
+        // this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
+        // this.dbCanvasAppDatabase.version(1).stores(
+        //     {
+        //         contacts: 'id, first, last',
+        //         localDashboards: 'id',
+        //         currentCanvasUser: 'canvasServerName, canvasServerURI, currentCompany, currentUserName, currentToken'
+        //     }
+        // );
+        // this.dbCanvasAppDatabase.open();
 
-        // Local CachingTable DB
-        this.dbDataCachingTableDatabase = new Dexie("DataCachingTable");
-        this.dbDataCachingTableDatabase.version(1).stores(
-            {
-                localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
-            }
-        );
-        this.dbDataCachingTableDatabase.open();
+        // // Local CachingTable DB
+        // this.dbDataCachingTableDatabase = new Dexie("DataCachingTable");
+        // this.dbDataCachingTableDatabase.version(1).stores(
+        //     {
+        //         localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
+        //     }
+        // );
+        // this.dbDataCachingTableDatabase.open();
     }
 
      refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number):
@@ -13151,13 +13152,13 @@ console.warn('xx ds perm', dp);
     // Canvas-Server, Eazl, Tributary stuffies
     // ***********************************************************************
 
-    setCanvasServerState(
+    setCurrentCanvasServer(
         selectedCanvasServer: string, 
         selectedCompanyName: string, 
         userID: string): boolean {
         // Set the state of the Canvas-Server, in memory (this routine) and in localStorage
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables setCanvasServerState ...',
+            console.log('%c    Global-Variables setCurrentCanvasServer ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
@@ -13181,29 +13182,27 @@ console.warn('xx ds perm', dp);
                 };
 
             // Add / Update DB with Put
+            let currentCanvasUserCount: number = 0;
             this.dbCanvasAppDatabase.table("currentCanvasUser")
                 .put(localCanvasUser)
                 .then(res => {
                     console.warn('xx Add/Update currentCanvasUser');
 
                     // Count
-                    let currentCanvasUserCount: number = 0;
                     this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
                         console.warn('xx currentCanvasUser Count', res);
                         currentCanvasUserCount = res;
-                    });
 
-                    // Return
-                    return currentCanvasUserCount;
+                        // Return
+                        if (currentCanvasUserCount > 0) {
+                            console.warn('xx setCanvasServerState', this.currentCanvasServerName, this.currentCanvasServerURI), currentCanvasUserCount;
+                            return true;
+                        } else {
+                            return false;
+                        };
+                    });
                 });
 
-
-            // localStorage.setItem('CanvasServerName', this.currentCanvasServerName);
-            // localStorage.setItem('CanvasServerURI', this.currentCanvasServerURI);
-            console.warn('xx setCanvasServerState', this.currentCanvasServerName, this.currentCanvasServerURI);
-
-            // Return
-            return true;
         } else {
             return false;
         };
