@@ -69,6 +69,14 @@ export class LoginComponent implements OnInit {
 
         this.canvasServerList = this.globalVariableService.ENVCanvasServerList
             .map( x => x.serverName);
+
+        // Validate
+        if (this.canvasServerList == null) {
+            this.errorMessage = 'Canvas Servers in env. file empty'
+        };
+        if (this.canvasServerList.length < 4) {
+            this.errorMessage = 'Canvas Servers in env. file empty'
+        };
         console.warn('xx canvasServerList', this.canvasServerList)
     }
 
