@@ -1112,7 +1112,7 @@ export class GlobalVariableService {
     }[] = environment.ENVCanvasServerList;
     ENVStartupCanvasServer: string = environment.ENVStartupCanvasServer;
     currentCanvasServerURI: string = '';
-    currentCanvasServerName: string = '';
+    currentCanvasServerName: string = 'Json-Server';
     ENVCanvasDatabaseLocalUrlS1: string = environment.ENVCanvasDatabaseLocalUrlS1;
     ENVCanvasDatabaseLocalUrlS2: string = environment.ENVCanvasDatabaseLocalUrlS2;
     ENVCanvasDatabaseLocalUrlS3: string = environment.ENVCanvasDatabaseLocalUrlS3;
@@ -13151,6 +13151,25 @@ console.warn('xx ds perm', dp);
     // Canvas-Server, Eazl, Tributary stuffies
     // ***********************************************************************
 
+    setCanvasServerState(selectedCanvasServer: string) {
+        // Set the state of the Canvas-Server, in memory (this routine) and in localStorage
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables setCanvasServerState ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        // Set current Server Name and URI
+        this.currentCanvasServerName = '';
+        this.currentCanvasServerURI = '';
+        let serverIndex: number = this.ENVCanvasServerList.findIndex(
+            sl => sl.serverName == selectedCanvasServer);
+        if (serverIndex >= 0) {
+            this.currentCanvasServerName = this.ENVCanvasServerList[serverIndex].serverName;
+            this.currentCanvasServerURI = this.ENVCanvasServerList[serverIndex].serverHostURI;
+        };
+        console.warn('xx setCanvasServerState', this.currentCanvasServerName, this.currentCanvasServerURI);
+        
+    }
     register(canvasServer: string, username: string, password: string): Promise<string> {
         // Registers a user on a server (add to Users) if it does not already exist
         if (this.sessionDebugging) {
