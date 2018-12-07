@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
     }
 
     canvasServer: string = '';                  // Canvas Local
+    canvasServerList: string[] = [];
     companyName: string = 'Clarity Analytics';  // Clarity Analytics
     errorMessage: string = '';
     password: string = '123';                   // 123
@@ -66,6 +67,9 @@ export class LoginComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.canvasServerList = this.globalVariableService.ENVCanvasServerList
+            .map( x => x.serverName);
+        console.warn('xx canvasServerList', this.canvasServerList)
     }
 
     clickClose(action: string) {

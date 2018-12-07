@@ -1106,7 +1106,10 @@ export class GlobalVariableService {
     selectedWidgetIDs: number[] = [];
 
     // Server info, ie Url
-    ENVCanvasServerList: string[] = environment.ENVCanvasServerList;
+    ENVCanvasServerList: {
+        serverName: string,
+        serverHostURI: string
+    }[] = environment.ENVCanvasServerList;
     ENVCanvasDatabaseUseLocal: boolean = true;
     ENVCanvasEazlServerUrl: string = environment.ENVCanvasEazlServerUrl;
     ENVCanvasServerCloudUrl: string = environment.ENVCanvasServerCloudUrl;
