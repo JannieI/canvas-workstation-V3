@@ -51,9 +51,9 @@
                             name="canvasServer"
                             (change)="clickSelectServer($event)"
                             >
-                            <option>Canvas Local</option>
-                            <option>Canvas Server</option>
-                            <option>Eazl</option>
+                            <option *ngFor="let row of canvasServerList">
+                                {{ row }}
+                            </option>                            
                         </select>
                     </div>
                     <div class="gridCompanyNameTitle">
