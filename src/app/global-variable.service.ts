@@ -13151,7 +13151,10 @@ console.warn('xx ds perm', dp);
     // Canvas-Server, Eazl, Tributary stuffies
     // ***********************************************************************
 
-    setCanvasServerState(selectedCanvasServer: string): boolean {
+    setCanvasServerState(
+        selectedCanvasServer: string, 
+        selectedCompanyName: string, 
+        userID: string): boolean {
         // Set the state of the Canvas-Server, in memory (this routine) and in localStorage
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables setCanvasServerState ...',
@@ -13166,8 +13169,37 @@ console.warn('xx ds perm', dp);
         if (serverIndex >= 0) {
             this.currentCanvasServerName = this.ENVCanvasServerList[serverIndex].serverName;
             this.currentCanvasServerURI = this.ENVCanvasServerList[serverIndex].serverHostURI;
-            localStorage.setItem('CanvasServerName', this.currentCanvasServerName);
-            localStorage.setItem('CanvasServerURI', this.currentCanvasServerURI);
+
+            // Create Var with data
+            let localCanvasUser =
+                {
+                    canvasServerName: this.currentCanvasServerName,
+                    canvasServerURI: this.currentCanvasServerURI,
+                    currentCompany: selectedCompanyName,
+                    currentUserName: userID,
+                    currentToken: ''
+                };
+
+            // Add / Update DB with Put
+            this.dbCanvasAppDatabase.table("currentCanvasUser")
+                .put(localCanvasUser)
+                .then(res => {
+                    console.warn('xx Add/Update currentCanvasUser');
+
+                    // Count
+                    let currentCanvasUserCount: number = 0;
+                    this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
+                        console.warn('xx currentCanvasUser Count', res);
+                        currentCanvasUserCount = res;
+                    });
+
+                    // Return
+                    return currentCanvasUserCount;
+                });
+
+
+            // localStorage.setItem('CanvasServerName', this.currentCanvasServerName);
+            // localStorage.setItem('CanvasServerURI', this.currentCanvasServerURI);
             console.warn('xx setCanvasServerState', this.currentCanvasServerName, this.currentCanvasServerURI);
 
             // Return
