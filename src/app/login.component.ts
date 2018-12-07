@@ -50,11 +50,12 @@ export class LoginComponent implements OnInit {
 
     }
 
-    currentUserID: string = '';
+    canvasServer: string = 'Canvas Local';
+    companyName: string = 'Clarity Analytics';
     errorMessage: string = '';
-    localServer: string = 'Local';
-    password: string = '';
+    password: string = '123';
     showTypeDashboard: boolean = false;
+    userID: string = 'JannieI';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -94,7 +95,7 @@ export class LoginComponent implements OnInit {
         this.errorMessage = '';
 
         // Validate user
-        this.globalVariableService.login(this.currentUserID, this.password).then(res => {
+        this.globalVariableService.login(this.userID, this.password).then(res => {
             if (!res) {
 
                 this.errorMessage = 'Login failed';
@@ -110,11 +111,11 @@ export class LoginComponent implements OnInit {
 
                 // TODO - fix when values read from form
                 this.globalVariableService.loggedIntoServer.next(
-                    this.localServer=='Local'? false : true
+                    this.canvasServer=='Canvas Local'?  true  :  false
                 );
 
                 // Set userID
-                this.globalVariableService.currentUserID.next(this.currentUserID);
+                this.globalVariableService.currentUserID.next(this.userID);
 
                 // Optional start D
                 if (this.globalVariableService.currentUser.preferenceStartupDashboardID != null) {
@@ -137,4 +138,5 @@ export class LoginComponent implements OnInit {
         });
 
     }
+
 }

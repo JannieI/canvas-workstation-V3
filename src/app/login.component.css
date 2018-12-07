@@ -62,7 +62,7 @@
         grid-column-end: 4;
         grid-row-start: 5;
         grid-row-end: 6;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 30px;
         text-align: left;
         width: 100%;
     }
@@ -72,7 +72,7 @@
         grid-column-end: 9;
         grid-row-start: 5;
         grid-row-end: 6;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 30px;
         width: 100%;
     }
 
@@ -82,7 +82,8 @@
         grid-column-end: 4;
         grid-row-start: 6;
         grid-row-end: 7;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 30px;
+        text-align: left;
         width: 100%;
     }
     .gridCompanyName {
@@ -91,7 +92,7 @@
         grid-column-end: 10;
         grid-row-start: 6;
         grid-row-end: 7;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 30px;
         width: 100%;
     }
 
@@ -102,7 +103,8 @@
         grid-column-end: 4;
         grid-row-start: 7;
         grid-row-end: 8;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 30px;
+        text-align: left;
         width: 100%;
     }
     .gridUserName {
@@ -111,7 +113,7 @@
         grid-column-end: 10;
         grid-row-start: 7;
         grid-row-end: 8;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 30px;
         width: 100%;
     }
 
@@ -121,7 +123,8 @@
         grid-column-end: 4;
         grid-row-start: 8;
         grid-row-end: 9;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 30px;
+        text-align: left;
         width: 100%;
     }
     .gridPassword {
@@ -130,7 +133,7 @@
         grid-column-end: 10;
         grid-row-start: 8;
         grid-row-end: 9;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 30px;
         width: 100%;
     }
 

@@ -47,8 +47,8 @@
                     <div class="select gridServer"
                         name="localServer"
                         >
-                        <select [(ngModel)]="localServer"
-                            name="localServer"
+                        <select [(ngModel)]="canvasServer"
+                            name="canvasServer"
                             (change)="clickSelectServer($event)"
                             >
                             <option>Canvas Local</option>
@@ -60,9 +60,9 @@
                         <b>Company:</b>
                     </div>
                     <div class="gridCompanyName">
-                        <input [(ngModel)]="currentCompanyName"
+                        <input [(ngModel)]="companyName"
                             type="text"
-                            name="currentUserID"
+                            name="companyName"
                             placeholder="CompanyName"
                             #dashboardDescriptionVar="ngModel"
                             required
@@ -80,9 +80,9 @@
                     <input type="month">
                     <input type="week"> -->
                     <div class="gridUserName">
-                        <input [(ngModel)]="currentUserID"
+                        <input [(ngModel)]="userID"
                             type="text"
-                            name="currentUserID"
+                            name="userID"
                             placeholder="UserName"
                             #dashboardDescriptionVar="ngModel"
                             required
