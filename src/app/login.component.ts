@@ -179,7 +179,11 @@ export class LoginComponent implements OnInit {
         }
 
         // Set current Server Name and URI
-        this.globalVariableService.setCanvasServerState(this.canvasServer));
+        if (this.globalVariableService.setCanvasServerState(this.canvasServer)) {
+            message = 'User Registered'
+        } else {
+            message = 'User NOT Registered'
+        };
 
     }
 }
