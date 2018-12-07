@@ -24,6 +24,9 @@ export const environment = {
 	  	}
 	],
 
+	// Default Startup CanvasServer
+	ENVStartupCanvasServer: "Canvas Local",
+
 	// Eazl Server
 	ENVCanvasEazlServerUrl: "https://eazl-rest.xyz/eazl/api/",
 

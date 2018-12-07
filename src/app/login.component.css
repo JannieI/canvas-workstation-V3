@@ -137,15 +137,6 @@
         text-align: left;
         width: 100%;
     }
-    .gridErrorMessage {
-        grid-column-start: 4;
-        /* autoprefixer: off */
-        grid-column-end: 10;
-        grid-row-start: 9;
-        grid-row-end: 10;
-        margin: 2px 2px 2px 30px;
-        width: 100%;
-    }
 
     .gridButtonLogin {
         background: #2e7ec7;
