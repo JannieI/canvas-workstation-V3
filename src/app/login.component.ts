@@ -139,4 +139,29 @@ export class LoginComponent implements OnInit {
 
     }
 
+    clickRegister() {
+        // Log in
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRegister', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+
+        // Validate user
+        if (this.companyName =='') {
+            this.errorMessage = 'Please enter a companyName';
+            return;
+        }
+        if (this.canvasServer =='') {
+            this.errorMessage = 'Please enter a canvasServer';
+            return;
+        }
+        if (this.userID =='') {
+            this.errorMessage = 'Please enter a userID';
+            return;
+        }
+        if (this.password =='') {
+            this.errorMessage = 'Please enter a password';
+            return;
+        }
+    }
 }
