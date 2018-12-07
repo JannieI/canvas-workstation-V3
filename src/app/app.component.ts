@@ -48,25 +48,7 @@ import { WebSocketSubject }           from 'rxjs/webSocket';
 import Dexie from 'dexie';
 import { AnimationStyleMetadata } from '@angular/animations';
 
-class CanvasAppDatabase extends Dexie {
-    // Declare implicit table properties.
-    // (just to inform Typescript. Instanciated by Dexie in stores() method)
-    contacts: Dexie.Table<IContact, number>; // number = type of the primkey
-    localDashboards: Dexie.Table<ILocalDashboard, number>;
-    currentCanvasUser: Dexie.Table<IcurrentCanvasUser, number>;
-    //...other tables goes ABOVE here...
-
-    constructor () {
-        super("CanvasAppDatabase");
-        this.version(1).stores({
-            contacts: 'id, first, last',
-            localDashboards: 'id',
-            currentCanvasUser: 'canvasServerName, canvasServerURI, currentCompany, currentUserName, currentToken'
-            //...other tables goes here...
-        });
-    }
-}
-
+// Dexie Interface: Contact
 interface IContact {
     id?: number,
     first: string,
@@ -74,6 +56,7 @@ interface IContact {
     dashboard: Dashboard
 }
 
+// Dexie Table: Contact
 export class Contact implements IContact {
     id: number;
     first: string;
@@ -88,19 +71,79 @@ export class Contact implements IContact {
     }
 }
 
-class DataCachingTable extends Dexie {
+// Dexie Interface: Local Dashboards
+interface ILocalDashboard {
+    id: number,
+    dashboard: Dashboard
+}
+
+// Dexie Table: Local Dashboards
+export class LocalDashboard implements ILocalDashboard {
+    id: number;
+    dashboard: Dashboard;
+
+    constructor(id:number, dashboard: Dashboard) {
+        this.id = id;
+        this.dashboard = dashboard;
+    }
+}
+
+// Dexie Interface: Canvas User
+interface ICurrentCanvasUser {
+    id: number,
+    canvasServerName: string,
+    canvasServerURI: string,
+    currentCompany: string,
+    currentUserName: string,
+    currentToken: string
+}
+
+// Dexie Table: Canvas User
+export class CurrentCanvasUser implements ICurrentCanvasUser {
+    id: number;
+    canvasServerName: string;
+    canvasServerURI: string;
+    currentCompany: string;
+    currentUserName: string;
+    currentToken: string;
+
+    constructor(id: number,
+        canvasServerName: string,
+        canvasServerURI: string,
+        currentCompany: string,
+        currentUserName: string,
+        currentToken: string
+    ) {
+        this.id = id;
+        this.canvasServerName = canvasServerName;
+        this.canvasServerURI = canvasServerURI;
+        this.currentCompany = currentCompany;
+        this.currentUserName = currentUserName;
+        this.currentToken = currentToken;
+    }
+}
+
+// Dexie DB: Canvas App DB
+class CanvasAppDatabase extends Dexie {
     // Declare implicit table properties.
     // (just to inform Typescript. Instanciated by Dexie in stores() method)
-    localDataCachingTable: Dexie.Table<IDataCachingTable, number>; // number = type of the primkey
+    contacts: Dexie.Table<IContact, number>; // number = type of the primkey
+    localDashboards: Dexie.Table<ILocalDashboard, number>;
+    currentCanvasUser: Dexie.Table<ICurrentCanvasUser, number>;
+    //...other tables goes ABOVE here...
 
     constructor () {
-        super("DataCachingTable");
+        super("CanvasAppDatabase");
         this.version(1).stores({
-            localDataCachingTable: 'key, localLastUpdatedDateTime, localExpiryDateTime'
+            contacts: 'id, first, last',
+            localDashboards: 'id',
+            currentCanvasUser: 'canvasServerName, canvasServerURI, currentCompany, currentUserName, currentToken'
+            //...other tables goes here...
         });
     }
 }
 
+// Dexie Interface: Local Caching Table 
 interface IDataCachingTable {
     key: string;                            // Unique key
     objectID: number;                       // Optional record ID, ie for Data
@@ -119,6 +162,7 @@ interface IDataCachingTable {
     newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
 }
 
+// Dexie Table: Local Caching Table
 export class LocalDataCachingTable implements IDataCachingTable {
     key: string;
     objectID: number;                       // Optional record ID, ie for Data
@@ -172,54 +216,22 @@ export class LocalDataCachingTable implements IDataCachingTable {
                 }
 }
 
+// Dexie DB: Data Caching DB
+class DataCachingDatabase extends Dexie {
+    // Declare implicit table properties.
+    // (just to inform Typescript. Instanciated by Dexie in stores() method)
+    localDataCachingTable: Dexie.Table<IDataCachingTable, number>; // number = type of the primkey
 
-interface ILocalDashboard {
-    id: number,
-    dashboard: Dashboard
-}
-
-interface ICurrentCanvasUser {
-    id: number,
-    canvasServerName: string,
-    canvasServerURI: string,
-    currentCompany: string,
-    currentUserName: string,
-    currentToken: string
-}
-
-export class CurrentCanvasUser implements ICurrentCanvasUser {
-    id: number;
-    canvasServerName: string;
-    canvasServerURI: string;
-    currentCompany: string;
-    currentUserName: string;
-    currentToken: string;
-
-    constructor(id: number,
-        canvasServerName: string,
-        canvasServerURI: string,
-        currentCompany: string,
-        currentUserName: string,
-        currentToken: string
-    ) {
-        this.id = id;
-        this.canvasServerName = canvasServerName;
-        this.canvasServerURI = canvasServerURI;
-        this.currentCompany = currentCompany;
-        this.currentUserName = currentUserName;
-        this.currentToken = currentToken;
+    constructor () {
+        super("DataCachingTable");
+        this.version(1).stores({
+            localDataCachingTable: 'key, localLastUpdatedDateTime, localExpiryDateTime'
+        });
     }
 }
 
-export class LocalDashboard implements ILocalDashboard {
-    id: number;
-    dashboard: Dashboard;
 
-    constructor(id:number, dashboard: Dashboard) {
-        this.id = id;
-        this.dashboard = dashboard;
-    }
-}
+
 
 // Constants
 export enum KEY_CODE {
@@ -632,7 +644,7 @@ export class AppComponent implements OnInit {
         this.dbCanvasAppDatabase.open();
 
         // Local CachingTable DB
-        this.dbDataCachingTable = new DataCachingTable;
+        this.dbDataCachingTable = new DataCachingDatabase;
         this.dbDataCachingTable.open();
 
         // Get Users and Groups, async
