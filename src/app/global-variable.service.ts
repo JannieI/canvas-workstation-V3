@@ -13150,22 +13150,20 @@ console.warn('xx ds perm', dp);
     // Canvas-Server, Eazl, Tributary stuffies
     // ***********************************************************************
 
-    register(username: string, password: string): Promise<string> {
-        // Login, and return a token which is stored in LocalStorage.  Also, set global User
-        // If not a valid user, return false.
-        // If so, set currentUser object and return true
+    register(canvasServer: string, username: string, password: string): Promise<string> {
+        // Registers a user on a server (add to Users) if it does not already exist
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables login ...',
+            console.log('%c    Global-Variables register ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {username}, {password});
         };
 
         return new Promise<string>((resolve, reject) => {
-            this.http.post<Token>(this.ENVCanvasEazlServerUrl + 'accounts/jwt-create/',
+            this.http.post<Token>(this.ENVCanvasEazlServerUrl + 'auth/local/signup',
                 {username, password}).subscribe(token => {
 
                 // Store locally
-                localStorage.setItem("eazl-token", JSON.stringify(token));
+                localStorage.setItem("canvs-token", JSON.stringify(token));
 
                 resolve('Done');
             },
