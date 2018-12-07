@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 
     }
 
-    canvasServer: string = 'Canvas Local';
+    canvasServer: string = '';
     companyName: string = 'Clarity Analytics';
     errorMessage: string = '';
     password: string = '123';
@@ -148,11 +148,11 @@ export class LoginComponent implements OnInit {
 
         // Validate user
         if (this.companyName =='') {
-            this.errorMessage = 'Please enter a companyName';
+            this.errorMessage = 'Please enter a Company Name';
             return;
         }
         if (this.canvasServer =='') {
-            this.errorMessage = 'Please enter a canvasServer';
+            this.errorMessage = 'Please enter a Canvas Server';
             return;
         }
         if (this.userID =='') {

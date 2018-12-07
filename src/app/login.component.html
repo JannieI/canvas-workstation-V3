@@ -102,7 +102,11 @@
                             placeholder="Password"
                             >
                     </div>
-                    
+
+                    <div class="gridErrorMessage" *ngIf="errorMessage">
+                        <b>errorMessage</b>
+                    </div>
+
                     <div class="gridButtonLogin"
                             (click)="clickLogin()"
                             >
