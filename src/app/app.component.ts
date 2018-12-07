@@ -53,7 +53,8 @@ class CanvasAppDatabase extends Dexie {
     // (just to inform Typescript. Instanciated by Dexie in stores() method)
     contacts: Dexie.Table<IContact, number>; // number = type of the primkey
     localDashboards: Dexie.Table<ILocalDashboard, number>;
-    //...other tables goes here...
+    currentCanvasUser: Dexie.Table<IcurrentCanvasUser, number>;
+    //...other tables goes ABOVE here...
 
     constructor () {
         super("CanvasAppDatabase");
@@ -176,6 +177,14 @@ interface ILocalDashboard {
     dashboard: Dashboard
 }
 
+interface IcurrentCanvasUser {
+    id: number,
+    canvasServerName: string,
+    canvasServerURI: string,
+    currentCompany: string,
+    currentUserName: string,
+    currentToken: string
+}
 export class LocalDashboard implements ILocalDashboard {
     id: number;
     dashboard: Dashboard;
@@ -628,7 +637,7 @@ export class AppComponent implements OnInit {
         //    If currentUserID == null or ''  -->  Login
         //    If currentCanvasServer == null or ''  -->  Login
         //
-        // 2a.  use token 
+        // 2a.  use token
         //  connect to currentCanvasServer using token to get profile for currentUserID
         //    If fail  -->  login
         //    Else complete:
@@ -647,11 +656,11 @@ export class AppComponent implements OnInit {
         //        get back token
         //        store token in Dexie
         //        proceed to 2a above
-        // 
+        //
         //  NB fix getDashboardNew for all 3 server, +++ 3x GET (depending on Server)
 
 
-        
+
         this.globalVariableService.getCanvasUsers().then(res => {
             this.globalVariableService.currentUserID.next('JannieI');
             this.globalVariableService.setCurrentCanvasUser('JannieI');
@@ -8435,7 +8444,7 @@ export class AppComponent implements OnInit {
         if (!this.menuOptionClickPreAction()) {
             return;
         };
-        
+
         // Set D
         this.globalVariableService.currentDashboards.forEach(d => {
             if (d.id == this.globalVariableService.currentDashboardInfo
@@ -9440,7 +9449,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetGraph', '@Start');
 
         console.warn('xxclickWidgetGraph', ev);
-        
+
     }
 
     clickWidget(ev: MouseEvent, index: number, id: number) {
@@ -10003,7 +10012,7 @@ export class AppComponent implements OnInit {
             this.showModalDashboardLogin = true;
             return false;
         };
-        
+
         // Return
         return true;
     }
