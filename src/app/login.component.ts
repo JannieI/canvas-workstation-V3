@@ -179,13 +179,17 @@ export class LoginComponent implements OnInit {
         }
 
         // Set current Server Name and URI
-        this.canvasServerURI = '';
+        this.globalVariableService.currentCanvasServerName = '';
+        this.globalVariableService.currentCanvasServerURI = '';
         let serverIndex: number = this.globalVariableService.ENVCanvasServerList.findIndex(
             sl => sl.serverName == this.canvasServer);
         if (serverIndex >= 0) {
-            this.canvasServerURI = this.globalVariableService.ENVCanvasServerList[serverIndex].serverName;
+            this.globalVariableService.currentCanvasServerName = this.globalVariableService
+                .ENVCanvasServerList[serverIndex].serverName;
+            this.globalVariableService.currentCanvasServerURI = this.globalVariableService
+                .ENVCanvasServerList[serverIndex].serverHostURI;
         };
-        console.warn('xx ENVCanvasServerList', this.globalVariableService.ENVCanvasServerList, this.canvasServerURI)
-        
+        console.warn('xx', this.globalVariableService.currentCanvasServerName, this.globalVariableService.currentCanvasServerURI);
+
     }
 }
