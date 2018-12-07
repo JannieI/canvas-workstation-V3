@@ -50,12 +50,12 @@ export class LoginComponent implements OnInit {
 
     }
 
-    canvasServer: string = '';
-    companyName: string = 'Clarity Analytics';
+    canvasServer: string = '';                  // Canvas Local
+    companyName: string = 'Clarity Analytics';  // Clarity Analytics
     errorMessage: string = '';
-    password: string = '123';
+    password: string = '123';                   // 123
     showTypeDashboard: boolean = false;
-    userID: string = 'JannieI';
+    userID: string = 'JannieI';                 // JannieI
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
