@@ -13151,7 +13151,7 @@ console.warn('xx ds perm', dp);
     // Canvas-Server, Eazl, Tributary stuffies
     // ***********************************************************************
 
-    setCanvasServerState(selectedCanvasServer: string) {
+    setCanvasServerState(selectedCanvasServer: string): boolean {
         // Set the state of the Canvas-Server, in memory (this routine) and in localStorage
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables setCanvasServerState ...',
@@ -13166,10 +13166,16 @@ console.warn('xx ds perm', dp);
         if (serverIndex >= 0) {
             this.currentCanvasServerName = this.ENVCanvasServerList[serverIndex].serverName;
             this.currentCanvasServerURI = this.ENVCanvasServerList[serverIndex].serverHostURI;
+            console.warn('xx setCanvasServerState', this.currentCanvasServerName, this.currentCanvasServerURI);
+
+            // Return
+            return true;
+        } else {
+            return false;
         };
-        console.warn('xx setCanvasServerState', this.currentCanvasServerName, this.currentCanvasServerURI);
         
     }
+
     register(canvasServer: string, username: string, password: string): Promise<string> {
         // Registers a user on a server (add to Users) if it does not already exist
         if (this.sessionDebugging) {
