@@ -9,7 +9,20 @@ export const environment = {
   	production: false,
   
 	// Valid Servers
-	ENVCanvasServerList: [ 'Canvas Local', 'Canvas Server', 'Eazl' ],
+	ENVCanvasServerList: [ 
+		{
+			serverName: 'Canvas Local',
+			serverHostURI: "http://localhost:8000"
+	  	},
+		{
+			serverName: Canvas Server', 
+			serverHostURI: "http://localhost:8000"
+	  	},
+		{
+			serverName: 'Eazl',
+			serverHostURI: : "https://eazl-rest.xyz/eazl/api/"
+	  	}
+	]
 
 	// Eazl Server
 	ENVCanvasEazlServerUrl: "https://eazl-rest.xyz/eazl/api/",
