@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
     canvasServerList: string[] = [];
     companyName: string = 'Clarity Analytics';  // Clarity Analytics
     errorMessage: string = '';
+    message: string = '';
     password: string = '123';                   // 123
     showTypeDashboard: boolean = false;
     userID: string = 'JannieI';                 // JannieI
@@ -180,9 +181,9 @@ export class LoginComponent implements OnInit {
 
         // Set current Server Name and URI
         if (this.globalVariableService.setCanvasServerState(this.canvasServer)) {
-            message = 'User Registered'
+            this.message = 'User Registered'
         } else {
-            message = 'User NOT Registered'
+            this.message = 'User NOT Registered'
         };
 
     }

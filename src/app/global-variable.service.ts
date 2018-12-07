@@ -13166,6 +13166,8 @@ console.warn('xx ds perm', dp);
         if (serverIndex >= 0) {
             this.currentCanvasServerName = this.ENVCanvasServerList[serverIndex].serverName;
             this.currentCanvasServerURI = this.ENVCanvasServerList[serverIndex].serverHostURI;
+            localStorage.setItem('CanvasServerName', this.currentCanvasServerName);
+            localStorage.setItem('CanvasServerURI', this.currentCanvasServerURI);
             console.warn('xx setCanvasServerState', this.currentCanvasServerName, this.currentCanvasServerURI);
 
             // Return
