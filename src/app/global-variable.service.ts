@@ -60,7 +60,8 @@ import { WidgetGraph }                from './models';
 import { WidgetStoredTemplate }       from './models';
 
 // Dexie
-import Dexie from 'dexie';
+import Dexie                          from 'dexie';
+import { CanvasAppDatabase }          from './dexieDatabase';
 
 // TODO - to remove
 import { Token }                      from './models';
@@ -73,7 +74,6 @@ import { nSQL } from "nano-sql";
 
 // Environment
 import { environment } from '../environments/environment';
-import { facetSortFieldName } from 'vega-lite/build/src/compile/facet';
 
 // Vega template
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
@@ -1202,26 +1202,26 @@ export class GlobalVariableService {
         private http: HttpClient,
     ) {
         // Local App info DB
-        this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
-        this.dbCanvasAppDatabase.version(1).stores(
-            {
-                contacts: 'id, first, last',
-                localDashboards: 'id',
-                currentCanvasUser: 'id, canvasServerName, currentCompany, currentUserName'
-            }
-        );
-        this.dbCanvasAppDatabase.open();
+        // this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
+        // this.dbCanvasAppDatabase.version(1).stores(
+        //     {
+        //         contacts: 'id, first, last',
+        //         localDashboards: 'id',
+        //         currentCanvasUser: 'id, canvasServerName, currentCompany, currentUserName'
+        //     }
+        // );
+        // this.dbCanvasAppDatabase.open();
 
         // Local CachingTable DB
         this.dbDataCachingTableDatabase = new Dexie("DataCachingTable");
-        this.dbDataCachingTableDatabase.version(1).stores(
-            {
-                localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
-            }
-        );
-        this.dbDataCachingTableDatabase.open();
+        // this.dbDataCachingTableDatabase.version(1).stores(
+        //     {
+        //         localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
+        //     }
+        // );
+        // this.dbDataCachingTableDatabase.open();
 
-        console.warn('xx local DBs created');
+        // console.warn('xx local DBs created');
 
     }
 
@@ -13156,7 +13156,7 @@ console.warn('xx ds perm', dp);
         selectedCanvasServer: string, 
         selectedCompanyName: string, 
         userID: string): boolean {
-        // Set the state of the Canvas-Server, in memory (this routine) and in localStorage
+        // Set the state of the Canvas-Server, in memory (this routine) and in IndexedDB
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables setCurrentCanvasServer ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
@@ -13167,6 +13167,8 @@ console.warn('xx ds perm', dp);
         this.currentCanvasServerURI = '';
         let serverIndex: number = this.ENVCanvasServerList.findIndex(
             sl => sl.serverName == selectedCanvasServer);
+
+        console.warn('xx serverIndex', serverIndex)
         if (serverIndex >= 0) {
             this.currentCanvasServerName = this.ENVCanvasServerList[serverIndex].serverName;
             this.currentCanvasServerURI = this.ENVCanvasServerList[serverIndex].serverHostURI;
@@ -13180,16 +13182,23 @@ console.warn('xx ds perm', dp);
                     currentUserName: userID,
                     currentToken: ''
                 };
+            console.warn('xx localCanvasUser', localCanvasUser)
 
             // Add / Update DB with Put
             let currentCanvasUserCount: number = 0;
-            this.dbCanvasAppDatabase.table("currentCanvasUser")
+
+            // Local App info DB
+            let dbCanvasAppDatabase = new CanvasAppDatabase
+            dbCanvasAppDatabase.open();
+
+
+            dbCanvasAppDatabase.table("currentCanvasUser")
                 .put(localCanvasUser)
                 .then(res => {
-                    console.warn('xx Add/Update currentCanvasUser');
+                    console.warn('xx Add/Update currentCanvasUser res', res);
 
                     // Count
-                    this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
+                    dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
                         console.warn('xx currentCanvasUser Count', res);
                         currentCanvasUserCount = res;
 

@@ -8199,21 +8199,16 @@ export class AppComponent implements OnInit {
             window.alert("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
         }
 
-        this.dbCanvasAppDatabase.table("localDashboards").count(res => {
-            console.warn('xx count localDashboards at START', {res});
-            // Query DB
-            this.dbCanvasAppDatabase.table("localDashboards")
-                .where('id').belowOrEqual(2)
-                .toArray(res => {
-                    console.warn('xx localDashboards res', res)
-            })
-            .then(data => {
-                console.log('xx localDashboards End WHERE', {data});
-            });
-        
-            return;
+        // Query DB
+        this.dbCanvasAppDatabase.table("localDashboards")
+            .where('id').belowOrEqual(2)
+            .toArray(res => {
+                console.warn('xx localDashboards res', res)
+        })
+        .then(data => {
+            console.log('xx localDashboards End WHERE', {data});
         });
-
+        
 
         // Define DB
         // var db = new Dexie("CanvasAppDatabase");
