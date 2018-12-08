@@ -7977,7 +7977,7 @@ export class AppComponent implements OnInit {
         // Create Var with data
         let localDashboardSingle =
             {
-                id: this.globalVariableService.dashboards[1].id,
+                id: this.globalVariableService.dashboards[1].id + 2,
                 dashboard: this.globalVariableService.dashboards[1],
             };
 
