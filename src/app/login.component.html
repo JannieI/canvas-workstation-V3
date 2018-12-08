@@ -49,7 +49,6 @@
                         >
                         <select [(ngModel)]="canvasServer"
                             name="canvasServer"
-                            (change)="clickSelectServer($event)"
                             >
                             <option *ngFor="let row of canvasServerList">
                                 {{ row }}

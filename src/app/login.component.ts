@@ -90,13 +90,6 @@ export class LoginComponent implements OnInit {
 		this.formUserLoginClosed.emit(action);
     }
 
-    clickSelectServer() {
-        // User clicked Local / Server
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectServer', '@Start');
-
-        // TODO - verify that server exists, and list multiple if so allowed
-    }
-
     clickLogin() {
         // Log in
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLogin', '@Start');
