@@ -7974,6 +7974,29 @@ export class AppComponent implements OnInit {
             console.warn('xx Second count', res);
         });
 
+
+
+
+            // Create Var with data
+        let localCanvasUser = {
+                canvasServerName: 'currentCanvasServerName',
+                canvasServerURI: 'currentCanvasServerURI',
+                currentCompany: 'selectedCompanyName',
+                currentUserName: 'userID',
+                currentToken: ''
+        };
+        console.warn('xx localCanvasUser', localCanvasUser)
+
+        this.dbCanvasAppDatabase.table("currentCanvasUser")
+            .put(localCanvasUser)
+            .then(res => {
+                console.warn('xx Add/Update currentCanvasUser res', res);
+            });
+
+
+
+
+
         // Create Var with data
         let localDashboardSingle =
             {

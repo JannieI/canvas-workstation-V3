@@ -47,7 +47,6 @@ export class LocalDashboard implements ILocalDashboard {
 
 // Dexie Interface: Canvas User
 export interface ICurrentCanvasUser {
-    id: number,
     canvasServerName: string,
     canvasServerURI: string,
     currentCompany: string,
@@ -57,21 +56,19 @@ export interface ICurrentCanvasUser {
 
 // Dexie Table: Canvas User
 export class CurrentCanvasUser implements ICurrentCanvasUser {
-    id: number;
     canvasServerName: string;
     canvasServerURI: string;
     currentCompany: string;
     currentUserName: string;
     currentToken: string;
 
-    constructor(id: number,
+    constructor(
         canvasServerName: string,
         canvasServerURI: string,
         currentCompany: string,
         currentUserName: string,
         currentToken: string
     ) {
-        this.id = id;
         this.canvasServerName = canvasServerName;
         this.canvasServerURI = canvasServerURI;
         this.currentCompany = currentCompany;
@@ -94,7 +91,7 @@ export class CanvasAppDatabase extends Dexie {
         this.version(1).stores({
             contacts: 'id, first, last',
             localDashboards: 'id',
-            currentCanvasUser: 'id, canvasServerName, currentCompany, currentUserName'
+            currentCanvasUser: 'canvasServerName, currentCompany, currentUserName'
             //...other tables goes here...
         });
     }
