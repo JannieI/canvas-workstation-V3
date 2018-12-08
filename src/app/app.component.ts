@@ -8199,8 +8199,24 @@ export class AppComponent implements OnInit {
             window.alert("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
         }
 
+        this.dbCanvasAppDatabase.table("localDashboards").count(res => {
+            console.warn('xx count localDashboards at START', {res});
+            // Query DB
+            this.dbCanvasAppDatabase.table("localDashboards")
+                .where('id').belowOrEqual(2)
+                .toArray(res => {
+                    console.warn('xx localDashboards res', res)
+            })
+            .then(data => {
+                console.log('xx localDashboards End WHERE', {data});
+            });
+        
+            return;
+        });
+
+
         // Define DB
-        var db = new Dexie("CanvasAppDatabase");
+        // var db = new Dexie("CanvasAppDatabase");
 
         // Listening to Deletions and Version Changes
         // db.on("versionchange", function(event) {
@@ -8215,105 +8231,105 @@ export class AppComponent implements OnInit {
         //     }
         //   });
 
-        db.version(1).stores({contacts: 'id, first, last'});
-        db.open()
-            .then(res => {
-                console.log('xx Opened DB', res);
-                // Count
-                db.table("contacts").count(res => {
-                    console.warn('xx count 1 at START', {res});
-                });
-
-                // Query DB
-                db.table("contacts")
-                    .where('id').belowOrEqual(2)
-                    .toArray(res => console.warn('xx res', res) ).then(data => {
-                        console.log('xx End WHERE', {data});
-
-                    })
-
-                if (this.testIndexDB) {
-
-                    console.warn('xx testIndexDB', this.testIndexDB);
-
-                    // Clear var
-                    this.dexieDB = [];
-
-                    // Delete DB
-                    // db.close()
-                    // db.delete().then(() => {
-                    //     console.log("Database successfully deleted");
-                    //     var db = new Dexie("CanvasAppDatabase");
-                    //     db.version(1).stores({contacts: 'id, first, last'});
-                    // db.open()
-                    // .then(res => {
-
-
-                    // // Clear DB
-                    db.table("contacts").clear().then(result => {
-                        console.log('xx CLEARED DB', result);
-
-
-                            // }).catch((err) => {
-                            //     console.error("Could not delete database");
-                            // }).finally(() => {
-                            //     // Do what should be done next...
-                            // });
-
-                        // Msg
-                        console.log('xx Start')
-
-                        // Load Ds individually
-                        for (var i = 0; i < 0; i++) {
-
-                            db.table("contacts").put(
-                                {
-                                    first: "First name",
-                                    last: "Last name",
-                                    dashboard: this.globalVariableService.dashboards[0],
-                                    id: i
-                                }
-                            ).then(res => {
-                                // console.log('xx res', res);
-
-                            });
-                        };
-
-                        // Msg
-                        console.log('xx after Dexie, before Var')
-
-                        // Load var
-                        for (var i = 0; i < 10000; i++) {
-                            this.dexieDB.push(
-                                {
-                                    first: "First name",
-                                    last: "Last name",
-                                    dashboard: this.globalVariableService.dashboards[0],
-                                    id: i
-                                }
-                            )
-                        };
-
-                        // Load DB with bulkPut
-                        db.table("contacts").bulkPut(this.dexieDB).then(res => {
-                            console.warn('xx End BulkPut');
-
-                            // Count
-                            db.table("contacts").count(res => {
-                                console.warn('xx count 3 at END', res);
-                            });
-                        });
-
-
-                        // Msg
-                        console.log('xx End')
-                    });
+        // db.version(1).stores({contacts: 'id, first, last'});
+        // db.open()
+        //     .then(res => {
+                // console.log('xx Opened DB', res);
+                // // Count
+                // db.table("contacts").count(res => {
+                //     console.warn('xx count 1 at START', {res});
                 // });
-                };
-            })
-            .catch((error) => {
-                console.log('xx Error in Open DB', error);
-            });
+
+                // // Query DB
+                // db.table("contacts")
+                //     .where('id').belowOrEqual(2)
+                //     .toArray(res => console.warn('xx res', res) ).then(data => {
+                //         console.log('xx End WHERE', {data});
+
+                //     })
+
+            //     if (this.testIndexDB) {
+
+            //         console.warn('xx testIndexDB', this.testIndexDB);
+
+            //         // Clear var
+            //         this.dexieDB = [];
+
+            //         // Delete DB
+            //         // db.close()
+            //         // db.delete().then(() => {
+            //         //     console.log("Database successfully deleted");
+            //         //     var db = new Dexie("CanvasAppDatabase");
+            //         //     db.version(1).stores({contacts: 'id, first, last'});
+            //         // db.open()
+            //         // .then(res => {
+
+
+            //         // // Clear DB
+            //         db.table("contacts").clear().then(result => {
+            //             console.log('xx CLEARED DB', result);
+
+
+            //                 // }).catch((err) => {
+            //                 //     console.error("Could not delete database");
+            //                 // }).finally(() => {
+            //                 //     // Do what should be done next...
+            //                 // });
+
+            //             // Msg
+            //             console.log('xx Start')
+
+            //             // Load Ds individually
+            //             for (var i = 0; i < 0; i++) {
+
+            //                 db.table("contacts").put(
+            //                     {
+            //                         first: "First name",
+            //                         last: "Last name",
+            //                         dashboard: this.globalVariableService.dashboards[0],
+            //                         id: i
+            //                     }
+            //                 ).then(res => {
+            //                     // console.log('xx res', res);
+
+            //                 });
+            //             };
+
+            //             // Msg
+            //             console.log('xx after Dexie, before Var')
+
+            //             // Load var
+            //             for (var i = 0; i < 10000; i++) {
+            //                 this.dexieDB.push(
+            //                     {
+            //                         first: "First name",
+            //                         last: "Last name",
+            //                         dashboard: this.globalVariableService.dashboards[0],
+            //                         id: i
+            //                     }
+            //                 )
+            //             };
+
+            //             // Load DB with bulkPut
+            //             db.table("contacts").bulkPut(this.dexieDB).then(res => {
+            //                 console.warn('xx End BulkPut');
+
+            //                 // Count
+            //                 db.table("contacts").count(res => {
+            //                     console.warn('xx count 3 at END', res);
+            //                 });
+            //             });
+
+
+            //             // Msg
+            //             console.log('xx End')
+            //         });
+            //     // });
+            //     };
+            // })
+            // .catch((error) => {
+            //     console.log('xx Error in Open DB', error);
+            // });
 
         // // Delete DB
         // db.table("contacts").delete().catch(err => console.warn('xx Del failed', err);
