@@ -46,7 +46,8 @@ import { WebSocketSubject }           from 'rxjs/webSocket';
 
 // Dexie
 import Dexie from 'dexie';
-import { AnimationStyleMetadata } from '@angular/animations';
+// import { CanvasAppDatabase }          from './dexieDatabase';
+// import { LocalDashboard }             from './dexieDatabase';
 
 // Dexie Interface: Contact
 interface IContact {
@@ -137,13 +138,13 @@ class CanvasAppDatabase extends Dexie {
         this.version(1).stores({
             contacts: 'id, first, last',
             localDashboards: 'id',
-            currentCanvasUser: 'canvasServerName, canvasServerURI, currentCompany, currentUserName, currentToken'
+            currentCanvasUser: 'id, canvasServerName, currentCompany, currentUserName'
             //...other tables goes here...
         });
     }
 }
 
-// Dexie Interface: Local Caching Table 
+// Dexie Interface: Local Caching Table
 interface IDataCachingTable {
     key: string;                            // Unique key
     objectID: number;                       // Optional record ID, ie for Data
@@ -607,7 +608,7 @@ export class AppComponent implements OnInit {
     dbDataCachingTable;
     dbCanvasAppDatabase;
     localDataCachingTable: IDataCachingTable[];
-    localDashboard: ILocalDashboard[];
+    localDashboard: LocalDashboard[];
 
     // rubberbandShow: boolean = false;
     // rubberbandHeight: number = 100;
@@ -7960,6 +7961,12 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
 
         // Reload Dashboards
+        this.dbCanvasAppDatabase.table("localDashboards").count(res => {
+            console.warn('xx First count', res);
+        });
+        this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
+            console.warn('xx Second count', res);
+        });
 
         // Create Var with data
         let localDashboardSingle =

@@ -1207,7 +1207,7 @@ export class GlobalVariableService {
             {
                 contacts: 'id, first, last',
                 localDashboards: 'id',
-                currentCanvasUser: 'canvasServerName, canvasServerURI, currentCompany, currentUserName, currentToken'
+                currentCanvasUser: 'id, canvasServerName, currentCompany, currentUserName'
             }
         );
         this.dbCanvasAppDatabase.open();
