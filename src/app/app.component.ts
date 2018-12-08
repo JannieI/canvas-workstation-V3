@@ -48,9 +48,8 @@ import { WebSocketSubject }           from 'rxjs/webSocket';
 import Dexie from 'dexie';
 import { CanvasAppDatabase }          from './dexieDatabase';
 import { LocalDashboard }             from './dexieDatabase';
-// import { ID }             from './dexieDatabase';
-// import { LocalDashboard }             from './dexieDatabase';
-// import { dbCanvasAppDatabase }          from './dexieDatabase';
+import { IDataCachingTable }          from './dexieDatabase';
+import { DataCachingDatabase }        from './dexieDatabase';
 
 
 
@@ -151,95 +150,92 @@ import { LocalDashboard }             from './dexieDatabase';
 //     }
 // }
 
+// // Dexie Interface: Local Caching Table
+// interface IDataCachingTable {
+//     key: string;                            // Unique key
+//     objectID: number;                       // Optional record ID, ie for Data
+//     serverCacheable: boolean;               // True if cached on server
+//     serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
+//     serverExpiryDateTime: Date;             // When cache expires on server
+//     serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
+//     serverUtl: string;                      // URL of the data on the server
+//     localCacheable: boolean;                // True if cached locally, ie IndexedDB
+//     localLastUpdatedDateTime: Date;         // When local cache last refreshed
+//     localExpiryDateTime: Date;              // When local cache expries
+//     localVariableName: string;              // Optional name of memory variable
+//     localCurrentVariableName: string;       // Optional name of memory current variable
+//     localTableName: string;                 // Optional name of Table in IndexedDB
+//     localLastWebSocketNumber: number;       // Last WS number processed
+//     newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
+// }
 
+// // Dexie Table: Local Caching Table
+// export class LocalDataCachingTable implements IDataCachingTable {
+//     key: string;
+//     objectID: number;                       // Optional record ID, ie for Data
+//     serverCacheable: boolean;
+//     serverLastUpdatedDateTime: Date;
+//     serverExpiryDateTime: Date;
+//     serverLastWSsequenceNr: number;
+//     serverUtl: string;
+//     localCacheable: boolean;
+//     localLastUpdatedDateTime: Date;
+//     localExpiryDateTime: Date;
+//     localVariableName: string;
+//     localCurrentVariableName: string;       // Optional name of memory current variable
+//     localTableName: string;                 // Optional name of Table in IndexedDB
+//     localLastWebSocketNumber: number;       // Last WS number processed
+//     newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
 
+//     constructor(key: string,
+//         serverCacheable: boolean,
+//         objectID: number,
+//         serverLastUpdatedDateTime: Date,
+//         serverExpiryDateTime: Date,
+//         serverLastWSsequenceNr: number,
+//         serverUtl: string,
+//         localCacheable: boolean,
+//         localLastUpdatedDateTime: Date,
+//         localExpiryDateTime: Date,
+//         localVariableName: string,
+//         localCurrentVariableName: string,
+//         localTableName: string,
+//         localLastWebSocketNumber: number,
+//         newLocalExpiryDateTime: Date
+//     ) {
 
-// Dexie Interface: Local Caching Table
-interface IDataCachingTable {
-    key: string;                            // Unique key
-    objectID: number;                       // Optional record ID, ie for Data
-    serverCacheable: boolean;               // True if cached on server
-    serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
-    serverExpiryDateTime: Date;             // When cache expires on server
-    serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
-    serverUtl: string;                      // URL of the data on the server
-    localCacheable: boolean;                // True if cached locally, ie IndexedDB
-    localLastUpdatedDateTime: Date;         // When local cache last refreshed
-    localExpiryDateTime: Date;              // When local cache expries
-    localVariableName: string;              // Optional name of memory variable
-    localCurrentVariableName: string;       // Optional name of memory current variable
-    localTableName: string;                 // Optional name of Table in IndexedDB
-    localLastWebSocketNumber: number;       // Last WS number processed
-    newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
-}
+//             this.key = key,
+//             this.serverCacheable = serverCacheable,
+//             this.objectID = objectID;
+//             this.serverLastUpdatedDateTime = serverLastUpdatedDateTime,
+//             this.serverExpiryDateTime = serverExpiryDateTime,
+//             this.serverLastWSsequenceNr = serverLastWSsequenceNr,
+//             this.serverUtl = serverUtl;
+//             this.localCacheable = localCacheable,
+//             this.localLastUpdatedDateTime = localLastUpdatedDateTime,
+//             this.localExpiryDateTime = localExpiryDateTime,
+//             this.localVariableName = localVariableName
+//             this.localCurrentVariableName = localCurrentVariableName;
+//             this.localTableName = localTableName;
+//             this.localLastWebSocketNumber = localLastWebSocketNumber;
+//             this.newLocalExpiryDateTime = newLocalExpiryDateTime;
 
-// Dexie Table: Local Caching Table
-export class LocalDataCachingTable implements IDataCachingTable {
-    key: string;
-    objectID: number;                       // Optional record ID, ie for Data
-    serverCacheable: boolean;
-    serverLastUpdatedDateTime: Date;
-    serverExpiryDateTime: Date;
-    serverLastWSsequenceNr: number;
-    serverUtl: string;
-    localCacheable: boolean;
-    localLastUpdatedDateTime: Date;
-    localExpiryDateTime: Date;
-    localVariableName: string;
-    localCurrentVariableName: string;       // Optional name of memory current variable
-    localTableName: string;                 // Optional name of Table in IndexedDB
-    localLastWebSocketNumber: number;       // Last WS number processed
-    newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
+//                 }
+// }
 
-    constructor(key: string,
-        serverCacheable: boolean,
-        objectID: number,
-        serverLastUpdatedDateTime: Date,
-        serverExpiryDateTime: Date,
-        serverLastWSsequenceNr: number,
-        serverUtl: string,
-        localCacheable: boolean,
-        localLastUpdatedDateTime: Date,
-        localExpiryDateTime: Date,
-        localVariableName: string,
-        localCurrentVariableName: string,
-        localTableName: string,
-        localLastWebSocketNumber: number,
-        newLocalExpiryDateTime: Date
-    ) {
+// // Dexie DB: Data Caching DB
+// class DataCachingDatabase extends Dexie {
+//     // Declare implicit table properties.
+//     // (just to inform Typescript. Instanciated by Dexie in stores() method)
+//     localDataCachingTable: Dexie.Table<IDataCachingTable, number>; // number = type of the primkey
 
-            this.key = key,
-            this.serverCacheable = serverCacheable,
-            this.objectID = objectID;
-            this.serverLastUpdatedDateTime = serverLastUpdatedDateTime,
-            this.serverExpiryDateTime = serverExpiryDateTime,
-            this.serverLastWSsequenceNr = serverLastWSsequenceNr,
-            this.serverUtl = serverUtl;
-            this.localCacheable = localCacheable,
-            this.localLastUpdatedDateTime = localLastUpdatedDateTime,
-            this.localExpiryDateTime = localExpiryDateTime,
-            this.localVariableName = localVariableName
-            this.localCurrentVariableName = localCurrentVariableName;
-            this.localTableName = localTableName;
-            this.localLastWebSocketNumber = localLastWebSocketNumber;
-            this.newLocalExpiryDateTime = newLocalExpiryDateTime;
-
-                }
-}
-
-// Dexie DB: Data Caching DB
-class DataCachingDatabase extends Dexie {
-    // Declare implicit table properties.
-    // (just to inform Typescript. Instanciated by Dexie in stores() method)
-    localDataCachingTable: Dexie.Table<IDataCachingTable, number>; // number = type of the primkey
-
-    constructor () {
-        super("DataCachingTable");
-        this.version(1).stores({
-            localDataCachingTable: 'key, localLastUpdatedDateTime, localExpiryDateTime'
-        });
-    }
-}
+//     constructor () {
+//         super("DataCachingTable");
+//         this.version(1).stores({
+//             localDataCachingTable: 'key, localLastUpdatedDateTime, localExpiryDateTime'
+//         });
+//     }
+// }
 
 
 
