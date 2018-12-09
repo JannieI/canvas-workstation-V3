@@ -666,8 +666,20 @@ export class AppComponent implements OnInit {
         })
 
         // Notes in app.ts:
+
+        // Register:
+        // This process identifies the user as one that may use this Canvas system.
+        // It results in storing the userID in the CanvasUsers table.  For now, it simply
+        // adds the record.  In time, it will get more advanced:
+        // - a workflow (email / messag to Administrator who adds user and permissions, and 
+        //   email / message back to person saying all good, with url to log in)
+        // - an Auth call to a third party system (ie Adam Sports Admin) who send back
+        //   the profile info as well as the token that are stored locally.
         //
-        // The user signs up (to be done later) and then logs in using:
+        // Login cannot happen if a user has not been registered already.
+
+        // Login:
+        // The user logs in (has to register before) using:
         //  - username and password (which is stored in the server in encrypted format)
         //  - authentication via a third party ie Google or GitHub
         // After the user has logged in, a JSON web token is returned to the user.
@@ -7973,29 +7985,6 @@ export class AppComponent implements OnInit {
         this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
             console.warn('xx Second count', res);
         });
-
-
-
-
-            // Create Var with data
-        let localCanvasUser = {
-                canvasServerName: 'currentCanvasServerName',
-                canvasServerURI: 'currentCanvasServerURI',
-                currentCompany: 'selectedCompanyName',
-                currentUserName: 'userID',
-                currentToken: ''
-        };
-        console.warn('xx localCanvasUser', localCanvasUser)
-
-        this.dbCanvasAppDatabase.table("currentCanvasUser")
-            .put(localCanvasUser)
-            .then(res => {
-                console.warn('xx Add/Update currentCanvasUser res', res);
-            });
-
-
-
-
 
         // Create Var with data
         let localDashboardSingle =

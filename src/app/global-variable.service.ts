@@ -13191,7 +13191,6 @@ console.warn('xx ds perm', dp);
             let dbCanvasAppDatabase = new CanvasAppDatabase
             dbCanvasAppDatabase.open();
 
-
             dbCanvasAppDatabase.table("currentCanvasUser")
                 .put(localCanvasUser)
                 .then(res => {
