@@ -667,25 +667,42 @@ export class AppComponent implements OnInit {
 
         // Notes in app.ts:
 
+        // All requests other than Register & Login:
+        // The user reads the local IndexedDB for serverName, companyName, userID, token and
+        // expirtyDate.  If expiryDate is too old or anything is missing, the user has to login.
+        // Canvas will send each http request with the token added.  If token not good, the 
+        // Canvas-Server will fail the request.  
+        
         // Register:
-        // This process identifies the user as one that may use this Canvas system.
-        // It results in storing the userID in the CanvasUsers table.  For now, it simply
-        // adds the record.  In time, it will get more advanced:
-        // - a workflow (email / messag to Administrator who adds user and permissions, and 
-        //   email / message back to person saying all good, with url to log in)
-        // - an Auth call to a third party system (ie Adam Sports Admin) who send back
-        //   the profile info as well as the token that are stored locally.
+        // This process registers the user as one that may use this Canvas system.
+        // The server will:
+        // - check if the user exists.  
+        // - return error if so
+        // - add the user to the DB otherwise (CanvasUsers table).  
+        // - For now, it simply adds the record.  In time, it will get more advanced:
+        //   - a workflow (email / messag to Administrator who adds user and permissions, and 
+        //     email / message back to person saying all good, with url to log in)
+        //   - an Auth call to a third party system (ie Adam Sports Admin) who send back
+        //     the profile info as well as the token that are stored locally.
         //
         // Login cannot happen if a user has not been registered already.
-
+        // The client will:
+        // - delete serverName, companyName, userID, token and expirtyDate in the local IndexedDB 
+        // - post the register request to the server
+        
         // Login:
-        // The user logs in (has to register before) using:
-        //  - username and password (which is stored in the server in encrypted format)
+        // The user logs in (has to register before) using one of:
+        //  - company name, username and password (which is stored in the server in 
+        //    encrypted format on the server)
         //  - authentication via a third party ie Google or GitHub
-        // After the user has logged in, a JSON web token is returned to the user.
-        // The user stores this token locally in localStorage.
-        // This token is send by the user with each request / route.
-        // The server will verify the token in each request.
+        // The server:
+        // - updates lastLoginDt
+        // - generates a JWT
+        // The client: 
+        // - receives the JWT (JSON web token)
+        // - stores this token locally in IndexedDB
+        // - stores the server, company name, username in IndexDB
+        // This token is send by the user with each request / route, and verified by the server.
         //
         // 1. get currentUserID, currentCanvasServer, lastLoginDt, token from:
         //   Dexie CanvasAppDatabase
