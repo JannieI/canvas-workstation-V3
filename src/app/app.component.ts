@@ -646,28 +646,10 @@ export class AppComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Local App info DB
-        this.dbCanvasAppDatabase = new CanvasAppDatabase
-        this.dbCanvasAppDatabase.open();
-
-        // Local CachingTable DB
-        this.dbDataCachingTable = new DataCachingDatabase;
-        this.dbDataCachingTable.open();
-
-        // Get Users and Groups, async
-        this.globalVariableService.getCanvasGroups();
-
-        // Dont Disturb
-        this.globalVariableService.dontDisturb.subscribe(ddb => this.dontDisturb = ddb)
-
-        // Current user
-        this.globalVariableService.currentUserID.subscribe(usr => {
-            this.currentUserID = usr;
-        })
-
-        // Notes in app.ts:
+        // Process for Authentication, Login, tokens between Canvas-Server and Canvas-Client:
 
         // On app startup:
+        // All the RxJs subscriptions are called (to listen for updates)
         // The user gets currentCanvasServer, companyName, currentUserID, lastLoginDt, token 
         // from the local storage (use Dexie CanvasAppDatabase):
         //    If nothing found  -->  proceed to login form
@@ -675,18 +657,26 @@ export class AppComponent implements OnInit {
         //    If currentUserID == null or ''  -->  Login
         //    If currentCanvasServer == null or ''  -->  Login
         //    If expiryDate (on token) is too old   -->  login
-        // If all fields valid, it send a Verify request to the Canvas-Server to confirm that
-        // the tokan and user is valid.
-        // The Server:
-        // - verify the user and token
-        // - returns an eror, or the user profile
-        // The Client receives the info and proceeds to (Point A) below
+        // If all fields valid, the client sends a Verify request to the Canvas-Server ASYNC
+        //   to the Canvas-Server confirm that the token and user is valid.
+        //   The Server:
+        //   - verify the user and token
+        //   - returns an error, or the user profile
+        //   The Client:  <-- DUPLICATE with Point A
+        //   - re-stores the server, company name, username in IndexDB
+        //   - updates GV.currentUser = profile    NB: fix setCurrentCanvasUser
+        //   - updates GV.currentUserID.next(profile.userID)
+        //   - updates GV.currentCanvasServer = currentCanvasServer
+        //   - updates GV.currentCanvasCompanyName = currentCanvasCompanyName
+        //   - loads users, do snapshots, etc below
+        //   - loads the Landing page
+        //  WHAT about the startup Dashboard ...  NB <-- confirm how this works
 
         // All http-requests other than Register & Login:
         // Canvas will send each http request with the token added.  If the token is not good, 
         // the Canvas-Server will fail the request.  
         
-        // Register:
+        // Register (on Login form):
         // This process registers the user as one that may use this Canvas system.
         // The client will:
         // - delete serverName, companyName, userID, token and expirtyDate from the local 
@@ -705,9 +695,10 @@ export class AppComponent implements OnInit {
         // The Client:
         // - accepts the message from the server, and shows success/error
         // - the user can just click Login to proceed
-        //
-        // Registration is necessary for the user to Login, and Login is necessary to proceed 
-        // with any other request.
+        // - remain on Login form (cannot proceed other than to Login)
+        //        
+        // Note: Registration is necessary for the user to Login, and Login is necessary to 
+        // proceed with any other request.
         
         // Login:
         // The user clicks the Login button (has to be registered already).  
@@ -734,10 +725,31 @@ export class AppComponent implements OnInit {
         // - updates GV.currentCanvasServer = currentCanvasServer
         // - updates GV.currentCanvasCompanyName = currentCanvasCompanyName
         // - loads users, do snapshots, etc below
-        // - proceeds to Landing page   NB: later consider an option to skip (ie D in url)
-        //
+        // - close Login form
+        // - opens Landing page   NB: later consider an option to skip (ie D in url)
+        
 
 
+        // Local App info DB
+        this.dbCanvasAppDatabase = new CanvasAppDatabase
+        this.dbCanvasAppDatabase.open();
+
+        // Local CachingTable DB
+        this.dbDataCachingTable = new DataCachingDatabase;
+        this.dbDataCachingTable.open();
+
+        // Get Users and Groups, async
+        this.globalVariableService.getCanvasGroups();
+
+        // Dont Disturb
+        this.globalVariableService.dontDisturb.subscribe(ddb => this.dontDisturb = ddb)
+
+        // Current user
+        this.globalVariableService.currentUserID.subscribe(usr => {
+            this.currentUserID = usr;
+        })
+
+        this.showModalLanding = this.globalVariableService.showModalLanding.value;
 
         this.globalVariableService.getCanvasUsers().then(res => {
             this.globalVariableService.currentUserID.next('JannieI');
@@ -824,7 +836,6 @@ export class AppComponent implements OnInit {
             i => this.showPalette = i);
         this.showGridSubscription = this.globalVariableService.showGrid.subscribe(
             i => this.showGrid = i);
-        this.showModalLanding = this.globalVariableService.showModalLanding.value;
 
         this.hasDatasourcesSubscription = this.globalVariableService.hasDatasources.subscribe(
             i => this.hasDatasources = i
