@@ -667,9 +667,18 @@ export class AppComponent implements OnInit {
 
         // Notes in app.ts:
 
+        // On app startup:
+        // The user gets currentCanvasServer, companyName, currentUserID, lastLoginDt, token 
+        // from the local storage (use Dexie CanvasAppDatabase):
+        //    If nothing found  -->  proceed to login form
+        //    If lastLoginDt > 24hrs old  -->  login
+        //    If currentUserID == null or ''  -->  Login
+        //    If currentCanvasServer == null or ''  -->  Login
+        //    If expiryDate (on token) is too old   -->  login
+        // If all fields valid, it send a Verify request to the Canvas-Server to confirm that
+        // the tokan and user is valid.
+
         // All requests other than Register & Login:
-        // The user reads the local IndexedDB for serverName, companyName, userID, token and
-        // expirtyDate.  If expiryDate is too old or anything is missing, the user has to login.
         // Canvas will send each http request with the token added.  If token not good, the 
         // Canvas-Server will fail the request.  
         
@@ -684,54 +693,37 @@ export class AppComponent implements OnInit {
         //     email / message back to person saying all good, with url to log in)
         //   - an Auth call to a third party system (ie Adam Sports Admin) who send back
         //     the profile info as well as the token that are stored locally.
-        //
-        // Login cannot happen if a user has not been registered already.
         // The client will:
         // - delete serverName, companyName, userID, token and expirtyDate in the local IndexedDB 
         // - post the register request to the server
+        //
+        // Registration is necessary for the user to Login, and Login is necessary to proceed 
+        // with any other request.
         
         // Login:
-        // The user logs in (has to register before) using one of:
-        //  - company name, username and password (which is stored in the server in 
-        //    encrypted format on the server)
-        //  - authentication via a third party ie Google or GitHub
+        // The user clicks the Login button (has to be registered already).  
         // The server:
-        // - updates lastLoginDt
+        //  - authenticates the user, using one of:
+        //    - Canvas-Server authentication using company name, username and password (which 
+        //      is stored in the server in encrypted format on the server)
+        //    - using third party authentication, ie Google or GitHub
+        // - creates a new user record if authenticated via a third party and not yet in the
+        //   Canvas-Server DB CanvasUsers table
+        // - updates lastLoginDt for the user
         // - generates a JWT
+        // - returns the JWT and user profile
         // The client: 
-        // - receives the JWT (JSON web token)
-        // - stores this token locally in IndexedDB
+        // - receives the JWT (JSON web token) and profile
+        // - stores this token locally in IndexedDB (using Dexie)
         // - stores the server, company name, username in IndexDB
+        // - updates GV.currentUser = profile    NB: fix setCurrentCanvasUser
+        // - updates GV.currentUserID.next(profile.userID)
+        // - updates GV.currentCanvasServer = currentCanvasServer
+        // - updates GV.currentCanvasCompanyName = currentCanvasCompanyName
+        // - loads users, do snapshots, etc below
+        // - proceeds to Landing page   NB: consider option to skip (ie D in url)
+        //
         // This token is send by the user with each request / route, and verified by the server.
-        //
-        // 1. get currentUserID, currentCanvasServer, lastLoginDt, token from:
-        //   Dexie CanvasAppDatabase
-        //    If nothing found  -->  login
-        //    If lastLoginDt > 24hrs old  -->  login
-        //    If currentUserID == null or ''  -->  Login
-        //    If currentCanvasServer == null or ''  -->  Login
-        //
-        // 2a.  use token
-        //  connect to currentCanvasServer using token to get profile for currentUserID
-        //    If fail  -->  login
-        //    Else complete:
-        //        get back profile: CanvasUser
-        //        update Dexie with currentUserID, currentCanvasServer, lastLoginDt
-        //        GV.currentUser = profile    NB: fix setCurrentCanvasUser
-        //        GV.currentUserID.next(profile.userID)
-        //        GV.currentCanvasServer = currentCanvasServer
-        //        load users, do snapshots, etc below
-        //        proceed to Landing page   NB: consider option to skip (ie D in url)
-        //
-        // 2b.  user fill in login form
-        //  use username/password  or  Google/Github auth to connect to specified server
-        //    If fail  -->  stay on login form with error
-        //    Else complete:
-        //        get back token
-        //        store token in Dexie
-        //        proceed to 2a above
-        //
-        //  NB fix getDashboardNew for all 3 server, +++ 3x GET (depending on Server)
 
 
 

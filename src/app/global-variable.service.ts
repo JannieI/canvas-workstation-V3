@@ -1655,6 +1655,11 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
+
+        // NB NB NB  - try to have ONE GET statement, for local and cloud Canvas-Servers
+
+
+
         return new Promise<any>((resolve, reject) => {
 
                 // Assume worse case that all has to be obtained from HTTP server
