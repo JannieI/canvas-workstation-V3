@@ -1656,7 +1656,7 @@ export class GlobalVariableService {
         };
 
 
-        // NB NB NB  - try to have ONE GET statement, for local and cloud Canvas-Servers
+// NB NB NB  - try to have ONE GET statement, for local and cloud Canvas-Servers
 
 
 

@@ -677,13 +677,22 @@ export class AppComponent implements OnInit {
         //    If expiryDate (on token) is too old   -->  login
         // If all fields valid, it send a Verify request to the Canvas-Server to confirm that
         // the tokan and user is valid.
+        // The Server:
+        // - verify the user and token
+        // - returns an eror, or the user profile
+        // The Client receives the info and proceeds to (Point A) below
 
-        // All requests other than Register & Login:
-        // Canvas will send each http request with the token added.  If token not good, the 
-        // Canvas-Server will fail the request.  
+        // All http-requests other than Register & Login:
+        // Canvas will send each http request with the token added.  If the token is not good, 
+        // the Canvas-Server will fail the request.  
         
         // Register:
         // This process registers the user as one that may use this Canvas system.
+        // The client will:
+        // - delete serverName, companyName, userID, token and expirtyDate from the local 
+        //   IndexedDB  -  CONSIDER: maybe dont delete, to allow 2nd user registration ?
+        // - post the register request to the server
+        // - keep the form detail filled in
         // The server will:
         // - check if the user exists.  
         // - return error if so
@@ -693,15 +702,19 @@ export class AppComponent implements OnInit {
         //     email / message back to person saying all good, with url to log in)
         //   - an Auth call to a third party system (ie Adam Sports Admin) who send back
         //     the profile info as well as the token that are stored locally.
-        // The client will:
-        // - delete serverName, companyName, userID, token and expirtyDate in the local IndexedDB 
-        // - post the register request to the server
+        // The Client:
+        // - accepts the message from the server, and shows success/error
+        // - the user can just click Login to proceed
         //
         // Registration is necessary for the user to Login, and Login is necessary to proceed 
         // with any other request.
         
         // Login:
         // The user clicks the Login button (has to be registered already).  
+        // The Client:
+        // - deletes serverName, companyName, userID, token and expirtyDate from the local 
+        //   IndexedDB
+        // - sends request to server
         // The server:
         //  - authenticates the user, using one of:
         //    - Canvas-Server authentication using company name, username and password (which 
@@ -712,7 +725,7 @@ export class AppComponent implements OnInit {
         // - updates lastLoginDt for the user
         // - generates a JWT
         // - returns the JWT and user profile
-        // The client: 
+        // The client  (Point A): 
         // - receives the JWT (JSON web token) and profile
         // - stores this token locally in IndexedDB (using Dexie)
         // - stores the server, company name, username in IndexDB
@@ -721,9 +734,8 @@ export class AppComponent implements OnInit {
         // - updates GV.currentCanvasServer = currentCanvasServer
         // - updates GV.currentCanvasCompanyName = currentCanvasCompanyName
         // - loads users, do snapshots, etc below
-        // - proceeds to Landing page   NB: consider option to skip (ie D in url)
+        // - proceeds to Landing page   NB: later consider an option to skip (ie D in url)
         //
-        // This token is send by the user with each request / route, and verified by the server.
 
 
 
