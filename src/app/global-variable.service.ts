@@ -907,34 +907,8 @@ const finalFields =
 @Injectable()
 export class GlobalVariableService {
 
-    // Settings
-    // TODO - get from DB, not Constants
 
-    canvasSettings: CanvasSettings = {
-        companyName: '',
-        companyLogo: '',
-        dashboardTemplate: '',
-        maxTableLength: 500,
-        widgetsMinZindex: 50,
-        widgetsMaxZindex: 59,
-        gridSize: 3,
-        snapToGrid: true,
-        printDefault: '',
-        printSize: '',
-        printLayout: '',
-        notInEditModeMsg: 'Not in Edit Mode (see Edit menu Option)',
-        noQueryRunningMessage: 'No Query',
-        queryRunningMessage: 'Query running...',
-        cleanCacheOnLogin: false,
-        cleanCacheOnLogout: false,
-        editedBy: '',
-        editedOn: null,
-        createdBy: '',
-        createdOn: null
-
-    }
-
-    // Templates and Constants
+    // Prerequired info for Canvas to work: Templates, Constants
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
     widgetTemplateInner: any = widgetTemplateInner;
@@ -1013,8 +987,41 @@ export class GlobalVariableService {
     ];
 
     filePath: string;
+    conditionFieldDataType: string = '';
+    conditionOperator: string = '';
 
-    // Permanent data
+    // Settings
+    // TODO - get from DB, not Constants
+
+    canvasSettings: CanvasSettings = {
+        companyName: '',
+        companyLogo: '',
+        dashboardTemplate: '',
+        maxTableLength: 500,
+        widgetsMinZindex: 50,
+        widgetsMaxZindex: 59,
+        gridSize: 3,
+        snapToGrid: true,
+        printDefault: '',
+        printSize: '',
+        printLayout: '',
+        notInEditModeMsg: 'Not in Edit Mode (see Edit menu Option)',
+        noQueryRunningMessage: 'No Query',
+        queryRunningMessage: 'Query running...',
+        cleanCacheOnLogin: false,
+        cleanCacheOnLogout: false,
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
+
+    }
+
+
+
+    // Cache of Permanent Canvas-related data read from the Canvas-Server
+    // It hold full sets (all the records) but not necessarily complete (some portions like
+    // the data arrays may be missing)
     actions: CanvasAction[] = [];
     backgroundcolors: CSScolor[] = [];
     backgroundcolorsDefault: CSScolor[] = [];
@@ -1058,9 +1065,9 @@ export class GlobalVariableService {
     widgetGraphs: WidgetGraph[] =[];
     widgetStoredTemplates: WidgetStoredTemplate[] =[];
 
-    // Data for CURRENT Dashboard and Datasources: only some models are loaded
-    conditionFieldDataType: string = '';
-    conditionOperator: string = '';
+
+    // Cache of Permanent Canvas-related data for the currentDashboard and 
+    // currentDatasources.  It holds complete data
     currentCanvasGroups: CanvasGroup[] = [];
     currentDashboards: Dashboard[] = [];
     currentDashboardPermissions: DashboardPermission[] = [];
@@ -1080,10 +1087,11 @@ export class GlobalVariableService {
     changedWidget = new BehaviorSubject<Widget>(null);    // W that must be changed
     currentWidgetCheckpoints: WidgetCheckpoint[] = [];
     currentWidgets: Widget[] = [];
-
     currentDashboardName = new BehaviorSubject<string>('');
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
 
+
+    
     // Global vars that guide all interactions
     // ***************************************
     // Modes and Display

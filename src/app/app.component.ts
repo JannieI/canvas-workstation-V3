@@ -654,9 +654,9 @@ export class AppComponent implements OnInit {
         //    - Refresh Variables
         //    - Refresh one W or whole D
         // 2. Get info from localStorage (using Dexie)
-        //    - if none or incomplete info, proceed to Login form
+        //    - if none or incomplete info, DELETE local and proceed to Login form
         //    - verify token @ server:
-        //      - if not valid, open the Login form.
+        //      - if not valid, DELETE local and open the Login form.
         //      - else, load variables and proceed to the Landing page.
         //  WHAT about the startup Dashboard ...  NB <-- confirm how this works
 
@@ -732,7 +732,8 @@ export class AppComponent implements OnInit {
             this.currentUserID = usr;
         })
 
-        // Refresh Variables (local and global) to be used in whole App
+        // Refresh Variables (local and global) to be used in the whole App.  This happens
+        // after successful login, or verify by server of info read from localStorage:
         //   - updates GV.currentUser = profile    NB: fix setCurrentCanvasUser
         //   - updates GV.currentUserID.next(profile.userID)
         //   - updates GV.currentCanvasServer = currentCanvasServer
@@ -743,6 +744,88 @@ export class AppComponent implements OnInit {
             if (res) {
                 // get canvasSettings from DB too
                 console.warn('xx res is good', res)
+                this.globalVariableService.getCanvasUsers().then(res => {
+                    this.globalVariableService.currentUserID.next('JannieI');
+                    this.globalVariableService.setCurrentCanvasUser('JannieI');
+        
+                    // Set palette position
+                    if (this.globalVariableService.currentUser.lastPaletteLeft != null) {
+                        this.paletteLeft = this.globalVariableService.currentUser.lastPaletteLeft;
+                    };
+                    if (this.globalVariableService.currentUser.lastPaletteTop != null) {
+                        this.paletteTop = this.globalVariableService.currentUser.lastPaletteTop;
+                    };
+        
+                    let today = new Date();
+                    this.globalVariableService.sessionDateTimeLoggedin =
+                        this.globalVariableService.formatDate(today);
+                    // Snapshot at user defined interval: preferenceDefaultSnapshotMins = 0 => none
+                    let userMins: number = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
+                    if (userMins > 0) {
+                        let mins: number = userMins * 60 * 1000;
+                        let localTimer = timer(mins, mins);
+                        this.subscriptionSnapshot = localTimer.subscribe(t => {
+                            if (this.editMode) {
+        
+                                // Determine if any actions since session login
+                                let temp: CanvasAction[] = this.globalVariableService.actions.filter(act =>
+                                    act.created > new Date(this.globalVariableService.sessionDateTimeLoggedin)
+                                    &&
+                                    act.createor == this.globalVariableService.currentUser.userID
+                                );
+        
+                                // Only snap if there were activities
+                                if (temp.length > 0) {
+        
+                                    let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+                                        d => d.id ==
+                                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                                    );
+                                    if (dashboardIndex >= 0) {
+                                        let today = new Date();
+                                        let snapshotName: string = this.globalVariableService.dashboards[
+                                            dashboardIndex]
+                                            .name + ' ' + this.globalVariableService.formatDate(today);
+                                        let snapshotComment: string = 'Automated Snapshot after ' +
+                                            (mins / 60000).toString() + ' mins';
+                                        this.globalVariableService.newDashboardSnapshot(
+                                            snapshotName,
+                                            snapshotComment,
+                                            'AutoFrequency').then(res => {
+                                                this.showMessage(
+                                                    'Added automated Snapshot after ' +
+                                                    (mins / 60000).toString() + ' mins',
+                                                    'StatusBar',
+                                                    'Info',
+                                                    3000,
+                                                    ''
+                                                );
+        
+                                        });
+                                    };
+                                };
+                            };
+                        });
+                    };
+        
+                    this.globalVariableService.currentPaletteButtonsSelected.subscribe(i => {
+                        this.paletteButtons = i.slice();
+        
+                        // Synch BehSubj that hold orientation
+                        this.globalVariableService.preferencePaletteHorisontal.next(
+                            this.globalVariableService.currentUser.preferencePaletteHorisontal
+                        );
+        
+                        this.globalVariableService.preferencePaletteHorisontal.subscribe(i =>
+        
+                            // Calc the W and H - store and this.paletteHeight and this.paletteWidth
+                            this.setPaletteHeightAndWidth()
+                        );
+        
+                    });
+                });
+        
+
             } else  {
                 // get canvasSettings from DB too
                 console.warn('xx res is false', res)
@@ -750,86 +833,6 @@ export class AppComponent implements OnInit {
             };;
         });
         
-        this.globalVariableService.getCanvasUsers().then(res => {
-            this.globalVariableService.currentUserID.next('JannieI');
-            this.globalVariableService.setCurrentCanvasUser('JannieI');
-
-            // Set palette position
-            if (this.globalVariableService.currentUser.lastPaletteLeft != null) {
-                this.paletteLeft = this.globalVariableService.currentUser.lastPaletteLeft;
-            };
-            if (this.globalVariableService.currentUser.lastPaletteTop != null) {
-                this.paletteTop = this.globalVariableService.currentUser.lastPaletteTop;
-            };
-
-            let today = new Date();
-            this.globalVariableService.sessionDateTimeLoggedin =
-                this.globalVariableService.formatDate(today);
-            // Snapshot at user defined interval: preferenceDefaultSnapshotMins = 0 => none
-            let userMins: number = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
-            if (userMins > 0) {
-                let mins: number = userMins * 60 * 1000;
-                let localTimer = timer(mins, mins);
-                this.subscriptionSnapshot = localTimer.subscribe(t => {
-                    if (this.editMode) {
-
-                        // Determine if any actions since session login
-                        let temp: CanvasAction[] = this.globalVariableService.actions.filter(act =>
-                            act.created > new Date(this.globalVariableService.sessionDateTimeLoggedin)
-                            &&
-                            act.createor == this.globalVariableService.currentUser.userID
-                        );
-
-                        // Only snap if there were activities
-                        if (temp.length > 0) {
-
-                            let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-                                d => d.id ==
-                                this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-                            );
-                            if (dashboardIndex >= 0) {
-                                let today = new Date();
-                                let snapshotName: string = this.globalVariableService.dashboards[
-                                    dashboardIndex]
-                                    .name + ' ' + this.globalVariableService.formatDate(today);
-                                let snapshotComment: string = 'Automated Snapshot after ' +
-                                    (mins / 60000).toString() + ' mins';
-                                this.globalVariableService.newDashboardSnapshot(
-                                    snapshotName,
-                                    snapshotComment,
-                                    'AutoFrequency').then(res => {
-                                        this.showMessage(
-                                            'Added automated Snapshot after ' +
-                                            (mins / 60000).toString() + ' mins',
-                                            'StatusBar',
-                                            'Info',
-                                            3000,
-                                            ''
-                                        );
-
-                                });
-                            };
-                        };
-                    };
-                });
-            };
-
-            this.globalVariableService.currentPaletteButtonsSelected.subscribe(i => {
-                this.paletteButtons = i.slice();
-
-                // Synch BehSubj that hold orientation
-                this.globalVariableService.preferencePaletteHorisontal.next(
-                    this.globalVariableService.currentUser.preferencePaletteHorisontal
-                );
-
-                this.globalVariableService.preferencePaletteHorisontal.subscribe(i =>
-
-                    // Calc the W and H - store and this.paletteHeight and this.paletteWidth
-                    this.setPaletteHeightAndWidth()
-                );
-
-            });
-        });
 
         // Palette and Grid info
         this.showPaletteSubscription = this.globalVariableService.showPalette.subscribe(
@@ -10350,7 +10353,7 @@ export class AppComponent implements OnInit {
             this.paletteHeight = (this.globalVariableService.currentPaletteButtonsSelected
                 .value.length * 25) + 3;
             this.paletteWidth = 32;
-            };
+        };
     }
 
     clickPaletteCopyDimensions() {
