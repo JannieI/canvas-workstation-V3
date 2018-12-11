@@ -420,18 +420,13 @@ export class AppComponent implements OnInit {
     private socket$: WebSocketSubject<WebSocketMessage>;
 
 
+    // Testing Stuffies
     dexieDB: any[];
     testIndexDB: boolean = false;
     dbDataCachingTable;
     dbCanvasAppDatabase;
     localDataCachingTable: IDataCachingTable[];
     localDashboard: LocalDashboard[];
-
-    // rubberbandShow: boolean = false;
-    // rubberbandHeight: number = 100;
-    // rubberbandWidth: number = 100;
-    // rubberbandLeft: number = 100;
-    // rubberbandTop: number = 100;
 
 
     constructor(
@@ -836,6 +831,14 @@ export class AppComponent implements OnInit {
         // Local App info DB
         this.dbCanvasAppDatabase = new CanvasAppDatabase
         this.dbCanvasAppDatabase.open();
+        
+        // Count
+        this.dbCanvasAppDatabase.table("localDashboards")
+            .where('canvasServerName').equals('Canvas Server Local')
+            .toArray()
+            .then(res => {
+                console.warn('xx localDashboards res ', res);
+            });
 
         // Local CachingTable DB
         this.dbDataCachingTable = new DataCachingDatabase;
