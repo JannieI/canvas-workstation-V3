@@ -908,12 +908,19 @@ const finalFields =
 export class GlobalVariableService {
 
 
+    // Utility vars, ie used on more than one accasion:
+    filePath: string;       // Used in HTTP requests
+    conditionFieldDataType: string = '';
+    conditionOperator: string = '';
+
+
+
     // Prerequired info for Canvas to work: Templates, Constants
+    dashboardTemplate: Dashboard = dashboardTemplate;
+    dashboardTabTemplate: DashboardTab = dashboardTabTemplate;
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
     widgetTemplateInner: any = widgetTemplateInner;
-    dashboardTemplate: Dashboard = dashboardTemplate;
-    dashboardTabTemplate: DashboardTab = dashboardTabTemplate;
     serverTypes: TributaryServerType[] =
     [
         {
@@ -986,11 +993,8 @@ export class GlobalVariableService {
 
     ];
 
-    filePath: string;
-    conditionFieldDataType: string = '';
-    conditionOperator: string = '';
 
-    // Settings
+    // Identification info: Canvas-Server, Company, User
     // TODO - get from DB, not Constants
 
     canvasSettings: CanvasSettings = {
@@ -1069,16 +1073,18 @@ export class GlobalVariableService {
     // Cache of Permanent Canvas-related data for the currentDashboard and 
     // currentDatasources.  It holds complete data
     currentCanvasGroups: CanvasGroup[] = [];
-    currentDashboards: Dashboard[] = [];
+    currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
+    currentDashboardName = new BehaviorSubject<string>('');
     currentDashboardPermissions: DashboardPermission[] = [];
+    currentDashboards: Dashboard[] = [];
     currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
     currentDashboardSubscriptions: DashboardSubscription[] = [];
     currentDashboardTabs: DashboardTab[] = [];
     currentDashboardTags: DashboardTag[] = [];
-    currentDatasets: any = [];                          // Used in current D, with data
     currentDataOwnerships: DataOwnership[] = [];
     currentDataQualityIssues: DataQualityIssue[] = [];
+    currentDatasets: any = [];                          // Used in current D, with data
     currentDatasources: Datasource[] = [];
     currentDatasourcePermissions: DatasourcePermission[] = [];
     currentDatasourceSchedules: DatasourceSchedule[] = [];
@@ -1087,8 +1093,6 @@ export class GlobalVariableService {
     changedWidget = new BehaviorSubject<Widget>(null);    // W that must be changed
     currentWidgetCheckpoints: WidgetCheckpoint[] = [];
     currentWidgets: Widget[] = [];
-    currentDashboardName = new BehaviorSubject<string>('');
-    currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
 
 
     
