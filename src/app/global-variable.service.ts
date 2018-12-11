@@ -909,13 +909,30 @@ export class GlobalVariableService {
 
 
     // Utility vars, ie used on more than one accasion:
-    filePath: string;       // Used in HTTP requests
+    colourPickerClosed = new BehaviorSubject<
+        {
+            callingRoutine: string;
+            selectedColor:string;
+            cancelled: boolean
+        }
+    >(null);
     conditionFieldDataType: string = '';
     conditionOperator: string = '';
+    continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
+    filePath: string;       // Used in HTTP requests
+    selectedWidgetIDs: number[] = [];
+    getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
+    previousGraphEditDSID: number = -1;
+    templateInUse = new BehaviorSubject<boolean>(false);
+    widgetGroup = new BehaviorSubject<number[]>([]);
 
 
 
-    // Prerequired info for Canvas to work: Templates, Constants
+
+    // Prerequired info for Canvas
+    // *********************************************************************************
+
+    // Templates, Constants
     dashboardTemplate: Dashboard = dashboardTemplate;
     dashboardTabTemplate: DashboardTab = dashboardTabTemplate;
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
@@ -993,10 +1010,30 @@ export class GlobalVariableService {
 
     ];
 
+    // Environment setting: Server Url, etc
+    ENVCanvasServerList: {
+        serverName: string,
+        serverHostURI: string
+    }[] = environment.ENVCanvasServerList;
+    ENVStartupCanvasServer: string = environment.ENVStartupCanvasServer;
+    currentCanvasServerURI: string = '';
+    currentCanvasServerName: string = 'Json-Server';
+    ENVCanvasDatabaseLocalUrlS1: string = environment.ENVCanvasDatabaseLocalUrlS1;
+    ENVCanvasDatabaseLocalUrlS2: string = environment.ENVCanvasDatabaseLocalUrlS2;
+    ENVCanvasDatabaseLocalUrlS3: string = environment.ENVCanvasDatabaseLocalUrlS3;
+    ENVCanvasDatabaseLocalUrlS4: string = environment.ENVCanvasDatabaseLocalUrlS4;
+    ENVCanvasDatabaseLocalUrlS5: string = environment.ENVCanvasDatabaseLocalUrlS5;
+
+    
+
 
     // Identification info: Canvas-Server, Company, User
+    // *********************************************************************************
     // TODO - get from DB, not Constants
 
+    // Server
+
+    // Canvas
     canvasSettings: CanvasSettings = {
         companyName: '',
         companyLogo: '',
@@ -1019,10 +1056,21 @@ export class GlobalVariableService {
         createdBy: '',
         createdOn: null
 
-    }
+    };
+
+    // Company
+
+    // User
+    currentUser: CanvasUser;                            // Current logged in user
+    currentUserID = new BehaviorSubject<string>('');
+    loggedIntoServer = new BehaviorSubject<boolean>(true);
 
 
+    
 
+    // Canvas-related info and Data
+    // *********************************************************************************
+    
     // Cache of Permanent Canvas-related data read from the Canvas-Server
     // It hold full sets (all the records) but not necessarily complete (some portions like
     // the data arrays may be missing)
@@ -1038,6 +1086,8 @@ export class GlobalVariableService {
     containerStyles: ContainerStyle[] = [];
     dashboardLayout: DashboardLayout[] = [];
     dashboardPermissions: DashboardPermission[] = [];
+    dashboardsRecent: DashboardRecent[] = [];           // List of Recent Dashboards
+    dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     dashboards: Dashboard[] = [];
     dashboardScheduleLog: DashboardScheduleLog[] = [];
     dashboardSchedules: DashboardSchedule[] = [];
@@ -1089,83 +1139,12 @@ export class GlobalVariableService {
     currentDatasourcePermissions: DatasourcePermission[] = [];
     currentDatasourceSchedules: DatasourceSchedule[] = [];
     currentPaletteButtonBar: PaletteButtonBar[];
+    currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
     currentTransformations: Transformation[] = [];
     changedWidget = new BehaviorSubject<Widget>(null);    // W that must be changed
     currentWidgetCheckpoints: WidgetCheckpoint[] = [];
     currentWidgets: Widget[] = [];
 
-
-    
-    // Global vars that guide all interactions
-    // ***************************************
-    // Modes and Display
-    editMode = new BehaviorSubject<boolean>(false);     // True/False = EditMode/ViewMode
-    showGrid = new BehaviorSubject<boolean>(false);     // True to show th egrid
-    showPalette = new BehaviorSubject<boolean>(true);   // True to show the palette
-    preferencePaletteHorisontal = new BehaviorSubject<boolean>(true); // Palette orientation
-    loadVariable = new BehaviorSubject<boolean>(false); // True to load variables in App.ngOnInit
-    
-    // First time user
-    isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
-    isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
-    isFirstTimeDashboardDiscard = new BehaviorSubject<boolean>(true);
-    isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
-    isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
-
-    // Opening forms
-    openDashboardFormOnStartup: boolean = false;
-    hasDatasources = new BehaviorSubject<boolean>(false);   // Used to set menu
-    showModalLanding = new BehaviorSubject<boolean>(true);  // Shows Landing page
-    selectedWidgetIDs: number[] = [];
-
-    // Server info, ie Url
-    ENVCanvasServerList: {
-        serverName: string,
-        serverHostURI: string
-    }[] = environment.ENVCanvasServerList;
-    ENVStartupCanvasServer: string = environment.ENVStartupCanvasServer;
-    currentCanvasServerURI: string = '';
-    currentCanvasServerName: string = 'Json-Server';
-    ENVCanvasDatabaseLocalUrlS1: string = environment.ENVCanvasDatabaseLocalUrlS1;
-    ENVCanvasDatabaseLocalUrlS2: string = environment.ENVCanvasDatabaseLocalUrlS2;
-    ENVCanvasDatabaseLocalUrlS3: string = environment.ENVCanvasDatabaseLocalUrlS3;
-    ENVCanvasDatabaseLocalUrlS4: string = environment.ENVCanvasDatabaseLocalUrlS4;
-    ENVCanvasDatabaseLocalUrlS5: string = environment.ENVCanvasDatabaseLocalUrlS5;
-
-    // Session
-    colourPickerClosed = new BehaviorSubject<
-        {
-            callingRoutine: string;
-            selectedColor:string;
-            cancelled: boolean
-        }
-    >(null);
-    continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
-    currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
-
-    // 
-    currentUser: CanvasUser;                            // Current logged in user
-    currentUserID = new BehaviorSubject<string>('');
-    loggedIntoServer = new BehaviorSubject<boolean>(true);
-
-    dashboardsRecent: DashboardRecent[] = [];           // List of Recent Dashboards
-    dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
-    dontDisturb = new BehaviorSubject<boolean>(false);   // True means dont disturb display
-    dsIDs: number[] = [];           // Dataset IDs
-    firstAction: boolean = true;               // True if 1st action per D
-    getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
-    previousGraphEditDSID: number = -1;
-    sessionDateTimeLoggedin: string = '';
-    sessionDebugging: boolean = true;      // True to log multiple messages to Console
-    sessionLogging: boolean = false;
-    templateInUse = new BehaviorSubject<boolean>(false);
-    widgetGroup = new BehaviorSubject<number[]>([]);
-
-
-    // StatusBar
-    statusBarRunning = new BehaviorSubject<string>(this.canvasSettings.noQueryRunningMessage);
-    statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
-    statusBarMessage = new BehaviorSubject<StatusBarMessage>(null)
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     isDirtyBackgroundColors: boolean = true;
@@ -1208,6 +1187,46 @@ export class GlobalVariableService {
     isDirtyWidgets: boolean = true;
     isDirtyWidgetGraphs: boolean = true;
 
+
+
+    
+    // Global vars that guide all interactions
+    // *********************************************************************************
+    // Modes and Display
+    editMode = new BehaviorSubject<boolean>(false);     // True/False = EditMode/ViewMode
+    showGrid = new BehaviorSubject<boolean>(false);     // True to show th egrid
+    showPalette = new BehaviorSubject<boolean>(true);   // True to show the palette
+    preferencePaletteHorisontal = new BehaviorSubject<boolean>(true); // Palette orientation
+    loadVariable = new BehaviorSubject<boolean>(false); // True to load variables in App.ngOnInit
+    
+    // First time user
+    isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
+    isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
+    isFirstTimeDashboardDiscard = new BehaviorSubject<boolean>(true);
+    isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
+    isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
+    firstAction: boolean = true;               // True if 1st action per D
+
+    // Opening forms
+    openDashboardFormOnStartup: boolean = false;
+    hasDatasources = new BehaviorSubject<boolean>(false);   // Used to set menu
+    showModalLanding = new BehaviorSubject<boolean>(true);  // Shows Landing page
+
+
+    // Session
+    dontDisturb = new BehaviorSubject<boolean>(false);   // True means dont disturb display
+    dsIDs: number[] = [];           // Dataset IDs
+    sessionDateTimeLoggedin: string = '';
+    sessionDebugging: boolean = true;      // True to log multiple messages to Console
+    sessionLogging: boolean = false;
+
+
+    // StatusBar
+    statusBarRunning = new BehaviorSubject<string>(this.canvasSettings.noQueryRunningMessage);
+    statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
+    statusBarMessage = new BehaviorSubject<StatusBarMessage>(null)
+
+    // Dexie
     dbDataCachingTableDatabase;
     dbCanvasAppDatabase;
 
