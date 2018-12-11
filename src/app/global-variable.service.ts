@@ -1227,33 +1227,11 @@ export class GlobalVariableService {
     statusBarMessage = new BehaviorSubject<StatusBarMessage>(null)
 
     // Dexie
-    dbDataCachingTableDatabase;
     dbCanvasAppDatabase;
 
     constructor(
         private http: HttpClient,
     ) {
-        // Local App info DB
-        // this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
-        // this.dbCanvasAppDatabase.version(1).stores(
-        //     {
-        //         contacts: 'id, first, last',
-        //         localDashboards: 'id',
-        //         currentCanvasUser: 'id, canvasServerName, currentCompany, currentUserName'
-        //     }
-        // );
-        // this.dbCanvasAppDatabase.open();
-
-        // Local CachingTable DB
-        this.dbDataCachingTableDatabase = new Dexie("DataCachingTable");
-        // this.dbDataCachingTableDatabase.version(1).stores(
-        //     {
-        //         localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
-        //     }
-        // );
-        // this.dbDataCachingTableDatabase.open();
-
-        // console.warn('xx local DBs created');
 
     }
 
@@ -1264,29 +1242,6 @@ export class GlobalVariableService {
                 "color: black; background: lightgray; font-size: 10px",)
         };
 
-        // var type = 'article';
-        // this[type+'_count'] = 1000;  // in a function we use "this";
-        // alert(this.article_count);
-
-        // // Local App info DB
-        // this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
-        // this.dbCanvasAppDatabase.version(1).stores(
-        //     {
-        //         contacts: 'id, first, last',
-        //         localDashboards: 'id',
-        //         currentCanvasUser: 'canvasServerName, canvasServerURI, currentCompany, currentUserName, currentToken'
-        //     }
-        // );
-        // this.dbCanvasAppDatabase.open();
-
-        // // Local CachingTable DB
-        // this.dbDataCachingTableDatabase = new Dexie("DataCachingTable");
-        // this.dbDataCachingTableDatabase.version(1).stores(
-        //     {
-        //         localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
-        //     }
-        // );
-        // this.dbDataCachingTableDatabase.open();
     }
 
      refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number):
