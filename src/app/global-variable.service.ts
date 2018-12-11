@@ -9656,6 +9656,36 @@ export class GlobalVariableService {
 
     }
 
+    validateUser(userID: string): Promise<boolean> {
+        // Checks if userID exists.  If not, return false.
+        // If so, set currentUser object and return true
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables validateUser ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
+        };
+
+        // TODO - do in more safe way with DB, Auth0, etc
+        return new Promise<boolean>((resolve, reject) => {
+            this.getCanvasUsers().then(usr => {
+                let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == userID);
+                if (foundIndex < 0) {
+
+                    if (this.sessionDebugging) {
+                        console.warn('xx Invalid userid', userID)
+                    };
+
+                    resolve(false);
+                } else {
+                    resolve(true);
+
+                    if (this.sessionDebugging) {
+                        console.warn('xx Valid userid', userID)
+                    };
+                };
+            });
+        });
+    }
+    
     clearCurrentUser() {
         // Description: reset the Global currentUser variable
         if (this.sessionDebugging) {
@@ -9764,36 +9794,6 @@ export class GlobalVariableService {
             this.currentUser.preferenceShowWidgetEditorLite = parameters.preferenceShowWidgetEditorLite;
         };
 
-    }
-
-    validateUser(userID: string): Promise<boolean> {
-        // Checks if userID exists.  If not, return false.
-        // If so, set currentUser object and return true
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables validateUser ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
-        };
-
-        // TODO - do in more safe way with DB, Auth0, etc
-        return new Promise<boolean>((resolve, reject) => {
-            this.getCanvasUsers().then(usr => {
-                let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == userID);
-                if (foundIndex < 0) {
-
-                    if (this.sessionDebugging) {
-                        console.warn('xx Invalid userid', userID)
-                    };
-
-                    resolve(false);
-                } else {
-                    resolve(true);
-
-                    if (this.sessionDebugging) {
-                        console.warn('xx Valid userid', userID)
-                    };
-                };
-            });
-        });
     }
 
     saveCanvasUser(data: CanvasUser): Promise<string> {
@@ -13216,7 +13216,7 @@ console.warn('xx ds perm', dp);
                     canvasServerName: this.currentCanvasServerName,
                     canvasServerURI: this.currentCanvasServerURI,
                     currentCompany: selectedCompanyName,
-                    currentUserName: userID,
+                    currentUserID: userID,
                     currentToken: ''
                 };
             console.warn('xx localCanvasUser', localCanvasUser)

@@ -50,7 +50,7 @@ export interface ICurrentCanvasUser {
     canvasServerName: string,
     canvasServerURI: string,
     currentCompany: string,
-    currentUserName: string,
+    currentUserID: string,
     currentToken: string
 }
 
@@ -59,20 +59,20 @@ export class CurrentCanvasUser implements ICurrentCanvasUser {
     canvasServerName: string;
     canvasServerURI: string;
     currentCompany: string;
-    currentUserName: string;
+    currentUserID: string;
     currentToken: string;
 
     constructor(
         canvasServerName: string,
         canvasServerURI: string,
         currentCompany: string,
-        currentUserName: string,
+        currentUserID: string,
         currentToken: string
     ) {
         this.canvasServerName = canvasServerName;
         this.canvasServerURI = canvasServerURI;
         this.currentCompany = currentCompany;
-        this.currentUserName = currentUserName;
+        this.currentUserID = currentUserID;
         this.currentToken = currentToken;
     }
 }
@@ -91,7 +91,7 @@ export class CanvasAppDatabase extends Dexie {
         this.version(1).stores({
             contacts: 'id, first, last',
             localDashboards: 'id',
-            currentCanvasUser: 'canvasServerName, currentCompany, currentUserName'
+            currentCanvasUser: 'canvasServerName, currentCompany, currentUserID'
             //...other tables goes here...
         });
     }

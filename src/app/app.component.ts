@@ -707,6 +707,7 @@ export class AppComponent implements OnInit {
         // - returns the JWT and user profile
         // The client:
         // - receives the JWT (JSON web token) and profile
+        // - updates the ID vars (Server, Company, User)
         // - stores this token locally in IndexedDB (using Dexie)
         // - stores the server, company name, username in IndexDB
         // - updates GV.currentUser = profile    NB: fix setCurrentCanvasUser
@@ -1014,6 +1015,7 @@ export class AppComponent implements OnInit {
         //      - if server returns user profile:
         //        - re-stores all local storage (currentCanvasServer, companyName,
         //          currentUserID, lastLoginDt, token)
+        //        - updates the ID vars (Server, Company, User)
         //        - GV.RefreshVars.next() which triggers a .subscribe above
         //        - load Landing page
         //
