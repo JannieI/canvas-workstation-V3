@@ -13,7 +13,6 @@ import { RouterStateSnapshot }        from '@angular/router';
 
 @Injectable()
 export class AuthGuard implements OnInit, CanActivate {
-    currentUserName: string = '';
 
     constructor(
         // private alertService: AlertService,
