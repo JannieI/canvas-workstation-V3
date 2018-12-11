@@ -44,14 +44,11 @@ import { StatusbarComponent }         from './statusbar.component';
 // WS
 import { WebSocketSubject }           from 'rxjs/webSocket';
 
-// Dexie
-import Dexie from 'dexie';
+// Local Data - Dexie
 import { CanvasAppDatabase }          from './dexieDatabase';
 import { LocalDashboard }             from './dexieDatabase';
 import { IDataCachingTable }          from './dexieDatabase';
 import { DataCachingDatabase }        from './dexieDatabase';
-
-
 
 
 // Constants
@@ -8002,14 +7999,6 @@ export class AppComponent implements OnInit {
                 {
                     console.log('xx CLEARED localDataCachingTable', result);
 
-                    // this.dbDataCachingTable = new Dexie("DataCachingTable");
-                    // this.dbDataCachingTable.version(1).stores(
-                    //     {
-                    //         localDataCachingTable: 'key, localExpiryDateTime',
-                    //     }
-                    // );
-                    // console.log('xx CREATED localDataCachingTable', result);
-
                     this.dbDataCachingTable.table("localDataCachingTable").count(res => {
                         console.warn('xx count localDataCachingTable after CLEAR', res);
                     });
@@ -8021,14 +8010,6 @@ export class AppComponent implements OnInit {
             .then(result =>
                 {
                     console.log('xx CLEARED localDashboards', result);
-                    // this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
-                    // this.dbCanvasAppDatabase.version(1).stores(
-                    //     {
-                    //         contacts: 'id, first, last',
-                    //         localDashboards: 'id'
-                    //     }
-                    // );
-                    // console.log('xx CREATED localDashboards', result);
 
                     this.dbCanvasAppDatabase.table("localDashboards").count(res => {
                         console.warn('xx count localDashboards at START', res);
@@ -8117,9 +8098,6 @@ export class AppComponent implements OnInit {
         });
 
 
-        // Define DB
-        // var db = new Dexie("CanvasAppDatabase");
-
         // Listening to Deletions and Version Changes
         // db.on("versionchange", function(event) {
         //     if (confirm ("Another page tries to upgrade the database to version " +
@@ -8161,8 +8139,6 @@ export class AppComponent implements OnInit {
             //         // db.close()
             //         // db.delete().then(() => {
             //         //     console.log("Database successfully deleted");
-            //         //     var db = new Dexie("CanvasAppDatabase");
-            //         //     db.version(1).stores({contacts: 'id, first, last'});
             //         // db.open()
             //         // .then(res => {
 
@@ -8238,31 +8214,7 @@ export class AppComponent implements OnInit {
         // )
         // console.log('xx Deleted DB');
 
-        // Dexie.exists("CanvasAppDatabase").then(function(exists) {
-        //     if (exists) {
-        //         console.log("Database exists");
-        //         // Open DB
-        //         db.version(1).stores({contacts: 'id, first, last'});
-        //         db.open()
-        //             .then(res => {
-        //                 console.log('xx Opened DB', res);
-        //             })
-        //             .catch((error) => {
-        //                 console.log('xx Error in Open DB', error);
-        //             });
 
-        //     } else {
-        //         console.log("Database doesn't exist");
-        //         var db = new Dexie('CanvasAppDatabase');
-        //         db.version(1).stores({contacts: 'id, first, last'});
-        //         db.open();
-        //         console.log('xx Opened NEW DB');
-
-        //     }
-        // })
-        // .catch(function (error) {
-        //     console.error("Oops, an error occurred when trying to check database existance");
-        // });
 
         // let keys: number[] = [1, 2, 7]
         // db.table("contacts").bulkDelete(keys)
