@@ -739,6 +739,13 @@ export class AppComponent implements OnInit {
         //   - updates GV.currentCanvasCompanyName = currentCanvasCompanyName
         //   - loads users, do snapshots, etc below
 
+        this.globalVariableService.loadVariable.subscribe(res => {
+            if (res) {
+                // get canvasSettings from DB too
+                console.warn('xx res is good', res)
+            };
+        });
+        
         this.globalVariableService.getCanvasUsers().then(res => {
             this.globalVariableService.currentUserID.next('JannieI');
             this.globalVariableService.setCurrentCanvasUser('JannieI');

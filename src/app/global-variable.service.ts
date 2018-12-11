@@ -1091,7 +1091,8 @@ export class GlobalVariableService {
     showGrid = new BehaviorSubject<boolean>(false);     // True to show th egrid
     showPalette = new BehaviorSubject<boolean>(true);   // True to show the palette
     preferencePaletteHorisontal = new BehaviorSubject<boolean>(true); // Palette orientation
-
+    loadVariable = new BehaviorSubject<boolean>(true); // True to load variables in App.ngOnInit
+    
     // First time user
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
