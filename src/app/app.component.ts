@@ -740,7 +740,7 @@ export class AppComponent implements OnInit {
         //   - updates GV.currentCanvasCompanyName = currentCanvasCompanyName
         //   - loads users, do snapshots, etc below
 
-        this.globalVariableService.loadVariable.subscribe(res => {
+        this.globalVariableService.loadVariableOnStartup.subscribe(res => {
             if (res) {
                 // get canvasSettings from DB too
                 console.warn('xx res is good', res)
@@ -829,7 +829,7 @@ export class AppComponent implements OnInit {
             } else  {
                 // get canvasSettings from DB too
                 console.warn('xx res is false', res)
-                this.globalVariableService.loadVariable.next(true);
+                this.globalVariableService.loadVariableOnStartup.next(true);
             };;
         });
         
@@ -10482,9 +10482,6 @@ export class AppComponent implements OnInit {
                 preferencePaletteHorisontal: !this.globalVariableService.currentUser.preferencePaletteHorisontal
             }
         );
-        // this.globalVariableService.currentUser.preferencePaletteHorisontal =
-        //     !this.globalVariableService.currentUser.preferencePaletteHorisontal;
-
 
         this.globalVariableService.preferencePaletteHorisontal.next(
             this.globalVariableService.currentUser.preferencePaletteHorisontal
