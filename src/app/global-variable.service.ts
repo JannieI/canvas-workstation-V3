@@ -1031,9 +1031,21 @@ export class GlobalVariableService {
     // *********************************************************************************
     // TODO - get from DB, not Constants
 
-    // Server
 
-    // Canvas
+
+    // User
+    // *********************************************************************************
+
+    // User ID info - stored locally and used to login / verify
+    currentUserID = new BehaviorSubject<string>('');
+    canvasServerName: string = '';
+    // currentUserID: string = '';
+    canvasServerURI: string = '';
+    currentCompany: string = '';
+    currentToken: string = '';
+    loggedIntoServer = new BehaviorSubject<boolean>(true);
+
+    // Canvas Server Profile (and settings)
     canvasSettings: CanvasSettings = {
         companyName: '',
         companyLogo: '',
@@ -1058,19 +1070,7 @@ export class GlobalVariableService {
 
     };
 
-    // Company
-
-    // User
-    // *********************************************************************************
-
-    // User ID info - stored locally and used to login / verify
-    currentUserID = new BehaviorSubject<string>('');
-    canvasServerName: string = '';
-    // currentUserID: string = '';
-    canvasServerURI: string = '';
-    currentCompany: string = '';
-    currentToken: string = '';
-    loggedIntoServer = new BehaviorSubject<boolean>(true);
+    // Company Profile (and defaults)
 
     // Current User Profile
     currentUser: CanvasUser;                            // Current logged in user
