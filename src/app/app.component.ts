@@ -890,6 +890,9 @@ res[0].token = 'test'
                             
                             // Refresh
                             this.globalVariableService.loadVariableOnStartup.next(true);
+
+                            // Show Landing page
+                            this.showModalLanding = true;
                         }
                     )
                 });
