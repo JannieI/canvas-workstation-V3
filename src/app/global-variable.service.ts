@@ -9629,6 +9629,12 @@ export class GlobalVariableService {
 
         // TODO - do in more safe way with DB, Auth0, etc
         return new Promise<boolean>((resolve, reject) => {
+            
+            // Nothing to do
+            if (userID == null  ||  userID == '') {
+                resolve(false);
+            };
+
             this.getCanvasUsers().then(usr => {
                 let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == userID);
                 if (foundIndex < 0) {

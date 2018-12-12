@@ -636,7 +636,7 @@ export class AppComponent implements OnInit {
             } else  {
                 // get canvasSettings from DB too
                 console.warn('xx res is false', res)
-                this.globalVariableService.loadVariableOnStartup.next(true);
+                // this.globalVariableService.loadVariableOnStartup.next(true);
             };;
         });
         
