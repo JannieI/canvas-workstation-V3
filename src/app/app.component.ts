@@ -839,11 +839,29 @@ export class AppComponent implements OnInit {
                 this.showModalDashboardLogin = true;
             } else {
 
+                // Note: for now, we only allow one userID in local cache ...
+                // .where('canvasServerName').equals('Canvas Server Local')
                 this.dbCanvasAppDatabase.table("currentCanvasUser")
-                .where('canvasServerName').equals('Canvas Server Local')
                 .toArray()
                 .then(res => {
-                    console.warn('xx localDashboards res ', res);
+
+                    // Validate that all fields filled in
+                    if (res[0].canvasServerName == null  ||  res[0].canvasServerName == '') {
+                        this.showModalDashboardLogin = true;
+                    };
+                    if (res[0].canvasServerURI == null  ||  res[0].canvasServerURI == '') {
+                        this.showModalDashboardLogin = true;
+                    };
+                    if (res[0].currentCompany == null  ||  res[0].currentCompany == '') {
+                        this.showModalDashboardLogin = true;
+                    };
+                    if (res[0].currentUserID == null  ||  res[0].currentUserID == '') {
+                        this.showModalDashboardLogin = true;
+                    };
+                    if (res[0].currentToken == null  ||  res[0].currentToken == '') {
+                        this.showModalDashboardLogin = true;
+                    };
+                    console.warn('xx localDashboards res ', res[0].canvasServerName);
                 });
             }
 
