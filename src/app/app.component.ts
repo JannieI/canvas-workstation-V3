@@ -845,6 +845,8 @@ export class AppComponent implements OnInit {
                 .toArray()
                 .then(res => {
 
+res[0].currentUserID = 'JannieI'
+res[0].token = 'test'
                     // Validate that all fields filled in
                     if (res[0].canvasServerName == null  ||  res[0].canvasServerName == '') {
                         console.warn('xx canvasServerName', res[0].canvasServerName);
@@ -872,6 +874,15 @@ export class AppComponent implements OnInit {
                         this.showModalDashboardLogin = true;
                     };
                     console.warn('xx localDashboards res ', res[0]);
+
+
+                    // Verify the user
+                    this.globalVariableService.verifyCanvasUser(res[0].currentUserID).then(
+                        res => {
+                            console.warn('xx verified user ', res[0].currentUserID);
+                            
+                        }
+                    )
                 });
             }
 
