@@ -833,7 +833,7 @@ export class AppComponent implements OnInit {
         this.dbCanvasAppDatabase.open();
         
         // Count
-        this.dbCanvasAppDatabase.table("localDashboards")
+        this.dbCanvasAppDatabase.table("currentCanvasUser")
             .where('canvasServerName').equals('Canvas Server Local')
             .toArray()
             .then(res => {

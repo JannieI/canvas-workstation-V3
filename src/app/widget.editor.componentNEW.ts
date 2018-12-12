@@ -1531,6 +1531,7 @@ export interface dataSchemaInterface {
                 this.showSpecificGraphLayer,
                 (this.currentGraphLayer - 1)
             );
+console.warn('xx spec', this.specification);
 
             // Render in DOM
             let vegaSpecification = compile(this.specification).spec;
@@ -3087,7 +3088,7 @@ export interface dataSchemaInterface {
         // If a new DS, clear out info for old one
         if (this.globalVariableService.previousGraphEditDSID != this.selectedRowID) {
 
-                // Determine if data obtains in Glob Var
+            // Determine if data obtains in Glob Var
             let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
                 ds => ds.datasourceID == this.selectedRowID
             );
