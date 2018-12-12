@@ -888,6 +888,8 @@ res[0].token = 'test'
                             this.globalVariableService.currentUserID = res[0].currentUserID;
                             this.globalVariableService.currentToken = res[0].currentToken;
                             
+                            // Refresh
+                            this.globalVariableService.loadVariableOnStartup.next(true);
                         }
                     )
                 });
