@@ -1037,9 +1037,9 @@ export class GlobalVariableService {
     // *********************************************************************************
 
     // User ID info - stored locally and used to login / verify
-    currentUserID = new BehaviorSubject<string>('');
+    // currentUserID = new BehaviorSubject<string>('');
     canvasServerName: string = '';
-    // currentUserID: string = '';
+    currentUserID: string = '';
     canvasServerURI: string = '';
     currentCompany: string = '';
     currentToken: string = '';

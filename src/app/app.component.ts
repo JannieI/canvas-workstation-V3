@@ -544,7 +544,7 @@ export class AppComponent implements OnInit {
             if (res) {
 
                 // TODO get canvasSettings from DB too
-                console.warn('xx res is good', res)
+                console.warn('xx res is good', res, this.globalVariableService.currentUser)
 
 
 
@@ -559,11 +559,14 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.dontDisturb.subscribe(ddb => 
                     this.dontDisturb = ddb
                 );
+    console.warn(('xx 14'));
 
                 // Current user
-                this.globalVariableService.currentUserID.subscribe(usr => {
-                    this.currentUserID = usr;
-                });
+                this.currentUserID = this.globalVariableService.currentUser.userID;
+                // this.globalVariableService.currentUserID.subscribe(usr => {
+                //     this.currentUserID = usr;
+                // });
+
 
                 // Palette and Grid info
                 this.showPaletteSubscription = this.globalVariableService.showPalette.subscribe(
@@ -572,7 +575,7 @@ export class AppComponent implements OnInit {
                 this.showGridSubscription = this.globalVariableService.showGrid.subscribe(
                     i => this.showGrid = i
                 );
-console.warn(('xx 14'));
+                console.warn(('xx 14 2'));
 
                 // HasDS ?
                 this.hasDatasourcesSubscription = this.globalVariableService.hasDatasources.subscribe(
@@ -592,7 +595,6 @@ console.warn(('xx 14'));
                 this.globalVariableService.dashboardsRecentBehSubject.subscribe(i => {
                     this.recentDashboards = i.slice(0, 5)
                 });
-console.warn(('xx 15'));
 
                 // This refreshes one W
                 this.changedWidgetSubscription = this.globalVariableService.changedWidget.subscribe(
@@ -731,13 +733,9 @@ console.warn(('xx 15'));
                     }
                 );
 
-
-
-console.warn(('xx 16'));
-
-
+                // TODO - set GV.canvasUser record
                 this.globalVariableService.getCanvasUsers().then(res => {
-                    this.globalVariableService.currentUserID.next('JannieI');
+                    // this.globalVariableService.currentUserID.next('JannieI');
                     this.globalVariableService.setCurrentCanvasUser('JannieI');
 
                     // Get Users and Groups, async
@@ -750,7 +748,6 @@ console.warn(('xx 16'));
                     if (this.globalVariableService.currentUser.lastPaletteTop != null) {
                         this.paletteTop = this.globalVariableService.currentUser.lastPaletteTop;
                     };
-console.warn(('xx 17'));
         
                     let today = new Date();
                     this.globalVariableService.sessionDateTimeLoggedin =
@@ -918,7 +915,6 @@ res[0].currentToken = 'test'
                                 this.globalVariableService.currentCompany = res[0].currentCompany;
                                 this.globalVariableService.currentUserID = res[0].currentUserName;
                                 this.globalVariableService.currentToken = res[0].currentToken;
-    console.warn(('xx 1'));
                                 
                                 // Refresh
                                 this.globalVariableService.loadVariableOnStartup.next(true);

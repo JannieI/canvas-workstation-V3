@@ -118,7 +118,8 @@ export class LoginComponent implements OnInit {
                 );
 
                 // Set userID
-                this.globalVariableService.currentUserID.next(this.userID);
+                // TODO - set GV.canvasUser record
+                // this.globalVariableService.currentUserID.next(this.userID);
 
                 // Optional start D
                 if (this.globalVariableService.currentUser.preferenceStartupDashboardID != null) {

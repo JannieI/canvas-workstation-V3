@@ -83,7 +83,8 @@ export class LogoutComponent implements OnInit {
 
         // Reset / Logout user
         // TODO - do this in better way
-        this.globalVariableService.currentUserID.next('');
+        // TODO - set GV.canvasUser record
+        // this.globalVariableService.currentUserID.next('');
         
         // Clear global Var
         this.globalVariableService.clearCurrentUser();
