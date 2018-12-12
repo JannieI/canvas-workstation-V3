@@ -1531,7 +1531,8 @@ export interface dataSchemaInterface {
                 this.showSpecificGraphLayer,
                 (this.currentGraphLayer - 1)
             );
-console.warn('xx spec', this.specification);
+console.warn('xx spec', this.specification,
+this.localWidget);
 
             // Render in DOM
             let vegaSpecification = compile(this.specification).spec;
