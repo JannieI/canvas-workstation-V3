@@ -1063,6 +1063,8 @@ export interface dataSchemaInterface {
                     this.selectedRowID = this.globalVariableService.previousGraphEditDSID;
                     this.selectedRowIndex = datasourceIndex;
 
+                    // Reset: assume we are starting afresh ..
+                    this.globalVariableService.previousGraphEditDSID = null;
                     this.clickDSrow(this.selectedRowIndex, this.selectedRowID)
                 }
             };
@@ -3062,6 +3064,9 @@ this.localWidget);
             this.showPreview = true;
 
         });
+
+        console.warn('xx clicked row', dataSetIndex);
+        
     }
 
     clickDSfilter(index, datasourceID: number) {
