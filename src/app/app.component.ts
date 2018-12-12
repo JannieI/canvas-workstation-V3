@@ -636,7 +636,7 @@ export class AppComponent implements OnInit {
             } else  {
                 // get canvasSettings from DB too
                 console.warn('xx res is false', res)
-                // this.globalVariableService.loadVariableOnStartup.next(true);
+                this.globalVariableService.loadVariableOnStartup.next(true);
             };;
         });
         
@@ -848,53 +848,53 @@ export class AppComponent implements OnInit {
 res[0].currentUserID = 'JannieI'
 res[0].token = 'test'
                     // Validate that all fields filled in
-                    if (res[0].canvasServerName == null  ||  res[0].canvasServerName == '') {
-                        console.warn('xx canvasServerName', res[0].canvasServerName);
+                    // if (res[0].canvasServerName == null  ||  res[0].canvasServerName == '') {
+                    //     console.warn('xx canvasServerName', res[0].canvasServerName);
                         
-                        this.showModalDashboardLogin = true;
-                    };
-                    if (res[0].canvasServerURI == null  ||  res[0].canvasServerURI == '') {
-                        console.warn('xx canvasServerURI', res[0].canvasServerURI);
+                    //     this.showModalDashboardLogin = true;
+                    // };
+                    // if (res[0].canvasServerURI == null  ||  res[0].canvasServerURI == '') {
+                    //     console.warn('xx canvasServerURI', res[0].canvasServerURI);
                         
-                        this.showModalDashboardLogin = true;
-                    };
-                    if (res[0].currentCompany == null  ||  res[0].currentCompany == '') {
-                        console.warn('xx currentCompany', res[0].currentCompany);
+                    //     this.showModalDashboardLogin = true;
+                    // };
+                    // if (res[0].currentCompany == null  ||  res[0].currentCompany == '') {
+                    //     console.warn('xx currentCompany', res[0].currentCompany);
                         
-                        this.showModalDashboardLogin = true;
-                    };
-                    if (res[0].currentUserID == null  ||  res[0].currentUserID == '') {
-                        console.warn('xx currentUserID', res[0].currentUserID);
+                    //     this.showModalDashboardLogin = true;
+                    // };
+                    // if (res[0].currentUserID == null  ||  res[0].currentUserID == '') {
+                    //     console.warn('xx currentUserID', res[0].currentUserID);
                         
-                        this.showModalDashboardLogin = true;
-                    };
-                    if (res[0].currentToken == null  ||  res[0].currentToken == '') {
-                        console.warn('xx currentToken', res[0].currentToken);
+                    //     this.showModalDashboardLogin = true;
+                    // };
+                    // if (res[0].currentToken == null  ||  res[0].currentToken == '') {
+                    //     console.warn('xx currentToken', res[0].currentToken);
                         
-                        this.showModalDashboardLogin = true;
-                    };
-                    console.warn('xx localDashboards res ', res[0]);
+                    //     this.showModalDashboardLogin = true;
+                    // };
+                    // console.warn('xx localDashboards res ', res[0]);
 
 
                     // Verify the user
-                    this.globalVariableService.verifyCanvasUser(res[0].currentUserID).then(
-                        res => {
-                            console.warn('xx verified user ', res[0].currentUserID);
+                    // this.globalVariableService.verifyCanvasUser(res[0].currentUserID).then(
+                    //     res => {
+                    //         console.warn('xx verified user ', res[0].currentUserID);
 
-                            // Store User ID info
-                            this.globalVariableService.canvasServerName = res[0].canvasServerName;
-                            this.globalVariableService.canvasServerURI = res[0].canvasServerURI;
-                            this.globalVariableService.currentCompany = res[0].currentCompany;
-                            this.globalVariableService.currentUserID = res[0].currentUserID;
-                            this.globalVariableService.currentToken = res[0].currentToken;
+                    //         // Store User ID info
+                    //         this.globalVariableService.canvasServerName = res[0].canvasServerName;
+                    //         this.globalVariableService.canvasServerURI = res[0].canvasServerURI;
+                    //         this.globalVariableService.currentCompany = res[0].currentCompany;
+                    //         this.globalVariableService.currentUserID = res[0].currentUserID;
+                    //         this.globalVariableService.currentToken = res[0].currentToken;
                             
-                            // Refresh
-                            this.globalVariableService.loadVariableOnStartup.next(true);
+                    //         // Refresh
+                    //         this.globalVariableService.loadVariableOnStartup.next(true);
 
-                            // Show Landing page
-                            this.showModalLanding = true;
-                        }
-                    )
+                    //         // Show Landing page
+                    //         this.showModalLanding = true;
+                    //     }
+                    // );
                 });
             }
 

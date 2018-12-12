@@ -1225,7 +1225,7 @@ export class GlobalVariableService {
     dontDisturb = new BehaviorSubject<boolean>(false);   // True means dont disturb display
     dsIDs: number[] = [];           // Dataset IDs
     sessionDateTimeLoggedin: string = '';
-    sessionDebugging: boolean = true;      // True to log multiple messages to Console
+    sessionDebugging: boolean = false;      // True to log multiple messages to Console
     sessionLogging: boolean = false;
 
 
@@ -13270,6 +13270,16 @@ console.warn('xx ds perm', dp);
 
                 // Store locally
                 localStorage.setItem("eazl-token", JSON.stringify(token));
+
+                //         // Store User ID info
+                //         this.globalVariableService.canvasServerName = res[0].canvasServerName;
+                //         this.globalVariableService.canvasServerURI = res[0].canvasServerURI;
+                //         this.globalVariableService.currentCompany = res[0].currentCompany;
+                //         this.globalVariableService.currentUserID = res[0].currentUserID;
+                //         this.globalVariableService.currentToken = res[0].currentToken;
+                        
+                //         // Refresh
+                //         this.globalVariableService.loadVariableOnStartup.next(true);
 
                 resolve(true);
             },
