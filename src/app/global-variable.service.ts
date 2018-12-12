@@ -13268,7 +13268,7 @@ console.warn('xx ds perm', dp);
             this.http.post<Token>(this.currentCanvasServerURI + 'accounts/jwt-create/',
                 {username, password}).subscribe(token => {
 
-                // Store locally
+                // Store locally - NB must be Dexie ...
                 localStorage.setItem("eazl-token", JSON.stringify(token));
 
                 //         // Store User ID info
