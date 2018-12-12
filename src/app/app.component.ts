@@ -901,24 +901,24 @@ res[0].token = 'test'
 
 
                     // Verify the user
-                    // this.globalVariableService.verifyCanvasUser(res[0].currentUserID).then(
-                    //     res => {
-                    //         console.warn('xx verified user ', res[0].currentUserID);
+                    this.globalVariableService.verifyCanvasUser(res[0].currentUserID).then(
+                        res => {
+                            console.warn('xx verified user ', res[0].currentUserID);
 
-                    //         // Store User ID info
-                    //         this.globalVariableService.canvasServerName = res[0].canvasServerName;
-                    //         this.globalVariableService.canvasServerURI = res[0].canvasServerURI;
-                    //         this.globalVariableService.currentCompany = res[0].currentCompany;
-                    //         this.globalVariableService.currentUserID = res[0].currentUserID;
-                    //         this.globalVariableService.currentToken = res[0].currentToken;
+                            // Store User ID info
+                            this.globalVariableService.canvasServerName = res[0].canvasServerName;
+                            this.globalVariableService.canvasServerURI = res[0].canvasServerURI;
+                            this.globalVariableService.currentCompany = res[0].currentCompany;
+                            this.globalVariableService.currentUserID = res[0].currentUserID;
+                            this.globalVariableService.currentToken = res[0].currentToken;
                             
-                    //         // Refresh
-                    //         this.globalVariableService.loadVariableOnStartup.next(true);
+                            // Refresh
+                            this.globalVariableService.loadVariableOnStartup.next(true);
 
-                    //         // Show Landing page
-                    //         this.showModalLanding = true;
-                    //     }
-                    // );
+                            // Show Landing page
+                            this.showModalLanding = true;
+                        }
+                    );
                 });
             }
 
