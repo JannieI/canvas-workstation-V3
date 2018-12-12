@@ -9619,11 +9619,11 @@ export class GlobalVariableService {
 
     }
 
-    validateUser(userID: string): Promise<boolean> {
+    verifyCanvasUser(userID: string): Promise<boolean> {
         // Checks if userID exists.  If not, return false.
         // If so, set currentUser object and return true
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables validateUser ...',
+            console.log('%c    Global-Variables verifyCanvasUser ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
         };
 
