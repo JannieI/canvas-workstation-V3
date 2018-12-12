@@ -572,6 +572,7 @@ export class AppComponent implements OnInit {
                 this.showGridSubscription = this.globalVariableService.showGrid.subscribe(
                     i => this.showGrid = i
                 );
+console.warn(('xx 14'));
 
                 // HasDS ?
                 this.hasDatasourcesSubscription = this.globalVariableService.hasDatasources.subscribe(
@@ -591,6 +592,7 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.dashboardsRecentBehSubject.subscribe(i => {
                     this.recentDashboards = i.slice(0, 5)
                 });
+console.warn(('xx 15'));
 
                 // This refreshes one W
                 this.changedWidgetSubscription = this.globalVariableService.changedWidget.subscribe(
@@ -731,6 +733,7 @@ export class AppComponent implements OnInit {
 
 
 
+console.warn(('xx 16'));
 
 
                 this.globalVariableService.getCanvasUsers().then(res => {
@@ -747,6 +750,7 @@ export class AppComponent implements OnInit {
                     if (this.globalVariableService.currentUser.lastPaletteTop != null) {
                         this.paletteTop = this.globalVariableService.currentUser.lastPaletteTop;
                     };
+console.warn(('xx 17'));
         
                     let today = new Date();
                     this.globalVariableService.sessionDateTimeLoggedin =
@@ -821,7 +825,7 @@ export class AppComponent implements OnInit {
             } else  {
                 // get canvasSettings from DB too
                 console.warn('xx res is false', res)
-                this.globalVariableService.loadVariableOnStartup.next(true);
+                // this.globalVariableService.loadVariableOnStartup.next(true);
             };;
         });
         
@@ -870,7 +874,7 @@ export class AppComponent implements OnInit {
                 .then(res => {
 
 res[0].currentUserID = 'JannieI'
-res[0].token = 'test'
+res[0].currentToken = 'test'
                     // Validate that all fields filled in
                     if (res[0].canvasServerName == null  ||  res[0].canvasServerName == '') {
                         console.warn('xx canvasServerName', res[0].canvasServerName);
@@ -897,26 +901,35 @@ res[0].token = 'test'
                         
                         this.showModalDashboardLogin = true;
                     };
-                    console.warn('xx localDashboards res ', res[0]);
+                    console.warn('xx currentCanvasUser res ', res[0]);
 
 
                     // Verify the user
                     this.globalVariableService.verifyCanvasUser(res[0].currentUserID).then(
-                        res => {
+                        result => {
                             console.warn('xx verified user ', res[0].currentUserID);
 
-                            // Store User ID info
-                            this.globalVariableService.canvasServerName = res[0].canvasServerName;
-                            this.globalVariableService.canvasServerURI = res[0].canvasServerURI;
-                            this.globalVariableService.currentCompany = res[0].currentCompany;
-                            this.globalVariableService.currentUserID = res[0].currentUserID;
-                            this.globalVariableService.currentToken = res[0].currentToken;
-                            
-                            // Refresh
-                            this.globalVariableService.loadVariableOnStartup.next(true);
+                            if (result) {
 
-                            // Show Landing page
-                            this.showModalLanding = true;
+                                // Store User ID info
+                                // TODO - fix userID ID ID
+                                this.globalVariableService.canvasServerName = res[0].canvasServerName;
+                                this.globalVariableService.canvasServerURI = res[0].canvasServerURI;
+                                this.globalVariableService.currentCompany = res[0].currentCompany;
+                                this.globalVariableService.currentUserID = res[0].currentUserName;
+                                this.globalVariableService.currentToken = res[0].currentToken;
+    console.warn(('xx 1'));
+                                
+                                // Refresh
+                                this.globalVariableService.loadVariableOnStartup.next(true);
+                                console.warn(('xx 2'));
+
+                                // Show Landing page
+                                this.showModalLanding = true;
+                            } else {
+                                console.warn('xx failed');
+                                this.showModalDashboardLogin = true;
+                            };
                         }
                     );
                 });
