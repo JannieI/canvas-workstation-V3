@@ -847,21 +847,31 @@ export class AppComponent implements OnInit {
 
                     // Validate that all fields filled in
                     if (res[0].canvasServerName == null  ||  res[0].canvasServerName == '') {
+                        console.warn('xx canvasServerName', res[0].canvasServerName);
+                        
                         this.showModalDashboardLogin = true;
                     };
                     if (res[0].canvasServerURI == null  ||  res[0].canvasServerURI == '') {
+                        console.warn('xx canvasServerURI', res[0].canvasServerURI);
+                        
                         this.showModalDashboardLogin = true;
                     };
                     if (res[0].currentCompany == null  ||  res[0].currentCompany == '') {
+                        console.warn('xx currentCompany', res[0].currentCompany);
+                        
                         this.showModalDashboardLogin = true;
                     };
                     if (res[0].currentUserID == null  ||  res[0].currentUserID == '') {
+                        console.warn('xx currentUserID', res[0].currentUserID);
+                        
                         this.showModalDashboardLogin = true;
                     };
                     if (res[0].currentToken == null  ||  res[0].currentToken == '') {
+                        console.warn('xx currentToken', res[0].currentToken);
+                        
                         this.showModalDashboardLogin = true;
                     };
-                    console.warn('xx localDashboards res ', res[0].canvasServerName);
+                    console.warn('xx localDashboards res ', res[0]);
                 });
             }
 

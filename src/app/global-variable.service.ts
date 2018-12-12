@@ -1061,11 +1061,19 @@ export class GlobalVariableService {
     // Company
 
     // User
-    currentUser: CanvasUser;                            // Current logged in user
+    // *********************************************************************************
+
+    // User ID info - stored locally and used to login / verify
     currentUserID = new BehaviorSubject<string>('');
+    canvasServerName: string = '';
+    // currentUserID: string = '';
+    canvasServerURI: string = '';
+    currentCompany: string = '';
+    currentToken: string = '';
     loggedIntoServer = new BehaviorSubject<boolean>(true);
 
-
+    // Current User Profile
+    currentUser: CanvasUser;                            // Current logged in user
     
 
     // Canvas-related info and Data
