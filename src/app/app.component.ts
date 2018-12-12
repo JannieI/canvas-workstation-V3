@@ -833,12 +833,21 @@ export class AppComponent implements OnInit {
         this.dbCanvasAppDatabase.open();
         
         // Count
-        this.dbCanvasAppDatabase.table("currentCanvasUser")
-            .where('canvasServerName').equals('Canvas Server Local')
-            .toArray()
-            .then(res => {
-                console.warn('xx localDashboards res ', res);
-            });
+        this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
+            console.warn('xx currentCanvasUser Count ', res);
+            if (res != 1) {
+                this.showModalDashboardLogin = true;
+            } else {
+
+                this.dbCanvasAppDatabase.table("currentCanvasUser")
+                .where('canvasServerName').equals('Canvas Server Local')
+                .toArray()
+                .then(res => {
+                    console.warn('xx localDashboards res ', res);
+                });
+            }
+
+        });
 
         // Local CachingTable DB
         this.dbDataCachingTable = new DataCachingDatabase;

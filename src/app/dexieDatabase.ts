@@ -54,7 +54,7 @@ export interface ICurrentCanvasUser {
     currentToken: string
 }
 
-// Dexie Table: Canvas User
+// Dexie Table: Canvas User-related information
 export class CurrentCanvasUser implements ICurrentCanvasUser {
     canvasServerName: string;
     canvasServerURI: string;
