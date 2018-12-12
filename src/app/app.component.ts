@@ -455,9 +455,9 @@ export class AppComponent implements OnInit {
         // Process for Authentication, Login, tokens between Canvas-Server and Canvas-Client:
 
         // On App startup (ngOnInit):
-        // 1. All the RxJs subscriptions are called (to listen for updates), including:
+        // 1. RxJs subscription to Refresh Variables:
+        //    Rest of the RxJs subscriptions are called (to listen for updates), including:
         //    - Current User (object that has profile of the current user)
-        //    - Refresh Variables
         //    - Refresh one W or whole D
         // 2. Get info from localStorage (using Dexie)
         //    - if none or incomplete info, DELETE local and proceed to Login form
@@ -535,9 +535,15 @@ export class AppComponent implements OnInit {
         //   - updates GV.currentCanvasCompanyName = currentCanvasCompanyName
         //   - loads users, do snapshots, etc below
 
+
+
+        // 1. RxJs subscription to Refresh Variables:
+        // *****************************************************************************
+
         this.globalVariableService.loadVariableOnStartup.subscribe(res => {
             if (res) {
-                // get canvasSettings from DB too
+
+                // TODO get canvasSettings from DB too
                 console.warn('xx res is good', res)
 
 
@@ -546,9 +552,8 @@ export class AppComponent implements OnInit {
 
 
 
-                // 1.  Call all the RxJs SUBSCRIPTIONS
-                //     To obtain required info as and when it is filled by other forms, ie Login
-                // *****************************************************************************
+                // Rest of the RxJs subscriptions are called (to listen for updates)
+                // To obtain required info as and when it is filled by other forms, ie Login
 
                 // Dont Disturb
                 this.globalVariableService.dontDisturb.subscribe(ddb => 
@@ -867,32 +872,32 @@ export class AppComponent implements OnInit {
 res[0].currentUserID = 'JannieI'
 res[0].token = 'test'
                     // Validate that all fields filled in
-                    // if (res[0].canvasServerName == null  ||  res[0].canvasServerName == '') {
-                    //     console.warn('xx canvasServerName', res[0].canvasServerName);
+                    if (res[0].canvasServerName == null  ||  res[0].canvasServerName == '') {
+                        console.warn('xx canvasServerName', res[0].canvasServerName);
                         
-                    //     this.showModalDashboardLogin = true;
-                    // };
-                    // if (res[0].canvasServerURI == null  ||  res[0].canvasServerURI == '') {
-                    //     console.warn('xx canvasServerURI', res[0].canvasServerURI);
+                        this.showModalDashboardLogin = true;
+                    };
+                    if (res[0].canvasServerURI == null  ||  res[0].canvasServerURI == '') {
+                        console.warn('xx canvasServerURI', res[0].canvasServerURI);
                         
-                    //     this.showModalDashboardLogin = true;
-                    // };
-                    // if (res[0].currentCompany == null  ||  res[0].currentCompany == '') {
-                    //     console.warn('xx currentCompany', res[0].currentCompany);
+                        this.showModalDashboardLogin = true;
+                    };
+                    if (res[0].currentCompany == null  ||  res[0].currentCompany == '') {
+                        console.warn('xx currentCompany', res[0].currentCompany);
                         
-                    //     this.showModalDashboardLogin = true;
-                    // };
-                    // if (res[0].currentUserID == null  ||  res[0].currentUserID == '') {
-                    //     console.warn('xx currentUserID', res[0].currentUserID);
+                        this.showModalDashboardLogin = true;
+                    };
+                    if (res[0].currentUserID == null  ||  res[0].currentUserID == '') {
+                        console.warn('xx currentUserID', res[0].currentUserID);
                         
-                    //     this.showModalDashboardLogin = true;
-                    // };
-                    // if (res[0].currentToken == null  ||  res[0].currentToken == '') {
-                    //     console.warn('xx currentToken', res[0].currentToken);
+                        this.showModalDashboardLogin = true;
+                    };
+                    if (res[0].currentToken == null  ||  res[0].currentToken == '') {
+                        console.warn('xx currentToken', res[0].currentToken);
                         
-                    //     this.showModalDashboardLogin = true;
-                    // };
-                    // console.warn('xx localDashboards res ', res[0]);
+                        this.showModalDashboardLogin = true;
+                    };
+                    console.warn('xx localDashboards res ', res[0]);
 
 
                     // Verify the user
@@ -925,7 +930,7 @@ res[0].token = 'test'
 
 
 
-        this.showModalLanding = this.globalVariableService.showModalLanding.value;
+        // this.showModalLanding = this.globalVariableService.showModalLanding.value;
 
 
     }
