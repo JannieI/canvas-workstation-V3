@@ -527,18 +527,6 @@ export class AppComponent implements OnInit {
         // - emit a close event, which will open the New D or Open D forms
 
 
-        // 1.  Call all the RxJs SUBSCRIPTIONS
-        //     To obtain required info as and when it is filled by other forms, ie Login
-        // *****************************************************************************
-
-        // Dont Disturb
-        this.globalVariableService.dontDisturb.subscribe(ddb => this.dontDisturb = ddb)
-
-        // Current user
-        this.globalVariableService.currentUserID.subscribe(usr => {
-            this.currentUserID = usr;
-        })
-
         // Refresh Variables (local and global) to be used in the whole App.  This happens
         // after successful login, or verify by server of info read from localStorage:
         //   - updates GV.currentUser = profile    NB: fix setCurrentCanvasUser
@@ -551,9 +539,201 @@ export class AppComponent implements OnInit {
             if (res) {
                 // get canvasSettings from DB too
                 console.warn('xx res is good', res)
+
+
+
+
+
+
+
+                // 1.  Call all the RxJs SUBSCRIPTIONS
+                //     To obtain required info as and when it is filled by other forms, ie Login
+                // *****************************************************************************
+
+                // Dont Disturb
+                this.globalVariableService.dontDisturb.subscribe(ddb => 
+                    this.dontDisturb = ddb
+                );
+
+                // Current user
+                this.globalVariableService.currentUserID.subscribe(usr => {
+                    this.currentUserID = usr;
+                });
+
+                // Palette and Grid info
+                this.showPaletteSubscription = this.globalVariableService.showPalette.subscribe(
+                    i => this.showPalette = i
+                );
+                this.showGridSubscription = this.globalVariableService.showGrid.subscribe(
+                    i => this.showGrid = i
+                );
+
+                // HasDS ?
+                this.hasDatasourcesSubscription = this.globalVariableService.hasDatasources.subscribe(
+                    i => this.hasDatasources = i
+                );
+
+                // Mode: Edit / ViewOnly
+                this.editModeSubscription = this.globalVariableService.editMode.subscribe(
+                    i => {
+                            this.editMode = i;
+                            if (!i) {this.editMenuText = 'Edit Mode'}
+                            else {this.editMenuText = 'View Mode'};
+                        }
+                );
+
+                // Recent Ds
+                this.globalVariableService.dashboardsRecentBehSubject.subscribe(i => {
+                    this.recentDashboards = i.slice(0, 5)
+                });
+
+                // This refreshes one W
+                this.changedWidgetSubscription = this.globalVariableService.changedWidget.subscribe(
+                    w => {
+                    if (w != null) {
+                        // Note: amend this.currentWidgets as it is a ByRef to
+                        // this.gv.currentWidgets, which Angular does not register that it has changed
+                        console.warn('xx APP start', this.globalVariableService.currentWidgets)
+                        // Deep copy
+                        // let newW: Widget = Object.assign({}, w);
+                        let newW: Widget = JSON.parse(JSON.stringify(w));
+
+                        // Delete W if it in our stash
+                        for (var i = 0; i < this.currentWidgets.length; i++) {
+                            if (this.currentWidgets[i].id == w.id) {
+                                this.currentWidgets.splice(i, 1);
+                            };
+                        };
+
+                        // Add the given one, if [TabID] has current TabID
+                        if (newW.dashboardTabIDs.indexOf(
+                            this.globalVariableService.currentDashboardInfo.value.
+                            currentDashboardTabID) >= 0) {
+                            this.currentWidgets.push(newW);
+                        };
+
+                        console.warn('xx app changedWidget replaced', w, this.currentWidgets, this.globalVariableService.widgets, this.globalVariableService.currentWidgets)
+                    };
+                });
+
+                // This refreshes the whole D, with W and related info
+                this.currentDashboardInfoSubscription = this.globalVariableService.currentDashboardInfo.subscribe(
+                    i => {
+                        if (i) {
+
+                            this.companyName = this.globalVariableService.canvasSettings.companyName;
+                            this.hasDashboard = true;
+
+                            this.globalVariableService.refreshCurrentDashboardInfo(
+                                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID)
+                                    .then(j => {
+
+                                        // Fill Layouts
+                                        this.dashboardLayouts = [];
+                                        this.widgetLayouts = [];
+
+                                        this.globalVariableService.getDashboardLayouts(
+                                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                                        ).then(res => {
+                                            this.dashboardLayouts = res.slice();
+                                            if (this.dashboardLayouts.length > 0) {
+                                                this.globalVariableService.getWidgetLayouts(
+                                                    this.dashboardLayouts[0].id).then(res => {
+                                                    this.widgetLayouts = res.slice();
+                                                });
+                                            };
+                                        });
+
+                                        let dashboardIndex: number = this.globalVariableService
+                                            .dashboards.findIndex(
+                                                d => d.id == this.globalVariableService.
+                                                    currentDashboardInfo.value.currentDashboardID
+                                            );
+
+                                        if (dashboardIndex >= 0) {
+                                            this.currentDashboardBackgroundColor = this.globalVariableService.dashboards[dashboardIndex].backgroundColor;
+                                            let templateDashboardID: number = this.globalVariableService.dashboards[dashboardIndex].templateDashboardID;
+
+                                            if (templateDashboardID != null  &&  templateDashboardID > 0) {
+                                                // Load Template
+                                                this.templateWidgets = this.globalVariableService.widgets.filter(w =>
+                                                    w.dashboardID == templateDashboardID
+                                                );
+
+                                            } else {
+                                                this.templateWidgets = [];
+                                            };
+
+                                        };
+
+                                        this.refreshGraphs = false;
+
+                                        // Cater for -1, ie First T
+                                        if (this.globalVariableService.currentDashboardInfo.value
+                                            .currentDashboardTabIndex == -1) {
+                                                this.globalVariableService.currentDashboardInfo
+                                                    .value.currentDashboardTabIndex = 0
+                                        };
+                                        if (this.globalVariableService.currentDashboardInfo.value
+                                            .currentDashboardTabID == -1) {
+                                                if (this.globalVariableService.
+                                                    currentDashboardTabs.length > 0) {
+                                                this.globalVariableService.currentDashboardInfo
+                                                    .value.currentDashboardTabID = this.globalVariableService.
+                                                    currentDashboardTabs[this.globalVariableService.currentDashboardInfo
+                                                        .value.currentDashboardTabIndex].id
+                                            };
+                                        };
+
+                                        this.currentDashboardTabIndex = this.globalVariableService.currentDashboardInfo.value.
+                                            currentDashboardTabIndex;
+                                        this.currentDashboardName = this.globalVariableService.
+                                            currentDashboards[0].name;
+                                        this.currentTabName = this.globalVariableService.
+                                            currentDashboardTabs[this.currentDashboardTabIndex].name;
+                                        this.currentTabBackgroundColor = this.globalVariableService.
+                                            currentDashboardTabs[this.currentDashboardTabIndex].backgroundColor;
+                                        if (this.currentTabBackgroundColor == ''  ||  this.currentTabBackgroundColor == null) {
+                                            this.currentTabBackgroundColor = '#192b35';
+                                        };
+                                        this.currentTabColor = this.globalVariableService.
+                                            currentDashboardTabs[this.currentDashboardTabIndex].color;
+                                        if (this.currentTabColor == ''  ||  this.currentTabColor == null) {
+                                            this.currentTabColor = 'white';
+                                        };
+                                        this.currentDatasources = this.globalVariableService.
+                                            currentDatasources.slice();
+
+                                        // Loop on All/Indicated Ws
+                                        this.currentWidgets = [];
+                                        for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
+                                            // let w: Widget = Object.assign({},
+                                            //     this.globalVariableService.currentWidgets[i]);
+                                            let w: Widget = JSON.parse(JSON.stringify(
+                                                this.globalVariableService.currentWidgets[i]));
+                                                w.isSelected = false;
+                                            this.currentWidgets.push(w)
+                                        }
+                                        console.warn('xx app end', this.currentWidgets);
+
+                                    }
+
+                                )
+                        }
+                    }
+                );
+
+
+
+
+
                 this.globalVariableService.getCanvasUsers().then(res => {
                     this.globalVariableService.currentUserID.next('JannieI');
                     this.globalVariableService.setCurrentCanvasUser('JannieI');
+
+                    // Get Users and Groups, async
+                    this.globalVariableService.getCanvasGroups();
         
                     // Set palette position
                     if (this.globalVariableService.currentUser.lastPaletteLeft != null) {
@@ -641,167 +821,6 @@ export class AppComponent implements OnInit {
         });
         
 
-        // Palette and Grid info
-        this.showPaletteSubscription = this.globalVariableService.showPalette.subscribe(
-            i => this.showPalette = i);
-        this.showGridSubscription = this.globalVariableService.showGrid.subscribe(
-            i => this.showGrid = i);
-
-        // HasDS ?
-        this.hasDatasourcesSubscription = this.globalVariableService.hasDatasources.subscribe(
-            i => this.hasDatasources = i
-        );
-
-        // Mode: Edit / ViewOnly
-        this.editModeSubscription = this.globalVariableService.editMode.subscribe(
-            i => {
-                    this.editMode = i;
-                    if (!i) {this.editMenuText = 'Edit Mode'}
-                    else {this.editMenuText = 'View Mode'};
-                 }
-        );
-
-        // Recent Ds
-        this.globalVariableService.dashboardsRecentBehSubject.subscribe(i => {
-            this.recentDashboards = i.slice(0, 5)
-        });
-
-        // This refreshes one W
-        this.changedWidgetSubscription = this.globalVariableService.changedWidget.subscribe(
-            w => {
-            if (w != null) {
-                // Note: amend this.currentWidgets as it is a ByRef to
-                // this.gv.currentWidgets, which Angular does not register that it has changed
-                console.warn('xx APP start', this.globalVariableService.currentWidgets)
-                // Deep copy
-                // let newW: Widget = Object.assign({}, w);
-                let newW: Widget = JSON.parse(JSON.stringify(w));
-
-                // Delete W if it in our stash
-                for (var i = 0; i < this.currentWidgets.length; i++) {
-                    if (this.currentWidgets[i].id == w.id) {
-                        this.currentWidgets.splice(i, 1);
-                    };
-                };
-
-                // Add the given one, if [TabID] has current TabID
-                if (newW.dashboardTabIDs.indexOf(
-                    this.globalVariableService.currentDashboardInfo.value.
-                    currentDashboardTabID) >= 0) {
-                    this.currentWidgets.push(newW);
-                };
-
-                console.warn('xx app changedWidget replaced', w, this.currentWidgets, this.globalVariableService.widgets, this.globalVariableService.currentWidgets)
-            };
-        });
-
-        // This refreshes the whole D, with W and related info
-        this.currentDashboardInfoSubscription = this.globalVariableService.currentDashboardInfo.subscribe(
-            i => {
-                if (i) {
-
-                    this.companyName = this.globalVariableService.canvasSettings.companyName;
-                    this.hasDashboard = true;
-
-                    this.globalVariableService.refreshCurrentDashboardInfo(
-                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID)
-                            .then(j => {
-
-                                // Fill Layouts
-                                this.dashboardLayouts = [];
-                                this.widgetLayouts = [];
-
-                                this.globalVariableService.getDashboardLayouts(
-                                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-                                ).then(res => {
-                                    this.dashboardLayouts = res.slice();
-                                    if (this.dashboardLayouts.length > 0) {
-                                        this.globalVariableService.getWidgetLayouts(
-                                            this.dashboardLayouts[0].id).then(res => {
-                                            this.widgetLayouts = res.slice();
-                                        });
-                                    };
-                                });
-
-                                let dashboardIndex: number = this.globalVariableService
-                                    .dashboards.findIndex(
-                                        d => d.id == this.globalVariableService.
-                                            currentDashboardInfo.value.currentDashboardID
-                                    );
-
-                                if (dashboardIndex >= 0) {
-                                    this.currentDashboardBackgroundColor = this.globalVariableService.dashboards[dashboardIndex].backgroundColor;
-                                    let templateDashboardID: number = this.globalVariableService.dashboards[dashboardIndex].templateDashboardID;
-
-                                    if (templateDashboardID != null  &&  templateDashboardID > 0) {
-                                        // Load Template
-                                        this.templateWidgets = this.globalVariableService.widgets.filter(w =>
-                                            w.dashboardID == templateDashboardID
-                                        );
-
-                                    } else {
-                                        this.templateWidgets = [];
-                                    };
-
-                                };
-
-                                this.refreshGraphs = false;
-
-                                // Cater for -1, ie First T
-                                if (this.globalVariableService.currentDashboardInfo.value
-                                    .currentDashboardTabIndex == -1) {
-                                        this.globalVariableService.currentDashboardInfo
-                                            .value.currentDashboardTabIndex = 0
-                                };
-                                if (this.globalVariableService.currentDashboardInfo.value
-                                    .currentDashboardTabID == -1) {
-                                        if (this.globalVariableService.
-                                            currentDashboardTabs.length > 0) {
-                                        this.globalVariableService.currentDashboardInfo
-                                            .value.currentDashboardTabID = this.globalVariableService.
-                                            currentDashboardTabs[this.globalVariableService.currentDashboardInfo
-                                                .value.currentDashboardTabIndex].id
-                                    };
-                                };
-
-                                this.currentDashboardTabIndex = this.globalVariableService.currentDashboardInfo.value.
-                                    currentDashboardTabIndex;
-                                this.currentDashboardName = this.globalVariableService.
-                                    currentDashboards[0].name;
-                                this.currentTabName = this.globalVariableService.
-                                    currentDashboardTabs[this.currentDashboardTabIndex].name;
-                                this.currentTabBackgroundColor = this.globalVariableService.
-                                    currentDashboardTabs[this.currentDashboardTabIndex].backgroundColor;
-                                if (this.currentTabBackgroundColor == ''  ||  this.currentTabBackgroundColor == null) {
-                                    this.currentTabBackgroundColor = '#192b35';
-                                };
-                                this.currentTabColor = this.globalVariableService.
-                                    currentDashboardTabs[this.currentDashboardTabIndex].color;
-                                if (this.currentTabColor == ''  ||  this.currentTabColor == null) {
-                                    this.currentTabColor = 'white';
-                                };
-                                this.currentDatasources = this.globalVariableService.
-                                    currentDatasources.slice();
-
-                                // Loop on All/Indicated Ws
-                                this.currentWidgets = [];
-                                for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
-                                    // let w: Widget = Object.assign({},
-                                    //     this.globalVariableService.currentWidgets[i]);
-                                    let w: Widget = JSON.parse(JSON.stringify(
-                                        this.globalVariableService.currentWidgets[i]));
-                                        w.isSelected = false;
-                                    this.currentWidgets.push(w)
-                                }
-                                console.warn('xx app end', this.currentWidgets);
-
-                            }
-
-                        )
-                }
-            }
-        );
 
 
 
@@ -903,9 +922,6 @@ res[0].token = 'test'
         // Local CachingTable DB
         this.dbDataCachingTable = new DataCachingDatabase;
         this.dbDataCachingTable.open();
-
-        // Get Users and Groups, async
-        this.globalVariableService.getCanvasGroups();
 
 
 
