@@ -9619,37 +9619,40 @@ export class GlobalVariableService {
 
     }
 
-    verifyCanvasUser(userID: string): Promise<boolean> {
+    verifyCanvasUser(givenCanvasServerURI, givenUserID: string): Promise<boolean> {
         // Checks if userID exists.  If not, return false.
         // If so, set currentUser object and return true
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables verifyCanvasUser ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {givenUserID});
         };
 
         // TODO - do in more safe way with DB, Auth0, etc
         return new Promise<boolean>((resolve, reject) => {
             
             // Nothing to do
-            if (userID == null  ||  userID == '') {
+            if (givenUserID == null  ||  givenUserID == '') {
                 resolve(false);
             };
 
 
-            this.http.post<Token>(this.currentCanvasServerURI + 'auth/local/verify',
-                {userID}).subscribe(res => {
+            this.http.post<Token>(givenCanvasServerURI + 'auth/local/verify',
+                {givenUserID}).subscribe(res => {
 
                 // Store locally
                 // localStorage.setItem("canvs-token", JSON.stringify(token));
 
                 if (res) {
-                    console.warn('xx verifyCanvasUser: Registered', res);
+                    console.warn('xx verifyCanvasUser: Registered on : ',
+                        givenCanvasServerURI, res);
                 } else {
-                    console.warn('xx verifyCanvasUser: Registration failed', res);
+                    console.warn('xx verifyCanvasUser: Registration failed on : ',
+                        givenCanvasServerURI, res);
                 };
             },
             err => {
-                console.log('Error Registration FAILED', {err});
+                console.log('Error Registration FAILED on : ',
+                givenCanvasServerURI, {err});
                 console.warn('xx verifyCanvasUser: Already exists');
             });  
 
@@ -9657,18 +9660,18 @@ export class GlobalVariableService {
 
             
             this.getCanvasUsers().then(usr => {
-                let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == userID);
+                let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
                 if (foundIndex < 0) {
 
                     if (this.sessionDebugging) {
-                        console.warn('xx Invalid userid', userID)
+                        console.warn('xx Invalid userid', givenUserID)
                     };
 
                     resolve(false);
                 } else {
 
                     if (this.sessionDebugging) {
-                        console.warn('xx Valid userid', userID)
+                        console.warn('xx Valid userid', givenUserID)
                     };
                     resolve(true);
                 };

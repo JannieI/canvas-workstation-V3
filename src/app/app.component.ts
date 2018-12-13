@@ -899,10 +899,11 @@ res[0].currentToken = 'test'
                         this.showModalDashboardLogin = true;
                     };
                     console.warn('xx currentCanvasUser res ', res[0]);
+        
 
-
-                    // Verify the user
-                    this.globalVariableService.verifyCanvasUser(res[0].currentUserID).then(
+                    // Verify the user on the given Server
+                    this.globalVariableService.verifyCanvasUser(
+                        res[0].canvasServerURI, res[0].currentUserID).then(
                         result => {
                             console.warn('xx verified user ', res[0].currentUserID);
 
