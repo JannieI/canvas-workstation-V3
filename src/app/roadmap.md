@@ -171,6 +171,9 @@ This document describes items for later versions of Canvas.
         - add Auth0, Google, Facebook
         - Sybrin wants their permissioning, which is complicated, bank compliant, AD included, etc
 
+    Schema Validator:
+    - See https://github.com/tdegrunt/jsonschema
+    
     Widget Editor - Adv:
     --------------------
         - highlight one series in graph, either click the line (bar), or click on the legend
