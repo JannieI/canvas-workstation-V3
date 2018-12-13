@@ -9642,11 +9642,15 @@ export class GlobalVariableService {
                 // Store locally
                 // localStorage.setItem("canvs-token", JSON.stringify(token));
 
-                console.warn('Registered', res);
+                if (res) {
+                    console.warn('xx verifyCanvasUser: Registered', res);
+                } else {
+                    console.warn('xx verifyCanvasUser: Registration failed', res);
+                };
             },
             err => {
                 console.log('Error Registration FAILED', {err});
-                console.warn('Already exists');
+                console.warn('xx verifyCanvasUser: Already exists');
             });  
 
 
