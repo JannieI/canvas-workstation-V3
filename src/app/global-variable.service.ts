@@ -9635,6 +9635,23 @@ export class GlobalVariableService {
                 resolve(false);
             };
 
+
+            this.http.post<Token>(this.currentCanvasServerURI + 'auth/local/verify',
+                {userID}).subscribe(res => {
+
+                // Store locally
+                // localStorage.setItem("canvs-token", JSON.stringify(token));
+
+                console.warn('Registered', res);
+            },
+            err => {
+                console.log('Error Registration FAILED', {err});
+                console.warn('Already exists');
+            });  
+
+
+
+            
             this.getCanvasUsers().then(usr => {
                 let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == userID);
                 if (foundIndex < 0) {
@@ -9645,11 +9662,11 @@ export class GlobalVariableService {
 
                     resolve(false);
                 } else {
-                    resolve(true);
 
                     if (this.sessionDebugging) {
                         console.warn('xx Valid userid', userID)
                     };
+                    resolve(true);
                 };
             });
         });
