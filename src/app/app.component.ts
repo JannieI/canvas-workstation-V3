@@ -905,7 +905,7 @@ res[0].currentToken = 'test'
                     this.globalVariableService.verifyCanvasUser(
                         res[0].canvasServerURI, res[0].currentUserID).then(
                         result => {
-                            console.warn('xx verified user ', res[0].currentUserID);
+                            console.warn('xx verified user ', res[0].currentUserID, ' with result ', result);
 
                             if (result) {
 
