@@ -9645,6 +9645,27 @@ export class GlobalVariableService {
                 if (res) {
                     console.warn('xx verifyCanvasUser: Registered on : ',
                         givenCanvasServerURI, res);
+
+                        this.getCanvasUsers().then(usr => {
+                            let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
+                            if (foundIndex < 0) {
+            
+                                if (this.sessionDebugging) {
+                                    console.warn('xx Invalid userid', givenUserID)
+                                };
+                                resolve(false);
+                            } else {
+            
+                                if (this.sessionDebugging) {
+                                    console.warn('xx Valid userid', givenUserID)
+                                };
+
+                                // Set var
+                                this.currentUser = this.canvasUsers[foundIndex];
+                                resolve(true);
+                            };
+                        });            
+
                 } else {
                     console.warn('xx verifyCanvasUser: Registration failed on : ',
                         givenCanvasServerURI, res);
@@ -9656,26 +9677,6 @@ export class GlobalVariableService {
                 console.warn('xx verifyCanvasUser: Already exists');
             });  
 
-
-
-            
-            this.getCanvasUsers().then(usr => {
-                let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
-                if (foundIndex < 0) {
-
-                    if (this.sessionDebugging) {
-                        console.warn('xx Invalid userid', givenUserID)
-                    };
-
-                    resolve(false);
-                } else {
-
-                    if (this.sessionDebugging) {
-                        console.warn('xx Valid userid', givenUserID)
-                    };
-                    resolve(true);
-                };
-            });
         });
     }
     

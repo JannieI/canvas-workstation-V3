@@ -1439,6 +1439,14 @@ This document describes items for later versions of Canvas.
         - this is a BIG opportunity
         - allow for Sorted array of transformations, any type in any order
         - add Window, Rank, etc
+        - must be extensible - can build own transformations and hook it up
+
+    - Third party code (ie Grip forms for Rulesets) - Ivan:
+        - we treat this as a selling point (differentiator)
+        - allow stuffies like this, can add to ENV config => shows on menu
+        - us or user can write the Angular forms
+        - just add a calling function (maybe even generic like the current Palette buttons)
+        - and only the specific user will see his menu items and forms!
 
     - Calculated field
         - make easier: either show boxes for fields with correct type, or auto complete, VSCode style !
@@ -1496,6 +1504,8 @@ This document describes items for later versions of Canvas.
     --------------------------------
         - after ADD, the colour goes to right hand side.  It seems okay - means not part of the original colours.  What are the downsides to this?
 
+    - Board Pack use case:
+        - this is of definate value !!  Maybe add some specific functions to make it work well ...
 
 
 
@@ -1536,7 +1546,12 @@ This document describes items for later versions of Canvas.
     - Qlik and power bi integrates with r - use data frame or embed plot
     - Want to make dashboard available to clients globally - how will the login and security work
     - have an easy way to share a Canvas graph: code to embed Vega and link to Spec, access to data.  Thus, can be created anywhere.  Use case?  May be better to have web components.
-
+    - interactive modeling.  Say you have accounting data, and want to:
+        - modify the data (ie exclude some expenditure in a month as once off, etc) while keeping the original data intact
+        - build a forecasting model
+        - visualise the data
+        - see it is not right, modify the data above or modify the model
+        - visualise and repeat (Oksana !)
     End of One day stuff:
 
 
