@@ -9636,7 +9636,7 @@ export class GlobalVariableService {
             };
 
 
-            this.http.post<Token>(givenCanvasServerURI + 'auth/local/verify',
+            this.http.post<Token>(givenCanvasServerURI + '/auth/local/verify',
                 {givenUserID}).subscribe(res => {
 
                 // Store locally
