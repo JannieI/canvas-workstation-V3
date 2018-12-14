@@ -9636,8 +9636,10 @@ export class GlobalVariableService {
             };
 
 
-            this.http.post<Token>(givenCanvasServerURI + '/auth/local/verify',
-                {givenUserID}).subscribe(res => {
+            this.http.post<Token>(
+                givenCanvasServerURI + '/auth/local/verify',
+                {"userID": givenUserID } 
+                ).subscribe(res => {
 
                 // Store locally
                 // localStorage.setItem("canvs-token", JSON.stringify(token));
@@ -9668,13 +9670,13 @@ export class GlobalVariableService {
 
                 } else {
                     console.warn('xx verifyCanvasUser: Registration failed on : ',
-                        givenCanvasServerURI, res);
+                        givenCanvasServerURI, givenUserID, res);
                 };
             },
             err => {
                 console.log('Error Registration FAILED on : ',
                 givenCanvasServerURI, {err});
-                console.warn('xx verifyCanvasUser: Already exists');
+                console.warn('xx verifyCanvasUser: HTTP Error'), err;
             });  
 
         });
