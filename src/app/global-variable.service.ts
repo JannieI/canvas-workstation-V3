@@ -9618,69 +9618,6 @@ export class GlobalVariableService {
 
     }
 
-    verifyCanvasUser(givenCanvasServerURI, givenUserID: string): Promise<boolean> {
-        // Checks if userID exists.  If not, return false.
-        // If so, set currentUser object and return true
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables verifyCanvasUser ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {givenUserID});
-        };
-
-        // TODO - do in more safe way with DB, Auth0, etc
-        return new Promise<boolean>((resolve, reject) => {
-            
-            // Nothing to do
-            if (givenUserID == null  ||  givenUserID == '') {
-                resolve(false);
-            };
-
-
-            this.http.post<Token>(
-                givenCanvasServerURI + '/auth/local/verify',
-                {"userID": givenUserID } 
-                ).subscribe(res => {
-
-                // Store locally
-                // localStorage.setItem("canvs-token", JSON.stringify(token));
-
-                if (res) {
-                    console.warn('xx verifyCanvasUser: Registered on : ',
-                        givenCanvasServerURI, res);
-
-                        this.getCanvasUsers().then(usr => {
-                            let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
-                            if (foundIndex < 0) {
-            
-                                if (this.sessionDebugging) {
-                                    console.warn('xx Invalid userid', givenUserID)
-                                };
-                                resolve(false);
-                            } else {
-            
-                                if (this.sessionDebugging) {
-                                    console.warn('xx Valid userid', givenUserID)
-                                };
-
-                                // Set var
-                                this.currentUser = this.canvasUsers[foundIndex];
-                                resolve(true);
-                            };
-                        });            
-
-                } else {
-                    console.warn('xx verifyCanvasUser: Registration failed on : ',
-                        givenCanvasServerURI, givenUserID, res);
-                };
-            },
-            err => {
-                console.log('Error Registration FAILED on : ',
-                givenCanvasServerURI, {err});
-                console.warn('xx verifyCanvasUser: HTTP Error'), err;
-            });  
-
-        });
-    }
-    
     clearCurrentUser() {
         // Description: reset the Global currentUser variable
         if (this.sessionDebugging) {
@@ -13249,26 +13186,101 @@ console.warn('xx ds perm', dp);
         
     }
 
-    register(canvasServer: string, username: string, password: string): Promise<string> {
-        // Registers a user on a server (add to Users) if it does not already exist
+    verifyCanvasUser(givenCanvasServerURI, givenUserID: string): Promise<boolean> {
+        // Checks if userID exists.  If not, return false.
+        // If so, set currentUser object and return true
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables register ...',
+            console.log('%c    Global-Variables verifyCanvasUser ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {givenUserID});
+        };
+
+        // TODO - do in more safe way with DB, Auth0, etc
+        return new Promise<boolean>((resolve, reject) => {
+            
+            // Nothing to do
+            if (givenUserID == null  ||  givenUserID == '') {
+                resolve(false);
+            };
+
+
+            this.http.post<Token>(
+                givenCanvasServerURI + '/auth/local/verify',
+                {"userID": givenUserID } 
+                ).subscribe(res => {
+
+                // Store locally
+                // localStorage.setItem("canvs-token", JSON.stringify(token));
+
+                if (res) {
+                    console.warn('xx verifyCanvasUser: Registered on : ',
+                        givenCanvasServerURI, res);
+
+                        this.getCanvasUsers().then(usr => {
+                            let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
+                            if (foundIndex < 0) {
+            
+                                if (this.sessionDebugging) {
+                                    console.warn('xx Invalid userid', givenUserID)
+                                };
+                                resolve(false);
+                            } else {
+            
+                                if (this.sessionDebugging) {
+                                    console.warn('xx Valid userid', givenUserID)
+                                };
+
+                                // Set var
+                                this.currentUser = this.canvasUsers[foundIndex];
+                                resolve(true);
+                            };
+                        });            
+
+                } else {
+                    console.warn('xx verifyCanvasUser: Registration failed on : ',
+                        givenCanvasServerURI, givenUserID, res);
+                };
+            },
+            err => {
+                console.log('Error Registration FAILED on : ',
+                givenCanvasServerURI, {err});
+                console.warn('xx verifyCanvasUser: HTTP Error'), err;
+            });  
+
+        });
+    }
+    
+    registerCanvasUser(
+        givenCanvasServerURI: string, 
+        givenCompanyName: string, 
+        givenUserID: string, 
+        givenPassword: string): Promise<string> {
+        // Registers a user on a given Server & Company (add to Users) if he/she does not 
+        // already exist
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables registerCanvasUser ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {username}, {password});
+                {givenCanvasServerURI}, {givenCompanyName},
+                {givenUserID}, {givenPassword});
         };
 
         return new Promise<string>((resolve, reject) => {
-            this.http.post<Token>(this.currentCanvasServerURI + 'auth/local/signup',
-                {username, password}).subscribe(token => {
+            this.http.post<Token>(givenCanvasServerURI + 'auth/local/signup',
+                        {
+                            "companyName": givenCompanyName,
+                            "userID": givenUserID,
+                            "password": givenPassword 
+                        } 
+                        ).subscribe(res => {
+        
 
                 // Store locally
-                localStorage.setItem("canvs-token", JSON.stringify(token));
+                // localStorage.setItem("canvs-token", JSON.stringify(token));
 
                 resolve('Done');
             },
             err => {
                 console.log('Error Registration FAILED', {err});
-                resolve('Already exists');
+                resolve('Error Registration FAILED ' + err.message);
             });            
         });
     }
