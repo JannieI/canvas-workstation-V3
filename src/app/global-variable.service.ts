@@ -11,6 +11,7 @@ import { CanvasAction }               from './models';
 import { CanvasAuditTrail }           from './models';
 import { CanvasComment }              from './models';
 import { CanvasGroup }                from './models';
+import { CanvasHttpResponse }         from './models';
 import { CanvasMessage }              from './models';
 import { CanvasSettings }             from './models';
 import { CanvasTask }                 from './models';
@@ -13276,15 +13277,18 @@ console.warn('xx ds perm', dp);
                 .serverHostURI;
             
             console.warn('xx givenCanvasServerURI', givenCanvasServerURI)
-            this.http.post<Token>(givenCanvasServerURI + '/auth/local/signup',
+            this.http.post<CanvasHttpResponse>(givenCanvasServerURI + '/auth/local/signup',
                 {
                     "companyName": givenCompanyName,
                     "userID": givenUserID,
                     "password": givenPassword 
                 } 
                 ).subscribe(res => {        
-                    if (res.statusCode == 'failed') 
-                    resolve('Done');
+                    if (res.statusCode == 'failed') {
+                        resolve('Failed: ' + res.message);
+                    } else {
+                        resolve('Success');
+                    }
             },
             err => {
                 console.log('Error Registration FAILED', {err});
