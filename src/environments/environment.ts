@@ -30,7 +30,7 @@ export const environment = {
 	],
 
 	// Default Startup CanvasServer
-	ENVStartupCanvasServer: "Canvas Server Local",
+	ENVStartupCanvasServerName: "Canvas Server Local",
 
 	// JSON-SERVER Urls (NB: Hard coded for now ...)
 	ENVCanvasDatabaseLocalUrlS1: "http://localhost:3001",

@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
             this.errorMessage = 'Set Canvas Servers in environment file';
         };
 
-        this.canvasServerName = this.globalVariableService.ENVStartupCanvasServer;
+        this.canvasServerName = this.globalVariableService.ENVStartupCanvasServerName;
     }
 
     clickClose(action: string) {
@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit {
 
                 // TODO - fix when values read from form
                 this.globalVariableService.loggedIntoServer.next(
-                    this.canvasServerName=='Canvas Local'?  true  :  false
+                    this.canvasServerName=='Canvas Server Local'?  true  :  false
                 );
 
                 // Set userID

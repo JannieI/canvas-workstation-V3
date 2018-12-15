@@ -1015,7 +1015,7 @@ export class GlobalVariableService {
         serverName: string,
         serverHostURI: string
     }[] = environment.ENVCanvasServerList;
-    ENVStartupCanvasServer: string = environment.ENVStartupCanvasServer;
+    ENVStartupCanvasServerName: string = environment.ENVStartupCanvasServerName;
     currentCanvasServerURI: string = '';
     currentCanvasServerName: string = 'Json-Server';
     ENVCanvasDatabaseLocalUrlS1: string = environment.ENVCanvasDatabaseLocalUrlS1;
