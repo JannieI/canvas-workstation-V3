@@ -13250,7 +13250,7 @@ console.warn('xx ds perm', dp);
     }
     
     registerCanvasUser(
-        givenCanvasServerURI: string, 
+        givenCanvasServerName: string, 
         givenCompanyName: string, 
         givenUserID: string, 
         givenPassword: string): Promise<string> {
@@ -13259,17 +13259,21 @@ console.warn('xx ds perm', dp);
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables registerCanvasUser ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {givenCanvasServerURI}, {givenCompanyName},
+                {givenCanvasServerURI: givenCanvasServerName}, {givenCompanyName},
                 {givenUserID}, {givenPassword});
         };
 
         return new Promise<string>((resolve, reject) => {
 
             // Get the ServerURL
-            let serverURLIndex: number = this.ENVCanvasServerList: {
-                serverName: string,
-                serverHostURI: string
-            }[]
+            let serverURLIndex: number = this.ENVCanvasServerList.findIndex(
+                srv => srv.serverName == givenCanvasServerName
+            );
+            if (serverURLIndex < 0) {
+                resolve('Server Name not in ENV configuration');
+            };
+            let givenCanvasServerURI: string = this.ENVCanvasServerList[serverURLIndex];
+            
             this.http.post<Token>(givenCanvasServerURI + 'auth/local/signup',
                 {
                     "companyName": givenCompanyName,
