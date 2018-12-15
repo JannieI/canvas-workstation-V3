@@ -152,8 +152,8 @@
         background: #2e7ec7;
         border-radius: 6px;
         border: 0;
-        cursor: pointer;
         color: #FFFFFF;
+        cursor: pointer;
         font-size: 15px;
         height: 32px;
         margin-top: 12px;
@@ -172,6 +172,7 @@
         background: #CCCCCC;
         border-radius: 6px;
         border: 0;
+        cursor: pointer;
         color: #676464;
         font-size: 15px;
         height: 32px;
