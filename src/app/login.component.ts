@@ -169,13 +169,15 @@ export class LoginComponent implements OnInit {
         }
 
         // Set current Server Name and URI
-        if (this.globalVariableService.registerCanvasUser(
-            this.canvasServer, this.companyName, this.userID, this.password)
-        ) {
-            this.message = 'User Registered'
-        } else {
-            this.message = 'User NOT Registered'
-        };
+        this.globalVariableService.registerCanvasUser(
+            this.canvasServer, this.companyName, this.userID, this.password).then(res => {
+
+            if (res == 'Done') {
+                this.message = 'User Registered'
+            } else {
+                this.message = 'User NOT Registered: ' + res;
+            };
+        });
 
     }
 }
