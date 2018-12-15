@@ -13264,6 +13264,12 @@ console.warn('xx ds perm', dp);
         };
 
         return new Promise<string>((resolve, reject) => {
+
+            // Get the ServerURL
+            let serverURLIndex: number = this.ENVCanvasServerList: {
+                serverName: string,
+                serverHostURI: string
+            }[]
             this.http.post<Token>(givenCanvasServerURI + 'auth/local/signup',
                 {
                     "companyName": givenCompanyName,

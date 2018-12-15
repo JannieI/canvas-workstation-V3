@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 
     }
 
-    canvasServer: string = '';                  // Canvas Server selected
+    canvasServerName: string = '';              // Canvas Server selected
     canvasServerURI: string = '';               // Canvas Server URI
     canvasServerList: string[] = [];
     companyName: string = 'Clarity Analytics';  // Clarity Analytics
@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
             this.errorMessage = 'Set Canvas Servers in environment file';
         };
 
-        this.canvasServer = this.globalVariableService.ENVStartupCanvasServer;
+        this.canvasServerName = this.globalVariableService.ENVStartupCanvasServer;
     }
 
     clickClose(action: string) {
@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit {
 
                 // TODO - fix when values read from form
                 this.globalVariableService.loggedIntoServer.next(
-                    this.canvasServer=='Canvas Local'?  true  :  false
+                    this.canvasServerName=='Canvas Local'?  true  :  false
                 );
 
                 // Set userID
@@ -155,7 +155,7 @@ export class LoginComponent implements OnInit {
             this.errorMessage = 'Please enter a Company Name';
             return;
         }
-        if (this.canvasServer =='') {
+        if (this.canvasServerName =='') {
             this.errorMessage = 'Please enter a Canvas Server';
             return;
         }
@@ -170,7 +170,7 @@ export class LoginComponent implements OnInit {
 
         // Set current Server Name and URI
         this.globalVariableService.registerCanvasUser(
-            this.canvasServer, this.companyName, this.userID, this.password).then(res => {
+            this.canvasServerName, this.companyName, this.userID, this.password).then(res => {
 
             if (res == 'Done') {
                 this.message = 'User Registered'
