@@ -13265,16 +13265,12 @@ console.warn('xx ds perm', dp);
 
         return new Promise<string>((resolve, reject) => {
             this.http.post<Token>(givenCanvasServerURI + 'auth/local/signup',
-                        {
-                            "companyName": givenCompanyName,
-                            "userID": givenUserID,
-                            "password": givenPassword 
-                        } 
-                        ).subscribe(res => {
-        
-
-                // Store locally
-                // localStorage.setItem("canvs-token", JSON.stringify(token));
+                {
+                    "companyName": givenCompanyName,
+                    "userID": givenUserID,
+                    "password": givenPassword 
+                } 
+                ).subscribe(res => {        
 
                 resolve('Done');
             },
