@@ -13270,9 +13270,10 @@ console.warn('xx ds perm', dp);
                 srv => srv.serverName == givenCanvasServerName
             );
             if (serverURLIndex < 0) {
-                resolve('Server Name not in ENV configuration');
+                resolve('Error: Server Name not in ENV configuration');
             };
-            let givenCanvasServerURI: string = this.ENVCanvasServerList[serverURLIndex];
+            let givenCanvasServerURI: string = this.ENVCanvasServerList[serverURLIndex]
+                .serverHostURI;
             
             this.http.post<Token>(givenCanvasServerURI + 'auth/local/signup',
                 {
