@@ -1025,7 +1025,7 @@ export class GlobalVariableService {
     ENVCanvasDatabaseLocalUrlS4: string = environment.ENVCanvasDatabaseLocalUrlS4;
     ENVCanvasDatabaseLocalUrlS5: string = environment.ENVCanvasDatabaseLocalUrlS5;
 
-    
+
 
 
     // Identification info: Canvas-Server, Company, User
@@ -1074,11 +1074,11 @@ export class GlobalVariableService {
 
     // Current User Profile
     currentUser: CanvasUser;                            // Current logged in user
-    
+
 
     // Canvas-related info and Data
     // *********************************************************************************
-    
+
     // Cache of Permanent Canvas-related data read from the Canvas-Server
     // It hold full sets (all the records) but not necessarily complete (some portions like
     // the data arrays may be missing)
@@ -1128,7 +1128,7 @@ export class GlobalVariableService {
     widgetStoredTemplates: WidgetStoredTemplate[] =[];
 
 
-    // Cache of Permanent Canvas-related data for the currentDashboard and 
+    // Cache of Permanent Canvas-related data for the currentDashboard and
     // currentDatasources.  It holds complete data
     currentCanvasGroups: CanvasGroup[] = [];
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
@@ -1197,7 +1197,7 @@ export class GlobalVariableService {
 
 
 
-    
+
     // Global vars that guide all interactions
     // *********************************************************************************
     // Modes and Display
@@ -1206,7 +1206,7 @@ export class GlobalVariableService {
     showPalette = new BehaviorSubject<boolean>(true);   // True to show the palette
     preferencePaletteHorisontal = new BehaviorSubject<boolean>(true); // Palette orientation
     loadVariableOnStartup = new BehaviorSubject<boolean>(false); // True to load variables in App.ngOnInit
-    
+
     // First time user
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
@@ -1319,7 +1319,7 @@ export class GlobalVariableService {
                     //     if (res != null) {
                     //         data = res;
                     //     };
-    
+
                     //     console.warn('xx WORKS !!!', res, data)
                     // });
 
@@ -8054,7 +8054,7 @@ export class GlobalVariableService {
                 .set("Accept", "application/json")
             // this.http.get('http://localhost:8000/background?query=%22;%22&page=2', {headers}).subscribe(
             this.http.get('http://localhost:8000/users/mongo:' + collection, {headers}).subscribe(
-                res => 
+                res =>
                 {
                     resolve(res);
                 },
@@ -11427,9 +11427,9 @@ export class GlobalVariableService {
 
         };
 
-        
+
         // NB - the rest of the Code deals ONLY with the STANDARD visualGrammarType
-        
+
         return;
     }
 
@@ -11505,11 +11505,11 @@ export class GlobalVariableService {
                 return specification;
             };
         };
-    
-        
+
+
         // NB - the rest of the Code deals ONLY with the STANDARD visualGrammarType
-        
-        
+
+
 
         // Optional Sampling
         if (widget.sampleNumberRows != 0) {
@@ -11922,7 +11922,7 @@ export class GlobalVariableService {
                     }
                 }
             };
-            
+
             // Mark
             specificationInner['mark']['type'] = widget.graphLayers[currentGraphLayer].graphMark;
             specificationInner['mark']['orient'] = widget.graphLayers[currentGraphLayer].graphMarkOrient.toLowerCase();
@@ -12050,24 +12050,24 @@ export class GlobalVariableService {
                 // specificationInner['encoding']['x']['axis']['labelLimit'] = widget.graphDimensionBottom;
 
 
-                if (widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainStart != ''  
+                if (widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainStart != ''
                     &&
                     widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainStart != null
-                    && 
+                    &&
                     widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainEnd != ''
-                    && 
+                    &&
                     widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainEnd != null) {
 
                     if(specificationInner['encoding']['x']['scale'] == "") {
-                        specificationInner['encoding']['x']['scale'] = { 
-                            "domain":  
+                        specificationInner['encoding']['x']['scale'] = {
+                            "domain":
                             [
                                 Number(widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainStart),
                                 Number(widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainEnd)
                             ]
                         };
                     } else {
-                        specificationInner['encoding']['x']['scale']['domain'] = 
+                        specificationInner['encoding']['x']['scale']['domain'] =
                             [
                                 widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainStart,
                                 widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainEnd
@@ -12143,24 +12143,24 @@ export class GlobalVariableService {
                 specificationInner['encoding']['y']['axis']['maxExtent'] = widget.graphDimensionLeft;
                 // specificationInner['encoding']['y']['axis']['labelLimit'] = widget.graphDimensionLeft;
 
-                if (widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart != ''  
+                if (widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart != ''
                     &&
                     widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart != null
-                    && 
+                    &&
                     widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd != ''
-                    && 
+                    &&
                     widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd != null) {
 
                     if(specificationInner['encoding']['y']['scale'] == "") {
-                        specificationInner['encoding']['y']['scale'] = { 
-                            "domain":  
+                        specificationInner['encoding']['y']['scale'] = {
+                            "domain":
                             [
                                 Number(widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart),
                                 Number(widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd)
                             ]
                         };
                     } else {
-                        specificationInner['encoding']['y']['scale']['domain'] = 
+                        specificationInner['encoding']['y']['scale']['domain'] =
                             [
                                 widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainStart,
                                 widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd
@@ -13123,8 +13123,8 @@ console.warn('xx ds perm', dp);
     // ***********************************************************************
 
     setCurrentCanvasServer(
-        selectedCanvasServer: string, 
-        selectedCompanyName: string, 
+        selectedCanvasServer: string,
+        selectedCompanyName: string,
         userID: string): boolean {
         // Set the state of the Canvas-Server, in memory (this routine) and in IndexedDB
         if (this.sessionDebugging) {
@@ -13184,7 +13184,7 @@ console.warn('xx ds perm', dp);
         } else {
             return false;
         };
-        
+
     }
 
     verifyCanvasUser(givenCanvasServerURI, givenUserID: string): Promise<boolean> {
@@ -13197,7 +13197,7 @@ console.warn('xx ds perm', dp);
 
         // TODO - do in more safe way with DB, Auth0, etc
         return new Promise<boolean>((resolve, reject) => {
-            
+
             // Nothing to do
             if (givenUserID == null  ||  givenUserID == '') {
                 resolve(false);
@@ -13206,7 +13206,7 @@ console.warn('xx ds perm', dp);
 
             this.http.post<Token>(
                 givenCanvasServerURI + '/auth/local/verify',
-                {"userID": givenUserID } 
+                {"userID": givenUserID }
                 ).subscribe(res => {
 
                 // Store locally
@@ -13219,13 +13219,13 @@ console.warn('xx ds perm', dp);
                         this.getCanvasUsers().then(usr => {
                             let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
                             if (foundIndex < 0) {
-            
+
                                 if (this.sessionDebugging) {
                                     console.warn('xx Invalid userid', givenUserID)
                                 };
                                 resolve(false);
                             } else {
-            
+
                                 if (this.sessionDebugging) {
                                     console.warn('xx Valid userid', givenUserID)
                                 };
@@ -13234,7 +13234,7 @@ console.warn('xx ds perm', dp);
                                 this.currentUser = this.canvasUsers[foundIndex];
                                 resolve(true);
                             };
-                        });            
+                        });
 
                 } else {
                     console.warn('xx verifyCanvasUser: Registration failed on : ',
@@ -13245,17 +13245,17 @@ console.warn('xx ds perm', dp);
                 console.log('Error Registration FAILED on : ',
                 givenCanvasServerURI, {err});
                 console.warn('xx verifyCanvasUser: HTTP Error'), err;
-            });  
+            });
 
         });
     }
-    
+
     registerCanvasUser(
-        givenCanvasServerName: string, 
-        givenCompanyName: string, 
-        givenUserID: string, 
+        givenCanvasServerName: string,
+        givenCompanyName: string,
+        givenUserID: string,
         givenPassword: string): Promise<string> {
-        // Registers a user on a given Server & Company (add to Users) if he/she does not 
+        // Registers a user on a given Server & Company (add to Users) if he/she does not
         // already exist
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables registerCanvasUser ...',
@@ -13275,25 +13275,29 @@ console.warn('xx ds perm', dp);
             };
             let givenCanvasServerURI: string = this.ENVCanvasServerList[serverURLIndex]
                 .serverHostURI;
-            
+
             console.warn('xx givenCanvasServerURI', givenCanvasServerURI)
             this.http.post<CanvasHttpResponse>(givenCanvasServerURI + '/auth/local/signup',
                 {
                     "companyName": givenCompanyName,
                     "userID": givenUserID,
-                    "password": givenPassword 
-                } 
-                ).subscribe(res => {        
+                    "password": givenPassword
+                }
+                ).subscribe(res => {
                     if (res.statusCode == 'failed') {
                         resolve('Failed: ' + res.message);
-                    } else {
+                    };
+                    if (res.statusCode == '') {
                         resolve('Success');
-                    }
+                    };
+                    if (res.statusCode == '') {
+                        resolve('Error: ' + res.message);
+                    };
             },
             err => {
                 console.log('Error Registration FAILED', {err});
-                resolve('Error Registration FAILED ' + err.message);
-            });            
+                resolve('Error: Registration FAILED ' + err.message);
+            });
         });
     }
 
@@ -13327,7 +13331,7 @@ console.warn('xx ds perm', dp);
                 //         this.globalVariableService.currentCompany = res[0].currentCompany;
                 //         this.globalVariableService.currentUserID = res[0].currentUserID;
                 //         this.globalVariableService.currentToken = res[0].currentToken;
-                        
+
                 //         // Refresh
                 //         this.globalVariableService.loadVariableOnStartup.next(true);
 
@@ -13348,8 +13352,8 @@ console.warn('xx ds perm', dp);
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {sampleSize});
         };
-        
-        let pathUrl: string = this.currentCanvasServerURI + 
+
+        let pathUrl: string = this.currentCanvasServerURI +
             'canvas/datasources/sessions/create-session/';
 
         return new Promise<any>((resolve, reject) => {
@@ -13379,7 +13383,7 @@ console.warn('xx ds perm', dp);
                 }
             )
         });
-      
+
     }
 
     tributaryInspect(inspectURL: string, source: any) {
@@ -13391,7 +13395,7 @@ console.warn('xx ds perm', dp);
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {inspectURL});
         };
-        
+
         let pathUrl: string = inspectURL;
 
         return new Promise<any>((resolve, reject) => {
@@ -13420,7 +13424,7 @@ console.warn('xx ds perm', dp);
                 }
             )
         });
-      
+
     }
 
     tributaryExecute(executeURL: string, source: any) {
@@ -13432,7 +13436,7 @@ console.warn('xx ds perm', dp);
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {executeURL});
         };
-        
+
         let pathUrl: string = executeURL;
 
         return new Promise<any>((resolve, reject) => {
@@ -13461,7 +13465,7 @@ console.warn('xx ds perm', dp);
                 }
             )
         });
-      
+
     }
 
     tributaryAddDatasource(createDatasourceURL: string, source: any) {
@@ -13473,7 +13477,7 @@ console.warn('xx ds perm', dp);
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {createDatasourceURL});
         };
-        
+
         let pathUrl: string = createDatasourceURL;
 
         return new Promise<any>((resolve, reject) => {
@@ -13502,7 +13506,7 @@ console.warn('xx ds perm', dp);
                 }
             )
         });
-      
+
     }
 
     getTributaryData(source: any): Promise<any> {
