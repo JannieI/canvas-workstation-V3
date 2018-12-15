@@ -13283,7 +13283,7 @@ console.warn('xx ds perm', dp);
                     "password": givenPassword 
                 } 
                 ).subscribe(res => {        
-
+                    if (res.statusCode == 'failed') 
                     resolve('Done');
             },
             err => {

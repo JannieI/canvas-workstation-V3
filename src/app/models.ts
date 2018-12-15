@@ -1515,3 +1515,10 @@ export class Token {
     };
 
 }
+
+export class CanvasHttpResponse {
+    "statusCode": string;
+    "message" : string;
+    "data": any;
+    "error": any;
+}
