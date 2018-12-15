@@ -172,10 +172,14 @@ export class LoginComponent implements OnInit {
         this.globalVariableService.registerCanvasUser(
             this.canvasServerName, this.companyName, this.userID, this.password).then(res => {
 
-            if (res == 'Done') {
-                this.message = 'User Registered'
-            } else {
-                this.message = 'User NOT Registered: ' + res;
+            if (res.substring(0, 5) == 'Error') {
+                this.message = res.substring(5);
+            };
+            if (res.substring(0, 6) == 'Failed') {
+                this.message = res.substring(6);
+            };
+            if (res.substring(0, 7) == 'Success') {
+                this.message = res.substring(7);
             };
         });
 
