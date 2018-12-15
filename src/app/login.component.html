@@ -106,6 +106,10 @@
                         {{ errorMessage  }}
                     </div>
 
+                    <div class="gridMessage" *ngIf="message">
+                        {{ message  }}
+                    </div>
+
                     <div class="gridButtonLogin"
                             (click)="clickLogin()"
                             >
