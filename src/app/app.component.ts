@@ -530,7 +530,7 @@ export class AppComponent implements OnInit {
         // Refresh Variables (local and global) to be used in the whole App.  This happens
         // after successful login, or verify by server of info read from localStorage:
         //   - updates GV.currentUser = profile    NB: fix setCurrentCanvasUser
-        //   - updates GV.currentUserID.next(profile.userID)
+        //   - updates GV.currentUserID
         //   - updates GV.currentCanvasServer = currentCanvasServer
         //   - updates GV.currentCanvasCompanyName = currentCanvasCompanyName
         //   - loads users, do snapshots, etc below
@@ -546,12 +546,6 @@ export class AppComponent implements OnInit {
                 // TODO get canvasSettings from DB too
                 console.warn('xx res is good', res, this.globalVariableService.currentUser)
 
-
-
-
-
-
-
                 // Rest of the RxJs subscriptions are called (to listen for updates)
                 // To obtain required info as and when it is filled by other forms, ie Login
 
@@ -559,14 +553,9 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.dontDisturb.subscribe(ddb => 
                     this.dontDisturb = ddb
                 );
-    console.warn(('xx 14'));
 
                 // Current user
                 this.currentUserID = this.globalVariableService.currentUser.userID;
-                // this.globalVariableService.currentUserID.subscribe(usr => {
-                //     this.currentUserID = usr;
-                // });
-
 
                 // Palette and Grid info
                 this.showPaletteSubscription = this.globalVariableService.showPalette.subscribe(
@@ -735,8 +724,6 @@ export class AppComponent implements OnInit {
 
                 // TODO - set GV.canvasUser record
                 this.globalVariableService.getCanvasUsers().then(res => {
-                    // this.globalVariableService.currentUserID.next('JannieI');
-                    this.globalVariableService.setCurrentCanvasUser('JannieI');
 
                     // Get Users and Groups, async
                     this.globalVariableService.getCanvasGroups();
@@ -826,9 +813,6 @@ export class AppComponent implements OnInit {
             };;
         });
         
-
-
-
 
 
         // 2. Get info from localStorage (using Dexie) and verify that still valid.

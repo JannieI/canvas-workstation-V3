@@ -1037,7 +1037,6 @@ export class GlobalVariableService {
     // *********************************************************************************
 
     // User ID info - stored locally and used to login / verify
-    // currentUserID = new BehaviorSubject<string>('');
     canvasServerName: string = '';
     currentUserID: string = '';
     canvasServerURI: string = '';
@@ -13182,7 +13181,7 @@ console.warn('xx ds perm', dp);
 
 
 
-    // Canvas-Server, Eazl, Tributary stuffies
+    // Canvas-Server, stuffies
     // ***********************************************************************
 
     setCurrentCanvasServer(
