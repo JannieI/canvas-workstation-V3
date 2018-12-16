@@ -13290,7 +13290,7 @@ console.warn('xx ds perm', dp);
                         resolve('Failed: ' + res.message);
                     };
                     if (res.statusCode == 'success') {
-                        console.warn('Success: ');
+                        console.warn('Success: ' + res.message);
                         
                         resolve('Success');
                     };
