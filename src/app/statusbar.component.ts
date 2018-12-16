@@ -86,13 +86,13 @@ export class StatusbarComponent {
             };
         });
 
-        // Adjust Local / Server
+        // Adjust Server Name to display on the StatusBar
         this.loggedIntoServerSubscription = this.globalVariableService.loggedIntoServer
             .subscribe(i => {
                 if (i) {
-                    this.loggedIntoServerText = 'Server';
+                    this.loggedIntoServerText = this.globalVariableService.canvasServerName;
                 } else {
-                    this.loggedIntoServerText = 'Local';
+                    this.loggedIntoServerText = '';
                 };
         });
 

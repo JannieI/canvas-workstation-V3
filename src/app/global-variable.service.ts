@@ -1038,12 +1038,12 @@ export class GlobalVariableService {
     // *********************************************************************************
 
     // User ID info - stored locally and used to login / verify
-    canvasServerName: string = '';
+    canvasServerName: string = 'HalloSrv';
     currentUserID: string = '';
     canvasServerURI: string = '';
     currentCompany: string = '';
     currentToken: string = '';
-    loggedIntoServer = new BehaviorSubject<boolean>(true);
+    loggedIntoServer = new BehaviorSubject<boolean>(true);  // Emits True when log in/out of server
 
     // Canvas Server Profile (and settings)
     canvasSettings: CanvasSettings = {

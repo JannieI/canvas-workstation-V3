@@ -112,14 +112,8 @@ export class LoginComponent implements OnInit {
                 this.globalVariableService.sessionDateTimeLoggedin =
                     this.globalVariableService.formatDate(today);
 
-                // TODO - fix when values read from form
-                this.globalVariableService.loggedIntoServer.next(
-                    this.canvasServerName=='Canvas Server Local'?  true  :  false
-                );
-
-                // Set userID
-                // TODO - set GV.canvasUser record
-                // this.globalVariableService.currentUserID.next(this.userID);
+                // Indicate logged in; so StatusBar shows name
+                this.globalVariableService.loggedIntoServer.next(true);
 
                 // Optional start D
                 if (this.globalVariableService.currentUser.preferenceStartupDashboardID != null) {
@@ -151,23 +145,23 @@ export class LoginComponent implements OnInit {
         this.errorMessage = '';
         this.message = '';
 
-        // Validate user
-        if (this.companyName =='') {
-            this.errorMessage = 'Please enter a Company Name';
-            return;
-        }
+        // Validate info
         if (this.canvasServerName =='') {
             this.errorMessage = 'Please enter a Canvas Server';
             return;
-        }
+        };
+        if (this.companyName =='') {
+            this.errorMessage = 'Please enter a Company Name';
+            return;
+        };
         if (this.userID =='') {
             this.errorMessage = 'Please enter a userID';
             return;
-        }
+        };
         if (this.password =='') {
             this.errorMessage = 'Please enter a password';
             return;
-        }
+        };
 
         // Set current Server Name and URI
         this.globalVariableService.registerCanvasUser(
