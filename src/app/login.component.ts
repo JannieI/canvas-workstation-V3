@@ -149,6 +149,7 @@ export class LoginComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.message = '';
 
         // Validate user
         if (this.companyName =='') {
@@ -175,10 +176,10 @@ export class LoginComponent implements OnInit {
             console.warn('xx res', res);
             
             if (res.substring(0, 5) == 'Error') {
-                this.message = res.substring(7);
+                this.errorMessage = res.substring(7);
             };
             if (res.substring(0, 6) == 'Failed') {
-                this.message = res.substring(8);
+                this.errorMessage = res.substring(8);
             };
             if (res.substring(0, 7) == 'Success') {
                 this.message = res.substring(9);
