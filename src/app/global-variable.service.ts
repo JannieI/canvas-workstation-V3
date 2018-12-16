@@ -13260,7 +13260,7 @@ console.warn('xx ds perm', dp);
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables registerCanvasUser ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {givenCanvasServerURI: givenCanvasServerName}, {givenCompanyName},
+                {givenCanvasServerName}, {givenCompanyName},
                 {givenUserID}, {givenPassword});
         };
 
@@ -13278,6 +13278,63 @@ console.warn('xx ds perm', dp);
 
             console.warn('xx givenCanvasServerURI', givenCanvasServerURI)
             this.http.post<CanvasHttpResponse>(givenCanvasServerURI + '/auth/local/signup',
+                {
+                    "companyName": givenCompanyName,
+                    "userID": givenUserID,
+                    "password": givenPassword
+                }
+                ).subscribe(res => {
+                    if (res.statusCode == 'failed') {
+                        console.warn('xx GV Failed: ' + res.message, res);
+                        
+                        resolve('Failed: ' + res.message);
+                    };
+                    if (res.statusCode == 'success') {
+                        console.warn('Success: ' + res.message);
+                        
+                        resolve('Success: ' + res.message);
+                    };
+                    if (res.statusCode == '') {
+                        console.warn('Error: ' + res.message);
+                        
+                        resolve('Error: ' + res.message);
+                    };
+            },
+            err => {
+                console.log('Error Registration FAILED', {err});
+                resolve('Error: Registration FAILED ' + err.message);
+            });
+        });
+    }
+
+    loginCanvasServer(
+        givenCanvasServerName: string,
+        givenCompanyName: string,
+        givenUserID: string,
+        givenPassword: string): Promise<string> {
+        // Registers a user on a given Server & Company (add to Users) if he/she does not
+        // already exist
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables loginCanvasServer ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {givenCanvasServerName}, {givenCompanyName},
+                {givenUserID}, {givenPassword});
+        };
+
+        return new Promise<string>((resolve, reject) => {
+
+            // Get the ServerURL
+            let serverURLIndex: number = this.ENVCanvasServerList.findIndex(
+                srv => srv.serverName == givenCanvasServerName
+            );
+            if (serverURLIndex < 0) {
+                resolve('Error: Server Name not in ENV configuration');
+            };
+            let givenCanvasServerURI: string = this.ENVCanvasServerList[serverURLIndex]
+                .serverHostURI;
+
+            console.warn('xx givenCanvasServerURI', givenCanvasServerURI)
+            this.http.post<CanvasHttpResponse>(givenCanvasServerURI + '/auth/local/login',
                 {
                     "companyName": givenCompanyName,
                     "userID": givenUserID,
