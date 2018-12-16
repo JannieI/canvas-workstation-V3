@@ -13294,7 +13294,7 @@ console.warn('xx ds perm', dp);
                         
                         resolve('Success: ' + res.message);
                     };
-                    if (res.statusCode == '') {
+                    if (res.statusCode == 'error') {
                         console.warn('Error: ' + res.message);
                         
                         resolve('Error: ' + res.message);
@@ -13351,7 +13351,7 @@ console.warn('xx ds perm', dp);
                         
                         resolve('Success: ' + res.message);
                     };
-                    if (res.statusCode == '') {
+                    if (res.statusCode == 'error') {
                         console.warn('Error: ' + res.message);
                         
                         resolve('Error: ' + res.message);

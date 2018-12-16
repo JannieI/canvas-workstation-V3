@@ -117,7 +117,8 @@ export class LoginComponent implements OnInit {
         };
 
         // Validate user
-        this.globalVariableService.login(this.userID, this.password).then(res => {
+        this.globalVariableService.loginCanvasServer(
+            this.canvasServerName, this.companyName, this.userID, this.password).then(res => {
             if (!res) {
 
                 this.errorMessage = 'Login failed';
