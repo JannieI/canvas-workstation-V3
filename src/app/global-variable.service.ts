@@ -13292,7 +13292,7 @@ console.warn('xx ds perm', dp);
                     if (res.statusCode == 'success') {
                         console.warn('Success: ' + res.message);
                         
-                        resolve('Success');
+                        resolve('Success: ' + res.message);
                     };
                     if (res.statusCode == '') {
                         console.warn('Error: ' + res.message);
