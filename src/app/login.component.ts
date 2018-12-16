@@ -96,7 +96,26 @@ export class LoginComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.message = '';
 
+        // Validate info
+        if (this.canvasServerName =='') {
+            this.errorMessage = 'Please enter a Canvas Server';
+            return;
+        };
+        if (this.companyName =='') {
+            this.errorMessage = 'Please enter a Company Name';
+            return;
+        };
+        if (this.userID =='') {
+            this.errorMessage = 'Please enter a userID';
+            return;
+        };
+        if (this.password =='') {
+            this.errorMessage = 'Please enter a password';
+            return;
+        };
+        
         // Validate user
         this.globalVariableService.login(this.userID, this.password).then(res => {
             if (!res) {
@@ -136,7 +155,7 @@ export class LoginComponent implements OnInit {
     }
 
     clickRegister() {
-        // Log in
+        // Register a server-company-user
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRegister', '@Start');
 
         // Reset
