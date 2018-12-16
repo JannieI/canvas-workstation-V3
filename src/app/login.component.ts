@@ -104,8 +104,6 @@ export class LoginComponent implements OnInit {
                 this.errorMessage = 'Login failed';
                 return;
             } else {
-                let tkn: Token = JSON.parse(localStorage.getItem('eazl-token'));
-                console.warn('xx tkn', tkn.token, tkn.user)
 
                 // Register session start time
                 let today = new Date();
