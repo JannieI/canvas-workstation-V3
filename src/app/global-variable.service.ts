@@ -13308,7 +13308,7 @@ console.warn('xx ds perm', dp);
     }
 
     // TODO - to be replaced by actual Eazl
-    login(username: string, password: string): Promise<boolean> {
+    loginOLD(username: string, password: string): Promise<boolean> {
         // Login, and return a token which is stored in LocalStorage.  Also, set global User
         // If not a valid user, return false.
         // If so, set currentUser object and return true

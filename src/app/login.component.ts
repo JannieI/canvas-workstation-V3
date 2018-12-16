@@ -115,7 +115,7 @@ export class LoginComponent implements OnInit {
             this.errorMessage = 'Please enter a password';
             return;
         };
-        
+
         // Validate user
         this.globalVariableService.login(this.userID, this.password).then(res => {
             if (!res) {
@@ -129,7 +129,7 @@ export class LoginComponent implements OnInit {
                 this.globalVariableService.sessionDateTimeLoggedin =
                     this.globalVariableService.formatDate(today);
 
-                // Indicate logged in; so StatusBar shows name
+                // Indicate logged in; so StatusBar shows Server Name
                 this.globalVariableService.loggedIntoServer.next(true);
 
                 // Optional start D
