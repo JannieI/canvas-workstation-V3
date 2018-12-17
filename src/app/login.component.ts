@@ -167,7 +167,7 @@ export class LoginComponent implements OnInit {
 
             console.warn('xx res', res);
 
-            if (res.substring(0, 5) == 'Error') {
+            if (res.substring(0, 5) == 'Error'  ||  res.substring(0, 6) == 'Failed') {
                 this.errorMessage = res.substring(7);
                 return;
             } else {
