@@ -128,7 +128,7 @@ export class WidgetSingleComponent {
         };
     }
 
-    clickSingleWidget(index: number, id: number) {
+    clickSingleWidget() {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSingleWidget', '@Start');
 
