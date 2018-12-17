@@ -4,7 +4,7 @@
             <form #f="ngForm" role="form" novalidate>
 
                 <div class="gridOverall">
-                    <button type="button" class="closeButton" (click)="clickClose()">
+                    <button type="button" class="closeButton" (click)="clickClose('Close')">
                         <b>X</b>
                     </button>
 
@@ -65,7 +65,7 @@
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
-                            (click)="clickSelectTitleBgColorPicker()"
+                            (click)="clickSelectTitleBgColorPicker($event)"
                             >
                             Picker
                         </button>
@@ -106,7 +106,7 @@
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
-                            (click)="clickSelectTitleColorPicker()"
+                            (click)="clickSelectTitleColorPicker($event)"
                             >
                             Picker
                         </button>
@@ -154,7 +154,7 @@
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
-                            (click)="clickSelectBorderColorPicker()"
+                            (click)="clickSelectBorderColorPicker($event)"
                             >
                             Picker
                         </button>
@@ -235,7 +235,7 @@
                     <button
                         type="button"
                         class="btn btn-secondary titleButtonCancel"
-                        (click)="clickClose()"
+                        (click)="clickClose('Close')"
                         >
                         Cancel
                     </button>
