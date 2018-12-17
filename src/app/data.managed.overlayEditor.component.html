@@ -1,43 +1,10 @@
-<!-- <clr-tabs class="gridData">
-    <clr-tab>
-        <button clrTabLink>Data</button>
-        <ng-template [(clrIfActive)]="data">
-            <clr-tab-content>
-
-                <clr-datagrid 
-                ...
-                </clr-datagrid>
-            </clr-tab-content>
-        </ng-template>
-    </clr-tab>
-
-    <clr-tab>
-        <button clrTabLink>SQL</button>
-        <ng-template [(clrIfActive)]="sql">
-            <clr-tab-content>
-                <textarea ...</textarea>
-            </clr-tab-content>
-        </ng-template>
-    </clr-tab>
-
-    <clr-tab>
-        <button clrTabLink>Errors</button>
-        <ng-template [(clrIfActive)]="errors">
-            <clr-tab-content>
-                <textarea ...</textarea>
-            </clr-tab-content>
-        </ng-template>
-    </clr-tab>
-</clr-tabs> -->
-
-
 <div class="modal modalBox">
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <form #f="ngForm" role="form" novalidate>
 
                 <div class="gridOverall">
-                    <button type="button" class="closeButton" (click)="clickClose()">
+                    <button type="button" class="closeButton" (click)="clickClose('Close')">
                         <b>X</b>
                     </button>
                     <div class="gridTitle">
