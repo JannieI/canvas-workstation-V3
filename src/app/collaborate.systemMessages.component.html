@@ -32,14 +32,14 @@
 
                 <div class="gridTable">
                     <clr-datagrid>
-                        <clr-dg-column [clrDgField]="id">logDateTime</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardTabID">userID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardID">dashboardName</clr-dg-column>
-                        <clr-dg-column [clrDgField]="widgetID">message</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardTabID">uiArea</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardTabID">classfication</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardTabID">timeout</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardTabID">defaultMessage</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'id'">logDateTime</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">userID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardID'">dashboardName</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'widgetID'">message</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">uiArea</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">classfication</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">timeout</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">defaultMessage</clr-dg-column>
                        
                         <clr-dg-row *clrDgItems="let row of statusBarMessages;
                             let i = index"

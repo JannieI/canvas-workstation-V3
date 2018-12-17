@@ -29,7 +29,7 @@
 
                 <div class="gridGroups">
                     <clr-datagrid>
-                        <clr-dg-column [clrDgField]="name">Groups</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'name'">Groups</clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of canvasGroups;
                             let i = index"
@@ -55,15 +55,15 @@
                 <div class="gridUsers">
                     <div class="gridPrevious">
                         <clr-datagrid>
-                            <clr-dg-column [clrDgField]="userID">UserID</clr-dg-column>
-                            <clr-dg-column [clrDgField]="firstName">FirstName</clr-dg-column>
-                            <clr-dg-column [clrDgField]="lastName">LastName</clr-dg-column>
-                            <clr-dg-column [clrDgField]="email">Email</clr-dg-column>
-                            <clr-dg-column [clrDgField]="workNumber">WorkNumber</clr-dg-column>
-                            <clr-dg-column [clrDgField]="cellNumber">CellNumber</clr-dg-column>
-                            <clr-dg-column [clrDgField]="isSuperuser">IsSuperuser</clr-dg-column>
-                            <clr-dg-column [clrDgField]="isStaff">IsStaff</clr-dg-column>
-                            <clr-dg-column [clrDgField]="isActive">IsActive</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'userID'">UserID</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'firstName'">FirstName</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'lastName'">LastName</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'workNumber'">WorkNumber</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'cellNumber'">CellNumber</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'isSuperuser'">IsSuperuser</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'isStaff'">IsStaff</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'isActive'">IsActive</clr-dg-column>
 
                             <clr-dg-row *clrDgItems="let row of canvasUsers;
                                 let i = index"

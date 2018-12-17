@@ -164,16 +164,16 @@
 
                 <div class="gridTable" *ngIf="accessType == 'AccessList'">
                     <clr-datagrid>
-                        <clr-dg-column [clrDgField]="userID">User ID (single)</clr-dg-column>
-                        <clr-dg-column [clrDgField]="name">Group Name (applies to all its members)</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canViewRight" class="checkCell">View</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canEditRight">Edit</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canSaveRight">Save</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canDeleteRight">Delete</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canAddDatasource">Add DS</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canGrantAccess">Grant Access</clr-dg-column>
-                        <clr-dg-column [clrDgField]="grantor">Grantor</clr-dg-column>
-                        <clr-dg-column [clrDgField]="grantedOn">Granted On</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'userID'">User ID (single)</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'name'">Group Name (applies to all its members)</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'canViewRight'" class="checkCell">View</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'canEditRight'">Edit</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'canSaveRight'">Save</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'canDeleteRight'">Delete</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'canAddDatasource'">Add DS</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'canGrantAccess'">Grant Access</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'grantor'">Grantor</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'grantedOn'">Granted On</clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of dashboardPermissions;
                             let i = index"

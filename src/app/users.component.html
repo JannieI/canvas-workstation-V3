@@ -29,15 +29,15 @@
 
                 <div class="gridUsers">
                     <clr-datagrid>
-                        <clr-dg-column [clrDgField]="userID">UserID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="firstName">FirstName</clr-dg-column>
-                        <clr-dg-column [clrDgField]="lastName">LastName</clr-dg-column>
-                        <clr-dg-column [clrDgField]="email">Email</clr-dg-column>
-                        <clr-dg-column [clrDgField]="workNumber">WorkNumber</clr-dg-column>
-                        <clr-dg-column [clrDgField]="cellNumber">CellNumber</clr-dg-column>
-                        <clr-dg-column [clrDgField]="isSuperuser">IsSuperuser</clr-dg-column>
-                        <clr-dg-column [clrDgField]="isStaff">IsStaff</clr-dg-column>
-                        <clr-dg-column [clrDgField]="isActive">IsActive</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'userID'">UserID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'firstName'">FirstName</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'lastName'">LastName</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'workNumber'">WorkNumber</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'cellNumber'">CellNumber</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'isSuperuser'">IsSuperuser</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'isStaff'">IsStaff</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'isActive'">IsActive</clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of users;
                             let i = index"
@@ -70,7 +70,7 @@
                 </div> -->
                 <div class="gridGroups">
                     <clr-datagrid>
-                        <clr-dg-column [clrDgField]="name">Groups</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'name'">Groups</clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of groups;
                             let i = index"
@@ -99,15 +99,15 @@
                         <clr-dg-column [style.text-align]="center">
                             Remove
                         </clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardName">Name</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canViewRight" class="checkCell">View</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canEditRight">Edit</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canSaveRight">Save</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canDeleteRight">Delete</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canAddDatasource">Add DS</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canGrantAccess">Grant Access</clr-dg-column>
-                        <clr-dg-column [clrDgField]="grantor">Grantor</clr-dg-column>
-                        <clr-dg-column [clrDgField]="grantedOn">Granted On</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardName'">Name</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'canViewRight'" class="checkCell">View</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'canEditRight'">Edit</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'canSaveRight'">Save</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'canDeleteRight'">Delete</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'canAddDatasource'">Add DS</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'canGrantAccess'">Grant Access</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'grantor'">Grantor</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'grantedOn'">Granted On</clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of dashboardPermissions;
                             let i = index"

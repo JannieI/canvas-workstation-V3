@@ -38,13 +38,14 @@ export class DataDirectFileCSVComponent implements OnInit {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose();
+            this.clickClose('Close');
             return;
         };
 
     }
 
     canSave: boolean = false;
+    datasourceName: string = '';
     errorMessage: string = "";
     fields: string[] = [];
     // fileColumns: any[] = [];
@@ -260,7 +261,7 @@ export class DataDirectFileCSVComponent implements OnInit {
 
     }
 
-    clickClose() {
+    clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 

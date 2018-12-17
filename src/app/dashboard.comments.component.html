@@ -67,10 +67,10 @@
                             </clr-dg-placeholder>
 
                             <clr-dg-column>Edit</clr-dg-column>
-                            <clr-dg-column [clrDgField]="id">ID</clr-dg-column>
-                            <clr-dg-column [clrDgField]="comment">Comment</clr-dg-column>
-                            <clr-dg-column [clrDgField]="creator">Creator</clr-dg-column>
-                            <clr-dg-column [clrDgField]="createdOn">CreatedOn</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'comment'">Comment</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'creator'">Creator</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'createdOn'">CreatedOn</clr-dg-column>
 
                             <clr-dg-row *clrDgItems="let row of canvasComments; 
                                 let i = index"

@@ -31,19 +31,19 @@
 
                 <div class="gridTable">
                     <clr-datagrid>
-                        <clr-dg-column [clrDgField]="id">ID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardID">DashboardID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardTabID">TabID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="widgetID">WidgetID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardTabID">Object</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardTabID">ActionType</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardTabID">Action</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dashboardTabID">Description</clr-dg-column>
-                        <clr-dg-column [clrDgField]="userID">User ID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="keyChanged">keyChanged</clr-dg-column>
-                        <clr-dg-column [clrDgField]="oldValue">oldValue</clr-dg-column>
-                        <clr-dg-column [clrDgField]="newValue">newValue</clr-dg-column>
-                        <clr-dg-column [clrDgField]="changedOn">changedOn</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardID'">DashboardID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">TabID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'widgetID'">WidgetID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">Object</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">ActionType</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">Action</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">Description</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'userID'">User ID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'keyChanged'">keyChanged</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'oldValue'">oldValue</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'newValue'">newValue</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'changedOn'">changedOn</clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of canvasAuditTrail;
                             let i = index"

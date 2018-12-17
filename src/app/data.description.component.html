@@ -216,28 +216,26 @@
                 <div class = "gridTable">
                     <clr-datagrid>
 
-                        <clr-dg-column [clrDgField]="type">Type</clr-dg-column>
-
-                        <clr-dg-column [clrDgField]="name">Name</clr-dg-column>
-                        <clr-dg-column [clrDgField]="description">Description</clr-dg-column>
-                        <clr-dg-column [clrDgField]="accessType">AccessType</clr-dg-column>
-                        <clr-dg-column [clrDgField]="cacheResultsOnServer">Cache Srv</clr-dg-column>
-                        <clr-dg-column [clrDgField]="unRefreshable">UnRefreshable</clr-dg-column>
-                        <clr-dg-column [clrDgField]="cacheResultsLocal">Cache Local</clr-dg-column>
-                        <clr-dg-column [clrDgField]="nrCacheCopies">Cache Copies</clr-dg-column>
-                        <clr-dg-column [clrDgField]="oldnessMaxPeriodInterval">Oldness Interval</clr-dg-column>
-                        <clr-dg-column [clrDgField]="oldnessMaxPeriodUnits">Oldness Period</clr-dg-column>
-                        <clr-dg-column [clrDgField]="oldnessRelatedDate">Oldness Related</clr-dg-column>
-                        <clr-dg-column [clrDgField]="oldnessRelatedTime">Oldness Time</clr-dg-column>
-
-                        <clr-dg-column [clrDgField]="createMethod">Create Method</clr-dg-column>
-                        <clr-dg-column [clrDgField]="createdBy">Created By</clr-dg-column>
-                        <clr-dg-column [clrDgField]="createdOn">Created On</clr-dg-column>
-                        <clr-dg-column [clrDgField]="editor">Editor</clr-dg-column>
-                        <clr-dg-column [clrDgField]="dateEdited">Edited On</clr-dg-column>
-                        <clr-dg-column [clrDgField]="refreshedBy">Refreshed By</clr-dg-column>
-                        <clr-dg-column [clrDgField]="refreshedServerOn">Srv Refreshed</clr-dg-column>
-                        <clr-dg-column [clrDgField]="refreshedLocalOn">Local Refreshed</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'type'">Type</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'accessType'">AccessType</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'cacheResultsOnServer'">Cache Srv</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'unRefreshable'">UnRefreshable</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'cacheResultsLocal'">Cache Local</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'nrCacheCopies'">Cache Copies</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'oldnessMaxPeriodInterval'">Oldness Interval</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'oldnessMaxPeriodUnits'">Oldness Period</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'oldnessRelatedDate'">Oldness Related</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'oldnessRelatedTime'">Oldness Time</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'createMethod'">Create Method</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'createdBy'">Created By</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'createdOn'">Created On</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'editor'">Editor</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dateEdited'">Edited On</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'refreshedBy'">Refreshed By</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'refreshedServerOn'">Srv Refreshed</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'refreshedLocalOn'">Local Refreshed</clr-dg-column>
 
                         <clr-dg-row *ngFor="let row of datasources; let i = index"
                             [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"

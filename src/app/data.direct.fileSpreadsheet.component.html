@@ -122,7 +122,7 @@
                         <div class="gridTableWorksheets">
                             <clr-datagrid>
                                
-                                <clr-dg-column [clrDgField]="userID">Worksheets</clr-dg-column>
+                                <clr-dg-column [clrDgField]="'userID'">Worksheets</clr-dg-column>
                                
                                 <clr-dg-row *ngFor="let row of worksheets; let i = index"
                                     [style.background-color]="(i == selectedWorksheetRowIndex)? '#123456' : 'white'"

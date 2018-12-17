@@ -182,7 +182,7 @@
                                 Show Data here ...
                             </clr-dg-placeholder>
 
-                            <clr-dg-column [clrDgField]="nameDB">Transformation</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'nameDB'">Transformation</clr-dg-column>
 
                             <clr-dg-row
                                 *clrDgItems="let row of datasourceTransformations; let i = index"
@@ -220,8 +220,8 @@
                                 Show Data here ...
                             </clr-dg-placeholder>
 
-                            <clr-dg-column [clrDgField]="nameDB">name (DB)</clr-dg-column>
-                            <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'nameDB'">name (DB)</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'businessGlossary'">businessGlossary</clr-dg-column>
 
                             <clr-dg-row
                                 *clrDgItems="let row of dataFields; let i = index"

@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div modalContent>
                 <div class="gridOverall">
-                    <button type="button" class="closeButton" (click)="clickClose()">
+                    <button type="button" class="closeButton" (click)="clickClose('Close')">
                         <b>X</b>
                     </button>
 
@@ -131,7 +131,7 @@
 
                     <div class="gridTableColumns">
                         <clr-datagrid>
-                            <clr-dg-column [clrDgField]="userID">Columns</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'userID'">Columns</clr-dg-column>
 
                             <clr-dg-row *ngFor="let row of fields">
                                 <clr-dg-cell>
@@ -166,7 +166,7 @@
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            (click)="clickClose()"
+                            (click)="clickClose('Close')"
                             >
                             Cancel
                         </button>
@@ -187,7 +187,7 @@
                         <button
                             type="button"
                             class="btn btn-link"
-                            (click)="clickAdd('Transformation')"
+                            (click)="clickAdd()"
                             [disabled]="!canSave"
                             >
                             <span *ngIf="!editingDS">Add</span>
