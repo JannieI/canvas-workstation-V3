@@ -53,7 +53,7 @@ export class SlicerSingleComponent {
         this.slicerBorderWidth = this.slicerBorderWidth * 2;
     }
 
-    clickSlicer(index: number, id: number) {
+    clickSlicer() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicer', '@Start');
 
