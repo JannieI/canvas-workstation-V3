@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
             <div class="gridOverall">
-                <button type="button" class="closeButton" (click)="clickClose()">
+                <button type="button" class="closeButton" (click)="clickClose('Close')">
                     <b>X</b>
                 </button>
                 <div class="gridTitle">
@@ -66,7 +66,7 @@
                         [datagridShowData]="datagridShowData"
                         [datagridShowFooter]="datagridShowFooter"
                         [datagridRowHeight]="datagridRowHeight"
-                        [datagriduserCanChangeProperties]="uatagriderCanChangeProperties"
+                        [datagriduserCanChangeProperties]="datagriderCanChangeProperties"
                         [datagridShowTotalsRow]="datagridShowTotalsRow"
                         [datagridShowTotalsCol]="datagridShowTotalsCol"
                         [datagridCanEditInCell]="datagridCanEditInCell"
