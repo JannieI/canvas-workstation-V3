@@ -44,7 +44,7 @@ export class DashboardSaveComponent implements OnInit {
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
             &&
             (!event.ctrlKey)
-            &&
+            && 
             (!event.shiftKey)
            ) {
             this.clickSave();
@@ -57,6 +57,7 @@ export class DashboardSaveComponent implements OnInit {
     isFirstTimeDashboardSave: boolean;
     dashboards: Dashboard[];
     dashboardsSubscription: Subscription;
+    qaRequired: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
