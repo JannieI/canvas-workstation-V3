@@ -81,7 +81,7 @@ export class DataManagedDataDictionaryComponent implements OnInit {
             dataFieldLengths: null,
             datasourceFilters: null,
             datasourceFilterForThisDashboard: false,
-        accessType: '',
+            accessType: '',
             cacheResultsOnServer: true,
             unRefreshable: true,
             nrCacheCopies: 999,
