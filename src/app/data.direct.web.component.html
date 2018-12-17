@@ -4,7 +4,7 @@
             <form #f="ngForm" role="form" novalidate>
 
                 <div class="gridOverall">
-                    <button type="button" class="closeButton" (click)="clickClose()">
+                    <button type="button" class="closeButton" (click)="clickClose('Close')">
                         <b>X</b>
                     </button>
                     <div class="gridTitle">
@@ -153,7 +153,7 @@
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            (click)="clickClose()"
+                            (click)="clickClose('Close')"
                             >
                             Cancel
                         </button>
