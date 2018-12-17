@@ -202,4 +202,15 @@ export class LoginComponent implements OnInit {
 
     }
 
+    clickLoginGitHub() {
+        // Log in via Git
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickLoginGitHub', '@Start');
+    }
+
+    clickLoginGoogle() {
+        // Log in via Google
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickLoginGoogle', '@Start');
+    }
+
+
 }
