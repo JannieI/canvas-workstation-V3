@@ -51,6 +51,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
 
     connectionName: string = '';
+    connectionString: string = '';
     dataConnections: DataConnection[];
     dataConnectionNames: string[] = [];
     currentData: any[] = [];

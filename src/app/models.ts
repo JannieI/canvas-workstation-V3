@@ -688,6 +688,8 @@ export class DataConnection {
     port: string;               // Port on the Server, maybe blank
     database: string;           // Database to connect to
     authentication: string;     // Type of authentication: usr & psw, OR login as me (ie using AD)
+    username: string;           // As entered by user
+    password: string;           // As entered by user - encrypted ?
     description: string;        // Description of Connection
 
     // For later use

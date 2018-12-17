@@ -132,12 +132,21 @@ export class DataCombinationComponent implements OnInit {
     }
 
     clickClose(action: string) {
-        //
+        // Close the form, without saving anything
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formDataCombinationClosed.emit(action);
 
     }
+
+    clickSave() {
+        // Save and close the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        this.formDataCombinationClosed.emit('Save');
+
+    }
+
 
 }
 

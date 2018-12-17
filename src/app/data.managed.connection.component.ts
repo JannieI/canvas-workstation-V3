@@ -2,7 +2,7 @@
  * Manage Connections for managed Datasources.
  */
 
-// Angular
+// Angular 
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
@@ -116,6 +116,8 @@ export class DataManagedConnectionComponent implements OnInit {
             port: '',
             database: '',
             authentication: '',
+            username: '',
+            password: '',
             description: '',
             editedBy: '',
             editedOn: null,

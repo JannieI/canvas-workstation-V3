@@ -50,6 +50,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
 
     canSave: boolean = false;
     connectionName: string = '';
+    connectionString: string = '';
     dataConnections: DataConnection[];
     dataConnectionNames: string[] = [];
     errorMessage: string = "";

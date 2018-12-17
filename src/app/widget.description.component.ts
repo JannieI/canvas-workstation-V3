@@ -17,7 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
+import { Widget }                     from './models';
 
 @Component({
     selector: 'widget-description',
@@ -26,7 +26,7 @@ import { Dashboard }                  from './models';
 })
 export class WidgetDescriptionComponent implements OnInit {
 
-    @Input() selectedWidget: Dashboard;
+    @Input() selectedWidget: Widget;
     @Output() formWidgetDescriptionClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])

@@ -48,7 +48,6 @@
                         <select
                             [(ngModel)]="selectedDatasource.serverType"
                             name="serverType"
-                            (change)="clickTemplateDashboard($event)"
                             placeholder="Select a Dashboard as Template"
                             >
                             <option *ngFor="let row of serverTypes">
@@ -186,7 +185,7 @@
                                 No records ...
                             </clr-dg-placeholder>
 
-                            <clr-dg-column [clrDgField]="nameDB">Field Name</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'nameDB'">Field Name</clr-dg-column>
 
                             <clr-dg-row
                                 *clrDgItems="let row of dataFieldsFiltered; 

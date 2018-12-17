@@ -73,6 +73,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     containerStyleNameList: string[] = [];
     containerStyles: ContainerStyle[] = [];
     errorMessage: string;
+    gridStyleName: string;
     infoMessage: string;
     oldWidget: Widget;
     selectedColour: string;
