@@ -62,6 +62,7 @@ export class PreferencesComponent implements OnInit {
     preferenceDefaultPageLayout: string;
     preferenceDefaultSnapshotMins: number;
     preferencePaletteHorisontal: boolean;
+    preferencePlaySound: boolean;
     preferenceShowOpenStartupMessage: boolean;
     preferenceShowOpenDataCombinationMessage: boolean;
     preferenceShowViewStartupMessage: boolean;
@@ -85,6 +86,7 @@ export class PreferencesComponent implements OnInit {
         // Fill local vars for ngModel
         this.preferenceAutoSync = this.globalVariableService.currentUser.preferenceAutoSync;
         this.preferencePaletteHorisontal = this.globalVariableService.currentUser.preferencePaletteHorisontal;
+        this.preferencePlaySound = this.globalVariableService.currentUser.preferencePlaySound;
         this.preferenceShowOpenStartupMessage = this.globalVariableService.currentUser.preferenceShowOpenStartupMessage;
         this.preferenceShowOpenDataCombinationMessage = this.globalVariableService.currentUser.preferenceShowOpenDataCombinationMessage;
         this.preferenceShowViewStartupMessage = this.globalVariableService.currentUser.preferenceShowViewStartupMessage;
