@@ -69,8 +69,26 @@
             margin-left: 20px;
             text-align: left;
         }
-
         .gridSettingsPaletteHorisontal {
+            grid-column-start: 9;
+            /* autoprefixer: off */
+            grid-column-end: 15;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            margin-left: 20px;
+            text-align: left;
+        }
+
+        .gridSettingsPlaySoundTitle {
+            grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .gridSettingsPlaySound {
             grid-column-start: 9;
             /* autoprefixer: off */
             grid-column-end: 15;

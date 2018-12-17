@@ -254,6 +254,7 @@ console.warn('xx this.preferenceStartupDashboardTabID', this.preferenceStartupDa
         this.globalVariableService.updateCurrentUserProperties(
             {
                 preferencePaletteHorisontal: this.preferencePaletteHorisontal,
+                preferencePlaySound: this.preferencePlaySound,
                 preferenceAutoSync: this.preferenceAutoSync,
                 preferenceShowOpenStartupMessage: this.preferenceShowOpenStartupMessage,
                 preferenceShowOpenDataCombinationMessage: this.preferenceShowOpenDataCombinationMessage,

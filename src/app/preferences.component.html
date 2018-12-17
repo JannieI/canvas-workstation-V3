@@ -42,12 +42,22 @@
                 </div>
 
                 <div class="gridSettingsPaletteHorisontalTitle">
-                    <b>Palette horisontal:</b>
+                    <b>Palette h/v:</b>
                 </div>
                 <div class="gridSettingsPaletteHorisontal">
                     <input [(ngModel)]="preferencePaletteHorisontal"
                         type="checkbox"
                         title="Display Palette Horisontally (T/F)"
+                        >
+                </div>
+
+                <div class="gridSettingsPlaySoundTitle">
+                    <b>Sound?</b>
+                </div>
+                <div class="gridSettingsPlaySound">
+                    <input [(ngModel)]="preferencePlaySound"
+                        type="checkbox"
+                        title="Play a sound when messages are shown on the StatusBar (T/F)"
                         >
                 </div>
 
