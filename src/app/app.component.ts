@@ -9649,8 +9649,10 @@ res[0].currentToken = 'test'
         this.globalFunctionService.printToConsole(this.constructor.name,'showMessage', '@Start');
 
         // Audible clue
-        let audio = new Audio('./assets/Click2.wav');
-        audio.play();
+        if (this.globalVariableService.currentUser.preferencePlaySound) {
+            let audio = new Audio('./assets/Click2.wav');
+            audio.play();
+        };
 
         // Pop message in right area
         this.globalVariableService.showStatusBarMessage(

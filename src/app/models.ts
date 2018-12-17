@@ -332,6 +332,7 @@ export class CanvasUser {
     cleanCacheOnLogin: boolean;                 // True to clean cache at login
     cleanCacheOnLogout: boolean;                // True to clean cache at logout
     preferencePaletteHorisontal: boolean;                   // T/F - Palette Horisontal (else Vertial)
+    preferencePlaySound: boolean;                           // T/F - play a sound when showing a message on the StatusBar
     preferenceAutoSync: boolean;                            // T/F - can auto sync
     preferenceShowOpenStartupMessage: boolean;              // T/F - show open startup msg
     preferenceShowOpenDataCombinationMessage: boolean;      // T/F - show msg on open combination form
