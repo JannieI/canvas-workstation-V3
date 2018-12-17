@@ -13312,8 +13312,7 @@ console.warn('xx ds perm', dp);
         givenCompanyName: string,
         givenUserID: string,
         givenPassword: string): Promise<string> {
-        // Registers a user on a given Server & Company (add to Users) if he/she does not
-        // already exist
+        // Logs a user on a given Server & Company 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables loginCanvasServer ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",

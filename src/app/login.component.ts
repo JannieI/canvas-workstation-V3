@@ -90,71 +90,6 @@ export class LoginComponent implements OnInit {
 		this.formUserLoginClosed.emit(action);
     }
 
-    clickLogin() {
-        // Log in
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickLogin', '@Start');
-
-        // Reset
-        this.errorMessage = '';
-        this.message = '';
-
-        // Validate info
-        if (this.canvasServerName =='') {
-            this.errorMessage = 'Please enter a Canvas Server';
-            return;
-        };
-        if (this.companyName =='') {
-            this.errorMessage = 'Please enter a Company Name';
-            return;
-        };
-        if (this.userID =='') {
-            this.errorMessage = 'Please enter a userID';
-            return;
-        };
-        if (this.password =='') {
-            this.errorMessage = 'Please enter a password';
-            return;
-        };
-
-        // Validate user
-        this.globalVariableService.loginCanvasServer(
-            this.canvasServerName, this.companyName, this.userID, this.password).then(res => {
-            if (!res) {
-
-                this.errorMessage = 'Login failed';
-                return;
-            } else {
-
-                // Register session start time
-                let today = new Date();
-                this.globalVariableService.sessionDateTimeLoggedin =
-                    this.globalVariableService.formatDate(today);
-
-                // Indicate logged in; so StatusBar shows Server Name
-                this.globalVariableService.loggedIntoServer.next(true);
-
-                // Optional start D
-                if (this.globalVariableService.currentUser.preferenceStartupDashboardID != null) {
-                    let startTabID: number = -1;
-                    if (this.globalVariableService.currentUser.preferenceStartupDashboardTabID != null) {
-                        startTabID = this.globalVariableService.currentUser.preferenceStartupDashboardTabID;
-                    };
-
-                    this.globalVariableService.refreshCurrentDashboard(
-                        'statusbar-clickTabDelete',
-                        this.globalVariableService.currentUser.preferenceStartupDashboardID,
-                        startTabID,
-                        ''
-                    );
-                };
-
-        		this.formUserLoginClosed.emit('LoggedIn');
-
-            };
-        });
-
-    }
-
     clickRegister() {
         // Register a server-company-user
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRegister', '@Start');
@@ -199,4 +134,72 @@ export class LoginComponent implements OnInit {
         });
 
     }
+
+    clickLogin() {
+        // Log in
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickLogin', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.message = '';
+
+        // Validate info
+        if (this.canvasServerName =='') {
+            this.errorMessage = 'Please enter a Canvas Server';
+            return;
+        };
+        if (this.companyName =='') {
+            this.errorMessage = 'Please enter a Company Name';
+            return;
+        };
+        if (this.userID =='') {
+            this.errorMessage = 'Please enter a userID';
+            return;
+        };
+        if (this.password =='') {
+            this.errorMessage = 'Please enter a password';
+            return;
+        };
+
+        // Validate user
+        this.globalVariableService.loginCanvasServer(
+            this.canvasServerName, this.companyName, this.userID, this.password).then(res => {
+
+            console.warn('xx res', res);
+
+            if (res.substring(0, 5) == 'Error') {
+                this.errorMessage = res.substring(7);
+                return;
+            } else {
+
+                // Register session start time
+                let today = new Date();
+                this.globalVariableService.sessionDateTimeLoggedin =
+                    this.globalVariableService.formatDate(today);
+
+                // Indicate logged in; so StatusBar shows Server Name
+                this.globalVariableService.loggedIntoServer.next(true);
+
+                // Optional start D
+                if (this.globalVariableService.currentUser.preferenceStartupDashboardID != null) {
+                    let startTabID: number = -1;
+                    if (this.globalVariableService.currentUser.preferenceStartupDashboardTabID != null) {
+                        startTabID = this.globalVariableService.currentUser.preferenceStartupDashboardTabID;
+                    };
+
+                    this.globalVariableService.refreshCurrentDashboard(
+                        'statusbar-clickTabDelete',
+                        this.globalVariableService.currentUser.preferenceStartupDashboardID,
+                        startTabID,
+                        ''
+                    );
+                };
+
+        		this.formUserLoginClosed.emit('LoggedIn');
+
+            };
+        });
+
+    }
+
 }
