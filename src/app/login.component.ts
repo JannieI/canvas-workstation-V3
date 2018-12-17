@@ -121,7 +121,7 @@ export class LoginComponent implements OnInit {
             this.canvasServerName, this.companyName, this.userID, this.password).then(res => {
 
             console.warn('xx res', res);
-            
+
             if (res.substring(0, 5) == 'Error') {
                 this.errorMessage = res.substring(7);
             };

@@ -1520,8 +1520,9 @@ export class Token {
 }
 
 export class CanvasHttpResponse {
-    "statusCode": string;
-    "message" : string;
-    "data": any;
-    "error": any;
+    "statusCode": string;                   // Returned from server: failed, success, error
+    "message" : string;                     // Text message
+    "data": any;                            // Data returned, ie Json Array
+    "error": any;                           // Error message, else null
+    "token"?: string;                       // Token, only provided by Login
 }

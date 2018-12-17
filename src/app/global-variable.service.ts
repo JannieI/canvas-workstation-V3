@@ -13288,6 +13288,7 @@ console.warn('xx ds perm', dp);
                     "password": givenPassword
                 }
                 ).subscribe(res => {
+                    
                     if (res.statusCode == 'failed') {
                         console.warn('xx GV Failed: ' + res.message, res);
                         
@@ -13344,6 +13345,9 @@ console.warn('xx ds perm', dp);
                     "password": givenPassword
                 }
                 ).subscribe(res => {
+
+                    console.warn('xx GV res', res);
+                    
                     if (res.statusCode == 'failed') {
                         console.warn('xx GV Failed: ' + res.message, res);
                         
@@ -13361,8 +13365,8 @@ console.warn('xx ds perm', dp);
                     };
             },
             err => {
-                console.log('Error Registration FAILED', {err});
-                resolve('Error: Registration FAILED ' + err.message);
+                console.log('Error Login FAILED', {err});
+                resolve('Error: Login FAILED ' + err.message);
             });
         });
     }
