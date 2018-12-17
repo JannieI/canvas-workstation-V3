@@ -39,7 +39,7 @@ export class DataDirectNoSQLComponent implements OnInit {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose();
+            this.clickClose('Close');
             return;
         };
 
@@ -260,7 +260,7 @@ export class DataDirectNoSQLComponent implements OnInit {
 
     }
 
-    clickClose() {
+    clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
