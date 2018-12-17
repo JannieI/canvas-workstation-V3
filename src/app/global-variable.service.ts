@@ -9649,6 +9649,7 @@ export class GlobalVariableService {
         {
             isFirstTimeUser?: boolean,
             preferencePaletteHorisontal?: boolean,
+            preferencePlaySound?: boolean,
             preferenceAutoSync?: boolean,
             preferenceShowOpenStartupMessage?: boolean,
             preferenceShowOpenDataCombinationMessage?: boolean,
@@ -9679,6 +9680,9 @@ export class GlobalVariableService {
         };
         if (parameters.preferencePaletteHorisontal != null) {
             this.currentUser.preferencePaletteHorisontal = parameters.preferencePaletteHorisontal;
+        };
+        if (parameters.preferencePlaySound != null) {
+            this.currentUser.preferencePlaySound = parameters.preferencePlaySound;
         };
         if (parameters.preferenceAutoSync != null) {
             this.currentUser.preferenceAutoSync = parameters.preferenceAutoSync;
