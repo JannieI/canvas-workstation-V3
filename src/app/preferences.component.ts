@@ -159,7 +159,7 @@ export class PreferencesComponent implements OnInit {
     }
 
     
-    clickTemplateDashboard(ev:any, id: number) {
+    clickTemplateDashboard(ev:any) {
         // Selected a Template in the dropdown
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateDashboard', '@Start');
 
@@ -177,7 +177,7 @@ export class PreferencesComponent implements OnInit {
         };
     }
 
-    clickStartupDashboard(ev:any, id: number) {
+    clickStartupDashboard(ev:any) {
         // Selected a startup D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickStartupDashboard', '@Start');
 
@@ -213,7 +213,7 @@ export class PreferencesComponent implements OnInit {
         };
     }
 
-    clickStartupDashboardTab(ev:any, id: number) {
+    clickStartupDashboardTab(ev:any) {
         // Selected a startup T
         this.globalFunctionService.printToConsole(this.constructor.name,'clickStartupDashboardTab', '@Start');
 
