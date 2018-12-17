@@ -49,6 +49,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
    
     canSave: boolean = false;
     connectionName: string = '';
+    connectionString: string = '';
     dataConnections: DataConnection[];
     dataConnectionNames: string[] = [];
     errorMessage: string = "";

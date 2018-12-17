@@ -43,6 +43,7 @@ export class WidgetDescriptionComponent implements OnInit {
     }
 
     hasTemplate: boolean = false;
+    linkedDashboardID: string;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
