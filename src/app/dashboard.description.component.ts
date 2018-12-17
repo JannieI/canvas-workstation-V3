@@ -187,7 +187,7 @@ export class DashboardDescriptionComponent implements OnInit {
         this.colourPickerSubscription.unsubscribe;
     }
 
-    clickTemplateDashboard(ev:any, id: number) {
+    clickTemplateDashboard(ev:any) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateDashboard', '@Start');
 
