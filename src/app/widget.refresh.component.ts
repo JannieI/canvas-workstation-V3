@@ -37,7 +37,7 @@ export class WidgetRefreshComponent implements OnInit {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose();
+            this.clickClose('Close');
             return;
         };
 
@@ -56,13 +56,13 @@ export class WidgetRefreshComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
     }
 
-  	clickClose() {
+  	clickClose(action: string) {
         // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
   	  	this.formWidgetRefreshClosed.emit('Cancel');
     }
 
-    clickSave(id: number) {
+    clickSave() {
         // Close form, and Refresh data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 

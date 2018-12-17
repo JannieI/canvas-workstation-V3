@@ -38,16 +38,21 @@ export class DataDirectFileJSONComponent implements OnInit {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose();
+            this.clickClose('Close');
             return;
         };
 
     }
 
     canSave: boolean = false;
+    datasourceName: string = '';
     errorMessage: string = "";
     fields: string[] = [];
+    fileColumns: any[] = [];
+    fileData: any = [];
+    fileDataFull: any = [];
     fileName: string = '';
+    files: string[] = [];
     headerRow: string = '0';
     loadedFile: any;
     newDescription: string = '';
@@ -55,10 +60,7 @@ export class DataDirectFileJSONComponent implements OnInit {
     reader = new FileReader();
     savedMessage: string = '';
     theFile: any;
-    fileColumns: any[] = [];
-    fileData: any = [];
-    fileDataFull: any = [];
-    files: string[] = [];
+    userID: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -260,7 +262,7 @@ export class DataDirectFileJSONComponent implements OnInit {
 
     }
 
-    clickClose() {
+    clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 

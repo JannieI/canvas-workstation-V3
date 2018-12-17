@@ -38,13 +38,14 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose();
+            this.clickClose('Close');
             return;
         };
 
     }
 
     canSave: boolean = false;
+    datasourceName: string;
     errorMessage: string = "";
     fields: string[] = [];
     fileName: string = '';
@@ -56,6 +57,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
     savedMessage: string = '';
     theFile: any;
     selectedWorksheetRowIndex: number;
+    userID: string = '';
     worksheetColumns: any[] = [];
     worksheetData: any = [];
     worksheetDataFull: any = [];
@@ -303,7 +305,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
     }
 
-    clickClose() {
+    clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 

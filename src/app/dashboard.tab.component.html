@@ -91,7 +91,7 @@
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
-                            (click)="clickSelectBgColorPicker()"
+                            (click)="clickSelectBgColorPicker($event)"
                             >
                             Picker
                         </button>
@@ -146,7 +146,7 @@
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            (click)="clickClose()"
+                            (click)="clickClose('Close')"
                             >
                             Cancel
                         </button>

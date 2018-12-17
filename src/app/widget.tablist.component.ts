@@ -33,7 +33,7 @@ export class WidgetTablistComponent implements OnInit {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose();
+            this.clickClose('Close');
             return;
         };
 
@@ -76,14 +76,14 @@ export class WidgetTablistComponent implements OnInit {
         });
     }
 
-    clickClose() {
+    clickClose(action: string) {
         // Close multi-tab-selection popup, no changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formWidgetTablistClosed.emit(null);
     }
 
-    clickSave(index: number) {
+    clickSave() {
         // Save data and Close multi-tab-selection popup
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
