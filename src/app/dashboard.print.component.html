@@ -4,7 +4,7 @@
             <form #f="ngForm" role="form" novalidate>
 
                 <div class="gridOverall">
-                    <button type="button" class="closeButton" (click)="clickClose()">
+                    <button type="button" class="closeButton" (click)="clickClose('Close')">
                         <b>X</b>
                     </button>
 
@@ -33,7 +33,6 @@
                     </div>
                     <div class="select gridPrinter">
                         <select id="selects_3"
-                            (change)="clickSelectStep($event)"
                             >
                             <option>Local HP</option>
                             <option>Network Toshiba</option>
@@ -46,7 +45,6 @@
                     </div>
                     <div class="select gridPageSize">
                         <select id="selects_3"
-                            (change)="clickSelectStep($event)"
                             >
                             <option>A3</option>
                             <option>A4</option>
@@ -58,7 +56,6 @@
                     </div>
                     <div class="select gridFormat">
                         <select id="selects_3"
-                            (change)="clickSelectStep($event)"
                             >
                             <option>Single page</option>
                             <option>Widget per page</option>
@@ -91,7 +88,7 @@
                         <button
                             type="button"
                             class="btn btn-primary"
-                            (click)="clickSave()"
+                            (click)="clickSave('Close')"
                             >
                             Save
                         </button>
