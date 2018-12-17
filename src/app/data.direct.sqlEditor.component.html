@@ -4,7 +4,7 @@
             <form #f="ngForm" role="form" novalidate>
 
                 <div class="gridOverall">
-                    <button type="button" class="closeButton" (click)="clickClose()">
+                    <button type="button" class="closeButton" (click)="clickClose('Close')">
                         <b>X</b>
                     </button>
                     <div class="gridTitle">
@@ -57,7 +57,6 @@
                         <select
                             [(ngModel)]="selectedDatasource.serverType"
                             name="serverType"
-                            (change)="clickTemplateDashboard($event)"
                             placeholder="Select a Type of server, ie MySQL"
                             >
                             <option *ngFor="let row of serverTypes">
@@ -125,9 +124,9 @@
                         <b>Cache?:</b>
                     </div>
                     <div class="gridDatasourceIsCached">
-                        <input [(ngModel)]="selectedDatasource.cacheResults"
+                        <input [(ngModel)]="selectedDatasource.cacheResultsLocal"
                         type="checkbox"
-                        name="dashboardQArequired"
+                        name="cacheResultsLocal"
                         title="Cached results for this Datasource (T/F)"
                         >
                     </div>
