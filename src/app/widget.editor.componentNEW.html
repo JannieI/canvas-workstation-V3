@@ -4,7 +4,7 @@
 		<div class="modal-content modalContent">
 
             <div class="gridOverall">
-                <button type="button" class="closeButton" (click)="clickClose()">
+                <button type="button" class="closeButton" (click)="clickClose('Close')">
                     <b>X</b>
                 </button>
 
@@ -260,7 +260,7 @@
                     <div class="datasourceMainButtonCancel">
                         <button *ngIf="showPreview"
                             class="btn btn-sm btn-secondary"
-                            (click)="clickClose()">
+                            (click)="clickClose('Close')">
                             Cancel
                         </button>
                     </div>
@@ -4280,7 +4280,7 @@
                     <div class="editorButtonCancel">
                         <button *ngIf="showPreview"
                             class="btn btn-sm btn-secondary"
-                            (click)="clickClose()"
+                            (click)="clickClose('Close')"
                             >
                             Cancel
                         </button>
