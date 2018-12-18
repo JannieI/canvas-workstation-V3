@@ -1488,6 +1488,8 @@ export class GlobalVariableService {
                         serverCacheableDisc: this.dataCachingTable[dataCachingTableIndex].serverCacheableDisc,
                         serverLastUpdatedDateTime: this.dataCachingTable[dataCachingTableIndex].
                             serverLastUpdatedDateTime,
+                        serverThresholdLines: this.dataCachingTable[dataCachingTableIndex].
+                            serverThresholdLines,
                         serverExpiryDateTime: this.dataCachingTable[dataCachingTableIndex].serverExpiryDateTime,
                         serverLastWSsequenceNr: this.dataCachingTable[dataCachingTableIndex].
                             serverLastWSsequenceNr,
@@ -1495,6 +1497,8 @@ export class GlobalVariableService {
                             serverUrl,
                         localCacheableMemory: this.dataCachingTable[dataCachingTableIndex].localCacheableMemory,
                         localCacheableDisc: this.dataCachingTable[dataCachingTableIndex].localCacheableDisc,
+                        localThresholdLines: this.dataCachingTable[dataCachingTableIndex].
+                            localThresholdLines,
                         localLastUpdatedDateTime: new Date(),
                         localExpiryDateTime: webSocketMessage.newLocalExpiryDateTime,
                         localVariableName: this.dataCachingTable[dataCachingTableIndex].

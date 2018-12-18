@@ -445,12 +445,14 @@ export class DataCachingTable {
     objectID: number;                       // Optional record ID, ie for Data
     serverCacheableMemory: boolean;         // True if cached on server in RAM
     serverCacheableDisc: boolean;           // True if cached on server on Disc (DB)
+    serverThresholdLines: number;           // Max Nr lines that may be cached on Server
     serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
     serverExpiryDateTime: Date;             // When cache expires on server
     serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
     serverUrl: string;                      // URL of the data on the server
     localCacheableMemory: boolean;          // True if cached locally, ie IndexedDB in RAM
     localCacheableDisc: boolean;            // True if cached locally, ie IndexedDB on Disc (DB)
+    localThresholdLines: number;           // Max Nr lines that may be cached on Workstation
     localLastUpdatedDateTime: Date;         // When local cache last refreshed
     localExpiryDateTime: Date;              // When local cache expries
     localVariableName: string;              // Optional name of memory variable
