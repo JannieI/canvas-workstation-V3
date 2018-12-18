@@ -98,6 +98,7 @@ This document describes items for later versions of Canvas.
         - Combinations must also be done here
         - Add token management forms: forgot password, refresh token ...
         - for Data Services: add Movie API ala Express Course!  Just for fun
+        
 
 
 
@@ -133,6 +134,7 @@ This document describes items for later versions of Canvas.
     -----
         - Make sure terminology is consitent: Datasource -> Transform -> Dataset
         - import / initial load facility: can create DS in bulk from an existing DB or folder -> see mongoimport function
+        - consider using external software for heavy calculations / computations / transformations, ie C, Pandas in Python, local Spark, Google cloud functions, etc
         - Have TestConnectivity method - can TEST connection
         - I used FieldNames (string) in ie Pivot - is that okay?
         - Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields, FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
@@ -233,6 +235,8 @@ This document describes items for later versions of Canvas.
         - hierarchical Grid
         - pivot functionality
         - group headers and rows
+        - QUICK Filter: shown as tabs at the top (ala Inet) to filter on predefied values, ie 1d 1w 1m 1y for stock prices.
+    
 
     Error Handling:
     --------------
@@ -512,6 +516,7 @@ This document describes items for later versions of Canvas.
     - if a shape with a transparent background is just below the title bar, and one clicks the context menus (ie Annotations): then the dropdown disappears behind the the shape.  It is a bit confusing but setting the z-index of the dropdown menu does not seem to change anything.  Ideas?
     - ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc. Else it gets confusing ...
     - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean to pass event back from slicer.single component.
+    - master-detail setup: click on a cell in the master, and the cell value becomes a Widget-filter for the detail table or graph.  This can also be used for Drill Through
 
 
     Treeview:
@@ -1038,7 +1043,7 @@ This document describes items for later versions of Canvas.
     - connector for Outlook
     - connector for Git
     - consider language equivalent to DAX or M
-    - chart Real Time data, maybe via Web Sockets
+    - chart Real Time data, maybe via Web Sockets.  Can also be a summary / snapshot of the data every x minutes, something that Dries would want
     - authenticate via their system, ie AD
     - must be able to create new Widget
     - consider: get the SQL for an Overlay query, might be useful
@@ -1179,7 +1184,7 @@ This document describes items for later versions of Canvas.
 
     Notebook: Style
     --------
-    - emulate a Jupyter NB style - run code inside and show results
+    - emulate a Jupyter NB style - run code inside and show results (with Python code editor windows inbetween the results)
     - does regression by choosing type of regression
     - R built in
 
