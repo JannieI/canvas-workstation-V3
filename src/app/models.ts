@@ -443,12 +443,14 @@ export class Dataset {
 export class DataCachingTable {
     key: string;                            // Unique key
     objectID: number;                       // Optional record ID, ie for Data
-    serverCacheable: boolean;               // True if cached on server
+    serverCacheableMemory: boolean;         // True if cached on server in RAM
+    serverCacheableDisc: boolean;           // True if cached on server on Disc (DB)
     serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
     serverExpiryDateTime: Date;             // When cache expires on server
     serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
     serverUrl: string;                      // URL of the data on the server
-    localCacheable: boolean;                // True if cached locally, ie IndexedDB
+    localCacheableMemory: boolean;          // True if cached locally, ie IndexedDB in RAM
+    localCacheableDisc: boolean;            // True if cached locally, ie IndexedDB on Disc (DB)
     localLastUpdatedDateTime: Date;         // When local cache last refreshed
     localExpiryDateTime: Date;              // When local cache expries
     localVariableName: string;              // Optional name of memory variable

@@ -1440,7 +1440,8 @@ export class GlobalVariableService {
 
             // Get info like last WS# from local DB
             // let isFresh: boolean = false;
-            let localCacheable: boolean = false;
+            let localCacheableMemory: boolean = false;
+            let localCacheableDisc: boolean = false;
             let localVariableName: string = null;
             let localCurrentVariableName: string = null;
             let localTableName: string = null;
@@ -1458,8 +1459,10 @@ export class GlobalVariableService {
             if (dataCachingTableIndex >= 0) {
 
                 // Get var and table names
-                localCacheable = this.dataCachingTable[dataCachingTableIndex].
-                    localCacheable;
+                localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].
+                    localCacheableMemory;
+                localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].
+                    localCacheableDisc;
                 localVariableName = this.dataCachingTable[dataCachingTableIndex].
                     localVariableName;
                 localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].
@@ -1470,7 +1473,7 @@ export class GlobalVariableService {
                     localLastWebSocketNumber;
 
                 // Only proceed locally if local cache allowed
-                if (localCacheable) {
+                if (localCacheableMemory) {
 
                     // If we have missed messages, reflesh this table
                     if ( (localLastWebSocketNumber + 1) != serverLastWebSocketNumber ) {
@@ -1481,7 +1484,8 @@ export class GlobalVariableService {
                     let dataCachingTableSingle: DataCachingTable = {
                         key: webSocketMessage.objectName,
                         objectID: this.dataCachingTable[dataCachingTableIndex].objectID,
-                        serverCacheable: this.dataCachingTable[dataCachingTableIndex].serverCacheable,
+                        serverCacheableMemory: this.dataCachingTable[dataCachingTableIndex].serverCacheableMemory,
+                        serverCacheableDisc: this.dataCachingTable[dataCachingTableIndex].serverCacheableDisc,
                         serverLastUpdatedDateTime: this.dataCachingTable[dataCachingTableIndex].
                             serverLastUpdatedDateTime,
                         serverExpiryDateTime: this.dataCachingTable[dataCachingTableIndex].serverExpiryDateTime,
@@ -1489,7 +1493,8 @@ export class GlobalVariableService {
                             serverLastWSsequenceNr,
                         serverUrl: this.dataCachingTable[dataCachingTableIndex].
                             serverUrl,
-                        localCacheable: this.dataCachingTable[dataCachingTableIndex].localCacheable,
+                        localCacheableMemory: this.dataCachingTable[dataCachingTableIndex].localCacheableMemory,
+                        localCacheableDisc: this.dataCachingTable[dataCachingTableIndex].localCacheableDisc,
                         localLastUpdatedDateTime: new Date(),
                         localExpiryDateTime: webSocketMessage.newLocalExpiryDateTime,
                         localVariableName: this.dataCachingTable[dataCachingTableIndex].
@@ -1659,7 +1664,8 @@ export class GlobalVariableService {
 
                 // Assume worse case that all has to be obtained from HTTP server
                 let isFresh: boolean = false;
-                let localCacheable: boolean = false;
+                let localCacheableMemory: boolean = false;
+                let localCacheableDisc: boolean = false;
                 let localVariableName: string = null;
                 let localCurrentVariableName: string = '';
                 let localTableName: string = '';
@@ -1680,9 +1686,10 @@ export class GlobalVariableService {
                         [dataCachingTableIndex].localTableName;
 
                     // Only proceed locally if local cache allowed
-                    localCacheable = this.dataCachingTable[dataCachingTableIndex].localCacheable;
+                    localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
+                    localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
 
-                    if (localCacheable) {
+                    if (localCacheableMemory) {
 
                         // Fresh if not expired as yet
                         let dn: Date = new Date();
@@ -1735,7 +1742,7 @@ export class GlobalVariableService {
                 this.get(pathUrl)
                     .then(res => {
 
-                        console.warn('xx vars', dataCachingTableIndex, localCacheable, localVariableName);
+                        console.warn('xx vars', dataCachingTableIndex, localCacheableMemory, localCacheableDisc, localVariableName);
 
                         // If cached, filled local info
                         if (dataCachingTableIndex >= 0) {
@@ -1744,7 +1751,7 @@ export class GlobalVariableService {
                             this.dataCachingTable[dataCachingTableIndex]
                                 .localExpiryDateTime = new Date();
 
-                            if (localCacheable) {
+                            if (localCacheableMemory) {
 
                                 // Fill local Var
                                 if (localVariableName != null) {
