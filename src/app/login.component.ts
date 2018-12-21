@@ -161,41 +161,62 @@ export class LoginComponent implements OnInit {
             return;
         };
 
-        // Validate user
+        // Validate user.  Return for loginCanvasServer is { message: string, token: string}
         this.globalVariableService.loginCanvasServer(
             this.canvasServerName, this.companyName, this.userID, this.password).then(res => {
 
             console.warn('xx res', res);
 
-            if (res.substring(0, 5) == 'Error'  ||  res.substring(0, 6) == 'Failed') {
-                this.errorMessage = res.substring(7);
+            if (res.token == null) {
+                this.errorMessage = res.message.substring(7);
                 return;
             } else {
 
-                // Register session start time
-                let today = new Date();
-                this.globalVariableService.sessionDateTimeLoggedin =
-                    this.globalVariableService.formatDate(today);
+                let canvasServerURI: string = this.globalVariableService.ENVCanvasServerList.find(
+                    srv => srv.serverName == this.canvasServerName
+                ).serverHostURI; 
+                console.warn('xx canvasServerURI', canvasServerURI)
 
-                // Indicate logged in; so StatusBar shows Server Name
-                this.globalVariableService.loggedIntoServer.next(true);
+                this.globalVariableService.verifyCanvasUser(
+                    this.canvasServerName,
+                    canvasServerURI, 
+                    this.companyName,
+                    this.userID,
+                    res.token).then(result => {
+                        console.warn('xx Login: verified user ', this.userID, ' with token ', result);
 
-                // Optional start D
-                if (this.globalVariableService.currentUser.preferenceStartupDashboardID != null) {
-                    let startTabID: number = -1;
-                    if (this.globalVariableService.currentUser.preferenceStartupDashboardTabID != null) {
-                        startTabID = this.globalVariableService.currentUser.preferenceStartupDashboardTabID;
-                    };
+                        if (!result) {
+                            this.errorMessage = 'Login failed with no token';
+                            return;
+                        };
 
-                    this.globalVariableService.refreshCurrentDashboard(
-                        'statusbar-clickTabDelete',
-                        this.globalVariableService.currentUser.preferenceStartupDashboardID,
-                        startTabID,
-                        ''
-                    );
-                };
+                        // // Register session start time
+                        // let today = new Date();
+                        // this.globalVariableService.sessionDateTimeLoggedin =
+                        //     this.globalVariableService.formatDate(today);
 
-        		this.formUserLoginClosed.emit('LoggedIn');
+                        // // Indicate logged in; so StatusBar shows Server Name
+                        // this.globalVariableService.loggedIntoServer.next(true);
+
+                        // // Optional start D
+                        // if (this.globalVariableService.currentUser.preferenceStartupDashboardID != null) {
+                        //     let startTabID: number = -1;
+                        //     if (this.globalVariableService.currentUser.preferenceStartupDashboardTabID != null) {
+                        //         startTabID = this.globalVariableService.currentUser.preferenceStartupDashboardTabID;
+                        //     };
+
+                        //     this.globalVariableService.refreshCurrentDashboard(
+                        //         'statusbar-clickTabDelete',
+                        //         this.globalVariableService.currentUser.preferenceStartupDashboardID,
+                        //         startTabID,
+                        //         ''
+                        //     );
+                        // };
+
+                        this.formUserLoginClosed.emit('LoggedIn');
+
+                    }
+                );
 
             };
         });

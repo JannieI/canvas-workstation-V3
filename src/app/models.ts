@@ -452,7 +452,7 @@ export class DataCachingTable {
     serverUrl: string;                      // URL of the data on the server
     localCacheableMemory: boolean;          // True if cached locally, ie IndexedDB in RAM
     localCacheableDisc: boolean;            // True if cached locally, ie IndexedDB on Disc (DB)
-    localThresholdLines: number;           // Max Nr lines that may be cached on Workstation
+    localThresholdLines: number;            // Max Nr lines that may be cached on Workstation
     localLastUpdatedDateTime: Date;         // When local cache last refreshed
     localExpiryDateTime: Date;              // When local cache expries
     localVariableName: string;              // Optional name of memory variable

@@ -474,7 +474,7 @@ export class AppComponent implements OnInit {
         // This process registers the user as one that may use this Canvas system.
         // The client will:
         // - NOT delete serverName, companyName, userID, token and expirtyDate from the local
-        //   IndexedDB 
+        //   IndexedDB
         // - post the register request to the server
         // - keep the form detail filled in
         // The server will:
@@ -550,7 +550,7 @@ export class AppComponent implements OnInit {
                 // To obtain required info as and when it is filled by other forms, ie Login
 
                 // Dont Disturb
-                this.globalVariableService.dontDisturb.subscribe(ddb => 
+                this.globalVariableService.dontDisturb.subscribe(ddb =>
                     this.dontDisturb = ddb
                 );
 
@@ -727,7 +727,7 @@ export class AppComponent implements OnInit {
 
                     // Get Users and Groups, async
                     this.globalVariableService.getCanvasGroups();
-        
+
                     // Set palette position
                     if (this.globalVariableService.currentUser.lastPaletteLeft != null) {
                         this.paletteLeft = this.globalVariableService.currentUser.lastPaletteLeft;
@@ -735,7 +735,7 @@ export class AppComponent implements OnInit {
                     if (this.globalVariableService.currentUser.lastPaletteTop != null) {
                         this.paletteTop = this.globalVariableService.currentUser.lastPaletteTop;
                     };
-        
+
                     let today = new Date();
                     this.globalVariableService.sessionDateTimeLoggedin =
                         this.globalVariableService.formatDate(today);
@@ -746,17 +746,17 @@ export class AppComponent implements OnInit {
                         let localTimer = timer(mins, mins);
                         this.subscriptionSnapshot = localTimer.subscribe(t => {
                             if (this.editMode) {
-        
+
                                 // Determine if any actions since session login
                                 let temp: CanvasAction[] = this.globalVariableService.actions.filter(act =>
                                     act.created > new Date(this.globalVariableService.sessionDateTimeLoggedin)
                                     &&
                                     act.createor == this.globalVariableService.currentUser.userID
                                 );
-        
+
                                 // Only snap if there were activities
                                 if (temp.length > 0) {
-        
+
                                     let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
                                         d => d.id ==
                                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID
@@ -780,31 +780,31 @@ export class AppComponent implements OnInit {
                                                     3000,
                                                     ''
                                                 );
-        
+
                                         });
                                     };
                                 };
                             };
                         });
                     };
-        
+
                     this.globalVariableService.currentPaletteButtonsSelected.subscribe(i => {
                         this.paletteButtons = i.slice();
-        
+
                         // Synch BehSubj that hold orientation
                         this.globalVariableService.preferencePaletteHorisontal.next(
                             this.globalVariableService.currentUser.preferencePaletteHorisontal
                         );
-        
+
                         this.globalVariableService.preferencePaletteHorisontal.subscribe(i =>
-        
+
                             // Calc the W and H - store and this.paletteHeight and this.paletteWidth
                             this.setPaletteHeightAndWidth()
                         );
-        
+
                     });
                 });
-        
+
 
             } else  {
                 // get canvasSettings from DB too
@@ -812,7 +812,7 @@ export class AppComponent implements OnInit {
                 // this.globalVariableService.loadVariableOnStartup.next(true);
             };;
         });
-        
+
 
 
         // 2. Get info from localStorage (using Dexie) and verify that still valid.
@@ -840,11 +840,14 @@ export class AppComponent implements OnInit {
         // Local App info DB
         this.dbCanvasAppDatabase = new CanvasAppDatabase
         this.dbCanvasAppDatabase.open();
-        
+
         // Count
         this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
-            console.warn('xx currentCanvasUser Count ', res);
+            console.warn('xx App currentCanvasUser Count ', res);
+
+            // If No record in localStorage, then login
             if (res != 1) {
+
                 this.showModalDashboardLogin = true;
             } else {
 
@@ -854,65 +857,70 @@ export class AppComponent implements OnInit {
                 .toArray()
                 .then(res => {
 
-res[0].currentUserID = 'JannieI'
-res[0].currentToken = 'test'
+                    console.warn('xx App.ts: after read Dexie res: ', res)
+
                     // Validate that all fields filled in
+                    let localInfoGood: boolean = true;
                     if (res[0].canvasServerName == null  ||  res[0].canvasServerName == '') {
-                        console.warn('xx canvasServerName', res[0].canvasServerName);
-                        
+                        console.warn('xx App.ts: canvasServerName is bad - ', res[0].canvasServerName);
+                        localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
                     if (res[0].canvasServerURI == null  ||  res[0].canvasServerURI == '') {
-                        console.warn('xx canvasServerURI', res[0].canvasServerURI);
-                        
+                        console.warn('xx App.ts: canvasServerURI is bad - ', res[0].canvasServerURI);
+                        localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
                     if (res[0].currentCompany == null  ||  res[0].currentCompany == '') {
-                        console.warn('xx currentCompany', res[0].currentCompany);
-                        
+                        console.warn('xx App.ts: currentCompany is bad - ', res[0].currentCompany);
+                        localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
                     if (res[0].currentUserID == null  ||  res[0].currentUserID == '') {
-                        console.warn('xx currentUserID', res[0].currentUserID);
-                        
+                        console.warn('xx App.ts: currentUserID is bad - ', res[0].currentUserID);
+                        localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
                     if (res[0].currentToken == null  ||  res[0].currentToken == '') {
-                        console.warn('xx currentToken', res[0].currentToken);
-                        
+                        console.warn('xx App.ts: currentToken is bad - ', res[0].currentToken);
+                        localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
-                    console.warn('xx currentCanvasUser res ', res[0]);
-        
 
-                    // Verify the user on the given Server
-                    this.globalVariableService.verifyCanvasUser(
-                        res[0].canvasServerURI, res[0].currentUserID).then(
-                        result => {
-                            console.warn('xx verified user ', res[0].currentUserID, ' with result ', result);
+                    // Verify the user on the given Server if all good
+                    if (localInfoGood) {
+                        this.globalVariableService.verifyCanvasUser(
+                            res[0].canvasServerName,
+                            res[0].canvasServerURI,
+                            res[0].currentCompany,
+                            res[0].currentUserID,
+                            res[0].currentToken).then(
+                            result => {
+                                console.warn('xx App.ts: verified user ', res[0].currentUserID, ' with result ', result);
 
-                            if (result) {
+                                if (result) {
 
-                                // Store User ID info
-                                // TODO - fix userID ID ID
-                                this.globalVariableService.canvasServerName = res[0].canvasServerName;
-                                this.globalVariableService.canvasServerURI = res[0].canvasServerURI;
-                                this.globalVariableService.currentCompany = res[0].currentCompany;
-                                this.globalVariableService.currentUserID = res[0].currentUserName;
-                                this.globalVariableService.currentToken = res[0].currentToken;
-                                
-                                // Refresh
-                                this.globalVariableService.loadVariableOnStartup.next(true);
-                                console.warn(('xx 2'));
+                                    // Store User ID info
+                                    // TODO - fix userID ID ID
+                                    // this.globalVariableService.canvasServerName = res[0].canvasServerName;
+                                    // this.globalVariableService.canvasServerURI = res[0].canvasServerURI;
+                                    // this.globalVariableService.currentCompany = res[0].currentCompany;
+                                    // this.globalVariableService.currentUserID = res[0].currentUserName;
+                                    // this.globalVariableService.currentToken = res[0].currentToken;
 
-                                // Show Landing page
-                                this.showModalLanding = true;
-                            } else {
-                                console.warn('xx failed');
-                                this.showModalDashboardLogin = true;
-                            };
-                        }
-                    );
+                                    // Refresh
+                                    // this.globalVariableService.loadVariableOnStartup.next(true);
+                                    // console.warn(('xx 2'));
+
+                                    // Show Landing page
+                                    this.showModalLanding = true;
+                                } else {
+                                    // console.warn('xx failed');
+                                    this.showModalDashboardLogin = true;
+                                };
+                            }
+                        );
+                    };
                 });
             }
 
@@ -9655,7 +9663,7 @@ res[0].currentToken = 'test'
                 audio.play();
             };
         };
-        
+
         // Pop message in right area
         this.globalVariableService.showStatusBarMessage(
             {

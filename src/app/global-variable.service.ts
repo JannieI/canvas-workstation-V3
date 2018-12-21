@@ -1806,7 +1806,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        if (params.substring(0 ,1) != '?') {
+        if (params.length > 2  &&  params.substring(0 ,1) != '?') {
             params = '?' + params;
         };
 
@@ -10647,6 +10647,7 @@ export class GlobalVariableService {
 
                 let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
+                console.log('xx get', finalUrl)
                 this.http.get(finalUrl).subscribe(
                     res =>
                     {
@@ -10692,6 +10693,15 @@ export class GlobalVariableService {
             this.statusBarMessageLogs.length);
         };
 
+
+
+
+        this.currentCanvasServerName = 'Json-Server'
+        
+        
+        
+        
+        
         // CanvasDatabase: Local or Server
         let baseUrl: string = this.currentCanvasServerURI;
         if (this.currentCanvasServerName == 'Json-Server') {
@@ -13153,7 +13163,7 @@ console.warn('xx ds perm', dp);
         let serverIndex: number = this.ENVCanvasServerList.findIndex(
             sl => sl.serverName == selectedCanvasServer);
 
-        console.warn('xx serverIndex', serverIndex)
+        console.warn('xx GV.setCurrentCanvasServer serverIndex', serverIndex)
         if (serverIndex >= 0) {
             this.currentCanvasServerName = this.ENVCanvasServerList[serverIndex].serverName;
             this.currentCanvasServerURI = this.ENVCanvasServerList[serverIndex].serverHostURI;
@@ -13167,7 +13177,7 @@ console.warn('xx ds perm', dp);
                     currentUserID: userID,
                     currentToken: ''
                 };
-            console.warn('xx localCanvasUser', localCanvasUser)
+            console.warn('xx GV.setCurrentCanvasServer localCanvasUser', localCanvasUser)
 
             // Add / Update DB with Put
             let currentCanvasUserCount: number = 0;
@@ -13179,16 +13189,16 @@ console.warn('xx ds perm', dp);
             dbCanvasAppDatabase.table("currentCanvasUser")
                 .put(localCanvasUser)
                 .then(res => {
-                    console.warn('xx Add/Update currentCanvasUser res', res);
+                    console.warn('xx GV.setCurrentCanvasServer Add/Update currentCanvasUser res', res);
 
                     // Count
                     dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
-                        console.warn('xx currentCanvasUser Count', res);
+                        console.warn('xx GV.setCurrentCanvasServer currentCanvasUser Count', res);
                         currentCanvasUserCount = res;
 
                         // Return
                         if (currentCanvasUserCount > 0) {
-                            console.warn('xx setCanvasServerState', this.currentCanvasServerName, this.currentCanvasServerURI), currentCanvasUserCount;
+                            console.warn('xx GV.setCurrentCanvasServer setCanvasServerState', this.currentCanvasServerName, this.currentCanvasServerURI), currentCanvasUserCount;
                             return true;
                         } else {
                             return false;
@@ -13202,7 +13212,12 @@ console.warn('xx ds perm', dp);
 
     }
 
-    verifyCanvasUser(givenCanvasServerURI, givenUserID: string): Promise<boolean> {
+    verifyCanvasUser(
+        givenCanvasServerName: string, 
+        givenCanvasServerURI: string, 
+        givenCompany: string,
+        givenUserID: string,
+        givenToken: string): Promise<boolean> {
         // Checks if userID exists.  If not, return false.
         // If so, set currentUser object and return true
         if (this.sessionDebugging) {
@@ -13228,7 +13243,7 @@ console.warn('xx ds perm', dp);
                 // localStorage.setItem("canvs-token", JSON.stringify(token));
 
                 if (res) {
-                    console.warn('xx verifyCanvasUser: Registered on : ',
+                    console.warn('xx GV.verifyCanvasUser: Registered on : ',
                         givenCanvasServerURI, res);
 
                         this.getCanvasUsers().then(usr => {
@@ -13236,30 +13251,128 @@ console.warn('xx ds perm', dp);
                             if (foundIndex < 0) {
 
                                 if (this.sessionDebugging) {
-                                    console.warn('xx Invalid userid', givenUserID)
+                                    console.warn('xx GV.verifyCanvasUser: Invalid userid', givenUserID)
                                 };
                                 resolve(false);
                             } else {
 
                                 if (this.sessionDebugging) {
-                                    console.warn('xx Valid userid', givenUserID)
+                                    console.warn('xx GV.verifyCanvasUser: Valid userid', givenUserID)
+                                };
+                                
+                                // Set User var
+                                this.currentUser = this.canvasUsers[foundIndex];
+                                
+                                // Store User ID info
+                                this.canvasServerName = givenCanvasServerName;
+                                this.canvasServerURI = givenCanvasServerURI;
+                                this.currentCompany = givenCompany;
+                                this.currentUserID = givenUserID;
+                                this.currentToken = givenToken;
+
+
+
+
+
+
+
+
+                                // Register session start time
+                                let today = new Date();
+                                this.sessionDateTimeLoggedin =
+                                    this.formatDate(today);
+
+                                // Indicate logged in; so StatusBar shows Server Name
+                                this.loggedIntoServer.next(true);
+
+                                // Optional start D
+                                if (this.currentUser.preferenceStartupDashboardID != null) {
+                                    let startTabID: number = -1;
+                                    if (this.currentUser.preferenceStartupDashboardTabID != null) {
+                                        startTabID = this.currentUser.preferenceStartupDashboardTabID;
+                                    };
+
+                                    this.refreshCurrentDashboard(
+                                        'statusbar-clickTabDelete',
+                                        this.currentUser.preferenceStartupDashboardID,
+                                        startTabID,
+                                        ''
+                                    );
                                 };
 
-                                // Set var
-                                this.currentUser = this.canvasUsers[foundIndex];
+
+
+
+
+
+
+
+
+                                this.currentCanvasServerName = givenCanvasServerName;
+                                this.currentCanvasServerURI = givenCanvasServerURI;
+
+                                // Create Var with data
+                                let localCanvasUser =
+                                    {
+                                        canvasServerName: this.currentCanvasServerName,
+                                        canvasServerURI: this.currentCanvasServerURI,
+                                        currentCompany: givenCanvasServerName,
+                                        currentUserID: givenUserID,
+                                        currentToken: givenToken
+                                    };
+                                console.warn('xx GV.verifyCanvasUser localCanvasUser', localCanvasUser)
+
+                                // Add / Update DB with Put
+                                let currentCanvasUserCount: number = 0;
+
+                                // Local App info DB
+                                console.warn('xx GV.verifyCanvasUser: @local DB')
+                                let dbCanvasAppDatabase = new CanvasAppDatabase
+                                dbCanvasAppDatabase.open();
+
+                                dbCanvasAppDatabase.table("currentCanvasUser")
+                                    .put(localCanvasUser)
+                                    .then(res => {
+                                        console.warn('xx GV.verifyCanvasUser Add/Update currentCanvasUser res', res);
+
+                                        // Count
+                                        dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
+                                            console.warn('xx GV.verifyCanvasUser currentCanvasUser Count', res);
+                                            currentCanvasUserCount = res;
+
+                                            // Return
+                                            if (currentCanvasUserCount > 0) {
+                                                console.warn('xx GV.verifyCanvasUser setCanvasServerState', this.currentCanvasServerName, this.currentCanvasServerURI), currentCanvasUserCount;
+                                                return true;
+                                            } else {
+                                                return false;
+                                            };
+                                        });
+                                    }
+                                );
+
+
+
+
+
+
+
+                                // Refresh
+                                this.loadVariableOnStartup.next(true);
+
                                 resolve(true);
                             };
                         });
 
                 } else {
-                    console.warn('xx verifyCanvasUser: Registration failed on : ',
+                    console.warn('xx GV.verifyCanvasUser: Registration failed on : ',
                         givenCanvasServerURI, givenUserID, res);
                 };
             },
             err => {
                 console.log('Error Registration FAILED on : ',
                 givenCanvasServerURI, {err});
-                console.warn('xx verifyCanvasUser: HTTP Error'), err;
+                console.warn('xx GV.verifyCanvasUser: HTTP Error'), err;
             });
 
         });
@@ -13327,7 +13440,7 @@ console.warn('xx ds perm', dp);
         givenCanvasServerName: string,
         givenCompanyName: string,
         givenUserID: string,
-        givenPassword: string): Promise<string> {
+        givenPassword: string): Promise<{ message: string, token: string}> {
         // Logs a user on a given Server & Company 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables loginCanvasServer ...',
@@ -13336,19 +13449,19 @@ console.warn('xx ds perm', dp);
                 {givenUserID}, {givenPassword});
         };
 
-        return new Promise<string>((resolve, reject) => {
+        return new Promise<{ message: string, token: string}>((resolve, reject) => {
 
             // Get the ServerURL
             let serverURLIndex: number = this.ENVCanvasServerList.findIndex(
                 srv => srv.serverName == givenCanvasServerName
             );
             if (serverURLIndex < 0) {
-                resolve('Error: Server Name not in ENV configuration');
+                resolve({ message:'Error: Server Name not in ENV configuration', token: null});
             };
             let givenCanvasServerURI: string = this.ENVCanvasServerList[serverURLIndex]
                 .serverHostURI;
 
-            console.warn('xx givenCanvasServerURI', givenCanvasServerURI)
+            console.warn('xx GV.loginCanvasServer givenCanvasServerURI:', givenCanvasServerURI)
             this.http.post<CanvasHttpResponse>(givenCanvasServerURI + '/auth/local/login',
                 {
                     "companyName": givenCompanyName,
@@ -13357,27 +13470,27 @@ console.warn('xx ds perm', dp);
                 }
                 ).subscribe(res => {
 
-                    console.warn('xx GV res', res);
+                    console.warn('xx GV.loginCanvasServer res', res);
                     
                     if (res.statusCode == 'failed') {
-                        console.warn('xx GV Failed: ' + res.message, res);
+                        console.warn('xx GV.loginCanvasServer Failed: ' + res.message);
                         
-                        resolve('Failed: ' + res.message);
+                        resolve({ message:'Failed: ' + res.message, token: null});
                     };
                     if (res.statusCode == 'success') {
-                        console.warn('Success: ' + res.message);
+                        console.warn('xx GV.loginCanvasServer Success: ' + res.message);
                         
-                        resolve('Success: ' + res.message);
+                        resolve({ message:'Success: ' + res.message, token: res.token});
                     };
                     if (res.statusCode == 'error') {
-                        console.warn('Error: ' + res.message);
+                        console.warn('xx GV.loginCanvasServer Error: ' + res.message);
                         
-                        resolve('Error: ' + res.message);
+                        resolve({ message:'Error: ' + res.message, token: null});
                     };
             },
             err => {
-                console.log('Error Login FAILED', {err});
-                resolve('Error: Login FAILED ' + err.message);
+                console.log('xx GV.loginCanvasServer Error Login FAILED', {err});
+                resolve({ message:'Error: Login FAILED ' + err.message, token: null});
             });
         });
     }
