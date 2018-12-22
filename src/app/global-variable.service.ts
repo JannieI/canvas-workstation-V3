@@ -10696,20 +10696,20 @@ export class GlobalVariableService {
 
 
         // Workaround
-        this.canvasServerName = 'Json-Server';
+        // this.canvasServerName = 'Json-Server';
         
         
         
         
         // CanvasDatabase: Local or Server
         let baseUrl: string = this.canvasServerURI;
-        if (this.canvasServerName == 'Canvas Server Local') {
-            baseUrl = baseUrl + '/canvasdata/:';
+        // if (this.canvasServerName == 'Canvas Server Local') {
+            // baseUrl = baseUrl + '/canvasdata/:';
             // this.canvasServerName = 'Json-Server'
-            console.log('xx XXXXXXXX', baseUrl)
-        };
+            // console.log('xx XXXXXXXX', baseUrl)
+        // };
 
-        if (this.canvasServerName == 'Json-Server') {
+        // if (this.canvasServerName == 'Json-Server') {
 
             // Cater for different Servers
             if (pathUrl == 'dashboardsRecent') {
@@ -10768,7 +10768,7 @@ export class GlobalVariableService {
             } else {
                 baseUrl = 'http://localhost:3007/';
             };
-        };
+        // };
 
         // Return
         return baseUrl;
