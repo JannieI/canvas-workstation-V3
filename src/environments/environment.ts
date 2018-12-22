@@ -8,7 +8,7 @@
 export const environment = {
   	production: false,
 
-	// Valid Servers (NB: Json-Server hard coded in TypeScript for now ...)
+	// Valid Servers (NB: Json-Server, etc hard coded in TypeScript for now ...)
 	ENVCanvasServerList: [
 		{
 			serverName: "Canvas Server Local",

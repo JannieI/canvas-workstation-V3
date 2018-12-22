@@ -1038,7 +1038,7 @@ export class GlobalVariableService {
     // *********************************************************************************
 
     // User ID info - stored locally and used to login / verify
-    canvasServerName: string = 'HalloSrv';
+    canvasServerName: string = environment.ENVStartupCanvasServerName;
     currentUserID: string = '';
     canvasServerURI: string = '';
     currentCompany: string = '';
@@ -5605,7 +5605,7 @@ export class GlobalVariableService {
 
         let pathUrl: string = 'canvasGroups';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.canvasGroups.json';
+        // this.filePath = './assets/data.canvasGroups.json';
 
         return new Promise<CanvasGroup[]>((resolve, reject) => {
 
@@ -9540,7 +9540,7 @@ export class GlobalVariableService {
 
         let pathUrl: string = 'canvasUsers';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.canvasUsers.json';
+        // this.filePath = './assets/data.canvasUsers.json';
 
         return new Promise<CanvasUser[]>((resolve, reject) => {
 
@@ -10573,9 +10573,8 @@ export class GlobalVariableService {
     get<T>(pathUrl: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables get (url, filePath) ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {pathUrl},
-                this.filePath);
+            console.log('%c    Global-Variables get (url) ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {pathUrl});
         };
 
         // TODO - cleaner switch to http?
@@ -10647,7 +10646,7 @@ export class GlobalVariableService {
 
                 let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
-                console.log('xx get', finalUrl)
+                console.log('xx get with Test: ', this.canvasServerName, pathUrl, finalUrl)
                 this.http.get(finalUrl).subscribe(
                     res =>
                     {
@@ -10696,14 +10695,20 @@ export class GlobalVariableService {
 
 
 
-        this.canvasServerName = 'Json-Server'
-        
+        // Workaround
+        this.canvasServerName = 'Json-Server';
         
         
         
         
         // CanvasDatabase: Local or Server
         let baseUrl: string = this.canvasServerURI;
+        if (this.canvasServerName == 'Canvas Server Local') {
+            baseUrl = baseUrl + '/canvasdata/:';
+            // this.canvasServerName = 'Json-Server'
+            console.log('xx XXXXXXXX', baseUrl)
+        };
+
         if (this.canvasServerName == 'Json-Server') {
 
             // Cater for different Servers
@@ -13182,6 +13187,12 @@ console.warn('xx ds perm', dp);
                     console.warn('xx GV.verifyCanvasUser: Registered on : ',
                         givenCanvasServerURI, res);
 
+
+                        // TODO - must this be done here ??  Needed to setBaseUrl
+                        this.canvasServerURI = givenCanvasServerURI;
+
+                        this.getCanvasGroups().then(grp => console.log('xx grp', grp))
+
                         this.getCanvasUsers().then(usr => {
                             let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
                             if (foundIndex < 0) {
@@ -13237,7 +13248,7 @@ console.warn('xx ds perm', dp);
                                     {
                                         canvasServerName: givenCanvasServerName,
                                         canvasServerURI: givenCanvasServerURI,
-                                        currentCompany: givenCanvasServerName,
+                                        currentCompany: givenCompanyName,
                                         currentUserID: givenUserID,
                                         currentToken: givenToken
                                     };
@@ -13378,7 +13389,6 @@ console.warn('xx ds perm', dp);
             let givenCanvasServerURI: string = this.ENVCanvasServerList[serverURLIndex]
                 .serverHostURI;
 
-            console.warn('xx GV.loginCanvasServer givenCanvasServerURI:', givenCanvasServerURI)
             this.http.post<CanvasHttpResponse>(givenCanvasServerURI + '/auth/local/login',
                 {
                     "companyName": givenCompanyName,

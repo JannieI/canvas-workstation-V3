@@ -183,10 +183,9 @@ export class LoginComponent implements OnInit {
                     this.companyName,
                     this.userID,
                     res.token).then(result => {
-                        console.warn('xx Login: verified user ', this.userID, ' with token ', result);
 
                         if (!result) {
-                            this.errorMessage = 'Login failed with no token';
+                            this.errorMessage = 'User not verified @CanvasUser list';
                             return;
                         };
 
