@@ -1018,7 +1018,7 @@ export class GlobalVariableService {
     }[] = environment.ENVCanvasServerList;
     ENVStartupCanvasServerName: string = environment.ENVStartupCanvasServerName;
     currentCanvasServerURI: string = '';
-    currentCanvasServerName: string = 'Json-Server';
+    // currentCanvasServerName: string = 'Json-Server';
     ENVCanvasDatabaseLocalUrlS1: string = environment.ENVCanvasDatabaseLocalUrlS1;
     ENVCanvasDatabaseLocalUrlS2: string = environment.ENVCanvasDatabaseLocalUrlS2;
     ENVCanvasDatabaseLocalUrlS3: string = environment.ENVCanvasDatabaseLocalUrlS3;
@@ -10696,15 +10696,15 @@ export class GlobalVariableService {
 
 
 
-        this.currentCanvasServerName = 'Json-Server'
+        this.canvasServerName = 'Json-Server'
         
         
         
         
         
         // CanvasDatabase: Local or Server
-        let baseUrl: string = this.currentCanvasServerURI;
-        if (this.currentCanvasServerName == 'Json-Server') {
+        let baseUrl: string = this.canvasServerURI;
+        if (this.canvasServerName == 'Json-Server') {
 
             // Cater for different Servers
             if (pathUrl == 'dashboardsRecent') {
@@ -13150,7 +13150,7 @@ console.warn('xx ds perm', dp);
     verifyCanvasUser(
         givenCanvasServerName: string, 
         givenCanvasServerURI: string, 
-        givenCompany: string,
+        givenCompanyName: string,
         givenUserID: string,
         givenToken: string): Promise<boolean> {
         // Checks if userID exists.  If not, return false.
@@ -13168,10 +13168,11 @@ console.warn('xx ds perm', dp);
                 resolve(false);
             };
 
-
             this.http.post<Token>(
                 givenCanvasServerURI + '/auth/local/verify',
-                {"userID": givenUserID }
+                {
+                    "companyName": givenCompanyName,
+                    "userID": givenUserID }
                 ).subscribe(res => {
 
                 // Store locally
@@ -13201,16 +13202,9 @@ console.warn('xx ds perm', dp);
                                 // Store User ID info
                                 this.canvasServerName = givenCanvasServerName;
                                 this.canvasServerURI = givenCanvasServerURI;
-                                this.currentCompany = givenCompany;
+                                this.currentCompany = givenCompanyName;
                                 this.currentUserID = givenUserID;
                                 this.currentToken = givenToken;
-
-
-
-
-
-
-
 
                                 // Register session start time
                                 let today = new Date();
@@ -13235,22 +13229,14 @@ console.warn('xx ds perm', dp);
                                     );
                                 };
 
-
-
-
-
-
-
-
-
-                                this.currentCanvasServerName = givenCanvasServerName;
-                                this.currentCanvasServerURI = givenCanvasServerURI;
+                                // this.currentCanvasServerName = givenCanvasServerName;
+                                // this.currentCanvasServerURI = givenCanvasServerURI;
 
                                 // Create Var with data
                                 let localCanvasUser =
                                     {
-                                        canvasServerName: this.currentCanvasServerName,
-                                        canvasServerURI: this.currentCanvasServerURI,
+                                        canvasServerName: givenCanvasServerName,
+                                        canvasServerURI: givenCanvasServerURI,
                                         currentCompany: givenCanvasServerName,
                                         currentUserID: givenUserID,
                                         currentToken: givenToken
@@ -13277,7 +13263,7 @@ console.warn('xx ds perm', dp);
 
                                             // Return
                                             if (currentCanvasUserCount > 0) {
-                                                console.warn('xx GV.verifyCanvasUser setCanvasServerState', this.currentCanvasServerName, this.currentCanvasServerURI), currentCanvasUserCount;
+                                                console.warn('xx GV.verifyCanvasUser setCanvasServerState');
                                                 return true;
                                             } else {
                                                 return false;
@@ -13285,12 +13271,6 @@ console.warn('xx ds perm', dp);
                                         });
                                     }
                                 );
-
-
-
-
-
-
 
                                 // Refresh
                                 this.loadVariableOnStartup.next(true);
