@@ -13373,6 +13373,7 @@ console.warn('xx ds perm', dp);
                 console.log('Error Registration FAILED on : ',
                 givenCanvasServerURI, {err});
                 console.warn('xx GV.verifyCanvasUser: HTTP Error'), err;
+                resolve(false);
             });
 
         });
