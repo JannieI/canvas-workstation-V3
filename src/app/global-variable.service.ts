@@ -13431,49 +13431,6 @@ console.warn('xx ds perm', dp);
         });
     }
 
-    // TODO - to be replaced by actual Eazl
-    loginOLD(username: string, password: string): Promise<boolean> {
-        // Login, and return a token which is stored in LocalStorage.  Also, set global User
-        // If not a valid user, return false.
-        // If so, set currentUser object and return true
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables login ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {username}, {password});
-        };
-
-        return new Promise<boolean>((resolve, reject) => {
-
-            // Get a Token
-
-            // this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/',
-
-
-            this.http.post<Token>(this.currentCanvasServerURI + 'accounts/jwt-create/',
-                {username, password}).subscribe(token => {
-
-                // Store locally - NB must be Dexie ...
-                localStorage.setItem("eazl-token", JSON.stringify(token));
-
-                //         // Store User ID info
-                //         this.globalVariableService.canvasServerName = res[0].canvasServerName;
-                //         this.globalVariableService.canvasServerURI = res[0].canvasServerURI;
-                //         this.globalVariableService.currentCompany = res[0].currentCompany;
-                //         this.globalVariableService.currentUserID = res[0].currentUserID;
-                //         this.globalVariableService.currentToken = res[0].currentToken;
-
-                //         // Refresh
-                //         this.globalVariableService.loadVariableOnStartup.next(true);
-
-                resolve(true);
-            },
-            err => {
-                console.log('Error login FAILED', {err});
-                resolve(false);
-            });
-        });
-    };
-
     tributaryCreateSession(sampleSize: number = null) {
         // Create a new Tributary Session
         // - sampleSize = optional nr of rows to return
