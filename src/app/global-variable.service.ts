@@ -13282,6 +13282,7 @@ console.warn('xx ds perm', dp);
                 } else {
                     console.warn('xx GV.verifyCanvasUser: Registration failed on : ',
                         givenCanvasServerURI, givenUserID, res);
+                    resolve(false);
                 };
             },
             err => {
