@@ -516,7 +516,7 @@ export class AppComponent implements OnInit {
         // - updates the ID vars (Server, Company, User)
         // - stores this token locally in IndexedDB (using Dexie)
         // - stores the server, company name, username in IndexDB
-        // - updates GV.currentUser = profile    NB: fix setCurrentCanvasUser
+        // - updates GV.currentUser = profile
         // - GV.RefreshVars.next() which triggers a .subscribe in App.ts
         // - emit close event, which triggers handleCloseUserLogin():
         //   - close Login form
@@ -529,7 +529,7 @@ export class AppComponent implements OnInit {
 
         // Refresh Variables (local and global) to be used in the whole App.  This happens
         // after successful login, or verify by server of info read from localStorage:
-        //   - updates GV.currentUser = profile    NB: fix setCurrentCanvasUser
+        //   - updates GV.currentUser = profile
         //   - updates GV.currentUserID
         //   - updates GV.currentCanvasServer = currentCanvasServer
         //   - updates GV.currentCanvasCompanyName = currentCanvasCompanyName

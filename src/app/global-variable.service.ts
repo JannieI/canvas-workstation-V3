@@ -9625,18 +9625,6 @@ export class GlobalVariableService {
 
     }
 
-    setCurrentCanvasUser(userID: string){
-        // Description: set the Global currentUser variable to the logged in User
-        // Returns: 'Setted', else 'Error: userID does not exist in canvasUsers'
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables setCurrentCanvasUser ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
-        };
-
-        this.currentUser = this.canvasUsers.filter(u => u.userID == userID)[0];
-
-    }
-
     clearCurrentUser() {
         // Description: reset the Global currentUser variable
         if (this.sessionDebugging) {
