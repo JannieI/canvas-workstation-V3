@@ -9748,15 +9748,18 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasUsers';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.canvasUsers.json';
+        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        // this.filePath = './assets/data.canvasUsers.json';
 
         return new Promise<string>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
-            this.http.put(finalUrl + '/' + data.id, data, {headers})
+            // this.http.put(finalUrl + '/' + data.id, data, {headers})
+            // this.http.put(finalUrl + '?id=' + data.id, data, {headers})
+            this.http.put(finalUrl + '?id=1' , data, {headers})
             .subscribe(
                 res => {
 
@@ -10750,7 +10753,7 @@ export class GlobalVariableService {
 
         // Node Servers: add to Array for time being ...
         if (this.canvasServerName == 'Canvas Server Local') {
-            console.log('xx 1 XXXXXXXX', baseUrl, this.canvasServerURI, pathUrl)
+
             if (['canvasGroups', 'canvasUsers'].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)

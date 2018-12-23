@@ -289,6 +289,7 @@ export class CanvasComment {
 
 export class CanvasUser {
     id: number;                             // Unique record ID
+    companyName: string;                    // Company Name, for multi-tenant
     userID: string;                         // Unique UserID
     password: string;                       // Password
     firstName: string;                      // First Name
