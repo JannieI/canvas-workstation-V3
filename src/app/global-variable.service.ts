@@ -9798,8 +9798,8 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasAuditTrails';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/settings.canvasAuditTrails.json';
+        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        // this.filePath = './assets/settings.canvasAuditTrails.json';
 
         return new Promise<CanvasAuditTrail[]>((resolve, reject) => {
 
@@ -10753,7 +10753,10 @@ export class GlobalVariableService {
         // Node Servers: add to Array for time being ...
         if (this.canvasServerName == 'Canvas Server Local') {
 
-            if (['canvasGroups', 'canvasUsers'].indexOf(pathUrl) >= 0) {
+            if (['canvasGroups', 
+                 'canvasUsers',
+                 'canvasAuditTrails'
+                ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
             };
