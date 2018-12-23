@@ -9758,8 +9758,7 @@ export class GlobalVariableService {
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
             // this.http.put(finalUrl + '/' + data.id, data, {headers})
-            // this.http.put(finalUrl + '?id=' + data.id, data, {headers})
-            this.http.put(finalUrl + '?id=1' , data, {headers})
+            this.http.put(finalUrl + '?id=' + data.id, data, {headers})
             .subscribe(
                 res => {
 
