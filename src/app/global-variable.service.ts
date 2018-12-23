@@ -9755,35 +9755,31 @@ export class GlobalVariableService {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
+
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.put(finalUrl + '?id=' + data.id, data, {headers}).subscribe(res => {
 
-            // this.http.put(finalUrl + '/' + data.id, data, {headers})
-            this.http.put(finalUrl + '?id=' + data.id, data, {headers})
-            .subscribe(
-                res => {
+                // Replace local
+                let localIndex: number = this.canvasUsers.findIndex(u =>
+                    u.id == data.id
+                );
+                if (localIndex >= 0) {
+                    this.canvasUsers[localIndex] = data;
+                };
 
-                    // Replace local
-                    let localIndex: number = this.canvasUsers.findIndex(u =>
-                        u.id == data.id
-                    );
-                    if (localIndex >= 0) {
-                        this.canvasUsers[localIndex] = data;
-                    };
+                if (this.sessionDebugging) {
+                    console.log('saveCanvasUser SAVED', {res})
+                };
 
-                    if (this.sessionDebugging) {
-                        console.log('saveCanvasUser SAVED', {res})
-                    };
+                resolve('Saved');
+            },
+            err => {
+                if (this.sessionDebugging) {
+                    console.log('Error saveCanvasUser FAILED', {err});
+                };
 
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveCanvasUser FAILED', {err});
-                    };
-
-                    reject(err);
-                }
-            )
+                reject(err);
+            });
         });
     }
 
