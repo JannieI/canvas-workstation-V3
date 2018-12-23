@@ -9808,6 +9808,9 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(pathUrl)
                     .then(res => {
+                        if (res != null) {
+                            res = res.data;
+                        };                        
                         this.canvasAuditTrails = res;
 
                         this.isDirtyCanvasAuditTrails = false;
