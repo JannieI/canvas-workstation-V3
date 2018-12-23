@@ -9542,7 +9542,7 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasUsers';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         // this.filePath = './assets/data.canvasUsers.json';
 
         return new Promise<CanvasUser[]>((resolve, reject) => {
@@ -9552,6 +9552,10 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(pathUrl)
                     .then(res => {
+                        if (res != null) {
+                            res = res.data;
+                        };
+
                         this.canvasUsers = res;
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -10759,7 +10763,7 @@ export class GlobalVariableService {
         // Node Servers: add to Array for time being ...
         if (this.canvasServerName == 'Canvas Server Local') {
             console.log('xx 1 XXXXXXXX', baseUrl, this.canvasServerURI, pathUrl)
-            if (['canvasGroups'].indexOf(pathUrl) >= 0) {
+            if (['canvasGroups', 'canvasUsers'].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
             };
