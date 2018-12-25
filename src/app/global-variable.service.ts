@@ -6341,7 +6341,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'Datasources';
+        let pathUrl: string = 'datasources';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.Datasources.json';
 
@@ -8540,8 +8540,8 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasBackgroundcolorsDefault';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/settings.backgroundcolors.json';
+        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        // this.filePath = './assets/settings.backgroundcolors.json';
 
         return new Promise<CSScolor[]>((resolve, reject) => {
 
@@ -8550,6 +8550,9 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(pathUrl)
                     .then(res => {
+                        if (res != null) {
+                            res = res.data;
+                        };
                         this.backgroundcolorsDefault = res;
 
                         this.isDirtyBackgroundColorsDefault = false;
@@ -10754,7 +10757,8 @@ export class GlobalVariableService {
 
             if (['canvasGroups', 
                  'canvasUsers',
-                 'canvasAuditTrails'
+                 'canvasAuditTrails',
+                 'canvasBackgroundcolorsDefault'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
