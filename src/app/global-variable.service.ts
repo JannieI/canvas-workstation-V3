@@ -8990,9 +8990,12 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
+                    if(res != null) {
+                        res = res.data;
+                    };
 
                     // Update NrComments field if a W is linked
                     if (data.widgetID != null) {

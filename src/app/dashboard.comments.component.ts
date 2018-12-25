@@ -150,7 +150,7 @@ export class DashboardCommentsComponent implements OnInit {
                     this.editLast = false;
                     this.showError = false;
                     this.errorMessage = '';
-                    
+
                     console.warn('xx Comment saved', res);
                     
                 })
@@ -186,7 +186,9 @@ export class DashboardCommentsComponent implements OnInit {
 
         // Globally and locally
         this.globalVariableService.addCanvasComment(newComment).then( data => {
-                this.canvasComments.push(data)
+            console.warn('xx Comment added', data);
+
+            this.canvasComments.push(data)
                 this.showError = false;
                 this.errorMessage = '';
                 this.commentText = '';
