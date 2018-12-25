@@ -8933,8 +8933,8 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasComments';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/settings.canvasComments.json';
+        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        // this.filePath = './assets/settings.canvasComments.json';
 
         return new Promise<CanvasComment[]>((resolve, reject) => {
 
@@ -8943,6 +8943,10 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(pathUrl)
                     .then(res => {
+                        if(res != null) {
+                            res = res.data;
+                        };
+
                         this.canvasComments = res;
 
                         this.isDirtyCanvasComments = false;
@@ -10758,7 +10762,8 @@ export class GlobalVariableService {
             if (['canvasGroups', 
                  'canvasUsers',
                  'canvasAuditTrails',
-                 'canvasBackgroundcolorsDefault'
+                 'canvasBackgroundcolorsDefault',
+                 'canvasComments'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
