@@ -9047,7 +9047,8 @@ export class GlobalVariableService {
             const copyData = { ...data, ...{ b: undefined } };
             delete copyData._id;
 
-            this.http.put(finalUrl + '?id=' + data.id, copyData, {headers})
+            console.log('xx saveCComm')
+            this.http.put(finalUrl + '?id=' + copyData.id, copyData, {headers})
             .subscribe(
                 res => {
 
