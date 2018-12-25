@@ -134,6 +134,9 @@ export class DashboardCommentsComponent implements OnInit {
         // Save changes to the last Comment
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        this.errorMessage = '';
+        this.message = '';
+
         // Validation
         if (this.commentText == '') {
             this.errorMessage = 'Comment cannot be blank';
@@ -144,13 +147,11 @@ export class DashboardCommentsComponent implements OnInit {
         this.canvasComments[this.canvasComments.length - 1].comment = this.commentText;
         this.commentText = '';
         this.editLast = false;
-        this.errorMessage = '';
-        this.message = '';
 
         this.globalVariableService.saveCanvasComment(
             this.canvasComments[this.canvasComments.length - 1])
                 .then(res => {
-
+                    this.message = 'Comment saved';
                     console.warn('xx Comment saved', res);
                     
                 })
@@ -192,8 +193,7 @@ export class DashboardCommentsComponent implements OnInit {
             console.warn('xx Comment added', data);
 
             this.canvasComments.push(data)
-                this.errorMessage = '';
-                this.message = '';
+                this.message = 'Comment added';
                 this.commentText = '';
                 this.indexLastRecord = this.canvasComments.length - 1;
         });
