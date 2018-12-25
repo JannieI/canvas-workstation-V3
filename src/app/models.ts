@@ -279,6 +279,7 @@ export class CanvasMessageSingle {
 }
 
 export class CanvasComment {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID
     dashboardID: number;                    // Dashboard to which comment is linked
     widgetID: number;                       // Optional Widget linked
