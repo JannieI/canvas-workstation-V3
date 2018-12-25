@@ -50,6 +50,7 @@ export class DatagridInput {
 
 // Setup / Settings / General
 export class CanvasSettings {
+    _id?: string;                           // Mongo ID (read only)
     companyName: string;                    // Company Name
     companyLogo: string;                    // Optional file name for Company logo
     dashboardTemplate: string;              // Default Dashboard Template (later use)
@@ -78,6 +79,7 @@ export class CanvasSettings {
 }
 
 export class CanvasAction {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique id per action
     dashboardID: number;                    // Where action took place
     dashboardTabID: number;                 // Where action took place
@@ -99,6 +101,7 @@ export class CanvasAction {
 }
 
 export class CanvasAuditTrail {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique id per action
     dashboardID: number;                    // Where action took place
     dashboardTabID: number;                 // Where action took place
@@ -118,6 +121,7 @@ export class CanvasAuditTrail {
 }
 
 export class StatusBarMessage {
+    _id?: string;                           // Mongo ID (read only)
     message: string;                        // Text to display
     uiArea: string;                         // Specific UI area to affect, ie StatusBar
     classfication: string;                  // Info, Warning, Error
@@ -126,6 +130,7 @@ export class StatusBarMessage {
 }
 
 export class StatusBarMessageLog {
+    _id?: string;                           // Mongo ID (read only)
     logDateTime: Date;                      // When message was logged
     userID: string;                         // User for which message was logged
     dashboardID: number;                    // Optional Dashboard open when message received
@@ -138,6 +143,7 @@ export class StatusBarMessageLog {
 }
 
 export class CurrentDashboardInfo {
+    _id?: string;                           // Mongo ID (read only)
     currentDashboardID: number = 0;         // Current D we are working with
     currentDashboardState: string;          // Current D state
     currentDashboardTabID: number = 0;      // Current TabID
@@ -148,6 +154,7 @@ export class CurrentDashboardInfo {
 }
 
 export class PaletteButtonsSelected {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
     userID: string;                         // FK to User, to which Button belongs
     paletteButtonBarID: number;             // FK to PaletteButtonBar
@@ -169,6 +176,7 @@ export class PaletteButtonsSelected {
 }
 
 export class PaletteButtonBar {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
     mainmenuItem: string;                   // True if belongs to main menu
     menuText: string;                       // Text that appears on menu
@@ -187,6 +195,7 @@ export class PaletteButtonBar {
 }
 
 export class CSScolor {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
     name: string;                           // Name, ie brown
     cssCode: string;                        // CSS code, as name, hex, rgb.  ie transparent, rgb(111,52,78)
@@ -194,6 +203,7 @@ export class CSScolor {
 }
 
 export class ContainerStyle {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID
     name: string;                           // Unique Name of style
 
@@ -224,6 +234,7 @@ export class ContainerStyle {
 
 // Messages / Activities / Alerts / Comments / User
 export class CanvasTask {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique task ID
     taskText: string;                       // Description of task
     activityType: string;                   // Type of Task (or Activity)
@@ -246,6 +257,7 @@ export class CanvasTask {
 }
 
 export class CanvasMessage {
+    _id?: string;               // Mongo ID (read only)
     id: number;                 // Unique ID
     threadID: number;           // Optional thread - to keep converstations together (later use)
     sender: string;             // UserID who sent message, could also be System (for Alerts)
@@ -272,6 +284,7 @@ export class CanvasMessage {
 }
 
 export class CanvasMessageSingle {
+    _id?: string;               // Mongo ID (read only)
     id: number;                 // Unique ID
     messageID: number;          // FK to CanvasMessage
     recipient: string;          // Single Recipient, deduced from To-lists in Message
@@ -289,6 +302,7 @@ export class CanvasComment {
 }
 
 export class CanvasUser {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
     companyName: string;                    // Company Name, for multi-tenant
     userID: string;                         // Unique UserID
@@ -359,6 +373,7 @@ export class CanvasUser {
 }
 
 export class CanvasGroup {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique Group ID
     name: string;                           // Group name
 
@@ -370,6 +385,7 @@ export class CanvasGroup {
 }
 
 export class WebSocketMessage {
+    _id?: string;                           // Mongo ID (read only)
     sender: string;                         // UserID who sent it, Eazl = backend
     content: any;                           // Payload, can be text string or Object or Array
     isBroadcast = false;                    // ?
@@ -385,12 +401,14 @@ export class WebSocketMessage {
 
 // Data
 export class Combination {
+    _id?: string;                           // Mongo ID (read only)
     combinationID: number;
     dashboardID: number;
     type: string;                           // ie Union
 }
 
 export class CombinationDetail {
+    _id?: string;                           // Mongo ID (read only)
     combinationDetailID: number;
     combinationID: number;
     lhDatasourceID: number;
@@ -400,6 +418,7 @@ export class CombinationDetail {
 }
 
 export class DataQualityIssue {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
     name: string;                           // Short name to identify issue
     datasourceID: number;                   // DS to which the issue relates
@@ -414,6 +433,7 @@ export class DataQualityIssue {
 }
 
 export class DataOwnership {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
     datasourceID: number;                   // DS for which the ownership is defined
     userID: string;                         // Short name to identify issue
@@ -429,6 +449,7 @@ export class DataOwnership {
 }
 
 export class Dataset {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
     datasourceID: number;                   // FK to DS to which this belongs
     sourceLocation: string;                 // Where data lives: file, localDB, MSSQL, etc
@@ -443,6 +464,7 @@ export class Dataset {
 }
 
 export class DataCachingTable {
+    _id?: string;                           // Mongo ID (read only)
     key: string;                            // Unique key
     objectID: number;                       // Optional record ID, ie for Data
     serverCacheableMemory: boolean;         // True if cached on server in RAM
@@ -465,239 +487,249 @@ export class DataCachingTable {
 
 
 export class DatasourceFilter {
-    id: number;                         // Unique ID
-    dashboardID: number;                // FK to Dashboard
-    sequence: number;                   // Sequence Nr - for LATER user
-    filterFieldName: string;            // Name (text) of field
-    filterOperator: string;             // ie Equal, Less Than, etc
-    filterValue: string;                // ie. 12 Japan  1,5  a,b,c  true
-    filterValueFrom: string;            // From value for Range
-    filterValueTo: string;              // To value for Range
-    isActive: boolean;                  // True if activated, else not used
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    dashboardID: number;                    // FK to Dashboard
+    sequence: number;                       // Sequence Nr - for LATER user
+    filterFieldName: string;                // Name (text) of field
+    filterOperator: string;                 // ie Equal, Less Than, etc
+    filterValue: string;                    // ie. 12 Japan  1,5  a,b,c  true
+    filterValueFrom: string;                // From value for Range
+    filterValueTo: string;                  // To value for Range
+    isActive: boolean;                      // True if activated, else not used
 }
 
 export class Datasource {
     
 	// Descriptive info
-    id: number;                         // Unique record ID
-    type: string;                       // Type of source, ie File, Server, Web, Service
-    subType: string;                    // Subtype, ie Excel/ CSV for File, PostgreSQL/ Mongo for Server
-    typeVersion: string;                // Version of source, ie Excel 2016
-    name: string;                       // Name of Datasource
-    username: string;                   // Username to log into server (if not via AD)
-    password: string;                   // Password to log into server
-    description: string;                // Description of the DS
-    dataFieldIDs: number[];             // IDs of fields in DB table
-    dataFields: string[];               // FieldNames, in order to display
-    dataFieldTypes: string[];           // Field Types, same order as dataFields
-    dataFieldLengths: number[];         // Max field lengths, same order as dataFields
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique record ID
+    type: string;                           // Type of source, ie File, Server, Web, Service
+    subType: string;                        // Subtype, ie Excel/ CSV for File, PostgreSQL/ Mongo for Server
+    typeVersion: string;                    // Version of source, ie Excel 2016
+    name: string;                           // Name of Datasource
+    username: string;                       // Username to log into server (if not via AD)
+    password: string;                       // Password to log into server
+    description: string;                    // Description of the DS
+    dataFieldIDs: number[];                 // IDs of fields in DB table
+    dataFields: string[];                   // FieldNames, in order to display
+    dataFieldTypes: string[];               // Field Types, same order as dataFields
+    dataFieldLengths: number[];             // Max field lengths, same order as dataFields
 
 	// Parameters and Filters
     datasourceFilters?: DatasourceFilter[];  // Optional Array of DS-Filters per Dashboard
     datasourceFilterForThisDashboard: boolean;  // @ RunTime, changes: true if THIS D has filters on THIS DS
 
     // Access Type
-    accessType: string;                 // How to access D: Private, Public, AccessList
+    accessType: string;                     // How to access D: Private, Public, AccessList
 
     // Create and Edit info
-    createMethod: string;               // Method how DS was created, ie DirectFile, ..., ManagedSQLEditor
-    createdBy: string;                  // Creator
-    createdOn: Date;                    // DateTime Created
-    editor: string;                     // Last Edited By
-    dateEdited: Date;                   // Last Edited On
+    createMethod: string;                   // Method how DS was created, ie DirectFile, ..., ManagedSQLEditor
+    createdBy: string;                      // Creator
+    createdOn: Date;                        // DateTime Created
+    editor: string;                         // Last Edited By
+    dateEdited: Date;                       // Last Edited On
 
     // Caching info
-    cacheResultsOnServer: boolean;      // True if results may be cached on server. Each Tr is decided separately
-    unRefreshable: boolean;             // Can create once, but cannot Refresh after that
-    cacheResultsLocal: boolean;         // True if Local results must be cached
-    nrCacheCopies: number;              // Nr Cache copies kept, 0 means none
+    cacheResultsOnServer: boolean;          // True if results may be cached on server. Each Tr is decided separately
+    unRefreshable: boolean;                 // Can create once, but cannot Refresh after that
+    cacheResultsLocal: boolean;             // True if Local results must be cached
+    nrCacheCopies: number;                  // Nr Cache copies kept, 0 means none
 
     // Optional Max Oldness allowed - must be fresher than given
-    oldnessMaxPeriodInterval: string;   // Ie. second, minute, hour, day, month, year
-    oldnessMaxPeriodUnits: number;      // Must be fresher than say 8 hour
-    oldnessRelatedDate: string;         // Ie. today, yesterday, previousWorkingDay, weekStart, monthStart, yearStart
-    oldnessRelatedTime: string;         // Ie. '08:00' - must be fresher than today 8:00
+    oldnessMaxPeriodInterval: string;       // Ie. second, minute, hour, day, month, year
+    oldnessMaxPeriodUnits: number;          // Must be fresher than say 8 hour
+    oldnessRelatedDate: string;             // Ie. today, yesterday, previousWorkingDay, weekStart, monthStart, yearStart
+    oldnessRelatedTime: string;             // Ie. '08:00' - must be fresher than today 8:00
 
     // Refresh info
-    refreshedBy: string;                // Last UserID that refreshed this datasource
-    refreshedServerOn: Date;            // Last dateTime this DS was refreshed on Server
-    refreshedLocalOn: Date;             // Last dateTime this DS was refreshed locally
+    refreshedBy: string;                    // Last UserID that refreshed this datasource
+    refreshedServerOn: Date;                // Last dateTime this DS was refreshed on Server
+    refreshedLocalOn: Date;                 // Last dateTime this DS was refreshed locally
 
     // Location and authentication
-    folder: string;                     // Folder from which the data was loaded
-    fileName: string;                   // Filename from which the data was loaded
-    excelWorksheet: string;             // Excel Worksheet name from which the data was loaded
-    transposeOnLoad: boolean;           // True to transpose data before loading (X <-> Y)
-    startLineNr: number;                // 1 = first = default
-    csvSeparationCharacter: string;     // CSV file column separator: comma or ;
-    csvQuotCharacter: string;           // CSV values in "", in '' or without quotes
-    webUrl: string;                     // URL for web connectors
-    webTableIndex: string;              // Index number (base 0) of table to load, else the Name of the table
+    folder: string;                         // Folder from which the data was loaded
+    fileName: string;                       // Filename from which the data was loaded
+    excelWorksheet: string;                 // Excel Worksheet name from which the data was loaded
+    transposeOnLoad: boolean;               // True to transpose data before loading (X <-> Y)
+    startLineNr: number;                    // 1 = first = default
+    csvSeparationCharacter: string;         // CSV file column separator: comma or ;
+    csvQuotCharacter: string;               // CSV values in "", in '' or without quotes
+    webUrl: string;                         // URL for web connectors
+    webTableIndex: string;                  // Index number (base 0) of table to load, else the Name of the table
 
     // Managed Connection, Connection created and managed outside of the DS
-    connectionID: number;               // Connection to DB
-    dataTableID: number;                // ID of table linked in DB
-    businessGlossary: string;           // Detailed business oriented description of DS (non-technical)
-    dataDictionary: string;             // Detailed technical description of DS
+    connectionID: number;                   // Connection to DB
+    dataTableID: number;                    // ID of table linked in DB
+    businessGlossary: string;               // Detailed business oriented description of DS (non-technical)
+    dataDictionary: string;                 // Detailed technical description of DS
 
     // Direct Connection, all info provided here and once off
-    databaseName: string;               // DB to connect to
-    port: string;                       // Port on the DB Server
-    serverType: string;                 // Server or Host type, ie MySQL, PostgreSQL, etc
-    serverName: string;                 // Server or Host name
-    dataTableName: string;              // Table inside Server with the data
-    dataSQLStatement: string;           // SQL Statement to extract data with
-    dataNoSQLStatement: string;         // NoSQL Statement to extract data with
-    dataNeo4jStatement: string;         // Cypher Statement to extract data with
-    dataGraphQLStatement: string;       // GraphQL Statement to extract data with
-    dataOverlaySpecification: any;      // Overlay Specification to extract data with
+    databaseName: string;                   // DB to connect to
+    port: string;                           // Port on the DB Server
+    serverType: string;                     // Server or Host type, ie MySQL, PostgreSQL, etc
+    serverName: string;                     // Server or Host name
+    dataTableName: string;                  // Table inside Server with the data
+    dataSQLStatement: string;               // SQL Statement to extract data with
+    dataNoSQLStatement: string;             // NoSQL Statement to extract data with
+    dataNeo4jStatement: string;             // Cypher Statement to extract data with
+    dataGraphQLStatement: string;           // GraphQL Statement to extract data with
+    dataOverlaySpecification: any;          // Overlay Specification to extract data with
 
     // Updated at runtime
-    nrWidgets: number;                  // Nr of Ws linked to this DS (at the moment)
+    nrWidgets: number;                      // Nr of Ws linked to this DS (at the moment)
 }
 
 export class DatasourceSchedule {
-    id: number;                         // Unique record ID
-    datasourceID: number;               // FK to Datasource
-    name: string;                       // Name
-    description: string;                // Description of Schedule
-    repeatFrequency: string;            // Occurs: Daily, Weekly, Monthly, Yearly
-    repeatsEvery: number;               // Repeats every x of Frequency, ie 2 = every 2nd Month
-    weeklyMonday: boolean;              // For Weekly: occurs on this weekday
-    weeklyTuesday: boolean;             // For Weekly: occurs on this weekday
-    weeklyWednesday: boolean;           // For Weekly: occurs on this weekday
-    weeklyThursday: boolean;            // For Weekly: occurs on this weekday
-    weeklyFriday: boolean;              // For Weekly: occurs on this weekday
-    weeklySaturday: boolean;            // For Weekly: occurs on this weekday
-    weeklySunday: boolean;              // For Weekly: occurs on this weekday
-    monthlyOn: number;                  // For Monthly: Occurs on this Day of month, ie 13th
-    yearlyJanuary: boolean;             // For Yearly: Occurs in this month
-    yearlyFebruary: boolean;            // For Yearly: Occurs in this month
-    yearlyMarch: boolean;               // For Yearly: Occurs in this month
-    yearlyApril: boolean;               // For Yearly: Occurs in this month
-    yearlyMay: boolean;                 // For Yearly: Occurs in this month
-    yearlyJune: boolean;                // For Yearly: Occurs in this month
-    yearlyJuly: boolean;                // For Yearly: Occurs in this month
-    yearlyAugust: boolean;              // For Yearly: Occurs in this month
-    yearlySeptember: boolean;           // For Yearly: Occurs in this month
-    yearlyOctober: boolean;             // For Yearly: Occurs in this month
-    yearlyNovember: boolean;            // For Yearly: Occurs in this month
-    yearlyDecember: boolean;            // For Yearly: Occurs in this month
-    startsOn: Date;                     // Date
-    endsNever: boolean;                 // True means never ends
-    endsAfter: number;                  // n times, ie 2 means it will run twice
-    endsOn: Date;                       // Date
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique record ID
+    datasourceID: number;                   // FK to Datasource
+    name: string;                           // Name
+    description: string;                    // Description of Schedule
+    repeatFrequency: string;                // Occurs: Daily, Weekly, Monthly, Yearly
+    repeatsEvery: number;                   // Repeats every x of Frequency, ie 2 = every 2nd Month
+    weeklyMonday: boolean;                  // For Weekly: occurs on this weekday
+    weeklyTuesday: boolean;                 // For Weekly: occurs on this weekday
+    weeklyWednesday: boolean;               // For Weekly: occurs on this weekday
+    weeklyThursday: boolean;                // For Weekly: occurs on this weekday
+    weeklyFriday: boolean;                  // For Weekly: occurs on this weekday
+    weeklySaturday: boolean;                // For Weekly: occurs on this weekday
+    weeklySunday: boolean;                  // For Weekly: occurs on this weekday
+    monthlyOn: number;                      // For Monthly: Occurs on this Day of month, ie 13th
+    yearlyJanuary: boolean;                 // For Yearly: Occurs in this month
+    yearlyFebruary: boolean;                // For Yearly: Occurs in this month
+    yearlyMarch: boolean;                   // For Yearly: Occurs in this month
+    yearlyApril: boolean;                   // For Yearly: Occurs in this month
+    yearlyMay: boolean;                     // For Yearly: Occurs in this month
+    yearlyJune: boolean;                    // For Yearly: Occurs in this month
+    yearlyJuly: boolean;                    // For Yearly: Occurs in this month
+    yearlyAugust: boolean;                  // For Yearly: Occurs in this month
+    yearlySeptember: boolean;               // For Yearly: Occurs in this month
+    yearlyOctober: boolean;                 // For Yearly: Occurs in this month
+    yearlyNovember: boolean;                // For Yearly: Occurs in this month
+    yearlyDecember: boolean;                // For Yearly: Occurs in this month
+    startsOn: Date;                         // Date
+    endsNever: boolean;                     // True means never ends
+    endsAfter: number;                      // n times, ie 2 means it will run twice
+    endsOn: Date;                           // Date
 
     // Generated by the system
-    editedBy: string;                   // Last user who edited this task
-    editedOn: Date;                     // Date this task was last edited
-    createdBy: string;                  // UserID who created this task, can be System
-    createdOn: Date;                    // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 export class DatasourceScheduleLog {
-    id: number;                         // Unique ID
-    datasourceID: number;               // D that was linked
-    userID: string;                     // User to whom D was sent
-    groupID: string;                    // Optional Group to which D was sent
-    sentOn: Date;                       // Date dispatched
-    status: string;                     // Pending, Halted, Success, Failed
-    errorMessage;                       // Error message if it failed
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    datasourceID: number;                   // D that was linked
+    userID: string;                         // User to whom D was sent
+    groupID: string;                        // Optional Group to which D was sent
+    sentOn: Date;                           // Date dispatched
+    status: string;                         // Pending, Halted, Success, Failed
+    errorMessage;                           // Error message if it failed
 }
 
 export class DatasourcePermission {
-    id: number;                         // Unique ID
-    datasourceID: number;               // FK to DS
-    name?: string;                      // Optional DS name - filled in @Runtime
-    userID: string;                     // 1 of usr/grp filled in, one blank
-    groupID: number;                    // Granted to Group ID
-    groupName?: string;                 // Optional Group name - filled in @Runtime
-    canView: boolean;                   // Can view a DS
-    canEdit: boolean;                   // Can Edit a DS, ie do a transformation
-    canDelete: boolean;                 // Can Delete a DS (Definition, not the Data)
-    canRefresh: boolean;                // Can Refresh a DS (Data, not Definition)
-    canGrant: boolean;                  // Can Grant access to a DS (Data, not Definition)
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    datasourceID: number;                   // FK to DS
+    name?: string;                          // Optional DS name - filled in @Runtime
+    userID: string;                         // 1 of usr/grp filled in, one blank
+    groupID: number;                        // Granted to Group ID
+    groupName?: string;                     // Optional Group name - filled in @Runtime
+    canView: boolean;                       // Can view a DS
+    canEdit: boolean;                       // Can Edit a DS, ie do a transformation
+    canDelete: boolean;                     // Can Delete a DS (Definition, not the Data)
+    canRefresh: boolean;                    // Can Refresh a DS (Data, not Definition)
+    canGrant: boolean;                      // Can Grant access to a DS (Data, not Definition)
 
     // Generated by the system
-    editedBy: string;                   // Last user who edited this task
-    editedOn: Date;                     // Date this task was last edited
-    createdBy: string;                  // UserID who created this task, can be System
-    createdOn: Date;                    // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 export class DatasourceTransformation {
-    id: number;                         // Unique ID
-    transformationID: number;           // FK to Tr
-    datasourceID: number;               // FK to DS
-    sequence: number;                   // Order, 1 at top
-    parameterValue: string[];           // Parameter Values for this transformation
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    transformationID: number;               // FK to Tr
+    datasourceID: number;                   // FK to DS
+    sequence: number;                       // Order, 1 at top
+    parameterValue: string[];               // Parameter Values for this transformation
 
     // Generated by the system
-    editedBy: string;                   // Last user who edited this task
-    editedOn: Date;                     // Date this task was last edited
-    createdBy: string;                  // UserID who created this task, can be System
-    createdOn: Date;                    // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 export class Transformation {
-    id: number;                         // Unique ID
-    category: string;                   // Category, ie based on a Column, etc
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    category: string;                       // Category, ie based on a Column, etc
     // NB: the name has to be unique: used so in code + else confusing to user
-    name: string;                       // Name of transformation, ie FillBlank
-    description: string;                // Description of transformation
+    name: string;                           // Name of transformation, ie FillBlank
+    description: string;                    // Description of transformation
 
     // Parameter info
-    nrParameters: number;               // Nr of parameters, to make sure all array below the same length
-    parameterPlaceholder: string[];     // Placeholder info, ie Fill in nr of characters ...
-    parameterTitle: string[];           // Title (tooltippie text)
-    parameterDefaultValue: string[];    // Default Text / Value when creating a new record
-    parameterHeading: string[];         // Heading of field on form, ie Left
-    parameterType: string[];            // Type of field (string, numeric, boolean).  Blank means any
+    nrParameters: number;                   // Nr of parameters, to make sure all array below the same length
+    parameterPlaceholder: string[];         // Placeholder info, ie Fill in nr of characters ...
+    parameterTitle: string[];               // Title (tooltippie text)
+    parameterDefaultValue: string[];        // Default Text / Value when creating a new record
+    parameterHeading: string[];             // Heading of field on form, ie Left
+    parameterType: string[];                // Type of field (string, numeric, boolean).  Blank means any
 
     // Generated by the system
-    editedBy: string;                   // Last user who edited this task
-    editedOn: Date;                     // Date this task was last edited
-    createdBy: string;                  // UserID who created this task, can be System
-    createdOn: Date;                    // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 export class TributaryServerType {
-    serverType: string;                 // Type of Server, ie PostgresSQL
-    driverName: string;                 // Tributary driver string, ie postgres
-    inspector: string;                  // Tributary inspector: tributary.inspectors.mongodb:MongoDBInspector
-    connector: string                   // Tributary connector, ie tributary.connectors.sql:SqlConnector
+    _id?: string;                           // Mongo ID (read only)
+    serverType: string;                     // Type of Server, ie PostgresSQL
+    driverName: string;                     // Tributary driver string, ie postgres
+    inspector: string;                      // Tributary inspector: tributary.inspectors.mongodb:MongoDBInspector
+    connector: string                       // Tributary connector, ie tributary.connectors.sql:SqlConnector
 
     // Generated by the system
-    editedBy: string;                   // Last user who edited this task
-    editedOn: Date;                     // Date this task was last edited
-    createdBy: string;                  // UserID who created this task, can be System
-    createdOn: Date;                    // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 export class TributarySource {
+    _id?: string;                           // Mongo ID (read only)
     source: {
-        connector: string;              // Tributary Connector, ie tributary.connectors.sql:SqlConnector
-        drivername: string;             // Tributary driver, ie postgres
-        username: string;               // Username to log into the DB
-        password: string;               // Password to log into the DB
-        database: string;               // Database Name
-        host: string;                   // Host or Server Name
-        port: number;                   // Optional Port on the host, ie 5432
-        query: string;                  // SQL, escaped, ie "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
+        connector: string;                  // Tributary Connector, ie tributary.connectors.sql:SqlConnector
+        drivername: string;                 // Tributary driver, ie postgres
+        username: string;                   // Username to log into the DB
+        password: string;                   // Password to log into the DB
+        database: string;                   // Database Name
+        host: string;                       // Host or Server Name
+        port: number;                       // Optional Port on the host, ie 5432
+        query: string;                      // SQL, escaped, ie "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
     }
 }
 
 export class DataConnection {
-    id: number;                 // Unique ID
-    connectionName: string;     // Name of the Connection, ie XIS MS SQL Server
-    serverType: string;         // Type of server, ie PostgreSQL, MySQL, etc
-    serverName: string;         // DNS Server Name or IP address, ending with optional :port
-    port: string;               // Port on the Server, maybe blank
-    database: string;           // Database to connect to
-    authentication: string;     // Type of authentication: usr & psw, OR login as me (ie using AD)
-    username: string;           // As entered by user
-    password: string;           // As entered by user - encrypted ?
-    description: string;        // Description of Connection
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    connectionName: string;                 // Name of the Connection, ie XIS MS SQL Server
+    serverType: string;                     // Type of server, ie PostgreSQL, MySQL, etc
+    serverName: string;                     // DNS Server Name or IP address, ending with optional :port
+    port: string;                           // Port on the Server, maybe blank
+    database: string;                       // Database to connect to
+    authentication: string;                 // Type of authentication: usr & psw, OR login as me (ie using AD)
+    username: string;                       // As entered by user
+    password: string;                       // As entered by user - encrypted ?
+    description: string;                    // Description of Connection
 
     // For later use
     defaultDatabase?: string;  
@@ -716,89 +748,93 @@ export class DataConnection {
 }
 
 export class DataSchema {
-    serverName: string;         // TODO - Is this needed in real DB?
-    tableName: string;          // Name of DB Table
-    tableDescription: string;   // Description of DB Table
-    tableFields:                // Fields in DB Table
+    _id?: string;                           // Mongo ID (read only)
+    serverName: string;                     // TODO - Is this needed in real DB?
+    tableName: string;                      // Name of DB Table
+    tableDescription: string;               // Description of DB Table
+    tableFields:                            // Fields in DB Table
         {
-            fieldName: string;  // FieldName
-            fieldType: string;  // FieldType
+            fieldName: string;              // FieldName
+            fieldType: string;              // FieldType
         }[];
     tableMetadata:
         {
-            schema: string;     // ie Public
-            type: string;       // ie table
+            schema: string;                 // ie Public
+            type: string;                   // ie table
         }[];
 
 }
 
 export class DataTable {
-    id: number;                 // Unique ID
-    connectionID: number;       // Connection to which the Field belongs
-    nameDB: string;             // Field Name (in DB)
-    nameLocal: string;          // Optional Local Field Name (shown in D)
-    type: string;               // Table / View
-    description: string;        // Detailed description of the table
-    businessGlossary: string;   // Detailed business oriented description of table (non-technical)
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    connectionID: number;                   // Connection to which the Field belongs
+    nameDB: string;                         // Field Name (in DB)
+    nameLocal: string;                      // Optional Local Field Name (shown in D)
+    type: string;                           // Table / View
+    description: string;                    // Detailed description of the table
+    businessGlossary: string;               // Detailed business oriented description of table (non-technical)
 
     // Creation, update and refresh
-    creator: string;            // Created By
-    dateCreated: Date;          // Created On
-    editor: string;             // Last Edited By
-    dateEdited: Date;           // Last Edited On
+    creator: string;                        // Created By
+    dateCreated: Date;                      // Created On
+    editor: string;                         // Last Edited By
+    dateEdited: Date;                       // Last Edited On
 }
 
 export class DataField {
-    id: number;                 // Unique ID
-    tableID: number;            // DataTable to which the Field belongs
-    nameDB: string;             // Field Name (in DB)
-    nameLocal: string;          // Optional Local Field Name (shown in D)
-    type: string;               // String, Number, Boolean
-    format: string;             // Optional, ie YYYY/MM/DD
-    filterOperand: string;      // Optional filter operand, ie '>='
-    filterValue: string;        // Optional filter value, ie '1'
-    calculation: string;        // Optional Calculation, ie 'OtherFieldName / 2'
-    orderSequence: number;      // Optional order sequence
-    orderDirection: string;     // Optional order direction, Asc / Desc
-    description: string;        // Detailed description of field (technical terms)
-    businessGlossary: string;   // Detailed business oriented description of field (non-technical)
-    keyField: boolean;          // True if a key field - used for explanedBy (later use)
-    explainedBy: string;        // Graph (bar chart of ...) that explains field if key field is true (later use)
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    tableID: number;                        // DataTable to which the Field belongs
+    nameDB: string;                         // Field Name (in DB)
+    nameLocal: string;                      // Optional Local Field Name (shown in D)
+    type: string;                           // String, Number, Boolean
+    format: string;                         // Optional, ie YYYY/MM/DD
+    filterOperand: string;                  // Optional filter operand, ie '>='
+    filterValue: string;                    // Optional filter value, ie '1'
+    calculation: string;                    // Optional Calculation, ie 'OtherFieldName / 2'
+    orderSequence: number;                  // Optional order sequence
+    orderDirection: string;                 // Optional order direction, Asc / Desc
+    description: string;                    // Detailed description of field (technical terms)
+    businessGlossary: string;               // Detailed business oriented description of field (non-technical)
+    keyField: boolean;                      // True if a key field - used for explanedBy (later use)
+    explainedBy: string;                    // Graph (bar chart of ...) that explains field if key field is true (later use)
 
     // Creation, update and refresh
-    creator: string;            // Created By
-    dateCreated: Date;          // Created On
-    editor: string;             // Last Edited By
-    dateEdited: Date;           // Last Edited On
+    creator: string;                        // Created By
+    dateCreated: Date;                      // Created On
+    editor: string;                         // Last Edited By
+    dateEdited: Date;                       // Last Edited On
 
     // At Runtime
-    hidden: boolean;            // True if hidden at runtime
+    hidden: boolean;                        // True if hidden at runtime
 }
 
 export class Dashboard {
 
     // Identification and description
-    id: number;                 // Unique ID
-    originalID: number;         // ID of the original (Completed state) for a draft
-    draftID: number;            // ID of the Draft version for a Complete
-    version: number;            // Version of the Dashboard
-    state: string;              // State, ie Complete, Draft
-    code: string;               // Short code for D
-    name: string;               // Dashboard Name
-    description: string;        // User description
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    originalID: number;                     // ID of the original (Completed state) for a draft
+    draftID: number;                        // ID of the Draft version for a Complete
+    version: number;                        // Version of the Dashboard
+    state: string;                          // State, ie Complete, Draft
+    code: string;                           // Short code for D
+    name: string;                           // Dashboard Name
+    description: string;                    // User description
 
     // Access Type
-    accessType: string;         // How to access D: Private, Public, AccessList
+    accessType: string;                     // How to access D: Private, Public, AccessList
 
     // Overall properties
-    password: string;           // Optional password to lock Dashboard
-    refreshMode: string;        // OnDemand, OnOpen, Repeatedly
-    refreshTimer: number;       // Nr seconds to repeat, if refreshMode = Repeatedly
+    password: string;                       // Optional password to lock Dashboard
+    refreshMode: string;                    // OnDemand, OnOpen, Repeatedly
+    refreshTimer: number;                   // Nr seconds to repeat, if refreshMode = Repeatedly
     defaultTabID: number;       
-    defaultExportFileType: string;  // Default file type on export
+    defaultExportFileType: string;          // Default file type on export
     url: string;            
     qaRequired: boolean;    
-    isSample: boolean;          // True if this is a sample
+    isSample: boolean;                      // True if this is a sample
 
     // Overlay looks
     backgroundColor: string;    
@@ -806,93 +842,99 @@ export class Dashboard {
     templateDashboardID: number;
 
     // Creation, update and refresh
-    creator: string;            // Creator UserID
-    dateCreated: Date;          // Dt created
-    editor: string;             // Last UserID who edited this Dashboard
-    dateEdited: Date;           // Last Edit dt
-    refresher: string;          // Last UserID who refreshed this Dashboard, and it data
-    dateRefreshed: Date;        // Last refresh dt
+    creator: string;                        // Creator UserID
+    dateCreated: Date;                      // Dt created
+    editor: string;                         // Last UserID who edited this Dashboard
+    dateEdited: Date;                       // Last Edit dt
+    refresher: string;                      // Last UserID who refreshed this Dashboard, and it data
+    dateRefreshed: Date;                    // Last refresh dt
 
     // 2nd normal form - calculated at DB level
-    nrWidgets: number;          // Nr of Widgets on Dashboard
-    nrShapes: number;           // Nr of Shapes on Dashboard
+    nrWidgets: number;                      // Nr of Widgets on Dashboard
+    nrShapes: number;                       // Nr of Shapes on Dashboard
     nrRecords: number;          
-    nrTimesOpened: number;      // Nr of times this Dashboard has been opened
-    nrTimesChanged: number;     // Nr of times this Dashboard has been edited
-    tabs: number[];             // Array of TabIDs in this Dashboard
+    nrTimesOpened: number;                  // Nr of times this Dashboard has been opened
+    nrTimesChanged: number;                 // Nr of times this Dashboard has been edited
+    tabs: number[];                         // Array of TabIDs in this Dashboard
     permissions: string[];      
 }
 
 export class DashboardTab {
-    id: number;                         // Unique record ID
-    originalID: number;                 // Optional T-id from which this T was copied
-    dashboardID: number;                // FK to DashboardID to which widget belongs
-    name: string;                       // Short Name
-    description: string;                // Description
-    displayOrder: number;               // Sort on this to order tabs on D
-    backgroundColor: string;            // Bg Color of T on Status Bar
-    backgroundColorName: string;        // Name of Bg Color of T on Status Bar
-    color: string;                      // Color of T name on Status Bar
-    colorName: string;                  // Name of Color of T name on Status Bar
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique record ID
+    originalID: number;                     // Optional T-id from which this T was copied
+    dashboardID: number;                    // FK to DashboardID to which widget belongs
+    name: string;                           // Short Name
+    description: string;                    // Description
+    displayOrder: number;                   // Sort on this to order tabs on D
+    backgroundColor: string;                // Bg Color of T on Status Bar
+    backgroundColorName: string;            // Name of Bg Color of T on Status Bar
+    color: string;                          // Color of T name on Status Bar
+    colorName: string;                      // Name of Color of T name on Status Bar
 
     // Generated by the system
-    editedBy: string;                   // Last user who edited this task
-    editedOn: Date;                     // Date this task was last edited
-    createdBy: string;                  // UserID who created this task, can be System
-    createdOn: Date;                    // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 // List of Recently opened D
 export class DashboardRecent {
-    id: number;                         // Unique ID
-    userID: string;                     // User who last saved the D
-    dashboardID: number;                // Last D position
-    dashboardTabID: number;             // Last T position
-    editMode: boolean;                  // EditMode when last saved
-    accessed: Date;                     // Last dateTime opened
-    stateAtRunTime: string;             // State when opened, ie Deleted
-    nameAtRunTime: string;              // Name when opened
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    userID: string;                         // User who last saved the D
+    dashboardID: number;                    // Last D position
+    dashboardTabID: number;                 // Last T position
+    editMode: boolean;                      // EditMode when last saved
+    accessed: Date;                         // Last dateTime opened
+    stateAtRunTime: string;                 // State when opened, ie Deleted
+    nameAtRunTime: string;                  // Name when opened
 }
 
 export class DashboardTag {
-    id: number;                         // Unique ID
-    dashboardID: number;                // FK to Dashboard to which this tag applies
-    tag: string;                        // Tag name / text
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    dashboardID: number;                    // FK to Dashboard to which this tag applies
+    tag: string;                            // Tag name / text
 
     // Generated by the system
-    editedBy: string;                   // Last user who edited this task
-    editedOn: Date;                     // Date this task was last edited
-    createdBy: string;                  // UserID who created this task, can be System
-    createdOn: Date;                    // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 export class DashboardLayout {
-    id: number;                         // Unique ID
-    dashboardID: number;                // D to which these belong
-    name: string;                       // Short Name, ie 3 x 5 with 5 blocks
-    description: string;                // More detailed description
-    imageUrl?: string;                  // Optional Image url, only used in definition
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    dashboardID: number;                    // D to which these belong
+    name: string;                           // Short Name, ie 3 x 5 with 5 blocks
+    description: string;                    // More detailed description
+    imageUrl?: string;                      // Optional Image url, only used in definition
 
     // Generated by the system
-    editedBy: string;                   // Last user who edited this task
-    editedOn: Date;                     // Date this task was last edited
-    createdBy: string;                  // UserID who created this task, can be System
-    createdOn: Date;                    // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 export class DashboardTheme {
-    id: number;                         // Unique ID
-    name: string;                       // Name
-    description: string;                // Description
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    name: string;                           // Name
+    description: string;                    // Description
 
     // Generated by the system
-    editedBy: string;                    // Last user who edited this task
-    editedOn: Date;                      // Date this task was last edited
-    createdBy: string;                   // UserID who created this task, can be System
-    createdOn: Date;                     // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 export class DashboardSnapshot {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID
     dashboardID: number;                    // D for which the Snapshot is stored
     name: string;                           // Name of Snapshot
@@ -913,202 +955,212 @@ export class DashboardSnapshot {
 }
 
 export class DashboardSchedule {
+    _id?: string;                           // Mongo ID (read only)
     id: number;
     dashboardID: number;
     datasourceID: number;
     name: string;
     description: string;
-    repeatFrequency: string;            // Occurs: Daily, Weekly, Monthly, Yearly
-    repeatsEvery: number;               // Repeats every x of Frequency, ie 2 = every 2nd Month
-    weeklyMonday: boolean;              // For Weekly: occurs on this weekday
-    weeklyTuesday: boolean;             // For Weekly: occurs on this weekday
-    weeklyWednesday: boolean;           // For Weekly: occurs on this weekday
-    weeklyThursday: boolean;            // For Weekly: occurs on this weekday
-    weeklyFriday: boolean;              // For Weekly: occurs on this weekday
-    weeklySaturday: boolean;            // For Weekly: occurs on this weekday
-    weeklySunday: boolean;              // For Weekly: occurs on this weekday
-    monthlyOn: number;                  // For Monthly: Occurs on this Day of month, ie 13th
-    yearlyJanuary: boolean;             // For Yearly: Occurs in this month
-    yearlyFebruary: boolean;            // For Yearly: Occurs in this month
-    yearlyMarch: boolean;               // For Yearly: Occurs in this month
-    yearlyApril: boolean;               // For Yearly: Occurs in this month
-    yearlyMay: boolean;                 // For Yearly: Occurs in this month
-    yearlyJune: boolean;                // For Yearly: Occurs in this month
-    yearlyJuly: boolean;                // For Yearly: Occurs in this month
-    yearlyAugust: boolean;              // For Yearly: Occurs in this month
-    yearlySeptember: boolean;           // For Yearly: Occurs in this month
-    yearlyOctober: boolean;             // For Yearly: Occurs in this month
-    yearlyNovember: boolean;            // For Yearly: Occurs in this month
-    yearlyDecember: boolean;            // For Yearly: Occurs in this month
-    startsOn: Date;                     // Date
-    endsNever: boolean;                 // True means never ends
-    endsAfter: number;                  // n times, ie 2 means it will run twice
-    endsOn: Date;                       // Date
+    repeatFrequency: string;                // Occurs: Daily, Weekly, Monthly, Yearly
+    repeatsEvery: number;                   // Repeats every x of Frequency, ie 2 = every 2nd Month
+    weeklyMonday: boolean;                  // For Weekly: occurs on this weekday
+    weeklyTuesday: boolean;                 // For Weekly: occurs on this weekday
+    weeklyWednesday: boolean;               // For Weekly: occurs on this weekday
+    weeklyThursday: boolean;                // For Weekly: occurs on this weekday
+    weeklyFriday: boolean;                  // For Weekly: occurs on this weekday
+    weeklySaturday: boolean;                // For Weekly: occurs on this weekday
+    weeklySunday: boolean;                  // For Weekly: occurs on this weekday
+    monthlyOn: number;                      // For Monthly: Occurs on this Day of month, ie 13th
+    yearlyJanuary: boolean;                 // For Yearly: Occurs in this month
+    yearlyFebruary: boolean;                // For Yearly: Occurs in this month
+    yearlyMarch: boolean;                   // For Yearly: Occurs in this month
+    yearlyApril: boolean;                   // For Yearly: Occurs in this month
+    yearlyMay: boolean;                     // For Yearly: Occurs in this month
+    yearlyJune: boolean;                    // For Yearly: Occurs in this month
+    yearlyJuly: boolean;                    // For Yearly: Occurs in this month
+    yearlyAugust: boolean;                  // For Yearly: Occurs in this month
+    yearlySeptember: boolean;               // For Yearly: Occurs in this month
+    yearlyOctober: boolean;                 // For Yearly: Occurs in this month
+    yearlyNovember: boolean;                // For Yearly: Occurs in this month
+    yearlyDecember: boolean;                // For Yearly: Occurs in this month
+    startsOn: Date;                         // Date
+    endsNever: boolean;                     // True means never ends
+    endsAfter: number;                      // n times, ie 2 means it will run twice
+    endsOn: Date;                           // Date
 
     // Generated by the system
-    // editedBy: string;                       // Last user who edited this task
-    // editedOn: Date;                         // Date this task was last edited
-    // createdBy: string;                      // UserID who created this task, can be System
-    // createdOn: Date;                        // Date task was created
+    // editedBy: string;                    // Last user who edited this task
+    // editedOn: Date;                      // Date this task was last edited
+    // createdBy: string;                   // UserID who created this task, can be System
+    // createdOn: Date;                     // Date task was created
 }
 
 export class DashboardScheduleLog {
-    id: number;                         // Unique ID
-    dashboardID: number;                // D that was linked
-    userID: string;                     // User to whom D was sent
-    groupID: string;                    // Optional Group to which D was sent
-    sentOn: Date;                       // Date dispatched
-    status: string;                     // Pending, Halted, Success, Failed
-    errorMessage;                       // Error message if it failed
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    dashboardID: number;                    // D that was linked
+    userID: string;                         // User to whom D was sent
+    groupID: string;                        // Optional Group to which D was sent
+    sentOn: Date;                           // Date dispatched
+    status: string;                         // Pending, Halted, Success, Failed
+    errorMessage;                           // Error message if it failed
 
     // Generated by the system
-    editedBy: string;                   // Last user who edited this task
-    editedOn: Date;                     // Date this task was last edited
-    createdBy: string;                  // UserID who created this task, can be System
-    createdOn: Date;                    // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 export class DashboardPermission {
-    id: number;                         // Unique ID
-    dashboardID: number;                // FK to D
-    dashboardName?: string;             // Filled in @RunTime
-    userID: string;                     // UserID - NB: 1 of usr/grp filled in, one blank
-    groupID: number;                    // Group ID
-    groupName: string;                  // Filled in @RunTime
-    canViewRight: boolean;              // True if can View this D
-    canEditRight: boolean;              // True if can Edit this D
-    canSaveRight: boolean;              // Can Save a D
-    canDeleteRight: boolean;            // True if can Delete this D
-    canAddDatasource: boolean;          // True if can Add a DS to this D
-    canGrantAccess: boolean;            // Can Delete a D
-    grantor: string;                    // UserId who granted permission
-    grantedOn: Date;                    // Date and time created or last updated
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    dashboardID: number;                    // FK to D
+    dashboardName?: string;                 // Filled in @RunTime
+    userID: string;                         // UserID - NB: 1 of usr/grp filled in, one blank
+    groupID: number;                        // Group ID
+    groupName: string;                      // Filled in @RunTime
+    canViewRight: boolean;                  // True if can View this D
+    canEditRight: boolean;                  // True if can Edit this D
+    canSaveRight: boolean;                  // Can Save a D
+    canDeleteRight: boolean;                // True if can Delete this D
+    canAddDatasource: boolean;              // True if can Add a DS to this D
+    canGrantAccess: boolean;                // Can Delete a D
+    grantor: string;                        // UserId who granted permission
+    grantedOn: Date;                        // Date and time created or last updated
 
     // Generated by the system
-    editedBy: string;                   // Last user who edited this task
-    editedOn: Date;                     // Date this task was last edited
-    createdBy: string;                  // UserID who created this task, can be System
-    createdOn: Date;                    // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 export class DashboardSubscription {
-    id: number;                         // Unique ID
-    dashboardID: number;                // FK to Dashboard
-    userID: string;                     // User
-    view: boolean;                      // Nofity if another user Views this D
-    editmode: boolean;                  // Nofity if another user goes to EditMode on this D
-    save: boolean;                      // Nofity if another user Saves this D
-    delete: boolean;                    // Nofity if another user Deletes this D
-    dashboardCode: string;              // D-Code filled in at Runtime
-    notify: string;                     // How to be notified: Email, Message, Both
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    dashboardID: number;                    // FK to Dashboard
+    userID: string;                         // User
+    view: boolean;                          // Nofity if another user Views this D
+    editmode: boolean;                      // Nofity if another user goes to EditMode on this D
+    save: boolean;                          // Nofity if another user Saves this D
+    delete: boolean;                        // Nofity if another user Deletes this D
+    dashboardCode: string;                  // D-Code filled in at Runtime
+    notify: string;                         // How to be notified: Email, Message, Both
 
     // Generated by the system
-    editedBy: string;                   // Last user who edited this task
-    editedOn: Date;                     // Date this task was last edited
-    createdBy: string;                  // UserID who created this task, can be System
-    createdOn: Date;                    // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 // TODO - replace with new FieldsSchema model
 export class dataSchemaInterface {
-    name: string;                       // Name of Field (DB or Calculated)
-    typeName: string;                   // ie String
-    type: string;                       // ie string
-    length: number;                     // Optional field length
-    isCalculated: boolean;              // True if calculated
-    calculatedExpression: string;       // Formula for calculated fields
+    _id?: string;                           // Mongo ID (read only)
+    name: string;                           // Name of Field (DB or Calculated)
+    typeName: string;                       // ie String
+    type: string;                           // ie string
+    length: number;                         // Optional field length
+    isCalculated: boolean;                  // True if calculated
+    calculatedExpression: string;           // Formula for calculated fields
 }
 
 export class WidgetLayout {
-    id: number;                         // Unique ID
-    dashboardLayoutID: number;          // FK of the D Layout to which it belongs
-    height: number;                     // Heigth of box
-    left: number;                       // Left position
-    top: number;                        // Top position
-    width: number;                      // Width of box
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    dashboardLayoutID: number;              // FK of the D Layout to which it belongs
+    height: number;                         // Heigth of box
+    left: number;                           // Left position
+    top: number;                            // Top position
+    width: number;                          // Width of box
 
     // Generated by the system
-    editedBy: string;                   // Last user who edited this task
-    editedOn: Date;                     // Date this task was last edited
-    createdBy: string;                  // UserID who created this task, can be System
-    createdOn: Date;                    // Date task was created
+    editedBy: string;                       // Last user who edited this task
+    editedOn: Date;                         // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: Date;                        // Date task was created
 }
 
 export class GraphHistory {
-    layer: number;                      // Layer for which W specs are stored
-    widgetSpec: Widget[]                // Array of Ws previously stored
+    _id?: string;                           // Mongo ID (read only)
+    layer: number;                          // Layer for which W specs are stored
+    widgetSpec: Widget[]                    // Array of Ws previously stored
 }
 
 export class GraphCalculation {
-    id: number;                         // Unique ID
-    sequence: number;                   // Sequence Nr - for LATER user
-    calculatedExpression: string;       // Expression, ie sin(datum.ValueTraded)
-    calculatedAs: string;               // Name of resultant calculated field
-    calculatedDataType: string;         // Data type of newly calculated field
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    sequence: number;                       // Sequence Nr - for LATER user
+    calculatedExpression: string;           // Expression, ie sin(datum.ValueTraded)
+    calculatedAs: string;                   // Name of resultant calculated field
+    calculatedDataType: string;             // Data type of newly calculated field
 }
 
 export class GraphFilter {
-    id: number;                         // Unique ID
-    sequence: number;                   // Sequence Nr - for LATER user
-    filterFieldName: string;            // Name (text) of field
-    filterOperator: string;             // ie Equal, Less Than, etc
-    filterTimeUnit: string;             // ie Year, Month, Day
-    filterValue: string;                // ie. 12 Japan  1,5  a,b,c  true
-    filterValueFrom: string;            // From value for Range
-    filterValueTo: string;              // To value for Range
-    isActive: boolean;                  // True if activated, else not used
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    sequence: number;                       // Sequence Nr - for LATER user
+    filterFieldName: string;                // Name (text) of field
+    filterOperator: string;                 // ie Equal, Less Than, etc
+    filterTimeUnit: string;                 // ie Year, Month, Day
+    filterValue: string;                    // ie. 12 Japan  1,5  a,b,c  true
+    filterValueFrom: string;                // From value for Range
+    filterValueTo: string;                  // To value for Range
+    isActive: boolean;                      // True if activated, else not used
 }
 
 export class widgetGraphSpecification {
 
     // Optional Specification, used for Custom graphTypes
-    graphSpecification: any;               // Vega specification
+    _id?: string;                           // Mongo ID (read only)
+    graphSpecification: any;                // Vega specification
 
     // Mark
-    graphMark: string;                     // Mark, ie bar, line, etc
-    graphMarkOrient: string;               // Horisontal/Verticle - ie for bar when both axis numbers
-    graphMarkLine: boolean;                // True to add line, ie for Area graph
-    graphMarkPoint: boolean;               // True to add point, ie for Area graph
-    graphMarkPointColorName: string;       // Name of Point colour
-    graphMarkPointColor: string;           // Actual Point colour in hex
-    graphMarkColourName: string;           // Name of Mark colour (if colour channel not used)
-    graphMarkColour: string;               // Actual Mark colour in hex
-    graphMarkCornerRadius: number;         // Size of corner radius, ie for bar
-    graphMarkExtent: string;               // Extent: ci, stderr, stdev, irq for Error Band & -Bar
-    graphMarkOpacity: number;              // Opacity of Mark, 0 to 1
-    graphMarkBinSpacing: number;           // Space between bins, ie 0 or 1 (stats or nice)
-    graphMarkInterpolate: string;          // Interpolation
-    graphMarkSize: number;                 // Size of the Mark
+    graphMark: string;                      // Mark, ie bar, line, etc
+    graphMarkOrient: string;                // Horisontal/Verticle - ie for bar when both axis numbers
+    graphMarkLine: boolean;                 // True to add line, ie for Area graph
+    graphMarkPoint: boolean;                // True to add point, ie for Area graph
+    graphMarkPointColorName: string;        // Name of Point colour
+    graphMarkPointColor: string;            // Actual Point colour in hex
+    graphMarkColourName: string;            // Name of Mark colour (if colour channel not used)
+    graphMarkColour: string;                // Actual Mark colour in hex
+    graphMarkCornerRadius: number;          // Size of corner radius, ie for bar
+    graphMarkExtent: string;                // Extent: ci, stderr, stdev, irq for Error Band & -Bar
+    graphMarkOpacity: number;               // Opacity of Mark, 0 to 1
+    graphMarkBinSpacing: number;            // Space between bins, ie 0 or 1 (stats or nice)
+    graphMarkInterpolate: string;           // Interpolation
+    graphMarkSize: number;                  // Size of the Mark
 
     // X
-    graphXfield: string;                   // Field name on the X Channel
-    graphXaggregateName: string;           // Aggregation Name on X Channel, ie Average
-    graphXaggregate: string;               // Aggregation on X Channel, ie average
-    graphXtimeUnit: string;                // Time Unit, ie Year, Month, etc 
-    graphXbin: boolean;                    // True if channel is binned
-    graphXMaxBins: number;                 // Max nr of ESTIMATED bins
-    graphXformat: string;                  // Format in D3-format
-    graphXimpute: string;                  // Calculate missing values based on method/value
-    graphXimputeValue: number;             // Value if impute = VALUE
-    graphXstack: string;                   // Way that field is stacked, ie Normalised
-    graphXsort: string;                    // Sort order of field
-    graphXtype: string;                    // Graph type, ie nominal
-    graphXtypeName: string;                // Name of the graph type, ie Nominal
+    graphXfield: string;                    // Field name on the X Channel
+    graphXaggregateName: string;            // Aggregation Name on X Channel, ie Average
+    graphXaggregate: string;                // Aggregation on X Channel, ie average
+    graphXtimeUnit: string;                 // Time Unit, ie Year, Month, etc 
+    graphXbin: boolean;                     // True if channel is binned
+    graphXMaxBins: number;                  // Max nr of ESTIMATED bins
+    graphXformat: string;                   // Format in D3-format
+    graphXimpute: string;                   // Calculate missing values based on method/value
+    graphXimputeValue: number;              // Value if impute = VALUE
+    graphXstack: string;                    // Way that field is stacked, ie Normalised
+    graphXsort: string;                     // Sort order of field
+    graphXtype: string;                     // Graph type, ie nominal
+    graphXtypeName: string;                 // Name of the graph type, ie Nominal
 
     // Y
-    graphYfield: string;                   // Field name on the Y Channel
-    graphYaggregateName: string;           // Aggregation Name on Y, ie Average
-    graphYaggregate: string;               // Aggregation on Y Channel, ie average
-    graphYbin: boolean;                    // True if channel is binned
-    graphYMaxBins: number;                 // Max nr of ESTIMATED bins
-    graphYformat: string;                  // Format in D3-format
-    graphYimpute: string;                  // Calculate missing values based on method/value
-    graphYimputeValue: number;             // Value if impute = VALUE
-    graphYstack: string;                   // Way that field is stacked, ie Normalised
-    graphYsort: string;                    // Sort order of field
-    graphYtimeUnit: string;                // Time unit, ie Year, Month, etc
-    graphYtype: string;                    // Graph type, ie nominal
-    graphYtypeName: string;                // Name of the graph type, ie Nominal
+    graphYfield: string;                    // Field name on the Y Channel
+    graphYaggregateName: string;            // Aggregation Name on Y, ie Average
+    graphYaggregate: string;                // Aggregation on Y Channel, ie average
+    graphYbin: boolean;                     // True if channel is binned
+    graphYMaxBins: number;                  // Max nr of ESTIMATED bins
+    graphYformat: string;                   // Format in D3-format
+    graphYimpute: string;                   // Calculate missing values based on method/value
+    graphYimputeValue: number;              // Value if impute = VALUE
+    graphYstack: string;                    // Way that field is stacked, ie Normalised
+    graphYsort: string;                     // Sort order of field
+    graphYtimeUnit: string;                 // Time unit, ie Year, Month, etc
+    graphYtype: string;                     // Graph type, ie nominal
+    graphYtypeName: string;                 // Name of the graph type, ie Nominal
 
     // Color
     graphColorField: string;                // Field name on the Y Channel
@@ -1227,96 +1279,98 @@ export class widgetGraphSpecification {
 
 export class Widget {
 
+    _id?: string;                           // Mongo ID (read only)
+
     // Type
-    widgetType: string;                 // Graph, Table, Shape, Slicer
-    widgetSubType: string;              // Type of shape, ie Circle.  NB spelling is case-
-                                        // sensitive, and used in Code !!
+    widgetType: string;                     // Graph, Table, Shape, Slicer
+    widgetSubType: string;                  // Type of shape, ie Circle.  NB spelling is case-
+                                            // sensitive, and used in Code !!
 
     // Where W lives
-    dashboardID: number;                // FK to DashboardID to which widget belongs
-    dashboardTabID: number;             // FKs to Tabs where the widget lives
-    dashboardTabIDs: number[];          // FKs to Tabs where the widget lives
+    dashboardID: number;                    // FK to DashboardID to which widget belongs
+    dashboardTabID: number;                 // FKs to Tabs where the widget lives
+    dashboardTabIDs: number[];              // FKs to Tabs where the widget lives
 
     // Locking
-    isLocked: boolean;                  // True if this W is temporary locked
+    isLocked: boolean;                      // True if this W is temporary locked
 
     // Identification and Description
-    id: number;                         // Unique ID
-    originalID: number;                 // Original ID from which W was copied
-    name: string;                       // Name of Widget
-    description: string;                // Description of Widget
-    annotation: string;                 // Optional annotation per W, deeper info about W
-    annotationLastUserID: string;       // Last UserID who updated this annotation
-    annotationLastUpdated: Date;        // Last date-time this annotation was updated
+    id: number;                             // Unique ID
+    originalID: number;                     // Original ID from which W was copied
+    name: string;                           // Name of Widget
+    description: string;                    // Description of Widget
+    annotation: string;                     // Optional annotation per W, deeper info about W
+    annotationLastUserID: string;           // Last UserID who updated this annotation
+    annotationLastUpdated: Date;            // Last date-time this annotation was updated
 
     // Properties loaded @Runtime
-    isLiked: boolean;                   // @RunTime: True if Widget is liked by me
-    isSelected: boolean;                // True if W is currently selected
-    nrDataQualityIssues: number;        // Nr of related data Quality issues
-    nrComments: number;                 // Nr of related Comments
-    showCheckpoints: boolean;           // True is use is showing Checkpoints in Presentation Mode
-    checkpointIDs: number[];            // Array of FKs to widgetCheckpoints
-    currentCheckpoint: number;          // Index of current Checkpoint in checkpointIDs
-    lastCheckpoint: number;             // Index of last Checkpoint in checkpointIDs
+    isLiked: boolean;                       // @RunTime: True if Widget is liked by me
+    isSelected: boolean;                    // True if W is currently selected
+    nrDataQualityIssues: number;            // Nr of related data Quality issues
+    nrComments: number;                     // Nr of related Comments
+    showCheckpoints: boolean;               // True is use is showing Checkpoints in Presentation Mode
+    checkpointIDs: number[];                // Array of FKs to widgetCheckpoints
+    currentCheckpoint: number;              // Index of current Checkpoint in checkpointIDs
+    lastCheckpoint: number;                 // Index of last Checkpoint in checkpointIDs
     // NB: lastCheckpoint >= 0 is used to test that there are no Checkpoints for a W
     // NB: it is not the ID, but the INDEX
     // NB: So, it must be set to -1 to be meaningful.
 
     // Links @Runtime
-    hyperlinkDashboardID: number;       // Optional Widget ID to jump to
-    hyperlinkDashboardTabID: number;    // Optional Tab Nr to jump to
-    containerStyleID: number;           // Optional ContainerStyleID that provides formatting
+    hyperlinkDashboardID: number;           // Optional Widget ID to jump to
+    hyperlinkDashboardTabID: number;        // Optional Tab Nr to jump to
+    containerStyleID: number;               // Optional ContainerStyleID that provides formatting
 
     // Data related
-    datasourceID: number;               // Specific ID that this W points to.  For a W,
+    datasourceID: number;                   // Specific ID that this W points to.  For a W,
 
     // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
-    datasetID: number;                  // Specific ID that this W points to.  For a W,
+    datasetID: number;                      // Specific ID that this W points to.  For a W,
     // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
     // For a W, -1 = latest dataset of the DS-id.  For now, Sl must have a datsetID <> -1
-    data: any;                          // Optional - can copy rawData into table
-    dataFields: string[];               // Optional - can copy [fieldNames] into table
-    dataFieldTypes: string[];           // Optional - can copy [fieldTypes] into table
-    dataFieldLengths: number[];         // Optional - can copy [fieldLengths] into table
-    dataschema: dataSchemaInterface[];  // Array with fields info, ie name, type, etc
+    data: any;                              // Optional - can copy rawData into table
+    dataFields: string[];                   // Optional - can copy [fieldNames] into table
+    dataFieldTypes: string[];               // Optional - can copy [fieldTypes] into table
+    dataFieldLengths: number[];             // Optional - can copy [fieldLengths] into table
+    dataschema: dataSchemaInterface[];      // Array with fields info, ie name, type, etc
     dataParameters: {"field": string; "value": string;}[]
-    reportID: number;                   // FK to report (query / data).  -1: dont load any report data
-    reportName: string;                 // Report (query) name in Eazl (DS implied)
-    rowLimit: number;                   // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
-    addRestRow: boolean;                // True means add a row to  = SUM(rest)
-    size: string;                       // Small, Medium, Large ito data loading
+    reportID: number;                       // FK to report (query / data).  -1: dont load any report data
+    reportName: string;                     // Report (query) name in Eazl (DS implied)
+    rowLimit: number;                       // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
+    addRestRow: boolean;                    // True means add a row to  = SUM(rest)
+    size: string;                           // Small, Medium, Large ito data loading
 
     // Container
-    containerBackgroundcolor: string;   // Actual colour (CSS name or HEX code)
+    containerBackgroundcolor: string;       // Actual colour (CSS name or HEX code)
     containerBackgroundcolorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
-    containerBorder: string;            // HTML Border def, is 1px solid gray
-    containerBorderColourName: string;  // Name - CSS (ie black) or Custome Name (Our company blue)
-    containerBorderRadius: string;      // Border radius of container in px
-    containerBoxshadow: string;         // HTML shadow def, is 2px 2px gray
-    containerFontsize: number;          // Font size inside container
-    containerHeight: number;            // Height of container in px
-    containerLeft: number;              // Left of container in px
+    containerBorder: string;                // HTML Border def, is 1px solid gray
+    containerBorderColourName: string;      // Name - CSS (ie black) or Custome Name (Our company blue)
+    containerBorderRadius: string;          // Border radius of container in px
+    containerBoxshadow: string;             // HTML shadow def, is 2px 2px gray
+    containerFontsize: number;              // Font size inside container
+    containerHeight: number;                // Height of container in px
+    containerLeft: number;                  // Left of container in px
     containerHasContextMenus: boolean = true;  // True to display context menu at top of W
-    containerHasTitle: boolean;         // True to display Title at top of container
-    containerTop: number;               // Top of container in px
-    containerWidth: number;             // Width of container in px
-    containerZindex: number;            // Z-index of container
+    containerHasTitle: boolean;             // True to display Title at top of container
+    containerTop: number;                   // Top of container in px
+    containerWidth: number;                 // Width of container in px
+    containerZindex: number;                // Z-index of container
 
     // Title
-    titleText: string;                  // Text, can include HTML & keywords (##today##)
-    titleBackgroundColor: string;       // Actual colour (CSS name or HEX code)
-    titleBackgroundColorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
-    titleBorder: string;                // CSS SPEC, ie 1px solid black
-    titleBorderName: string;            // Name - CSS (ie black) or Custome Name (Our company blue)
-    titleColor: string;                 // Actual colour (CSS name or HEX code)
-    titleColorName: string;             // Name - CSS (ie black) or Custome Name (Our company blue)
-    titleFontsize: number;              // in px (for later use)
-    titleFontWeight: string;            //   (for later use)
-    titleHeight: number;                // in px (for later use)
-    titleMargin: string;                // css spec, ie 2px 1px 0px 0px
-    titlePadding: string;               // css spec, ie 2px 1px 0px 0px
-    titleTextAlign: string;             // left, right, center
-    titleWidth: number;                 // in %: 0 means it adapts to container
+    titleText: string;                      // Text, can include HTML & keywords (##today##)
+    titleBackgroundColor: string;           // Actual colour (CSS name or HEX code)
+    titleBackgroundColorName: string;       // Name - CSS (ie black) or Custome Name (Our company blue)
+    titleBorder: string;                    // CSS SPEC, ie 1px solid black
+    titleBorderName: string;                // Name - CSS (ie black) or Custome Name (Our company blue)
+    titleColor: string;                     // Actual colour (CSS name or HEX code)
+    titleColorName: string;                 // Name - CSS (ie black) or Custome Name (Our company blue)
+    titleFontsize: number;                  // in px (for later use)
+    titleFontWeight: string;                //   (for later use)
+    titleHeight: number;                    // in px (for later use)
+    titleMargin: string;                    // css spec, ie 2px 1px 0px 0px
+    titlePadding: string;                   // css spec, ie 2px 1px 0px 0px
+    titleTextAlign: string;                 // left, right, center
+    titleWidth: number;                     // in %: 0 means it adapts to container
 
     // Visual Grammer / plotting library
     // Layout 101: one Widget can have:
@@ -1327,29 +1381,29 @@ export class Widget {
     //   - graph
     //   - info (x, y, etc) and 
     //   - 
-    visualGrammar: string;              // Gramar for graphs, default = Vega
-    version: number;                    // Version of visual grammar
-    visualGrammarType: string;          // Type, Standard or Custom
+    visualGrammar: string;                  // Gramar for graphs, default = Vega
+    version: number;                        // Version of visual grammar
+    visualGrammarType: string;              // Type, Standard or Custom
 
     // Graph
-    graphBackgroundColorName: string;   // Name of Bg color for graph
-    graphBackgroundColor: string;       // Bg color for graph in hex, rgb, etc
-    graphBorderColorName: string;       // Name of Border Color Border for graph
-    graphBorderColor: string;           // Border Border Color for graph in hex, rgb, etc
-    graphHeight: number;                // in px
-    graphLeft: number;                  // in px
-    graphTop: number;                   // in px
-    graphWidth: number;                 // in px
-    graphDimensionRight: number;        // Space for legend in px (adds to width)
-    graphDimensionLeft: number;         // Space for x axis in px
-    graphDimensionBottom: number;       // Space for y axis in px
-    graphGraphPadding: number;          // How many px graph is padded
-    graphHasSignals: boolean;           // If graph has signals
-    graphFillColor: string;             // Fill colour of the graph area
-    graphHoverColor: string;            // 
-    graphPanAndZoom: boolean;           // True if selection = grid, with pan and zoom.  Only applies to single layer graphs
-    graphSpecification: any;            // Vega specification
-    graphDescription: string;           // Description of graph for users
+    graphBackgroundColorName: string;       // Name of Bg color for graph
+    graphBackgroundColor: string;           // Bg color for graph in hex, rgb, etc
+    graphBorderColorName: string;           // Name of Border Color Border for graph
+    graphBorderColor: string;               // Border Border Color for graph in hex, rgb, etc
+    graphHeight: number;                    // in px
+    graphLeft: number;                      // in px
+    graphTop: number;                       // in px
+    graphWidth: number;                     // in px
+    graphDimensionRight: number;            // Space for legend in px (adds to width)
+    graphDimensionLeft: number;             // Space for x axis in px
+    graphDimensionBottom: number;           // Space for y axis in px
+    graphGraphPadding: number;              // How many px graph is padded
+    graphHasSignals: boolean;               // If graph has signals
+    graphFillColor: string;                 // Fill colour of the graph area
+    graphHoverColor: string;                // 
+    graphPanAndZoom: boolean;               // True if selection = grid, with pan and zoom.  Only applies to single layer graphs
+    graphSpecification: any;                // Vega specification
+    graphDescription: string;               // Description of graph for users
 
     // Data
     graphUrl: string;                       // URL of data
@@ -1389,81 +1443,82 @@ export class Widget {
     graphLayers?: widgetGraphSpecification[]; // Info and optional spec for each Layer 
     
     // Table - to be determined later ...
-    tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)
-    tableBackgroundColorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
-    tableColor: string;                 // Actual colour (CSS name or HEX code)
-    tableColorName: string;             // Name - CSS (ie black) or Custome Name (Our company blue)
-    tableCols: number;                  // Nr of cols, 0 means all
-    fontSize: number;                   // Font size of text
-    tableHeight: number;                // in px, cuts of rest if bigger than this
-    tableHideHeader: boolean;           // False to hide the column header row
-    tableLeft: number;                  // in px (for later use)
-    tableLineHeight: number;            // Table Line height (for later use)
-    tableRows: number;                  // Nr of rows in the data, excluding header: 0 means all
-    tableTop: number;                   // in px (for later use)
-    tableWidth: number;                 // in px, cuts of rest if bigger than this (for later use)
+    tableBackgroundColor: string;           // Actual colour (CSS name or HEX code)
+    tableBackgroundColorName: string;       // Name - CSS (ie black) or Custome Name (Our company blue)
+    tableColor: string;                     // Actual colour (CSS name or HEX code)
+    tableColorName: string;                 // Name - CSS (ie black) or Custome Name (Our company blue)
+    tableCols: number;                      // Nr of cols, 0 means all
+    fontSize: number;                       // Font size of text
+    tableHeight: number;                    // in px, cuts of rest if bigger than this
+    tableHideHeader: boolean;               // False to hide the column header row
+    tableLeft: number;                      // in px (for later use)
+    tableLineHeight: number;                // Table Line height (for later use)
+    tableRows: number;                      // Nr of rows in the data, excluding header: 0 means all
+    tableTop: number;                       // in px (for later use)
+    tableWidth: number;                     // in px, cuts of rest if bigger than this (for later use)
 
     // Slicer
-    slicerAddRest: boolean;             // True to add everything NOT in slicerSelection
-    slicerAddRestValue: boolean;        // True means add all NOT in Sl
+    slicerAddRest: boolean;                 // True to add everything NOT in slicerSelection
+    slicerAddRestValue: boolean;            // True means add all NOT in Sl
     // 1. All in Sl selected + AddRest = 100% of data)  2. None in Sl + AddRest = Compliment
     slicerBins: {isSelected: boolean; name: string; fromValue: number; toValue: number}[];
-    slicerColor: string;                // Text Color
-    slicerFieldName: string;            // Name to filter on
-    slicerNumberToShow: string;         // Nr fields (values) to show in Slicer - default = All
+    slicerColor: string;                    // Text Color
+    slicerFieldName: string;                // Name to filter on
+    slicerNumberToShow: string;             // Nr fields (values) to show in Slicer - default = All
     slicerSelection: {isSelected: boolean; fieldValue: string;}[];
-    slicerSortField: string;            // Name of Field to sort Slicer dataset on
-    slicerSortFieldOrder: string;       // Sort order for Slicer dataset, Ascending, Descending
-    slicerType: string;                 // Type of Slicer, ie List, Bin
+    slicerSortField: string;                // Name of Field to sort Slicer dataset on
+    slicerSortFieldOrder: string;           // Sort order for Slicer dataset, Ascending, Descending
+    slicerType: string;                     // Type of Slicer, ie List, Bin
 
     // Shape
-    shapeBullet:                        // Bullets, with info
+    shapeBullet:                            // Bullets, with info
         {
-            text: string;               // Text to show
-            linkedTabID: number;        // Optionally lined TabID
-            color: string;              // Colour of text
-            jumpedColor: string         // Colour when jumped
+            text: string;                   // Text to show
+            linkedTabID: number;            // Optionally lined TabID
+            color: string;                  // Colour of text
+            jumpedColor: string             // Colour when jumped
         }[]; 
-    shapeBulletStyleType: string;       // List marker: disc, circle, square, none
-    shapeBulletsOrdered: boolean;       // True if the list is ordered
-    shapeBulletMarginBottom: number;    // Margin-Top in px
-    shapeCorner: number;                // Corner size in px, ie 15
-    shapeFill: string;                  // Fill / inside (ie of circle, colour of text, etc) in HEX
-    shapeFillName: string;              // Name - CSS (ie black) or Custome Name (Our company blue)
-    shapeFontFamily: string;            // Font, ie Aria, Sans Serif
-    shapeFontSize: number;              // Size of font in px, ie 12
-    shapeImageUrl: string;              // URL of the Image
-    shapeIsBold: boolean;               // True if text is bold
-    shapeIsItalic: boolean;             // True if text is italic
-    shapeLineHeight: string;            // Line Height: normal, 1.6, 80%
-    shapeOpacity: number;               // Opacity, between 0 and 1, ie of rectangle
-    shapeRotation: number;              // Nr of degrees to rotate a Shape
-    shapeSize: number;                  // Size of shape, used in scale(). For now: 0-9
-    shapeStroke: string;                // Colour of line in HEX
-    shapeStrokeName: string;            // Name - CSS (ie black) or Custome Name (Our company blue)
-    shapeStrokeWidth: string;           // Line thickness in px
-    shapeSvgHeight: number;             // Height of SVG element
-    shapeSvgWidth: number;              // Width of SVG element
-    shapeText: string;                  // Text in textbox - WITH formula, ie #pagenr
-    shapeTextDisplay: string;           // Text in textbox - translated, ie 1
-    shapeTextAlign: string;             // Align text Left, Center, Right
-    shapeTextColour: string;            // Text colour in HEX
-    shapeTextColourName: string;        // Name - CSS (ie black) or Custome Name (Our company blue)
-    shapeValue: string;                 // Value to display
+    shapeBulletStyleType: string;           // List marker: disc, circle, square, none
+    shapeBulletsOrdered: boolean;           // True if the list is ordered
+    shapeBulletMarginBottom: number;        // Margin-Top in px
+    shapeCorner: number;                    // Corner size in px, ie 15
+    shapeFill: string;                      // Fill / inside (ie of circle, colour of text, etc) in HEX
+    shapeFillName: string;                  // Name - CSS (ie black) or Custome Name (Our company blue)
+    shapeFontFamily: string;                // Font, ie Aria, Sans Serif
+    shapeFontSize: number;                  // Size of font in px, ie 12
+    shapeImageUrl: string;                  // URL of the Image
+    shapeIsBold: boolean;                   // True if text is bold
+    shapeIsItalic: boolean;                 // True if text is italic
+    shapeLineHeight: string;                // Line Height: normal, 1.6, 80%
+    shapeOpacity: number;                   // Opacity, between 0 and 1, ie of rectangle
+    shapeRotation: number;                  // Nr of degrees to rotate a Shape
+    shapeSize: number;                      // Size of shape, used in scale(). For now: 0-9
+    shapeStroke: string;                    // Colour of line in HEX
+    shapeStrokeName: string;                // Name - CSS (ie black) or Custome Name (Our company blue)
+    shapeStrokeWidth: string;               // Line thickness in px
+    shapeSvgHeight: number;                 // Height of SVG element
+    shapeSvgWidth: number;                  // Width of SVG element
+    shapeText: string;                      // Text in textbox - WITH formula, ie #pagenr
+    shapeTextDisplay: string;               // Text in textbox - translated, ie 1
+    shapeTextAlign: string;                 // Align text Left, Center, Right
+    shapeTextColour: string;                // Text colour in HEX
+    shapeTextColourName: string;            // Name - CSS (ie black) or Custome Name (Our company blue)
+    shapeValue: string;                     // Value to display
 
     // Created, updated and refreshed
-    refreshMode: string;                // For later use: Manual, OnOpen, Repeatedly
-    refreshFrequency: number;           // For later use: Nr of seconds if RefreshMode = Repeatedly
-    widgetRefreshedOn: string;          // Data Refreshed on
-    widgetRefreshedBy: string;          // Date Refreshed by
-    widgetCreatedOn: Date;              // Created on
-    widgetCreatedBy: string;            // Created by
-    widgetUpdatedOn: Date;              // Updated on
-    widgetUpdatedBy: string;            // Updated by
+    refreshMode: string;                    // For later use: Manual, OnOpen, Repeatedly
+    refreshFrequency: number;               // For later use: Nr of seconds if RefreshMode = Repeatedly
+    widgetRefreshedOn: string;              // Data Refreshed on
+    widgetRefreshedBy: string;              // Date Refreshed by
+    widgetCreatedOn: Date;                  // Created on
+    widgetCreatedBy: string;                // Created by
+    widgetUpdatedOn: Date;                  // Updated on
+    widgetUpdatedBy: string;                // Updated by
 
 }
 
 export class WidgetStoredTemplate {
+    _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID
     widgetID: number;                       // FK to Widgets, where all the data is stored
     name: string                            // Name
@@ -1476,32 +1531,34 @@ export class WidgetStoredTemplate {
 }
 
 export class WidgetGraph {
-    id: number;                         // Unique ID
-    shortName: string;                  // Short name to display
-    visualGrammar: string;              // Vega-Lite, Vega, etc
-    visualGrammarVersion: number;       // Version, ie 2.0
-    visualGrammarType: string;          // Type of spec: standard (ie bar) which uses spec
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    shortName: string;                      // Short name to display
+    visualGrammar: string;                  // Vega-Lite, Vega, etc
+    visualGrammarVersion: number;           // Version, ie 2.0
+    visualGrammarType: string;              // Type of spec: standard (ie bar) which uses spec
        // defined in code, custom (use specification specified here)
-    mark: string;                       // Vega-lite: area, bar, line, etc
-    specification: any;                 // Grammar spec (template) - for custom
-    imageUrl: string;                   // Url where image lives
+    mark: string;                           // Vega-lite: area, bar, line, etc
+    specification: any;                     // Grammar spec (template) - for custom
+    imageUrl: string;                       // Url where image lives
 
     // @RunTime
-    isSelected: boolean;                // True if this type is selected
+    isSelected: boolean;                    // True if this type is selected
 }
 
 export class WidgetCheckpoint {
-    id: number;                         // Unique ID
-    parentWidgetIsDeleted: boolean;     // True if W it belongs to has been deleted.
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
+    parentWidgetIsDeleted: boolean;         // True if W it belongs to has been deleted.
     // This is kept to perform an Undo when the W is restored.
-    active: boolean;                    // Set at RunTime: true if currently shown
-    dashboardID: number;                // Linked to this D
-    widgetID: number;                   // Linked to this W
-    originalID: number;                 // Copied from this ID
-    name: string;                       // Name of Checkpoint
-    widgetSpec: any;                    // json spec of W
-    creator: string;                    // UserID
-    createdOn: Date;                    // DateTime of creation
+    active: boolean;                        // Set at RunTime: true if currently shown
+    dashboardID: number;                    // Linked to this D
+    widgetID: number;                       // Linked to this W
+    originalID: number;                     // Copied from this ID
+    name: string;                           // Name of Checkpoint
+    widgetSpec: any;                        // json spec of W
+    creator: string;                        // UserID
+    createdOn: Date;                        // DateTime of creation
 }
 
 export class Token {
