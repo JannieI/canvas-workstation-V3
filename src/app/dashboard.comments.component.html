@@ -59,6 +59,14 @@
                         <span *ngIf="showError" class="errorMessage">{{ errorMessage }} </span>
                     </div>
 
+                    <div class="message" *ngIf="message">
+                        {{ message }}
+                    </div>
+
+                    <div class="errorMessage" *ngIf="errorMessage">
+                        {{ errorMessage }}
+                    </div>
+
                     <div class="gridTable">
                         <clr-datagrid>
 

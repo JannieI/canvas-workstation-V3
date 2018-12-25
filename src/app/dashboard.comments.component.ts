@@ -140,16 +140,16 @@ export class DashboardCommentsComponent implements OnInit {
             return;
         };
 
+        // Update local array
+        this.canvasComments[this.canvasComments.length - 1].comment = this.commentText;
+        this.commentText = '';
+        this.editLast = false;
+        this.showError = false;
+        this.errorMessage = '';
+
         this.globalVariableService.saveCanvasComment(
             this.canvasComments[this.canvasComments.length - 1])
                 .then(res => {
-
-                    // Update local array
-                    this.canvasComments[this.canvasComments.length - 1].comment = this.commentText;
-                    this.commentText = '';
-                    this.editLast = false;
-                    this.showError = false;
-                    this.errorMessage = '';
 
                     console.warn('xx Comment saved', res);
                     

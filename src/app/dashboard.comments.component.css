@@ -44,7 +44,6 @@
         margin-left: 10px;
         margin-top: 12px;
         text-align: left;
-
     }
     .newMessageText {
         grid-column-start: 3;
@@ -54,6 +53,28 @@
         grid-row-end: 4;
         margin-left: 20px;
         margin-left: 15px;
+        text-align: left;
+    }
+
+    .message {
+        grid-column-start: 14;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-left: 10px;
+        margin-top: 12px;
+        text-align: left;
+    }
+    .errorMessage {
+        color: red;
+        grid-column-start: 14;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-left: 10px;
+        margin-top: 12px;
         text-align: left;
     }
 
