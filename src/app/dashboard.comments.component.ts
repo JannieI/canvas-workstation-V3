@@ -147,6 +147,17 @@ export class DashboardCommentsComponent implements OnInit {
         this.showError = false;
         this.errorMessage = '';
 
+        this.globalVariableService.saveCanvasComment(
+            this.canvasComments[this.canvasComments.length - 1])
+                .then(res => {
+                    console.warn('xx Comment saved', res);
+                    
+                })
+                .catch(err => {
+                    console.warn('xx Err', err);
+                    
+                })
+
     }
 
     clickAdd() {

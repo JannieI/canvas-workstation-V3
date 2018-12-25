@@ -9040,8 +9040,14 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
+            // Set final path
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.put(finalUrl + '?id=' + data.id, data, {headers})
+
+            // Omit _id (immutable in Mongo)
+            const copyData = { ...data, ...{ b: undefined } };
+            delete copyData._id;
+
+            this.http.put(finalUrl + '?id=' + data.id, copyData, {headers})
             .subscribe(
                 res => {
 
@@ -9052,7 +9058,7 @@ export class GlobalVariableService {
                     this.canvasComments[localIndex] = data;
 
                     if (this.sessionDebugging) {
-                        console.log('saveCanvasComment SAVED', {data})
+                        console.log('saveCanvasComment SAVED', {res})
                     };
 
                     resolve('Saved');
