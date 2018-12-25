@@ -8983,7 +8983,7 @@ export class GlobalVariableService {
 
         let pathUrl: string = 'canvasComments';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.CanvasComments.json';
+        // this.filePath = './assets/data.CanvasComments.json';
 
         return new Promise<any>((resolve, reject) => {
 
