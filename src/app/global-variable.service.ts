@@ -9047,13 +9047,14 @@ export class GlobalVariableService {
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
             // Omit _id (immutable in Mongo)
-            const copyData = { ...data, ...{ b: undefined } };
+            const copyData = { ...data };
             delete copyData._id;
 
-            console.log('xx saveCComm')
+            console.log('xx saveCComm', copyData)
             this.http.put(finalUrl + '?id=' + copyData.id, copyData, {headers})
             .subscribe(
                 res => {
+                    console.log('xx after save res', res)
 
                     // Replace local
                     let localIndex: number = this.canvasComments.findIndex(msg =>
@@ -9062,7 +9063,7 @@ export class GlobalVariableService {
                     this.canvasComments[localIndex] = data;
 
                     if (this.sessionDebugging) {
-                        console.log('saveCanvasComment SAVED', {res})
+                        console.log('saveCanvasComment SAVED', {data})
                     };
 
                     resolve('Saved');
