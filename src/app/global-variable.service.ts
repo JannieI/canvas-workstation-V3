@@ -9135,16 +9135,21 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasMessages';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/settings.canvasMessages.json';
+        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        // this.filePath = './assets/settings.canvasMessages.json';
 
         return new Promise<CanvasMessage[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasMessages.length == 0)  ||  (this.isDirtyCanvasMessages) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
                 this.get(pathUrl)
                     .then(res => {
+                        if (res != null) {
+                            res = res.data;
+                        };
                         this.canvasMessages = res;
 
                         this.isDirtyCanvasMessages = false;
@@ -9555,8 +9560,6 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasUsers';
-        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/data.canvasUsers.json';
 
         return new Promise<CanvasUser[]>((resolve, reject) => {
 
@@ -9761,8 +9764,6 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasUsers';
-        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/data.canvasUsers.json';
 
         return new Promise<string>((resolve, reject) => {
 
@@ -10769,7 +10770,8 @@ export class GlobalVariableService {
                  'canvasUsers',
                  'canvasAuditTrails',
                  'canvasBackgroundcolorsDefault',
-                 'canvasComments'
+                 'canvasComments',
+                 'canvasMessages'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
