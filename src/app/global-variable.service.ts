@@ -9144,7 +9144,6 @@ export class GlobalVariableService {
             if ( (this.canvasMessages.length == 0)  ||  (this.isDirtyCanvasMessages) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
                 this.get(pathUrl)
                     .then(res => {
                         if (res != null) {
@@ -9185,17 +9184,21 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasMessages';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.canvasMessages.json';
+        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        // this.filePath = './assets/data.canvasMessages.json';
 
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
+                    if (res != null) {
+                        res = res.data;
+                    };
 
                     // Update Global vars to make sure they remain in sync
                     this.canvasMessages.push(JSON.parse(JSON.stringify(res)));
@@ -9226,14 +9229,19 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasMessages';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.canvasMessages.json';
+        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        // this.filePath = './assets/data.canvasMessages.json';
 
         return new Promise<string>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
+            // Omit _id (immutable in Mongo)
+            const copyData = { ...data };
+            delete copyData._id;
+
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
