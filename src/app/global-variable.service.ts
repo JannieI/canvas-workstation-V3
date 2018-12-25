@@ -9076,15 +9076,15 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasComments';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.CanvasComments.json';
+        // this.filePath = './assets/data.CanvasComments.json';
 
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete(finalUrl + '/' + id, {headers})
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.delete(finalUrl + '?id=' + id, {headers})
             .subscribe(
                 res => {
 
