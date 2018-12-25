@@ -8982,14 +8982,13 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasComments';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/data.CanvasComments.json';
 
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
@@ -9036,7 +9035,6 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasComments';
-        // this.filePath = './assets/data.canvasComments.json';
 
         return new Promise<string>((resolve, reject) => {
 
@@ -9050,11 +9048,9 @@ export class GlobalVariableService {
             const copyData = { ...data };
             delete copyData._id;
 
-            console.log('xx saveCComm', copyData)
             this.http.put(finalUrl + '?id=' + copyData.id, copyData, {headers})
             .subscribe(
                 res => {
-                    console.log('xx after save res', res)
 
                     // Replace local
                     let localIndex: number = this.canvasComments.findIndex(msg =>
@@ -9087,7 +9083,6 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'canvasComments';
-        // this.filePath = './assets/data.CanvasComments.json';
 
         return new Promise<any>((resolve, reject) => {
 

@@ -127,7 +127,6 @@ export class DashboardCommentsComponent implements OnInit {
         this.message = '';
         this.commentText = '';
         this.editLast = false;
-
     }
 
     clickSave() {
@@ -152,13 +151,9 @@ export class DashboardCommentsComponent implements OnInit {
             this.canvasComments[this.canvasComments.length - 1])
                 .then(res => {
                     this.message = 'Comment saved';
-                    console.warn('xx Comment saved', res);
-                    
                 })
                 .catch(err => {
                     this.errorMessage = err.message; 
-                    console.warn('xx Err', err);
-                    
                 })
 
     }
@@ -189,14 +184,17 @@ export class DashboardCommentsComponent implements OnInit {
         };
 
         // Globally and locally
-        this.globalVariableService.addCanvasComment(newComment).then( data => {
-            console.warn('xx Comment added', data);
+        this.globalVariableService.addCanvasComment(newComment)
+            .then( data => {
 
-            this.canvasComments.push(data)
-                this.message = 'Comment added';
-                this.commentText = '';
-                this.indexLastRecord = this.canvasComments.length - 1;
-        });
+                this.canvasComments.push(data)
+                    this.message = 'Comment added';
+                    this.commentText = '';
+                    this.indexLastRecord = this.canvasComments.length - 1;
+            })
+            .catch(err => {
+                this.errorMessage = err.message;
+            });
 
     }
 
