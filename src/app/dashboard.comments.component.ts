@@ -59,8 +59,8 @@ export class DashboardCommentsComponent implements OnInit {
     errorMessage: string = '';
     headerText: string;
     indexLastRecord: number;
+    message: string = '';
     selectedRow: number = 0;
-    showError: boolean = false;
     showTypeDashboard: boolean = false;
 
 	constructor(
@@ -104,11 +104,12 @@ export class DashboardCommentsComponent implements OnInit {
         // Last row can be Edited, so start process
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEditComment', '@Start');
 
+        this.errorMessage = '';
+        this.message = '';
+
         // Validation
         if (this.canvasComments[this.canvasComments.length - 1]['creator'] !=
             this.globalVariableService.currentUser.userID) {
-            this.showError = true;
-            this.errorMessage = '';
             this.errorMessage = 'Can only edit own comments';
             return;
         };
@@ -122,8 +123,8 @@ export class DashboardCommentsComponent implements OnInit {
         // Cancel Editing, go back
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
 
-        this.showError = false;
         this.errorMessage = '';
+        this.message = '';
         this.commentText = '';
         this.editLast = false;
 
@@ -135,7 +136,6 @@ export class DashboardCommentsComponent implements OnInit {
 
         // Validation
         if (this.commentText == '') {
-            this.showError = true;
             this.errorMessage = 'Comment cannot be blank';
             return;
         };
@@ -144,8 +144,8 @@ export class DashboardCommentsComponent implements OnInit {
         this.canvasComments[this.canvasComments.length - 1].comment = this.commentText;
         this.commentText = '';
         this.editLast = false;
-        this.showError = false;
         this.errorMessage = '';
+        this.message = '';
 
         this.globalVariableService.saveCanvasComment(
             this.canvasComments[this.canvasComments.length - 1])
@@ -155,6 +155,7 @@ export class DashboardCommentsComponent implements OnInit {
                     
                 })
                 .catch(err => {
+                    this.errorMessage = err.message; 
                     console.warn('xx Err', err);
                     
                 })
@@ -165,9 +166,11 @@ export class DashboardCommentsComponent implements OnInit {
         // Add a new Comment
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
+        this.errorMessage = '';
+        this.message = '';
+
         // Validation
         if (this.commentText == '') {
-            this.showError = true;
             this.errorMessage = 'Comment cannot be blank';
             return;
         };
@@ -189,8 +192,8 @@ export class DashboardCommentsComponent implements OnInit {
             console.warn('xx Comment added', data);
 
             this.canvasComments.push(data)
-                this.showError = false;
                 this.errorMessage = '';
+                this.message = '';
                 this.commentText = '';
                 this.indexLastRecord = this.canvasComments.length - 1;
         });

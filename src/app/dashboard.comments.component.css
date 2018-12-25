@@ -3,10 +3,6 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
-.errorMessage {
-    color: red;
-}
-
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
