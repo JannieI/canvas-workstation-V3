@@ -60,21 +60,25 @@ export class ManageColoursComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get setup info
-        this.globalVariableService.getBackgroundColorsDefault().then(res => {
+        this.globalVariableService.getBackgroundColorsDefault()
+            .then(res => {
 
-            this.backgroundcolorsDefault = res.slice();
+                this.backgroundcolorsDefault = res.slice();
 
-            // Sort the list
-            this.backgroundcolorsDefault.sort( (obj1,obj2) => {
-                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                    return 1;
-                };
-                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                    return -1;
-                };
-                return 0;
+                // Sort the list
+                this.backgroundcolorsDefault.sort( (obj1,obj2) => {
+                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
+            })
+            .catch(err => {
+                this.errorMessage = err;
             });
-        });
         this.globalVariableService.getBackgroundColors().then(res => {
             this.backgroundcolors = res.slice();
 
