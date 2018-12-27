@@ -10057,21 +10057,23 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'containerStyles';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.containerStyles.json';
-
         return new Promise<ContainerStyle[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if (this.isDirtyContainerStyles) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
+
+                let pathUrl: string = 'containerStyles';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+                        };
 
                         this.isDirtyContainerStyles = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        this.containerStyles = res;
+                        this.containerStyles = res.data;
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getContainerStyles 1',
@@ -10080,7 +10082,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.containerStyles);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getContainerStyles 2',

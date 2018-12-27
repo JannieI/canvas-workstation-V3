@@ -210,7 +210,7 @@ export class ContainerStyle {
 
     // Container
     containerBackgroundcolor: string;       // Actual colour (CSS name or HEX code)
-    containerBackgroundcolorName: string    // Name - CSS (ie black) or Custome Name (Our company blue)
+    containerBackgroundcolorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
     containerBorderColour: string;          // Actual colour (CSS name or HEX code)
     containerBorderColourName: string;      // Name - CSS (ie black) or Custome Name (Our company blue)
     containerBorderRadius: string;          // Border radius in px
