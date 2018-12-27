@@ -10826,6 +10826,7 @@ export class GlobalVariableService {
             if (['canvasGroups', 
                  'canvasUsers',
                  'canvasAuditTrails',
+                 'canvasBackgroundcolors',
                  'canvasBackgroundcolorsDefault',
                  'canvasComments',
                  'canvasMessages'
