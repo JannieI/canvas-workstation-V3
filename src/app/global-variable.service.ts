@@ -8934,17 +8934,14 @@ export class GlobalVariableService {
                 this.canvasComments.length, this.headers);
         };
 
-        let pathUrl: string = 'canvasComments';
-
         return new Promise<CanvasComment[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasComments.length == 0)  ||  (this.isDirtyCanvasComments) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
+                let pathUrl: string = 'canvasComments';
                 let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-                console.log('xx get with Test: ', this.canvasServerName, pathUrl, finalUrl)
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res  => {
                         if(res.statusCode != 'success') {
@@ -9843,7 +9840,7 @@ export class GlobalVariableService {
                 this.canvasAuditTrails.length);
         };
 
-        let pathUrl: string = 'canvasAuditTrails';
+        // let pathUrl: string = 'canvasAuditTrails';
         // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         // this.filePath = './assets/settings.canvasAuditTrails.json';
 
@@ -9852,12 +9849,15 @@ export class GlobalVariableService {
             // Refresh from source at start, or if dirty
             if ( (this.canvasAuditTrails.length == 0)  ||  (this.isDirtyCanvasAuditTrails) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        if (res != null) {
-                            res = res.data;
-                        };                        
-                        this.canvasAuditTrails = res;
+
+                let pathUrl: string = 'canvasAuditTrails';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+                        };
+                        this.canvasAuditTrails = res.data;
 
                         this.isDirtyCanvasAuditTrails = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -9869,7 +9869,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.canvasAuditTrails);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getCanvasAuditTrails 2',
