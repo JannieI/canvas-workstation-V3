@@ -8924,57 +8924,6 @@ export class GlobalVariableService {
         });
     }
 
-    getCanvasCommentsOLD(): Promise<CanvasComment[]> {
-        // Description: Gets all Canvas Comments
-        // Returns: this.canvasComments array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCanvasComments ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                this.canvasComments.length, this.headers);
-        };
-
-        let pathUrl: string = 'canvasComments';
-        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/settings.canvasComments.json';
-
-        return new Promise<CanvasComment[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.canvasComments.length == 0)  ||  (this.isDirtyCanvasComments) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        if(res != null) {
-                            res = res.data;
-                        };
-
-                        this.canvasComments = res;
-
-                        this.isDirtyCanvasComments = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCanvasComments 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.canvasComments)
-                        };
-
-                        resolve(this.canvasComments);
-                    });
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCanvasComments 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.canvasComments)
-                };
-
-                resolve(this.canvasComments);
-            }
-        });
-
-    }
-
     getCanvasComments(): Promise<CanvasComment[]> {
         // Description: Gets all Canvas Comments
         // Returns: this.canvasComments array, unless:
