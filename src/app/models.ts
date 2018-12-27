@@ -1589,6 +1589,21 @@ export class CanvasHttpResponse {
     //          POST failed due to trying to create a duplicate key, validation failed, etc 
     // error = error on the server, ie TS or Node or Mongo error
     "message" : string;                     // Info Text message (short errorMessage for errors)
+    "metaData"?: {
+        "table"?: {
+            "tableName": string;
+            "nrRecordsReturned": number;
+        },
+        "fields"?: {
+            "fieldName": string;
+            "fieldType": string;
+            "average": number;
+            "max": number;
+            "median": number;
+            "min": number;
+            "sum": number;
+        }
+    }
     "data": any;                            // Data returned, ie Json Array
     "error": {                              // If statusCode = 'error', gives Error detail, else null
         "errorCode?": string;               // Short Canvas Code for future use

@@ -8551,8 +8551,8 @@ export class GlobalVariableService {
                 let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res => {
-                        if (res != null) {
-                            res = res.data;
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
                         };
                         this.backgroundcolorsDefault = res.data;
 
