@@ -10203,18 +10203,19 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let pathUrl: string = 'containerStyles';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.containerStyle.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete(finalUrl + '/' + id, {headers})
+            let pathUrl: string = 'containerStyles';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                    };
 
                     // This is a different case: containerStyles is an
                     // Observable, and will be refreshed with a .next by the calling
@@ -10242,7 +10243,7 @@ export class GlobalVariableService {
                         console.log('Error deleteContainerStyle FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
