@@ -10151,18 +10151,24 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'containerStyles';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.containerStyle.json';
-
         return new Promise<string>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put(finalUrl + '/' + data.id, data, {headers})
+            let pathUrl: string = 'containerStyles';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+
+            // Omit _id (immutable in Mongo)
+            const copyData = { ...data };
+            delete copyData._id;
+
+            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                    };
 
                     // Replace local
                     let localIndex: number = this.containerStyles.findIndex(d =>
@@ -10183,7 +10189,7 @@ export class GlobalVariableService {
                         console.log('Error saveContainerStyle FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
