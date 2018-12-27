@@ -8664,35 +8664,36 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'canvasBackgroundcolors';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.backgroundColors.json';
-
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
+
+            let pathUrl: string = 'canvasBackgroundcolors';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
                 .subscribe(
                     res => {
-
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+                        };
+    
                         // Update Global vars to make sure they remain in sync
-                        this.backgroundcolors.push(JSON.parse(JSON.stringify(res)));
+                        this.backgroundcolors.push(JSON.parse(JSON.stringify(res.data)));
 
                         if (this.sessionDebugging) {
                             console.log('addBackgroundColor ADDED', {res}, this.backgroundcolors)
                         };
 
-                        resolve(res);
+                        resolve(this.backgroundcolors);
                     },
                     err => {
                         if (this.sessionDebugging) {
                             console.log('Error addBackgroundColor FAILED', {err});
                         };
 
-                        reject(err);
+                        reject(err.message);
                     }
                 )
         });
@@ -9924,7 +9925,7 @@ export class GlobalVariableService {
                         console.log('addCanvasAuditTrail ADDED', this.canvasAuditTrails)
                     };
 
-                    resolve(res);
+                    resolve(this.canvasAuditTrails);
                 },
                 err => {
                     if (this.sessionDebugging) {
