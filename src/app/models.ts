@@ -1584,8 +1584,16 @@ export class Token {
 
 export class CanvasHttpResponse {
     "statusCode": string;                   // Returned from server: failed, success, error
-    "message" : string;                     // Text message
+    // success = all good and all worked,
+    // failed = the request was processed by the server, but the result is bad, ie a
+    //          POST failed due to trying to create a duplicate key, validation failed, etc 
+    // error = error on the server, ie TS or Node or Mongo error
+    "message" : string;                     // Info Text message (short errorMessage for errors)
     "data": any;                            // Data returned, ie Json Array
-    "error": any;                           // Error message, else null
+    "error": {                              // If statusCode = 'error', gives Error detail, else null
+        "errorCode": string;                // Short Code for future use
+        "errorObject": string;              // Error 
+        "errorHelp": string;                // Help message on handling the error, could include url 
+    };                           
     "token"?: string;                       // Token, only provided by Login
 }

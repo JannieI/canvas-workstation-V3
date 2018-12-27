@@ -921,8 +921,10 @@ export class GlobalVariableService {
     conditionOperator: string = '';
     continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
     filePath: string;       // Used in HTTP requests
-    selectedWidgetIDs: number[] = [];
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
+    headers = new HttpHeaders().set("Content-Type", "application/json");
+
+    selectedWidgetIDs: number[] = [];
     previousGraphEditDSID: number = -1;
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
@@ -8922,14 +8924,14 @@ export class GlobalVariableService {
         });
     }
 
-    getCanvasComments(): Promise<CanvasComment[]> {
+    getCanvasCommentsOLD(): Promise<CanvasComment[]> {
         // Description: Gets all Canvas Comments
         // Returns: this.canvasComments array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCanvasComments ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                this.canvasComments.length);
+                this.canvasComments.length, this.headers);
         };
 
         let pathUrl: string = 'canvasComments';
@@ -8969,6 +8971,67 @@ export class GlobalVariableService {
 
                 resolve(this.canvasComments);
             }
+        });
+
+    }
+
+    getCanvasComments(): Promise<CanvasComment[]> {
+        // Description: Gets all Canvas Comments
+        // Returns: this.canvasComments array, unless:
+        //   If not cached or if dirty, get from File
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCanvasComments ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.canvasComments.length, this.headers);
+        };
+
+        let pathUrl: string = 'canvasComments';
+
+        return new Promise<CanvasComment[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.canvasComments.length == 0)  ||  (this.isDirtyCanvasComments) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+
+                console.log('xx get with Test: ', this.canvasServerName, pathUrl, finalUrl)
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  =>
+                    {
+                        resolve(res.data);
+                    },
+                    (err => reject(err))
+                )
+
+                this.get(pathUrl)
+                    .then(res => {
+                        if(res != null) {
+                            res = res.data;
+                        };
+
+                        this.canvasComments = res;
+
+                        this.isDirtyCanvasComments = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCanvasComments 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.canvasComments)
+                        };
+
+                        resolve(this.canvasComments);
+                    });
+            } else {
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCanvasComments 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.canvasComments)
+                };
+
+                resolve(this.canvasComments);
+            };
         });
 
     }
@@ -9143,6 +9206,20 @@ export class GlobalVariableService {
             // Refresh from source at start, or if dirty
             if ( (this.canvasMessages.length == 0)  ||  (this.isDirtyCanvasMessages) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+
+                // const params = new HttpParams()
+                // .set('orderBy', '"dashboardTabID"')
+                // .set('limitToFirst', "1");
+
+                // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+
+                // console.log('xx get with Test: ', this.canvasServerName, pathUrl, finalUrl)
+                // this.http.get(finalUrl).subscribe(
+                //     res =>
+                //     {
+                //         resolve(res);
+                //     },
+                //     (er)
 
                 this.get(pathUrl)
                     .then(res => {
