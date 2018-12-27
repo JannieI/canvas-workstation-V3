@@ -8676,7 +8676,7 @@ export class GlobalVariableService {
                             console.log('addBackgroundColor ADDED', {res}, this.backgroundcolors)
                         };
 
-                        resolve(this.backgroundcolors);
+                        resolve(res.data);
                     },
                     err => {
                         if (this.sessionDebugging) {
@@ -9020,7 +9020,7 @@ export class GlobalVariableService {
                             this.canvasComments)
                     };
 
-                    resolve(this.canvasComments);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
@@ -9232,7 +9232,7 @@ export class GlobalVariableService {
                         console.log('addCanvasMessage ADDED', this.canvasMessages)
                     };
 
-                    resolve(this.canvasMessages);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
@@ -9920,7 +9920,7 @@ export class GlobalVariableService {
                         console.log('addCanvasAuditTrail ADDED', this.canvasAuditTrails)
                     };
 
-                    resolve(this.canvasAuditTrails);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
