@@ -8986,13 +8986,12 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'canvasComments';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
+            let pathUrl: string = 'canvasComments';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
@@ -9039,14 +9038,13 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'canvasComments';
-
         return new Promise<string>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
             // Set final path
+            let pathUrl: string = 'canvasComments';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
             // Omit _id (immutable in Mongo)
@@ -9090,13 +9088,12 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let pathUrl: string = 'canvasComments';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
+            let pathUrl: string = 'canvasComments';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
             .subscribe(
