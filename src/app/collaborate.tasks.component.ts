@@ -25,7 +25,7 @@ import { CanvasUser }                 from './models';
 import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
- 
+
 @Component({
     selector: 'collaborate-tasks',
     templateUrl: './collaborate.tasks.component.html',
@@ -48,7 +48,7 @@ export class CollaborateTasksComponent implements OnInit {
         };
 
     }
-    
+
     canvasTasks: CanvasTask[] = [];
     canvasTasksOrignal: CanvasTask[] = [];
     dashboardNames: string[] = [];
@@ -60,7 +60,7 @@ export class CollaborateTasksComponent implements OnInit {
     selectedUser: string = '';
     userNames: string[] = [];
     users: CanvasUser[] = [];
-    
+
     displayGantt: boolean = true;
 
     constructor(
@@ -108,7 +108,7 @@ export class CollaborateTasksComponent implements OnInit {
                 });
                 this.dashboardNames = ['', ...this.dashboardNames];
             });
-    
+
         });
 
         this.clickGantt()
@@ -203,7 +203,7 @@ export class CollaborateTasksComponent implements OnInit {
             if (dashboardIndex >= 0) {
                 let dashboardID: number = this.globalVariableService.dashboards[
                     dashboardIndex].id;
-                
+
                 this.canvasTasks = this.canvasTasks.filter(
                     tsk => tsk.linkedDashboardID == dashboardID
                 );

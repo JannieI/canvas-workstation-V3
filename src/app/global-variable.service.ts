@@ -10828,6 +10828,7 @@ export class GlobalVariableService {
                  'canvasBackgroundcolors',
                  'canvasBackgroundcolorsDefault',
                  'canvasComments',
+                 'canvasTasks',
                  'canvasMessages'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
