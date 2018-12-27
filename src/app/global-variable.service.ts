@@ -9059,6 +9059,9 @@ export class GlobalVariableService {
             this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                    };
 
                     // Replace local
                     let localIndex: number = this.canvasComments.findIndex(msg =>
@@ -9076,7 +9079,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('Error saveCanvasComment FAILED', {err});
                     };
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
@@ -9101,6 +9104,9 @@ export class GlobalVariableService {
             this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                    };
 
                     // Update NrComments field if a W is linked
                     if (widgetID != null) {
@@ -9126,7 +9132,7 @@ export class GlobalVariableService {
                         console.log('Error deleteCanvasComment FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
