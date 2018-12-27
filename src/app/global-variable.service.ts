@@ -1049,6 +1049,7 @@ export class GlobalVariableService {
 
     // Canvas Server Profile (and settings)
     canvasSettings: CanvasSettings = {
+        id: 1,
         companyName: '',
         companyLogo: '',
         dashboardTemplate: '',
@@ -7267,20 +7268,20 @@ export class GlobalVariableService {
 
                         // Load global Vars
                         // TODO - create glob vars when needed, or delete totally
-                        // this.canvasSettings.companyName = res.companyName;
-                        // this.canvasSettings.companyLogo = res.companyLogo;
-                        // this.canvasSettings.dashboardTemplate = res.dashboardTemplate;
-                        // this.canvasSettings.maxTableLength = +res.maxTableLength;
-                        // this.canvasSettings.widgetsMinZindex = +res.widgetsMinZindex;
-                        // this.canvasSettings.widgetsMaxZindex = +res.widgetsMaxZindex;
-                        // this.canvasSettings.gridSize = +res.gridSize;
-                        // this.canvasSettings.snapToGrid = res.snapToGrid;
-                        // this.canvasSettings.printDefault = res.printDefault;
-                        // this.canvasSettings.printSize = res.printSize;
-                        // this.canvasSettings.printLayout = res.printLayout;
-                        // this.canvasSettings.notInEditModeMsg = res.notInEditModeMsg;
-                        // this.canvasSettings.noQueryRunningMessage = res.noQueryRunningMessage;
-                        // this.canvasSettings.queryRunningMessage = res.queryRunningMessage;
+                        this.canvasSettings.companyName = res.data.companyName;
+                        this.canvasSettings.companyLogo = res.data.companyLogo;
+                        this.canvasSettings.dashboardTemplate = res.data.dashboardTemplate;
+                        this.canvasSettings.maxTableLength = +res.data.maxTableLength;
+                        this.canvasSettings.widgetsMinZindex = +res.data.widgetsMinZindex;
+                        this.canvasSettings.widgetsMaxZindex = +res.data.widgetsMaxZindex;
+                        this.canvasSettings.gridSize = +res.data.gridSize;
+                        this.canvasSettings.snapToGrid = res.data.snapToGrid;
+                        this.canvasSettings.printDefault = res.data.printDefault;
+                        this.canvasSettings.printSize = res.data.printSize;
+                        this.canvasSettings.printLayout = res.data.printLayout;
+                        this.canvasSettings.notInEditModeMsg = res.data.notInEditModeMsg;
+                        this.canvasSettings.noQueryRunningMessage = res.data.noQueryRunningMessage;
+                        this.canvasSettings.queryRunningMessage = res.data.queryRunningMessage;
 
                         // Sanitize
                         if (this.canvasSettings.gridSize > 100
@@ -7295,7 +7296,7 @@ export class GlobalVariableService {
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getSystemSettings 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.canvasSettings)
+                                this.canvasSettings, this.canvasSettings.companyName)
                         };
                         resolve(this.canvasSettings);
                     },
@@ -10840,7 +10841,8 @@ export class GlobalVariableService {
                  'canvasBackgroundcolorsDefault',
                  'canvasComments',
                  'canvasTasks',
-                 'canvasMessages'
+                 'canvasMessages',
+                 'canvasSettings'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
