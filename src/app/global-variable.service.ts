@@ -8541,21 +8541,20 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'canvasBackgroundcolorsDefault';
-        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/settings.backgroundcolors.json';
-
         return new Promise<CSScolor[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.backgroundcolorsDefault.length == 0)  ||  (this.isDirtyBackgroundColorsDefault) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
+
+                let pathUrl: string = 'canvasBackgroundcolorsDefault';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res => {
                         if (res != null) {
                             res = res.data;
                         };
-                        this.backgroundcolorsDefault = res;
+                        this.backgroundcolorsDefault = res.data;
 
                         this.isDirtyBackgroundColorsDefault = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -8567,7 +8566,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.backgroundcolorsDefault);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getBackgroundColorsDefault 2',
