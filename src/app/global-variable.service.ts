@@ -8997,20 +8997,12 @@ export class GlobalVariableService {
 
                 console.log('xx get with Test: ', this.canvasServerName, pathUrl, finalUrl)
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  =>
-                    {
-                        resolve(res.data);
-                    },
-                    (err => reject(err))
-                )
-
-                this.get(pathUrl)
-                    .then(res => {
-                        if(res != null) {
-                            res = res.data;
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
                         };
 
-                        this.canvasComments = res;
+                        this.canvasComments = res.data;
 
                         this.isDirtyCanvasComments = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -9022,7 +9014,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.canvasComments);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getCanvasComments 2',
