@@ -9000,8 +9000,8 @@ export class GlobalVariableService {
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
-                    if(res != null) {
-                        res = res.data;
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
                     };
 
                     // Update NrComments field if a W is linked
@@ -9014,21 +9014,21 @@ export class GlobalVariableService {
                     };
 
                     // Update Global vars to make sure they remain in sync
-                    this.canvasComments.push(JSON.parse(JSON.stringify(res)));
+                    this.canvasComments.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
-                        console.log('addCanvasComment ADDED', {res}, this.canvasComments,
+                        console.log('addCanvasComment ADDED', this.canvasComments,
                             this.canvasComments)
                     };
 
-                    resolve(res);
+                    resolve(this.canvasComments);
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error addCanvasComment FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
@@ -9056,7 +9056,7 @@ export class GlobalVariableService {
             const copyData = { ...data };
             delete copyData._id;
 
-            this.http.put(finalUrl + '?id=' + copyData.id, copyData, {headers})
+            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
             .subscribe(
                 res => {
 
@@ -9098,7 +9098,7 @@ export class GlobalVariableService {
                 .set("Content-Type", "application/json");
 
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete(finalUrl + '?id=' + id, {headers})
+            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
             .subscribe(
                 res => {
 
