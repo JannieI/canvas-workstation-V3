@@ -7264,24 +7264,27 @@ export class GlobalVariableService {
                         if(res.statusCode != 'success') {
                             reject(res.message);
                         };
-                        this.canvasSettings = res.data;
+                        if(res.data.length == 0) {
+                            reject(res.message);
+                        };
+                        this.canvasSettings = res.data[0];
 
                         // Load global Vars
                         // TODO - create glob vars when needed, or delete totally
-                        this.canvasSettings.companyName = res.data.companyName;
-                        this.canvasSettings.companyLogo = res.data.companyLogo;
-                        this.canvasSettings.dashboardTemplate = res.data.dashboardTemplate;
-                        this.canvasSettings.maxTableLength = +res.data.maxTableLength;
-                        this.canvasSettings.widgetsMinZindex = +res.data.widgetsMinZindex;
-                        this.canvasSettings.widgetsMaxZindex = +res.data.widgetsMaxZindex;
-                        this.canvasSettings.gridSize = +res.data.gridSize;
-                        this.canvasSettings.snapToGrid = res.data.snapToGrid;
-                        this.canvasSettings.printDefault = res.data.printDefault;
-                        this.canvasSettings.printSize = res.data.printSize;
-                        this.canvasSettings.printLayout = res.data.printLayout;
-                        this.canvasSettings.notInEditModeMsg = res.data.notInEditModeMsg;
-                        this.canvasSettings.noQueryRunningMessage = res.data.noQueryRunningMessage;
-                        this.canvasSettings.queryRunningMessage = res.data.queryRunningMessage;
+                        // this.canvasSettings.companyName = res.data.companyName;
+                        // this.canvasSettings.companyLogo = res.data.companyLogo;
+                        // this.canvasSettings.dashboardTemplate = res.data.dashboardTemplate;
+                        // this.canvasSettings.maxTableLength = +res.data.maxTableLength;
+                        // this.canvasSettings.widgetsMinZindex = +res.data.widgetsMinZindex;
+                        // this.canvasSettings.widgetsMaxZindex = +res.data.widgetsMaxZindex;
+                        // this.canvasSettings.gridSize = +res.data.gridSize;
+                        // this.canvasSettings.snapToGrid = res.data.snapToGrid;
+                        // this.canvasSettings.printDefault = res.data.printDefault;
+                        // this.canvasSettings.printSize = res.data.printSize;
+                        // this.canvasSettings.printLayout = res.data.printLayout;
+                        // this.canvasSettings.notInEditModeMsg = res.data.notInEditModeMsg;
+                        // this.canvasSettings.noQueryRunningMessage = res.data.noQueryRunningMessage;
+                        // this.canvasSettings.queryRunningMessage = res.data.queryRunningMessage;
 
                         // Sanitize
                         if (this.canvasSettings.gridSize > 100
@@ -7296,7 +7299,7 @@ export class GlobalVariableService {
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getSystemSettings 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.canvasSettings, this.canvasSettings.companyName)
+                                this.canvasSettings, this.canvasSettings.companyName, res)
                         };
                         resolve(this.canvasSettings);
                     },

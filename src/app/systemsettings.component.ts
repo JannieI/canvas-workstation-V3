@@ -52,20 +52,21 @@ export class SystemSettingsComponent implements OnInit {
 
     companyName: string;
     companyLogo: string;
+    createdBy: string;
+    createdOn: Date;
     dashboardTemplate: string;
-    maxTableLength: number;
-    widgetsMinZindex: number;
-    widgetsMaxZindex: number;
+    errorMessage: string;
     gridSize: number;
-    snapToGrid: boolean;
+    maxTableLength: number;
+    notInEditModeMsg: string;
+    noQueryRunningMessage: string;
     printDefault: string;
     printSize: string;
     printLayout: string;
-    notInEditModeMsg: string;
-    noQueryRunningMessage: string;
     queryRunningMessage: string;
-    createdBy: string;
-    createdOn: Date;
+    snapToGrid: boolean;
+    widgetsMinZindex: number;
+    widgetsMaxZindex: number;
     
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -116,6 +117,7 @@ export class SystemSettingsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         let data: CanvasSettings = {
+            id: 1,
             companyName: this.companyName,
             companyLogo: this.companyLogo,
             dashboardTemplate: this.dashboardTemplate,
@@ -141,20 +143,25 @@ export class SystemSettingsComponent implements OnInit {
 
         // Save globally, and in DB
         this.globalVariableService.canvasSettings = data;
-        this.globalVariableService.saveSystemSettings(data).then(
-            res => 
-                {
-                    this.globalVariableService.showStatusBarMessage(
-                        {
-                            message: 'Settings saved',
-                            uiArea: 'StatusBar',
-                            classfication: 'Info',
-                            timeout: 3000,
-                            defaultMessage: ''
-                        }
-                    );
-                }
-        );
+        this.globalVariableService.saveSystemSettings(data)
+            .then(
+                res => 
+                    {
+                        this.globalVariableService.showStatusBarMessage(
+                            {
+                                message: 'Settings saved',
+                                uiArea: 'StatusBar',
+                                classfication: 'Info',
+                                timeout: 3000,
+                                defaultMessage: ''
+                            }
+                        );
+                    }
+            )
+            .catch(err => {
+                console.error('System Settings save failed');
+                this.errorMessage = err;
+            });
 
 		this.formDashboardSystemSettingsClosed.emit(action);
     }

@@ -299,14 +299,17 @@ This document describes items for later versions of Canvas.
 
 
 
-    Tasks: (maybe hang back with this until we have a use case)
-    -----
+    Form: Tasks: (maybe hang back with this until we have a use case)
+    -----------
     1. the form is not fully functionaly! 
         - when click on grid, the detail does not appear at the top
         - the grid on the Details tab seems to give incorrect info
         - there is no Edit button
         - there is no Delete button
 
+    Form - SystemSettings:
+    ---------------------
+        - add errorMessage to HTML form
 
 
 
