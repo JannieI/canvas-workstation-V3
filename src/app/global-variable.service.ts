@@ -9184,10 +9184,10 @@ export class GlobalVariableService {
 
                 this.get(pathUrl)
                     .then(res => {
-                        if (res != null) {
-                            res = res.data;
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
                         };
-                        this.canvasMessages = res;
+                        this.canvasMessages = res.data;
 
                         this.isDirtyCanvasMessages = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -9234,18 +9234,18 @@ export class GlobalVariableService {
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
-                    if (res != null) {
-                        res = res.data;
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
                     };
 
                     // Update Global vars to make sure they remain in sync
-                    this.canvasMessages.push(JSON.parse(JSON.stringify(res)));
+                    this.canvasMessages.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
                         console.log('addCanvasMessage ADDED', this.canvasMessages)
                     };
 
-                    resolve(res);
+                    resolve(this.canvasMessages);
                 },
                 err => {
                     if (this.sessionDebugging) {
