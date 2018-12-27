@@ -9892,8 +9892,6 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'canvasAuditTrails';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.CanvasAuditTrails.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9901,16 +9899,22 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
+            let pathUrl: string = 'canvasAuditTrails';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                    };
+
                     // Update Global vars to make sure they remain in sync
-                    this.canvasAuditTrails.push(JSON.parse(JSON.stringify(res)));
+                    this.canvasAuditTrails.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
-                        console.log('addCanvasAuditTrail ADDED', {res}, this.canvasAuditTrails,
-                            this.canvasAuditTrails)
+                        console.log('addCanvasAuditTrail ADDED', this.canvasAuditTrails)
                     };
 
                     resolve(res);
@@ -9919,7 +9923,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('Error addCanvasAuditTrail FAILED', {err});
                     };
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
