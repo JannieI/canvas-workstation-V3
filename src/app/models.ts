@@ -1591,9 +1591,12 @@ export class CanvasHttpResponse {
     "message" : string;                     // Info Text message (short errorMessage for errors)
     "data": any;                            // Data returned, ie Json Array
     "error": {                              // If statusCode = 'error', gives Error detail, else null
-        "errorCode": string;                // Short Code for future use
-        "errorObject": string;              // Error 
-        "errorHelp": string;                // Help message on handling the error, could include url 
+        "errorCode?": string;               // Short Canvas Code for future use
+        "errorMessage?": string;            // Error message from Source (ie Mongo) if possible
+        "errorSource?": string;             // Source of error, ie canvasDataRouter.ts
+        "errorLine?": string;               // Line number of error, where possible
+        "errorObject?": string;             // Error 
+        "errorHelp?": string;               // Help message on handling the error, could include url 
     };                           
     "token"?: string;                       // Token, only provided by Login
 }
