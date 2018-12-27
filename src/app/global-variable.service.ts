@@ -1313,20 +1313,6 @@ export class GlobalVariableService {
                         })
                     })
 
-
-
-                    //  xxx MONGO testing ...
-                    // this.getWidgetsXXX('CanvasGroups').then(res => {
-                    //     let data: any[] = [];
-                    //     if (res != null) {
-                    //         data = res;
-                    //     };
-
-                    //     console.warn('xx WORKS !!!', res, data)
-                    // });
-
-
-
                 })
                 })
                 })
@@ -5616,10 +5602,11 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(pathUrl)
                     .then(res => {
-                        if (res != null) {
-                            res = res.data;
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
                         };
-                        this.canvasGroups = res;
+
+                        this.canvasGroups = res.data;
                         this.isDirtyCanvasGroups = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
