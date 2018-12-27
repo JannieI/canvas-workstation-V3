@@ -51,6 +51,7 @@ export class DatagridInput {
 // Setup / Settings / General
 export class CanvasSettings {
     _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID (added for consistency with other models)
     companyName: string;                    // Company Name
     companyLogo: string;                    // Optional file name for Company logo
     dashboardTemplate: string;              // Default Dashboard Template (later use)

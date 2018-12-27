@@ -7323,20 +7323,26 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'canvasSettings';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.canvasSettings.json';
-
         return new Promise<string>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put(finalUrl, data, {headers})
+            let pathUrl: string = 'canvasSettings';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+
+            // Omit _id (immutable in Mongo)
+            const copyData = { ...data };
+            delete copyData._id;
+
+            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                    };
 
-                    this.canvasSettings = JSON.parse(JSON.stringify(res));
+                    this.canvasSettings = JSON.parse(JSON.stringify(res.data));
 
                     if (this.sessionDebugging) {
                         console.log('saveSystemSettings SAVED', {res})
@@ -7349,7 +7355,7 @@ export class GlobalVariableService {
                         console.log('Error saveSystemSettings FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
