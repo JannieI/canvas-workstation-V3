@@ -7250,35 +7250,37 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'canvasSettings';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.canvasSettings.json';
-
         return new Promise<CanvasSettings>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if (this.isDirtyCanvasSettings) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.canvasSettings = res;
+
+                let pathUrl: string = 'canvasSettings';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+                        };
+                        this.canvasSettings = res.data;
 
                         // Load global Vars
                         // TODO - create glob vars when needed, or delete totally
-                        this.canvasSettings.companyName = res.companyName;
-                        this.canvasSettings.companyLogo = res.companyLogo;
-                        this.canvasSettings.dashboardTemplate = res.dashboardTemplate;
-                        this.canvasSettings.maxTableLength = +res.maxTableLength;
-                        this.canvasSettings.widgetsMinZindex = +res.widgetsMinZindex;
-                        this.canvasSettings.widgetsMaxZindex = +res.widgetsMaxZindex;
-                        this.canvasSettings.gridSize = +res.gridSize;
-                        this.canvasSettings.snapToGrid = res.snapToGrid;
-                        this.canvasSettings.printDefault = res.printDefault;
-                        this.canvasSettings.printSize = res.printSize;
-                        this.canvasSettings.printLayout = res.printLayout;
-                        this.canvasSettings.notInEditModeMsg = res.notInEditModeMsg;
-                        this.canvasSettings.noQueryRunningMessage = res.noQueryRunningMessage;
-                        this.canvasSettings.queryRunningMessage = res.queryRunningMessage;
+                        // this.canvasSettings.companyName = res.companyName;
+                        // this.canvasSettings.companyLogo = res.companyLogo;
+                        // this.canvasSettings.dashboardTemplate = res.dashboardTemplate;
+                        // this.canvasSettings.maxTableLength = +res.maxTableLength;
+                        // this.canvasSettings.widgetsMinZindex = +res.widgetsMinZindex;
+                        // this.canvasSettings.widgetsMaxZindex = +res.widgetsMaxZindex;
+                        // this.canvasSettings.gridSize = +res.gridSize;
+                        // this.canvasSettings.snapToGrid = res.snapToGrid;
+                        // this.canvasSettings.printDefault = res.printDefault;
+                        // this.canvasSettings.printSize = res.printSize;
+                        // this.canvasSettings.printLayout = res.printLayout;
+                        // this.canvasSettings.notInEditModeMsg = res.notInEditModeMsg;
+                        // this.canvasSettings.noQueryRunningMessage = res.noQueryRunningMessage;
+                        // this.canvasSettings.queryRunningMessage = res.queryRunningMessage;
 
                         // Sanitize
                         if (this.canvasSettings.gridSize > 100
@@ -7296,6 +7298,9 @@ export class GlobalVariableService {
                                 this.canvasSettings)
                         };
                         resolve(this.canvasSettings);
+                    },
+                    err => {
+                        reject(err.message)
                     });
             } else {
                 if (this.sessionDebugging) {
