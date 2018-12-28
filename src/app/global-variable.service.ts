@@ -5042,35 +5042,37 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'datasourceSchedules';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasourceSchedules.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
+            let pathUrl: string = 'datasourceSchedules';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    this.datasourceSchedules.push(JSON.parse(JSON.stringify(res)));
-                    this.currentDatasourceSchedules.push(JSON.parse(JSON.stringify(res)));
+                    this.datasourceSchedules.push(JSON.parse(JSON.stringify(res.data)));
+                    this.currentDatasourceSchedules.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
-                        console.log('addDatasourceSchedule ADDED', {res},
+                        console.log('addDatasourceSchedule ADDED', res.data,
                             this.currentDatasourceSchedules, this.datasourceSchedules)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error addDatasourceSchedule FAILED', {err});
                     };
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
@@ -5508,7 +5510,7 @@ export class GlobalVariableService {
 
             let pathUrl: string = 'dashboardPermissions';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        
+
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
                     if(res.statusCode != 'success') {
@@ -8743,7 +8745,7 @@ export class GlobalVariableService {
                             reject(res.message);
                             return;
                         };
-    
+
                         // Update Global vars to make sure they remain in sync
                         this.backgroundcolors.push(JSON.parse(JSON.stringify(res.data)));
 
@@ -9703,7 +9705,7 @@ export class GlobalVariableService {
                             reject(res.message);
                             return;
                         };
-    
+
                         this.canvasUsers = res.data;
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -10004,7 +10006,7 @@ export class GlobalVariableService {
 
             let pathUrl: string = 'canvasAuditTrails';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        
+
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
@@ -10872,7 +10874,7 @@ export class GlobalVariableService {
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             this.statusBarMessageLogs.length);
         };
-        
+
         // CanvasDatabase: Local or Server
         let baseUrl: string = this.canvasServerURI;
 
@@ -10937,7 +10939,7 @@ export class GlobalVariableService {
         // Node Servers: add to Array for time being ...
         if (this.canvasServerName == 'Canvas Server Local') {
 
-            if (['canvasGroups', 
+            if (['canvasGroups',
                  'canvasUsers',
                  'canvasAuditTrails',
                  'canvasBackgroundcolors',
@@ -13340,8 +13342,8 @@ console.warn('xx ds perm', dp);
     // ***********************************************************************
 
     verifyCanvasUser(
-        givenCanvasServerName: string, 
-        givenCanvasServerURI: string, 
+        givenCanvasServerName: string,
+        givenCanvasServerURI: string,
         givenCompanyName: string,
         givenUserID: string,
         givenToken: string): Promise<boolean> {
@@ -13393,10 +13395,10 @@ console.warn('xx ds perm', dp);
                                 if (this.sessionDebugging) {
                                     console.warn('xx GV.verifyCanvasUser: Valid userid', givenUserID)
                                 };
-                                
+
                                 // Set User var
                                 this.currentUser = this.canvasUsers[foundIndex];
-                                
+
                                 // Store User ID info
                                 this.canvasServerName = givenCanvasServerName;
                                 this.canvasServerURI = givenCanvasServerURI;
@@ -13527,20 +13529,20 @@ console.warn('xx ds perm', dp);
                     "password": givenPassword
                 }
                 ).subscribe(res => {
-                    
+
                     if (res.statusCode == 'failed') {
                         console.warn('xx GV Failed: ' + res.message, res);
-                        
+
                         resolve('Failed: ' + res.message);
                     };
                     if (res.statusCode == 'success') {
                         console.warn('Success: ' + res.message);
-                        
+
                         resolve('Success: ' + res.message);
                     };
                     if (res.statusCode == 'error') {
                         console.warn('Error: ' + res.message);
-                        
+
                         resolve('Error: ' + res.message);
                     };
             },
@@ -13556,7 +13558,7 @@ console.warn('xx ds perm', dp);
         givenCompanyName: string,
         givenUserID: string,
         givenPassword: string): Promise<{ message: string, token: string}> {
-        // Logs a user on a given Server & Company 
+        // Logs a user on a given Server & Company
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables loginCanvasServer ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -13585,20 +13587,20 @@ console.warn('xx ds perm', dp);
                 ).subscribe(res => {
 
                     console.warn('xx GV.loginCanvasServer res', res);
-                    
+
                     if (res.statusCode == 'failed') {
                         console.warn('xx GV.loginCanvasServer Failed: ' + res.message);
-                        
+
                         resolve({ message:'Failed: ' + res.message, token: null});
                     };
                     if (res.statusCode == 'success') {
                         console.warn('xx GV.loginCanvasServer Success: ' + res.message);
-                        
+
                         resolve({ message:'Success: ' + res.message, token: res.token});
                     };
                     if (res.statusCode == 'error') {
                         console.warn('xx GV.loginCanvasServer Error: ' + res.message);
-                        
+
                         resolve({ message:'Error: ' + res.message, token: null});
                     };
             },
