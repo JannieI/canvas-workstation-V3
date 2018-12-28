@@ -4828,7 +4828,7 @@ export class GlobalVariableService {
                     this.dashboardSchedules[localIndex] = data;
 
                     if (this.sessionDebugging) {
-                        console.log('saveDashboardSchedule SAVED', {res})
+                        console.log('saveDashboardSchedule SAVED', res.data)
                     };
 
                     resolve('Saved');
@@ -4852,18 +4852,20 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let pathUrl: string = 'dashboardSchedules';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardSchedules.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete(finalUrl + '/' + id, {headers})
+            let pathUrl: string = 'dashboardSchedules';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     this.dashboardSchedules = this.dashboardSchedules.filter(
                         dsp => dsp.id != id
@@ -4883,7 +4885,7 @@ export class GlobalVariableService {
                         console.log('Error deleteDashboardSchedule FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
