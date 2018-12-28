@@ -61,6 +61,7 @@ export class DashboardScheduleEditComponent implements OnInit {
     dashboardState: string = '';
     editing: boolean = false;
     errorMessage: string = '';
+    message: string = '';
     scheduleID: number = null;
     selectedRow: number = null;
     selectedDashboardSchedule: DashboardSchedule;
@@ -309,9 +310,9 @@ export class DashboardScheduleEditComponent implements OnInit {
                         this.selectedRow = 0;
                         this.scheduleID = this.selectedDashboardSchedule.id;
                     };
-
+                    this.message = 'Added Schedule';
                 })
-                .catch(err => this.errorMessage = err)
+                .catch(err => this.errorMessage = 'Add failed !');
         };
 
         // Save the changes
@@ -325,8 +326,8 @@ export class DashboardScheduleEditComponent implements OnInit {
                 JSON.parse(JSON.stringify(this.selectedDashboardSchedule));
             };
             this.globalVariableService.saveDashboardSchedule(this.selectedDashboardSchedule)
-                .then()
-                .catch(err => this.errorMessage = err)
+                .then(res => this.message = 'Saved Schedule')
+                .catch(err => this.errorMessage = 'Save failed !');
         };
 
         // Reset
