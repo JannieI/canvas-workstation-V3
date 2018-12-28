@@ -89,28 +89,6 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Manage colour picker
-        // this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
-
-        //     if (clp != null) {
-
-        //         if (clp.cancelled) {
-        //             this.colourPickerClosed = false;
-        //         } else {
-
-        //             if (clp.callingRoutine == 'BgColour') {
-        //                 this.colourPickerClosed = false;
-        //                 this.containerBackgroundcolor = clp.selectedColor;
-        //             };
-        //             if (clp.callingRoutine == 'LineColour') {
-        //                 this.colourPickerClosed = false;
-        //                 this.containerBorderColour = clp.selectedColor;
-
-        //             };
-        //         };
-        //     };
-        // });
-
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
 
@@ -124,19 +102,6 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         // this.colourPickerSubscription.unsubscribe();
     }
-
-    // clickSelectBgColorPicker(ev: any) {
-    //     // Open the Colour Picker for Background Colour
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
-
-    //     // Reset
-    //     this.errorMessage = '';
-    //     this.infoMessage = '';
-
-    //     this.selectedColour = this.containerBackgroundcolor;
-    //     this.callingRoutine = 'BgColour';
-    //     this.colourPickerClosed = true;
-    // }
 
     clickSelectBgColor(ev: any) {
         // Select Background Colour
@@ -156,19 +121,6 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         };
 
     }
-
-    // clickSelectLineColorPicker(ev: any) {
-    //     // Open the Colour Picker for Line Colour
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColorPicker', '@Start');
-
-    //     // Reset
-    //     this.errorMessage = '';
-    //     this.infoMessage = '';
-
-    //     this.selectedColour = this.containerBorderColour;
-    //     this.callingRoutine = 'LineColour';
-    //     this.colourPickerClosed = true;
-    // }
 
     clickSelectBorderColor(ev: any) {
         // Select Border Colour
