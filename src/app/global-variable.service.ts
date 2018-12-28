@@ -2692,28 +2692,30 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'dashboards';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboards.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
+            let pathUrl: string = 'dashboards';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Clear all related info
                     this.clearDashboardInfo();
 
                     // Update Global vars to make sure they remain in sync
-                    this.dashboards.push(JSON.parse(JSON.stringify(res)));
-                    this.currentDashboards.push(JSON.parse(JSON.stringify(res)));
+                    this.dashboards.push(JSON.parse(JSON.stringify(res.data)));
+                    this.currentDashboards.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
-                        console.log('addDashboard ADDED', {res}, this.dashboards)
+                        console.log('addDashboard ADDED', res.data, this.dashboards)
                     };
 
                     resolve(res);
@@ -2723,7 +2725,7 @@ export class GlobalVariableService {
                         console.log('Error addDashboard FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
