@@ -4656,28 +4656,35 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'dashboardSchedules';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardSchedules.json';
-
         return new Promise<DashboardSchedule[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardSchedules.length == 0)  ||  (this.isDirtyDashboardSchedules) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.dashboardSchedules = res;
+
+                let pathUrl: string = 'dashboardSchedules';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.dashboardSchedules = res.data;
                         this.isDirtyDashboardSchedules = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getDashboardSchedules 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {res})
+                                this.dashboardSchedules)
                         };
 
                         resolve(this.dashboardSchedules);
+                    },
+                    err => {
+                        reject(err.message)
                     });
             } else {
                 if (this.sessionDebugging) {
@@ -4955,7 +4962,7 @@ export class GlobalVariableService {
                             reject(res.message);
 							return;
                         };
-
+console.log('xx dSch', res)
                         this.datasourceSchedules = res.data;
                         this.isDirtyDatasourceSchedules = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -10962,7 +10969,9 @@ export class GlobalVariableService {
                  'dashboardLayouts',
                  'dashboardPermissions',
                  'dashboards',
-                 'dashboardScheduleLog'
+                 'dashboardScheduleLog',
+                 'dashboardSchedule',
+                 'datasourceSchedules'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
