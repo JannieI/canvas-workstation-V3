@@ -5366,18 +5366,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'dashboardPermissions';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardPermissions.json';
-
         return new Promise<DashboardPermission[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardPermissions.length == 0)  ||  (this.isDirtyDashboardPermissions) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.dashboardPermissions = res;
+
+                let pathUrl: string = 'dashboardPermissions';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.dashboardPermissions = res.data;
                         this.isDirtyDashboardPermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
@@ -5388,6 +5392,9 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.dashboardPermissions);
+                    },
+                    err => {
+                        reject(err.message)
                     });
             } else {
                 if (this.sessionDebugging) {
@@ -10374,7 +10381,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            let pathUrl: string = 'DashboardLayouts';
+            let pathUrl: string = 'dashboardLayouts';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers}).subscribe(
                 res => {
@@ -10890,7 +10897,8 @@ export class GlobalVariableService {
                  'canvasTasks',
                  'canvasMessages',
                  'canvasSettings',
-                 'containerStyles'
+                 'containerStyles',
+                 'dashboardLayouts'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
