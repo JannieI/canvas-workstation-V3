@@ -4885,36 +4885,48 @@ export class GlobalVariableService {
                 {dashboardID} , {sentAfter}, {sentBefore})
         };
 
-        let pathUrl: string = 'dashboardScheduleLog';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardScheduleLog.json';
-
         return new Promise<DashboardScheduleLog[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-            this.get(pathUrl)
-                .then(res => {
+
+            let pathUrl: string = 'dashboardScheduleLog';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    this.dashboardScheduleLog = res.data;
+
                     // TODO - perform on DB side
                     if (dashboardID != null) {
-                        res = res.filter(dsl => dsl.dashboardID == dashboardID);
+                        this.dashboardScheduleLog = this.dashboardScheduleLog.filter(
+                            dsl => dsl.dashboardID == dashboardID);
                     };
                     if (sentAfter != null) {
-                        res = res.filter(dsl => dsl.sentOn >= sentAfter);
+                        this.dashboardScheduleLog = this.dashboardScheduleLog.filter(
+                            dsl => dsl.sentOn >= sentAfter);
                     };
                     if (sentBefore != null) {
-                        res = res.filter(dsl => dsl.sentOn <= sentBefore);
+                        this.dashboardScheduleLog = this.dashboardScheduleLog.filter(
+                            dsl => dsl.sentOn <= sentBefore);
                     };
-                    this.dashboardScheduleLog = res;
+
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getDashboardScheduleLog 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {res})
+                            this.dashboardScheduleLog)
                     };
 
                     resolve(this.dashboardScheduleLog);
+                },
+                err => {
+                    reject(err.message)
                 });
         });
 
