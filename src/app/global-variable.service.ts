@@ -5466,36 +5466,38 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'dashboardPermissions';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardPermissions.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
-            .subscribe(
+            let pathUrl: string = 'dashboardPermissions';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    this.dashboardPermissions.push(JSON.parse(JSON.stringify(res)));
-                    this.currentDashboardPermissions.push(JSON.parse(JSON.stringify(res)));
+                    this.dashboardPermissions.push(JSON.parse(JSON.stringify(res.data)));
+                    this.currentDashboardPermissions.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
-                        console.log('addDashboardPermission ADDED', {res},
+                        console.log('addDashboardPermission ADDED', res.data,
                             this.currentDashboardPermissions, this.dashboardPermissions)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error addDashboardPermission FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
