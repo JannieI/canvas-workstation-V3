@@ -10320,6 +10320,9 @@ export class GlobalVariableService {
                     };
 
                     resolve(this.dashboardLayouts);
+                },
+                err => {
+                    reject(err.message)
                 });
         });
 
@@ -10898,7 +10901,8 @@ export class GlobalVariableService {
                  'canvasMessages',
                  'canvasSettings',
                  'containerStyles',
-                 'dashboardLayouts'
+                 'dashboardLayouts',
+                 'dashboardPermissions'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
