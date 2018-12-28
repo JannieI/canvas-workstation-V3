@@ -132,6 +132,7 @@ export class StatusBarMessage {
 
 export class StatusBarMessageLog {
     _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID
     logDateTime: Date;                      // When message was logged
     userID: string;                         // User for which message was logged
     dashboardID: number;                    // Optional Dashboard open when message received
@@ -164,7 +165,7 @@ export class PaletteButtonsSelected {
     shape: string;                          // Clarity shape of icon
     size: number;                           // Size of icon
     class: string;
-    backgroundColor: string;;               // Bg Colour of button
+    backgroundColor: string;                // Bg Colour of button
     accesskey: string;                      // Shortcut key
     sortOrder: number;                      // Nr (used for sorting)
     sortOrderSelected: number;              // SortOrder once selected, null ind DB, calced @Runtime
@@ -439,7 +440,7 @@ export class DataOwnership {
     datasourceID: number;                   // DS for which the ownership is defined
     userID: string;                         // Short name to identify issue
     type: string;                           // User-defined ownership role, ie Owner, Steward, etc
-    description;                            // Description of the responsibilities
+    description: string;                    // Description of the responsibilities
     createdBy: string;                      // UserID who created the record
     createdOn: Date;                        // Date record was created
     updatedBy: string;                      // UserID who last updated the record

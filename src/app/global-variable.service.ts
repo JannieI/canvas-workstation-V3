@@ -12925,6 +12925,7 @@ export class GlobalVariableService {
 
         // Add to DB
         let newStatusBarMessageLog: StatusBarMessageLog = {
+            id: null,
             logDateTime: new Date(),
             userID: this.currentUser.userID,
             dashboardID: this.currentDashboardInfo.value.currentDashboardID,
