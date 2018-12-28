@@ -4941,25 +4941,29 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'datasourceSchedules';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasourceSchedules.json';
-
         return new Promise<DatasourceSchedule[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasourceSchedules.length == 0)  ||  (this.isDirtyDatasourceSchedules) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.datasourceSchedules = res;
+
+                let pathUrl: string = 'datasourceSchedules';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.datasourceSchedules = res.data;
                         this.isDirtyDatasourceSchedules = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getDatasourceSchedules 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {res})
+                                this.datasourceSchedules)
                         };
 
                         resolve(this.datasourceSchedules);
@@ -10945,7 +10949,8 @@ export class GlobalVariableService {
                  'containerStyles',
                  'dashboardLayouts',
                  'dashboardPermissions',
-                 'dashboards'
+                 'dashboards',
+                 'dashboardScheduleLog'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
