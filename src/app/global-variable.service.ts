@@ -3262,63 +3262,71 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
         };
 
-        let pathUrl: string = 'dashboardsRecent';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardsRecent.json';
-
         return new Promise<DashboardRecent[]>((resolve, reject) => {
 
             // Refresh from source at start
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-            this.get(pathUrl).then(res => {
 
-                // TODO - http must be sorted => include in Options ...
-                let temp: DashboardRecent[] = res.filter(
-                    i => i.userID == userID
-                );
+            let pathUrl: string = 'dashboardsRecent';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
 
-                // Add State and Name, at Runtime
-                for (var x = 0; x < temp.length; x++) {
-                    temp[x].stateAtRunTime = 'Deleted';
-                    let newDate = new Date(temp[x].accessed);
-                    temp[x].accessed = newDate;
-                    for (var y = 0; y < this.dashboards.length; y++) {
-                        if (this.dashboards[y].id ==
-                            temp[x].dashboardID) {
-                                temp[x].stateAtRunTime = this.dashboards[y].state;
-                                temp[x].nameAtRunTime = this.dashboards[y].name;
+                    // TODO - http must be sorted => include in Options ...
+                    let temp: DashboardRecent[] = res.data.filter(
+                        i => i.userID == userID
+                    );
+
+                    // Add State and Name, at Runtime
+                    for (var x = 0; x < temp.length; x++) {
+                        temp[x].stateAtRunTime = 'Deleted';
+                        let newDate = new Date(temp[x].accessed);
+                        temp[x].accessed = newDate;
+                        for (var y = 0; y < this.dashboards.length; y++) {
+                            if (this.dashboards[y].id ==
+                                temp[x].dashboardID) {
+                                    temp[x].stateAtRunTime = this.dashboards[y].state;
+                                    temp[x].nameAtRunTime = this.dashboards[y].name;
+                                };
                             };
                         };
+
+                    // Sort DESC
+                    // TODO - in DB, ensure dateTime stamp is used, as IDs may not work
+                    temp = temp.sort( (obj1,obj2) => {
+                        if (obj1.accessed > obj2.accessed) {
+                            return -1;
+                        };
+                        if (obj1.accessed < obj2.accessed) {
+                            return 1;
+                        };
+                        return 0;
+                    });
+
+                    // Remove Deleted ones
+                    temp = temp.filter(t => t.stateAtRunTime != 'Deleted');
+
+                    this.dashboardsRecent = temp;
+                    this.dashboardsRecentBehSubject.next(temp);
+                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+
+                    this.isDirtyDashboardsRecent = false;
+
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables dashboardsRecent 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {temp})
                     };
 
-                // Sort DESC
-                // TODO - in DB, ensure dateTime stamp is used, as IDs may not work
-                temp = temp.sort( (obj1,obj2) => {
-                    if (obj1.accessed > obj2.accessed) {
-                        return -1;
-                    };
-                    if (obj1.accessed < obj2.accessed) {
-                        return 1;
-                    };
-                    return 0;
-                });
-
-                // Remove Deleted ones
-                temp = temp.filter(t => t.stateAtRunTime != 'Deleted');
-
-                this.dashboardsRecent = temp;
-                this.dashboardsRecentBehSubject.next(temp);
-                this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                this.isDirtyDashboardsRecent = false;
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables dashboardsRecent 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {temp})
-                };
-
-                resolve(temp);
-            });
+                    resolve(temp);
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
         });
     }
 

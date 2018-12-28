@@ -304,7 +304,12 @@ export class DashboardScheduleEditComponent implements OnInit {
             this.selectedDashboardSchedule.id = null;
             this.selectedDashboardSchedule.dashboardID =
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-            this.globalVariableService.addDashboardSchedule(this.selectedDashboardSchedule)
+
+            // Omit _id (immutable in Mongo)
+            const copyData = { ...this.selectedDashboardSchedule };
+            delete copyData._id;
+
+            this.globalVariableService.addDashboardSchedule(copyData)
                 .then(res => {
                     if (this.selectedRow == null) {
                         this.selectedRow = 0;
