@@ -10135,7 +10135,6 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-
             let pathUrl: string = 'containerStyles';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
@@ -10284,19 +10283,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'dashboardLayouts';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.DashboardLayouts.json';
-
         return new Promise<DashboardLayout[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-            this.get(pathUrl)
-                .then(res => {
+
+            let pathUrl: string = 'dashboardLayouts';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
 
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                    this.dashboardLayouts = res;
+                    this.dashboardLayouts = res.data;
 
                     // Optional filter
                     if (dashboardID != null) {
