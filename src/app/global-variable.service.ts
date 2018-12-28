@@ -1799,18 +1799,22 @@ export class GlobalVariableService {
             params = '?' + params;
         };
 
-        let pathUrl: string = 'dashboards' + params;
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboards.json';
-
         return new Promise<Dashboard[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.dashboards = res;
+
+                let pathUrl: string = 'dashboards' + params;
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.dashboards = res.data;
                         this.isDirtyDashboards = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         if (this.sessionDebugging) {
@@ -1819,8 +1823,11 @@ export class GlobalVariableService {
                                 this.dashboards);
                         };
                         resolve(this.dashboards);
-                    })
-                    .catch(err => reject(err));
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                )
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getDashboards 2',
@@ -10913,7 +10920,8 @@ export class GlobalVariableService {
                  'canvasSettings',
                  'containerStyles',
                  'dashboardLayouts',
-                 'dashboardPermissions'
+                 'dashboardPermissions',
+                 'dashboards'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
