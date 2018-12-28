@@ -303,15 +303,15 @@ export class DashboardScheduleEditComponent implements OnInit {
             this.selectedDashboardSchedule.id = null;
             this.selectedDashboardSchedule.dashboardID =
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-            this.globalVariableService.addDashboardSchedule(this.selectedDashboardSchedule).then(
-                res => {
+            this.globalVariableService.addDashboardSchedule(this.selectedDashboardSchedule)
+                .then(res => {
                     if (this.selectedRow == null) {
                         this.selectedRow = 0;
                         this.scheduleID = this.selectedDashboardSchedule.id;
                     };
 
-                }
-            );
+                })
+                .catch(err => this.errorMessage = err)
         };
 
         // Save the changes
@@ -325,6 +325,8 @@ export class DashboardScheduleEditComponent implements OnInit {
                 JSON.parse(JSON.stringify(this.selectedDashboardSchedule));
             };
             this.globalVariableService.saveDashboardSchedule(this.selectedDashboardSchedule)
+                .then()
+                .catch(err => this.errorMessage = err)
         };
 
         // Reset
