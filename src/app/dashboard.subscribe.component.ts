@@ -152,8 +152,8 @@ export class DashboardSubscribeComponent implements OnInit {
         let index: number = -1;
         for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
             if (this.dashboardSubscriptions[i].id == id) { 
-                this.dashboardSubscriptions[i].save = 
-                    !this.dashboardSubscriptions[i].save;
+                this.dashboardSubscriptions[i].saved = 
+                    !this.dashboardSubscriptions[i].saved;
                 index = i;
             };
         };
@@ -172,8 +172,8 @@ export class DashboardSubscribeComponent implements OnInit {
         let index: number = -1;
         for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
             if (this.dashboardSubscriptions[i].id == id) { 
-                this.dashboardSubscriptions[i].delete = 
-                    !this.dashboardSubscriptions[i].delete;
+                this.dashboardSubscriptions[i].deleted = 
+                    !this.dashboardSubscriptions[i].deleted;
                 index = i;
             };
         };
@@ -192,8 +192,8 @@ export class DashboardSubscribeComponent implements OnInit {
         let index: number = -1;
         for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
             if (this.dashboardSubscriptions[i].id == id) { 
-                this.dashboardSubscriptions[i].delete = 
-                    !this.dashboardSubscriptions[i].delete;
+                this.dashboardSubscriptions[i].deleted = 
+                    !this.dashboardSubscriptions[i].deleted;
                 index = i;
             };
         };
@@ -273,8 +273,8 @@ export class DashboardSubscribeComponent implements OnInit {
                 userID: this.globalVariableService.currentUser.userID,
                 view: false,
                 editmode: false,
-                save: false,
-                delete: false,
+                saved: false,
+                deleted: false,
                 dashboardCode: this.dashboards[dIndex].code,
                 notify: 'Message',
                 editedBy: '',

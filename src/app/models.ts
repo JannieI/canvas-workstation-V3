@@ -1044,8 +1044,8 @@ export class DashboardSubscription {
     userID: string;                         // User
     view: boolean;                          // Nofity if another user Views this D
     editmode: boolean;                      // Nofity if another user goes to EditMode on this D
-    save: boolean;                          // Nofity if another user Saves this D
-    delete: boolean;                        // Nofity if another user Deletes this D
+    saved: boolean;                         // Nofity if another user Saves this D
+    deleted: boolean;                       // Nofity if another user Deletes this D
     dashboardCode: string;                  // D-Code filled in at Runtime
     notify: string;                         // How to be notified: Email, Message, Both
 
