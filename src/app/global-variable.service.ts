@@ -7482,18 +7482,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'dashboardSubscriptions';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardSubscriptions.json';
-
         return new Promise<DashboardSubscription[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if (this.isDirtyDashboardSubscription) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.dashboardSubscriptions = res;
+
+                let pathUrl: string = 'dashboardSubscriptions';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.dashboardSubscriptions = res.data;
 
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -7505,6 +7509,9 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.dashboardSubscriptions);
+                    },
+                    err => {
+                        reject(err.message)
                     });
             } else {
                 if (this.sessionDebugging) {
@@ -11003,7 +11010,8 @@ export class GlobalVariableService {
                  'dashboards',
                  'dashboardScheduleLog',
                  'dashboardSchedules',
-                 'datasourceSchedules'
+                 'datasourceSchedules',
+                 'dashboardsRecent'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
