@@ -3455,47 +3455,49 @@ export class GlobalVariableService {
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'dashboardsRecent';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardsRecent.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
+            let pathUrl: string = 'dashboardsRecent';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
-                    let temp: DashboardRecent = JSON.parse(JSON.stringify(res));
+                    let dashboardRecentAmended: DashboardRecent = JSON.parse(JSON.stringify(res.data));
 
                     // Add State and Name, at Runtime
                     for (var i = 0; i < this.dashboards.length; i++) {
                         if (this.dashboards[i].id ==
-                            temp.dashboardID) {
-                                temp.stateAtRunTime = this.dashboards[i].state;
-                                temp.nameAtRunTime = this.dashboards[i].name;
+                            dashboardRecentAmended.dashboardID) {
+                                dashboardRecentAmended.stateAtRunTime = this.dashboards[i].state;
+                                dashboardRecentAmended.nameAtRunTime = this.dashboards[i].name;
                         };
                     };
 
                     // Update Global vars to make sure they remain in sync
-                    this.dashboardsRecent = [temp].concat(this.dashboardsRecent);
+                    this.dashboardsRecent = [dashboardRecentAmended].concat(this.dashboardsRecent);
 
                     this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
                     if (this.sessionDebugging) {
-                        console.log('dashboardsRecent ADDED', {res}, this.dashboardsRecent)
+                        console.log('dashboardsRecent ADDED', dashboardRecentAmended, this.dashboardsRecent)
                     };
 
-                    resolve(temp);
+                    resolve(dashboardRecentAmended);
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error dashboardsRecent FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
