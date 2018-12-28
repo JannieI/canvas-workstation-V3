@@ -306,21 +306,25 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         };
 
-        this.globalVariableService.addContainerStyle(newContainerStyle).then(res => {
+        this.globalVariableService.addContainerStyle(newContainerStyle)
+            .then(res => {
 
-        });
+                // Tell user
+                this.infoMessage = 'Container Style added';
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Container Style added',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
 
-        // Tell user
-        this.infoMessage = 'Container Style added';
-        this.globalVariableService.showStatusBarMessage(
-            {
-                message: 'Container Style added',
-                uiArea: 'StatusBar',
-                classfication: 'Info',
-                timeout: 3000,
-                defaultMessage: ''
-            }
-        );
+            })
+            .catch(err => {
+                this.errorMessage = err;
+            })
     }
 
 }

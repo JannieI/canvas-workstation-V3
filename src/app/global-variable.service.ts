@@ -5605,6 +5605,7 @@ export class GlobalVariableService {
                     .then(res => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
+                            return;
                         };
 
                         this.canvasGroups = res.data;
@@ -7263,9 +7264,11 @@ export class GlobalVariableService {
                     res  => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
+                            return;
                         };
                         if(res.data.length == 0) {
                             reject(res.message);
+                            return;
                         };
                         this.canvasSettings = res.data[0];
 
@@ -7344,6 +7347,7 @@ export class GlobalVariableService {
                 res => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
 
                     this.canvasSettings = JSON.parse(JSON.stringify(res.data));
@@ -8555,6 +8559,7 @@ export class GlobalVariableService {
                     res => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
+                            return;
                         };
                         this.backgroundcolorsDefault = res.data;
 
@@ -8607,6 +8612,7 @@ export class GlobalVariableService {
                     res => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
+                            return;
                         };
 
                         this.backgroundcolors = res.data;
@@ -8682,6 +8688,7 @@ export class GlobalVariableService {
                     res => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
+                            return;
                         };
     
                         // Update Global vars to make sure they remain in sync
@@ -8728,6 +8735,7 @@ export class GlobalVariableService {
                 res => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
 
                     // Replace local
@@ -8775,6 +8783,7 @@ export class GlobalVariableService {
                 res => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
 
                     // This is a different case: BackgroundColors is an
@@ -8831,6 +8840,7 @@ export class GlobalVariableService {
                     res  => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
+                            return;
                         };
                         this.canvasTasks = res.data;
 
@@ -8882,6 +8892,7 @@ export class GlobalVariableService {
                 res => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
                     // Update Global vars to make sure they remain in sync
                     this.canvasTasks.push(JSON.parse(JSON.stringify(res.data)));
@@ -8929,6 +8940,7 @@ export class GlobalVariableService {
                 res => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
 
                     // Replace local
@@ -8976,6 +8988,7 @@ export class GlobalVariableService {
                     res  => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
+                            return;
                         };
 
                         this.canvasComments = res.data;
@@ -9028,6 +9041,7 @@ export class GlobalVariableService {
                 res => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
 
                     // Update NrComments field if a W is linked
@@ -9086,6 +9100,7 @@ export class GlobalVariableService {
                 res => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
 
                     // Replace local
@@ -9130,6 +9145,7 @@ export class GlobalVariableService {
                 res => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
 
                     // Update NrComments field if a W is linked
@@ -9200,6 +9216,7 @@ export class GlobalVariableService {
                     .then(res => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
+                            return;
                         };
                         this.canvasMessages = res.data;
 
@@ -9250,6 +9267,7 @@ export class GlobalVariableService {
                 res => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
 
                     // Update Global vars to make sure they remain in sync
@@ -9630,6 +9648,7 @@ export class GlobalVariableService {
                     .then(res => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
+                            return;
                         };
     
                         this.canvasUsers = res.data;
@@ -9883,6 +9902,7 @@ export class GlobalVariableService {
                     res  => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
+                            return;
                         };
                         this.canvasAuditTrails = res.data;
 
@@ -9938,6 +9958,7 @@ export class GlobalVariableService {
 
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
 
                     // Update Global vars to make sure they remain in sync
@@ -10069,6 +10090,7 @@ export class GlobalVariableService {
                     res  => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
+                            return;
                         };
 
                         this.isDirtyContainerStyles = false;
@@ -10119,27 +10141,29 @@ export class GlobalVariableService {
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
+                    console.log('xx res', res)
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
 
-                        // Update Global vars to make sure they remain in sync
-                        this.containerStyles.push(JSON.parse(JSON.stringify(res.data)));
+                    // Update Global vars to make sure they remain in sync
+                    this.containerStyles.push(JSON.parse(JSON.stringify(res.data)));
 
-                        if (this.sessionDebugging) {
-                            console.log('addContainerStyle ADDED', {res})
-                        };
+                    if (this.sessionDebugging) {
+                        console.log('addContainerStyle ADDED', {res})
+                    };
 
-                        resolve(res.data);
-                    },
-                    err => {
-                        if (this.sessionDebugging) {
-                            console.log('Error addContainerStyle FAILED', {err});
-                        };
+                    resolve(res.data);
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error addContainerStyle FAILED', {err});
+                    };
 
-                        reject(err.message);
-                    }
-                )
+                    reject(err.message);
+                }
+            )
         });
     }
 
@@ -10168,6 +10192,7 @@ export class GlobalVariableService {
                 res => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
 
                     // Replace local
@@ -10215,6 +10240,7 @@ export class GlobalVariableService {
                 res => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
+                        return;
                     };
 
                     // This is a different case: containerStyles is an
@@ -10859,7 +10885,8 @@ export class GlobalVariableService {
                  'canvasComments',
                  'canvasTasks',
                  'canvasMessages',
-                 'canvasSettings'
+                 'canvasSettings',
+                 'containerStyles'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
