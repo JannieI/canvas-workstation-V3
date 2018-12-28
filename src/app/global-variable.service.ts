@@ -4666,7 +4666,7 @@ export class GlobalVariableService {
                 let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res  => {
-                        if(res.statusCode != 'success') {
+                        if(res.statusCode == 'success') {
                             reject(res.message);
 							return;
                         };
@@ -4727,7 +4727,9 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.currentDashboardSchedules);
-                })
+                    })
+                    .catch(err => reject(err.message))
+                
              })
         } else {
             return new Promise<DashboardSchedule[]>((resolve, reject) => {
@@ -4974,7 +4976,7 @@ export class GlobalVariableService {
                             reject(res.message);
 							return;
                         };
-console.log('xx dSch', res)
+
                         this.datasourceSchedules = res.data;
                         this.isDirtyDatasourceSchedules = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -10982,7 +10984,7 @@ console.log('xx dSch', res)
                  'dashboardPermissions',
                  'dashboards',
                  'dashboardScheduleLog',
-                 'dashboardSchedule',
+                 'dashboardSchedules',
                  'datasourceSchedules'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';

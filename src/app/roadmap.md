@@ -312,6 +312,11 @@ This document describes items for later versions of Canvas.
         - add errorMessage to HTML form
 
 
+    Form - Dashboard Scheduler:
+    --------------------------
+        - add errorMessage to HTML form
+
+
 
 
 

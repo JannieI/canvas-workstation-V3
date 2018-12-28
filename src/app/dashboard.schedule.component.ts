@@ -43,6 +43,7 @@ export class DashboardScheduleComponent implements OnInit {
 
     currentDashboardSchedules: DashboardSchedule[];
     dashboards: Dashboard[];
+    errorMessage: string = '';
     selectedRow: number = 0;
 
 
@@ -57,8 +58,9 @@ export class DashboardScheduleComponent implements OnInit {
 
         this.dashboards = this.globalVariableService.dashboards.slice();
         this.globalVariableService.getCurrentDashboardSchedules(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
-              (i => this.currentDashboardSchedules = i);
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID)
+            .then(i => this.currentDashboardSchedules = i)
+            .catch(err => this.errorMessage = err);
     }
 
     clickClose(action: string) {
