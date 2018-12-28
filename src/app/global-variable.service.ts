@@ -4755,9 +4755,6 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables addDashboardSchedule ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
-
-        let pathUrl: string = 'dashboardSchedules';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSchedules.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -4765,26 +4762,32 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
+            let pathUrl: string = 'dashboardSchedules';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    this.dashboardSchedules.push(JSON.parse(JSON.stringify(res)));
-                    this.currentDashboardSchedules.push(JSON.parse(JSON.stringify(res)));
+                    this.dashboardSchedules.push(JSON.parse(JSON.stringify(res.data)));
+                    this.currentDashboardSchedules.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
-                        console.log('addDashboardSchedule ADDED', {res},
+                        console.log('addDashboardSchedule ADDED', res.data,
                             this.currentDashboardSchedules, this.dashboardSchedules)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error addDashboardSchedule FAILED', {err});
                     };
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
