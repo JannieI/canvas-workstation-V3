@@ -7536,10 +7536,6 @@ export class GlobalVariableService {
                 {dashboardID});
         };
 
-        let pathUrl: string = 'dashboardSubscriptions';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardSubscriptions.json';
-
         return new Promise<DashboardSubscription[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
@@ -7575,6 +7571,49 @@ export class GlobalVariableService {
             }
         });
 
+    }
+
+    addDashboardSubscription(data: DashboardSubscription): Promise<any> {
+        // Description: Adds a new DashboardSubscription
+        // Returns: Added Data or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDashboardSubscription ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = 'dashboardSubscriptions';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
+
+                    this.dashboardSubscriptions.push(JSON.parse(JSON.stringify(res.data)));
+                    this.currentDashboardSubscriptions.push(JSON.parse(JSON.stringify(res.data)));
+
+                    if (this.sessionDebugging) {
+                        console.log('addDashboardSubscription ADDED', res.data)
+                    };
+
+                    resolve(res.data);
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error addDashboardSubscription FAILED', {err});
+                    };
+
+                    reject(err.message);
+                }
+            )
+        });
     }
 
     saveDashboardSubscription(data: DashboardSubscription): Promise<string> {
@@ -7615,46 +7654,6 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('Error saveDashboardSubscription FAILED', {err});
                     };
-                    reject(err);
-                }
-            )
-        });
-    }
-
-    addDashboardSubscription(data: DashboardSubscription): Promise<any> {
-        // Description: Adds a new DashboardSubscription
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDashboardSubscription ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        let pathUrl: string = 'dashboardSubscriptions';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardSubscriptions.json';
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.post(finalUrl, data, {headers})
-            .subscribe(
-                res => {
-                    this.dashboardSubscriptions.push(JSON.parse(JSON.stringify(res)));
-                    this.currentDashboardSubscriptions.push(JSON.parse(JSON.stringify(res)));
-
-                    if (this.sessionDebugging) {
-                        console.log('addDashboardSubscription ADDED', {res})
-                    };
-
-                    resolve(res);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addDashboardSubscription FAILED', {err});
-                    };
-
                     reject(err);
                 }
             )
