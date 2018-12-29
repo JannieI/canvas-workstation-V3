@@ -487,7 +487,6 @@ export class DataCachingTable {
     localLastWebSocketNumber: number;       // Last WS number processed
 }
 
-
 export class DatasourceFilter {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID

@@ -6622,18 +6622,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'transformations';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.transformations.json';
-
         return new Promise<Transformation[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.transformations.length == 0)  ||  (this.isDirtyTransformations) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.transformations = res;
+
+                let pathUrl: string = 'transformations';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.transformations = res.data;
                         this.isDirtyTransformations = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
@@ -6644,7 +6648,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.transformations);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getTransformations 2',
