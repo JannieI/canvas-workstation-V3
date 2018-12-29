@@ -4393,18 +4393,25 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'datasets';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.Datasets.json';
-
         return new Promise<string>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put(finalUrl + '/' + data.id, data, {headers})
+            let pathUrl: string = 'datasets';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+
+            // Omit _id (immutable in Mongo)
+            const copyData = { ...data };
+            delete copyData._id;
+
+            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Replace local
                     let localIndex: number = this.datasets.findIndex(dSet =>
@@ -4418,7 +4425,7 @@ export class GlobalVariableService {
                     this.currentDatasets[localCurrentIndex] = data;
 
                     if (this.sessionDebugging) {
-                        console.log('saveDataset SAVED', {res})
+                        console.log('saveDataset SAVED', res.data)
                     };
 
                     resolve('Saved');
@@ -4428,7 +4435,7 @@ export class GlobalVariableService {
                         console.log('Error saveDataset FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
