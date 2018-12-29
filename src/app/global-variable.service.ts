@@ -3690,34 +3690,35 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'DataConnections';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.DataConnections.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
-            .subscribe(
+            let pathUrl: string = 'DataConnections';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
-
-                    // Update Global vars to make sure they remain in sync
-                    this.dataConnections.push(JSON.parse(JSON.stringify(res)));
-
-                    if (this.sessionDebugging) {
-                        console.log('addDataConnection ADDED', {res}, this.dataConnections)
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
                     };
 
-                    resolve(res);
+                    // Update Global vars to make sure they remain in sync
+                    this.dataConnections.push(JSON.parse(JSON.stringify(res.data)));
+
+                    if (this.sessionDebugging) {
+                        console.log('addDataConnection ADDED', res.data, this.dataConnections)
+                    };
+
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error addDataConnection FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
