@@ -6105,36 +6105,37 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'dashboardSnapshots';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardSnapshots.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
-            .subscribe(
+            let pathUrl: string = 'dashboardSnapshots';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    this.dashboardSnapshots.push(JSON.parse(JSON.stringify(res)));
-                    this.currentDashboardSnapshots.push(JSON.parse(JSON.stringify(res)));
+                    this.dashboardSnapshots.push(JSON.parse(JSON.stringify(res.data)));
+                    this.currentDashboardSnapshots.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
-                        console.log('addDashboardSnapshot ADDED', {res},
+                        console.log('addDashboardSnapshot ADDED', res.data,
                             this.currentDashboardSnapshots, this.dashboardSnapshots)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error addDashboardSnapshot FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
@@ -11346,7 +11347,9 @@ export class GlobalVariableService {
                  'dataTables',
                  'dataFields',
                  'datasets',
-                 'datasourceScheduleLog'
+                 'datasourceScheduleLog',
+                 'widgetGraphs',
+                 'dashboardSnapshots'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
