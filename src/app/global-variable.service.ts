@@ -4120,18 +4120,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'datasets';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasets.json';
-
         return new Promise<Dataset[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.datasets = res;
+
+                let pathUrl: string = 'datasets';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.datasets = res.data;
                         this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
@@ -4142,7 +4146,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.datasets);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getDataset 2',
@@ -4333,24 +4341,23 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'datasets';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasets.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
-            .subscribe(
+            let pathUrl: string = 'datasets';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    let dataset: Dataset = JSON.parse(JSON.stringify(res));
+                    let dataset: Dataset = JSON.parse(JSON.stringify(res.data));
                     this.datasets.push(dataset);
-                    // this.datasets.push(JSON.parse(JSON.stringify(res)));
-                    // this.currentDatasets.push(JSON.parse(JSON.stringify(res)));
 
                     // Note: currentDS contains data as well, so this.currentDatasets.push
                     //       will result in a record with no data.  So, in the Widget
@@ -4361,10 +4368,10 @@ export class GlobalVariableService {
                     this.getCurrentDataset(data.datasourceID, dataset.id).then(dataset => {
 
                         if (this.sessionDebugging) {
-                            console.log('addDataset ADDED', {res}, this.datasets, this.currentDatasets)
+                            console.log('addDataset ADDED', res.data, this.datasets, this.currentDatasets)
                         };
 
-                        resolve(res);
+                        resolve(res.data);
 
                     });
                 },
@@ -4372,7 +4379,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('Error addDataset FAILED', {err});
                     };
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
@@ -11300,7 +11307,9 @@ export class GlobalVariableService {
                  'widgetStoredTemplates',
                  'dataConnections',
                  'datasourceTransformations',
-                 'dataTables'
+                 'dataTables',
+                 'dataFields',
+                 'datasets'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
