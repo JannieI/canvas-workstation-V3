@@ -4861,7 +4861,6 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables addDashboardSchedule ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
-        this.filePath = './assets/data.dashboardSchedules.json';
 
         return new Promise<any>((resolve, reject) => {
 
@@ -9562,36 +9561,21 @@ export class GlobalVariableService {
                 this.canvasMessages.length);
         };
 
-        let pathUrl: string = 'canvasMessages';
-        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/settings.canvasMessages.json';
-
         return new Promise<CanvasMessage[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasMessages.length == 0)  ||  (this.isDirtyCanvasMessages) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
-                // const params = new HttpParams()
-                // .set('orderBy', '"dashboardTabID"')
-                // .set('limitToFirst', "1");
-
-                // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-                // console.log('xx get with Test: ', this.canvasServerName, pathUrl, finalUrl)
-                // this.http.get(finalUrl).subscribe(
-                //     res =>
-                //     {
-                //         resolve(res);
-                //     },
-                //     (er)
-
-                this.get(pathUrl)
-                    .then(res => {
+                let pathUrl: string = 'canvasMessages';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
-                            return;
+							return;
                         };
+
                         this.canvasMessages = res.data;
 
                         this.isDirtyCanvasMessages = false;
@@ -9604,7 +9588,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.canvasMessages);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getCanvasMessages 2',
