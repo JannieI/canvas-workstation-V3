@@ -5908,19 +5908,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'dashboardSnapshots';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardSnapshots.json';
-
         return new Promise<DashboardSnapshot[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
-                this.get(pathUrl)
-                    .then(res => {
-                        this.dashboardSnapshots = res;
+                let pathUrl: string = 'dashboardSnapshots';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.dashboardSnapshots = res.data;
                         this.isDirtyDashboardSnapshots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
@@ -5931,7 +5934,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.dashboardSnapshots);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getDashboardSnapshots 2',
