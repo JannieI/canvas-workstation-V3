@@ -6951,10 +6951,6 @@ export class GlobalVariableService {
                 {datasourceID});
         };
 
-        let pathUrl: string = 'dataOwnerships';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dataOwnerships.json';
-
         if ( (this.currentDataOwnerships.length == 0)  ||  (this.isDirtyDataOwnership) ) {
             return new Promise<DataOwnership[]>((resolve, reject) => {
                 this.getDataOwnerships()
@@ -7000,18 +6996,19 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'dataOwnerships';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dataOwnerships.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
-            .subscribe(
+            let pathUrl: string = 'dataOwnerships';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
                     let newDS: DataOwnership = JSON.parse(JSON.stringify(res))
