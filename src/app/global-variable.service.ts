@@ -8494,65 +8494,6 @@ export class GlobalVariableService {
         });
     }
 
-    deleteWidget(id: number): Promise<string> {
-        // Description: Deletes a Widgets
-        // Returns: 'Deleted' or error message
-        // NOTE: this permananently deletes a W, from arrays and DB.
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteWidget ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        let pathUrl: string = 'widgets';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.widgets.json';
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.delete(finalUrl + '/' + id, {headers})
-            .subscribe(
-                res => {
-
-                    this.widgets = this.widgets.filter(
-                        w => w.id != id
-                    );
-                    this.currentWidgets = this.currentWidgets.filter(
-                        w => w.id != id
-                    );
-
-                    // Delete where W was used in Chkpnt
-                    this.widgetCheckpoints.forEach(chk => {
-                        if (chk.widgetID == id) {
-                            this.deleteWidgetCheckpoint(chk.id);
-                        };
-                    });
-
-                    // Delete where W was used in Stored Template
-                    this.getWidgetStoredTemplates().then(swt => {
-                        swt = swt.filter(w1 => w1.widgetID == id);
-                        swt.forEach(w2 => {
-                            this.deleteWidgetStoredTemplate(w2.id);
-                        });
-                    });
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteWidget DELETED id: ', {id}, this.widgetCheckpoints,
-                            this.currentWidgetCheckpoints)
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    console.log('Error deleteWidget FAILED', {err});
-                    reject(err);
-                }
-            )
-        });
-    }
-
     saveWidget(data: Widget): Promise<string> {
         // Description: Saves Widget
         // Returns: 'Saved' or error message
@@ -8689,6 +8630,65 @@ export class GlobalVariableService {
             );
         });
 
+    }
+
+    deleteWidget(id: number): Promise<string> {
+        // Description: Deletes a Widgets
+        // Returns: 'Deleted' or error message
+        // NOTE: this permananently deletes a W, from arrays and DB.
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteWidget ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
+
+        let pathUrl: string = 'widgets';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        this.filePath = './assets/data.widgets.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete(finalUrl + '/' + id, {headers})
+            .subscribe(
+                res => {
+
+                    this.widgets = this.widgets.filter(
+                        w => w.id != id
+                    );
+                    this.currentWidgets = this.currentWidgets.filter(
+                        w => w.id != id
+                    );
+
+                    // Delete where W was used in Chkpnt
+                    this.widgetCheckpoints.forEach(chk => {
+                        if (chk.widgetID == id) {
+                            this.deleteWidgetCheckpoint(chk.id);
+                        };
+                    });
+
+                    // Delete where W was used in Stored Template
+                    this.getWidgetStoredTemplates().then(swt => {
+                        swt = swt.filter(w1 => w1.widgetID == id);
+                        swt.forEach(w2 => {
+                            this.deleteWidgetStoredTemplate(w2.id);
+                        });
+                    });
+
+                    if (this.sessionDebugging) {
+                        console.log('deleteWidget DELETED id: ', {id}, this.widgetCheckpoints,
+                            this.currentWidgetCheckpoints)
+                    };
+
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteWidget FAILED', {err});
+                    reject(err);
+                }
+            )
+        });
     }
 
     getWidgetsInfo(): Promise<boolean> {
@@ -9685,18 +9685,22 @@ export class GlobalVariableService {
                 this.widgetCheckpoints.length);
         };
 
-        let pathUrl: string = 'widgetCheckpoints';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/settings.widgetCheckpoints.json';
-
         return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.widgetCheckpoints = res.filter(d => (!d.parentWidgetIsDeleted) );
+
+                let pathUrl: string = 'widgetCheckpoints';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.widgetCheckpoints = res.data.filter(d => (!d.parentWidgetIsDeleted) );
 
                         this.isDirtyWidgetCheckpoints = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -9708,7 +9712,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.widgetCheckpoints);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getWidgetCheckpoints 2',
