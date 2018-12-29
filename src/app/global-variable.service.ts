@@ -10716,19 +10716,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'widgetLayouts';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.WidgetLayouts.json';
-
         return new Promise<WidgetLayout[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-            this.get(pathUrl)
-                .then(res => {
+
+            let pathUrl: string = 'widgetLayouts';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
 
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                    this.widgetLayouts = res;
+                    this.widgetLayouts = res.data;
 
                     // Optional filter
                     if (dashboardLayoutID != null) {
@@ -10743,7 +10746,11 @@ export class GlobalVariableService {
                     };
 
                     resolve(this.widgetLayouts);
-                });
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
 
         });
 
