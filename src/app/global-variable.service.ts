@@ -3827,18 +3827,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'datasourceTransformations';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './asConnections/data.datasourceTransformations.json';
-
         return new Promise<DatasourceTransformation[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasourceTransformations.length == 0)  ||  (this.isDirtyDatasourceTransformations) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.datasourceTransformations = res;
+
+                let pathUrl: string = 'datasourceTransformations';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.datasourceTransformations = res.data;
                         this.isDirtyDatasourceTransformations = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
@@ -3849,7 +3853,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.datasourceTransformations);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getDatasourceTransformation 2',
@@ -3871,34 +3879,35 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'datasourceTransformations';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasourceTransformations.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
-            .subscribe(
+            let pathUrl: string = 'datasourceTransformations';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    this.datasourceTransformations.push(JSON.parse(JSON.stringify(res)));
+                    this.datasourceTransformations.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
-                        console.log('addDatasourceTransformation ADDED', {res},
+                        console.log('addDatasourceTransformation ADDED', res.data,
                             this.datasourceTransformations)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error addDatasourceTransformation FAILED', {err});
                     };
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
@@ -11264,7 +11273,8 @@ export class GlobalVariableService {
                  'statusBarMessageLogs',
                  'widgetLayouts',
                  'widgetStoredTemplates',
-                 'dataConnections'
+                 'dataConnections',
+                 'datasourceTransformations'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
