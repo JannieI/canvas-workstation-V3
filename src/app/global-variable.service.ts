@@ -10266,10 +10266,6 @@ export class GlobalVariableService {
                 this.canvasAuditTrails.length);
         };
 
-        // let pathUrl: string = 'canvasAuditTrails';
-        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/settings.canvasAuditTrails.json';
-
         return new Promise<CanvasAuditTrail[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
@@ -10321,8 +10317,6 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables addCanvasAuditTrail ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
-
-        this.filePath = './assets/data.CanvasAuditTrails.json';
 
         return new Promise<any>((resolve, reject) => {
 
@@ -11339,7 +11333,8 @@ export class GlobalVariableService {
                  'datasets',
                  'datasourceScheduleLog',
                  'widgetGraphs',
-                 'dashboardSnapshots'
+                 'dashboardSnapshots',
+                 'dataCachingTable'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
@@ -11359,30 +11354,18 @@ export class GlobalVariableService {
                 this.statusBarMessageLogs.length);
         };
 
-        let pathUrl: string = 'dataCachingTable';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/dataCachingTable.json';
-
         return new Promise<DataCachingTable[]>((resolve, reject) => {
 
-            this.get(pathUrl)
-                .then(res => {
-                    this.dataCachingTable = res;
-                        // [
-                        //     {
-                        //         key: 'dashboards',
-                        //         serverCacheable: true,
-                        //         serverLastUpdatedDateTime: new Date(),
-                        //         serverExpiryDateTime: new Date(),
-                        //         serverLastWSsequenceNr: 1,
-                        //         localCacheable: true,
-                        //         localLastUpdatedDateTime: new Date(),
-                        //         localExpiryDateTime: new Date(),
-                        //         localVariableName: 'dashboards',
-                        //         localCurrentVariableName: 'currentDashboards',
-                        //         localTableName: 'dashboards'
-                        //     }
-                        // ];
+            let pathUrl: string = 'dataCachingTable';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    this.dataCachingTable = res.data;
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getDataCachingTable',
@@ -11392,7 +11375,11 @@ export class GlobalVariableService {
 
                     // return this.dataCachingTable;
                     resolve(this.dataCachingTable);
-            });
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
         });
 
     }
