@@ -4068,18 +4068,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'dataFields';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './asFields/data.dataFields.json';
-
         return new Promise<DataField[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.dataFields.length == 0)  ||  (this.isDirtyDataFields) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.dataFields = res;
+
+                let pathUrl: string = 'dataFields';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.dataFields = res.data;
                         this.isDirtyDataFields = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
@@ -4090,7 +4094,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.dataFields);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getDataField 2',
