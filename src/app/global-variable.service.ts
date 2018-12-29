@@ -7011,7 +7011,7 @@ export class GlobalVariableService {
                     };
 
                     // Update Global vars to make sure they remain in sync
-                    let newDS: DataOwnership = JSON.parse(JSON.stringify(res))
+                    let newDS: DataOwnership = JSON.parse(JSON.stringify(res.data))
                     if (this.dataOwnerships.filter(i => i.id == newDS.id).length == 0) {
                         this.dataOwnerships.push(newDS);
                     };
@@ -7020,7 +7020,7 @@ export class GlobalVariableService {
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('addDataOwnership ADDED', {res},
+                        console.log('addDataOwnership ADDED', res.data,
                             this.currentDataOwnerships, this.dataOwnerships)
                     };
 
@@ -7031,7 +7031,7 @@ export class GlobalVariableService {
                         console.log('Error addDataOwnership FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
