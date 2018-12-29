@@ -10856,19 +10856,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'widgetStoredTemplates';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.widgetTemplates.json';
-
         return new Promise<WidgetStoredTemplate[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-            this.get(pathUrl)
-                .then(res => {
+
+            let pathUrl: string = 'widgetStoredTemplates';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
 
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                    this.widgetStoredTemplates = res;
+                    this.widgetStoredTemplates = res.data;
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getWidgetStoredTemplates 1',
@@ -10877,7 +10880,11 @@ export class GlobalVariableService {
                     };
 
                     resolve(this.widgetStoredTemplates);
-                });
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
 
         });
 
@@ -11227,7 +11234,8 @@ export class GlobalVariableService {
                  'paletteButtonsSelecteds',
                  'widgetCheckpoints',
                  'statusBarMessageLogs',
-                 'widgetLayouts'
+                 'widgetLayouts',
+                 'widgetStoredTemplates'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
