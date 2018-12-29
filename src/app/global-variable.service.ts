@@ -9824,6 +9824,57 @@ export class GlobalVariableService {
         });
     }
 
+    saveWidgetCheckpoint(data: WidgetCheckpoint): Promise<string> {
+        // Description: Saves Widget Checkpoint
+        // Returns: 'Saved' or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveWidgetCheckpoint ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = 'widgetCheckpoints';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+
+            // Omit _id (immutable in Mongo)
+            const copyData = { ...data };
+            delete copyData._id;
+
+            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
+
+                    // Replace local
+                    let localIndex: number = this.widgetCheckpoints.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.widgetCheckpoints[localIndex] = data;
+
+                    if (this.sessionDebugging) {
+                        console.log('saveWidgetCheckpoint SAVED', res.data)
+                    };
+
+                    resolve('Saved');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error saveWidgetCheckpoint FAILED', {err});
+                    };
+
+                    reject(err.message);
+                }
+            )
+        });
+    }
+
     deleteWidgetCheckpoint(id: number): Promise<string> {
         // Description: Deletes a WidgetCheckpoints
         // Returns: 'Deleted' or error message
@@ -9863,50 +9914,6 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('Error deleteWidgetCheckpoint FAILED', {err});
                     };
-                    reject(err);
-                }
-            )
-        });
-    }
-
-    saveWidgetCheckpoint(data: WidgetCheckpoint): Promise<string> {
-        // Description: Saves Widget Checkpoint
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveWidgetCheckpoint ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        let pathUrl: string = 'widgetCheckpoints';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.widgetCheckpoints.json';
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.put(finalUrl + '/' + data.id, data, {headers})
-            .subscribe(
-                res => {
-
-                    // Replace local
-                    let localIndex: number = this.widgetCheckpoints.findIndex(d =>
-                        d.id == data.id
-                    );
-                    this.widgetCheckpoints[localIndex] = data;
-
-                    if (this.sessionDebugging) {
-                        console.log('saveWidgetCheckpoint SAVED', {res})
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveWidgetCheckpoint FAILED', {err});
-                    };
-
                     reject(err);
                 }
             )
