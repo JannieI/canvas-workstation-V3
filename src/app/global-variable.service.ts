@@ -10016,18 +10016,19 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'canvasUsers';
-
         return new Promise<CanvasUser[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasUsers.length == 0)  ||  (this.isDirtyUsers) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
+
+                let pathUrl: string = 'canvasUsers';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
-                            return;
+							return;
                         };
 
                         this.canvasUsers = res.data;
@@ -10221,15 +10222,26 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'canvasUsers';
-
         return new Promise<string>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
+            let pathUrl: string = 'canvasUsers';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.put(finalUrl + '?id=' + data.id, data, {headers}).subscribe(res => {
+
+            // Omit _id (immutable in Mongo)
+            const copyData = { ...data };
+            delete copyData._id;
+
+            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
+            // this.http.put(finalUrl + '?id=' + data.id, data, {headers}).subscribe(res => {
 
                 // Replace local
                 let localIndex: number = this.canvasUsers.findIndex(u =>
@@ -10240,7 +10252,7 @@ export class GlobalVariableService {
                 };
 
                 if (this.sessionDebugging) {
-                    console.log('saveCanvasUser SAVED', {res})
+                    console.log('saveCanvasUser SAVED', res.data)
                 };
 
                 resolve('Saved');
@@ -10250,7 +10262,7 @@ export class GlobalVariableService {
                     console.log('Error saveCanvasUser FAILED', {err});
                 };
 
-                reject(err);
+                reject(err.message);
             });
         });
     }

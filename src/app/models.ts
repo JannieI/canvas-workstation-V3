@@ -629,7 +629,7 @@ export class DatasourceScheduleLog {
     groupID: string;                        // Optional Group to which D was sent
     sentOn: Date;                           // Date dispatched
     status: string;                         // Pending, Halted, Success, Failed
-    errorMessage;                           // Error message if it failed
+    errorMessage: string;                   // Error message if it failed
 }
 
 export class DatasourcePermission {
