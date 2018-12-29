@@ -5804,20 +5804,19 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'canvasGroups';
-        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/data.canvasGroups.json';
-
         return new Promise<CanvasGroup[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasGroups.length == 0)  ||  (this.isDirtyCanvasGroups) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
+
+                let pathUrl: string = 'canvasGroups';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
                         if(res.statusCode != 'success') {
                             reject(res.message);
-                            return;
+							return;
                         };
 
                         this.canvasGroups = res.data;
@@ -5831,8 +5830,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.canvasGroups);
-                    })
-                    .catch(err => reject(err));
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                )
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getCanvasGroups 2',
@@ -5854,18 +5856,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'widgetGraphs';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.widgetGraphs.json';
-
         return new Promise<WidgetGraph[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.widgetGraphs.length == 0)  ||  (this.isDirtyWidgetGraphs) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.widgetGraphs = res;
+
+                let pathUrl: string = 'widgetGraphs';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.widgetGraphs = res.data;
                         this.isDirtyWidgetGraphs = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
@@ -5876,8 +5882,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.widgetGraphs);
-                    })
-                    .catch(err => reject(err));
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                )
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getWidgetGraphs 2',
@@ -11329,7 +11338,8 @@ export class GlobalVariableService {
                  'datasourceTransformations',
                  'dataTables',
                  'dataFields',
-                 'datasets'
+                 'datasets',
+                 'datasourceScheduleLog'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
