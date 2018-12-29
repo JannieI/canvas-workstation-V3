@@ -10284,18 +10284,22 @@ export class GlobalVariableService {
                 this.statusBarMessageLogs.length);
         };
 
-        let pathUrl: string = 'statusBarMessageLogs';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/statusBarMessageLogs.json';
-
         return new Promise<StatusBarMessageLog[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.statusBarMessageLogs.length == 0)  ||  (this.isDirtystatusBarMessageLogs) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.statusBarMessageLogs = res;
+
+                let pathUrl: string = 'statusBarMessageLogs';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.statusBarMessageLogs = res.data;
 
                         this.isDirtystatusBarMessageLogs = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -10307,7 +10311,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.statusBarMessageLogs);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getstatusBarMessageLogss 2',
