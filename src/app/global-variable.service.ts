@@ -7279,10 +7279,6 @@ export class GlobalVariableService {
                 {datasourceID});
         };
 
-        let pathUrl: string = 'datasourcePermissions';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data..datasourcePermissions.json';
-
         if ( (this.currentDatasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
             return new Promise<DatasourcePermission[]>((resolve, reject) => {
                 this.getDatasourcePermissions()
@@ -7329,21 +7325,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'datasourcePermissions';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasourcePermissions.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
-            .subscribe(
+            let pathUrl: string = 'datasourcePermissions';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    let newDS: DatasourcePermission = JSON.parse(JSON.stringify(res))
+                    let newDS: DatasourcePermission = JSON.parse(JSON.stringify(res.data))
                     if (this.datasourcePermissions.filter(i => i.id == newDS.id).length == 0) {
                         this.datasourcePermissions.push(newDS);
                     };
@@ -7352,18 +7349,18 @@ export class GlobalVariableService {
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('addDatasourcePermission ADDED', {res},
+                        console.log('addDatasourcePermission ADDED', res.data,
                             this.currentDatasourcePermissions, this.datasourcePermissions)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error addDatasourcePermission FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
