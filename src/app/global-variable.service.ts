@@ -9726,18 +9726,20 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let pathUrl: string = 'canvasMessages';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.CanvasMessages.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete(finalUrl + '/' + id, {headers})
+            let pathUrl: string = 'canvasMessages';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     this.canvasMessages = this.canvasMessages.filter(
                         msg => msg.id != id
@@ -9753,7 +9755,7 @@ export class GlobalVariableService {
                         console.log('Error deleteCanvasMessage FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
