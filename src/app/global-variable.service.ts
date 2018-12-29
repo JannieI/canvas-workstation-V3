@@ -7213,20 +7213,23 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'datasourcePermissions';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasourcePermissions.json';
-
         return new Promise<DatasourcePermission[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
+
+                let pathUrl: string = 'datasourcePermissions';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
 
                         // Fill in @RunTime info
-                        res.forEach(d => {
+                        res.data.forEach(d => {
                             this.datasources.forEach(ds => {
                                 if (ds.id == d.datasourceID) {
                                     d.name = ds.name;
@@ -7238,7 +7241,7 @@ export class GlobalVariableService {
                                 };
                             });
                         });
-                        this.datasourcePermissions = res;
+                        this.datasourcePermissions = res.data;
                         this.isDirtyDatasourcePermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
@@ -7249,7 +7252,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.datasourcePermissions);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getDatasourcePermissions 2',
@@ -11107,7 +11114,10 @@ export class GlobalVariableService {
                  'dashboardTabs',
                  'dashboardTags',
                  'dashboardThemes',
-                 'datasources'
+                 'datasources',
+                 'dataQualityIssues',
+                 'dataOwnerships',
+                 'datasourcePermissions'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
