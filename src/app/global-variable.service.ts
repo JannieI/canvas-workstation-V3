@@ -1133,7 +1133,6 @@ export class GlobalVariableService {
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
     // currentDatasources.  It holds complete data
-    currentCanvasGroups: CanvasGroup[] = [];
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
     currentDashboardName = new BehaviorSubject<string>('');
     currentDashboardPermissions: DashboardPermission[] = [];
@@ -5870,7 +5869,6 @@ export class GlobalVariableService {
 
                     // Update Global vars to make sure they remain in sync
                     this.canvasGroups.push(JSON.parse(JSON.stringify(res.data)));
-                    this.currentCanvasGroups.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
                         console.log('addCanvasGroup ADDED', this.canvasGroups,
