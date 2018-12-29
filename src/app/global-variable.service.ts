@@ -9788,36 +9788,37 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'widgetCheckpoints';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.widgetCheckpoints.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
-            .subscribe(
+            let pathUrl: string = 'widgetCheckpoints';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    this.widgetCheckpoints.push(JSON.parse(JSON.stringify(res)));
-                    this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(res)));
+                    this.widgetCheckpoints.push(JSON.parse(JSON.stringify(res.data)));
+                    this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
-                        console.log('addWidgetCheckpoint ADDED', {res},
+                        console.log('addWidgetCheckpoint ADDED', res.data,
                             this.currentWidgetCheckpoints, this.widgetCheckpoints)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error addWidgetCheckpoint FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
@@ -11195,7 +11196,8 @@ export class GlobalVariableService {
                  'dataOwnerships',
                  'datasourcePermissions',
                  'paletteButtonBars',
-                 'paletteButtonsSelecteds'
+                 'paletteButtonsSelecteds',
+                 'widgetCheckpoints'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
