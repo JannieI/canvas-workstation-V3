@@ -5315,27 +5315,34 @@ export class GlobalVariableService {
                 {datasourceID} , {sentAfter}, {sentBefore})
         };
 
-        let pathUrl: string = 'datasourceScheduleLog';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasourceScheduleLog.json';
-
         return new Promise<DatasourceScheduleLog[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-            this.get(pathUrl)
-                .then(res => {
+
+            let pathUrl: string = 'datasourceScheduleLog';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
                     // TODO - perform on DB side
+                    this.datasourceScheduleLog = res.data;
                     if (datasourceID != null) {
-                        res = res.filter(dsl => dsl.datasourceID == datasourceID);
+                        this.datasourceScheduleLog = this.datasourceScheduleLog.filter(
+                            dsl => dsl.datasourceID == datasourceID);
                     };
                     if (sentAfter != null) {
-                        res = res.filter(dsl => dsl.sentOn >= sentAfter);
+                        this.datasourceScheduleLog = this.datasourceScheduleLog.filter(
+                            dsl => dsl.sentOn >= sentAfter);
                     };
                     if (sentBefore != null) {
-                        res = res.filter(dsl => dsl.sentOn <= sentBefore);
+                        this.datasourceScheduleLog = this.datasourceScheduleLog.filter(
+                            dsl => dsl.sentOn <= sentBefore);
                     };
-                    this.datasourceScheduleLog = res;
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                     if (this.sessionDebugging) {
@@ -5344,7 +5351,11 @@ export class GlobalVariableService {
                             {res})
                     };
                     resolve(this.datasourceScheduleLog);
-                });
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
         });
 
     }
