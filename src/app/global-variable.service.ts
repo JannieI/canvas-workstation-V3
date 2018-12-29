@@ -6220,18 +6220,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'datasources';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasources.json';
-
         return new Promise<Datasource[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.datasources = res;
+
+                let pathUrl: string = 'datasources';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.datasources = res.data;
                         this.isDirtyDatasources = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
@@ -6242,7 +6246,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.datasources);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getDatasources 2',
