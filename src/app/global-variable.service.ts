@@ -6774,10 +6774,6 @@ export class GlobalVariableService {
                 {datasourceID});
         };
 
-        let pathUrl: string = 'dataQualityIssues';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dataQualityIssues.json';
-
         if ( (this.currentDataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
             return new Promise<DataQualityIssue[]>((resolve, reject) => {
                 this.getDataQualityIssues()
@@ -6824,21 +6820,22 @@ export class GlobalVariableService {
                 {data});
         };
 
-        let pathUrl: string = 'dataQualityIssues';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dataQualityIssues.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
-            .subscribe(
+            let pathUrl: string = 'dataQualityIssues';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    let newDS: DataQualityIssue = JSON.parse(JSON.stringify(res))
+                    let newDS: DataQualityIssue = JSON.parse(JSON.stringify(res.data))
                     if (this.dataQualityIssues.filter(i => i.id == newDS.id).length == 0) {
                         this.dataQualityIssues.push(newDS);
                     };
@@ -6847,7 +6844,7 @@ export class GlobalVariableService {
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('addDataQualityIssue ADDED', {res},
+                        console.log('addDataQualityIssue ADDED', res.data,
                             this.currentDataQualityIssues, this.dataQualityIssues)
                     };
 
@@ -6858,7 +6855,7 @@ export class GlobalVariableService {
                         console.log('Error addDataQualityIssue FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
