@@ -5290,18 +5290,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let pathUrl: string = 'dashboardTags';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dashboardTags.json';
-
         return new Promise<DashboardTag[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardTags.length == 0)  ||  (this.isDirtyDashboardTags) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
-                        this.dashboardTags = res;
+
+                let pathUrl: string = 'dashboardTags';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.dashboardTags = res.data;
                         this.isDirtyDashboardTags = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
@@ -5312,7 +5316,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.dashboardTags);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getDashboardTags 2',
@@ -11053,7 +11061,8 @@ export class GlobalVariableService {
                  'dashboardsRecent',
                  'dashboardSubscriptions',
                  'dataOwnerships',
-                 'dashboardTabs'
+                 'dashboardTabs',
+                 'dashboardTags'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
