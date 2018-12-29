@@ -8005,6 +8005,53 @@ export class GlobalVariableService {
 
     }
 
+    addPaletteButtonsSelected(data: PaletteButtonsSelected): Promise<any> {
+        // Description: Adds a new PaletteButtonsSelected
+        // Returns: Added Data or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addPaletteButtonsSelected ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = 'paletteButtonsSelecteds';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
+
+                        // Update Global vars to make sure they remain in sync
+                        this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res.data)));
+
+                        // Inform subscribers
+                        this.currentPaletteButtonsSelected.next(
+                            this.currentPaletteButtonsSelected.value
+                        );
+
+                        if (this.sessionDebugging) {
+                            console.log('PaletteButtonsSelected ADDED', res.data, this.currentPaletteButtonsSelected)
+                        };
+
+                        resolve(res.data);
+                    },
+                    err => {
+                        if (this.sessionDebugging) {
+                            console.log('Error addPaletteButtonsSelected FAILED', {err});
+                        };
+
+                        reject(err.message);
+                    }
+                )
+        });
+    }
+
     savePaletteButtonsSelected(data: PaletteButtonsSelected): Promise<string> {
         // Description: Saves PaletteButtonsSelected
         // Returns: 'Saved' or error message
@@ -8113,53 +8160,6 @@ export class GlobalVariableService {
                     reject(err.message);
                 }
             )
-        });
-    }
-
-    addPaletteButtonsSelected(data: PaletteButtonsSelected): Promise<any> {
-        // Description: Adds a new PaletteButtonsSelected
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addPaletteButtonsSelected ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        let pathUrl: string = 'paletteButtonsSelecteds';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.paletteButtonsSelecteds.json';
-
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.post(finalUrl, data, {headers})
-                .subscribe(
-                    res => {
-
-                        // Update Global vars to make sure they remain in sync
-                        this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res)));
-
-                        // Inform subscribers
-                        this.currentPaletteButtonsSelected.next(
-                            this.currentPaletteButtonsSelected.value
-                        );
-
-                        if (this.sessionDebugging) {
-                            console.log('PaletteButtonsSelected ADDED', {data}, this.currentPaletteButtonsSelected)
-                        };
-
-                        resolve(data);
-                    },
-                    err => {
-                        if (this.sessionDebugging) {
-                            console.log('Error addPaletteButtonsSelected FAILED', {err});
-                        };
-
-                        reject(err);
-                    }
-                )
         });
     }
 
