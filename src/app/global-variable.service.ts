@@ -6275,10 +6275,6 @@ export class GlobalVariableService {
                 {dashboardID});
         };
 
-        let pathUrl: string = 'datasources';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasources.json';
-
         return new Promise<Datasource[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
@@ -6365,21 +6361,22 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'datasources';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasources.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
-            .subscribe(
+            let pathUrl: string = 'datasources';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    let newDS: Datasource = JSON.parse(JSON.stringify(res))
+                    let newDS: Datasource = JSON.parse(JSON.stringify(res.data))
                     if (this.datasources.filter(i => i.id == newDS.id).length == 0) {
                         this.datasources.push(newDS);
                     };
@@ -6391,18 +6388,18 @@ export class GlobalVariableService {
                     this.hasDatasources.next(true);
 
                     if (this.sessionDebugging) {
-                        console.log('addDatasource ADDED', {res},
+                        console.log('addDatasource ADDED', res.data,
                             this.currentDatasources, this.datasources)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error addDatasource FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
@@ -11082,7 +11079,8 @@ export class GlobalVariableService {
                  'dataOwnerships',
                  'dashboardTabs',
                  'dashboardTags',
-                 'dashboardThemes'
+                 'dashboardThemes',
+                 'datasources'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
