@@ -10143,6 +10143,50 @@ export class GlobalVariableService {
 
     }
 
+    addCanvasUser(data: CanvasUser): Promise<any> {
+        // Description: Adds a new canvasUser
+        // Returns: Added Data or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addCanvasUser ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = 'canvasUsers';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    // Update Global vars to make sure they remain in sync
+                    this.canvasUsers.push(JSON.parse(JSON.stringify(res.data)));
+
+                    if (this.sessionDebugging) {
+                        console.log('addCanvasUser ADDED', this.canvasUsers,
+                            this.canvasUsers)
+                    };
+
+                    resolve(res.data);
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error addCanvasUser FAILED', {err});
+                    };
+
+                    reject(err.message);
+                }
+            )
+        });
+    }
+
     clearCurrentUser() {
         // Description: reset the Global currentUser variable
         if (this.sessionDebugging) {
