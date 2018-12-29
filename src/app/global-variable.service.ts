@@ -7096,18 +7096,20 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let pathUrl: string = 'dataOwnerships';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dataOwnerships.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete(finalUrl + '/' + id, {headers})
+            let pathUrl: string = 'dataOwnerships';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     this.dataOwnerships = this.dataOwnerships.filter(
                         dsp => dsp.id != id
@@ -7127,7 +7129,7 @@ export class GlobalVariableService {
                         console.log('Error deleteDataOwnership FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
@@ -11031,7 +11033,8 @@ export class GlobalVariableService {
                  'dashboardSchedules',
                  'datasourceSchedules',
                  'dashboardsRecent',
-                 'dashboardSubscriptions'
+                 'dashboardSubscriptions',
+                 'dataOwnerships'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
