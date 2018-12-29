@@ -10337,35 +10337,36 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'statusBarMessageLogs';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.statusBarMessageLogs.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
-            .subscribe(
+            let pathUrl: string = 'statusBarMessageLogs';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    this.statusBarMessageLogs.push(JSON.parse(JSON.stringify(res)));
+                    this.statusBarMessageLogs.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
-                        console.log('addstatusBarMessageLogs ADDED', {res}, this.statusBarMessageLogs,
+                        console.log('addstatusBarMessageLogs ADDED', res.data, this.statusBarMessageLogs,
                             this.statusBarMessageLogs)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error addstatusBarMessageLogs FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
@@ -11214,7 +11215,8 @@ export class GlobalVariableService {
                  'datasourcePermissions',
                  'paletteButtonBars',
                  'paletteButtonsSelecteds',
-                 'widgetCheckpoints'
+                 'widgetCheckpoints',
+                 'statusBarMessageLogs'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
