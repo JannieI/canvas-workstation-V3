@@ -120,10 +120,10 @@ export class WidgetTemplateSaveComponent implements OnInit {
                 name: this.widgetStoreTemplateName,
                 description: this.widgetStoreTemplateDescription,
                 datasourceName: '',
-                widgetStoredTemplateCreatedOn: dt,
-                widgetStoredTemplateCreatedBy: this.globalVariableService.currentUser.userID,
-                widgetStoredTemplateUpdatedOn: null,
-                widgetStoredTemplateUpdatedBy: '',
+                createdOn: dt,
+                createdBy: this.globalVariableService.currentUser.userID,
+                updatedOn: null,
+                updatedBy: '',
             };
 
             this.globalVariableService.addWidgetStoredTemplate(newWidgetStoredTemplate)
@@ -138,10 +138,10 @@ export class WidgetTemplateSaveComponent implements OnInit {
                 name: this.widgetStoreTemplateName,
                 description: this.widgetStoreTemplateDescription,
                 datasourceName: this.widgetStoredTemplates[0].datasourceName,
-                widgetStoredTemplateCreatedOn: this.widgetStoredTemplates[0].widgetStoredTemplateCreatedOn,
-                widgetStoredTemplateCreatedBy: this.widgetStoredTemplates[0].widgetStoredTemplateCreatedBy,
-                widgetStoredTemplateUpdatedOn: dt,
-                widgetStoredTemplateUpdatedBy: this.globalVariableService.currentUser.userID,
+                createdOn: this.widgetStoredTemplates[0].createdOn,
+                createdBy: this.widgetStoredTemplates[0].createdBy,
+                updatedOn: dt,
+                updatedBy: this.globalVariableService.currentUser.userID,
             };
 
             this.globalVariableService.saveWidgetStoredTemplate(newWidgetStoredTemplate)

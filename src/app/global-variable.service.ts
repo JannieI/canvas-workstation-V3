@@ -2798,7 +2798,6 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {id});
         };
-        this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
 
@@ -11729,79 +11728,6 @@ export class GlobalVariableService {
 
         })
     }
-
-
-    //         // Example 1
-        //         // nSQL('widgets') //  "users" is our table name.
-        //         // .model([ // Declare data model
-        //         //     {key:'id',type:'int',props:['pk','ai']}, // pk == primary key, ai == auto incriment
-        //         //     {key:'name',type:'string'},
-        //         //     {key:'age', type:'int'}
-        //         // ])
-        //         // .connect() // Init the data store for usage. (only need to do this once)
-        //         // .then(function(result) {
-        //         //     return nSQL().query('upsert',{ // Add a record
-        //         //         id: null, name:"boy", age: 54
-        //         //     }).exec();
-        //         // })
-        //         // .then(function(result) {
-        //         //     return nSQL().query('select').exec(); // select all rows from the current active table
-        //         // })
-        //         // .then(function(result) {
-        //         // })
-
-        //         // Example 2
-        //         // nSQL('users')// Table/Store Name, required to declare model and attach it to this store.
-        //         // .model([ // Data Model, required
-        //         //     {key:'id',type:'int',props:['pk', 'ai']}, // pk == primary key, ai == auto incriment
-        //         //     {key:'name',type:'string'},
-        //         //     {key:'age', type:'int'}
-        //         // ])
-        //         // .config({
-        //         // 	mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-        //         // 	history: true // allow the database to undo/redo changes on the fly.
-        //         // })
-        //         // .actions([ // Optional
-        //         // 	{
-        //         // 		name:'add_new_user',
-        //         // 		args:['user:map'],
-        //         // 		call:function(args, db) {
-        //         // 			return db.query('upsert',args.user).exec();
-        //         // 		}
-        //         // 	}
-        //         // ])
-        //         // .views([ // Optional
-        //         // 	{
-        //         // 		name: 'get_user_by_name',
-        //         // 		args: ['name:string'],
-        //         // 		call: function(args, db) {
-        //         // 			return db.query('select').where(['name','=',args.name]).exec();
-        //         // 		}
-        //         // 	},
-        //         // 	{
-        //         // 		name: 'list_all_users',
-        //         // 		args: ['page:int'],
-        //         // 		call: function(args, db) {
-        //         // 			return db.query('select',['id','name']).exec();
-        //         // 		}
-        //         // 	}
-        //         // ])
-        //         // .connect()
-        //             // .then( conn =>
-        //             // 	nSQL().doAction('add_new_user', { user: { id: null, name:"bill", age: 20 } } )
-        //             // 	.then(first =>
-        //             // 		nSQL().doAction('add_new_user', { user: { id: 4, name:"bambie", age: 21 } } )
-        //             // 		// nSQL().query('upsert',{ // Add a record
-        //             // 		// 	name:"bill", age: 20
-        //             // 		// }).exec()
-        //             // 			.then(second => {
-        //             // 				return nSQL().getView('list_all_users');
-        //             // 			}).then(result => {
-        //             // 			})
-        //             // 		)
-        //             // )
-        //     })
-    // }
 
     refreshCurrentDashboard(
         refreshingRoutine: string,

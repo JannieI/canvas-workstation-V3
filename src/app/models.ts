@@ -1522,13 +1522,13 @@ export class WidgetStoredTemplate {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID
     widgetID: number;                       // FK to Widgets, where all the data is stored
-    name: string                            // Name
+    name: string;                           // Name
     description: string;                    // Description
     datasourceName: string;                 // Added at RunTime
-    widgetStoredTemplateCreatedOn: Date;    // Created on
-    widgetStoredTemplateCreatedBy: string;  // Created by
-    widgetStoredTemplateUpdatedOn: Date;    // Updated on
-    widgetStoredTemplateUpdatedBy: string;  // Updated by
+    createdOn: Date;                        // Created on
+    createdBy: string;                      // Created by
+    updatedOn: Date;                        // Updated on
+    updatedBy: string;                      // Updated by
 }
 
 export class WidgetGraph {
