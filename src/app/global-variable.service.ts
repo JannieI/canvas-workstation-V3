@@ -7433,12 +7433,46 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        this.datasourcePermissions = this.datasourcePermissions.filter(
-            dsp => dsp.id != id
-        );
-        this.currentDatasourcePermissions = this.currentDatasourcePermissions.filter(
-            dsp => dsp.id != id
-        );
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = 'datasourcePermissions';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
+
+
+                    this.datasourcePermissions = this.datasourcePermissions.filter(
+                        dsp => dsp.id != id
+                    );
+                    this.currentDatasourcePermissions = this.currentDatasourcePermissions.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    if (this.sessionDebugging) {
+                        console.log('deleteDatasourcePermission DELETED id: ', {id})
+                    };
+
+                    resolve('Deleted');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDatasourcePermission FAILED', {err});
+                    };
+
+                    reject(err.message);
+                }
+            )
+        });
+
+
     }
 
     getSystemSettings(): Promise<CanvasSettings> {
