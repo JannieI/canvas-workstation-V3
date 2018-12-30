@@ -4173,6 +4173,7 @@ export class GlobalVariableService {
                 {datasourceID}, {datasetID});
         };
 
+        // TODO - go through this logic again !!!
         let pathUrl: string = 'dataset';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasets.json';
@@ -4249,46 +4250,46 @@ export class GlobalVariableService {
             //     });
             // };
 
-            if (dsSourceLocation == 'file') {
-                // TODO - fix this via real http
-                let dataurl: string = this.filePath;
-                this.get(dataurl)
-                    .then(dataFile => {
+            // if (dsSourceLocation == 'file') {
+            //     // TODO - fix this via real http
+            //     let dataurl: string = this.filePath;
+            //     this.get(dataurl)
+            //         .then(dataFile => {
 
-                        let newdSet: Dataset = {
-                            id: datasetID,
-                            datasourceID: datasourceID,
-                            url: pathUrl,
-                            sourceLocation: 'file',
-                            folderName: folderName,
-                            fileName: fileName,
-                            cacheServerStorageID: null,
-                            cacheLocalStorageID: null,
-                            isLocalDirty: null,
-                            data: dataFile,
-                            dataRaw: dataFile
-                        };
+            //             let newdSet: Dataset = {
+            //                 id: datasetID,
+            //                 datasourceID: datasourceID,
+            //                 url: pathUrl,
+            //                 sourceLocation: 'file',
+            //                 folderName: folderName,
+            //                 fileName: fileName,
+            //                 cacheServerStorageID: null,
+            //                 cacheLocalStorageID: null,
+            //                 isLocalDirty: null,
+            //                 data: dataFile,
+            //                 dataRaw: dataFile
+            //             };
 
-                        // // Add to datasets (contains all data) - once
-                        // if (dSetIDs.indexOf(datasetID) < 0) {
-                        //     this.datasets.push(newdSet);
-                        // };
+            //             // // Add to datasets (contains all data) - once
+            //             // if (dSetIDs.indexOf(datasetID) < 0) {
+            //             //     this.datasets.push(newdSet);
+            //             // };
 
-                        // Add to Currentatasets (contains all data) - once
-                        if (dsCurrIDs.indexOf(datasetID) < 0) {
-                            this.currentDatasets.push(newdSet);
-                        };
+            //             // Add to Currentatasets (contains all data) - once
+            //             if (dsCurrIDs.indexOf(datasetID) < 0) {
+            //                 this.currentDatasets.push(newdSet);
+            //             };
 
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
-                                {newdSet}, ', and currentDatasets = ', this.currentDatasets)
-                        };
-                        resolve(newdSet);
-                    }
-                );
-            };
+            //             if (this.sessionDebugging) {
+            //                 console.log('%c    Global-Variables getCurrentDataset 1 from ',
+            //                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            //                     {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
+            //                     {newdSet}, ', and currentDatasets = ', this.currentDatasets)
+            //             };
+            //             resolve(newdSet);
+            //         }
+            //     );
+            // };
 
             if (dsSourceLocation == 'HTTP') {
 
@@ -11381,63 +11382,6 @@ export class GlobalVariableService {
             const params = new HttpParams()
                 .set('orderBy', '"dashboardTabID"')
                 .set('limitToFirst', "1");
-            // const headers = new HttpHeaders()
-            //     .set("Content-Type", "application/json");
-
-            // PUT
-            // this.http.put("/courses/-KgVwECOnlc-LHb_B0cQ.json",
-            // {
-            //     "courseListIcon": ".../main-page-logo-small-hat.png",
-            //     "description": "Angular Tutorial For Beginners TEST",
-            //     "iconUrl": ".../angular2-for-beginners.jpg",
-            //     "longDescription": "...",
-            //     "url": "new-value-for-url"
-            // },
-            // {headers})
-            // .subscribe(
-
-            // MULTIPLE
-            // const parallel$ = Observable.forkJoin(
-            //     this.http.get('/courses/-KgVwEBq5wbFnjj7O8Fp.json'),
-            //     this.http.get('/courses/-KgVwECOnlc-LHb_B0cQ.json')
-            // );
-
-            // parallel$.subscribe(
-
-            // IN SEQUENCE
-            // const sequence$ = this.http.get<Course>(
-            //     '/courses/-KgVwEBq5wbFnjj7O8Fp.json')
-            // .switchMap(course => {
-
-            //     course.description+= ' - TEST ';
-
-            //     return this.http.put(
-            //         '/courses/-KgVwEBq5wbFnjj7O8Fp.json',
-            //         course)
-            // });
-            // sequence$.subscribe();
-
-            // PROGRESS
-            // const req = new HttpRequest('GET', this.url, {
-            //     reportProgress: true
-            //   });
-
-            //   this.http.request(req).subscribe((event: HttpEvent<any>) => {
-            //     switch (event.type) {
-            //       case HttpEventType.Sent:
-            //         console.log('Request sent!');
-            //         break;
-            //       case HttpEventType.ResponseHeader:
-            //         console.log('Response header received!');
-            //         break;
-            //       case HttpEventType.DownloadProgress:
-            //         const kbLoaded = Math.round(event.loaded / 1024);
-            //         console.log(`Download in progress! ${ kbLoaded }Kb loaded`);
-            //         break;
-            //       case HttpEventType.Response:
-            //         console.log('😺 Done!', event.body);
-            //     }
-            //   });
 
             return new Promise((resolve, reject) => {
                 // this.http.get(this.filePath).subscribe(res => resolve(res));
