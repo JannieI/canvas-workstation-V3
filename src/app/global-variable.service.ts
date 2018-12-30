@@ -70,8 +70,9 @@ import { Token }                      from './models';
 // External
 import * as dl                        from 'datalib';
 
+// TODO - delete once certain ...
 // Functions
-import { nSQL } from "nano-sql";
+// import { nSQL } from "nano-sql";
 
 // Environment
 import { environment } from '../environments/environment';
@@ -4495,17 +4496,31 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let pathUrl: string = 'data/' + id.toString();
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasets.json';
+        // OLD
+        // let pathUrl: string = 'data/' + id.toString();
+        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        // this.filePath = './assets/data.datasets.json';
 
+        let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + id.toString()
+
+        // console.log('xx finalUrl', finalUrl)
         return new Promise<Dataset[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             // if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
+              
+                // OLD
+                // this.get(pathUrl)
+                //     .then(res => {
+              
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+                            return;
+                        };
+                        
                         // TODO - load here, or in calling routing
                         // this.datasets[xxx from id].rawData & .data = data;
                         // this.isDirtyDatasets = false;
