@@ -4174,32 +4174,7 @@ export class GlobalVariableService {
 
         let pathUrl: string = 'dataset';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/d            // if (dsSourceLocation == 'localDB') {
-
-            //     this.getLocal('Dataset')
-            //     .then(res => {
-            //         let newdSet: Dataset = res;
-
-            //         // // Add to datasets (contains all data) - once
-            //         // if (dSetIDs.indexOf(datasetID) < 0) {
-            //         //     this.datasets.push(newdSet);
-            //         // };
-
-            //         // Add to Currentatasets (contains all data) - once
-            //         if (dsCurrIDs.indexOf(datasetID) < 0) {
-            //             this.currentDatasets.push(newdSet);
-            //         };
-
-            //         if (this.sessionDebugging) {
-            //             console.log('%c    Global-Variables getCurrentDataset 1 from ',
-            //                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            //                 {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
-            //                 {newdSet}, ', and currentDatasets = ', this.currentDatasets)
-            //         };
-
-            //         resolve(newdSet);
-            //     });
-            // };ata.datasets.json';
+        this.filePath = './assets/data.datasets.json';
 
         // Get list of dSet-ids to make array work easier
         let dsCurrIDs: number[] = [];       // currentDataset IDs
@@ -11966,35 +11941,35 @@ export class GlobalVariableService {
     //     })
     // }
 
-    saveLocal<T>(table: string, row: any): Promise<any> {
-        // Generic saving of row to a table in the localDB
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveLocal for table...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {table});
-        };
+    // saveLocal<T>(table: string, row: any): Promise<any> {
+    //     // Generic saving of row to a table in the localDB
+    //     if (this.sessionDebugging) {
+    //         console.log('%c    Global-Variables saveLocal for table...',
+    //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {table});
+    //     };
 
-        return new Promise((resolve, reject) => {
+    //     return new Promise((resolve, reject) => {
 
-            nSQL(table).query('upsert', row).exec().then(res => {
+    //         nSQL(table).query('upsert', row).exec().then(res => {
 
-                // TODO - we need a better way to update the global vars
-                if (table == 'DashboardSnapshot') {
-                    res.forEach( r => {
-                        r.affectedRows.forEach(ra => {
-                            this.dashboardSnapshots.push(ra);
-                            this.currentDashboardSnapshots.push(ra);
-                        })
-                    });
-                };
-            });
-            // Worked
-            // nSQL(table).connect()
-            // .then(function(result) {
-            //     resolve(nSQL().query('upsert', row).exec());
-            // })
+    //             // TODO - we need a better way to update the global vars
+    //             if (table == 'DashboardSnapshot') {
+    //                 res.forEach( r => {
+    //                     r.affectedRows.forEach(ra => {
+    //                         this.dashboardSnapshots.push(ra);
+    //                         this.currentDashboardSnapshots.push(ra);
+    //                     })
+    //                 });
+    //             };
+    //         });
+    //         // Worked
+    //         // nSQL(table).connect()
+    //         // .then(function(result) {
+    //         //     resolve(nSQL().query('upsert', row).exec());
+    //         // })
 
-        })
-    }
+    //     })
+    // }
 
     refreshCurrentDashboard(
         refreshingRoutine: string,
