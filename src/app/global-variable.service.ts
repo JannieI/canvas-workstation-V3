@@ -11623,286 +11623,287 @@ export class GlobalVariableService {
 
     }
 
-    connectLocalDB<T>(): Promise<string | Object> {
-        // Connect to the local DB, ie nanaSQL
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables connectLocalDB',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
+    // TODO - delete once certain ...
+    // connectLocalDB<T>(): Promise<string | Object> {
+    //     // Connect to the local DB, ie nanaSQL
+    //     if (this.sessionDebugging) {
+    //         console.log('%c    Global-Variables connectLocalDB',
+    //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+    //     };
 
-        return new Promise((resolve, reject) => {
+    //     return new Promise((resolve, reject) => {
 
-            // NB: if you CLEAR the IndexDB in the Browser, and create new records (where
-            // pk = null, and props = ai, then it creates a new record for each one already
-            // in the DB - true story!
-            // TODO - for now, must delete IndexDB in browser, Application when shema changes
-            // TODO - add proper error message if it fails
+    //         // NB: if you CLEAR the IndexDB in the Browser, and create new records (where
+    //         // pk = null, and props = ai, then it creates a new record for each one already
+    //         // in the DB - true story!
+    //         // TODO - for now, must delete IndexDB in browser, Application when shema changes
+    //         // TODO - add proper error message if it fails
 
-            // Users Table
-            nSQL('users')
-            .model ([
-                {key:'id',type:'int', props:['pk','ai']}, // pk == primary key, ai == auto incriment
-                {key:'name',type:'string'},
-                {key:'age', type:'int'}
-            ])
-            .config({
-                id: "CanvasCache",
-                mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-                history: false // allow the database to undo/redo changes on the fly.
-            })
+    //         // Users Table
+    //         nSQL('users')
+    //         .model ([
+    //             {key:'id',type:'int', props:['pk','ai']}, // pk == primary key, ai == auto incriment
+    //             {key:'name',type:'string'},
+    //             {key:'age', type:'int'}
+    //         ])
+    //         .config({
+    //             id: "CanvasCache",
+    //             mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
+    //             history: false // allow the database to undo/redo changes on the fly.
+    //         })
 
-            // DashboardSnapshot Table
-            nSQL('DashboardSnapshot')
-            .model ([
-                {key:'id', type: 'int', props:['pk', 'ai']},
-                {key:'dashboardID', type: 'int'},
-                {key:'name', type: 'string'},
-                {key:'comment', type: 'string'}
-            ])
-            .config({
-                id: "CanvasCache",
-                mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-                history: false // allow the database to undo/redo changes on the fly.
-            })
-            .actions([
-                {
-                    name:'addNewDashboardSnapshot',
-                    args:['row: map'],
-                    call:function(args, db) {
-                        return db.query('upsert',args.row).exec();
-                    }
-                }
-            ])
-            .views([
-                {
-                    name: 'getDashboardSnapshotByID',
-                    args: ['id:int'],
-                    call: function(args, db) {
-                        return db.query('select').where(['id','=',args.id]).exec();
-                    }
-                },
-            ])
+    //         // DashboardSnapshot Table
+    //         nSQL('DashboardSnapshot')
+    //         .model ([
+    //             {key:'id', type: 'int', props:['pk', 'ai']},
+    //             {key:'dashboardID', type: 'int'},
+    //             {key:'name', type: 'string'},
+    //             {key:'comment', type: 'string'}
+    //         ])
+    //         .config({
+    //             id: "CanvasCache",
+    //             mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
+    //             history: false // allow the database to undo/redo changes on the fly.
+    //         })
+    //         .actions([
+    //             {
+    //                 name:'addNewDashboardSnapshot',
+    //                 args:['row: map'],
+    //                 call:function(args, db) {
+    //                     return db.query('upsert',args.row).exec();
+    //                 }
+    //             }
+    //         ])
+    //         .views([
+    //             {
+    //                 name: 'getDashboardSnapshotByID',
+    //                 args: ['id:int'],
+    //                 call: function(args, db) {
+    //                     return db.query('select').where(['id','=',args.id]).exec();
+    //                 }
+    //             },
+    //         ])
 
-            // Dataset Table
-            nSQL('Dataset')
-            .model ([
-                {key:'id', type: 'int', props:['pk', 'ai']},
-                {key:'datasourceID', type: 'int'},
-                {key:'folderName', type: 'string'},
-                {key:'fileName', type: 'string'},
-                {key:'data', type: 'array'},
-                {key:'dataRaw', type: 'array'}
-            ])
-            .config({
-                id: "CanvasCache",
-                mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-                history: false // allow the database to undo/redo changes on the fly.
-            })
-            .actions([
-                {
-                    name:'addNewDataset',
-                    args:['row: map'],
-                    call:function(args, db) {
-                        return db.query('upsert',args.row).exec();
-                    }
-                }
-            ])
-            .views([
-                {
-                    name: 'getDatasetByID',
-                    args: ['id:int'],
-                    call: function(args, db) {
-                        return db.query('select').where(['id','=',args.id]).exec();
-                    }
-                },
-            ])
+    //         // Dataset Table
+    //         nSQL('Dataset')
+    //         .model ([
+    //             {key:'id', type: 'int', props:['pk', 'ai']},
+    //             {key:'datasourceID', type: 'int'},
+    //             {key:'folderName', type: 'string'},
+    //             {key:'fileName', type: 'string'},
+    //             {key:'data', type: 'array'},
+    //             {key:'dataRaw', type: 'array'}
+    //         ])
+    //         .config({
+    //             id: "CanvasCache",
+    //             mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
+    //             history: false // allow the database to undo/redo changes on the fly.
+    //         })
+    //         .actions([
+    //             {
+    //                 name:'addNewDataset',
+    //                 args:['row: map'],
+    //                 call:function(args, db) {
+    //                     return db.query('upsert',args.row).exec();
+    //                 }
+    //             }
+    //         ])
+    //         .views([
+    //             {
+    //                 name: 'getDatasetByID',
+    //                 args: ['id:int'],
+    //                 call: function(args, db) {
+    //                     return db.query('select').where(['id','=',args.id]).exec();
+    //                 }
+    //             },
+    //         ])
 
-            // Widgets Table
-            nSQL('widgets')
-            .model([
-                {key: 'widgetType', 				type: 'string'},
-                {key: 'widgetSubType', 				type: 'string'},
-                {key: 'dashboardID', 				type: 'int'},
-                {key: 'dashboardTabID', 			type: 'int'},
-                {key: 'dashboardTabIDs', 			type: 'array'},
-                {key: 'isLocked', 			        type: 'bool'},
-                {key: 'id', 						type: 'int',		props:['pk','ai']},
-                {key: 'originalID', 				type: 'int',		props:['pk','ai']},
-                {key: 'name', 						type: 'string'},
-                {key: 'description', 				type: 'string'},
-                {key: 'visualGrammar', 				type: 'string'},
-                {key: 'annotation', 				type: 'string'},
-                {key: 'annotationLastUserID', 		type: 'string'},
-                {key: 'annotationLastUpdated', 		type: 'string'},
-                {key: 'version', 					type: 'int'},
-                {key: 'isLiked', 					type: 'bool'},
-                {key: 'isSelected', 				type: 'bool'},
-                {key: 'nrDataQualityIssues', 		type: 'int'},
-                {key: 'nrComments', 				type: 'int'},
-                {key: 'showCheckpoints', 			type: 'bool'},
-                {key: 'checkpointIDs', 			    type: 'array'},
-                {key: 'currentCheckpoint', 			type: 'int'},
-                {key: 'lastCheckpoint', 			type: 'int'},
-                {key: 'hyperlinkDashboardID', 		type: 'int'},
-                {key: 'hyperlinkDashboardTabID', 	type: 'int'},
-                {key: 'containerStyleID',           type: 'int'},
-                {key: 'datasourceID', 				type: 'int'},
-                {key: 'datasetID', 					type: 'int'},
-                {key: 'dataParameters', 			type: 'array'},
-                {key: 'reportID', 					type: 'int'},
-                {key: 'reportName', 				type: 'string'},
-                {key: 'rowLimit', 					type: 'int'},
-                {key: 'addRestRow', 				type: 'bool'},
-                {key: 'size', 						type: 'string'},
-                {key: 'containerBackgroundcolor', 	type: 'string'},
-                {key: 'containerBackgroundcolorName', 	type: 'string'},
-                {key: 'containerBorder', 			type: 'string'},
-                {key: 'containerBorderColourName', 	type: 'string'},
-                {key: 'containerBorderRadius', 	    type: 'string'},
-                {key: 'containerBoxshadow', 		type: 'string'},
-                {key: 'containerFontsize', 			type: 'int'},
-                {key: 'containerHeight', 			type: 'int'},
-                {key: 'containerLeft', 				type: 'int'},
-                {key: 'containerHasContextMenus', 	type: 'bool'},
-                {key: 'containerHasTitle', 		    type: 'bool'},
-                {key: 'containerTop', 				type: 'int'},
-                {key: 'containerWidth', 			type: 'int'},
-                {key: 'containerZindex', 			type: 'int'},
-                {key: 'titleText', 					type: 'string'},
-                {key: 'titleBackgroundColor', 		type: 'string'},
-                {key: 'titleBackgroundColorName',	type: 'string'},
-                {key: 'titleBorder', 				type: 'string'},
-                {key: 'titleBorderName', 			type: 'string'},
-                {key: 'titleColor', 				type: 'string'},
-                {key: 'titleColorName',				type: 'string'},
-                {key: 'titleFontsize', 				type: 'int'},
-                {key: 'titleFontWeight', 			type: 'string'},
-                {key: 'titleHeight', 				type: 'int'},
-                {key: 'titleMargin', 				type: 'string'},
-                {key: 'titlePadding', 				type: 'string'},
-                {key: 'titleTextAlign', 			type: 'string'},
-                {key: 'titleWidth', 				type: 'int'},
-                {key: 'graphType', 					type: 'string'},
-                {key: 'graphHeight', 				type: 'int'},
-                {key: 'graphLeft', 					type: 'int'},
-                {key: 'graphTop', 					type: 'int'},
-                {key: 'graphWidth', 				type: 'int'},
-                {key: 'graphGraphPadding', 			type: 'int'},
-                {key: 'graphHasSignals', 			type: 'bool'},
-                {key: 'graphFillColor', 			type: 'string'},
-                {key: 'graphHoverColor', 			type: 'string'},
-                {key: 'graphSpecification', 		type: 'any'},
-                {key: 'graphDescription', 			type: 'string'},
-                {key: 'graphXaggregate', 			type: 'string'},
-                {key: 'graphXtimeUnit', 			type: 'string'},
-                {key: 'graphXfield', 				type: 'string'},
-                {key: 'graphXtype', 				type: 'string'},
-                {key: 'graphXaxisTitle', 			type: 'string'},
-                {key: 'graphYaggregate', 			type: 'string'},
-                {key: 'graphYtimeUnit', 			type: 'string'},
-                {key: 'graphYfield', 				type: 'string'},
-                {key: 'graphYtype', 				type: 'string'},
-                {key: 'graphYaxisTitle', 			type: 'string'},
-                {key: 'graphTitle', 				type: 'string'},
-                {key: 'graphMark', 					type: 'string'},
-                {key: 'graphUrl', 					type: 'string'},
-                {key: 'graphData', 					type: 'any'},
-                {key: 'graphColorField', 			type: 'string'},
-                {key: 'graphColorType', 			type: 'string'},
-                {key: 'tableBackgroundColor', 		type: 'string'},
-                {key: 'tableBackgroundColorName', 	type: 'string'},
-                {key: 'tableColor', 				type: 'string'},
-                {key: 'tableColorName', 			type: 'string'},
-                {key: 'tableCols', 					type: 'int'},
-                {key: 'fontSize',                   type: 'string'},
-                {key: 'tableHeight', 				type: 'int'},
-                {key: 'tableHideHeader', 			type: 'bool'},
-                {key: 'tableLeft', 					type: 'int'},
-                {key: 'tableLineHeight', 			type: 'int'},
-                {key: 'tableRows', 					type: 'int'},
-                {key: 'tableTop', 					type: 'int'},
-                {key: 'tableWidth', 				type: 'int'},
-                {key: 'slicerAddRest', 				type: 'bool'},
-                {key: 'slicerAddRestValue', 		type: 'bool'},
-                {key: 'slicerBins', 			    type: 'array'},
-                {key: 'slicerColor', 		        type: 'string'},
-                {key: 'slicerFieldName', 			type: 'string'},
-                {key: 'slicerNumberToShow', 		type: 'string'},
-                {key: 'slicerSelection', 			type: 'array'},
-                {key: 'slicerSortField', 			type: 'string'},
-                {key: 'slicerSortFieldOrder', 		type: 'string'},
-                {key: 'slicerType', 				type: 'string'},
-                {key: 'shapeStroke', 				type: 'string'},
-                {key: 'shapeStrokeName', 			type: 'string'},
-                {key: 'shapeStrokeWidth', 			type: 'string'},
-                {key: 'shapeSvgHeight', 			type: 'int'},
-                {key: 'shapeSvgWidth', 			    type: 'int'},
-                {key: 'shapeFill', 					type: 'string'},
-                {key: 'shapeFillName',				type: 'string'},
-                {key: 'shapeText', 					type: 'string'},
-                {key: 'shapeTextDisplay',			type: 'string'},
-                {key: 'shapeTextAlign',				type: 'string'},
-                {key: 'shapeTextColour', 			type: 'string'},
-                {key: 'shapeTextColourName',		type: 'string'},
-                {key: 'shapeValue', 				type: 'string'},
-                {key: 'shapeBullets', 				type: 'string'},
-                {key: 'shapeBulletStyleType', 		type: 'int'},
-                {key: 'shapeBulletsOrdered', 		type: 'bool'},
-                {key: 'shapeBulletMarginBottom', 	type: 'int'},
-                {key: 'shapeOpacity', 				type: 'int'},
-                {key: 'shapeRotation', 				type: 'int'},
-                {key: 'shapeSize', 				    type: 'int'},
-                {key: 'shapeCorner', 				type: 'int'},
-                {key: 'shapeFontSize', 				type: 'int'},
-                {key: 'shapeLineHeight', 			type: 'string'},
-                {key: 'shapeFontFamily', 			type: 'string'},
-                {key: 'shapeIsBold', 				type: 'bool'},
-                {key: 'shapeIsItalic', 				type: 'bool'},
-                {key: 'refreshMode', 				type: 'string'},
-                {key: 'refreshFrequency', 			type: 'int'},
-                {key: 'widgetRefreshedOn', 			type: 'string'},
-                {key: 'widgetRefreshedBy', 			type: 'string'},
-                {key: 'widgetCreatedOn', 			type: 'string'},
-                {key: 'widgetCreatedBy', 			type: 'string'},
-                {key: 'widgetUpdatedOn', 			type: 'string'},
-                {key: 'widgetUpdatedBy', 			type: 'string'}
-            ])
-            .config({
-                id: "CanvasCache",
-                mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-                history: false // allow the database to undo/redo changes on the fly.
-            })
-            .actions([
-                {
-                    name:'addNewWidget',
-                    args:['row: map'],
-                    call:function(args, db) {
-                        return db.query('upsert',args.row).exec();
-                    }
-                }
-            ])
-            .views([
-                {
-                    name: 'getWidgetByID',
-                    args: ['id:int'],
-                    call: function(args, db) {
-                        return db.query('select').where(['id','=',args.id]).exec();
-                    }
-                },
-            ])
-            .connect()
-            .then(db => {
+    //         // Widgets Table
+    //         nSQL('widgets')
+    //         .model([
+    //             {key: 'widgetType', 				type: 'string'},
+    //             {key: 'widgetSubType', 				type: 'string'},
+    //             {key: 'dashboardID', 				type: 'int'},
+    //             {key: 'dashboardTabID', 			type: 'int'},
+    //             {key: 'dashboardTabIDs', 			type: 'array'},
+    //             {key: 'isLocked', 			        type: 'bool'},
+    //             {key: 'id', 						type: 'int',		props:['pk','ai']},
+    //             {key: 'originalID', 				type: 'int',		props:['pk','ai']},
+    //             {key: 'name', 						type: 'string'},
+    //             {key: 'description', 				type: 'string'},
+    //             {key: 'visualGrammar', 				type: 'string'},
+    //             {key: 'annotation', 				type: 'string'},
+    //             {key: 'annotationLastUserID', 		type: 'string'},
+    //             {key: 'annotationLastUpdated', 		type: 'string'},
+    //             {key: 'version', 					type: 'int'},
+    //             {key: 'isLiked', 					type: 'bool'},
+    //             {key: 'isSelected', 				type: 'bool'},
+    //             {key: 'nrDataQualityIssues', 		type: 'int'},
+    //             {key: 'nrComments', 				type: 'int'},
+    //             {key: 'showCheckpoints', 			type: 'bool'},
+    //             {key: 'checkpointIDs', 			    type: 'array'},
+    //             {key: 'currentCheckpoint', 			type: 'int'},
+    //             {key: 'lastCheckpoint', 			type: 'int'},
+    //             {key: 'hyperlinkDashboardID', 		type: 'int'},
+    //             {key: 'hyperlinkDashboardTabID', 	type: 'int'},
+    //             {key: 'containerStyleID',           type: 'int'},
+    //             {key: 'datasourceID', 				type: 'int'},
+    //             {key: 'datasetID', 					type: 'int'},
+    //             {key: 'dataParameters', 			type: 'array'},
+    //             {key: 'reportID', 					type: 'int'},
+    //             {key: 'reportName', 				type: 'string'},
+    //             {key: 'rowLimit', 					type: 'int'},
+    //             {key: 'addRestRow', 				type: 'bool'},
+    //             {key: 'size', 						type: 'string'},
+    //             {key: 'containerBackgroundcolor', 	type: 'string'},
+    //             {key: 'containerBackgroundcolorName', 	type: 'string'},
+    //             {key: 'containerBorder', 			type: 'string'},
+    //             {key: 'containerBorderColourName', 	type: 'string'},
+    //             {key: 'containerBorderRadius', 	    type: 'string'},
+    //             {key: 'containerBoxshadow', 		type: 'string'},
+    //             {key: 'containerFontsize', 			type: 'int'},
+    //             {key: 'containerHeight', 			type: 'int'},
+    //             {key: 'containerLeft', 				type: 'int'},
+    //             {key: 'containerHasContextMenus', 	type: 'bool'},
+    //             {key: 'containerHasTitle', 		    type: 'bool'},
+    //             {key: 'containerTop', 				type: 'int'},
+    //             {key: 'containerWidth', 			type: 'int'},
+    //             {key: 'containerZindex', 			type: 'int'},
+    //             {key: 'titleText', 					type: 'string'},
+    //             {key: 'titleBackgroundColor', 		type: 'string'},
+    //             {key: 'titleBackgroundColorName',	type: 'string'},
+    //             {key: 'titleBorder', 				type: 'string'},
+    //             {key: 'titleBorderName', 			type: 'string'},
+    //             {key: 'titleColor', 				type: 'string'},
+    //             {key: 'titleColorName',				type: 'string'},
+    //             {key: 'titleFontsize', 				type: 'int'},
+    //             {key: 'titleFontWeight', 			type: 'string'},
+    //             {key: 'titleHeight', 				type: 'int'},
+    //             {key: 'titleMargin', 				type: 'string'},
+    //             {key: 'titlePadding', 				type: 'string'},
+    //             {key: 'titleTextAlign', 			type: 'string'},
+    //             {key: 'titleWidth', 				type: 'int'},
+    //             {key: 'graphType', 					type: 'string'},
+    //             {key: 'graphHeight', 				type: 'int'},
+    //             {key: 'graphLeft', 					type: 'int'},
+    //             {key: 'graphTop', 					type: 'int'},
+    //             {key: 'graphWidth', 				type: 'int'},
+    //             {key: 'graphGraphPadding', 			type: 'int'},
+    //             {key: 'graphHasSignals', 			type: 'bool'},
+    //             {key: 'graphFillColor', 			type: 'string'},
+    //             {key: 'graphHoverColor', 			type: 'string'},
+    //             {key: 'graphSpecification', 		type: 'any'},
+    //             {key: 'graphDescription', 			type: 'string'},
+    //             {key: 'graphXaggregate', 			type: 'string'},
+    //             {key: 'graphXtimeUnit', 			type: 'string'},
+    //             {key: 'graphXfield', 				type: 'string'},
+    //             {key: 'graphXtype', 				type: 'string'},
+    //             {key: 'graphXaxisTitle', 			type: 'string'},
+    //             {key: 'graphYaggregate', 			type: 'string'},
+    //             {key: 'graphYtimeUnit', 			type: 'string'},
+    //             {key: 'graphYfield', 				type: 'string'},
+    //             {key: 'graphYtype', 				type: 'string'},
+    //             {key: 'graphYaxisTitle', 			type: 'string'},
+    //             {key: 'graphTitle', 				type: 'string'},
+    //             {key: 'graphMark', 					type: 'string'},
+    //             {key: 'graphUrl', 					type: 'string'},
+    //             {key: 'graphData', 					type: 'any'},
+    //             {key: 'graphColorField', 			type: 'string'},
+    //             {key: 'graphColorType', 			type: 'string'},
+    //             {key: 'tableBackgroundColor', 		type: 'string'},
+    //             {key: 'tableBackgroundColorName', 	type: 'string'},
+    //             {key: 'tableColor', 				type: 'string'},
+    //             {key: 'tableColorName', 			type: 'string'},
+    //             {key: 'tableCols', 					type: 'int'},
+    //             {key: 'fontSize',                   type: 'string'},
+    //             {key: 'tableHeight', 				type: 'int'},
+    //             {key: 'tableHideHeader', 			type: 'bool'},
+    //             {key: 'tableLeft', 					type: 'int'},
+    //             {key: 'tableLineHeight', 			type: 'int'},
+    //             {key: 'tableRows', 					type: 'int'},
+    //             {key: 'tableTop', 					type: 'int'},
+    //             {key: 'tableWidth', 				type: 'int'},
+    //             {key: 'slicerAddRest', 				type: 'bool'},
+    //             {key: 'slicerAddRestValue', 		type: 'bool'},
+    //             {key: 'slicerBins', 			    type: 'array'},
+    //             {key: 'slicerColor', 		        type: 'string'},
+    //             {key: 'slicerFieldName', 			type: 'string'},
+    //             {key: 'slicerNumberToShow', 		type: 'string'},
+    //             {key: 'slicerSelection', 			type: 'array'},
+    //             {key: 'slicerSortField', 			type: 'string'},
+    //             {key: 'slicerSortFieldOrder', 		type: 'string'},
+    //             {key: 'slicerType', 				type: 'string'},
+    //             {key: 'shapeStroke', 				type: 'string'},
+    //             {key: 'shapeStrokeName', 			type: 'string'},
+    //             {key: 'shapeStrokeWidth', 			type: 'string'},
+    //             {key: 'shapeSvgHeight', 			type: 'int'},
+    //             {key: 'shapeSvgWidth', 			    type: 'int'},
+    //             {key: 'shapeFill', 					type: 'string'},
+    //             {key: 'shapeFillName',				type: 'string'},
+    //             {key: 'shapeText', 					type: 'string'},
+    //             {key: 'shapeTextDisplay',			type: 'string'},
+    //             {key: 'shapeTextAlign',				type: 'string'},
+    //             {key: 'shapeTextColour', 			type: 'string'},
+    //             {key: 'shapeTextColourName',		type: 'string'},
+    //             {key: 'shapeValue', 				type: 'string'},
+    //             {key: 'shapeBullets', 				type: 'string'},
+    //             {key: 'shapeBulletStyleType', 		type: 'int'},
+    //             {key: 'shapeBulletsOrdered', 		type: 'bool'},
+    //             {key: 'shapeBulletMarginBottom', 	type: 'int'},
+    //             {key: 'shapeOpacity', 				type: 'int'},
+    //             {key: 'shapeRotation', 				type: 'int'},
+    //             {key: 'shapeSize', 				    type: 'int'},
+    //             {key: 'shapeCorner', 				type: 'int'},
+    //             {key: 'shapeFontSize', 				type: 'int'},
+    //             {key: 'shapeLineHeight', 			type: 'string'},
+    //             {key: 'shapeFontFamily', 			type: 'string'},
+    //             {key: 'shapeIsBold', 				type: 'bool'},
+    //             {key: 'shapeIsItalic', 				type: 'bool'},
+    //             {key: 'refreshMode', 				type: 'string'},
+    //             {key: 'refreshFrequency', 			type: 'int'},
+    //             {key: 'widgetRefreshedOn', 			type: 'string'},
+    //             {key: 'widgetRefreshedBy', 			type: 'string'},
+    //             {key: 'widgetCreatedOn', 			type: 'string'},
+    //             {key: 'widgetCreatedBy', 			type: 'string'},
+    //             {key: 'widgetUpdatedOn', 			type: 'string'},
+    //             {key: 'widgetUpdatedBy', 			type: 'string'}
+    //         ])
+    //         .config({
+    //             id: "CanvasCache",
+    //             mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
+    //             history: false // allow the database to undo/redo changes on the fly.
+    //         })
+    //         .actions([
+    //             {
+    //                 name:'addNewWidget',
+    //                 args:['row: map'],
+    //                 call:function(args, db) {
+    //                     return db.query('upsert',args.row).exec();
+    //                 }
+    //             }
+    //         ])
+    //         .views([
+    //             {
+    //                 name: 'getWidgetByID',
+    //                 args: ['id:int'],
+    //                 call: function(args, db) {
+    //                     return db.query('select').where(['id','=',args.id]).exec();
+    //                 }
+    //             },
+    //         ])
+    //         .connect()
+    //         .then(db => {
 
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables connectLocalDB',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {db})
-                };
+    //             if (this.sessionDebugging) {
+    //                 console.log('%c    Global-Variables connectLocalDB',
+    //                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {db})
+    //             };
 
-                resolve(db)
+    //             resolve(db)
 
-            })
-        })
-    }
+    //         })
+    //     })
+    // }
 
     getLocal<T>(table: string, params?: any): Promise<any> {
         // Generic retrieval of data from localDB
