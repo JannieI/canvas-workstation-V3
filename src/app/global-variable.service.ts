@@ -4292,8 +4292,13 @@ export class GlobalVariableService {
 
             if (dsSourceLocation == 'HTTP') {
 
-                this.get(pathUrl)
-                    .then(dataFile => {
+                let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + datasetID.toString()
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+                            return;
+                        };
 
                         let newdSet: Dataset = {
                             id: datasetID,
@@ -4305,8 +4310,8 @@ export class GlobalVariableService {
                             cacheServerStorageID: null,
                             cacheLocalStorageID: null,
                             isLocalDirty: null,
-                            data: dataFile.data,
-                            dataRaw: dataFile.data
+                            data: res.data,
+                            dataRaw: res.data
                         };
 
                         // // Add to datasets (contains all data) - once
