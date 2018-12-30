@@ -11905,40 +11905,40 @@ export class GlobalVariableService {
     //     })
     // }
 
-    getLocal<T>(table: string, params?: any): Promise<any> {
-        // Generic retrieval of data from localDB
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getLocal for table, params...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {table}, {params});
-        };
+    // getLocal<T>(table: string, params?: any): Promise<any> {
+    //     // Generic retrieval of data from localDB
+    //     if (this.sessionDebugging) {
+    //         console.log('%c    Global-Variables getLocal for table, params...',
+    //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+    //             {table}, {params});
+    //     };
 
-        return new Promise((resolve, reject) => {
+    //     return new Promise((resolve, reject) => {
 
-            nSQL(table).query('select').exec()
-            .then( result => {
+    //         nSQL(table).query('select').exec()
+    //         .then( result => {
 
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getLocal result',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {result}) // <= arrayid:1, name:"bill", age: 20}]
-                };
+    //             if (this.sessionDebugging) {
+    //                 console.log('%c    Global-Variables getLocal result',
+    //                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+    //                     {result}) // <= arrayid:1, name:"bill", age: 20}]
+    //             };
 
-                resolve(result)
-            })
+    //             resolve(result)
+    //         })
 
-            // Worked
-            // nSQL(table).connect()
-            // .then(function(result) {
-            //     return nSQL().query('select').exec(); // select all rows from the current active table
-            // })
-            // .then(function(result) {
-            //     console.log('%c    Global-Variables getLocal result', result) // <= arrayid:1, name:"bill", age: 20}]
-            //     resolve(result)
-            // })
+    //         // Worked
+    //         // nSQL(table).connect()
+    //         // .then(function(result) {
+    //         //     return nSQL().query('select').exec(); // select all rows from the current active table
+    //         // })
+    //         // .then(function(result) {
+    //         //     console.log('%c    Global-Variables getLocal result', result) // <= arrayid:1, name:"bill", age: 20}]
+    //         //     resolve(result)
+    //         // })
 
-        })
-    }
+    //     })
+    // }
 
     saveLocal<T>(table: string, row: any): Promise<any> {
         // Generic saving of row to a table in the localDB
