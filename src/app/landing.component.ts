@@ -43,13 +43,13 @@ export class LandingComponent implements OnInit {
 		// Load Startup info:
 
 		// Create DB models and connect
-		this.globalVariableService.connectLocalDB().then(i => {
-			if (i != '') {
-				console.log('Successfuly Connected to localDB in Landing page Constructor');
-			} else {
-				console.log('Connection to localDB in Landing page FAILED');
-			}
-		});
+		// this.globalVariableService.connectLocalDB().then(i => {
+		// 	if (i != '') {
+		// 		console.log('Successfuly Connected to localDB in Landing page Constructor');
+		// 	} else {
+		// 		console.log('Connection to localDB in Landing page FAILED');
+		// 	}
+		// });
 
 		// All Datasources
 		this.globalVariableService.getDatasources();
