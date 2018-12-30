@@ -4174,7 +4174,32 @@ export class GlobalVariableService {
 
         let pathUrl: string = 'dataset';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasets.json';
+        this.filePath = './assets/d            // if (dsSourceLocation == 'localDB') {
+
+            //     this.getLocal('Dataset')
+            //     .then(res => {
+            //         let newdSet: Dataset = res;
+
+            //         // // Add to datasets (contains all data) - once
+            //         // if (dSetIDs.indexOf(datasetID) < 0) {
+            //         //     this.datasets.push(newdSet);
+            //         // };
+
+            //         // Add to Currentatasets (contains all data) - once
+            //         if (dsCurrIDs.indexOf(datasetID) < 0) {
+            //             this.currentDatasets.push(newdSet);
+            //         };
+
+            //         if (this.sessionDebugging) {
+            //             console.log('%c    Global-Variables getCurrentDataset 1 from ',
+            //                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            //                 {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
+            //                 {newdSet}, ', and currentDatasets = ', this.currentDatasets)
+            //         };
+
+            //         resolve(newdSet);
+            //     });
+            // };ata.datasets.json';
 
         // Get list of dSet-ids to make array work easier
         let dsCurrIDs: number[] = [];       // currentDataset IDs
@@ -4219,33 +4244,34 @@ export class GlobalVariableService {
                 };
             };
 
+            // TODO - delete once certain
             // Get data from the correct place
-            if (dsSourceLocation == 'localDB') {
+            // if (dsSourceLocation == 'localDB') {
 
-                this.getLocal('Dataset')
-                .then(res => {
-                    let newdSet: Dataset = res;
+            //     this.getLocal('Dataset')
+            //     .then(res => {
+            //         let newdSet: Dataset = res;
 
-                    // // Add to datasets (contains all data) - once
-                    // if (dSetIDs.indexOf(datasetID) < 0) {
-                    //     this.datasets.push(newdSet);
-                    // };
+            //         // // Add to datasets (contains all data) - once
+            //         // if (dSetIDs.indexOf(datasetID) < 0) {
+            //         //     this.datasets.push(newdSet);
+            //         // };
 
-                    // Add to Currentatasets (contains all data) - once
-                    if (dsCurrIDs.indexOf(datasetID) < 0) {
-                        this.currentDatasets.push(newdSet);
-                    };
+            //         // Add to Currentatasets (contains all data) - once
+            //         if (dsCurrIDs.indexOf(datasetID) < 0) {
+            //             this.currentDatasets.push(newdSet);
+            //         };
 
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
-                            {newdSet}, ', and currentDatasets = ', this.currentDatasets)
-                    };
+            //         if (this.sessionDebugging) {
+            //             console.log('%c    Global-Variables getCurrentDataset 1 from ',
+            //                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            //                 {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
+            //                 {newdSet}, ', and currentDatasets = ', this.currentDatasets)
+            //         };
 
-                    resolve(newdSet);
-                });
-            };
+            //         resolve(newdSet);
+            //     });
+            // };
 
             if (dsSourceLocation == 'file') {
                 // TODO - fix this via real http
