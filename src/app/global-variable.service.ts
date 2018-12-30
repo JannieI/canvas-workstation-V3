@@ -1729,11 +1729,37 @@ export class GlobalVariableService {
                 };
                 console.warn('xx return from HTTP')
 
+
+
+
+                // let pathUrl: string = 'dashboards' + params;
+                // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                // this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                //     res  => {
+                //         if(res.statusCode != 'success') {
+                //             reject(res.message);
+				// 			return;
+                //         };
+
+                //         this.dashboards = res.data;
+
+
+
+
                 // Get from HTTP server
                 let pathUrl: string = tableName + params;
 
-                this.get(pathUrl)
-                    .then(res => {
+                // this.get(pathUrl)
+                //     .then(res => {
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        let data = res.data;
 
                         console.warn('xx vars', dataCachingTableIndex, localCacheableMemory, localCacheableDisc, localVariableName);
 
@@ -1750,7 +1776,7 @@ export class GlobalVariableService {
                                 if (localVariableName != null) {
                                     console.warn('xx updated VAR');
                                     this[localVariableName] = [];
-                                    this[localVariableName] = res;
+                                    this[localVariableName] = data;
                                     console.warn('xx dashboards', this.dashboards)
                                 };
 
@@ -1758,7 +1784,7 @@ export class GlobalVariableService {
                                 if (localTableName != null) {
 
                                     this.dbCanvasAppDatabase.table(localTableName)
-                                    .bulkPut(res)
+                                    .bulkPut(data)
                                     .then(resPut => {
                                         console.warn('xx after bulkPut', resPut);
 
@@ -1772,9 +1798,13 @@ export class GlobalVariableService {
                             };
                         };
 
-                        resolve(res);
+                        resolve(data);
                         return;
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
 
 
                 // if (this.dashboards == []) {
@@ -1783,7 +1813,7 @@ export class GlobalVariableService {
                 //     reject([])
                 // };
 
-        })
+        });
     }
 
     getDashboards(params: string = ''): Promise<Dashboard[]> {
@@ -11458,12 +11488,6 @@ export class GlobalVariableService {
             baseUrl = 'http://localhost:3001/';
         } else if (pathUrl == 'widgetGraphs') {
             baseUrl = 'http://localhost:3001/';
-        // } else if (pathUrl == 'dashboardSnapshots') {
-        //     baseUrl = 'http://localhost:3000/';
-        // } else if (pathUrl == 'widgetCheckpoints') {
-        //     baseUrl = 'http://localhost:3000/';
-        // } else if (pathUrl == 'datasets') {
-        //     baseUrl = 'http://localhost:3000/';
         } else if (pathUrl == 'statusBarMessageLogs') {
             baseUrl = 'http://localhost:3002/';
         } else if (pathUrl == 'canvasAuditTrails') {
@@ -11513,32 +11537,32 @@ export class GlobalVariableService {
                  'dashboards',
                  'dashboardScheduleLog',
                  'dashboardSchedules',
-                 'datasourceSchedules',
+                 'dashboardSnapshots',
                  'dashboardsRecent',
                  'dashboardSubscriptions',
-                 'dataOwnerships',
                  'dashboardTabs',
                  'dashboardTags',
                  'dashboardThemes',
-                 'datasources',
-                 'dataQualityIssues',
-                 'dataOwnerships',
-                 'datasourcePermissions',
-                 'paletteButtonBars',
-                 'paletteButtonsSelecteds',
-                 'widgetCheckpoints',
-                 'statusBarMessageLogs',
-                 'widgetLayouts',
-                 'widgetStoredTemplates',
+                 'dataCachingTable',
                  'dataConnections',
+                 'dataFields',
+                 'dataOwnerships',
+                 'dataQualityIssues',
+                 'datasets',
+                 'datasourcePermissions',
+                 'datasources',
+                 'datasourceSchedules',
+                 'datasourceScheduleLog',
                  'datasourceTransformations',
                  'dataTables',
-                 'dataFields',
-                 'datasets',
-                 'datasourceScheduleLog',
+                 'paletteButtonBars',
+                 'paletteButtonsSelecteds',
+                 'statusBarMessageLogs',
+                 'transformations',
+                 'widgetCheckpoints',
                  'widgetGraphs',
-                 'dashboardSnapshots',
-                 'dataCachingTable'
+                 'widgetLayouts',
+                 'widgetStoredTemplates'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 console.log('xx 2 XXXXXXXX', baseUrl)
