@@ -1479,6 +1479,8 @@ export class GlobalVariableService {
                             serverLastUpdatedDateTime,
                         serverThresholdLines: this.dataCachingTable[dataCachingTableIndex].
                             serverThresholdLines,
+                        serverLifeSpan: this.dataCachingTable[dataCachingTableIndex]. 
+                            serverLifeSpan,
                         serverExpiryDateTime: this.dataCachingTable[dataCachingTableIndex].serverExpiryDateTime,
                         serverLastWSsequenceNr: this.dataCachingTable[dataCachingTableIndex].
                             serverLastWSsequenceNr,
@@ -1489,6 +1491,8 @@ export class GlobalVariableService {
                         localThresholdLines: this.dataCachingTable[dataCachingTableIndex].
                             localThresholdLines,
                         localLastUpdatedDateTime: new Date(),
+                        localLifeSpan: this.dataCachingTable[dataCachingTableIndex]. 
+                            localLifeSpan,
                         localExpiryDateTime: webSocketMessage.newLocalExpiryDateTime,
                         localVariableName: this.dataCachingTable[dataCachingTableIndex].
                             localVariableName,

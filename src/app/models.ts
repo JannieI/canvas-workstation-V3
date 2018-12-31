@@ -473,6 +473,7 @@ export class DataCachingTable {
     serverCacheableDisc: boolean;           // True if cached on server on Disc (DB)
     serverThresholdLines: number;           // Max Nr lines that may be cached on Server
     serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
+    serverLifeSpan: number;                 // Period in seconds before Server cache must be refreshed
     serverExpiryDateTime: Date;             // When cache expires on server
     serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
     serverVariableName: string;             // VariableName for the data on the server
@@ -480,6 +481,7 @@ export class DataCachingTable {
     localCacheableDisc: boolean;            // True if cached locally, ie IndexedDB on Disc (DB)
     localThresholdLines: number;            // Max Nr lines that may be cached on Workstation
     localLastUpdatedDateTime: Date;         // When local cache last refreshed
+    localLifeSpan: number;                  // Period in seconds before Workstation cache must be refreshed
     localExpiryDateTime: Date;              // When local cache expries
     localVariableName: string;              // Optional name of memory variable
     localCurrentVariableName: string;       // Optional name of memory current variable
@@ -1603,7 +1605,7 @@ export class CanvasHttpResponse {
             "median": number;
             "min": number;
             "sum": number;
-        }
+        }[]
     }
     "data": any;                            // Data returned, ie Json Array
     "error": {                              // If statusCode = 'error', gives Error detail, else null
