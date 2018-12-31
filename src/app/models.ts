@@ -475,7 +475,7 @@ export class DataCachingTable {
     serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
     serverExpiryDateTime: Date;             // When cache expires on server
     serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
-    serverUrl: string;                      // URL of the data on the server
+    serverVariableName: string;             // VariableName for the data on the server
     localCacheableMemory: boolean;          // True if cached locally, ie IndexedDB in RAM
     localCacheableDisc: boolean;            // True if cached locally, ie IndexedDB on Disc (DB)
     localThresholdLines: number;            // Max Nr lines that may be cached on Workstation

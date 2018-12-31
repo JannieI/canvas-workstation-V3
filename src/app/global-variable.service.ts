@@ -1482,8 +1482,8 @@ export class GlobalVariableService {
                         serverExpiryDateTime: this.dataCachingTable[dataCachingTableIndex].serverExpiryDateTime,
                         serverLastWSsequenceNr: this.dataCachingTable[dataCachingTableIndex].
                             serverLastWSsequenceNr,
-                        serverUrl: this.dataCachingTable[dataCachingTableIndex].
-                            serverUrl,
+                        serverVariableName: this.dataCachingTable[dataCachingTableIndex].
+                            serverVariableName,
                         localCacheableMemory: this.dataCachingTable[dataCachingTableIndex].localCacheableMemory,
                         localCacheableDisc: this.dataCachingTable[dataCachingTableIndex].localCacheableDisc,
                         localThresholdLines: this.dataCachingTable[dataCachingTableIndex].
