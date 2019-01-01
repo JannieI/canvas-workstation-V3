@@ -1774,10 +1774,13 @@ export class GlobalVariableService {
                         if (dataCachingTableIndex >= 0) {
 
                             // Update Expiry Date
-                            // TODO - fix hardcode
-                            let dt = new Date();
+                            let dt: Date = new Date();
+                            let seconds: number = 86400;
+                            if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
+                                seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
+                            };
                             this.dataCachingTable[dataCachingTableIndex]
-                                .localExpiryDateTime = this.dateAdd(dt, 'second', 86400);
+                                .localExpiryDateTime = this.dateAdd(dt, 'second', seconds);
 console.log('xx expDt', this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
                             if (localCacheableMemory) {
 
@@ -1794,17 +1797,17 @@ console.log('xx expDt', this.dataCachingTable[dataCachingTableIndex].localExpiry
                                     this.dbCanvasAppDatabase = new CanvasAppDatabase
                                     this.dbCanvasAppDatabase.open();
                             
-                                //     this.dbCanvasAppDatabase.table(localTableName)
-                                //     .bulkPut(data)
-                                //     .then(resPut => {
-                                //         console.warn('xx after bulkPut', resPut);
+                                    this.dbCanvasAppDatabase.table(localTableName)
+                                    .bulkPut(data)
+                                    .then(resPut => {
+                                        console.warn('xx after bulkPut', resPut);
 
-                                //         // Count
-                                //         this.dbCanvasAppDatabase.table(localTableName)
-                                //             .count(resCount => {
-                                //                 console.warn('xx with count of', resCount);
-                                //         });
-                                //     });
+                                        // Count
+                                        this.dbCanvasAppDatabase.table(localTableName)
+                                            .count(resCount => {
+                                                console.warn('xx with count of', resCount);
+                                        });
+                                    });
                                 };
                             };
                         };
