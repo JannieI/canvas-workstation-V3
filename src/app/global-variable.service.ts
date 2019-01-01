@@ -1781,17 +1781,18 @@ export class GlobalVariableService {
                             };
                             this.dataCachingTable[dataCachingTableIndex]
                                 .localExpiryDateTime = this.dateAdd(dt, 'second', seconds);
-console.log('xx expDt', this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
-                            if (localCacheableMemory) {
 
-                                // Fill local Var
+                                if (localCacheableMemory) {
+
+                                // Fill local Vars
                                 if (localVariableName != null) {
-                                    console.warn('xx updated VAR');
+                                    console.warn('xx updated cached local VAR');
                                     this[localVariableName] = [];
                                     this[localVariableName] = data;
-                                    console.warn('xx dashboards', this.dashboards)
                                 };
 
+                                // TODO - should we fill Current Var here a well?
+                                
                                 // Fill local Table
                                 if (localTableName != null) {
                                     this.dbCanvasAppDatabase = new CanvasAppDatabase
