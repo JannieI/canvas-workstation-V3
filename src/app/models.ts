@@ -469,24 +469,24 @@ export class DataCachingTable {
     _id?: string;                           // Mongo ID (read only)
     key: string;                            // Unique key
     objectID: number;                       // Optional record ID, ie for Data
+    localCacheableDisc: boolean;            // True if cached locally, ie IndexedDB on Disc (DB)
+    localCacheableMemory: boolean;          // True if cached locally, ie IndexedDB in RAM
+    localCurrentVariableName: string;       // Optional name of memory current variable
+    localExpiryDateTime: Date;              // When local cache expries
+    localLastUpdatedDateTime: Date;         // When local cache last refreshed
+    localLastWebSocketNumber: number;       // Last WS number processed
+    localLifeSpan: number;                  // Period in seconds before Workstation cache must be refreshed
+    localTableName: string;                 // Optional name of Table in IndexedDB
+    localThresholdLines: number;            // Max Nr lines that may be cached on Workstation
+    localVariableName: string;              // Optional name of memory variable
     serverCacheableMemory: boolean;         // True if cached on server in RAM
     serverCacheableDisc: boolean;           // True if cached on server on Disc (DB)
-    serverThresholdLines: number;           // Max Nr lines that may be cached on Server
-    serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
-    serverLifeSpan: number;                 // Period in seconds before Server cache must be refreshed
     serverExpiryDateTime: Date;             // When cache expires on server
+    serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
     serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
+    serverLifeSpan: number;                 // Period in seconds before Server cache must be refreshed
+    serverThresholdLines: number;           // Max Nr lines that may be cached on Server
     serverVariableName: string;             // VariableName for the data on the server
-    localCacheableMemory: boolean;          // True if cached locally, ie IndexedDB in RAM
-    localCacheableDisc: boolean;            // True if cached locally, ie IndexedDB on Disc (DB)
-    localThresholdLines: number;            // Max Nr lines that may be cached on Workstation
-    localLastUpdatedDateTime: Date;         // When local cache last refreshed
-    localLifeSpan: number;                  // Period in seconds before Workstation cache must be refreshed
-    localExpiryDateTime: Date;              // When local cache expries
-    localVariableName: string;              // Optional name of memory variable
-    localCurrentVariableName: string;       // Optional name of memory current variable
-    localTableName: string;                 // Optional name of Table in IndexedDB
-    localLastWebSocketNumber: number;       // Last WS number processed
 }
 
 export class DatasourceFilter {

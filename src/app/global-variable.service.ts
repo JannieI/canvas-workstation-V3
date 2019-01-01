@@ -1673,7 +1673,7 @@ export class GlobalVariableService {
                 );
 
                 if (dataCachingTableIndex >= 0) {
-
+                    console.log('xx inside IF')
                     // Get var and table names
                     localVariableName = this.dataCachingTable
                         [dataCachingTableIndex].localVariableName;
@@ -1687,6 +1687,7 @@ export class GlobalVariableService {
                     localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
 
                     if (localCacheableMemory) {
+                        console.log('xx is CACHEable')
 
                         // Fresh if not expired as yet
                         let dn: Date = new Date();
@@ -1702,6 +1703,8 @@ export class GlobalVariableService {
 
                         // Use local cache variable or table if fresh
                         if (isFresh) {
+                console.log('xx is FRESH')
+
                             if ( (localVariableName != null)
                                  &&
                                  (this[localVariableName].length != 0)
@@ -1771,9 +1774,11 @@ export class GlobalVariableService {
                         if (dataCachingTableIndex >= 0) {
 
                             // Update Expiry Date
+                            // TODO - fix hardcode
+                            let dt = new Date();
                             this.dataCachingTable[dataCachingTableIndex]
-                                .localExpiryDateTime = new Date();
-
+                                .localExpiryDateTime = this.dateAdd(dt, 'second', 86400);
+console.log('xx expDt', this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
                             if (localCacheableMemory) {
 
                                 // Fill local Var
@@ -1786,18 +1791,20 @@ export class GlobalVariableService {
 
                                 // Fill local Table
                                 if (localTableName != null) {
+                                    this.dbCanvasAppDatabase = new CanvasAppDatabase
+                                    this.dbCanvasAppDatabase.open();
+                            
+                                //     this.dbCanvasAppDatabase.table(localTableName)
+                                //     .bulkPut(data)
+                                //     .then(resPut => {
+                                //         console.warn('xx after bulkPut', resPut);
 
-                                    this.dbCanvasAppDatabase.table(localTableName)
-                                    .bulkPut(data)
-                                    .then(resPut => {
-                                        console.warn('xx after bulkPut', resPut);
-
-                                        // Count
-                                        this.dbCanvasAppDatabase.table(localTableName)
-                                            .count(resCount => {
-                                                console.warn('xx with count of', resCount);
-                                        });
-                                    });
+                                //         // Count
+                                //         this.dbCanvasAppDatabase.table(localTableName)
+                                //             .count(resCount => {
+                                //                 console.warn('xx with count of', resCount);
+                                //         });
+                                //     });
                                 };
                             };
                         };
@@ -11605,7 +11612,6 @@ export class GlobalVariableService {
                             this.dataCachingTable)
                     };
 
-                    // return this.dataCachingTable;
                     resolve(this.dataCachingTable);
                 },
                 err => {
