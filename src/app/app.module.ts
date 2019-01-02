@@ -154,6 +154,8 @@ import { AuthGuard }                  from './authguard.service';
 import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { ExcelService }               from './excel.service';
+import { WebsocketService }           from './webSocket.service'
+import { WebSocketChatService }       from './webSocketChat.service'
 
 // Testing
 import { DelayDirective }             from './test.delay.directive';
@@ -313,6 +315,8 @@ import { StatusbarComponent }         from './statusbar.component';
         GlobalVariableService,
         GlobalFunctionService,
         ExcelService,
+        WebsocketService,
+        WebSocketChatService,
 
     ],
     bootstrap: [AppComponent]
