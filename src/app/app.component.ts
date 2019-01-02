@@ -44,6 +44,7 @@ import { StatusbarComponent }         from './statusbar.component';
 // WS
 import { WebSocketSubject }           from 'rxjs/webSocket';
 // import { WebSocketChatService }       from './webSocketChat.service'
+// Websocket Server
 import * as io                        from 'socket.io-client';
 
 // Local Data - Dexie
@@ -432,7 +433,8 @@ export class AppComponent implements OnInit {
 
     // private webSocketChat: WebSocketChatService,
 
-
+    // Create the socket (on the web socket Server) on the correct port (which is same as the
+    // HTTP url as the web socket Server listens to the HTTP server traffic)
     socket = io('http://localhost:8000');
 
 
@@ -445,6 +447,7 @@ export class AppComponent implements OnInit {
         private router: Router,
     ) {
         this.socket$ = WebSocketSubject.create('ws://localhost:8999');
+        // Add /admin to join the /admin namespace
 
         // Subscribe to WS
         this.socket$.subscribe(
@@ -464,12 +467,58 @@ export class AppComponent implements OnInit {
 
 
 
-        console.log('xx socket', this.socket)
+        console.log('xx socket oject', this.socket)
         this.socket.on('connect', (data) => {
-            console.log('xx socket connect', data);
+
+            // ,on registers a new handler for the given event name.  The callback will get 
+            // whatever data was sent over by the server, ie message below.
             this.socket.on('welcome', (message) => {
-                console.log('xx socket message', message)
+                console.log('xx socket welcome message', message)
             });
+
+            // Join the Canvas room.  All clients belong to this room, but with socket.to(room).emit(), 
+            // the message is send to all clients, except this socket (sender).  Makes it easier since
+            // the client does not have to cater for it receiving its own messages
+            this.socket.join('Canvas');
+
+            // Standard events
+            this.socket.on('connect_error', (error) => {
+                console.log('xx socket connect_error', error)
+            });
+            this.socket.on('connect_timeout', (timeout) => {
+                console.log('xx socket connect_timeout', timeout)
+            });
+            this.socket.on('error', (error) => {
+                console.log('xx socket error', error)
+            });
+            this.socket.on('disconnect', (reason) => {
+                console.log('xx socket disconnect', reason)
+            });
+            this.socket.on('reconnect_attempt', (attemptNumber) => {
+                console.log('xx socket reconnect_attempt', attemptNumber)
+            });
+            this.socket.on('reconnecting', (attemptNumber) => {
+                console.log('xx socket disconnect', attemptNumber)
+            });
+            this.socket.on('reconnect_error', (error) => {
+                console.log('xx socket reconnect_error', error)
+            });
+            this.socket.on('reconnect_failed', () => {
+                console.log('xx socket reconnect_failed')
+            });
+
+            // Set pingTimeout and pingInterval on the server to modify default behaviour
+            this.socket.on('ping', () => {
+                console.log('xx socket ping was received from server')
+            });
+            this.socket.on('pong', (latency) => {
+                console.log('xx socket pong was received from server', latency)
+            });
+
+
+            // .emit emits an event to the socket identified by the event name (ie message below).  It
+            // can take args (data to be send to the server) and an optional callback which will be called
+            // with the server's answer.
             this.socket.emit('message', {data: 'First socket message'});
         });
 
@@ -7931,7 +7980,7 @@ export class AppComponent implements OnInit {
         // Send WebSocket Message
         // this.webSocketChat.sendMsg("Test Message");
 
-
+        this.socket.emit('message', 'Test HELP message');
 
 
 
@@ -7944,8 +7993,8 @@ export class AppComponent implements OnInit {
 
         this.dbDataCachingTable.table("localDataCachingTable")
             .where('key').equals('dashboards')
-            .and(res => res.serverCacheable)
-            .toArray(res => console.log('where', res[0].serverCacheable))
+            // .and(res => res.serverCacheable)
+            .toArray(res => console.log('where', res[0]))
 
     }
 
