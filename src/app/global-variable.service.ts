@@ -1470,6 +1470,7 @@ export class GlobalVariableService {
                     };
 
                     // Create Var with data
+                    // TODO - do with ES6 ... spread operator
                     let dataCachingTableSingle: DataCachingTable = {
                         key: webSocketMessage.objectName,
                         objectID: this.dataCachingTable[dataCachingTableIndex].objectID,
@@ -1527,6 +1528,7 @@ export class GlobalVariableService {
                                 };
 
                             // Update Var
+                            // TODO - what about duplicates ?
                             if (localVariableName != null) {
                                 this[localVariableName].push(localObjectSingle);
                             };
@@ -1792,7 +1794,7 @@ export class GlobalVariableService {
                                 };
 
                                 // TODO - should we fill Current Var here a well?
-                                
+
                                 // Fill local Table
                                 if (localTableName != null) {
                                     this.dbCanvasAppDatabase = new CanvasAppDatabase

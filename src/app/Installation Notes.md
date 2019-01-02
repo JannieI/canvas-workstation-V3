@@ -132,7 +132,9 @@ Note: make sure to have the latest version of Angular-CLI installed
         4. Amend stuffies like project name, etc.
 
 
-    ##
+    ## Install sockects.io
+    npm install socket.io-client
+    npm install @types/socket.io-client
 
 
 # 3. Upgrade from ng5 -> ng6 (2018-08-21)
