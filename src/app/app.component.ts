@@ -43,6 +43,8 @@ import { StatusbarComponent }         from './statusbar.component';
 
 // WS
 import { WebSocketSubject }           from 'rxjs/webSocket';
+// import { WebSocketChatService }       from './webSocketChat.service'
+import * as io                        from 'socket.io-client';
 
 // Local Data - Dexie
 import { CanvasAppDatabase }          from './dexieDatabase';
@@ -428,6 +430,13 @@ export class AppComponent implements OnInit {
     localDataCachingTable: IDataCachingTable[];
     localDashboard: LocalDashboard[];
 
+    // private webSocketChat: WebSocketChatService,
+
+
+    socket = io('http://localhost:8000');
+
+
+
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -451,6 +460,27 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+
+
+
+        console.log('xx socket', this.socket)
+        this.socket.on('connect', (data) => {
+            console.log('xx socket connect', data);
+            this.socket.on('welcome', (message) => {
+                console.log('xx socket message', message)
+            });
+            this.socket.emit('message', {data: 'First socket message'});
+        });
+
+        // Subscribe to WebSocket messages
+        // this.webSocketChat.messages.subscribe(msg => {
+        //     console.log(msg);
+        // });
+            
+
+
+
 
         // Process for Authentication, Login, tokens between Canvas-Server and Canvas-Client:
 
@@ -7894,6 +7924,16 @@ export class AppComponent implements OnInit {
         if (!this.menuOptionClickPreAction()) {
             return;
         };
+
+
+
+
+        // Send WebSocket Message
+        // this.webSocketChat.sendMsg("Test Message");
+
+
+
+
 
         // this.router.navigate(['/help']);
 
