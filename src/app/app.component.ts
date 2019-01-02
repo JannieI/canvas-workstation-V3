@@ -467,6 +467,7 @@ export class AppComponent implements OnInit {
 
 
 
+
         console.log('xx socket oject', this.socket)
         this.socket.on('connect', (data) => {
 
@@ -476,10 +477,10 @@ export class AppComponent implements OnInit {
                 console.log('xx socket welcome message', message)
             });
 
-            // Join the Canvas room.  All clients belong to this room, but with socket.to(room).emit(), 
-            // the message is send to all clients, except this socket (sender).  Makes it easier since
-            // the client does not have to cater for it receiving its own messages
-            this.socket.join('Canvas');
+            // This message is not received by the sender !
+            this.socket.on('joined', (message) => {
+                console.log('xx socket another user has joined the Canvas room');
+            });
 
             // Standard events
             this.socket.on('connect_error', (error) => {
@@ -508,12 +509,12 @@ export class AppComponent implements OnInit {
             });
 
             // Set pingTimeout and pingInterval on the server to modify default behaviour
-            this.socket.on('ping', () => {
-                console.log('xx socket ping was received from server')
-            });
-            this.socket.on('pong', (latency) => {
-                console.log('xx socket pong was received from server', latency)
-            });
+            // this.socket.on('ping', () => {
+            //     console.log('xx socket ping was received from server')
+            // });
+            // this.socket.on('pong', (latency) => {
+            //     console.log('xx socket pong was received from server', latency)
+            // });
 
 
             // .emit emits an event to the socket identified by the event name (ie message below).  It
