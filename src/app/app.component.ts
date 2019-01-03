@@ -42,7 +42,6 @@ import { View }                       from 'vega';
 import { StatusbarComponent }         from './statusbar.component';
 
 // WS
-import { WebSocketSubject }           from 'rxjs/webSocket';
 // import { WebSocketChatService }       from './webSocketChat.service'
 // Websocket Server
 import * as io                        from 'socket.io-client';
@@ -417,7 +416,6 @@ export class AppComponent implements OnInit {
     // WS Stuffies
     public sender: string = '';
     public content: string;
-    public isBroadcast = false;
     public clientMessage = '';
 
 
