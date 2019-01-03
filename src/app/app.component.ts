@@ -8110,17 +8110,23 @@ export class AppComponent implements OnInit {
             key: 'dashboards',
             objectID: null,
             messageDateTime: null,
-            serverCacheable: true,
-            serverLastUpdatedDateTime: new Date(),
-            serverExpiryDateTime: new Date(),
-            serverLastWSsequenceNr: 1,
-            serverUtl: 'dashboards',
-            localCacheable: true,
-            localLastUpdatedDateTime: new Date(),
-            localExpiryDateTime: new Date(),
-            localVariableName: 'dashboards',
+            localCacheableDisc: false,
+            localCacheableMemory: false,
             localCurrentVariableName: 'currentDashboards',
-            localTableName: 'dashboards'
+            localExpiryDateTime: new Date(),
+            localLastUpdatedDateTime: new Date(),
+            localLifeSpan: 86400,
+            localTableName: 'dashboards',
+            localThresholdLines: 10000,
+            localVariableName: 'dashboards',
+            serverCacheableDisc: false,
+            serverCacheableMemory: false,
+            serverExpiryDateTime: new Date(),
+            serverLastUpdatedDateTime: new Date(),
+            serverLastWSsequenceNr: 1,
+            serverLifeSpan: 86400,
+            serverThresholdLines: 10000,
+            serverVariableName: 'dashboards'
 
         }];
 

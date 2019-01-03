@@ -184,7 +184,7 @@ export class PaletteButtonBar {
     menuText: string;                       // Text that appears on menu
     shape: string;                          // Clarity shape of icon
     size: number;                           // Size of icon
-    class: string;                          // 
+    class: string;                          //
     backgroundColor: string;                // Bg Colour of button
     accesskey: string;                      // Shortcut key
     sortOrder: number;                      // Nr (used for sorting)
@@ -324,7 +324,7 @@ export class CanvasUser {
     colorScheme: string;                    // Color scheme for Canvas - for later use
     gridSize: number;                       // Size of Grid on Dashboard in px
     environment: string;                    // Live, Test-Environment-Name
-    profilePicture: string;                     
+    profilePicture: string;
     queryRuntimeWarning: number;            // Minutes: Warn user if a report is known to run longer
     snapToGrid: boolean;                    // True: snap Widgets to the grid points on Dashboard
     favouriteDashboards: number[];          // IDs of D that are fav of this user
@@ -500,7 +500,7 @@ export class DatasourceFilter {
 }
 
 export class Datasource {
-    
+
 	// Descriptive info
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
@@ -732,7 +732,7 @@ export class DataConnection {
     description: string;                    // Description of Connection
 
     // For later use
-    defaultDatabase?: string;  
+    defaultDatabase?: string;
     logFolder?: string;
     logfileName?: string;
     characterSet?: string;
@@ -830,14 +830,14 @@ export class Dashboard {
     password: string;                       // Optional password to lock Dashboard
     refreshMode: string;                    // OnDemand, OnOpen, Repeatedly
     refreshTimer: number;                   // Nr seconds to repeat, if refreshMode = Repeatedly
-    defaultTabID: number;       
+    defaultTabID: number;
     defaultExportFileType: string;          // Default file type on export
-    url: string;            
-    qaRequired: boolean;    
+    url: string;
+    qaRequired: boolean;
     isSample: boolean;                      // True if this is a sample
 
     // Overlay looks
-    backgroundColor: string;    
+    backgroundColor: string;
     backgroundImage: string;
     templateDashboardID: number;
 
@@ -852,11 +852,11 @@ export class Dashboard {
     // 2nd normal form - calculated at DB level
     nrWidgets: number;                      // Nr of Widgets on Dashboard
     nrShapes: number;                       // Nr of Shapes on Dashboard
-    nrRecords: number;          
+    nrRecords: number;
     nrTimesOpened: number;                  // Nr of times this Dashboard has been opened
     nrTimesChanged: number;                 // Nr of times this Dashboard has been edited
     tabs: number[];                         // Array of TabIDs in this Dashboard
-    permissions: string[];      
+    permissions: string[];
 }
 
 export class DashboardTab {
@@ -1136,7 +1136,7 @@ export class widgetGraphSpecification {
     graphXfield: string;                    // Field name on the X Channel
     graphXaggregateName: string;            // Aggregation Name on X Channel, ie Average
     graphXaggregate: string;                // Aggregation on X Channel, ie average
-    graphXtimeUnit: string;                 // Time Unit, ie Year, Month, etc 
+    graphXtimeUnit: string;                 // Time Unit, ie Year, Month, etc
     graphXbin: boolean;                     // True if channel is binned
     graphXMaxBins: number;                  // Max nr of ESTIMATED bins
     graphXformat: string;                   // Format in D3-format
@@ -1379,8 +1379,8 @@ export class Widget {
     // - 1 specification that is rendered - this is recreated and not stored
     // - 1 or more layers, each with:
     //   - graph
-    //   - info (x, y, etc) and 
-    //   - 
+    //   - info (x, y, etc) and
+    //   -
     visualGrammar: string;                  // Gramar for graphs, default = Vega
     version: number;                        // Version of visual grammar
     visualGrammarType: string;              // Type, Standard or Custom
@@ -1400,7 +1400,7 @@ export class Widget {
     graphGraphPadding: number;              // How many px graph is padded
     graphHasSignals: boolean;               // If graph has signals
     graphFillColor: string;                 // Fill colour of the graph area
-    graphHoverColor: string;                // 
+    graphHoverColor: string;                //
     graphPanAndZoom: boolean;               // True if selection = grid, with pan and zoom.  Only applies to single layer graphs
     graphSpecification: any;                // Vega specification
     graphDescription: string;               // Description of graph for users
@@ -1427,7 +1427,7 @@ export class Widget {
         {
             id: number;                     // Unique ID
             sequence: number;               // Sequence Nr
-            transformationType: "";         // ie Calculat, Filter aka Vega-Lite spec 
+            transformationType: "";         // ie Calculat, Filter aka Vega-Lite spec
         }
     ];
 
@@ -1440,8 +1440,8 @@ export class Widget {
 
     // Layers
     graphLayerFacet: string;                // Facet: Single, Layer, Hconcet, Vconcat
-    graphLayers?: widgetGraphSpecification[]; // Info and optional spec for each Layer 
-    
+    graphLayers?: widgetGraphSpecification[]; // Info and optional spec for each Layer
+
     // Table - to be determined later ...
     tableBackgroundColor: string;           // Actual colour (CSS name or HEX code)
     tableBackgroundColorName: string;       // Name - CSS (ie black) or Custome Name (Our company blue)
@@ -1477,7 +1477,7 @@ export class Widget {
             linkedTabID: number;            // Optionally lined TabID
             color: string;                  // Colour of text
             jumpedColor: string             // Colour when jumped
-        }[]; 
+        }[];
     shapeBulletStyleType: string;           // List marker: disc, circle, square, none
     shapeBulletsOrdered: boolean;           // True if the list is ordered
     shapeBulletMarginBottom: number;        // Margin-Top in px
@@ -1586,7 +1586,7 @@ export class CanvasHttpResponse {
     "statusCode": string;                   // Returned from server: failed, success, error
     // success = all good and all worked,
     // failed = the request was processed by the server, but the result is bad, ie a
-    //          POST failed due to trying to create a duplicate key, validation failed, etc 
+    //          POST failed due to trying to create a duplicate key, validation failed, etc
     // error = error on the server, ie TS or Node or Mongo error
     "message" : string;                     // Info Text message (short errorMessage for errors)
     "metaData"?: {
@@ -1610,8 +1610,8 @@ export class CanvasHttpResponse {
         "errorMessage?": string;            // Error message from Source (ie Mongo) if possible
         "errorSource?": string;             // Source of error, ie canvasDataRouter.ts
         "errorLine?": string;               // Line number of error, where possible
-        "errorObject?": string;             // Error 
-        "errorHelp?": string;               // Help message on handling the error, could include url 
-    };                           
+        "errorObject?": string;             // Error
+        "errorHelp?": string;               // Help message on handling the error, could include url
+    };
     "token"?: string;                       // Token, only provided by Login
 }

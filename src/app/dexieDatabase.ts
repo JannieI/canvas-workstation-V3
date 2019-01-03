@@ -99,71 +99,98 @@ export class CanvasAppDatabase extends Dexie {
 
 // Dexie Interface: Local Caching Table
 export interface IDataCachingTable {
+    _id?: string;                           // Mongo ID (read only)
     key: string;                            // Unique key
     objectID: number;                       // Optional record ID, ie for Data
-    messageDateTime: Date;                  // Last WS number processed
-    serverCacheable: boolean;               // True if cached on server
-    serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
-    serverExpiryDateTime: Date;             // When cache expires on server
-    serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
-    serverUtl: string;                      // URL of the data on the server
-    localCacheable: boolean;                // True if cached locally, ie IndexedDB
-    localLastUpdatedDateTime: Date;         // When local cache last refreshed
-    localExpiryDateTime: Date;              // When local cache expries
-    localVariableName: string;              // Optional name of memory variable
+    messageDateTime: Date;                  // DateTime message was sent
+    localCacheableDisc: boolean;            // True if cached locally, ie IndexedDB on Disc (DB)
+    localCacheableMemory: boolean;          // True if cached locally, ie IndexedDB in RAM
     localCurrentVariableName: string;       // Optional name of memory current variable
+    localExpiryDateTime: Date;              // When local cache expries
+    localLastUpdatedDateTime: Date;         // When local cache last refreshed
+    localLifeSpan: number;                  // Period in seconds before Workstation cache must be refreshed
     localTableName: string;                 // Optional name of Table in IndexedDB
+    localThresholdLines: number;            // Max Nr lines that may be cached on Workstation
+    localVariableName: string;              // Optional name of memory variable
+    serverCacheableDisc: boolean;           // True if cached on server on Disc (DB)
+    serverCacheableMemory: boolean;         // True if cached on server in RAM
+    serverExpiryDateTime: Date;             // When cache expires on server
+    serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
+    serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
+    serverLifeSpan: number;                 // Period in seconds before Server cache must be refreshed
+    serverThresholdLines: number;           // Max Nr lines that may be cached on Server
+    serverVariableName: string;             // VariableName for the data on the server
 }
 
 // Dexie Table: Local Caching Table
 export class LocalDataCachingTable implements IDataCachingTable {
-    key: string;
+    _id?: string;                           // Mongo ID (read only)
+    key: string;                            // Unique key
     objectID: number;                       // Optional record ID, ie for Data
-    messageDateTime: Date;                  // Last WS number processed
-    serverCacheable: boolean;
-    serverLastUpdatedDateTime: Date;
-    serverExpiryDateTime: Date;
-    serverLastWSsequenceNr: number;
-    serverUtl: string;
-    localCacheable: boolean;
-    localLastUpdatedDateTime: Date;
-    localExpiryDateTime: Date;
-    localVariableName: string;
+    messageDateTime: Date;                  // DateTime message was sent
+    localCacheableDisc: boolean;            // True if cached locally, ie IndexedDB on Disc (DB)
+    localCacheableMemory: boolean;          // True if cached locally, ie IndexedDB in RAM
     localCurrentVariableName: string;       // Optional name of memory current variable
+    localExpiryDateTime: Date;              // When local cache expries
+    localLastUpdatedDateTime: Date;         // When local cache last refreshed
+    localLifeSpan: number;                  // Period in seconds before Workstation cache must be refreshed
     localTableName: string;                 // Optional name of Table in IndexedDB
+    localThresholdLines: number;            // Max Nr lines that may be cached on Workstation
+    localVariableName: string;              // Optional name of memory variable
+    serverCacheableDisc: boolean;           // True if cached on server on Disc (DB)
+    serverCacheableMemory: boolean;         // True if cached on server in RAM
+    serverExpiryDateTime: Date;             // When cache expires on server
+    serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
+    serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
+    serverLifeSpan: number;                 // Period in seconds before Server cache must be refreshed
+    serverThresholdLines: number;           // Max Nr lines that may be cached on Server
+    serverVariableName: string;             // VariableName for the data on the server
 
     constructor(key: string,
-        serverCacheable: boolean,
-        objectID: number,
-        messageDateTime: Date,
-        serverLastUpdatedDateTime: Date,
-        serverExpiryDateTime: Date,
-        serverLastWSsequenceNr: number,
-        serverUtl: string,
-        localCacheable: boolean,
-        localLastUpdatedDateTime: Date,
-        localExpiryDateTime: Date,
-        localVariableName: string,
-        localCurrentVariableName: string,
-        localTableName: string
+        objectID,
+        messageDateTime,
+        localCacheableDisc,
+        localCacheableMemory,
+        localCurrentVariableName,
+        localExpiryDateTime,
+        localLastUpdatedDateTime,
+        localLifeSpan,
+        localTableName,
+        localThresholdLines,
+        localVariableName,
+        serverCacheableDisc,
+        serverCacheableMemory,
+        serverExpiryDateTime,
+        serverLastUpdatedDateTime,
+        serverLastWSsequenceNr,
+        serverLifeSpan,
+        serverThresholdLines,
+        serverVariableName
+    
     ) {
 
-            this.key = key,
-            this.serverCacheable = serverCacheable,
-            this.objectID = objectID;
-            this.messageDateTime = messageDateTime,
-            this.serverLastUpdatedDateTime = serverLastUpdatedDateTime,
-            this.serverExpiryDateTime = serverExpiryDateTime,
-            this.serverLastWSsequenceNr = serverLastWSsequenceNr,
-            this.serverUtl = serverUtl;
-            this.localCacheable = localCacheable,
-            this.localLastUpdatedDateTime = localLastUpdatedDateTime,
-            this.localExpiryDateTime = localExpiryDateTime,
-            this.localVariableName = localVariableName
-            this.localCurrentVariableName = localCurrentVariableName;
-            this.localTableName = localTableName;
-
-                }
+        this.key = key,
+        this.objectID = objectID,
+        this.messageDateTime = messageDateTime,
+        this.localCacheableDisc = localCacheableDisc,
+        this.localCacheableMemory = localCacheableMemory,
+        this.localCurrentVariableName = localCurrentVariableName,
+        this.localExpiryDateTime = localExpiryDateTime,
+        this.localLastUpdatedDateTime = localLastUpdatedDateTime,
+        this.localLifeSpan = localLifeSpan,
+        this.localTableName = localTableName,
+        this.localThresholdLines = localThresholdLines,
+        this.localVariableName = localVariableName,
+        this.serverCacheableDisc = serverCacheableDisc,
+        this.serverCacheableMemory = serverCacheableMemory,
+        this.serverExpiryDateTime = serverExpiryDateTime,
+        this.serverLastUpdatedDateTime = serverLastUpdatedDateTime,
+        this.serverLastWSsequenceNr = serverLastWSsequenceNr,
+        this.serverLifeSpan = serverLifeSpan,
+        this.serverThresholdLines = serverThresholdLines,
+        this.serverVariableName = serverVariableName
+         
+    }
 }
 
 // Dexie DB: Data Caching DB
