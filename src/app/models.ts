@@ -390,7 +390,6 @@ export class WebSocketMessage {
     _id?: string;                           // Mongo ID (read only)
     sender: string;                         // UserID who sent it, CanvasServer if backend
     content: any;                           // Payload, can be text string or Object or Array
-    channel: string;                        // Channel on which message was sent
     messageType: string;                    // Type of message, ie objectDirty, Message, etc
     action: string;                         // Optional Action, ie Add, Update, Delete, ReplaceAll
     objectName: string;                     // Affected data, ie Datasources, Users
