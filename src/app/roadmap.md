@@ -479,12 +479,12 @@ This document describes items for later versions of Canvas.
     - consider recorded actions: make title bg color = xxx, color = yyy (company default)
 
 
-    Eazl:
+    Canvas Server:
     ----
-    - consider a REST API for Eazl Accounts => other users can add, delete stuff ...
+    - consider a REST API for Canvas Server Accounts => other users can add, delete stuff ...
     - consider Guest login - can do 1 private Dashboard, access to files ?  Is this useful?
     - Word and Pdf readers
-    - function (on Eazl) to add lat/long to a DS
+    - function (on Canvas Server) to add lat/long to a DS
     - MELT function (Pandas) to un-pivot data, and then test with the World Bank (or other economical data)
 
 

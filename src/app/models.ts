@@ -388,7 +388,7 @@ export class CanvasGroup {
 
 export class WebSocketMessage {
     _id?: string;                           // Mongo ID (read only)
-    sender: string;                         // UserID who sent it, Eazl = backend
+    sender: string;                         // UserID who sent it, CanvasServer if backend
     content: any;                           // Payload, can be text string or Object or Array
     isBroadcast = false;                    // ?
     channel: string;                        // Channel on which message was sent
@@ -1338,7 +1338,7 @@ export class Widget {
     dataschema: dataSchemaInterface[];      // Array with fields info, ie name, type, etc
     dataParameters: {"field": string; "value": string;}[]
     reportID: number;                       // FK to report (query / data).  -1: dont load any report data
-    reportName: string;                     // Report (query) name in Eazl (DS implied)
+    reportName: string;                     // Report (query) name in Canvas Server (DS implied)
     rowLimit: number;                       // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
     addRestRow: boolean;                    // True means add a row to  = SUM(rest)
     size: string;                           // Small, Medium, Large ito data loading

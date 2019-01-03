@@ -922,7 +922,7 @@ export class GlobalVariableService {
     conditionOperator: string = '';
     continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
     filePath: string;       // Used in HTTP requests
-    getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
+    getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Canvas Server
     headers = new HttpHeaders().set("Content-Type", "application/json");
 
     selectedWidgetIDs: number[] = [];
@@ -11537,7 +11537,8 @@ export class GlobalVariableService {
         };
 
         // Node Servers: add to Array for time being ...
-        if (this.canvasServerName == 'Canvas Server Local') {
+        if (this.canvasServerName == 'Canvas Server Local'  
+            ||  this.canvasServerName == 'Canvas Server Cloud') {
 
             if (['canvasGroups',
                  'canvasUsers',
@@ -13898,7 +13899,8 @@ console.warn('xx ds perm', dp);
         // If so, set currentUser object and return true
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables verifyCanvasUser ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {givenUserID});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                {givenCanvasServerName}, {givenCanvasServerURI}, {givenCompanyName}, {givenUserID});
         };
 
         // TODO - do in more safe way with DB, Auth0, etc
@@ -14125,6 +14127,7 @@ console.warn('xx ds perm', dp);
             let givenCanvasServerURI: string = this.ENVCanvasServerList[serverURLIndex]
                 .serverHostURI;
 
+                console.warn('xx LOGIN givenCanvasServerURI', serverURLIndex, givenCanvasServerURI)
             this.http.post<CanvasHttpResponse>(givenCanvasServerURI + '/auth/local/login',
                 {
                     "companyName": givenCompanyName,

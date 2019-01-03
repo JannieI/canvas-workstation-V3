@@ -13,10 +13,6 @@ export const environment = {
 			serverHostURI: "http://localhost:8000"
 	  	},
 		{
-			serverName: "Eazl Server",
-			serverHostURI: "https://eazl-rest.xyz/eazl/api/"
-	  	},
-		{
 			serverName: "Json-Server",
 			serverHostURI: "http://localhost:3000"
 		}
