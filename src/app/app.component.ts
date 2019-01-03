@@ -435,7 +435,7 @@ export class AppComponent implements OnInit {
 
     // Create the socket (on the web socket Server) on the correct port (which is same as the
     // HTTP url as the web socket Server listens to the HTTP server traffic)
-    // socket = io('http://localhost:3000');
+    socket = io('http://localhost:3000');
 
 
 
@@ -474,66 +474,65 @@ export class AppComponent implements OnInit {
         // update, add, delete, refresh: action for a Canvas resource
         //    - what about clientData??  - why so many ??
         // message: Canvas Instant Messages
+        console.log('xx socket oject', this.socket)
+        this.socket.on('connect', (data) => {
 
-        // console.log('xx socket oject', this.globalVariableService.canvasServerURI, this.socket)
-        // this.socket.on('connect', (data) => {
+            // ,on registers a new handler for the given event name.  The callback will get 
+            // whatever data was sent over by the server, ie message below.
+            this.socket.on('welcome', (message) => {
+                console.log('xx socket welcome message', message)
+            });
 
-        //     // ,on registers a new handler for the given event name.  The callback will get 
-        //     // whatever data was sent over by the server, ie message below.
-        //     this.socket.on('welcome', (message) => {
-        //         console.log('xx socket welcome message', message)
-        //     });
+            // This message is not received by the sender !
+            this.socket.on('joined', (message) => {
+                console.log('xx socket another user has joined the Canvas room');
+            });
 
-        //     // This message is not received by the sender !
-        //     this.socket.on('joined', (message) => {
-        //         console.log('xx socket another user has joined the Canvas room');
-        //     });
+            // This message is not received by the sender !
+            this.socket.on('update', (message) => {
+                console.log('xx socket update', message);
+            });
 
-        //     // This message is not received by the sender !
-        //     this.socket.on('update', (message) => {
-        //         console.log('xx socket update', message);
-        //     });
+            // Standard events for illustration purposes - Switch off for now
+            // this.socket.on('connect_error', (error) => {
+            //     console.log('xx socket connect_error', error)
+            // });
+            // this.socket.on('connect_timeout', (timeout) => {
+            //     console.log('xx socket connect_timeout', timeout)
+            // });
+            // this.socket.on('error', (error) => {
+            //     console.log('xx socket error', error)
+            // });
+            // this.socket.on('disconnect', (reason) => {
+            //     console.log('xx socket disconnect', reason)
+            // });
+            // this.socket.on('reconnect_attempt', (attemptNumber) => {
+            //     console.log('xx socket reconnect_attempt', attemptNumber)
+            // });
+            // this.socket.on('reconnecting', (attemptNumber) => {
+            //     console.log('xx socket disconnect', attemptNumber)
+            // });
+            // this.socket.on('reconnect_error', (error) => {
+            //     console.log('xx socket reconnect_error', error)
+            // });
+            // this.socket.on('reconnect_failed', () => {
+            //     console.log('xx socket reconnect_failed')
+            // });
 
-        //     // Standard events
-        //     this.socket.on('connect_error', (error) => {
-        //         console.log('xx socket connect_error', error)
-        //     });
-        //     this.socket.on('connect_timeout', (timeout) => {
-        //         console.log('xx socket connect_timeout', timeout)
-        //     });
-        //     this.socket.on('error', (error) => {
-        //         console.log('xx socket error', error)
-        //     });
-        //     this.socket.on('disconnect', (reason) => {
-        //         console.log('xx socket disconnect', reason)
-        //     });
-        //     this.socket.on('reconnect_attempt', (attemptNumber) => {
-        //         console.log('xx socket reconnect_attempt', attemptNumber)
-        //     });
-        //     this.socket.on('reconnecting', (attemptNumber) => {
-        //         console.log('xx socket disconnect', attemptNumber)
-        //     });
-        //     this.socket.on('reconnect_error', (error) => {
-        //         console.log('xx socket reconnect_error', error)
-        //     });
-        //     this.socket.on('reconnect_failed', () => {
-        //         console.log('xx socket reconnect_failed')
-        //     });
-
-        //     // Set pingTimeout and pingInterval on the server to modify default behaviour
-        //     this.socket.on('ping', () => {
-        //         console.log('xx socket ping was received from server')
-        //     });
-        //     // this.socket.on('pong', (latency) => {
-        //     //     console.log('xx socket pong was received from server', latency)
-        //     // });
+            // Set pingTimeout and pingInterval on the server to modify default behaviour
+            // this.socket.on('ping', () => {
+            //     console.log('xx socket ping was received from server')
+            // });
+            // this.socket.on('pong', (latency) => {
+            //     console.log('xx socket pong was received from server', latency)
+            // });
 
 
-        //     // .emit emits an event to the socket identified by the event name (ie message below).  It
-        //     // can take args (data to be send to the server) and an optional callback which will be called
-        //     // with the server's answer.
-        //     this.socket.emit('message', {data: 'First socket message'});
-        // });
+            // .emit emits an event to the socket identified by the event name (ie message below).  It
+            // can take args (data to be send to the server) and an optional callback which will be called
+            // with the server's answer.
+            this.socket.emit('message', {data: 'First socket message'});
+        });
 
         // Subscribe to WebSocket messages
         // this.webSocketChat.messages.subscribe(msg => {
@@ -7993,7 +7992,7 @@ export class AppComponent implements OnInit {
         // Send WebSocket Message
         // this.webSocketChat.sendMsg("Test Message");
 
-        // this.socket.emit('message', 'Test HELP message');
+        this.socket.emit('message', 'Test HELP message');
 
 
 

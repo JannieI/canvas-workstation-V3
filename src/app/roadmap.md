@@ -486,6 +486,9 @@ This document describes items for later versions of Canvas.
     - Word and Pdf readers
     - function (on Canvas Server) to add lat/long to a DS
     - MELT function (Pandas) to un-pivot data, and then test with the World Bank (or other economical data)
+    - Consider a multi-server setup, where a company has many branches.
+    - Testing: get an autmated way to test all routes, as well as the desired response for set records
+    - 
 
 
     Data Confidentiallity:
@@ -1530,7 +1533,11 @@ This document describes items for later versions of Canvas.
     - Board Pack use case:
         - this is of definate value !!  Maybe add some specific functions to make it work well ...
 
-
+    Management tools / Utilities:
+    ----------------------------
+    - Canvas Data Migration tool to help changes DS and W when the underlying database changes
+    - DS inspector: looks for DS that are identical / similar to spot duplication and copy - paste problems where DS are just duplicated and not re-used
+    - Business Glossary must be super powerful to help preventabove problem
 
 
 **********************************************************************************
