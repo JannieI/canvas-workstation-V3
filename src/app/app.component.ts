@@ -415,7 +415,6 @@ export class AppComponent implements OnInit {
     zoomFactor: string = 'scale(1)';
 
     // WS Stuffies
-    public serverMessages = new Array<WebSocketMessage>();
     public sender: string = '';
     public content: string;
     public isBroadcast = false;
@@ -559,7 +558,7 @@ export class AppComponent implements OnInit {
 
 
 
-                this.socket = io('http://localhost:8000');
+                this.socket = io(this.globalVariableService.canvasServerURI);
 
                 // EventNames (the socket must listen specifically to the correct name)
                 // Alternative: have ONE eventName ...
@@ -568,7 +567,7 @@ export class AppComponent implements OnInit {
                 // update, add, delete, refresh: action for a Canvas resource
                 //    - what about clientData??  - why so many ??
                 // message3: Canvas Instant Messages
-                console.log('xx socket oject', this.globalVariableService.canvasServerURI, this.socket)
+                console.log('xx socket oject', this.socket)
                 this.socket.on('connect', (data) => {
 
                     // ,on registers a new handler for the given event name.  The callback will get 

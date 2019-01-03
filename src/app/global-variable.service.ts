@@ -11583,7 +11583,7 @@ export class GlobalVariableService {
                  'widgetStoredTemplates'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
-                console.log('xx 2 XXXXXXXX', baseUrl)
+                // console.log('xx 2 XXXXXXXX', baseUrl)
             };
         };
 
