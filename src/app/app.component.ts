@@ -8120,8 +8120,7 @@ export class AppComponent implements OnInit {
             localExpiryDateTime: new Date(),
             localVariableName: 'dashboards',
             localCurrentVariableName: 'currentDashboards',
-            localTableName: 'dashboards',
-            newLocalExpiryDateTime: null
+            localTableName: 'dashboards'
 
         }];
 
@@ -8236,8 +8235,7 @@ export class AppComponent implements OnInit {
                             localExpiryDateTime: new Date(),
                             localVariableName: 'dashboards',
                             localCurrentVariableName: 'currentDashboards',
-                            localTableName: 'dashboards',
-                            newLocalExpiryDateTime: null
+                            localTableName: 'dashboards'
 
                         }
                     ).then(res => {

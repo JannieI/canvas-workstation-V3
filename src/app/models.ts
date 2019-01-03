@@ -395,8 +395,7 @@ export class WebSocketMessage {
     objectName: string;                     // Affected data, ie Datasources, Users
     objectID: number;                       // Optional single Record affected, ie DatasourceID
     severity: string;                       // How severy is badness, critical = refresh immediatetly
-    lastWebSocketNumber: number;            // Last WS number for THIS object
-    newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
+    messageDateTime: Date;                  // DateTime this message was created on Server
 }
 
 // Data
@@ -477,8 +476,8 @@ export class DataCachingTable {
     localTableName: string;                 // Optional name of Table in IndexedDB
     localThresholdLines: number;            // Max Nr lines that may be cached on Workstation
     localVariableName: string;              // Optional name of memory variable
-    serverCacheableMemory: boolean;         // True if cached on server in RAM
     serverCacheableDisc: boolean;           // True if cached on server on Disc (DB)
+    serverCacheableMemory: boolean;         // True if cached on server in RAM
     serverExpiryDateTime: Date;             // When cache expires on server
     serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
     serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this

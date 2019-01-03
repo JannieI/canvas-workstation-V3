@@ -1435,8 +1435,6 @@ export class GlobalVariableService {
             let localVariableName: string = null;
             let localCurrentVariableName: string = null;
             let localTableName: string = null;
-            
-            let serverLastWebSocketNumber: number = webSocketMessage.lastWebSocketNumber;
 
             // TODO - not sure if CurrentVar should be updated here - rather when D refreshes?
 
@@ -1490,12 +1488,12 @@ export class GlobalVariableService {
                             serverVariableName,
                         localCacheableMemory: this.dataCachingTable[dataCachingTableIndex].localCacheableMemory,
                         localCacheableDisc: this.dataCachingTable[dataCachingTableIndex].localCacheableDisc,
+                        localExpiryDateTime: this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime,
                         localThresholdLines: this.dataCachingTable[dataCachingTableIndex].
                             localThresholdLines,
                         localLastUpdatedDateTime: new Date(),
                         localLifeSpan: this.dataCachingTable[dataCachingTableIndex]. 
                             localLifeSpan,
-                        localExpiryDateTime: webSocketMessage.newLocalExpiryDateTime,
                         localVariableName: this.dataCachingTable[dataCachingTableIndex].
                             localVariableName,
                         localCurrentVariableName: this.dataCachingTable

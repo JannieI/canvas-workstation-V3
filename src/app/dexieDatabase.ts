@@ -113,7 +113,6 @@ export interface IDataCachingTable {
     localVariableName: string;              // Optional name of memory variable
     localCurrentVariableName: string;       // Optional name of memory current variable
     localTableName: string;                 // Optional name of Table in IndexedDB
-    newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
 }
 
 // Dexie Table: Local Caching Table
@@ -132,7 +131,6 @@ export class LocalDataCachingTable implements IDataCachingTable {
     localVariableName: string;
     localCurrentVariableName: string;       // Optional name of memory current variable
     localTableName: string;                 // Optional name of Table in IndexedDB
-    newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
 
     constructor(key: string,
         serverCacheable: boolean,
@@ -147,8 +145,7 @@ export class LocalDataCachingTable implements IDataCachingTable {
         localExpiryDateTime: Date,
         localVariableName: string,
         localCurrentVariableName: string,
-        localTableName: string,
-        newLocalExpiryDateTime: Date
+        localTableName: string
     ) {
 
             this.key = key,
@@ -165,7 +162,6 @@ export class LocalDataCachingTable implements IDataCachingTable {
             this.localVariableName = localVariableName
             this.localCurrentVariableName = localCurrentVariableName;
             this.localTableName = localTableName;
-            this.newLocalExpiryDateTime = newLocalExpiryDateTime;
 
                 }
 }
