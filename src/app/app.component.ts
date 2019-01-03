@@ -467,7 +467,13 @@ export class AppComponent implements OnInit {
 
 
 
-
+        // EventNames (the socket must listen specifically to the correct name)
+        // Alternative: have ONE eventName ...
+        // welcome: first message
+        // joined: other users joined the communication
+        // update, add, delete, refresh: action for a Canvas resource
+        //    - what about clientData??  - why so many ??
+        // message: Canvas Instant Messages
         console.log('xx socket oject', this.socket)
         this.socket.on('connect', (data) => {
 
@@ -480,6 +486,11 @@ export class AppComponent implements OnInit {
             // This message is not received by the sender !
             this.socket.on('joined', (message) => {
                 console.log('xx socket another user has joined the Canvas room');
+            });
+
+            // This message is not received by the sender !
+            this.socket.on('update', (message) => {
+                console.log('xx socket update', message);
             });
 
             // Standard events
@@ -509,9 +520,9 @@ export class AppComponent implements OnInit {
             });
 
             // Set pingTimeout and pingInterval on the server to modify default behaviour
-            // this.socket.on('ping', () => {
-            //     console.log('xx socket ping was received from server')
-            // });
+            this.socket.on('ping', () => {
+                console.log('xx socket ping was received from server')
+            });
             // this.socket.on('pong', (latency) => {
             //     console.log('xx socket pong was received from server', latency)
             // });
