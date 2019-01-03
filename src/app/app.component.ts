@@ -419,7 +419,6 @@ export class AppComponent implements OnInit {
     public content: string;
     public isBroadcast = false;
     public clientMessage = '';
-    private socket$: WebSocketSubject<WebSocketMessage>;
 
 
     // Testing Stuffies
@@ -445,18 +444,6 @@ export class AppComponent implements OnInit {
         @Inject(DOCUMENT) private document: Document,
         private router: Router,
     ) {
-        this.socket$ = WebSocketSubject.create('ws://localhost:8999');
-        // Add /admin to join the /admin namespace
-
-        // Subscribe to WS
-        this.socket$.subscribe(
-            (message) => {
-                this.serverMessages.push(message);
-                console.warn('xx message', message, this.serverMessages);
-                },
-            (err) => console.error(err),
-            () => console.warn('Completed!')
-        );
     }
 
     ngOnInit() {
