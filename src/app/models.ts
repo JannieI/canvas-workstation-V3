@@ -388,14 +388,23 @@ export class CanvasGroup {
 
 export class WebSocketMessage {
     _id?: string;                           // Mongo ID (read only)
-    sender: string;                         // UserID who sent it, CanvasServer if backend
+    sender: string;                         // UserID who sent message, CanvasServer if backend
     content: any;                           // Payload, can be text string or Object or Array
-    messageType: string;                    // Type of message, ie objectDirty, Message, etc
-    action: string;                         // Optional Action, ie Add, Update, Delete, ReplaceAll
-    objectName: string;                     // Affected data, ie Datasources, Users
-    objectID: number;                       // Optional single Record affected, ie DatasourceID
-    severity: string;                       // How severy is badness, critical = refresh immediatetly
+    messageType: string;                    // Type of message -> determines action required
+        // canvasData: Canvas-related data like dashboards, datasources, widgets, etc
+        // clientData: client-related data, ie XIS Trades
+        // canvasMessages: collaboration via Canvas Messages
+        // canvasSystem: system generated messages, ie from the server
+    action: string;                         // Optional Action to be taken for canvasData
+        // Individual record action: Add, Update, Delete
+        // Whole resource: ReplaceAll
+    objectName: string;                     // Affected canvasData, ie datasources, widgets, etc
+    objectID: number;                       // Optional single Record affected, ie 12 (DatasourceID)
+    severity: string;                       // Severity of treatement required
+        // critical = interrupt user, and refresh dashboard immediatetly
+        // low = default, no specific action is required
     messageDateTime: Date;                  // DateTime this message was created on Server
+        // This is used to check for messages that were received out of sequence
 }
 
 // Data
