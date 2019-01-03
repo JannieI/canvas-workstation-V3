@@ -8109,6 +8109,7 @@ export class AppComponent implements OnInit {
         this.localDataCachingTable = [{
             key: 'dashboards',
             objectID: null,
+            messageDateTime: null,
             serverCacheable: true,
             serverLastUpdatedDateTime: new Date(),
             serverExpiryDateTime: new Date(),
@@ -8120,7 +8121,6 @@ export class AppComponent implements OnInit {
             localVariableName: 'dashboards',
             localCurrentVariableName: 'currentDashboards',
             localTableName: 'dashboards',
-            localLastWebSocketNumber: -1,
             newLocalExpiryDateTime: null
 
         }];
@@ -8225,6 +8225,7 @@ export class AppComponent implements OnInit {
                     this.dbDataCachingTable.table("localDataCachingTable").put(
                         {
                             table: 'dashboards',
+                            messageDateTime: null,
                             serverCacheable: true,
                             serverLastUpdatedDateTime: new Date(),
                             serverExpiryDateTime: new Date(),
@@ -8236,7 +8237,6 @@ export class AppComponent implements OnInit {
                             localVariableName: 'dashboards',
                             localCurrentVariableName: 'currentDashboards',
                             localTableName: 'dashboards',
-                            localLastWebSocketNumber: -1,
                             newLocalExpiryDateTime: null
 
                         }

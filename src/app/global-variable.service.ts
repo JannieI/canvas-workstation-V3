@@ -1122,6 +1122,7 @@ export class GlobalVariableService {
     datasourceTransformations: DatasourceTransformation[] = [];
     dataTables: DataTable[] = [];
     finalFields: any = finalFields;
+    lastMessageDateTime: Date = new Date(); // Last time a caching message was received
     statusBarMessageLogs: StatusBarMessageLog[] = [];
     transformations: Transformation[] = [];
     transformationsFormat: Transformation[] = transformationsFormat;
@@ -1434,7 +1435,7 @@ export class GlobalVariableService {
             let localVariableName: string = null;
             let localCurrentVariableName: string = null;
             let localTableName: string = null;
-            let localLastWebSocketNumber: number = -1;
+            
             let serverLastWebSocketNumber: number = webSocketMessage.lastWebSocketNumber;
 
             // TODO - not sure if CurrentVar should be updated here - rather when D refreshes?
@@ -1458,15 +1459,15 @@ export class GlobalVariableService {
                     localCurrentVariableName;
                 localTableName  = this.dataCachingTable[dataCachingTableIndex].
                     localTableName;
-                localLastWebSocketNumber  = this.dataCachingTable[dataCachingTableIndex].
-                    localLastWebSocketNumber;
 
                 // Only proceed locally if local cache allowed
                 if (localCacheableMemory) {
 
                     // If we have missed messages, reflesh this table
-                    if ( (localLastWebSocketNumber + 1) != serverLastWebSocketNumber ) {
-                        alert('Get from HTTP and refresh = A portion code')
+                    if ( this.dataCachingTable[dataCachingTableIndex].messageDateTime
+                         <  this.lastMessageDateTime) {
+                             // TODO - add this code
+                        alert('Get whole resource from HTTP and refresh = A portion code')
                     };
 
                     // Create Var with data
@@ -1501,8 +1502,8 @@ export class GlobalVariableService {
                             [dataCachingTableIndex].localCurrentVariableName,
                         localTableName: this.dataCachingTable[dataCachingTableIndex].
                             localTableName,
-                        localLastWebSocketNumber: this.dataCachingTable
-                            [dataCachingTableIndex].localLastWebSocketNumber,
+                        messageDateTime: this.dataCachingTable
+                            [dataCachingTableIndex].messageDateTime,
 
                     };
 

@@ -467,12 +467,12 @@ export class DataCachingTable {
     _id?: string;                           // Mongo ID (read only)
     key: string;                            // Unique key
     objectID: number;                       // Optional record ID, ie for Data
+    messageDateTime: Date;                  // DateTime message was sent
     localCacheableDisc: boolean;            // True if cached locally, ie IndexedDB on Disc (DB)
     localCacheableMemory: boolean;          // True if cached locally, ie IndexedDB in RAM
     localCurrentVariableName: string;       // Optional name of memory current variable
     localExpiryDateTime: Date;              // When local cache expries
     localLastUpdatedDateTime: Date;         // When local cache last refreshed
-    localLastWebSocketNumber: number;       // Last WS number processed
     localLifeSpan: number;                  // Period in seconds before Workstation cache must be refreshed
     localTableName: string;                 // Optional name of Table in IndexedDB
     localThresholdLines: number;            // Max Nr lines that may be cached on Workstation

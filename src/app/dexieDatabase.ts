@@ -101,6 +101,7 @@ export class CanvasAppDatabase extends Dexie {
 export interface IDataCachingTable {
     key: string;                            // Unique key
     objectID: number;                       // Optional record ID, ie for Data
+    messageDateTime: Date;                  // Last WS number processed
     serverCacheable: boolean;               // True if cached on server
     serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
     serverExpiryDateTime: Date;             // When cache expires on server
@@ -112,7 +113,6 @@ export interface IDataCachingTable {
     localVariableName: string;              // Optional name of memory variable
     localCurrentVariableName: string;       // Optional name of memory current variable
     localTableName: string;                 // Optional name of Table in IndexedDB
-    localLastWebSocketNumber: number;       // Last WS number processed
     newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
 }
 
@@ -120,6 +120,7 @@ export interface IDataCachingTable {
 export class LocalDataCachingTable implements IDataCachingTable {
     key: string;
     objectID: number;                       // Optional record ID, ie for Data
+    messageDateTime: Date;                  // Last WS number processed
     serverCacheable: boolean;
     serverLastUpdatedDateTime: Date;
     serverExpiryDateTime: Date;
@@ -131,12 +132,12 @@ export class LocalDataCachingTable implements IDataCachingTable {
     localVariableName: string;
     localCurrentVariableName: string;       // Optional name of memory current variable
     localTableName: string;                 // Optional name of Table in IndexedDB
-    localLastWebSocketNumber: number;       // Last WS number processed
     newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
 
     constructor(key: string,
         serverCacheable: boolean,
         objectID: number,
+        messageDateTime: Date,
         serverLastUpdatedDateTime: Date,
         serverExpiryDateTime: Date,
         serverLastWSsequenceNr: number,
@@ -147,13 +148,13 @@ export class LocalDataCachingTable implements IDataCachingTable {
         localVariableName: string,
         localCurrentVariableName: string,
         localTableName: string,
-        localLastWebSocketNumber: number,
         newLocalExpiryDateTime: Date
     ) {
 
             this.key = key,
             this.serverCacheable = serverCacheable,
             this.objectID = objectID;
+            this.messageDateTime = messageDateTime,
             this.serverLastUpdatedDateTime = serverLastUpdatedDateTime,
             this.serverExpiryDateTime = serverExpiryDateTime,
             this.serverLastWSsequenceNr = serverLastWSsequenceNr,
@@ -164,7 +165,6 @@ export class LocalDataCachingTable implements IDataCachingTable {
             this.localVariableName = localVariableName
             this.localCurrentVariableName = localCurrentVariableName;
             this.localTableName = localTableName;
-            this.localLastWebSocketNumber = localLastWebSocketNumber;
             this.newLocalExpiryDateTime = newLocalExpiryDateTime;
 
                 }
