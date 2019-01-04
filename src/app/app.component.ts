@@ -10048,6 +10048,7 @@ export class AppComponent implements OnInit {
 
         let datasetID: number = -1;
 
+        console.log('xx z widgetType, widgetID', widgetType, widgetID)
         // Delete the local one
         // let delIDs: number[] = [];
         let deleteWidget: Widget;
@@ -10064,12 +10065,14 @@ export class AppComponent implements OnInit {
 
                 // deleteWidget = Object.assign({}, this.currentWidgets[i]);
                 deleteWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
+                console.log('xx z deleteWidget', deleteWidget)
                 datasetID = this.currentWidgets[i].datasetID;
                 // delIDs.push(this.currentWidgets[i].id);
                 this.currentWidgets.splice(i,1);
             };
         };
 
+        console.log('xx z deleteWidget.id', deleteWidget.id)
         // Delete W + Chkpnts from the DB and global ones
         this.globalVariableService.deleteWidget(deleteWidget.id).then(w => {
 

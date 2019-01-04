@@ -921,7 +921,6 @@ export class GlobalVariableService {
     conditionFieldDataType: string = '';
     conditionOperator: string = '';
     continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
-    filePath: string;       // Used in HTTP requests
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Canvas Server
     headers = new HttpHeaders().set("Content-Type", "application/json");
 
@@ -4230,7 +4229,6 @@ export class GlobalVariableService {
         // TODO - go through this logic again !!!
         let pathUrl: string = 'dataset';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.datasets.json';
 
         // Get list of dSet-ids to make array work easier
         let dsCurrIDs: number[] = [];       // currentDataset IDs
@@ -4253,7 +4251,6 @@ export class GlobalVariableService {
                 };
                 folderName = this.datasets[i].folderName;
                 fileName = this.datasets[i].fileName;
-                this.filePath = this.datasets[i].folderName + this.datasets[i].fileName;
             }
         };
 
@@ -4612,7 +4609,6 @@ export class GlobalVariableService {
 
         let pathUrl: string = 'data';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.dataset' + data.id + '.json';
 
         return new Promise<any>((resolve, reject) => {
 
@@ -4649,7 +4645,6 @@ export class GlobalVariableService {
 
         let pathUrl: string = 'data';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.Datas.json';
 
         return new Promise<string>((resolve, reject) => {
 
@@ -4688,7 +4683,6 @@ export class GlobalVariableService {
 
         let pathUrl: string = 'data';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.data.json';
 
         return new Promise<any>((resolve, reject) => {
 
@@ -8485,10 +8479,6 @@ export class GlobalVariableService {
                 this.widgets.length);
         };
 
-        // let pathUrl: string = 'widgets';
-        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/data.widgets.json';
-
         return new Promise<Widget[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
@@ -8752,10 +8742,6 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        // let pathUrl: string = 'widgets';
-        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/data.widgets.json';
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
@@ -8799,10 +8785,6 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables saveWidget ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
-
-        // let pathUrl: string = 'widgets';
-        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/data.widgets.json';
 
         return new Promise<string>((resolve, reject) => {
 
@@ -8949,10 +8931,6 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables deleteWidget ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
-
-        // let pathUrl: string = 'widgets';
-        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/data.widgets.json';
 
         return new Promise<any>((resolve, reject) => {
 
@@ -11441,7 +11419,6 @@ export class GlobalVariableService {
                 .set('limitToFirst', "1");
 
             return new Promise((resolve, reject) => {
-                // this.http.get(this.filePath).subscribe(res => resolve(res));
 
                 let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
@@ -11467,20 +11444,20 @@ export class GlobalVariableService {
 
         };
 
-        if (this.getSource == 'File') {
-            return new Promise((resolve, reject) => {
-                // Get from source - files for now ...
-                dl.json({url: this.filePath}, {children: 'graphSpecification'}, (err, currentData) => {
-                    if (err) {
-                        reject(err)
-                    } else {
-                        if (options == 'metadata') {}
-                        resolve(currentData);
-                    }
-                    });
-                }
-            );
-        };
+        // if (this.getSource == 'File') {
+        //     return new Promise((resolve, reject) => {
+        //         // Get from source - files for now ...
+        //         dl.json({url: this.filePath}, {children: 'graphSpecification'}, (err, currentData) => {
+        //             if (err) {
+        //                 reject(err)
+        //             } else {
+        //                 if (options == 'metadata') {}
+        //                 resolve(currentData);
+        //             }
+        //             });
+        //         }
+        //     );
+        // };
     }
 
     setBaseUrl(pathUrl: string): string {
@@ -11492,111 +11469,7 @@ export class GlobalVariableService {
         };
 
         // CanvasDatabase: Local or Server
-        let baseUrl: string = this.canvasServerURI;
-
-        // Cater for different Servers - default to json-server for time being ...
-        if (pathUrl == 'dashboardsRecent') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'dataCachingTable') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'canvasUsers') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'canvasGroups') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'dataConnections') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'dataTables') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'datasourceSchedules') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'datasourceScheduleLog') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'dataFields') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'widgetGraphs') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'statusBarMessageLogs') {
-            baseUrl = 'http://localhost:3002/';
-        } else if (pathUrl == 'canvasAuditTrails') {
-            baseUrl = 'http://localhost:3002/';
-        } else if (pathUrl == 'paletteButtonBars') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'containerStyles') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'dashboardLayouts') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'widgetLayouts') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'canvasBackgroundcolorsDefault') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'canvasBackgroundcolors') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'widgetStoredTemplates') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'paletteButtonsSelecteds') {
-            baseUrl = 'http://localhost:3001/';
-        } else if (pathUrl == 'widgets') {
-            baseUrl = 'http://localhost:3005/';
-        } else if (pathUrl.substring(0, 5) == 'data/') {
-            baseUrl = 'http://localhost:3006/';
-        } else if (pathUrl == 'data') {
-            baseUrl = 'http://localhost:3006/';
-
-        } else {
-            baseUrl = 'http://localhost:3007/';
-        };
-
-        // Node Servers: add to Array for time being ...
-        if (this.canvasServerName == 'Canvas Server Local'  
-            ||  this.canvasServerName == 'Canvas Server Cloud') {
-
-            if (['canvasGroups',
-                 'canvasUsers',
-                 'canvasAuditTrails',
-                 'canvasBackgroundcolors',
-                 'canvasBackgroundcolorsDefault',
-                 'canvasComments',
-                 'canvasTasks',
-                 'canvasMessages',
-                 'canvasSettings',
-                 'containerStyles',
-                 'dashboardLayouts',
-                 'dashboardPermissions',
-                 'dashboards',
-                 'dashboardScheduleLog',
-                 'dashboardSchedules',
-                 'dashboardSnapshots',
-                 'dashboardsRecent',
-                 'dashboardSubscriptions',
-                 'dashboardTabs',
-                 'dashboardTags',
-                 'dashboardThemes',
-                 'dataCachingTable',
-                 'dataConnections',
-                 'dataFields',
-                 'dataOwnerships',
-                 'dataQualityIssues',
-                 'datasets',
-                 'datasourcePermissions',
-                 'datasources',
-                 'datasourceSchedules',
-                 'datasourceScheduleLog',
-                 'datasourceTransformations',
-                 'dataTables',
-                 'paletteButtonBars',
-                 'paletteButtonsSelecteds',
-                 'statusBarMessageLogs',
-                 'transformations',
-                 'widgetCheckpoints',
-                 'widgetGraphs',
-                 'widgetLayouts',
-                 'widgetStoredTemplates',
-                 'widgets'
-                ].indexOf(pathUrl) >= 0) {
-                baseUrl = this.canvasServerURI + '/canvasdata/:';
-                // console.log('xx 2 XXXXXXXX', baseUrl)
-            };
-        };
+        let baseUrl: string = this.canvasServerURI + '/canvasdata/:';
 
         // Return
         return baseUrl;
@@ -14346,7 +14219,6 @@ console.warn('xx ds perm', dp);
         };
 
         let pathUrl: string = this.currentCanvasServerURI + 'canvas/enqueue/';
-        this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
 
@@ -14387,7 +14259,6 @@ console.warn('xx ds perm', dp);
         };
 
         let pathUrl: string = this.currentCanvasServerURI + 'accounts/graphql/';
-        this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
 
