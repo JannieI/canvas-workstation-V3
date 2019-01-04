@@ -4272,76 +4272,6 @@ export class GlobalVariableService {
                 };
             };
 
-            // TODO - delete once certain
-            // Get data from the correct place
-            // if (dsSourceLocation == 'localDB') {
-
-            //     this.getLocal('Dataset')
-            //     .then(res => {
-            //         let newdSet: Dataset = res;
-
-            //         // // Add to datasets (contains all data) - once
-            //         // if (dSetIDs.indexOf(datasetID) < 0) {
-            //         //     this.datasets.push(newdSet);
-            //         // };
-
-            //         // Add to Currentatasets (contains all data) - once
-            //         if (dsCurrIDs.indexOf(datasetID) < 0) {
-            //             this.currentDatasets.push(newdSet);
-            //         };
-
-            //         if (this.sessionDebugging) {
-            //             console.log('%c    Global-Variables getCurrentDataset 1 from ',
-            //                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            //                 {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
-            //                 {newdSet}, ', and currentDatasets = ', this.currentDatasets)
-            //         };
-
-            //         resolve(newdSet);
-            //     });
-            // };
-
-            // if (dsSourceLocation == 'file') {
-            //     // TODO - fix this via real http
-            //     let dataurl: string = this.filePath;
-            //     this.get(dataurl)
-            //         .then(dataFile => {
-
-            //             let newdSet: Dataset = {
-            //                 id: datasetID,
-            //                 datasourceID: datasourceID,
-            //                 url: pathUrl,
-            //                 sourceLocation: 'file',
-            //                 folderName: folderName,
-            //                 fileName: fileName,
-            //                 cacheServerStorageID: null,
-            //                 cacheLocalStorageID: null,
-            //                 isLocalDirty: null,
-            //                 data: dataFile,
-            //                 dataRaw: dataFile
-            //             };
-
-            //             // // Add to datasets (contains all data) - once
-            //             // if (dSetIDs.indexOf(datasetID) < 0) {
-            //             //     this.datasets.push(newdSet);
-            //             // };
-
-            //             // Add to Currentatasets (contains all data) - once
-            //             if (dsCurrIDs.indexOf(datasetID) < 0) {
-            //                 this.currentDatasets.push(newdSet);
-            //             };
-
-            //             if (this.sessionDebugging) {
-            //                 console.log('%c    Global-Variables getCurrentDataset 1 from ',
-            //                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            //                     {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
-            //                     {newdSet}, ', and currentDatasets = ', this.currentDatasets)
-            //             };
-            //             resolve(newdSet);
-            //         }
-            //     );
-            // };
-
             if (dsSourceLocation == 'HTTP') {
 
                 let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + datasetID.toString()
@@ -4553,48 +4483,40 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        // OLD
-        // let pathUrl: string = 'data/' + id.toString();
-        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        // this.filePath = './assets/data.datasets.json';
-
-        let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + id.toString()
 
         // console.log('xx finalUrl', finalUrl)
         return new Promise<Dataset[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             // if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-              
-                // OLD
-                // this.get(pathUrl)
-                //     .then(res => {
-              
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-                            return;
-                        };
-                        
-                        // TODO - load here, or in calling routing
-                        // this.datasets[xxx from id].rawData & .data = data;
-                        // this.isDirtyDatasets = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+            this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+            
+            let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + id.toString()
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
 
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getData',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {res})
-                        };
+                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                        resolve(res.data);
-                    });
-            // } else {
-            //     console.log('%c    Global-Variables getData 2', this.datasets)
-            //     resolve(this.datasets);
-            // }
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getData',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            {res})
+                    };
+
+                    resolve(res.data);
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDataset FAILED', {err});
+                    };
+
+                    reject(err.message);
+                }
+            );
         });
 
     }
