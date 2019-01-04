@@ -8682,7 +8682,7 @@ export class GlobalVariableService {
                         console.log('addWidget ADDED', res.data, this.widgets)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
