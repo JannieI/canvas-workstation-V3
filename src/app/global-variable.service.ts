@@ -8478,7 +8478,7 @@ export class GlobalVariableService {
         });
     }
 
-    getWidgets(): Promise<Widget[]> {
+    getWidgets(params: string = ''): Promise<Widget[]> {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
@@ -8488,19 +8488,26 @@ export class GlobalVariableService {
                 this.widgets.length);
         };
 
-        let pathUrl: string = 'widgets';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.widgets.json';
+        // let pathUrl: string = 'widgets';
+        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        // this.filePath = './assets/data.widgets.json';
 
         return new Promise<Widget[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(pathUrl)
-                    .then(res => {
 
-                        this.widgets = res;
+                let pathUrl: string = 'widgets' + params;
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.widgets = res.data;
 
                         // TODO - fix hardcoding, issue with datalib jsonTree
                         this.widgets.forEach(w => {
@@ -8625,7 +8632,11 @@ export class GlobalVariableService {
                         };
 
                         resolve(this.widgets);
-                    });
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                )
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getWidgets 2',
