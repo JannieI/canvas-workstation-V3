@@ -1417,6 +1417,17 @@ export class GlobalVariableService {
 
     }
 
+    actionWebSocketNEW(websocketMessage: WebSocketMessage) {
+        return new Promise<string>((resolve, reject) => {
+            // Handle the different websocket messages
+            // Return a string with the error message if not okay
+    
+            setTimeout( () => {
+                resolve('Success');
+            }, 3000);
+        });
+    }
+
     actionWebSocket(webSocketMessage: WebSocketMessage){
         // Description: Actions received Web Socket message
         // Returns:

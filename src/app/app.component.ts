@@ -560,8 +560,12 @@ export class AppComponent implements OnInit {
                     // ,on registers a new handler for the given event name.  The callback will get 
                     // whatever data was sent over by the server, ie message below.
                     this.socket.on('canvasNS', (message) => {
-                        console.log('xx socket message', message)
+                        console.log('xx socket received message', message)
+                        this.globalVariableService.actionWebSocketNEW(message).then(res => {
+                            console.log('xx actionWebSocketNEW just RAN')
+                        });
                     });
+
 
 
                     
