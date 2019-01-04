@@ -110,9 +110,10 @@ Note: make sure to have the latest version of Angular-CLI installed
         $ parse-server --appId APPLICATION_ID --masterKey MASTER_KEY --databaseURI mongodb://localhost/test
         Note: If installation with -g fails due to permission problems (npm ERR! code 'EACCES'), please refer to this link.
 
-    ## Install nanoSQL
+    ## DONT Install nanoSQL
         npm install nano-sql --save
         NB: this is being replaced with Dexie ...
+        UnInstalled 2019-01-04
 
 
     ## Changes
@@ -138,11 +139,11 @@ Note: make sure to have the latest version of Angular-CLI installed
 
 
 # 3. Upgrade from ng5 -> ng6 (2018-08-21)
-    
+
     Follow this doc CAREFULLY:
     https://loiane.com/2018/05/upgrading-to-angular-v6/
 
-    
+
         Upgraded node to v8+: - see https://www.hostingadvice.com/how-to/update-node-js-latest-version/
 
         1. Did (v7 -> 10) with:
@@ -165,14 +166,14 @@ Note: make sure to have the latest version of Angular-CLI installed
 
         Isses:
         1. SQLITE3 did not work with Node v10 - downgraded Node and all was good
-        2. TS was wrong version - struggled quite a bit with it.  Delete packages-lock.json, install right version and uninstall incorrect version.  Remember to consider local vs global packages, and also packages.json.  
+        2. TS was wrong version - struggled quite a bit with it.  Delete packages-lock.json, install right version and uninstall incorrect version.  Remember to consider local vs global packages, and also packages.json.
         3. Lots of issues with Clarity.  Eventually read the docs, and it was easy.  They changed the npm instruction, node_modules folder, etc.
         4. At some stage, reinstalled some packages (not sure if it was needed):
         Re-Installed Vega: `npm install vega-lite --save`
         Re-Installed Vega-Lite: `npm install vega-lite --save`
         Re-Installed datalib (typings live in https://github.com/Clarity-Analytics/typings):
             `npm install datalib --save`
-            
+
             ## Install datalib typing
             Clone Clarity Analytics Git repo **typings** in node_modules/@types (the .ts file must be in a subfolder called *datalib* )
             Note: ensure that tsconfig.json points to this folder:
@@ -190,7 +191,7 @@ Note: make sure to have the latest version of Angular-CLI installed
     ## agGrid
         https://www.ag-grid.com/angular-getting-started/
 
- 
+
     Issue with datalib, as types were not found:
         Had to keep these lines in tsconfig.json:
         ...
@@ -202,7 +203,7 @@ Note: make sure to have the latest version of Angular-CLI installed
     File-Saver
         npm install file-saver --save
         npm install @types/file-saver --save-dev
-        
+
     Excel files:
         npm install xlsx
 
