@@ -4483,7 +4483,6 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-
         // console.log('xx finalUrl', finalUrl)
         return new Promise<Dataset[]>((resolve, reject) => {
 
@@ -8936,8 +8935,6 @@ export class GlobalVariableService {
                 };
 
                 // Only get data from Graphs and Text boxes
-                // if ( (w.widgetType == 'Graph'  ||  w.widgetType == 'Shape')  &&
-                //     (w.datasourceID >= 0) ) {
                 if (w.datasourceID != null  &&  w.datasetID != null) {
 
                     // Build array of promises, each getting data for 1 widget if not store already
@@ -8965,13 +8962,6 @@ export class GlobalVariableService {
                 }
             });
 
-            // // Return if nothing to be done, means all data already good
-            // if (promiseArray.length = 0) {
-            //     // TODO - better error handling
-            //     console.log('                        is EMPTy, so Nothing to resolve');
-            //     resolve(true)
-            // };
-
             // Get all the dataset to local vars
             this.allWithAsync(...promiseArray)
                 .then(resolvedData => {
@@ -8981,21 +8971,6 @@ export class GlobalVariableService {
                         // TODO - improve
                         // this.filterSlicer(cd);
                     })
-
-                    // Add data to widget
-                    // TODO - url = this.filePath for localDB ...
-                    // this.currentWidgets.forEach(w => {
-                    //     w.graphUrl = "";
-                    //     let ds: Dataset[] = this.currentDatasets.filter(
-                    //         i => i.id == w.datasetID
-                    //     );
-                    //     if (ds.length > 0) {
-                    //         w.graphData = ds[0].data;
-                    //     } else {
-                    //         w.graphData = null;
-                    //     }
-
-                    // });
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getWidgetsInfo 1 True',
