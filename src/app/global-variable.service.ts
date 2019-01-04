@@ -8500,8 +8500,11 @@ export class GlobalVariableService {
 
                 let pathUrl: string = 'widgets' + params;
                 let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                console.log('xx Widgets finalUrl', finalUrl)
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res => {
+
+                        console.log('xx WIDGETS res', res)
                         if(res.statusCode != 'success') {
                             reject(res.message);
 							return;
@@ -11601,7 +11604,8 @@ export class GlobalVariableService {
                  'widgetCheckpoints',
                  'widgetGraphs',
                  'widgetLayouts',
-                 'widgetStoredTemplates'
+                 'widgetStoredTemplates',
+                 'widgets'
                 ].indexOf(pathUrl) >= 0) {
                 baseUrl = this.canvasServerURI + '/canvasdata/:';
                 // console.log('xx 2 XXXXXXXX', baseUrl)
