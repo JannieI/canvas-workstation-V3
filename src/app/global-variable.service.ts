@@ -11301,62 +11301,6 @@ export class GlobalVariableService {
         });
     }
 
-    get<T>(pathUrl: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
-        // Generic GET data, later to be replaced with http
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables get (url) ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {pathUrl});
-        };
-
-        // TODO - cleaner switch to http?
-        // if (this.filePath == './assets/data.widgets.json') {
-        if (this.getSource = 'Test') {
-            const params = new HttpParams()
-                .set('orderBy', '"dashboardTabID"')
-                .set('limitToFirst', "1");
-
-            return new Promise((resolve, reject) => {
-
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-                console.log('xx get with Test: ', this.canvasServerName, pathUrl, finalUrl)
-                this.http.get(finalUrl).subscribe(
-                    res =>
-                    {
-                        resolve(res);
-                    },
-                    (err: HttpErrorResponse) => {
-                        if (err.error instanceof Error) {
-                          console.log("Client-side error occured.");
-                        } else {
-                          console.log("Server-side error occured.");
-                        };
-                        console.log('ERROR Error',err.error);
-                        console.log('ERROR Name',err.name);
-                        console.log('ERROR Message',err.message);
-                        console.log('ERROR Status',err.status);
-                      }
-                )}
-            );
-
-        };
-
-        // if (this.getSource == 'File') {
-        //     return new Promise((resolve, reject) => {
-        //         // Get from source - files for now ...
-        //         dl.json({url: this.filePath}, {children: 'graphSpecification'}, (err, currentData) => {
-        //             if (err) {
-        //                 reject(err)
-        //             } else {
-        //                 if (options == 'metadata') {}
-        //                 resolve(currentData);
-        //             }
-        //             });
-        //         }
-        //     );
-        // };
-    }
-
     setBaseUrl(pathUrl: string): string {
        // Description: Gets the caching table that drives local caching process
        if (this.sessionDebugging) {
