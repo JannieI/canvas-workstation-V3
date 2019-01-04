@@ -8985,18 +8985,24 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let pathUrl: string = 'widgets';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.widgets.json';
+        // let pathUrl: string = 'widgets';
+        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        // this.filePath = './assets/data.widgets.json';
 
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete(finalUrl + '/' + id, {headers})
+            let pathUrl: string = 'widgets';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
 
                     this.widgets = this.widgets.filter(
                         w => w.id != id
@@ -9029,7 +9035,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error deleteWidget FAILED', {err});
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
