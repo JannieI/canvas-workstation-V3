@@ -431,7 +431,6 @@ export class AppComponent implements OnInit {
 
     // Create the socket (on the web socket Server) on the correct port (which is same as the
     // HTTP url as the web socket Server listens to the HTTP server traffic)
-    // socket = io('http://localhost:3000');
     socket: any;
 
 

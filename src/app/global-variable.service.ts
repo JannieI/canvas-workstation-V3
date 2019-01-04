@@ -1767,9 +1767,6 @@ export class GlobalVariableService {
 
                 // Get from HTTP server
                 let pathUrl: string = tableName + params;
-
-                // this.get(pathUrl)
-                //     .then(res => {
                 let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res  => {
@@ -8661,38 +8658,6 @@ export class GlobalVariableService {
         });
 
     }
-
-
-    getWidgetsXXX(collection: string): Promise<any> {
-        // Description: Gets all W
-        // Returns: this.widgets array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getWidgets XXXXXXXXXXXXXXXXXX ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                this.widgets.length);
-        };
-
-        return new Promise<any>( (resolve, reject) => {
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json")
-                .set("Accept", "application/json")
-            // this.http.get('http://localhost:8000/background?query=%22;%22&page=2', {headers}).subscribe(
-            this.http.get('http://localhost:8000/users/mongo:' + collection, {headers}).subscribe(
-                res =>
-                {
-                    resolve(res);
-                },
-                (err: HttpErrorResponse) => {
-                    if (err.error instanceof Error) {
-                      console.log("Client-side error occured.");
-                    };
-                }
-            );
-        });
-
-    }
-
 
     getCurrentWidgets(dashboardID: number, dashboardTabID: number): Promise<Widget[]> {
         // Description: Gets all W for current D
