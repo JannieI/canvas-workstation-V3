@@ -2767,7 +2767,7 @@ export class GlobalVariableService {
                         console.log('addDashboard ADDED', res.data, this.dashboards)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
