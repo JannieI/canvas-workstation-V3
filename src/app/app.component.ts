@@ -450,6 +450,7 @@ export class AppComponent implements OnInit {
         // Process for Authentication, Login, tokens between Canvas-Server and Canvas-Client:
 
         // On App startup (ngOnInit):
+        // 0. Open WebSocket connection
         // 1. RxJs subscription to Refresh Variables:
         //    Rest of the RxJs subscriptions are called (to listen for updates), including:
         //    - Current User (object that has profile of the current user)
@@ -538,26 +539,30 @@ export class AppComponent implements OnInit {
         this.globalVariableService.loadVariableOnStartup.subscribe(res => {
             if (res) {
 
+                // Notes:
+                // When logging into the Server, a dedicated open connection is established with 
+                // Workstation.  Workstation has two methods:
+                // 1. it listions to Server (with socket.on).  Once a message has been received 
+                //    by Workstation, it triggers globalvariables.actionWebSocket() asynchronously.
+                //    The messages received by Workstation is defined by the WebSocketMessage model.
+                // 2. it sends messages to Server (with socket.emit).
 
-
-
-
+                // Establishthe connection
                 this.socket = io(this.globalVariableService.canvasServerURI);
-
-                // EventNames (the socket must listen specifically to the correct name)
-                // For now, ONE namespace / eventNames: canvas.  The messageType determines what
-                // to do with it.  Pro: simpler, and should be faster as less open ...
-                // Alternative: have different eventName ...
-                //  welcome: first message
-                //  joined: other users joined the communication
-                //  update, add, delete, refresh: action for a Canvas resource
-                //    - what about clientData??  - why so many ??
-                //  message3: Canvas Instant Messages
                 console.log('xx socket oject', this.socket)
+
+                // Notes on Namespaces (EventNames):
+                // Each socket on Workstation listens to a specific Namespace.  One can define 
+                // additional sockets to listen to more Namespaces.
+                // For now, we have ONE namespace / eventNames: canvasNS.  This used by both Server
+                // and Workstation.  So, the Namespace does not determine the type of message (that 
+                // is determined by the messageType, and Action).
+
+                // Start listening to the connection (connect is reserved)
                 this.socket.on('connect', (data) => {
 
-                    // ,on registers a new handler for the given event name.  The callback will get 
-                    // whatever data was sent over by the server, ie message below.
+                    // Once a message is received on the canvasNS Namespace, the callback will be
+                    // triggered.
                     this.socket.on('canvasNS', (message) => {
                         console.log('xx socket received message', message)
                         this.globalVariableService.actionWebSocketNEW(message).then(res => {
@@ -565,10 +570,7 @@ export class AppComponent implements OnInit {
                         });
                     });
 
-
-
-                    
-                    // Standard events for illustration purposes - Switch off for now
+                    // Standard events for illustration purposes - Switched off for now
                     // this.socket.on('connect_error', (error) => {
                     //     console.log('xx socket connect_error', error)
                     // });
@@ -603,24 +605,11 @@ export class AppComponent implements OnInit {
                     // });
 
 
-                    // .emit emits an event to the socket identified by the event name (ie message below).  It
-                    // can take args (data to be send to the server) and an optional callback which will be called
-                    // with the server's answer.
+                    // .emit sends a message to Server on the canvasNS Namespace.  It can take args (data to 
+                    //  be send to the server) and an optional callback which will be called
+                    //  with the server's answer.
                     this.socket.emit('canvasNS', {data: 'First socket message'});
                 });
-
-                // Subscribe to WebSocket messages
-                // this.webSocketChat.messages.subscribe(msg => {
-                //     console.log(msg);
-                // });
-            
-
-
-
-
-
-                // TODO get canvasSettings from DB too
-                console.warn('xx res is good', res, this.globalVariableService.currentUser)
 
                 // Rest of the RxJs subscriptions are called (to listen for updates)
                 // To obtain required info as and when it is filled by other forms, ie Login
