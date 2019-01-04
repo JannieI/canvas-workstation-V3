@@ -546,31 +546,25 @@ export class AppComponent implements OnInit {
                 this.socket = io(this.globalVariableService.canvasServerURI);
 
                 // EventNames (the socket must listen specifically to the correct name)
-                // Alternative: have ONE eventName ...
-                // welcome: first message
-                // joined: other users joined the communication
-                // update, add, delete, refresh: action for a Canvas resource
+                // For now, ONE namespace / eventNames: canvas.  The messageType determines what
+                // to do with it.  Pro: simpler, and should be faster as less open ...
+                // Alternative: have different eventName ...
+                //  welcome: first message
+                //  joined: other users joined the communication
+                //  update, add, delete, refresh: action for a Canvas resource
                 //    - what about clientData??  - why so many ??
-                // message3: Canvas Instant Messages
+                //  message3: Canvas Instant Messages
                 console.log('xx socket oject', this.socket)
                 this.socket.on('connect', (data) => {
 
                     // ,on registers a new handler for the given event name.  The callback will get 
                     // whatever data was sent over by the server, ie message below.
-                    this.socket.on('welcome', (message) => {
-                        console.log('xx socket welcome message', message)
+                    this.socket.on('canvasNS', (message) => {
+                        console.log('xx socket message', message)
                     });
 
-                    // This message is not received by the sender !
-                    this.socket.on('joined', (message) => {
-                        console.log('xx socket another user has joined the Canvas room');
-                    });
 
-                    // This message is not received by the sender !
-                    this.socket.on('update', (message) => {
-                        console.log('xx socket update', message);
-                    });
-
+                    
                     // Standard events for illustration purposes - Switch off for now
                     // this.socket.on('connect_error', (error) => {
                     //     console.log('xx socket connect_error', error)
@@ -609,7 +603,7 @@ export class AppComponent implements OnInit {
                     // .emit emits an event to the socket identified by the event name (ie message below).  It
                     // can take args (data to be send to the server) and an optional callback which will be called
                     // with the server's answer.
-                    this.socket.emit('message', {data: 'First socket message'});
+                    this.socket.emit('canvasNS', {data: 'First socket message'});
                 });
 
                 // Subscribe to WebSocket messages
@@ -7980,7 +7974,7 @@ export class AppComponent implements OnInit {
         // Send WebSocket Message
         // this.webSocketChat.sendMsg("Test Message");
 
-        this.socket.emit('message', 'Test HELP message');
+        this.socket.emit('canvasNS', 'Test HELP message');
 
 
 
