@@ -7316,7 +7316,7 @@ export class GlobalVariableService {
                             this.currentDataOwnerships, this.dataOwnerships)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
