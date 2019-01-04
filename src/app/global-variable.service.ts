@@ -7071,7 +7071,7 @@ export class GlobalVariableService {
                             this.currentDataQualityIssues, this.dataQualityIssues)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
