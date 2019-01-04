@@ -8500,11 +8500,9 @@ export class GlobalVariableService {
 
                 let pathUrl: string = 'widgets' + params;
                 let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                console.log('xx Widgets finalUrl', finalUrl)
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res => {
 
-                        console.log('xx WIDGETS res', res)
                         if(res.statusCode != 'success') {
                             reject(res.message);
 							return;
@@ -8789,25 +8787,31 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let pathUrl: string = 'widgets';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        this.filePath = './assets/data.widgets.json';
+        // let pathUrl: string = 'widgets';
+        // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        // this.filePath = './assets/data.widgets.json';
 
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
+            let pathUrl: string = 'widgets';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    this.widgets.push(JSON.parse(JSON.stringify(res)));
-                    this.currentWidgets.push(JSON.parse(JSON.stringify(res)));
+                    this.widgets.push(JSON.parse(JSON.stringify(res.data)));
+                    this.currentWidgets.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
-                        console.log('addWidget ADDED', {res}, this.widgets)
+                        console.log('addWidget ADDED', res.data, this.widgets)
                     };
 
                     resolve(res);
@@ -8817,7 +8821,7 @@ export class GlobalVariableService {
                         console.log('Error addWidget FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
