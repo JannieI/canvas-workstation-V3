@@ -4532,15 +4532,15 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post(finalUrl, data, {headers})
+            this.http.post<{id: number, data: any}>(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
                     if (this.sessionDebugging) {
-                        console.log('addData ADDED', {res})
+                        console.log('addData ADDED', res.data)
                     };
 
-                    resolve(res);
+                    resolve(res.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
