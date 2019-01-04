@@ -389,7 +389,11 @@ export class CanvasGroup {
 export class WebSocketMessage {
     _id?: string;                           // Mongo ID (read only)
     sender: string;                         // UserID who sent message, CanvasServer if backend
+    messageText: string;                    // Text of message, ie Hallo, for simple communication
     content: any;                           // Payload, can be text string or Object or Array
+        // This will vary according to the messageType: for a 'canvasData' type messages, it could be 
+        // a complete dashboard, datasource, etc.  For a 'canvasMessages' type message, it could
+        // be a complete CanvasMessage.  For canvasSystem, it may be a different payload
     messageType: string;                    // Type of message -> determines action required
         // canvasData: Canvas-related data like dashboards, datasources, widgets, etc
         // clientData: client-related data, ie XIS Trades
