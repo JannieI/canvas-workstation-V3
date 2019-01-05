@@ -1451,8 +1451,6 @@ export class GlobalVariableService {
                 let localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
                 let localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
 
-
-
                 // Add an object
                 if (webSocketMessage.action.toLowerCase() == 'add') {
 
@@ -1493,11 +1491,51 @@ export class GlobalVariableService {
                     };
                 };
 
+                // Update an object
+                if (webSocketMessage.action.toLowerCase() == 'update') {
 
+                    // Update Memory
+                    if (localCacheableMemory) {
 
+                        // Update local var
+                        if (localVariableName != null) {
+                            let localVarIndex: number = this[localVariableName].findIndex(
+                                lv => lv.if == webSocketMessage.objectID);
+                            
+                            if (localVarIndex >0 0) {
+                                this[localVariableName][localVarIndex] = webSocketMessage.content;
+                            };
+                        };
+    
+                        // Update Current Var
+                        if (localCurrentVariableName != null) {
+                            let localCurrentVarIndex: number = this[localCurrentVariableName].findIndex(
+                                lv => lv.if == webSocketMessage.objectID);
+                            
+                            if (localCurrentVarIndex >0) {
+                                this[localCurrentVariableName][localCurrentVarIndex] = webSocketMessage.content;
+                            };
+                        };
+                        console.log('xx UPDATE Memory Updated', this[localCurrentVariableName], this[localCurrentVariableName])
+    
+                    };
 
+                    // Update Disc
+                    if (localCacheableDisc) {
+                        // Delete from DB
+                        if (localTableName != null) {
 
-
+                            this.dbCanvasAppDatabase.table(localTableName)
+                                .where('id').equals(webSocketMessage.objectID)
+                                .put(this[localVariableName])
+                                .then(res => {
+                                    this.dbCanvasAppDatabase.table(localTableName).count(res => {
+                                        console.warn('xx UPDATE Disc count @ end ', res);
+                                    });
+                            });
+                        };
+                    };
+                }
 
                 // Delete an object
                 if (webSocketMessage.action.toLowerCase() == 'delete') {
