@@ -1425,12 +1425,14 @@ export class GlobalVariableService {
         // Handle each messageType
         if (webSocketMessage.messageType == 'canvasData') {
             // Canvas-related data like dashboards, datasources, widgets, etc
+            //   Actions: Individual record action: Add, Update, Delete.  Whole resource: ReplaceAll  
 
             // Find object in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
                 dct.key == webSocketMessage.objectName
             );
 
+            console.log('xx dataCachingTableIndex', dataCachingTableIndex, webSocketMessage.objectName, webSocketMessage.objectID)
             // If in CachingTable, update locally
             if (dataCachingTableIndex >= 0) {
                 
@@ -1461,20 +1463,27 @@ export class GlobalVariableService {
                             }
                         );
                 };
-                // Force refresh if critical
+                // Force refresh of Dashboard if critical
+                // Consider carefulle:
+                // - usecase for this
+                // - how to do this elegantly, so that user is not surprised, or loses work if
+                //   busy editing (which edits should not be accepted anyways)
         };
 
         if (webSocketMessage.messageType == 'clientData') {
-        // client-related data, ie XIS Trades
+            // client-related data, ie XIS Trades
+            //   Actions: Refresh
         };
 
         if (webSocketMessage.messageType == 'canvasMessages') {
-        // collaboration via Canvas Messages
+            // collaboration via Canvas Messages
+            //   Actions: NewMessage
             this.hasNewMessage.next(true);
         };
 
         if (webSocketMessage.messageType == 'canvasSystem') {
-        //system generated messages, ie from the server
+            //system generated messages, ie from the server
+            //   Actions: undetermined at the moment
         };
 
 
