@@ -63,6 +63,7 @@ import { WidgetStoredTemplate }       from './models';
 // Dexie
 import Dexie                          from 'dexie';
 import { CanvasAppDatabase }          from './dexieDatabase';
+import { DataCachingDatabase }        from './dexieDatabase';
 
 // TODO - to remove
 import { Token }                      from './models';
@@ -1237,6 +1238,8 @@ export class GlobalVariableService {
 
     // Dexie
     dbCanvasAppDatabase;
+    dbDataCachingTable;
+
 
     constructor(
         private http: HttpClient,
@@ -1497,12 +1500,15 @@ export class GlobalVariableService {
                     };
 
                 // Update dataCaching on Disc
-                this.dbCanvasAppDatabase.table("dataCachingTable").count(res => {
+                this.dbDataCachingTable = new DataCachingDatabase;
+                this.dbDataCachingTable.open();
+        
+                this.dbDataCachingTable.table("DataCachingTable").count(res => {
                     console.warn('xx Count before Upd', res);
                 });
-                this.dbCanvasAppDatabase.table("dataCachingTable")
+                this.dbDataCachingTable.table("DataCachingTable")
                     .put(this[localVariableName]);
-                this.dbCanvasAppDatabase.table("dataCachingTable").count(res => {
+                this.dbDataCachingTable.table("DataCachingTable").count(res => {
                     console.warn('xx Count after Upd', res);
                 });
             };
