@@ -1454,11 +1454,11 @@ export class GlobalVariableService {
 
                     // Update Memory
                     if (this.dataCachingTable[dataCachingTableIndex].localCacheableMemory) {
-                        console.log('xx in localVars')
+                        console.log('xx Start localVars', this[localVariableName], this[localCurrentVariableName])
                         if (localVariableName != null) {
                             this[localVariableName] = this[localVariableName].filter(
                                 lv => {
-                                    lv.id != webSocketMessage.objectID
+                                    return lv.id != webSocketMessage.objectID
                                 });
                         };
     
@@ -1466,9 +1466,10 @@ export class GlobalVariableService {
                         if (localCurrentVariableName != null) {
                             this[localCurrentVariableName] = this[localCurrentVariableName].filter(
                                 lv => {
-                                    lv.id != webSocketMessage.objectID
+                                    return lv.id != webSocketMessage.objectID
                                 });
                         };
+                        console.log('xx End localVars', this[localVariableName], this[localCurrentVariableName])
     
                     };
 
