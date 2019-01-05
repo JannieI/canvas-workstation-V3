@@ -1706,7 +1706,7 @@ export class GlobalVariableService {
 
                         if ( (localVariableName != null)
                                 &&
-                                (this[localVariableName].length != 0)
+                                (this[localVariableName].length == 0)
                             ) {
                             console.warn('xx data returned from Memory', this[localVariableName]);
                             // var type = 'article';
@@ -1739,15 +1739,13 @@ export class GlobalVariableService {
             let pathUrl: string = tableName + params;
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                res  => {
+                httpResult  => {
                     console.warn('xx in HTTP')
 
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
+                    if(httpResult.statusCode != 'success') {
+                        reject(httpResult.message);
                         return;
                     };
-
-                    let data = res.data;
 
                     // If cached, fill local info
                     if (dataCachingTableIndex >= 0) {
@@ -1766,7 +1764,7 @@ export class GlobalVariableService {
                             // Fill local Vars
                             if (localVariableName != null) {
                                 this[localVariableName] = [];
-                                this[localVariableName] = res.data;
+                                this[localVariableName] = httpResult.data;
                                 console.warn('xx updated cached Memory to', this[localVariableName]);
                             };
 
@@ -1779,7 +1777,7 @@ export class GlobalVariableService {
 
                                 this.dbCanvasAppDatabase.table(localTableName).clear().then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName)
-                                    .bulkPut(res.data)
+                                    .bulkPut(httpResult.data)
                                     .then(resPut => {
 
                                         // Count
@@ -1793,8 +1791,8 @@ export class GlobalVariableService {
                         };
                     };
 
-                    console.warn('xx data retured from HTTP', res.data);
-                    resolve(res.data);
+                    console.warn('xx data retured from HTTP', httpResult.data);
+                    resolve(httpResult.data);
                     return;
                 },
                 err => {
