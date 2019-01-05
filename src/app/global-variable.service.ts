@@ -1699,6 +1699,7 @@ export class GlobalVariableService {
                         isFresh = false;
                     };
 
+                    console.log('xx fresh vars', dn, tn, dl, tl, isFresh)
                     // Use local cache variable or table if fresh
                     if (isFresh) {
                         console.log('xx is FRESH')
@@ -1713,20 +1714,21 @@ export class GlobalVariableService {
                             // alert(this.article_count);
                             resolve(this[localVariableName]);
                             return;
-                        };
-                        if (localTableName != null) {
+
+                        } else if (localTableName != null) {
                             console.warn('xx in local Disc');
                             let localDashboardArray: Dashboard[] = [];
                             this.dbCanvasAppDatabase.table(localTableName)
-                                .toArray()
-                                .then(res => {
-                                    // TODO - generalize .dashboard for ANY data
-                                    // TODO - check that not empty Array
-                                    localDashboardArray = res.map(row => row.dashboard);
-                                    console.log('xx data returned from Disc', localDashboardArray)
+                            .toArray()
+                            .then(res => {
+                                // TODO - generalize .dashboard for ANY data
+                                // TODO - check that not empty Array
+                                localDashboardArray = res.map(row => row.dashboard);
+                                console.log('xx data returned from Disc', localDashboardArray)
 
-                                    resolve(localDashboardArray);
-                            });
+                                resolve(localDashboardArray);
+                                return;
+                            });    
                         };
                     };
                 };
@@ -1759,7 +1761,7 @@ export class GlobalVariableService {
                         this.dataCachingTable[dataCachingTableIndex]
                             .localExpiryDateTime = this.dateAdd(dt, 'second', seconds);
 
-                            if (localCacheableMemory) {
+                        if (localCacheableMemory) {
 
                             // Fill local Vars
                             if (localVariableName != null) {
@@ -1775,14 +1777,16 @@ export class GlobalVariableService {
                                 this.dbCanvasAppDatabase = new CanvasAppDatabase
                                 this.dbCanvasAppDatabase.open();
 
-                                this.dbCanvasAppDatabase.table(localTableName)
-                                .bulkPut(res.data)
-                                .then(resPut => {
-
-                                    // Count
+                                this.dbCanvasAppDatabase.table(localTableName).clear().then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName)
-                                        .count(resCount => {
-                                            console.warn('xx updated local Disc to', resCount);
+                                    .bulkPut(res.data)
+                                    .then(resPut => {
+
+                                        // Count
+                                        this.dbCanvasAppDatabase.table(localTableName)
+                                            .count(resCount => {
+                                                console.warn('xx updated local Disc to', resCount);
+                                        });
                                     });
                                 });
                             };

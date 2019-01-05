@@ -7999,37 +7999,39 @@ export class AppComponent implements OnInit {
             let testDashboards: Dashboard[];
             testDashboards = res;
             console.warn('xx APP D []', testDashboards)
-        });
 
-        // Count
-        this.dbCanvasAppDatabase.table("localDashboards").count(res => {
-            console.warn('xx count of localDashboard', res);
         });
+ 
+        
+        // // Count
+        // this.dbCanvasAppDatabase.table("localDashboards").count(res => {
+        //     console.warn('xx count of localDashboard', res);
+        // });
 
-        // Count
-        this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-            console.warn('xx count of localDataCachingTable', res);
-        });
+        // // Count
+        // this.dbDataCachingTable.table("localDataCachingTable").count(res => {
+        //     console.warn('xx count of localDataCachingTable', res);
+        // });
 
-        this.dbDataCachingTable.table("localDataCachingTable")
-            .where('localExpiryDateTime').below(new Date())
-            .count(res => {
-                console.warn('xx count of below', res);
-        });
+        // this.dbDataCachingTable.table("localDataCachingTable")
+        //     .where('localExpiryDateTime').below(new Date())
+        //     .count(res => {
+        //         console.warn('xx count of below', res);
+        // });
 
-        this.dbDataCachingTable.table("localDataCachingTable")
-            .where('localExpiryDateTime').above(new Date())
-            .count(res => {
-                console.warn('xx count of above', res);
-        });
+        // this.dbDataCachingTable.table("localDataCachingTable")
+        //     .where('localExpiryDateTime').above(new Date())
+        //     .count(res => {
+        //         console.warn('xx count of above', res);
+        // });
 
-        let localDashboardArray: Dashboard[] = [];
-        this.dbCanvasAppDatabase.table("localDashboards")
-            .toArray()
-            .then(res => {
-                localDashboardArray = res.map(row => row.dashboard);
-                console.log('xx Array', localDashboardArray)
-            });
+        // let localDashboardArray: Dashboard[] = [];
+        // this.dbCanvasAppDatabase.table("localDashboards")
+        //     .toArray()
+        //     .then(res => {
+        //         localDashboardArray = res.map(row => row.dashboard);
+        //         console.log('xx Array', localDashboardArray)
+        //     });
 
     }
 
