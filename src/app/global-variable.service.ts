@@ -1435,6 +1435,10 @@ export class GlobalVariableService {
             // If in CachingTable, update locally
             if (dataCachingTableIndex >= 0) {
 
+                // Initialise DB
+                this.dbCanvasAppDatabase = new CanvasAppDatabase
+                this.dbCanvasAppDatabase.open();
+
                 // Set vars to use here
                 let localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                 let localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
@@ -1471,8 +1475,6 @@ export class GlobalVariableService {
                         // Delete from DB
                         if (localTableName != null) {
                             console.log('xx in localTable')
-                            this.dbCanvasAppDatabase = new CanvasAppDatabase
-                            this.dbCanvasAppDatabase.open();
                             this.dbCanvasAppDatabase.table(localTableName).count(res => {
                                 console.warn('xx Count before Delete', res);
                             });
@@ -1495,7 +1497,14 @@ export class GlobalVariableService {
                     };
 
                 // Update dataCaching on Disc
-
+                this.dbCanvasAppDatabase.table("dataCachingTable").count(res => {
+                    console.warn('xx Count before Upd', res);
+                });
+                this.dbCanvasAppDatabase.table("dataCachingTable")
+                    .put(this[localVariableName]);
+                this.dbCanvasAppDatabase.table("dataCachingTable").count(res => {
+                    console.warn('xx Count after Upd', res);
+                });
             };
             
             // If Dashboard is currently open
