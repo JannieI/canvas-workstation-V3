@@ -1442,15 +1442,8 @@ export class GlobalVariableService {
                 let localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
                 let localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
 
-                console.log('xx vars', localCacheableMemory,
-                    localCacheableDisc,
-                    localVariableName,
-                    localCurrentVariableName,
-                    localTableName)
                 // Delete an object
                 if (webSocketMessage.action.toLowerCase() == 'delete') {
-
-                    console.log('xx in Delete')
 
                     // Update Memory
                     if (this.dataCachingTable[dataCachingTableIndex].localCacheableMemory) {
@@ -1494,6 +1487,15 @@ export class GlobalVariableService {
                         };
                     };
                 };
+
+                // Update dataCaching in Memory
+                this.dataCachingTable[dataCachingTableIndex] = 
+                    { ...this.dataCachingTable[dataCachingTableIndex],
+                        localLastUpdatedDateTime: webSocketMessage.messageDateTime
+                    };
+
+                // Update dataCaching on Disc
+
             };
             
             // If Dashboard is currently open
