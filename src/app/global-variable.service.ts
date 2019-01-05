@@ -1503,10 +1503,10 @@ export class GlobalVariableService {
 
                 // Update dataCaching on Disc
                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                    console.warn('xx Count before Upd', res);
+                    console.warn('xx Count before Upd', res, this[localVariableName]);
                 });
                 this.dbDataCachingTable.table("localDataCachingTable")
-                    .bulkPut(this[localVariableName])
+                    .bulkPut(this.dataCachingTable)
                     .then(res => {
                         this.dbDataCachingTable.table("localDataCachingTable").count(res => {
                             console.warn('xx Count after Upd', res);
