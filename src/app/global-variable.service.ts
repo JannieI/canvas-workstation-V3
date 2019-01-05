@@ -72,6 +72,7 @@ import * as dl                        from 'datalib';
 
 // Environment
 import { environment } from '../environments/environment';
+import { message } from 'vega-lite/build/src/log';
 
 // Vega template
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
@@ -1444,10 +1445,22 @@ export class GlobalVariableService {
                 };
             };
             
-            // If currently view
+            // If Dashboard is currently open
 
                 // Warn user
-
+                if (webSocketMessage.objectName == 'dashboards'  
+                    && 
+                    webSocketMessage.objectID == this.currentDashboardInfo.value.currentDashboardID) {
+                        this.showStatusBarMessage(
+                            {
+                                message: 'This Dashboard has been changed',
+                                uiArea: 'StatusBar',
+                                classfication: 'Warning',
+                                timeout: 3000,
+                                defaultMessage: ''
+                            }
+                        );
+                };
                 // Force refresh if critical
         };
 
