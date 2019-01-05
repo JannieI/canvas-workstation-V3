@@ -1432,19 +1432,29 @@ export class GlobalVariableService {
                 dct.key == webSocketMessage.objectName
             );
 
-            console.log('xx dataCachingTableIndex', dataCachingTableIndex, webSocketMessage.objectName, webSocketMessage.objectID)
             // If in CachingTable, update locally
             if (dataCachingTableIndex >= 0) {
 
                 // Set vars to use here
-                let localVariableName: string = null;
-                let localCurrentVariableName: string = null;
-                let localTableName: string = null;
+                let localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
+                let localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
+                let localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
+                let localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
+                let localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
 
+                console.log('xx vars', localCacheableMemory,
+                    localCacheableDisc,
+                    localVariableName,
+                    localCurrentVariableName,
+                    localTableName)
                 // Delete an object
-                if (webSocketMessage.action == 'Delete') {
+                if (webSocketMessage.action.toLowerCase() == 'delete') {
+
+                    console.log('xx in Delete')
+
                     // Update Memory
                     if (this.dataCachingTable[dataCachingTableIndex].localCacheableMemory) {
+                        console.log('xx in localVars')
                         if (localVariableName != null) {
                             this[localVariableName] = this[localVariableName].filter(
                                 lv => {
@@ -1466,6 +1476,9 @@ export class GlobalVariableService {
                     if (this.dataCachingTable[dataCachingTableIndex].localCacheableDisc) {
                         // Delete from DB
                         if (localTableName != null) {
+                            console.log('xx in localTable')
+                            this.dbCanvasAppDatabase = new CanvasAppDatabase
+                            this.dbCanvasAppDatabase.open();
                             this.dbCanvasAppDatabase.table(localTableName).count(res => {
                                 console.warn('xx Count before Delete', res);
                             });
