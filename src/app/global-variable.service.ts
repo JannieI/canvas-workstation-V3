@@ -1443,7 +1443,7 @@ export class GlobalVariableService {
                 this.dbCanvasAppDatabase.open();
                 this.dbDataCachingTable = new DataCachingDatabase;
                 this.dbDataCachingTable.open();
-
+                
                 // Set vars to use here
                 let localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                 let localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
@@ -1451,12 +1451,64 @@ export class GlobalVariableService {
                 let localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
                 let localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
 
+
+
+                // Add an object
+                if (webSocketMessage.action.toLowerCase() == 'add') {
+
+                    // Update Memory
+                    if (localCacheableMemory) {
+
+                        // Update local var
+                        if (localVariableName != null) {
+                            let localVarIndex: number = this[localVariableName].findIndex(
+                                lv => lv.if == webSocketMessage.objectID);
+                            
+                            if (localVarIndex < 0) {
+                                this[localVariableName].push(webSocketMessage.content);
+                            };
+                        };
+    
+                        // Update Current Var
+                        // TODO - consider this carefully: dont think we should add stuff to
+                        // currentVars, ie currentDashboards = current D selected by user
+                        console.log('xx End localVars', this[localVariableName], this[localCurrentVariableName])
+    
+                    };
+
+                    // Update Disc
+                    if (localCacheableDisc) {
+                        // Delete from DB
+                        if (localTableName != null) {
+                            console.log('xx in localTable', localTableName)
+                            this.dbCanvasAppDatabase.table(localTableName).count(res => {
+                                console.warn('xx Count before Delete', res);
+                            });
+                            this.dbCanvasAppDatabase.table(localTableName)
+                                .where('id').equals(webSocketMessage.objectID)
+                                .delete()
+                                .then(res => {
+                                    this.dbCanvasAppDatabase.table(localTableName).count(res => {
+                                        console.warn('xx Count after Delete', res);
+                                    });
+                            });
+                        };
+                    };
+                };
+
+
+
+
+
+
+
                 // Delete an object
                 if (webSocketMessage.action.toLowerCase() == 'delete') {
 
                     // Update Memory
                     if (localCacheableMemory) {
-                        console.log('xx Start localVars', this[localVariableName], this[localCurrentVariableName])
+
+                        // Update local var
                         if (localVariableName != null) {
                             this[localVariableName] = this[localVariableName].filter(
                                 lv => {
