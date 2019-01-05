@@ -1441,6 +1441,8 @@ export class GlobalVariableService {
                 // Initialise DB
                 this.dbCanvasAppDatabase = new CanvasAppDatabase
                 this.dbCanvasAppDatabase.open();
+                this.dbDataCachingTable = new DataCachingDatabase;
+                this.dbDataCachingTable.open();
 
                 // Set vars to use here
                 let localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
@@ -1453,7 +1455,7 @@ export class GlobalVariableService {
                 if (webSocketMessage.action.toLowerCase() == 'delete') {
 
                     // Update Memory
-                    if (this.dataCachingTable[dataCachingTableIndex].localCacheableMemory) {
+                    if (localCacheableMemory) {
                         console.log('xx Start localVars', this[localVariableName], this[localCurrentVariableName])
                         if (localVariableName != null) {
                             this[localVariableName] = this[localVariableName].filter(
@@ -1474,10 +1476,10 @@ export class GlobalVariableService {
                     };
 
                     // Update Disc
-                    if (this.dataCachingTable[dataCachingTableIndex].localCacheableDisc) {
+                    if (localCacheableDisc) {
                         // Delete from DB
                         if (localTableName != null) {
-                            console.log('xx in localTable')
+                            console.log('xx in localTable', localTableName)
                             this.dbCanvasAppDatabase.table(localTableName).count(res => {
                                 console.warn('xx Count before Delete', res);
                             });
@@ -1500,16 +1502,15 @@ export class GlobalVariableService {
                     };
 
                 // Update dataCaching on Disc
-                this.dbDataCachingTable = new DataCachingDatabase;
-                this.dbDataCachingTable.open();
-        
-                this.dbDataCachingTable.table("DataCachingTable").count(res => {
+                this.dbDataCachingTable.table("localDataCachingTable").count(res => {
                     console.warn('xx Count before Upd', res);
                 });
-                this.dbDataCachingTable.table("DataCachingTable")
-                    .put(this[localVariableName]);
-                this.dbDataCachingTable.table("DataCachingTable").count(res => {
-                    console.warn('xx Count after Upd', res);
+                this.dbDataCachingTable.table("localDataCachingTable")
+                    .bulkPut(this[localVariableName])
+                    .then(res => {
+                        this.dbDataCachingTable.table("localDataCachingTable").count(res => {
+                            console.warn('xx Count after Upd', res);
+                        });
                 });
             };
             

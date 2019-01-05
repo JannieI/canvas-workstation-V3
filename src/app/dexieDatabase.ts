@@ -166,7 +166,7 @@ export class LocalDataCachingTable implements IDataCachingTable {
         serverLifeSpan,
         serverThresholdLines,
         serverVariableName
-    
+
     ) {
 
         this.key = key,
@@ -189,7 +189,7 @@ export class LocalDataCachingTable implements IDataCachingTable {
         this.serverLifeSpan = serverLifeSpan,
         this.serverThresholdLines = serverThresholdLines,
         this.serverVariableName = serverVariableName
-         
+
     }
 }
 
