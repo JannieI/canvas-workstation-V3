@@ -1435,15 +1435,50 @@ export class GlobalVariableService {
             console.log('xx dataCachingTableIndex', dataCachingTableIndex, webSocketMessage.objectName, webSocketMessage.objectID)
             // If in CachingTable, update locally
             if (dataCachingTableIndex >= 0) {
-                
-                // Update Memory
-                if (this.dataCachingTable[dataCachingTableIndex].localCacheableMemory) {
 
-                };
+                // Set vars to use here
+                let localVariableName: string = null;
+                let localCurrentVariableName: string = null;
+                let localTableName: string = null;
 
-                // Update Disc
-                if (this.dataCachingTable[dataCachingTableIndex].localCacheableDisc) {
+                // Delete an object
+                if (webSocketMessage.action == 'Delete') {
+                    // Update Memory
+                    if (this.dataCachingTable[dataCachingTableIndex].localCacheableMemory) {
+                        if (localVariableName != null) {
+                            this[localVariableName] = this[localVariableName].filter(
+                                lv => {
+                                    lv.id != webSocketMessage.objectID
+                                });
+                        };
+    
+                        // Update Current Var
+                        if (localCurrentVariableName != null) {
+                            this[localCurrentVariableName] = this[localCurrentVariableName].filter(
+                                lv => {
+                                    lv.id != webSocketMessage.objectID
+                                });
+                        };
+    
+                    };
 
+                    // Update Disc
+                    if (this.dataCachingTable[dataCachingTableIndex].localCacheableDisc) {
+                        // Delete from DB
+                        if (localTableName != null) {
+                            this.dbCanvasAppDatabase.table(localTableName).count(res => {
+                                console.warn('xx Count before Delete', res);
+                            });
+                            this.dbCanvasAppDatabase.table(localTableName)
+                                .where('id').equals(webSocketMessage.objectID)
+                                .delete()
+                                .then(res => {
+                                    this.dbCanvasAppDatabase.table(localTableName).count(res => {
+                                        console.warn('xx Count after Delete', res);
+                                    });
+                            });
+                        };
+                    };
                 };
             };
             
