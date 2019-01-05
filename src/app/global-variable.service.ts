@@ -1655,177 +1655,148 @@ export class GlobalVariableService {
         };
 
 
-// NB NB NB  - try to have ONE GET statement, for local and cloud Canvas-Servers
-
+        // NB NB NB  - try to have ONE GET statement, for local and cloud Canvas-Servers
 
 
         return new Promise<any>((resolve, reject) => {
 
-                // Assume worse case that all has to be obtained from HTTP server
-                let isFresh: boolean = false;
-                let localCacheableMemory: boolean = false;
-                let localCacheableDisc: boolean = false;
-                let localVariableName: string = null;
-                let localCurrentVariableName: string = '';
-                let localTableName: string = '';
+            // Assume worse case that all has to be obtained from HTTP server
+            let isFresh: boolean = false;
+            let localCacheableMemory: boolean = false;
+            let localCacheableDisc: boolean = false;
+            let localVariableName: string = null;
+            let localCurrentVariableName: string = '';
+            let localTableName: string = '';
 
-                // Find DS in localCachingTable
-                let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
-                    dct.key == tableName
-                );
+            // Find DS in localCachingTable
+            let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
+                dct.key == tableName
+            );
 
-                if (dataCachingTableIndex >= 0) {
-                    console.log('xx inside IF')
-                    // Get var and table names
-                    localVariableName = this.dataCachingTable
-                        [dataCachingTableIndex].localVariableName;
-                    localCurrentVariableName = this.dataCachingTable
-                        [dataCachingTableIndex].localCurrentVariableName;
-                    localTableName  = this.dataCachingTable
-                        [dataCachingTableIndex].localTableName;
+            if (dataCachingTableIndex >= 0) {
+                console.log('xx inside IF')
+                // Get var and table names
+                localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
+                localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
+                localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
+                localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
+                localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
+                console.warn('xx vars', dataCachingTableIndex, localCacheableMemory, localCacheableDisc, localVariableName);
 
-                    // Only proceed locally if local cache allowed
-                    localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
-                    localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
+                // Local Memory is used, if fresh
+                if (localCacheableMemory) {
+                    console.log('xx in local Memory')
 
-                    if (localCacheableMemory) {
-                        console.log('xx is CACHEable')
+                    // Fresh if not expired as yet
+                    let dn: Date = new Date();
+                    let tn: number = dn.getTime()
+                    let dl: Date = new Date(this.dataCachingTable[dataCachingTableIndex]
+                        .localExpiryDateTime);
+                    let tl: number = dl.getTime();
+                    if (tl >= tn) {
+                        isFresh = true;
+                    } else {
+                        isFresh = false;
+                    };
 
-                        // Fresh if not expired as yet
-                        let dn: Date = new Date();
-                        let tn: number = dn.getTime()
-                        let dl: Date = new Date(this.dataCachingTable[dataCachingTableIndex]
-                            .localExpiryDateTime);
-                        let tl: number = dl.getTime();
-                        if (tl >= tn) {
-                            isFresh = true;
-                        } else {
-                            isFresh = false;
+                    // Use local cache variable or table if fresh
+                    if (isFresh) {
+                        console.log('xx is FRESH')
+
+                        if ( (localVariableName != null)
+                                &&
+                                (this[localVariableName].length != 0)
+                            ) {
+                            console.warn('xx data returned from Memory', this[localVariableName]);
+                            // var type = 'article';
+                            // this[type+'_count'] = 1000;  // in a function we use "this";
+                            // alert(this.article_count);
+                            resolve(this[localVariableName]);
+                            return;
                         };
+                        if (localTableName != null) {
+                            console.warn('xx in local Disc');
+                            let localDashboardArray: Dashboard[] = [];
+                            this.dbCanvasAppDatabase.table(localTableName)
+                                .toArray()
+                                .then(res => {
+                                    // TODO - generalize .dashboard for ANY data
+                                    // TODO - check that not empty Array
+                                    localDashboardArray = res.map(row => row.dashboard);
+                                    console.log('xx data returned from Disc', localDashboardArray)
 
-                        // Use local cache variable or table if fresh
-                        if (isFresh) {
-                console.log('xx is FRESH')
-
-                            if ( (localVariableName != null)
-                                 &&
-                                 (this[localVariableName].length != 0)
-                               ) {
-                                console.warn('xx return from VAR');
-        // var type = 'article';
-        // this[type+'_count'] = 1000;  // in a function we use "this";
-        // alert(this.article_count);
-                                console.warn('xx VAR dashboards', this[localVariableName])
-                                resolve(this[localVariableName]);
-                                return;
-                            };
-                            if (localTableName != null) {
-                                console.warn('xx return from TABLE');
-                                let localDashboardArray: Dashboard[] = [];
-                                this.dbCanvasAppDatabase.table(localTableName)
-                                    .toArray()
-                                    .then(res => {
-                                        // TODO - generalize .dashboard for ANY data
-                                        localDashboardArray = res.map(row => row.dashboard);
-                                        console.log('xx Array', localDashboardArray)
-
-                                        resolve(localDashboardArray);
-                                });
-                                return;
-                            };
+                                    resolve(localDashboardArray);
+                            });
                         };
                     };
                 };
-                console.warn('xx return from HTTP')
+            };
+            console.warn('xx try HTTP')
 
+            // Get from HTTP server
+            let pathUrl: string = tableName + params;
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    console.warn('xx in HTTP')
 
-
-
-                // let pathUrl: string = 'dashboards' + params;
-                // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                // this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                //     res  => {
-                //         if(res.statusCode != 'success') {
-                //             reject(res.message);
-				// 			return;
-                //         };
-
-                //         this.dashboards = res.data;
-
-
-
-
-                // Get from HTTP server
-                let pathUrl: string = tableName + params;
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        let data = res.data;
-
-                        console.warn('xx vars', dataCachingTableIndex, localCacheableMemory, localCacheableDisc, localVariableName);
-
-                        // If cached, filled local info
-                        if (dataCachingTableIndex >= 0) {
-
-                            // Update Expiry Date
-                            let dt: Date = new Date();
-                            let seconds: number = 86400;
-                            if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
-                                seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
-                            };
-                            this.dataCachingTable[dataCachingTableIndex]
-                                .localExpiryDateTime = this.dateAdd(dt, 'second', seconds);
-
-                                if (localCacheableMemory) {
-
-                                // Fill local Vars
-                                if (localVariableName != null) {
-                                    console.warn('xx updated cached local VAR');
-                                    this[localVariableName] = [];
-                                    this[localVariableName] = data;
-                                };
-
-                                // TODO - should we fill Current Var here a well?
-
-                                // Fill local Table
-                                if (localTableName != null) {
-                                    this.dbCanvasAppDatabase = new CanvasAppDatabase
-                                    this.dbCanvasAppDatabase.open();
-
-                                    this.dbCanvasAppDatabase.table(localTableName)
-                                    .bulkPut(data)
-                                    .then(resPut => {
-                                        console.warn('xx after bulkPut', resPut);
-
-                                        // Count
-                                        this.dbCanvasAppDatabase.table(localTableName)
-                                            .count(resCount => {
-                                                console.warn('xx with count of', resCount);
-                                        });
-                                    });
-                                };
-                            };
-                        };
-
-                        resolve(data);
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
                         return;
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
+                    };
 
+                    let data = res.data;
 
-                // if (this.dashboards == []) {
-                //     resolve(this.dashboards);
-                // } else {
-                //     reject([])
-                // };
+                    // If cached, fill local info
+                    if (dataCachingTableIndex >= 0) {
+
+                        // Update Expiry Date
+                        let dt: Date = new Date();
+                        let seconds: number = 86400;
+                        if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
+                            seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
+                        };
+                        this.dataCachingTable[dataCachingTableIndex]
+                            .localExpiryDateTime = this.dateAdd(dt, 'second', seconds);
+
+                            if (localCacheableMemory) {
+
+                            // Fill local Vars
+                            if (localVariableName != null) {
+                                this[localVariableName] = [];
+                                this[localVariableName] = res.data;
+                                console.warn('xx updated cached Memory to', this[localVariableName]);
+                            };
+
+                            // TODO - should we fill Current Var here a well?
+
+                            // Fill local Table
+                            if (localTableName != null) {
+                                this.dbCanvasAppDatabase = new CanvasAppDatabase
+                                this.dbCanvasAppDatabase.open();
+
+                                this.dbCanvasAppDatabase.table(localTableName)
+                                .bulkPut(res.data)
+                                .then(resPut => {
+
+                                    // Count
+                                    this.dbCanvasAppDatabase.table(localTableName)
+                                        .count(resCount => {
+                                            console.warn('xx updated local Disc to', resCount);
+                                    });
+                                });
+                            };
+                        };
+                    };
+
+                    console.warn('xx data retured from HTTP', res.data);
+                    resolve(res.data);
+                    return;
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
 
         });
     }
