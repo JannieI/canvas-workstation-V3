@@ -1432,6 +1432,7 @@ export class GlobalVariableService {
 
         if (webSocketMessage.messageType == 'canvasMessages') {
         // collaboration via Canvas Messages
+            this.hasNewMessage.next(true);
         };
 
         if (webSocketMessage.messageType == 'canvasSystem') {
