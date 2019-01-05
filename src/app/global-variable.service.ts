@@ -1412,18 +1412,44 @@ export class GlobalVariableService {
 
     }
 
-    actionWebSocketNEW(websocketMessage: WebSocketMessage) {
+    actionWebSocket(webSocketMessage: WebSocketMessage) {
+        // Handles all the WebSocket messages, depending on the type messageType and Action
+        // It is async, so returns a Promise<boolean>
+        if (this.sessionDebugging) {
+            console.log('%c        Global-Variables actionWebSocket ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        // Handle each messageType
+        if (webSocketMessage.messageType == 'canvasData') {
+            // Canvas-related data like dashboards, datasources, widgets, etc
+        };
+
+        if (webSocketMessage.messageType == 'clientData') {
+        // client-related data, ie XIS Trades
+        };
+
+        if (webSocketMessage.messageType == 'canvasMessages') {
+        // collaboration via Canvas Messages
+        };
+
+        if (webSocketMessage.messageType == 'canvasSystem') {
+        //system generated messages, ie from the server
+        };
+
+
+
         return new Promise<string>((resolve, reject) => {
             // Handle the different websocket messages
             // Return a string with the error message if not okay
-    
+
             setTimeout( () => {
                 resolve('Success');
             }, 3000);
         });
     }
 
-    actionWebSocket(webSocketMessage: WebSocketMessage){
+    actionWebSocketOLD(webSocketMessage: WebSocketMessage){
         // Description: Actions received Web Socket message
         // Returns:
         if (this.sessionDebugging) {
@@ -1485,7 +1511,7 @@ export class GlobalVariableService {
                             serverLastUpdatedDateTime,
                         serverThresholdLines: this.dataCachingTable[dataCachingTableIndex].
                             serverThresholdLines,
-                        serverLifeSpan: this.dataCachingTable[dataCachingTableIndex]. 
+                        serverLifeSpan: this.dataCachingTable[dataCachingTableIndex].
                             serverLifeSpan,
                         serverExpiryDateTime: this.dataCachingTable[dataCachingTableIndex].serverExpiryDateTime,
                         serverLastWSsequenceNr: this.dataCachingTable[dataCachingTableIndex].
@@ -1498,7 +1524,7 @@ export class GlobalVariableService {
                         localThresholdLines: this.dataCachingTable[dataCachingTableIndex].
                             localThresholdLines,
                         localLastUpdatedDateTime: new Date(),
-                        localLifeSpan: this.dataCachingTable[dataCachingTableIndex]. 
+                        localLifeSpan: this.dataCachingTable[dataCachingTableIndex].
                             localLifeSpan,
                         localVariableName: this.dataCachingTable[dataCachingTableIndex].
                             localVariableName,
@@ -1801,7 +1827,7 @@ export class GlobalVariableService {
                                 if (localTableName != null) {
                                     this.dbCanvasAppDatabase = new CanvasAppDatabase
                                     this.dbCanvasAppDatabase.open();
-                            
+
                                     this.dbCanvasAppDatabase.table(localTableName)
                                     .bulkPut(data)
                                     .then(resPut => {
@@ -4485,7 +4511,7 @@ export class GlobalVariableService {
             // Refresh from source at start, or if dirty
             // if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-            
+
             let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + id.toString()
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {
@@ -4818,7 +4844,7 @@ export class GlobalVariableService {
                         resolve(this.currentDashboardSchedules);
                     })
                     .catch(err => reject(err.message))
-                
+
              })
         } else {
             return new Promise<DashboardSchedule[]>((resolve, reject) => {
@@ -8722,7 +8748,7 @@ export class GlobalVariableService {
                         reject(res.message);
 						return;
                     };
-                    
+
                     // Update widgets and currentWidgets
                     this.widgetReplace(data);
 
@@ -13273,7 +13299,7 @@ console.warn('xx ds perm', dp);
         // If so, set currentUser object and return true
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables verifyCanvasUser ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {givenCanvasServerName}, {givenCanvasServerURI}, {givenCompanyName}, {givenUserID});
         };
 

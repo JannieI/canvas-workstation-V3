@@ -565,7 +565,7 @@ export class AppComponent implements OnInit {
                     // triggered.
                     this.socket.on('canvasNS', (message) => {
                         console.log('xx socket received message', message)
-                        this.globalVariableService.actionWebSocketNEW(message).then(res => {
+                        this.globalVariableService.actionWebSocket(message).then(res => {
                             console.log('xx actionWebSocketNEW just RAN')
                         });
                     });
