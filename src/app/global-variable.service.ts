@@ -1424,6 +1424,31 @@ export class GlobalVariableService {
         // Handle each messageType
         if (webSocketMessage.messageType == 'canvasData') {
             // Canvas-related data like dashboards, datasources, widgets, etc
+
+            // Find object in localCachingTable
+            let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
+                dct.key == webSocketMessage.objectName
+            );
+
+            // If in CachingTable, update locally
+            if (dataCachingTableIndex >= 0) {
+                
+                // Update Memory
+                if (this.dataCachingTable[dataCachingTableIndex].localCacheableMemory) {
+
+                };
+
+                // Update Disc
+                if (this.dataCachingTable[dataCachingTableIndex].localCacheableDisc) {
+
+                };
+            };
+            
+            // If currently view
+
+                // Warn user
+
+                // Force refresh if critical
         };
 
         if (webSocketMessage.messageType == 'clientData') {
