@@ -231,6 +231,7 @@ export class AppComponent implements OnInit {
     hasDashboard: boolean = false;
     hasDatasources: boolean = true;             // TODO - consider removing this totally
     hasDatasourcesSubscription: Subscription;   // Observable
+    hasNewMessage: boolean;                     // True if a new message arrived
     isBusyResizing: boolean = false;
     isFirstTimeUser: boolean = false;
     minWidgetContainerHeight: number = 16;      // Smallest that W Container can get
@@ -609,6 +610,11 @@ export class AppComponent implements OnInit {
                     //  be send to the server) and an optional callback which will be called
                     //  with the server's answer.
                     this.socket.emit('canvasNS', {data: 'First socket message'});
+                });
+
+                // Listen for new messages, to change user icon as indicator
+                this.globalVariableService.hasNewMessage.subscribe(nm => {
+                    this.hasNewMessage = nm;
                 });
 
                 // Rest of the RxJs subscriptions are called (to listen for updates)

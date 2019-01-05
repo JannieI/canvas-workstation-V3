@@ -1117,6 +1117,7 @@ export class GlobalVariableService {
     datasourceTransformations: DatasourceTransformation[] = [];
     dataTables: DataTable[] = [];
     finalFields: any = finalFields;
+    hasNewMessage = new BehaviorSubject<boolean>(false);
     lastMessageDateTime: Date = new Date(); // Last time a caching message was received
     statusBarMessageLogs: StatusBarMessageLog[] = [];
     transformations: Transformation[] = [];
