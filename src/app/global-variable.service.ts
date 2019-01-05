@@ -1460,7 +1460,7 @@ export class GlobalVariableService {
                         // Update local var
                         if (localVariableName != null) {
                             let localVarIndex: number = this[localVariableName].findIndex(
-                                lv => lv.if == webSocketMessage.objectID);
+                                lv => lv.id == webSocketMessage.objectID);
                             
                             if (localVarIndex < 0) {
                                 this[localVariableName].push(webSocketMessage.content);
@@ -1481,7 +1481,7 @@ export class GlobalVariableService {
 
                             this.dbCanvasAppDatabase.table(localTableName)
                                 .where('id').equals(webSocketMessage.objectID)
-                                .delete()
+                                .put(this[localVariableName])
                                 .then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName).count(res => {
                                         console.warn('xx Add Disc count @ end ', res);
@@ -1500,9 +1500,9 @@ export class GlobalVariableService {
                         // Update local var
                         if (localVariableName != null) {
                             let localVarIndex: number = this[localVariableName].findIndex(
-                                lv => lv.if == webSocketMessage.objectID);
+                                lv => lv.id == webSocketMessage.objectID);
                             
-                            if (localVarIndex >0 0) {
+                            if (localVarIndex >0) {
                                 this[localVariableName][localVarIndex] = webSocketMessage.content;
                             };
                         };
@@ -1510,7 +1510,7 @@ export class GlobalVariableService {
                         // Update Current Var
                         if (localCurrentVariableName != null) {
                             let localCurrentVarIndex: number = this[localCurrentVariableName].findIndex(
-                                lv => lv.if == webSocketMessage.objectID);
+                                lv => lv.id == webSocketMessage.objectID);
                             
                             if (localCurrentVarIndex >0) {
                                 this[localCurrentVariableName][localCurrentVarIndex] = webSocketMessage.content;
