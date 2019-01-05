@@ -1472,7 +1472,7 @@ export class GlobalVariableService {
                         // Update Current Var
                         // TODO - consider this carefully: dont think we should add stuff to
                         // currentVars, ie currentDashboards = current D selected by user
-                        console.log('xx End localVars', this[localVariableName], this[localCurrentVariableName])
+                        console.log('xx ADD Memory Updated', this[localVariableName], this[localCurrentVariableName])
     
                     };
 
@@ -1480,16 +1480,13 @@ export class GlobalVariableService {
                     if (localCacheableDisc) {
                         // Delete from DB
                         if (localTableName != null) {
-                            console.log('xx in localTable', localTableName)
-                            this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                console.warn('xx Count before Delete', res);
-                            });
+
                             this.dbCanvasAppDatabase.table(localTableName)
                                 .where('id').equals(webSocketMessage.objectID)
                                 .delete()
                                 .then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                        console.warn('xx Count after Delete', res);
+                                        console.warn('xx Add Disc count @ end ', res);
                                     });
                             });
                         };
@@ -1523,7 +1520,7 @@ export class GlobalVariableService {
                                     return lv.id != webSocketMessage.objectID
                                 });
                         };
-                        console.log('xx End localVars', this[localVariableName], this[localCurrentVariableName])
+                        console.log('xx DELETE Memory updated', this[localVariableName], this[localCurrentVariableName])
     
                     };
 
@@ -1531,16 +1528,12 @@ export class GlobalVariableService {
                     if (localCacheableDisc) {
                         // Delete from DB
                         if (localTableName != null) {
-                            console.log('xx in localTable', localTableName)
-                            this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                console.warn('xx Count before Delete', res);
-                            });
                             this.dbCanvasAppDatabase.table(localTableName)
                                 .where('id').equals(webSocketMessage.objectID)
                                 .delete()
                                 .then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                        console.warn('xx Count after Delete', res);
+                                        console.warn('xx DELETE count @end', res);
                                     });
                             });
                         };
@@ -1554,39 +1547,37 @@ export class GlobalVariableService {
                     };
 
                 // Update dataCaching on Disc
-                this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                    console.warn('xx Count before Upd', res, this[localVariableName]);
-                });
                 this.dbDataCachingTable.table("localDataCachingTable")
                     .bulkPut(this.dataCachingTable)
                     .then(res => {
                         this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                            console.warn('xx Count after Upd', res);
+                            console.warn('xx localDataCachingTable count @end', res);
                         });
                 });
             };
             
             // If Dashboard is currently open
 
-                // Warn user
-                if (webSocketMessage.objectName == 'dashboards'  
-                    && 
-                    webSocketMessage.objectID == this.currentDashboardInfo.value.currentDashboardID) {
-                        this.showStatusBarMessage(
-                            {
-                                message: 'This Dashboard has been changed',
-                                uiArea: 'StatusBar',
-                                classfication: 'Warning',
-                                timeout: 3000,
-                                defaultMessage: ''
-                            }
-                        );
-                };
-                // Force refresh of Dashboard if critical
-                // Consider carefulle:
-                // - usecase for this
-                // - how to do this elegantly, so that user is not surprised, or loses work if
-                //   busy editing (which edits should not be accepted anyways)
+            // Warn user
+            if (webSocketMessage.objectName == 'dashboards'  
+                && 
+                webSocketMessage.objectID == this.currentDashboardInfo.value.currentDashboardID) {
+                    this.showStatusBarMessage(
+                        {
+                            message: 'This Dashboard has been changed',
+                            uiArea: 'StatusBar',
+                            classfication: 'Warning',
+                            timeout: 3000,
+                            defaultMessage: ''
+                        }
+                    );
+            };
+            
+            // Force refresh of Dashboard if critical
+            // Consider carefulle:
+            // - usecase for this
+            // - how to do this elegantly, so that user is not surprised, or loses work if
+            //   busy editing (which edits should not be accepted anyways)
         };
 
         if (webSocketMessage.messageType == 'clientData') {
