@@ -1793,13 +1793,14 @@ export class GlobalVariableService {
                             this.dateAdd(dt, 'second', seconds);
                         this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                             new Date();
+                        console.log('xx dataCachingTable memory upd', this.dataCachingTable)
 
                         // Update dataCaching on Disc
                         this.dbDataCachingTable.table("localDataCachingTable")
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.warn('xx localDataCachingTable count @end', res);
+                                    console.warn('xx dataCachingTable updated count @end', res);
                                 });
                         });
                     };
