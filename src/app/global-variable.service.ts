@@ -1578,10 +1578,21 @@ export class GlobalVariableService {
                 };
 
                 // Update dataCaching in Memory
-                this.dataCachingTable[dataCachingTableIndex] = 
-                    { ...this.dataCachingTable[dataCachingTableIndex],
-                        localLastUpdatedDateTime: webSocketMessage.messageDateTime
+                // this.dataCachingTable[dataCachingTableIndex] = 
+                //     { ...this.dataCachingTable[dataCachingTableIndex],
+                //         localLastUpdatedDateTime: webSocketMessage.messageDateTime
+                // };
+                let dt: Date = new Date();
+                let seconds: number = 86400;
+                if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
+                    seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
                 };
+                this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime = 
+                    this.dateAdd(dt, 'second', seconds);
+                this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
+                    webSocketMessage.messageDateTime;
+                console.log('xx dataCachingTable memory upd', this.dataCachingTable)
+
 
                 // Update dataCaching on Disc
                 this.dbDataCachingTable.table("localDataCachingTable")
@@ -1591,6 +1602,7 @@ export class GlobalVariableService {
                             console.warn('xx localDataCachingTable count @end', res);
                         });
                 });
+                
             };
             
             // If Dashboard is currently open
