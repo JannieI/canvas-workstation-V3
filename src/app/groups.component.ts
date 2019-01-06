@@ -48,6 +48,7 @@ export class GroupsComponent implements OnInit {
     groupName: string = '';
     message: string = '';
     selectedRow: number = 0;
+    selectedID: number = -1;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -73,6 +74,11 @@ export class GroupsComponent implements OnInit {
             return 0;
         });
 
+        // Click first row
+        if (this.canvasGroups.length > 0) {
+            this.clickRow(0, this.canvasGroups[0].id);
+        };
+
         if (this.canvasGroups.length > 0) {
             this.canvasUsers = this.globalVariableService.canvasUsers.filter(u => 
                 u.groups.map(x => x.toLowerCase()).indexOf(this.canvasGroups[0].name.toLowerCase()) >= 0
@@ -95,6 +101,8 @@ export class GroupsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'setClickedRow', '@Start');
 
         this.selectedRow = index;
+        this.selectedID = groupID;
+
         this.groupName = this.canvasGroups[index].name;
         this.canvasGroups.forEach(g => {
             if (g.id == groupID) {
@@ -194,6 +202,8 @@ export class GroupsComponent implements OnInit {
         this.globalVariableService.addCanvasGroup(newGroup).then( (res) => {
             this.message = "Group Added"
             this.canvasGroups.push(newGroup);
+            this. selectedRow = this.canvasGroups.findIndex(grp => grp.id == res.id);
+            this.selectedID = res.id;
         })
         .catch(err => {
             this.errorMessage = "Deletion of group failed " + err;
