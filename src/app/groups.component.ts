@@ -110,7 +110,9 @@ export class GroupsComponent implements OnInit {
 
         this.globalVariableService.deleteCanvasGroup(id).then( () => {
             this.message = "Group Deleted"
-        })
+            this.canvasGroups = this.canvasGroups.filter(
+                grp => grp.id != id
+            );        })
         .catch(err => {
             this.errorMessage = "Group Deleted"
         })
