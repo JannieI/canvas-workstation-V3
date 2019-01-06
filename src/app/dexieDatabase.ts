@@ -81,17 +81,6 @@ import Dexie from 'dexie';
         }
     }
 
-    // Dexie Table: Local Datasources
-    export class LocalDatasource implements ILocalDatasource {
-        id: number;
-        datasource: Datasource;
-
-        constructor(id:number, datasource: Datasource) {
-            this.id = id;
-            this.datasource = datasource;
-        }
-    }
-
     // Dexie Table: Local Dashboards
     export class LocalDashboard implements ILocalDashboard {
         id: number;
@@ -100,6 +89,17 @@ import Dexie from 'dexie';
         constructor(id:number, dashboard: Dashboard) {
             this.id = id;
             this.dashboard = dashboard;
+        }
+    }
+
+    // Dexie Table: Local Datasources
+    export class LocalDatasource implements ILocalDatasource {
+        id: number;
+        datasource: Datasource;
+
+        constructor(id:number, datasource: Datasource) {
+            this.id = id;
+            this.datasource = datasource;
         }
     }
 
@@ -112,15 +112,17 @@ import Dexie from 'dexie';
         // (just to inform Typescript. Instanciated by Dexie in stores() method)
         contacts: Dexie.Table<IContact, number>; // number = type of the primkey
         localDashboards: Dexie.Table<ILocalDashboard, number>;
+        localDatasources: Dexie.Table<ILocalDatasource, number>;
         currentCanvasUser: Dexie.Table<ICurrentCanvasUser, number>;
         //...other tables goes ABOVE here...
 
         constructor () {
             super("CanvasAppDatabase");
             this.version(1).stores({
+                currentCanvasUser: 'canvasServerName, currentCompany, currentUserID',
                 contacts: 'id, first, last',
                 localDashboards: 'id',
-                currentCanvasUser: 'canvasServerName, currentCompany, currentUserID'
+                localDatasources: 'id,'
                 //...other tables goes here...
             });
         }
