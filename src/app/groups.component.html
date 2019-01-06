@@ -27,10 +27,10 @@
                     </clr-signpost>
                 </div>
 
-                <div class="message">
+                <div class="message" *ngIf="message">
                     {{ message }}
                 </div>
-                <div class=errorMessage>
+                <div class="errorMessage" *ngIf="errorMessage">
                     {{ errorMessage }}
                 </div>
                 <div class="gridGroups">

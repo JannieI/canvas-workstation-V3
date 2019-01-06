@@ -112,10 +112,11 @@ export class GroupsComponent implements OnInit {
             this.message = "Group Deleted"
             this.canvasGroups = this.canvasGroups.filter(
                 grp => grp.id != id
-            );        })
-        .catch(err => {
-            this.errorMessage = "Group Deleted"
+            );        
         })
+        .catch(err => {
+            this.errorMessage = "Deletion of group failed " + err.message;
+        });
     }
 
 }
