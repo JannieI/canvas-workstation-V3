@@ -95,6 +95,7 @@ export class GroupsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'setClickedRow', '@Start');
 
         this.selectedRow = index;
+        this.groupName = this.canvasGroups[index].name;
         this.canvasGroups.forEach(g => {
             if (g.id == groupID) {
                 this.canvasUsers = this.globalVariableService.canvasUsers.filter(u => 
@@ -108,6 +109,10 @@ export class GroupsComponent implements OnInit {
     dblclickDelete(id: number) {
         // Delete selected group
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
+
+        // Reset
+        this.message = '';
+        this.errorMessage = '';
 
         this.globalVariableService.deleteCanvasGroup(id).then( () => {
             this.message = "Group Deleted"
@@ -123,6 +128,10 @@ export class GroupsComponent implements OnInit {
     clickSave() {
         // Save groupName back (~Edit)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Reset
+        this.message = '';
+        this.errorMessage = '';
 
         // Validation
         if (this.groupName == ''  ||  this.groupName == null) {
@@ -157,6 +166,10 @@ export class GroupsComponent implements OnInit {
     clickAdd() {
         // Add a new groupName
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Reset
+        this.message = '';
+        this.errorMessage = '';
 
         // Validation
         if (this.groupName == ''  ||  this.groupName == null) {

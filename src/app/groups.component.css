@@ -75,14 +75,14 @@
         grid-row-end: 4;
     }
     
-    gridButtonSave {
+    .gridButtonSave {
         grid-column-start: 13;
         /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 3;
         grid-row-end: 4;
     }
-    gridButtonAdd {
+    .gridButtonAdd {
         grid-column-start: 15;
         /* autoprefixer: off */
         grid-column-end: 17;
@@ -90,7 +90,6 @@
         grid-row-end: 4;
     }
     
-
     .gridUsers {
         border: 1px dotted gray;
         border-radius: 5px;

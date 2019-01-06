@@ -79,7 +79,7 @@
                         class="btn btn-primary"
                         (click)="clickSave()"
                         >
-                        Cancel
+                        Save
                     </button>
                 </div>
 
@@ -89,7 +89,7 @@
                         class="btn btn-secondary"
                         (click)="clickAdd()"
                         >
-                        Save
+                        Add
                     </button>
                 </div>
 
@@ -119,12 +119,6 @@
                                 <clr-dg-cell>{{row.isStaff}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.isActive}}</clr-dg-cell>
                             </clr-dg-row>
-
-                            <clr-dg-footer>
-                                {{pagination.firstItem + 1}} - {{paginationG.lastItem + 1}}
-                                of {{paginationG.totalItems}} rows
-                                <clr-dg-pagination #paginationG [clrDgPageSize]="7"></clr-dg-pagination>
-                            </clr-dg-footer>
 
                         </clr-datagrid>
                     </div>
