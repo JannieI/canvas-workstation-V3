@@ -391,10 +391,10 @@ export class WebSocketMessage {
     sender: string;                         // UserID who sent message, CanvasServer if backend
     messageText: string;                    // Text of message, ie Hallo, for simple communication
     content: any;                           // Payload, can be text string or Object or Array
-        // This will vary according to the messageType: for a 
-        //   'canvasData', it could be a complete dashboard, datasource, etc.  
+        // This will vary according to the messageType: for a
+        //   'canvasData', it could be a complete dashboard, datasource, etc.
         //   'clientData', it will probably null
-        //   'canvasMessages', it could // be a complete CanvasMessage.  
+        //   'canvasMessages', it could // be a complete CanvasMessage.
         //   'canvasSystem', the payload may vary (undetermined at the moment)
     messageType: string;                    // Type of message -> determines action required
         // canvasData: Canvas-related data like dashboards, datasources, widgets, etc
@@ -403,11 +403,11 @@ export class WebSocketMessage {
         // canvasSystem: system generated messages, ie from the server
         //
     action: string;                         // Optional Action to be taken per messageType:
-        //   'canvasData', Individual record action: Add, Update, Delete.  Whole resource: ReplaceAll  
+        //   'canvasData', Individual record action: Add, Update, Delete.  Whole resource: ReplaceAll
         //   'clientData', Refresh
         //   'canvasMessages', NewMessage
         //   'canvasSystem', undetermined at the moment
-        // 
+        //
     objectName: string;                     // Affected canvasData, ie datasources, widgets, etc
     objectID: number;                       // Optional single Record affected, ie 12 (DatasourceID)
     severity: string;                       // Severity of treatement required

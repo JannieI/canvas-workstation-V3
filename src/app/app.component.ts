@@ -566,9 +566,9 @@ export class AppComponent implements OnInit {
                     // triggered.
                     this.socket.on('canvasNS', (message) => {
                         console.log('xx APP received websocket message:', message)
-                        // this.globalVariableService.actionWebSocket(message).then(res => {
-                        //     console.log('xx actionWebSocket() has completed')
-                        // });
+                        this.globalVariableService.actionWebSocket(message).then(res => {
+                            console.log('xx actionWebSocket() has completed')
+                        });
                     });
 
                     // Standard events for illustration purposes - Switched off for now

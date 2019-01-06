@@ -17,10 +17,10 @@
                             <h5 style="margin-top: 0; color:gray;">
                                 Help
                             </h5>
-                            <p style="margin-top: 0; color:gray;"> 
+                            <p style="margin-top: 0; color:gray;">
                                 List of Canvas Groups.  Select a group in the left hand grid, and
                                 the users that belongs to it will be shown in the grid on the right.
-                                Groups and its membership are managed by an Administrator.  
+                                Groups and its membership are managed by an Administrator.
                                 Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
@@ -29,6 +29,9 @@
 
                 <div class="gridGroups">
                     <clr-datagrid>
+                        <clr-dg-column [style.text-align]="'center'">
+                            Remove 
+                        </clr-dg-column>
                         <clr-dg-column [clrDgField]="'name'">Groups</clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of canvasGroups;
@@ -37,6 +40,13 @@
                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
                             (click)="clickRow(i, row.id)"
                             >
+                            <clr-dg-cell>
+                                <clr-icon shape="trash"
+                                    size="16"
+                                    (dblclick)="dblclickDelete(row.id)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
                             <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                         </clr-dg-row>
 
@@ -78,17 +88,17 @@
                                 <clr-dg-cell>{{row.isStaff}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.isActive}}</clr-dg-cell>
                             </clr-dg-row>
-    
+
                             <clr-dg-footer>
                                 {{pagination.firstItem + 1}} - {{paginationG.lastItem + 1}}
                                 of {{paginationG.totalItems}} rows
                                 <clr-dg-pagination #paginationG [clrDgPageSize]="7"></clr-dg-pagination>
                             </clr-dg-footer>
-    
+
                         </clr-datagrid>
                     </div>
                 </div>
- 
+
                 <!-- <div class="gridGroupsTitle">
                     <i>Groups that the user belongs to:</i>
                 </div> -->

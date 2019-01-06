@@ -43,8 +43,10 @@ export class GroupsComponent implements OnInit {
     }
 
     canvasGroups: CanvasGroup[];
-    selectedRow: number = 0;
     canvasUsers: CanvasUser[];
+    errorMessage: string = '';
+    message: string = '';
+    selectedRow: number = 0;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -100,6 +102,18 @@ export class GroupsComponent implements OnInit {
             };
         })
      
+    }
+
+    dblclickDelete(id: number) {
+        // Delete selected group
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
+
+        this.globalVariableService.deleteCanvasGroup(id).then( () => {
+            this.message = "Group Deleted"
+        })
+        .catch(err => {
+            this.errorMessage = "Group Deleted"
+        })
     }
 
 }
