@@ -1701,7 +1701,7 @@ export class GlobalVariableService {
                         // Get from Memory (local var)
                         if ( (localVariableName != null)
                                 &&
-                                (this[localVariableName].length == 0)
+                                (this[localVariableName].length != 0)
                             ) {
                             console.warn('xx data returned from Memory', this[localVariableName]);
                             // var type = 'article';
@@ -1717,16 +1717,15 @@ export class GlobalVariableService {
                             this.dbCanvasAppDatabase.table(localTableName)
                             .toArray()
                             .then(res => {
-                                // TODO - generalize .dashboard for ANY data
-                                // TODO - check that not empty Array
-                                // localDashboardArray = res.map(row => row.dashboard);
-                                this[localVariableName] = res.map(row => row.dashboard);
-                                console.log('xx data returned from Disc', res, this[localVariableName])
+                                this[localVariableName] = res;
+                                console.log('xx data returned from Disc', this[localVariableName])
 
                                 // resolve(localDashboardArray);
                                 resolve(this[localVariableName]);
-                                return;
-                            });    
+                            }); 
+                            
+                            //  Return, else goes through to HTTP (its async)
+                            return;
                         };
                     };
                 };
