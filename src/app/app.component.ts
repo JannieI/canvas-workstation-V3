@@ -7995,10 +7995,11 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
 
         // Get GV values
-        this.globalVariableService.getDashboardsNEW('dashboards').then(res => {
+        let resource: string = 'dashboards';
+        this.globalVariableService.getDashboardsNEW(resource).then(res => {
             let testDashboards: Dashboard[];
             testDashboards = res;
-            console.warn('xx APP D []', testDashboards)
+            console.warn('xx Returned for resource', resource, testDashboards)
 
         });
  

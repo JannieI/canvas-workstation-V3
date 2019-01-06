@@ -1725,14 +1725,11 @@ export class GlobalVariableService {
                         // Get from Disc (Dexie)
                         } else if (localTableName != null) {
                             console.warn('xx in local Disc');
-                            // let localDashboardArray: Dashboard[] = [];
                             this.dbCanvasAppDatabase.table(localTableName)
                             .toArray()
                             .then(res => {
                                 this[localVariableName] = res;
                                 console.log('xx data returned from Disc', this[localVariableName])
-
-                                // resolve(localDashboardArray);
                                 resolve(this[localVariableName]);
                             }); 
                             
