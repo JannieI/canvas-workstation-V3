@@ -1428,7 +1428,7 @@ export class GlobalVariableService {
         // Handle each messageType
         if (webSocketMessage.messageType == 'canvasData') {
             // Canvas-related data like dashboards, datasources, widgets, etc
-            //   Actions: Individual record action: Add, Update, Delete.  Whole resource: ReplaceAll  
+            //   Actions: Individual record action: Add, Update, Delete.  Whole resource: ReplaceAll
 
             // Find object in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
@@ -1443,7 +1443,7 @@ export class GlobalVariableService {
                 this.dbCanvasAppDatabase.open();
                 this.dbDataCachingTable = new DataCachingDatabase;
                 this.dbDataCachingTable.open();
-                
+
                 // Set vars to use here
                 let localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                 let localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
@@ -1461,17 +1461,17 @@ export class GlobalVariableService {
                         if (localVariableName != null) {
                             let localVarIndex: number = this[localVariableName].findIndex(
                                 lv => lv.id == webSocketMessage.objectID);
-                            
+
                             if (localVarIndex < 0) {
                                 this[localVariableName].push(webSocketMessage.content);
                             };
                         };
-    
+
                         // Update Current Var
                         // TODO - consider this carefully: dont think we should add stuff to
                         // currentVars, ie currentDashboards = current D selected by user
                         console.log('xx ADD Memory Updated', this[localVariableName], this[localCurrentVariableName])
-    
+
                     };
 
                     // Update Disc
@@ -1500,23 +1500,23 @@ export class GlobalVariableService {
                         if (localVariableName != null) {
                             let localVarIndex: number = this[localVariableName].findIndex(
                                 lv => lv.id == webSocketMessage.objectID);
-                            
+
                             if (localVarIndex >0) {
                                 this[localVariableName][localVarIndex] = webSocketMessage.content;
                             };
                         };
-    
+
                         // Update Current Var
                         if (localCurrentVariableName != null) {
                             let localCurrentVarIndex: number = this[localCurrentVariableName].findIndex(
                                 lv => lv.id == webSocketMessage.objectID);
-                            
+
                             if (localCurrentVarIndex >0) {
                                 this[localCurrentVariableName][localCurrentVarIndex] = webSocketMessage.content;
                             };
                         };
                         console.log('xx UPDATE Memory Updated', this[localCurrentVariableName], this[localCurrentVariableName])
-    
+
                     };
 
                     // Update Disc
@@ -1549,7 +1549,7 @@ export class GlobalVariableService {
                                     return lv.id != webSocketMessage.objectID
                                 });
                         };
-    
+
                         // Update Current Var
                         if (localCurrentVariableName != null) {
                             this[localCurrentVariableName] = this[localCurrentVariableName].filter(
@@ -1558,7 +1558,7 @@ export class GlobalVariableService {
                                 });
                         };
                         console.log('xx DELETE Memory updated', this[localVariableName], this[localCurrentVariableName])
-    
+
                     };
 
                     // Update Disc
@@ -1583,7 +1583,7 @@ export class GlobalVariableService {
                 if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
                     seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
                 };
-                this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime = 
+                this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime =
                     this.dateAdd(dt, 'second', seconds);
                 this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                     webSocketMessage.messageDateTime;
@@ -1598,14 +1598,14 @@ export class GlobalVariableService {
                             console.warn('xx localDataCachingTable count @end', res);
                         });
                 });
-                
+
             };
-            
+
             // If Dashboard is currently open
 
             // Warn user
-            if (webSocketMessage.objectName == 'dashboards'  
-                && 
+            if (webSocketMessage.objectName == 'dashboards'
+                &&
                 webSocketMessage.objectID == this.currentDashboardInfo.value.currentDashboardID) {
                     this.showStatusBarMessage(
                         {
@@ -1617,7 +1617,7 @@ export class GlobalVariableService {
                         }
                     );
             };
-            
+
             // Force refresh of Dashboard if critical
             // Consider carefulle:
             // - usecase for this
@@ -1736,8 +1736,8 @@ export class GlobalVariableService {
                                 this[localVariableName] = res;
                                 console.log('xx data returned from Disc', this[localVariableName])
                                 resolve(this[localVariableName]);
-                            }); 
-                            
+                            });
+
                             //  Return, else goes through to HTTP (its async)
                             return;
                         };
@@ -1801,7 +1801,7 @@ export class GlobalVariableService {
                         if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
                             seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
                         };
-                        this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime = 
+                        this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime =
                             this.dateAdd(dt, 'second', seconds);
                         this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                             new Date();
@@ -1816,7 +1816,7 @@ export class GlobalVariableService {
                                 });
                         });
                     };
-                        
+
                     console.warn('xx data retured from HTTP', httpResult.data);
                     resolve(httpResult.data);
                     return;

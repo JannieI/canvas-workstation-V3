@@ -541,9 +541,9 @@ export class AppComponent implements OnInit {
             if (res) {
 
                 // Notes:
-                // When logging into the Server, a dedicated open connection is established with 
+                // When logging into the Server, a dedicated open connection is established with
                 // Workstation.  Workstation has two methods:
-                // 1. it listions to Server (with socket.on).  Once a message has been received 
+                // 1. it listions to Server (with socket.on).  Once a message has been received
                 //    by Workstation, it triggers globalvariables.actionWebSocket() asynchronously.
                 //    The messages received by Workstation is defined by the WebSocketMessage model.
                 // 2. it sends messages to Server (with socket.emit).
@@ -553,10 +553,10 @@ export class AppComponent implements OnInit {
                 console.log('xx socket oject', this.socket)
 
                 // Notes on Namespaces (EventNames):
-                // Each socket on Workstation listens to a specific Namespace.  One can define 
+                // Each socket on Workstation listens to a specific Namespace.  One can define
                 // additional sockets to listen to more Namespaces.
                 // For now, we have ONE namespace / eventNames: canvasNS.  This used by both Server
-                // and Workstation.  So, the Namespace does not determine the type of message (that 
+                // and Workstation.  So, the Namespace does not determine the type of message (that
                 // is determined by the messageType, and Action).
 
                 // Start listening to the connection (connect is reserved)
@@ -606,7 +606,7 @@ export class AppComponent implements OnInit {
                     // });
 
 
-                    // .emit sends a message to Server on the canvasNS Namespace.  It can take args (data to 
+                    // .emit sends a message to Server on the canvasNS Namespace.  It can take args (data to
                     //  be send to the server) and an optional callback which will be called
                     //  with the server's answer.
                     this.socket.emit('canvasNS', {data: 'First socket message'});
@@ -1000,12 +1000,6 @@ export class AppComponent implements OnInit {
         // Local CachingTable DB
         this.dbDataCachingTable = new DataCachingDatabase;
         this.dbDataCachingTable.open();
-
-
-
-        // this.showModalLanding = this.globalVariableService.showModalLanding.value;
-
-
     }
 
     ngAfterViewInit() {
@@ -2365,7 +2359,11 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
+        // Hide Login form
         this.showModalDashboardLogin = false;
+
+        // Show Landing page
+        this.showModalLanding = true;
     }
 
     handleCloseUserLogout(action: string) {
@@ -8003,8 +8001,8 @@ export class AppComponent implements OnInit {
             console.warn('xx Returned for resource', resource, testDashboards)
 
         });
- 
-        
+
+
         // // Count
         // this.dbCanvasAppDatabase.table("localDashboards").count(res => {
         //     console.warn('xx count of localDashboard', res);

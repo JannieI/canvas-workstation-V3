@@ -174,12 +174,12 @@ export class LoginComponent implements OnInit {
 
                 let canvasServerURI: string = this.globalVariableService.ENVCanvasServerList.find(
                     srv => srv.serverName == this.canvasServerName
-                ).serverHostURI; 
+                ).serverHostURI;
                 console.warn('xx canvasServerURI', canvasServerURI)
 
                 this.globalVariableService.verifyCanvasUser(
                     this.canvasServerName,
-                    canvasServerURI, 
+                    canvasServerURI,
                     this.companyName,
                     this.userID,
                     res.token).then(result => {
