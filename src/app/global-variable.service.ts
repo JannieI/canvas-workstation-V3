@@ -1643,7 +1643,7 @@ export class GlobalVariableService {
         });
     }
 
-    getDashboardsNEW(tableName: string = '', params: string = ''): Promise<any> {
+    getDashboardsNEW(resource: string = '', params: string = ''): Promise<any> {
         // Description: Gets all D from correct place: variable, localCache, getHTTP
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
@@ -1668,7 +1668,7 @@ export class GlobalVariableService {
 
             // Find DS in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
-                dct.key == tableName
+                dct.key == resource
             );
 
             if (dataCachingTableIndex >= 0) {
@@ -1735,7 +1735,7 @@ export class GlobalVariableService {
             console.warn('xx try HTTP')
 
             // Get from HTTP server
-            let pathUrl: string = tableName + params;
+            let pathUrl: string = resource + params;
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 httpResult  => {
