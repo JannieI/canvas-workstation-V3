@@ -120,5 +120,35 @@ export class GroupsComponent implements OnInit {
         });
     }
 
+
+
+    clickAdd() {
+        // Add a new groupName
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Validateion
+        if (this.groupName == ''  ||  this.groupName == null) {
+            this.errorMessage = 'The group name is compulsory';
+            return;
+        };
+
+        let newGroup: CanvasGroup = {
+            id: null,
+            name: this.groupName,
+            editedBy: null,
+            editedOn: null,
+            createdBy: this.globalVariableService.currentUser.userID,
+            createdOn: new Date()
+        }
+        this.globalVariableService.addCanvasGroup(newGroup).then( (res) => {
+            this.message = "Group Added"
+            this.canvasGroups.push(newGroup);
+        })
+        .catch(err => {
+            this.errorMessage = "Deletion of group failed " + err.message;
+        });
+
+    }
+
 }
 
