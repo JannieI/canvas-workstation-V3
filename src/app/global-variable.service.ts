@@ -1581,7 +1581,7 @@ export class GlobalVariableService {
                 this.dataCachingTable[dataCachingTableIndex] = 
                     { ...this.dataCachingTable[dataCachingTableIndex],
                         localLastUpdatedDateTime: webSocketMessage.messageDateTime
-                    };
+                };
 
                 // Update dataCaching on Disc
                 this.dbDataCachingTable.table("localDataCachingTable")
@@ -1632,8 +1632,6 @@ export class GlobalVariableService {
             //system generated messages, ie from the server
             //   Actions: undetermined at the moment
         };
-
-
 
         return new Promise<string>((resolve, reject) => {
             // Handle the different websocket messages
@@ -1701,6 +1699,7 @@ export class GlobalVariableService {
 
                     console.log('xx fresh vars', dn, tn, dl, tl, isFresh)
                     // Use local cache variable or table if fresh
+                    // TODO - check the assumption that there is data when fresh (else returns [])
                     if (isFresh) {
                         console.log('xx is FRESH')
 
@@ -1750,18 +1749,9 @@ export class GlobalVariableService {
                     // If cached, fill local info
                     if (dataCachingTableIndex >= 0) {
 
-                        // Update Expiry Date
-                        let dt: Date = new Date();
-                        let seconds: number = 86400;
-                        if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
-                            seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
-                        };
-                        this.dataCachingTable[dataCachingTableIndex]
-                            .localExpiryDateTime = this.dateAdd(dt, 'second', seconds);
-
+                        // Fill local Vars
                         if (localCacheableMemory) {
 
-                            // Fill local Vars
                             if (localVariableName != null) {
                                 this[localVariableName] = [];
                                 this[localVariableName] = httpResult.data;
@@ -1769,8 +1759,11 @@ export class GlobalVariableService {
                             };
 
                             // TODO - should we fill Current Var here a well?
+                        };
 
-                            // Fill local Table
+                        // Fill Disc
+                        if (localCacheableDisc) {
+
                             if (localTableName != null) {
                                 this.dbCanvasAppDatabase = new CanvasAppDatabase
                                 this.dbCanvasAppDatabase.open();
@@ -1789,8 +1782,28 @@ export class GlobalVariableService {
                                 });
                             };
                         };
-                    };
 
+                        // Update dataCaching in Memory
+                        let dt: Date = new Date();
+                        let seconds: number = 86400;
+                        if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
+                            seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
+                        };
+                        this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime = 
+                            this.dateAdd(dt, 'second', seconds);
+                        this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
+                            new Date();
+
+                        // Update dataCaching on Disc
+                        this.dbDataCachingTable.table("localDataCachingTable")
+                            .bulkPut(this.dataCachingTable)
+                            .then(res => {
+                                this.dbDataCachingTable.table("localDataCachingTable").count(res => {
+                                    console.warn('xx localDataCachingTable count @end', res);
+                                });
+                        });
+                    };
+                        
                     console.warn('xx data retured from HTTP', httpResult.data);
                     resolve(httpResult.data);
                     return;
