@@ -120,15 +120,52 @@ export class GroupsComponent implements OnInit {
         });
     }
 
+    clickSave() {
+        // Save groupName back (~Edit)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Validation
+        if (this.groupName == ''  ||  this.groupName == null) {
+            this.errorMessage = 'The group name is compulsory';
+            return;
+        };
+        let groupIndex: number = this.canvasGroups.findIndex(grp => grp.name == this.groupName);
+        if (groupIndex >= 0) {
+            this.errorMessage = 'The group name must be unique (it exists already)';
+            return;
+        };
+
+        let newGroup: CanvasGroup = {
+            id: null,
+            name: this.groupName,
+            editedBy:  this.globalVariableService.currentUser.userID,
+            editedOn:  new Date(),
+            createdBy: this.canvasGroups[this.selectedRow].createdBy,
+            createdOn: this.canvasGroups[this.selectedRow].createdOn
+        }
+
+        this.globalVariableService.saveCanvasGroup(newGroup).then( () => {
+            this.message = "Group Updated"
+            this.canvasGroups[this.selectedRow] = newGroup;
+        })
+        .catch(err => {
+            this.errorMessage = "Updating of group failed " + err;
+        });
+
+    }
 
     clickAdd() {
         // Add a new groupName
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
-        // Validateion
+        // Validation
         if (this.groupName == ''  ||  this.groupName == null) {
             this.errorMessage = 'The group name is compulsory';
+            return;
+        };
+        let groupIndex: number = this.canvasGroups.findIndex(grp => grp.name == this.groupName);
+        if (groupIndex >= 0) {
+            this.errorMessage = 'The group name must be unique (it exists already)';
             return;
         };
 
@@ -139,13 +176,14 @@ export class GroupsComponent implements OnInit {
             editedOn: null,
             createdBy: this.globalVariableService.currentUser.userID,
             createdOn: new Date()
-        }
+        };
+
         this.globalVariableService.addCanvasGroup(newGroup).then( (res) => {
             this.message = "Group Added"
             this.canvasGroups.push(newGroup);
         })
         .catch(err => {
-            this.errorMessage = "Deletion of group failed " + err.message;
+            this.errorMessage = "Deletion of group failed " + err;
         });
 
     }
