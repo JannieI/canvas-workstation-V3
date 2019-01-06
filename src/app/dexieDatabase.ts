@@ -122,7 +122,7 @@ import Dexie from 'dexie';
                 currentCanvasUser: 'canvasServerName, currentCompany, currentUserID',
                 contacts: 'id, first, last',
                 localDashboards: 'id',
-                localDatasources: 'id,'
+                localDatasources: 'id'
                 //...other tables goes here...
             });
         }

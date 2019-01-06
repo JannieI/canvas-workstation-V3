@@ -1578,10 +1578,6 @@ export class GlobalVariableService {
                 };
 
                 // Update dataCaching in Memory
-                // this.dataCachingTable[dataCachingTableIndex] = 
-                //     { ...this.dataCachingTable[dataCachingTableIndex],
-                //         localLastUpdatedDateTime: webSocketMessage.messageDateTime
-                // };
                 let dt: Date = new Date();
                 let seconds: number = 86400;
                 if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
@@ -1658,6 +1654,9 @@ export class GlobalVariableService {
     getDashboardsNEW(resource: string = '', params: string = ''): Promise<any> {
         // Description: Gets the data (either from cached or HTTP), and updates
         // variables this.resource (ie this.dashboards)and cache (if from HTTP and cacheable)
+
+        // Note: in order to use a resource, it must be defined in the Dexie.ts file.
+        //       Also, it may be necessary to delete the whole IndexedDB before adding new tables ...
         if (this.sessionDebugging) {
             console.log('%c        Global-Variables getDashboardsNEW ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
@@ -1672,6 +1671,12 @@ export class GlobalVariableService {
             let localVariableName: string = null;
             let localCurrentVariableName: string = '';
             let localTableName: string = '';
+
+            // Initialise DB
+            this.dbCanvasAppDatabase = new CanvasAppDatabase
+            this.dbCanvasAppDatabase.open();
+            this.dbDataCachingTable = new DataCachingDatabase;
+            this.dbDataCachingTable.open();
 
             // Find DS in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>

@@ -566,9 +566,9 @@ export class AppComponent implements OnInit {
                     // triggered.
                     this.socket.on('canvasNS', (message) => {
                         console.log('xx APP received websocket message:', message)
-                        this.globalVariableService.actionWebSocket(message).then(res => {
-                            console.log('xx actionWebSocket() has completed')
-                        });
+                        // this.globalVariableService.actionWebSocket(message).then(res => {
+                        //     console.log('xx actionWebSocket() has completed')
+                        // });
                     });
 
                     // Standard events for illustration purposes - Switched off for now
@@ -7995,7 +7995,8 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
 
         // Get GV values
-        let resource: string = 'dashboards';
+        let resource: string = 'dashboards';         // Works !
+        // let resource: string = 'datasources';         // Works !
         this.globalVariableService.getDashboardsNEW(resource).then(res => {
             let testDashboards: Dashboard[];
             testDashboards = res;
