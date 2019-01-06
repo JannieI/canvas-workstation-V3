@@ -1644,17 +1644,12 @@ export class GlobalVariableService {
     }
 
     getDashboardsNEW(resource: string = '', params: string = ''): Promise<any> {
-        // Description: Gets all D from correct place: variable, localCache, getHTTP
-        // Returns: this.dashboards array, unless:
-        //   If not cached or if dirty, get from File
+        // Description: Gets the data (either from cached or HTTP), and updates
+        // variables this.resource (ie this.dashboards)and cache (if from HTTP and cacheable)
         if (this.sessionDebugging) {
             console.log('%c        Global-Variables getDashboardsNEW ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
-
-
-        // NB NB NB  - try to have ONE GET statement, for local and cloud Canvas-Servers
-
 
         return new Promise<any>((resolve, reject) => {
 
