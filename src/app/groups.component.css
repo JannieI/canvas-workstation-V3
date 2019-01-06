@@ -66,6 +66,7 @@
         grid-column-end: 7;
         grid-row-start: 3;
         grid-row-end: 4;
+        margin-left: 30px;
     }
     .gridGroupName {
         grid-column-start: 7;
@@ -73,19 +74,21 @@
         grid-column-end: 13;
         grid-row-start: 3;
         grid-row-end: 4;
+        margin-left: 30px;
     }
     
     .gridButtonSave {
-        grid-column-start: 13;
+        grid-column-start: 12;
         /* autoprefixer: off */
-        grid-column-end: 15;
+        grid-column-end: 14;
         grid-row-start: 3;
         grid-row-end: 4;
+        margin-left: 10px;
     }
     .gridButtonAdd {
-        grid-column-start: 15;
+        grid-column-start: 14;
         /* autoprefixer: off */
-        grid-column-end: 17;
+        grid-column-end: 16;
         grid-row-start: 3;
         grid-row-end: 4;
     }

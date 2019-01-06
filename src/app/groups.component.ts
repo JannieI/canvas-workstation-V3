@@ -11,7 +11,7 @@ import { Output }                     from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
- 
+
 // Our Services
 import { GlobalVariableService}       from './global-variable.service';
 
@@ -66,11 +66,11 @@ export class GroupsComponent implements OnInit {
             if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
                 return 1;
             };
-        
+
             if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
                 return -1;
             };
-        
+
             return 0;
         });
 
@@ -80,7 +80,7 @@ export class GroupsComponent implements OnInit {
         };
 
         if (this.canvasGroups.length > 0) {
-            this.canvasUsers = this.globalVariableService.canvasUsers.filter(u => 
+            this.canvasUsers = this.globalVariableService.canvasUsers.filter(u =>
                 u.groups.map(x => x.toLowerCase()).indexOf(this.canvasGroups[0].name.toLowerCase()) >= 0
             )
         } else {
@@ -106,12 +106,12 @@ export class GroupsComponent implements OnInit {
         this.groupName = this.canvasGroups[index].name;
         this.canvasGroups.forEach(g => {
             if (g.id == groupID) {
-                this.canvasUsers = this.globalVariableService.canvasUsers.filter(u => 
+                this.canvasUsers = this.globalVariableService.canvasUsers.filter(u =>
                     u.groups.map(x => x.toLowerCase()).indexOf(g.name.toLowerCase()) > 0
                 )
             };
         })
-     
+
     }
 
     dblclickDelete(id: number) {
@@ -126,7 +126,12 @@ export class GroupsComponent implements OnInit {
             this.message = "Group Deleted"
             this.canvasGroups = this.canvasGroups.filter(
                 grp => grp.id != id
-            );        
+            );
+
+            // Click first row
+            if (this.canvasGroups.length > 0) {
+                this.clickRow(0, this.canvasGroups[0].id);
+            };
         })
         .catch(err => {
             this.errorMessage = "Deletion of group failed " + err.message;
@@ -153,13 +158,13 @@ export class GroupsComponent implements OnInit {
         };
 
         let newGroup: CanvasGroup = {
-            id: null,
+            id: this.canvasGroups[this.selectedRow].id,
             name: this.groupName,
             editedBy:  this.globalVariableService.currentUser.userID,
             editedOn:  new Date(),
             createdBy: this.canvasGroups[this.selectedRow].createdBy,
             createdOn: this.canvasGroups[this.selectedRow].createdOn
-        }
+        };
 
         this.globalVariableService.saveCanvasGroup(newGroup).then( () => {
             this.message = "Group Updated"
@@ -199,14 +204,15 @@ export class GroupsComponent implements OnInit {
             createdOn: new Date()
         };
 
-        this.globalVariableService.addCanvasGroup(newGroup).then( (res) => {
+        this.globalVariableService.addCanvasGroup(newGroup).then(res => {
             this.message = "Group Added"
             this.canvasGroups.push(newGroup);
-            this. selectedRow = this.canvasGroups.findIndex(grp => grp.id == res.id);
+            this. selectedRow = this.canvasGroups.length - 1;
             this.selectedID = res.id;
+
         })
         .catch(err => {
-            this.errorMessage = "Deletion of group failed " + err;
+            this.errorMessage = "Addition of the group failed " + err;
         });
 
     }
