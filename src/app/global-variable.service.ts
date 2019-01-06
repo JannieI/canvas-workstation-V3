@@ -1698,6 +1698,7 @@ export class GlobalVariableService {
                     if (isFresh) {
                         console.log('xx is FRESH')
 
+                        // Get from Memory (local var)
                         if ( (localVariableName != null)
                                 &&
                                 (this[localVariableName].length == 0)
@@ -1709,18 +1710,21 @@ export class GlobalVariableService {
                             resolve(this[localVariableName]);
                             return;
 
+                        // Get from Disc (Dexie)
                         } else if (localTableName != null) {
                             console.warn('xx in local Disc');
-                            let localDashboardArray: Dashboard[] = [];
+                            // let localDashboardArray: Dashboard[] = [];
                             this.dbCanvasAppDatabase.table(localTableName)
                             .toArray()
                             .then(res => {
                                 // TODO - generalize .dashboard for ANY data
                                 // TODO - check that not empty Array
-                                localDashboardArray = res.map(row => row.dashboard);
-                                console.log('xx data returned from Disc', localDashboardArray)
+                                // localDashboardArray = res.map(row => row.dashboard);
+                                this[localVariableName] = res.map(row => row.dashboard);
+                                console.log('xx data returned from Disc', res, this[localVariableName])
 
-                                resolve(localDashboardArray);
+                                // resolve(localDashboardArray);
+                                resolve(this[localVariableName]);
                                 return;
                             });    
                         };
