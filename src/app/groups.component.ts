@@ -45,6 +45,7 @@ export class GroupsComponent implements OnInit {
     canvasGroups: CanvasGroup[];
     canvasUsers: CanvasUser[];
     errorMessage: string = '';
+    groupName: string = '';
     message: string = '';
     selectedRow: number = 0;
 

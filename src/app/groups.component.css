@@ -60,13 +60,28 @@
         overflow: auto;
     }
 
+    .gridGroupNameTitle {
+        grid-column-start: 6;
+        /* autoprefixer: off */
+        grid-column-end: 7;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+    .gridGroupName {
+        grid-column-start: 7;
+        /* autoprefixer: off */
+        grid-column-end: 16;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+    
     .gridUsers {
         border: 1px dotted gray;
         border-radius: 5px;
         grid-column-start: 6;
         /* autoprefixer: off */
         grid-column-end: 16;
-        grid-row-start: 3;
+        grid-row-start: 5;
         grid-row-end: 19;
         margin-left: 30px;
         overflow: auto;

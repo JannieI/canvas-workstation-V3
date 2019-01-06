@@ -64,10 +64,41 @@
 
                     </clr-datagrid>
                 </div>
+                
+                <div class="gridGroupNameTitle">
+                    <b>Group:</b>
+                </div>
+                <div class="gridGroupName">
+                    <input [(ngModel)]="groupName"
+                        type="text"
+                        name="groupName"
+                        placeholder="Enter GroupName"
+                        size="25"
+                        required
+                        minlength="3"
+                        maxlength="160"
+                        >
+                </div>
+                <div class="gridButtonCancel">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose('Close')"
+                        >
+                        Cancel
+                    </button>
+                </div>
 
-                <!-- <div class="gridUsersTitle">
-                    <b>Current Users:</b>
-                </div> -->
+                <div class="gridButtonSave">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickSave('Saved')"
+                        >
+                        Save
+                    </button>
+                </div>
+
                 <div class="gridUsers">
                     <div class="gridPrevious">
                         <clr-datagrid>
