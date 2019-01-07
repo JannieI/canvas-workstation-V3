@@ -365,10 +365,14 @@ export class UsersComponent implements OnInit {
             this.errorMessage = 'The user First Name is compulsory';
             return;
         };
-        let groupIndex: number = this.users.findIndex(usr => usr.userID == this.userID);
-        if (groupIndex >= 0) {
-            this.errorMessage = 'The userID must be unique (it exists already)';
-            return;
+
+        // Cannot change to an existing userID
+        if (this.users[this.selectedRow].userID != this.userID) {
+            let groupIndex: number = this.users.findIndex(usr => usr.userID == this.userID);
+            if (groupIndex >= 0) {
+                this.errorMessage = 'The userID must be unique (it exists already)';
+                return;
+            };
         };
 
         let newUser: CanvasUser = { ...this.users[this.selectedRow], 
