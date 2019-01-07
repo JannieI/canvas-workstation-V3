@@ -370,7 +370,7 @@ export class UsersComponent implements OnInit {
         if (this.users[this.selectedRow].userID != this.userID) {
             let groupIndex: number = this.users.findIndex(usr => usr.userID == this.userID);
             if (groupIndex >= 0) {
-                this.errorMessage = 'The userID must be unique (it exists already)';
+                this.errorMessage = 'The userID must be unique (' + this.userID + ' exists already)';
                 return;
             };
         };
