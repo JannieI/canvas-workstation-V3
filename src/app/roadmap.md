@@ -73,7 +73,6 @@ This document describes items for later versions of Canvas.
     Admin module and Users
     ----------------------
         - Users, groups, permissions: add DS permissions, Private Dashboards?, Public Dashboards?, etc to form 'My Permissions'
-        - Where does UI sit - in Dashboard or separate.  Consider Standalone vs Network
         - Finalise group membership / roles
         - Add UserID to ALL data and code -> where needed ... [FROM DatasourcePermission]
         - It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
@@ -93,9 +92,9 @@ This document describes items for later versions of Canvas.
 
 
 
-    Tributary:
+    Canvas Server:
     ----------
-        - Combinations must also be done here
+        - Combinations must also be done here - possible?
         - Add token management forms: forgot password, refresh token ...
         - for Data Services: add Movie API ala Express Course!  Just for fun
         
@@ -373,11 +372,6 @@ This document describes items for later versions of Canvas.
     - ensure multi-tenant (companyName) used correctly and consistently
 
 
-    Renderers:
-    ---------
-    - have different renderers, other than browser (for same Dashboard)!
-
-
     General:
     -------
     - Add a demo in the cloud
@@ -385,7 +379,7 @@ This document describes items for later versions of Canvas.
 
     Image:
     -----
-    - add image via File input box - Tributary gives back url?
+    - add image via File input box - Canvas Server gives back url?
     - scale on Sh Editor, and add drag handles to size here
     - picture overlaps the WidgetContainer in App.html - looks funny
 
@@ -552,9 +546,11 @@ This document describes items for later versions of Canvas.
     - Give the user a vote - via like?  Create a sense of belonging and community
     - Consider multi-W actions, ie to move ALL selected objects - remember complexity since Sl and W sits in different components ...  Also, the current code is specific to ONE
 
+
     Performance:
     -----------
     - try to improve performance - trackedByFn ...
+
 
     UI:
     --
@@ -1057,7 +1053,7 @@ This document describes items for later versions of Canvas.
     - link to Business Glossary
 
 
-    Tributary:
+    Canvas Server:
     ----------
     - consider a much larger project, say with a visual GUI to show processes / transformations
     - connector for S3 - https://github.com/andrewrk/node-s3-client
@@ -1129,7 +1125,7 @@ This document describes items for later versions of Canvas.
     - take menus away (cater somehow for the gap during design, unless you design with this OR *ngIf menu out)
     - status bar becomes simple and replaces existing (think if this is really necessary) with name, page n of m, <> arrows.  Maybe just add page n of m to existing one!!
 
-    Tributary:
+    Canvas Server:
     ----------
     - Read more - see Pentaho ETL / Data Integration for features.
     - consider Views on DS: one DS definition, many views which could be aggregations. 
@@ -1583,6 +1579,14 @@ This document describes items for later versions of Canvas.
         - visualise the data
         - see it is not right, modify the data above or modify the model
         - visualise and repeat (Oksana !)
+
+
+
+    Renderers:
+    ---------
+    - have different renderers, other than browser (for same Dashboard)!
+
+
     End of One day stuff:
 
 
