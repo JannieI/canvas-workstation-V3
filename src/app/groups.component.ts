@@ -206,7 +206,7 @@ export class GroupsComponent implements OnInit {
 
         this.globalVariableService.addCanvasGroup(newGroup).then(res => {
             this.message = "Group Added"
-            this.canvasGroups.push(newGroup);
+            this.canvasGroups.push(res);
             this. selectedRow = this.canvasGroups.length - 1;
             this.selectedID = res.id;
 
