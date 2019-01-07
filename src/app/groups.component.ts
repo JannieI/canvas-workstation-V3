@@ -100,9 +100,13 @@ export class GroupsComponent implements OnInit {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'setClickedRow', '@Start');
 
+        // Reset
+        this.message = '';
+        this.errorMessage = '';
         this.selectedRow = index;
         this.selectedID = groupID;
 
+        // Show users in the selected Group
         this.groupName = this.canvasGroups[index].name;
         this.canvasGroups.forEach(g => {
             if (g.id == groupID) {
