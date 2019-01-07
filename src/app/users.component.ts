@@ -51,6 +51,8 @@ export class UsersComponent implements OnInit {
     message: string = '';
     selectedRow: number = 0;
     selectedID: string = '';
+    userID: string = '';
+    userName: string = '';
     users: CanvasUser[];
 
 	constructor(
@@ -342,6 +344,44 @@ export class UsersComponent implements OnInit {
         .catch(err => {
             this.errorMessage = "Deletion of user failed " + err.message;
         });
+    }
+
+    clickSave() {
+        // Save groupName back (~Edit)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Reset
+        this.message = '';
+        this.errorMessage = '';
+
+        // Validation
+        if (this.groupName == ''  ||  this.groupName == null) {
+            this.errorMessage = 'The group name is compulsory';
+            return;
+        };
+        let groupIndex: number = this.users.findIndex(grp => grp.name == this.groupName);
+        if (groupIndex >= 0) {
+            this.errorMessage = 'The group name must be unique (it exists already)';
+            return;
+        };
+
+        let newGroup: CanvasUser = {
+            id: this.users[this.selectedRow].id,
+            name: this.userID,
+            editedBy:  this.globalVariableService.currentUser.userID,
+            editedOn:  new Date(),
+            createdBy: this.users[this.selectedRow].createdBy,
+            createdOn: this.users[this.selectedRow].createdOn
+        };
+
+        this.globalVariableService.saveCanvasGroup(newGroup).then( () => {
+            this.message = "Group Updated"
+            this.users[this.selectedRow] = newGroup;
+        })
+        .catch(err => {
+            this.errorMessage = "Updating of user failed " + err;
+        });
+
     }
 
 }
