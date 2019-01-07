@@ -110,9 +110,18 @@
     }
 
     .gridButtonSave {
-        grid-column-start: 13;
+        grid-column-start: 12;
         /* autoprefixer: off */
-        grid-column-end: 15;
+        grid-column-end: 14;
+        grid-row-start: 16;
+        grid-row-end: 17;
+        margin-top: 10px;
+    }
+
+    .gridButtonAdd {
+        grid-column-start: 14;
+        /* autoprefixer: off */
+        grid-column-end: 16;
         grid-row-start: 16;
         grid-row-end: 17;
         margin-top: 10px;
