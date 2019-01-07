@@ -478,7 +478,8 @@ export class UsersComponent implements OnInit {
         };
 
         this.globalVariableService.addCanvasUser(newUser).then(res => {
-            this.message = "User Added"
+            this.message = "User Added with " + res.id;
+            console.log('xx res after Add', res)
             this.users.push(res);
             this. selectedRow = this.users.length - 1;
             this.selectedID = res.id;

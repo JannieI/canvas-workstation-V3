@@ -10211,8 +10211,7 @@ export class GlobalVariableService {
                     this.canvasUsers.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
-                        console.log('addCanvasUser ADDED', this.canvasUsers,
-                            this.canvasUsers)
+                        console.log('addCanvasUser ADDED', res.data, this.canvasUsers)
                     };
 
                     resolve(res.data);
