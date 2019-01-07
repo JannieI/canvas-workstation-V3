@@ -48,7 +48,7 @@
         /* autoprefixer: off */
         grid-column-end: 13;
         grid-row-start: 3;
-        grid-row-end: 15;
+        grid-row-end: 16;
         max-height: 15rem;
         overflow: auto;
     }
@@ -70,7 +70,7 @@
         /* autoprefixer: off */
         grid-column-end: 16;
         grid-row-start: 3;
-        grid-row-end: 15;
+        grid-row-end: 16;
         margin-left: 30px;
         overflow: auto;
     }
@@ -115,6 +115,7 @@
         grid-column-end: 15;
         grid-row-start: 16;
         grid-row-end: 17;
+        margin-top: 10px;
     }
 
 
