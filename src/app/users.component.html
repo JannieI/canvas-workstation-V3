@@ -29,6 +29,9 @@
 
                 <div class="gridUsers">
                     <clr-datagrid>
+                        <clr-dg-column [style.text-align]="'center'">
+                            Remove 
+                        </clr-dg-column>
                         <clr-dg-column [clrDgField]="'userID'">UserID</clr-dg-column>
                         <clr-dg-column [clrDgField]="'firstName'">FirstName</clr-dg-column>
                         <clr-dg-column [clrDgField]="'lastName'">LastName</clr-dg-column>
@@ -45,6 +48,13 @@
                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
                             (click)="clickRow(i, row.userID)"
                             >
+                            <clr-dg-cell>
+                                <clr-icon shape="trash"
+                                    size="16"
+                                    (dblclick)="dblclickDelete(row.id)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
                             <clr-dg-cell>{{row.userID}}</clr-dg-cell>
                             <clr-dg-cell>{{row.firstName}}</clr-dg-cell>
                             <clr-dg-cell>{{row.lastName}}</clr-dg-cell>
@@ -84,10 +94,10 @@
                     <b>FirstName:</b>
                 </div>                
                 <div class="gridUserFirstName">
-                    <input [(ngModel)]="userID"
+                    <input [(ngModel)]="userFirstName"
                         type="text"
-                        name="userID"
-                        placeholder="Enter userID"
+                        name="userFirstName"
+                        placeholder="Enter userFirstName"
                         size="25"
                         required
                         minlength="3"

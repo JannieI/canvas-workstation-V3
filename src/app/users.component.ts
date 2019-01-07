@@ -51,8 +51,8 @@ export class UsersComponent implements OnInit {
     message: string = '';
     selectedRow: number = 0;
     selectedID: string = '';
+    userFirstName: string = '';
     userID: string = '';
-    userName: string = '';
     users: CanvasUser[];
 
 	constructor(
@@ -347,7 +347,7 @@ export class UsersComponent implements OnInit {
     }
 
     clickSave() {
-        // Save groupName back (~Edit)
+        // Save userID back (~Edit)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Reset
@@ -355,13 +355,13 @@ export class UsersComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.groupName == ''  ||  this.groupName == null) {
-            this.errorMessage = 'The group name is compulsory';
+        if (this.userID == ''  ||  this.userID == null) {
+            this.errorMessage = 'The user name is compulsory';
             return;
         };
-        let groupIndex: number = this.users.findIndex(grp => grp.name == this.groupName);
+        let groupIndex: number = this.users.findIndex(grp => grp.name == this.userID);
         if (groupIndex >= 0) {
-            this.errorMessage = 'The group name must be unique (it exists already)';
+            this.errorMessage = 'The user name must be unique (it exists already)';
             return;
         };
 
@@ -383,7 +383,7 @@ export class UsersComponent implements OnInit {
         });
 
     }
-    
+
     clickAdd() {
         // Add a new groupName
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
@@ -393,11 +393,11 @@ export class UsersComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.groupName == ''  ||  this.groupName == null) {
+        if (this.userID == ''  ||  this.userID == null) {
             this.errorMessage = 'The user name is compulsory';
             return;
         };
-        let groupIndex: number = this.canvasGroups.findIndex(grp => grp.name == this.groupName);
+        let groupIndex: number = this.canvasGroups.findIndex(grp => grp.name == this.userID);
         if (groupIndex >= 0) {
             this.errorMessage = 'The userID must be unique (it exists already)';
             return;
@@ -405,7 +405,7 @@ export class UsersComponent implements OnInit {
 
         let newGroup: CanvasGroup = {
             id: null,
-            name: this.groupName,
+            name: this.userID,
             editedBy: null,
             editedOn: null,
             createdBy: this.globalVariableService.currentUser.userID,
