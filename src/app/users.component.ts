@@ -369,7 +369,6 @@ export class UsersComponent implements OnInit {
             return;
         };
 
-        // TODO - later make a company template, and apply this to each new user
         let newUser: CanvasUser = {
             id: null,
             companyName: this.globalVariableService.canvasSettings.companyName;
@@ -460,25 +459,88 @@ export class UsersComponent implements OnInit {
             this.errorMessage = 'The user name is compulsory';
             return;
         };
-        let groupIndex: number = this.canvasGroups.findIndex(grp => grp.name == this.userID);
+        if (this.userFirstName == ''  ||  this.userFirstName == null) {
+            this.errorMessage = 'The user First Name is compulsory';
+            return;
+        };
+        let groupIndex: number = this.users.findIndex(usr => usr.userID == this.userID);
         if (groupIndex >= 0) {
             this.errorMessage = 'The userID must be unique (it exists already)';
             return;
         };
 
-        let newGroup: CanvasGroup = {
+        // TODO - later make a company template, and apply this to each new user
+        let newUser: CanvasUser = {
             id: null,
-            name: this.userID,
-            editedBy: null,
-            editedOn: null,
-            createdBy: this.globalVariableService.currentUser.userID,
-            createdOn: new Date()
+            companyName: this.globalVariableService.canvasSettings.companyName;
+            userID: this.userID,
+            password: 'clarity!01',
+            firstName: this.userFirstName,
+            lastName: '',
+            nickName: '',
+            email: '',
+            workNumber: '',
+            cellNumber: '',
+            groups: [],
+            isSuperuser: false,
+            isStaff: false,
+            isActive: true,
+            dateJoined: new Date(),
+            lastLogin: null,
+            colorScheme: '',
+            gridSize: 10,
+            environment: '',
+            profilePicture: '',
+            queryRuntimeWarning: 3,
+            snapToGrid: false,
+            favouriteDashboards: [],
+            isFirstTimeUser: true,
+            isAdministrator: false,
+            dashboardCanCreateRole: false,
+            dashboardCanViewRole: false,
+            dashboardCanEditRole: false,
+            dashboardCanSaveRole :false,
+            dashboardCanDeleteRole: false,
+            dashboardCanGrantAccessRole: false,
+            dashboardCanAddDatasourceRole: false,
+            datasourceCanCreateRole: false,
+            datasourceCanViewRole: false,
+            datasourceCanEditRole: false,
+            datasourceCanDeleteRole: false,
+            datasourceCanGrantAccessRole: false,
+            canManageGroupRole: false,
+            lastPaletteLeft: 30,
+            lastPaletteTop: 30,
+            lastAppShowPopupMessageGotIt: false,
+            cleanCacheOnLogin: false,
+            cleanCacheOnLogout: false,
+            preferencePaletteHorisontal: true,
+            preferencePlaySound: false,
+            preferenceAutoSync: false,
+            preferenceShowOpenStartupMessage: false,
+            preferenceShowOpenDataCombinationMessage: false,
+            preferenceShowViewStartupMessage: false,
+            preferenceShowDiscardStartupMessage: false,
+            preferenceDefaultTemplateID: null,
+            preferenceDefaultDateformat: '',
+            preferenceDefaultFolder: '',
+            preferenceDefaultPrinter: '',
+            preferenceDefaultPageSize: '',
+            preferenceDefaultPageLayout: '',
+            preferenceDefaultSnapshotMins: 0,
+            preferenceStartupDashboardID: null,
+            preferenceStartupDashboardTabID: null,
+            preferenceShowWidgetEditorLite: true,
+            editedBy:  this.globalVariableService.currentUser.userID,
+            editedOn:  new Date(),
+            createdBy: this.users[this.selectedRow].createdBy,
+            createdOn: this.users[this.selectedRow].createdOn
         };
 
-        this.globalVariableService.addCanvasGroup(newGroup).then(res => {
+        this.globalVariableService.addCanvasUser(newUser).then(res => {
             this.message = "User Added"
-            this.canvasGroups.push(res);
-            this. selectedRow = this.canvasGroups.length - 1;
+            this.users.push(res);
+            this. selectedRow = this.users.length - 1;
             this.selectedID = res.id;
 
         })
