@@ -320,5 +320,29 @@ export class UsersComponent implements OnInit {
 
     }
 
+    dblclickDelete(id: number) {
+        // Delete selected group
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
+
+        // Reset
+        this.message = '';
+        this.errorMessage = '';
+
+        this.globalVariableService.deleteCanvasGroup(id).then( () => {
+            this.message = "User Deleted"
+            this.users = this.users.filter(
+                grp => grp.id != id
+            );
+
+            // Click first row
+            if (this.users.length > 0) {
+                this.clickRow(0, this.users[0].userID);
+            };
+        })
+        .catch(err => {
+            this.errorMessage = "Deletion of user failed " + err.message;
+        });
+    }
+
 }
 
