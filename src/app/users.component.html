@@ -65,6 +65,46 @@
                     </clr-datagrid>
                 </div>
 
+                <div class="gridUserIDTitle">
+                    <b>UserID:</b>
+                </div>                
+                <div class="gridUserID">
+                    <input [(ngModel)]="userID"
+                        type="text"
+                        name="userID"
+                        placeholder="Enter userID"
+                        size="25"
+                        required
+                        minlength="3"
+                        maxlength="100"
+                        >
+                </div>
+
+                <div class="gridUserFirstNameTitle">
+                    <b>FirstName:</b>
+                </div>                
+                <div class="gridUserFirstName">
+                    <input [(ngModel)]="userID"
+                        type="text"
+                        name="userID"
+                        placeholder="Enter userID"
+                        size="25"
+                        required
+                        minlength="3"
+                        maxlength="100"
+                        >
+                </div>
+                <div class="gridButtonSave">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickSave()"
+                        >
+                        Save
+                    </button>
+                </div>
+
+
                 <!-- <div class="gridGroupsTitle">
                     <i>Groups that the user belongs to:</i>
                 </div> -->
@@ -97,7 +137,7 @@
                 <div class="gridDashboardPermssions">
                     <clr-datagrid>
                         <clr-dg-column [style.text-align]="'center'">
-                            Remove 
+                            Remove
                         </clr-dg-column>
                         <clr-dg-column [clrDgField]="'dashboardName'">Name</clr-dg-column>
                         <clr-dg-column [clrDgField]="'canViewRight'" class="checkCell">View</clr-dg-column>
@@ -208,7 +248,7 @@
                         </clr-dg-footer>
 
                     </clr-datagrid>
-        
+
                 </div>
             </div>
         </div>
