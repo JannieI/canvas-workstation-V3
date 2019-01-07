@@ -323,17 +323,17 @@ export class UsersComponent implements OnInit {
     }
 
     dblclickDelete(id: number) {
-        // Delete selected group
+        // Delete selected user
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 
         // Reset
         this.message = '';
         this.errorMessage = '';
 
-        this.globalVariableService.deleteCanvasGroup(id).then( () => {
+        this.globalVariableService.deleteCanvasUser(id).then( () => {
             this.message = "User Deleted"
             this.users = this.users.filter(
-                grp => grp.id != id
+                usr => usr.id != id
             );
 
             // Click first row
