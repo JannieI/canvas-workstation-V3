@@ -313,7 +313,6 @@ export class DataDirectFileCSVComponent implements OnInit {
 
         }
 
-
         if (this.selectedDatasource != null) {
 
             // Mark the changes
