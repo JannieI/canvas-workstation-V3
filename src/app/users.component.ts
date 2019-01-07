@@ -437,8 +437,8 @@ export class UsersComponent implements OnInit {
             createdOn: this.users[this.selectedRow].createdOn
         };
 
-        this.globalVariableService.saveCanvasGroup(newUser).then( () => {
-            this.message = "Group Updated"
+        this.globalVariableService.saveCanvasUser(newUser).then( () => {
+            this.message = "User Updated"
             this.users[this.selectedRow] = newUser;
         })
         .catch(err => {
