@@ -383,6 +383,46 @@ export class UsersComponent implements OnInit {
         });
 
     }
+    
+    clickAdd() {
+        // Add a new groupName
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
+        // Reset
+        this.message = '';
+        this.errorMessage = '';
+
+        // Validation
+        if (this.groupName == ''  ||  this.groupName == null) {
+            this.errorMessage = 'The user name is compulsory';
+            return;
+        };
+        let groupIndex: number = this.canvasGroups.findIndex(grp => grp.name == this.groupName);
+        if (groupIndex >= 0) {
+            this.errorMessage = 'The userID must be unique (it exists already)';
+            return;
+        };
+
+        let newGroup: CanvasGroup = {
+            id: null,
+            name: this.groupName,
+            editedBy: null,
+            editedOn: null,
+            createdBy: this.globalVariableService.currentUser.userID,
+            createdOn: new Date()
+        };
+
+        this.globalVariableService.addCanvasGroup(newGroup).then(res => {
+            this.message = "User Added"
+            this.canvasGroups.push(res);
+            this. selectedRow = this.canvasGroups.length - 1;
+            this.selectedID = res.id;
+
+        })
+        .catch(err => {
+            this.errorMessage = "Addition of the user failed " + err;
+        });
+
+    }
 }
 
