@@ -75,7 +75,7 @@ export class UsersComponent implements OnInit {
                 };
 
                 return 0;
-            });
+            }).slice();
             this.selectedRow = 0;
             if (u.length > 0) {
                 this.groups = u[0].groups;
@@ -110,7 +110,7 @@ export class UsersComponent implements OnInit {
 
         this.userID = this.users[index].userID;
         this.userFirstName = this.users[index].firstName;
-        
+
         this.users.forEach(u => {
             if (u.userID == userID) {
                 this.groups = u.groups;
@@ -133,7 +133,6 @@ export class UsersComponent implements OnInit {
         });
 
     }
-
 
     clickToggleView(id: number, $event) {
         // User dblclicked View - so toggle it
@@ -413,13 +412,13 @@ export class UsersComponent implements OnInit {
         // TODO - later make a company template, and apply this to each new user
         let newUser: CanvasUser = {
             id: null,
-            companyName: this.globalVariableService.canvasSettings.companyName;
+            companyName: this.globalVariableService.canvasSettings.companyName,
             userID: this.userID,
             password: 'clarity!01',
             firstName: this.userFirstName,
             lastName: '',
             nickName: '',
-            email: '',
+            email: this.userID + '@' + this.globalVariableService.canvasSettings.companyName,
             workNumber: '',
             cellNumber: '',
             groups: [],

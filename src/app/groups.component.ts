@@ -72,7 +72,7 @@ export class GroupsComponent implements OnInit {
             };
 
             return 0;
-        });
+        }).slice();
 
         // Click first row
         if (this.canvasGroups.length > 0) {
