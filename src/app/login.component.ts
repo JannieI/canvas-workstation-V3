@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
         // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formUserLoginClosed.emit('action');
+		this.formUserLoginClosed.emit(action);
     }
 
     clickRegister() {
