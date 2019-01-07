@@ -2363,7 +2363,9 @@ export class AppComponent implements OnInit {
         this.showModalDashboardLogin = false;
 
         // Show Landing page
-        this.showModalLanding = true;
+        if (action != 'Cancel') {
+            this.showModalLanding = true;
+        };
     }
 
     handleCloseUserLogout(action: string) {

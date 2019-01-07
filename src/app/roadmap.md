@@ -370,6 +370,7 @@ This document describes items for later versions of Canvas.
     Warning:
     - when a W is rendered and some fields dont exist, error occured, display a warning image +     message inside W.  User can edit this, fix the fields and save
     - before saving a W, Canvas checks that the fields are valid, that it renders, etc and warns if not (but allows to save) - how does this fit in with auto-save policy?
+    - ensure multi-tenant (companyName) used correctly and consistently
 
 
     Renderers:

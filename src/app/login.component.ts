@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose('Close');
+            this.clickClose('Cancel');
             return;
         };
         if (
@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
         // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formUserLoginClosed.emit(action);
+		this.formUserLoginClosed.emit('action');
     }
 
     clickRegister() {
