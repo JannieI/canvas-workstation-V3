@@ -48,7 +48,9 @@ export class UsersComponent implements OnInit {
     dashboardPermissions: DashboardPermission[];
     errorMessage: string = '';
     groups: string[];
+    message: string = '';
     selectedRow: number = 0;
+    selectedID: string = '';
     users: CanvasUser[];
 
 	constructor(
@@ -92,6 +94,11 @@ export class UsersComponent implements OnInit {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'setClickedRow', '@Start');
 
+        // Reset
+        this.message = '';
+        this.errorMessage = '';
+
+        this.selectedID = userID;
         this.selectedRow = index;
         this.users.forEach(u => {
             if (u.userID == userID) {
