@@ -105,9 +105,12 @@ export class UsersComponent implements OnInit {
         // Reset
         this.message = '';
         this.errorMessage = '';
-
         this.selectedID = userID;
         this.selectedRow = index;
+
+        this.userID = this.users[index].userID;
+        this.userFirstName = this.users[index].firstName;
+        
         this.users.forEach(u => {
             if (u.userID == userID) {
                 this.groups = u.groups;
