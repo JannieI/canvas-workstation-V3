@@ -375,6 +375,11 @@ This document describes items for later versions of Canvas.
     General:
     -------
     - Add a demo in the cloud
+    - Run over HTTPS (Node and ng)
+    - Have a SERIOUS look at Security!  See:
+        - https://medium.com/@nodepractices/were-under-attack-23-node-js-security-best-practices-e33c146cb87d
+        - https://nodesource.com/blog/nine-security-tips-to-keep-express-from-getting-pwned/
+        - https://hackernoon.com/your-node-js-authentication-tutorial-is-wrong-f1a3bf831a46
 
 
     Image:
