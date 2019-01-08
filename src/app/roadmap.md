@@ -438,6 +438,8 @@ This document describes items for later versions of Canvas.
 
     Data:
     ----
+    - cater for situation where one can define Schema before reading data - upload and store in DS definition!  Also, what about validating data against this schema before loading - Ivan 2019-01-08
+
     - Discover DBs, ie IP, etc (Bradley)
     - reconsider Transpose option for pre-loading.  May be useful for some datasets, but clearly not for SQL, etc.  And doubt if json files would need that.  Can this be useful?
     - How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload each time ...
@@ -1579,7 +1581,7 @@ This document describes items for later versions of Canvas.
         - visualise the data
         - see it is not right, modify the data above or modify the model
         - visualise and repeat (Oksana !)
-
+    - read data from other schemas: Excel, PowerBI models, Tableau - which means migration is easy !
 
 
     Renderers:

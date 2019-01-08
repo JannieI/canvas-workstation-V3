@@ -11299,7 +11299,7 @@ export class GlobalVariableService {
         };
 
         // CanvasDatabase: Local or Server
-        let baseUrl: string = this.canvasServerURI + '/canvasdata/:';
+        let baseUrl: string = this.canvasServerURI + '/canvasdata/';
 
         // Return
         return baseUrl;
