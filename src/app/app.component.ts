@@ -428,12 +428,9 @@ export class AppComponent implements OnInit {
     localDataCachingTable: IDataCachingTable[];
     localDashboard: LocalDashboard[];
 
-    // private webSocketChat: WebSocketChatService,
-
     // Create the socket (on the web socket Server) on the correct port (which is same as the
     // HTTP url as the web socket Server listens to the HTTP server traffic)
     socket: any;
-
 
 
     constructor(
@@ -561,55 +558,68 @@ export class AppComponent implements OnInit {
 
                 // Start listening to the connection (connect is reserved)
                 this.socket.on('connect', (data) => {
+                    try {
 
-                    // Once a message is received on the canvasNS Namespace, the callback will be
-                    // triggered.
-                    this.socket.on('canvasNS', (message) => {
-                        console.log('xx APP received websocket message:', message)
-                        this.globalVariableService.actionWebSocket(message).then(res => {
-                            console.log('xx actionWebSocket() has completed')
+                        // Once a message is received on the canvasNS Namespace, the callback will be
+                        // triggered.
+                        this.socket.on('canvasNS', (message) => {
+                            console.log('xx APP received websocket message:', message)
+                            this.globalVariableService.actionWebSocket(message).then(res => {
+                                console.log('xx actionWebSocket() has completed')
+                            });
+                            
                         });
-                    });
 
-                    // Standard events for illustration purposes - Switched off for now
-                    // this.socket.on('connect_error', (error) => {
-                    //     console.log('xx socket connect_error', error)
-                    // });
-                    // this.socket.on('connect_timeout', (timeout) => {
-                    //     console.log('xx socket connect_timeout', timeout)
-                    // });
-                    // this.socket.on('error', (error) => {
-                    //     console.log('xx socket error', error)
-                    // });
-                    // this.socket.on('disconnect', (reason) => {
-                    //     console.log('xx socket disconnect', reason)
-                    // });
-                    // this.socket.on('reconnect_attempt', (attemptNumber) => {
-                    //     console.log('xx socket reconnect_attempt', attemptNumber)
-                    // });
-                    // this.socket.on('reconnecting', (attemptNumber) => {
-                    //     console.log('xx socket disconnect', attemptNumber)
-                    // });
-                    // this.socket.on('reconnect_error', (error) => {
-                    //     console.log('xx socket reconnect_error', error)
-                    // });
-                    // this.socket.on('reconnect_failed', () => {
-                    //     console.log('xx socket reconnect_failed')
-                    // });
+                        // Set pingTimeout and pingInterval on the server to modify default behaviour
+                        // this.socket.on('ping', () => {
+                        //     console.log('xx socket ping was received from server')
+                        // });
+                        // this.socket.on('pong', (latency) => {
+                        //     console.log('xx socket pong was received from server', latency)
+                        // });
 
-                    // Set pingTimeout and pingInterval on the server to modify default behaviour
-                    // this.socket.on('ping', () => {
-                    //     console.log('xx socket ping was received from server')
-                    // });
-                    // this.socket.on('pong', (latency) => {
-                    //     console.log('xx socket pong was received from server', latency)
-                    // });
+                        // .emit sends a message to Server on the canvasNS Namespace.  It can take args (data to
+                        //  be send to the server) and an optional callback which will be called
+                        //  with the server's answer.
+                        this.socket.emit('canvasNS', {data: 'First socket message'});
+                    }
+                    // TODO - this console.log does not run correctly ! Fix it
+                    catch {
+                        console.log('xx VOILA !')
+                    };
+                })
+                
+                this.socket.on('connect_error', (error) => {
+                    console.log('xx socket connect_error', error)
+                });
+                this.socket.on('connect_timeout', (timeout) => {
+                    console.log('xx socket connect_timeout', timeout)
+                });
+                this.socket.on('error', (error) => {
+                    console.log('xx socket error', error)
+                });
+                this.socket.on('disconnect', (reason) => {
+                    console.log('xx socket disconnect', reason)
+                    this.showMessage(
+                        'Web Socket disconnected !',
+                        'StatusBar',
+                        'Warning',
+                        3000,
+                        ''
+                    );
 
-
-                    // .emit sends a message to Server on the canvasNS Namespace.  It can take args (data to
-                    //  be send to the server) and an optional callback which will be called
-                    //  with the server's answer.
-                    this.socket.emit('canvasNS', {data: 'First socket message'});
+                });
+                this.socket.on('reconnect_attempt', (attemptNumber) => {
+                    console.log('xx socket reconnect_attempt', attemptNumber)
+                });
+                this.socket.on('reconnecting', (attemptNumber) => {
+                    console.log('xx socket disconnect', attemptNumber)
+                });
+                this.socket.on('reconnect_error', (error) => {
+                    console.log('xx socket reconnect_error', error)
+                });
+                this.socket.on('reconnect_failed', () => {
+                    console.log('xx socket reconnect_failed')
                 });
 
                 // Listen for new messages, to change user icon as indicator
