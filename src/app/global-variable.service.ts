@@ -10874,7 +10874,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getDashboardLayouts 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.dashboardLayouts);
+                            this.dashboardLayouts, res, dashboardID);
                     };
 
                     resolve(this.dashboardLayouts);

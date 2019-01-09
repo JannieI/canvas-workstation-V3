@@ -593,9 +593,7 @@ export class ShapeEditComponent implements OnInit {
         if (this.newWidget) {
 
             // Populate predefined dimensions
-            if (this.selectedWidgetLayout.id != null
-                &&
-                this.selectedWidgetLayout.id != undefined) {
+            if (this.selectedWidgetLayout != null  &&  this.selectedWidgetLayout.left != null) {
 
                 this.localWidget.containerLeft = this.selectedWidgetLayout.left;
                 this.localWidget.containerHeight = this.selectedWidgetLayout.height;

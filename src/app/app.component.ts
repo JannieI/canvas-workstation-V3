@@ -565,7 +565,7 @@ export class AppComponent implements OnInit {
                         this.socket.on('canvasNS', (message) => {
                             console.log('xx APP received websocket message:', message);
                             this.showMessage(
-                                'Web Socket reconnected !',
+                                'Web Socket now connected',
                                 'StatusBar',
                                 'Info',
                                 3000,
@@ -575,7 +575,7 @@ export class AppComponent implements OnInit {
                             this.globalVariableService.actionWebSocket(message).then(res => {
                                 console.log('xx actionWebSocket() has completed')
                             });
-                            
+
                         });
 
                         // Set pingTimeout and pingInterval on the server to modify default behaviour
@@ -596,7 +596,7 @@ export class AppComponent implements OnInit {
                         console.log('xx VOILA !')
                     };
                 })
-                
+
                 this.socket.on('connect_error', (error) => {
                     console.log('xx socket connect_error', error)
                 });
