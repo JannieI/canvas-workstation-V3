@@ -563,7 +563,15 @@ export class AppComponent implements OnInit {
                         // Once a message is received on the canvasNS Namespace, the callback will be
                         // triggered.
                         this.socket.on('canvasNS', (message) => {
-                            console.log('xx APP received websocket message:', message)
+                            console.log('xx APP received websocket message:', message);
+                            this.showMessage(
+                                'Web Socket reconnected !',
+                                'StatusBar',
+                                'Info',
+                                3000,
+                                ''
+                            );
+
                             this.globalVariableService.actionWebSocket(message).then(res => {
                                 console.log('xx actionWebSocket() has completed')
                             });
