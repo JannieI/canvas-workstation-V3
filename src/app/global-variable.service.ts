@@ -1227,7 +1227,7 @@ export class GlobalVariableService {
     dontDisturb = new BehaviorSubject<boolean>(false);   // True means dont disturb display
     dsIDs: number[] = [];           // Dataset IDs
     sessionDateTimeLoggedin: string = '';
-    sessionDebugging: boolean = true;      // True to log multiple messages to Console
+    sessionDebugging: boolean = false;      // True to log multiple messages to Console
     sessionLogging: boolean = false;
 
 
