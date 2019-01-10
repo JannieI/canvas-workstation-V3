@@ -544,7 +544,7 @@ export class Datasource {
     accessType: string;                     // How to access D: Private, Public, AccessList
 
     // Create and Edit info
-    createMethod: string;                   // Method how DS was created, ie DirectFile, ..., ManagedSQLEditor
+    createMethod: string;                   // Method how DS was created, ie directFile, ..., managedSQLEditor
     createdBy: string;                      // Creator
     createdOn: Date;                        // DateTime Created
     editor: string;                         // Last Edited By

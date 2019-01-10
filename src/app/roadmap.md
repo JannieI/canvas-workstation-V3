@@ -497,6 +497,7 @@ This document describes items for later versions of Canvas.
     ---------------------
     - consider including this.  For example, confidential data cannot be exported outside of Canvas, cannot export graph or even make a screen snapshot of it.  Or at the very least warn that data is confidential.
     - next level is content aware: cannot email Absa's margin data to Stadard Bank... Not sure how we do this, and if it is even possible.
+    - security will be a huge issue for companies - we have to have a very secure app !
 
     Pilot Installation:
     - Install at user as pilot, may Liaan ...
@@ -1051,12 +1052,12 @@ This document describes items for later versions of Canvas.
     Usage: (of data)
     ------
     - Closely monitor usage of data (who accessed what and when).  Then consider (very carefully) a payment plan for data usage - simply like a data vendor ...
-    - owners
+    - owners: Maryke needs this at field level
     - DBs accessed
     - #rows extracted
     - who used what when
     - where in schedules
-    - permissions (who has or has not)
+    - permissions (who has or has not): Maryke needs this at data content level
     - link to Business Glossary
 
 
@@ -1587,7 +1588,7 @@ This document describes items for later versions of Canvas.
         - see it is not right, modify the data above or modify the model
         - visualise and repeat (Oksana !)
     - read data from other schemas: Excel, PowerBI models, Tableau - which means migration is easy !
-
+    - hyperlinks to external docs, ie SENS
 
     Renderers:
     ---------
