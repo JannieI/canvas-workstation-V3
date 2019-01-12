@@ -3020,6 +3020,7 @@ this.localWidget);
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
             ds => ds.datasourceID == datasourceID
         );
+        console.warn('xx clicked row', dataSetIndex, datasourceID);
         if (dataSetIndex >= 0) {
 
             // Load local arrays for ngFor - this is required for the Preview
@@ -3029,6 +3030,8 @@ this.localWidget);
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
                 .data.slice(0,5);
 
+            console.log('xx this.currentData', this.currentData)
+            
             // Nr rows
             this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
 
@@ -3043,7 +3046,8 @@ this.localWidget);
 
             // Load local arrays for ngFor - this is required for the Preview
             this.constructDataSchema(arrayIndex);
-
+            console.log('WE this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
+            
             // Determine if data obtains in Glob Var
             dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
                 ds => ds.datasourceID == datasourceID
@@ -3063,6 +3067,10 @@ this.localWidget);
             // Switch on the preview after the first row was clicked
             this.showPreview = true;
 
+        })
+        .catch(err => {
+            this.errorMessage = err;
+            return;
         });
 
         console.warn('xx clicked row', dataSetIndex);

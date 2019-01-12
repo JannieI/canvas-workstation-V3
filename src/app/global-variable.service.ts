@@ -1227,7 +1227,7 @@ export class GlobalVariableService {
     dontDisturb = new BehaviorSubject<boolean>(false);   // True means dont disturb display
     dsIDs: number[] = [];           // Dataset IDs
     sessionDateTimeLoggedin: string = '';
-    sessionDebugging: boolean = false;      // True to log multiple messages to Console
+    sessionDebugging: boolean = true;      // True to log multiple messages to Console
     sessionLogging: boolean = false;
 
 
@@ -6629,8 +6629,6 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        console.warn('xx addCurrentDatasource currentDS DS', this.currentDatasources.slice(), this.datasources.slice() );
-
         return new Promise<any>((resolve, reject) => {
 
             // Fill currentDS from DS, if required
@@ -6648,15 +6646,21 @@ export class GlobalVariableService {
                 // Add DS to currentDS
                 localDatasource = this.datasources[datasourceIndex];
                 this.currentDatasources.push(localDatasource);
+
                 this.hasDatasources.next(true);
             };
             let dataSetIndex: number = this.datasets.findIndex(dS =>
                 dS.datasourceID == datasourceID
             );
+            
+            console.log('GV this.datasets', dataSetIndex, this.datasets)
+
+
             let currentDataSetIndex: number = this.currentDatasets
                 .findIndex(dS => dS.id == datasourceID
             );
-
+            console.log('GV this.currentDatasets', currentDataSetIndex, this.currentDatasets)
+            
             // Dset exists in gv datasets, but not in currentDatasets
             if (dataSetIndex >= 0  &&  currentDataSetIndex < 0) {
 
@@ -6673,11 +6677,13 @@ export class GlobalVariableService {
                     dSetID = Math.max(...allDataSets);
 
                     // Get dSet with Data
-                    this.getCurrentDataset(datasourceID, dSetID).then(res => {
-
-                        resolve(res);
-
-                    });
+                    this.getCurrentDataset(datasourceID, dSetID)
+                        .then(res => {
+                            resolve(res);
+                        })
+                        .catch(err => {
+                            reject('Error:' + err.message);
+                        });
                 };
             };
 
