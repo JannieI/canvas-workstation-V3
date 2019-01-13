@@ -4266,7 +4266,11 @@ export class GlobalVariableService {
                 
                 console.log('getCurrentDataset start HTTP')
 
-                let finalUrl: string = this.canvasServerURI + '/clientData?id=' + datasetID.toString()
+                // NB: Note that the Server will return the data based on the 
+                //     datasourceID= in the query parameters !
+                let finalUrl: string = this.canvasServerURI + '/clientData?id=' 
+                    + datasetID.toString() + '&datasourceID=' + datasourceID;
+                console.log('xx finalUrl', finalUrl)
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res  => {
                         console.log('getCurrentDataset after http.get', res)

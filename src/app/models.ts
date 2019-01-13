@@ -528,8 +528,6 @@ export class Datasource {
     subType: string;                        // Subtype, ie Excel/ CSV for File, PostgreSQL/ Mongo for Server
     typeVersion: string;                    // Version of source, ie Excel 2016
     name: string;                           // Name of Datasource
-    username: string;                       // Username to log into server (if not via AD)
-    password: string;                       // Password to log into server
     description: string;                    // Description of the DS
     dataFieldIDs: number[];                 // IDs of fields in DB table
     dataFields: string[];                   // FieldNames, in order to display
@@ -585,6 +583,8 @@ export class Datasource {
     dataDictionary: string;                 // Detailed technical description of DS
 
     // Direct Connection, all info provided here and once off
+    username: string;                       // Username to log into server (if not via AD)
+    password: string;                       // Password to log into server
     databaseName: string;                   // DB to connect to
     port: string;                           // Port on the DB Server
     serverType: string;                     // Server or Host type, ie MySQL, PostgreSQL, etc
