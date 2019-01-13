@@ -471,7 +471,7 @@ export class Dataset {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
     datasourceID: number;                   // FK to DS to which this belongs
-    sourceLocation: string;                 // Where data lives:  file, localDB, MSSQL, etc
+    sourceLocation: string;                 // Where data lives:  HTTP, File (on Server), Web, Service
     url: string;                            // URL for http request
     folderName: string;                     // Optional folder name where data is stored
     fileName: string;                       // Optional file name where data is stored

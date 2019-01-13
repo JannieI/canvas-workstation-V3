@@ -4245,7 +4245,7 @@ export class GlobalVariableService {
         };
 
         return new Promise<any>((resolve, reject) => {
-console.log('xx getCurrentDataset - dsSourceLocation', dsSourceLocation)
+
             // Read data from different places
             if (dsSourceLocation == 'File') {
 
@@ -4269,12 +4269,13 @@ console.log('xx getCurrentDataset - dsSourceLocation', dsSourceLocation)
                 let finalUrl: string = this.canvasServerURI + '/clientData?id=' + datasetID.toString()
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res  => {
+                        console.log('getCurrentDataset after http.get', res)
                         if(res.statusCode != 'success') {
+                            console.log('Error in getCurrentDataset after http.get');
                             reject(res.message);
                             return;
                         };
 
-                        console.log('getCurrentDataset after http.get', res)
 
                         let newdSet: Dataset = {
                             id: datasetID,
