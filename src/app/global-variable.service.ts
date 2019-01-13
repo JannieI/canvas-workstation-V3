@@ -4245,9 +4245,9 @@ export class GlobalVariableService {
         };
 
         return new Promise<any>((resolve, reject) => {
-
-            // Data already in dataset
-            if (dsSourceLocation == '') {
+console.log('xx getCurrentDataset - dsSourceLocation', dsSourceLocation)
+            // Read data from different places
+            if (dsSourceLocation == 'File') {
 
                 if (datasetIndex != null) {
                     // Add to Currentatasets (contains all data) - once
@@ -4266,7 +4266,7 @@ export class GlobalVariableService {
                 
                 console.log('getCurrentDataset start HTTP')
 
-                let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + datasetID.toString()
+                let finalUrl: string = this.canvasServerURI + '/clientData?id=' + datasetID.toString()
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res  => {
                         if(res.statusCode != 'success') {
@@ -6662,14 +6662,10 @@ export class GlobalVariableService {
             let dataSetIndex: number = this.datasets.findIndex(dS =>
                 dS.datasourceID == datasourceID
             );
-            
-            console.log('GV this.datasets', dataSetIndex, this.datasets)
-
 
             let currentDataSetIndex: number = this.currentDatasets
                 .findIndex(dS => dS.id == datasourceID
             );
-            console.log('GV this.currentDatasets', currentDataSetIndex, this.currentDatasets)
             
             // Dset exists in gv datasets, but not in currentDatasets
             if (dataSetIndex >= 0  &&  currentDataSetIndex < 0) {
@@ -6680,7 +6676,6 @@ export class GlobalVariableService {
 
                 for (var i = 0; i < this.datasets.length; i++) {
                     if(this.datasets[i].datasourceID == datasourceID) {
-                        console.log('GV 2')
                         allDataSets.push(this.datasets[i].id)
                     }
                 };
@@ -6690,7 +6685,7 @@ export class GlobalVariableService {
                     // Get dSet with Data
                     this.getCurrentDataset(datasourceID, dSetID)
                         .then(res => {
-                            console.log('GV 4')
+                            console.log('GV 4', res)
                             resolve(res);
                         })
                         .catch(err => {
