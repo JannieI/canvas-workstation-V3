@@ -4316,6 +4316,9 @@ console.log('xx getCurrentDataset - dsSourceLocation', dsSourceLocation)
                         reject(err.message)
                     }
                 );
+            } else {
+                console.log('Currently onlycaters for HTTP as a sourceLocation, not', dsSourceLocation);
+                reject('Currently onlycaters for HTTP as a sourceLocation, not ' + dsSourceLocation);
             };
         });
     }
