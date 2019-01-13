@@ -3031,7 +3031,7 @@ this.localWidget);
                 .data.slice(0,5);
 
             console.log('xx this.currentData', this.currentData)
-            
+
             // Nr rows
             this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
 

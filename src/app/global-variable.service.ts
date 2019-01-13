@@ -1,5 +1,5 @@
 // Service to provide global variables
-import { BehaviorSubject }            from 'rxjs';
+import { BehaviorSubject, ReplaySubject }            from 'rxjs';
 import { Injectable }                 from '@angular/core';
 import { HttpClient }                 from '@angular/common/http';
 import { HttpErrorResponse }          from '@angular/common/http';
@@ -4263,6 +4263,8 @@ export class GlobalVariableService {
             };
 
             if (dsSourceLocation == 'HTTP') {
+                
+                console.log('getCurrentDataset start HTTP')
 
                 let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + datasetID.toString()
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
@@ -4271,6 +4273,8 @@ export class GlobalVariableService {
                             reject(res.message);
                             return;
                         };
+
+                        console.log('getCurrentDataset after http.get', res)
 
                         let newdSet: Dataset = {
                             id: datasetID,
@@ -4303,7 +4307,13 @@ export class GlobalVariableService {
                                 {newdSet}, ', and currentDatasets = ', this.currentDatasets)
                         };
 
+                        console.log('getCurrentDataset before RESOLVE')
+
                         resolve(newdSet);
+                    },
+                    err => {
+                        console.log('ERROR in getCurrentDataset !', err)
+                        reject(err.message)
                     }
                 );
             };
@@ -6663,25 +6673,28 @@ export class GlobalVariableService {
             
             // Dset exists in gv datasets, but not in currentDatasets
             if (dataSetIndex >= 0  &&  currentDataSetIndex < 0) {
-
+                console.log('GV 0')
                 // Get latest dSet-ID
                 let allDataSets: number[] = [];
                 let dSetID: number = -1;
 
                 for (var i = 0; i < this.datasets.length; i++) {
                     if(this.datasets[i].datasourceID == datasourceID) {
+                        console.log('GV 2')
                         allDataSets.push(this.datasets[i].id)
                     }
                 };
                 if (allDataSets.length > 0) {
                     dSetID = Math.max(...allDataSets);
-
+                    console.log('GV 3')
                     // Get dSet with Data
                     this.getCurrentDataset(datasourceID, dSetID)
                         .then(res => {
+                            console.log('GV 4')
                             resolve(res);
                         })
                         .catch(err => {
+                            console.log('GV 5')
                             reject('Error:' + err.message);
                         });
                 };
