@@ -10640,7 +10640,7 @@ export class GlobalVariableService {
 
                     if (this.sessionDebugging) {
                         console.log('addstatusBarMessageLogs ADDED', res.data, this.statusBarMessageLogs,
-                            this.statusBarMessageLogs)
+                            this.statusBarMessageLogs.slice(0, 100))
                     };
 
                     resolve(res.data);
