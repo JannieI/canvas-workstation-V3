@@ -10604,7 +10604,7 @@ export class GlobalVariableService {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getstatusBarMessageLogss 2',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.statusBarMessageLogs)
+                        this.statusBarMessageLogs.slice(0, 100))
                 };
 
                 resolve(this.statusBarMessageLogs);
