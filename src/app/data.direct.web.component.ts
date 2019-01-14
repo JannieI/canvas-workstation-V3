@@ -306,6 +306,7 @@ export class DataDirectWebComponent implements OnInit {
                 datasourceFilterForThisDashboard: false,
                 accessType: '',
                 cacheResultsOnServer: true,
+                serverExpiryDateTime: null,
                 unRefreshable: true,
                 nrCacheCopies: 999,
                 cacheResultsLocal: false,
