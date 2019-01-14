@@ -252,6 +252,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 datasourceFilterForThisDashboard: false,
                 accessType: '',
                 cacheResultsOnServer: this.newCacheResults,
+                serverExpiryDateTime: null,
                 unRefreshable: true,
                 nrCacheCopies: 999,
                 cacheResultsLocal: false,
