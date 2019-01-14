@@ -551,9 +551,9 @@ export class Datasource {
     // Caching info
     // TODO - improve this with Ivan ...
     cacheResultsOnServer: boolean;          // True if results may be cached on server. Each Tr is decided separately
+    serverExpiryDateTime: Date;             // When cache expires on server
     unRefreshable: boolean;                 // Can create once, but cannot Refresh after that
     cacheResultsLocal: boolean;             // True if Local results must be cached
-    serverExpiryDateTime: Date;             // When cache expires on server
     // TODO - do we need nrCacheCopies?
     nrCacheCopies: number;                  // Nr Cache copies kept, 0 means none
 
