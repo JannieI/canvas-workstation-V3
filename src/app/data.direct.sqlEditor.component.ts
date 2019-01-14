@@ -98,6 +98,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 refreshedBy: '',
                 refreshedServerOn: null,
                 cacheResultsOnServer: true,
+                serverExpiryDateTime: null,
                 unRefreshable: true,
                 nrCacheCopies: 999,
                 cacheResultsLocal: false,
