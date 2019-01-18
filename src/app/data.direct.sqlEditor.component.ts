@@ -130,7 +130,8 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 dataGraphQLStatement: '',
                 dataOverlaySpecification: '',
                 businessGlossary: 'Obtained using SQL Editor',
-                dataDictionary: ''
+                dataDictionary: '',
+                datasourceCombinationSpec: null
 
             };
         } else {
