@@ -254,7 +254,6 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 cacheResultsOnServer: this.newCacheResults,
                 serverExpiryDateTime: null,
                 unRefreshable: true,
-                nrCacheCopies: 999,
                 cacheResultsLocal: false,
                 oldnessMaxPeriodInterval: '',
                 oldnessMaxPeriodUnits: 0,

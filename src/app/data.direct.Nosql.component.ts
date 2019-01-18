@@ -109,7 +109,6 @@ export class DataDirectNoSQLComponent implements OnInit {
                 cacheResultsOnServer: true,
                 serverExpiryDateTime: null,
                 unRefreshable: true,
-                nrCacheCopies: 999,
                 cacheResultsLocal: false,
                 oldnessMaxPeriodInterval: '',
                 oldnessMaxPeriodUnits: 0,
