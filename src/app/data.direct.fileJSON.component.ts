@@ -413,7 +413,8 @@ export class DataDirectFileJSONComponent implements OnInit {
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
                 dataOverlaySpecification: '',
-                nrWidgets: null
+                nrWidgets: null,
+                datasourceCombinationSpec: null
             };
 
             let newdDataset: Dataset = {
