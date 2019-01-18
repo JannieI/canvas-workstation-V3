@@ -139,7 +139,8 @@ export class DataManagedOverlayEditorComponent implements OnInit {
                 dataGraphQLStatement: '',
                 dataOverlaySpecification: "albums",
                 businessGlossary: 'Obtained using SQL Editor',
-                dataDictionary: ''
+                dataDictionary: '',
+                datasourceCombinationSpec: null
 
             };
         };
