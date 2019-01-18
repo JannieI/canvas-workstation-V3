@@ -153,7 +153,8 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 dataGraphQLStatement: '',
                 dataOverlaySpecification: '',
                 businessGlossary: '',
-                dataDictionary: ''
+                dataDictionary: '',
+                datasourceCombinationSpec: null
 
             };
         } else {
@@ -549,7 +550,8 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             dataGraphQLStatement: this.selectedDatasource.dataGraphQLStatement,
             dataOverlaySpecification: this.selectedDatasource.dataOverlaySpecification,
             businessGlossary: this.selectedDatasource.businessGlossary,
-            dataDictionary: this.selectedDatasource.dataDictionary
+            dataDictionary: this.selectedDatasource.dataDictionary,
+            datasourceCombinationSpec: this.selectedDatasource.datasourceCombinationSpec
 
         };
         let newdSet: Dataset = {
