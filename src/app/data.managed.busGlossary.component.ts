@@ -114,7 +114,8 @@ export class DataManagedBusGlossaryComponent implements OnInit {
             dataGraphQLStatement: '',
             dataOverlaySpecification: '',
             nrWidgets: null,
-            dataDictionary: ''
+            dataDictionary: '',
+            datasourceCombinationSpec: null
         }
 
         this.globalVariableService.getDatasources().then(dc => {
