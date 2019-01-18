@@ -567,11 +567,11 @@ export class Datasource {
     // WHERE
 
     // Where: Optional Combinations (then NO other WHERE info provided)
-*    datasourceCombinationSpec: DatasourceCombinationSpec;   // If this DS is a combination of 2 others
+    datasourceCombinationSpec: DatasourceCombinationSpec;   // If this DS is a combination of 2 others
 
     // Where: External Limits
-*    rowLimitFromSource: number;             // Maximum nr rows to return (ie SQL ... LIMIT n), 0 means all
-*    timeoutLimitSeconds: number;            // Timeout (ie for Databases) in seconds, 0 means no limit
+    rowLimitFromSource: number;             // Maximum nr rows to return (ie SQL ... LIMIT n), 0 means all
+    timeoutLimitSeconds: number;            // Timeout (ie for Databases) in seconds, 0 means no limit
      
     // Where: External Location for Files
     folder: string;                         // Folder from which the data was loaded: only applicable to files on Server
@@ -579,22 +579,22 @@ export class Datasource {
     excelWorksheet: string;                 // Excel Worksheet name from which the data was loaded
     transposeOnLoad: boolean;               // True to transpose data before loading (X <-> Y)
     startLineNr: number;                    // 1 = first = default (NB: base 1)
-*    endLineNr: number;                      // 2 = second line (NB: base 1).  0 = all lines with data
-*    startColumnNr: number;                  // 1 = first = default
-*    endColumnNr: number;                    // 2 = second line (NB: base 1).  0 = all columns with data
+    endLineNr: number;                      // 2 = second line (NB: base 1).  0 = all lines with data
+    startColumnNr: number;                  // 1 = first = default
+    endColumnNr: number;                    // 2 = second line (NB: base 1).  0 = all columns with data
     csvSeparationCharacter: string;         // CSV file column separator: comma or ;
     csvQuotCharacter: string;               // CSV values in "", in '' or without quotes
 
     // Where: External location of web pages
     webUrl: string;                         // URL for web connectors
     webTableIndex: string;                  // Index number (base 0) of table to load, else the Name of the table
-*    encoding: string;                       // Optional: Ascii, Edcdic (mainframe)
+    encoding: string;                       // Optional: Ascii, Edcdic (mainframe)
 
     // Where: External location of services
-*    serviceUrl: string;                     // URL of REST service
-*    serviceParams: string;                    // REST parameters (: Express req object)
-*    serviceQueryParams: string;                    // REST query parameters (? Express req object)
-*    serviceHeaders: string;                    // REST optional headers 
+    serviceUrl: string;                     // URL of REST service
+    serviceParams: string;                    // REST parameters (: Express req object)
+    serviceQueryParams: string;                    // REST query parameters (? Express req object)
+    serviceHeaders: string;                    // REST optional headers 
 
     // Where: Location of Managed Connection, Connection created and managed outside of the DS
     connectionID: number;                   // Connection to DB
@@ -618,10 +618,10 @@ export class Datasource {
     nrWidgets: number;                      // Nr of Ws linked to this DS (at the moment)
 
     // Where: External location on client / external Source
-*    sourceIsAccessable: boolean;            // True if Source can be read again.  False for browser uploaded files    
+    sourceIsAccessable: boolean;            // True if Source can be read again.  False for browser uploaded files    
     
     // Where: External Parameters (used for the external queries)
-*    queryParameters: string;                // SQL Paramters, Mongo Parameters
+    queryParameters: string;                // SQL Paramters, Mongo Parameters
     
     // Where: Internal location on Canvas Server / Caching info
     // Note: for now, clientData is not cached in Server or Workstation Memory
@@ -653,17 +653,17 @@ export class Datasource {
     dataFields: string[];                   // FieldNames, in order to display
     dataFieldTypes: string[];               // Field Types, same order as dataFields
     dataFieldLengths: number[];             // Max field lengths, same order as dataFields
-*    metaDataField: MetaDataFields[];        // Optional: MetaData for Fields (many not be fully populated)
+    metaDataField: MetaDataFields[];        // Optional: MetaData for Fields (many not be fully populated)
     businessGlossary: string;               // Detailed business oriented description of DS (non-technical)
     dataDictionary: string;                 // Detailed technical description of DS
 
     // What: Transformations (manipulations of the What)
-*    transformations: DatasourceTransformation[];  // Optional array of transformations done to this Datasource
+    transformations: DatasourceTransformation[];  // Optional array of transformations done to this Datasource
 
     // What: Calculated at run-time
-*    dataErrorMessage: string;                     // Error returned by Canvas Server
-*    nrRecordsReturned: number;              // Nr of records returned by Canvas Server
-*    sourceLocation: string;                 // Source, CanvasCacheDisc, CanvasCacheMemory
+    dataErrorMessage: string;                     // Error returned by Canvas Server
+    nrRecordsReturned: number;              // Nr of records returned by Canvas Server
+    sourceLocation: string;                 // Source, CanvasCacheDisc, CanvasCacheMemory
 
 }
 
