@@ -544,7 +544,7 @@ export class Datasource {
 
     // WHO
 
-    // Descriptive info
+    // Who: Descriptive info
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
     type: string;                           // Type of source, ie File, Server, Web, Service
@@ -553,11 +553,10 @@ export class Datasource {
     name: string;                           // Name of Datasource
     description: string;                    // Description of the DS
 
-
-    // Access Type
+    // Who: Access Type
     accessType: string;                     // How to access D: Private, Public, AccessList
 
-    // Create and Edit info
+    // Who: Create and Edit info
     createMethod: string;                   // Method how DS was created, ie directFile, ..., managedSQLEditor
     createdBy: string;                      // Creator
     createdOn: Date;                        // DateTime Created
@@ -566,28 +565,42 @@ export class Datasource {
 
 
     // WHERE
+
+    // Where: Optional Combinations (then NO other WHERE info provided)
+*    datasourceCombinationSpec: DatasourceCombinationSpec;   // If this DS is a combination of 2 others
+
+    // Where: External Limits
 *    rowLimitFromSource: number;             // Maximum nr rows to return (ie SQL ... LIMIT n), 0 means all
 *    timeoutLimitSeconds: number;            // Timeout (ie for Databases) in seconds, 0 means no limit
-    // 
-    // Where: Location for Files
-    folder: string;                         // Folder from which the data was loaded
+     
+    // Where: External Location for Files
+    folder: string;                         // Folder from which the data was loaded: only applicable to files on Server
     fileName: string;                       // Filename from which the data was loaded
     excelWorksheet: string;                 // Excel Worksheet name from which the data was loaded
     transposeOnLoad: boolean;               // True to transpose data before loading (X <-> Y)
-    startLineNr: number;                    // 1 = first = default
+    startLineNr: number;                    // 1 = first = default (NB: base 1)
+*    endLineNr: number;                      // 2 = second line (NB: base 1).  0 = all lines with data
+*    startColumnNr: number;                  // 1 = first = default
+*    endColumnNr: number;                    // 2 = second line (NB: base 1).  0 = all columns with data
     csvSeparationCharacter: string;         // CSV file column separator: comma or ;
     csvQuotCharacter: string;               // CSV values in "", in '' or without quotes
 
-    // Where - location of web pages
+    // Where: External location of web pages
     webUrl: string;                         // URL for web connectors
     webTableIndex: string;                  // Index number (base 0) of table to load, else the Name of the table
 *    encoding: string;                       // Optional: Ascii, Edcdic (mainframe)
+
+    // Where: External location of services
+*    serviceUrl: string;                     // URL of REST service
+*    serviceParams: string;                    // REST parameters (: Express req object)
+*    serviceQueryParams: string;                    // REST query parameters (? Express req object)
+*    serviceHeaders: string;                    // REST optional headers 
 
     // Where: Location of Managed Connection, Connection created and managed outside of the DS
     connectionID: number;                   // Connection to DB
     dataTableID: number;                    // ID of table linked in DB
 
-    // Direct Connection, all info provided here and once off
+    // Where: External location for Direct Connection (not using a Managed Connection)
     serverType: string;                     // Server or Host type, ie MySQL, PostgreSQL, etc
     serverName: string;                     // Server or Host name / IP Address
     databaseName: string;                   // DB to connect to
@@ -601,52 +614,56 @@ export class Datasource {
     dataGraphQLStatement: string;           // GraphQL Statement to extract data with
     dataOverlaySpecification: any;          // Overlay Specification to extract data with
 
-    // Updated at runtime
+    // Where: Updated at runtime
     nrWidgets: number;                      // Nr of Ws linked to this DS (at the moment)
 
-    // External: Where on client / external Source
+    // Where: External location on client / external Source
 *    sourceIsAccessable: boolean;            // True if Source can be read again.  False for browser uploaded files    
     
-// Parameters (used for the external queries)
+    // Where: External Parameters (used for the external queries)
 *    queryParameters: string;                // SQL Paramters, Mongo Parameters
-    // Internal - Where on Canvas Server / Caching info
-    // TODO - improve this with Ivan ...
+    
+    // Where: Internal location on Canvas Server / Caching info
+    // Note: for now, clientData is not cached in Server or Workstation Memory
     cacheResultsOnServer: boolean;          // True if results may be cached on server. Each Tr is decided separately
     serverExpiryDateTime: Date;             // When cache expires on server
     unRefreshable: boolean;                 // Can create once, but cannot Refresh after that
     cacheResultsLocal: boolean;             // True if Local results must be cached
-    // TODO - do we need nrCacheCopies?
-    nrCacheCopies: number;                  // Nr Cache copies kept, 0 means none
 
-    // Optional Max Oldness allowed - must be fresher than given
+    // Where: Optional Internal Max Oldness allowed - must be fresher than given
     oldnessMaxPeriodInterval: string;       // Ie. second, minute, hour, day, month, year
     oldnessMaxPeriodUnits: number;          // Must be fresher than say 8 hour
     oldnessRelatedDate: string;             // Ie. today, yesterday, previousWorkingDay, weekStart, monthStart, yearStart
     oldnessRelatedTime: string;             // Ie. '08:00' - must be fresher than today 8:00
 
-    // Refresh info
+    // Where: Internal Refresh info
     refreshedBy: string;                    // Last UserID that refreshed this datasource
     refreshedServerOn: Date;                // Last dateTime this DS was refreshed on Server
     refreshedLocalOn: Date;                 // Last dateTime this DS was refreshed locally
 
-    // WHAT
-    datasourceCombinationSpec: DatasourceCombinationSpec;   // If this DS is a combination of 2 others
 
-	// Dashboard-applicable Filters
+    // WHAT
+
+	// What: Dashboard-applicable Filters
     datasourceFilters?: DatasourceFilter[];  // Optional Array of DS-Filters per Dashboard
     datasourceFilterForThisDashboard: boolean;  // @ RunTime, changes: true if THIS D has filters on THIS DS
 
-    // MetaData (describes the What)
+    // What: MetaData (describes the What)
     dataFieldIDs: number[];                 // IDs of fields in DB table
     dataFields: string[];                   // FieldNames, in order to display
     dataFieldTypes: string[];               // Field Types, same order as dataFields
     dataFieldLengths: number[];             // Max field lengths, same order as dataFields
-*    metaDataField: {}[];                   // MetaData for Fields    
+*    metaDataField: MetaDataFields[];        // Optional: MetaData for Fields (many not be fully populated)
     businessGlossary: string;               // Detailed business oriented description of DS (non-technical)
     dataDictionary: string;                 // Detailed technical description of DS
 
-    // Data
+    // What: Transformations (manipulations of the What)
+*    transformations: DatasourceTransformation[];  // Optional array of transformations done to this Datasource
 
+    // What: Calculated at run-time
+*    dataErrorMessage: string;                     // Error returned by Canvas Server
+*    nrRecordsReturned: number;              // Nr of records returned by Canvas Server
+*    sourceLocation: string;                 // Source, CanvasCacheDisc, CanvasCacheMemory
 
 }
 
