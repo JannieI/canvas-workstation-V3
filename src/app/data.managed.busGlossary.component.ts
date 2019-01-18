@@ -114,7 +114,24 @@ export class DataManagedBusGlossaryComponent implements OnInit {
             dataOverlaySpecification: '',
             nrWidgets: null,
             dataDictionary: '',
-            datasourceCombinationSpec: null
+            datasourceCombinationSpec: null,
+            rowLimitFromSource: 0,
+            timeoutLimitSeconds: 0,
+            endLineNr: 0,
+            startColumnNr: 1,
+            endColumnNr: 0,
+            encoding: 'Ascii',
+            serviceUrl: '',
+            serviceParams: '',
+            serviceQueryParams: '',
+            serviceHeaders: '',
+            sourceIsAccessable: true,
+            queryParameters: '',
+            metaDataField: [],
+            transformations: [],
+            dataErrorMessage: '',
+            nrRecordsReturned: 0,
+            sourceLocation: ''
         }
 
         this.globalVariableService.getDatasources().then(dc => {
