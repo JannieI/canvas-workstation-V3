@@ -528,7 +528,7 @@ export class DatasourceCombinationSpec {
 
 }
 
-export class MetaDataFields {
+export class MetaDataField {
     fieldName: string;                      // Name of the field
     fieldAlias: string;                     // Optional Alias (ie SELECT TNX as Transaction) 
     fieldType: string;                      // Type: string, number, boolean, Array
@@ -584,11 +584,11 @@ export class Datasource {
     endColumnNr: number;                    // 2 = second line (NB: base 1).  0 = all columns with data
     csvSeparationCharacter: string;         // CSV file column separator: comma or ;
     csvQuotCharacter: string;               // CSV values in "", in '' or without quotes
+    encoding: string;                       // Optional: Ascii, Edcdic (mainframe)
 
     // Where: External location of web pages
     webUrl: string;                         // URL for web connectors
     webTableIndex: string;                  // Index number (base 0) of table to load, else the Name of the table
-    encoding: string;                       // Optional: Ascii, Edcdic (mainframe)
 
     // Where: External location of services
     serviceUrl: string;                     // URL of REST service
@@ -649,11 +649,10 @@ export class Datasource {
     datasourceFilterForThisDashboard: boolean;  // @ RunTime, changes: true if THIS D has filters on THIS DS
 
     // What: MetaData (describes the What)
-    dataFieldIDs: number[];                 // IDs of fields in DB table
     dataFields: string[];                   // FieldNames, in order to display
     dataFieldTypes: string[];               // Field Types, same order as dataFields
     dataFieldLengths: number[];             // Max field lengths, same order as dataFields
-    metaDataField: MetaDataFields[];        // Optional: MetaData for Fields (many not be fully populated)
+    metaDataFields: MetaDataField[];        // Optional: MetaData for Fields (many not be fully populated)
     businessGlossary: string;               // Detailed business oriented description of DS (non-technical)
     dataDictionary: string;                 // Detailed technical description of DS
 
