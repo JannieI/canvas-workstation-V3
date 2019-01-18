@@ -138,7 +138,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         };
 
         console.warn('xx dates',
-    this.globalVariableService.dateDiff(new Date(), new Date('2018-08-09'), 'day'))
+            this.globalVariableService.dateDiff(new Date(), new Date('2018-08-09'), 'day'))
     }
 
     clickExplore() {
@@ -322,7 +322,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         };
         console.warn('xx this.fieldsInTable',ev, this.selectedTable, this.fieldsInTable )
     }
-
+ 
     clickExport() {
         // Export the file, and close the file
         this.globalFunctionService.printToConsole(this.constructor.name,'clickExport', '@Start');

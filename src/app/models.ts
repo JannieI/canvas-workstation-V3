@@ -519,8 +519,17 @@ export class DatasourceFilter {
     isActive: boolean;                      // True if activated, else not used
 }
 
+export class DatasourceCombinationSpec {
+    lefthandDatasourceID: number;           // Joins LH to RH, identification of LH Datasource
+    lefthandDatasourceField: string;        // LH Datasource field name
+    joinType: string;                       // Left, Inner, Right Join
+    righthandDatasourceID: number;           // Joins LH to RH, identification of RH Datasource
+    righthandDatasourceField: string;        // RH Datasource field name
+
+}
 export class Datasource {
 
+    // WHO
 	// Descriptive info
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
@@ -529,6 +538,15 @@ export class Datasource {
     typeVersion: string;                    // Version of source, ie Excel 2016
     name: string;                           // Name of Datasource
     description: string;                    // Description of the DS
+
+
+    // WHERE
+
+
+    // WHAT
+    
+
+
     dataFieldIDs: number[];                 // IDs of fields in DB table
     dataFields: string[];                   // FieldNames, in order to display
     dataFieldTypes: string[];               // Field Types, same order as dataFields
