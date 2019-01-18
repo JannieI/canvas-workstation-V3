@@ -139,7 +139,8 @@ export class DataDirectNoSQLComponent implements OnInit {
                 dataGraphQLStatement: '',
                 dataOverlaySpecification: '',
                 businessGlossary: 'Obtained using NoSQL Editor',
-                dataDictionary: ''
+                dataDictionary: '',
+                datasourceCombinationSpec: null
 
             };
         };
