@@ -557,7 +557,24 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             dataOverlaySpecification: this.selectedDatasource.dataOverlaySpecification,
             businessGlossary: this.selectedDatasource.businessGlossary,
             dataDictionary: this.selectedDatasource.dataDictionary,
-            datasourceCombinationSpec: this.selectedDatasource.datasourceCombinationSpec
+            datasourceCombinationSpec: this.selectedDatasource.datasourceCombinationSpec,
+            rowLimitFromSource: this.selectedDatasource.rowLimitFromSource,
+            timeoutLimitSeconds: this.selectedDatasource.timeoutLimitSeconds,
+            endLineNr: this.selectedDatasource.endLineNr,
+            startColumnNr: this.selectedDatasource.startColumnNr,
+            endColumnNr: this.selectedDatasource.endColumnNr,
+            encoding: this.selectedDatasource.encoding,
+            serviceUrl: this.selectedDatasource.serviceUrl,
+            serviceParams: this.selectedDatasource.serviceParams,
+            serviceQueryParams: this.selectedDatasource.serviceQueryParams,
+            serviceHeaders: this.selectedDatasource.serviceHeaders,
+            sourceIsAccessable: this.selectedDatasource.sourceIsAccessable,
+            queryParameters: this.selectedDatasource.queryParameters,
+            metaDataField: this.selectedDatasource.metaDataField,
+            transformations: this.selectedDatasource.transformations,
+            dataErrorMessage: this.selectedDatasource.dataErrorMessage,
+            nrRecordsReturned: this.selectedDatasource.nrRecordsReturned,
+            sourceLocation: this.selectedDatasource.sourceLocation
 
         };
         let newdSet: Dataset = {
