@@ -168,7 +168,8 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 dataGraphQLStatement: '',
                 dataOverlaySpecification: '',
                 businessGlossary: 'Obtained using SQL Editor',
-                dataDictionary: ''
+                dataDictionary: '',
+                datasourceCombinationSpec: null
 
             };
         } else {
