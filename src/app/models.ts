@@ -544,7 +544,7 @@ export class Datasource {
 
 
     // WHAT
-    
+    datasourceCombinationSpec: DatasourceCombinationSpec;   // If this DS is a combination of 2 others
 
 
     dataFieldIDs: number[];                 // IDs of fields in DB table
