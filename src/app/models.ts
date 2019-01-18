@@ -522,15 +522,29 @@ export class DatasourceFilter {
 export class DatasourceCombinationSpec {
     lefthandDatasourceID: number;           // Joins LH to RH, identification of LH Datasource
     lefthandDatasourceField: string;        // LH Datasource field name
-    joinType: string;                       // Left, Inner, Right Join
-    righthandDatasourceID: number;           // Joins LH to RH, identification of RH Datasource
-    righthandDatasourceField: string;        // RH Datasource field name
+    joinType: string;                       // LeftJoin, InnerJoin, RightJoin, Union, Minus, Intersection, etc
+    righthandDatasourceID: number;          // Joins LH to RH, identification of RH Datasource
+    righthandDatasourceField: string;       // RH Datasource field name
 
 }
+
+export class MetaDataFields {
+    fieldName: string;                      // Name of the field
+    fieldAlias: string;                     // Optional Alias (ie SELECT TNX as Transaction) 
+    fieldType: string;                      // Type: string, number, boolean, Array
+    length: string;                         // Maximum length of the field
+    average: string;                        // Optional stats: average in Field
+    max: string;                            // Optional stats: Maximum in Field
+    median: string;                         // Optional stats: Median in Field
+    min: string;                            // Optional stats: Minimum value in Field
+    sum: string;                            // Optional stats: Sum of all values (ie SQL SUM() )
+}
+
 export class Datasource {
 
     // WHO
-	// Descriptive info
+
+    // Descriptive info
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
     type: string;                           // Type of source, ie File, Server, Web, Service
@@ -539,22 +553,6 @@ export class Datasource {
     name: string;                           // Name of Datasource
     description: string;                    // Description of the DS
 
-
-    // WHERE
-
-
-    // WHAT
-    datasourceCombinationSpec: DatasourceCombinationSpec;   // If this DS is a combination of 2 others
-
-
-    dataFieldIDs: number[];                 // IDs of fields in DB table
-    dataFields: string[];                   // FieldNames, in order to display
-    dataFieldTypes: string[];               // Field Types, same order as dataFields
-    dataFieldLengths: number[];             // Max field lengths, same order as dataFields
-
-	// Parameters and Filters
-    datasourceFilters?: DatasourceFilter[];  // Optional Array of DS-Filters per Dashboard
-    datasourceFilterForThisDashboard: boolean;  // @ RunTime, changes: true if THIS D has filters on THIS DS
 
     // Access Type
     accessType: string;                     // How to access D: Private, Public, AccessList
@@ -566,7 +564,52 @@ export class Datasource {
     editor: string;                         // Last Edited By
     dateEdited: Date;                       // Last Edited On
 
-    // Caching info
+
+    // WHERE
+*    rowLimitFromSource: number;             // Maximum nr rows to return (ie SQL ... LIMIT n), 0 means all
+*    timeoutLimitSeconds: number;            // Timeout (ie for Databases) in seconds, 0 means no limit
+    // 
+    // Where: Location for Files
+    folder: string;                         // Folder from which the data was loaded
+    fileName: string;                       // Filename from which the data was loaded
+    excelWorksheet: string;                 // Excel Worksheet name from which the data was loaded
+    transposeOnLoad: boolean;               // True to transpose data before loading (X <-> Y)
+    startLineNr: number;                    // 1 = first = default
+    csvSeparationCharacter: string;         // CSV file column separator: comma or ;
+    csvQuotCharacter: string;               // CSV values in "", in '' or without quotes
+
+    // Where - location of web pages
+    webUrl: string;                         // URL for web connectors
+    webTableIndex: string;                  // Index number (base 0) of table to load, else the Name of the table
+*    encoding: string;                       // Optional: Ascii, Edcdic (mainframe)
+
+    // Where: Location of Managed Connection, Connection created and managed outside of the DS
+    connectionID: number;                   // Connection to DB
+    dataTableID: number;                    // ID of table linked in DB
+
+    // Direct Connection, all info provided here and once off
+    serverType: string;                     // Server or Host type, ie MySQL, PostgreSQL, etc
+    serverName: string;                     // Server or Host name / IP Address
+    databaseName: string;                   // DB to connect to
+    port: string;                           // Port on the DB Server
+    username: string;                       // Optional Username to log into server (if not via AD)
+    password: string;                       // Optional Password to log into server
+    dataTableName: string;                  // Table inside Server with the data
+    dataSQLStatement: string;               // SQL Statement to extract data with
+    dataNoSQLStatement: string;             // NoSQL Statement to extract data with
+    dataNeo4jStatement: string;             // Cypher Statement to extract data with
+    dataGraphQLStatement: string;           // GraphQL Statement to extract data with
+    dataOverlaySpecification: any;          // Overlay Specification to extract data with
+
+    // Updated at runtime
+    nrWidgets: number;                      // Nr of Ws linked to this DS (at the moment)
+
+    // External: Where on client / external Source
+*    sourceIsAccessable: boolean;            // True if Source can be read again.  False for browser uploaded files    
+    
+// Parameters (used for the external queries)
+*    queryParameters: string;                // SQL Paramters, Mongo Parameters
+    // Internal - Where on Canvas Server / Caching info
     // TODO - improve this with Ivan ...
     cacheResultsOnServer: boolean;          // True if results may be cached on server. Each Tr is decided separately
     serverExpiryDateTime: Date;             // When cache expires on server
@@ -586,39 +629,25 @@ export class Datasource {
     refreshedServerOn: Date;                // Last dateTime this DS was refreshed on Server
     refreshedLocalOn: Date;                 // Last dateTime this DS was refreshed locally
 
-    // Location and authentication
-    folder: string;                         // Folder from which the data was loaded
-    fileName: string;                       // Filename from which the data was loaded
-    excelWorksheet: string;                 // Excel Worksheet name from which the data was loaded
-    transposeOnLoad: boolean;               // True to transpose data before loading (X <-> Y)
-    startLineNr: number;                    // 1 = first = default
-    csvSeparationCharacter: string;         // CSV file column separator: comma or ;
-    csvQuotCharacter: string;               // CSV values in "", in '' or without quotes
-    webUrl: string;                         // URL for web connectors
-    webTableIndex: string;                  // Index number (base 0) of table to load, else the Name of the table
+    // WHAT
+    datasourceCombinationSpec: DatasourceCombinationSpec;   // If this DS is a combination of 2 others
 
-    // Managed Connection, Connection created and managed outside of the DS
-    connectionID: number;                   // Connection to DB
-    dataTableID: number;                    // ID of table linked in DB
+	// Dashboard-applicable Filters
+    datasourceFilters?: DatasourceFilter[];  // Optional Array of DS-Filters per Dashboard
+    datasourceFilterForThisDashboard: boolean;  // @ RunTime, changes: true if THIS D has filters on THIS DS
+
+    // MetaData (describes the What)
+    dataFieldIDs: number[];                 // IDs of fields in DB table
+    dataFields: string[];                   // FieldNames, in order to display
+    dataFieldTypes: string[];               // Field Types, same order as dataFields
+    dataFieldLengths: number[];             // Max field lengths, same order as dataFields
+*    metaDataField: {}[];                   // MetaData for Fields    
     businessGlossary: string;               // Detailed business oriented description of DS (non-technical)
     dataDictionary: string;                 // Detailed technical description of DS
 
-    // Direct Connection, all info provided here and once off
-    username: string;                       // Username to log into server (if not via AD)
-    password: string;                       // Password to log into server
-    databaseName: string;                   // DB to connect to
-    port: string;                           // Port on the DB Server
-    serverType: string;                     // Server or Host type, ie MySQL, PostgreSQL, etc
-    serverName: string;                     // Server or Host name
-    dataTableName: string;                  // Table inside Server with the data
-    dataSQLStatement: string;               // SQL Statement to extract data with
-    dataNoSQLStatement: string;             // NoSQL Statement to extract data with
-    dataNeo4jStatement: string;             // Cypher Statement to extract data with
-    dataGraphQLStatement: string;           // GraphQL Statement to extract data with
-    dataOverlaySpecification: any;          // Overlay Specification to extract data with
+    // Data
 
-    // Updated at runtime
-    nrWidgets: number;                      // Nr of Ws linked to this DS (at the moment)
+
 }
 
 export class DatasourceSchedule {
