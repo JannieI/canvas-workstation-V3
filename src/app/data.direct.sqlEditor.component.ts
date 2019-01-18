@@ -338,7 +338,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         };
         console.warn('xx this.fieldsInTable',ev, this.selectedTable, this.fieldsInTable )
     }
- 
+
     clickExport() {
         // Export the file, and close the file
         this.globalFunctionService.printToConsole(this.constructor.name,'clickExport', '@Start');
