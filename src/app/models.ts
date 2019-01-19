@@ -1675,19 +1675,23 @@ export class CanvasHttpResponse {
     //          POST failed due to trying to create a duplicate key, validation failed, etc
     // error = error on the server, ie TS or Node or Mongo error
     "message" : string;                     // Info Text message (short errorMessage for errors)
-    "metaData"?: {
+    "metaData"?: {                          // OPTIONAL metadata, not always filled in by Server
+        "server"?: {
+            "serverName": string;           // Name of Server
+            "serverType": string;           // Type of Server
+        };
         "table"?: {
-            "tableName": string;
-            "nrRecordsReturned": number;
-        },
+            "tableName": string;            // Name of table (where relevant)
+            "nrRecordsReturned": number;    // Nr of records returned
+        };
         "fields"?: {
-            "fieldName": string;
-            "fieldType": string;
-            "average": number;
-            "max": number;
-            "median": number;
-            "min": number;
-            "sum": number;
+            "fieldName": string;            // Name of field
+            "fieldType": string;            // Type of field
+            "average": number;              // Average value of field column
+            "max": number;                  // Max value of field column
+            "median": number;               // Median value of field column
+            "min": number;                  // Min value of field column
+            "sum": number;                  // Sum of field column
         }[]
     }
     "data": any;                            // Data returned, ie Json Array
