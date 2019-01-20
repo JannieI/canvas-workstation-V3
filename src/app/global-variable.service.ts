@@ -13568,12 +13568,12 @@ console.warn('xx ds perm', dp);
             // Get data
             let pathUrl: string = 'listTables?' + 
                 "serverType=" + serverType +
-                "serverName=" + serverName +
-                "databaseName=" + databaseName +
-                "port=" + port +
-                "username=" + username +
-                "password=" + password;
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                "&serverName=" + serverName +
+                "&databaseName=" + databaseName +
+                "&port=" + port +
+                "&username=" + username +
+                "&password=" + password;
+            let finalUrl: string = this.canvasServerURI + '/clientData?' + pathUrl; 
             console.log('xx finalUrl', finalUrl)
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {
