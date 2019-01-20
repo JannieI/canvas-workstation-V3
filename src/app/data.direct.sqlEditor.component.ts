@@ -170,84 +170,87 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.spinner = true;
 
         // Get drivers
-        let driver: string = this.serverTypes
-            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
-            .map(styp => styp.driverName)[0];
-        let inpector: string = this.serverTypes
-            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
-            .map(styp => styp.inspector)[0];
+        // let driver: string = this.serverTypes
+        //     .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+        //     .map(styp => styp.driverName)[0];
+        // let inpector: string = this.serverTypes
+        //     .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+        //     .map(styp => styp.inspector)[0];
 
         // let specificationInspect: any = {
         //     "source": {
-        //         "inspector": "tributary.inspectors.sql:SqlInspector",
+        //         "inspector": inpector, // "tributary.inspectors.sql:SqlInspector",
         //         "specification": {
-        //             "drivername": "postgresql",
-        //             "host": "postgres",
-        //             "port": 5000,
-        //             "username": "postgres",
-        //             "password": "postgres",
-        //             "database": "data"
+        //             "drivername": driver,  //"postgresql",
+        //             "host": this.selectedDatasource.serverName,
+        //             "port": +this.selectedDatasource.port,
+        //             "username": this.selectedDatasource.username,
+        //             "password": this.selectedDatasource.password,
+        //             "database": this.selectedDatasource.databaseName
         //         }
         //     }
         // };
 
-        let specificationInspect: any = {
-            "source": {
-                "inspector": inpector, // "tributary.inspectors.sql:SqlInspector",
-                "specification": {
-                    "drivername": driver,  //"postgresql",
-                    "host": this.selectedDatasource.serverName,
-                    "port": +this.selectedDatasource.port,
-                    "username": this.selectedDatasource.username,
-                    "password": this.selectedDatasource.password,
-                    "database": this.selectedDatasource.databaseName
-                }
-            }
-        };
-
-        // Call Tributary Inspector
-        this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
-
-            // Fill the tables and Fields
-            this.dataSchemas = [];
-            res.forEach(row => {
-
-                this.dataSchemas.push(
-                {
-                    serverName: this.selectedDatasource.serverName,
-                    tableName: row.name,
-                    tableDescription: row.name,
-                    tableFields: [],
-                    tableMetadata: []
-                });
-                row.fields.forEach(fld => {
-                    this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
-                        {
-                            fieldName: fld.name,
-                            fieldType: fld.dtype
-                        }
-                    )
-                });
+        // Get list of Tables
+        this.globalVariableService.getListTables(
+            this.selectedDatasource.serverType, 
+            this.selectedDatasource.serverName, 
+            this.selectedDatasource.databaseName, 
+            this.selectedDatasource.port, 
+            this.selectedDatasource.username, 
+            this.selectedDatasource.password).then(res => {
+                console.log('xx HERE res', res)
+            })
+            .catch(err => {
+                console.warn('xx err', err)
+                this.spinner = false;
+                this.errorMessage = 'Error connecting to server (maybe check login or permissions): '
+                    + err.message;
             });
+        
+            // // Call Tributary Inspector
+        // this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
 
-            // Fill the fields
-            if (this.dataSchemas.length > 0) {
-                // this.clickSelectTable(this.dataSchemas[0].tableName);
-                this.fieldsInTable = this.dataSchemas[0].tableFields.map(tf => tf.fieldName);
-                console.warn('xx this.dataSchemas', this.dataSchemas)
-            };
+        //     // Fill the tables and Fields
+        //     this.dataSchemas = [];
+        //     res.forEach(row => {
 
-            // Reset
-            this.spinner = false;
-            console.warn('xx res I', res, this.dataSchemas)
+        //         this.dataSchemas.push(
+        //         {
+        //             serverName: this.selectedDatasource.serverName,
+        //             tableName: row.name,
+        //             tableDescription: row.name,
+        //             tableFields: [],
+        //             tableMetadata: []
+        //         });
+        //         row.fields.forEach(fld => {
+        //             this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
+        //                 {
+        //                     fieldName: fld.name,
+        //                     fieldType: fld.dtype
+        //                 }
+        //             )
+        //         });
+        //     });
 
-        })
-        .catch(err => {
-            console.warn('xx err', err)
-            this.spinner = false;
-            this.errorMessage = 'Error connecting to server: check login or permissions'
-                + err.message;
-        });
+        //     // Fill the fields
+        //     if (this.dataSchemas.length > 0) {
+        //         // this.clickSelectTable(this.dataSchemas[0].tableName);
+        //         this.fieldsInTable = this.dataSchemas[0].tableFields.map(tf => tf.fieldName);
+        //         console.warn('xx this.dataSchemas', this.dataSchemas)
+        //     };
+
+        //     // Reset
+        //     this.spinner = false;
+        //     console.warn('xx res I', res, this.dataSchemas)
+
+        // })
+        // .catch(err => {
+        //     console.warn('xx err', err)
+        //     this.spinner = false;
+        //     this.errorMessage = 'Error connecting to server: check login or permissions'
+        //         + err.message;
+        // });
 
     }
 
