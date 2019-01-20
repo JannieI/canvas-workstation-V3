@@ -13573,7 +13573,7 @@ console.warn('xx ds perm', dp);
                 "&port=" + port +
                 "&username=" + username +
                 "&password=" + password;
-            let finalUrl: string = this.canvasServerURI + '/clientData?' + pathUrl; 
+            let finalUrl: string = this.canvasServerURI + '/clientData/' + pathUrl; 
             console.log('xx finalUrl', finalUrl)
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {
