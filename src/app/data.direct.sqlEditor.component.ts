@@ -6,7 +6,7 @@
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
-import { Input }                     from '@angular/core';
+import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
@@ -199,7 +199,40 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.selectedDatasource.port, 
             this.selectedDatasource.username, 
             this.selectedDatasource.password).then(res => {
-                console.log('xx HERE res', res)
+
+            this.dataSchemas = [];
+            res.forEach(row => {
+
+                this.dataSchemas.push(
+                {
+                    serverName: this.selectedDatasource.serverName,
+                    tableName: row,
+                    tableDescription: '', //row.name,
+                    tableFields: [],
+                    tableMetadata: []
+                });
+        //         row.fields.forEach(fld => {
+        //             this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
+        //                 {
+        //                     fieldName: fld.name,
+        //                     fieldType: fld.dtype
+        //                 }
+        //             )
+        //         });
+            });
+
+        //     // Fill the fields
+        //     if (this.dataSchemas.length > 0) {
+        //         // this.clickSelectTable(this.dataSchemas[0].tableName);
+        //         this.fieldsInTable = this.dataSchemas[0].tableFields.map(tf => tf.fieldName);
+        //         console.warn('xx this.dataSchemas', this.dataSchemas)
+        //     };
+
+        console.log('xx HERE res', res, this.dataSchemas)
+
+            // Reset
+            this.spinner = false;
+
             })
             .catch(err => {
                 console.warn('xx err', err)
