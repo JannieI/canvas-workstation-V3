@@ -125,7 +125,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 serverType: 'My SQL',
                 serverName: 'localhost',
                 dataTableName: '',
-                dataSQLStatement: '',
+                dataSQLStatement: 'SELECT * FROM mysql.user',
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
@@ -257,11 +257,11 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 // Can Add now
                 this.canSave = true;
 
-            })
-            .catch(err => {
+            }) 
+            .catch(error => {
                 this.spinner = false;
                 this.errorMessage = 'Error in query execution (maybe check login or permissions) '
-                    + err.message;
+                    + error;
             });
 
     }
