@@ -13610,14 +13610,14 @@ console.warn('xx ds perm', dp);
         tableName: string,
         port: string,
         username: string,
-        password: string): Promise<string[]> {
+        password: string): Promise<any> {
         // Description: Returns an Array of Fields in the given Server and DB
         if (this.sessionDebugging) {
             console.log('%c        Global-Variables getListFields ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        return new Promise<string[]>((resolve, reject) => {
+        return new Promise<any>((resolve, reject) => {
 
             // Get data
             let pathUrl: string = 'listFields?' +

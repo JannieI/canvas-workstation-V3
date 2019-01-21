@@ -306,12 +306,12 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
                 this.fields = [''];
                 res.forEach(row => {
-                    this.fields.push(row);
+                    this.fields.push(row.Field);
                 });
 
                 // Reset
                 this.spinner = false;
-                this.message = 'Tables loaded';
+                this.message = 'Fields loaded';
                 console.warn('xx this.fieldsInTable',ev, this.fields );
             })
             .catch(err => {

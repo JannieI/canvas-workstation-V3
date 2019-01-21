@@ -169,9 +169,12 @@
                             name="serverType"
                             placeholder="Fields in the selected Table"
                             >
-                            <option *ngFor="let row of fieldsInTable">
+                            <option *ngFor="let row of fields">
                                 {{ row }}
                             </option>
+                            <!-- <option *ngFor="let row of fieldsInTable">
+                                {{ row }}
+                            </option> -->
                         </select>
                     </div>
 
