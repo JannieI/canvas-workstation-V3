@@ -656,11 +656,13 @@ export class Datasource {
     businessGlossary: string;               // Detailed business oriented description of DS (non-technical)
     dataDictionary: string;                 // Detailed technical description of DS
 
-    // What: Transformations (manipulations of the What)
+
+    // HOW
+    // How: Transformations (manipulations of the What)
     transformations: DatasourceTransformation[];  // Optional array of transformations done to this Datasource
 
-    // What: Calculated at run-time
-    dataErrorMessage: string;                     // Error returned by Canvas Server
+    // How: Calculated at run-time
+    dataErrorMessage: string;               // Error returned by Canvas Server
     nrRecordsReturned: number;              // Nr of records returned by Canvas Server
     sourceLocation: string;                 // Source, CanvasCacheDisc, CanvasCacheMemory
 

@@ -1,9 +1,7 @@
 // Service to provide global variables
-import { BehaviorSubject, ReplaySubject }            from 'rxjs';
+import { BehaviorSubject }            from 'rxjs';
 import { Injectable }                 from '@angular/core';
 import { HttpClient }                 from '@angular/common/http';
-import { HttpErrorResponse }          from '@angular/common/http';
-import { HttpParams }                 from "@angular/common/http";
 import { HttpHeaders }                from "@angular/common/http";
 
 // Our Models
@@ -45,7 +43,7 @@ import { Datasource }                 from './models';
 import { DataQualityIssue}            from './models';
 import { DataOwnership}               from './models';
 import { DatasourcePermission}        from './models';
-import { GraphCalculation }        from './models';
+import { GraphCalculation }           from './models';
 import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 import { StatusBarMessage }           from './models';
@@ -1005,10 +1003,17 @@ export class GlobalVariableService {
             editedOn: null,
             createdBy: '',
             createdOn: null
-
+        },
+        {
+            serverType:'Microsoft SSAS',
+            driverName: 'Microsoft SSAS',
+            inspector: 'tributary.inspectors...',
+            connector: 'tributary.connectors...',
+            editedBy: '',
+            editedOn: null,
+            createdBy: '',
+            createdOn: null
         }
-
-
     ];
 
     // Environment setting: Server Url, etc
@@ -4263,12 +4268,12 @@ export class GlobalVariableService {
             };
 
             if (dsSourceLocation == 'HTTP') {
-                
+
                 console.log('getCurrentDataset start HTTP')
 
-                // NB: Note that the Server will return the data based on the 
+                // NB: Note that the Server will return the data based on the
                 //     datasourceID= in the query parameters !
-                let finalUrl: string = this.canvasServerURI + '/clientData?id=' 
+                let finalUrl: string = this.canvasServerURI + '/clientData?id='
                     + datasetID.toString() + '&datasourceID=' + datasourceID;
                 console.log('xx finalUrl', finalUrl)
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
@@ -6674,7 +6679,7 @@ export class GlobalVariableService {
             let currentDataSetIndex: number = this.currentDatasets
                 .findIndex(dS => dS.id == datasourceID
             );
-            
+
             // Dset exists in gv datasets, but not in currentDatasets
             if (dataSetIndex >= 0  &&  currentDataSetIndex < 0) {
                 console.log('GV 0')
@@ -13551,11 +13556,11 @@ console.warn('xx ds perm', dp);
     }
 
     getListTables(
-        serverType: string, 
-        serverName: string, 
-        databaseName: string, 
-        port: string, 
-        username: string, 
+        serverType: string,
+        serverName: string,
+        databaseName: string,
+        port: string,
+        username: string,
         password: string): Promise<string[]> {
         // Description: Returns an Array of tables in the given Server and DB
         if (this.sessionDebugging) {
@@ -13566,14 +13571,14 @@ console.warn('xx ds perm', dp);
         return new Promise<string[]>((resolve, reject) => {
 
             // Get data
-            let pathUrl: string = 'listTables?' + 
+            let pathUrl: string = 'listTables?' +
                 "serverType=" + serverType +
                 "&serverName=" + serverName +
                 "&databaseName=" + databaseName +
                 "&port=" + port +
                 "&username=" + username +
                 "&password=" + password;
-            let finalUrl: string = this.canvasServerURI + '/clientData/' + pathUrl; 
+            let finalUrl: string = this.canvasServerURI + '/clientData/' + pathUrl;
             console.log('xx finalUrl', finalUrl)
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {

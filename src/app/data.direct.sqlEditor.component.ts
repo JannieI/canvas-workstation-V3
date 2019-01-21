@@ -52,6 +52,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
     fieldsInTable: string[];
     fileData: any = [];
     fileDataFull: any = [];
+    message: string = '';
     reader = new FileReader();
     savedMessage: string = '';
     selectedTable: string = '';
@@ -59,6 +60,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
     serverTypes: TributaryServerType[];
     showPreview: boolean = false;
     spinner: boolean = false;
+    tables: string[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -152,13 +154,10 @@ export class DataDirectSQLEditorComponent implements OnInit {
         } else {
             this.clickExplore();
         };
-
-        console.warn('xx dates',
-            this.globalVariableService.dateDiff(new Date(), new Date('2018-08-09'), 'day'))
     }
 
     clickExplore() {
-        // Load the Tables and Fields, using the Tributary Inspector
+        // Load the Tables and Fields
         this.globalFunctionService.printToConsole(this.constructor.name,'clickExplore',           '@Start');
 
         // Reset
@@ -168,28 +167,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
         // Show user
         this.spinner = true;
-
-        // Get drivers
-        // let driver: string = this.serverTypes
-        //     .filter(styp => styp.serverType == this.selectedDatasource.serverType)
-        //     .map(styp => styp.driverName)[0];
-        // let inpector: string = this.serverTypes
-        //     .filter(styp => styp.serverType == this.selectedDatasource.serverType)
-        //     .map(styp => styp.inspector)[0];
-
-        // let specificationInspect: any = {
-        //     "source": {
-        //         "inspector": inpector, // "tributary.inspectors.sql:SqlInspector",
-        //         "specification": {
-        //             "drivername": driver,  //"postgresql",
-        //             "host": this.selectedDatasource.serverName,
-        //             "port": +this.selectedDatasource.port,
-        //             "username": this.selectedDatasource.username,
-        //             "password": this.selectedDatasource.password,
-        //             "database": this.selectedDatasource.databaseName
-        //         }
-        //     }
-        // };
 
         // Get list of Tables
         this.globalVariableService.getListTables(
@@ -201,8 +178,11 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.selectedDatasource.password).then(res => {
 
             this.dataSchemas = [];
+            this.tables = [''];
+
             res.forEach(row => {
 
+                this.tables.push(row);
                 this.dataSchemas.push(
                 {
                     serverName: this.selectedDatasource.serverName,
@@ -211,14 +191,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
                     tableFields: [],
                     tableMetadata: []
                 });
-        //         row.fields.forEach(fld => {
-        //             this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
-        //                 {
-        //                     fieldName: fld.name,
-        //                     fieldType: fld.dtype
-        //                 }
-        //             )
-        //         });
             });
 
         //     // Fill the fields

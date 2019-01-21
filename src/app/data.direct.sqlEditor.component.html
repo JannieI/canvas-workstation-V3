@@ -151,9 +151,12 @@
                             (change)="clickSelectTable($event)"
                             placeholder="Tables in the DB"
                             >
-                            <option *ngFor="let row of dataSchemas">
-                                {{ row.tableName }}
+                            <option *ngFor="let row of tables">
+                                {{ row }}
                             </option>
+                            <!-- <option *ngFor="let row of dataSchemas">
+                                {{ row.tableName }}
+                            </option> -->
                         </select>
                     </div>
 
@@ -182,6 +185,9 @@
 
                     <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                         {{ errorMessage }}
+                    </div>
+                    <div *ngIf="message!=''" class="gridMessage">
+                        {{ message }}
                     </div>
 
                     <div class="gridGoButton">
