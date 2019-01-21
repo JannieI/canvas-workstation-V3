@@ -177,33 +177,25 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.selectedDatasource.username, 
             this.selectedDatasource.password).then(res => {
 
-            this.dataSchemas = [];
-            this.tables = [''];
+                this.dataSchemas = [];
+                this.tables = [''];
 
-            res.forEach(row => {
+                res.forEach(row => {
 
-                this.tables.push(row);
-                this.dataSchemas.push(
-                {
-                    serverName: this.selectedDatasource.serverName,
-                    tableName: row,
-                    tableDescription: '', //row.name,
-                    tableFields: [],
-                    tableMetadata: []
+                    this.tables.push(row);
+                    this.dataSchemas.push(
+                    {
+                        serverName: this.selectedDatasource.serverName,
+                        tableName: row,
+                        tableDescription: '', //row.name,
+                        tableFields: [],
+                        tableMetadata: []
+                    });
                 });
-            });
 
-        //     // Fill the fields
-        //     if (this.dataSchemas.length > 0) {
-        //         // this.clickSelectTable(this.dataSchemas[0].tableName);
-        //         this.fieldsInTable = this.dataSchemas[0].tableFields.map(tf => tf.fieldName);
-        //         console.warn('xx this.dataSchemas', this.dataSchemas)
-        //     };
-
-        console.log('xx HERE res', res, this.dataSchemas)
-
-            // Reset
-            this.spinner = false;
+                // Reset
+                this.spinner = false;
+                this.message = 'Tables loaded';
 
             })
             .catch(err => {
@@ -212,50 +204,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.errorMessage = 'Error connecting to server (maybe check login or permissions): '
                     + err.message;
             });
-        
-            // // Call Tributary Inspector
-        // this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
-
-        //     // Fill the tables and Fields
-        //     this.dataSchemas = [];
-        //     res.forEach(row => {
-
-        //         this.dataSchemas.push(
-        //         {
-        //             serverName: this.selectedDatasource.serverName,
-        //             tableName: row.name,
-        //             tableDescription: row.name,
-        //             tableFields: [],
-        //             tableMetadata: []
-        //         });
-        //         row.fields.forEach(fld => {
-        //             this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
-        //                 {
-        //                     fieldName: fld.name,
-        //                     fieldType: fld.dtype
-        //                 }
-        //             )
-        //         });
-        //     });
-
-        //     // Fill the fields
-        //     if (this.dataSchemas.length > 0) {
-        //         // this.clickSelectTable(this.dataSchemas[0].tableName);
-        //         this.fieldsInTable = this.dataSchemas[0].tableFields.map(tf => tf.fieldName);
-        //         console.warn('xx this.dataSchemas', this.dataSchemas)
-        //     };
-
-        //     // Reset
-        //     this.spinner = false;
-        //     console.warn('xx res I', res, this.dataSchemas)
-
-        // })
-        // .catch(err => {
-        //     console.warn('xx err', err)
-        //     this.spinner = false;
-        //     this.errorMessage = 'Error connecting to server: check login or permissions'
-        //         + err.message;
-        // });
 
     }
 
