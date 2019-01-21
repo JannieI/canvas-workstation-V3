@@ -284,14 +284,16 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTable', '@Start');
 
         this.fieldsInTable = [];
-        let selectedDataSchema: DataSchema[] = this.dataSchemas.filter(
-            dsch => dsch.tableName == ev.target.value
-        );
-        console.warn('xx selectedDataSchema',selectedDataSchema, this.dataSchemas, ev.target.value )
 
-        if (selectedDataSchema.length > 0) {
-            this.fieldsInTable = selectedDataSchema[0].tableFields.map(tf => tf.fieldName);
-        };
+        // Get list of Tables
+        this.globalVariableService.getListFields(
+            this.selectedDatasource.serverType, 
+            this.selectedDatasource.serverName, 
+            this.selectedDatasource.databaseName, 
+            this.selectedDatasource.port, 
+            this.selectedDatasource.username, 
+            this.selectedDatasource.password).then(res => {
+
         console.warn('xx this.fieldsInTable',ev, this.selectedTable, this.fieldsInTable )
     }
 
