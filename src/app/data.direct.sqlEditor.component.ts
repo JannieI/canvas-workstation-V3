@@ -49,6 +49,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
     canSave: boolean = false;
     dataSchemas: DataSchema[] = [];
     errorMessage: string = "";
+    fields: string[] = [];
     fieldsInTable: string[];
     fileData: any = [];
     fileDataFull: any = [];
@@ -290,11 +291,24 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.selectedDatasource.serverType, 
             this.selectedDatasource.serverName, 
             this.selectedDatasource.databaseName, 
+            ev.target.value,                    // Selected Table Name
             this.selectedDatasource.port, 
             this.selectedDatasource.username, 
             this.selectedDatasource.password).then(res => {
 
-        console.warn('xx this.fieldsInTable',ev, this.selectedTable, this.fieldsInTable )
+                this.fields = [''];
+                res.forEach(row => {
+                    this.fields.push(row);
+                });
+                console.warn('xx this.fieldsInTable',ev, this.fields )
+
+            })
+            .catch(err => {
+                console.warn('xx err', err)
+                this.spinner = false;
+                this.errorMessage = 'Error getting fields from server (maybe check login or permissions): '
+                    + err.message;
+            });
     }
 
     clickExport() {
