@@ -159,7 +159,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
     clickExplore() {
         // Load the Tables and Fields
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickExplore',           '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickExplore', '@Start');
 
         // Reset
         this.errorMessage = '';
@@ -211,7 +211,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
     clickGo() {
         // Load the File content
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickGo',           '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGo', '@Start');
 
         // Reset
         this.errorMessage = '';
@@ -222,34 +222,18 @@ export class DataDirectSQLEditorComponent implements OnInit {
         // Show user
         this.spinner = true;
 
-        // Get drivers
-        let driver: string = this.serverTypes
-            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
-            .map(styp => styp.driverName)[0];
-        let connector: string = this.serverTypes
-            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
-            .map(styp => styp.connector)[0];
-
         // Set up specification for Connector
         this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
-        let specificationConnect: any = {
-            "source": {
-                "connector": connector,
-                "specification": {
-                    "drivername": driver,
-                    "username": this.selectedDatasource.username,
-                    "password": this.selectedDatasource.password,
-                    "database": this.selectedDatasource.databaseName,
-                    "host": this.selectedDatasource.serverName,
-                    "port": +this.selectedDatasource.port,
-                    "query": this.selectedDatasource.dataSQLStatement
-                }
-            }
-        };
-
-        // Get Tributary data
-        this.globalVariableService.getTributaryData(specificationConnect)
-            .then(res => {
+        
+        // Execute Query and return data
+        this.globalVariableService.getExecQuery(
+            this.selectedDatasource.serverType, 
+            this.selectedDatasource.serverName, 
+            this.selectedDatasource.databaseName, 
+            this.selectedDatasource.dataSQLStatement,
+            this.selectedDatasource.port, 
+            this.selectedDatasource.username, 
+            this.selectedDatasource.password).then(res => {
 
                 // Fill the data
                 this.fileData = res.slice(0,10);
@@ -276,7 +260,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
             })
             .catch(err => {
                 this.spinner = false;
-                this.errorMessage = 'Error connecting to server: check login or permissions'
+                this.errorMessage = 'Error in query execution (maybe check login or permissions) '
                     + err.message;
             });
 

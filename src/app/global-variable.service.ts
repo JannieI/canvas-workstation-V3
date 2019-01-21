@@ -13653,6 +13653,56 @@ console.warn('xx ds perm', dp);
 
     }
 
+    getExecQuery(
+        serverType: string,
+        serverName: string,
+        databaseName: string,
+        sqlStatement: string,
+        port: string,
+        username: string,
+        password: string): Promise<any> {
+        // Description: Executes a SQL Statement and returns an Array of data
+        if (this.sessionDebugging) {
+            console.log('%c        Global-Variables getExecQuery ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        return new Promise<any>((resolve, reject) => {
+
+            // Get data
+            let pathUrl: string = 'execQuery?' +
+                "serverType=" + serverType +
+                "&serverName=" + serverName +
+                "&databaseName=" + databaseName +
+                "&sqlStatement=" + sqlStatement +
+                "&port=" + port +
+                "&username=" + username +
+                "&password=" + password;
+            let finalUrl: string = this.canvasServerURI + '/clientData/' + pathUrl;
+            console.log('xx finalUrl', finalUrl)
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getExecQuery 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            res.data);
+                    };
+                    resolve(res.data);
+                },
+                err => {
+                    reject(err.message)
+                }
+            )
+        });
+
+    }
+
     tributaryCreateSession(sampleSize: number = null) {
         // Create a new Tributary Session
         // - sampleSize = optional nr of rows to return
