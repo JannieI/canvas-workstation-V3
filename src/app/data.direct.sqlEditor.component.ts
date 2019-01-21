@@ -163,6 +163,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.message = '';
         this.showPreview = false;
         this.canSave = false;
 
@@ -214,6 +215,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.message = '';
         this.showPreview = false;
         this.canSave = false;
 
@@ -284,8 +286,14 @@ export class DataDirectSQLEditorComponent implements OnInit {
         // User selected a table, fill the fields for it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTable', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.message = '';
         this.fieldsInTable = [];
 
+        // Show user
+        this.spinner = true;
+        
         // Get list of Tables
         this.globalVariableService.getListFields(
             this.selectedDatasource.serverType, 
@@ -300,8 +308,11 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 res.forEach(row => {
                     this.fields.push(row);
                 });
-                console.warn('xx this.fieldsInTable',ev, this.fields )
 
+                // Reset
+                this.spinner = false;
+                this.message = 'Tables loaded';
+                console.warn('xx this.fieldsInTable',ev, this.fields );
             })
             .catch(err => {
                 console.warn('xx err', err)
@@ -337,6 +348,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.message = '';
         this.savedMessage = '';
 
         // Save changes to the Datasource
