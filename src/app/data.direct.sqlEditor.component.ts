@@ -150,8 +150,9 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 dataErrorMessage: '',
                 nrRecordsReturned: 0,
                 sourceLocation: ''
-
             };
+
+            this.selectedField = 'My SQL';
         } else {
             this.clickExplore();
         };
@@ -422,28 +423,34 @@ export class DataDirectSQLEditorComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData).then(resData => {
+            this.globalVariableService.addData(newData)
+                .then(resData => {
 
-                newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addDatasource(this.selectedDatasource).then(resDS => {
-                    newdDataset.datasourceID = resDS.id;
-                    this.globalVariableService.addDataset(newdDataset);
+                    newdDataset.url = 'data/' + resData.id.toString();
+                    this.globalVariableService.addDatasource(this.selectedDatasource).then(resDS => {
+                        newdDataset.datasourceID = resDS.id;
+                        this.globalVariableService.addDataset(newdDataset);
 
+                    });
+
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource created';
+
+                    // Close form and open Transitions if requested
+                    if (action == 'Saved') {
+                        this.formDataDirectSQLEditorClosed.emit(null);
+
+                    } else {
+                        this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
+
+                    };
+
+                })
+                .catch(err => {
+                    console.log('xx SED Save failed - ' + err.message)
+                    this.errorMessage = 'Save failed - ' + err.message;
                 });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource created';
-            });
-        };
-
-        // Close form and open Transitions if requested
-        if (action == 'Saved') {
-            this.formDataDirectSQLEditorClosed.emit(null);
-
-        } else {
-            this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
-
         };
     }
 
