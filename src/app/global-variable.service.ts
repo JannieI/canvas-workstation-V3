@@ -13596,7 +13596,7 @@ console.warn('xx ds perm', dp);
                     resolve(res.data);
                 },
                 err => {
-                    reject(err.message)
+                    reject(err.message  || err.sqlMessage)
                 }
             )
         });

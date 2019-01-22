@@ -122,7 +122,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 nrWidgets: 0,
                 databaseName: 'mysql',
                 port: '3306',
-                serverType: 'My SQL',
+                serverType: 'MySQL',
                 serverName: 'localhost',
                 dataTableName: '',
                 dataSQLStatement: 'SELECT * FROM mysql.user',
@@ -152,7 +152,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 sourceLocation: ''
             };
 
-            this.selectedField = 'My SQL';
+            this.selectedField = 'MySQL';
         } else {
             this.clickExplore();
         };
