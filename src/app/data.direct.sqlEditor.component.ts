@@ -202,10 +202,9 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
             })
             .catch(err => {
-                console.warn('xx err', err)
                 this.spinner = false;
                 this.errorMessage = 'Error connecting to server (maybe check login or permissions): '
-                    + err.message;
+                    + err;
             });
 
     }
