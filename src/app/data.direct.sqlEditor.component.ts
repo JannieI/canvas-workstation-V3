@@ -201,10 +201,10 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.message = 'Tables loaded';
 
             })
-            .catch(err => {
+            .catch(errorMessage => {
                 this.spinner = false;
                 this.errorMessage = 'Error connecting to server (maybe check login or permissions): '
-                    + err;
+                    + errorMessage;
             });
 
     }
@@ -256,10 +256,10 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.canSave = true;
 
             }) 
-            .catch(error => {
+            .catch(errorMessage => {
                 this.spinner = false;
                 this.errorMessage = 'Error in query execution (maybe check login or permissions) '
-                    + error;
+                    + errorMessage;
             });
 
     }
