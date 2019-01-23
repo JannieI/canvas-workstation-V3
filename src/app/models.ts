@@ -1677,11 +1677,17 @@ export class CanvasHttpResponse {
     //          POST failed due to trying to create a duplicate key, validation failed, etc
     // error = error on the server, ie TS or Node or Mongo error
     "message" : string;                     // Info Text message (short errorMessage for errors)
+    "data": any;                            // Data returned, ie Json Array
     "metaData"?: {                          // OPTIONAL metadata, not always filled in by Server
         "server"?: {
             "serverName": string;           // Name of Server
             "serverType": string;           // Type of Server
         };
+        "database": 
+        {
+            "databaseName": string;         // Name of Database involved
+        },
+        "sqlStatement": string;             // SQL statement
         "table"?: {
             "tableName": string;            // Name of table (where relevant)
             "nrRecordsReturned": number;    // Nr of records returned
@@ -1696,9 +1702,9 @@ export class CanvasHttpResponse {
             "sum": number;                  // Sum of field column
         }[]
     }
-    "data": any;                            // Data returned, ie Json Array
     "error": {                              // If statusCode = 'error', gives Error detail, else null
         "errorCode?": string;               // Short Canvas Code for future use
+        "message": string;                  // User-friendly message
         "errorMessage?": string;            // Error message from Source (ie Mongo) if possible
         "errorSource?": string;             // Source of error, ie canvasDataRouter.ts
         "errorLine?": string;               // Line number of error, where possible
