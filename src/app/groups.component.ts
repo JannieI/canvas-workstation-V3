@@ -138,7 +138,7 @@ export class GroupsComponent implements OnInit {
             };
         })
         .catch(err => {
-            this.errorMessage = "Deletion of group failed " + err.message;
+            this.errorMessage = "Deletion of group failed " + err;
         });
     }
 

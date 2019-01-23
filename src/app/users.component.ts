@@ -344,7 +344,7 @@ export class UsersComponent implements OnInit {
             };
         })
         .catch(err => {
-            this.errorMessage = "Deletion of user failed " + err.message;
+            this.errorMessage = "Deletion of user failed " + err;
         });
     }
 

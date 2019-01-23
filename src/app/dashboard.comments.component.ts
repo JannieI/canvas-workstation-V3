@@ -157,7 +157,7 @@ export class DashboardCommentsComponent implements OnInit {
                     this.message = 'Comment saved';
                 })
                 .catch(err => {
-                    this.errorMessage = err.message;
+                    this.errorMessage = err;
                 })
 
     }
@@ -197,7 +197,7 @@ export class DashboardCommentsComponent implements OnInit {
                     this.indexLastRecord = this.canvasComments.length - 1;
             })
             .catch(err => {
-                this.errorMessage = err.message;
+                this.errorMessage = err;
             });
 
     }
