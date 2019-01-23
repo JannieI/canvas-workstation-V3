@@ -243,9 +243,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.selectedDatasource.dataFields = [];
 
                 if (res.length > 0) {
-                    console.warn('xx res[0]', res[0])
                     for(var key in res[0]) {
-                        console.warn('xx key', key)
                         this.selectedDatasource.dataFields.push(key);
                     }
                 };
@@ -310,7 +308,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 // Reset
                 this.spinner = false;
                 this.message = 'Fields loaded';
-                console.warn('xx this.fieldsInTable',ev, this.fields );
             })
             .catch(err => {
                 console.warn('xx err', err)
