@@ -21,11 +21,12 @@
                                 <p style="margin-top: 0; color:gray;">
                                     Add / Edit a Datasource for a SQL Database: specify the 
                                     database information and credentials.  Then type the SQL
-                                    statement, and see the results by clicking GO.  The Explore
-                                    button shows a list of Tables.  Select a Table to see a 
-                                    list of Fields.  Once satisfied with the SQL statement,
-                                    provide a Datasource name and description and click Add 
-                                    (or Save).
+                                    statement, and see the results by clicking GO.  Show a
+                                    list of Tables by clicking the Explore button (these show
+                                    in the dropdown and does not affect the SQL statement).
+                                    Select a Table to show its list of Fields.  Once 
+                                    satisfied with the SQL statement, provide a Datasource 
+                                    name and description and click Add (or Save).
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
@@ -156,8 +157,7 @@
                             placeholder="Tables in the DB"
                             >
                             <option *ngFor="let row of tables">
-                                {{ row <clr-icon shape="plus" size="16"></clr-icon> }}
-                                <clr-icon shape="plus" size="16"></clr-icon>
+                                {{ row }}
                             </option>
                         </select>
                     </div>
