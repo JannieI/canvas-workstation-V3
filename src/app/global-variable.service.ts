@@ -13860,7 +13860,7 @@ console.warn('xx ds perm', dp);
                         console.log('Error Get Tributary Data FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });

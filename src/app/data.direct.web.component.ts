@@ -195,10 +195,10 @@ export class DataDirectWebComponent implements OnInit {
             this.spinner = false;
             console.warn('xx res', res.length, this.dataFieldsSelected)
         })
-        .catch(err => {
+        .catch(errorMessage => {
             this.spinner = false;
             this.errorMessage = 'Error connecting to server: check login or permissions'
-                + err.message;
+                + errorMessage;
         });
     }
 

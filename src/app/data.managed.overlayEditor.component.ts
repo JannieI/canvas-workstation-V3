@@ -242,10 +242,10 @@ export class DataManagedOverlayEditorComponent implements OnInit {
             this.canSave = true;
 
         })
-        .catch(err => {
+        .catch(errorMessage => {
             this.spinner = false;
             this.errorMessage = 'Error connecting to server: check login or permissions'
-                + err.message;
+                + errorMessage;
         });
 
     }

@@ -133,12 +133,12 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 this.spinner = false;
                 console.warn('xx res', res.length, this.dataFieldsSelected)
             })
-            .catch(err => {
-                this.errorMessage = err.message + '. ';
-                if (err.status == 401) {
+            .catch(errorMessage => {
+                this.errorMessage = errorMessage + '. ';
+                if (errorMessage.status == 401) {
                     this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ';
                 } else {
-                    this.errorMessage = err.message;
+                    this.errorMessage = errorMessage;
                 };
                 this.spinner = false;
 
