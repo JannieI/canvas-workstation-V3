@@ -232,11 +232,30 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.fileDataFull = res;
 
                 // Construct a list of field name / column headings from the data
+                // For a SQL statement, this cannot be done on Server
+                // Use best guess defaults
                 this.selectedDatasource.dataFields = [];
+                this.selectedDatasource.metaDataFields = [];
 
                 if (res.length > 0) {
                     for(var key in res[0]) {
                         this.selectedDatasource.dataFields.push(key);
+
+                        this.selectedDatasource.metaDataFields.push(
+                            {
+                                fieldName: key,
+                                fieldAlias: '',
+                                fieldType: 'string',
+                                length: 25,
+                                average: null,
+                                max: null,
+                                median: null,
+                                min: null,
+                                sum: null
+                            }
+                        );
+
+
                     }
                 };
 
@@ -441,7 +460,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
                 })
                 .catch(errorMessage => {
-                    console.log('xx SED Save failed - ' + errorMessage)
                     this.errorMessage = 'Save failed - ' + errorMessage;
                 });
         };

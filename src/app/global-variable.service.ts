@@ -4275,8 +4275,8 @@ export class GlobalVariableService {
                 //     datasourceID= in the query parameters !
                 let finalUrl: string = this.canvasServerURI + '/clientData?id='
                     + datasetID.toString() + '&datasourceID=' + datasourceID;
-                console.log('xx finalUrl', finalUrl)
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+
+                    this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res  => {
                         console.log('getCurrentDataset after http.get', res)
                         if(res.statusCode != 'success') {
@@ -4496,7 +4496,6 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        // console.log('xx finalUrl', finalUrl)
         return new Promise<Dataset[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
@@ -13579,7 +13578,7 @@ console.warn('xx ds perm', dp);
                 "&username=" + username +
                 "&password=" + password;
             let finalUrl: string = this.canvasServerURI + '/clientData/' + pathUrl;
-            console.log('xx finalUrl', finalUrl)
+
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
@@ -13629,7 +13628,7 @@ console.warn('xx ds perm', dp);
                 "&username=" + username +
                 "&password=" + password;
             let finalUrl: string = this.canvasServerURI + '/clientData/' + pathUrl;
-            console.log('xx finalUrl', finalUrl)
+
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
@@ -13679,7 +13678,7 @@ console.warn('xx ds perm', dp);
                 "&username=" + username +
                 "&password=" + password;
             let finalUrl: string = this.canvasServerURI + '/clientData/' + pathUrl;
-            console.log('xx finalUrl', finalUrl)
+
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
