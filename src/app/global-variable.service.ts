@@ -4637,7 +4637,7 @@ export class GlobalVariableService {
                         console.log('Error deleteData FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
