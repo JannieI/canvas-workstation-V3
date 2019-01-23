@@ -307,9 +307,9 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                         + err.message;
                 });
             })
-            .catch(err => {
-                console.warn('xx err', err);
-                this.whereErrorMessage = err.message;
+            .catch(errorMessage => {
+                console.warn('xx err', errorMessage);
+                this.whereErrorMessage = errorMessage;
                 return;
             });
 

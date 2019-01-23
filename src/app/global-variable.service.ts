@@ -13738,7 +13738,7 @@ console.warn('xx ds perm', dp);
                     if (this.sessionDebugging) {
                         console.log('Error tributaryCreateSession FAILED', {err});
                     };
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
