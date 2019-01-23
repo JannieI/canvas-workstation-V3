@@ -13898,7 +13898,7 @@ console.warn('xx ds perm', dp);
                     if (this.sessionDebugging) {
                         console.log('Error Get Tributary Inspect FAILED', {err});
                     };
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
