@@ -311,10 +311,10 @@ export class DataDirectSQLEditorComponent implements OnInit {
                     + errorMessage;
             });
     }
-    
+
     clickSelectedField(ev: any) {
-        // User selected a table, fill the fields for it
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTable', '@Start');
+        // User selected a fields, append to SQL Statement
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedField', '@Start');
 
         // Reset
         this.errorMessage = '';
