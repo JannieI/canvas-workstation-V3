@@ -15,7 +15,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { DataSchema }                 from './models';
 import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 import { TributaryServerType }        from './models';
@@ -47,7 +46,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
 
     canSave: boolean = false;
-    dataSchemas: DataSchema[] = [];
     errorMessage: string = "";
     fields: string[] = [];
     fieldsInTable: string[];
@@ -182,20 +180,11 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.selectedDatasource.username, 
             this.selectedDatasource.password).then(res => {
 
-                this.dataSchemas = [];
                 this.tables = [''];
 
                 res.forEach(row => {
 
                     this.tables.push(row);
-                    this.dataSchemas.push(
-                    {
-                        serverName: this.selectedDatasource.serverName,
-                        tableName: row,
-                        tableDescription: '', //row.name,
-                        tableFields: [],
-                        tableMetadata: []
-                    });
                 });
 
                 // Reset
@@ -403,6 +392,10 @@ export class DataDirectSQLEditorComponent implements OnInit {
             });
 
         } else {
+            let today: Date = new Date();
+            this.selectedDatasource.createdBy = this.globalVariableService.currentUser.userID;
+            this.selectedDatasource.createdOn = today;
+
             // Add new one
             let newdDataset: Dataset = {
                 id: null,
