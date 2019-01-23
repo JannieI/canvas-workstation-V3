@@ -323,7 +323,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.startupHelp = false;
 
         this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement + 
-            + '  ' + ev.target.value;
+            '   ' + ev.target.value;
         this.message = 'Field added to SQL Statement';
     }
 
