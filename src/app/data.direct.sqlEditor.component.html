@@ -169,6 +169,7 @@
                         <select
                             [(ngModel)]="selectedField"
                             name="serverType"
+                            (click)="clickSelectedField()"
                             placeholder="Fields in the selected Table"
                             >
                             <option *ngFor="let row of fields">

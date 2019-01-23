@@ -256,7 +256,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                         );
                     };
                 };
-console.log('xx this.selectedDatasource.metaDataFields', this.selectedDatasource.metaDataFields)
+
                 // Show the results
                 this.showPreview = true;
                 this.spinner = false;
@@ -310,6 +310,20 @@ console.log('xx this.selectedDatasource.metaDataFields', this.selectedDatasource
                 this.errorMessage = 'Error getting fields from server (maybe check login or permissions): '
                     + errorMessage;
             });
+    }
+    
+    clickSelectedField(ev: any) {
+        // User selected a table, fill the fields for it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTable', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.message = '';
+        this.fieldsInTable = [];
+        this.startupHelp = false;
+
+        this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement + 
+            ev.target.value;
     }
 
     clickExport() {
