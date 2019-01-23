@@ -13560,14 +13560,14 @@ console.warn('xx ds perm', dp);
         databaseName: string,
         port: string,
         username: string,
-        password: string): Promise<string[]> {
+        password: string): Promise<CanvasHttpResponse> {
         // Description: Returns an Array of tables in the given Server and DB
         if (this.sessionDebugging) {
             console.log('%c        Global-Variables getListTables ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        return new Promise<string[]>((resolve, reject) => {
+        return new Promise<CanvasHttpResponse>((resolve, reject) => {
 
             // Get data
             let pathUrl: string = 'listTables?' +
@@ -13592,7 +13592,7 @@ console.warn('xx ds perm', dp);
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             res.data);
                     };
-                    resolve(res.data);
+                    resolve(res);
                 },
                 err => {
                     reject(err.message  || err.sqlMessage);
@@ -13609,14 +13609,14 @@ console.warn('xx ds perm', dp);
         tableName: string,
         port: string,
         username: string,
-        password: string): Promise<any> {
+        password: string): Promise<CanvasHttpResponse> {
         // Description: Returns an Array of Fields in the given Server and DB
         if (this.sessionDebugging) {
             console.log('%c        Global-Variables getListFields ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        return new Promise<any>((resolve, reject) => {
+        return new Promise<CanvasHttpResponse>((resolve, reject) => {
 
             // Get data
             let pathUrl: string = 'listFields?' +
@@ -13640,7 +13640,7 @@ console.warn('xx ds perm', dp);
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getListTables 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            res.data);
+                            res.data.length);
                     };
                     resolve(res);
                 },

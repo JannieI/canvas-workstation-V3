@@ -182,7 +182,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
                 this.tables = [''];
 
-                res.forEach(row => {
+                res.data.forEach(row => {
 
                     this.tables.push(row);
                 });
@@ -297,7 +297,7 @@ console.log('xx this.selectedDatasource.metaDataFields', this.selectedDatasource
             this.selectedDatasource.password).then(res => {
 
                 this.fields = [''];
-                res.forEach(row => {
+                res.data.forEach(row => {
                     this.fields.push(row.Field);
                 });
 
