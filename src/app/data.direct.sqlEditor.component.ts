@@ -266,6 +266,20 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
     }
 
+    clickTable(ev: any) {
+        // Add table name to SQL Statement
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTable', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.message = '';
+        
+        // Add to SQL Statement
+        this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement + 
+            ' ' + ev.target.value;
+    }
+
+
     clickSelectTable(ev: any) {
         // User selected a table, fill the fields for it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTable', '@Start');

@@ -152,6 +152,11 @@
                             placeholder="Tables in the DB"
                             >
                             <option *ngFor="let row of tables">
+                                <clr-icon shape="plus"
+                                    (click)="clickTable()"
+                                    size="12"
+                                    >
+                                </clr-icon>
                                 {{ row }}
                             </option>
                         </select>
