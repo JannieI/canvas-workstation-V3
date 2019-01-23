@@ -165,8 +165,8 @@ export class DataDirectFileJSONComponent implements OnInit {
                 this.loadFileContent(0);
             };
         })
-        .catch(err => {
-            this.errorMessage = err.message;
+        .catch(errorMessage => {
+            this.errorMessage = errorMessage;
         });
     }
 

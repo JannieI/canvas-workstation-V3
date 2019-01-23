@@ -139,12 +139,11 @@ export class DataDirectWebComponent implements OnInit {
                 };
 
             })
-            .catch(err => {
-                this.errorMessage = err.message + '. ';
-                if (err.status == 401) {
+            .catch(errorMessage => {
+                if (errorMessage.status == 401) {
                     this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ';
                 } else {
-                    this.errorMessage = err.message;
+                    this.errorMessage = errorMessage;
                 };
             });
 

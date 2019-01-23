@@ -13779,7 +13779,7 @@ console.warn('xx ds perm', dp);
                     if (this.sessionDebugging) {
                         console.log('Error tributaryInspect FAILED', {err});
                     };
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });

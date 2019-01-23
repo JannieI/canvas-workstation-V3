@@ -304,15 +304,15 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 };
 
             })
-            .catch(err => {
+            .catch(errorMessage => {
                 this.spinner = false;
-                this.errorMessage = err.message + '. ';
+                this.errorMessage = errorMessage.message + '. ';
                 this.helpMessage = '';
-                if (err.status == 401) {
+                if (errorMessage.status == 401) {
                     this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. '
-                        + err.message;
+                        + errorMessage;
                 } else {
-                    this.errorMessage = err.message;
+                    this.errorMessage = errorMessage;
                 };
             });
 

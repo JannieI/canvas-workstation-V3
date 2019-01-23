@@ -176,8 +176,8 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 this.clickWorksheet(0);
             };
         })
-        .catch(err => {
-            this.errorMessage = err.message;
+        .catch(errorMessage => {
+            this.errorMessage = errorMessage;
         });
 
     }
