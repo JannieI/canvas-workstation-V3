@@ -440,20 +440,6 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             "cachable": false
         };
 
-        // Get Tributary data
-        // this.globalVariableService.tributaryAddDatasource(
-        //         this.tributarySessionCreateDatasourceURL, 
-        //         specificationCreateDatasource
-        //     )
-        //     .then(res => {
-        //         console.warn('xx res', res)
-        //     })
-        //     .catch(err => {
-        //         this.spinner = false;
-        //         this.whatErrorMessage = 'Error connecting to server: check login or permissions'
-        //             + err.message;
-        //     });
-
     }
 
     clickAddUpdateNextTransform(action: string) {
