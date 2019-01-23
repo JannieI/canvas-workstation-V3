@@ -532,12 +532,12 @@ export class MetaDataField {
     fieldName: string;                      // Name of the field
     fieldAlias: string;                     // Optional Alias (ie SELECT TNX as Transaction) 
     fieldType: string;                      // Type: string, number, boolean, Array
-    length: string;                         // Maximum length of the field
-    average: string;                        // Optional stats: average in Field
-    max: string;                            // Optional stats: Maximum in Field
-    median: string;                         // Optional stats: Median in Field
-    min: string;                            // Optional stats: Minimum value in Field
-    sum: string;                            // Optional stats: Sum of all values (ie SQL SUM() )
+    length: number;                         // Maximum length of the field
+    average: number;                        // Optional stats: average in Field
+    max: number;                            // Optional stats: Maximum in Field
+    median: number;                         // Optional stats: Median in Field
+    min: number;                            // Optional stats: Minimum value in Field
+    sum: number;                            // Optional stats: Sum of all values (ie SQL SUM() )
 }
 
 export class Datasource {
