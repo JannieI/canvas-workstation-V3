@@ -381,10 +381,10 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 this.canSave = true;
 
             })
-            .catch(err => {
+            .catch(errorMessage => {
                 this.spinner = false;
                 this.whatErrorMessage = 'Error connecting to server: check login or permissions'
-                    + err.message;
+                    + errorMessage;
             });
 
     }

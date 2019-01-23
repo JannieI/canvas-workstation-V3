@@ -13820,7 +13820,7 @@ console.warn('xx ds perm', dp);
                     if (this.sessionDebugging) {
                         console.log('Error tributaryExecute FAILED', {err});
                     };
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
