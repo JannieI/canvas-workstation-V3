@@ -4563,7 +4563,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('Error addData FAILED', {err});
                     };
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });

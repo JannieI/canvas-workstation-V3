@@ -456,9 +456,9 @@ export class DataDirectSQLEditorComponent implements OnInit {
                     };
 
                 })
-                .catch(err => {
-                    console.log('xx SED Save failed - ' + err.message)
-                    this.errorMessage = 'Save failed - ' + err.message;
+                .catch(errorMessage => {
+                    console.log('xx SED Save failed - ' + errorMessage)
+                    this.errorMessage = 'Save failed - ' + errorMessage;
                 });
         };
     }
