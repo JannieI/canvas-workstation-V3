@@ -13866,46 +13866,6 @@ console.warn('xx ds perm', dp);
         });
     }
 
-    getTributaryGraphQL(graphQLquery: string): Promise<any> {
-        // Description: Gets data from the Tributary Server
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getTributaryData ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {graphQLquery});
-        };
-
-        let pathUrl: string = this.currentCanvasServerURI + 'accounts/graphql/';
-
-        return new Promise<any>((resolve, reject) => {
-
-            let localToken: Token = JSON.parse(localStorage.getItem('eazl-token'));
-            console.warn('xx token', localToken)
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json")
-                .set("Authorization", "JWT " + localToken.token);
-
-            this.http.post(pathUrl, {query: graphQLquery}, {headers})
-            .subscribe(
-                res => {
-
-                    if (this.sessionDebugging) {
-                        console.log('Tributary Data', {res})
-                    };
-
-                    resolve(res);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error Get Tributary Inspect FAILED', {err});
-                    };
-
-                    reject(err);
-                }
-            )
-        });
-    }
-
     getTributaryInspect(source: any): Promise<any> {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
