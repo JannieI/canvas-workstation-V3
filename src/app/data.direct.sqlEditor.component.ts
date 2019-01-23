@@ -309,11 +309,10 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.spinner = false;
                 this.message = 'Fields loaded';
             })
-            .catch(err => {
-                console.warn('xx err', err)
+            .catch(errorMessage => {
                 this.spinner = false;
                 this.errorMessage = 'Error getting fields from server (maybe check login or permissions): '
-                    + err.message;
+                    + errorMessage;
             });
     }
 
