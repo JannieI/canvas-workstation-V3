@@ -4601,7 +4601,7 @@ export class GlobalVariableService {
                         console.log('Error saveData FAILED', {err});
                     };
 
-                    reject(err);
+                    reject(err.message);
                 }
             )
         });
