@@ -254,11 +254,9 @@ export class DataDirectSQLEditorComponent implements OnInit {
                                 sum: null
                             }
                         );
-
-
-                    }
+                    };
                 };
-
+console.log('xx this.selectedDatasource.metaDataFields', this.selectedDatasource.metaDataFields)
                 // Show the results
                 this.showPreview = true;
                 this.spinner = false;
