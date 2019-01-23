@@ -387,25 +387,8 @@
             width: 98%;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     .gridData {
-        border: 1px solid gray;
-        border-radius: 4px;
+        border: none;
         grid-column-start: 9;
         /* autoprefixer: off */
         grid-column-end: 21;

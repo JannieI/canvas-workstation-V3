@@ -19,9 +19,13 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
-                                    Add / Edit a Datasource from a SQL Database: identify
-                                    the Connection, type the SQL string, and see the results
-                                    with GO.
+                                    Add / Edit a Datasource for a SQL Database: specify the 
+                                    database information and credentials.  Then type the SQL
+                                    statement, and see the results by clicking GO.  The Explore
+                                    button shows a list of Tables.  Select a Table to see a 
+                                    list of Fields.  Once satisfied with the SQL statement,
+                                    provide a Datasource name and description and click Add 
+                                    (or Save).
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
@@ -152,7 +156,7 @@
                             placeholder="Tables in the DB"
                             >
                             <option *ngFor="let row of tables">
-                                {{ row }}
+                                {{ row <clr-icon shape="plus" size="16"></clr-icon> }}
                                 <clr-icon shape="plus" size="16"></clr-icon>
                             </option>
                         </select>
@@ -204,7 +208,7 @@
                     </span>
 
                     <div class="gridData" *ngIf="showPreview">
-                        <clr-datagrid class="gridPreviewData">
+                        <clr-datagrid>
 
                             <clr-dg-column *ngFor="let row of selectedDatasource.dataFields">
                                 {{ row }}
