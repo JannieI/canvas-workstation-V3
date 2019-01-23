@@ -13642,10 +13642,10 @@ console.warn('xx ds perm', dp);
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             res.data);
                     };
-                    resolve(res.data);
+                    resolve(res);
                 },
                 err => {
-                    reject(err.message  || err.sqlMessage);
+                    reject(err.message  ||  err.sqlMessage);
                 }
             )
         });
@@ -13659,14 +13659,14 @@ console.warn('xx ds perm', dp);
         sqlStatement: string,
         port: string,
         username: string,
-        password: string): Promise<any> {
+        password: string): Promise<CanvasHttpResponse> {
         // Description: Executes a SQL Statement and returns an Array of data
         if (this.sessionDebugging) {
             console.log('%c        Global-Variables getExecQuery ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        return new Promise<any>((resolve, reject) => {
+        return new Promise<CanvasHttpResponse>((resolve, reject) => {
 
             // Get data
             let pathUrl: string = 'execQuery?' +
@@ -13690,9 +13690,9 @@ console.warn('xx ds perm', dp);
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getExecQuery 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            res.data);
+                            res.data.length);
                     };
-                    resolve(res.data);
+                    resolve(res);
                 },
                 err => {
                     reject(err.message  || err.sqlMessage);

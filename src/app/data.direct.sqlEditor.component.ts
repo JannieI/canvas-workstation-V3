@@ -226,10 +226,10 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.selectedDatasource.port, 
             this.selectedDatasource.username, 
             this.selectedDatasource.password).then(res => {
-
+                console.log('xx res', res, res.data)
                 // Fill the data
-                this.fileData = res.slice(0,10);
-                this.fileDataFull = res;
+                this.fileData = res.data.slice(0,10);
+                this.fileDataFull = res.data;
 
                 // Construct a list of field name / column headings from the data
                 // For a SQL statement, this cannot be done on Server
@@ -237,7 +237,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.selectedDatasource.dataFields = [];
                 this.selectedDatasource.metaDataFields = [];
 
-                if (res.length > 0) {
+                if (res.data.length > 0) {
                     for(var key in res[0]) {
                         this.selectedDatasource.dataFields.push(key);
 
