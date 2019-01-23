@@ -3297,7 +3297,7 @@ export class GlobalVariableService {
                         resolve(res);
 
                     })
-                    .catch(err => reject(err))
+                    .catch(err => reject(err.message))
             })
         } else {
             return new Promise<Dashboard[]>((resolve, reject) => {
