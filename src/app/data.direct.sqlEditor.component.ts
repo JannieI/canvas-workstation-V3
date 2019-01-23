@@ -61,6 +61,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
     serverTypes: TributaryServerType[];
     showPreview: boolean = false;
     spinner: boolean = false;
+    startupHelp: boolean = true;
     tables: string[];
 
 	constructor(
@@ -167,6 +168,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.message = '';
         this.showPreview = false;
         this.canSave = false;
+        this.startupHelp = false;
 
         // Show user
         this.spinner = true;
@@ -218,6 +220,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.message = '';
         this.showPreview = false;
         this.canSave = false;
+        this.startupHelp = false;
 
         // Show user
         this.spinner = true;
@@ -272,6 +275,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.errorMessage = '';
         this.message = '';
         this.fieldsInTable = [];
+        this.startupHelp = false;
 
         // Show user
         this.spinner = true;
@@ -330,6 +334,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.errorMessage = '';
         this.message = '';
         this.savedMessage = '';
+        this.startupHelp = false;
 
         // Save changes to the Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');

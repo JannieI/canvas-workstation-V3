@@ -217,6 +217,13 @@
         grid-row-start: 17;
         grid-row-end: 18;
     }
+    .gridHelp {
+        grid-column-start: 11;
+        /* autoprefixer: off */
+        grid-column-end: 18;
+        grid-row-start: 17;
+        grid-row-end: 19;
+    }
 
     .gridTablesTitle {
         grid-column-start: 1;

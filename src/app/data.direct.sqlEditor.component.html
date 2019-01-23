@@ -206,6 +206,9 @@
                     <span class="spinner spinner-inline gridSpinner" *ngIf="spinner">
                         Loading...
                     </span>
+                    <div class="gridHelp" *ngIf="startupHelp">
+                        Enter database info and credentials.  Add SQL statement and click GO.
+                    </div>
 
                     <div class="gridData" *ngIf="showPreview">
                         <clr-datagrid>
