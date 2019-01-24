@@ -226,6 +226,8 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.selectedDatasource.port, 
             this.selectedDatasource.username, 
             this.selectedDatasource.password).then(res => {
+
+                console.log('xx meta', res.metaData)
                 let dataArray: any = res.data
                 // Fill the data
                 this.fileData = dataArray.slice(0,10);

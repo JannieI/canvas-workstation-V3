@@ -668,6 +668,13 @@ export class Datasource {
 
 }
 
+export class DatasourceHistorySchema {
+    _id?: string;                           // Mongo ID (read only)
+    createdBy: string;                      // UserID who created this record
+    createdOn: Date;                        // When Created
+    datasource: Datasource;                 // Full DS
+}
+
 export class DatasourceSchedule {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
