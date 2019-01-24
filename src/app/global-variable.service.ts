@@ -13702,6 +13702,21 @@ console.warn('xx ds perm', dp);
 
     }
 
+    getCurrentDashboardAndTab(id: number, dashboardTabID: number, datasourceIDexclude: string = "") {
+        // Get the data for the given Dashboard and Tab.  Load 
+        // - Dashboard template
+        // - All Tabs for this D
+        // - All Widgets for the given Tab
+        // - All Datasources used by the above Widggets
+        //   Optionally exclude comman separated list of Datasource IDs in datasourceIDexclude
+        // Clear the CurrentXXX vars and reload with the info read from the DB
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDashboardAndTab ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardTabID}, {datasourceIDexclude});
+        };
+    };
+
     tributaryCreateSession(sampleSize: number = null) {
         // Create a new Tributary Session
         // - sampleSize = optional nr of rows to return
