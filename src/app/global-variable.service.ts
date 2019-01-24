@@ -13702,19 +13702,66 @@ console.warn('xx ds perm', dp);
 
     }
 
-    getCurrentDashboardAndTab(id: number, dashboardTabID: number, datasourceIDexclude: string = "") {
-        // Get the data for the given Dashboard and Tab.  Load 
+    getCurrentDashboardAndTab(
+        id: number, 
+        dashboardTabID: number, 
+        datasourceIDexclude: string = ""): Promise<string> {
+        // Get the data that is DISPLAYED for the given Dashboard and Tab.  Load:
         // - Dashboard template
         // - All Tabs for this D
-        // - All Widgets for the given Tab
-        // - All Datasources used by the above Widggets
-        //   Optionally exclude comman separated list of Datasource IDs in datasourceIDexclude
-        // Clear the CurrentXXX vars and reload with the info read from the DB
+        // - All Widgets for the given Tab (not the rest)
+        // - All Datasources used by the above Widgets
+        //   Optionally exclude comma separated list of Datasource IDs in datasourceIDexclude
+        //   as these are already loaded.
+        //
+        // Clear the CurrentXXX vars and reload with the info read from the DB.
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCurrentDashboardAndTab ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {dashboardTabID}, {datasourceIDexclude});
         };
+        return new Promise<string>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+
+                let pathUrl: string = 'canvasCurrentDashboard?id=68&dashboardTabID=175&datasourceIDexclude=1,2';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+console.log('xx finalUrl', finalUrl)
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        console.log('xx data', res.data.dashboards)
+                        // this.datasources = res.data;
+                        // this.isDirtyDatasources = false;
+                        // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDatasources 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                "Current Dashboard retrieved")
+                        };
+
+                        resolve("success");
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
+            } else {
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDatasources 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                };
+
+                resolve("success");
+            }
+        });
     };
 
     tributaryCreateSession(sampleSize: number = null) {
