@@ -214,6 +214,18 @@ export class DataDirectSQLEditorComponent implements OnInit {
         // Show user
         this.spinner = true;
 
+
+        // TEST
+        // this.globalVariableService.getCurrentDashboardAndTab(82, 175, "1,2")
+        //     .then(res => {
+        //         console.log('xx SQL ED done')
+        //     })
+        //     .catch(errorMessage => {
+        //         console.log('xx SQL Ed err', this.errorMessage)
+        //     });
+        
+
+
         // Set up specification for Connector
         this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
         

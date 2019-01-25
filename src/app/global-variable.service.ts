@@ -13723,12 +13723,11 @@ console.warn('xx ds perm', dp);
         return new Promise<string>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+            // if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
+            //     this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
-                let pathUrl: string = 'canvasCurrentDashboard?id=68&dashboardTabID=175&datasourceIDexclude=1,2';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-console.log('xx finalUrl', finalUrl)
+                let pathUrl: string = '/canvasCurrentDashboard?id=68&dashboardTabID=175&datasourceIDexclude=1,2';
+                let finalUrl: string = this.canvasServerURI + pathUrl;
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res  => {
                         if(res.statusCode != 'success') {
@@ -13736,7 +13735,6 @@ console.log('xx finalUrl', finalUrl)
 							return;
                         };
 
-                        console.log('xx data', res.data.dashboards)
                         // this.datasources = res.data;
                         // this.isDirtyDatasources = false;
                         // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -13753,14 +13751,14 @@ console.log('xx finalUrl', finalUrl)
                         reject(err.message)
                     }
                 );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDatasources 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
-                };
+            // } else {
+            //     if (this.sessionDebugging) {
+            //         console.log('%c    Global-Variables getDatasources 2',
+            //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+            //     };
 
-                resolve("success");
-            }
+            //     resolve("success");
+            // }
         });
     };
 
