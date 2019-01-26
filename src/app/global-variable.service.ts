@@ -13702,7 +13702,7 @@ console.warn('xx ds perm', dp);
 
     }
 
-    getCurrentDashboardAndTab(
+    getCurrentDashboardAndTabNEW(
         id: number, 
         dashboardTabID: number, 
         datasourceIDexclude: string = ""): Promise<string> {
