@@ -4285,7 +4285,6 @@ export class GlobalVariableService {
                             return;
                         };
 
-
                         let newdSet: Dataset = {
                             id: datasetID,
                             datasourceID: datasourceID,
@@ -7531,7 +7530,7 @@ export class GlobalVariableService {
                         this.currentDatasourcePermissions = res;
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDatasourcePermissions 1',
+                            console.log('%c    Global-Variables getCurrentDatasourcePermissions 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                                 {datasourceID}, {res})
                         };
@@ -7548,7 +7547,7 @@ export class GlobalVariableService {
                 this.currentDatasourcePermissions = returnData;
 
                 if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDatasourcePermissions 2',
+                    console.log('%c    Global-Variables getCurrentDatasourcePermissions 2',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                         {datasourceID})
                 };
@@ -13703,8 +13702,8 @@ console.warn('xx ds perm', dp);
     }
 
     getCurrentDashboardAndTabNEW(
-        id: number, 
-        dashboardTabID: number, 
+        id: number,
+        dashboardTabID: number,
         datasourceIDexclude: string = ""): Promise<string> {
         // Get the data that is DISPLAYED for the given Dashboard and Tab.  Load:
         // - Dashboard template
@@ -13740,9 +13739,72 @@ console.warn('xx ds perm', dp);
                         // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDatasources 1',
+                            console.log('%c    Global-Variables getCurrentDashboardAndTabNEW 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                                 "Current Dashboard retrieved")
+                        };
+
+                        resolve("success");
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
+            // } else {
+            //     if (this.sessionDebugging) {
+            //         console.log('%c    Global-Variables getDatasources 2',
+            //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+            //     };
+
+            //     resolve("success");
+            // }
+        });
+    };
+
+    saveDatasourceNEW(datasourceInput: Datasource, datasetInput: Dataset, clientDataInput: any): Promise<string> {
+        // Get the data that is DISPLAYED for the given Dashboard and Tab.  Load:
+        // - Dashboard template
+        // - All Tabs for this D
+        // - All Widgets for the given Tab (not the rest)
+        // - All Datasources used by the above Widgets
+        //   Optionally exclude comma separated list of Datasource IDs in datasourceIDexclude
+        //   as these are already loaded.
+        //
+        // Clear the CurrentXXX vars and reload with the info read from the DB.
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDatasourceNEW ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                datasourceInput.id);
+        };
+        return new Promise<string>((resolve, reject) => {
+
+            // Create Combo body
+            let body: any = {
+                "datasourceInput": datasourceInput,
+                "datasetInput": datasetInput,
+                "clientDataInput": clientDataInput
+             };
+
+             const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = '/canvasDatasource';
+            let finalUrl: string = this.canvasServerURI + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, body, {headers}).subscribe(
+                res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        // this.datasources = res.data;
+                        // this.isDirtyDatasources = false;
+                        // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables saveDatasourceNEW 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                "Datasource and related records saved")
                         };
 
                         resolve("success");

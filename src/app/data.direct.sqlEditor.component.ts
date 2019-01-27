@@ -462,33 +462,54 @@ export class DataDirectSQLEditorComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData)
-                .then(resData => {
+            this.globalVariableService.saveDatasourceNEW(
+                this.selectedDatasource,
+                newdDataset,
+                newData).then(resData => {
 
-                    newdDataset.url = 'data/' + resData.id.toString();
-                    this.globalVariableService.addDatasource(this.selectedDatasource).then(resDS => {
-                        newdDataset.datasourceID = resDS.id;
-                        this.globalVariableService.addDataset(newdDataset);
+                // Indicate to the user
+                this.canSave = false;
+                this.savedMessage = 'Datasource created';
 
-                    });
+                // Close form and open Transitions if requested
+                // if (action == 'Saved') {
+                //     this.formDataDirectSQLEditorClosed.emit(null);
 
-                    // Indicate to the user
-                    this.canSave = false;
-                    this.savedMessage = 'Datasource created';
+                // } else {
+                //     this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
+                // };
 
-                    // Close form and open Transitions if requested
-                    if (action == 'Saved') {
-                        this.formDataDirectSQLEditorClosed.emit(null);
+            })
+            .catch(errorMessage => {
+                this.errorMessage = 'Save failed - ' + errorMessage;
+            });            
+            // this.globalVariableService.addData(newData)
+            //     .then(resData => {
 
-                    } else {
-                        this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
+            //         newdDataset.url = 'data/' + resData.id.toString();
+            //         this.globalVariableService.addDatasource(this.selectedDatasource).then(resDS => {
+            //             newdDataset.datasourceID = resDS.id;
+            //             this.globalVariableService.addDataset(newdDataset);
 
-                    };
+            //         });
 
-                })
-                .catch(errorMessage => {
-                    this.errorMessage = 'Save failed - ' + errorMessage;
-                });
+            //         // Indicate to the user
+            //         this.canSave = false;
+            //         this.savedMessage = 'Datasource created';
+
+            //         // Close form and open Transitions if requested
+            //         if (action == 'Saved') {
+            //             this.formDataDirectSQLEditorClosed.emit(null);
+
+            //         } else {
+            //             this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
+
+            //         };
+
+            //     })
+            //     .catch(errorMessage => {
+            //         this.errorMessage = 'Save failed - ' + errorMessage;
+            //     });
         };
     }
 
