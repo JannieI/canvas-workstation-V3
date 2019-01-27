@@ -3178,7 +3178,7 @@ this.localWidget);
         // Returns the default Vega field type depending a given field types
         this.globalFunctionService.printToConsole(this.constructor.name,'defaultGraphTypeField', '@Start');
 
-        if (fieldType == 'string') {
+        if (fieldType == 'string'  ||  fieldType == ''  ||  fieldType == null) {
             if (typeOrName == 'name') {
                 return 'Ordinal';
             } else {

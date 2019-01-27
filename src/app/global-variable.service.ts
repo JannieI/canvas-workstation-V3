@@ -13057,8 +13057,6 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables datasourcePermissionsCheck ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
-
-
         // Assume no access
         let hasAccess: boolean = false;
         accessRequired = accessRequired.toLowerCase();
