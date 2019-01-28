@@ -962,7 +962,7 @@ export class GlobalVariableService {
 
         },
         {
-            serverType:'Microsoft SQL',
+            serverType:'MicrosoftSQL',
             driverName: 'mssql',    // "mssql+pyodbc", "mssql+pymssql"
             inspector: 'tributary.inspectors.sql:SqlInspector',
             connector: 'tributary.connectors.sql:SqlConnector',
@@ -1005,7 +1005,7 @@ export class GlobalVariableService {
             createdOn: null
         },
         {
-            serverType:'Microsoft SSAS',
+            serverType:'MicrosoftSSAS',
             driverName: 'Microsoft SSAS',
             inspector: 'tributary.inspectors...',
             connector: 'tributary.connectors...',
