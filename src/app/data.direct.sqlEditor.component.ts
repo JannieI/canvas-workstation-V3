@@ -99,7 +99,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 refreshedBy: '',
                 refreshedServerOn: null,
                 cacheResultsOnServer: true,
-                serverExpiryDateTime: null,
+                serverExpiryDateTime: this.globalVariableService.dateAdd(new Date, 'days', 2),
                 unRefreshable: true,
                 cacheResultsLocal: false,
                 oldnessMaxPeriodInterval: '',
@@ -150,7 +150,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 nrRecordsReturned: 0,
                 sourceLocation: ''
             };
-
+console.log('xx add Dt', this.selectedDatasource.serverExpiryDateTime)
             this.selectedField = 'MySQL';
         } else {
             this.clickExplore();
