@@ -14076,13 +14076,29 @@ console.warn('xx ds perm', dp);
         var checkRollover = function() { if(ret.getDate() != date.getDate()) ret.setDate(0);};
         switch(interval.toLowerCase()) {
             case 'year'   :  ret.setFullYear(ret.getFullYear() + units); checkRollover();  break;
+            case 'year2'   :  ret.setFullYear(ret.getFullYear() + units); checkRollover();  break;
+
             case 'quarter':  ret.setMonth(ret.getMonth() + 3*units); checkRollover();  break;
+            case 'quarters':  ret.setMonth(ret.getMonth() + 3*units); checkRollover();  break;
+
             case 'month'  :  ret.setMonth(ret.getMonth() + units); checkRollover();  break;
+            case 'months'  :  ret.setMonth(ret.getMonth() + units); checkRollover();  break;
+
             case 'week'   :  ret.setDate(ret.getDate() + 7*units);  break;
+            case 'weeks'   :  ret.setDate(ret.getDate() + 7*units);  break;
+
             case 'day'    :  ret.setDate(ret.getDate() + units);  break;
+            case 'days'    :  ret.setDate(ret.getDate() + units);  break;
+
             case 'hour'   :  ret.setTime(ret.getTime() + units*3600000);  break;
+            case 'hours'   :  ret.setTime(ret.getTime() + units*3600000);  break;
+
             case 'minute' :  ret.setTime(ret.getTime() + units*60000);  break;
+            case 'minutes' :  ret.setTime(ret.getTime() + units*60000);  break;
+            
             case 'second' :  ret.setTime(ret.getTime() + units*1000);  break;
+            case 'seconds' :  ret.setTime(ret.getTime() + units*1000);  break;
+            
             default       :  ret = undefined;  break;
         };
 

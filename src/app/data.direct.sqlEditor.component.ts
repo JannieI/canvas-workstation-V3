@@ -99,7 +99,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 refreshedBy: '',
                 refreshedServerOn: null,
                 cacheResultsOnServer: true,
-                serverExpiryDateTime: this.globalVariableService.dateAdd(new Date, 'days', 2),
+                serverExpiryDateTime: this.globalVariableService.dateAdd(today, 'day', 2),
                 unRefreshable: true,
                 cacheResultsLocal: false,
                 oldnessMaxPeriodInterval: '',
