@@ -13686,7 +13686,6 @@ console.warn('xx ds perm', dp);
                 "&datasourceID=" + datasourceID +
                 "&nrRowsToReturn=" + nrRowsToReturn;
             let finalUrl: string = this.canvasServerURI + '/clientData/' + pathUrl;
-console.log('xx finalUrl', finalUrl)
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
