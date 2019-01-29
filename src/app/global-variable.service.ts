@@ -13656,8 +13656,17 @@ console.warn('xx ds perm', dp);
         sqlStatement: string,
         port: string,
         username: string,
-        password: string): Promise<CanvasHttpResponse> {
+        password: string,
+        datasourceID: number = null,
+        nrRowsToReturn: number = 0): Promise<CanvasHttpResponse> {
         // Description: Executes a SQL Statement and returns an Array of data
+        // Input: 
+        // - serverType = type of DB, ie MySQL, MicrosoftSQL, etc
+        // - serverName, databaseName, port, username, password = DB connection string & credentials
+        // - sqlStatement = SQL Statement
+        // - datasourceID = Optional DS-id if clientData must be saved (cached)
+        // - nrRowsToReturn = Optional number of rows to return, 0 = all
+
         if (this.sessionDebugging) {
             console.log('%c        Global-Variables getExecQuery ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
@@ -13673,9 +13682,11 @@ console.warn('xx ds perm', dp);
                 "&sqlStatement=" + sqlStatement +
                 "&port=" + port +
                 "&username=" + username +
-                "&password=" + password;
+                "&password=" + password +
+                "&datasourceID=" + datasourceID +
+                "&nrRowsToReturn=" + nrRowsToReturn;
             let finalUrl: string = this.canvasServerURI + '/clientData/' + pathUrl;
-
+console.log('xx finalUrl', finalUrl)
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
@@ -14098,7 +14109,7 @@ console.warn('xx ds perm', dp);
             
             case 'second' :  ret.setTime(ret.getTime() + units*1000);  break;
             case 'seconds' :  ret.setTime(ret.getTime() + units*1000);  break;
-            
+
             default       :  ret = undefined;  break;
         };
 
