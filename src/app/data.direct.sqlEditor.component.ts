@@ -237,7 +237,9 @@ console.log('xx add Dt', this.selectedDatasource.serverExpiryDateTime)
             this.selectedDatasource.dataSQLStatement,
             this.selectedDatasource.port, 
             this.selectedDatasource.username, 
-            this.selectedDatasource.password).then(res => {
+            this.selectedDatasource.password,
+            null,
+            10).then(res => {
 
                 console.log('xx meta', res.metaData)
                 let dataArray: any = res.data
