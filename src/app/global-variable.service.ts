@@ -13782,10 +13782,10 @@ console.warn('xx ds perm', dp);
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables saveDatasourceNEW ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                datasourceInput.id);
+                datasourceInput.name);
         };
         return new Promise<string>((resolve, reject) => {
-
+console.log('xx 1')
             // Create Combo body
             let body: any = {
                 "datasourceInput": datasourceInput,
@@ -13798,9 +13798,12 @@ console.warn('xx ds perm', dp);
 
             let pathUrl: string = '/canvasDatasource';
             let finalUrl: string = this.canvasServerURI + pathUrl;
+console.log('xx 2')
+
             this.http.post<CanvasHttpResponse>(finalUrl, body, {headers}).subscribe(
                 res  => {
-                        if(res.statusCode != 'success') {
+console.log('xx 3')
+if(res.statusCode != 'success') {
                             reject(res.message);
 							return;
                         };

@@ -241,7 +241,7 @@ console.log('xx add Dt', this.selectedDatasource.serverExpiryDateTime)
             null,
             10).then(res => {
 
-                console.log('xx meta', res.metaData)
+                console.log('xx meta', res.metaData, res.data.length)
                 let dataArray: any = res.data
                 // Fill the data
                 this.fileData = dataArray.slice(0,10);
