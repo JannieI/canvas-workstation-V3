@@ -1016,14 +1016,13 @@ export class GlobalVariableService {
         }
     ];
 
-    // Environment setting: Server Url, etc
+
+    // Environment settings: Server Url, etc read from external
     ENVCanvasServerList: {
         serverName: string,
         serverHostURI: string
     }[] = environment.ENVCanvasServerList;
     ENVStartupCanvasServerName: string = environment.ENVStartupCanvasServerName;
-    currentCanvasServerURI: string = '';
-    // currentCanvasServerName: string = 'Json-Server';
     ENVCanvasDatabaseLocalUrlS1: string = environment.ENVCanvasDatabaseLocalUrlS1;
     ENVCanvasDatabaseLocalUrlS2: string = environment.ENVCanvasDatabaseLocalUrlS2;
     ENVCanvasDatabaseLocalUrlS3: string = environment.ENVCanvasDatabaseLocalUrlS3;
@@ -13368,9 +13367,6 @@ console.warn('xx ds perm', dp);
                                     );
                                 };
 
-                                // this.currentCanvasServerName = givenCanvasServerName;
-                                // this.currentCanvasServerURI = givenCanvasServerURI;
-
                                 // Create Var with data
                                 let localCanvasUser =
                                     {
@@ -13844,7 +13840,7 @@ if(res.statusCode != 'success') {
                 {sampleSize});
         };
 
-        let pathUrl: string = this.currentCanvasServerURI +
+        let pathUrl: string = this.canvasServerURI +
             'canvas/datasources/sessions/create-session/';
 
         return new Promise<any>((resolve, reject) => {
@@ -13967,7 +13963,7 @@ if(res.statusCode != 'success') {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
         };
 
-        let pathUrl: string = this.currentCanvasServerURI + 'canvas/enqueue/';
+        let pathUrl: string = this.canvasServerURI + 'canvas/enqueue/';
 
         return new Promise<any>((resolve, reject) => {
 
@@ -14006,7 +14002,7 @@ if(res.statusCode != 'success') {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
         };
 
-        let pathUrl: string = this.currentCanvasServerURI + 'canvas/inspect/';
+        let pathUrl: string = this.canvasServerURI + 'canvas/inspect/';
 
         return new Promise<any>((resolve, reject) => {
 

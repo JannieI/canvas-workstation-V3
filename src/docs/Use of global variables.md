@@ -30,93 +30,13 @@
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
     widgetTemplateInner: any = widgetTemplateInner;
-    serverTypes: TributaryServerType[] =
-    [
-        {
-            serverType: 'MySQL',
-            driverName: 'mysql',
-            inspector: 'tributary.inspectors.sql:SqlInspector',
-            connector: 'tributary.connectors.sql:SqlConnector',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
+    serverTypes: TributaryServerType[] = [ ...]
 
-        },
-        {
-            serverType: 'PostgresSQL',
-            driverName: 'postgresql',
-            inspector: 'tributary.inspectors.sql:SqlInspector',
-            connector: 'tributary.connectors.sql:SqlConnector',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-
-        },
-        {
-            serverType:'MicrosoftSQL',
-            driverName: 'mssql',    // "mssql+pyodbc", "mssql+pymssql"
-            inspector: 'tributary.inspectors.sql:SqlInspector',
-            connector: 'tributary.connectors.sql:SqlConnector',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-
-        },
-        {
-            serverType:'SQLite',
-            driverName: 'sqlite',
-            inspector: 'tributary.inspectors.sql:SqlInspector',
-            connector: 'tributary.connectors.sql:SqlConnector',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-
-        },
-        {
-            serverType:'Oracle',
-            driverName: 'oracle',
-            inspector: 'tributary.inspectors.sql:SqlInspector',
-            connector: 'tributary.connectors.sql:SqlConnector',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-
-        },
-        {
-            serverType:'Mongo',
-            driverName: 'mongo',
-            inspector: 'tributary.inspectors.mongodb:MongoDBInspector',
-            connector: 'tributary.connectors.mongodb:MongoDBConnector',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-        },
-        {
-            serverType:'MicrosoftSSAS',
-            driverName: 'Microsoft SSAS',
-            inspector: 'tributary.inspectors...',
-            connector: 'tributary.connectors...',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-        }
-    ];
+    currentCanvasServerURI: string = '';
 
     // Environment setting: Server Url, etc
-    ENVCanvasServerList: {
-        serverName: string,
-        serverHostURI: string
-    }[] = environment.ENVCanvasServerList;
+    ENVCanvasServerList: 
     ENVStartupCanvasServerName: string = environment.ENVStartupCanvasServerName;
-    currentCanvasServerURI: string = '';
-    // currentCanvasServerName: string = 'Json-Server';
     ENVCanvasDatabaseLocalUrlS1: string = environment.ENVCanvasDatabaseLocalUrlS1;
     ENVCanvasDatabaseLocalUrlS2: string = environment.ENVCanvasDatabaseLocalUrlS2;
     ENVCanvasDatabaseLocalUrlS3: string = environment.ENVCanvasDatabaseLocalUrlS3;
