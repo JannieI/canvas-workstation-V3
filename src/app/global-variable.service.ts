@@ -1041,9 +1041,10 @@ export class GlobalVariableService {
     // User
     // *********************************************************************************
 
-    // User ID info - stored locally and used to login / verify
+    // Current Canvas Server & User info - stored locally and used to login / verify
     canvasServerName: string = environment.ENVStartupCanvasServerName;
     currentUserID: string = '';
+    currentUser: CanvasUser;                            // Current logged in user
     canvasServerURI: string = '';
     currentCompany: string = '';
     currentToken: string = '';
@@ -1076,9 +1077,6 @@ export class GlobalVariableService {
     };
 
     // Company Profile (and defaults)
-
-    // Current User Profile
-    currentUser: CanvasUser;                            // Current logged in user
 
 
     // Canvas-related info and Data
@@ -1163,12 +1161,13 @@ export class GlobalVariableService {
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     isDirtyBackgroundColors: boolean = true;
     isDirtyBackgroundColorsDefault: boolean = true;
+    isDirtyCanvasAuditTrails: boolean = true;
     isDirtyCanvasComments: boolean = true;
     isDirtyCanvasGroups: boolean = true;
     isDirtyCanvasMessages: boolean = true;
     isDirtyCanvasSettings: boolean = true;
     isDirtyCanvasTasks: boolean = true;
-    isDirtyCanvasAuditTrails: boolean = true;
+    isDirtyCanvasUsers: boolean = true;
     isDirtyContainerStyles: boolean = true;
     isDirtyDashboardPermissions: boolean = true;
     isDirtyDashboards: boolean = true;
@@ -1196,7 +1195,6 @@ export class GlobalVariableService {
     isDirtystatusBarMessageLogs: boolean = true;
     isDirtyTransformations: boolean = true;
     isDirtyUserPaletteButtonBar: boolean = true;
-    isDirtyUsers: boolean = true;
     isDirtyWidgetCheckpoints: boolean = true;
     isDirtyWidgets: boolean = true;
     isDirtyWidgetGraphs: boolean = true;
@@ -1365,60 +1363,6 @@ export class GlobalVariableService {
                 }
         ))));
         });
-    }
-
-    refreshAllInfo(dashboardID: number, dashboardTabID: number) {
-        // Refreshes all info related to current D
-        console.log('%c    Global-Variables refreshAllInfo D,T id = ',
-            "color: black; background: lightgray; font-size: 10px",
-            {dashboardID}, {dashboardTabID})
-
-        console.log('refreshAllInfo FIX DS ids that are hardcoded ...')
-        // Load Dashboard Themes
-        this.getDashboardThemes();
-
-		// Load the current Dashboard, and Optional template
-        this.getCurrentDashboard(dashboardID);
-
-		// Load the current DashboardTab
-        this.getCurrentDashboardTabs(dashboardID)
-
-        // Load Dashboard Schedules
-        this.getCurrentDashboardSchedules(dashboardID);
-
-        // Load Dashboard Tags
-        this.getCurrentDashboardTags(dashboardID);
-
-        // Load Dashboard Permissions
-        this.getCurrentDashboardPermissions(dashboardID);
-
-        // Load Dashboard Snapshots
-        this.getCurrentDashboardSnapshots(dashboardID);
-
-        // Load Dashboard Templates
-        this.getDashboardTemplates();
-
-        // Load Current Datasources
-        this.getCurrentDatasources(dashboardID)
-
-        // Load DatTransformationsasources
-        this.getTransformations();
-
-        // Load Current DatTransformationsasources
-        this.getCurrentTransformations(1);
-
-        // Load DataQualityIssues
-        this.getDataQualityIssues();
-
-        // Load Current DataQualityIssue
-        this.getCurrentDataQualityIssues(1);
-
-        // Load DatasourcePermissions
-        this.getDatasourcePermissions();
-
-        // Load Current DatasourcePermissions
-        this.getCurrentDatasourcePermissions(1);
-
     }
 
     actionWebSocket(webSocketMessage: WebSocketMessage) {
@@ -10127,7 +10071,7 @@ export class GlobalVariableService {
         return new Promise<CanvasUser[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.canvasUsers.length == 0)  ||  (this.isDirtyUsers) ) {
+            if ( (this.canvasUsers.length == 0)  ||  (this.isDirtyCanvasUsers) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
                 let pathUrl: string = 'canvasUsers';
@@ -10140,7 +10084,7 @@ export class GlobalVariableService {
                         };
 
                         this.canvasUsers = res.data;
-                        this.isDirtyUsers = false;
+                        this.isDirtyCanvasUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                         // Set Default to false
