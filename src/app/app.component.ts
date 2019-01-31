@@ -4420,17 +4420,6 @@ console.log('xx action', action)
         this.showModalDataDictionary = true;
     }
 
-    clickMenuBusinessGlossary() {
-        // Shows Data Dictionary
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuBusinessGlossary', '@Start');
-
-        if (!this.menuOptionClickPreAction()) {
-            return;
-        };
-
-        this.showModalBusinessGlossary = true;
-    }
-
     clickMenuDataSummary() {
         // Shows Data Summary
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSummary', '@Start');

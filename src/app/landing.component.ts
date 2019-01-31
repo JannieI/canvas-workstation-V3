@@ -57,7 +57,7 @@ export class LandingComponent implements OnInit {
 		this.globalVariableService.getDataCachingTable();
 
 		// Load D
-		this.globalVariableService.getDashboards().then(i => {
+		this.globalVariableService.getDashboards().then(readD => {
 			// Sample Dashboards
 			this.globalVariableService.getDashboardSamples().then(sD => {
 				this.sampleDashboards = sD;
