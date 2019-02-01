@@ -391,7 +391,7 @@ export class DataDirectFileCSVComponent implements OnInit {
                 datasourceFilterForThisDashboard: false,
                 accessType: 'Private',
                 cacheResultsOnServer: true,
-                serverExpiryDateTime: null,
+                serverExpiryDateTime: this.globalVariableService.dateAdd(today, 'day', 2),
                 unRefreshable: true,
                 cacheResultsLocal: false,
                 oldnessMaxPeriodInterval: '',

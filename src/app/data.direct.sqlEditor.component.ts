@@ -150,7 +150,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 nrRecordsReturned: 0,
                 sourceLocation: ''
             };
-console.log('xx add Dt', this.selectedDatasource.serverExpiryDateTime)
             this.selectedField = 'MySQL';
         } else {
             this.clickExplore();
@@ -173,11 +172,11 @@ console.log('xx add Dt', this.selectedDatasource.serverExpiryDateTime)
 
         // Get list of Tables
         this.globalVariableService.getListTables(
-            this.selectedDatasource.serverType, 
-            this.selectedDatasource.serverName, 
-            this.selectedDatasource.databaseName, 
-            this.selectedDatasource.port, 
-            this.selectedDatasource.username, 
+            this.selectedDatasource.serverType,
+            this.selectedDatasource.serverName,
+            this.selectedDatasource.databaseName,
+            this.selectedDatasource.port,
+            this.selectedDatasource.username,
             this.selectedDatasource.password).then(res => {
 
                 this.tables = [''];
@@ -223,20 +222,20 @@ console.log('xx add Dt', this.selectedDatasource.serverExpiryDateTime)
         //     .catch(errorMessage => {
         //         console.log('xx SQL Ed err', this.errorMessage)
         //     });
-        
+
 
 
         // Set up specification for Connector
         this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
-        
+
         // Execute Query and return data
         this.globalVariableService.getExecQuery(
-            this.selectedDatasource.serverType, 
-            this.selectedDatasource.serverName, 
-            this.selectedDatasource.databaseName, 
+            this.selectedDatasource.serverType,
+            this.selectedDatasource.serverName,
+            this.selectedDatasource.databaseName,
             this.selectedDatasource.dataSQLStatement,
-            this.selectedDatasource.port, 
-            this.selectedDatasource.username, 
+            this.selectedDatasource.port,
+            this.selectedDatasource.username,
             this.selectedDatasource.password,
             null,
             10).then(res => {
@@ -280,7 +279,7 @@ console.log('xx add Dt', this.selectedDatasource.serverExpiryDateTime)
                 // Can Add now
                 this.canSave = true;
 
-            }) 
+            })
             .catch(errorMessage => {
                 this.spinner = false;
                 this.errorMessage = 'Error in query execution (maybe check login or permissions) '
@@ -301,15 +300,15 @@ console.log('xx add Dt', this.selectedDatasource.serverExpiryDateTime)
 
         // Show user
         this.spinner = true;
-        
+
         // Get list of Tables
         this.globalVariableService.getListFields(
-            this.selectedDatasource.serverType, 
-            this.selectedDatasource.serverName, 
-            this.selectedDatasource.databaseName, 
+            this.selectedDatasource.serverType,
+            this.selectedDatasource.serverName,
+            this.selectedDatasource.databaseName,
             ev.target.value,                    // Selected Table Name
-            this.selectedDatasource.port, 
-            this.selectedDatasource.username, 
+            this.selectedDatasource.port,
+            this.selectedDatasource.username,
             this.selectedDatasource.password).then(res => {
 
                 this.fields = [''];
@@ -338,7 +337,7 @@ console.log('xx add Dt', this.selectedDatasource.serverExpiryDateTime)
         this.fieldsInTable = [];
         this.startupHelp = false;
 
-        this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement + 
+        this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement +
             '   ' + ev.target.value;
         this.message = 'Field added to SQL Statement';
     }
@@ -484,7 +483,7 @@ console.log('xx add Dt', this.selectedDatasource.serverExpiryDateTime)
             })
             .catch(errorMessage => {
                 this.errorMessage = 'Save failed - ' + errorMessage;
-            });            
+            });
             // this.globalVariableService.addData(newData)
             //     .then(resData => {
 
