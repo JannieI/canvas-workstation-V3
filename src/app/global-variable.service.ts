@@ -13740,10 +13740,26 @@ export class GlobalVariableService {
                         return;
                     };
 
+                    // Add to global vars
                     let datasourceAdded: Datasource = res.data.datasource;
                     let datasetsAdded: Dataset = res.data.datasets;
-                    let clientDataAdded: any = res.data.clientData;
 
+                    console.log('xx pre', this.datasources.length)
+                    if (datasourceAdded != null) {
+                        let datasourceIndex: number = this.datasources.findIndex(ds => ds.id == datasourceAdded.id);
+                        if (datasourceIndex >= 0) {
+                            this.datasources.push(datasourceAdded);
+                            console.log('xx post', this.datasources.length)
+                        };
+                    };
+                    if (datasetsAdded != null) {
+                        let datasetIndex: number = this.datasets.findIndex(ds => ds.id == datasetsAdded.id);
+                        if (datasetIndex >= 0) {
+                            this.datasets.push(datasetsAdded);
+                            console.log('xx post', this.datasets.length)
+                        };
+                    };
+                    
                     // this.datasources = res.data;
                     // this.isDirtyDatasources = false;
                     // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -13751,7 +13767,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables addDatasourceNEW 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            "Datasource and related records saved", datasourceAdded.id, datasetsAdded.id, clientDataAdded.id)
+                            "Datasource and related records saved", datasourceAdded.id)
                     };
 
                     resolve("success");
