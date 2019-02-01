@@ -120,50 +120,6 @@ export class DataDirectFileCSVComponent implements OnInit {
         this.reader.readAsBinaryString(inp.files[0]);
     }
 
-    // inspectFile(loadedFile) {
-    //     console.warn('  Begin inspectFile for ', loadedFile)
-
-    //     // Remember for loading
-    //     this.loadedFile = loadedFile;
-
-    //     // Set up specification for csv file type
-    //     let specification: any;
-    //     let lastFour: string = this.loadedFileName.slice(-4);
-
-    //     if (lastFour.toLowerCase() == '.csv') {
-    //         console.warn('xx Tributary Inspect csv')
-
-    //         specification = {
-    //             "source": {
-    //                 "inspector": "tributary.inspectors.csv:CsvInspector",
-    //                 "specification": {
-    //                     "content":  this.loadedFile.target.result
-    //                 }
-    //             }
-    //         };
-    //     } else {
-    //         this.errorMessage = 'Invalid file extension (must be .csv)';
-    //         return;
-    //     };
-
-    //     // Call Tributary
-    //     this.globalVariableService.getTributaryInspect(specification).then(res => {
-    //         // this.files = [];
-    //         console.warn('xx Tributary Inspect res', res)
-    //         res.forEach(row => {
-    //             // this.files.push(row.name);
-    //             // this.fileColumns.push(row.fields);
-    //         });
-
-    //         // if (this.files.length > 0) {
-    //         //     this.loadFileContent(0);
-    //         // };
-    //     })
-    //     .catch(err => {
-    //         this.errorMessage = err.message;
-    //     });
-    // }
-
     abortRead() {
         this.reader.abort();
         console.warn('xx abort')
