@@ -214,8 +214,12 @@ console.warn('xx ..', id, index)
         };
 
         // Add the new ones to the DB
-        this.selectedDashboardTags.forEach(dt =>
-                this.globalVariableService.addDashboardTag(dt)
+        this.selectedDashboardTags.forEach(dt => 
+            {
+                let newTag: DashboardTag = JSON.parse(JSON.stringify(dt));
+                newTag._id = null;
+                this.globalVariableService.addDashboardTag(newTag);
+            }
         );
 
         // Tell user

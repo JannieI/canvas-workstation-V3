@@ -5421,6 +5421,7 @@ export class GlobalVariableService {
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
+                    console.log('xx   ----  res ---- ', res)
                     if(res.statusCode != 'success') {
                         reject(res.message);
 						return;
