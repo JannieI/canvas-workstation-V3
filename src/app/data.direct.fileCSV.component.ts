@@ -292,52 +292,91 @@ export class DataDirectFileCSVComponent implements OnInit {
             this.selectedDatasource.dataFieldTypes = this.newDataFieldTypes;
 
             // Save DS to DB, but create a new dSet and new data records.
-            let ds: number[] = [];
-            let dSetID: number = 1;
-            for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
-                if(this.globalVariableService.datasets[i].datasourceID ==
-                    this.selectedDatasource.id) {
-                    ds.push(this.globalVariableService.datasets[i].id)
-                };
+            // let ds: number[] = [];
+            // let dSetID: number = 1;
+            // for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
+            //     if(this.globalVariableService.datasets[i].datasourceID ==
+            //         this.selectedDatasource.id) {
+            //         ds.push(this.globalVariableService.datasets[i].id)
+            //     };
+            // };
+            // if (ds.length > 0) {
+            //     dSetID = Math.max(...ds);
+            // };
+            // let datasetIndex: number = this.globalVariableService.datasets.findIndex(dSet => {
+            //     if (dSet.id == dSetID) {
+            //         return dSet;
+            //     };
+            // });
+            // let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
+            let updatedDataset: Dataset = {
+                id: this.selectedDatasource.id,
+                datasourceID: this.selectedDatasource.id,
+                sourceLocation: 'HTTP',
+                url: 'data',
+                folderName: '',
+                fileName: this.loadedFileName,
+                cacheServerStorageID: null,
+                cacheLocalStorageID: null,
+                isLocalDirty: null,
+                data: [],
+                dataRaw: []
             };
-            if (ds.length > 0) {
-                dSetID = Math.max(...ds);
+            let updatedDatasetIndex: number = this.globalVariableService.datasets
+                .findIndex(dset => dset.datasourceID == this.selectedDatasource.id);
+            if (updatedDatasetIndex >= 0) {
+                updatedDataset = this.globalVariableService.datasets[updatedDatasetIndex];
             };
-            let datasetIndex: number = this.globalVariableService.datasets.findIndex(dSet => {
-                if (dSet.id == dSetID) {
-                    return dSet;
-                };
-            });
-            let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
 
-            let dataID: number = -1;
-            let dataIndex: number = updatedDataset.url.indexOf('/');
-            if (dataIndex >= 0) {
-                dataID = +updatedDataset.url.substring(dataIndex + 1);
-            } else {
-                alert('Error in save Web - url has no / character');
-                return;
-            };
+            // let dataID: number = -1;
+            // let dataIndex: number = updatedDataset.url.indexOf('/');
+            // if (dataIndex >= 0) {
+            //     dataID = +updatedDataset.url.substring(dataIndex + 1);
+            // } else {
+            //     alert('Error in save Web - url has no / character');
+            //     return;
+            // };
             let updatedData: any = {
-                id: dataID,
+                id: this.selectedDatasource.id,
                 data: this.fileDataFull
             };
-
+console.log('xx data ', this.selectedDatasource, updatedDataset, updatedData)
             // Add Data, then dataset, then DS
-            this.globalVariableService.saveData(updatedData).then(resData => {
+            // this.globalVariableService.saveData(updatedData).then(resData => {
 
-                updatedDataset.url = 'data/' + dataID;
-                this.globalVariableService.saveDatasource(this.selectedDatasource).then(
-                    resDS => {
-                        updatedDataset.datasourceID = this.selectedDatasource.id;
-                        this.globalVariableService.saveDataset(updatedDataset);
-                });
+            //     updatedDataset.url = 'data/' + dataID;
+            //     this.globalVariableService.saveDatasource(this.selectedDatasource).then(
+            //         resDS => {
+            //             updatedDataset.datasourceID = this.selectedDatasource.id;
+            //             this.globalVariableService.saveDataset(updatedDataset);
+            //     });
+
+            //     // Indicate to the user
+            //     this.canSave = false;
+            //     this.savedMessage = 'Datasource updated';
+            // });
+
+            this.globalVariableService.addDatasourceNEW(
+                this.selectedDatasource,
+                updatedDataset,
+                updatedData).then(resData => {
 
                 // Indicate to the user
                 this.canSave = false;
-                this.savedMessage = 'Datasource updated';
-            });
+                this.savedMessage = 'Datasource created';
 
+                // Close form and open Transitions if requested
+                // if (action == 'Saved') {
+                //     this.formDataDirectSQLEditorClosed.emit(null);
+
+                // } else {
+                //     this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
+                // };
+
+            })
+            .catch(errorMessage => {
+                this.errorMessage = 'Save failed - ' + errorMessage;
+            });
         } else {
             // Add new one
             let newDatasource: Datasource = {
