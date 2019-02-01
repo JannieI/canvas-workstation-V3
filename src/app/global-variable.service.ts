@@ -13706,61 +13706,56 @@ export class GlobalVariableService {
         });
     };
 
-    saveDatasourceNEW(datasourceInput: Datasource, datasetInput: Dataset, clientDataInput: any): Promise<string> {
-        // Get the data that is DISPLAYED for the given Dashboard and Tab.  Load:
-        // - Dashboard template
-        // - All Tabs for this D
-        // - All Widgets for the given Tab (not the rest)
-        // - All Datasources used by the above Widgets
-        //   Optionally exclude comma separated list of Datasource IDs in datasourceIDexclude
-        //   as these are already loaded.
-        //
-        // Clear the CurrentXXX vars and reload with the info read from the DB.
+    addDatasourceNEW(datasourceInput: Datasource, datasetInput: Dataset, clientDataInput: any): Promise<string> {
+        // Add a new Datasource, given the following:
+        // - datasource
+        // - dataset
+        // - data
+        // The Server adds the records, with the correct IDs
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDatasourceNEW ...',
+            console.log('%c    Global-Variables addDatasourceNEW ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 datasourceInput.name);
         };
         return new Promise<string>((resolve, reject) => {
-console.log('xx 1')
+
             // Create Combo body
             let body: any = {
                 "datasourceInput": datasourceInput,
                 "datasetInput": datasetInput,
                 "clientDataInput": clientDataInput
-             };
+            };
 
-             const headers = new HttpHeaders()
+            const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
             let pathUrl: string = '/canvasDatasource';
             let finalUrl: string = this.canvasServerURI + pathUrl;
-console.log('xx 2')
 
             this.http.post<CanvasHttpResponse>(finalUrl, body, {headers}).subscribe(
                 res  => {
-console.log('xx 3')
-if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
 
-                        // this.datasources = res.data;
-                        // this.isDirtyDatasources = false;
-                        // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
 
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables saveDatasourceNEW 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                "Datasource and related records saved")
-                        };
+                    // this.datasources = res.data;
+                    // this.isDirtyDatasources = false;
+                    // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                        resolve("success");
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables addDatasourceNEW 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            "Datasource and related records saved")
+                    };
+
+                    resolve("success");
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
             // } else {
             //     if (this.sessionDebugging) {
             //         console.log('%c    Global-Variables getDatasources 2',

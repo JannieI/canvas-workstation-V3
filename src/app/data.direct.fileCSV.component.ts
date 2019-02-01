@@ -467,24 +467,9 @@ export class DataDirectFileCSVComponent implements OnInit {
                 id: null,
                 data: this.fileDataFull
             };
-            console.log('xx THE 3', newDatasource, newdDataset, newData)
-            // Add Data, then dataset, then DS
-            // this.globalVariableService.addData(newData).then(resData => {
-
-            //     newdDataset.url = 'data/' + resData.id.toString();
-            //     this.globalVariableService.addDatasource(newDatasource).then(resDS => {
-            //         newdDataset.datasourceID = resDS.id;
-            //         this.globalVariableService.addDataset(newdDataset);
-
-            //     });
-
-            //     // Indicate to the user
-            //     this.canSave = false;
-            //     this.savedMessage = 'Datasource created';
-            // });
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.saveDatasourceNEW(
+            this.globalVariableService.addDatasourceNEW(
                 newDatasource,
                 newdDataset,
                 newData).then(resData => {
