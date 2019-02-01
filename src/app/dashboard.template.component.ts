@@ -58,7 +58,17 @@ export class DashboardTemplateComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get D info
-        this.dashboards = this.globalVariableService.dashboards.slice();
+        this.dashboards = this.globalVariableService.dashboards
+            .slice()
+            .sort( (obj1, obj2) => {
+                if (obj1.name > obj2.name) {
+                    return 1;
+                };
+                if (obj1.name < obj2.name) {
+                    return -1;
+                };
+                return 0;
+            });
         let dashboardIndex: number = this.dashboards.findIndex(d => d.id 
             == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
         this.currentDashboard = this.dashboards[dashboardIndex];
