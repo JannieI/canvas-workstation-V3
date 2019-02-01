@@ -51,7 +51,6 @@ export class DataDirectFileCSVComponent implements OnInit {
             this.clickAdd();
             return;
         };
-
     }
 
     canSave: boolean = false;
