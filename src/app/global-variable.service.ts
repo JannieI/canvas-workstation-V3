@@ -1800,6 +1800,7 @@ export class GlobalVariableService {
                 let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res  => {
+                        console.log('xx    resssssssssssssssssss', res)
                         if(res.statusCode != 'success') {
                             reject(res.message);
 							return;
@@ -4305,7 +4306,6 @@ export class GlobalVariableService {
                     //       will result in a record with no data.  So, in the Widget
                     //       Editor for example, the DS will show on the list, but it will
                     //       be empty (Preview empty, nothing to plot)
-                    console.warn('xx hier data.datasourceID, dataset.id', data.datasourceID, dataset.id);
 
                     this.getCurrentDataset(data.datasourceID, dataset.id).then(dataset => {
 
@@ -10673,7 +10673,6 @@ export class GlobalVariableService {
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
             .subscribe(
                 res => {
-                    console.log('xx res', res)
                     if(res.statusCode != 'success') {
                         reject(res.message);
                         return;
@@ -11687,8 +11686,6 @@ export class GlobalVariableService {
                     .split(",");
             };
 
-            console.warn('xx splitted', bracketLeftIndex, bracketRightIndex, calcFunction, calcFields, sortFields, frameFields)
-
             // Cumulation Function
             if (calcFunction.toLowerCase() == 'sum'  &&  calcFields.length > 0) {
                 specification['transform'].push(
@@ -12643,7 +12640,7 @@ export class GlobalVariableService {
                 created: today
             });
 
-            console.warn('xx Upsert actions', this.actions);
+            console.warn('Upsert action done for:', this.actions);
 
         } else {
             this.actions.forEach(ac => {
@@ -13034,7 +13031,6 @@ export class GlobalVariableService {
             this.datasourcePermissions.forEach(dp => {
 
                 if (dp.datasourceID == datasource.id) {
-console.warn('xx ds perm', dp);
 
                     if (dp.userID != null) {
 
@@ -13255,27 +13251,27 @@ console.warn('xx ds perm', dp);
                 // localStorage.setItem("canvs-token", JSON.stringify(token));
 
                 if (res) {
-                    console.warn('xx GV.verifyCanvasUser: Registered on : ',
+                    console.warn('Start GV.verifyCanvasUser: Registered on : ',
                         givenCanvasServerURI, res);
-
 
                         // TODO - must this be done here ??  Needed to setBaseUrl
                         this.canvasServerURI = givenCanvasServerURI;
 
-                        this.getCanvasGroups().then(grp => console.log('xx grp', grp))
+                        this.getCanvasGroups().then(grp => 
+                            console.warn('GV.verifyCanvasUser loaded groups', grp))
 
                         this.getCanvasUsers().then(usr => {
                             let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
                             if (foundIndex < 0) {
 
                                 if (this.sessionDebugging) {
-                                    console.warn('xx GV.verifyCanvasUser: Invalid userid', givenUserID)
+                                    console.warn('GV.verifyCanvasUser: Invalid userid', givenUserID)
                                 };
                                 resolve(false);
                             } else {
 
                                 if (this.sessionDebugging) {
-                                    console.warn('xx GV.verifyCanvasUser: Valid userid', givenUserID)
+                                    console.warn('GV.verifyCanvasUser: Valid userid', givenUserID)
                                 };
 
                                 // Set User var
@@ -13320,29 +13316,29 @@ console.warn('xx ds perm', dp);
                                         currentUserID: givenUserID,
                                         currentToken: givenToken
                                     };
-                                console.warn('xx GV.verifyCanvasUser localCanvasUser', localCanvasUser)
+                                console.warn('GV.verifyCanvasUser localCanvasUser', localCanvasUser)
 
                                 // Add / Update DB with Put
                                 let currentCanvasUserCount: number = 0;
 
                                 // Local App info DB
-                                console.warn('xx GV.verifyCanvasUser: @local DB')
+                                console.warn('GV.verifyCanvasUser: @local DB')
                                 let dbCanvasAppDatabase = new CanvasAppDatabase
                                 dbCanvasAppDatabase.open();
 
                                 dbCanvasAppDatabase.table("currentCanvasUser")
                                     .put(localCanvasUser)
                                     .then(res => {
-                                        console.warn('xx GV.verifyCanvasUser Add/Update currentCanvasUser res', res);
+                                        console.warn('GV.verifyCanvasUser Add/Update currentCanvasUser res', res);
 
                                         // Count
                                         dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
-                                            console.warn('xx GV.verifyCanvasUser currentCanvasUser Count', res);
+                                            console.warn('GV.verifyCanvasUser currentCanvasUser Count', res);
                                             currentCanvasUserCount = res;
 
                                             // Return
                                             if (currentCanvasUserCount > 0) {
-                                                console.warn('xx GV.verifyCanvasUser setCanvasServerState');
+                                                console.warn('GV.verifyCanvasUser setCanvasServerState');
                                                 return true;
                                             } else {
                                                 return false;
@@ -13359,7 +13355,7 @@ console.warn('xx ds perm', dp);
                         });
 
                 } else {
-                    console.warn('xx GV.verifyCanvasUser: Registration failed on : ',
+                    console.warn('GV.verifyCanvasUser: Registration failed on : ',
                         givenCanvasServerURI, givenUserID, res);
                     resolve(false);
                 };
@@ -13367,7 +13363,7 @@ console.warn('xx ds perm', dp);
             err => {
                 console.log('Error Registration FAILED on : ',
                 givenCanvasServerURI, {err});
-                console.warn('xx GV.verifyCanvasUser: HTTP Error'), err;
+                console.warn('GV.verifyCanvasUser: HTTP Error'), err;
                 resolve(false);
             });
 
