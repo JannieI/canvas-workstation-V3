@@ -13829,7 +13829,8 @@ export class GlobalVariableService {
                         let datasetIndex: number = this.datasets.findIndex(ds => ds.id == datasetsAdded.id);
                         if (datasetIndex < 0) {
                             this.datasets.push(datasetsAdded);
-                            console.log('xx post', this.datasets.length)
+                        } else {
+                            this.datasets[datasetIndex] = datasetsAdded;
                         };
                     };
                     
