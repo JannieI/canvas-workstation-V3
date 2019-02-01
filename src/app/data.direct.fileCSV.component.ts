@@ -274,9 +274,7 @@ export class DataDirectFileCSVComponent implements OnInit {
         // Guess types
         let newDataFieldTypes: string[] = [];
         for (var i = 0; i < this.fileDataFull[+this.headerRow + 1].length; i++) {
-        this.fileDataFull[+this.headerRow + 1][i]
-
-        console.log('xx this.selectedDatasource', this.selectedDatasource)
+            this.fileDataFull[+this.headerRow + 1][i]
         }
 
         if (this.selectedDatasource != null) {
@@ -291,24 +289,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             this.selectedDatasource.dataFields = this.fields;
             this.selectedDatasource.dataFieldTypes = this.newDataFieldTypes;
 
-            // Save DS to DB, but create a new dSet and new data records.
-            // let ds: number[] = [];
-            // let dSetID: number = 1;
-            // for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
-            //     if(this.globalVariableService.datasets[i].datasourceID ==
-            //         this.selectedDatasource.id) {
-            //         ds.push(this.globalVariableService.datasets[i].id)
-            //     };
-            // };
-            // if (ds.length > 0) {
-            //     dSetID = Math.max(...ds);
-            // };
-            // let datasetIndex: number = this.globalVariableService.datasets.findIndex(dSet => {
-            //     if (dSet.id == dSetID) {
-            //         return dSet;
-            //     };
-            // });
-            // let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
+            // Save DS to DB
             let updatedDataset: Dataset = {
                 id: this.selectedDatasource.id,
                 datasourceID: this.selectedDatasource.id,
@@ -328,34 +309,12 @@ export class DataDirectFileCSVComponent implements OnInit {
                 updatedDataset = this.globalVariableService.datasets[updatedDatasetIndex];
             };
 
-            // let dataID: number = -1;
-            // let dataIndex: number = updatedDataset.url.indexOf('/');
-            // if (dataIndex >= 0) {
-            //     dataID = +updatedDataset.url.substring(dataIndex + 1);
-            // } else {
-            //     alert('Error in save Web - url has no / character');
-            //     return;
-            // };
             let updatedData: any = {
                 id: this.selectedDatasource.id,
                 data: this.fileDataFull
             };
 
             // Add Data, then dataset, then DS
-            // this.globalVariableService.saveData(updatedData).then(resData => {
-
-            //     updatedDataset.url = 'data/' + dataID;
-            //     this.globalVariableService.saveDatasource(this.selectedDatasource).then(
-            //         resDS => {
-            //             updatedDataset.datasourceID = this.selectedDatasource.id;
-            //             this.globalVariableService.saveDataset(updatedDataset);
-            //     });
-
-            //     // Indicate to the user
-            //     this.canSave = false;
-            //     this.savedMessage = 'Datasource updated';
-            // });
-
             this.globalVariableService.saveDatasourceNEW(
                 this.selectedDatasource,
                 updatedDataset,
@@ -363,15 +322,7 @@ export class DataDirectFileCSVComponent implements OnInit {
 
                 // Indicate to the user
                 this.canSave = false;
-                this.savedMessage = 'Datasource created';
-
-                // Close form and open Transitions if requested
-                // if (action == 'Saved') {
-                //     this.formDataDirectSQLEditorClosed.emit(null);
-
-                // } else {
-                //     this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
-                // };
+                this.savedMessage = 'Datasource updated';
 
             })
             .catch(errorMessage => {
