@@ -74,10 +74,15 @@
                             (dblclick)="dblclickAdd(i, row.id)"
                             >
                             <clr-dg-cell>
-                                <clr-icon shape="check" class="selectIcon1" size="12"></clr-icon>
+                                <clr-icon *ngIf="row.name==currentTemplateName" 
+                                    shape="check" 
+                                    class="selectIcon1" 
+                                    size="12"
+                                    >
+                                </clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.name (row.state)}}</clr-dg-cell>
                             <clr-dg-cell>{{row.description}}</clr-dg-cell>
                         </clr-dg-row>
 
