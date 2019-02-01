@@ -13818,21 +13818,45 @@ export class GlobalVariableService {
                     // Add to global vars
                     let datasourceAdded: Datasource = res.data.datasource;
                     let datasetsAdded: Dataset = res.data.datasets;
+                    let clientData: any = res.data.clientData;
+                    let currentDatasetsAdded: Dataset = res.data.datasets;
+                    currentDatasetsAdded.dataRaw = clientData;
+                    currentDatasetsAdded.data = clientData;
+
 
                     if (datasourceAdded != null) {
-                        let datasourceIndex: number = this.datasources.findIndex(ds => ds.id == datasourceAdded.id);
+                        let datasourceIndex: number = this.datasources.findIndex(
+                            ds => ds.id == datasourceAdded.id);
                         if (datasourceIndex < 0) {
                             this.datasources.push(datasourceAdded);
                         } else {
                             this.datasources[datasourceIndex] = datasourceAdded;
                         };
+
+                        let currentDatasourceIndex: number = this.currentDatasources.findIndex(
+                            ds => ds.id == datasourceAdded.id);
+                        if (currentDatasourceIndex < 0) {
+                            this.currentDatasources.push(datasourceAdded);
+                        } else {
+                            this.currentDatasources[currentDatasourceIndex] = datasourceAdded;
+                        };
+
                     };
                     if (datasetsAdded != null) {
-                        let datasetIndex: number = this.datasets.findIndex(ds => ds.id == datasetsAdded.id);
+                        let datasetIndex: number = this.datasets.findIndex(
+                            ds => ds.id == datasetsAdded.id);
                         if (datasetIndex < 0) {
                             this.datasets.push(datasetsAdded);
                         } else {
                             this.datasets[datasetIndex] = datasetsAdded;
+                        };
+
+                        let currentDatasetIndex: number = this.currentDatasets.findIndex(
+                            ds => ds.id == datasetsAdded.id);
+                        if (currentDatasetIndex < 0) {
+                            this.currentDatasets.push(currentDatasetsAdded);
+                        } else {
+                            this.currentDatasets[currentDatasetIndex] = currentDatasetsAdded;
                         };
                     };
                     
