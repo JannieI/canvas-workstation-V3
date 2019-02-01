@@ -13740,6 +13740,10 @@ export class GlobalVariableService {
                         return;
                     };
 
+                    let datasourceAdded: Datasource = res.data.datasource;
+                    let datasetsAdded: Dataset = res.data.datasets;
+                    let clientDataAdded: any = res.data.clientData;
+
                     // this.datasources = res.data;
                     // this.isDirtyDatasources = false;
                     // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -13747,7 +13751,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables addDatasourceNEW 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            "Datasource and related records saved")
+                            "Datasource and related records saved", datasourceAdded.id, datasetsAdded.id, clientDataAdded.id)
                     };
 
                     resolve("success");
