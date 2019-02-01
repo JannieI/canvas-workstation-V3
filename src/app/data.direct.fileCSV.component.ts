@@ -356,7 +356,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             //     this.savedMessage = 'Datasource updated';
             // });
 
-            this.globalVariableService.addDatasourceNEW(
+            this.globalVariableService.saveDatasourceNEW(
                 this.selectedDatasource,
                 updatedDataset,
                 updatedData).then(resData => {
