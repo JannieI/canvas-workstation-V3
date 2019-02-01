@@ -13819,11 +13819,11 @@ export class GlobalVariableService {
                     let datasourceAdded: Datasource = res.data.datasource;
                     let datasetsAdded: Dataset = res.data.datasets;
                     let clientData: any = res.data.clientData;
-                    let currentDatasetsAdded: Dataset = res.data.datasets;
-                    currentDatasetsAdded.dataRaw = clientData;
-                    currentDatasetsAdded.data = clientData;
+                    let currentDatasetsAdded: Dataset = JSON.parse(JSON.stringify(res.data.datasets));
+                    currentDatasetsAdded.dataRaw = clientData.data;
+                    currentDatasetsAdded.data = clientData.data;
 
-
+console.log('xx currentDatasetsAdded', currentDatasetsAdded)
                     if (datasourceAdded != null) {
                         let datasourceIndex: number = this.datasources.findIndex(
                             ds => ds.id == datasourceAdded.id);
@@ -13835,9 +13835,7 @@ export class GlobalVariableService {
 
                         let currentDatasourceIndex: number = this.currentDatasources.findIndex(
                             ds => ds.id == datasourceAdded.id);
-                        if (currentDatasourceIndex < 0) {
-                            this.currentDatasources.push(datasourceAdded);
-                        } else {
+                        if (currentDatasourceIndex >= 0) {
                             this.currentDatasources[currentDatasourceIndex] = datasourceAdded;
                         };
 
@@ -13853,9 +13851,7 @@ export class GlobalVariableService {
 
                         let currentDatasetIndex: number = this.currentDatasets.findIndex(
                             ds => ds.id == datasetsAdded.id);
-                        if (currentDatasetIndex < 0) {
-                            this.currentDatasets.push(currentDatasetsAdded);
-                        } else {
+                        if (currentDatasetIndex >= 0) {
                             this.currentDatasets[currentDatasetIndex] = currentDatasetsAdded;
                         };
                     };
@@ -13863,7 +13859,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables saveDatasourceNEW 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            "Datasource and related records saved", this.datasources, this.datasets)
+                            "Datasource and related records saved", this.datasources, this.datasets, this.currentDatasources, this.currentDatasets)
                     };
 
                     resolve("success");
