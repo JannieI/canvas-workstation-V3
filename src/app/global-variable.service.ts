@@ -13787,6 +13787,81 @@ export class GlobalVariableService {
         });
     };
 
+    saveDatasourceNEW(datasourceInput: Datasource, datasetInput: Dataset, clientDataInput: any): Promise<string> {
+        // Saves a Datasource, given the following:
+        // - datasource
+        // - dataset
+        // - data
+        // The Server adds the records, with the correct IDs
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDatasourceNEW ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                datasourceInput.name);
+        };
+        return new Promise<string>((resolve, reject) => {
+
+            // Create Combo body
+            let body: any = {
+                "datasourceInput": datasourceInput,
+                "datasetInput": datasetInput,
+                "clientDataInput": clientDataInput
+            };
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = '/canvasDatasource';
+            let finalUrl: string = this.canvasServerURI + pathUrl;
+
+            this.http.put<CanvasHttpResponse>(finalUrl, body, {headers}).subscribe(
+                res  => {
+
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    // Add to global vars
+                    let datasourceAdded: Datasource = res.data.datasource;
+                    let datasetsAdded: Dataset = res.data.datasets;
+
+                    if (datasourceAdded != null) {
+                        let datasourceIndex: number = this.datasources.findIndex(ds => ds.id == datasourceAdded.id);
+                        if (datasourceIndex < 0) {
+                            this.datasources.push(datasourceAdded);
+                        };
+                    };
+                    if (datasetsAdded != null) {
+                        let datasetIndex: number = this.datasets.findIndex(ds => ds.id == datasetsAdded.id);
+                        if (datasetIndex < 0) {
+                            this.datasets.push(datasetsAdded);
+                            console.log('xx post', this.datasets.length)
+                        };
+                    };
+                    
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables saveDatasourceNEW 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            "Datasource and related records saved", this.datasources, this.datasets)
+                    };
+
+                    resolve("success");
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
+            // } else {
+            //     if (this.sessionDebugging) {
+            //         console.log('%c    Global-Variables getDatasources 2',
+            //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+            //     };
+
+            //     resolve("success");
+            // }
+        });
+    };
+
     tributaryCreateSession(sampleSize: number = null) {
         // Create a new Tributary Session
         // - sampleSize = optional nr of rows to return
