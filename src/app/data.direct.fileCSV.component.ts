@@ -311,6 +311,7 @@ export class DataDirectFileCSVComponent implements OnInit {
         for (var i = 0; i < this.fileDataFull[+this.headerRow + 1].length; i++) {
         this.fileDataFull[+this.headerRow + 1][i]
 
+        console.log('xx this.selectedDatasource', this.selectedDatasource)
         }
 
         if (this.selectedDatasource != null) {
@@ -466,20 +467,43 @@ export class DataDirectFileCSVComponent implements OnInit {
                 id: null,
                 data: this.fileDataFull
             };
+            console.log('xx THE 3', newDatasource, newdDataset, newData)
+            // Add Data, then dataset, then DS
+            // this.globalVariableService.addData(newData).then(resData => {
+
+            //     newdDataset.url = 'data/' + resData.id.toString();
+            //     this.globalVariableService.addDatasource(newDatasource).then(resDS => {
+            //         newdDataset.datasourceID = resDS.id;
+            //         this.globalVariableService.addDataset(newdDataset);
+
+            //     });
+
+            //     // Indicate to the user
+            //     this.canSave = false;
+            //     this.savedMessage = 'Datasource created';
+            // });
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData).then(resData => {
-
-                newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addDatasource(newDatasource).then(resDS => {
-                    newdDataset.datasourceID = resDS.id;
-                    this.globalVariableService.addDataset(newdDataset);
-
-                });
+            this.globalVariableService.saveDatasourceNEW(
+                newDatasource,
+                newdDataset,
+                newData).then(resData => {
 
                 // Indicate to the user
                 this.canSave = false;
                 this.savedMessage = 'Datasource created';
+
+                // Close form and open Transitions if requested
+                // if (action == 'Saved') {
+                //     this.formDataDirectSQLEditorClosed.emit(null);
+
+                // } else {
+                //     this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
+                // };
+
+            })
+            .catch(errorMessage => {
+                this.errorMessage = 'Save failed - ' + errorMessage;
             });
         };
 
