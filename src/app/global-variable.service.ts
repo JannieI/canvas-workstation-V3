@@ -13744,12 +13744,10 @@ export class GlobalVariableService {
                     let datasourceAdded: Datasource = res.data.datasource;
                     let datasetsAdded: Dataset = res.data.datasets;
 
-                    console.log('xx pre', this.datasources.length)
                     if (datasourceAdded != null) {
                         let datasourceIndex: number = this.datasources.findIndex(ds => ds.id == datasourceAdded.id);
                         if (datasourceIndex < 0) {
                             this.datasources.push(datasourceAdded);
-                            console.log('xx post', this.datasources.length)
                         };
                     };
                     if (datasetsAdded != null) {
@@ -13759,10 +13757,6 @@ export class GlobalVariableService {
                             console.log('xx post', this.datasets.length)
                         };
                     };
-                    
-                    // this.datasources = res.data;
-                    // this.isDirtyDatasources = false;
-                    // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables addDatasourceNEW 1',
