@@ -172,6 +172,14 @@ export class DataDirectFileCSVComponent implements OnInit {
         // Read file content into an Array: split on NewLine, then Comma
         let arr: any = this.loadedFile.target.result.split(/\r?\n/).map(x => x.split(","));
 
+        // Remove extra Quote, created for example by Libre Office SaveAs CSV: ""FieldName"" 
+        // is saved as "\"FieldName\"" in Mongo, which then causes problems when read by 
+        // WidgetEditor (Vega)
+        var re = /"/gi; 
+        for (var i = 0; i < arr[0].length; i++) {
+            arr[0][i] = arr[0][i].replace(re, ''); 
+        };
+
         // Fill the list of Fields
         this.fields = arr[+this.headerRow]
 
