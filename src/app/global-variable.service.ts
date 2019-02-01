@@ -13823,6 +13823,8 @@ export class GlobalVariableService {
                         let datasourceIndex: number = this.datasources.findIndex(ds => ds.id == datasourceAdded.id);
                         if (datasourceIndex < 0) {
                             this.datasources.push(datasourceAdded);
+                        } else {
+                            this.datasources[datasourceIndex] = datasourceAdded;
                         };
                     };
                     if (datasetsAdded != null) {
