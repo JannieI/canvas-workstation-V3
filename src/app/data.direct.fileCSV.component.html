@@ -143,21 +143,25 @@
 
                     </div>
                     <div class="gridMore" *ngIf="showMore">
-                        <br>
-                        <div class="gridHeaderRowTitle">
+
+                        <div class="gridMoreHeaderRowTitle">
                             Header Row Nr for next Browse:
+                        </div>
+                        <div class="gridMoreHeaderRow">
+
                             <input type="number" [(ngModel)]="headerRow"
                                 placeholder="Row number for the Headers"
                                 size="5"
                                 style="width: 25px;"                                                                                                                                                                                                                                                                                                                    >
                         </div>
-                        <br>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="toggle_1" [(ngModel)]="clearQuotes">
-                            <label for="toggle_1">Clear all quotes</label>
+
+                        <div class="toggle-switch gridMoreQuotesTitle">
+                            Clear all quotes
                         </div>
+                        <div class="gridMoreQuotes">
+                            <input type="checkbox" [(ngModel)]="clearQuotes">
                         <br>
-                        <div>
+                        <div class="gridMoreButtonClose">
                             <button
                                 type="button"
                                 class="btn btn-secondary"

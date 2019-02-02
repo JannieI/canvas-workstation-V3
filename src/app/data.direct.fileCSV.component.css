@@ -179,30 +179,65 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 7;
-        grid-row-end: 23;
+        grid-row-end: 16;
         margin: 2px 2px 2px 2px;
         text-align: left;
         z-index: 1;
+
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(10, 0.8rem);
+
     }
 
-        .gridHeaderRowTitle {
-            grid-column-start: 14;
+        .gridMoreHeaderRowTitle {
+            grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 17;
-            grid-row-start: 5;
-            grid-row-end: 6;
+            grid-column-end: 6;
+            grid-row-start: 2;
+            grid-row-end: 3;
             margin: 2px 2px 2px 2px;
             text-align: left;
         }
-        .gridHeaderRow {
-            grid-column-start: 16;
+        .gridMoreHeaderRow {
+            grid-column-start: 6;
             /* autoprefixer: off */
-            grid-column-end: 17;
-            grid-row-start: 5;
-            grid-row-end: 6;
+            grid-column-end: 10;
+            grid-row-start: 2;
+            grid-row-end: 3;
             margin: 2px 2px 2px 12px;
             text-align: left;
         }
+
+        .gridMoreQuotesTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 6;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            margin: 2px 2px 2px 12px;
+            text-align: left;
+        }
+        .gridMoreQuotes {
+            grid-column-start: 6;
+            /* autoprefixer: off */
+            grid-column-end: 10;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            margin: 2px 2px 2px 12px;
+            text-align: left;
+        }
+
+        .gridMoreButtonClose {
+            grid-column-start: 3;
+            /* autoprefixer: off */
+            grid-column-end: 4;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            margin: 2px 2px 2px 12px;
+            text-align: left;
+        }
+
 
     .gridTableData {
         border: 1px solid gray;
