@@ -13816,44 +13816,41 @@ export class GlobalVariableService {
                     };
 
                     // Add to global vars
-                    let datasourceAdded: Datasource = res.data.datasource;
-                    let datasetsAdded: Dataset = res.data.datasets;
-                    let clientData: any = res.data.clientData;
-                    let currentDatasetsAdded: Dataset = JSON.parse(JSON.stringify(res.data.datasets));
-                    currentDatasetsAdded.dataRaw = clientData.data;
-                    currentDatasetsAdded.data = clientData.data;
+                    let currentDatasetsAdded: Dataset = JSON.parse(JSON.stringify(datasetInput));
+                    currentDatasetsAdded.dataRaw = clientDataInput.data;
+                    currentDatasetsAdded.data = clientDataInput.data;
 
 console.log('xx currentDatasetsAdded', currentDatasetsAdded)
-                    if (datasourceAdded != null) {
-                        let datasourceIndex: number = this.datasources.findIndex(
-                            ds => ds.id == datasourceAdded.id);
-                        if (datasourceIndex < 0) {
-                            this.datasources.push(datasourceAdded);
-                        } else {
-                            this.datasources[datasourceIndex] = datasourceAdded;
-                        };
-
-                        let currentDatasourceIndex: number = this.currentDatasources.findIndex(
-                            ds => ds.id == datasourceAdded.id);
-                        if (currentDatasourceIndex >= 0) {
-                            this.currentDatasources[currentDatasourceIndex] = datasourceAdded;
-                        };
-
+                    // Update Datasources
+                    let datasourceIndex: number = this.datasources.findIndex(
+                        ds => ds.id == datasourceInput.id);
+                    if (datasourceIndex < 0) {
+                        this.datasources.push(datasourceInput);
+                    } else {
+                        this.datasources[datasourceIndex] = datasourceInput;
                     };
-                    if (datasetsAdded != null) {
-                        let datasetIndex: number = this.datasets.findIndex(
-                            ds => ds.id == datasetsAdded.id);
-                        if (datasetIndex < 0) {
-                            this.datasets.push(datasetsAdded);
-                        } else {
-                            this.datasets[datasetIndex] = datasetsAdded;
-                        };
 
-                        let currentDatasetIndex: number = this.currentDatasets.findIndex(
-                            ds => ds.id == datasetsAdded.id);
-                        if (currentDatasetIndex >= 0) {
-                            this.currentDatasets[currentDatasetIndex] = currentDatasetsAdded;
-                        };
+                    // Update CurrentDatasources
+                    let currentDatasourceIndex: number = this.currentDatasources.findIndex(
+                        ds => ds.id == datasourceInput.id);
+                    if (currentDatasourceIndex >= 0) {
+                        this.currentDatasources[currentDatasourceIndex] = datasourceInput;
+                    };
+
+                    // Update Datasets, without data
+                    let datasetIndex: number = this.datasets.findIndex(
+                        ds => ds.id == datasetInput.id);
+                    if (datasetIndex < 0) {
+                        this.datasets.push(datasetInput);
+                    } else {
+                        this.datasets[datasetIndex] = datasetInput;
+                    };
+
+                    // Update CurrentDatasets, with Data
+                    let currentDatasetIndex: number = this.currentDatasets.findIndex(
+                        ds => ds.id == datasetInput.id);
+                    if (currentDatasetIndex >= 0) {
+                        this.currentDatasets[currentDatasetIndex] = currentDatasetsAdded;
                     };
                     
                     if (this.sessionDebugging) {
