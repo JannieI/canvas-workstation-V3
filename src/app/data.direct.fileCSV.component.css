@@ -158,7 +158,7 @@
         text-align: left;
     }
     .gridEditMessage {
-        grid-column-start: 4;
+        grid-column-start: 5;
         /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 6;
