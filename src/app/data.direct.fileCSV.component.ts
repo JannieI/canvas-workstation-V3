@@ -205,9 +205,12 @@ export class DataDirectFileCSVComponent implements OnInit {
         if (this.clearQuotes) {
             for (var row = 0; row < arr.length; row++) {
                 for (var col = 0; col < arr[0].length; col++) {
-                    arr[row][col] = arr[row][col].replace(re, '');
-                };   
-            };   
+                    console.log('xx row', row, col, arr[row][col])
+                    if (arr[row][col] != null  &&  arr[row][col] != '') {
+                        arr[row][col] = arr[row][col].replace(re, '');
+                    };
+                };
+            };
         };
 
         // Fill the list of Fields
