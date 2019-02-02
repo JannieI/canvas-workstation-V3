@@ -95,9 +95,6 @@ export class DataDirectFileCSVComponent implements OnInit {
             this.globalVariableService.getData(params).then(dat => {
                 this.fileData = [];
                 this.fields = Object.keys(dat[0]);
-                // this.fileData = dat.map( row => {
-                //     row.map( (key, val) => val)
-                // });
                 let row: any = [];
                 for (var i = 0; i < dat.length; i++) {
                     row = [];
@@ -105,10 +102,8 @@ export class DataDirectFileCSVComponent implements OnInit {
                         console.log('xx this.fields[j]', this.fields[j])
                         row.push(dat[i][this.fields[j]]);
                     };
-                    console.log('xx row', row)
                     this.fileData.push(row)
                 };
-                console.log( this.fileData, this.fields)
             });
         };
 

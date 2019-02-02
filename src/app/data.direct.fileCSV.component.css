@@ -179,6 +179,30 @@
         text-align: left;
         overflow-y: scroll;
     }
+    .gridMoreButton {
+        grid-column-start: 18;
+        /* autoprefixer: off */
+        grid-column-end: 20;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-top: 4px;
+        text-align: left;
+    }
+
+    .gridMore {
+        background-color: white;
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 12;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 6;
+        grid-row-end: 23;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+        z-index: 1;
+    }
+
     .gridTableData {
         border: 1px solid gray;
         border-radius: 4px;

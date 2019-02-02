@@ -142,6 +142,20 @@
                         </clr-datagrid>
                     </div>
 
+                    <div class="gridMoreButton" *ngIf="showMore">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickMore()"
+                            >
+                            More ...
+                        </button>
+
+                    </div>
+                    <div class="gridMore">
+                        MORE ...
+                    </div>
+                    
                     <div class="gridTableData">
                         <clr-datagrid>
 
