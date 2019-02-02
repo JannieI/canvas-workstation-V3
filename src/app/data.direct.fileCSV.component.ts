@@ -70,6 +70,7 @@ export class DataDirectFileCSVComponent implements OnInit {
     newName: string = '';
     reader = new FileReader();
     savedMessage: string = '';
+    showMore: boolean = false;
     totalRows: number = 0;
     // theFile: any;
 
@@ -477,6 +478,13 @@ export class DataDirectFileCSVComponent implements OnInit {
             });
         };
 
+    }
+
+    clickMore() {
+        // Show the More form for further info and actions
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMore', '@Start');
+
+        this.showMore = true;
     }
 }
 
