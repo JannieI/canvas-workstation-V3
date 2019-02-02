@@ -4494,6 +4494,8 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
+        // TODO - kill all 'data' paths, kill the collection in Mongo and 
+        //        do according to the new way
         let pathUrl: string = 'data';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
@@ -4568,17 +4570,16 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let pathUrl: string = 'data';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
-
-            this.http.delete(finalUrl + '/' + id, {headers})
-            .subscribe(
-                res => {
+            // let pathUrl: string = 'data';
+            // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+        
+            let finalUrl: string = this.canvasServerURI + '/clientdata';
+            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
+                .subscribe(res => {
 
                     if (this.sessionDebugging) {
                         console.log('deleteData DELETED id: ', {id})
