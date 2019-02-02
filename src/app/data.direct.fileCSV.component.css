@@ -239,22 +239,31 @@
         grid-template-rows: repeat(10, 0.8rem);
 
     }
+        .gridMoreHelp {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 11;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            margin: 2px 2px 2px 2px;
+            text-align: left;
+        }
 
         .gridMoreHeaderRowTitle {
             grid-column-start: 2;
             /* autoprefixer: off */
-            grid-column-end: 6;
-            grid-row-start: 2;
-            grid-row-end: 3;
+            grid-column-end: 7;
+            grid-row-start: 3;
+            grid-row-end: 4;
             margin: 2px 2px 2px 2px;
             text-align: left;
         }
         .gridMoreHeaderRow {
-            grid-column-start: 6;
+            grid-column-start: 7;
             /* autoprefixer: off */
             grid-column-end: 10;
-            grid-row-start: 2;
-            grid-row-end: 3;
+            grid-row-start: 3;
+            grid-row-end: 4;
             margin: 2px 2px 2px 12px;
             text-align: left;
         }
@@ -262,18 +271,18 @@
         .gridMoreQuotesTitle {
             grid-column-start: 2;
             /* autoprefixer: off */
-            grid-column-end: 6;
-            grid-row-start: 4;
-            grid-row-end: 5;
+            grid-column-end: 7;
+            grid-row-start: 5;
+            grid-row-end: 6;
             margin: 2px 2px 2px 12px;
             text-align: left;
         }
         .gridMoreQuotes {
-            grid-column-start: 6;
+            grid-column-start: 7;
             /* autoprefixer: off */
             grid-column-end: 10;
-            grid-row-start: 4;
-            grid-row-end: 5;
+            grid-row-start: 5;
+            grid-row-end: 6;
             margin: 2px 2px 2px 12px;
             text-align: left;
         }
@@ -282,7 +291,7 @@
             grid-column-start: 4;
             /* autoprefixer: off */
             grid-column-end: 6;
-            grid-row-start: 6;
-            grid-row-end: 7;
+            grid-row-start: 7;
+            grid-row-end: 8;
             text-align: left;
         }

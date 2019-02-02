@@ -128,7 +128,6 @@ export class DataDirectFileCSVComponent implements OnInit {
 
         // TODO alert('Later: File component to browse ...')
         var inp: any = document.getElementById("get-files");
-        console.log('xx inp.files', inp.files)
 
         // Return if nothing selected
         if (inp.files.length == 0) {
@@ -205,7 +204,6 @@ export class DataDirectFileCSVComponent implements OnInit {
         if (this.clearQuotes) {
             for (var row = 0; row < arr.length; row++) {
                 for (var col = 0; col < arr[0].length; col++) {
-                    console.log('xx row', row, col, arr[row][col])
                     if (arr[row][col] != null  &&  arr[row][col] != '') {
                         arr[row][col] = arr[row][col].replace(re, '');
                     };
@@ -214,7 +212,6 @@ export class DataDirectFileCSVComponent implements OnInit {
         };
 
         // Fill the list of Fields
-        console.log('xx this.headerRow', this.headerRow)
         this.fields = arr[+this.headerRow];
 
         // Fill the data
