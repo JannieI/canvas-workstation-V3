@@ -55,6 +55,7 @@ export class DataDirectFileCSVComponent implements OnInit {
 
     canSave: boolean = false;
     datasourceName: string = '';
+    editMessage: string = 'Note: the data have to be reloaded with Browse before clicking Save.';
     errorMessage: string = "";
     fields: string[] = [];
     // fileColumns: any[] = [];
@@ -247,7 +248,9 @@ export class DataDirectFileCSVComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         // Reset
+        this.editMessage = '';
         this.errorMessage = '';
+        this.savedMessage = '';
 
         // Validation
         this.errorMessage = '';
