@@ -41,12 +41,12 @@ export class DataDirectFileCSVComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        if ( 
+        if (
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&  
-            (!event.ctrlKey)  
-            &&  
-            (!event.shiftKey) 
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
            ) {
             this.clickAdd();
             return;
@@ -86,6 +86,30 @@ export class DataDirectFileCSVComponent implements OnInit {
             this.newName = this.selectedDatasource.name;
             this.newDescription = this.selectedDatasource.description;
             this.loadedFileName = this.selectedDatasource.fileName;
+        };
+
+        // For existing Datasource, load a snippet of the data
+        if (this.selectedDatasource != null) {
+            let params: string = 'datasourceID=' + this.selectedDatasource.id.toString()
+                + '&nrRowsToReturn=10';
+            this.globalVariableService.getData(params).then(dat => {
+                this.fileData = [];
+                this.fields = Object.keys(dat[0]);
+                // this.fileData = dat.map( row => {
+                //     row.map( (key, val) => val)
+                // });
+                let row: any = [];
+                for (var i = 0; i < dat.length; i++) {
+                    row = [];
+                    for (var j = 0; j < this.fields.length; j++) {
+                        console.log('xx this.fields[j]', this.fields[j])
+                        row.push(dat[i][this.fields[j]]);
+                    };
+                    console.log('xx row', row)
+                    this.fileData.push(row)
+                };
+                console.log( this.fileData, this.fields)
+            });
         };
 
     }
@@ -173,16 +197,16 @@ export class DataDirectFileCSVComponent implements OnInit {
         // Read file content into an Array: split on NewLine, then Comma
         let arr: any = this.loadedFile.target.result.split(/\r?\n/).map(x => x.split(","));
 
-        // Remove extra Quote, created for example by Libre Office SaveAs CSV: ""FieldName"" 
-        // is saved as "\"FieldName\"" in Mongo, which then causes problems when read by 
+        // Remove extra Quote, created for example by Libre Office SaveAs CSV: ""FieldName""
+        // is saved as "\"FieldName\"" in Mongo, which then causes problems when read by
         // WidgetEditor (Vega)
-        var re = /"/gi; 
+        var re = /"/gi;
         for (var i = 0; i < arr[0].length; i++) {
-            arr[0][i] = arr[0][i].replace(re, ''); 
+            arr[0][i] = arr[0][i].replace(re, '');
         };
 
         // Fill the list of Fields
-        this.fields = arr[+this.headerRow]
+        this.fields = arr[+this.headerRow];
 
         // Fill the data
         this.fileData = arr.slice(+this.headerRow + 1, +this.headerRow + 10);

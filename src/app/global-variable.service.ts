@@ -4430,12 +4430,19 @@ export class GlobalVariableService {
         });
     }
 
-    getData(id: number): Promise<any[]> {
+    getData(parameters: string): Promise<any[]> {
         // Description: Gets Data
+        // parameters: list of ways to modify the result, for example:
+        //   datasourceID=68                       REQUIRED - data for this DS 
+        //   &sortObject=-Month                    Comma separated list of fields, - means DESC     
+        //   &fields=Year, Month                   Fields to return, NOTE spaces     
+        //   &filterObject={"Year":2019}           Filter object in Mongo format             
+        //   &aggregationObject=aggregationObject  How to aggregate the data after SELECT statement                         
+        //   &nrRowsToReturn=2                     Rows to return after ALL else have been done     
         // Returns: res.data
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getData ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {parameters});
         };
 
         return new Promise<Dataset[]>((resolve, reject) => {
@@ -4444,7 +4451,12 @@ export class GlobalVariableService {
             // if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
-            let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + id.toString()
+            if (parameters.substring(0, 1) != '?') {
+                parameters = '?' + parameters;
+            };
+
+            // let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + id.toString()
+            let finalUrl: string = this.canvasServerURI + '/clientdata' + parameters;
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {

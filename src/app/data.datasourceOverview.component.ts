@@ -156,7 +156,8 @@ export class DataDatasourceOverviewComponent implements OnInit {
             if (selectedDataset[maxDsetIndex].dataRaw != null) {
                 this.currentData = selectedDataset[maxDsetIndex].dataRaw;
             } else {
-                this.globalVariableService.getData(selectedDataset[maxDsetIndex].id).then(dt => {
+
+                this.globalVariableService.getData('datasourceID=' + selectedDataset[maxDsetIndex].id.toString()).then(dt => {
                     this.currentData = dt;
                 });
             };

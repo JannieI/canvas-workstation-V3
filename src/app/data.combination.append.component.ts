@@ -185,7 +185,7 @@ export class DataCombinationAppendComponent implements OnInit {
                     localDataset = this.globalVariableService.datasets[globalDsetIndex];
 
                     // Get data for Dset
-                    this.globalVariableService.getData(localDataset.id).then(res => {
+                    this.globalVariableService.getData('datasourceID=' + localDataset.id.toString()).then(res => {
 
                         // Add data to dataset
                         localDataset.dataRaw = res;
