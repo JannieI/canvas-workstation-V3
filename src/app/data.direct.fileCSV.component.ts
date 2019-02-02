@@ -54,6 +54,7 @@ export class DataDirectFileCSVComponent implements OnInit {
     }
 
     canSave: boolean = false;
+    clearQuotes: boolean = true;
     datasourceName: string = '';
     editMessage: string = 'Note: the data have to be reloaded with Browse before clicking Save.';
     errorMessage: string = "";
@@ -196,8 +197,17 @@ export class DataDirectFileCSVComponent implements OnInit {
         // is saved as "\"FieldName\"" in Mongo, which then causes problems when read by
         // WidgetEditor (Vega)
         var re = /"/gi;
-        for (var i = 0; i < arr[0].length; i++) {
-            arr[0][i] = arr[0][i].replace(re, '');
+        for (var col = 0; col < arr[0].length; col++) {
+            arr[0][col] = arr[0][col].replace(re, '');
+        };
+
+        // Clear Quotes from data according to option
+        if (this.clearQuotes) {
+            for (var row = 0; row < arr.length; row++) {
+                for (var col = 0; col < arr[0].length; col++) {
+                    arr[row][col] = arr[row][col].replace(re, '');
+                };   
+            };   
         };
 
         // Fill the list of Fields
@@ -214,9 +224,9 @@ export class DataDirectFileCSVComponent implements OnInit {
         // Convert Array to JSON
         let arr2:any[] = [];
         let fields = this.fields;
-        for (var i = +this.headerRow + 1; i < arr.length; i++) {
+        for (var col = +this.headerRow + 1; col < arr.length; col++) {
             let obj: any = {};
-            arr[i].forEach(function(value, idx) {
+            arr[col].forEach(function(value, idx) {
                 obj[ fields[idx] ] = value
             });
             arr2.push(obj);
@@ -232,18 +242,18 @@ export class DataDirectFileCSVComponent implements OnInit {
 
 
         // Guess types
-        for (var i = 0; i < arr[+this.headerRow + 1].length; i++) {
+        for (var col = 0; col < arr[+this.headerRow + 1].length; col++) {
             let newType: string = 'string';
 
-            if (typeof arr[+this.headerRow + 1][i] == 'number') {
+            if (typeof arr[+this.headerRow + 1][col] == 'number') {
                newType = 'number';
-            } else if (typeof arr[+this.headerRow + 1][i] == 'boolean') {
+            } else if (typeof arr[+this.headerRow + 1][col] == 'boolean') {
                    newType = 'boolean';
-            } else if (arr[+this.headerRow + 1][i] == 'true') {
+            } else if (arr[+this.headerRow + 1][col] == 'true') {
                newType = 'boolean';
-            } else if (arr[+this.headerRow + 1][i] == 'false') {
+            } else if (arr[+this.headerRow + 1][col] == 'false') {
                newType = 'boolean';
-            } else if (arr[+this.headerRow + 1][i] == +arr[+this.headerRow + 1][i]) {
+            } else if (arr[+this.headerRow + 1][col] == +arr[+this.headerRow + 1][col]) {
                newType = 'number';
             } else {
                newType = 'string';
