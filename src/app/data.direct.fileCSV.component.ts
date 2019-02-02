@@ -83,7 +83,6 @@ export class DataDirectFileCSVComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
         if (this.selectedDatasource != null) {
-            console.warn('xx this.selectedDatasource', this.selectedDatasource)
             this.newName = this.selectedDatasource.name;
             this.newDescription = this.selectedDatasource.description;
             this.loadedFileName = this.selectedDatasource.fileName;
@@ -100,7 +99,6 @@ export class DataDirectFileCSVComponent implements OnInit {
                 for (var i = 0; i < dat.length; i++) {
                     row = [];
                     for (var j = 0; j < this.fields.length; j++) {
-                        console.log('xx this.fields[j]', this.fields[j])
                         row.push(dat[i][this.fields[j]]);
                     };
                     this.fileData.push(row)
@@ -115,7 +113,7 @@ export class DataDirectFileCSVComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
 
         if ( (<any>window).File && (<any>window).FileReader && (<any>window).FileList && window.Blob) {
-            console.warn('xx Start Great success! All the File APIs are supported.')
+            console.warn('Great success! All the File APIs are supported in this browser.')
           } else {
             alert('The File APIs are not fully supported in this browser.');
         };
@@ -129,6 +127,7 @@ export class DataDirectFileCSVComponent implements OnInit {
 
         // TODO alert('Later: File component to browse ...')
         var inp: any = document.getElementById("get-files");
+        console.log('xx inp.files', inp.files)
 
         // Return if nothing selected
         if (inp.files.length == 0) {
@@ -202,6 +201,7 @@ export class DataDirectFileCSVComponent implements OnInit {
         };
 
         // Fill the list of Fields
+        console.log('xx this.headerRow', this.headerRow)
         this.fields = arr[+this.headerRow];
 
         // Fill the data
@@ -251,7 +251,6 @@ export class DataDirectFileCSVComponent implements OnInit {
 
             this.newDataFieldTypes.push(newType);
         };
-        console.warn('xx', this.newDataFieldTypes);
 
     }
 

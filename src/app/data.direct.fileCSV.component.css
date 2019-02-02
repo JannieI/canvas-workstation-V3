@@ -171,74 +171,6 @@
         text-align: left;
     }
 
-    .gridMore {
-        background-color: white;
-        border: 1px solid gray;
-        border-radius: 4px;
-        grid-column-start: 12;
-        /* autoprefixer: off */
-        grid-column-end: 21;
-        grid-row-start: 7;
-        grid-row-end: 16;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-        z-index: 1;
-
-        display: grid;
-        grid-template-columns: repeat(10, 1fr);
-        grid-template-rows: repeat(10, 0.8rem);
-
-    }
-
-        .gridMoreHeaderRowTitle {
-            grid-column-start: 1;
-            /* autoprefixer: off */
-            grid-column-end: 6;
-            grid-row-start: 2;
-            grid-row-end: 3;
-            margin: 2px 2px 2px 2px;
-            text-align: left;
-        }
-        .gridMoreHeaderRow {
-            grid-column-start: 6;
-            /* autoprefixer: off */
-            grid-column-end: 10;
-            grid-row-start: 2;
-            grid-row-end: 3;
-            margin: 2px 2px 2px 12px;
-            text-align: left;
-        }
-
-        .gridMoreQuotesTitle {
-            grid-column-start: 1;
-            /* autoprefixer: off */
-            grid-column-end: 6;
-            grid-row-start: 4;
-            grid-row-end: 5;
-            margin: 2px 2px 2px 12px;
-            text-align: left;
-        }
-        .gridMoreQuotes {
-            grid-column-start: 6;
-            /* autoprefixer: off */
-            grid-column-end: 10;
-            grid-row-start: 4;
-            grid-row-end: 5;
-            margin: 2px 2px 2px 12px;
-            text-align: left;
-        }
-
-        .gridMoreButtonClose {
-            grid-column-start: 3;
-            /* autoprefixer: off */
-            grid-column-end: 4;
-            grid-row-start: 6;
-            grid-row-end: 7;
-            margin: 2px 2px 2px 12px;
-            text-align: left;
-        }
-
-
     .gridTableData {
         border: 1px solid gray;
         border-radius: 4px;
@@ -286,3 +218,71 @@
         grid-row-end: 24;
         margin-top: 4px;
     }
+
+
+    /* Popup form for More info ... */
+    .gridMore {
+        background-color: white;
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 12;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 7;
+        grid-row-end: 16;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+        z-index: 1;
+
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(10, 0.8rem);
+
+    }
+
+        .gridMoreHeaderRowTitle {
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 6;
+            grid-row-start: 2;
+            grid-row-end: 3;
+            margin: 2px 2px 2px 2px;
+            text-align: left;
+        }
+        .gridMoreHeaderRow {
+            grid-column-start: 6;
+            /* autoprefixer: off */
+            grid-column-end: 10;
+            grid-row-start: 2;
+            grid-row-end: 3;
+            margin: 2px 2px 2px 12px;
+            text-align: left;
+        }
+
+        .gridMoreQuotesTitle {
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 6;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            margin: 2px 2px 2px 12px;
+            text-align: left;
+        }
+        .gridMoreQuotes {
+            grid-column-start: 6;
+            /* autoprefixer: off */
+            grid-column-end: 10;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            margin: 2px 2px 2px 12px;
+            text-align: left;
+        }
+
+        .gridMoreButtonClose {
+            grid-column-start: 4;
+            /* autoprefixer: off */
+            grid-column-end: 6;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            text-align: left;
+        }
