@@ -109,24 +109,6 @@
         text-align: left;
     }
 
-    .gridHeaderRowTitle {
-        grid-column-start: 14;
-        /* autoprefixer: off */
-        grid-column-end: 17;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridHeaderRow {
-        grid-column-start: 16;
-        /* autoprefixer: off */
-        grid-column-end: 17;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 2px 2px 2px 12px;
-        text-align: left;
-    }
     .gridTotalRows {
         grid-column-start: 18;
         /* autoprefixer: off */
@@ -202,6 +184,25 @@
         text-align: left;
         z-index: 1;
     }
+
+        .gridHeaderRowTitle {
+            grid-column-start: 14;
+            /* autoprefixer: off */
+            grid-column-end: 17;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin: 2px 2px 2px 2px;
+            text-align: left;
+        }
+        .gridHeaderRow {
+            grid-column-start: 16;
+            /* autoprefixer: off */
+            grid-column-end: 17;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin: 2px 2px 2px 12px;
+            text-align: left;
+        }
 
     .gridTableData {
         border: 1px solid gray;

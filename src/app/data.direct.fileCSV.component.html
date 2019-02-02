@@ -100,16 +100,6 @@
                             >
                     </div>
 
-                    <div class="gridHeaderRowTitle">
-                        Header Row Nr:
-                    </div>
-                    <div class="gridHeaderRow">
-                        <input type="number" [(ngModel)]="headerRow"
-                            placeholder="Row number for the Headers"
-                            size="5"
-                            style="width: 25px;"                                                                                                                                                                                                                                                                                                                    >
-                    </div>
-
                     <div class="gridTotalRows">
                         <i>
                             Total: {{ totalRows }}
@@ -146,7 +136,7 @@
                         <button
                             type="button"
                             class="btn btn-link"
-                            (click)="clickMore()"
+                            (click)="clickMoreOpen()"
                             >
                             More ...
                         </button>
@@ -154,6 +144,23 @@
                     </div>
                     <div class="gridMore" *ngIf="showMore">
                         MORE ...
+                        <div class="gridHeaderRowTitle">
+                            Header Row Nr:
+                        </div>
+                        <div class="gridHeaderRow">
+                            <input type="number" [(ngModel)]="headerRow"
+                                placeholder="Row number for the Headers"
+                                size="5"
+                                style="width: 25px;"                                                                                                                                                                                                                                                                                                                    >
+                        </div>
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickMoreClose()"
+                            >
+                            More ...
+                        </button>
+    
                     </div>
                     
                     <div class="gridTableData">
