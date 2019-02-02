@@ -143,24 +143,29 @@
 
                     </div>
                     <div class="gridMore" *ngIf="showMore">
-                        MORE ...
+                        <br>
                         <div class="gridHeaderRowTitle">
-                            Header Row Nr:
-                        </div>
-                        <div class="gridHeaderRow">
+                            Header Row Nr for next Browse:
                             <input type="number" [(ngModel)]="headerRow"
                                 placeholder="Row number for the Headers"
                                 size="5"
                                 style="width: 25px;"                                                                                                                                                                                                                                                                                                                    >
                         </div>
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            (click)="clickMoreClose()"
-                            >
-                            More ...
-                        </button>
-    
+                        <br>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="toggle_1" [(ngModel)]="clearQuotes">
+                            <label for="toggle_1">Clear all quotes</label>
+                        </div>
+                        <br>
+                        <div>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickMoreClose()"
+                                >
+                                Close
+                            </button>
+                        </div>
                     </div>
                     
                     <div class="gridTableData">

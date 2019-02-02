@@ -491,7 +491,7 @@ export class DataDirectFileCSVComponent implements OnInit {
         // Close the More form for further info and actions
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoreClose', '@Start');
 
-        this.showMore = true;
+        this.showMore = false;
     }
 }
 
