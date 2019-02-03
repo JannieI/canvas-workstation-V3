@@ -348,6 +348,7 @@ export class DashboardNewComponent implements OnInit {
                                         this.dashboardLayouts[this.selectedLayoutIndex].id;
                                     let newDashboardLayout: DashboardLayout =
                                         this.dashboardLayouts[this.selectedLayoutIndex];
+                                    newDashboardLayout._id = null;
                                     newDashboardLayout.id = null;
                                     newDashboardLayout.dashboardID = draftD.id;
                                     this.globalVariableService.addDashboardLayout(newDashboardLayout)
@@ -355,6 +356,7 @@ export class DashboardNewComponent implements OnInit {
                                             this.widgetLayouts.forEach(wl => {
                                                 if (wl.dashboardLayoutID == dashboardLayoutID) {
                                                     let newWidgetLayout: WidgetLayout = wl;
+                                                    newWidgetLayout._id = null;
                                                     newWidgetLayout.id = null;
                                                     newWidgetLayout.dashboardLayoutID = res.id;
                                                     this.globalVariableService.addWidgetLayout(

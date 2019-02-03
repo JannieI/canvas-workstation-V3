@@ -301,6 +301,7 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Add to local and DB
         if (this.adding) {
             // this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
+            this.selectedDashboardSchedule._id = null;
             this.selectedDashboardSchedule.id = null;
             this.selectedDashboardSchedule.dashboardID =
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
