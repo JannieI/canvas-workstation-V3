@@ -6066,6 +6066,32 @@ console.log('xx action', action)
         // Edit title for the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEditTitle', '@Start');
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+        
+        // Permissions
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         if (!this.checkForOnlyOneWidget()) {
             return;
         };
