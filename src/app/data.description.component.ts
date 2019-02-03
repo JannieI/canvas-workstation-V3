@@ -81,6 +81,10 @@ export class DatasourceDescriptionComponent implements OnInit {
         // Highlight selected Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
         // Set seletected index - used for highlighting row
         this.selectedRowIndex = index;
         this.selectedDatasource = JSON.parse(JSON.stringify(this.datasources[index]));
