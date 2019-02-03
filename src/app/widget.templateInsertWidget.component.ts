@@ -251,6 +251,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.localWidget = JSON.parse(JSON.stringify(
             this.globalVariableService.widgets[widgetIndex])
         );
+        this.localWidget._id = null;
         this.localWidget.id = null;
         this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
