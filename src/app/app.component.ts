@@ -6077,7 +6077,7 @@ console.log('xx action', action)
             );
             return;
         };
-        
+
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
@@ -6507,6 +6507,18 @@ console.log('xx action', action)
         // Edit title of selected Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEditTitle', '@Start');
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+        
         // Make sure we have only one Shape selected
         if (!this.checkForOnlyOneWidget()) {
             return;
