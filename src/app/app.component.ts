@@ -5237,13 +5237,10 @@ console.log('xx action', action)
         // Toggle Lock / Unlock for selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLockUnlock', '@Start');
 
-        // Check permissions
-        let permissions: string[] = this.globalVariableService.dashboardPermissionList(this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
-        if ( (permissions.indexOf('canedit') < 0)
-              ||
-              (permissions.indexOf('candelete)') < 0) ) {
+        // Has to be in editMode
+        if (!this.editMode) {
             this.showMessage(
-                'Insufficient permissions',
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -5252,10 +5249,12 @@ console.log('xx action', action)
             return;
         };
 
-        // Has to be in editMode
-        if (!this.editMode) {
+        // Check permissions
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
-                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'You do not have Edit Permissions (role must be added)',
                 'StatusBar',
                 'Warning',
                 3000,
