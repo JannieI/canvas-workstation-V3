@@ -108,7 +108,6 @@ export class DatasourceDescriptionComponent implements OnInit {
             return;
         };
 
-        console.log('xx this.datasources[this.selectedRowIndex].accessType', this.datasources[this.selectedRowIndex].accessType, this.selectedDatasource.accessType)
         // Warn that access list was deleted
         if (this.datasources[this.selectedRowIndex].accessType == 'AccessList'
             &&
@@ -130,6 +129,22 @@ export class DatasourceDescriptionComponent implements OnInit {
         // Update DS
         this.globalVariableService.saveDatasource(this.selectedDatasource).then(res => {
             this.infoMessage = 'Datasource Saved';
+          
+            this.datasources = this.globalVariableService.datasources
+                .slice()
+                .sort( (obj1, obj2) => {
+                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
+
+            if (this.datasources.length > 0) {
+                this.selectedDatasource = this.datasources[0];
+            };            
         });
 
 
