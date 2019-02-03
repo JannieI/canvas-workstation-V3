@@ -8779,6 +8779,7 @@ export class GlobalVariableService {
         // Make a deep copy
         let copiedWidget: Widget = JSON.parse(JSON.stringify(originalWidget));
 
+        copiedWidget._id = null;
         copiedWidget.id = null;
         copiedWidget.dashboardID = this.currentDashboardInfo.value.currentDashboardID;
         copiedWidget.dashboardTabID = this.currentDashboardInfo.value.currentDashboardTabID;
@@ -8788,6 +8789,7 @@ export class GlobalVariableService {
         copiedWidget.isSelected = false;
         copiedWidget.containerLeft = 120;
         copiedWidget.containerTop = 120;
+        copiedWidget.isLocked = false;
         copiedWidget.titleText = copiedWidget.titleText + ' (copy ' +
             copyPosition.toString() + ')';
 
