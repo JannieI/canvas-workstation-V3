@@ -83,7 +83,7 @@ export class DatasourceDescriptionComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedRowIndex = index;
-        this.selectedDatasource = this.datasources[index];
+        this.selectedDatasource = JSON.parse(JSON.stringify(this.datasources[index]));
     }
 
     clickSave() {
@@ -104,11 +104,11 @@ export class DatasourceDescriptionComponent implements OnInit {
             return;
         };
 
+        console.log('xx this.datasources[this.selectedRowIndex].accessType', this.datasources[this.selectedRowIndex].accessType, this.selectedDatasource.accessType)
         // Warn that access list was deleted
         if (this.datasources[this.selectedRowIndex].accessType == 'AccessList'
             &&
             this.selectedDatasource.accessType != 'AccessList') {
-                this.errorMessage = 'Warning; the existing access list was deleted.';
 
                 // Delete the old DS Permissions
                 this.globalVariableService.getDatasourcePermissions().then(res => {
@@ -120,6 +120,7 @@ export class DatasourceDescriptionComponent implements OnInit {
                         };
                     });
                 });
+                this.errorMessage = 'Warning; the existing access list was deleted.';
             };
 
         // Update DS
