@@ -79,7 +79,17 @@ export class WidgetLinksComponent implements OnInit {
                 };
                 return 0;
             });
-        this.dashboardTabs = this.globalVariableService.dashboardTabs.slice();
+        this.dashboardTabs = this.globalVariableService.dashboardTabs
+            .slice()
+            .sort( (obj1,obj2) => {
+                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                    return 1;
+                };
+                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                    return -1;
+                };
+                return 0;
+            });
 
         // Show linking
         if (this.selectedWidget.hyperlinkDashboardID != null
