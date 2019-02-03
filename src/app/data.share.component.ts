@@ -72,10 +72,11 @@ export class DatasourceShareComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.datasources = this.globalVariableService.datasources
-            .filter(ds => ds.accessType == 'AccessList');
+            .filter(ds => ds.accessType == 'AccessList')
+            .slice();
 
         this.globalVariableService.getDatasourcePermissions().then (dp => {
-            this.datasourcePermissions = dp;
+            this.datasourcePermissions = dp.slice();
             this.datasourcePermissions.forEach(tdsp => {
                 tdsp.name = this.globalVariableService.datasources.filter(
                     ds => ds.id == tdsp.datasourceID)[0].name;
@@ -120,13 +121,11 @@ export class DatasourceShareComponent implements OnInit {
                     })
                     .map(g => g.name);
 
-                    this.groups = grp;
+                    this.groups = grp.slice();
+                    this.groupNames = ['', ...this.groupNames];
                 });
-                this.groupNames = ['', ...this.groupNames];
-
             });
 
-            console.warn('xx this.datasourcePermissions', this.datasourcePermissions)
         });
 
     }
