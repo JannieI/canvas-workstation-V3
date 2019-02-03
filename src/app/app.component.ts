@@ -8828,6 +8828,18 @@ console.log('xx action', action)
         // Edit Title of selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteWidgetTitle', '@Start');
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+        
         // ID provided
         if (widgetID != null) {
             let selectedWidgetIndex: number = this.currentWidgets.findIndex(w =>
