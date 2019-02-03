@@ -9188,6 +9188,18 @@ console.log('xx action', action)
         // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetEditTitle', '@Start');
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+        
         if (!this.menuOptionClickPreAction()) {
             return;
         };
