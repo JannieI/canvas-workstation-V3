@@ -255,8 +255,8 @@
         grid-column-start: 10;
         /* autoprefixer: off */
         grid-column-end: 14;
-        grid-row-start: 13;
-        grid-row-end: 14;
+        grid-row-start: 14;
+        grid-row-end: 15;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
