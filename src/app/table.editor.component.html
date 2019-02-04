@@ -45,7 +45,6 @@
 
                     <div class="datasourceList">
                         <clr-datagrid>
-                            <clr-dg-column >NrWidgets</clr-dg-column>
                             <clr-dg-column >Name</clr-dg-column>
                             <clr-dg-column >Description</clr-dg-column>
                             <clr-dg-row *clrDgItems="let row of currentDatasources;
@@ -54,7 +53,6 @@
                                 [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                 (click)="clickDSrow(i, row.id)"
                                 >
-                                <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
                                 <clr-dg-cell>
                                     {{ row.name }}
                                     <span *ngIf="row.nrWidgets > 0"
