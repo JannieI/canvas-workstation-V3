@@ -4217,8 +4217,8 @@ export class GlobalVariableService {
 
                 // NB: Note that the Server will return the data based on the
                 //     datasourceID= in the query parameters !
-                let finalUrl: string = this.canvasServerURI + '/clientData?id='
-                    + datasetID.toString() + '&datasourceID=' + datasourceID;
+                let finalUrl: string = this.canvasServerURI + '/clientData/?&datasourceID=' 
+                    + datasourceID;
 
                     this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res  => {
@@ -12998,7 +12998,9 @@ export class GlobalVariableService {
 
         // Return
         if (this.sessionDebugging) {
-            console.log('  Access type, result: ', {dashboardID}, {accessRequired}, dashboard.accessType, {hasAccess})
+            if (!hasAccess) {
+                console.log('  Access type, result: ', {dashboardID}, {accessRequired}, dashboard.accessType, {hasAccess});
+            };
         };
 
         return hasAccess;
