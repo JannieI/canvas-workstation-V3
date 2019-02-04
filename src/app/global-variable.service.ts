@@ -14299,6 +14299,7 @@ console.log('xx currentDatasetsAdded', currentDatasetsAdded)
     }
 
     testBingMaps() {
+        // Test to get DistanceMatrix from Bing via Async - not sure how to get results !
         console.log('bingMaps Start')
 
         let pathUrl: string = 'https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync';
