@@ -145,6 +145,19 @@ import { GlobalVariableService }      from './global-variable.service';
             // Get DS
             this.currentDatasources = this.globalVariableService.currentDatasources
                 .filter(ds => ds.id == this.localWidget.datasourceID)
+                .filter(ds => 
+                    this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
+                )
+                .sort( (obj1, obj2) => {
+                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                }
+            );
 
             // TODO - handle properly and close form
             if (this.currentDatasources.length != 1) {
@@ -212,8 +225,22 @@ import { GlobalVariableService }      from './global-variable.service';
 
                 // Reset
                 this.isBusyRetrievingData = false
-                this.currentDatasources = this.globalVariableService.datasources.slice();
-
+                this.currentDatasources = this.globalVariableService.datasources
+                    .slice()
+                    .filter(ds => 
+                        this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
+                    )
+                    .sort( (obj1, obj2) => {
+                        if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                            return 1;
+                        };
+                        if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                            return -1;
+                        };
+                        return 0;
+                    }
+                );
+    
                 // Tell user
                 this.errorMessage = 'Data retrieved - click row again to continue';
 
