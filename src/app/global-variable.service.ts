@@ -13096,7 +13096,9 @@ export class GlobalVariableService {
 
         // Return
         if (this.sessionDebugging) {
-            console.log('  Access type, result: ', {datasourceID}, {accessRequired}, datasource.accessType, {hasAccess})
+            if (!hasAccess) {
+                console.log('  Access type, result: ', {datasourceID}, {accessRequired}, datasource.accessType, {hasAccess})
+            };
         };
 
         return hasAccess;
