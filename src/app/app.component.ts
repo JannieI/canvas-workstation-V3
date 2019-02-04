@@ -8010,7 +8010,10 @@ console.log('xx action', action)
             return;
         };
 
-
+        this.globalVariableService.testBingMaps();
+        if (this.menuOptionClickPreAction()) {
+            return;
+        };
 
 
         // Send WebSocket Message
@@ -9199,7 +9202,7 @@ console.log('xx action', action)
             );
             return;
         };
-        
+
         if (!this.menuOptionClickPreAction()) {
             return;
         };

@@ -343,7 +343,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
             );
         };
         this.selectedDatasourceSchedule.datasourceID = this.datasourceID;
-        console.warn('xx this.datasourceID', this.datasourceID)
+
         // Add to local and DB
         if (this.adding) {
             // this.currentDatasourceSchedules.push(this.selectedDatasourceSchedules);
