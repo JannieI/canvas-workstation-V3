@@ -1918,6 +1918,7 @@ export class GlobalVariableService {
                             // Deep copy
                             // let newT: DashboardTab = Object.assign({}, t);
                             let newT: DashboardTab = JSON.parse(JSON.stringify(t));
+                            newT._id = null;
                             newT.id = null;
                             newT.dashboardID = addedD.id;
                             newT.originalID = t.id;
@@ -1939,6 +1940,7 @@ export class GlobalVariableService {
                                         // Deep copy
                                         // let newW: Widget = Object.assign({}, w);
                                         let newW: Widget = JSON.parse(JSON.stringify(w));
+                                        newW._id = null;
                                         newW.id = null;
                                         newW.dashboardID = addedD.id;
                                         newW.dashboardTabID = t.id;
@@ -1966,6 +1968,7 @@ export class GlobalVariableService {
                                             // Deep copy
                                             // let newChk: WidgetCheckpoint = Object.assign({}, chk);
                                             let newChk: WidgetCheckpoint = JSON.parse(JSON.stringify(chk));
+                                            newChk._id = null;
                                             newChk.id = null;
                                             newChk.dashboardID = addedD.id;
                                             newChk.widgetID = w.id;
@@ -2021,6 +2024,7 @@ export class GlobalVariableService {
                                             // Deep copy
                                             // let newP: DashboardPermission = Object.assign({}, p);
                                             let newP: DashboardPermission = JSON.parse(JSON.stringify(p));
+                                            newP._id = null;
                                             newP.id = null;
                                             newP.dashboardID = addedD.id;
                                             if (newP.userID != this.currentUser.userID) {
