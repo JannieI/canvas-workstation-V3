@@ -1223,6 +1223,12 @@ export class GlobalVariableService {
     openDashboardFormOnStartup: boolean = false;
     hasDatasources = new BehaviorSubject<boolean>(false);   // Used to set menu
     showModalLanding = new BehaviorSubject<boolean>(true);  // Shows Landing page
+    lastDashboardOpened: 
+        {
+            wasHyperlink: boolean; 
+            lastDashboardID: number; 
+            lastDashboardTabID: number
+        } = null;
 
 
     // Session
