@@ -1866,6 +1866,7 @@ export class GlobalVariableService {
                 let today = new Date();
                 // let newD = Object.assign({}, this.dashboards[dashboardIndex]);
                 let newD = JSON.parse(JSON.stringify(this.dashboards[dashboardIndex]));
+                newD._id = null;
                 newD.id = null;
                 newD.creator = this.currentUser.userID;
                 newD.dateCreated = today;
@@ -4713,7 +4714,7 @@ export class GlobalVariableService {
                     console.log('xx Related W: ', w.id)
                     w.graphUrl = "";
                     w.graphData = dataSet.data;
-                    
+
             };
         });
 

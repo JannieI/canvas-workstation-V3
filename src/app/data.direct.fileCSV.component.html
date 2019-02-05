@@ -179,7 +179,7 @@
                         <clr-datagrid>
 
                             <clr-dg-column *ngFor="let row of fields">{{row}}</clr-dg-column>
-                            <clr-dg-row *clrDgItems="let row of fileData">
+                            <clr-dg-row *ngFor="let row of fileData">
 
                                 <clr-dg-cell *ngFor="let col of fields; let i = index">
                                     {{ row[i] }}
