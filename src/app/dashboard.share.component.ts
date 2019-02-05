@@ -73,7 +73,7 @@ export class DashboardShareComponent implements OnInit {
                 .filter(dP => dP.dashboardID == this.selectedDashboard.id);
             this.groups = res;
         });
-        console.log('xx D in gv', this.globalVariableService.dashboards)
+
         // Check permissions
         if (this.globalVariableService.dashboardPermissionCheck(
             this.selectedDashboard.id, 'cangrantaccess') ) {
@@ -99,7 +99,12 @@ export class DashboardShareComponent implements OnInit {
 
         // Delete permissions records if changed away from Access List
         if (this.originalAccessType == 'AccessList'  &&  this.accessType != 'AccessList') {
-            console.log('xx pm ', this.globalVariableService.dashboardPermissions)
+            // Get all the IDs and delete
+            let dPIDs: number[] = [];
+            this.globalVariableService.dashboardPermissions.forEach(dp => {
+                dPIDs.push(dp.id);
+            });
+            dPIDs.forEach(id => this.globalVariableService.deleteDashboardPermission(id));
         };
 
         // Save data
