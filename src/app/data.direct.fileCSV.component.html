@@ -123,7 +123,7 @@
                         <clr-datagrid>
                             <clr-dg-column [clrDgField]="'userID'">Columns</clr-dg-column>
 
-                            <clr-dg-row *ngFor="let row of fields">
+                            <clr-dg-row *clrDgItems="let row of fields">
                                 <clr-dg-cell>
                                     {{ row }}
                                 </clr-dg-cell>
@@ -179,7 +179,7 @@
                         <clr-datagrid>
 
                             <clr-dg-column *ngFor="let row of fields">{{row}}</clr-dg-column>
-                            <clr-dg-row *ngFor="let row of fileData">
+                            <clr-dg-row *clrDgItems="let row of fileData">
 
                                 <clr-dg-cell *ngFor="let col of fields; let i = index">
                                     {{ row[i] }}
