@@ -92,7 +92,7 @@
                     <div class="gridFieldsRH">
                         <clr-datagrid>
                             <clr-dg-column>Column</clr-dg-column>
-                            <clr-dg-row *ngFor="let row of fieldTypes">
+                            <clr-dg-row *clrDgItems="let row of fieldTypes">
                                 <clr-dg-cell>{{ row }}</clr-dg-cell>
                             </clr-dg-row>
                         </clr-datagrid>

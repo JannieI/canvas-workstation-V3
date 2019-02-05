@@ -39,7 +39,7 @@
                         <clr-dg-column>LocalName</clr-dg-column>
                         <clr-dg-column>Filtered</clr-dg-column>
                         <clr-dg-column>Transformed</clr-dg-column>
-                        <clr-dg-row *ngFor="let row of finalFields">
+                        <clr-dg-row *clrDgItems="let row of finalFields">
                             <clr-dg-cell>{{ row.fieldName }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.dataType }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.localName }}</clr-dg-cell>
