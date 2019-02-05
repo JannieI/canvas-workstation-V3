@@ -45,11 +45,13 @@ export class DashboardShareComponent implements OnInit {
     }
 
     accessType: string = '';
+    canChangePermissions: boolean = false;
     dashboardPermissions: DashboardPermission[];
     errorMessage: string = '';
     groupID: number;
     groupName: string = '';
     groups: CanvasGroup[];
+    originalAccessType: string = '';
     selectedRow: number = 0;
     userID: string = '';
 
@@ -64,12 +66,21 @@ export class DashboardShareComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.accessType = this.selectedDashboard.accessType;
+        this.originalAccessType = this.selectedDashboard.accessType;
 
         this.globalVariableService.getCanvasGroups().then( res => {
             this.dashboardPermissions = this.globalVariableService.dashboardPermissions
                 .filter(dP => dP.dashboardID == this.selectedDashboard.id);
             this.groups = res;
         });
+        console.log('xx D in gv', this.globalVariableService.dashboards)
+        // Check permissions
+        if (this.globalVariableService.dashboardPermissionCheck(
+            this.selectedDashboard.id, 'cangrantaccess') ) {
+                this.canChangePermissions =  true;
+        } else {
+            this.errorMessage = 'You cannot Grant access to others';
+        };
 
     }
 
@@ -86,12 +97,12 @@ export class DashboardShareComponent implements OnInit {
 
         this.errorMessage = '';
 
-        if (!this.globalVariableService.dashboardPermissionCheck(
-            this.selectedDashboard.id, 'cangrantaccess') ) {
-                this.errorMessage = 'You cannot Grant access to others';
-                return;
+        // Delete permissions records if changed away from Access List
+        if (this.originalAccessType == 'AccessList'  &&  this.accessType != 'AccessList') {
+            console.log('xx pm ', this.globalVariableService.dashboardPermissions)
         };
 
+        // Save data
         this.selectedDashboard.accessType = this.accessType;
         this.globalVariableService.saveDashboard(this.selectedDashboard);
 

@@ -36,6 +36,7 @@
                 <div class="gridCurrentSelect">
                     <div class="select">
                         <select [(ngModel)]="accessType"
+                            [disabled]="!canChangePermissions"
                             >
                             <option>Private</option>
                             <option>Public</option>

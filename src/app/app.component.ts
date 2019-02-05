@@ -3168,7 +3168,7 @@ console.log('xx action', action)
         this.globalVariableService.currentDashboards.forEach(d => {
             if (d.id == this.globalVariableService.currentDashboardInfo
                 .value.currentDashboardID) {
-                this.selectedDashboard = d;
+                this.selectedDashboard = JSON.parse(JSON.stringify(d));
             };
         });
 

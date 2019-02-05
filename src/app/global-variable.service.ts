@@ -1480,7 +1480,7 @@ export class GlobalVariableService {
                     // Update Disc
                     if (localCacheableDisc) {
                         // Delete from DB
-                        if (localTableName != null) {
+                    if (localTableName != null) {
 
                             this.dbCanvasAppDatabase.table(localTableName)
                                 .where('id').equals(webSocketMessage.objectID)
@@ -13009,10 +13009,10 @@ export class GlobalVariableService {
         // Return
         if (this.sessionDebugging) {
             if (!hasAccess) {
-                console.log('  Access type, result: ', {dashboardID}, {accessRequired}, dashboard.accessType, {hasAccess});
+                console.log('  Access FAILED for: ', {dashboardID}, {accessRequired}, dashboard.accessType, {hasAccess});
             };
         };
-
+        console.log('xx', {hasAccess}) 
         return hasAccess;
     }
 
