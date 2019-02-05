@@ -10169,6 +10169,19 @@ console.log('xx action', action)
         // Delete W + Chkpnts from the DB and global ones
         this.globalVariableService.deleteWidget(deleteWidget.id).then(w => {
 
+            // Refilter Graph data if a Slicer was deleted
+            if (deleteWidget.widgetType == 'Slicer') {
+
+                // Filter the data in the dSets to which the Sl points.
+                // In addition, apply all Sl that relates to each one
+                let newDataset: Dataset;
+                this.globalVariableService.currentDatasets.forEach(cd => {
+                    if (cd.id == datasetID) {
+                        newDataset = this.globalVariableService.filterSlicer(cd);
+                    };
+                });
+
+            }
             // Add to Action log
             this.globalVariableService.actionUpsert(
                 null,
@@ -10184,15 +10197,6 @@ console.log('xx action', action)
                 deleteWidget,
                 null
             );
-        });
-
-        // Filter the data in the dSets to which the Sl points.
-        // In addition, apply all Sl that relates to each one
-        let newDataset: Dataset;
-        this.globalVariableService.currentDatasets.forEach(cd => {
-            if (cd.id == datasetID) {
-                newDataset = this.globalVariableService.filterSlicer(cd);
-            };
         });
 
     }

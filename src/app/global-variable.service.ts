@@ -4617,9 +4617,9 @@ export class GlobalVariableService {
                 "color: black; background: lightgray; font-size: 10px", {dataSet});
         };
 
-        this.currentWidgets.forEach(w => {
-            console.warn('xx strt graphData', w.graphUrl, w.graphData);
-        });
+        // this.currentWidgets.forEach(w => {
+        //     console.warn('xx strt graphData', w.graphUrl, w.graphData);
+        // });
 
         // Get all Sl for the given dSet
         // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has
