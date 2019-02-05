@@ -143,6 +143,8 @@ export class AppComponent implements OnInit {
             this.globalVariableService.lastDashboardOpened.wasHyperlink == true
             &&  this.globalVariableService.lastDashboardOpened.lastDashboardID != null
             &&  this.globalVariableService.lastDashboardOpened.lastDashboardID != null) {
+                console.log('xx last', this.globalVariableService.lastDashboardOpened)
+                this.globalVariableService.lastDashboardOpened.wasHyperlink = false;
                 this.globalVariableService.refreshCurrentDashboard(
                     'app-Backspace', 
                     this.globalVariableService.lastDashboardOpened.lastDashboardID,
@@ -9300,7 +9302,8 @@ console.log('xx action', action)
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.globalVariableService.lastDashboardOpened.lastDashboardID =
             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
-             
+
+            console.log('xx last', this.globalVariableService.lastDashboardOpened)
         // Jump to Dashboard
         this.globalVariableService.refreshCurrentDashboard(
             'app-actionmenuJumpToLinked', dashboardID, dashboardTabID, ''
