@@ -67,7 +67,7 @@
                         <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-column>Description</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of dashboards; let i = index"
+                        <clr-dg-row *clrDgItems="let row of dashboards; let i = index"
                             [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
                             (click)="clickRow(i)" 
