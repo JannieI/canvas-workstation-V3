@@ -10187,6 +10187,9 @@ console.log('xx action', action)
             return false;
         };
 
+        // Reset previous Dashboard to not be a hyperlink (for Backspace key)
+        this.globalVariableService.lastDashboardOpened.wasHyperlink = false;
+        
         // Return
         return true;
     }
