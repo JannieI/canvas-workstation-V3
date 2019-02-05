@@ -4632,10 +4632,11 @@ export class GlobalVariableService {
 
         // Reset the filtered data
         dataSet.data = dataSet.dataRaw;
+        console.log('xx data, dataRaw.length', dataSet.data.length, dataSet.dataRaw.length)
 
         // Loop on related Sl and filter data
         relatedSlicers.forEach(w => {
-            console.log('sl-filter 0', w.slicerType)
+            console.log('Releated Slicers are (id, type): ', w.id, w.slicerType)
 
             // Type = List
             if (w.slicerType == 'List') {
@@ -4666,6 +4667,7 @@ export class GlobalVariableService {
 
                     // Replace the filtered data, used by the graph
                 dataSet.data = tempData;
+                console.log('xx End of list data.length', dataSet.data.length)
 
             };
 
@@ -4708,8 +4710,10 @@ export class GlobalVariableService {
             if (w.datasourceID == dataSet.datasourceID
                 &&   w.datasetID == dataSet.id
                 && w.widgetType != 'Slicer') {
+                    console.log('xx Related W: ', w.id)
                     w.graphUrl = "";
                     w.graphData = dataSet.data;
+                    
             };
         });
 

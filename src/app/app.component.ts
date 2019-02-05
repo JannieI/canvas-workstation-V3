@@ -10165,7 +10165,6 @@ console.log('xx action', action)
             };
         };
 
-        console.log('xx z deleteWidget.id', deleteWidget.id)
         // Delete W + Chkpnts from the DB and global ones
         this.globalVariableService.deleteWidget(deleteWidget.id).then(w => {
 
@@ -10177,7 +10176,18 @@ console.log('xx action', action)
                 let newDataset: Dataset;
                 this.globalVariableService.currentDatasets.forEach(cd => {
                     if (cd.id == datasetID) {
+
+                        // Filter the Data down based on all Slicers related to it
                         newDataset = this.globalVariableService.filterSlicer(cd);
+
+                        // Refresh Ws that are based on this Dataset
+                        this.globalVariableService.currentWidgets.forEach(w => {
+                            if (w.datasourceID == deleteWidget.datasourceID
+                                &&  w.datasetID == deleteWidget.datasetID
+                                && w.widgetType != 'Slicer') {
+                                    this.globalVariableService.changedWidget.next(w);
+                            };
+                        });
                     };
                 });
 
