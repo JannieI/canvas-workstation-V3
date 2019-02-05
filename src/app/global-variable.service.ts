@@ -1228,7 +1228,11 @@ export class GlobalVariableService {
             wasHyperlink: boolean; 
             lastDashboardID: number; 
             lastDashboardTabID: number
-        } = null;
+        } = {
+            wasHyperlink: false, 
+            lastDashboardID: null, 
+            lastDashboardTabID: null
+        };
 
 
     // Session

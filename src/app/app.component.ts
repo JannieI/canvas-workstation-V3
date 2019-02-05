@@ -139,6 +139,17 @@ export class AppComponent implements OnInit {
             this.dashboardPageLast();
             return;
         };
+        if (event.code == 'Backspace'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  &&  
+            this.globalVariableService.lastDashboardOpened.wasHyperlink == true
+            &&  this.globalVariableService.lastDashboardOpened.lastDashboardID != null
+            &&  this.globalVariableService.lastDashboardOpened.lastDashboardID != null) {
+                this.globalVariableService.refreshCurrentDashboard(
+                    'app-Backspace', 
+                    this.globalVariableService.lastDashboardOpened.lastDashboardID,
+                    this.globalVariableService.lastDashboardOpened.lastDashboardID, 
+                    ''
+                );
+        }
 
         // Move with Arrow
         if (event.key == 'ArrowRight'  ||  event.key == 'ArrowDown'  ||
@@ -10189,7 +10200,7 @@ console.log('xx action', action)
 
         // Reset previous Dashboard to not be a hyperlink (for Backspace key)
         this.globalVariableService.lastDashboardOpened.wasHyperlink = false;
-        
+
         // Return
         return true;
     }
