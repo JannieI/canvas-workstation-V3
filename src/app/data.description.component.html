@@ -215,7 +215,6 @@
 
                 <div class = "gridTable">
                     <clr-datagrid>
-
                         <clr-dg-column [clrDgField]="'type'">Type</clr-dg-column>
                         <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
                         <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
@@ -237,14 +236,12 @@
                         <clr-dg-column [clrDgField]="'refreshedServerOn'">Srv Refreshed</clr-dg-column>
                         <clr-dg-column [clrDgField]="'refreshedLocalOn'">Local Refreshed</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of datasources; let i = index"
+                        <clr-dg-row *clrDgItems="let row of datasources; let i = index"
                             [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                             [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                             (click)="clickRow(i, row.id)"
                             >
-
                             <clr-dg-cell>{{row.type}}</clr-dg-cell>
-
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
                             <clr-dg-cell>{{row.description}}</clr-dg-cell>
                             <clr-dg-cell>{{row.accessType}}</clr-dg-cell>
@@ -256,7 +253,6 @@
                             <clr-dg-cell>{{row.oldnessMaxPeriodUnits}}</clr-dg-cell>
                             <clr-dg-cell>{{row.oldnessRelatedDate}}</clr-dg-cell>
                             <clr-dg-cell>{{row.oldnessRelatedTime}}</clr-dg-cell>
-
                             <clr-dg-cell>{{row.createMethod}}</clr-dg-cell>
                             <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
                             <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
@@ -265,7 +261,6 @@
                             <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
                             <clr-dg-cell>{{row.refreshedServerOn}}</clr-dg-cell>
                             <clr-dg-cell>{{row.refreshedLocalOn}}</clr-dg-cell>
-
                         </clr-dg-row>
 
                     </clr-datagrid>
