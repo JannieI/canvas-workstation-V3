@@ -9294,6 +9294,14 @@ console.log('xx action', action)
             dashboardTabID = -1;
         };
 
+        // Remember this
+        this.globalVariableService.lastDashboardOpened.wasHyperlink == true;
+        this.globalVariableService.lastDashboardOpened.lastDashboardID = 
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+        this.globalVariableService.lastDashboardOpened.lastDashboardID =
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+             
+        // Jump to Dashboard
         this.globalVariableService.refreshCurrentDashboard(
             'app-actionmenuJumpToLinked', dashboardID, dashboardTabID, ''
         );
