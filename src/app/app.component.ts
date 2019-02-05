@@ -142,13 +142,12 @@ export class AppComponent implements OnInit {
         if (event.code == 'Backspace'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  &&  
             this.globalVariableService.lastDashboardOpened.wasHyperlink == true
             &&  this.globalVariableService.lastDashboardOpened.lastDashboardID != null
-            &&  this.globalVariableService.lastDashboardOpened.lastDashboardID != null) {
-                console.log('xx last', this.globalVariableService.lastDashboardOpened)
+            &&  this.globalVariableService.lastDashboardOpened.lastDashboardTabID != null) {
                 this.globalVariableService.lastDashboardOpened.wasHyperlink = false;
                 this.globalVariableService.refreshCurrentDashboard(
                     'app-Backspace', 
                     this.globalVariableService.lastDashboardOpened.lastDashboardID,
-                    this.globalVariableService.lastDashboardOpened.lastDashboardID, 
+                    this.globalVariableService.lastDashboardOpened.lastDashboardTabID, 
                     ''
                 );
         }
@@ -9297,13 +9296,15 @@ console.log('xx action', action)
         };
 
         // Remember this
-        this.globalVariableService.lastDashboardOpened.wasHyperlink == true;
+        this.globalVariableService.lastDashboardOpened.wasHyperlink = true;
         this.globalVariableService.lastDashboardOpened.lastDashboardID = 
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-        this.globalVariableService.lastDashboardOpened.lastDashboardID =
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+        this.globalVariableService.lastDashboardOpened.lastDashboardTabID =
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
+        if (this.globalVariableService.lastDashboardOpened.lastDashboardTabID == null) {
+            this.globalVariableService.lastDashboardOpened.lastDashboardTabID = -1;
+        };
 
-            console.log('xx last', this.globalVariableService.lastDashboardOpened)
         // Jump to Dashboard
         this.globalVariableService.refreshCurrentDashboard(
             'app-actionmenuJumpToLinked', dashboardID, dashboardTabID, ''
