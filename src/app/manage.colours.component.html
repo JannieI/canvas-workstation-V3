@@ -80,7 +80,7 @@
                         <nav>
                             <ul class="nav-list">
                                 <div *ngFor="let row of backgroundcolorsDefault; let i = index"
-                                    [style.background-color]="row.name"
+                                    [style.background-color]="row.cssCode"
                                     [style.color]="(i == availableBgIndex)? 'red' : 'black'"
                                     (click)="clickAvailable(i)"
                                     >
