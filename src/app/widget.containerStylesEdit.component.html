@@ -94,7 +94,7 @@
                             (change)="clickSelectBgColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
-                                [style.background-color]="row.name"
+                                [style.background-color]="row.cssCode"
                                 >
                                 {{ row.name }}
                             </option>
@@ -126,7 +126,7 @@
                             name="containerBorderColourName"
                             >
                             <option *ngFor="let row of backgroundcolors"
-                                [style.background-color]="row.name"
+                                [style.background-color]="row.cssCode"
                                 >
                                 {{ row.name }}
                             </option>
