@@ -3244,7 +3244,7 @@ export class GlobalVariableService {
                 this.getDashboards()
                     .then(res => {
                         res = res.filter(
-                            i => (i.isSample)
+                            i => (i.isSample)  && i.state == 'Complete'
                         );
 
                         if (this.sessionDebugging) {
@@ -13708,6 +13708,7 @@ export class GlobalVariableService {
             // if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
             //     this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
+            // TODO - fix HARD Coding !!!
                 let pathUrl: string = '/canvasCurrentDashboard?id=68&dashboardTabID=175&datasourceIDexclude=1,2';
                 let finalUrl: string = this.canvasServerURI + pathUrl;
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
