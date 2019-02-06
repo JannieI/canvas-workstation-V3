@@ -96,7 +96,7 @@
                             (change)="clickSelectTitleColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
-                                [style.background-color]="row.name"
+                                [style.background-color]="row.cssCode"
                                 >
                                 {{ row.name }}
                             </option>
@@ -144,7 +144,7 @@
                             (change)="clickSelectBorderColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
-                                [style.background-color]="row.name"
+                                [style.background-color]="row.cssCode"
                                 >
                                 {{ row.name }}
                             </option>
