@@ -2024,7 +2024,7 @@ export class GlobalVariableService {
                                             // Deep copy
                                             // let newP: DashboardPermission = Object.assign({}, p);
                                             let newP: DashboardPermission = JSON.parse(JSON.stringify(p));
-                                            newP._id = null;
+                                            newP._id = null;p
                                             newP.id = null;
                                             newP.dashboardID = addedD.id;
                                             if (newP.userID != this.currentUser.userID) {

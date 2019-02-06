@@ -642,7 +642,8 @@ export class StatusbarComponent {
         //Toggle EditMode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleEditMode', '@Start');
 
-        this.globalVariableService.editMode.next(!this.globalVariableService.editMode.value);
+        // TODO - this must do ALL the things done in app.clickMenuEditMode, OR delete
+        // this.globalVariableService.editMode.next(!this.globalVariableService.editMode.value);
     }
 
 }
