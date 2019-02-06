@@ -1,4 +1,4 @@
-// Angular
+// Edit Widget Title
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
