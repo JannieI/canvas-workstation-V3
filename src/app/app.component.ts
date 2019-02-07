@@ -1190,7 +1190,13 @@ export class AppComponent implements OnInit {
             &&
             this.globalVariableService.currentUser.isFirstTimeUser) {
             this.isFirstTimeUser = true;
-        }
+        } else {
+            // If chose Add Dashboard on Landing page, and then pressed Esc (nothing new
+            // added), then re-show the Landing page
+            if (this.globalVariableService.currentDashboardInfo.value.currentDashboardID == null) {
+                this.showModalLanding = true;
+            };
+        };
 
     }
 
