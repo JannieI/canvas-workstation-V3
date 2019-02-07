@@ -1181,15 +1181,16 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
-        // When creating a D, one can also Edit it
-        this.globalVariableService.editMode.next(true);
         this.showModalDashboardNew = false;
 
         // Show help for first time users
-        if (action == 'Created'
-            &&
-            this.globalVariableService.currentUser.isFirstTimeUser) {
-            this.isFirstTimeUser = true;
+        if (action == 'Created') {
+            // When creating a D, one can also Edit it
+            this.globalVariableService.editMode.next(true);
+
+            if (this.globalVariableService.currentUser.isFirstTimeUser) {
+                this.isFirstTimeUser = true;
+            };
         } else {
             // If chose Add Dashboard on Landing page, and then pressed Esc (nothing new
             // added), then re-show the Landing page
