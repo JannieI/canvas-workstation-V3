@@ -12787,21 +12787,23 @@ export class GlobalVariableService {
         };
 
         // Add to DB
-        let newStatusBarMessageLog: StatusBarMessageLog = {
-            id: null,
-            logDateTime: new Date(),
-            userID: this.currentUser.userID,
-            dashboardID: this.currentDashboardInfo.value.currentDashboardID,
-            dashboardName: null,
-            message:statusBarMessage.message,
-            uiArea: statusBarMessage.uiArea,
-            classfication: statusBarMessage.classfication,
-            timeout: statusBarMessage.timeout,
-            defaultMessage: statusBarMessage.defaultMessage
+        if(this.currentDashboardInfo.value.currentDashboardID != null) {
+            let newStatusBarMessageLog: StatusBarMessageLog = {
+                id: null,
+                logDateTime: new Date(),
+                userID: this.currentUser.userID,
+                dashboardID: this.currentDashboardInfo.value.currentDashboardID,
+                dashboardName: null,
+                message:statusBarMessage.message,
+                uiArea: statusBarMessage.uiArea,
+                classfication: statusBarMessage.classfication,
+                timeout: statusBarMessage.timeout,
+                defaultMessage: statusBarMessage.defaultMessage
+            };
+
+            this.addStatusBarMessageLog(newStatusBarMessageLog);
         };
-
-        this.addStatusBarMessageLog(newStatusBarMessageLog);
-
+        
         // No messages during dont disturb
         if (!this.dontDisturb.value) {
 
