@@ -1193,7 +1193,7 @@ export class AppComponent implements OnInit {
         } else {
             // If chose Add Dashboard on Landing page, and then pressed Esc (nothing new
             // added), then re-show the Landing page
-            if (this.globalVariableService.currentDashboardInfo.value.currentDashboardID == null) {
+            if (this.globalVariableService.currentDashboardInfo.value == null) {
                 this.showModalLanding = true;
             };
         };
@@ -1205,9 +1205,17 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardOpen', '@Start');
 
         this.menuOptionClickPostAction();
-        this.dashboardOpenActions();
 
         this.showModalDashboardOpen = false;
+
+        // If chose Add Dashboard on Landing page, and then pressed Esc (nothing new
+        // added), then re-show the Landing page
+        if (this.globalVariableService.currentDashboardInfo.value == null) {
+            this.showModalLanding = true;
+        } else {;
+        
+            this.dashboardOpenActions();
+        };
     }
 
     handleCloseDashboardSave(action: string) {
