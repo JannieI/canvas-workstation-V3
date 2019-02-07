@@ -1562,18 +1562,20 @@ export class GlobalVariableService {
             // If Dashboard is currently open
 
             // Warn user
-            if (webSocketMessage.objectName == 'dashboards'
-                &&
-                webSocketMessage.objectID == this.currentDashboardInfo.value.currentDashboardID) {
-                    this.showStatusBarMessage(
-                        {
-                            message: 'This Dashboard has been changed',
-                            uiArea: 'StatusBar',
-                            classfication: 'Warning',
-                            timeout: 3000,
-                            defaultMessage: ''
-                        }
-                    );
+            if(this.currentDashboardInfo.value != null) {
+                if (webSocketMessage.objectName == 'dashboards'
+                    &&
+                    webSocketMessage.objectID == this.currentDashboardInfo.value.currentDashboardID) {
+                        this.showStatusBarMessage(
+                            {
+                                message: 'This Dashboard has been changed',
+                                uiArea: 'StatusBar',
+                                classfication: 'Warning',
+                                timeout: 3000,
+                                defaultMessage: ''
+                            }
+                        );
+                };
             };
 
             // Force refresh of Dashboard if critical
