@@ -252,6 +252,7 @@ export class LandingComponent implements OnInit {
 		);
 
 		// Close modal, and show the Dashboard
+		this.globalVariableService.openDashboardFormOnStartup = false;
 		this.formLandingClosed.emit('OpenRecent');
 	}
 

@@ -192,10 +192,24 @@ export class DataDirectFileCSVComponent implements OnInit {
         // Read file content into an Array: split on NewLine, then Comma
         let arr: any = this.loadedFile.target.result.split(/\r?\n/).map(x => x.split(","));
 
+        // Remove single ticks, spaces and dots from Headers
+        let re = /'/gi;
+        for (var col = 0; col < arr[0].length; col++) {
+            arr[0][col] = arr[0][col].replace(re, '');
+        };
+        re = /./gi;
+        for (var col = 0; col < arr[0].length; col++) {
+            arr[0][col] = arr[0][col].replace(re, '');
+        };
+        re = / /gi;
+        for (var col = 0; col < arr[0].length; col++) {
+            arr[0][col] = arr[0][col].replace(re, '');
+        };
+
         // Remove extra Quote, created for example by Libre Office SaveAs CSV: ""FieldName""
         // is saved as "\"FieldName\"" in Mongo, which then causes problems when read by
         // WidgetEditor (Vega)
-        var re = /"/gi;
+        re = /"/gi;
         for (var col = 0; col < arr[0].length; col++) {
             arr[0][col] = arr[0][col].replace(re, '');
         };
