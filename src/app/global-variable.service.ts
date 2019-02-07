@@ -12786,8 +12786,8 @@ export class GlobalVariableService {
                 "color: black; background: lightgray; font-size: 10px", {statusBarMessage});
         };
 
-        // Add to DB
-        if(this.currentDashboardInfo.value.currentDashboardID != null) {
+        // Add to DB (if a Dashboard on display)
+        if(this.currentDashboardInfo.value != null) {
             let newStatusBarMessageLog: StatusBarMessageLog = {
                 id: null,
                 logDateTime: new Date(),
@@ -12803,7 +12803,7 @@ export class GlobalVariableService {
 
             this.addStatusBarMessageLog(newStatusBarMessageLog);
         };
-        
+
         // No messages during dont disturb
         if (!this.dontDisturb.value) {
 
