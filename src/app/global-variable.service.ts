@@ -13290,14 +13290,11 @@ export class GlobalVariableService {
                 // localStorage.setItem("canvs-token", JSON.stringify(token));
 
                 if (res) {
-                    console.warn('Start GV.verifyCanvasUser: Registered on : ',
-                        givenCanvasServerURI, res);
 
                         // TODO - must this be done here ??  Needed to setBaseUrl
                         this.canvasServerURI = givenCanvasServerURI;
 
-                        this.getCanvasGroups().then(grp => 
-                            console.warn('GV.verifyCanvasUser loaded groups', grp))
+                        this.getCanvasGroups().then();
 
                         this.getCanvasUsers().then(usr => {
                             let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
@@ -13333,6 +13330,7 @@ export class GlobalVariableService {
 
                                 // Optional start D
                                 if (this.currentUser.preferenceStartupDashboardID != null) {
+                                    console.log('xx NOOOOOOOOOOOOOOOOOOOOOOOOO *****************')
                                     let startTabID: number = -1;
                                     if (this.currentUser.preferenceStartupDashboardTabID != null) {
                                         startTabID = this.currentUser.preferenceStartupDashboardTabID;
