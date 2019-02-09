@@ -787,7 +787,20 @@ const dashboardTemplate: Dashboard =
         nrTimesOpened: 0,
         nrTimesChanged: 0,
         tabs: [],
-        permissions: []
+        permissions: [],
+
+        // Special info
+        userCanViewList: [],
+        userCanEditList: [],
+        userCanDeleteList: [],
+        userCanRefreshList: [],
+        userCanGrantList: [],
+        groupCanViewList: [],
+        groupCanEditList: [],
+        groupCanDeleteList: [],
+        groupCanRefreshList: [],
+        groupCanGrantList: []
+        
     };
 
 const dashboardTabTemplate: DashboardTab =
