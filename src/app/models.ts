@@ -978,6 +978,19 @@ export class Dashboard {
     nrTimesChanged: number;                 // Nr of times this Dashboard has been edited
     tabs: number[];                         // Array of TabIDs in this Dashboard
     permissions: string[];
+
+    // Special info
+    userCanViewList: number;                // List of usersIDs that can View a DS
+    userCanEditList: boolean;               // List of usersIDs that can Edit a DS, ie do a transformation
+    userCanDeleteList: boolean;             // List of usersIDs that can Delete a DS (Definition, not the Data)
+    userCanRefreshList: boolean;            // List of usersIDs that can Refresh a DS (Data, not Definition)
+    userCanGrantList: boolean;              // List of usersIDs that can Grant access to a DS (Data, not Definition)
+    groupCanViewList: number;               // List of groupIDs that can View a DS
+    groupCanEditList: boolean;              // List of groupIDs that can Edit a DS, ie do a transformation
+    groupCanDeleteList: boolean;            // List of groupIDs that can Delete a DS (Definition, not the Data)
+    groupCanRefreshList: boolean;           // List of groupIDs that can Refresh a DS (Data, not Definition)
+    groupCanGrantList: boolean;             // List of groupIDs that can Grant access to a DS (Data, not Definition)
+
 }
 
 export class DashboardTab {
