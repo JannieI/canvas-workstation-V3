@@ -42,7 +42,6 @@ export class DashboardScheduleComponent implements OnInit {
     }
 
     currentDashboardSchedules: DashboardSchedule[];
-    dashboards: Dashboard[];
     errorMessage: string = '';
     selectedRow: number = 0;
 
@@ -56,7 +55,6 @@ export class DashboardScheduleComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards.slice();
         this.globalVariableService.getCurrentDashboardSchedules(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID)
             .then(i => this.currentDashboardSchedules = i)
