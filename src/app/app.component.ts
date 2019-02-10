@@ -470,14 +470,14 @@ export class AppComponent implements OnInit {
         //    - verify token @ server:
         //      - if not valid, DELETE local and open the Login form.
         //      - else, load variables and proceed to the Landing page.
-        //  WHAT about the startup Dashboard ...  NB <-- confirm how this works
+        //  WHAT about the startup Dashboard ...  TODO NB <-- confirm how this works
 
         // All http-requests other than Register & Login:
         // Canvas will send each http request with the token added.  If the token is not good,
         // the Canvas-Server will fail the request.
 
         // Register (button on Login form):
-        // This process registers the user as one that may use this Canvas system.
+        // This process registers a user as one that may use this Canvas system.
         // The client will:
         // - NOT delete serverName, companyName, userID, token and expirtyDate from the local
         //   IndexedDB
@@ -552,7 +552,7 @@ export class AppComponent implements OnInit {
                 // Notes:
                 // When logging into the Server, a dedicated open connection is established with
                 // Workstation.  Workstation has two methods:
-                // 1. it listions to Server (with socket.on).  Once a message has been received
+                // 1. it listens to Server (with socket.on).  Once a message has been received
                 //    by Workstation, it triggers globalvariables.actionWebSocket() asynchronously.
                 //    The messages received by Workstation is defined by the WebSocketMessage model.
                 // 2. it sends messages to Server (with socket.emit).
@@ -8069,7 +8069,7 @@ console.log('xx action', action)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
 
         // Get GV values
-        let resource: string = 'dashboards';         // Works !
+        let resource: string = 'dashboardsXXX';         // Works !
         // let resource: string = 'datasources';         // Works !
         this.globalVariableService.getDashboardsNEW(resource).then(res => {
             let testDashboards: Dashboard[];
