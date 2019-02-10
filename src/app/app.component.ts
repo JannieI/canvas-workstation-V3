@@ -8071,7 +8071,7 @@ console.log('xx action', action)
         // Get GV values
         let resource: string = 'dashboardsXXX';         // Works !
         // let resource: string = 'datasources';         // Works !
-        this.globalVariableService.getDashboardsNEW(resource).then(res => {
+        this.globalVariableService.getResource(resource).then(res => {
             let testDashboards: Dashboard[];
             testDashboards = res;
             console.warn('xx Returned for resource', resource, testDashboards)

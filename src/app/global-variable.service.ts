@@ -1624,7 +1624,7 @@ export class GlobalVariableService {
         });
     }
 
-    getDashboardsNEW(resource: string = '', params: string = ''): Promise<any> {
+    getResource(resource: string = '', params: string = ''): Promise<any> {
         // Description: Gets the data (either from cached or HTTP), and updates
         // variables this.resource (ie this.dashboards)and cache (if from HTTP and cacheable)
 
