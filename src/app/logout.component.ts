@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Log out of Canvas
  */
 
 // Angular
@@ -51,7 +51,6 @@ export class LogoutComponent implements OnInit {
     }
 
     showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -62,7 +61,6 @@ export class LogoutComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards.slice();
     }
 
     clickClose() {
