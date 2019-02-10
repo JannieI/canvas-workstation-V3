@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Create a new Dashboard
  */
 
 // Angular
@@ -53,7 +53,6 @@ export class DashboardNewComponent implements OnInit {
 
     }
 
-    dashboards: Dashboard[];
     dashboardCode: string = '';
     dashboardLayouts: DashboardLayout[] = [];
     dashboardName: string = '';
@@ -76,8 +75,6 @@ export class DashboardNewComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
-        this.dashboards = this.globalVariableService.dashboards.slice();
 
         // TODO - put in DB later on
         this.dashboardLayouts = [
