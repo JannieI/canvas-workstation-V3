@@ -19,6 +19,7 @@ This document describes items for later versions of Canvas.
         - Tablist
         - Direct Service
         - Managed Service
+        - Data Ownership (new)
         - Combinations
         - Template form: does not work this way any longer.  Maybe use this for the Layout form, else just delete.
 
