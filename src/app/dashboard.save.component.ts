@@ -55,7 +55,6 @@ export class DashboardSaveComponent implements OnInit {
 
     deleteSnapshots: boolean = true;
     isFirstTimeDashboardSave: boolean;
-    dashboardsSubscription: Subscription;
     qaRequired: boolean = false;
 
 	constructor(
@@ -67,9 +66,6 @@ export class DashboardSaveComponent implements OnInit {
         // Initials
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboardsSubscription = this.globalVariableService.isFirstTimeDashboardSave.subscribe(
-            i => this.isFirstTimeDashboardSave = i
-        )
     }
 
     ngOnDestroy() {
@@ -78,7 +74,6 @@ export class DashboardSaveComponent implements OnInit {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        this.dashboardsSubscription.unsubscribe();
     }
 
     clickClose(action: string) {
