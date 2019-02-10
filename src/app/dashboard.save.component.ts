@@ -55,7 +55,6 @@ export class DashboardSaveComponent implements OnInit {
 
     deleteSnapshots: boolean = true;
     isFirstTimeDashboardSave: boolean;
-    dashboards: Dashboard[];
     dashboardsSubscription: Subscription;
     qaRequired: boolean = false;
 
@@ -68,7 +67,6 @@ export class DashboardSaveComponent implements OnInit {
         // Initials
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards.slice();
         this.dashboardsSubscription = this.globalVariableService.isFirstTimeDashboardSave.subscribe(
             i => this.isFirstTimeDashboardSave = i
         )
