@@ -8069,8 +8069,8 @@ console.log('xx action', action)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
 
         // Get GV values
-        let resource: string = 'dashboardsXXX';         // Works !
-        // let resource: string = 'datasources';         // Works !
+        let resource: string = 'dashboards';            // Works !
+        // let resource: string = 'datasources';        // Works !
         this.globalVariableService.getResource(resource).then(res => {
             let testDashboards: Dashboard[];
             testDashboards = res;
