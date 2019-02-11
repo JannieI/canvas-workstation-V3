@@ -2525,7 +2525,7 @@ export class GlobalVariableService {
         // Note: we decided that Comments belongs to the Entity, so for a Draft D they die
         // TODO - delete all Comments for daftDashboardID
         alert(' complete GV.discardDashboard line 2311')
-        // this.deleteCanvasComment({ dashboardID: draftID ???});
+        // this.deleteResource({ dashboardID: draftID ???});
 
         // The following are simply deleted (and those applicable to the original remains
         // unchanged):
@@ -2724,7 +2724,7 @@ export class GlobalVariableService {
         // Note: we decided that Comments belongs to the Entity, so for a Draft D they die
         // TODO - delete all Comments for daftDashboardID
         alert(' complete GV.saveDashboard line 2510')
-        // this.deleteCanvasComment({ dashboardID: originalID ???});
+        // this.deleteResource({ dashboardID: originalID ???});
 
         // The following are added (if there are any records) to the original:
         // - Tags
@@ -2975,7 +2975,7 @@ export class GlobalVariableService {
 
         // Remove all Comments for this D
         alert(' complete GV.deleteDashboardInfo line 2761')
-        // this.deleteCanvasComment({ dashboardID: dashboardID ???});
+        // this.deleteResource({ dashboardID: dashboardID ???});
 
         // TODO - maybe this can be done better in DB
         // Delete Dashboard- and Widget Layouts
@@ -9835,59 +9835,6 @@ export class GlobalVariableService {
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error addCanvasComment FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
-    deleteCanvasComment(id: number, widgetID: number = null): Promise<string> {
-        // Description: Deletes a canvasComments
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteCanvasComment ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'canvasComments';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // Update NrComments field if a W is linked
-                    if (widgetID != null) {
-                        this.widgets.forEach(w => {
-                            if (w.id == widgetID) {
-                                w.nrComments = w.nrComments - 1;
-                            };
-                        });
-                    };
-
-                    this.canvasComments = this.canvasComments.filter(
-                        com => com.id != id
-                    );
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteCanvasComment DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteCanvasComment FAILED', {err});
                     };
 
                     reject(err.message);
