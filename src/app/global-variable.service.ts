@@ -1147,9 +1147,9 @@ export class GlobalVariableService {
     // isDirtyCanvasAuditTrails: boolean = true;
     canvasMessages: CanvasMessage[] = [];
     isDirtyCanvasMessages: boolean = true;
-    dataQualityIssues: DataQualityIssue[] = [];
+    // dataQualityIssues: DataQualityIssue[] = [];
     // currentDataQualityIssues: DataQualityIssue[] = [];
-    isDirtyDataQualityIssues: boolean = true;
+    // isDirtyDataQualityIssues: boolean = true;
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
