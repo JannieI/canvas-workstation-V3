@@ -237,7 +237,7 @@ export class CollaborateMessageContentComponent implements OnInit {
         }
 
         // Send
-        this.globalVariableService.addCanvasMessage(newMessage).then(res => {
+        this.globalVariableService.addResource('canvasMessages', newMessage).then(res => {
 
             this.globalVariableService.showStatusBarMessage(
                 {
