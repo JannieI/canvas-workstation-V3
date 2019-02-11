@@ -207,7 +207,9 @@ export class CollaborateTaskAddComponent implements OnInit {
             createdOn: today
         };
 
-        this.globalVariableService.addCanvasTask(newTask);
+        this.globalVariableService.addResource('canvasTasks', newTask)
+            .then(res => console.log('xx added') )
+            .catch(err => this.errorMessage = 'Error adding resource: ' + err);
 
         this.formCollaborateTaskAddClosed.emit(action);
     }
