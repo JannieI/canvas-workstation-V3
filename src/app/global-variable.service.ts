@@ -9965,59 +9965,6 @@ export class GlobalVariableService {
         });
     }
 
-    getContainerStyles(): Promise<ContainerStyle[]> {
-        // Description: Gets currentgetContainerStyles
-        // Returns: this.currentgetContainerStyles object, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getContainerStyles ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<ContainerStyle[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if (this.isDirtyContainerStyles) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'containerStyles';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-                            return;
-                        };
-
-                        this.isDirtyContainerStyles = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        this.containerStyles = res.data;
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getContainerStyles 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.containerStyles);
-                        };
-
-                        resolve(this.containerStyles);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getContainerStyles 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.containerStyles);
-                };
-
-                resolve(this.containerStyles);
-            }
-        });
-
-    }
-
     addContainerStyle(data: ContainerStyle): Promise<any> {
         // Description: Adds a new ContainerStyle
         // Returns: Added Data or error message
