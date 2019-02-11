@@ -271,9 +271,11 @@ export class DataManageDataQualityComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         this.clearRecord();
-        this.globalVariableService.deleteDataQualityIssue(id).then(res => {
-            this.dataQualityIssues = this.globalVariableService.dataQualityIssues.slice();
-        });
+        this.globalVariableService.deleteResource('dataQualityIssues', id)
+            .then(res => {
+                this.dataQualityIssues = this.globalVariableService.dataQualityIssues.slice();
+            })
+            .catch(err => this.errorMessage = 'Error with Save: ' + err);
 
         this.selectedDataQualityIssueRowIndex = null;
         this.selectedDatasourceID = null;
