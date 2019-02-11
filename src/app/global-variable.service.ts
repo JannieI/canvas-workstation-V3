@@ -1831,7 +1831,7 @@ export class GlobalVariableService {
         // Description: Adds a new Resource
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addCanvasComment ...',
+            console.log('%c    Global-Variables addResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
@@ -1943,6 +1943,56 @@ export class GlobalVariableService {
         });
     }
 
+    saveResource(resource: string = '', data: CanvasComment): Promise<string> {
+        // Description: Saves CanvasComment
+        // Returns: 'Saved' or error Comment
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveResource ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            // Set final path
+            let pathUrl: string = resource;
+            let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
+
+            // Omit _id (immutable in Mongo)
+            const copyData = { ...data };
+            delete copyData._id;
+
+            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    // Replace local
+                    let localIndex: number = this.canvasComments.findIndex(msg =>
+                        msg.id == data.id
+                    );
+                    this.canvasComments[localIndex] = data;
+
+                    if (this.sessionDebugging) {
+                        console.log('saveCanvasComment SAVED', {data})
+                    };
+
+                    resolve('Saved');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error saveCanvasComment FAILED', {err});
+                    };
+                    reject(err.message);
+                }
+            )
+        });
+    }
 
 
 
