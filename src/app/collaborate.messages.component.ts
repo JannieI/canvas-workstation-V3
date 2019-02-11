@@ -106,7 +106,7 @@ export class CollaborateMessagesComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
 
         // TODO - the filtering must be done in DB
-        this.globalVariableService.getCanvasMessages().then(msg => {
+        this.globalVariableService.getResource('canvasMessages').then(msg => {
             this.canvasMessages = msg;
 
             if (this.sender != '') {
