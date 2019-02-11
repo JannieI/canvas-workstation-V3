@@ -1102,7 +1102,6 @@ export class GlobalVariableService {
     backgroundcolors: CSScolor[] = [];
     backgroundcolorsDefault: CSScolor[] = [];
     canvasAuditTrails: CanvasAuditTrail[] = [];
-    canvasComments: CanvasComment[] = [];
     canvasGroups: CanvasGroup[] = [];
     canvasMessages: CanvasMessage[] = [];
     canvasTasks: CanvasTask[] = [];
@@ -1145,6 +1144,10 @@ export class GlobalVariableService {
     widgetGraphs: WidgetGraph[] =[];
     widgetStoredTemplates: WidgetStoredTemplate[] =[];
 
+    // TODO - delete Depricated Caching when ready ...
+    canvasComments: CanvasComment[] = [];
+    isDirtyCanvasComments: boolean = true;
+
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
     // currentDatasources.  It holds complete data
@@ -1175,7 +1178,6 @@ export class GlobalVariableService {
     isDirtyBackgroundColors: boolean = true;
     isDirtyBackgroundColorsDefault: boolean = true;
     isDirtyCanvasAuditTrails: boolean = true;
-    isDirtyCanvasComments: boolean = true;
     isDirtyCanvasGroups: boolean = true;
     isDirtyCanvasMessages: boolean = true;
     isDirtyCanvasSettings: boolean = true;
@@ -1820,7 +1822,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables addCanvasComment ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
-alert('TODO addResource not done at all')
+        alert('TODO addResource not done at all')
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
