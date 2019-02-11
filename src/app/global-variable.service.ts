@@ -1738,7 +1738,7 @@ export class GlobalVariableService {
 
                     if(httpResult.statusCode != 'success') {
                         if (this.sessionDebugging) {
-                            console.log('Error getResource FAILED', {err});
+                            console.log('Error getResource FAILED', {httpResult});
                         };
    
                         reject(httpResult.message);
@@ -1748,7 +1748,13 @@ export class GlobalVariableService {
 
                     // If cached, fill local info
                     if (dataCachingTableIndex >= 0) {
-
+                        localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
+                        localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
+                        localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
+                        localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
+                        localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
+                        console.warn('xx vars', dataCachingTableIndex, localCacheableMemory, localCacheableDisc, localVariableName);
+        
                         // Fill local Vars
                         if (localCacheableMemory) {
 
@@ -1765,8 +1771,6 @@ export class GlobalVariableService {
                         if (localCacheableDisc) {
 
                             if (localTableName != null) {
-                                // this.dbCanvasAppDatabase = new CanvasAppDatabase
-                                // this.dbCanvasAppDatabase.open();
 
                                 this.dbCanvasAppDatabase.table(localTableName).clear().then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName)
@@ -2304,7 +2308,8 @@ export class GlobalVariableService {
 
         // Note: we decided that Comments belongs to the Entity, so for a Draft D they die
         // TODO - delete all Comments for daftDashboardID
-        this.deleteCanvasComment({ dashboardID: draftID ???});
+        alert(' complete GV.discardDashboard line 2311')
+        // this.deleteCanvasComment({ dashboardID: draftID ???});
 
         // The following are simply deleted (and those applicable to the original remains
         // unchanged):
@@ -2502,7 +2507,8 @@ export class GlobalVariableService {
 
         // Note: we decided that Comments belongs to the Entity, so for a Draft D they die
         // TODO - delete all Comments for daftDashboardID
-        this.deleteCanvasComment({ dashboardID: originalID ???});
+        alert(' complete GV.saveDashboard line 2510')
+        // this.deleteCanvasComment({ dashboardID: originalID ???});
 
         // The following are added (if there are any records) to the original:
         // - Tags
@@ -2752,7 +2758,8 @@ export class GlobalVariableService {
         });
 
         // Remove all Comments for this D
-        this.deleteCanvasComment({ dashboardID: dashboardID ???});
+        alert(' complete GV.deleteDashboardInfo line 2761')
+        // this.deleteCanvasComment({ dashboardID: dashboardID ???});
 
         // TODO - maybe this can be done better in DB
         // Delete Dashboard- and Widget Layouts
