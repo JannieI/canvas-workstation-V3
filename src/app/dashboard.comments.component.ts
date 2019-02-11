@@ -79,8 +79,22 @@ export class DashboardCommentsComponent implements OnInit {
         };
 
         // Set the data for the grid
-        this.globalVariableService.getCanvasComments()
+        // this.globalVariableService.getCanvasComments()
+        //     .then (ca => {
+        //         this.canvasComments = ca.filter( c =>
+        //             (c.dashboardID == this.globalVariableService.currentDashboardInfo
+        //                     .value.currentDashboardID
+        //             &&
+        //             (c.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) )
+        //         );
+        //         this.indexLastRecord = this.canvasComments.length - 1;
+        //     })
+        //     .catch(err => {
+        //         this.errorMessage = err
+        //     });
+        this.globalVariableService.getResource('canvasComments')
             .then (ca => {
+                console.log('COMM ca', ca)
                 this.canvasComments = ca.filter( c =>
                     (c.dashboardID == this.globalVariableService.currentDashboardInfo
                             .value.currentDashboardID
