@@ -1652,10 +1652,10 @@ export class GlobalVariableService {
             let localTableName: string = '';
 
             // Initialise DB
-            this.dbCanvasAppDatabase = new CanvasAppDatabase
-            this.dbCanvasAppDatabase.open();
-            this.dbDataCachingTable = new DataCachingDatabase;
-            this.dbDataCachingTable.open();
+            // this.dbCanvasAppDatabase = new CanvasAppDatabase
+            // this.dbCanvasAppDatabase.open();
+            // this.dbDataCachingTable = new DataCachingDatabase;
+            // this.dbDataCachingTable.open();
 
             // Find DS in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
@@ -1759,8 +1759,8 @@ export class GlobalVariableService {
                         if (localCacheableDisc) {
 
                             if (localTableName != null) {
-                                this.dbCanvasAppDatabase = new CanvasAppDatabase
-                                this.dbCanvasAppDatabase.open();
+                                // this.dbCanvasAppDatabase = new CanvasAppDatabase
+                                // this.dbCanvasAppDatabase.open();
 
                                 this.dbCanvasAppDatabase.table(localTableName).clear().then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName)
