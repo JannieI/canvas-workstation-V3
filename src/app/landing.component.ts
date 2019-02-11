@@ -41,8 +41,6 @@ export class LandingComponent implements OnInit {
 	) {
 
 		// Load Startup info:
-
-		this.globalVariableService.databaseInit()
 		// Create DB models and connect
 		// this.globalVariableService.connectLocalDB().then(i => {
 		// 	if (i != '') {

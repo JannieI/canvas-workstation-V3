@@ -936,11 +936,11 @@ export class AppComponent implements OnInit {
         //        - load Landing page
         //
 
-
-
         // Local App info DB
-        this.dbCanvasAppDatabase = new CanvasAppDatabase
-        this.dbCanvasAppDatabase.open();
+		this.globalVariableService.databaseInit()
+        this.dbCanvasAppDatabase = this.globalVariableService.dbCanvasAppDatabase;
+        // this.dbCanvasAppDatabase = new CanvasAppDatabase
+        // this.dbCanvasAppDatabase.open();
 
         // Count
         this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
