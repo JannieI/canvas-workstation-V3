@@ -99,34 +99,36 @@ export class WidgetContainerComponent implements OnInit {
         ];
 
         // Get list of Styles
-        this.globalVariableService.getContainerStyles().then(res => {
-            this.containerStyles = res;
-            this.containerStyleNameList = [''];
-            this.containerStyles.forEach(cs => {
-                // List of ngFor (needs ID at later stage, state is useful for user)
-                this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
-            });
+        this.globalVariableService.getResource('containerStyles')
+            .then(res => {
+                this.containerStyles = res;
+                this.containerStyleNameList = [''];
+                this.containerStyles.forEach(cs => {
+                    // List of ngFor (needs ID at later stage, state is useful for user)
+                    this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
+                });
 
-            // Fill Initial
-            if (this.containerStyles.length >= 0) {
+                // Fill Initial
+                if (this.containerStyles.length >= 0) {
 
-                // Load if linked
-                if (this.localWidget.containerStyleID != null) {
+                    // Load if linked
+                    if (this.localWidget.containerStyleID != null) {
 
-                    let localStyleIndex: number = this.containerStyles.findIndex(cs =>
-                        cs.id == this.localWidget.containerStyleID
-                    );
-                    if (localStyleIndex != -1) {
-                        this.containerSelectedStyleID = this.containerStyles[localStyleIndex].id;
-                        this.containerSelectedStyleName = this.containerStyles[localStyleIndex].name;
-                        this.updateForm(localStyleIndex);
-                        this.containerStyleName = this.containerStyles[localStyleIndex].name.trim() +
-                            ' (' + this.containerStyles[localStyleIndex].id.toString() + ')';
+                        let localStyleIndex: number = this.containerStyles.findIndex(cs =>
+                            cs.id == this.localWidget.containerStyleID
+                        );
+                        if (localStyleIndex != -1) {
+                            this.containerSelectedStyleID = this.containerStyles[localStyleIndex].id;
+                            this.containerSelectedStyleName = this.containerStyles[localStyleIndex].name;
+                            this.updateForm(localStyleIndex);
+                            this.containerStyleName = this.containerStyles[localStyleIndex].name.trim() +
+                                ' (' + this.containerStyles[localStyleIndex].id.toString() + ')';
 
+                        };
                     };
                 };
-            };
-        });
+            })
+            .catch(err => this.errorMessage = 'Error getting styles: ' + err);
 
         // Deconstruct border
         if (this.localWidget.containerBorder != ''

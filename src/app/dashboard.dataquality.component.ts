@@ -73,10 +73,6 @@ export class DashboardDataQualityComponent implements OnInit {
     datagridVisibleFields: string[];
     datagridShowFields: string[];
 
-
-
-
-
     columnDefs = [
         {headerName: 'Make', field: 'make', width: 90, checkboxSelection: true, sort: "desc",
         suppressMovable: false, suppressResize: false },
