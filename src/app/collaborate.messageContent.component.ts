@@ -115,7 +115,7 @@ export class CollaborateMessageContentComponent implements OnInit {
                     return 0;
                 });
 
-                // this.groupNames = ['', ...this.groupNames];
+                this.groupNames = ['', ...this.groupNames];
             });
 
             if (this.existingMessagge != null  &&  this.messageAction == 'reply') {

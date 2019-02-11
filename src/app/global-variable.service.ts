@@ -1124,7 +1124,6 @@ export class GlobalVariableService {
     dataConnections: DataConnection[] = [];
     dataFields: DataField[] = [];
     dataOwnerships: DataOwnership[] = [];
-    dataQualityIssues: DataQualityIssue[] = [];
     datasets: any = [];                                 // List of dSets, NO data
     datasourcePermissions: DatasourcePermission[] = [];
     datasourceTransformations: DatasourceTransformation[] = [];
@@ -1148,6 +1147,9 @@ export class GlobalVariableService {
     // isDirtyCanvasAuditTrails: boolean = true;
     canvasMessages: CanvasMessage[] = [];
     isDirtyCanvasMessages: boolean = true;
+    dataQualityIssues: DataQualityIssue[] = [];
+    currentDataQualityIssues: DataQualityIssue[] = [];
+    isDirtyDataQualityIssues: boolean = true;
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
@@ -1162,7 +1164,6 @@ export class GlobalVariableService {
     currentDashboardTabs: DashboardTab[] = [];
     currentDashboardTags: DashboardTag[] = [];
     currentDataOwnerships: DataOwnership[] = [];
-    currentDataQualityIssues: DataQualityIssue[] = [];
     currentDatasets: any = [];                          // Used in current D, with data
     currentDatasources: Datasource[] = [];
     currentDatasourcePermissions: DatasourcePermission[] = [];
@@ -1195,7 +1196,6 @@ export class GlobalVariableService {
     isDirtyDataConnections: boolean = true;
     isDirtyDataFields: boolean = true;
     isDirtyDataOwnership: boolean = true;
-    isDirtyDataQualityIssues: boolean = true;
     isDirtyDatasets: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasources: boolean = true;
@@ -1383,14 +1383,17 @@ export class GlobalVariableService {
             // Load Permissions for DS
             this.getCurrentDatasourcePermissions(datasourceID).then(k =>
             // Load Transformations
-            this.getCurrentTransformations(datasourceID).then(l =>
+            this.getCurrentTransformations(datasourceID).then(
             // Load dataQuality Issues
-            this.getCurrentDataQualityIssues(datasourceID).then( o =>
-                // Reset Global Vars
-                {
-                    resolve(true)
-                }
-        ))));
+        //     this.getCurrentDataQualityIssues(datasourceID).then( o =>
+        //         // Reset Global Vars
+        //         {
+        //             resolve(true)
+        //         }
+        // )
+        )
+        )
+        );
         });
     }
 
@@ -9856,49 +9859,6 @@ export class GlobalVariableService {
                     rec.readOn = today;
                 };
             });
-        });
-    }
-
-    deleteCanvasMessage(id: number): Promise<string> {
-        // Description: Deletes a canvasMessages
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteCanvasMessage ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'canvasMessages';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.canvasMessages = this.canvasMessages.filter(
-                        msg => msg.id != id
-                    );
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteCanvasMessage DELETED id: ', {id})
-                    };
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteCanvasMessage FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
         });
     }
 
