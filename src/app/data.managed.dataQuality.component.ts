@@ -234,7 +234,7 @@ export class DataManageDataQualityComponent implements OnInit {
                     JSON.parse(JSON.stringify(this.selectedDataQualityIssue));
             };
             this.selectedDataQualityIssue.datasourceID = this.datasourceID;
-            this.globalVariableService.saveDataQualityIssue(this.selectedDataQualityIssue)
+            this.globalVariableService.saveResource('dataQualityIssues', this.selectedDataQualityIssue)
         };
 
         // Reset
