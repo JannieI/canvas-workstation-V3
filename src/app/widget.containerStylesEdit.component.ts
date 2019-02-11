@@ -464,7 +464,8 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         };
 
         // Update DB
-        this.globalVariableService.deleteContainerStyle(this.containerSelectedStyleID).then(
+        this.globalVariableService.deleteResource('containerStyles', this.containerSelectedStyleID)
+        .then(
             res => {
 
                 this.infoMessage = 'Container Style deleted';
@@ -493,6 +494,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                 // Tell User
                 this.infoMessage = 'Style deleted';
             }
-        );
+        )
+        .catch(err => this.errorMessage = 'Error saving Style: ' + err);
     }
 }
