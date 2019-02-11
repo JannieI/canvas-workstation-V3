@@ -5091,57 +5091,6 @@ export class GlobalVariableService {
         return dataSet;
     }
 
-    getDashboardSchedules(): Promise<DashboardSchedule[]> {
-        // Description: Gets all Sch
-        // Returns: this.dashboardSchedules array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardSchedules ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<DashboardSchedule[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.dashboardSchedules.length == 0)  ||  (this.isDirtyDashboardSchedules) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'dashboardSchedules';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.dashboardSchedules = res.data;
-                        this.isDirtyDashboardSchedules = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDashboardSchedules 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.dashboardSchedules)
-                        };
-
-                        resolve(this.dashboardSchedules);
-                    },
-                    err => {
-                        reject(err.message)
-                    });
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDashboardSchedules 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
-                };
-
-                resolve(this.dashboardSchedules);
-            }
-        });
-
-    }
-
     getCurrentDashboardSchedules(dashboardID: number): Promise<DashboardSchedule[]> {
         // Description: Gets all Sch for current D
         // Params:
