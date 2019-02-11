@@ -12840,7 +12840,7 @@ export class GlobalVariableService {
                                 userID: this.currentUser.userID,
                                 changedOn: today
                             }
-                            this.addCanvasAuditTrail(newAuditTrail);
+                            this.addResource('canvasAuditTrail', newAuditTrail);
 
                             // Show to Dev
                             result.push(key + ' changed from ' + actOldWidget[key]
