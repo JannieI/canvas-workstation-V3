@@ -203,11 +203,12 @@ export class DataManageDataQualityComponent implements OnInit {
 
         // Add to local and DB
         if (this.adding) {
+            this.selectedDataQualityIssue._id = null;
             this.selectedDataQualityIssue.id = null;
 
             this.selectedDataQualityIssue.datasourceID = this.datasourceID;
-            this.globalVariableService.addDataQualityIssue(this.selectedDataQualityIssue).then(
-                res => {
+            this.globalVariableService.addResource('dataQualityIssues', this.selectedDataQualityIssue)
+                .then(res => {
                     if (this.selectedDataQualityIssueRowIndex == null) {
                         this.selectedDataQualityIssueRowIndex = 0;
                         this.selectedDatasourceID = this.selectedDataQualityIssue.id;
@@ -216,8 +217,10 @@ export class DataManageDataQualityComponent implements OnInit {
                     // Add locally
                     this.dataQualityIssues.push(this.selectedDataQualityIssue);
 
-                }
-            );
+                })
+                .catch(err => {
+                    this.errorMessage = 'Save failed ' + err;
+                });
         };
 
         // Save the changes

@@ -1836,6 +1836,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables addResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
+        console.time("DURATION addResource");
 
         return new Promise<any>((resolve, reject) => {
 
@@ -1851,7 +1852,7 @@ export class GlobalVariableService {
 
                     if(httpResult.statusCode != 'success') {
                         reject(httpResult.message);
-                        console.timeEnd("DURATION getResource");
+                        console.timeEnd("DURATION addResource");
                         return;
                     };
 
@@ -1934,7 +1935,7 @@ export class GlobalVariableService {
 
                     console.warn('xx data retured from HTTP', httpResult.data);
                     resolve(httpResult.data);
-                    console.timeEnd("DURATION getResource");
+                    console.timeEnd("DURATION addResource");
                     return;
                 },
                 err => {
@@ -1942,7 +1943,7 @@ export class GlobalVariableService {
                         console.log('Error addResource FAILED', {err});
                     };
 
-                    console.timeEnd("DURATION getResource");
+                    console.timeEnd("DURATION addResource");
                     reject(err.message)
                 }
             );
