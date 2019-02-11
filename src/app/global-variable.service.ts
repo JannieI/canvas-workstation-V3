@@ -1148,7 +1148,7 @@ export class GlobalVariableService {
     canvasMessages: CanvasMessage[] = [];
     isDirtyCanvasMessages: boolean = true;
     dataQualityIssues: DataQualityIssue[] = [];
-    currentDataQualityIssues: DataQualityIssue[] = [];
+    // currentDataQualityIssues: DataQualityIssue[] = [];
     isDirtyDataQualityIssues: boolean = true;
 
 
@@ -7377,13 +7377,10 @@ export class GlobalVariableService {
                     if (this.dataQualityIssues.filter(i => i.id == newDS.id).length == 0) {
                         this.dataQualityIssues.push(newDS);
                     };
-                    if (this.currentDataQualityIssues.filter(i => i.id == newDS.id).length == 0) {
-                        this.currentDataQualityIssues.push(newDS);
-                    };
 
                     if (this.sessionDebugging) {
                         console.log('addDataQualityIssue ADDED', res.data,
-                            this.currentDataQualityIssues, this.dataQualityIssues)
+                            this.dataQualityIssues)
                     };
 
                     resolve(res.data);
@@ -7474,9 +7471,6 @@ export class GlobalVariableService {
                     };
 
                     this.dataQualityIssues = this.dataQualityIssues.filter(
-                        dsp => dsp.id != id
-                    );
-                    this.currentDataQualityIssues = this.currentDataQualityIssues.filter(
                         dsp => dsp.id != id
                     );
 
