@@ -55,7 +55,7 @@ export class CollaborateAuditTrailComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCanvasAuditTrails().then (cau => {
+        this.globalVariableService.getResource('canvasAuditTrails').then (cau => {
 
             // Set the data for the grid
             this.canvasAuditTrail = cau;

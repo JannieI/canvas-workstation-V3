@@ -1100,7 +1100,6 @@ export class GlobalVariableService {
     actions: CanvasAction[] = [];
     backgroundcolors: CSScolor[] = [];
     backgroundcolorsDefault: CSScolor[] = [];
-    canvasAuditTrails: CanvasAuditTrail[] = [];
     canvasGroups: CanvasGroup[] = [];
     canvasMessages: CanvasMessage[] = [];
     canvasTasks: CanvasTask[] = [];
@@ -1146,6 +1145,8 @@ export class GlobalVariableService {
     // TODO - delete Depricated Caching when ready ...
     // canvasComments: CanvasComment[] = [];
     // isDirtyCanvasComments: boolean = true;
+    canvasAuditTrails: CanvasAuditTrail[] = [];
+    isDirtyCanvasAuditTrails: boolean = true;
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
@@ -1176,7 +1177,6 @@ export class GlobalVariableService {
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     isDirtyBackgroundColors: boolean = true;
     isDirtyBackgroundColorsDefault: boolean = true;
-    isDirtyCanvasAuditTrails: boolean = true;
     isDirtyCanvasGroups: boolean = true;
     isDirtyCanvasMessages: boolean = true;
     isDirtyCanvasSettings: boolean = true;
