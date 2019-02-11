@@ -415,13 +415,15 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         };
 
         // Save to DB
-        this.globalVariableService.saveContainerStyle(newContainerStyle).then(res => {
-            // Update local Array
-            let localIndex: number = this.containerStyles.findIndex(cs =>
-                cs.id == this.containerSelectedStyleID
-            );
-            this.containerStyles[localIndex] = newContainerStyle;
-        });
+        this.globalVariableService.saveResource('containerStyles', newContainerStyle)
+            .then(res => {
+                // Update local Array
+                let localIndex: number = this.containerStyles.findIndex(cs =>
+                    cs.id == this.containerSelectedStyleID
+                );
+                this.containerStyles[localIndex] = newContainerStyle;
+            })
+            .catch(err => this.errorMessage = 'Error saving Style: ' + err);
 
         // Tell user
         this.infoMessage = 'Container Style saved';
