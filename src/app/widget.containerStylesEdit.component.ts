@@ -95,23 +95,26 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get list
-        this.globalVariableService.getContainerStyles().then(res => {
-            this.containerStyles = res.slice();
-            this.containerStyleNameList = [];
-            this.containerStyles.forEach(cs => {
-                // List of ngFor (needs ID at later stage, state is useful for user)
-                this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
-            });
+        this.globalVariableService.getResource('containerStyles')
+            .then(res => {
+                this.containerStyles = res.slice();
+                this.containerStyleNameList = [];
+                this.containerStyles.forEach(cs => {
+                    // List of ngFor (needs ID at later stage, state is useful for user)
+                    this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
+                });
 
-            // Fill Initial
-            if (this.containerStyles.length >= 0) {
-                this.containerSelectedStyleID = this.containerStyles[0].id;
-                this.containerSelectedStyleName = this.containerStyles[0].name;
-                this.containerStyleName = this.containerStyles[0].name +
-                    ' (' + this.containerStyles[0].id.toString() + ')';
-                this.updateForm(0);
-            };
-        });
+                // Fill Initial
+                if (this.containerStyles.length >= 0) {
+                    this.containerSelectedStyleID = this.containerStyles[0].id;
+                    this.containerSelectedStyleName = this.containerStyles[0].name;
+                    this.containerStyleName = this.containerStyles[0].name +
+                        ' (' + this.containerStyles[0].id.toString() + ')';
+                    this.updateForm(0);
+                };
+            })
+            .catch(err => this.errorMessage = 'Error getting styles: ' + err);
+
 
         // Manage colour picker
         // this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
