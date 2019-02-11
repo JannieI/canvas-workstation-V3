@@ -308,9 +308,8 @@ export class DataManageDataOwnershipComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         this.clearRecord();
-        this.globalVariableService.deleteDataOwnership(id).then(res => {
-            this.dataOwnerships = this.globalVariableService.dataOwnerships.slice();
-        });
+        this.globalVariableService.deleteResource('dataOwnerships', id).then(res => {
+            this.dataOwnerships = this.dataOwnerships.filter(dow => dow.id != id);
 
         this.selectedDataOwnershipRowIndex = null;
         this.selectedDatasourceID = null;
