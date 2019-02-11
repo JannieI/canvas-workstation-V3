@@ -9965,61 +9965,6 @@ export class GlobalVariableService {
         });
     }
 
-    deleteContainerStyle(id: number): Promise<string> {
-        // Description: Deletes a ContainerStyle
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteContainerStyle ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'containerStyles';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // This is a different case: containerStyles is an
-                    // Observable, and will be refreshed with a .next by the calling
-                    // routine
-                    let dID: number = -1;
-                    for (var i = 0; i < this.containerStyles.length; i++) {
-
-                        if (this.containerStyles[i].id == id) {
-                            dID = i;
-                            break;
-                        };
-                    };
-                    if (dID >=0) {
-                        this.containerStyles.splice(dID, 1);
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteContainerStyle DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteContainerStyle FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     getDashboardLayouts(dashboardID: number = null): Promise<DashboardLayout[]> {
         // Description: Gets dashboardLayouts.  Can optionally filter on D-id
         // Returns: this.dashboardLayouts object, unless:
