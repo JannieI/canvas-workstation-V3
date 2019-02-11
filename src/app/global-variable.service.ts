@@ -1099,7 +1099,6 @@ export class GlobalVariableService {
     backgroundcolors: CSScolor[] = [];
     backgroundcolorsDefault: CSScolor[] = [];
     canvasGroups: CanvasGroup[] = [];
-    canvasTasks: CanvasTask[] = [];
     canvasUsers: CanvasUser[] = [];
     containerStyles: ContainerStyle[] = [];
     dashboardLayout: DashboardLayout[] = [];
@@ -1150,6 +1149,8 @@ export class GlobalVariableService {
     // dataOwnerships: DataOwnership[] = [];
     // currentDataOwnerships: DataOwnership[] = [];
     // isDirtyDataOwnership: boolean = true;
+    canvasTasks: CanvasTask[] = [];
+    isDirtyCanvasTasks: boolean = true;
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
@@ -1180,7 +1181,6 @@ export class GlobalVariableService {
     isDirtyBackgroundColorsDefault: boolean = true;
     isDirtyCanvasGroups: boolean = true;
     isDirtyCanvasSettings: boolean = true;
-    isDirtyCanvasTasks: boolean = true;
     isDirtyCanvasUsers: boolean = true;
     isDirtyContainerStyles: boolean = true;
     isDirtyDashboardPermissions: boolean = true;

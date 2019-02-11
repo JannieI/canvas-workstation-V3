@@ -77,57 +77,58 @@ export class CollaborateTaskAddComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCanvasTasks().then (ca => {
+        this.globalVariableService.getResource('canvasTasks')
+            .then (ca => {
 
-            // Set the data for the grid
-            this.canvasTasks = ca;
+                // Set the data for the grid
+                this.canvasTasks = ca;
 
-            // Get User list
-            this.globalVariableService.getCanvasUsers().then(usr => {
-                this.users = usr;
-                usr.forEach(u => {
-                    this.userNames.push(u.userID);
-                });
-                this.userNames = ['', ...this.userNames];
+                // Get User list
+                this.globalVariableService.getCanvasUsers().then(usr => {
+                    this.users = usr;
+                    usr.forEach(u => {
+                        this.userNames.push(u.userID);
+                    });
+                    this.userNames = ['', ...this.userNames];
 
-                // Add 'dead' users from Tasks - in case not in Users any longer
-                let isFound: boolean = false;
-                this.canvasTasks.forEach(tsk => {
+                    // Add 'dead' users from Tasks - in case not in Users any longer
+                    let isFound: boolean = false;
+                    this.canvasTasks.forEach(tsk => {
 
-                    // Add Task text while we here
-                    // TODO - make proper with Text, etc - maybe add a short Task Subject
-                    this.taskIDs.push(tsk.id);
+                        // Add Task text while we here
+                        // TODO - make proper with Text, etc - maybe add a short Task Subject
+                        this.taskIDs.push(tsk.id);
 
-                    isFound = false;
-                    if (tsk.assignedToUserID != ''  &&  tsk.assignedToUserID != null) {
-                        this.userNames.forEach(usn => {
-                            if (usn.toLowerCase() == tsk.assignedToUserID.toLowerCase()) {
-                                isFound = true;
+                        isFound = false;
+                        if (tsk.assignedToUserID != ''  &&  tsk.assignedToUserID != null) {
+                            this.userNames.forEach(usn => {
+                                if (usn.toLowerCase() == tsk.assignedToUserID.toLowerCase()) {
+                                    isFound = true;
+                                };
+                            });
+                            if (!isFound) {
+                                this.userNames.push(tsk.assignedToUserID);
                             };
-                        });
-                        if (!isFound) {
-                            this.userNames.push(tsk.assignedToUserID);
                         };
-                    };
-                });
+                    });
 
-                // Get Dashboard list
-                this.globalVariableService.dashboards.forEach(d => {
-                    this.dashboardNames.push(d.name + ' (' + d.state + ')');
+                    // Get Dashboard list
+                    this.globalVariableService.dashboards.forEach(d => {
+                        this.dashboardNames.push(d.name + ' (' + d.state + ')');
+                    });
+                    this.dashboardNames = ['', ...this.dashboardNames];
+                    this.dashboardNames = this.dashboardNames.sort( (obj1,obj2) => {
+                        if (obj1.toLowerCase() > obj2.toLowerCase()) {
+                            return 1;
+                        };
+                        if (obj1.toLowerCase() < obj2.toLowerCase()) {
+                            return -1;
+                        };
+                        return 0;
+                    });
                 });
-                this.dashboardNames = ['', ...this.dashboardNames];
-                this.dashboardNames = this.dashboardNames.sort( (obj1,obj2) => {
-                    if (obj1.toLowerCase() > obj2.toLowerCase()) {
-                        return 1;
-                    };
-                    if (obj1.toLowerCase() < obj2.toLowerCase()) {
-                        return -1;
-                    };
-                    return 0;
-                });
-            });
-
-        });
+            })
+            .catch(err => this.errorMessage = 'Error getting tasks: ' + err);
 
     }
 
