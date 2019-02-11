@@ -7298,57 +7298,6 @@ export class GlobalVariableService {
         };
     }
 
-    saveDataQualityIssue(data: DataQualityIssue): Promise<string> {
-        // Description: Saves DataQualityIssue
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDataQualityIssue ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dataQualityIssues';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.dataQualityIssues.findIndex(d =>
-                        d.id == data.id
-                    );
-                    this.dataQualityIssues[localIndex] = data;
-
-                    if (this.sessionDebugging) {
-                        console.log('saveDataQualityIssue SAVED', res.data)
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveDataQualityIssue FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteDataQualityIssue(id: number): Promise<string> {
         // Description: Deletes a DataQualityIssues
         // Returns: 'Deleted' or error message
