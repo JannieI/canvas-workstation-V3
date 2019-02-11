@@ -159,7 +159,7 @@ export class DashboardOpenComponent implements OnInit {
         this.showAdvancedFilters = !this.showAdvancedFilters;
 
         // Get AuditTrail in advance
-        this.globalVariableService.getCanvasAuditTrails().then( res => {
+        this.globalVariableService.getResource('canvasAuditTrails').then( res => {
             this.canvasAuditTrails = res;
         });
 
