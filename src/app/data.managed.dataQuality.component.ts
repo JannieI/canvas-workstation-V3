@@ -215,6 +215,7 @@ export class DataManageDataQualityComponent implements OnInit {
                     };
 
                     // Add locally
+                    this.selectedDataQualityIssue.id = res.id;
                     this.dataQualityIssues.push(this.selectedDataQualityIssue);
 
                 })
@@ -273,7 +274,8 @@ export class DataManageDataQualityComponent implements OnInit {
         this.clearRecord();
         this.globalVariableService.deleteResource('dataQualityIssues', id)
             .then(res => {
-                this.dataQualityIssues = this.globalVariableService.dataQualityIssues.slice();
+                this.dataQualityIssues = this.dataQualityIssues.filter(
+                    dq => dq.id != id);
             })
             .catch(err => this.errorMessage = 'Error with Save: ' + err);
 
