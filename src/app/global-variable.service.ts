@@ -1949,8 +1949,8 @@ export class GlobalVariableService {
     }
 
     saveResource(resource: string = '', data: CanvasComment): Promise<string> {
-        // Description: Saves CanvasComment
-        // Returns: 'Saved' or error Comment
+        // Description: Saves Resource
+        // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables saveResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
@@ -2057,14 +2057,14 @@ export class GlobalVariableService {
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('saveCanvasComment SAVED', {data})
+                        console.log('saveResource SAVED', {data})
                     };
 
                     resolve('Saved');
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error saveCanvasComment FAILED', {err});
+                        console.log('Error saveResource FAILED', {err});
                     };
                     reject(err.message);
                 }
@@ -2105,19 +2105,52 @@ export class GlobalVariableService {
                     //     });
                     // };
 
-                    this.canvasComments = this.canvasComments.filter(
-                        com => com.id != id
+                    // Assume worse case that all has to be obtained from HTTP server
+                    let isFresh: boolean = false;
+                    let localCacheableMemory: boolean = false;
+                    let localCacheableDisc: boolean = false;
+                    let localVariableName: string = null;
+                    let localCurrentVariableName: string = '';
+                    let localTableName: string = '';
+
+                    // Find DS in localCachingTable
+                    let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
+                        dct.key == resource
                     );
 
+                    // If cached, fill local info
+                    if (dataCachingTableIndex >= 0) {
+
+                        // Fill local Vars
+                        if (localCacheableMemory) {
+
+                            if (localVariableName != null) {
+
+                                // TODO - TEST This !!!!
+                                this[localVariableName] = this[localVariableName].filter(
+                                    com => com.id != id
+                                );
+                            };
+                        };
+
+                        // Fix Disc
+                        if (localCacheableDisc) {
+                            // TODO - figure out
+                        };
+
+                    };
+                    
+
+
                     if (this.sessionDebugging) {
-                        console.log('deleteCanvasComment DELETED id: ', {id})
+                        console.log('deleteResource DELETED id: ', {id})
                     };
 
                     resolve('Deleted');
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error deleteCanvasComment FAILED', {err});
+                        console.log('Error deleteResource FAILED', {err});
                     };
 
                     reject(err.message);
