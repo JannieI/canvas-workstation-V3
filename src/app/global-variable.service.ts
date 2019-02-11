@@ -1873,8 +1873,13 @@ export class GlobalVariableService {
                         if (localCacheableMemory) {
 
                             if (localVariableName != null) {
-                                this[localVariableName] = [];
-                                this[localVariableName] = httpResult.data;
+                                // TODO - TEST This !!!!
+                                let localIndex: number = this[localVariableName].findIndex(rec =>
+                                    rec.id == data.id
+                                );
+                                if (localIndex >= 0) {
+                                    this[localVariableName][localIndex] = data;
+                                };
                                 console.warn('xx updated cached Memory to', this[localVariableName]);
                             };
 
