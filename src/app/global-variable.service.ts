@@ -1737,6 +1737,10 @@ export class GlobalVariableService {
                     console.warn('xx inside HTTP')
 
                     if(httpResult.statusCode != 'success') {
+                        if (this.sessionDebugging) {
+                            console.log('Error getResource FAILED', {err});
+                        };
+   
                         reject(httpResult.message);
                         console.timeEnd("DURATION getResource");
                         return;
