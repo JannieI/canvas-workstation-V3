@@ -2072,6 +2072,60 @@ export class GlobalVariableService {
         });
     }
 
+    deleteResource(resource: string = '', id: number): Promise<string> {
+        // Description: Deletes a Resources
+        // Returns: 'Deleted' or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteResource ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = resource;
+            let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
+            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    // Update NrComments field if a W is linked
+                    // TODO - how do we fix this !!!???
+                    // if (widgetID != null) {
+                    //     this.widgets.forEach(w => {
+                    //         if (w.id == widgetID) {
+                    //             w.nrComments = w.nrComments - 1;
+                    //         };
+                    //     });
+                    // };
+
+                    this.canvasComments = this.canvasComments.filter(
+                        com => com.id != id
+                    );
+
+                    if (this.sessionDebugging) {
+                        console.log('deleteCanvasComment DELETED id: ', {id})
+                    };
+
+                    resolve('Deleted');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteCanvasComment FAILED', {err});
+                    };
+
+                    reject(err.message);
+                }
+            )
+        });
+    }
+
 
 
     getDashboards(params: string = ''): Promise<Dashboard[]> {
