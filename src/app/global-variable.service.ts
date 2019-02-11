@@ -39,7 +39,6 @@ import { DatagridColumn }             from './models';
 import { Dataset }                    from './models';
 import { DataTable }                  from './models';
 import { Datasource }                 from './models';
-import { DataOwnership}               from './models';
 import { DatasourcePermission}        from './models';
 import { GraphCalculation }           from './models';
 import { PaletteButtonBar }           from './models';
@@ -1148,9 +1147,9 @@ export class GlobalVariableService {
     // dataQualityIssues: DataQualityIssue[] = [];
     // currentDataQualityIssues: DataQualityIssue[] = [];
     // isDirtyDataQualityIssues: boolean = true;
-    dataOwnerships: DataOwnership[] = [];
+    // dataOwnerships: DataOwnership[] = [];
     // currentDataOwnerships: DataOwnership[] = [];
-    isDirtyDataOwnership: boolean = true;
+    // isDirtyDataOwnership: boolean = true;
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
