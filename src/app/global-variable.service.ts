@@ -13446,16 +13446,16 @@ export class GlobalVariableService {
 
                                 // Local App info DB
                                 console.warn('GV.verifyCanvasUser: @local DB')
-                                let dbCanvasAppDatabase = new CanvasAppDatabase
-                                dbCanvasAppDatabase.open();
+                                // let dbCanvasAppDatabase = new CanvasAppDatabase
+                                // dbCanvasAppDatabase.open();
 
-                                dbCanvasAppDatabase.table("currentCanvasUser")
+                                this.dbCanvasAppDatabase.table("currentCanvasUser")
                                     .put(localCanvasUser)
                                     .then(res => {
                                         console.warn('GV.verifyCanvasUser Add/Update currentCanvasUser res', res);
 
                                         // Count
-                                        dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
+                                        this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
                                             console.warn('GV.verifyCanvasUser currentCanvasUser Count', res);
                                             currentCanvasUserCount = res;
 
