@@ -7297,58 +7297,6 @@ export class GlobalVariableService {
         };
     }
 
-    getDataQualityIssues(): Promise<DataQualityIssue[]> {
-        // Description: Gets all dQual
-        // Returns: this.dataQualityIssues array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDataQualityIssues ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<DataQualityIssue[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.dataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'dataQualityIssues';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.dataQualityIssues = res.data;
-                        this.isDirtyDataQualityIssues = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDataQualityIssues 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.dataQualityIssues)
-                        };
-
-                        resolve(this.dataQualityIssues);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDataQualityIssues 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.dataQualityIssues)
-                };
-
-                resolve(this.dataQualityIssues);
-            }
-        });
-    }
-
     addDataQualityIssue(data: DataQualityIssue): Promise<any> {
         // Description: Adds a new QualityIssue, if it does not exist
         // Returns: Added Data or error message
