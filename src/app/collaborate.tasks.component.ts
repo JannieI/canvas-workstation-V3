@@ -72,44 +72,47 @@ export class CollaborateTasksComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCanvasTasks().then (ca => {
+        this.globalVariableService.getResource('canvasTasks')
+            .then (ca => {
 
-            // Set the data for the grid
-            this.canvasTasks = ca;
-            this.canvasTasksOrignal = ca;
+                // Set the data for the grid
+                this.canvasTasks = ca;
+                this.canvasTasksOrignal = ca;
 
-            // Get User list
-            this.globalVariableService.getCanvasUsers().then(usr => {
-                this.users = usr;
-                usr.forEach(u => {
-                    this.userNames.push(u.userID);
-                });
-                this.userNames = ['', ...this.userNames];
+                // Get User list
+                this.globalVariableService.getCanvasUsers().then(usr => {
+                    this.users = usr;
+                    usr.forEach(u => {
+                        this.userNames.push(u.userID);
+                    });
+                    this.userNames = ['', ...this.userNames];
 
-                // Add 'dead' users from Tasks - in case not in Users any longer
-                let isFound: boolean = false;
-                this.canvasTasks.forEach(tsk => {
-                    isFound = false;
-                    if (tsk.assignedToUserID != ''  &&  tsk.assignedToUserID != null) {
-                        this.userNames.forEach(usn => {
-                            if (usn.toLowerCase() == tsk.assignedToUserID.toLowerCase()) {
-                                isFound = true;
+                    // Add 'dead' users from Tasks - in case not in Users any longer
+                    let isFound: boolean = false;
+                    this.canvasTasks.forEach(tsk => {
+                        isFound = false;
+                        if (tsk.assignedToUserID != ''  &&  tsk.assignedToUserID != null) {
+                            this.userNames.forEach(usn => {
+                                if (usn.toLowerCase() == tsk.assignedToUserID.toLowerCase()) {
+                                    isFound = true;
+                                };
+                            });
+                            if (!isFound) {
+                                this.userNames.push(tsk.assignedToUserID);
                             };
-                        });
-                        if (!isFound) {
-                            this.userNames.push(tsk.assignedToUserID);
                         };
-                    };
+                    });
+
+                    // Get Dashboard list
+                    this.globalVariableService.dashboards.forEach(d => {
+                        this.dashboardNames.push(d.name);
+                    });
+                    this.dashboardNames = ['', ...this.dashboardNames];
                 });
 
-                // Get Dashboard list
-                this.globalVariableService.dashboards.forEach(d => {
-                    this.dashboardNames.push(d.name);
-                });
-                this.dashboardNames = ['', ...this.dashboardNames];
-            });
-
-        });
+            })
+            .catch(err => console.log('Error getting tasks: ' + err));
+            
 
         this.clickGantt()
     }
