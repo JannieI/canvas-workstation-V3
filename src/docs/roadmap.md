@@ -318,6 +318,33 @@ This document describes items for later versions of Canvas.
         - add errorMessage to HTML form
 
 
+    Lessons for Canvas from Bytes Excercise:
+
+    1. Data cleansing / access quality of input data: what is done in Excel / Canvas?
+
+    1.1 Can change two cells to many rows, ie employeeID, comma separated list of suburbs for that employee in the next cell.
+    1.2 Missing data, ie list of ATMs in one worksheet: make sure that ATMID in another worksheet exists in this list.
+    1.3 Trim spaces from columns
+    1.4 Remove characters, ie E1234 becomes 1234
+
+    2. Calculations / Transformations
+    2.1 Calc Weekday
+    2.2 Calc Hour of day
+    2.3 Calc Hours between two date-time variables - both continues / elapsed and working hours 
+    2.4 Calc Number of days between two events, ie number of days between two calls per technicial (from workorders)
+    2.5 Period lookup - not sure if we need this: how long before a call was preventative maintenance done on an ATM
+
+    3. Data augmentation - how far do we go?
+    3.1 Adding lat-long for a suburb or town.
+    3.2 Adding distance between a list of source and a list of destination addresses.
+
+    4. Visualisations
+    4.1 Easy way to show pivots (ie per weekday and technician)
+    4.2 Conditional formatting (data bars, cell colour) inside tables
+    4.3 Handling large tables, with many rows and columns neatly / efficiently (> screen)
+    4.4 Extract / auto-summarise from a table:
+    - 4 items make up x% of the total
+    - the following 3 items make up y% of the total
 
 
 

@@ -1725,14 +1725,14 @@ export class GlobalVariableService {
                     };
                 };
             };
-            console.warn('xx try HTTP')
+            console.warn('xx Will now try HTTP')
 
             // Get from HTTP server
             let pathUrl: string = resource + params;
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 httpResult  => {
-                    console.warn('xx in HTTP')
+                    console.warn('xx inside HTTP')
 
                     if(httpResult.statusCode != 'success') {
                         reject(httpResult.message);
@@ -1820,7 +1820,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables addCanvasComment ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
-
+alert('TODO addResource not done at all')
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
