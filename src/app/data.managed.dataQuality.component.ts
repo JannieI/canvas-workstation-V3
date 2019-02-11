@@ -79,7 +79,7 @@ export class DataManageDataQualityComponent implements OnInit {
             return 0;
         });
 
-        this.globalVariableService.getDataQualityIssues().then(dc => {
+        this.globalVariableService.getResource('dataQualityIssues').then(dc => {
 
             this.dataQualityIssues = dc.slice();
             if (this.dataQualityIssues.length > 0) {
