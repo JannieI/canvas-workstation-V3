@@ -7349,53 +7349,6 @@ export class GlobalVariableService {
         });
     }
 
-    getCurrentDataQualityIssues(datasourceID: number): Promise<DataQualityIssue[]> {
-        // Description: Gets dQual for current DS
-        // Returns: this.dataQualityIssues.value array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDataQualityIssues ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {datasourceID});
-        };
-
-        if ( (this.currentDataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
-            return new Promise<DataQualityIssue[]>((resolve, reject) => {
-                this.getDataQualityIssues()
-                    .then(res => {
-                        res = res.filter(
-                            i => i.datasourceID == datasourceID
-                        );
-                        this.currentDataQualityIssues = res;
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDataQualityIssuess 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {datasourceID}, {res})
-                        };
-
-                        resolve(this.currentDataQualityIssues);
-                })
-             })
-        } else {
-            return new Promise<DataQualityIssue[]>((resolve, reject) => {
-                let returnData: DataQualityIssue[];
-                returnData = this.dataQualityIssues.filter(
-                    i => i.datasourceID == datasourceID
-                );
-                this.currentDataQualityIssues = returnData;
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDataQualityIssuess 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {datasourceID}, returnData)
-                };
-
-                resolve(this.currentDataQualityIssues);
-            });
-        };
-    }
-
     addDataQualityIssue(data: DataQualityIssue): Promise<any> {
         // Description: Adds a new QualityIssue, if it does not exist
         // Returns: Added Data or error message
