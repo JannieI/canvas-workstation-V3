@@ -318,8 +318,9 @@ This document describes items for later versions of Canvas.
         - add errorMessage to HTML form
 
 
-    Lessons for Canvas from Bytes Excercise:
 
+    Lessons for Canvas from Bytes Excercise:
+    ----------------------------------------
     1. Data cleansing / access quality of input data: what is done in Excel / Canvas?
 
     1.1 Can change two cells to many rows, ie employeeID, comma separated list of suburbs for that employee in the next cell.
