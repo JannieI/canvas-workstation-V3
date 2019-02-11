@@ -258,7 +258,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         };
 
-        this.globalVariableService.addContainerStyle(newContainerStyle)
+        this.globalVariableService.addResource('containerStyles', newContainerStyle)
             .then(res => {
 
                 // Tell user
