@@ -269,7 +269,9 @@ export class DataManageDataOwnershipComponent implements OnInit {
                 this.dataOwnerships[datasourceIndex] =
                     JSON.parse(JSON.stringify(this.selectedDataOwnership));
             };
-            this.globalVariableService.saveDataOwnership(this.selectedDataOwnership)
+            this.globalVariableService.saveResource('dataOwnerships', this.selectedDataOwnership)
+                .then(res => console.log('xx Save Done'))
+                .catch(err => this.errorMessage = 'Error saving ownership: ' + err)
         };
 
         // Reset
