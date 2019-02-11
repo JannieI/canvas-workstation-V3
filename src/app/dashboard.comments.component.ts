@@ -151,7 +151,7 @@ export class DashboardCommentsComponent implements OnInit {
         this.commentText = '';
         this.editLast = false;
 
-        this.globalVariableService.saveCanvasComment(
+        this.globalVariableService.saveResource('canvasComments', 
             this.canvasComments[this.canvasComments.length - 1])
                 .then(res => {
                     this.message = 'Comment saved';
