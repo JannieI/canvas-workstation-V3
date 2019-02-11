@@ -9789,61 +9789,6 @@ export class GlobalVariableService {
         });
     }
 
-    getCanvasMessages(): Promise<CanvasMessage[]> {
-        // Description: Gets all Canvas Messages
-        // Returns: this.canvasMessages array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCanvasMessages ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                this.canvasMessages.length);
-        };
-
-        return new Promise<CanvasMessage[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.canvasMessages.length == 0)  ||  (this.isDirtyCanvasMessages) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'canvasMessages';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.canvasMessages = res.data;
-
-                        this.isDirtyCanvasMessages = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCanvasMessages 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.canvasMessages)
-                        };
-
-                        resolve(this.canvasMessages);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCanvasMessages 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.canvasMessages)
-                };
-
-                resolve(this.canvasMessages);
-            }
-        });
-
-    }
-
     addCanvasMessage(data: CanvasMessage): Promise<any> {
         // Description: Adds a new CanvasMessage
         // Returns: Added Data or error message
