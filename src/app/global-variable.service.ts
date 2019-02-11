@@ -9965,49 +9965,6 @@ export class GlobalVariableService {
         });
     }
 
-    addContainerStyle(data: ContainerStyle): Promise<any> {
-        // Description: Adds a new ContainerStyle
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addContainerStyle ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'containerStyles';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    this.containerStyles.push(JSON.parse(JSON.stringify(res.data)));
-
-                    if (this.sessionDebugging) {
-                        console.log('addContainerStyle ADDED', {res})
-                    };
-
-                    resolve(res.data);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addContainerStyle FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     saveContainerStyle(data: ContainerStyle): Promise<string> {
         // Description: Saves ContainerStyle
         // Returns: 'Saved' or error message
