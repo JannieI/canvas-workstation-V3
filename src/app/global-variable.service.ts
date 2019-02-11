@@ -1948,7 +1948,7 @@ export class GlobalVariableService {
         });
     }
 
-    saveResource(resource: string = '', data: CanvasComment): Promise<string> {
+    saveResource(resource: string = '', data: any): Promise<string> {
         // Description: Saves Resource
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
@@ -9782,59 +9782,6 @@ export class GlobalVariableService {
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error saveCanvasTask FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
-    addCanvasComment(data: CanvasComment): Promise<any> {
-        // Description: Adds a new canvasComment
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addCanvasComment ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'canvasComments';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // Update NrComments field if a W is linked
-                    if (data.widgetID != null) {
-                        this.widgets.forEach(w => {
-                            if (w.id == data.widgetID) {
-                                w.nrComments = w.nrComments + 1;
-                            };
-                        });
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    this.canvasComments.push(JSON.parse(JSON.stringify(res.data)));
-
-                    if (this.sessionDebugging) {
-                        console.log('addCanvasComment ADDED', this.canvasComments,
-                            this.canvasComments)
-                    };
-
-                    resolve(res.data);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addCanvasComment FAILED', {err});
                     };
 
                     reject(err.message);
