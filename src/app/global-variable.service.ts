@@ -1101,7 +1101,6 @@ export class GlobalVariableService {
     backgroundcolors: CSScolor[] = [];
     backgroundcolorsDefault: CSScolor[] = [];
     canvasGroups: CanvasGroup[] = [];
-    canvasMessages: CanvasMessage[] = [];
     canvasTasks: CanvasTask[] = [];
     canvasUsers: CanvasUser[] = [];
     containerStyles: ContainerStyle[] = [];
@@ -1145,8 +1144,10 @@ export class GlobalVariableService {
     // TODO - delete Depricated Caching when ready ...
     // canvasComments: CanvasComment[] = [];
     // isDirtyCanvasComments: boolean = true;
-    canvasAuditTrails: CanvasAuditTrail[] = [];
-    isDirtyCanvasAuditTrails: boolean = true;
+    // canvasAuditTrails: CanvasAuditTrail[] = [];
+    // isDirtyCanvasAuditTrails: boolean = true;
+    canvasMessages: CanvasMessage[] = [];
+    isDirtyCanvasMessages: boolean = true;
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
@@ -1178,7 +1179,6 @@ export class GlobalVariableService {
     isDirtyBackgroundColors: boolean = true;
     isDirtyBackgroundColorsDefault: boolean = true;
     isDirtyCanvasGroups: boolean = true;
-    isDirtyCanvasMessages: boolean = true;
     isDirtyCanvasSettings: boolean = true;
     isDirtyCanvasTasks: boolean = true;
     isDirtyCanvasUsers: boolean = true;
@@ -7899,7 +7899,7 @@ export class GlobalVariableService {
     }
 
     addDatasourcePermission(data: DatasourcePermission): Promise<any> {
-        // Description: Adds a new Ownership, if it does not exist
+        // Description: Adds a new DatasourcePermission, if it does not exist
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addDatasourcePermission ...',

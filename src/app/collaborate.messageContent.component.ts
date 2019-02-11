@@ -66,7 +66,7 @@ export class CollaborateMessageContentComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCanvasMessages().then(msg => {
+        this.globalVariableService.getResource('canvasMessages').then(msg => {
             this.canvasMessages = msg;
 
             this.globalVariableService.getCanvasUsers().then(usr => {
