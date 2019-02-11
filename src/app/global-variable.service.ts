@@ -7297,53 +7297,6 @@ export class GlobalVariableService {
         };
     }
 
-    getCurrentDataOwnerships(datasourceID: number): Promise<DataOwnership[]> {
-        // Description: Gets dQual for current DS
-        // Returns: this.dataOwnerships.value array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDataOwnerships ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {datasourceID});
-        };
-
-        if ( (this.currentDataOwnerships.length == 0)  ||  (this.isDirtyDataOwnership) ) {
-            return new Promise<DataOwnership[]>((resolve, reject) => {
-                this.getDataOwnerships()
-                    .then(res => {
-                        res = res.filter(
-                            i => i.datasourceID == datasourceID
-                        );
-                        this.currentDataOwnerships = res;
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDataOwnershipss 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {datasourceID}, {res})
-                        };
-
-                        resolve(this.currentDataOwnerships);
-                })
-             })
-        } else {
-            return new Promise<DataOwnership[]>((resolve, reject) => {
-                let returnData: DataOwnership[];
-                returnData = this.dataOwnerships.filter(
-                    i => i.datasourceID == datasourceID
-                );
-                this.currentDataOwnerships = returnData;
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDataOwnershipss 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {datasourceID}, {returnData})
-                };
-
-                resolve(this.currentDataOwnerships);
-            });
-        };
-    }
-
     addDataOwnership(data: DataOwnership): Promise<any> {
         // Description: Adds a new Ownership, if it does not exist
         // Returns: Added Data or error message
