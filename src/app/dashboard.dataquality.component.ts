@@ -28,7 +28,6 @@ import { HttpClient }                 from '@angular/common/http';
 import { AgGridNg2 }                  from 'ag-grid-angular';
 
 
-
 @Component({
     selector: 'dashboard-dataquality',
     templateUrl: './dashboard.dataquality.component.html',
@@ -38,10 +37,7 @@ export class DashboardDataQualityComponent implements OnInit {
 
     @Output() formDashboardDataQualityClosed: EventEmitter<string> = new EventEmitter();
     @Input() selectedDatasourceID: number;
-
-
     @ViewChild('agGrid') agGrid: AgGridNg2;
-
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
