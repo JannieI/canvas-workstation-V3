@@ -9965,59 +9965,6 @@ export class GlobalVariableService {
         });
     }
 
-    saveContainerStyle(data: ContainerStyle): Promise<string> {
-        // Description: Saves ContainerStyle
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveContainerStyle ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'containerStyles';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.containerStyles.findIndex(d =>
-                        d.id == data.id
-                    );
-                    if (localIndex >= 0) {
-                        this.containerStyles[localIndex] = data;
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('saveContainerStyle SAVED', {res})
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveContainerStyle FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteContainerStyle(id: number): Promise<string> {
         // Description: Deletes a ContainerStyle
         // Returns: 'Deleted' or error message
