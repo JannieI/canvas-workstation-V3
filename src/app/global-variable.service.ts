@@ -16,7 +16,6 @@ import { CanvasUser}                  from './models';
 import { Combination }                from './models';
 import { CombinationDetail }          from './models';
 import { CSScolor }                   from './models';
-import { ContainerStyle }             from './models';
 import { CurrentDashboardInfo }       from './models';
 import { Dashboard }                  from './models';
 import { DashboardLayout }            from './models';
@@ -1150,8 +1149,8 @@ export class GlobalVariableService {
     // isDirtyDataOwnership: boolean = true;
     canvasTasks: CanvasTask[] = [];
     isDirtyCanvasTasks: boolean = true;
-    containerStyles: ContainerStyle[] = [];
-    isDirtyContainerStyles: boolean = true;
+    // containerStyles: ContainerStyle[] = [];
+    // isDirtyContainerStyles: boolean = true;
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
@@ -5158,7 +5157,7 @@ export class GlobalVariableService {
         // Refresh from source at start, or if dirty
         if ( (this.dashboardSchedules.length == 0)  ||  (this.isDirtyDashboardSchedules) ) {
             return new Promise<DashboardSchedule[]>((resolve, reject) => {
-                this.getDashboardSchedules()
+                this.getResource('dashboardSchedules')
                     .then(res => {
                         res = res.filter(
                             i => i.dashboardID == dashboardID

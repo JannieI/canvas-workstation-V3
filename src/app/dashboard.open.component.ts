@@ -172,7 +172,7 @@ export class DashboardOpenComponent implements OnInit {
             this.dashboardScheduleLog = res);
 
         // Get Schedules in advance
-        this.globalVariableService.getDashboardSchedules()
+        this.globalVariableService.getDashboardSchedules('dashboardSchedules')
             .then(res => this.dashboardSchedules = res)
             .catch(err => this.errorMessage = err);
 

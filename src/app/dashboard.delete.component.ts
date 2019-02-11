@@ -84,7 +84,7 @@ export class DashboardDeleteComponent implements OnInit {
         this.globalVariableService.getDashboardSnapshots().then(snp => {
             this.globalVariableService.getResource('canvasMessages').then(mes => {
                 this.globalVariableService.getResource('canvasComments').then(com => {
-                    this.globalVariableService.getDashboardSchedules().then(sch => {
+                    this.globalVariableService.getDashboardSchedules('dashboardSchedules').then(sch => {
                         this.globalVariableService.getDashboardSubscriptions().then(sub => {
                             this.globalVariableService.getDashboardTags().then(tag => {
 
