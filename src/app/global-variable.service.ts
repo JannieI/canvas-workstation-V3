@@ -9152,60 +9152,6 @@ export class GlobalVariableService {
         });
     }
 
-    getCanvasTasks(): Promise<CanvasTask[]> {
-        // Description: Gets all Canvas Activities
-        // Returns: this.canvasTasks array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCanvasTasks ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                this.canvasTasks.length);
-        };
-
-        return new Promise<CanvasTask[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.canvasTasks.length == 0)  ||  (this.isDirtyCanvasTasks) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'canvasTasks';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-                            return;
-                        };
-                        this.canvasTasks = res.data;
-
-                        this.isDirtyCanvasTasks = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCanvasTasks 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.canvasTasks)
-                        };
-
-                        resolve(this.canvasTasks);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCanvasTasks 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.canvasTasks)
-                };
-
-                resolve(this.canvasTasks);
-            }
-        });
-
-    }
-
     addCanvasTask(data: CanvasTask): Promise<any> {
         // Description: Adds a new canvasTask
         // Returns: Added Data or error message
