@@ -1808,6 +1808,9 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.timeEnd("DURATION getResource");
+                    if (this.sessionDebugging) {
+                        console.log('Error getResource FAILED', {err});
+                    };
                     reject(err.message)
                 }
             );
@@ -1815,60 +1818,121 @@ export class GlobalVariableService {
         });
     }
 
-    addResource(resource: string = '', data: CanvasComment): Promise<any> {
+    addResource(resource: string = '', data: any): Promise<any> {
         // Description: Adds a new Resource
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addCanvasComment ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
-        alert('TODO addResource not done at all')
+
         return new Promise<any>((resolve, reject) => {
 
+            // Get from HTTP server
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            let pathUrl: string = 'canvasComments';
+            let pathUrl: string = resource;
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
+                httpResult  => {
+                    console.warn('xx inside POST HTTP')
+
+                    if(httpResult.statusCode != 'success') {
+                        reject(httpResult.message);
+                        console.timeEnd("DURATION getResource");
                         return;
                     };
 
-                    // Update NrComments field if a W is linked
-                    if (data.widgetID != null) {
-                        this.widgets.forEach(w => {
-                            if (w.id == data.widgetID) {
-                                w.nrComments = w.nrComments + 1;
+                    // Assume worse case that all has to be obtained from HTTP server
+                    let isFresh: boolean = false;
+                    let localCacheableMemory: boolean = false;
+                    let localCacheableDisc: boolean = false;
+                    let localVariableName: string = null;
+                    let localCurrentVariableName: string = '';
+                    let localTableName: string = '';
+
+                    // Find DS in localCachingTable
+                    let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
+                        dct.key == resource
+                    );
+
+                    // If cached, fill local info
+                    if (dataCachingTableIndex >= 0) {
+
+                        // Fill local Vars
+                        if (localCacheableMemory) {
+
+                            if (localVariableName != null) {
+                                this[localVariableName] = [];
+                                this[localVariableName] = httpResult.data;
+                                console.warn('xx updated cached Memory to', this[localVariableName]);
                             };
+
+                            // TODO - should we fill Current Var here a well?
+                        };
+
+                        // Fill Disc
+                        if (localCacheableDisc) {
+
+                            if (localTableName != null) {
+                                // this.dbCanvasAppDatabase = new CanvasAppDatabase
+                                // this.dbCanvasAppDatabase.open();
+
+                                this.dbCanvasAppDatabase.table(localTableName).clear().then(res => {
+                                    this.dbCanvasAppDatabase.table(localTableName)
+                                    .bulkPut(httpResult.data)
+                                    .then(resPut => {
+
+                                        // Count
+                                        this.dbCanvasAppDatabase.table(localTableName)
+                                            .count(resCount => {
+                                                console.warn('xx updated local Disc to', resCount);
+                                        });
+                                    });
+                                });
+                            };
+                        };
+
+                        // Update dataCaching in Memory
+                        let dt: Date = new Date();
+                        let seconds: number = 86400;
+                        if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
+                            seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
+                        };
+                        this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime =
+                            this.dateAdd(dt, 'second', seconds);
+                        this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
+                            new Date();
+                        console.log('xx dataCachingTable memory upd', this.dataCachingTable)
+
+                        // Update dataCaching on Disc
+                        this.dbDataCachingTable.table("localDataCachingTable")
+                            .bulkPut(this.dataCachingTable)
+                            .then(res => {
+                                this.dbDataCachingTable.table("localDataCachingTable").count(res => {
+                                    console.warn('xx dataCachingTable updated count @end', res);
+                                });
                         });
                     };
 
-                    // Update Global vars to make sure they remain in sync
-                    this.canvasComments.push(JSON.parse(JSON.stringify(res.data)));
-
-                    if (this.sessionDebugging) {
-                        console.log('addCanvasComment ADDED', this.canvasComments,
-                            this.canvasComments)
-                    };
-
-                    resolve(res.data);
+                    console.warn('xx data retured from HTTP', httpResult.data);
+                    resolve(httpResult.data);
+                    console.timeEnd("DURATION getResource");
+                    return;
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error addCanvasComment FAILED', {err});
+                        console.log('Error addResource FAILED', {err});
                     };
 
-                    reject(err.message);
+                    console.timeEnd("DURATION getResource");
+                    reject(err.message)
                 }
-            )
+            );
+
         });
     }
-
-
 
 
 
@@ -2234,13 +2298,9 @@ export class GlobalVariableService {
             });
         });
 
-        // - Comments (link to Dashboard and Widget)
-        this.canvasComments.forEach(com => {
-            if (com.dashboardID == draftID) {
-                com.dashboardID = originalID;
-                this.saveCanvasComment(com);
-            };
-        });
+        // Note: we decided that Comments belongs to the Entity, so for a Draft D they die
+        // TODO - delete all Comments for daftDashboardID
+        this.deleteCanvasComment({ dashboardID: draftID ???});
 
         // The following are simply deleted (and those applicable to the original remains
         // unchanged):
@@ -2436,13 +2496,9 @@ export class GlobalVariableService {
             });
         });
 
-        // - Comments (link to Dashboard and Widget)
-        this.canvasComments.forEach(com => {
-            if (com.dashboardID == draftID) {
-                com.dashboardID = originalID;
-                this.saveCanvasComment(com);
-            };
-        });
+        // Note: we decided that Comments belongs to the Entity, so for a Draft D they die
+        // TODO - delete all Comments for daftDashboardID
+        this.deleteCanvasComment({ dashboardID: originalID ???});
 
         // The following are added (if there are any records) to the original:
         // - Tags
@@ -2691,12 +2747,8 @@ export class GlobalVariableService {
             };
         });
 
-        // Remove where D was used as hyperlink in Com
-        this.canvasComments.forEach(com => {
-            if (com.dashboardID == dashboardID) {
-                this.saveCanvasComment(com);
-            };
-        });
+        // Remove all Comments for this D
+        this.deleteCanvasComment({ dashboardID: dashboardID ???});
 
         // TODO - maybe this can be done better in DB
         // Delete Dashboard- and Widget Layouts
