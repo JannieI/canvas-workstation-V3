@@ -1272,13 +1272,18 @@ export class GlobalVariableService {
 
     }
 
-     ngOnInit() {
+     databaseInit() {
         // Initial
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables ngOnInit D,T id = ',
+            console.log('%c    Global-Variables databaseInit',
                 "color: black; background: lightgray; font-size: 10px",)
         };
 
+        // Initialise 
+        this.dbCanvasAppDatabase = new CanvasAppDatabase
+        this.dbCanvasAppDatabase.open();
+        this.dbDataCachingTable = new DataCachingDatabase;
+        this.dbDataCachingTable.open();
     }
 
      refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number):
@@ -1351,7 +1356,7 @@ export class GlobalVariableService {
         // Refreshes all info related to current DS, but NOT currentDatasources
         // Returns True if all worked, False if something went wrong
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables refreshCurrentDatasourceInfo D,T id = ',
+            console.log('%c    Global-Variables refreshCurrentDatasourceInfo',
                 "color: black; background: lightgray; font-size: 10px", {datasourceID})
         };
 
@@ -1410,10 +1415,10 @@ export class GlobalVariableService {
             if (dataCachingTableIndex >= 0) {
 
                 // Initialise DB
-                this.dbCanvasAppDatabase = new CanvasAppDatabase
-                this.dbCanvasAppDatabase.open();
-                this.dbDataCachingTable = new DataCachingDatabase;
-                this.dbDataCachingTable.open();
+                // this.dbCanvasAppDatabase = new CanvasAppDatabase
+                // this.dbCanvasAppDatabase.open();
+                // this.dbDataCachingTable = new DataCachingDatabase;
+                // this.dbDataCachingTable.open();
 
                 // Set vars to use here
                 let localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
@@ -1808,6 +1813,64 @@ export class GlobalVariableService {
         });
     }
 
+    addResource(resource: string = '', data: CanvasComment): Promise<any> {
+        // Description: Adds a new Resource
+        // Returns: Added Data or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addCanvasComment ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = 'canvasComments';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    // Update NrComments field if a W is linked
+                    if (data.widgetID != null) {
+                        this.widgets.forEach(w => {
+                            if (w.id == data.widgetID) {
+                                w.nrComments = w.nrComments + 1;
+                            };
+                        });
+                    };
+
+                    // Update Global vars to make sure they remain in sync
+                    this.canvasComments.push(JSON.parse(JSON.stringify(res.data)));
+
+                    if (this.sessionDebugging) {
+                        console.log('addCanvasComment ADDED', this.canvasComments,
+                            this.canvasComments)
+                    };
+
+                    resolve(res.data);
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error addCanvasComment FAILED', {err});
+                    };
+
+                    reject(err.message);
+                }
+            )
+        });
+    }
+
+
+
+
+
+
     getDashboards(params: string = ''): Promise<Dashboard[]> {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
@@ -1872,7 +1935,7 @@ export class GlobalVariableService {
         // - name, state: optional values for the new copy
         // - To make a draft: originalD.state = Complete, state = Draft
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables copyDashboard D,T id = ',
+            console.log('%c    Global-Variables copyDashboard',
                 "color: black; background: lightgray; font-size: 10px", {dashboardID})
         };
 

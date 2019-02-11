@@ -52,7 +52,6 @@ export class DashboardCommentsComponent implements OnInit {
     }
 
     canvasComments: CanvasComment[] = [];
-    datagridColumns: string[] =["id"]
     commentText: string;
     datagridPaginationSize: number = 6;
     editLast: boolean = false;
