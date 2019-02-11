@@ -143,7 +143,7 @@ export class DashboardDataQualityComponent implements OnInit {
             dsArray = [this.selectedDatasourceID];
         };
 
-        this.globalVariableService.getDataQualityIssues().then (ca => {
+        this.globalVariableService.getResource('dataQualityIssues').then (ca => {
             // Set the data for the grid
             this.datagridData = ca.filter(c =>
                 dsArray.indexOf(c['datasourceID']) >= 0
