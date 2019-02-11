@@ -188,7 +188,7 @@ export class DashboardCommentsComponent implements OnInit {
         };
 
         // Globally and locally
-        this.globalVariableService.addCanvasComment(newComment)
+        this.globalVariableService.addResource('canvasComments', newComment)
             .then( data => {
 
                 this.canvasComments.push(data)
