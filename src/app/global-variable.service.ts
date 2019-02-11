@@ -7,7 +7,6 @@ import { HttpHeaders }                from "@angular/common/http";
 // Our Models
 import { CanvasAction }               from './models';
 import { CanvasAuditTrail }           from './models';
-import { CanvasComment }              from './models';
 import { CanvasGroup }                from './models';
 import { CanvasHttpResponse }         from './models';
 import { CanvasMessage }              from './models';
@@ -1145,8 +1144,8 @@ export class GlobalVariableService {
     widgetStoredTemplates: WidgetStoredTemplate[] =[];
 
     // TODO - delete Depricated Caching when ready ...
-    canvasComments: CanvasComment[] = [];
-    isDirtyCanvasComments: boolean = true;
+    // canvasComments: CanvasComment[] = [];
+    // isDirtyCanvasComments: boolean = true;
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
