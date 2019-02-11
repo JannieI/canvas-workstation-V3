@@ -39,7 +39,6 @@ import { DatagridColumn }             from './models';
 import { Dataset }                    from './models';
 import { DataTable }                  from './models';
 import { Datasource }                 from './models';
-import { DataQualityIssue}            from './models';
 import { DataOwnership}               from './models';
 import { DatasourcePermission}        from './models';
 import { GraphCalculation }           from './models';
@@ -1123,7 +1122,6 @@ export class GlobalVariableService {
     dataCachingTable: DataCachingTable[] = [];
     dataConnections: DataConnection[] = [];
     dataFields: DataField[] = [];
-    dataOwnerships: DataOwnership[] = [];
     datasets: any = [];                                 // List of dSets, NO data
     datasourcePermissions: DatasourcePermission[] = [];
     datasourceTransformations: DatasourceTransformation[] = [];
@@ -1150,6 +1148,9 @@ export class GlobalVariableService {
     // dataQualityIssues: DataQualityIssue[] = [];
     // currentDataQualityIssues: DataQualityIssue[] = [];
     // isDirtyDataQualityIssues: boolean = true;
+    dataOwnerships: DataOwnership[] = [];
+    currentDataOwnerships: DataOwnership[] = [];
+    isDirtyDataOwnership: boolean = true;
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
@@ -1163,7 +1164,6 @@ export class GlobalVariableService {
     currentDashboardSubscriptions: DashboardSubscription[] = [];
     currentDashboardTabs: DashboardTab[] = [];
     currentDashboardTags: DashboardTag[] = [];
-    currentDataOwnerships: DataOwnership[] = [];
     currentDatasets: any = [];                          // Used in current D, with data
     currentDatasources: Datasource[] = [];
     currentDatasourcePermissions: DatasourcePermission[] = [];
@@ -1195,7 +1195,6 @@ export class GlobalVariableService {
     isDirtyDashboardThemes: boolean = true;
     isDirtyDataConnections: boolean = true;
     isDirtyDataFields: boolean = true;
-    isDirtyDataOwnership: boolean = true;
     isDirtyDatasets: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasources: boolean = true;

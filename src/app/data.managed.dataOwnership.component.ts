@@ -95,25 +95,27 @@ export class DataManageDataOwnershipComponent implements OnInit {
             return 0;
         });
 
-        this.globalVariableService.getDataOwnerships().then(dc => {
+        this.globalVariableService.getResource('dataOwnerships')
+            .then(dc => {
 
-            // Fill local Var
-            this.dataOwnerships = dc.slice();
+                // Fill local Var
+                this.dataOwnerships = dc.slice();
 
-            // Append RunTime datasourceName
-            this.dataOwnerships.forEach(dow => {
-                this.globalVariableService.datasources.forEach(ds => {
-                    if (ds.id == dow.datasourceID) {
-                        dow.datasourceName = ds.name;
-                    };
+                // Append RunTime datasourceName
+                this.dataOwnerships.forEach(dow => {
+                    this.globalVariableService.datasources.forEach(ds => {
+                        if (ds.id == dow.datasourceID) {
+                            dow.datasourceName = ds.name;
+                        };
+                    });
                 });
-            });
 
-            // Click on first one, if available
-            if (this.dataOwnerships.length > 0) {
-                this.clickRow(0, this.dataOwnerships[0].id);
-            };
-        });
+                // Click on first one, if available
+                if (this.dataOwnerships.length > 0) {
+                    this.clickRow(0, this.dataOwnerships[0].id);
+                };
+            })
+            .catch(err => this.errorMessage = 'Error getting Ownership data: ' + err);
 
     }
 
