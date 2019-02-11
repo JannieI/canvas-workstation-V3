@@ -267,7 +267,7 @@ export class CollaborateMessagesComponent implements OnInit {
                 };
             });
             if (readCount == 0) {
-                this.globalVariableService.deleteCanvasMessage(id).then(res => {
+                this.globalVariableService.deleteResource('canvasMessages', id).then(res => {
                     this.clickFilter(false);
                 });
             } else {
