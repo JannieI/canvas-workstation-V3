@@ -243,8 +243,8 @@ export class DataManageDataOwnershipComponent implements OnInit {
 
             this.selectedDataOwnership.datasourceID = this.datasourceID;
             this.selectedDataOwnership.datasourceName = this.datasourceName;
-            this.globalVariableService.addDataOwnership(this.selectedDataOwnership).then(
-                res => {
+            this.globalVariableService.addResource('dataOwnerships', this.selectedDataOwnership)
+                .then(res => {
                     if (this.selectedDataOwnershipRowIndex == null) {
                         this.selectedDataOwnershipRowIndex = 0;
                         this.selectedDatasourceID = this.selectedDataOwnership.id;
@@ -253,8 +253,8 @@ export class DataManageDataOwnershipComponent implements OnInit {
                     // Add locally
                     this.dataOwnerships.push(this.selectedDataOwnership);
 
-                }
-            );
+                })
+                .catch(err => this.errorMessage = 'Error adding ownership: ' + err);
         };
 
         // Save the changes
