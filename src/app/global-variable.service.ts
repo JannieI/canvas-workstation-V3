@@ -1638,7 +1638,7 @@ export class GlobalVariableService {
         // Note: in order to use a resource, it must be defined in the Dexie.ts file.
         //       Also, it may be necessary to delete the whole IndexedDB before adding new tables ...
         if (this.sessionDebugging) {
-            console.log('%c        Global-Variables getDashboardsNEW ...',
+            console.log('%c        Global-Variables getResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
         console.time("DURATION getResource");
@@ -1727,11 +1727,12 @@ export class GlobalVariableService {
                     };
                 };
             };
-            console.warn('xx Will now try HTTP')
+            console.warn('xx Will now try GET HTTP')
 
             // Get from HTTP server
             let pathUrl: string = resource + params;
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
+            console.log('xx finalUrl', finalUrl)
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 httpResult  => {
                     console.warn('xx inside HTTP')
@@ -1841,7 +1842,7 @@ export class GlobalVariableService {
                 .set("Content-Type", "application/json");
 
             let pathUrl: string = resource;
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 httpResult  => {
                     console.warn('xx inside POST HTTP')
