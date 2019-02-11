@@ -1966,17 +1966,90 @@ export class GlobalVariableService {
 
             this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
             .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
+                httpResult => {
+                    if(httpResult.statusCode != 'success') {
+                        reject(httpResult.message);
                         return;
                     };
 
-                    // Replace local
-                    let localIndex: number = this.canvasComments.findIndex(msg =>
-                        msg.id == data.id
+                    // Assume worse case that all has to be obtained from HTTP server
+                    let isFresh: boolean = false;
+                    let localCacheableMemory: boolean = false;
+                    let localCacheableDisc: boolean = false;
+                    let localVariableName: string = null;
+                    let localCurrentVariableName: string = '';
+                    let localTableName: string = '';
+
+                    // Find DS in localCachingTable
+                    let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
+                        dct.key == resource
                     );
-                    this.canvasComments[localIndex] = data;
+
+                    // If cached, fill local info
+                    if (dataCachingTableIndex >= 0) {
+
+                        // Fill local Vars
+                        if (localCacheableMemory) {
+
+                            if (localVariableName != null) {
+
+                                // Replace local
+                                // TODO - TEST This !!!!
+                                let localIndex: number = this[localVariableName].findIndex(rec =>
+                                    rec.id == data.id
+                                );
+                                if (localIndex >= 0) {
+                                    this[localVariableName][localIndex] = data;
+                                };
+                                console.warn('xx updated cached Memory to', this[localVariableName]);
+                            };
+
+                            // TODO - should we fill Current Var here a well?
+                        };
+
+                        // Fill Disc
+                        if (localCacheableDisc) {
+
+                            if (localTableName != null) {
+                                // this.dbCanvasAppDatabase = new CanvasAppDatabase
+                                // this.dbCanvasAppDatabase.open();
+
+                                this.dbCanvasAppDatabase.table(localTableName).clear().then(res => {
+                                    this.dbCanvasAppDatabase.table(localTableName)
+                                    .bulkPut(httpResult.data)
+                                    .then(resPut => {
+
+                                        // Count
+                                        this.dbCanvasAppDatabase.table(localTableName)
+                                            .count(resCount => {
+                                                console.warn('xx updated local Disc to', resCount);
+                                        });
+                                    });
+                                });
+                            };
+                        };
+
+                        // Update dataCaching in Memory
+                        let dt: Date = new Date();
+                        let seconds: number = 86400;
+                        if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
+                            seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
+                        };
+                        this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime =
+                            this.dateAdd(dt, 'second', seconds);
+                        this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
+                            new Date();
+                        console.log('xx dataCachingTable memory upd', this.dataCachingTable)
+
+                        // Update dataCaching on Disc
+                        this.dbDataCachingTable.table("localDataCachingTable")
+                            .bulkPut(this.dataCachingTable)
+                            .then(res => {
+                                this.dbDataCachingTable.table("localDataCachingTable").count(res => {
+                                    console.warn('xx dataCachingTable updated count @end', res);
+                                });
+                        });
+                    };
 
                     if (this.sessionDebugging) {
                         console.log('saveCanvasComment SAVED', {data})
