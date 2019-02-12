@@ -350,16 +350,19 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         if (this.adding) {
             // this.currentDatasourceSchedules.push(this.selectedDatasourceSchedules);
             this.selectedDatasourceSchedule.id = null;
-            this.globalVariableService.addDatasourceSchedule(this.selectedDatasourceSchedule).then(
-                res => {
-                    if (this.selectedRow == null) {
-                        this.selectedRow = 0;
-                        this.scheduleID = this.selectedDatasourceSchedule.id;
-                    };
+            this.globalVariableService.addResource(
+                'datasourceSchedules', this.selectedDatasourceSchedule)
+                .then(
+                    res => {
+                        if (this.selectedRow == null) {
+                            this.selectedRow = 0;
+                            this.scheduleID = this.selectedDatasourceSchedule.id;
+                        };
 
-                }
-            );
-        };
+                    }
+                )
+                .catch(err => this.errorMessage = 'Error in adding schedule: ' + err);
+            };
 
         // Save the changes
         if (this.editing) {
