@@ -5195,52 +5195,6 @@ export class GlobalVariableService {
 
     }
 
-    deleteDatasourceSchedule(id: number): Promise<string> {
-        // Description: Deletes a DatasourceSchedules
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDatasourceSchedule ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'datasourceSchedules';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.datasourceSchedules = this.datasourceSchedules.filter(
-                        dsp => dsp.id != id
-                    );
-                    this.currentDatasourceSchedules = this.currentDatasourceSchedules.filter(
-                        dsp => dsp.id != id
-                    );
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteDatasourceSchedule DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDatasourceSchedule FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     getDatasourceScheduleLog(
         datasourceID: number = null,
         sentAfter: Date = null,
