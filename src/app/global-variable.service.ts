@@ -7245,59 +7245,6 @@ export class GlobalVariableService {
         });
     }
 
-    getDashboardSubscriptions(): Promise<DashboardSubscription[]> {
-        // Description: Gets dashboardSubscriptions
-        // Returns: this.dashboardSubscriptions object, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardSubscription ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<DashboardSubscription[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if (this.isDirtyDashboardSubscription) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'dashboardSubscriptions';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.dashboardSubscriptions = res.data;
-
-                        this.isDirtyDashboardSubscription = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDashboardSubscription 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.dashboardSubscriptions)
-                        };
-
-                        resolve(this.dashboardSubscriptions);
-                    },
-                    err => {
-                        reject(err.message)
-                    });
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDashboardSubscription 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.dashboardSubscriptions)
-                };
-
-                resolve(this.dashboardSubscriptions);
-            }
-        });
-
-    }
-
     addDashboardSubscription(data: DashboardSubscription): Promise<any> {
         // Description: Adds a new DashboardSubscription
         // Returns: Added Data or error message
