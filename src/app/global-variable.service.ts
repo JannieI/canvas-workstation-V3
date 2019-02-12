@@ -1104,7 +1104,6 @@ export class GlobalVariableService {
     dashboardsRecent: DashboardRecent[] = [];           // List of Recent Dashboards
     dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     dashboards: Dashboard[] = [];
-    dashboardScheduleLog: DashboardScheduleLog[] = [];
     dashboardSchedules: DashboardSchedule[] = [];
     dashboardSnapshots: DashboardSnapshot[] = [];
     dashboardSubscriptions: DashboardSubscription[] = [];
@@ -1151,6 +1150,7 @@ export class GlobalVariableService {
     isDirtyCanvasTasks: boolean = true;
     // containerStyles: ContainerStyle[] = [];
     // isDirtyContainerStyles: boolean = true;
+    dashboardScheduleLog: DashboardScheduleLog[] = [];
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
