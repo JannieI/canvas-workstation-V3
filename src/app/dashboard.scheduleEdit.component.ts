@@ -83,14 +83,17 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.dashboardState = dashboard.state;
         this.clearRecord();
 
-        this.globalVariableService.getCurrentDashboardSchedules(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
+        this.globalVariableService.getResource('dashboardSchedules',
+            '?filterObject={"dashboardID": ' +
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID + '}'
+            ).then
               (i => {
                   this.currentDashboardSchedules = i;
                   if (this.currentDashboardSchedules.length > 0) {
                     this.clickRow(0, this.currentDashboardSchedules[0].id);
                   };
-        });
+            })
+            .catch(err => this.errorMessage = err);
     }
 
     clickRow(index: number, id: number) {
