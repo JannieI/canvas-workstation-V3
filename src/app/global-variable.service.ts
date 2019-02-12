@@ -5246,60 +5246,6 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentDatasourceSchedules(datasourceID: number = null): Promise<DatasourceSchedule[]> {
-        // Description: Gets all Sch for current D
-        // Params:
-        //   datasourceID
-        // Returns: this.currentDatasourceSchedules array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDatasourceSchedules ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {datasourceID});
-        };
-
-        // Refresh from source at start, or if dirty
-        if ( (this.datasourceSchedules.length == 0)  ||  (this.isDirtyDatasourceSchedules) ) {
-            return new Promise<DatasourceSchedule[]>((resolve, reject) => {
-                this.getDatasourceSchedules()
-                    .then(res => {
-                        if (datasourceID != null) {
-                            res = res.filter(
-                                i => i.datasourceID == datasourceID
-                            );
-                        };
-                        this.currentDatasourceSchedules = res;
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDatasourceSchedules 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {datasourceID}, {res})
-                        };
-
-                        resolve(this.currentDatasourceSchedules);
-                })
-             })
-        } else {
-            return new Promise<DatasourceSchedule[]>((resolve, reject) => {
-                let returnData: DatasourceSchedule[] = this.datasourceSchedules;
-                if (datasourceID != null) {
-                    returnData = returnData.filter(i => {
-                         i.datasourceID == datasourceID
-                    });
-                };
-                this.currentDatasourceSchedules = returnData;
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentDatasourceSchedules 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {datasourceID}, {returnData})
-                };
-
-                resolve(this.currentDatasourceSchedules);
-            });
-        };
-    }
-
     addDatasourceSchedule(data: DatasourceSchedule): Promise<any> {
         // Description: Adds a new DatasourceSchedule
         // Returns: Added Data or error message
