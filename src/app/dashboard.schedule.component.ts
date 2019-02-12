@@ -41,7 +41,7 @@ export class DashboardScheduleComponent implements OnInit {
 
     }
 
-    currentDashboardSchedules: DashboardSchedule[];
+    dashboardSchedules: DashboardSchedule[];
     errorMessage: string = '';
     selectedRow: number = 0;
 
@@ -55,9 +55,11 @@ export class DashboardScheduleComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCurrentDashboardSchedules(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID)
-            .then(i => this.currentDashboardSchedules = i)
+        this.globalVariableService.getResource('dashboardSchedules',
+            '?filterObject={"dashboardID": ' +
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID + '}'
+            )
+            .then(i => this.dashboardSchedules = i)
             .catch(err => this.errorMessage = err);
     }
 

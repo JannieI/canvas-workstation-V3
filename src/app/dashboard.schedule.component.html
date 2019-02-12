@@ -62,7 +62,7 @@
                         <clr-dg-column>EndsAfter</clr-dg-column>
                         <clr-dg-column>EndsOn</clr-dg-column>
 
-                        <clr-dg-row *clrDgItems="let row of currentDashboardSchedules
+                        <clr-dg-row *clrDgItems="let row of dashboardSchedules
                             let i = index"
                             [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
