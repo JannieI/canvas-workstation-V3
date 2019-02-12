@@ -72,37 +72,39 @@ export class DashboardSubscribeComponent implements OnInit {
         this.dashboards = this.globalVariableService.dashboards.slice();
 
         // Get subscriptions for current User
-        this.globalVariableService.getDashboardSubscriptions().then(data => {
-            this.dashboardSubscriptions = data.filter(ds => 
-                ds.userID == this.globalVariableService.currentUser.userID
-            );
+        this.globalVariableService.getResource('dashboardSubscriptions')
+            .then(data => {
+                this.dashboardSubscriptions = data.filter(ds => 
+                    ds.userID == this.globalVariableService.currentUser.userID
+                );
 
-            // Refresh D Codes
-            this.dashboards.forEach(d => {
-                this.dashboardSubscriptions.forEach(ds => {
-                    if (ds.dashboardID == d.id) {
-                        ds.dashboardCode = d.code;
-                    };
+                // Refresh D Codes
+                this.dashboards.forEach(d => {
+                    this.dashboardSubscriptions.forEach(ds => {
+                        if (ds.dashboardID == d.id) {
+                            ds.dashboardCode = d.code;
+                        };
+                    });
                 });
-            });
 
-            // Remaining D to show
-            let dsIDs: number[] = [];
-            this.dashboardSubscriptions.forEach(ds => {
-                dsIDs.push(ds.dashboardID);
-            });    
+                // Remaining D to show
+                let dsIDs: number[] = [];
+                this.dashboardSubscriptions.forEach(ds => {
+                    dsIDs.push(ds.dashboardID);
+                });    
 
-            this.dashboards.forEach(d => {
-                if (dsIDs.indexOf(d.id) < 0) {
-                    this.availableDashboards.push('(' + d.id.toString() + ') ' + d.code);
+                this.dashboards.forEach(d => {
+                    if (dsIDs.indexOf(d.id) < 0) {
+                        this.availableDashboards.push('(' + d.id.toString() + ') ' + d.code);
+                    };
+                });     
+
+                // Get First one
+                if (this.availableDashboards.length > 0) {
+                    this.selectedDashboard = this.availableDashboards[0];
                 };
-            });     
-
-            // Get First one
-            if (this.availableDashboards.length > 0) {
-                this.selectedDashboard = this.availableDashboards[0];
-            };
-        });
+            })
+            .catch(err => console.log('Error in getting schedules: ' + err));
         
     }
 
