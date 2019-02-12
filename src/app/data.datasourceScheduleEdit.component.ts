@@ -374,7 +374,10 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                 this.currentDatasourceSchedules[datasourceScheduleIndex] =
                     JSON.parse(JSON.stringify(this.selectedDatasourceSchedule));
             };
-            this.globalVariableService.saveDatasourceSchedule(this.selectedDatasourceSchedule)
+            this.globalVariableService.saveResource(
+                'datasourceSchedules', this.selectedDatasourceSchedule)
+                    .then(res => console.log('Saved'))
+                    .catch(err => this.errorMessage = 'Error in saving schedule: ' + err);
         };
 
         // Reset
