@@ -56,7 +56,7 @@ export class DashboardScheduleEditComponent implements OnInit {
     }
 
     adding: boolean = false;
-    currentDashboardSchedules: DashboardSchedule[] = [];
+    dashboardSchedules: DashboardSchedule[] = [];
     dashboardName: string = '';
     dashboardState: string = '';
     editing: boolean = false;
@@ -76,11 +76,18 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        let dashboard: Dashboard = this.globalVariableService.letDashboard(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        // let dashboard: Dashboard = this.globalVariableService.letDashboard(
+        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        // );
+        // this.dashboardName = dashboard.name;
+        // this.dashboardState = dashboard.state;
+        let dashboardIndex = this.globalVariableService.currentDashboards.findIndex(
+            cd => cd. id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         );
-        this.dashboardName = dashboard.name;
-        this.dashboardState = dashboard.state;
+        if (dashboardIndex >= 0) {
+            this.dashboardName = this.globalVariableService.currentDashboards[dashboardIndex].name;
+            this.dashboardState = this.globalVariableService.currentDashboards[dashboardIndex].state;
+        };
         this.clearRecord();
 
         this.globalVariableService.getResource('dashboardSchedules',
@@ -88,9 +95,9 @@ export class DashboardScheduleEditComponent implements OnInit {
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID + '}'
             ).then
               (i => {
-                  this.currentDashboardSchedules = i;
-                  if (this.currentDashboardSchedules.length > 0) {
-                    this.clickRow(0, this.currentDashboardSchedules[0].id);
+                  this.dashboardSchedules = i;
+                  if (this.dashboardSchedules.length > 0) {
+                    this.clickRow(0, this.dashboardSchedules[0].id);
                   };
             })
             .catch(err => this.errorMessage = err);
@@ -100,7 +107,6 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
-        console.warn('xx selD Sch', this.selectedDashboardSchedule)
         // Set the row index
         this.selectedRow = index;
         this.adding = false;
@@ -109,16 +115,14 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.errorMessage = '';
 
         // Fill the form
-        let dashboardScheduleIndex: number = this.globalVariableService.dashboardSchedules
+        let dashboardScheduleIndex: number = this.dashboardSchedules
             .findIndex(sch => sch.id == id);
         if (dashboardScheduleIndex >= 0) {
-            // this.selectedDashboardSchedule = Object.assign({},
-            //     this.globalVariableService.dashboardSchedules[dashboardScheduleIndex]
-            // );
             this.selectedDashboardSchedule = JSON.parse(JSON.stringify(
-                this.globalVariableService.dashboardSchedules[dashboardScheduleIndex]
+                this.dashboardSchedules[dashboardScheduleIndex]
             ));
         };
+        console.warn('xx selD Sch', this.selectedRow, this.selectedDashboardSchedule)
 
     }
 
@@ -178,14 +182,14 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.clickRow(this.selectedRow, this.scheduleID);
 
         // Re Fill the form
-        let dashboardScheduleIndex: number = this.currentDashboardSchedules
+        let dashboardScheduleIndex: number = this.dashboardSchedules
             .findIndex(sch => sch.id == this.selectedDashboardSchedule.id);
         if (dashboardScheduleIndex >= 0) {
             // this.selectedDashboardSchedule = Object.assign({},
             //     this.currentDashboardSchedules[dashboardScheduleIndex]
             // );
             this.selectedDashboardSchedule = JSON.parse(JSON.stringify(
-                this.currentDashboardSchedules[dashboardScheduleIndex]
+                this.dashboardSchedules[dashboardScheduleIndex]
             ));
         };
 
@@ -326,12 +330,12 @@ export class DashboardScheduleEditComponent implements OnInit {
 
         // Save the changes
         if (this.editing) {
-            let dashboardScheduleIndex: number = this.currentDashboardSchedules
+            let dashboardScheduleIndex: number = this.dashboardSchedules
                 .findIndex(sch => sch.id == this.selectedDashboardSchedule.id);
             if (dashboardScheduleIndex >= 0) {
                 // this.currentDashboardSchedules[dashboardScheduleIndex] =
                 //     Object.assign({}, this.selectedDashboardSchedule);
-                this.currentDashboardSchedules[dashboardScheduleIndex] =
+                this.dashboardSchedules[dashboardScheduleIndex] =
                 JSON.parse(JSON.stringify(this.selectedDashboardSchedule));
             };
             this.globalVariableService.saveDashboardSchedule(this.selectedDashboardSchedule)
@@ -351,7 +355,7 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Start editing selected Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
-        if (this.currentDashboardSchedules.length > 0) {
+        if (this.dashboardSchedules.length > 0) {
             this.editing = true;
         };
         this.errorMessage = '';
@@ -374,7 +378,7 @@ export class DashboardScheduleEditComponent implements OnInit {
 
         this.clearRecord();
         this.globalVariableService.deleteDashboardSchedule(id).then(res => {
-            this.currentDashboardSchedules = this.globalVariableService
+            this.dashboardSchedules = this.globalVariableService
                 .currentDashboardSchedules.slice();
         });
 
