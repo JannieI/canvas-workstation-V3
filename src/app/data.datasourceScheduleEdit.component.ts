@@ -411,6 +411,9 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                 .currentDatasourceSchedules.slice();
         });
 
+
+
+        
         this.selectedRow = null;
         this.scheduleID = null;
     }

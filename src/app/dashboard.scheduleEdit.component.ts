@@ -318,9 +318,10 @@ export class DashboardScheduleEditComponent implements OnInit {
                         this.selectedRow = 0;
                         this.scheduleID = this.selectedDashboardSchedule.id;
                     };
+                    this.dashboardSchedules.push(res);
                     this.message = 'Added Schedule';
                 })
-                .catch(err => this.errorMessage = 'Add failed !');
+                .catch(err => this.errorMessage = 'Add failed !' + err);
         };
 
         // Save the changes
@@ -328,10 +329,8 @@ export class DashboardScheduleEditComponent implements OnInit {
             let dashboardScheduleIndex: number = this.dashboardSchedules
                 .findIndex(sch => sch.id == this.selectedDashboardSchedule.id);
             if (dashboardScheduleIndex >= 0) {
-                // this.currentDashboardSchedules[dashboardScheduleIndex] =
-                //     Object.assign({}, this.selectedDashboardSchedule);
                 this.dashboardSchedules[dashboardScheduleIndex] =
-                JSON.parse(JSON.stringify(this.selectedDashboardSchedule));
+                    JSON.parse(JSON.stringify(this.selectedDashboardSchedule));
             };
             this.globalVariableService.saveResource('dashboardSchedules', this.selectedDashboardSchedule)
                 .then(res => this.message = 'Saved Schedule')
@@ -374,8 +373,8 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.clearRecord();
         this.globalVariableService.deleteResource('dashboardSchedules', id)
             .then(res => {
-                this.dashboardSchedules = this.globalVariableService
-                    .currentDashboardSchedules.slice();
+                this.dashboardSchedules = this.dashboardSchedules.filter(
+                    sch => sch.id != id);
             })
             .catch(err => this.errorMessage = 'Error with delete: ' + err);
 
