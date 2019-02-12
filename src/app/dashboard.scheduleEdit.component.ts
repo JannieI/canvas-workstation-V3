@@ -333,7 +333,7 @@ export class DashboardScheduleEditComponent implements OnInit {
                 this.dashboardSchedules[dashboardScheduleIndex] =
                 JSON.parse(JSON.stringify(this.selectedDashboardSchedule));
             };
-            this.globalVariableService.saveDashboardSchedule(this.selectedDashboardSchedule)
+            this.globalVariableService.saveResource('dashboardSchedules', this.selectedDashboardSchedule)
                 .then(res => this.message = 'Saved Schedule')
                 .catch(err => this.errorMessage = 'Save failed !');
         };
