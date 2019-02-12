@@ -56,7 +56,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
     }
 
     adding: boolean = false;
-    currentDatasourceSchedules: DatasourceSchedule[] = [];
+    datasourceSchedules: DatasourceSchedule[] = [];
     datasourceID: number;
     datasourceName: string = '';
     datasourceNames: string[] = [];
@@ -98,9 +98,9 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         this.globalVariableService.getResource('datasourceSchedules')
             .then
                 (i => {
-                    this.currentDatasourceSchedules = i;
-                    if (this.currentDatasourceSchedules.length > 0) {
-                        this.clickRow(0, this.currentDatasourceSchedules[0].id);
+                    this.datasourceSchedules = i;
+                    if (this.datasourceSchedules.length > 0) {
+                        this.clickRow(0, this.datasourceSchedules[0].id);
                     };
             })
             .catch(err => this.errorMessage = 'Error in getting schedules: ' + err);
@@ -119,14 +119,11 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         this.errorMessage = '';
 
         // Fill the form
-        let datasourceScheduleIndex: number = this.globalVariableService.datasourceSchedules
+        let datasourceScheduleIndex: number = this.datasourceSchedules
             .findIndex(sch => sch.id == id);
         if (datasourceScheduleIndex >= 0) {
-            // this.selectedDatasourceSchedule = Object.assign({},
-            //     this.globalVariableService.datasourceSchedules[datasourceScheduleIndex]
-            // );
             this.selectedDatasourceSchedule = JSON.parse(JSON.stringify(
-                this.globalVariableService.datasourceSchedules[datasourceScheduleIndex]
+                this.datasourceSchedules[datasourceScheduleIndex]
             ));
 
             let datasourceIndex: number = this.globalVariableService.datasources.findIndex(
@@ -206,14 +203,14 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         this.clickRow(this.selectedRow, this.scheduleID);
 
         // Re Fill the form
-        let datasourceScheduleIndex: number = this.currentDatasourceSchedules
+        let datasourceScheduleIndex: number = this.datasourceSchedules
             .findIndex(sch => sch.id == this.selectedDatasourceSchedule.id);
         if (datasourceScheduleIndex >= 0) {
             // this.selectedDatasourceSchedule = Object.assign({},
             //     this.currentDatasourceSchedules[datasourceScheduleIndex]
             // );
             this.selectedDatasourceSchedule = JSON.parse(JSON.stringify(
-                this.currentDatasourceSchedules[datasourceScheduleIndex]
+                this.datasourceSchedules[datasourceScheduleIndex]
             ));
         };
 
@@ -366,12 +363,12 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
         // Save the changes
         if (this.editing) {
-            let datasourceScheduleIndex: number = this.currentDatasourceSchedules
+            let datasourceScheduleIndex: number = this.datasourceSchedules
                 .findIndex(sch => sch.id == this.selectedDatasourceSchedule.id);
             if (datasourceScheduleIndex >= 0) {
                 // this.currentDatasourceSchedules[datasourceScheduleIndex] =
                 //     Object.assign({}, this.selectedDatasourceSchedule);
-                this.currentDatasourceSchedules[datasourceScheduleIndex] =
+                this.datasourceSchedules[datasourceScheduleIndex] =
                     JSON.parse(JSON.stringify(this.selectedDatasourceSchedule));
             };
             this.globalVariableService.saveResource(
@@ -392,7 +389,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Start editing selected Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
-        if (this.currentDatasourceSchedules.length > 0) {
+        if (this.datasourceSchedules.length > 0) {
             this.editing = true;
         };
         this.errorMessage = '';
@@ -414,13 +411,11 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         this.clearRecord();
-        this.globalVariableService.deleteDashboardSchedule(id).then(res => {
-            this.currentDatasourceSchedules = this.globalVariableService
-                .currentDatasourceSchedules.slice();
+        this.globalVariableService.deleteResource('datasourceSchedules', id).then(res => {
+            this.datasourceSchedules = this.datasourceSchedules.filter(
+                dsp => dsp.id != id
+            );
         });
-
-
-
         
         this.selectedRow = null;
         this.scheduleID = null;

@@ -505,7 +505,7 @@
                         <clr-dg-column>EndsAfter</clr-dg-column>
                         <clr-dg-column>EndsOn</clr-dg-column>
 
-                        <clr-dg-row *clrDgItems="let row of currentDatasourceSchedules
+                        <clr-dg-row *clrDgItems="let row of datasourceSchedules
                             let i = index"
                             [clrDgItem]="row"
                             [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
