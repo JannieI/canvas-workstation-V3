@@ -5088,57 +5088,6 @@ export class GlobalVariableService {
         return dataSet;
     }
 
-    saveDashboardSchedule(data: DashboardSchedule): Promise<string> {
-        // Description: Saves DashboardSchedule
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDashboardSchedule ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardSchedules';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.dashboardSchedules.findIndex(d =>
-                        d.id == data.id
-                    );
-                    this.dashboardSchedules[localIndex] = data;
-
-                    if (this.sessionDebugging) {
-                        console.log('saveDashboardSchedule SAVED', res.data)
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveDashboardSchedule FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteDashboardSchedule(id: number): Promise<string> {
         // Description: Deletes a DashboardSchedules
         // Returns: 'Deleted' or error message
