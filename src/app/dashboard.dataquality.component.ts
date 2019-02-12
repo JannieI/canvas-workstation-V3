@@ -20,11 +20,8 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { CanvasComment }              from './models';
-import { DatagridInput }              from './models';
-import { DatagridColumn }             from './models';
 import { DataQualityIssue }           from './models';
 
-import { HttpClient }                 from '@angular/common/http';
 import { AgGridNg2 }                  from 'ag-grid-angular';
 
 
@@ -54,78 +51,19 @@ export class DashboardDataQualityComponent implements OnInit {
 
     canvasComments: CanvasComment[] = [];
     dataQualityIssues: DataQualityIssue[] = [];
-    selectedRow: number = 0;
-
     headerText: string;
-    datagridColumns: DatagridColumn[];
-    datagridInput: DatagridInput = null;
-    datagridData: any[];
-    datagridPagination: boolean = false;
-    datagridPaginationSize: number = 10;
-    datagridShowHeader: boolean = false;
-    datagridShowRowActionMenu: boolean = false;
-    datagridShowData: boolean = true;
-    datagridShowFooter: boolean = false;
-    datagridRowHeight: number = 12;
-    datagriduserCanChangeProperties: boolean = false;
-    datagridShowTotalsRow: boolean = false;
-    datagridShowTotalsCol: boolean = false;
-    datagridCanEditInCell: boolean = false;
-    datagridCanExportData: boolean = false;
-    datagridEmptyMessage: string = 'No Issues created so far';
-    datagridVisibleFields: string[];
-    datagridShowFields: string[];
-
-    columnDefs = [
-        {headerName: 'Make', field: 'make', width: 90, checkboxSelection: true, sort: "desc",
-        suppressMovable: false, suppressResize: false },
-        {headerName: 'Model', field: 'model', width: 190, minWidth: 90, maxWidth: 300, 
-            unSortIcon: true, pinned: 'left', lockPosition: true },
-        {headerName: 'Price', field: 'price', width: 90, type: "numericColumn"}
-    ];
-    multiSortKey: string = "ctrl";  // Default = shift
-    paginationPageSize: number = 16;
-    pinnedTopRowData = [
-        {
-          make: "Floating Top Athlete",
-          model: "Total",
-          price: "52",
-        }
-      ];
-      pinnedBottomRowData = [
-        {
-            make: "Floating Bottom",
-            model: 999,
-            price: "553214",
-        }
-      ]
-    columnDefs1 = [
-        {headerName: "id",          field: "id"},
-        {headerName: "name",        field: "name", checkboxSelection: true },
-        {headerName: "datasourceID",field: "datasourceID"},
-        {headerName: "status",      field: "status"},
-        {headerName: "type",        field: "type"},
-        {headerName: "description", field: "description"},
-        {headerName: "nrIssues",    field: "nrIssues"},
-        {headerName: "loggedBy",    field: "loggedBy"},
-        {headerName: "loggedOn",    field: "loggedOn"},
-        {headerName: "solvedBy",    field: "solvedBy"},
-        {headerName: "solvedOn",    field: "solvedOn"}
-    ]
-
-    rowData: any;
+    selectedRow: number = 0;
 
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private http: HttpClient,
 	) {}
 
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        // this.rowData = this.http.get('https://api.myjson.com/bins/15psn9');
+
         // Display the source, and set the array of DSids
         let dsArray: number[] = [];
         if (this.selectedDatasourceID == -1) {
@@ -144,12 +82,6 @@ export class DashboardDataQualityComponent implements OnInit {
                     dsArray.indexOf(c['datasourceID']) >= 0)
             })
             .catch(err => console.log('Error reading dataQualityIssues: ' + err));
-
-            // Set the column object
-            // this.datagridColumns = this.globalVariableService.createDatagridColumns(
-            //     ca[0], this.datagridShowFields, this.datagridVisibleFields);
-
-        // });
     }
 
     clickClose(action: string) {
@@ -167,11 +99,12 @@ export class DashboardDataQualityComponent implements OnInit {
         this.selectedRow = index;
     }
 
-    getSelectedRows() {
-        const selectedNodes = this.agGrid.api.getSelectedNodes();
-        const selectedData = selectedNodes.map( node => node.data );
-        const selectedDataStringPresentation = selectedData.map( node => node.make + ' ' + node.model).join(', ');
-        alert(`Selected nodes: ${selectedDataStringPresentation}`);
-    }
+    // ag-Grid Experiment
+    // getSelectedRows() {
+    //     const selectedNodes = this.agGrid.api.getSelectedNodes();
+    //     const selectedData = selectedNodes.map( node => node.data );
+    //     const selectedDataStringPresentation = selectedData.map( node => node.make + ' ' + node.model).join(', ');
+    //     alert(`Selected nodes: ${selectedDataStringPresentation}`);
+    // }
 
 }
