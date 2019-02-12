@@ -91,7 +91,6 @@ export class DashboardDataQualityComponent implements OnInit {
 		this.formDashboardDataQualityClosed.emit(action);
     }
 
-
     clickRow(index: number, id: number) {
         // User clicked a row, now refresh the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');

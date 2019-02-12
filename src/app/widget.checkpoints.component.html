@@ -61,55 +61,55 @@
                         </button>
                     </div>
 
-                        <div class="gridCheckpointTable">
-                            <clr-datagrid>
+                    <div class="gridCheckpointTable">
+                        <clr-datagrid>
 
-                                <!-- Empty Message -->
-                                <clr-dg-placeholder>
-                                    No Checkpoints created as yet
-                                </clr-dg-placeholder>
+                            <!-- Empty Message -->
+                            <clr-dg-placeholder>
+                                No Checkpoints created as yet
+                            </clr-dg-placeholder>
 
-                                <!-- Headers -->
-                                <clr-dg-column>
-                                    Delete
-                                </clr-dg-column>
-                                <clr-dg-column *ngFor="let col of datagridColumns; let c = index"
-                                    [clrDgField]="col.fieldName"
+                            <!-- Headers -->
+                            <clr-dg-column>
+                                Delete
+                            </clr-dg-column>
+                            <clr-dg-column *ngFor="let col of datagridColumns; let c = index"
+                                [clrDgField]="col.fieldName"
+                                >
+                                {{ col.displayName }}
+                            </clr-dg-column>
+
+                            <!-- Each Row -->
+                            <clr-dg-row *clrDgItems="let row of currentWidgetCheckpoints;
+                                let i = index"
+                                [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                (click)="clickRow(i, row.id)">
+                                <clr-dg-cell>
+                                    <clr-icon
+                                        (dblclick)="dblclickDeleteCheckpoint(row.id)"
+                                        shape="trash">
+                                    </clr-icon>
+                                </clr-dg-cell>
+                                <!-- Each Cell -->
+                                <clr-dg-cell *ngFor="let col of datagridColumns; let c = index">
+                                    {{ row[col.fieldName] }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
+
+                            <!-- Footer -->
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} records
+                                <clr-dg-pagination
+                                    #pagination
+                                    [clrDgPageSize]="5"
                                     >
-                                    {{ col.displayName }}
-                                </clr-dg-column>
-    
-                                <!-- Each Row -->
-                                <clr-dg-row *clrDgItems="let row of currentWidgetCheckpoints;
-                                    let i = index"
-                                    [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedRow)? 'white' : 'gray'"
-                                    (click)="clickRow(i, row.id)">
-                                    <clr-dg-cell>
-                                        <clr-icon
-                                            (dblclick)="dblclickDeleteCheckpoint(row.id)"
-                                            shape="trash">
-                                        </clr-icon>
-                                    </clr-dg-cell>
-                                    <!-- Each Cell -->
-                                    <clr-dg-cell *ngFor="let col of datagridColumns; let c = index">
-                                        {{ row[col.fieldName] }}
-                                    </clr-dg-cell>
-                                </clr-dg-row>
+                                </clr-dg-pagination>
+                            </clr-dg-footer>
+                        </clr-datagrid>
 
-                                <!-- Footer -->
-                                <clr-dg-footer>
-                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                    of {{pagination.totalItems}} records
-                                    <clr-dg-pagination
-                                        #pagination
-                                        [clrDgPageSize]="5"
-                                        >
-                                    </clr-dg-pagination>
-                                </clr-dg-footer>
-                            </clr-datagrid>
-
-                        </div>
+                    </div>
 
                     <div class="graphArea" #dragWidget
                         [hidden]="nrCheckpoints > 0? false : true" 
