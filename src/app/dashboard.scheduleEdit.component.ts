@@ -372,10 +372,12 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         this.clearRecord();
-        this.globalVariableService.deleteDashboardSchedule(id).then(res => {
-            this.dashboardSchedules = this.globalVariableService
-                .currentDashboardSchedules.slice();
-        });
+        this.globalVariableService.deleteResource('dashboardSchedules', id)
+            .then(res => {
+                this.dashboardSchedules = this.globalVariableService
+                    .currentDashboardSchedules.slice();
+            })
+            .catch(err => this.errorMessage = 'Error with delete: ' + err);
 
         this.selectedRow = null;
         this.scheduleID = null;
