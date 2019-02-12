@@ -1161,7 +1161,6 @@ export class GlobalVariableService {
     currentDashboards: Dashboard[] = [];
     currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
-    currentDashboardSubscriptions: DashboardSubscription[] = [];
     currentDashboardTabs: DashboardTab[] = [];
     currentDashboardTags: DashboardTag[] = [];
     currentDatasets: any = [];                          // Used in current D, with data
@@ -2998,7 +2997,7 @@ export class GlobalVariableService {
         });
 
         // Delete where D was used as hyperlink in Sub
-        this.currentDashboardSubscriptions.forEach(sub =>  {
+        this.dashboardSubscriptions.forEach(sub =>  {
             if (sub.dashboardID == dashboardID) {
                 this.deleteDashboardSubscription(sub.id);
             };
@@ -3047,7 +3046,6 @@ export class GlobalVariableService {
         this.currentWidgets = [];
         this.currentDashboardSnapshots = [];
         this.currentDashboardSchedules = [];
-        this.currentDashboardSubscriptions = [];
         this.currentDashboardTags = [];
         this.currentDashboardPermissions = [];
         this.currentWidgetCheckpoints = [];
@@ -7717,7 +7715,6 @@ export class GlobalVariableService {
                     };
 
                     this.dashboardSubscriptions.push(JSON.parse(JSON.stringify(res.data)));
-                    this.currentDashboardSubscriptions.push(JSON.parse(JSON.stringify(res.data)));
 
                     if (this.sessionDebugging) {
                         console.log('addDashboardSubscription ADDED', res.data)
@@ -7811,12 +7808,10 @@ export class GlobalVariableService {
 
                     this.dashboardSubscriptions = this.dashboardSubscriptions.
                         filter(sub => sub.id != id);
-                    this.currentDashboardSubscriptions = this.currentDashboardSubscriptions.
-                        filter(sub => sub.id != id);
 
                     if (this.sessionDebugging) {
                         console.log('deleteDashboardSubscription DELETED', {id}, {res},
-                            this.dashboardSubscriptions, this.currentDashboardSubscriptions)
+                            this.dashboardSubscriptions)
                     };
 
                     resolve('Deleted');
