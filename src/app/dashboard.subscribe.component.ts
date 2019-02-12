@@ -122,8 +122,11 @@ export class DashboardSubscribeComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
-        };
+            this.globalVariableService.saveResource('dashboardSubscriptions',
+                this.dashboardSubscriptions[index])
+                .then(res => console.log('Saved'))
+                .catch(err => console.log('Error in getting schedules: ' + err));
+            };
 
     }
 
@@ -141,9 +144,11 @@ export class DashboardSubscribeComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardSubscription(
+            this.globalVariableService.saveResource('dashboardSubscriptions',
                 this.dashboardSubscriptions[index])
-                ;
+                .then(res => console.log('Saved'))
+                .catch(err => console.log('Error in getting schedules: ' + err));
+
         };
     }
 
@@ -161,9 +166,11 @@ export class DashboardSubscribeComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardSubscription(
+            this.globalVariableService.saveResource('dashboardSubscriptions',
                 this.dashboardSubscriptions[index])
-                ;
+                .then(res => console.log('Saved'))
+                .catch(err => console.log('Error in getting schedules: ' + err));
+
         };
     }
 
@@ -181,9 +188,11 @@ export class DashboardSubscribeComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardSubscription(
+            this.globalVariableService.saveResource('dashboardSubscriptions',
                 this.dashboardSubscriptions[index])
-                ;
+                .then(res => console.log('Saved'))
+                .catch(err => console.log('Error in getting schedules: ' + err));
+
         };
     }
 
@@ -218,7 +227,10 @@ export class DashboardSubscribeComponent implements OnInit {
                 };
             };
 
-            this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
+            this.globalVariableService.saveResource('dashboardSubscriptions',
+                this.dashboardSubscriptions[index])
+                .then(res => console.log('Saved'))
+                .catch(err => console.log('Error in getting schedules: ' + err));
         };
     }
 
