@@ -55,7 +55,8 @@
                 </div> -->
 
 
-                <div class="gridTable">
+                <!-- OLD CA Grid -->
+                <!-- <div class="gridTable">
                     <ca-datagrid
                         [datagridColumns]="datagridColumns"
                         [datagridData]="datagridData"
@@ -73,7 +74,52 @@
                         [datagridCanExportData]="datagridCanExportData"
                         >
                     </ca-datagrid>
+                </div> -->
+
+
+                <div class="gridTable">
+                    <clr-datagrid>
+                        <clr-dg-column [clrDgField]='id'>id</clr-dg-column>
+                        <clr-dg-column [clrDgField]='name'>name</clr-dg-column>
+                        <clr-dg-column [clrDgField]='datasourceID'>datasourceID</clr-dg-column>
+                        <clr-dg-column [clrDgField]='status'>status</clr-dg-column>
+                        <clr-dg-column [clrDgField]='type'>type</clr-dg-column>
+                        <clr-dg-column [clrDgField]='description'>description</clr-dg-column>
+                        <clr-dg-column [clrDgField]='nrIssues'>nrIssues</clr-dg-column>
+                        <clr-dg-column [clrDgField]='loggedBy'>loggedBy</clr-dg-column>
+                        <clr-dg-column [clrDgField]='loggedOn'>loggedOn ID</clr-dg-column>
+                        <clr-dg-column [clrDgField]='solvedBy'>solvedBy</clr-dg-column>
+                        <clr-dg-column [clrDgField]='solvedOn'>solvedOn</clr-dg-column>
+
+                        <clr-dg-row *clrDgItems="let row of dataQualityIssues;
+                            let i = index"
+                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                            (click)="clickRow(i, row.id)"
+                            >
+                            <clr-dg-cell>{{ row.id }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.datasourceID }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.status }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.type }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.nrIssues }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.loggedBy }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.loggedOn }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.solvedBy }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.solvedOn }}</clr-dg-cell>
+                        </clr-dg-row>
+
+                        <clr-dg-footer>
+                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                            of {{pagination.totalItems}} rows
+                            <clr-dg-pagination #pagination [clrDgPageSize]="9"></clr-dg-pagination>
+                        </clr-dg-footer>
+
+                    </clr-datagrid>
                 </div>
+
+
             </div>
         </div>
     </div>

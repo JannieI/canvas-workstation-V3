@@ -22,7 +22,7 @@ import { GlobalVariableService}       from './global-variable.service';
 import { CanvasComment }              from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
-
+import { DataQualityIssue }           from './models';
 
 import { HttpClient }                 from '@angular/common/http';
 import { AgGridNg2 }                  from 'ag-grid-angular';
@@ -53,6 +53,8 @@ export class DashboardDataQualityComponent implements OnInit {
     }
 
     canvasComments: CanvasComment[] = [];
+    dataQualityIssues: DataQualityIssue[] = [];
+
     headerText: string;
     datagridColumns: DatagridColumn[];
     datagridInput: DatagridInput = null;
