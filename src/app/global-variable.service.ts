@@ -5195,49 +5195,6 @@ export class GlobalVariableService {
 
     }
 
-    addDatasourceSchedule(data: DatasourceSchedule): Promise<any> {
-        // Description: Adds a new DatasourceSchedule
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDatasourceSchedule ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'datasourceSchedules';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    this.datasourceSchedules.push(JSON.parse(JSON.stringify(res.data)));
-                    this.currentDatasourceSchedules.push(JSON.parse(JSON.stringify(res.data)));
-
-                    if (this.sessionDebugging) {
-                        console.log('addDatasourceSchedule ADDED', res.data,
-                            this.currentDatasourceSchedules, this.datasourceSchedules)
-                    };
-
-                    resolve(res.data);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addDatasourceSchedule FAILED', {err});
-                    };
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     saveDatasourceSchedule(data: DatasourceSchedule): Promise<string> {
         // Description: Saves DatasourceSchedule
         // Returns: 'Saved' or error message
