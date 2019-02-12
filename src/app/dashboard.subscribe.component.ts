@@ -286,28 +286,30 @@ export class DashboardSubscribeComponent implements OnInit {
             };
 
             // Add to DB
-            this.globalVariableService.addDashboardSubscription(localData).then(data => {
-                
-                // Add locally
-                this.dashboardSubscriptions.splice(0, 0, data);
+            this.globalVariableService.addResource('dashboardSubscriptions', localData)
+                .then(data => {
+                    
+                    // Add locally
+                    this.dashboardSubscriptions.splice(0, 0, data);
 
-                // Reduce available list
-                let selID: number = -1;
-                for (var i = 0; i < this.availableDashboards.length; i++) {
-                    if (this.availableDashboards[i] == this.selectedDashboard) {
-                        selID = i;
-                        break;
+                    // Reduce available list
+                    let selID: number = -1;
+                    for (var i = 0; i < this.availableDashboards.length; i++) {
+                        if (this.availableDashboards[i] == this.selectedDashboard) {
+                            selID = i;
+                            break;
+                        };
                     };
-                };
-                if (selID >=0) {
-                    this.availableDashboards.splice(selID, 1);
-                };
+                    if (selID >=0) {
+                        this.availableDashboards.splice(selID, 1);
+                    };
 
-                // Get First one
-                if (this.availableDashboards.length > 0) {
-                    this.selectedDashboard = this.availableDashboards[0];
-                };
-            });
+                    // Get First one
+                    if (this.availableDashboards.length > 0) {
+                        this.selectedDashboard = this.availableDashboards[0];
+                    };
+                })
+                .catch(err => console.log('Error in getting schedules: ' + err));
         } else {
             console.log('ERROR - dID = -1 which means its not in the list!  Ai toggie')
         };
