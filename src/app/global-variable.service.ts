@@ -27,7 +27,6 @@ import { DashboardScheduleLog }       from './models';
 import { DashboardSubscription }      from './models';
 import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
-import { DashboardTheme }             from './models';
 import { DataCachingTable }           from './models';
 import { DataConnection }             from './models';
 import { DatasourceTransformation }   from './models';
@@ -1152,8 +1151,8 @@ export class GlobalVariableService {
     dashboardScheduleLog: DashboardScheduleLog[] = [];
     // currentDatasourceSchedules: DatasourceSchedule[] = [];
     // isDirtyDatasourceSchedules: boolean = true;
-    dashboardThemes: DashboardTheme[] = [];
-    isDirtyDashboardThemes: boolean = true;
+    // dashboardThemes: DashboardTheme[] = [];
+    // isDirtyDashboardThemes: boolean = true;
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and

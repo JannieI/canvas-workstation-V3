@@ -53,7 +53,9 @@ export class DashboardThemeComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards.slice();
-        this.dashboardThemes = this.globalVariableService.dashboardThemes;
+        this.globalVariableService.getResource('dashboardThemes')
+            .then(res => this.dashboardThemes = res)
+            .catch(err => console.log('Error getting dashboardThemes: ' + err))
     }
 
     clickClose(action: string) {

@@ -17,6 +17,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
+import { DataQualityIssue }           from './models';
 import { DashboardTab }               from './models';
 import { Widget }                     from './models';
 
@@ -43,6 +44,7 @@ export class DashboardTreeviewComponent implements OnInit {
     }
 
     dashboards: Dashboard[];
+    dataQualityIssues: DataQualityIssue[] = [];
     objectTree: any[] = [];
     showTypeDashboard: boolean = false;
 
@@ -167,16 +169,24 @@ export class DashboardTreeviewComponent implements OnInit {
             });
             if (dsIDs.length > 0) {
                 dsIDs.forEach(dsid => {
-                    let dataqualityIndex: number= this.globalVariableService.dataQualityIssues
-                        .findIndex(dq => dq.datasourceID == dsid);
-                    if (dataqualityIndex >= 0) {
-                        this.objectTree[i].children[2].grandchildren.push({
-                            icon: "folder",
-                            name: 'Datasource: ' + this.globalVariableService.dataQualityIssues[dataqualityIndex].name
-                            + ' (' + this.globalVariableService.dataQualityIssues[dataqualityIndex].description + ')',
-                            active: false
-                        });
-                    };
+                    this.globalVariableService.getResource(
+                        'dataQualityIssues')
+                        .then(res => {
+                            this.dataQualityIssues = res;
+                            let dataqualityIndex: number= this.dataQualityIssues
+                                .findIndex(dq => dq.datasourceID == dsid);
+                            if (dataqualityIndex >= 0) {
+                                this.objectTree[i].children[2].grandchildren.push({
+                                    icon: "folder",
+                                    name: 'Datasource: ' + this.dataQualityIssues[dataqualityIndex].name
+                                    + ' (' + this.dataQualityIssues[dataqualityIndex].description + ')',
+                                    active: false
+                                });
+                            };
+                        })                      
+                        .catch(err => console.log('Error getting dataQualityIssues: ' + err));
+                                
+
                 })
             };
               
