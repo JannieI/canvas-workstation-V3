@@ -1109,7 +1109,6 @@ export class GlobalVariableService {
     dashboardSubscriptions: DashboardSubscription[] = [];
     dashboardTabs: DashboardTab[] = [];
     dashboardTags: DashboardTag[] = [];
-    dashboardThemes: DashboardTheme[] = [];
     dashboardLayouts: DashboardLayout[] = [];
     datasources: Datasource[] = [];
     datasourceSchedules: DatasourceSchedule[] = [];
@@ -1153,6 +1152,8 @@ export class GlobalVariableService {
     dashboardScheduleLog: DashboardScheduleLog[] = [];
     // currentDatasourceSchedules: DatasourceSchedule[] = [];
     // isDirtyDatasourceSchedules: boolean = true;
+    dashboardThemes: DashboardTheme[] = [];
+    isDirtyDashboardThemes: boolean = true;
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
@@ -1190,7 +1191,6 @@ export class GlobalVariableService {
     isDirtyDashboardSubscription: boolean = true;
     isDirtyDashboardTabs: boolean = true;
     isDirtyDashboardTags: boolean = true;
-    isDirtyDashboardThemes: boolean = true;
     isDirtyDataConnections: boolean = true;
     isDirtyDataFields: boolean = true;
     isDirtyDatasets: boolean = true;
@@ -6221,57 +6221,6 @@ export class GlobalVariableService {
                 }
             )
         });
-    }
-
-    getDashboardThemes(): Promise<DashboardTheme[]> {
-        // Description: Gets all Th
-        // Returns: this.dashboardThemes array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardThemes ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<DashboardTheme[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.dashboardThemes.length == 0)  ||  (this.isDirtyDashboardThemes) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'dashboardThemes';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.dashboardThemes = res.data;
-                        this.isDirtyDashboardThemes = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDashboardThemes 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.dashboardThemes)
-                        };
-
-                        resolve(this.dashboardThemes);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDashboardThemes 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
-                };
-                resolve(this.dashboardThemes);
-            }
-        });
-
     }
 
     getDashboardTemplates(): Promise<Dashboard[]> {
