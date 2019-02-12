@@ -124,7 +124,7 @@ export class DashboardDataQualityComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        this.rowData = this.http.get('https://api.myjson.com/bins/15psn9');
+        // this.rowData = this.http.get('https://api.myjson.com/bins/15psn9');
         // Display the source, and set the array of DSids
         let dsArray: number[] = [];
         if (this.selectedDatasourceID == -1) {
@@ -137,17 +137,18 @@ export class DashboardDataQualityComponent implements OnInit {
             dsArray = [this.selectedDatasourceID];
         };
 
-        this.globalVariableService.getResource('dataQualityIssues').then (ca => {
-            // Set the data for the grid
-            this.datagridData = ca.filter(c =>
-                dsArray.indexOf(c['datasourceID']) >= 0
-            );
+        this.globalVariableService.getResource('dataQualityIssues')
+            .then (ca => {
+                this.dataQualityIssues = ca.filter(c =>
+                    dsArray.indexOf(c['datasourceID']) >= 0)
+            })
+            .catch(err => console.log('Error reading dataQualityIssues: ' + err));
 
             // Set the column object
-            this.datagridColumns = this.globalVariableService.createDatagridColumns(
-                ca[0], this.datagridShowFields, this.datagridVisibleFields);
+            // this.datagridColumns = this.globalVariableService.createDatagridColumns(
+            //     ca[0], this.datagridShowFields, this.datagridVisibleFields);
 
-        });
+        // });
     }
 
     clickClose(action: string) {
