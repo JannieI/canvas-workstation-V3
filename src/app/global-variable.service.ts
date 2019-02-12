@@ -7693,53 +7693,6 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentDashboardSubscriptions(dashboardID: number): Promise<DashboardSubscription[]> {
-        // Description: Gets currentDashboardSubscription
-        // Returns: this.currentDashboardSubscription object, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardSubscription ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {dashboardID});
-        };
-
-        return new Promise<DashboardSubscription[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if (this.isDirtyDashboardSubscription) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.getDashboardSubscriptions()
-                    .then(res => {
-                        res = res.filter(
-                            i => i.dashboardID == dashboardID
-                        );
-
-                        this.currentDashboardSubscriptions = res;
-
-                        this.isDirtyDashboardSubscription = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDashboardSubscription 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.currentDashboardSubscriptions)
-                        };
-
-                        resolve(this.currentDashboardSubscriptions);
-                    });
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDashboardSubscription 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.currentDashboardSubscriptions)
-                };
-
-                resolve(this.currentDashboardSubscriptions);
-            }
-        });
-
-    }
-
     addDashboardSubscription(data: DashboardSubscription): Promise<any> {
         // Description: Adds a new DashboardSubscription
         // Returns: Added Data or error message
