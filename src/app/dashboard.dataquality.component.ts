@@ -54,6 +54,7 @@ export class DashboardDataQualityComponent implements OnInit {
 
     canvasComments: CanvasComment[] = [];
     dataQualityIssues: DataQualityIssue[] = [];
+    selectedRow: number = 0;
 
     headerText: string;
     datagridColumns: DatagridColumn[];
@@ -159,12 +160,18 @@ export class DashboardDataQualityComponent implements OnInit {
     }
 
 
+    clickRow(index: number, id: number) {
+        // User clicked a row, now refresh the graph
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+        this.selectedRow = index;
+    }
+
     getSelectedRows() {
         const selectedNodes = this.agGrid.api.getSelectedNodes();
         const selectedData = selectedNodes.map( node => node.data );
         const selectedDataStringPresentation = selectedData.map( node => node.make + ' ' + node.model).join(', ');
         alert(`Selected nodes: ${selectedDataStringPresentation}`);
     }
-
 
 }
