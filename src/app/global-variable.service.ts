@@ -5088,50 +5088,6 @@ export class GlobalVariableService {
         return dataSet;
     }
 
-    addDashboardSchedule(data: DashboardSchedule): Promise<any> {
-        // Description: Adds a new DashboardSchedule
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDashboardSchedule ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardSchedules';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    this.dashboardSchedules.push(JSON.parse(JSON.stringify(res.data)));
-                    this.currentDashboardSchedules.push(JSON.parse(JSON.stringify(res.data)));
-
-                    if (this.sessionDebugging) {
-                        console.log('addDashboardSchedule ADDED', res.data,
-                            this.currentDashboardSchedules, this.dashboardSchedules)
-                    };
-
-                    resolve(res.data);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addDashboardSchedule FAILED', {err});
-                    };
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     saveDashboardSchedule(data: DashboardSchedule): Promise<string> {
         // Description: Saves DashboardSchedule
         // Returns: 'Saved' or error message
