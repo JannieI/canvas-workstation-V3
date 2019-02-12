@@ -7245,57 +7245,6 @@ export class GlobalVariableService {
         });
     }
 
-    saveDashboardSubscription(data: DashboardSubscription): Promise<string> {
-        // Description: Saves DashboardSubscription
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDashboardSubscription ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardSubscriptions';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.dashboardSubscriptions.findIndex(d =>
-                        d.id == data.id
-                    );
-                    this.dashboardSubscriptions[localIndex] = data;
-
-                    if (this.sessionDebugging) {
-                        console.log('saveDashboardSubscription SAVED', {res})
-                            resolve('Saved');
-                    };
-
-                },
-                err => {
-
-                    if (this.sessionDebugging) {
-                        console.log('Error saveDashboardSubscription FAILED', {err});
-                    };
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteDashboardSubscription(id: number): Promise<string> {
         // Description: Deletes a DashboardSubscription
         // Returns: 'Deleted' or error message
