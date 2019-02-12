@@ -95,13 +95,15 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         this.datasourceName = datasource.name;
         this.clearRecord();
 
-        this.globalVariableService.getCurrentDatasourceSchedules().then
-              (i => {
-                  this.currentDatasourceSchedules = i;
-                  if (this.currentDatasourceSchedules.length > 0) {
-                    this.clickRow(0, this.currentDatasourceSchedules[0].id);
-                  };
-        });
+        this.globalVariableService.getResource('datasourceSchedules')
+            .then
+                (i => {
+                    this.currentDatasourceSchedules = i;
+                    if (this.currentDatasourceSchedules.length > 0) {
+                        this.clickRow(0, this.currentDatasourceSchedules[0].id);
+                    };
+            })
+            .catch(err => this.errorMessage = 'Error in getting schedules: ' + err);
     }
 
     clickRow(index: number, id: number) {

@@ -58,7 +58,7 @@ export class DataDatasourceScheduleComponent implements OnInit {
         this.datasources = this.globalVariableService.datasources.slice();
         this.globalVariableService.getResource('datasourceSchedules')
             .then(data => this.currentDatasourceSchedules = data)
-            .catch(err => console.log('Error in getting shcedules: ' + err));
+            .catch(err => console.log('Error in getting schedules: ' + err));
     }
 
     clickClose(action: string) {
