@@ -76,11 +76,6 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // let dashboard: Dashboard = this.globalVariableService.letDashboard(
-        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-        // );
-        // this.dashboardName = dashboard.name;
-        // this.dashboardState = dashboard.state;
         let dashboardIndex = this.globalVariableService.currentDashboards.findIndex(
             cd => cd. id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         );
