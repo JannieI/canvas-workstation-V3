@@ -5195,57 +5195,6 @@ export class GlobalVariableService {
 
     }
 
-    saveDatasourceSchedule(data: DatasourceSchedule): Promise<string> {
-        // Description: Saves DatasourceSchedule
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDatasourceSchedule ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'datasourceSchedules';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.datasourceSchedules.findIndex(d =>
-                        d.id == data.id
-                    );
-                    this.datasourceSchedules[localIndex] = data;
-
-                    if (this.sessionDebugging) {
-                        console.log('saveDatasourceSchedule SAVED', res.data)
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveDatasourceSchedule FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteDatasourceSchedule(id: number): Promise<string> {
         // Description: Deletes a DatasourceSchedules
         // Returns: 'Deleted' or error message
