@@ -5195,57 +5195,6 @@ export class GlobalVariableService {
 
     }
 
-    getDatasourceSchedules(): Promise<DatasourceSchedule[]> {
-        // Description: Gets all DS Sch
-        // Returns: this.datasourceSchedules array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDatasourceSchedules ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<DatasourceSchedule[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.datasourceSchedules.length == 0)  ||  (this.isDirtyDatasourceSchedules) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'datasourceSchedules';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.datasourceSchedules = res.data;
-                        this.isDirtyDatasourceSchedules = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDatasourceSchedules 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.datasourceSchedules)
-                        };
-
-                        resolve(this.datasourceSchedules);
-                    },
-                    err => {
-                        reject(err.message)
-                    });
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDatasourceSchedules 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
-                };
-
-                resolve(this.datasourceSchedules);
-            }
-        });
-
-    }
-
     addDatasourceSchedule(data: DatasourceSchedule): Promise<any> {
         // Description: Adds a new DatasourceSchedule
         // Returns: Added Data or error message
