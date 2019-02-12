@@ -41,7 +41,7 @@ export class DataDatasourceScheduleComponent implements OnInit {
 
     }
 
-    currentDatasourceSchedules: DatasourceSchedule[];
+    datasourceSchedules: DatasourceSchedule[];
     datasources: Datasource[];
     selectedRow: number = 0;
 
@@ -57,7 +57,7 @@ export class DataDatasourceScheduleComponent implements OnInit {
 
         this.datasources = this.globalVariableService.datasources.slice();
         this.globalVariableService.getResource('datasourceSchedules')
-            .then(data => this.currentDatasourceSchedules = data)
+            .then(data => this.datasourceSchedules = data)
             .catch(err => console.log('Error in getting schedules: ' + err));
     }
 

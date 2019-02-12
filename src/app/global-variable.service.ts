@@ -1151,6 +1151,8 @@ export class GlobalVariableService {
     // containerStyles: ContainerStyle[] = [];
     // isDirtyContainerStyles: boolean = true;
     dashboardScheduleLog: DashboardScheduleLog[] = [];
+    // currentDatasourceSchedules: DatasourceSchedule[] = [];
+    // isDirtyDatasourceSchedules: boolean = true;
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
@@ -1166,7 +1168,6 @@ export class GlobalVariableService {
     currentDatasets: any = [];                          // Used in current D, with data
     currentDatasources: Datasource[] = [];
     currentDatasourcePermissions: DatasourcePermission[] = [];
-    currentDatasourceSchedules: DatasourceSchedule[] = [];
     currentPaletteButtonBar: PaletteButtonBar[];
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
     currentTransformations: Transformation[] = [];
@@ -1196,7 +1197,6 @@ export class GlobalVariableService {
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasources: boolean = true;
     isDirtyDataTables: boolean = true;
-    isDirtyDatasourceSchedules: boolean = true;
     isDirtyDatasourceTransformations: boolean = true;
     isDirtyPaletteButtonBar: boolean = true;
     isDirtyPaletteButtonsSelected: boolean = true;

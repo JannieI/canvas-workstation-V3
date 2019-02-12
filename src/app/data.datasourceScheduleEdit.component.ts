@@ -206,9 +206,6 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         let datasourceScheduleIndex: number = this.datasourceSchedules
             .findIndex(sch => sch.id == this.selectedDatasourceSchedule.id);
         if (datasourceScheduleIndex >= 0) {
-            // this.selectedDatasourceSchedule = Object.assign({},
-            //     this.currentDatasourceSchedules[datasourceScheduleIndex]
-            // );
             this.selectedDatasourceSchedule = JSON.parse(JSON.stringify(
                 this.datasourceSchedules[datasourceScheduleIndex]
             ));
@@ -345,7 +342,6 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
         // Add to local and DB
         if (this.adding) {
-            // this.currentDatasourceSchedules.push(this.selectedDatasourceSchedules);
             this.selectedDatasourceSchedule.id = null;
             this.globalVariableService.addResource(
                 'datasourceSchedules', this.selectedDatasourceSchedule)
@@ -366,8 +362,6 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
             let datasourceScheduleIndex: number = this.datasourceSchedules
                 .findIndex(sch => sch.id == this.selectedDatasourceSchedule.id);
             if (datasourceScheduleIndex >= 0) {
-                // this.currentDatasourceSchedules[datasourceScheduleIndex] =
-                //     Object.assign({}, this.selectedDatasourceSchedule);
                 this.datasourceSchedules[datasourceScheduleIndex] =
                     JSON.parse(JSON.stringify(this.selectedDatasourceSchedule));
             };
