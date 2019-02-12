@@ -312,7 +312,7 @@ export class DashboardScheduleEditComponent implements OnInit {
             const copyData = { ...this.selectedDashboardSchedule };
             delete copyData._id;
 
-            this.globalVariableService.addDashboardSchedule(copyData)
+            this.globalVariableService.addResource('dashboardSchedules', copyData)
                 .then(res => {
                     if (this.selectedRow == null) {
                         this.selectedRow = 0;
