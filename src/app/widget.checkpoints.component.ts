@@ -10,7 +10,6 @@ import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { DatagridColumn }             from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 
