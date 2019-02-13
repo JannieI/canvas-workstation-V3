@@ -86,10 +86,8 @@
                                         shape="trash">
                                     </clr-icon>
                                 </clr-dg-cell>
-                                <!-- Each Cell -->
-                                <clr-dg-cell *ngFor="let col of datagridColumns; let c = index">
-                                    {{ row[col.fieldName] }}
-                                </clr-dg-cell>
+                                <clr-dg-cell>{{ row.id }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                             </clr-dg-row>
 
                             <!-- Footer -->

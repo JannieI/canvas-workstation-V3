@@ -62,7 +62,6 @@ export class WidgetCheckpointsComponent implements OnInit {
 
     checkpointName: string;
     currentWidgetCheckpoints: WidgetCheckpoint[];
-    datagridColumns: DatagridColumn[];
     nrCheckpoints: number = 1;
     selectedRow: number = 0;
 
@@ -96,10 +95,6 @@ export class WidgetCheckpointsComponent implements OnInit {
                     this.renderGraph(definition)
                 };
             };
-
-            // Set the column object
-            this.datagridColumns = this.globalVariableService.createDatagridColumns(
-                ca[0], ["id", "name"]);
 
         })
     }
@@ -162,7 +157,6 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.selectedWidget.currentCheckpoint = 0;
             this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
 
-            console.warn('xx selW', this.selectedWidget.checkpointIDs, this.selectedWidget.currentCheckpoint, this.selectedWidget.lastCheckpoint)
             // Save to DB
             this.globalVariableService.saveWidget(this.selectedWidget);
 
