@@ -9308,55 +9308,6 @@ export class GlobalVariableService {
         });
     }
 
-    getWidgetLayouts(dashboardLayoutID: number = null): Promise<WidgetLayout[]> {
-        // Description: Gets WidgetLayouts.  Optional filter on dashboardLayoutID
-        // Returns: this.WidgetLayouts object, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getWidgetLayouts ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<WidgetLayout[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-            let pathUrl: string = 'widgetLayouts';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                    this.widgetLayouts = res.data;
-
-                    // Optional filter
-                    if (dashboardLayoutID != null) {
-                        this.widgetLayouts = this.widgetLayouts.filter(dl =>
-                            dl.dashboardLayoutID == dashboardLayoutID)
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getWidgetLayouts 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.widgetLayouts);
-                    };
-
-                    resolve(this.widgetLayouts);
-                },
-                err => {
-                    reject(err.message)
-                }
-            );
-
-        });
-
-    }
-
     addWidgetLayout(data: WidgetLayout): Promise<any> {
         // Description: Adds a new WidgetLayout
         // Returns: Added Data or error message
