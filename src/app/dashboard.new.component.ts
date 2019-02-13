@@ -356,13 +356,14 @@ export class DashboardNewComponent implements OnInit {
                                                     newWidgetLayout._id = null;
                                                     newWidgetLayout.id = null;
                                                     newWidgetLayout.dashboardLayoutID = res.id;
-                                                    this.globalVariableService.addWidgetLayout(
+                                                    this.globalVariableService.addResource('widgetLayouts',
                                                         newWidgetLayout
                                                     ).then(res => {
                                                         this.globalVariableService.refreshCurrentDashboard(
                                                             'addDashboard-clickCreate', draftD.id, draftTab.id, ''
                                                         );
-                                                    });
+                                                    })
+                                                    .catch(err => this.errorMessage = 'Error adding Layout: ' + err);
                                                 };
                                         });
                                     });
