@@ -348,7 +348,7 @@ export class DashboardNewComponent implements OnInit {
                                     newDashboardLayout._id = null;
                                     newDashboardLayout.id = null;
                                     newDashboardLayout.dashboardID = draftD.id;
-                                    this.globalVariableService.addDashboardLayout(newDashboardLayout)
+                                    this.globalVariableService.addResource('dashboardLayouts', newDashboardLayout)
                                         .then(res => {
                                             this.widgetLayouts.forEach(wl => {
                                                 if (wl.dashboardLayoutID == dashboardLayoutID) {
