@@ -19,7 +19,6 @@ import { ClarityModule }              from '@clr/angular';
 import { AgGridModule }               from 'ag-grid-angular';
 
 // Own Components
-import { CaDatagridComponent }        from './ca.datagrid.component TO DELETE';
 import { ColourPickerComponent }      from './colour.picker.component';
 
 import { AppComponent }               from './app.component';
@@ -165,7 +164,6 @@ import { StatusbarComponent }         from './statusbar.component';
 @NgModule({
     declarations: [
 
-        CaDatagridComponent,
         ColourPickerComponent,
 
         AppComponent,

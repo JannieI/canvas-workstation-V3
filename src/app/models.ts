@@ -28,26 +28,6 @@ export class DatagridColumn {
     datagridColumnHidden?: any;
 }
 
-export class DatagridInput {
-    datagridColumns: DatagridColumn[];            // Cols, with info on each
-    datagridData: any;                            // Data Array
-    datagridPagination: boolean;                  // True if pagination is on
-    datagridPaginationSize: number;               // Size of each page, ie 10 (rows)
-    datagridShowHeader: boolean;                  // True to show Headers
-    datagridShowRowActionMenu: boolean;           // True to show the action menu per row
-    datagridShowData: boolean;                    // True to show Data
-    datagridShowFooter?: boolean;                 // True to show Footer
-    datagridRowHeight: number;                    // Height in px
-    datagriduserCanChangeProperties: boolean;     // False if use can change Nothing in grid, ie cannot even resize
-    datagridShowTotalsRow: boolean;               // True to show additional row of totals at bottom
-    datagridShowTotalsCol: boolean;               // True to show additional col of totals on right
-    datagridCanEditInCell: boolean;               // True is user can edit inside cells
-    datagridCanExportData: boolean;               // True if the data may be exported
-    datagridEmptyMessage: string;                 // Message to display if the grid is empty
-    datagridShowFields: string;                   // Array of Fields names to include in the data
-    datagridVisibleFields: string[];              // List of avaialble field names to make visible in grid
-}
-
 // Setup / Settings / General
 export class CanvasSettings {
     _id?: string;                           // Mongo ID (read only)
