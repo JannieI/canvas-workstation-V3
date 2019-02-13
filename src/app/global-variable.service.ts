@@ -12087,14 +12087,14 @@ export class GlobalVariableService {
         });
     };
 
-    getDashboardSummaryNEW(dashboardID: number): Promise<string> {
+    getDashboardSummaryNEW(dashboardID: number): Promise<any> {
         // Gets a summary of related Entities for the given Dashboard 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getDashboardSummaryNEW ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {dashboardID});
         };
-        return new Promise<string>((resolve, reject) => {
+        return new Promise<any>((resolve, reject) => {
 
             let pathUrl: string = '/canvasDashboardSummary?id=' + dashboardID.toString();
             let finalUrl: string = this.canvasServerURI + pathUrl;
@@ -12111,7 +12111,7 @@ export class GlobalVariableService {
                             "Data retrieved")
                     };
 
-                    resolve("success");
+                    resolve(res);
                 },
                 err => {
                     reject(err.message)
