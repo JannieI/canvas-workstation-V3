@@ -12038,7 +12038,7 @@ export class GlobalVariableService {
         id: number,
         dashboardTabID: number,
         datasourceIDexclude: string = ""): Promise<string> {
-        // Get the data that is DISPLAYED for the given Dashboard and Tab.  Load:
+        // Gets the data that is DISPLAYED for the given Dashboard and Tab.  Load:
         // - Dashboard template
         // - All Tabs for this D
         // - All Widgets for the given Tab (not the rest)
@@ -12059,39 +12059,64 @@ export class GlobalVariableService {
             //     this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
             // TODO - fix HARD Coding !!!
-                let pathUrl: string = '/canvasCurrentDashboard?id=68&dashboardTabID=175&datasourceIDexclude=1,2';
-                let finalUrl: string = this.canvasServerURI + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
+            let pathUrl: string = '/canvasCurrentDashboard?id=68&dashboardTabID=175&datasourceIDexclude=1,2';
+            let finalUrl: string = this.canvasServerURI + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
 
-                        // this.datasources = res.data;
-                        // this.isDirtyDatasources = false;
-                        // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                    // this.datasources = res.data;
+                    // this.isDirtyDatasources = false;
+                    // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDashboardAndTabNEW 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                "Current Dashboard retrieved")
-                        };
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getCurrentDashboardAndTabNEW 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            "Current Dashboard retrieved")
+                    };
 
-                        resolve("success");
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            // } else {
-            //     if (this.sessionDebugging) {
-            //         console.log('%c    Global-Variables getDatasources 2',
-            //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
-            //     };
+                    resolve("success");
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
+        });
+    };
 
-            //     resolve("success");
-            // }
+    getDashboardSummaryNEW(dashboardID: number): Promise<string> {
+        // Gets a summary of related Entities for the given Dashboard 
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDashboardSummaryNEW ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID});
+        };
+        return new Promise<string>((resolve, reject) => {
+
+            let pathUrl: string = '/canvasDashboardSummary?id=' + dashboardID.toString();
+            let finalUrl: string = this.canvasServerURI + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables canvasDashboardSummary',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            "Data retrieved")
+                    };
+
+                    resolve("success");
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
         });
     };
 
