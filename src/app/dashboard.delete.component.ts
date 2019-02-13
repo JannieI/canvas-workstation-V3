@@ -84,6 +84,22 @@ export class DashboardDeleteComponent implements OnInit {
         this.globalVariableService.getDashboardSummaryNEW(dashboardID)
             .then(res => {
                 console.log('xx res', res);
+                
+                this.dashboardTags = res.data.numberDashboardTags;
+                this.dashboardSnapshots = res.data.numberDashboardSnapshots;
+                this.dashboardMessages = res.data.numberCanvasMessages;
+                this.dashboardComments = res.data.numberCanvasComments;
+                this.dashboardSchedules = res.data.numberDashboardSchedules;
+                this.dashboardSubscriptions = res.data.numberDashboardSubscriptions;
+                this.dashboardTabs = res.data.numberDashboardTabs;
+                this.dashboardWidgets = res.data.numberWidgets;
+                this.dashboardPermissions = res.data.numberDashboardPermissions;
+                this.dashboardCheckpoints = res.data.numberWidgetCheckpoints;
+                this.dashboardHyperLinks = res.data.numberHyperlinkedWidgets;
+                this.dashboardTemplates = res.data.numberUsedAsTemplate;
+                this.startupDashboards = res.data.numberUsedAsStartup;
+                this.favouriteDashboards = res.data.numberUsedAsFav;
+
             })
             .catch(err => this.errorMessage = 'Error reading Dasbobard Summary: ' + err);
 
