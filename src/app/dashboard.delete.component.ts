@@ -187,17 +187,6 @@ export class DashboardDeleteComponent implements OnInit {
             return;
         };
 
-        // TODO - remove later on!!
-        let id: number = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-        if (
-            (id < 9  || id == 40  ||  id == 41)
-            &&
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardState == 'Complete'
-            ) {
-            alert('Dont delete Complete version of ids 1-8, 40, 41 while testing !')
-            return;
-        };
-
         // Delete D, as all related Entities
         this.globalVariableService.deleteDashboardInfo(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID
