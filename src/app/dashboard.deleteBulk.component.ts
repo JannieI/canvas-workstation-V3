@@ -105,16 +105,6 @@ export class DashboardDeleteBulkComponent implements OnInit {
             return;
         };
 
-        // TODO - remove later on!!
-        if (
-            (id < 9  || id == 40  ||  id == 41)
-            &&
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardState == 'Complete'
-            ) {
-            alert('Dont delete Complete version of ids 1-8, 40, 41 while testing !')
-            return;
-        };
-
         this.errorMessage = '';
 
         // Cant delete CurrentD here -> goto Delete option
