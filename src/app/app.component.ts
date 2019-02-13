@@ -732,9 +732,11 @@ export class AppComponent implements OnInit {
                                         this.dashboardLayouts = [];
                                         this.widgetLayouts = [];
 
-                                        this.globalVariableService.getDashboardLayouts(
-                                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-                                        ).then(res => {
+                                        this.globalVariableService.getResource('dashboardLayouts',
+                                            '?filterObject={"dashboardID": ' +
+                                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID + '}'
+                                        )
+                                        .then(res => {
                                             this.dashboardLayouts = res.slice();
                                             if (this.dashboardLayouts.length > 0) {
                                                 this.globalVariableService.getWidgetLayouts(
@@ -742,7 +744,8 @@ export class AppComponent implements OnInit {
                                                     this.widgetLayouts = res.slice();
                                                 });
                                             };
-                                        });
+                                        })
+                                        .catch(err => console.log('Error reading Dashboard Layouts: ' + err) );
 
                                         let dashboardIndex: number = this.globalVariableService
                                             .dashboards.findIndex(

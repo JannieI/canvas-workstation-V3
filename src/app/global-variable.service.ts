@@ -1097,7 +1097,6 @@ export class GlobalVariableService {
     backgroundcolorsDefault: CSScolor[] = [];
     canvasGroups: CanvasGroup[] = [];
     canvasUsers: CanvasUser[] = [];
-    dashboardLayout: DashboardLayout[] = [];
     dashboardPermissions: DashboardPermission[] = [];
     dashboardsRecent: DashboardRecent[] = [];           // List of Recent Dashboards
     dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
@@ -1107,7 +1106,6 @@ export class GlobalVariableService {
     dashboardSubscriptions: DashboardSubscription[] = [];
     dashboardTabs: DashboardTab[] = [];
     dashboardTags: DashboardTag[] = [];
-    dashboardLayouts: DashboardLayout[] = [];
     datasources: Datasource[] = [];
     datasourceSchedules: DatasourceSchedule[] = [];
     datasourceScheduleLog: DatasourceScheduleLog[] = [];
@@ -1152,6 +1150,7 @@ export class GlobalVariableService {
     // isDirtyDatasourceSchedules: boolean = true;
     // dashboardThemes: DashboardTheme[] = [];
     // isDirtyDashboardThemes: boolean = true;
+    dashboardLayouts: DashboardLayout[] = [];
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
