@@ -9268,49 +9268,6 @@ export class GlobalVariableService {
         });
     }
 
-    addDashboardLayout(data: DashboardLayout): Promise<any> {
-        // Description: Adds a new DashboardLayout
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDashboardLayout ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardLayouts';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                        // Update Global vars to make sure they remain in sync
-                        this.dashboardLayouts.push(JSON.parse(JSON.stringify(res.data)));
-
-                        if (this.sessionDebugging) {
-                            console.log('addDashboardLayout ADDED', res.data)
-                        };
-
-                        resolve(res.data);
-                    },
-                    err => {
-                        if (this.sessionDebugging) {
-                            console.log('Error addDashboardLayout FAILED', {err});
-                        };
-
-                        reject(err.message);
-                    }
-                )
-        });
-    }
-
     deleteDashboardLayout(id: number): Promise<string> {
         // Description: Deletes a DashboardLayout
         // Returns: 'Deleted' or error message
