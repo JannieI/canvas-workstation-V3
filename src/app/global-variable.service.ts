@@ -2892,6 +2892,35 @@ export class GlobalVariableService {
 
     }
 
+
+
+    // Delete - also in Memory
+    // SUMMARY							DELETE
+    // Dashboards						D delete
+    // DashboardTabs					T delete
+    // Widgets							W delete
+    // DashboardSnapshots				S delete
+    // CanvasMessages					Clear Msg where D as hyperlink
+    // CanvasComments					Com delete
+    // DashboardSchedules				Delete
+    // DashboardSubscriptions			Delete
+    // DashboardTags					Delete
+    // DashboardPermissions			Delete
+    // WidgetCheckpoints				Delete
+    // HyperlinkedWidgets				Clear W where D as hyperline
+    // UsedAsTemplate					D as template
+    // UsedAsStartup					Clear User
+    // UsedAsFav						D is in users' [fav]
+    
+    // DELETE:
+    // DashboardLayout
+    // WidgetLayout
+    // DashboardRecent
+    
+    // clearDashboardInfo() - clears Memory ...
+    // And Disc ???
+
+
     deleteDashboardInfo(dashboardID: number) {
         // Deletes D with all related Entities
         if (this.sessionDebugging) {
