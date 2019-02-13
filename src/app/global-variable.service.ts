@@ -33,7 +33,6 @@ import { DatasourceTransformation }   from './models';
 import { DatasourceSchedule }         from './models';
 import { DatasourceScheduleLog }      from './models';
 import { DataField }                  from './models';
-import { DatagridColumn }             from './models';
 import { Dataset }                    from './models';
 import { DataTable }                  from './models';
 import { Datasource }                 from './models';
