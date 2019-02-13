@@ -9268,53 +9268,6 @@ export class GlobalVariableService {
         });
     }
 
-    getDashboardLayouts(dashboardID: number = null): Promise<DashboardLayout[]> {
-        // Description: Gets dashboardLayouts.  Can optionally filter on D-id
-        // Returns: this.dashboardLayouts object, unless:
-        //   NOTE: this is always obtained from DB as we dont keep a full list
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardLayouts ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<DashboardLayout[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-            let pathUrl: string = 'dashboardLayouts';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                    this.dashboardLayouts = res.data;
-
-                    // Optional filter
-                    if (dashboardID != null) {
-                        this.dashboardLayouts = this.dashboardLayouts.filter(dl =>
-                            dl.dashboardID == dashboardID)
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getDashboardLayouts 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.dashboardLayouts, res, dashboardID);
-                    };
-
-                    resolve(this.dashboardLayouts);
-                },
-                err => {
-                    reject(err.message)
-                });
-        });
-
-    }
-
     addDashboardLayout(data: DashboardLayout): Promise<any> {
         // Description: Adds a new DashboardLayout
         // Returns: Added Data or error message
