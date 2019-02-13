@@ -1124,7 +1124,6 @@ export class GlobalVariableService {
     transformationsFormat: Transformation[] = transformationsFormat;
     widgetCheckpoints: WidgetCheckpoint[] = [];
     widgets: Widget[] = [];
-    widgetLayouts: WidgetLayout[] = [];
     widgetGraphs: WidgetGraph[] =[];
     widgetStoredTemplates: WidgetStoredTemplate[] =[];
 
@@ -1151,6 +1150,7 @@ export class GlobalVariableService {
     // dashboardThemes: DashboardTheme[] = [];
     // isDirtyDashboardThemes: boolean = true;
     dashboardLayouts: DashboardLayout[] = [];
+    widgetLayouts: WidgetLayout[] = [];
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and

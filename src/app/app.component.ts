@@ -734,13 +734,16 @@ export class AppComponent implements OnInit {
 
                                         this.globalVariableService.getResource('dashboardLayouts',
                                             '?filterObject={"dashboardID": ' +
-                                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID + '}'
+                                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                                             + '}'
                                         )
                                         .then(res => {
                                             this.dashboardLayouts = res.slice();
                                             if (this.dashboardLayouts.length > 0) {
-                                                this.globalVariableService.getWidgetLayouts(
-                                                    this.dashboardLayouts[0].id).then(res => {
+                                                this.globalVariableService.getResource('widgetLayouts',
+                                                    '?filterObject={"dashboardLayoutID": ' +
+                                                    this.dashboardLayouts[0].id + '}'
+                                                ).then(res => {
                                                     this.widgetLayouts = res.slice();
                                                 });
                                             };
