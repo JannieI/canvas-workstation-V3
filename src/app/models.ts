@@ -1,33 +1,5 @@
 // ALL models (schema) are kept here
 
-// CA Datagrid
-export class DatagridColumn {
-    id: number;                                 // Unique ID, for later use
-    displayName: string;                        // Text displayed in Grid header
-    fieldName: string;                          // Field name in Array
-    databaseDBTableName: string;                // Optional Table name in DB
-    databaseDBFieldName: string;                // Optional Field name in DB
-    tooltip: string;                            // Text string as tooltip
-    datatype: string;                           // string, number, boolean
-    prefix: string;                             // ie RK, or Rm
-    divideBy: number;                           // 1000, 1000 000.  If <=0 => no action
-    displayLength: number;                      // Max lenght in Grid, even if field is wider
-    maxLength: number;                          // 0 means ignore
-    sortOrder: string;                          // For later use - maybe add sort on startup
-    filter: string;                             //  For later use - maybe add filter on startup
-    backgroundColor: string;                    // ie 'beige'
-    color: string;                              // ie 'black'
-    conditionalFormatColor: string;             // If '' then no condFmt.  ie 'blue'
-    nrDataQualityIssues: number;                // Optional nr of DataQual issues
-    maxValue: number;                           // Optional Max value in this col
-    minValue: number;                           // Optional Min value in this col
-    average: number;                            // Optional Avg value in this col
-    linkedDashboardID: number;                  // Optional ID of linked Dashboard
-    linkedDashboardTabID: number;               // Optional ID of linked Tab
-    isFrozen: boolean;                          // Optional: true if freeze col
-    datagridColumnHidden?: any;
-}
-
 // Setup / Settings / General
 export class CanvasSettings {
     _id?: string;                           // Mongo ID (read only)
