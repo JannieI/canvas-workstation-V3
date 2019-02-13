@@ -81,9 +81,7 @@ export class DashboardDeleteComponent implements OnInit {
             d => d.id == dashboardID
         )[0];
 
-        this.globalVariableService.getResource(
-            'canvasDashboardSummary',
-            '?id=' + dashboardID.toString())
+        this.globalVariableService.getDashboardSummaryNEW(dashboardID)
             .then(res => {
                 console.log('xx res', res);
             })
