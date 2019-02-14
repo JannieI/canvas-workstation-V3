@@ -102,63 +102,6 @@ export class DashboardDeleteComponent implements OnInit {
 
             })
             .catch(err => this.errorMessage = 'Error reading Dasbobard Summary: ' + err);
-
-        // this.globalVariableService.getDashboardSnapshots().then(snp => {
-        //     this.globalVariableService.getResource('canvasMessages').then(mes => {
-        //         this.globalVariableService.getResource('canvasComments').then(com => {
-        //             this.globalVariableService.getResource('dashboardSchedules').then(sch => {
-        //                 this.globalVariableService.getResource('dashboardSubscriptions').then(sub => {
-        //                     this.globalVariableService.getDashboardTags().then(tag => {
-
-        //                         this.dashboardTags = tag.filter(
-        //                             tg => tg.dashboardID == dashboardID
-        //                         ).length;
-        //                         this.dashboardSnapshots = snp.filter(
-        //                             s => s.dashboardID == dashboardID
-        //                         ).length;
-        //                         this.dashboardMessages = mes.filter(
-        //                             m => m.dashboardID == dashboardID
-        //                         ).length;
-        //                         this.dashboardComments = com.filter(
-        //                             c => c.dashboardID == dashboardID
-        //                         ).length;
-        //                         this.dashboardSchedules = sch.filter(
-        //                             s => s.dashboardID == dashboardID
-        //                         ).length;
-        //                         this.dashboardSubscriptions = sub.filter(
-        //                             s => s.dashboardID == dashboardID
-        //                         ).length;
-        //                         this.dashboardTabs = this.globalVariableService.dashboardTabs.
-        //                             filter(t => t.dashboardID == dashboardID
-        //                         ).length;
-        //                         this.dashboardWidgets = this.globalVariableService.widgets.
-        //                             filter(w => w.dashboardID == dashboardID
-        //                         ).length;
-        //                         this.dashboardPermissions = this.globalVariableService.dashboardPermissions.filter(
-        //                             p => p.dashboardID == dashboardID
-        //                         ).length;
-        //                         this.dashboardCheckpoints = this.globalVariableService.widgetCheckpoints.filter(
-        //                             chk => chk.dashboardID == dashboardID
-        //                         ).length;
-        //                         this.dashboardHyperLinks = this.globalVariableService.widgets.filter(
-        //                             w => w.hyperlinkDashboardID == dashboardID
-        //                         ).length;
-        //                         this.dashboardTemplates = this.globalVariableService.dashboards.filter(
-        //                             d => d.templateDashboardID == dashboardID
-        //                         ).length;
-        //                         this.startupDashboards = this.globalVariableService.canvasUsers.filter(
-        //                             u => u.preferenceStartupDashboardID == dashboardID
-        //                         ).length;
-        //                         this.favouriteDashboards = this.globalVariableService.canvasUsers.filter(
-        //                             u => u.favouriteDashboards.indexOf(dashboardID) >= 0
-        //                         ).length;
-        //                     });
-        //                 });
-        //             });
-        //         });
-        //     });
-        // });
-
     }
 
     clickClose(action: string) {

@@ -2935,7 +2935,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
             .set("Content-Type", "application/json");
 
-            let pathUrl: string = 'dashboards';
+            let pathUrl: string = 'canvasDashboardDelete';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + dashboardID, {headers})
             .subscribe(
