@@ -2896,32 +2896,32 @@ export class GlobalVariableService {
 
     // Delete - also in Memory
     // SUMMARY							DELETE
-    // Dashboards						D delete
-    // DashboardTabs					T delete
-    // Widgets							W delete
-    // DashboardSnapshots				S delete
-    // CanvasMessages					Clear Msg where D as hyperlink
-    // CanvasComments					Com delete
-    // DashboardSchedules				Delete
-    // DashboardSubscriptions			Delete
-    // DashboardTags					Delete
-    // DashboardPermissions			Delete
-    // WidgetCheckpoints				Delete
-    // HyperlinkedWidgets				Clear W where D as hyperline
-    // UsedAsTemplate					D as template
-    // UsedAsStartup					Clear User
-    // UsedAsFav						D is in users' [fav]
+    // Dashboards						*.D delete
+    // DashboardTabs					*.T delete
+    // Widgets							*.W delete
+    // DashboardSnapshots				*.S delete
+    // CanvasMessages					*.Clear Msg where D as hyperlink
+    // CanvasComments					*.Com delete
+    // DashboardSchedules				*.Delete
+    // DashboardSubscriptions			*.Delete
+    // DashboardTags					*.Delete
+    // DashboardPermissions			    *.Delete
+    // WidgetCheckpoints				*.Delete
+    // HyperlinkedWidgets				*.Clear W where D as hyperline
+    // UsedAsTemplate					*.D as template
+    // UsedAsStartup					*.Clear User
+    // UsedAsFav						*.D is in users' [fav]
     
     // DELETE:
-    // DashboardLayout
-    // WidgetLayout
-    // DashboardRecent
+    //                                  *.DashboardLayout
+    //                                  *.WidgetLayout
+    //                                  *.DashboardRecent
     
     // clearDashboardInfo() - clears Memory ...
     // And Disc ???
 
 
-    deleteDashboardInfo(dashboardID: number) {
+    deleteDashboardInfo(dashboardID: number): Promise<string> {
         // Deletes D with all related Entities
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables deleteDashboardInfo ...',
@@ -2929,132 +2929,72 @@ export class GlobalVariableService {
                 {dashboardID});
         };
 
-        // TODO - update all from DB ?
-        // Remove where D used as template
-        this.dashboards.forEach(d => {
-            if (d.templateDashboardID == dashboardID) {
-                d.templateDashboardID == 0;
-                this.saveDashboard(d);
-            };
-        });
-        this.currentDashboards.forEach(d => {
-            if (d.templateDashboardID == dashboardID) {
-                d.templateDashboardID == 0;
-            };
-        });
+        // NB: has to be in synch with route canvasDashboardDelete !!!!!
+        return new Promise<any>((resolve, reject) => {
 
-        // Remove where D was used for hyperlink
-        this.widgets.forEach(w => {
-            if (w.hyperlinkDashboardID == dashboardID) {
-                w.hyperlinkDashboardID = 0;
-                this.saveWidget(w);
-            };
-        });
-        this.currentWidgets.forEach(w => {
-            if (w.hyperlinkDashboardID == dashboardID) {
-                w.hyperlinkDashboardID = 0;
-            };
-        });
+            const headers = new HttpHeaders()
+            .set("Content-Type", "application/json");
 
-        // Remove where D was used as fav, startup
-        this.canvasUsers.forEach(u => {
-            if (u.preferenceStartupDashboardID == dashboardID) {
-                u.preferenceStartupDashboardID = 0;
-            };
-            u.favouriteDashboards.filter(f => f != dashboardID)
-            // TODO - improve this to not update ALL users
-            this.saveCanvasUser(u);
-        });
-
-        // Delete D from DB
-        this.deleteDashboard(dashboardID);
-
-        // Delete Ts
-        this.dashboardTabs.forEach(t => {
-            if (t.dashboardID == dashboardID) {
-                this.deleteDashboardTab(t.id);
-            };
-        });
-
-        // Remove Ws
-        this.widgets.forEach(w => {
-            if (w.dashboardID == dashboardID) {
-                this.deleteWidget(w.id);
-            };
-        });
-
-        // Remove Snapshots
-        this.dashboardSnapshots.forEach(snp => {
-            if (snp.dashboardID == dashboardID) {
-                this.deleteDashboardSnapshot(snp.id);
-            };
-        });
-
-        // Remove where D was used as hyperlink in Msg
-        this.canvasMessages.forEach(mes => {
-            if (mes.dashboardID == dashboardID) {
-                mes.dashboardID = null;
-                this.saveCanvasMessage(mes);
-            };
-        });
-
-        // Remove all Comments for this D
-        alert(' complete GV.deleteDashboardInfo line 2761')
-        // this.deleteResource({ dashboardID: dashboardID ???});
-
-        // TODO - maybe this can be done better in DB
-        // Delete Dashboard- and Widget Layouts
-        this.dashboardLayouts.forEach(dl => {
-            if (dl.dashboardID == this.currentDashboardInfo.value.currentDashboardID) {
-                this.widgetLayouts.forEach(wl => {
-                    if (wl.dashboardLayoutID == dl.id) {
-                        this.deleteWidgetLayout(wl.id, wl.dashboardLayoutID);
+            let pathUrl: string = 'dashboards';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + dashboardID, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
                     };
-                });
-                this.deleteDashboardLayout(dl.id);
-            };
-        });
 
-        // Delete where D was used as hyperlink in Schedule
-        this.dashboardSchedules.forEach(sch => {
-            if (sch.dashboardID == dashboardID) {
-                this.deleteDashboardSchedule(sch.id);
-            };
-        });
+                    // Remove where D used as template
+                    this.dashboards.forEach(d => {
+                        if (d.templateDashboardID == dashboardID) {
+                            d.templateDashboardID == 0;
+                        };
+                    });
+                    this.currentDashboards.forEach(d => {
+                        if (d.templateDashboardID == dashboardID) {
+                            d.templateDashboardID == 0;
+                        };
+                    });
 
-        // Delete where D was used as hyperlink in Sub
-        this.dashboardSubscriptions.forEach(sub =>  {
-            if (sub.dashboardID == dashboardID) {
-                this.deleteDashboardSubscription(sub.id);
-            };
-        });
+                    // Remove where D was used for hyperlink
+                    this.widgets.forEach(w => {
+                        if (w.hyperlinkDashboardID == dashboardID) {
+                            w.hyperlinkDashboardID = 0;
+                        };
+                    });
+                    this.currentWidgets.forEach(w => {
+                        if (w.hyperlinkDashboardID == dashboardID) {
+                            w.hyperlinkDashboardID = 0;
+                        };
+                    });
 
-        // Delete where D was used as hyperlink in Tags
-        this.dashboardTags.forEach(t => {
-            if (t.dashboardID == dashboardID) {
-                this.deleteDashboardTag(t.id);
-            };
-        });
+                    // Remove where D was used as fav, startup
+                    this.canvasUsers.forEach(u => {
+                        if (u.preferenceStartupDashboardID == dashboardID) {
+                            u.preferenceStartupDashboardID = null;
+                        };
+                        u.favouriteDashboards.filter(f => f != dashboardID)
+                        // TODO - improve this to not update ALL users
+                    });
 
-        // Delete where D was used as hyperlink in Perm
-        this.dashboardPermissions.forEach(t => {
-            if (t.dashboardID == dashboardID) {
-                this.deleteDashboardPermission(t.id);
-            };
-        });
+                    // Remove where D was used as hyperlink in Msg
+                    this.canvasMessages.forEach(mes => {
+                        if (mes.dashboardID == dashboardID) {
+                            mes.dashboardID = null;
+                        };
+                    });
 
-        // Delete where D was used in Chkpnt
-        this.widgetCheckpoints.forEach(chk => {
-            if (chk.dashboardID == dashboardID) {
-                this.deleteWidgetCheckpoint(chk.id);
-            };
-        });
+                    resolve('Deleted');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDashboard FAILED', {err});
+                    };
 
-        // Delete where D was used as Recent
-        this.dashboardsRecent.forEach(dR => {
-            if (dR.dashboardID == dashboardID) {
-                this.deleteDashboardRecent(dR.id);
-            };
+                    reject(err.message);
+                }
+            )
         });
 
     }
