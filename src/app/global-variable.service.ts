@@ -2472,7 +2472,7 @@ export class GlobalVariableService {
         let originalDashboard: Dashboard = this.letDashboard(originalID);
         originalDashboard.originalID = null;
         originalDashboard.draftID = null;
-        this.saveDashboard(originalDashboard);
+        this.saveResource('dashboards', originalDashboard);
         
         // 2.1 Clear related Actions in Memory
         this.actions = this.actions.filter(act => act.dashboardID != draftDashboardID);
@@ -2814,63 +2814,63 @@ export class GlobalVariableService {
             let pathUrl: string = '/canvasDashboardDelete';
             let finalUrl: string = this.canvasServerURI + pathUrl;
             this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + dashboardID, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // Remove where D used as template
-                    this.dashboards.forEach(d => {
-                        if (d.templateDashboardID == dashboardID) {
-                            d.templateDashboardID == 0;
+                .subscribe(
+                    res => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+                            return;
                         };
-                    });
-                    this.currentDashboards.forEach(d => {
-                        if (d.templateDashboardID == dashboardID) {
-                            d.templateDashboardID == 0;
-                        };
-                    });
 
-                    // Remove where D was used for hyperlink
-                    this.widgets.forEach(w => {
-                        if (w.hyperlinkDashboardID == dashboardID) {
-                            w.hyperlinkDashboardID = 0;
-                        };
-                    });
-                    this.currentWidgets.forEach(w => {
-                        if (w.hyperlinkDashboardID == dashboardID) {
-                            w.hyperlinkDashboardID = 0;
-                        };
-                    });
+                        // Remove where D used as template
+                        this.dashboards.forEach(d => {
+                            if (d.templateDashboardID == dashboardID) {
+                                d.templateDashboardID == 0;
+                            };
+                        });
+                        this.currentDashboards.forEach(d => {
+                            if (d.templateDashboardID == dashboardID) {
+                                d.templateDashboardID == 0;
+                            };
+                        });
 
-                    // Remove where D was used as fav, startup
-                    this.canvasUsers.forEach(u => {
-                        if (u.preferenceStartupDashboardID == dashboardID) {
-                            u.preferenceStartupDashboardID = null;
+                        // Remove where D was used for hyperlink
+                        this.widgets.forEach(w => {
+                            if (w.hyperlinkDashboardID == dashboardID) {
+                                w.hyperlinkDashboardID = 0;
+                            };
+                        });
+                        this.currentWidgets.forEach(w => {
+                            if (w.hyperlinkDashboardID == dashboardID) {
+                                w.hyperlinkDashboardID = 0;
+                            };
+                        });
+
+                        // Remove where D was used as fav, startup
+                        this.canvasUsers.forEach(u => {
+                            if (u.preferenceStartupDashboardID == dashboardID) {
+                                u.preferenceStartupDashboardID = null;
+                            };
+                            u.favouriteDashboards.filter(f => f != dashboardID)
+                            // TODO - improve this to not update ALL users
+                        });
+
+                        // Remove where D was used as hyperlink in Msg
+                        this.canvasMessages.forEach(mes => {
+                            if (mes.dashboardID == dashboardID) {
+                                mes.dashboardID = null;
+                            };
+                        });
+
+                        resolve('Deleted');
+                    },
+                    err => {
+                        if (this.sessionDebugging) {
+                            console.log('Error deleteDashboard FAILED', {err});
                         };
-                        u.favouriteDashboards.filter(f => f != dashboardID)
-                        // TODO - improve this to not update ALL users
-                    });
 
-                    // Remove where D was used as hyperlink in Msg
-                    this.canvasMessages.forEach(mes => {
-                        if (mes.dashboardID == dashboardID) {
-                            mes.dashboardID = null;
-                        };
-                    });
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDashboard FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
+                        reject(err.message);
+                    }
+                )
         });
 
     }
