@@ -2450,9 +2450,9 @@ export class GlobalVariableService {
         // 1. Update the Original/Draft ids on the original
         // 2. Related Entities are treated as follows:
         //    2.1 CanvasActions                    -  Clear from Memory
-        //    2.2 CanvasMessages					-  Point to Original
-        //    2.3 CanvasTasks                      -  Point to Orignal
-        //  AuditTrails are kept unchanged; the D-id thus dont exist any longer
+        //    2.2 CanvasMessages				   -  Point to Original
+        //        CanvasTasks                      -  Point to Orignal
+        //        AuditTrails are kept unchanged; the D-id thus dont exist any longer
         // 3. Delete the Draft Dashboard
 
         if (this.sessionDebugging) {
@@ -2460,39 +2460,51 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        // 1. Set to current
-        let draftID: number = this.currentDashboardInfo.value.currentDashboardID;
-        let dashboard: Dashboard = this.letDashboard(draftID);
+        // 1. Update the Original/Draft ids on the original
+        let draftDashboardID: number = this.currentDashboardInfo.value.currentDashboardID;
+        let draftDashboard: Dashboard = this.letDashboard(draftDashboardID);
 
-        if (dashboard.state != 'Draft') {
+        if (draftDashboard.state != 'Draft') {
             return('This is not a draft Dashboard');
         };
-        
-        let originalID: number = dashboard.originalID;
-        let originalDashboard: Dashboard = this.letDashboard(originalID);
-        let draftTabs: DashboardTab[] = this.dashboardTabs.filter(
-            t => t.dashboardID == draftID
-        );
 
-        // Reset the draft ID
+        let originalID: number = draftDashboard.originalID;
+        let originalDashboard: Dashboard = this.letDashboard(originalID);
         originalDashboard.originalID = null;
         originalDashboard.draftID = null;
         this.saveDashboard(originalDashboard);
-
         
         // 2.1 Clear related Actions in Memory
-        this.actions = this.actions.filter(act => act.dashboardID != draftID);
+        this.actions = this.actions.filter(act => act.dashboardID != draftDashboardID);
 
         // 2.2 Messages & Tasks
-        ... call router DashboardDiscard
+        const headers = new HttpHeaders()
+        .set("Content-Type", "application/json");
 
+        let pathUrl: string = '/canvasDashboardDiscard';
+        let finalUrl: string = this.canvasServerURI + pathUrl;
+        this.http.delete<CanvasHttpResponse>(finalUrl + '?draftDashboardID=' 
+            + draftDashboardID + '&originalDashboard=' + originalDashboard, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        return 'Error deleteDashboard FAILED: '+ res.message;
+                    };
 
-        // 3. Delete Draft D
-        this.deleteDashboardInfo(draftID);
-  
-        // Return
-        return originalID;
+                    // 3. Delete Draft D
+                    this.deleteDashboardInfo(draftDashboardID);
+            
+                    // Return
+                    return originalID;
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDashboard FAILED', {err});
+                    };
 
+                    return 'Error deleteDashboard FAILED: '+ err.message;
+                }
+            )
     }
 
     saveDraftDashboard(deleteSnapshots: boolean): Promise<number> {
