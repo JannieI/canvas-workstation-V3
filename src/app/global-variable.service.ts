@@ -2483,8 +2483,9 @@ export class GlobalVariableService {
 
         let pathUrl: string = '/canvasDashboardDiscard';
         let finalUrl: string = this.canvasServerURI + pathUrl;
-        this.http.delete<CanvasHttpResponse>(finalUrl + '?draftDashboardID=' 
-            + draftDashboardID + '&originalDashboard=' + originalDashboard, {headers})
+
+        this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID=' 
+            + draftDashboardID + '&originalDashboard=' + originalDashboard, null, {headers})
             .subscribe(
                 res => {
                     if(res.statusCode != 'success') {
