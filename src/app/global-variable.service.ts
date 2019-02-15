@@ -2891,33 +2891,44 @@ export class GlobalVariableService {
         });
 
     }
+    // Summary of how Dashboard-related entities are treated:
+    // The Treament legend:
+    //      - Discard Dashboard
+    //      * DeleteIndo
+    //      . Summary (means counted in the summary, but no data modified here)  
+    // Note that CanvasAuditTrails are never changed.
 
-
-
-    // Delete - also in Memory
-    // SUMMARY							DELETE
-    // Dashboards						*.D delete
-    // DashboardTabs					*.T delete
-    // Widgets							*.W delete
-    // DashboardSnapshots				*.S delete
-    // CanvasMessages					*.Clear Msg where D as hyperlink
-    // CanvasComments					*.Com delete
-    // DashboardSchedules				*.Delete
-    // DashboardSubscriptions			*.Delete
-    // DashboardTags					*.Delete
-    // DashboardPermissions			    *.Delete
-    // WidgetCheckpoints				*.Delete
-    // HyperlinkedWidgets				*.Clear W where D as hyperline
-    // UsedAsTemplate					*.D as template
-    // UsedAsStartup					*.Clear User
-    // UsedAsFav						*.D is in users' [fav]
+    // Entity							Treatment
+    // Dashboards						-*.Delete
+    // DashboardTabs					-*.Delete
+    // Widgets							-*.Delete
+    // DashboardSnapshots				-*.Delete
+    // CanvasComments					-*.Delete
+    // DashboardSchedules				-*.Delete
+    // DashboardSubscriptions			-*.Delete
+    // DashboardTags					-*.Delete
+    // DashboardPermissions			    -*.Delete
+    // WidgetCheckpoints				-*.Delete
+    // DashboardLayout                  -* Delete
+    // WidgetLayout                     -* Delete
+    // DashboardRecent                  -* Delete
+    // StatusBarMessageLog              -* Delete
+    // DashboardScheduleLog			    -* Delete
+    // UsedAsStartup					-*.Clear where D used as startup
+    // UsedAsFav						-*.Remove D from [fav] in Users
+    // HyperlinkedWidgets				-*.Clear W where D used as hyperline
+    // UsedAsTemplate					-*.Clear where D used as template
+    // CanvasMessages					-  Point to Original
+    //              					 *.Clear where D as hyperlink
+    // CanvasTasks                      -  Point to Orignal
+    //                                  -* Clear where D is linked
     
-    // DELETE:
-    //                                  *.DashboardLayout
-    //                                  *.WidgetLayout
-    //                                  *.DashboardRecent
+    // DatasourceFilter                    Delete  - TODO - finish this in DB !
+
+    // Combinations                  ?     Not Sure !!!
     
     // clearDashboardInfo() - clears Memory ...
+    // CanvasActions                +      Clear from Memory ??  - TODO - sort out
     // And Disc ???
 
 
