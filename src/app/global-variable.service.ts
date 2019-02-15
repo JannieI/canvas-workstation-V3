@@ -2443,21 +2443,31 @@ export class GlobalVariableService {
         };
     }
 
-    discardDashboard(): number {
+    discardDashboard(): number | string {
         // Discards a Draft Dashboard, which means all changes are deleted
         // Returns originalID (from which Draft D was copied)
 
-        // The following are unmodified:
-        // - the AuditTrails are kept against the Draft
+        // 1. Update the Original/Draft ids on the original
+        // 2. Related Entities are treated as follows:
+        //    2.1 CanvasActions                    -  Clear from Memory
+        //    2.2 CanvasMessages					-  Point to Original
+        //    2.3 CanvasTasks                      -  Point to Orignal
+        //  AuditTrails are kept unchanged; the D-id thus dont exist any longer
+        // 3. Delete the Draft Dashboard
 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables discardDashboard ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        // Set to current
+        // 1. Set to current
         let draftID: number = this.currentDashboardInfo.value.currentDashboardID;
         let dashboard: Dashboard = this.letDashboard(draftID);
+
+        if (dashboard.state != 'Draft') {
+            return('This is not a draft Dashboard');
+        };
+        
         let originalID: number = dashboard.originalID;
         let originalDashboard: Dashboard = this.letDashboard(originalID);
         let draftTabs: DashboardTab[] = this.dashboardTabs.filter(
@@ -2469,178 +2479,17 @@ export class GlobalVariableService {
         originalDashboard.draftID = null;
         this.saveDashboard(originalDashboard);
 
-        // The following are moved (added to the original version), removing any links
-        // to the Draft version:
-        // - Actions
-        this.actions.forEach(act => {
-            draftTabs.forEach(t => {
-                if (act.dashboardID == t.dashboardID
-                    &&
-                    act.dashboardTabID == t.id) {
-                        act.dashboardID = originalID;
-                        act.dashboardTabID = t.originalID;
-                        this.actionUpsert(
-                            act.id,
-                            act.dashboardID,
-                            act.dashboardTabID,
-                            null,
-                            'Change',
-                            act.objectType,
-                            act.action,
-                            act.description,
-                            act.undoID,
-                            act.redoID,
-                            act.oldWidget,
-                            act.newWidget
-                        );
-                };
-            });
-        });
+        
+        // 2.1 Clear related Actions in Memory
+        this.actions = this.actions.filter(act => act.dashboardID != draftID);
 
-        // - Tasks
-        this.canvasTasks.forEach(tsk => {
-            if (tsk.linkedDashboardID == draftID) {
-                tsk.linkedDashboardID = originalID;
-                this.saveCanvasTask(tsk);
-            };
-        });
+        // 2.2 Messages & Tasks
+        ... call router DashboardDiscard
 
-        // - Messages
-        this.canvasMessages.forEach(msg => {
-            draftTabs.forEach(t => {
-                if (msg.dashboardID == t.dashboardID
-                    &&
-                    msg.dashboardTabID == t.id) {
-                        msg.dashboardID = originalID;
-                        msg.dashboardTabID = t.originalID;
-                        this.saveCanvasMessage(msg);
-                };
-            });
-        });
 
-        // Note: we decided that Comments belongs to the Entity, so for a Draft D they die
-        // TODO - delete all Comments for daftDashboardID
-        alert(' complete GV.discardDashboard line 2311')
-        // this.deleteResource({ dashboardID: draftID ???});
-
-        // The following are simply deleted (and those applicable to the original remains
-        // unchanged):
-        // - Subscriptions
-        this.dashboardSubscriptions.forEach(sub => {
-            if (sub.dashboardID == draftID) {
-                this.deleteDashboardSubscription(sub.id);
-            };
-        });
-
-        // - Schedules
-        this.dashboardSchedules.forEach(sch => {
-            if (sch.dashboardID == draftID) {
-                this.deleteDashboardSchedule(sch.id);
-            };
-        });
-
-        // - entry in recent Dashboards for the Draft
-        this.dashboardsRecent.forEach(rec => {
-            if (rec.dashboardID == draftID) {
-                this.deleteDashboardRecent(rec.id);
-            };
-        });
-
-        // - flag for Favourite Dashboard
-        // - flag for Startup Dashboard
-        this.canvasUsers.forEach(u => {
-            if (u.preferenceStartupDashboardID == draftID) {
-                u.preferenceStartupDashboardID = 0;
-            };
-            u.favouriteDashboards.filter(f => f != draftID)
-            // TODO - improve this to not update ALL users
-            this.saveCanvasUser(u);
-        });
-
-        // - permissions
-        this.dashboardPermissions.forEach(per => {
-            if (per.dashboardID == draftID) {
-                this.deleteDashboardPermission(per.id);
-            };
-        });
-
-        // - Tags
-        this.dashboardTags.forEach(tag => {
-            if (tag.dashboardID == draftID) {
-                this.deleteDashboardTag(tag.id);
-            };
-        });
-
-        // - all snapshots (for the Draft) are deleted
-        this.dashboardSnapshots.forEach(snp => {
-            if (snp.dashboardID == draftID) {
-                this.deleteDatasourcePermission(snp.id);
-            };
-        });
-
-        // - template Dashboard
-        this.dashboards.forEach(d => {
-            if (d.templateDashboardID == draftID) {
-                d.templateDashboardID == 0;
-                this.saveDashboard(d);
-            };
-        });
-
-        // - hyperlinked Dashboard
-        this.widgets.forEach(w => {
-            if (w.hyperlinkDashboardID == draftID) {
-                w.hyperlinkDashboardID = 0;
-                this.saveWidget(w);
-            };
-        });
-
-        // TODO - maybe this can be done better in DB
-        // Delete Dashboard- and Widget Layouts
-        this.dashboardLayouts.forEach(dl => {
-            if (dl.dashboardID == this.currentDashboardInfo.value.currentDashboardID) {
-                this.widgetLayouts.forEach(wl => {
-                    if (wl.dashboardLayoutID == dl.id) {
-                        this.deleteWidgetLayout(wl.id, wl.dashboardLayoutID);
-                    };
-                });
-                // Note: when the last widgetLayout is deleted, it will automatically
-                //       delete the dashboardLayout !
-                // this.deleteDashboardLayout(dl.id);
-            };
-        });
-
-        // Delete the Draft D content created as part of the Draft version:
-        // Dashboard
-        this.deleteDashboard(draftID);
-
-        // - Tabs
-        this.dashboardTabs.forEach(t => {
-            if (t.dashboardID == draftID) {
-                this.deleteDashboardTab(t.id);
-            };
-        });
-
-        // - Widgets
-        this.widgets.forEach(w => {
-            if (w.dashboardID == draftID) {
-                this.deleteWidget(w.id);
-            };
-        });
-
-        // - Checkpoints
-        this.widgetCheckpoints.forEach(chk => {
-            if (chk.dashboardID == draftID) {
-                this.deleteWidgetCheckpoint(chk.id);
-            };
-        });
-
-        // Permissions
-        this.dashboardPermissions.forEach(per => {
-            if (per.dashboardID == draftID) {
-                this.deleteDatasourcePermission(per.id);
-            };
-        });
-
+        // 3. Delete Draft D
+        this.deleteDashboardInfo(draftID);
+  
         // Return
         return originalID;
 
@@ -2928,7 +2777,7 @@ export class GlobalVariableService {
     // Combinations                  ?     Not Sure !!!
     
     // clearDashboardInfo() - clears Memory ...
-    // CanvasActions                +      Clear from Memory ??  - TODO - sort out
+    // CanvasActions                    -  Clear from Memory
     // And Disc ???
 
 
