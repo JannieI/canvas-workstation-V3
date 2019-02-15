@@ -2479,7 +2479,7 @@ export class GlobalVariableService {
 
         // 2.2 Messages & Tasks
         const headers = new HttpHeaders()
-        .set("Content-Type", "application/json");
+            .set("Content-Type", "application/json");
 
         let pathUrl: string = '/canvasDashboardDiscard';
         let finalUrl: string = this.canvasServerURI + pathUrl;
@@ -2492,10 +2492,13 @@ export class GlobalVariableService {
                     };
 
                     // 3. Delete Draft D
-                    this.deleteDashboardInfo(draftDashboardID);
-            
-                    // Return
-                    return originalID;
+                    this.deleteDashboardInfo(draftDashboardID)
+                    .then( ()=> {
+                        return originalID;
+                    })
+                    .catch(err => {
+                        return 'Error deleting Draft Dashboard: ' + err;
+                    });
                 },
                 err => {
                     if (this.sessionDebugging) {
