@@ -2805,8 +2805,8 @@ export class GlobalVariableService {
     //      UsedAsFav
     //      UsedAsTemplate
 
-    // 4. General entities that can be linked to Draft and must be deleted when Draft
-    //    is deleted.
+    // 4. General entities that can be linked to Draft and must be deleted when the Draft
+    //    Dashboard is deleted.
     //      DashboardRecent
     //      StatusBarMessageLog
     //      CanvasActions
