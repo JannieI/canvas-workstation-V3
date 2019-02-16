@@ -2255,7 +2255,7 @@ export class GlobalVariableService {
                     newD.accessType = 'Private';
                     newD.editor = this.currentUser.userID;
                     newD.dateEdited = today;
-                    };
+                };
 
                 newD.draftID = null;
                 if (this.dashboards[dashboardIndex].state == 'Complete'
@@ -2657,13 +2657,6 @@ export class GlobalVariableService {
             };
         });
 
-        // Permissions
-        // this.dashboardPermissions.forEach(per => {
-        //     if (per.dashboardID == draftID) {
-        //         this.deleteDatasourcePermission(per.id);
-        //     };
-        // });
-
         // - all snapshots (for the Draft) are deleted, EXCEPT the initial one
         if (deleteSnapshots) {
             this.dashboardSnapshots.forEach(snp => {
@@ -2678,7 +2671,7 @@ export class GlobalVariableService {
         // - template Dashboard
         this.dashboards.forEach(d => {
             if (d.templateDashboardID == draftID) {
-                d.templateDashboardID == originalID;
+                d.templateDashboardID = originalID;
                 this.saveDashboard(d);
             };
         });
@@ -2756,45 +2749,71 @@ export class GlobalVariableService {
         });
 
     }
+
     // Summary of how Dashboard-related entities are treated:
-    // The Treament legend:
-    //      - Discard Dashboard
-    //      * DeleteIndo
-    //      . Summary (means counted in the summary, but no data modified here)  
-    // Note that CanvasAuditTrails are never changed.
+    // This doc explains:
+    // 1. entities contained in a new Dashboard (Draft of copy created with SaveAs)
+    // 2. how related entities are treated in the different processes for Dashboards 
+    //    (creating, discarding and saving a Draft, copying a Complete Dashboard)
 
-    // Entity							Treatment
-    // Dashboards						-*.Delete
-    // DashboardTabs					-*.Delete
-    // Widgets							-*.Delete
-    // DashboardSnapshots				-*.Delete
-    // CanvasComments					-*.Delete
-    // DashboardSchedules				-*.Delete
-    // DashboardSubscriptions			-*.Delete
-    // DashboardTags					-*.Delete
-    // DashboardPermissions			    -*.Delete
-    // WidgetCheckpoints				-*.Delete
-    // DashboardLayout                  -* Delete
-    // WidgetLayout                     -* Delete
-    // DashboardRecent                  -* Delete
-    // StatusBarMessageLog              -* Delete
-    // DashboardScheduleLog			    -* Delete
-    // UsedAsStartup					-*.Clear where D used as startup
-    // UsedAsFav						-*.Remove D from [fav] in Users
-    // HyperlinkedWidgets				-*.Clear W where D used as hyperline
-    // UsedAsTemplate					-*.Clear where D used as template
-    // CanvasMessages					-  Point to Original
-    //              					 *.Clear where D as hyperlink
-    // CanvasTasks                      -  Point to Orignal
-    //                                  -* Clear where D is linked
-    
-    // DatasourceFilter                    Delete  - TODO - finish this in DB !
+    // Special routes:
+    //      - Edit Dashboard, which creates the Draft ()
+    //      - Discard Dashboard (canvasDashboardDiscard)
+    //      - DeleteDashboard with related entities (canvasDashboardDelete)
+    //      - Save Draft Dashboard, to Complete ()
+    //      - SaveAs Dashboard, making a copy ()
 
+    // 1. Entities part of the Draft / copied Dashboard:
+    //      Dashboards						
+    //      DashboardTabs					
+    //      Widgets							
+    //      WidgetCheckpoints				
+    //      WidgetLayout                     
+    //
+    //    On deleting a Complete Dashboard:
+    //    - The Dashboard and ALL entities linked to its ID are deleted
+    //    - linked D, T, W-IDs are set to null (say a user startup Dashboard)
+    //    On Create Draft (Edit of the Complete Dashboard) or copying a Dashboard 
+    //    (SaveAs):
+    //    - These entities are copied to the new Dashboard when created, with new IDs.  
+    //      The new IDs are linked, W -> T -> D -> W-Chk.
+    //    On Discard Draft:
+    //    - original/draft IDs updated on the Original Dashboard
+    //    - The Draft Dashboard is deleted, which equals a normal Dashboard delete above
+    //    On Save Draft (to Complete):
+    //    - the Complete Dashboard record content is updated with Draft content
+    //    - the above entities for the Complete Dashboard is deleting
+    //    - the Draft Tids point to the Original
+    //    - Draft is deleted, which equals a normal Dashboard delete
+
+    // 2. Entities that can be linked to a Draft, but are deleted when Draft is deleted
+    //      DashboardSnapshots
+    //      DashboardSchedules
+    //      DashboardScheduleLog
+    //      DashboardSubscriptions
+    //      DashboardTags
+    //      DashboardPermissions
+    //      DashboardLayout
+
+    // 3. Entities that can be linked to a Draft, and are re-linked to the Original Dashboard
+    //    when the Draft is deleted.
+    //      CanvasComments
+    //      CanvasMessages
+    //      CanvasTasks
+    //      HyperlinkedWidgets
+    //      UsedAsStartup
+    //      UsedAsFav
+    //      UsedAsTemplate
+
+    // 4. General entities that can be linked to Draft and must be deleted when Draft
+    //    is deleted.
+    //      DashboardRecent
+    //      StatusBarMessageLog
+    //      CanvasActions
+
+    // TODO - finish these once overall design is done !
+    // DatasourceFilter                    Delete  - 
     // Combinations                  ?     Not Sure !!!
-    
-    // clearDashboardInfo() - clears Memory ...
-    // CanvasActions                    -  Clear from Memory
-    // And Disc ???
 
 
     deleteDashboardInfo(dashboardID: number): Promise<string> {
