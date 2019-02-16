@@ -2750,66 +2750,113 @@ export class GlobalVariableService {
 
     }
 
-    // Summary of how Dashboard-related entities are treated:
+    // Treatment of Dashboard and related entities:
+    // Background: A Dashboard is logically seen as one concept, but lives in the database
+    // in different entities, called the core entities.  These core entities should be logically
+    // treated as one unit.  A Dashboard can have further sets of information, like schedules.
+    // These are called related entities, and are optional.  There are other (non-Dashboard) entities
+    // that may be linked to a Dashboard (for example the user record may point to a startup Dashboard).
+    // These are called linked entities.
+    //
     // This doc explains:
-    // 1. entities contained in a new Dashboard (Draft of copy created with SaveAs)
+    // 1. the core entities contained in a new Dashboard (Draft or copy created with SaveAs)
     // 2. how related entities are treated in the different processes for Dashboards 
     //    (creating, discarding and saving a Draft, copying a Complete Dashboard)
+    // Note: a Dashboard has two states: Complete and Draft
 
     // Special routes:
-    //      - Edit Dashboard, which creates the Draft ()
-    //      - Discard Dashboard (canvasDashboardDiscard)
-    //      - DeleteDashboard with related entities (canvasDashboardDelete)
+    //      - Edit Dashboard, which creates the Draft Dashboard ()
+    //      - Discard Draft Dashboard (canvasDashboardDiscard)
+    //      - Delete Dashboard with related entities (canvasDashboardDelete)
     //      - Save Draft Dashboard, to Complete ()
-    //      - SaveAs Dashboard, making a copy ()
+    //      - SaveAs Dashboard, making a copy of the Complete Dashboard ()
 
-    // 1. Entities part of the Draft / copied Dashboard:
+    // 1. Core Entities are created when a Draft Dashboard is created, or a Dashboard is copied:
     //      Dashboards						
     //      DashboardTabs					
     //      Widgets							
     //      WidgetCheckpoints				
     //      WidgetLayout                     
     //
-    //    On deleting a Complete Dashboard:
-    //    - The Dashboard and ALL entities linked to its ID are deleted
-    //    - linked D, T, W-IDs are set to null (say a user startup Dashboard)
-    //    On Create Draft (Edit of the Complete Dashboard) or copying a Dashboard 
-    //    (SaveAs):
-    //    - These entities are copied to the new Dashboard when created, with new IDs.  
-    //      The new IDs are linked, W -> T -> D -> W-Chk.
-    //    On Discard Draft:
+    //   Edit (create Draft):              
+    //    - These entities are copied to the new Dashboard from the Original Dashboard, with new IDs.  
+    //    - new state = Draft
+    //    - The new IDs are linked, W -> T -> D -> W-Chk.
+    //   Discard:
     //    - original/draft IDs updated on the Original Dashboard
-    //    - The Draft Dashboard is deleted, which equals a normal Dashboard delete above
-    //    On Save Draft (to Complete):
-    //    - the Complete Dashboard record content is updated with Draft content
-    //    - the above entities for the Complete Dashboard is deleting
-    //    - the Draft Tids point to the Original
-    //    - Draft is deleted, which equals a normal Dashboard delete
+    //    - The Draft Dashboard and core entities are deleted
+    //    Save Draft (to Complete):
+    //    - the Complete Dashboard record content is updated with Draft content, and 
+    //      original/draft IDs updated on the Original Dashboard
+    //    - link core entities to the Original Dashboard (thus Ws are now linked to the Dashboard)
+    //    - Draft and core entities are deleted, which equals a normal Dashboard delete
+    //   Delete (Original):
+    //    - The Dashboard and core entities are deleted
+    //   SaveAs (copy a Complete Dashboard):
+    //    - These entities are copied to the new Dashboard when created, with new IDs.  
+    //    - The new IDs are linked, W -> T -> D -> W-Chk.
+    //    - the new state = Complete
 
-    // 2. Entities that can be linked to a Draft, but are deleted when Draft is deleted
+    // 2. Related Entities can be linked to a Draft and Complete Dashboard, but are deleted when the
+    //    Draft Dashboard is deleted.  The rational for this is that these entities are instance 
+    //    specific - they are useful only for the Draft Dashboard:
     //      DashboardSnapshots
     //      DashboardSchedules
     //      DashboardScheduleLog
     //      DashboardSubscriptions
     //      DashboardTags
     //      DashboardPermissions
-    //      DashboardLayout
-
+    //      DashboardUsedAsFavourite
+    //      DashboardLayout - TODO, this must be redesigned !
+    //
+    //   Edit (create Draft):              
+    //    - No action
+    //   Discard:
+    //    - Delete these entities
+    //   Save Draft (to Complete):
+    //    - Delete these entities
+    //   Delete (Original):
+    //    - Delete these entities
+    //   SaveAs (copy a Complete Dashboard):
+    //    - These entities are NOT copied - TODO is this correct ???
+    //
     // 3. Entities that can be linked to a Draft, and are re-linked to the Original Dashboard
-    //    when the Draft is deleted.
+    //    when the Draft is deleted.  These links point the the Dashboard as a whole, irrespective
+    //    of the state (so a link to Draft should translate to a link to Complete):
     //      CanvasComments
     //      CanvasMessages
     //      CanvasTasks
     //      HyperlinkedWidgets
     //      UsedAsStartup
-    //      UsedAsFav
     //      UsedAsTemplate
+    //
+    //   Edit (create Draft):              
+    //    - No action
+    //   Discard:
+    //    - Re-link these entities to the Original Dashboard
+    //   Save Draft (to Complete):
+    //    - Re-link these entities to the Original Dashboard
+    //   Delete (Original):
+    //    - Make the link null
+    //   SaveAs (copy a Complete Dashboard):
+    //    - No action
 
     // 4. General entities that can be linked to Draft and must be deleted when the Draft
     //    Dashboard is deleted.
     //      DashboardRecent
     //      StatusBarMessageLog
     //      CanvasActions
+    //
+    //   Edit (create Draft):              
+    //    - No action (add record to Recent list)
+    //   Discard:
+    //    - Delete these entities
+    //   Save Draft (to Complete):
+    //    - Delete these entities
+    //   Delete (Original):
+    //    - Delete these entities
+    //   SaveAs (copy a Complete Dashboard):
+    //    - No action
 
     // TODO - finish these once overall design is done !
     // DatasourceFilter                    Delete  - 
