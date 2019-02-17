@@ -90,10 +90,10 @@ export class DashboardDiscardComponent implements OnInit {
         // Delete the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDiscard', '@Start');
 
-        let dashboardOrignal: number = this.globalVariableService.discardDashboard();
+        let dashboardOrignal: number = +this.globalVariableService.discardDashboard();
 
         // Navigate to original
-        if (dashboardOrignal != null) {
+        if (!isNaN(dashboardOrignal)) {
             this.globalVariableService.refreshCurrentDashboard(
                 'discardDashboard-clickDiscard', dashboardOrignal, -1, ''
             );
