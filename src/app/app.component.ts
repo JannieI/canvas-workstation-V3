@@ -2597,11 +2597,13 @@ console.log('xx action', action)
 
                             this.globalVariableService.updateLocalCacheMemory(
                                 'add',
-                                res.data.dashboard.id,
+                                res.dashboard.id,
                                 'dashboards',
-                                res.data.dashboard
+                                res.dashboard
                             )
-
+                            this.globalVariableService.dashboardTabs.push(res.dashboardTabs)
+                            this.globalVariableService.widgets.push(res.widgets)
+                            this.globalVariableService.widgetCheckpoints.push(res.widgetCheckpoints)
 
 
 
@@ -2611,7 +2613,7 @@ console.log('xx action', action)
 
 
                             this.globalVariableService.refreshCurrentDashboard(
-                                'app-clickMenuEditMode', res.data.dashboard.id, -1, ''
+                                'app-clickMenuEditMode', res.dashboard.id, -1, ''
                             );
 
                             let today = new Date();
