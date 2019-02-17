@@ -2205,7 +2205,7 @@ export class GlobalVariableService {
 
     }
 
-    editDashboard(dashboardID: number): Promise<Dashboard> {
+    editDashboard(dashboardID: number): Promise<any> {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
@@ -2214,7 +2214,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        return new Promise<Dashboard>((resolve, reject) => {
+        return new Promise<any>((resolve, reject) => {
 
             let pathUrl: string = '/canvasDashboardEdit?dashboardID=' + dashboardID;
             let finalUrl: string = this.canvasServerURI + pathUrl;
@@ -3450,6 +3450,7 @@ export class GlobalVariableService {
             };
         
             // Done
+            console.log('xx after cache update', this.dashboards)
             resolve(true);
         });
     }
