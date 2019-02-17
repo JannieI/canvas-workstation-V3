@@ -1411,12 +1411,6 @@ export class GlobalVariableService {
             // If in CachingTable, update locally
             if (dataCachingTableIndex >= 0) {
 
-                // Initialise DB
-                // this.dbCanvasAppDatabase = new CanvasAppDatabase
-                // this.dbCanvasAppDatabase.open();
-                // this.dbDataCachingTable = new DataCachingDatabase;
-                // this.dbDataCachingTable.open();
-
                 // Set vars to use here
                 let localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                 let localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
@@ -2224,6 +2218,7 @@ export class GlobalVariableService {
 
             let pathUrl: string = '/canvasDashboardEdit?dashboardID=' + dashboardID;
             let finalUrl: string = this.canvasServerURI + pathUrl;
+            console.log('finalUrl', finalUrl)
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
@@ -2234,7 +2229,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables editDashboard 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            "Current Dashboard retrieved")
+                            "Draft created for current Dashboard")
                     };
 
                     resolve(res.data);
@@ -3238,7 +3233,8 @@ export class GlobalVariableService {
                 );
 
                 if (this.currentDashboards.length == 0) {
-                    alert('xx global var error in getCurrentDashboard - this.currentDashboards.length == 0')
+                    console.log('xx global var error in getCurrentDashboard - this.currentDashboards.length == 0', dashboardID, this.currentDashboards)
+                    alert('xx global var error in getCurrentDashboard - this.currentDashboards.length == 0 ');
                 }
                 if (this.currentDashboards[0].templateDashboardID != 0  &&  this.currentDashboards[0].templateDashboardID != null) {
                     let templateDashboard: Dashboard[] = null;
@@ -3267,6 +3263,187 @@ export class GlobalVariableService {
             });
         };
 
+    }
+
+    updateLocalCacheMemory(cacheAction: string, cachedEntityID: number, cachedEntityName: string, cachedEntityData: any): boolean {
+        // Amend local Workstation Memory Cache
+        //   cacheAction = add, update, delete
+        //   cachedEntityName = variable to amend, ie dashboards
+        //   cachedEntityData = data to add, update, delete
+
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDashboardTabs ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+
+        let today = new Date();
+
+            // Find object in localCachingTable
+            let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
+                dct.key == cachedEntityName
+            );
+
+            // If in CachingTable, update locally
+            if (dataCachingTableIndex >= 0) {
+
+                // Set vars to use here
+                let localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
+                let localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
+                let localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
+                let localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
+                let localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
+
+                // Add an object
+                if (cacheAction.toLowerCase() == 'add') {
+
+                    // Update Memory
+                    if (localCacheableMemory) {
+
+                        // Update local var
+                        if (localVariableName != null) {
+                            let localVarIndex: number = this[localVariableName].findIndex(
+                                lv => lv.id == cachedEntityID);
+
+                            if (localVarIndex < 0) {
+                                this[localVariableName].push(cachedEntityData);
+                            };
+                        };
+
+                        // Update Current Var
+                        // TODO - consider this carefully: dont think we should add stuff to
+                        // currentVars, ie currentDashboards = current D selected by user
+                        console.log('xx ADD Memory Updated', this[localVariableName], this[localCurrentVariableName])
+
+                    };
+
+                    // Update Disc
+                    if (localCacheableDisc) {
+                        // Delete from DB
+                        if (localTableName != null) {
+
+                            this.dbCanvasAppDatabase.table(localTableName)
+                                .put(cachedEntityData)
+                                .then(res => {
+                                    this.dbCanvasAppDatabase.table(localTableName).count(res => {
+                                        console.warn('xx Add Disc count @ end ', res);
+                                    });
+                            });
+                        };
+                    };
+                };
+
+                // Update an object
+                if (cacheAction.toLowerCase() == 'update') {
+
+                    // Update Memory
+                    if (localCacheableMemory) {
+
+                        // Update local var
+                        if (localVariableName != null) {
+                            let localVarIndex: number = this[localVariableName].findIndex(
+                                lv => lv.id == cachedEntityID);
+
+                            if (localVarIndex >0) {
+                                this[localVariableName][localVarIndex] = cachedEntityData;
+                            };
+                        };
+
+                        // Update Current Var
+                        if (localCurrentVariableName != null) {
+                            let localCurrentVarIndex: number = this[localCurrentVariableName].findIndex(
+                                lv => lv.id == cachedEntityID);
+
+                            if (localCurrentVarIndex >0) {
+                                this[localCurrentVariableName][localCurrentVarIndex] = cachedEntityData;
+                            };
+                        };
+                        console.log('xx UPDATE Memory Updated', this[localCurrentVariableName], this[localCurrentVariableName])
+
+                    };
+
+                    // Update Disc
+                    if (localCacheableDisc) {
+                        // Delete from DB
+                    if (localTableName != null) {
+
+                            this.dbCanvasAppDatabase.table(localTableName)
+                                .where('id').equals(cachedEntityID)
+                                .put(cachedEntityData)
+                                .then(res => {
+                                    this.dbCanvasAppDatabase.table(localTableName).count(res => {
+                                        console.warn('xx UPDATE Disc count @ end ', res);
+                                    });
+                            });
+                        };
+                    };
+                }
+
+                // Delete an object
+                if (cacheAction.toLowerCase() == 'delete') {
+
+                    // Update Memory
+                    if (localCacheableMemory) {
+
+                        // Update local var
+                        if (localVariableName != null) {
+                            this[localVariableName] = this[localVariableName].filter(
+                                lv => {
+                                    return lv.id != cachedEntityID
+                                });
+                        };
+
+                        // Update Current Var
+                        if (localCurrentVariableName != null) {
+                            this[localCurrentVariableName] = this[localCurrentVariableName].filter(
+                                lv => {
+                                    return lv.id != cachedEntityID
+                                });
+                        };
+                        console.log('xx DELETE Memory updated', this[localVariableName], this[localCurrentVariableName])
+
+                    };
+
+                    // Update Disc
+                    if (localCacheableDisc) {
+                        // Delete from DB
+                        if (localTableName != null) {
+                            this.dbCanvasAppDatabase.table(localTableName)
+                                .where('id').equals(cachedEntityID)
+                                .delete()
+                                .then(res => {
+                                    this.dbCanvasAppDatabase.table(localTableName).count(res => {
+                                        console.warn('xx DELETE count @end', res);
+                                    });
+                            });
+                        };
+                    };
+                };
+
+                // Update dataCaching in Memory
+                let dt: Date = new Date();
+                let seconds: number = 86400;
+                if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
+                    seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
+                };
+                this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime =
+                    this.dateAdd(dt, 'second', seconds);
+                this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
+                today;
+                console.log('xx dataCachingTable memory upd', this.dataCachingTable)
+
+
+                // Update dataCaching on Disc
+                this.dbDataCachingTable.table("localDataCachingTable")
+                    .bulkPut(this.dataCachingTable)
+                    .then(res => {
+                        this.dbDataCachingTable.table("localDataCachingTable").count(res => {
+                            console.warn('xx localDataCachingTable count @end', res);
+                        });
+                });
+
+            };
+        return true;
     }
 
     getDashboardTabs(): Promise<DashboardTab[]> {
@@ -11823,6 +12000,7 @@ export class GlobalVariableService {
             //     this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
             // TODO - fix HARD Coding !!!
+            // TODO - add CACHED
             let pathUrl: string = '/canvasCurrentDashboard?id=68&dashboardTabID=175&datasourceIDexclude=1,2';
             let finalUrl: string = this.canvasServerURI + pathUrl;
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
