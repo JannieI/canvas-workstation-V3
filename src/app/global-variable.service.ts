@@ -2211,6 +2211,41 @@ export class GlobalVariableService {
 
     }
 
+    editDashboard(dashboardID: number): Promise<Dashboard> {
+        // Description: Gets all D
+        // Returns: this.dashboards array, unless:
+        //   If not cached or if dirty, get from File
+        if (this.sessionDebugging) {
+            console.log('%c        Global-Variables editDashboard ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        return new Promise<Dashboard>((resolve, reject) => {
+
+            let pathUrl: string = '/canvasDashboardEdit?dashboardID=' + dashboardID;
+            let finalUrl: string = this.canvasServerURI + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables editDashboard 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            "Current Dashboard retrieved")
+                    };
+
+                    resolve(res.data);
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
+        });
+    }
+
     copyDashboard(
         dashboardID: number,
         name: string = null,
@@ -2765,11 +2800,11 @@ export class GlobalVariableService {
     // Note: a Dashboard has two states: Complete and Draft
 
     // Special routes:
-    //      - Edit Dashboard, which creates the Draft Dashboard ()
+    //      - Edit Dashboard, which creates the Draft Dashboard (canvasDashboardEdit)
     //      - Discard Draft Dashboard (canvasDashboardDiscard)
     //      - Delete Dashboard with related entities (canvasDashboardDelete)
-    //      - Save Draft Dashboard, to Complete ()
-    //      - SaveAs Dashboard, making a copy of the Complete Dashboard ()
+    //      - Save Draft Dashboard, to Complete (canvasDashboardSaveDraft)
+    //      - SaveAs Dashboard, making a copy of the Complete Dashboard (canvasDashboardSaveAs)
 
     // 1. Core Entities are created when a Draft Dashboard is created, or a Dashboard is copied:
     //      Dashboards						
@@ -2785,7 +2820,7 @@ export class GlobalVariableService {
     //   Discard:
     //    - original/draft IDs updated on the Original Dashboard
     //    - The Draft Dashboard and core entities are deleted
-    //    Save Draft (to Complete):
+    //   Save Draft (to Complete):
     //    - the Complete Dashboard record content is updated with Draft content, and 
     //      original/draft IDs updated on the Original Dashboard
     //    - link core entities to the Original Dashboard (thus Ws are now linked to the Dashboard)
@@ -2854,7 +2889,7 @@ export class GlobalVariableService {
     //   Save Draft (to Complete):
     //    - Delete these entities
     //   Delete (Original):
-    //    - Delete these entities
+    //    - Null the D-id for these entities
     //   SaveAs (copy a Complete Dashboard):
     //    - No action
 
