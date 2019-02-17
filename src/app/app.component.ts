@@ -2595,38 +2595,29 @@ console.log('xx action', action)
                         .then(res => {
 
 
-                            this.globalVariableService.updateLocalCacheMemory(
-                                'add',
-                                res.dashboard.id,
-                                'dashboards',
-                                res.dashboard
+                            this.globalVariableService.addDashboardTo(
+                                res.dashboard,
+                                res.dashboardTabs,
+                                res.widgets,
+                                res.widgetCheckpoints
                             )
-                            this.globalVariableService.dashboardTabs.push(res.dashboardTabs)
-                            this.globalVariableService.widgets.push(res.widgets)
-                            this.globalVariableService.widgetCheckpoints.push(res.widgetCheckpoints)
+                            .then( () => {
 
+                                this.globalVariableService.refreshCurrentDashboard(
+                                    'app-clickMenuEditMode', res.dashboard.id, -1, ''
+                                );
 
+                                let today = new Date();
+                                let snapshotName: string = this.globalVariableService.dashboards[
+                                    dashboardIndex].name + ' '
+                                    + this.globalVariableService.formatDate(today);
+                                this.globalVariableService.newDashboardSnapshot(
+                                    snapshotName, 'Starting Edit Mode','StartEditMode'
+                                );
 
-
-
-
-
-
-                            this.globalVariableService.refreshCurrentDashboard(
-                                'app-clickMenuEditMode', res.dashboard.id, -1, ''
-                            );
-
-                            let today = new Date();
-                            let snapshotName: string = this.globalVariableService.dashboards[
-                                dashboardIndex].name + ' '
-                                + this.globalVariableService.formatDate(today);
-                            this.globalVariableService.newDashboardSnapshot(
-                                snapshotName, 'Starting Edit Mode','StartEditMode'
-                            );
-
-                            // Toggle mode
-                            this.globalVariableService.editMode.next(!this.editMode);
-
+                                // Toggle mode
+                                this.globalVariableService.editMode.next(!this.editMode);
+                            })
                         });
                     };
                 } else {
