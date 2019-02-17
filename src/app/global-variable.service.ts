@@ -3265,19 +3265,24 @@ export class GlobalVariableService {
 
     }
 
-    updateLocalCacheMemory(cacheAction: string, cachedEntityID: number, cachedEntityName: string, cachedEntityData: any): boolean {
+    updateLocalCacheMemory(
+        cacheAction: string, 
+        cachedEntityID: number, 
+        cachedEntityName: string, 
+        cachedEntityData: any): Promise<boolean> {
         // Amend local Workstation Memory Cache
         //   cacheAction = add, update, delete
-        //   cachedEntityName = variable to amend, ie dashboards
-        //   cachedEntityData = data to add, update, delete
+        //   cachedEntityID = ID of the entity to amend, ie 9 (for say dashboardID = 9)
+        //   cachedEntityName = variable to amend, ie dashboards (for caching Table lookup)
+        //   cachedEntityData = data to add, update
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardTabs ...',
+            console.log('%c    Global-Variables updateLocalCacheMemory ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-
-        let today = new Date();
+        return new Promise<boolean>((resolve, reject) => {
+            let today = new Date();
 
             // Find object in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
@@ -3443,7 +3448,10 @@ export class GlobalVariableService {
                 });
 
             };
-        return true;
+        
+            // Done
+            resolve(true);
+        });
     }
 
     getDashboardTabs(): Promise<DashboardTab[]> {
