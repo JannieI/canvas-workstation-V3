@@ -11812,7 +11812,7 @@ export class GlobalVariableService {
         //
         // Clear the CurrentXXX vars and reload with the info read from the DB.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDashboardAndTab ...',
+            console.log('%c    Global-Variables getCurrentDashboardAndTabNEW ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {dashboardTabID}, {datasourceIDexclude});
         };

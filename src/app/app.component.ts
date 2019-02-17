@@ -2589,9 +2589,10 @@ console.log('xx action', action)
 
                     } else {
 
-                        this.globalVariableService.copyDashboard(
-                            localDashboard.id, null, 'Draft'
-                        ).then(res => {
+                        // this.globalVariableService.copyDashboard(
+                        //     localDashboard.id, null, 'Draft'
+                        this.globalVariableService.editDashboard(localDashboard.id)
+                        .then(res => {
 
                             this.globalVariableService.refreshCurrentDashboard(
                                 'app-clickMenuEditMode', res.id, -1, ''
