@@ -2149,8 +2149,6 @@ export class GlobalVariableService {
         });
     }
 
-
-
     getDashboards(params: string = ''): Promise<Dashboard[]> {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
@@ -3263,6 +3261,60 @@ export class GlobalVariableService {
             });
         };
 
+    }
+
+    addDashboardToCache(dashboard: Dashboard,        
+        dashboardTabs: DashboardTab[],
+        widgets: Widget[],
+        widgetCheckpoints: WidgetCheckpoint[]
+        ): Promise<boolean> {
+        // Add a Dashboard with Core Entities to cache
+
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDashboardToCache ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        // TODO - this does NOT cater for async case when cached is only on Disc 
+        //        => may not be ready before refreshDashboard is run !!
+        return new Promise<boolean>((resolve, reject) => {
+            this.updateLocalCacheMemory(
+                'add', 
+                dashboard.id, 
+                'dashboards', 
+                dashboard
+            );
+
+            dashboardTabs.forEach(dashboardTab => {
+                this.updateLocalCacheMemory(
+                    'add', 
+                    dashboardTab.id, 
+                    'dashboardTabs', 
+                    dashboardTab
+                );
+            });
+
+            widgets.forEach(widget => {
+                this.updateLocalCacheMemory(
+                    'add', 
+                    widget.id, 
+                    'widgets', 
+                    widget
+                );
+            });
+
+            widgetCheckpoints.forEach(widgetCheckpoint => {
+                this.updateLocalCacheMemory(
+                    'add', 
+                    widgetCheckpoint.id, 
+                    'widgetCheckpoints', 
+                    widgetCheckpoint
+                );
+            });
+
+            // Done
+            resolve(true);
+        });
     }
 
     updateLocalCacheMemory(

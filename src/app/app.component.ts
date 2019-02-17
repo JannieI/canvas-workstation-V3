@@ -2595,7 +2595,7 @@ console.log('xx action', action)
                         .then(res => {
 
 
-                            this.globalVariableService.addDashboardTo(
+                            this.globalVariableService.addDashboardToCache(
                                 res.dashboard,
                                 res.dashboardTabs,
                                 res.widgets,
