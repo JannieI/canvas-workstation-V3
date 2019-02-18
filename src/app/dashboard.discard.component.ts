@@ -90,19 +90,24 @@ export class DashboardDiscardComponent implements OnInit {
         // Delete the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDiscard', '@Start');
 
-        let dashboardOrignal: number = +this.globalVariableService.discardDashboard();
+        let dashboardOrignal: number = +this.globalVariableService.discardDashboard()
+            .then(res => {
 
-        // Navigate to original
-        if (!isNaN(dashboardOrignal)) {
-            this.globalVariableService.refreshCurrentDashboard(
-                'discardDashboard-clickDiscard', dashboardOrignal, -1, ''
-            );
-            this.globalVariableService.editMode.next(false);
-            this.formDashboardDiscardClosed.emit(action); 
-    
-        } else {
-            alert ('Error encountered with delete in discardDashboard');
-        }
+                // Navigate to original
+                if (!isNaN(dashboardOrignal)) {
+                    this.globalVariableService.refreshCurrentDashboard(
+                        'discardDashboard-clickDiscard', dashboardOrignal, -1, ''
+                    );
+                    this.globalVariableService.editMode.next(false);
+                    this.formDashboardDiscardClosed.emit(action); 
+            
+                } else {
+                    alert ('Error encountered with delete in discardDashboard');
+                }
+            })
+            .catch(err => {
+                alert ('Error encountered with delete in discardDashboard');
+            })
     }
 
 }
