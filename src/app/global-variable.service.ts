@@ -2471,7 +2471,7 @@ export class GlobalVariableService {
         };
     }
 
-    discardDashboard(): Promise<boolean> {
+    discardDashboard(): Promise<number> {
         // Discards the Current Draft Dashboard, which means all changes are deleted
         // Returns true if successfull
 
@@ -2480,12 +2480,13 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        return new Promise<boolean>((resolve, reject) => {
+        return new Promise<number>((resolve, reject) => {
 
             // 1. Update the Original/Draft ids on the original
             let draftDashboardID: number = this.currentDashboardInfo.value.currentDashboardID;
             let draftDashboard: Dashboard = this.letDashboard(draftDashboardID);
             let originalDashboard: Dashboard = this.letDashboard(draftDashboard.originalID);
+            let originalDashboardID: number = originalDashboard.id;
 
             if (draftDashboard.state != 'Draft') {
                 reject('This is not a draft Dashboard');
@@ -2502,13 +2503,13 @@ export class GlobalVariableService {
             let finalUrl: string = this.canvasServerURI + pathUrl;
 
             this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID=' 
-                + draftDashboardID + '&originalDashboardID=' + originalDashboard.id, null, {headers})
+                + draftDashboardID + '&originalDashboardID=' + originalDashboardID, null, {headers})
                 .subscribe(
                     res => {
                         if(res.statusCode != 'success') {
                             reject('Error deleting Draft Dashboard: '+ res.message);
                         };
-                        resolve(true);
+                        resolve(originalDashboardID);
                     },
                     err => {
                         console.log('Error deleteDashboard FAILED', {err});
