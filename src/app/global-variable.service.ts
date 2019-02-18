@@ -2471,7 +2471,7 @@ export class GlobalVariableService {
         };
     }
 
-    discardDashboard(): number | string {
+    discardDashboard(): Promise<number | string> {
         // Discards a Draft Dashboard, which means all changes are deleted
         // Returns originalID (from which Draft D was copied)
 
@@ -2488,55 +2488,61 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        // 1. Update the Original/Draft ids on the original
-        let draftDashboardID: number = this.currentDashboardInfo.value.currentDashboardID;
-        let draftDashboard: Dashboard = this.letDashboard(draftDashboardID);
+        return new Promise<any>((resolve, reject) => {
 
-        if (draftDashboard.state != 'Draft') {
-            return('This is not a draft Dashboard');
-        };
+            // 1. Update the Original/Draft ids on the original
+            let draftDashboardID: number = this.currentDashboardInfo.value.currentDashboardID;
+            let draftDashboard: Dashboard = this.letDashboard(draftDashboardID);
 
-        let originalID: number = draftDashboard.originalID;
-        let originalDashboard: Dashboard = this.letDashboard(originalID);
-        originalDashboard.originalID = null;
-        originalDashboard.draftID = null;
-        this.saveResource('dashboards', originalDashboard);
-        
-        // 2.1 Clear related Actions in Memory
-        this.actions = this.actions.filter(act => act.dashboardID != draftDashboardID);
+            if (draftDashboard.state != 'Draft') {
+                return('This is not a draft Dashboard');
+            };
 
-        // 2.2 Messages & Tasks
-        const headers = new HttpHeaders()
-            .set("Content-Type", "application/json");
+            let originalID: number = draftDashboard.originalID;
+            let originalDashboard: Dashboard = this.letDashboard(originalID);
+            originalDashboard.originalID = null;
+            originalDashboard.draftID = null;
+            this.saveResource('dashboards', originalDashboard)
+                .then( () => {
+                
+                    // 2.1 Clear related Actions in Memory
+                    this.actions = this.actions.filter(act => act.dashboardID != draftDashboardID);
 
-        let pathUrl: string = '/canvasDashboardDiscard';
-        let finalUrl: string = this.canvasServerURI + pathUrl;
+                    // 2.2 Messages & Tasks
+                    const headers = new HttpHeaders()
+                        .set("Content-Type", "application/json");
 
-        this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID=' 
-            + draftDashboardID + '&originalDashboard=' + originalDashboard, null, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        return 'Error deleteDashboard FAILED: '+ res.message;
-                    };
+                    let pathUrl: string = '/canvasDashboardDiscard';
+                    let finalUrl: string = this.canvasServerURI + pathUrl;
 
-                    // 3. Delete Draft D
-                    this.deleteDashboardInfo(draftDashboardID)
-                    .then( ()=> {
-                        return originalID;
-                    })
-                    .catch(err => {
-                        return 'Error deleting Draft Dashboard: ' + err;
-                    });
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDashboard FAILED', {err});
-                    };
+                    this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID=' 
+                        + draftDashboardID + '&originalDashboard=' + originalDashboard, null, {headers})
+                        .subscribe(
+                            res => {
+                                if(res.statusCode != 'success') {
+                                    reject('Error deleting Draft Dashboard: '+ res.message);
+                                };
 
-                    return 'Error deleteDashboard FAILED: '+ err.message;
-                }
-            )
+                                // 3. Delete Draft D
+                                this.deleteDashboardInfo(draftDashboardID)
+                                    .then( ()=> {
+                                        resolve(originalID);
+                                    })
+                                    .catch(err => {
+                                        reject('Error deleting Draft Dashboard: ' + err.message);
+                                    });
+                            },
+                            err => {
+                                console.log('Error deleteDashboard FAILED', {err});
+                                reject('Error deleteDashboard FAILED: ' + err.message);
+                            }
+                        )
+                })
+                .catch(err => {
+                    console.log('Error saveDashboard FAILED', {err});
+                    reject('Error saveDashboard FAILED: ' + err.message);
+                })
+        })
     }
 
     saveDraftDashboard(deleteSnapshots: boolean): Promise<number> {
