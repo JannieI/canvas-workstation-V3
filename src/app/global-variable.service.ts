@@ -3271,6 +3271,15 @@ export class GlobalVariableService {
         // Add a Dashboard with Core Entities to cache
 
         if (this.sessionDebugging) {
+
+
+
+
+            // TODO - REMOVE after testing !!!
+            return;
+
+
+
             console.log('%c    Global-Variables addDashboardToCache ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };

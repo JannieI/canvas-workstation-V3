@@ -2589,22 +2589,22 @@ console.log('xx action', action)
 
                     } else {
 
-                        // this.globalVariableService.copyDashboard(
-                        //     localDashboard.id, null, 'Draft'
-                        this.globalVariableService.editDashboard(localDashboard.id)
+                        this.globalVariableService.copyDashboard(
+                            localDashboard.id, null, 'Draft')
                         .then(res => {
+                        // this.globalVariableService.editDashboard(localDashboard.id)
+                        // .then(res => {
 
-
-                            this.globalVariableService.addDashboardToCache(
-                                res.dashboard,
-                                res.dashboardTabs,
-                                res.widgets,
-                                res.widgetCheckpoints
-                            )
-                            .then( () => {
+                            // this.globalVariableService.addDashboardToCache(
+                            //     res.dashboard,
+                            //     res.dashboardTabs,
+                            //     res.widgets,
+                            //     res.widgetCheckpoints
+                            // )
+                            // .then( () => {
 
                                 this.globalVariableService.refreshCurrentDashboard(
-                                    'app-clickMenuEditMode', res.dashboard.id, -1, ''
+                                    'app-clickMenuEditMode', res.id, -1, ''
                                 );
 
                                 let today = new Date();
@@ -2618,7 +2618,7 @@ console.log('xx action', action)
                                 // Toggle mode
                                 this.globalVariableService.editMode.next(!this.editMode);
                             })
-                        });
+                        // });
                     };
                 } else {
                     this.globalVariableService.editMode.next(true);
