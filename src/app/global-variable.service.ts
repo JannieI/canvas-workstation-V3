@@ -2516,7 +2516,7 @@ export class GlobalVariableService {
                     let finalUrl: string = this.canvasServerURI + pathUrl;
 
                     this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID=' 
-                        + draftDashboardID + '&originalDashboard=' + originalDashboard, null, {headers})
+                        + draftDashboardID + '&originalDashboardID=' + originalDashboard.id, null, {headers})
                         .subscribe(
                             res => {
                                 if(res.statusCode != 'success') {
