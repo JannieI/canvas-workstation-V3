@@ -2471,8 +2471,8 @@ export class GlobalVariableService {
         };
     }
 
-    discardDashboard(): Promise<number | string> {
-        // Discards a Draft Dashboard, which means all changes are deleted
+    discardDashboard(): Promise<number> {
+        // Discards the Current Draft Dashboard, which means all changes are deleted
         // Returns originalID (from which Draft D was copied)
 
         // 1. Update the Original/Draft ids on the original
@@ -2488,14 +2488,14 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        return new Promise<any>((resolve, reject) => {
+        return new Promise<number>((resolve, reject) => {
 
             // 1. Update the Original/Draft ids on the original
             let draftDashboardID: number = this.currentDashboardInfo.value.currentDashboardID;
             let draftDashboard: Dashboard = this.letDashboard(draftDashboardID);
 
             if (draftDashboard.state != 'Draft') {
-                return('This is not a draft Dashboard');
+                reject('This is not a draft Dashboard');
             };
 
             let originalID: number = draftDashboard.originalID;
