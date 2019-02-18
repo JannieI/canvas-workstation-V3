@@ -2471,77 +2471,50 @@ export class GlobalVariableService {
         };
     }
 
-    discardDashboard(): Promise<number> {
+    discardDashboard(): Promise<boolean> {
         // Discards the Current Draft Dashboard, which means all changes are deleted
-        // Returns originalID (from which Draft D was copied)
-
-        // 1. Update the Original/Draft ids on the original
-        // 2. Related Entities are treated as follows:
-        //    2.1 CanvasActions                    -  Clear from Memory
-        //    2.2 CanvasMessages				   -  Point to Original
-        //        CanvasTasks                      -  Point to Orignal
-        //        AuditTrails are kept unchanged; the D-id thus dont exist any longer
-        // 3. Delete the Draft Dashboard
+        // Returns true if successfull
 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables discardDashboard ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        return new Promise<number>((resolve, reject) => {
+        return new Promise<boolean>((resolve, reject) => {
 
             // 1. Update the Original/Draft ids on the original
             let draftDashboardID: number = this.currentDashboardInfo.value.currentDashboardID;
             let draftDashboard: Dashboard = this.letDashboard(draftDashboardID);
+            let originalDashboard: Dashboard = this.letDashboard(draftDashboard.originalID);
 
             if (draftDashboard.state != 'Draft') {
                 reject('This is not a draft Dashboard');
             };
+            
+            // Clear related Actions in Memory
+            this.actions = this.actions.filter(act => act.dashboardID != draftDashboardID);
 
-            let originalID: number = draftDashboard.originalID;
-            let originalDashboard: Dashboard = this.letDashboard(originalID);
-            originalDashboard.originalID = null;
-            originalDashboard.draftID = null;
-            this.saveResource('dashboards', originalDashboard)
-                .then( () => {
-                
-                    // 2.1 Clear related Actions in Memory
-                    this.actions = this.actions.filter(act => act.dashboardID != draftDashboardID);
+            // Perform steps (business logic in Server)
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
 
-                    // 2.2 Messages & Tasks
-                    const headers = new HttpHeaders()
-                        .set("Content-Type", "application/json");
+            let pathUrl: string = '/canvasDashboardDiscard';
+            let finalUrl: string = this.canvasServerURI + pathUrl;
 
-                    let pathUrl: string = '/canvasDashboardDiscard';
-                    let finalUrl: string = this.canvasServerURI + pathUrl;
-
-                    this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID=' 
-                        + draftDashboardID + '&originalDashboardID=' + originalDashboard.id, null, {headers})
-                        .subscribe(
-                            res => {
-                                if(res.statusCode != 'success') {
-                                    reject('Error deleting Draft Dashboard: '+ res.message);
-                                };
-
-                                // 3. Delete Draft D
-                                this.deleteDashboardInfo(draftDashboardID)
-                                    .then( ()=> {
-                                        resolve(originalID);
-                                    })
-                                    .catch(err => {
-                                        reject('Error deleting Draft Dashboard: ' + err.message);
-                                    });
-                            },
-                            err => {
-                                console.log('Error deleteDashboard FAILED', {err});
-                                reject('Error deleteDashboard FAILED: ' + err.message);
-                            }
-                        )
-                })
-                .catch(err => {
-                    console.log('Error saveDashboard FAILED', {err});
-                    reject('Error saveDashboard FAILED: ' + err.message);
-                })
+            this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID=' 
+                + draftDashboardID + '&originalDashboardID=' + originalDashboard.id, null, {headers})
+                .subscribe(
+                    res => {
+                        if(res.statusCode != 'success') {
+                            reject('Error deleting Draft Dashboard: '+ res.message);
+                        };
+                        resolve(true);
+                    },
+                    err => {
+                        console.log('Error deleteDashboard FAILED', {err});
+                        reject('Error deleteDashboard FAILED: ' + err.message);
+                    }
+                )
         })
     }
 
