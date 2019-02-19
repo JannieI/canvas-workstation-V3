@@ -2538,16 +2538,15 @@ export class GlobalVariableService {
         };
 
         // Set to current
-        let draftDashboardID = this.currentDashboardInfo.value.currentDashboardID;
-        let draftDashboard = this.letDashboard(draftDashboardID);
-        let originalID = draftDashboard.originalID;
-        let originalDashboard = this.letDashboard(originalID);
+        // let draftDashboardID = this.currentDashboardInfo.value.currentDashboardID;
+        // let draftDashboard = this.letDashboard(draftDashboardID);
+        // let originalID = draftDashboard.originalID;
+        // let originalDashboard = this.letDashboard(originalID);
         // let draftTabs: DashboardTab[] = this.dashboardTabs.filter(
         //     t => t.dashboardID == draftID
         // );
 
         // Remove relevant Actions
-        this.actions = this.actions.filter(d => d.id  != draftDashboardID);
         // this.actions.forEach(act => {
         //     draftTabs.forEach(t => {
         //         if (act.dashboardID == t.dashboardID
@@ -2699,66 +2698,102 @@ export class GlobalVariableService {
         // Change the D
         return new Promise<number>((resolve, reject) => {
 
-            let promiseArray = [];
+            // 1. Update the Original/Draft ids on the original
+            let draftDashboardID: number = this.currentDashboardInfo.value.currentDashboardID;
+            let draftDashboard: Dashboard = this.letDashboard(draftDashboardID);
+            let originalDashboard: Dashboard = this.letDashboard(draftDashboard.originalID);
+            let originalDashboardID: number = originalDashboard.id;
 
-            // Remove existing entities from Original Version:
-            // - Tabs, Widgets, Checkpoints
-            this.dashboardTabs.forEach(t => {
-                if (t.dashboardID == originalID) {
-                    promiseArray.push(this.deleteDashboardTab(t.id));
-                };
-            });
-            this.widgets.forEach(w => {
-                if (w.dashboardID == originalID) {
-                    promiseArray.push(this.deleteWidget(w.id));
-                };
-            });
-            this.widgetCheckpoints.forEach(chk => {
-                if (chk.dashboardID == originalID) {
-                    promiseArray.push(this.deleteWidgetCheckpoint(chk.id));
-                };
-            });
+            if (draftDashboard.state != 'Draft') {
+                reject('This is not a draft Dashboard');
+            };
+            
+            // Clear related Actions in Memory
+            this.actions = this.actions.filter(act => act.dashboardID != draftDashboardID);
 
-            // Move properties and entities from Draft to Original version:
-            // - Tabs, Widgets, Checkpoints
-            this.dashboardTabs.forEach(t => {
-                if (t.dashboardID == draftDashboardID) {
-                    t.dashboardID = originalID;
-                    t.originalID = null;
-                    promiseArray.push(this.saveDashboardTab(t));
-                };
-            });
+            // Perform steps (business logic in Server)
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
 
-            this.widgets.forEach(w => {
-                if (w.dashboardID == draftDashboardID) {
-                    w.dashboardID = originalID;
-                    w.originalID = null;
-                    promiseArray.push(this.saveWidget(w));
-                };
-            });
-            this.widgetCheckpoints.forEach(chk => {
-                if (chk.dashboardID == draftDashboardID) {
-                    chk.dashboardID = originalID;
-                    chk.originalID = null;
-                    promiseArray.push(this.saveWidgetCheckpoint(chk));
-                };
-            });
+            let pathUrl: string = '/canvasDashboardSaveDraft';
+            let finalUrl: string = this.canvasServerURI + pathUrl;
 
-            // Remove Draft D from DB - we still have draftDashboard in memory
-            this.deleteDashboard(draftDashboardID);
-
-            // Perform all the promises
-            this.allWithAsync(...promiseArray).then(resolvedData => {
-                // Dashboard
-                originalDashboard = JSON.parse(JSON.stringify(draftDashboard));
-                originalDashboard.id = originalID;
-                originalDashboard.state = 'Complete';
-                this.saveDashboard(originalDashboard).then(res => {
-                    resolve(originalID);
-                })
-            });
+            this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID=' 
+                + draftDashboardID + '&originalDashboardID=' + originalDashboardID, null, {headers})
+                .subscribe(
+                    res => {
+                        if(res.statusCode != 'success') {
+                            reject('Error saving Draft Dashboard: '+ res.message);
+                        };
+                        resolve(originalDashboardID);
+                    },
+                    err => {
+                        console.log('Error saveDashboard FAILED', {err});
+                        reject('Error deleteDashboard FAILED: ' + err.message);
+                    }
+                )
 
         });
+        //     let promiseArray = [];
+
+        //     // Remove existing entities from Original Version:
+        //     // - Tabs, Widgets, Checkpoints
+        //     this.dashboardTabs.forEach(t => {
+        //         if (t.dashboardID == originalID) {
+        //             promiseArray.push(this.deleteDashboardTab(t.id));
+        //         };
+        //     });
+        //     this.widgets.forEach(w => {
+        //         if (w.dashboardID == originalID) {
+        //             promiseArray.push(this.deleteWidget(w.id));
+        //         };
+        //     });
+        //     this.widgetCheckpoints.forEach(chk => {
+        //         if (chk.dashboardID == originalID) {
+        //             promiseArray.push(this.deleteWidgetCheckpoint(chk.id));
+        //         };
+        //     });
+
+        //     // Move properties and entities from Draft to Original version:
+        //     // - Tabs, Widgets, Checkpoints
+        //     this.dashboardTabs.forEach(t => {
+        //         if (t.dashboardID == draftDashboardID) {
+        //             t.dashboardID = originalID;
+        //             t.originalID = null;
+        //             promiseArray.push(this.saveDashboardTab(t));
+        //         };
+        //     });
+
+        //     this.widgets.forEach(w => {
+        //         if (w.dashboardID == draftDashboardID) {
+        //             w.dashboardID = originalID;
+        //             w.originalID = null;
+        //             promiseArray.push(this.saveWidget(w));
+        //         };
+        //     });
+        //     this.widgetCheckpoints.forEach(chk => {
+        //         if (chk.dashboardID == draftDashboardID) {
+        //             chk.dashboardID = originalID;
+        //             chk.originalID = null;
+        //             promiseArray.push(this.saveWidgetCheckpoint(chk));
+        //         };
+        //     });
+
+        //     // Remove Draft D from DB - we still have draftDashboard in memory
+        //     this.deleteDashboard(draftDashboardID);
+
+        //     // Perform all the promises
+        //     this.allWithAsync(...promiseArray).then(resolvedData => {
+        //         // Dashboard
+        //         originalDashboard = JSON.parse(JSON.stringify(draftDashboard));
+        //         originalDashboard.id = originalID;
+        //         originalDashboard.state = 'Complete';
+        //         this.saveDashboard(originalDashboard).then(res => {
+        //             resolve(originalID);
+        //         })
+        //     });
+
+        // });
 
     }
 
