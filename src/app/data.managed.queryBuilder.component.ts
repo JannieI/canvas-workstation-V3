@@ -87,12 +87,16 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
         // Set base info
         this.serverTypes = this.globalVariableService.serverTypes.slice();
-        this.globalVariableService.getDataConnections().then(dc => {
-            this.dataConnections = dc.slice();
-            this.dataConnectionNames = this.dataConnections.map(con => con.connectionName);
-            this.dataConnectionNames = ['', ...this.dataConnectionNames];
-            console.warn('xx this.dataConnectionNames = ', this.dataConnectionNames )
-        });
+        this.globalVariableService.getResource('dataConnections')
+            .then(dc => {
+                this.dataConnections = dc.slice();
+                this.dataConnectionNames = this.dataConnections.map(con => con.connectionName);
+                this.dataConnectionNames = ['', ...this.dataConnectionNames];
+                console.warn('xx this.dataConnectionNames = ', this.dataConnectionNames )
+            })
+            .catch(err => {
+                this.errorMessage = err;
+            });
 
         if (!this.editingDS) {
             this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
