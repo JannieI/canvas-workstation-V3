@@ -2681,12 +2681,12 @@ export class GlobalVariableService {
         // The following are converted seamlessly, and pointers to Draft become pointers
         // to the original:
         // - template Dashboard
-        this.dashboards.forEach(d => {
-            if (d.templateDashboardID == draftDashboardID) {
-                d.templateDashboardID = originalID;
-                this.saveDashboard(d);
-            };
-        });
+        // this.dashboards.forEach(d => {
+        //     if (d.templateDashboardID == draftDashboardID) {
+        //         d.templateDashboardID = originalID;
+        //         this.saveDashboard(d);
+        //     };
+        // });
 
         // - hyperlinked Dashboard
         this.widgets.forEach(w => {
