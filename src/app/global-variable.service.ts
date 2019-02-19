@@ -1140,8 +1140,8 @@ export class GlobalVariableService {
     // dataOwnerships: DataOwnership[] = [];
     // currentDataOwnerships: DataOwnership[] = [];
     // isDirtyDataOwnership: boolean = true;
-    canvasTasks: CanvasTask[] = [];
-    isDirtyCanvasTasks: boolean = true;
+    // canvasTasks: CanvasTask[] = [];
+    // isDirtyCanvasTasks: boolean = true;
     // containerStyles: ContainerStyle[] = [];
     // isDirtyContainerStyles: boolean = true;
     dashboardScheduleLog: DashboardScheduleLog[] = [];
