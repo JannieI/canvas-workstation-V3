@@ -60,12 +60,17 @@ export class DataManagedConnectionComponent implements OnInit {
 
         this.clearRecord();
 
-        this.globalVariableService.getDataConnections().then(dc => {
-            this.dataConnections = dc.slice();
-            if (this.dataConnections.length > 0) {
-                this.clickRow(0, this.dataConnections[0].id);
-            };
-        });
+        // this.globalVariableService.getDataConnections()
+        this.globalVariableService.getResource('dataConnections')
+            .then(dc => {
+                this.dataConnections = dc.slice();
+                if (this.dataConnections.length > 0) {
+                    this.clickRow(0, this.dataConnections[0].id);
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err;
+            });
 
     }
 
