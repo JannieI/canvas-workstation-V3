@@ -2667,6 +2667,13 @@ export class GlobalVariableService {
             // Clear related Actions in Memory
             this.actions = this.actions.filter(act => act.dashboardID != draftDashboardID);
 
+            // TODO - Fix this with single Caching routine
+            // For now, just make the core Dashboard entities dirty
+            this.isDirtyDashboards = true;
+            this.isDirtyDashboardTabs = true;
+            this.isDirtyWidgets = true;
+            this.isDirtyWidgetCheckpoints = true;
+            
             // Perform steps (business logic in Server)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
