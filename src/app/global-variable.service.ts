@@ -4167,57 +4167,6 @@ export class GlobalVariableService {
         });
     }
 
-    saveDataConnection(data: DataConnection): Promise<string> {
-        // Description: Saves DataConnection
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDataConnection ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dataConnections';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.dataConnections.findIndex(d =>
-                        d.id == data.id
-                    );
-                    this.dataConnections[localIndex] = data;
-
-                    if (this.sessionDebugging) {
-                        console.log('saveDataConnection SAVED', res.data)
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveDataConnection FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteDataConnection(id: number): Promise<string> {
         // Description: Deletes a DataConnections
         // Returns: 'Deleted' or error message
