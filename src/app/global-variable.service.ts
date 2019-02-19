@@ -2154,7 +2154,7 @@ export class GlobalVariableService {
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c        Global-Variables getDashboards ...',
+            console.log('%c    Global-Variables getDashboards ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
@@ -2203,41 +2203,41 @@ export class GlobalVariableService {
 
     }
 
-    editDashboard(dashboardID: number): Promise<any> {
-        // Description: Gets all D
-        // Returns: this.dashboards array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c        Global-Variables editDashboard ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
+    // editDashboard(dashboardID: number): Promise<any> {
+    //     // Description: Gets all D
+    //     // Returns: this.dashboards array, unless:
+    //     //   If not cached or if dirty, get from File
+    //     if (this.sessionDebugging) {
+    //         console.log('%c        Global-Variables editDashboard ...',
+    //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+    //     };
 
-        return new Promise<any>((resolve, reject) => {
+    //     return new Promise<any>((resolve, reject) => {
 
-            let pathUrl: string = '/canvasDashboardEdit?dashboardID=' + dashboardID;
-            let finalUrl: string = this.canvasServerURI + pathUrl;
-            console.log('finalUrl', finalUrl)
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
+    //         let pathUrl: string = '/canvasDashboardEdit?dashboardID=' + dashboardID;
+    //         let finalUrl: string = this.canvasServerURI + pathUrl;
+    //         console.log('finalUrl', finalUrl)
+    //         this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+    //             res  => {
+    //                 if(res.statusCode != 'success') {
+    //                     reject(res.message);
+    //                     return;
+    //                 };
 
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables editDashboard 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            "Draft created for current Dashboard")
-                    };
+    //                 if (this.sessionDebugging) {
+    //                     console.log('%c    Global-Variables editDashboard 1',
+    //                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+    //                         "Draft created for current Dashboard")
+    //                 };
 
-                    resolve(res.data);
-                },
-                err => {
-                    reject(err.message)
-                }
-            );
-        });
-    }
+    //                 resolve(res.data);
+    //             },
+    //             err => {
+    //                 reject(err.message)
+    //             }
+    //         );
+    //     });
+    // }
 
     copyDashboard(
         dashboardID: number,
