@@ -1346,50 +1346,6 @@ export class GlobalVariableService {
         });
     }
 
-    refreshCurrentDatasourceInfo(datasourceID: number): Promise<boolean> {
-        // Refreshes all info related to current DS, but NOT currentDatasources
-        // Returns True if all worked, False if something went wrong
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables refreshCurrentDatasourceInfo',
-                "color: black; background: lightgray; font-size: 10px", {datasourceID})
-        };
-
-        // Get lates dSet for give DSid
-        // TODO - decide if lates / -1 is best choice here
-        let ds: number[] = [];
-        let dSetID: number = 1;
-        for (var i = 0; i < this.datasets.length; i++) {
-            if(this.datasets[i].datasourceID == datasourceID) {
-                ds.push(this.datasets[i].id)
-            };
-        };
-        if (ds.length > 0) {
-            dSetID = Math.max(...ds);
-        };
-
-        // Load the current Dashboard, and Optional template.  The dependants are stakced
-        // in a Promise chain, to ensure we have all or nothing ...
-
-        return new Promise<boolean>((resolve, reject) => {
-            // Load data
-            this.getCurrentDataset(datasourceID, dSetID).then (j =>
-            // Load Permissions for DS
-            this.getCurrentDatasourcePermissions(datasourceID).then(k =>
-            // Load Transformations
-            this.getCurrentTransformations(datasourceID).then(
-            // Load dataQuality Issues
-        //     this.getCurrentDataQualityIssues(datasourceID).then( o =>
-        //         // Reset Global Vars
-        //         {
-        //             resolve(true)
-        //         }
-        // )
-        )
-        )
-        );
-        });
-    }
-
     actionWebSocket(webSocketMessage: WebSocketMessage) {
         // Handles all the WebSocket messages, depending on the type messageType and Action
         // It is async, so returns a Promise<boolean>
