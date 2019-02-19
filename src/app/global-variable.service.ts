@@ -2645,11 +2645,11 @@ export class GlobalVariableService {
         // });
 
         // - entry in recent Dashboards for the Draft
-        this.dashboardsRecent.forEach(rec => {
-            if (rec.dashboardID == draftDashboardID) {
-                this.deleteDashboardRecent(rec.id);
-            };
-        });
+        // this.dashboardsRecent.forEach(rec => {
+        //     if (rec.dashboardID == draftDashboardID) {
+        //         this.deleteDashboardRecent(rec.id);
+        //     };
+        // });
 
         // - flag for Favourite Dashboard
         // - flag for Startup Dashboard
