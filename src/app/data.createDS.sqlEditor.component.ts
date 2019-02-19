@@ -104,9 +104,13 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
         // Set base info
         this.serverTypes = this.globalVariableService.serverTypes.slice();
-        this.globalVariableService.getDataConnections().then(dc => {
-            this.dataConnections = dc.slice();
-        });
+        this.globalVariableService.getResource('dataConnections')
+            .then(dc => {
+                this.dataConnections = dc.slice();
+            })
+            .catch(err => {
+                alert(' Add this.errorMessage = err');
+            });
 
         if (this.selectedDatasource == null) {
             this.isEditing = false;

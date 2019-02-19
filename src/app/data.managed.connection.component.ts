@@ -60,7 +60,6 @@ export class DataManagedConnectionComponent implements OnInit {
 
         this.clearRecord();
 
-        // this.globalVariableService.getDataConnections()
         this.globalVariableService.getResource('dataConnections')
             .then(dc => {
                 this.dataConnections = dc.slice();
