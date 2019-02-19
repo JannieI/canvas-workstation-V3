@@ -8346,59 +8346,6 @@ export class GlobalVariableService {
         })
     }
 
-    getBackgroundColorsDefault(): Promise<CSScolor[]> {
-        // Description: Gets the DEFAULT (built-in) Background colors
-        // Returns: this.backgroundcolors array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getBackgroundColorsDefault ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<CSScolor[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.backgroundcolorsDefault.length == 0)  ||  (this.isDirtyBackgroundColorsDefault) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'canvasBackgroundcolorsDefault';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-                            return;
-                        };
-                        this.backgroundcolorsDefault = res.data;
-
-                        this.isDirtyBackgroundColorsDefault = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getBackgroundColorsDefault 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.backgroundcolorsDefault)
-                        };
-
-                        resolve(this.backgroundcolorsDefault);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getBackgroundColorsDefault 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.backgroundcolorsDefault)
-                };
-
-                resolve(this.backgroundcolorsDefault);
-            }
-        });
-
-    }
-
     getBackgroundColors(): Promise<CSScolor[]> {
         // Description: Gets all Background colors
         // Returns: this.backgroundcolors array, unless:
