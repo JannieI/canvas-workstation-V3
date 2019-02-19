@@ -2538,45 +2538,44 @@ export class GlobalVariableService {
         };
 
         // Set to current
-        let draftID = this.currentDashboardInfo.value.currentDashboardID;
-        let draftDashboard = this.letDashboard(draftID);
+        let draftDashboardID = this.currentDashboardInfo.value.currentDashboardID;
+        let draftDashboard = this.letDashboard(draftDashboardID);
         let originalID = draftDashboard.originalID;
         let originalDashboard = this.letDashboard(originalID);
-        let draftTabs: DashboardTab[] = this.dashboardTabs.filter(
-            t => t.dashboardID == draftID
-        );
+        // let draftTabs: DashboardTab[] = this.dashboardTabs.filter(
+        //     t => t.dashboardID == draftID
+        // );
 
-        // The following are moved (added to the original version), removing any links
-        // to the Draft version:
-        // - Actions
-        this.actions.forEach(act => {
-            draftTabs.forEach(t => {
-                if (act.dashboardID == t.dashboardID
-                    &&
-                    act.dashboardTabID == t.id) {
-                        act.dashboardID = originalID;
-                        act.dashboardTabID = t.originalID;
-                        this.actionUpsert(
-                            act.id,
-                            act.dashboardID,
-                            act.dashboardTabID,
-                            null,
-                            'Change',
-                            act.objectType,
-                            act.action,
-                            act.description,
-                            act.undoID,
-                            act.redoID,
-                            act.oldWidget,
-                            act.newWidget
-                        );
-                };
-            });
-        });
+        // Remove relevant Actions
+        this.actions = this.actions.filter(d => d.id  != draftDashboardID);
+        // this.actions.forEach(act => {
+        //     draftTabs.forEach(t => {
+        //         if (act.dashboardID == t.dashboardID
+        //             &&
+        //             act.dashboardTabID == t.id) {
+        //                 act.dashboardID = originalID;
+        //                 act.dashboardTabID = t.originalID;
+        //                 this.actionUpsert(
+        //                     act.id,
+        //                     act.dashboardID,
+        //                     act.dashboardTabID,
+        //                     null,
+        //                     'Change',
+        //                     act.objectType,
+        //                     act.action,
+        //                     act.description,
+        //                     act.undoID,
+        //                     act.redoID,
+        //                     act.oldWidget,
+        //                     act.newWidget
+        //                 );
+        //         };
+        //     });
+        // });
 
         // - Tasks
         this.canvasTasks.forEach(tsk => {
-            if (tsk.linkedDashboardID == draftID) {
+            if (tsk.linkedDashboardID == draftDashboardID) {
                 tsk.linkedDashboardID = originalID;
                 this.saveCanvasTask(tsk);
             };
@@ -2604,7 +2603,7 @@ export class GlobalVariableService {
         // - Tags
         let newTag: string = '';
         this.dashboardTags.forEach(tag => {
-            if (tag.dashboardID == draftID) {
+            if (tag.dashboardID == draftDashboardID) {
                 newTag = tag.tag;
                 this.dashboardTags.forEach(ot =>{
                     if (ot.dashboardID == originalID  &&  ot.tag == tag.tag) {
@@ -2633,21 +2632,21 @@ export class GlobalVariableService {
         // the original remains unchanged):
         // - Subscriptions
         this.dashboardSubscriptions.forEach(sub => {
-            if (sub.dashboardID == draftID) {
+            if (sub.dashboardID == draftDashboardID) {
                 this.deleteDashboardSubscription(sub.id);
             };
         });
 
         // - Schedules
         this.dashboardSchedules.forEach(sch => {
-            if (sch.dashboardID == draftID) {
+            if (sch.dashboardID == draftDashboardID) {
                 this.deleteDashboardSchedule(sch.id);
             };
         });
 
         // - entry in recent Dashboards for the Draft
         this.dashboardsRecent.forEach(rec => {
-            if (rec.dashboardID == draftID) {
+            if (rec.dashboardID == draftDashboardID) {
                 this.deleteDashboardRecent(rec.id);
             };
         });
@@ -2655,17 +2654,17 @@ export class GlobalVariableService {
         // - flag for Favourite Dashboard
         // - flag for Startup Dashboard
         this.canvasUsers.forEach(u => {
-            if (u.preferenceStartupDashboardID == draftID) {
+            if (u.preferenceStartupDashboardID == draftDashboardID) {
                 u.preferenceStartupDashboardID = 0;
             };
-            u.favouriteDashboards.filter(f => f != draftID)
+            u.favouriteDashboards.filter(f => f != draftDashboardID)
             // TODO - improve this to not update ALL users
             this.saveCanvasUser(u);
         });
 
         // - permissions
         this.dashboardPermissions.forEach(per => {
-            if (per.dashboardID == draftID) {
+            if (per.dashboardID == draftDashboardID) {
                 this.deleteDashboardPermission(per.id);
             };
         });
@@ -2673,7 +2672,7 @@ export class GlobalVariableService {
         // - all snapshots (for the Draft) are deleted, EXCEPT the initial one
         if (deleteSnapshots) {
             this.dashboardSnapshots.forEach(snp => {
-                if (snp.dashboardID == draftID  &&  snp.snapshotType != 'StartEditMode') {
+                if (snp.dashboardID == draftDashboardID  &&  snp.snapshotType != 'StartEditMode') {
                     this.deleteDashboardSnapshot(snp.id);
                 };
             });
@@ -2683,7 +2682,7 @@ export class GlobalVariableService {
         // to the original:
         // - template Dashboard
         this.dashboards.forEach(d => {
-            if (d.templateDashboardID == draftID) {
+            if (d.templateDashboardID == draftDashboardID) {
                 d.templateDashboardID = originalID;
                 this.saveDashboard(d);
             };
@@ -2691,7 +2690,7 @@ export class GlobalVariableService {
 
         // - hyperlinked Dashboard
         this.widgets.forEach(w => {
-            if (w.hyperlinkDashboardID == draftID) {
+            if (w.hyperlinkDashboardID == draftDashboardID) {
                 w.hyperlinkDashboardID = originalID;
                 this.saveWidget(w);
             };
@@ -2723,7 +2722,7 @@ export class GlobalVariableService {
             // Move properties and entities from Draft to Original version:
             // - Tabs, Widgets, Checkpoints
             this.dashboardTabs.forEach(t => {
-                if (t.dashboardID == draftID) {
+                if (t.dashboardID == draftDashboardID) {
                     t.dashboardID = originalID;
                     t.originalID = null;
                     promiseArray.push(this.saveDashboardTab(t));
@@ -2731,14 +2730,14 @@ export class GlobalVariableService {
             });
 
             this.widgets.forEach(w => {
-                if (w.dashboardID == draftID) {
+                if (w.dashboardID == draftDashboardID) {
                     w.dashboardID = originalID;
                     w.originalID = null;
                     promiseArray.push(this.saveWidget(w));
                 };
             });
             this.widgetCheckpoints.forEach(chk => {
-                if (chk.dashboardID == draftID) {
+                if (chk.dashboardID == draftDashboardID) {
                     chk.dashboardID = originalID;
                     chk.originalID = null;
                     promiseArray.push(this.saveWidgetCheckpoint(chk));
@@ -2746,7 +2745,7 @@ export class GlobalVariableService {
             });
 
             // Remove Draft D from DB - we still have draftDashboard in memory
-            this.deleteDashboard(draftID);
+            this.deleteDashboard(draftDashboardID);
 
             // Perform all the promises
             this.allWithAsync(...promiseArray).then(resolvedData => {
@@ -2799,10 +2798,12 @@ export class GlobalVariableService {
     //    - original/draft IDs updated on the Original Dashboard
     //    - The Draft Dashboard and core entities are deleted
     //   Save Draft (to Complete):
-    //    - the Complete Dashboard record content is updated with Draft content, and 
+    //    - the Original (Complete) Dashboard record content is updated with Draft content, and 
     //      original/draft IDs updated on the Original Dashboard
-    //    - link core entities to the Original Dashboard (thus Ws are now linked to the Dashboard)
-    //    - Draft and core entities are deleted, which equals a normal Dashboard delete
+    //    - link core entities (Tabs, Widgets, WidgetCheckpoints) to the Original Dashboard
+    //      (thus the previous Draft Widgets are now linked to the Original Dashboard)
+    //    - Delete one Draft core entity: Dashboard
+    //    - Delete three Orignal core entities: Tabs, Widgets, WidgetCheckpoints
     //   Delete (Original):
     //    - The Dashboard and core entities are deleted
     //   SaveAs (copy a Complete Dashboard):
