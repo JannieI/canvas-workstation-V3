@@ -183,6 +183,7 @@ export class DataManagedConnectionComponent implements OnInit {
 
         // Add to local and DB
         if (this.adding) {
+            this.selectedConnection._id = null;
             this.selectedConnection.id = null;
 
             this.globalVariableService.addResource('dataConnections', this.selectedConnection)
