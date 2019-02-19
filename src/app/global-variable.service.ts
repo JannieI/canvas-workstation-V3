@@ -2933,13 +2933,6 @@ export class GlobalVariableService {
                             // TODO - improve this to not update ALL users
                         });
 
-                        // Remove where D was used as hyperlink in Msg
-                        this.canvasMessages.forEach(mes => {
-                            if (mes.dashboardID == dashboardID) {
-                                mes.dashboardID = null;
-                            };
-                        });
-
                         resolve('Deleted');
                     },
                     err => {
