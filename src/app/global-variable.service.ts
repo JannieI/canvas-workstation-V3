@@ -2631,11 +2631,11 @@ export class GlobalVariableService {
         // The following entities are simply deleted (and those entities applicable to
         // the original remains unchanged):
         // - Subscriptions
-        this.dashboardSubscriptions.forEach(sub => {
-            if (sub.dashboardID == draftDashboardID) {
-                this.deleteDashboardSubscription(sub.id);
-            };
-        });
+        // this.dashboardSubscriptions.forEach(sub => {
+        //     if (sub.dashboardID == draftDashboardID) {
+        //         this.deleteDashboardSubscription(sub.id);
+        //     };
+        // });
 
         // - Schedules
         this.dashboardSchedules.forEach(sch => {
