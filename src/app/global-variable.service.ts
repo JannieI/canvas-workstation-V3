@@ -2689,12 +2689,12 @@ export class GlobalVariableService {
         // });
 
         // - hyperlinked Dashboard
-        this.widgets.forEach(w => {
-            if (w.hyperlinkDashboardID == draftDashboardID) {
-                w.hyperlinkDashboardID = originalID;
-                this.saveWidget(w);
-            };
-        });
+        // this.widgets.forEach(w => {
+        //     if (w.hyperlinkDashboardID == draftDashboardID) {
+        //         w.hyperlinkDashboardID = originalID;
+        //         this.saveWidget(w);
+        //     };
+        // });
 
         // Change the D
         return new Promise<number>((resolve, reject) => {
