@@ -4167,57 +4167,6 @@ export class GlobalVariableService {
         });
     }
 
-    getDataConnections(): Promise<DataConnection[]> {
-        // Description: Gets DataConnections, WITHOUT data
-        // Returns: this.dataConnection
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDataConnections ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<DataConnection[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.dataConnections.length == 0)  ||  (this.isDirtyDataConnections) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'dataConnections';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.dataConnections = res.data;
-                        this.isDirtyDataConnections = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDataConnection 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.dataConnections)
-                        };
-
-                        resolve(this.dataConnections);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDataConnection 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.dataConnections)
-                };
-                resolve(this.dataConnections);
-            }
-        });
-
-    }
-
     addDataConnection(data: DataConnection): Promise<any> {
         // Description: Adds a new DataConnection
         // Returns: Added Data or error message
