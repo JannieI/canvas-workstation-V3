@@ -2663,11 +2663,11 @@ export class GlobalVariableService {
         // });
 
         // - permissions
-        this.dashboardPermissions.forEach(per => {
-            if (per.dashboardID == draftDashboardID) {
-                this.deleteDashboardPermission(per.id);
-            };
-        });
+        // this.dashboardPermissions.forEach(per => {
+        //     if (per.dashboardID == draftDashboardID) {
+        //         this.deleteDashboardPermission(per.id);
+        //     };
+        // });
 
         // - all snapshots (for the Draft) are deleted, EXCEPT the initial one
         if (deleteSnapshots) {
