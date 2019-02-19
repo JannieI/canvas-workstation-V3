@@ -2574,12 +2574,12 @@ export class GlobalVariableService {
         // });
 
         // - Tasks
-        this.canvasTasks.forEach(tsk => {
-            if (tsk.linkedDashboardID == draftDashboardID) {
-                tsk.linkedDashboardID = originalID;
-                this.saveCanvasTask(tsk);
-            };
-        });
+        // this.canvasTasks.forEach(tsk => {
+        //     if (tsk.linkedDashboardID == draftDashboardID) {
+        //         tsk.linkedDashboardID = originalID;
+        //         this.saveCanvasTask(tsk);
+        //     };
+        // });
 
         // - Messages
         this.canvasMessages.forEach(msg => {
