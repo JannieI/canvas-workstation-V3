@@ -4180,7 +4180,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            let pathUrl: string = 'DataConnections';
+            let pathUrl: string = 'dataConnections';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
@@ -4222,7 +4222,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            let pathUrl: string = 'DataConnections';
+            let pathUrl: string = 'dataConnections';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
             // Omit _id (immutable in Mongo)
@@ -4273,7 +4273,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            let pathUrl: string = 'DataConnections';
+            let pathUrl: string = 'dataConnections';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
             .subscribe(

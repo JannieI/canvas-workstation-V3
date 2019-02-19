@@ -185,8 +185,9 @@ export class DataManagedConnectionComponent implements OnInit {
         if (this.adding) {
             this.selectedConnection.id = null;
 
-            this.globalVariableService.addDataConnection(this.selectedConnection).then(
-                res => {
+            // this.globalVariableService.addDataConnection(this.selectedConnection)
+            this.globalVariableService.addResource('dataConnections', this.selectedConnection)
+                .then(res => {
                     if (this.selectedConnectionRowIndex == null) {
                         this.selectedConnectionRowIndex = 0;
                         this.connectionID = this.selectedConnection.id;
@@ -195,9 +196,11 @@ export class DataManagedConnectionComponent implements OnInit {
                     // Add locally
                     this.dataConnections.push(this.selectedConnection);
 
-                }
-            );
-        };
+                })
+                .catch(err => {
+                    this.errorMessage = err;
+                });
+            };
 
         // Save the changes
         if (this.editing) {
