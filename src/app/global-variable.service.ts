@@ -2357,34 +2357,35 @@ export class GlobalVariableService {
                             // Checkpoints
                             let promiseArrayChk = [];
                             let widgetResults = JSON.parse(JSON.stringify(resolvedData));
-                            widgetResults.forEach(w => {
-                                if (w.dashboardID == addedD.id) {
+                            if (widgetResults != null) {
+                                widgetResults.forEach(w => {
+                                    if (w.dashboardID == addedD.id) {
 
-                                    this.widgetCheckpoints.forEach(chk => {
-                                        if (chk.dashboardID == dashboardID
-                                            && chk.widgetID == w.originalID) {
-                                            // Deep copy
-                                            // let newChk: WidgetCheckpoint = Object.assign({}, chk);
-                                            let newChk: WidgetCheckpoint = JSON.parse(JSON.stringify(chk));
-                                            newChk._id = null;
-                                            newChk.id = null;
-                                            newChk.dashboardID = addedD.id;
-                                            newChk.widgetID = w.id;
-                                            newChk.originalID = chk.id;
+                                        this.widgetCheckpoints.forEach(chk => {
+                                            if (chk.dashboardID == dashboardID
+                                                && chk.widgetID == w.originalID) {
+                                                // Deep copy
+                                                // let newChk: WidgetCheckpoint = Object.assign({}, chk);
+                                                let newChk: WidgetCheckpoint = JSON.parse(JSON.stringify(chk));
+                                                newChk._id = null;
+                                                newChk.id = null;
+                                                newChk.dashboardID = addedD.id;
+                                                newChk.widgetID = w.id;
+                                                newChk.originalID = chk.id;
 
-                                            newChk.widgetSpec.dashboardID = addedD.id;
-                                            newChk.widgetSpec.dashboardTabID = w.dashboardTabID;
-                                            newChk.widgetSpec.widgetID = w.id;
-                                            // TODO - fix for multi-Tabbed Ws
-                                            newChk.widgetSpec.dashboardTabIDs = w.dashboardTabIDs;
+                                                newChk.widgetSpec.dashboardID = addedD.id;
+                                                newChk.widgetSpec.dashboardTabID = w.dashboardTabID;
+                                                newChk.widgetSpec.widgetID = w.id;
+                                                // TODO - fix for multi-Tabbed Ws
+                                                newChk.widgetSpec.dashboardTabIDs = w.dashboardTabIDs;
 
-                                            promiseArrayChk.push(this.addWidgetCheckpoint(newChk));
-                                        };
-                                    });
-                                };
+                                                promiseArrayChk.push(this.addWidgetCheckpoint(newChk));
+                                            };
+                                        });
+                                    };
 
-                            });
-
+                                });
+                            };
                             this.allWithAsync(...promiseArrayChk).then(resolvedData => {
 
                                 // Rebuild [checkpointIDs]
