@@ -2582,51 +2582,51 @@ export class GlobalVariableService {
         // });
 
         // - Messages
-        this.canvasMessages.forEach(msg => {
-            draftTabs.forEach(t => {
-                if (msg.dashboardID == t.dashboardID
-                    &&
-                    msg.dashboardTabID == t.id) {
-                        msg.dashboardID = originalID;
-                        msg.dashboardTabID = t.originalID;
-                        this.saveCanvasMessage(msg);
-                };
-            });
-        });
+        // this.canvasMessages.forEach(msg => {
+        //     draftTabs.forEach(t => {
+        //         if (msg.dashboardID == t.dashboardID
+        //             &&
+        //             msg.dashboardTabID == t.id) {
+        //                 msg.dashboardID = originalID;
+        //                 msg.dashboardTabID = t.originalID;
+        //                 this.saveCanvasMessage(msg);
+        //         };
+        //     });
+        // });
 
         // Note: we decided that Comments belongs to the Entity, so for a Draft D they die
         // TODO - delete all Comments for daftDashboardID
-        alert(' complete GV.saveDashboard line 2510')
+        // alert(' complete GV.saveDashboard line 2510')
         // this.deleteResource({ dashboardID: originalID ???});
 
         // The following are added (if there are any records) to the original:
         // - Tags
-        let newTag: string = '';
-        this.dashboardTags.forEach(tag => {
-            if (tag.dashboardID == draftDashboardID) {
-                newTag = tag.tag;
-                this.dashboardTags.forEach(ot =>{
-                    if (ot.dashboardID == originalID  &&  ot.tag == tag.tag) {
-                        newTag = '';
-                    };
-                })
-                if (newTag == '') {
-                    this.deleteDashboardTag(tag.id);
-                } else {
-                    let newDashboardTag: DashboardTag = {
-                        id: null,
-                        dashboardID: originalID,
-                        tag: newTag,
-                        editedBy: '',
-                        editedOn: null,
-                        createdBy: '',
-                        createdOn: null
-                    }
-                    this.addDashboardTag(newDashboardTag);
-                };
+        // let newTag: string = '';
+        // this.dashboardTags.forEach(tag => {
+        //     if (tag.dashboardID == draftDashboardID) {
+        //         newTag = tag.tag;
+        //         this.dashboardTags.forEach(ot =>{
+        //             if (ot.dashboardID == originalID  &&  ot.tag == tag.tag) {
+        //                 newTag = '';
+        //             };
+        //         })
+        //         if (newTag == '') {
+        //             this.deleteDashboardTag(tag.id);
+        //         } else {
+        //             let newDashboardTag: DashboardTag = {
+        //                 id: null,
+        //                 dashboardID: originalID,
+        //                 tag: newTag,
+        //                 editedBy: '',
+        //                 editedOn: null,
+        //                 createdBy: '',
+        //                 createdOn: null
+        //             }
+        //             this.addDashboardTag(newDashboardTag);
+        //         };
 
-            };
-        });
+        //     };
+        // });
 
         // The following entities are simply deleted (and those entities applicable to
         // the original remains unchanged):
