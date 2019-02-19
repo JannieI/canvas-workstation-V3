@@ -2670,13 +2670,13 @@ export class GlobalVariableService {
         // });
 
         // - all snapshots (for the Draft) are deleted, EXCEPT the initial one
-        if (deleteSnapshots) {
-            this.dashboardSnapshots.forEach(snp => {
-                if (snp.dashboardID == draftDashboardID  &&  snp.snapshotType != 'StartEditMode') {
-                    this.deleteDashboardSnapshot(snp.id);
-                };
-            });
-        };
+        // if (deleteSnapshots) {
+        //     this.dashboardSnapshots.forEach(snp => {
+        //         if (snp.dashboardID == draftDashboardID  &&  snp.snapshotType != 'StartEditMode') {
+        //             this.deleteDashboardSnapshot(snp.id);
+        //         };
+        //     });
+        // };
 
         // The following are converted seamlessly, and pointers to Draft become pointers
         // to the original:
