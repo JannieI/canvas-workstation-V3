@@ -2653,14 +2653,14 @@ export class GlobalVariableService {
 
         // - flag for Favourite Dashboard
         // - flag for Startup Dashboard
-        this.canvasUsers.forEach(u => {
-            if (u.preferenceStartupDashboardID == draftDashboardID) {
-                u.preferenceStartupDashboardID = 0;
-            };
-            u.favouriteDashboards.filter(f => f != draftDashboardID)
-            // TODO - improve this to not update ALL users
-            this.saveCanvasUser(u);
-        });
+        // this.canvasUsers.forEach(u => {
+        //     if (u.preferenceStartupDashboardID == draftDashboardID) {
+        //         u.preferenceStartupDashboardID = 0;
+        //     };
+        //     u.favouriteDashboards.filter(f => f != draftDashboardID)
+        //     // TODO - improve this to not update ALL users
+        //     this.saveCanvasUser(u);
+        // });
 
         // - permissions
         this.dashboardPermissions.forEach(per => {
