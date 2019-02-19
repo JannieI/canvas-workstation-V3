@@ -2638,11 +2638,11 @@ export class GlobalVariableService {
         // });
 
         // - Schedules
-        this.dashboardSchedules.forEach(sch => {
-            if (sch.dashboardID == draftDashboardID) {
-                this.deleteDashboardSchedule(sch.id);
-            };
-        });
+        // this.dashboardSchedules.forEach(sch => {
+        //     if (sch.dashboardID == draftDashboardID) {
+        //         this.deleteDashboardSchedule(sch.id);
+        //     };
+        // });
 
         // - entry in recent Dashboards for the Draft
         this.dashboardsRecent.forEach(rec => {
