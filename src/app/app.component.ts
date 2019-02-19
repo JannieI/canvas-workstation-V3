@@ -791,19 +791,21 @@ export class AppComponent implements OnInit {
                                             };
                                         };
 
-                                        this.currentDashboardTabIndex = this.globalVariableService.currentDashboardInfo.value.
-                                            currentDashboardTabIndex;
                                         this.currentDashboardName = this.globalVariableService.
                                             currentDashboards[0].name;
-                                        this.currentTabName = this.globalVariableService.
-                                            currentDashboardTabs[this.currentDashboardTabIndex].name;
-                                        this.currentTabBackgroundColor = this.globalVariableService.
-                                            currentDashboardTabs[this.currentDashboardTabIndex].backgroundColor;
+                                        this.currentDashboardTabIndex = this.globalVariableService.currentDashboardInfo.value.
+                                            currentDashboardTabIndex;
+                                        if (this.currentDashboardTabIndex >= 0) {
+                                            this.currentTabName = this.globalVariableService.
+                                                currentDashboardTabs[this.currentDashboardTabIndex].name;
+                                            this.currentTabBackgroundColor = this.globalVariableService.
+                                                currentDashboardTabs[this.currentDashboardTabIndex].backgroundColor;
+                                            this.currentTabColor = this.globalVariableService.
+                                                currentDashboardTabs[this.currentDashboardTabIndex].color;
+                                            };
                                         if (this.currentTabBackgroundColor == ''  ||  this.currentTabBackgroundColor == null) {
                                             this.currentTabBackgroundColor = '#192b35';
                                         };
-                                        this.currentTabColor = this.globalVariableService.
-                                            currentDashboardTabs[this.currentDashboardTabIndex].color;
                                         if (this.currentTabColor == ''  ||  this.currentTabColor == null) {
                                             this.currentTabColor = 'white';
                                         };

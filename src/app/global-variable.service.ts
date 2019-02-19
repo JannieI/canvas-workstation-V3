@@ -2356,8 +2356,12 @@ export class GlobalVariableService {
 
                             // Checkpoints
                             let promiseArrayChk = [];
-                            let widgetResults = JSON.parse(JSON.stringify(resolvedData));
-                            if (widgetResults != null) {
+                            let widgetResults = [];
+                            console.log('xx resolvedData', resolvedData)
+                            if (resolvedData != null  &&  resolvedData != '') {
+                                widgetResults = JSON.parse(JSON.stringify(resolvedData));
+                            };
+                            if (widgetResults.length > 0) {
                                 widgetResults.forEach(w => {
                                     if (w.dashboardID == addedD.id) {
 
