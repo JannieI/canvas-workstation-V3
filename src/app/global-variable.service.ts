@@ -8633,57 +8633,6 @@ export class GlobalVariableService {
         });
     }
 
-    saveCanvasTask(data: CanvasTask): Promise<string> {
-        // Description: Saves CanvasTask
-        // Returns: 'Saved' or error Task
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveCanvasTask ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'canvasTasks';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.canvasTasks.findIndex(msg =>
-                        msg.id == data.id
-                    );
-                    this.canvasTasks[localIndex] = data;
-
-                    if (this.sessionDebugging) {
-                        console.log('saveCanvasTask SAVED', {data})
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveCanvasTask FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     updateCanvasMessagesAsRead(userID: string) {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
