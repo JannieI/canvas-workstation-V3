@@ -28,7 +28,6 @@ import { DashboardSubscription }      from './models';
 import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
 import { DataCachingTable }           from './models';
-import { DataConnection }             from './models';
 import { DatasourceTransformation }   from './models';
 import { DatasourceSchedule }         from './models';
 import { DatasourceScheduleLog }      from './models';
@@ -1109,7 +1108,6 @@ export class GlobalVariableService {
     datasourceSchedules: DatasourceSchedule[] = [];
     datasourceScheduleLog: DatasourceScheduleLog[] = [];
     dataCachingTable: DataCachingTable[] = [];
-    dataConnections: DataConnection[] = [];
     dataFields: DataField[] = [];
     datasets: any = [];                                 // List of dSets, NO data
     datasourcePermissions: DatasourcePermission[] = [];
@@ -1150,6 +1148,8 @@ export class GlobalVariableService {
     // isDirtyDatasourceSchedules: boolean = true;
     // dashboardThemes: DashboardTheme[] = [];
     // isDirtyDashboardThemes: boolean = true;
+    // dataConnections: DataConnection[] = [];
+    // isDirtyDataConnections: boolean = true;
     dashboardLayouts: DashboardLayout[] = [];
     widgetLayouts: WidgetLayout[] = [];
 
@@ -1188,7 +1188,6 @@ export class GlobalVariableService {
     isDirtyDashboardSubscription: boolean = true;
     isDirtyDashboardTabs: boolean = true;
     isDirtyDashboardTags: boolean = true;
-    isDirtyDataConnections: boolean = true;
     isDirtyDataFields: boolean = true;
     isDirtyDatasets: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
@@ -3599,18 +3598,7 @@ export class GlobalVariableService {
 
         return new Promise<DashboardRecent[]>((resolve, reject) => {
 
-            // Refresh from source at start
-            // this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-            // let pathUrl: string = 'dashboardsRecent';
-            // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            // this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-            //     res  => {
-            //         if(res.statusCode != 'success') {
-            //             reject(res.message);
-            //             return;
-            //         };
-
+            // Get data
             this.getResource('dashboardsRecent')
                 .then(res => {
 
@@ -3721,6 +3709,11 @@ export class GlobalVariableService {
         // D not in Recent List, so Add
         if (indexD == -1) {
 
+            let dashboardNameIndex: number = this.dashboards.findIndex(d => d.id == dashboardID);
+            let dashboardName: string = '';
+            if (dashboardNameIndex >= 0) {
+                dashboardName = this.dashboards[dashboardNameIndex].name;
+            };
             let newRecent: DashboardRecent = {
                 id: null,
                 userID: this.currentUser.userID,
@@ -3729,11 +3722,15 @@ export class GlobalVariableService {
                 editMode: this.editMode.value,
                 accessed: new Date(this.formatDate(today)),
                 stateAtRunTime: 'Draft',
-                nameAtRunTime: ''
+                nameAtRunTime: dashboardName
             };
+            console.log('xx dashboardName', dashboardName)
             return new Promise<any>((resolve, reject) => {
-                this.addDashboardRecent(newRecent).then(dR =>
+                this.addDashboardRecent(newRecent).then(dR => {
+                    this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
+
                     resolve(dR)
+                }
                 )
             });
         } else {
