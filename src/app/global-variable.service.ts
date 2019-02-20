@@ -8385,23 +8385,52 @@ export class GlobalVariableService {
         });
     }
 
-    updateCanvasMessagesAsRead(userID: string) {
+    updateCanvasMessagesAsRead(userID: string): Promise<string> {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addCanvasMessage ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
         };
+        
 
         // TODO - this must be done via the DB: for now, only glob-var array
-        let today = new Date();
-        this.canvasMessages.forEach(msg => {
-            msg.recipients.forEach(rec => {
-                if (rec.userID == userID) {
-                    rec.readOn = today;
-                };
-            });
-        });
+        // let today = new Date();
+        // this.canvasMessages.forEach(msg => {
+        //     msg.recipients.forEach(rec => {
+        //         if (rec.userID == userID) {
+        //             rec.readOn = today;
+        //         };
+        //     });
+        // });
+
+
+        return new Promise<string>((resolve, reject) => {
+
+            // Perform steps (business logic in Server)
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = '/canvasDataMarkMessagesAsRead';
+            let finalUrl: string = this.canvasServerURI + pathUrl;
+
+            this.http.put<CanvasHttpResponse>(finalUrl + '?userID=' 
+                + userID, null, {headers})
+                .subscribe(
+                    res => {
+                        if(res.statusCode != 'success') {
+                            reject('Error marking Messages as read: '+ res.message);
+                        };
+                        resolve("Done");
+                    },
+                    err => {
+                        console.log('Error marking Messages as read: ', {err});
+                        reject('Error marking Messages as read FAILED: ' + err.message);
+                    }
+                )
+        })
+
+
     }
 
     getWidgetCheckpoints(): Promise<WidgetCheckpoint[]> {
