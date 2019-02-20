@@ -1586,6 +1586,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
         console.time("DURATION getResource");
+        console.log("    For Resource: " + resource)
 
         return new Promise<any>((resolve, reject) => {
 
@@ -3760,6 +3761,7 @@ export class GlobalVariableService {
                             };
                             return 0;
                         });
+                        console.log('xx this.dashboardsRecent', this.dashboardsRecent)
                         this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
                         resolve(recentD)
