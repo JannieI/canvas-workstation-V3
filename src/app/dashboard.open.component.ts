@@ -519,7 +519,7 @@ export class DashboardOpenComponent implements OnInit {
         this.showAdvancedFilters = false;
     }
 
-    clickOpenView(dashboardID: number) {
+    clickOpenView(dashboardID: number, state: string) {
         // Open a Dashboard in ViewOnly Mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenView', '@Start');
 
@@ -530,7 +530,7 @@ export class DashboardOpenComponent implements OnInit {
                 return;
         };
 
-        this.globalVariableService.editMode.next(false);
+        this.globalVariableService.editMode.next(state == 'Draft'?  true  :  false);
 
 		this.globalVariableService.refreshCurrentDashboard(
 			'openDashboard-clickOpenRecentDashboard', dashboardID, -1, ''

@@ -80,7 +80,7 @@
                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
                             (click)="clickRow(i)"
                             >
-                            <clr-dg-cell (click)="clickOpenView(row.id)">
+                            <clr-dg-cell (click)="clickOpenView(row.id, row.state)">
                                 <clr-icon shape="eye" *ngIf="row.state=='Complete'"
                                     class="selectIcon1"
                                     size="12"
