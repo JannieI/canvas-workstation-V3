@@ -3655,20 +3655,6 @@ export class GlobalVariableService {
         });
     }
 
-    dashboardIndexInRecentList(dashboardID: number): number {
-        // Returns index of first D in the Recent list. Else -1
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables dashboardIndexInRecentList ...',
-                "color: black; background: lightgray; font-size: 10px", {dashboardID});
-        };
-
-        // Determine index in Recent list
-        let index: number = this.dashboardsRecent.findIndex(dR =>
-            dR.dashboardID == dashboardID
-        );
-        return index;
-    }
-
     dashboardTabIndexInRecentList(dashboardID: number, dashboardTabID: number): number {
         // Returns index of first D, T in the Recent list.  Else -1
         if (this.sessionDebugging) {
@@ -3702,7 +3688,9 @@ export class GlobalVariableService {
         // TODO - fix this timing issue, as I have no idea why this is happening here
         // this.sleep(2000);
 
-        let indexD: number = this.dashboardIndexInRecentList(dashboardID);
+        let indexD: number = this.dashboardsRecent.findIndex(dR =>
+            dR.dashboardID == dashboardID
+        );
         let indexTab: number = this.dashboardTabIndexInRecentList(dashboardID, dashboardTabID);
         let today = new Date();
 
