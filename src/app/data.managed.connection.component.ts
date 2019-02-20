@@ -104,7 +104,7 @@ export class DataManagedConnectionComponent implements OnInit {
                 this.dataConnections[connectionIndex]
             ));
         };
-        console.warn('xx END selectedConnection', this.selectedConnection)
+        console.warn('xx END selectedConnection', this.selectedConnection, this.selectedConnection.serverType)
 
     }
 
@@ -183,18 +183,19 @@ export class DataManagedConnectionComponent implements OnInit {
 
         // Add to local and DB
         if (this.adding) {
-            this.selectedConnection._id = null;
-            this.selectedConnection.id = null;
 
-            this.globalVariableService.addResource('dataConnections', this.selectedConnection)
+            let newConnection: DataConnection = JSON.parse(JSON.stringify(this.selectedConnection));
+            newConnection._id = null;
+            newConnection.id = null;
+
+            this.globalVariableService.addResource('dataConnections', newConnection)
                 .then(res => {
-                    if (this.selectedConnectionRowIndex == null) {
-                        this.selectedConnectionRowIndex = 0;
-                        this.connectionID = this.selectedConnection.id;
-                    };
+                    newConnection.id = res.id;
 
                     // Add locally
-                    this.dataConnections.push(this.selectedConnection);
+                    this.dataConnections.push(newConnection);
+
+                    this.clickRow(0, this.dataConnections[0].id);
 
                 })
                 .catch(err => {
