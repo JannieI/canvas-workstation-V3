@@ -2564,8 +2564,10 @@ console.log('xx action', action)
             );
             if (localIndex >= 0) {
                 this.globalVariableService.dashboardsRecent[localIndex].editMode = false;
-                this.globalVariableService.saveDashboardRecent(
-                    this.globalVariableService.dashboardsRecent[localIndex]);
+                this.globalVariableService.amendDashboardRecent(
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
+                );
             };
 
         } else {
@@ -2632,8 +2634,10 @@ console.log('xx action', action)
                 );
                 if (localIndex >= 0) {
                     this.globalVariableService.dashboardsRecent[localIndex].editMode = true;
-                    this.globalVariableService.saveDashboardRecent(
-                        this.globalVariableService.dashboardsRecent[localIndex]);
+                    this.globalVariableService.amendDashboardRecent(
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
+                    );
                 };
             };
         };

@@ -1585,8 +1585,7 @@ export class GlobalVariableService {
             console.log('%c        Global-Variables getResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
-        console.time("DURATION getResource");
-        console.log("    For Resource: " + resource)
+        console.time("DURATION getResource: " + resource);
 
         return new Promise<any>((resolve, reject) => {
 
@@ -1651,7 +1650,7 @@ export class GlobalVariableService {
                             // this[type+'_count'] = 1000;  // in a function we use "this";
                             // alert(this.article_count);
                             resolve(this[localVariableName]);
-                            console.timeEnd("DURATION getResource");
+                            console.timeEnd("DURATION getResource: " + resource);
                             return;
 
                         // Get from Disc (Dexie)
@@ -1666,7 +1665,7 @@ export class GlobalVariableService {
                             });
 
                             //  Return, else goes through to HTTP (its async)
-                            console.timeEnd("DURATION getResource");
+                            console.timeEnd("DURATION getResource: " + resource);
                             return;
                         };
                     };
@@ -1688,7 +1687,7 @@ export class GlobalVariableService {
                         };
    
                         reject(httpResult.message);
-                        console.timeEnd("DURATION getResource");
+                        console.timeEnd("DURATION getResource: " + resource);
                         return;
                     };
 
@@ -1757,11 +1756,11 @@ export class GlobalVariableService {
 
                     console.warn('xx data retured from HTTP', httpResult.data);
                     resolve(httpResult.data);
-                    console.timeEnd("DURATION getResource");
+                    console.timeEnd("DURATION getResource: " + resource);
                     return;
                 },
                 err => {
-                    console.timeEnd("DURATION getResource");
+                    console.timeEnd("DURATION getResource: " + resource);
                     if (this.sessionDebugging) {
                         console.log('Error getResource FAILED', {err});
                     };
