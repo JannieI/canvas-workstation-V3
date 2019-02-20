@@ -539,47 +539,6 @@ export class DashboardOpenComponent implements OnInit {
         this.formDashboardOpenClosed.emit('View');
     }
 
-    clickOpenEdit(index: number, dashboardID: number) {
-        // Open a Dashboard in EditMode
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenEdit', '@Start');
-
-        // No Access
-        if (!this.globalVariableService.dashboardPermissionCheck(
-            dashboardID, 'canviewandcanedit')) {
-                this.errorMessage = 'Insufficient Permission';
-                return;
-        };
-
-        // Only Editor can open his Draft
-        if (this.dashboards[index].state == 'Draft'
-            &&
-            this.dashboards[index].editor != this.globalVariableService.currentUser.
-            userID) {
-                this.errorMessage = 'Dashboard is edited by ' + this.dashboards[index].editor;
-                return;
-        };
-
-        // Copy Original to Draft
-        if (this.dashboards[index].state == 'Complete') {
-            this.globalVariableService.copyDashboard(
-                this.dashboards[index].id, null, 'Draft'
-            ).then(res => {
-                this.globalVariableService.refreshCurrentDashboard(
-                    'openDashboard-clickOpenEdit', res.id, -1, ''
-                );
-                this.globalVariableService.editMode.next(true);
-                this.formDashboardOpenClosed.emit('View');
-            });
-        } else {
-
-            this.globalVariableService.refreshCurrentDashboard(
-                'openDashboard-clickOpenEdit', dashboardID, -1, ''
-            );
-            this.globalVariableService.editMode.next(true);
-            this.formDashboardOpenClosed.emit('View');
-        };
-    }
-
     clickRow(index: number) {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
