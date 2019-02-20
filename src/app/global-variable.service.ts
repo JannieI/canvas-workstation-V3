@@ -3698,9 +3698,11 @@ export class GlobalVariableService {
         if (indexD == -1) {
 
             let dashboardNameIndex: number = this.dashboards.findIndex(d => d.id == dashboardID);
+            let dashboardState: string = '';
             let dashboardName: string = '';
             if (dashboardNameIndex >= 0) {
                 dashboardName = this.dashboards[dashboardNameIndex].name;
+                dashboardState =  this.dashboards[dashboardNameIndex].state;
             };
             let newRecent: DashboardRecent = {
                 id: null,
@@ -3709,7 +3711,7 @@ export class GlobalVariableService {
                 dashboardTabID: dashboardTabID,
                 editMode: this.editMode.value,
                 accessed: new Date(this.formatDate(today)),
-                stateAtRunTime: 'Draft',
+                stateAtRunTime: dashboardState,
                 nameAtRunTime: dashboardName
             };
             console.log('xx dashboardName', dashboardName)
