@@ -3623,6 +3623,7 @@ export class GlobalVariableService {
 
                     // Sort DESC
                     // TODO - in DB, ensure dateTime stamp is used, as IDs may not work
+                        // TODO - Also, the sort is done more than once ...
                     temp = temp.sort( (obj1,obj2) => {
                         if (obj1.accessed > obj2.accessed) {
                             return -1;
@@ -3719,7 +3720,16 @@ export class GlobalVariableService {
                 this.addResource('dashboardsRecent', newRecent)
                     .then(dR => {
                         this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
-
+                        this.dashboardsRecent = this.dashboardsRecent.sort( (obj1,obj2) => {
+                            if (obj1.accessed > obj2.accessed) {
+                                return -1;
+                            };
+                            if (obj1.accessed < obj2.accessed) {
+                                return 1;
+                            };
+                            return 0;
+                        });
+    
                         resolve(dR)
                     })
                     .catch(err => reject(err));
@@ -3739,9 +3749,22 @@ export class GlobalVariableService {
             recentD.accessed = new Date(this.formatDate(today));
 
             return new Promise<any>((resolve, reject) => {
-                this.saveDashboardRecent(recentD).then(res =>
-                    resolve(recentD)
-                )
+                this.saveResource('dashboardsRecent', recentD)
+                    .then(res => {
+                        this.dashboardsRecent = this.dashboardsRecent.sort( (obj1,obj2) => {
+                            if (obj1.accessed > obj2.accessed) {
+                                return -1;
+                            };
+                            if (obj1.accessed < obj2.accessed) {
+                                return 1;
+                            };
+                            return 0;
+                        });
+                        this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
+
+                        resolve(recentD)
+                    })
+                    .catch(err => reject(err));
             });
         };
 
