@@ -1776,7 +1776,7 @@ export class GlobalVariableService {
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addResource ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {data});
         };
         console.time("DURATION addResource");
 
@@ -1898,7 +1898,7 @@ export class GlobalVariableService {
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables saveResource ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {data});
         };
 
         return new Promise<string>((resolve, reject) => {
@@ -2022,7 +2022,7 @@ export class GlobalVariableService {
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables deleteResource ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {id});
         };
 
         return new Promise<any>((resolve, reject) => {
