@@ -3726,12 +3726,13 @@ export class GlobalVariableService {
             };
             console.log('xx dashboardName', dashboardName)
             return new Promise<any>((resolve, reject) => {
-                this.addDashboardRecent(newRecent).then(dR => {
-                    this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
+                this.addResource('dashboardsRecent', newRecent)
+                    .then(dR => {
+                        this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
-                    resolve(dR)
-                }
-                )
+                        resolve(dR)
+                    })
+                    .catch(err => reject(err));
             });
         } else {
 
