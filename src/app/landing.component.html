@@ -91,7 +91,7 @@
 										)"
 								>
 								{{row.nameAtRunTime}} ({{ row.stateAtRunTime }})
-								<clr-icon *ngIf="row.editMode"
+								<clr-icon *ngIf="row.stateAtRunTime == 'Draft'"
 									shape="pencil"
 									class="selectIcon1"
 									size="10"
