@@ -8389,7 +8389,7 @@ export class GlobalVariableService {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addCanvasMessage ...',
+            console.log('%c    Global-Variables updateCanvasMessagesAsRead ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
         };
         
