@@ -3709,12 +3709,12 @@ export class GlobalVariableService {
                 userID: this.currentUser.userID,
                 dashboardID: dashboardID,
                 dashboardTabID: dashboardTabID,
-                editMode: this.editMode.value,
+                editMode: dashboardState == 'Draft'?  true  :  false,
                 accessed: new Date(this.formatDate(today)),
                 stateAtRunTime: dashboardState,
                 nameAtRunTime: dashboardName
             };
-            console.log('xx dashboardName', dashboardName)
+
             return new Promise<any>((resolve, reject) => {
                 this.addResource('dashboardsRecent', newRecent)
                     .then(dR => {
@@ -3769,63 +3769,6 @@ export class GlobalVariableService {
             // this.saveDashboardRecent(this.dashboardsRecent[newRecentIndex],);
         };
 
-    }
-
-    addDashboardRecent(data: DashboardRecent): Promise<any> {
-        // Adds a D to the Recent list, and update:
-        // - this.dashboardsRecent
-        // - this.dashboardsRecentBehSubject.next()
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDashboardRecent ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardsRecent';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    let dashboardRecentAmended: DashboardRecent = JSON.parse(JSON.stringify(res.data));
-
-                    // Add State and Name, at Runtime
-                    for (var i = 0; i < this.dashboards.length; i++) {
-                        if (this.dashboards[i].id ==
-                            dashboardRecentAmended.dashboardID) {
-                                dashboardRecentAmended.stateAtRunTime = this.dashboards[i].state;
-                                dashboardRecentAmended.nameAtRunTime = this.dashboards[i].name;
-                        };
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    this.dashboardsRecent = [dashboardRecentAmended].concat(this.dashboardsRecent);
-
-                    this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
-
-                    if (this.sessionDebugging) {
-                        console.log('dashboardsRecent ADDED', dashboardRecentAmended, this.dashboardsRecent)
-                    };
-
-                    resolve(dashboardRecentAmended);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error dashboardsRecent FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
     }
 
     saveDashboardRecent(data: DashboardRecent): Promise<string> {
