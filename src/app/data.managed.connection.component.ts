@@ -164,7 +164,7 @@ export class DataManagedConnectionComponent implements OnInit {
         this.connectionID = null;
 
     }
-
+p
     clickSave() {
         // Save changes to a Data Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');

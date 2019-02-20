@@ -109,7 +109,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 this.dataConnections = dc.slice();
             })
             .catch(err => {
-                alert(' Add this.errorMessage = err');
+                this.whereErrorMessage = err;
             });
 
         if (this.selectedDatasource == null) {
@@ -499,7 +499,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             if (dataIndex >= 0) {
                 dataID = +updatedDataset.url.substring(dataIndex + 1);
             } else {
-                alert('Error in save Web - url has no / character');
+                this.whereErrorMessage = 'Error in save Web - url has no / character';
                 return;
             };
             let updatedData: any = {
