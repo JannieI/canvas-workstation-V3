@@ -164,7 +164,7 @@ export class DataManagedConnectionComponent implements OnInit {
         this.connectionID = null;
 
     }
-p
+
     clickSave() {
         // Save changes to a Data Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
@@ -251,7 +251,7 @@ p
         this.clearRecord();
         this.globalVariableService.deleteResource('dataConnections', id)
             .then(res => {
-                this.dataConnections = this.globalVariableService.dataConnections.slice();
+                this.dataConnections = this.dataConnections.filter(dc => dc.id != id);
             })
             .catch(err => {
                 this.errorMessage = err;
