@@ -2169,11 +2169,14 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
             let pathUrl: string = '/canvasDashboardCopy?originalDashboardID=' 
                 + dashboardID + "&newName=" + newName + "&newState=" + newState;
             let finalUrl: string = this.canvasServerURI + pathUrl;
             console.log('finalUrl', finalUrl)
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+            this.http.post<CanvasHttpResponse>(finalUrl, "", {headers}).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
