@@ -2613,6 +2613,18 @@ console.log('xx action', action)
                                     snapshotName, 'Starting Edit Mode','StartEditMode'
                                 );
 
+                                // Update EditMode in D-Recent
+                                let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
+                                    u => u.dashboardID == newDashboardID
+                                );
+                                if (localIndex >= 0) {
+                                    this.globalVariableService.dashboardsRecent[localIndex].editMode = true;
+                                    this.globalVariableService.amendDashboardRecent(
+                                        newDashboardID,
+                                        -1
+                                    );
+                                };
+
                                 // Toggle mode
                                 this.globalVariableService.editMode.next(!this.editMode);
                             })
