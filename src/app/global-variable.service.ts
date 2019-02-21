@@ -2169,7 +2169,7 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
-            let pathUrl: string = '/canvasDashboardEdit?originalDashboardID=' 
+            let pathUrl: string = '/canvasDashboardCopy?originalDashboardID=' 
                 + dashboardID + "&newName=" + newName + "&newState=" + newState;
             let finalUrl: string = this.canvasServerURI + pathUrl;
             console.log('finalUrl', finalUrl)

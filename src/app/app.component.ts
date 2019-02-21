@@ -2593,19 +2593,12 @@ console.log('xx action', action)
 
                     } else {
 
-                        this.globalVariableService.copyDashboard(
-                            localDashboard.id, null, 'Draft')
-                        .then(res => {
-                        // this.globalVariableService.editDashboard(localDashboard.id)
+                        // this.globalVariableService.copyDashboard(
+                        //     localDashboard.id, null, 'Draft')
                         // .then(res => {
-
-                            // this.globalVariableService.addDashboardToCache(
-                            //     res.dashboard,
-                            //     res.dashboardTabs,
-                            //     res.widgets,
-                            //     res.widgetCheckpoints
-                            // )
-                            // .then( () => {
+                            this.globalVariableService.dashboardCopy(
+                                localDashboard.id, null, 'Draft')
+                            .then(res => {
 
                                 this.globalVariableService.refreshCurrentDashboard(
                                     'app-clickMenuEditMode', res.id, -1, ''
