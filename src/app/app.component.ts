@@ -2600,8 +2600,9 @@ console.log('xx action', action)
                                 localDashboard.id, null, 'Draft')
                             .then(res => {
 
+                                let newDashboardID:number = res.data.dashboard[0].id;
                                 this.globalVariableService.refreshCurrentDashboard(
-                                    'app-clickMenuEditMode', res.id, -1, ''
+                                    'app-clickMenuEditMode', newDashboardID, -1, ''
                                 );
 
                                 let today = new Date();

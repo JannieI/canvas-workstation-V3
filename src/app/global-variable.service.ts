@@ -2186,7 +2186,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables dashboardCopy 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            "Draft created for current Dashboard")
+                            "Draft created for current Dashboard", res)
                     };
 
                     resolve(res.data);
