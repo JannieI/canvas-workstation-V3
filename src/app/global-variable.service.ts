@@ -2183,10 +2183,22 @@ export class GlobalVariableService {
                         return;
                     };
 
+                    // TODO - make this DRY
+                    // Add to the cache
+                    this.dashboards.push(res.data.dashboard);
+                    this.dashboardTabs.push(res.data.dashboardTabs);
+                    this.widgets.push(res.data.widgets);
+                    this.widgetCheckpoints.push(res.data.widgetCheckpoints);
+
+                    this.currentDashboards.push(res.data.dashboard);
+                    this.currentDashboardTabs.push(res.data.dashboardTabs);
+                    this.currentWidgets.push(res.data.widgets);
+                    this.currentWidgetCheckpoints.push(res.data.widgetCheckpoints);
+                    
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables dashboardCopy 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            "Draft created for current Dashboard", res)
+                            "Draft created for current Dashboard")
                     };
 
                     resolve(res.data);

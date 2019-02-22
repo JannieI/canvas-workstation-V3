@@ -2596,11 +2596,10 @@ console.log('xx action', action)
                         // this.globalVariableService.copyDashboard(
                         //     localDashboard.id, null, 'Draft')
                         // .then(res => {
-                            this.globalVariableService.dashboardCopy(
-                                localDashboard.id, null, 'Draft')
+                            this.globalVariableService.dashboardCopy(localDashboard.id, null, 'Draft')
                             .then(res => {
 
-                                let newDashboardID:number = res.data.dashboard[0].id;
+                                let newDashboardID:number = res.dashboard.id;
                                 this.globalVariableService.refreshCurrentDashboard(
                                     'app-clickMenuEditMode', newDashboardID, -1, ''
                                 );
@@ -2613,7 +2612,7 @@ console.log('xx action', action)
                                     snapshotName, 'Starting Edit Mode','StartEditMode'
                                 );
 
-                                // Update EditMode in D-Recent
+                                // Update in D-Recent
                                 let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
                                     u => u.dashboardID == newDashboardID
                                 );
