@@ -2577,26 +2577,24 @@ console.log('xx action', action)
                     .currentDashboardID
             );
 
+            console.log('xx dashboardIndex', dashboardIndex )
             if (dashboardIndex >= 0) {
                 let localDashboard: Dashboard = this.globalVariableService
                     .dashboards[dashboardIndex];
-
+                console.log('xx localDashboard', localDashboard)
                 if (localDashboard.state == 'Complete') {
                     if (localDashboard.draftID != null) {
 
                         // Simply open Draft in EditMode
                         this.globalVariableService.refreshCurrentDashboard(
-                            'app-clickMenuEditMode', localDashboard.draftID, -1, ''
+                            'app-clickMenuEditMode', localDashboard.draftID, 0, 'First'
                         );
                         this.globalVariableService.editMode.next(true);
 
 
                     } else {
 
-                        // this.globalVariableService.copyDashboard(
-                        //     localDashboard.id, null, 'Draft')
-                        // .then(res => {
-                            this.globalVariableService.dashboardCopy(localDashboard.id, null, 'Draft')
+                        this.globalVariableService.dashboardCopy(localDashboard.id, null, 'Draft')
                             .then(res => {
 
                                 let newDashboardID:number = res.dashboard.id;
@@ -2615,9 +2613,9 @@ console.log('xx action', action)
                                 );
 
                                 // Update in D-Recent
-                                let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
-                                    u => u.dashboardID == newDashboardID
-                                );
+                                // let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
+                                //     u => u.dashboardID == newDashboardID
+                                // );
                                 // if (localIndex >= 0) {
                                 //     this.globalVariableService.dashboardsRecent[localIndex].editMode = true;
                                 //     this.globalVariableService.amendDashboardRecent(
@@ -2629,6 +2627,16 @@ console.log('xx action', action)
                                 // Toggle mode
                                 this.globalVariableService.editMode.next(!this.editMode);
                             })
+                            .catch(err => {
+                                this.showMessage(
+                                    'Error creating Draft (in copyDashboard routine)',
+                                    'StatusBar',
+                                    'Error',
+                                    3000,
+                                    ''
+                                );
+            
+                            })
                         // });
                     };
                 } else {
@@ -2636,16 +2644,16 @@ console.log('xx action', action)
                 };
 
                 // Update EditMode in D-Recent
-                let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
-                    u => u.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-                );
-                if (localIndex >= 0) {
-                    this.globalVariableService.dashboardsRecent[localIndex].editMode = true;
-                    this.globalVariableService.amendDashboardRecent(
-                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
-                    );
-                };
+                // let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
+                //     u => u.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                // );
+                // if (localIndex >= 0) {
+                //     this.globalVariableService.dashboardsRecent[localIndex].editMode = true;
+                //     this.globalVariableService.amendDashboardRecent(
+                //         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                //         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
+                //     );
+                // };
             };
         };
 

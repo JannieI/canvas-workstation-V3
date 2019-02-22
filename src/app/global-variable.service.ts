@@ -9251,10 +9251,6 @@ export class GlobalVariableService {
         if (tabToShow != '') {
             if (currentDashboardTabs.length == 0) {
 
-                if (this.sessionDebugging) {
-                    console.log('this.currentDashboardTabs empty');
-                };
-
                 return;
             }
             if (tabToShow == 'First') {
@@ -9292,7 +9288,7 @@ export class GlobalVariableService {
         };
 
         // Register in Recent
-        this.amendDashboardRecent(dashboardID, y);
+        // this.amendDashboardRecent(dashboardID, y);
 
         // Inform subscribers of the change
         let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID)
