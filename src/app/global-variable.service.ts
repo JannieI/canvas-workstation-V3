@@ -9292,7 +9292,7 @@ export class GlobalVariableService {
         };
 
         // Register in Recent
-        // this.amendDashboardRecent(dashboardID, y);
+        this.amendDashboardRecent(dashboardID, y);
 
         // Inform subscribers of the change
         let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID)
