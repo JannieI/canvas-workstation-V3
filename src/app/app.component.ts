@@ -2571,7 +2571,7 @@ console.log('xx action', action)
                     this.globalVariableService.refreshCurrentDashboard(
                         'app-clickMenuEditMode', draftDashboard.originalID, 0, 'First'
                     );
-                    this.globalVariableService.editMode.next(false);
+                    // this.globalVariableService.editMode.next(false);
 
                 };
             };
@@ -2595,7 +2595,7 @@ console.log('xx action', action)
                         this.globalVariableService.refreshCurrentDashboard(
                             'app-clickMenuEditMode', originalDashboard.draftID, 0, 'First'
                         );
-                        this.globalVariableService.editMode.next(true);
+                        // this.globalVariableService.editMode.next(true);
 
 
                     } else {
@@ -2619,7 +2619,7 @@ console.log('xx action', action)
                                 );
 
                                 // Toggle mode
-                                this.globalVariableService.editMode.next(true);
+                                // this.globalVariableService.editMode.next(true);
                             })
                             .catch(err => {
                                 this.showMessage(
