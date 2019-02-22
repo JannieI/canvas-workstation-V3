@@ -139,15 +139,15 @@ export class AppComponent implements OnInit {
             this.dashboardPageLast();
             return;
         };
-        if (event.code == 'Backspace'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  &&  
+        if (event.code == 'Backspace'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  &&
             this.globalVariableService.lastDashboardOpened.wasHyperlink == true
             &&  this.globalVariableService.lastDashboardOpened.lastDashboardID != null
             &&  this.globalVariableService.lastDashboardOpened.lastDashboardTabID != null) {
                 this.globalVariableService.lastDashboardOpened.wasHyperlink = false;
                 this.globalVariableService.refreshCurrentDashboard(
-                    'app-Backspace', 
+                    'app-Backspace',
                     this.globalVariableService.lastDashboardOpened.lastDashboardID,
-                    this.globalVariableService.lastDashboardOpened.lastDashboardTabID, 
+                    this.globalVariableService.lastDashboardOpened.lastDashboardTabID,
                     ''
                 );
         }
@@ -1222,7 +1222,7 @@ export class AppComponent implements OnInit {
         if (this.globalVariableService.currentDashboardInfo.value == null) {
             this.showModalLanding = true;
         } else {;
-        
+
             this.dashboardOpenActions();
         };
     }
@@ -2555,19 +2555,25 @@ console.log('xx action', action)
         if (this.editMode) {
             this.clickMenuEditSelectAllNone('None');
 
-            // Toggle mode
-            this.globalVariableService.editMode.next(!this.editMode);
-
-            // Update EditMode in D-Recent
-            let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
-                u => u.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+            // Find the Dasboard
+            let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+                d => d.id == this.globalVariableService.currentDashboardInfo.value
+                    .currentDashboardID
             );
-            if (localIndex >= 0) {
-                this.globalVariableService.dashboardsRecent[localIndex].editMode = false;
-                this.globalVariableService.amendDashboardRecent(
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
-                );
+
+            // If it has an OriginalID, open that D and set editmode
+            if (dashboardIndex >= 0) {
+                let draftDashboard: Dashboard = this.globalVariableService
+                    .dashboards[dashboardIndex];
+                if (draftDashboard.originalID != null) {
+
+                    // Simply open Draft in EditMode
+                    this.globalVariableService.refreshCurrentDashboard(
+                        'app-clickMenuEditMode', draftDashboard.originalID, 0, 'First'
+                    );
+                    this.globalVariableService.editMode.next(false);
+
+                };
             };
 
         } else {
@@ -2599,7 +2605,7 @@ console.log('xx action', action)
 
                                 let newDashboardID:number = res.dashboard.id;
                                 let newDashboardTabID:number = res.dashboardTabs[0].id;
-                                
+
                                 this.globalVariableService.refreshCurrentDashboard(
                                     'app-clickMenuEditMode', newDashboardID, 0, 'First'
                                 );
@@ -6581,7 +6587,7 @@ console.log('xx action', action)
             );
             return;
         };
-        
+
         // Make sure we have only one Shape selected
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -8905,7 +8911,7 @@ console.log('xx action', action)
             );
             return;
         };
-        
+
         // ID provided
         if (widgetID != null) {
             let selectedWidgetIndex: number = this.currentWidgets.findIndex(w =>
@@ -9348,7 +9354,7 @@ console.log('xx action', action)
 
         // Remember this
         this.globalVariableService.lastDashboardOpened.wasHyperlink = true;
-        this.globalVariableService.lastDashboardOpened.lastDashboardID = 
+        this.globalVariableService.lastDashboardOpened.lastDashboardID =
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.globalVariableService.lastDashboardOpened.lastDashboardTabID =
             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
