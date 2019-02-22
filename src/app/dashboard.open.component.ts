@@ -530,7 +530,7 @@ export class DashboardOpenComponent implements OnInit {
                 return;
         };
 
-        this.globalVariableService.editMode.next(state == 'Draft'?  true  :  false);
+        // this.globalVariableService.editMode.next(state == 'Draft'?  true  :  false);
 
 		this.globalVariableService.refreshCurrentDashboard(
 			'openDashboard-clickOpenRecentDashboard', dashboardID, -1, ''
