@@ -98,7 +98,7 @@ export class DashboardDiscardComponent implements OnInit {
                 this.globalVariableService.refreshCurrentDashboard(
                     'discardDashboard-clickDiscard', +dashboardOrignal, -1, ''
                 );
-                this.globalVariableService.editMode.next(false);
+                // this.globalVariableService.editMode.next(false);
                 this.formDashboardDiscardClosed.emit(action); 
             })
             .catch(err => {
