@@ -2158,7 +2158,7 @@ export class GlobalVariableService {
 
     }
 
-    dashboardCopy(dashboardID: number, newName: string, newState: string): Promise<any> {
+    dashboardCopy(originalDashboardID: number, newName: string, newState: string): Promise<any> {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
@@ -2173,7 +2173,7 @@ export class GlobalVariableService {
                 .set("Content-Type", "application/json");
 
             let pathUrl: string = '/canvasDashboardCopy?originalDashboardID=' 
-                + dashboardID + "&newName=" + newName + "&newState=" + newState;
+                + originalDashboardID + "&newName=" + newName + "&newState=" + newState;
             let finalUrl: string = this.canvasServerURI + pathUrl;
             console.log('finalUrl', finalUrl)
             this.http.post<CanvasHttpResponse>(finalUrl, "", {headers}).subscribe(
@@ -2184,7 +2184,16 @@ export class GlobalVariableService {
                     };
 
                     // TODO - make this DRY
-                    // Add to the cache
+                    // Add / Amend the cache
+                    if (newState == 'Draft') {
+                        let dashboardIndex: number = this.dashboards.findIndex(
+                            d => d.id == originalDashboardID
+                        );
+                        if (dashboardIndex >= 0) {
+                            this.dashboards[dashboardIndex].draftID = res.data.dashboard.id;
+                        };
+                    };
+                    
                     this.dashboards.push(res.data.dashboard);
                     this.dashboardTabs.push(res.data.dashboardTabs);
                     this.widgets.push(res.data.widgets);
