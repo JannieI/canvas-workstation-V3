@@ -245,7 +245,7 @@ export class LandingComponent implements OnInit {
 				return;
 		};
 
-		this.globalVariableService.editMode.next(editMode)
+		// this.globalVariableService.editMode.next(editMode)
         this.globalVariableService.refreshCurrentDashboard(
 			'landing-clickOpenRecentDashboard', dashboardID, dashboardTabID, ''
 		);
