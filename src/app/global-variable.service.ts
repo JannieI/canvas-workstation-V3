@@ -1287,7 +1287,7 @@ export class GlobalVariableService {
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables refreshCurrentDashboardInfo D,T id = ',
                 "color: black; background: lightgray; font-size: 10px",
-                {dashboardID}, {dashboardTabID})
+                {dashboardID}, {dashboardTabID}, this.dashboards, this.dashboardTabs, this.currentDashboards, this.currentDashboardTabs)
         };
 
         // Load the current Dashboard, and Optional template.  The dependants are stakced
@@ -3023,9 +3023,9 @@ export class GlobalVariableService {
                 );
 
                 if (this.currentDashboards.length == 0) {
-                    console.log('xx global var error in getCurrentDashboard - this.currentDashboards.length == 0', dashboardID, this.currentDashboards)
-                    alert('xx global var error in getCurrentDashboard - this.currentDashboards.length == 0 ');
-                }
+                    console.log('Error: global var currentDashboards empty in getCurrentDashboard');
+                    reject('Error: global var currentDashboards empty in getCurrentDashboard');
+                };
                 if (this.currentDashboards[0].templateDashboardID != 0  &&  this.currentDashboards[0].templateDashboardID != null) {
                     let templateDashboard: Dashboard[] = null;
 
