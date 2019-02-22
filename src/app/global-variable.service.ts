@@ -9294,7 +9294,7 @@ export class GlobalVariableService {
 
         if (tabToShow != '') {
             if (currentDashboardTabs.length == 0) {
-                console.log('xx returned in GV since currentDashboardTabs.length == 0')
+                console.log('xx returned in GV since currentDashboardTabs.length == 0', dashboardID, this.dashboardTabs)
                 return;
             }
             if (tabToShow == 'First') {
@@ -11047,8 +11047,8 @@ export class GlobalVariableService {
         //   = time (HH:MM:SS)
         //   = dateTime (YYYY/MM/DD HH:MM:SS)
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables formatDate ...',
-                "color: black; background: lightgray; font-size: 10px", {date});
+            // console.log('%c    Global-Variables formatDate ...',
+            //     "color: black; background: lightgray; font-size: 10px", {date});
         };
 
         let d = new Date(date);
@@ -12089,8 +12089,8 @@ console.log('xx currentDatasetsAdded', currentDatasetsAdded)
         // keywords like #pagenr, #pages, #date
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables calcShapeTextDisplay ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {shapeText});
+            // console.log('%c    Global-Variables calcShapeTextDisplay ...',
+            //     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {shapeText});
         };
 
         let today = new Date();
