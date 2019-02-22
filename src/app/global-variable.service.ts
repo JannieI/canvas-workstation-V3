@@ -9279,10 +9279,12 @@ export class GlobalVariableService {
             };
             return 0;
         });
+        console.log('xx currentDashboardTabs', currentDashboardTabs)
 
         // Assume we have all currentD info
         if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
             (this.currentDashboardInfo == null) ) {
+            console.log('xx returned in GV since this.currentDashboardInfo == null')
             return;
         };
 
@@ -9292,7 +9294,7 @@ export class GlobalVariableService {
 
         if (tabToShow != '') {
             if (currentDashboardTabs.length == 0) {
-
+                console.log('xx returned in GV since currentDashboardTabs.length == 0')
                 return;
             }
             if (tabToShow == 'First') {

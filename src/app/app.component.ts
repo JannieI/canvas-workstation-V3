@@ -2556,15 +2556,15 @@ console.log('xx action', action)
             this.clickMenuEditSelectAllNone('None');
 
             // Find the Dasboard
-            let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+            let draftDashboardIndex: number = this.globalVariableService.dashboards.findIndex(
                 d => d.id == this.globalVariableService.currentDashboardInfo.value
                     .currentDashboardID
             );
 
             // If it has an OriginalID, open that D and set editmode
-            if (dashboardIndex >= 0) {
+            if (draftDashboardIndex >= 0) {
                 let draftDashboard: Dashboard = this.globalVariableService
-                    .dashboards[dashboardIndex];
+                    .dashboards[draftDashboardIndex];
                 if (draftDashboard.originalID != null) {
 
                     // Simply open Draft in EditMode
@@ -2578,29 +2578,29 @@ console.log('xx action', action)
 
         } else {
 
-            let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+            let originalDashboardIndex: number = this.globalVariableService.dashboards.findIndex(
                 d => d.id == this.globalVariableService.currentDashboardInfo.value
                     .currentDashboardID
             );
 
-            console.log('xx dashboardIndex', dashboardIndex )
-            if (dashboardIndex >= 0) {
-                let localDashboard: Dashboard = this.globalVariableService
-                    .dashboards[dashboardIndex];
-                console.log('xx localDashboard', localDashboard)
-                if (localDashboard.state == 'Complete') {
-                    if (localDashboard.draftID != null) {
+            console.log('xx originalDashboardIndex', originalDashboardIndex )
+            if (originalDashboardIndex >= 0) {
+                let originalDashboard: Dashboard = this.globalVariableService
+                    .dashboards[originalDashboardIndex];
+                console.log('xx originalDashboard', originalDashboard)
+                if (originalDashboard.state == 'Complete') {
+                    if (originalDashboard.draftID != null) {
 
                         // Simply open Draft in EditMode
                         this.globalVariableService.refreshCurrentDashboard(
-                            'app-clickMenuEditMode', localDashboard.draftID, 0, 'First'
+                            'app-clickMenuEditMode', originalDashboard.draftID, 0, 'First'
                         );
                         this.globalVariableService.editMode.next(true);
 
 
                     } else {
 
-                        this.globalVariableService.dashboardCopy(localDashboard.id, null, 'Draft')
+                        this.globalVariableService.dashboardCopy(originalDashboard.id, null, 'Draft')
                             .then(res => {
 
                                 let newDashboardID:number = res.dashboard.id;
@@ -2612,26 +2612,14 @@ console.log('xx action', action)
 
                                 let today = new Date();
                                 let snapshotName: string = this.globalVariableService.dashboards[
-                                    dashboardIndex].name + ' '
+                                    originalDashboardIndex].name + ' '
                                     + this.globalVariableService.formatDate(today);
                                 this.globalVariableService.newDashboardSnapshot(
                                     snapshotName, 'Starting Edit Mode','StartEditMode'
                                 );
 
-                                // Update in D-Recent
-                                // let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
-                                //     u => u.dashboardID == newDashboardID
-                                // );
-                                // if (localIndex >= 0) {
-                                //     this.globalVariableService.dashboardsRecent[localIndex].editMode = true;
-                                //     this.globalVariableService.amendDashboardRecent(
-                                //         newDashboardID,
-                                //         newDashboardTabID
-                                //     );
-                                // };
-
                                 // Toggle mode
-                                this.globalVariableService.editMode.next(!this.editMode);
+                                this.globalVariableService.editMode.next(true);
                             })
                             .catch(err => {
                                 this.showMessage(
@@ -2644,8 +2632,6 @@ console.log('xx action', action)
                             })
                         // });
                     };
-                } else {
-                    this.globalVariableService.editMode.next(true);
                 };
 
                 // Update EditMode in D-Recent
