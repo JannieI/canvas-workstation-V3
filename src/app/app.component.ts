@@ -9390,7 +9390,7 @@ console.log('xx action', action)
         this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
 
         // Set the EditMode as it was previously
-        this.globalVariableService.editMode.next(this.recentDashboards[index].editMode);
+        // this.globalVariableService.editMode.next(this.recentDashboards[index].editMode);
 
         // Open it
 		this.globalVariableService.refreshCurrentDashboard(
