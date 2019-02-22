@@ -1331,6 +1331,12 @@ export class GlobalVariableService {
                                     } else {
                                         this.hasDatasources.next(false);
                                     }
+
+                                    // Set the EditMode according to the D State
+                                    this.editMode.next(
+                                        this.currentDashboardInfo.value
+                                            .currentDashboardState == 'Draft'?  true  :  false
+                                    );
                                     resolve(true)
                                     // })
                                 })
