@@ -2600,8 +2600,10 @@ console.log('xx action', action)
                             .then(res => {
 
                                 let newDashboardID:number = res.dashboard.id;
+                                let newDashboardTabID:number = res.dashboardTabs[0].id;
+                                
                                 this.globalVariableService.refreshCurrentDashboard(
-                                    'app-clickMenuEditMode', newDashboardID, -1, ''
+                                    'app-clickMenuEditMode', newDashboardID, 0, 'First'
                                 );
 
                                 let today = new Date();
@@ -2616,13 +2618,13 @@ console.log('xx action', action)
                                 let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
                                     u => u.dashboardID == newDashboardID
                                 );
-                                if (localIndex >= 0) {
-                                    this.globalVariableService.dashboardsRecent[localIndex].editMode = true;
-                                    this.globalVariableService.amendDashboardRecent(
-                                        newDashboardID,
-                                        -1
-                                    );
-                                };
+                                // if (localIndex >= 0) {
+                                //     this.globalVariableService.dashboardsRecent[localIndex].editMode = true;
+                                //     this.globalVariableService.amendDashboardRecent(
+                                //         newDashboardID,
+                                //         newDashboardTabID
+                                //     );
+                                // };
 
                                 // Toggle mode
                                 this.globalVariableService.editMode.next(!this.editMode);

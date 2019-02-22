@@ -2572,7 +2572,7 @@ export class GlobalVariableService {
     // Note: a Dashboard has two states: Complete and Draft
 
     // Special routes:
-    //      - Edit Dashboard, which creates the Draft Dashboard (canvasDashboardEdit)
+    //      - Edit Dashboard, which creates the Draft Dashboard (canvasDashboardCopy)
     //      - Discard Draft Dashboard (canvasDashboardDiscard)
     //      - Delete Dashboard with related entities (canvasDashboardDelete)
     //      - Save Draft Dashboard, to Complete (canvasDashboardSaveDraft)
