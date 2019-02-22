@@ -2625,7 +2625,7 @@ console.log('xx action', action)
                             })
                             .catch(err => {
                                 this.showMessage(
-                                    'Error creating Draft (in copyDashboard routine)',
+                                    'Error creating Draft (in dashboardCopy route)',
                                     'StatusBar',
                                     'Error',
                                     3000,

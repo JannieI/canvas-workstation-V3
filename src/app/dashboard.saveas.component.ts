@@ -74,9 +74,10 @@ export class DashboardSaveAsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickclickSaveAsSave', '@Start');
 
         // Copy D
-        this.globalVariableService.copyDashboard(
+        this.globalVariableService.dashboardCopy(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            this.newName
+            this.newName,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardState
         );
 
         this.formDashboardSaveAsClosed.emit('Saved');
