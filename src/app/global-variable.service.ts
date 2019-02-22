@@ -1649,8 +1649,8 @@ export class GlobalVariableService {
                             // var type = 'article';
                             // this[type+'_count'] = 1000;  // in a function we use "this";
                             // alert(this.article_count);
-                            resolve(this[localVariableName]);
                             console.timeEnd("DURATION getResource: " + resource);
+                            resolve(this[localVariableName]);
                             return;
 
                         // Get from Disc (Dexie)
@@ -1661,6 +1661,7 @@ export class GlobalVariableService {
                             .then(res => {
                                 this[localVariableName] = res;
                                 console.log('xx data returned from Disc', this[localVariableName])
+                                console.timeEnd("DURATION getResource: " + resource);
                                 resolve(this[localVariableName]);
                             });
 
@@ -1686,8 +1687,8 @@ export class GlobalVariableService {
                             console.log('Error getResource FAILED', {httpResult});
                         };
    
-                        reject(httpResult.message);
                         console.timeEnd("DURATION getResource: " + resource);
+                        reject(httpResult.message);
                         return;
                     };
 
@@ -1755,15 +1756,15 @@ export class GlobalVariableService {
                     };
 
                     console.warn('xx data retured from HTTP', httpResult.data);
-                    resolve(httpResult.data);
                     console.timeEnd("DURATION getResource: " + resource);
+                    resolve(httpResult.data);
                     return;
                 },
                 err => {
-                    console.timeEnd("DURATION getResource: " + resource);
                     if (this.sessionDebugging) {
                         console.log('Error getResource FAILED', {err});
                     };
+                    console.timeEnd("DURATION getResource: " + resource);
                     reject(err.message)
                 }
             );
@@ -1793,8 +1794,8 @@ export class GlobalVariableService {
                     console.warn('xx inside POST HTTP')
 
                     if(httpResult.statusCode != 'success') {
-                        reject(httpResult.message);
                         console.timeEnd("DURATION addResource" + resource);
+                        reject(httpResult.message);
                         return;
                     };
 
@@ -1876,8 +1877,8 @@ export class GlobalVariableService {
                     };
 
                     console.warn('xx data retured from HTTP', httpResult.data);
-                    resolve(httpResult.data);
                     console.timeEnd("DURATION addResource" + resource);
+                    resolve(httpResult.data);
                     return;
                 },
                 err => {
