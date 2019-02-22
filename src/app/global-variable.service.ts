@@ -793,7 +793,7 @@ const dashboardTemplate: Dashboard =
         groupCanDeleteList: [],
         groupCanRefreshList: [],
         groupCanGrantList: []
-        
+
     };
 
 const dashboardTabTemplate: DashboardTab =
@@ -1229,14 +1229,14 @@ export class GlobalVariableService {
     openDashboardFormOnStartup: boolean = false;
     hasDatasources = new BehaviorSubject<boolean>(false);   // Used to set menu
     showModalLanding = new BehaviorSubject<boolean>(true);  // Shows Landing page
-    lastDashboardOpened: 
+    lastDashboardOpened:
         {
-            wasHyperlink: boolean; 
-            lastDashboardID: number; 
+            wasHyperlink: boolean;
+            lastDashboardID: number;
             lastDashboardTabID: number
         } = {
-            wasHyperlink: false, 
-            lastDashboardID: null, 
+            wasHyperlink: false,
+            lastDashboardID: null,
             lastDashboardTabID: null
         };
 
@@ -1272,7 +1272,7 @@ export class GlobalVariableService {
                 "color: black; background: lightgray; font-size: 10px",)
         };
 
-        // Initialise 
+        // Initialise
         this.dbCanvasAppDatabase = new CanvasAppDatabase
         this.dbCanvasAppDatabase.open();
         this.dbDataCachingTable = new DataCachingDatabase;
@@ -1323,9 +1323,9 @@ export class GlobalVariableService {
                                 // Get info for W
                                 this.getWidgetsInfo().then(n => {
 
+                                    console.log('xx BEFORE AMEND IN REFRESH D ****************************' )
                                     // Add to recent
                                     this.amendDashboardRecent(dashboardID, dashboardTabID); //.then(n => {
-
                                     if (this.currentDatasources.length > 0) {
                                         this.hasDatasources.next(true);
                                     } else {
@@ -1686,7 +1686,7 @@ export class GlobalVariableService {
                         if (this.sessionDebugging) {
                             console.log('Error getResource FAILED', {httpResult});
                         };
-   
+
                         console.timeEnd("DURATION getResource: " + resource);
                         reject(httpResult.message);
                         return;
@@ -1700,7 +1700,7 @@ export class GlobalVariableService {
                         localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                         localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
                         console.warn('xx vars', dataCachingTableIndex, localCacheableMemory, localCacheableDisc, localVariableName);
-        
+
                         // Fill local Vars
                         if (localCacheableMemory) {
 
@@ -2091,7 +2091,7 @@ export class GlobalVariableService {
                         };
 
                     };
-                    
+
 
 
                     if (this.sessionDebugging) {
@@ -2181,7 +2181,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            let pathUrl: string = '/canvasDashboardCopy?originalDashboardID=' 
+            let pathUrl: string = '/canvasDashboardCopy?originalDashboardID='
                 + originalDashboardID + "&newName=" + newName + "&newState=" + newState;
             let finalUrl: string = this.canvasServerURI + pathUrl;
             console.log('finalUrl', finalUrl)
@@ -2202,7 +2202,7 @@ export class GlobalVariableService {
                             this.dashboards[dashboardIndex].draftID = res.data.dashboard.id;
                         };
                     };
-                    
+
                     this.dashboards.push(res.data.dashboard);
                     this.dashboardTabs.push(res.data.dashboardTabs);
                     this.widgets.push(res.data.widgets);
@@ -2212,7 +2212,7 @@ export class GlobalVariableService {
                     this.currentDashboardTabs.push(res.data.dashboardTabs);
                     this.currentWidgets.push(res.data.widgets);
                     this.currentWidgetCheckpoints.push(res.data.widgetCheckpoints);
-                    
+
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables dashboardCopy 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -2485,7 +2485,7 @@ export class GlobalVariableService {
             if (draftDashboard.state != 'Draft') {
                 reject('This is not a draft Dashboard');
             };
-            
+
             // Clear related Actions in Memory
             this.actions = this.actions.filter(act => act.dashboardID != draftDashboardID);
 
@@ -2496,13 +2496,37 @@ export class GlobalVariableService {
             let pathUrl: string = '/canvasDashboardDiscard';
             let finalUrl: string = this.canvasServerURI + pathUrl;
 
-            this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID=' 
+            this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID='
                 + draftDashboardID + '&originalDashboardID=' + originalDashboardID, null, {headers})
                 .subscribe(
                     res => {
                         if(res.statusCode != 'success') {
                             reject('Error deleting Draft Dashboard: '+ res.message);
                         };
+
+                        // TODO - make this DRY
+                        // Add / Amend the cache
+                        let draftDashboardIndex: number = this.dashboards.findIndex(
+                            d => d.id == draftDashboardID
+                        );
+                        if (draftDashboardIndex >= 0) {
+                            let originalDashboardIndex: number = this.dashboards.findIndex(
+                                d => d.id == this.dashboards[draftDashboardIndex].originalID
+                            );
+                            if (originalDashboardIndex >= 0) {
+                                this.dashboards[originalDashboardIndex].draftID = null;
+                            };
+                        };
+
+                        this.dashboards = this.dashboards.filter(x => x.id != draftDashboardID)
+                        this.dashboardTabs = this.dashboardTabs.filter(x => x.dashboardID != draftDashboardID)
+                        this.widgets = this.widgets.filter(x => x.dashboardID != draftDashboardID)
+                        this.widgetCheckpoints = this.widgetCheckpoints.filter(x => x.dashboardID != draftDashboardID)
+                        this.currentDashboards = this.currentDashboards.filter(x => x.id != draftDashboardID)
+                        this.currentDashboardTabs = this.currentDashboardTabs.filter(x => x.dashboardID != draftDashboardID)
+                        this.currentWidgets = this.currentWidgets.filter(x => x.dashboardID != draftDashboardID)
+                        this.currentWidgetCheckpoints = this.currentWidgetCheckpoints.filter(x => x.dashboardID != draftDashboardID)
+
                         resolve(originalDashboardID);
                     },
                     err => {
@@ -2538,7 +2562,7 @@ export class GlobalVariableService {
             if (draftDashboard.state != 'Draft') {
                 reject('This is not a draft Dashboard');
             };
-            
+
             // Clear related Actions in Memory
             this.actions = this.actions.filter(act => act.dashboardID != draftDashboardID);
 
@@ -2557,7 +2581,7 @@ export class GlobalVariableService {
             let pathUrl: string = '/canvasDashboardSaveDraft';
             let finalUrl: string = this.canvasServerURI + pathUrl;
 
-            this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID=' 
+            this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID='
                 + draftDashboardID + '&originalDashboardID=' + originalDashboardID, null, {headers})
                 .subscribe(
                     res => {
@@ -2585,7 +2609,7 @@ export class GlobalVariableService {
     //
     // This doc explains:
     // 1. the core entities contained in a new Dashboard (Draft or copy created with SaveAs)
-    // 2. how related entities are treated in the different processes for Dashboards 
+    // 2. how related entities are treated in the different processes for Dashboards
     //    (creating, discarding and saving a Draft, copying a Complete Dashboard)
     // Note: a Dashboard has two states: Complete and Draft
 
@@ -2597,21 +2621,21 @@ export class GlobalVariableService {
     //      - SaveAs Dashboard, making a copy of the Complete Dashboard (canvasDashboardSaveAs)
 
     // 1. Core Entities are created when a Draft Dashboard is created, or a Dashboard is copied:
-    //      Dashboards						
-    //      DashboardTabs					
-    //      Widgets							
-    //      WidgetCheckpoints				
-    //      WidgetLayout                     
+    //      Dashboards
+    //      DashboardTabs
+    //      Widgets
+    //      WidgetCheckpoints
+    //      WidgetLayout
     //
-    //   Edit (create Draft):              
-    //    - These entities are copied to the new Dashboard from the Original Dashboard, with new IDs.  
+    //   Edit (create Draft):
+    //    - These entities are copied to the new Dashboard from the Original Dashboard, with new IDs.
     //    - new state = Draft
     //    - The new IDs are linked, W -> T -> D -> W-Chk.
     //   Discard:
     //    - original/draft IDs updated on the Original Dashboard
     //    - The Draft Dashboard and core entities are deleted
     //   Save Draft (to Complete):
-    //    - the Original (Complete) Dashboard record content is updated with Draft content, and 
+    //    - the Original (Complete) Dashboard record content is updated with Draft content, and
     //      original/draft IDs updated on the Original Dashboard
     //    - link core entities (Tabs, Widgets, WidgetCheckpoints) to the Original Dashboard
     //      (thus the previous Draft Widgets are now linked to the Original Dashboard)
@@ -2620,12 +2644,12 @@ export class GlobalVariableService {
     //   Delete (Original):
     //    - The Dashboard and core entities are deleted
     //   SaveAs (copy a Complete Dashboard):
-    //    - These entities are copied to the new Dashboard when created, with new IDs.  
+    //    - These entities are copied to the new Dashboard when created, with new IDs.
     //    - The new IDs are linked, W -> T -> D -> W-Chk.
     //    - the new state = Complete
 
     // 2. Related Entities can be linked to a Draft and Complete Dashboard, but are deleted when the
-    //    Draft Dashboard is deleted.  The rational for this is that these entities are instance 
+    //    Draft Dashboard is deleted.  The rational for this is that these entities are instance
     //    specific - they are useful only for the Draft Dashboard:
     //      DashboardSnapshots
     //      DashboardSchedules
@@ -2636,7 +2660,7 @@ export class GlobalVariableService {
     //      DashboardUsedAsFavourite
     //      DashboardLayout - TODO, this must be redesigned !
     //
-    //   Edit (create Draft):              
+    //   Edit (create Draft):
     //    - No action
     //   Discard:
     //    - Delete these entities
@@ -2657,7 +2681,7 @@ export class GlobalVariableService {
     //      UsedAsStartup
     //      UsedAsTemplate
     //
-    //   Edit (create Draft):              
+    //   Edit (create Draft):
     //    - No action
     //   Discard:
     //    - Re-link these entities to the Original Dashboard
@@ -2674,7 +2698,7 @@ export class GlobalVariableService {
     //      StatusBarMessageLog
     //      CanvasActions
     //
-    //   Edit (create Draft):              
+    //   Edit (create Draft):
     //    - No action (add record to Recent list)
     //   Discard:
     //    - Delete these entities
@@ -2686,7 +2710,7 @@ export class GlobalVariableService {
     //    - No action
 
     // TODO - finish these once overall design is done !
-    // DatasourceFilter                    Delete  - 
+    // DatasourceFilter                    Delete  -
     // Combinations                  ?     Not Sure !!!
 
 
@@ -3055,7 +3079,7 @@ export class GlobalVariableService {
 
     }
 
-    addDashboardToCache(dashboard: Dashboard,        
+    addDashboardToCache(dashboard: Dashboard,
         dashboardTabs: DashboardTab[],
         widgets: Widget[],
         widgetCheckpoints: WidgetCheckpoint[]
@@ -3076,39 +3100,39 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        // TODO - this does NOT cater for async case when cached is only on Disc 
+        // TODO - this does NOT cater for async case when cached is only on Disc
         //        => may not be ready before refreshDashboard is run !!
         return new Promise<boolean>((resolve, reject) => {
             this.updateLocalCacheMemory(
-                'add', 
-                dashboard.id, 
-                'dashboards', 
+                'add',
+                dashboard.id,
+                'dashboards',
                 dashboard
             );
 
             dashboardTabs.forEach(dashboardTab => {
                 this.updateLocalCacheMemory(
-                    'add', 
-                    dashboardTab.id, 
-                    'dashboardTabs', 
+                    'add',
+                    dashboardTab.id,
+                    'dashboardTabs',
                     dashboardTab
                 );
             });
 
             widgets.forEach(widget => {
                 this.updateLocalCacheMemory(
-                    'add', 
-                    widget.id, 
-                    'widgets', 
+                    'add',
+                    widget.id,
+                    'widgets',
                     widget
                 );
             });
 
             widgetCheckpoints.forEach(widgetCheckpoint => {
                 this.updateLocalCacheMemory(
-                    'add', 
-                    widgetCheckpoint.id, 
-                    'widgetCheckpoints', 
+                    'add',
+                    widgetCheckpoint.id,
+                    'widgetCheckpoints',
                     widgetCheckpoint
                 );
             });
@@ -3119,9 +3143,9 @@ export class GlobalVariableService {
     }
 
     updateLocalCacheMemory(
-        cacheAction: string, 
-        cachedEntityID: number, 
-        cachedEntityName: string, 
+        cacheAction: string,
+        cachedEntityID: number,
+        cachedEntityName: string,
         cachedEntityData: any): Promise<boolean> {
         // Amend local Workstation Memory Cache
         //   cacheAction = add, update, delete
@@ -3301,7 +3325,7 @@ export class GlobalVariableService {
                 });
 
             };
-        
+
             // Done
             console.log('xx after cache update', this.dashboards)
             resolve(true);
@@ -3763,7 +3787,7 @@ export class GlobalVariableService {
                             };
                             return 0;
                         });
-    
+
                         resolve(dR)
                     })
                     .catch(err => reject(err));
@@ -4346,7 +4370,7 @@ export class GlobalVariableService {
 
                 // NB: Note that the Server will return the data based on the
                 //     datasourceID= in the query parameters !
-                let finalUrl: string = this.canvasServerURI + '/clientData/?&datasourceID=' 
+                let finalUrl: string = this.canvasServerURI + '/clientData/?&datasourceID='
                     + datasourceID;
 
                     this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
@@ -4562,12 +4586,12 @@ export class GlobalVariableService {
     getData(parameters: string): Promise<any[]> {
         // Description: Gets Data
         // parameters: list of ways to modify the result, for example:
-        //   datasourceID=68                       REQUIRED - data for this DS 
-        //   &sortObject=-Month                    Comma separated list of fields, - means DESC     
-        //   &fields=Year, Month                   Fields to return, NOTE spaces     
-        //   &filterObject={"Year":2019}           Filter object in Mongo format             
-        //   &aggregationObject=aggregationObject  How to aggregate the data after SELECT statement                         
-        //   &nrRowsToReturn=2                     Rows to return after ALL else have been done     
+        //   datasourceID=68                       REQUIRED - data for this DS
+        //   &sortObject=-Month                    Comma separated list of fields, - means DESC
+        //   &fields=Year, Month                   Fields to return, NOTE spaces
+        //   &filterObject={"Year":2019}           Filter object in Mongo format
+        //   &aggregationObject=aggregationObject  How to aggregate the data after SELECT statement
+        //   &nrRowsToReturn=2                     Rows to return after ALL else have been done
         // Returns: res.data
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getData ...',
@@ -4623,7 +4647,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        // TODO - kill all 'data' paths, kill the collection in Mongo and 
+        // TODO - kill all 'data' paths, kill the collection in Mongo and
         //        do according to the new way
         let pathUrl: string = 'data';
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
@@ -4705,7 +4729,7 @@ export class GlobalVariableService {
                 .set("Content-Type", "application/json");
             // let pathUrl: string = 'data';
             // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-        
+
             let finalUrl: string = this.canvasServerURI + '/clientdata';
             this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
                 .subscribe(res => {
@@ -8164,7 +8188,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables updateCanvasMessagesAsRead ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
         };
-        
+
 
         // TODO - this must be done via the DB: for now, only glob-var array
         // let today = new Date();
@@ -8186,7 +8210,7 @@ export class GlobalVariableService {
             let pathUrl: string = '/canvasDataMarkMessagesAsRead';
             let finalUrl: string = this.canvasServerURI + pathUrl;
 
-            this.http.put<CanvasHttpResponse>(finalUrl + '?userID=' 
+            this.http.put<CanvasHttpResponse>(finalUrl + '?userID='
                 + userID, null, {headers})
                 .subscribe(
                     res => {
@@ -10816,7 +10840,7 @@ export class GlobalVariableService {
                 console.log('  Access FAILED for: ', {dashboardID}, {accessRequired}, dashboard.accessType, {hasAccess});
             };
         };
-        console.log('xx', {hasAccess}) 
+        console.log('xx', {hasAccess})
         return hasAccess;
     }
 
@@ -11428,7 +11452,7 @@ export class GlobalVariableService {
         datasourceID: number = null,
         nrRowsToReturn: number = 0): Promise<CanvasHttpResponse> {
         // Description: Executes a SQL Statement and returns an Array of data
-        // Input: 
+        // Input:
         // - serverType = type of DB, ie MySQL, MicrosoftSQL, etc
         // - serverName, databaseName, port, username, password = DB connection string & credentials
         // - sqlStatement = SQL Statement
@@ -11532,7 +11556,7 @@ export class GlobalVariableService {
     };
 
     getDashboardSummaryNEW(dashboardID: number): Promise<any> {
-        // Gets a summary of related Entities for the given Dashboard 
+        // Gets a summary of related Entities for the given Dashboard
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getDashboardSummaryNEW ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -11710,7 +11734,7 @@ console.log('xx currentDatasetsAdded', currentDatasetsAdded)
                     if (currentDatasetIndex >= 0) {
                         this.currentDatasets[currentDatasetIndex] = currentDatasetsAdded;
                     };
-                    
+
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables saveDatasourceNEW 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -12007,7 +12031,7 @@ console.log('xx currentDatasetsAdded', currentDatasetsAdded)
 
             case 'minute' :  ret.setTime(ret.getTime() + units*60000);  break;
             case 'minutes' :  ret.setTime(ret.getTime() + units*60000);  break;
-            
+
             case 'second' :  ret.setTime(ret.getTime() + units*1000);  break;
             case 'seconds' :  ret.setTime(ret.getTime() + units*1000);  break;
 
@@ -12152,7 +12176,7 @@ console.log('xx currentDatasetsAdded', currentDatasetsAdded)
         pathUrl = pathUrl + '&travelMode=driving';
         pathUrl = pathUrl + '&startTime=2017-06-15T13:00:00-07:00';
         pathUrl = pathUrl + '&key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED';
-        
+
         this.http.get<any>(pathUrl).subscribe(
             httpResult  => {
                 console.log('httpResult', httpResult)
