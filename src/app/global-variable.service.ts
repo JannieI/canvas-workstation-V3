@@ -2197,7 +2197,7 @@ export class GlobalVariableService {
                         reject(res.message);
                         return;
                     };
-
+                    console.log('xx GV copyD res', res)
                     // TODO - make this DRY
                     // Add / Amend the cache
                     if (newState == 'Draft') {
@@ -2210,19 +2210,30 @@ export class GlobalVariableService {
                     };
 
                     this.dashboards.push(res.data.dashboard);
-                    this.dashboardTabs.push(res.data.dashboardTabs);
-                    this.widgets.push(res.data.widgets);
-                    this.widgetCheckpoints.push(res.data.widgetCheckpoints);
-
                     this.currentDashboards.push(res.data.dashboard);
-                    this.currentDashboardTabs.push(res.data.dashboardTabs);
-                    this.currentWidgets.push(res.data.widgets);
-                    this.currentWidgetCheckpoints.push(res.data.widgetCheckpoints);
+                    res.data.dashboardTabs.forEach(tab => 
+                        {
+                            this.dashboardTabs.push(tab);
+                            this.currentDashboardTabs.push(tab);
+                        }
+                    );
+                    res.data.widgets.forEach(widget => 
+                        {
+                            this.widgets.push(widget);
+                            this.currentWidgets.push(widget);
+                        }
+                    );
+                    res.data.widgetCheckpoints.forEach(widgetCheckpoint => 
+                        {
+                            this.widgetCheckpoints.push(widgetCheckpoint);
+                            this.currentWidgetCheckpoints.push(widgetCheckpoint);
+                        }
+                    );
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables dashboardCopy 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            "Draft created for current Dashboard")
+                            "Draft created for current Dashboard", this.currentDashboardTabs)
                     };
 
                     resolve(res.data);
@@ -9255,7 +9266,7 @@ export class GlobalVariableService {
         dashboardID: number,
         dashboardTabID: number = 0,
         tabToShow: string = '',
-        widgetsToRefresh: number[] = []) {
+        widgetsToRefresh: number[] = []): string {
         // Refresh the global var currentDashboardInfo, then .next it.
         // This will refresh the Dashboard on the screen (via .subscribe)
         // If a dashboardTabID is given, this one will be shown.  Else, it will navigate
@@ -9291,7 +9302,7 @@ export class GlobalVariableService {
         if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
             (this.currentDashboardInfo == null) ) {
             console.log('xx returned in GV since this.currentDashboardInfo == null')
-            return;
+            return 'Error';
         };
 
         let dt = new Date();
@@ -9300,28 +9311,27 @@ export class GlobalVariableService {
 
         if (tabToShow != '') {
             if (currentDashboardTabs.length == 0) {
-                console.log('xx returned in GV since currentDashboardTabs.length == 0', dashboardID, this.dashboardTabs)
-                return;
-            }
+                console.log('xx returned in GV since currentDashboardTabs.length == 0', dashboardID, this.dashboards, this.dashboardTabs)
+                return 'Error';
+            };
             if (tabToShow == 'First') {
                 x = 0;
-            }
+            };
             if (tabToShow == 'Previous') {
                 x = this.currentDashboardInfo.value.currentDashboardTabIndex - 1;
                 if (x < 0) {
                     x = currentDashboardTabs.length - 1;
-                }
-            }
+                };
+            };
             if (tabToShow == 'Next') {
                 x = this.currentDashboardInfo.value.currentDashboardTabIndex + 1;
                 if (x >= currentDashboardTabs.length) {
                     x = 0;
-                }
-            }
+                };
+            };
             if (tabToShow == 'Last') {
                 x = currentDashboardTabs.length - 1;
-
-            }
+            };
             y = currentDashboardTabs[x].id;
         } else {
             y = dashboardTabID;

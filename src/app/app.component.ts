@@ -2591,6 +2591,7 @@ console.log('xx action', action)
                 if (originalDashboard.state == 'Complete') {
                     if (originalDashboard.draftID != null) {
 
+                        console.log('xx call refreshDinfo with ', originalDashboard.draftID)
                         // Simply open Draft in EditMode
                         this.globalVariableService.refreshCurrentDashboard(
                             'app-clickMenuEditMode', originalDashboard.draftID, 0, 'First'
@@ -2606,18 +2607,19 @@ console.log('xx action', action)
                                 let newDashboardID:number = res.dashboard.id;
                                 let newDashboardTabID:number = res.dashboardTabs[0].id;
 
-                                this.globalVariableService.refreshCurrentDashboard(
+                                let result: string = this.globalVariableService.refreshCurrentDashboard(
                                     'app-clickMenuEditMode', newDashboardID, 0, 'First'
                                 );
 
-                                let today = new Date();
-                                let snapshotName: string = this.globalVariableService.dashboards[
-                                    originalDashboardIndex].name + ' '
-                                    + this.globalVariableService.formatDate(today);
-                                this.globalVariableService.newDashboardSnapshot(
-                                    snapshotName, 'Starting Edit Mode','StartEditMode'
-                                );
-
+                                if (result != 'Error') {
+                                    let today = new Date();
+                                    let snapshotName: string = this.globalVariableService.dashboards[
+                                        originalDashboardIndex].name + ' '
+                                        + this.globalVariableService.formatDate(today);
+                                    this.globalVariableService.newDashboardSnapshot(
+                                        snapshotName, 'Starting Edit Mode','StartEditMode'
+                                    );
+                                };
                                 // Toggle mode
                                 // this.globalVariableService.editMode.next(true);
                             })
