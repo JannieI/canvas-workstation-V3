@@ -1355,7 +1355,7 @@ export class GlobalVariableService {
         // Handles all the WebSocket messages, depending on the type messageType and Action
         // It is async, so returns a Promise<boolean>
         if (this.sessionDebugging) {
-            console.log('%c        Global-Variables actionWebSocket ...',
+            console.log('%c    Global-Variables actionWebSocket ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
@@ -1588,7 +1588,7 @@ export class GlobalVariableService {
         // Note: in order to use a resource, it must be defined in the Dexie.ts file.
         //       Also, it may be necessary to delete the whole IndexedDB before adding new tables ...
         if (this.sessionDebugging) {
-            console.log('%c        Global-Variables getResource ...',
+            console.log('%c    Global-Variables getResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
         console.time("DURATION getResource: " + resource);
@@ -1622,7 +1622,7 @@ export class GlobalVariableService {
                 localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
                 localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                 localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-                console.warn('xx vars', dataCachingTableIndex, localCacheableMemory, localCacheableDisc, localVariableName);
+                console.warn('xx In Mem vars', dataCachingTableIndex, localCacheableMemory, localCacheableDisc, localVariableName);
 
                 // Local Memory is used, if fresh
                 if (localCacheableMemory) {
@@ -1705,7 +1705,7 @@ export class GlobalVariableService {
                         localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
                         localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                         localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-                        console.warn('xx vars', dataCachingTableIndex, localCacheableMemory, localCacheableDisc, localVariableName);
+                        console.warn('xx In HTTP vars', dataCachingTableIndex, localCacheableMemory, localCacheableDisc, localVariableName);
 
                         // Fill local Vars
                         if (localCacheableMemory) {
@@ -2177,7 +2177,7 @@ export class GlobalVariableService {
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c        Global-Variables dashboardCopy ...',
+            console.log('%c    Global-Variables dashboardCopy ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
@@ -8992,7 +8992,7 @@ export class GlobalVariableService {
        if (this.sessionDebugging) {
         console.log('%c    Global-Variables setBaseUrl ...',
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            this.statusBarMessageLogs.length);
+            pathUrl);
         };
 
         // CanvasDatabase: Local or Server
@@ -11149,7 +11149,7 @@ export class GlobalVariableService {
         password: string): Promise<CanvasHttpResponse> {
         // Description: Returns an Array of tables in the given Server and DB
         if (this.sessionDebugging) {
-            console.log('%c        Global-Variables getListTables ...',
+            console.log('%c    Global-Variables getListTables ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
@@ -11198,7 +11198,7 @@ export class GlobalVariableService {
         password: string): Promise<CanvasHttpResponse> {
         // Description: Returns an Array of Fields in the given Server and DB
         if (this.sessionDebugging) {
-            console.log('%c        Global-Variables getListFields ...',
+            console.log('%c    Global-Variables getListFields ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
@@ -11257,7 +11257,7 @@ export class GlobalVariableService {
         // - nrRowsToReturn = Optional number of rows to return, 0 = all
 
         if (this.sessionDebugging) {
-            console.log('%c        Global-Variables getExecQuery ...',
+            console.log('%c    Global-Variables getExecQuery ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
@@ -11797,7 +11797,7 @@ export class GlobalVariableService {
         //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
         // Returns: Amended Date
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
+            console.log('%c    Global-Variables dateAdd ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {date}, {interval}, {units});
         };
