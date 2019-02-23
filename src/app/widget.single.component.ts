@@ -95,6 +95,7 @@ export class WidgetSingleComponent {
                 this.widget.graphWidth
             );
 
+            console.log('xx this.specification', this.specification)
             // Render in DOM
             let vegaSpecification = compile(this.specification).spec;
             let view = new View(parse(vegaSpecification));
