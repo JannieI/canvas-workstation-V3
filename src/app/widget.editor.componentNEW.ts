@@ -1554,7 +1554,7 @@ export interface dataSchemaInterface {
 
         // Render graph for Vega
         if (this.localWidget.visualGrammar == 'Vega') {
-            
+
             // Create specification
             this.specification = this.globalVariableService.createVegaSpec(
                 this.localWidget,
@@ -1717,6 +1717,15 @@ export interface dataSchemaInterface {
             return;
         };
 
+        // Workaround as MongoDB does not like $ in $schema
+        // TODO - the $ must be treated better - and also READ BACK & CHANGED !!!
+        this.localWidget.graphLayers.forEach(w => {
+            let graphspec: string = JSON.stringify(w.graphSpecification);
+            w.graphSpecification = JSON.parse(graphspec.replace("$schema","_schema"));
+            w.graphSpecification.width = 1200;
+            w.graphSpecification.height = 1200;    
+        });
+        console.log('xx this.localWidget', this.localWidget)
         // Calc the graph dimensions
         // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphHeight = this.globalVariableService.calcGraphHeight(this.localWidget);
         // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphWidth = this.globalVariableService.calcGraphWidth(this.localWidget);
@@ -1755,6 +1764,7 @@ export interface dataSchemaInterface {
             this.globalVariableService.addWidget(this.localWidget).then(res => {
                 this.localWidget.id = res.id;
 
+                console.log('xx added W res', res)
                 // Action
                 // TODO - cater for errors + make more generic
                 let actID: number = this.globalVariableService.actionUpsert(
@@ -1793,6 +1803,8 @@ export interface dataSchemaInterface {
 
             // Update global W and DB
             this.globalVariableService.saveWidget(this.localWidget).then(res => {
+
+                console.log('xx saved W res', res)
 
                 // Action
                 // TODO - cater for errors + make more generic
@@ -3046,7 +3058,7 @@ export interface dataSchemaInterface {
             // Load local arrays for ngFor - this is required for the Preview
             this.constructDataSchema(arrayIndex);
             console.log('WE this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
-            
+
             // Determine if data obtains in Glob Var
             dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
                 ds => ds.datasourceID == datasourceID
@@ -3073,7 +3085,7 @@ export interface dataSchemaInterface {
         });
 
         console.warn('xx clicked row', dataSetIndex);
-        
+
     }
 
     clickDSfilter(index, datasourceID: number) {
