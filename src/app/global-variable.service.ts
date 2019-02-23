@@ -1323,7 +1323,7 @@ export class GlobalVariableService {
                                 // Get info for W
                                 this.getWidgetsInfo().then(n => {
 
-                                    console.log('xx BEFORE AMEND IN REFRESH D ****************************' )
+                                    console.log('xx refreshCurrentDashboard BEFORE AMEND IN REFRESH D ****************************' )
                                     // Add to recent
                                     this.amendDashboardRecent(dashboardID, dashboardTabID); //.then(n => {
                                     if (this.currentDatasources.length > 0) {
@@ -1398,7 +1398,7 @@ export class GlobalVariableService {
                         // Update Current Var
                         // TODO - consider this carefully: dont think we should add stuff to
                         // currentVars, ie currentDashboards = current D selected by user
-                        console.log('xx ADD Memory Updated', this[localVariableName], this[localCurrentVariableName])
+                        console.log('xx actionWebSocket ADD Memory Updated', this[localVariableName], this[localCurrentVariableName])
 
                     };
 
@@ -1411,7 +1411,7 @@ export class GlobalVariableService {
                                 .put(webSocketMessage.content)
                                 .then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                        console.warn('xx Add Disc count @ end ', res);
+                                        console.warn('xx actionWebSocket Add Disc count @ end ', res);
                                     });
                             });
                         };
@@ -1443,7 +1443,7 @@ export class GlobalVariableService {
                                 this[localCurrentVariableName][localCurrentVarIndex] = webSocketMessage.content;
                             };
                         };
-                        console.log('xx UPDATE Memory Updated', this[localCurrentVariableName], this[localCurrentVariableName])
+                        console.log('xx actionWebSocket UPDATE Memory Updated', this[localCurrentVariableName], this[localCurrentVariableName])
 
                     };
 
@@ -1457,7 +1457,7 @@ export class GlobalVariableService {
                                 .put(webSocketMessage.content)
                                 .then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                        console.warn('xx UPDATE Disc count @ end ', res);
+                                        console.warn('xx actionWebSocket UPDATE Disc count @ end ', res);
                                     });
                             });
                         };
@@ -1485,7 +1485,7 @@ export class GlobalVariableService {
                                     return lv.id != webSocketMessage.objectID
                                 });
                         };
-                        console.log('xx DELETE Memory updated', this[localVariableName], this[localCurrentVariableName])
+                        console.log('xx actionWebSocket DELETE Memory updated', this[localVariableName], this[localCurrentVariableName])
 
                     };
 
@@ -1498,7 +1498,7 @@ export class GlobalVariableService {
                                 .delete()
                                 .then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                        console.warn('xx DELETE count @end', res);
+                                        console.warn('xx actionWebSocket DELETE count @end', res);
                                     });
                             });
                         };
@@ -1626,7 +1626,7 @@ export class GlobalVariableService {
 
                 // Local Memory is used, if fresh
                 if (localCacheableMemory) {
-                    console.log('xx in local Memory')
+                    console.log('xx in local Memory: ', localVariableName)
 
                     // Fresh if not expired as yet
                     let dn: Date = new Date();
@@ -2142,7 +2142,6 @@ export class GlobalVariableService {
                 let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
                 this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                     res  => {
-                        console.log('xx    resssssssssssssssssss', res)
                         if(res.statusCode != 'success') {
                             reject(res.message);
 							return;
@@ -2197,7 +2196,7 @@ export class GlobalVariableService {
                         reject(res.message);
                         return;
                     };
-                    console.log('xx GV copyD res', res)
+
                     // TODO - make this DRY
                     // Add / Amend the cache
                     if (newState == 'Draft') {
@@ -2997,7 +2996,7 @@ export class GlobalVariableService {
                         // Update Current Var
                         // TODO - consider this carefully: dont think we should add stuff to
                         // currentVars, ie currentDashboards = current D selected by user
-                        console.log('xx ADD Memory Updated', this[localVariableName], this[localCurrentVariableName])
+                        console.log('xx ADD Memory Updated for Var: localVariableName', localVariableName, this[localVariableName], this[localCurrentVariableName])
 
                     };
 
@@ -3010,7 +3009,7 @@ export class GlobalVariableService {
                                 .put(cachedEntityData)
                                 .then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                        console.warn('xx Add Disc count @ end ', res);
+                                        console.warn('xx updateLocalCacheMem count @ end for localTableName: ', localTableName, res);
                                     });
                             });
                         };
@@ -3042,7 +3041,7 @@ export class GlobalVariableService {
                                 this[localCurrentVariableName][localCurrentVarIndex] = cachedEntityData;
                             };
                         };
-                        console.log('xx UPDATE Memory Updated', this[localCurrentVariableName], this[localCurrentVariableName])
+                        console.log('xx updateLocalCacheMem Updated for localCurrentVariableName: ', localCurrentVariableName, this[localCurrentVariableName])
 
                     };
 
@@ -3056,7 +3055,7 @@ export class GlobalVariableService {
                                 .put(cachedEntityData)
                                 .then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                        console.warn('xx UPDATE Disc count @ end ', res);
+                                        console.warn('xx updateLocalCacheMem Update count @ end for localTableName: ', localTableName, res);
                                     });
                             });
                         };
@@ -3084,7 +3083,7 @@ export class GlobalVariableService {
                                     return lv.id != cachedEntityID
                                 });
                         };
-                        console.log('xx DELETE Memory updated', this[localVariableName], this[localCurrentVariableName])
+                        console.log('xx updateLocalCacheMem Delete for localVariableName: ', localVariableName, this[localVariableName], this[localCurrentVariableName])
 
                     };
 
@@ -3097,7 +3096,7 @@ export class GlobalVariableService {
                                 .delete()
                                 .then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                        console.warn('xx DELETE count @end', res);
+                                        console.warn('xx updateLocalCacheMem Delete count @end for localTableName', localTableName, res);
                                     });
                             });
                         };
@@ -3114,7 +3113,7 @@ export class GlobalVariableService {
                     this.dateAdd(dt, 'second', seconds);
                 this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                 today;
-                console.log('xx dataCachingTable memory upd', this.dataCachingTable)
+                console.log('xx updateLocalCacheMem dataCachingTable memory upd', this.dataCachingTable)
 
 
                 // Update dataCaching on Disc
@@ -3122,14 +3121,14 @@ export class GlobalVariableService {
                     .bulkPut(this.dataCachingTable)
                     .then(res => {
                         this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                            console.warn('xx localDataCachingTable count @end', res);
+                            console.warn('xx updateLocalCacheMem localDataCachingTable count @end', res);
                         });
                 });
 
             };
 
             // Done
-            console.log('xx after cache update', this.dashboards)
+            console.log('xx After cache update localTableName: ', this.dashboardsRecent)
             resolve(true);
         });
     }
@@ -3620,7 +3619,7 @@ export class GlobalVariableService {
                             };
                             return 0;
                         });
-                        console.log('xx this.dashboardsRecent', this.dashboardsRecent)
+                        console.log('xx amendDashboardRecent this.dashboardsRecent', this.dashboardsRecent)
                         this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
                         resolve(recentD)
@@ -4562,10 +4561,6 @@ export class GlobalVariableService {
                 "color: black; background: lightgray; font-size: 10px", {dataSet});
         };
 
-        // this.currentWidgets.forEach(w => {
-        //     console.warn('xx strt graphData', w.graphUrl, w.graphData);
-        // });
-
         // Get all Sl for the given dSet
         // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has
         // two dSets with different values ...
@@ -4577,7 +4572,7 @@ export class GlobalVariableService {
 
         // Reset the filtered data
         dataSet.data = dataSet.dataRaw;
-        console.log('xx data, dataRaw.length', dataSet.data.length, dataSet.dataRaw.length)
+        console.log('xx filterSlicer data, dataRaw.length', dataSet.data.length, dataSet.dataRaw.length)
 
         // Loop on related Sl and filter data
         relatedSlicers.forEach(w => {
@@ -4612,7 +4607,7 @@ export class GlobalVariableService {
 
                     // Replace the filtered data, used by the graph
                 dataSet.data = tempData;
-                console.log('xx End of list data.length', dataSet.data.length)
+                console.log('xx filterSlicer End of list data.length', dataSet.data.length)
 
             };
 
@@ -4655,14 +4650,14 @@ export class GlobalVariableService {
             if (w.datasourceID == dataSet.datasourceID
                 &&   w.datasetID == dataSet.id
                 && w.widgetType != 'Slicer') {
-                    console.log('xx Related W: ', w.id)
+                    console.log('xx filterSlicer Related W: ', w.id)
                     w.graphUrl = "";
                     w.graphData = dataSet.data;
 
             };
         });
 
-        console.warn('xx filt Sl', this.currentWidgets, dataSet)
+        console.warn('xx filterSlicer @ End: currentW, dataSet', this.currentWidgets, dataSet)
         return dataSet;
     }
 
@@ -4950,7 +4945,6 @@ export class GlobalVariableService {
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 res => {
-                    console.log('xx   ----  res ---- ', res)
                     if(res.statusCode != 'success') {
                         reject(res.message);
 						return;
@@ -9081,12 +9075,12 @@ export class GlobalVariableService {
             };
             return 0;
         });
-        console.log('xx currentDashboardTabs', currentDashboardTabs)
+        console.log('xx refreshCurrentDashboard currentDashboardTabs', currentDashboardTabs)
 
         // Assume we have all currentD info
         if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
             (this.currentDashboardInfo == null) ) {
-            console.log('xx returned in GV since this.currentDashboardInfo == null')
+            console.log('xx refreshCurrentDashboard returned in GV since this.currentDashboardInfo == null')
             return 'Error';
         };
 
@@ -9096,7 +9090,7 @@ export class GlobalVariableService {
 
         if (tabToShow != '') {
             if (currentDashboardTabs.length == 0) {
-                console.log('xx returned in GV since currentDashboardTabs.length == 0', dashboardID, this.dashboards, this.dashboardTabs)
+                console.log('xx refreshCurrentDashboard returned in GV since currentDashboardTabs.length == 0', dashboardID, this.dashboards, this.dashboardTabs)
                 return 'Error';
             };
             if (tabToShow == 'First') {
@@ -9712,7 +9706,7 @@ export class GlobalVariableService {
                 // widget.graphTransformations.push(graphTransformationSpec);
             };
 
-            console.warn('xx END FILTER widget.graphFilters', widget.graphFilters);
+            console.warn('xx createVegaLiteSpec END FILTER widget.graphFilters', widget.graphFilters);
 
         }
 
@@ -10643,7 +10637,7 @@ export class GlobalVariableService {
                 console.log('  Access FAILED for: ', {dashboardID}, {accessRequired}, dashboard.accessType, {hasAccess});
             };
         };
-        console.log('xx', {hasAccess})
+
         return hasAccess;
     }
 
@@ -10952,7 +10946,7 @@ export class GlobalVariableService {
 
                                 // Optional start D
                                 if (this.currentUser.preferenceStartupDashboardID != null) {
-                                    console.log('xx NOOOOOOOOOOOOOOOOOOOOOOOOO *****************')
+                                    console.log('xx verifyCanvasUser NOOOOOOOOOOOOOOOOOOOOOOOOO *****************')
                                     let startTabID: number = -1;
                                     if (this.currentUser.preferenceStartupDashboardTabID != null) {
                                         startTabID = this.currentUser.preferenceStartupDashboardTabID;
@@ -11055,7 +11049,7 @@ export class GlobalVariableService {
             let givenCanvasServerURI: string = this.ENVCanvasServerList[serverURLIndex]
                 .serverHostURI;
 
-            console.warn('xx givenCanvasServerURI', givenCanvasServerURI)
+            console.warn('xx registerCanvasUser givenCanvasServerURI', givenCanvasServerURI)
             this.http.post<CanvasHttpResponse>(givenCanvasServerURI + '/auth/local/signup',
                 {
                     "companyName": givenCompanyName,
@@ -11065,7 +11059,7 @@ export class GlobalVariableService {
                 ).subscribe(res => {
 
                     if (res.statusCode == 'failed') {
-                        console.warn('xx GV Failed: ' + res.message, res);
+                        console.warn('xx registerCanvasUser GV Failed: ' + res.message, res);
 
                         resolve('Failed: ' + res.message);
                     };
@@ -11112,7 +11106,7 @@ export class GlobalVariableService {
             let givenCanvasServerURI: string = this.ENVCanvasServerList[serverURLIndex]
                 .serverHostURI;
 
-                console.warn('xx LOGIN givenCanvasServerURI', serverURLIndex, givenCanvasServerURI)
+                console.warn('xx loginCanvasUser givenCanvasServerURI', serverURLIndex, givenCanvasServerURI)
             this.http.post<CanvasHttpResponse>(givenCanvasServerURI + '/auth/local/login',
                 {
                     "companyName": givenCompanyName,
@@ -11121,26 +11115,26 @@ export class GlobalVariableService {
                 }
                 ).subscribe(res => {
 
-                    console.warn('xx GV.loginCanvasServer res', res);
+                    console.warn('xx loginCanvasUser GV.loginCanvasServer res', res);
 
                     if (res.statusCode == 'failed') {
-                        console.warn('xx GV.loginCanvasServer Failed: ' + res.message);
+                        console.warn('xx loginCanvasUser GV.loginCanvasServer Failed: ' + res.message);
 
                         resolve({ message:'Failed: ' + res.message, token: null});
                     };
                     if (res.statusCode == 'success') {
-                        console.warn('xx GV.loginCanvasServer Success: ' + res.message);
+                        console.warn('xx loginCanvasUser GV.loginCanvasServer Success: ' + res.message);
 
                         resolve({ message:'Success: ' + res.message, token: res.token});
                     };
                     if (res.statusCode == 'error') {
-                        console.warn('xx GV.loginCanvasServer Error: ' + res.message);
+                        console.warn('xx loginCanvasUser GV.loginCanvasServer Error: ' + res.message);
 
                         resolve({ message:'Error: ' + res.message, token: null});
                     };
             },
             err => {
-                console.log('xx GV.loginCanvasServer Error Login FAILED', {err});
+                console.log('xx loginCanvasUser GV.loginCanvasServer Error Login FAILED', {err});
                 resolve({ message:'Error: Login FAILED ' + err.message, token: null});
             });
         });
@@ -11439,7 +11433,7 @@ export class GlobalVariableService {
                         let datasetIndex: number = this.datasets.findIndex(ds => ds.id == datasetsAdded.id);
                         if (datasetIndex < 0) {
                             this.datasets.push(datasetsAdded);
-                            console.log('xx post', this.datasets.length)
+                            console.log('xx addDatasourceNew post', this.datasets.length)
                         };
                     };
 
@@ -11505,7 +11499,6 @@ export class GlobalVariableService {
                     currentDatasetsAdded.dataRaw = clientDataInput.data;
                     currentDatasetsAdded.data = clientDataInput.data;
 
-console.log('xx currentDatasetsAdded', currentDatasetsAdded)
                     // Update Datasources
                     let datasourceIndex: number = this.datasources.findIndex(
                         ds => ds.id == datasourceInput.id);
@@ -11698,7 +11691,7 @@ console.log('xx currentDatasetsAdded', currentDatasetsAdded)
         return new Promise<any>((resolve, reject) => {
 
             let localToken: Token = JSON.parse(localStorage.getItem('eazl-token'));
-            console.warn('xx token', localToken)
+            console.warn('xx getTributarData token', localToken)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Authorization", "JWT " + localToken.token);
@@ -11708,7 +11701,7 @@ console.log('xx currentDatasetsAdded', currentDatasetsAdded)
                 res => {
 
                     if (this.sessionDebugging) {
-                        console.log('Tributary Data', {res})
+                        console.log('xx getTributarData Tributary Data', {res})
                     };
 
                     resolve(res);
@@ -11747,14 +11740,14 @@ console.log('xx currentDatasetsAdded', currentDatasetsAdded)
                 res => {
 
                     if (this.sessionDebugging) {
-                        console.log('Tributary Data', {res})
+                        console.log('xx getTributarSpec Tributary Data', {res})
                     };
 
                     resolve(res);
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error Get Tributary Inspect FAILED', {err});
+                        console.log('xx getTributarSpec Error Get Tributary Inspect FAILED', {err});
                     };
                     reject(err.message);
                 }
@@ -11867,7 +11860,6 @@ console.log('xx currentDatasetsAdded', currentDatasetsAdded)
         let diffDays: number = toDate.getDate() - fromDate.getDate(); // milliseconds between two dates
         let diffTime: number = toDate.getTime() - fromDate.getTime(); // milliseconds between two dates
         let diff: number = +toDate - +fromDate; // milliseconds between two dates
-        console.log('xx gv diffMs', diffDays, diffTime, diff / 86400000)
         let ret: number = -1;
         switch(interval.toLowerCase()) {
             case 'year'        : ret = diffDays / 365;  break;

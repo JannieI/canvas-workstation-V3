@@ -1533,8 +1533,7 @@ export interface dataSchemaInterface {
                 this.showSpecificGraphLayer,
                 (this.currentGraphLayer - 1)
             );
-console.warn('xx spec', this.specification,
-this.localWidget);
+            console.warn('xx spec', this.specification, this.localWidget);
 
             // Render in DOM
             let vegaSpecification = compile(this.specification).spec;
@@ -1555,7 +1554,7 @@ this.localWidget);
 
         // Render graph for Vega
         if (this.localWidget.visualGrammar == 'Vega') {
-
+            
             // Create specification
             this.specification = this.globalVariableService.createVegaSpec(
                 this.localWidget,
@@ -1564,7 +1563,7 @@ this.localWidget);
                 this.showSpecificGraphLayer,
                 (this.currentGraphLayer - 1)
             );
-
+            console.log('xx Vega graph', this.specification)
             // Render in DOM
             let view = new View(parse(this.specification));
             view.renderer('svg')
@@ -4172,6 +4171,7 @@ this.localWidget);
             this.conditionValue;
 
     }
+
     clickConditionSave() {
         // Add a Condition
         this.globalFunctionService.printToConsole(this.constructor.name,'clickConditionSave', '@Start');
