@@ -119,12 +119,16 @@ export class WidgetSingleComponent {
 
             // Render in DOM
             let view = new View(parse(this.specification));
+            view.addEventListener('click', function(event, item) {
+                console.log('CLICK', event, item);
+            });
             view.renderer('svg')
                 .initialize(this.graphDOM.nativeElement)
                 // .width(372)
                 .hover()
                 .run()
                 .finalize();
+            // view.on("click", function(evt, item) { view.update({props:"click", items:item}); })
         };
     }
 
