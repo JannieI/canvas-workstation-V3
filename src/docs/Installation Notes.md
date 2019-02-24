@@ -238,29 +238,16 @@ Note: make sure to have the latest version of Angular-CLI installed
 
 ---------------------- 2019-02-24 1 ----------------------
 
+    Notes: 
+    * core-js is outtdated, but I did NOT upgrade it ....
+    * seems datalib is not needs, but I did NOT uninstall it
+    * mutationobserver-shim NOT remove NEITHER updated
 
 
+    sudo npm uninstall ag-grid-angular
+    npm install --save file-saver@2.0.1    
+    
 
-
-
-ag-grid-angular                  😎  MAJOR UP  Major update available. https://angular-grid.ag-grid.com
-                                              npm install --save ag-grid-angular@20.1.0 to go from 18.1.0 to 20.1.0
-
-core-js                          😍  UPDATE!   Your local install is out of date. https://github.com/zloirock/core-js#readme
-                                              npm install --save core-js@2.6.5 to go from 2.5.7 to 2.6.5
-
-datalib                          😕  NOTUSED?  Still using datalib?
-
-file-saver                       😍  UPDATE!   Your local install is out of date. https://github.com/eligrey/FileSaver.js#readme
-                                              npm install --save file-saver@2.0.1 to go from 2.0.0-rc.4 to 2.0.1
-
-mutationobserver-shim            😍  UPDATE!   Your local install is out of date. https://github.com/megawac/MutationObserver.js
-                                              npm install --save mutationobserver-shim@0.3.3 to go from 0.3.2 to 0.3.3
-                                 😕  NOTUSED?  Still using mutationobserver-shim?
-                                              Depcheck did not find code similar to require('mutationobserver-shim') or import from 'mutationobserver-shim'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save mutationobserver-shim
 
 sqlite3                          😍  UPDATE!   Your local install is out of date. http://github.com/mapbox/node-sqlite3
                                               npm install --save sqlite3@4.0.6 to go from 4.0.2 to 4.0.6

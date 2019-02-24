@@ -22,7 +22,7 @@ import { GlobalVariableService}       from './global-variable.service';
 import { CanvasComment }              from './models';
 import { DataQualityIssue }           from './models';
 
-import { AgGridNg2 }                  from 'ag-grid-angular';
+// import { AgGridNg2 }                  from 'ag-grid-angular';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class DashboardDataQualityComponent implements OnInit {
 
     @Output() formDashboardDataQualityClosed: EventEmitter<string> = new EventEmitter();
     @Input() selectedDatasourceID: number;
-    @ViewChild('agGrid') agGrid: AgGridNg2;
+    // @ViewChild('agGrid') agGrid: AgGridNg2;
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {

@@ -15,8 +15,9 @@ import { HttpClientModule }           from '@angular/common/http';
 // Clarity Framework
 import { ClarityModule }              from '@clr/angular';
 
-// ag-Grid
-import { AgGridModule }               from 'ag-grid-angular';
+// ag-Grid - all the code was working and has been commented in case we use it later, and the 
+// package was uninstalled 2019-02-24
+// import { AgGridModule }               from 'ag-grid-angular';
 
 // Own Components
 import { ColourPickerComponent }      from './colour.picker.component';
@@ -298,7 +299,7 @@ import { StatusbarComponent }         from './statusbar.component';
 
     ],
     imports: [
-        AgGridModule.withComponents([]),
+        // AgGridModule.withComponents([]),
         BrowserAnimationsModule,
         BrowserModule,
         FormsModule,
