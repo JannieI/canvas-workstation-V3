@@ -254,14 +254,14 @@ Note: make sure to have the latest version of Angular-CLI installed
     sudo npm uninstall ag-grid-angular
     sudo npm install --save file-saver@2.0.1    
     sudo npm uninstall --save sqlite3
-
+    sudo npm install --save xlsx@0.14.1
 
 
 
 npm install --save vega@4.4.0 to go from 4.2.0 to 4.4.0
 npm install --save vega-tooltip@0.16.0 to go from 0.13.0 to 0.16.0
 
-npm install --save xlsx@0.14.1 to go from 0.14.0 to 0.14.1
+
 
 
 npm install --save-dev @types/jasmine@3.3.9 to go from 2.8.8 to 3.3.9
