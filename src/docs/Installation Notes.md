@@ -277,4 +277,14 @@ sudo npm install --save vega-tooltip@0.16.0 - failed ?
 
 ---------------------- 2019-02-24 4 ----------------------
 
-Cleanup issues from npm audit:
+Issues from npm audit:
+    sudo npm upgrade sshpk
+    sudo npm upgrade lodash
+    sudo npm upgrade hoek
+    sudo npm upgrade handlebars
+    sudo npm upgrade deep-extend
+    sudo npm upgrade typings
+    sudo npm upgrade http-proxy-agent
+    sudo npm upgrade braces
+
+---------------------- 2019-02-24 5 ----------------------

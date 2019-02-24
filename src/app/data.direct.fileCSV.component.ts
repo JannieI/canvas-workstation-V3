@@ -191,13 +191,13 @@ export class DataDirectFileCSVComponent implements OnInit {
 
         // Read file content into an Array: split on NewLine, then Comma
         let arr: any = this.loadedFile.target.result.split(/\r?\n/).map(x => x.split(","));
-
+        console.log('xx 1 arr[+this.headerRow];', arr[+this.headerRow])
         // Remove single ticks, spaces and dots from Headers
         let re = /'/gi;
         for (var col = 0; col < arr[0].length; col++) {
             arr[0][col] = arr[0][col].replace(re, '');
         };
-        re = /./gi;
+        re = /\./gi;
         for (var col = 0; col < arr[0].length; col++) {
             arr[0][col] = arr[0][col].replace(re, '');
         };
@@ -205,6 +205,7 @@ export class DataDirectFileCSVComponent implements OnInit {
         for (var col = 0; col < arr[0].length; col++) {
             arr[0][col] = arr[0][col].replace(re, '');
         };
+        console.log('xx 2 arr[+this.headerRow];', arr[+this.headerRow])
 
         // Remove extra Quote, created for example by Libre Office SaveAs CSV: ""FieldName""
         // is saved as "\"FieldName\"" in Mongo, which then causes problems when read by
@@ -213,6 +214,7 @@ export class DataDirectFileCSVComponent implements OnInit {
         for (var col = 0; col < arr[0].length; col++) {
             arr[0][col] = arr[0][col].replace(re, '');
         };
+        console.log('xx 3 arr[+this.headerRow];', arr[+this.headerRow])
 
         // Clear Quotes from data according to option
         if (this.clearQuotes) {
@@ -224,10 +226,11 @@ export class DataDirectFileCSVComponent implements OnInit {
                 };
             };
         };
+        console.log('xx 4 arr[+this.headerRow];', arr[+this.headerRow])
 
         // Fill the list of Fields
         this.fields = arr[+this.headerRow];
-
+        
         // Fill the data
         this.fileData = arr.slice(+this.headerRow + 1, +this.headerRow + 10);
         this.fileDataFull = arr.slice(+this.headerRow + 1, arr.length - 2);

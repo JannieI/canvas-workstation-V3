@@ -189,69 +189,18 @@ export class DataDirectFileJSONComponent implements OnInit {
         // Load the File content
         this.globalFunctionService.printToConsole(this.constructor.name,'loadFileContent',           '@Start');
 
+        console.log('xx this.loadedFile.target.result', this.loadedFile.target.result)
+
         // Read file content into an Array: split on NewLine, then Comma
-        let arr: any = this.loadedFile.target.result.split(/\r?\n/).map(x => x.split(","));
-
-        // Remove single ticks, spaces and dots from Headers
-        let re = /'/gi;
-        for (var col = 0; col < arr[0].length; col++) {
-            arr[0][col] = arr[0][col].replace(re, '');
-        };
-        re = /./gi;
-        for (var col = 0; col < arr[0].length; col++) {
-            arr[0][col] = arr[0][col].replace(re, '');
-        };
-        re = / /gi;
-        for (var col = 0; col < arr[0].length; col++) {
-            arr[0][col] = arr[0][col].replace(re, '');
-        };
-
-        // Remove extra Quote, created for example by Libre Office SaveAs CSV: ""FieldName""
-        // is saved as "\"FieldName\"" in Mongo, which then causes problems when read by
-        // WidgetEditor (Vega)
-        re = /"/gi;
-        for (var col = 0; col < arr[0].length; col++) {
-            arr[0][col] = arr[0][col].replace(re, '');
-        };
-
-        // Clear Quotes from data according to option
-        if (this.clearQuotes) {
-            for (var row = 0; row < arr.length; row++) {
-                for (var col = 0; col < arr[0].length; col++) {
-                    if (arr[row][col] != null  &&  arr[row][col] != '') {
-                        arr[row][col] = arr[row][col].replace(re, '');
-                    };
-                };
-            };
-        };
-
-        // Fill the list of Fields
-        this.fields = arr[+this.headerRow];
+        let arr: any = JSON.parse(this.loadedFile.target.result);
+        this.fields = Object.keys(arr[0])
 
         // Fill the data
-        this.fileData = arr.slice(+this.headerRow + 1, +this.headerRow + 10);
-        this.fileDataFull = arr.slice(+this.headerRow + 1, arr.length - 2);
+        this.fileData = arr.slice(0, 10);
+        this.fileDataFull = arr.slice(0, arr.length - 2);
 
         // Can Add now
         this.canSave = true;
-
-        // Convert Array to JSON
-        let arr2:any[] = [];
-        let fields = this.fields;
-        for (var col = +this.headerRow + 1; col < arr.length; col++) {
-            let obj: any = {};
-            arr[col].forEach(function(value, idx) {
-                obj[ fields[idx] ] = value
-            });
-            arr2.push(obj);
-        }
-
-        let arr3: any = JSON.parse(JSON.stringify(arr2))
-
-        this.fileDataFull = arr3.slice(+this.headerRow, +this.headerRow + 10);
-
-        this.fileDataFull = arr3.slice(+this.headerRow, arr3.length - 1);
-
         this.totalRows = this.fileDataFull.length;
 
 

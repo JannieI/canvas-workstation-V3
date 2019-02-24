@@ -1,8 +1,8 @@
 <div class="modal modalBox">
 	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
-			<div class="row" *ngIf="!isFirstTimeUser">
-				<div class="col-xs-6 lefthandCol" >
+			<div class="gridOverall" *ngIf="!isFirstTimeUser">
+				<div class="lefthandCol" >
 					<div>
 						<h3>Start</h3>
 						<div>
@@ -58,7 +58,7 @@
 
 				</div>
 
-				<div class="col-xs-6 lefthandCol">
+				<div class="righthandCol">
 
 					<h3>Sample Dashboards</h3>
 					<div class="errorMessage">
@@ -105,20 +105,18 @@
 					<br>
 				</div>
 
-				<div>
-					<h3>Get in touch</h3>
-					<div>
-						<i>
-							If you
-							<clr-icon shape="heart" class="is-solid"></clr-icon>
-							Canvas or just want to get in touch we'd love to hear your thoughts
-							<a href="mailto:info@clarityanalytics.xyz">info@clarityanalytics.xyz</a>
-						</i>
-					</div>
+				<div class="footerLine">
+					<b>Get in touch : </b>
+					<i>
+						If you
+						<clr-icon shape="heart" class="is-solid"></clr-icon>
+						Canvas or just want to get in touch we'd love to hear your thoughts
+						<a href="mailto:info@clarityanalytics.xyz">info@clarityanalytics.xyz</a>
+					</i>
 				</div>
 			</div>
 
-			<div class="row experiencedUser" *ngIf="isFirstTimeUser">
+			<div class="inexperiencedUser" *ngIf="isFirstTimeUser">
 				<div class="gridTitle">
 					<b>Welcome to Canvas!</b>
 				</div>
