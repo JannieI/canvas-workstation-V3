@@ -1721,9 +1721,13 @@ export interface dataSchemaInterface {
         // TODO - the $ must be treated better - and also READ BACK & CHANGED !!!
         this.localWidget.graphLayers.forEach(w => {
             let graphspec: string = JSON.stringify(w.graphSpecification);
-            w.graphSpecification = JSON.parse(graphspec.replace("$schema","_schema"));
-            w.graphSpecification.width = 1200;
-            w.graphSpecification.height = 1200;    
+            if (graphspec != null) {
+                w.graphSpecification = JSON.parse(graphspec.replace("$schema","_schema"));
+            };
+            if (this.localWidget.visualGrammar == 'Vega') {
+                w.graphSpecification.width = 1200;
+                w.graphSpecification.height = 1200;    
+            };
         });
         console.log('xx this.localWidget', this.localWidget)
         // Calc the graph dimensions
