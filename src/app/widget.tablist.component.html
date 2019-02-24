@@ -11,12 +11,14 @@
                 <div class="multiTabMenuHeader">Select the Tabs on this Dashboard on which 
                         to show the selected Widget:
                     <div *ngFor="let row of currentTabNames; let i = index" class="multiTabOption">
-                        <clr-checkbox [clrChecked]="row.isSelected"
+                        
+                        <!-- <clr-checkbox-wrapper [clrChecked]="row.isSelected" -->
+                        <input type="checkbox" clrCheckbox [checked]="row.isSelected"
                             [name]="row.name"
-                            (click)="clickMultiTabSelect(i, $event)">
+                            (click)="clickMultiTabSelect(i, $event)"
                             {{ row.name }}
-
-                        </clr-checkbox>
+                            />
+                        <!-- </clr-checkbox-wrapper> -->
                     </div>
                     <div>
                         <button

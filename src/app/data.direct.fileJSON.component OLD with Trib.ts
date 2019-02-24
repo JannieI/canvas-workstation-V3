@@ -41,39 +41,26 @@ export class DataDirectFileJSONComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&
-            (!event.ctrlKey)
-            &&
-            (!event.shiftKey)
-           ) {
-            this.clickAdd();
-            return;
-        };
+
     }
 
     canSave: boolean = false;
-    clearQuotes: boolean = true;
     datasourceName: string = '';
-    editMessage: string = 'Note: the data have to be reloaded with Browse before clicking Save.';
     errorMessage: string = "";
     fields: string[] = [];
-    // fileColumns: any[] = [];
+    fileColumns: any[] = [];
     fileData: any = [];
     fileDataFull: any = [];
-    // files: string[] = [];
+    fileName: string = '';
+    files: string[] = [];
     headerRow: string = '0';
     loadedFile: any;
-    loadedFileName: string = '';
-    newDataFieldTypes: string[] = [];
     newDescription: string = '';
     newName: string = '';
     reader = new FileReader();
     savedMessage: string = '';
-    showMore: boolean = false;
-    totalRows: number = 0;
-    // theFile: any;
+    theFile: any;
+    userID: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -84,27 +71,10 @@ export class DataDirectFileJSONComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
         if (this.selectedDatasource != null) {
+            console.warn('xx this.selectedDatasource', this.selectedDatasource)
             this.newName = this.selectedDatasource.name;
             this.newDescription = this.selectedDatasource.description;
-            this.loadedFileName = this.selectedDatasource.fileName;
-        };
-
-        // For existing Datasource, load a snippet of the data
-        if (this.selectedDatasource != null) {
-            let params: string = 'datasourceID=' + this.selectedDatasource.id.toString()
-                + '&nrRowsToReturn=10';
-            this.globalVariableService.getData(params).then(dat => {
-                this.fileData = [];
-                this.fields = Object.keys(dat[0]);
-                let row: any = [];
-                for (var i = 0; i < dat.length; i++) {
-                    row = [];
-                    for (var j = 0; j < this.fields.length; j++) {
-                        row.push(dat[i][this.fields[j]]);
-                    };
-                    this.fileData.push(row)
-                };
-            });
+            this.fileName = this.selectedDatasource.fileName;
         };
 
     }
@@ -114,15 +84,15 @@ export class DataDirectFileJSONComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
 
         if ( (<any>window).File && (<any>window).FileReader && (<any>window).FileList && window.Blob) {
-            console.warn('Great success! All the File APIs are supported in this browser.')
+            console.warn('xx Start Great success! All the File APIs are supported.')
           } else {
             alert('The File APIs are not fully supported in this browser.');
         };
 
         // Reset
-        this.errorMessage = '';
+        this.fileColumns = [];
+        this.files = [];
         this.fileData = [];
-        this.fileDataFull = [];
         this.fields = [];
         this.canSave = false;
 
@@ -134,19 +104,70 @@ export class DataDirectFileJSONComponent implements OnInit {
             return;
         };
 
-        // Get the File Name
-        this.loadedFileName = inp.files[0].name
+        // Access and handle the files
+        this.theFile = inp.files[0];
+        this.fileName = this.theFile.name
 
-        // Set the Call Back routines
+        // Read file as Binary
         this.reader.onerror = this.errorHandler;
         this.reader.onprogress = this.updateProgress;
-        this.reader.onload = (selectedInputFile) => {
-            this.loadedFile = selectedInputFile;
-            this.loadFileContent()
+        this.reader.onload = (theFile) =>{ this.inspectFile(theFile) };
+
+        // Read in the image file as a data URL.
+        this.reader.readAsText(this.theFile);
+    }
+
+    inspectFile(loadedFile) {
+        console.warn('  Begin inspectFile for ', loadedFile)
+
+        // Remember for loading
+        this.loadedFile = loadedFile;
+
+        // Set up specification for JSON file type
+        let specification: any;
+        let lastFive: string = this.fileName.slice(-5);
+
+        if (lastFive.toLowerCase() == '.json') {
+            console.warn('xx json')
+
+            // specification = {
+            //     "source": {
+            //         "inspector": "tributary.inspectors.json:JsonInspector",
+            //         "specification": {
+            //             "content":  this.loadedFile.target.result
+            //         }
+            //     }
+            // };
+            
+            specification = {
+                "source": {
+                    "inspector": "tributary.inspectors.json:JsonInspector",
+                    "specification": {
+                        "content": this.loadedFile.target.result
+                    }
+                }
+            };            
+        } else {
+            this.errorMessage = 'Invalid file extension (must be .json)';
+            return;
         };
 
-        // Read the file as binary
-        this.reader.readAsBinaryString(inp.files[0]);
+        // Call Tributary
+        this.globalVariableService.getTributaryInspect(specification).then(res => {
+            this.files = [];
+            console.warn('xx res', res)
+            res.forEach(row => {
+                this.files.push(row.name);
+                this.fileColumns.push(row.fields);
+            });
+
+            if (this.files.length > 0) {
+                this.loadFileContent(0);
+            };
+        })
+        .catch(errorMessage => {
+            this.errorMessage = errorMessage;
+        });
     }
 
     abortRead() {
@@ -171,7 +192,7 @@ export class DataDirectFileJSONComponent implements OnInit {
     }
 
     updateProgress(evt) {
-        // console.warn('xx progress')
+        console.warn('xx progress')
 
         // evt is an ProgressEvent.
         if (evt.lengthComputable) {
@@ -185,96 +206,59 @@ export class DataDirectFileJSONComponent implements OnInit {
         };
     }
 
-    loadFileContent() {
+    loadFileContent(index: number) {
         // Load the File content
         this.globalFunctionService.printToConsole(this.constructor.name,'loadFileContent',           '@Start');
 
-        // Read file content into an Array: split on NewLine, then Comma
-        let arr: any = this.loadedFile.target.result.split(/\r?\n/).map(x => x.split(","));
-
-        // Remove single ticks, spaces and dots from Headers
-        let re = /'/gi;
-        for (var col = 0; col < arr[0].length; col++) {
-            arr[0][col] = arr[0][col].replace(re, '');
-        };
-        re = /./gi;
-        for (var col = 0; col < arr[0].length; col++) {
-            arr[0][col] = arr[0][col].replace(re, '');
-        };
-        re = / /gi;
-        for (var col = 0; col < arr[0].length; col++) {
-            arr[0][col] = arr[0][col].replace(re, '');
-        };
-
-        // Remove extra Quote, created for example by Libre Office SaveAs CSV: ""FieldName""
-        // is saved as "\"FieldName\"" in Mongo, which then causes problems when read by
-        // WidgetEditor (Vega)
-        re = /"/gi;
-        for (var col = 0; col < arr[0].length; col++) {
-            arr[0][col] = arr[0][col].replace(re, '');
-        };
-
-        // Clear Quotes from data according to option
-        if (this.clearQuotes) {
-            for (var row = 0; row < arr.length; row++) {
-                for (var col = 0; col < arr[0].length; col++) {
-                    if (arr[row][col] != null  &&  arr[row][col] != '') {
-                        arr[row][col] = arr[row][col].replace(re, '');
-                    };
-                };
-            };
-        };
-
-        // Fill the list of Fields
-        this.fields = arr[+this.headerRow];
-
-        // Fill the data
-        this.fileData = arr.slice(+this.headerRow + 1, +this.headerRow + 10);
-        this.fileDataFull = arr.slice(+this.headerRow + 1, arr.length - 2);
+        // Set highlighted row
+        this.fields = this.fileColumns[index].map(cols => cols.name);
 
         // Can Add now
         this.canSave = true;
 
-        // Convert Array to JSON
-        let arr2:any[] = [];
-        let fields = this.fields;
-        for (var col = +this.headerRow + 1; col < arr.length; col++) {
-            let obj: any = {};
-            arr[col].forEach(function(value, idx) {
-                obj[ fields[idx] ] = value
-            });
-            arr2.push(obj);
-        }
+        // Reset
+        this.errorMessage = '';
 
-        let arr3: any = JSON.parse(JSON.stringify(arr2))
-
-        this.fileDataFull = arr3.slice(+this.headerRow, +this.headerRow + 10);
-
-        this.fileDataFull = arr3.slice(+this.headerRow, arr3.length - 1);
-
-        this.totalRows = this.fileDataFull.length;
-
-
-        // Guess types
-        for (var col = 0; col < arr[+this.headerRow + 1].length; col++) {
-            let newType: string = 'string';
-
-            if (typeof arr[+this.headerRow + 1][col] == 'number') {
-               newType = 'number';
-            } else if (typeof arr[+this.headerRow + 1][col] == 'boolean') {
-                   newType = 'boolean';
-            } else if (arr[+this.headerRow + 1][col] == 'true') {
-               newType = 'boolean';
-            } else if (arr[+this.headerRow + 1][col] == 'false') {
-               newType = 'boolean';
-            } else if (arr[+this.headerRow + 1][col] == +arr[+this.headerRow + 1][col]) {
-               newType = 'number';
-            } else {
-               newType = 'string';
-            };
-
-            this.newDataFieldTypes.push(newType);
+        // Validation
+        if (this.fileName == ''  ||  this.fileName == null) {
+            this.errorMessage = 'Please select a file using the Browse button';
+            return;
         };
+        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
+        // First row = 0
+        // headers = single integer to indicate the header, array of strings = use THIS text
+        if (this.headerRow == null  ||  this.headerRow == '') {
+            this.headerRow = '0';
+        };
+
+        // Set up specification according to file type
+        let specification: any;
+        let lastFive: string = this.fileName.slice(-5);
+
+        if (lastFive.toLowerCase() == '.json') {
+            console.warn('xx json')
+
+            specification = {
+                "source": {
+                    "connector": "tributary.connectors.json:JsonConnector",
+                    "specification": {
+                        // "usecols": this.fields,
+                        "content":  this.loadedFile.target.result
+                    }
+                }
+            };
+        } else {
+            this.errorMessage = 'Invalid file extension (must be .json)';
+            return;
+        };
+
+        this.globalVariableService.getTributaryData(specification).then(res => {
+            console.warn('xx res C', res)
+
+            // Fill the data
+            this.fileData = res.slice(0,10);
+            this.fileDataFull = res;
+        });
 
     }
 
@@ -291,9 +275,10 @@ export class DataDirectFileJSONComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         // Reset
-        this.editMessage = '';
         this.errorMessage = '';
-        this.savedMessage = '';
+
+        // Save changes to the Datasource
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Validation
         this.errorMessage = '';
@@ -305,34 +290,15 @@ export class DataDirectFileJSONComponent implements OnInit {
             this.errorMessage = 'Please enter a Description for the Datasource';
             return;
         };
-        if (this.loadedFileName == ''  ||  this.loadedFileName == null) {
+        if (this.fileName == ''  ||  this.fileName == null) {
             this.errorMessage = 'Please select a file using the Browse button';
             return;
         };
-        this.fields.forEach(f => {
-            if (f.indexOf(' ') >= 0) {
-                if (this.errorMessage == '') {
-                    this.errorMessage = "Field Name '" + f + "' containts a space.  Please correct and reload.";
-                } else {
-                    this.errorMessage = "More than one field Name contain spaces.  Please correct and reload."
-                };
-            };
-        })
 
-        if (this.errorMessage != '') {
-            return;
-        };
         // Construct DS and add to DB
         let today: Date = new Date();
 
-        // Guess types
-        let newDataFieldTypes: string[] = [];
-        for (var i = 0; i < this.fileDataFull[+this.headerRow + 1].length; i++) {
-            this.fileDataFull[+this.headerRow + 1][i]
-        }
-
         if (this.selectedDatasource != null) {
-
             // Mark the changes
             this.selectedDatasource.name = this.newName;
             this.selectedDatasource.description = this.newDescription;
@@ -341,67 +307,73 @@ export class DataDirectFileJSONComponent implements OnInit {
             this.selectedDatasource.editor = this.globalVariableService.currentUser.userID;
             this.selectedDatasource.dateEdited = today;
             this.selectedDatasource.dataFields = this.fields;
-            this.selectedDatasource.dataFieldTypes = this.newDataFieldTypes;
 
-            // Save DS to DB
-            let updatedDataset: Dataset = {
-                id: this.selectedDatasource.id,
-                datasourceID: this.selectedDatasource.id,
-                sourceLocation: 'HTTP',
-                url: 'data',
-                folderName: '',
-                fileName: this.loadedFileName,
-                cacheServerStorageID: null,
-                cacheLocalStorageID: null,
-                isLocalDirty: null,
-                data: [],
-                dataRaw: []
+            // Save DS to DB, but create a new dSet and new data records.
+            let ds: number[] = [];
+            let dSetID: number = 1;
+            for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
+                if(this.globalVariableService.datasets[i].datasourceID ==
+                    this.selectedDatasource.id) {
+                    ds.push(this.globalVariableService.datasets[i].id)
+                };
             };
-            let updatedDatasetIndex: number = this.globalVariableService.datasets
-                .findIndex(dset => dset.datasourceID == this.selectedDatasource.id);
-            if (updatedDatasetIndex >= 0) {
-                updatedDataset = this.globalVariableService.datasets[updatedDatasetIndex];
+            if (ds.length > 0) {
+                dSetID = Math.max(...ds);
             };
+            let datasetIndex: number = this.globalVariableService.datasets.findIndex(dSet => {
+                if (dSet.id == dSetID) {
+                    return dSet;
+                };
+            });
+            let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
 
+            let dataID: number = -1;
+            let dataIndex: number = updatedDataset.url.indexOf('/');
+            if (dataIndex >= 0) {
+                dataID = +updatedDataset.url.substring(dataIndex + 1);
+            } else {
+                alert('Error in save Web - url has no / character');
+                return;
+            };
             let updatedData: any = {
-                id: this.selectedDatasource.id,
+                id: dataID,
                 data: this.fileDataFull
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.saveDatasourceNEW(
-                this.selectedDatasource,
-                updatedDataset,
-                updatedData).then(resData => {
+            this.globalVariableService.saveData(updatedData).then(resData => {
+
+                updatedDataset.url = 'data/' + dataID;
+                this.globalVariableService.saveDatasource(this.selectedDatasource).then(
+                    resDS => {
+                        updatedDataset.datasourceID = this.selectedDatasource.id;
+                        this.globalVariableService.saveDataset(updatedDataset);
+                });
 
                 // Indicate to the user
                 this.canSave = false;
                 this.savedMessage = 'Datasource updated';
-
-            })
-            .catch(errorMessage => {
-                this.errorMessage = 'Save failed - ' + errorMessage;
             });
+
         } else {
             // Add new one
             let newDatasource: Datasource = {
                 id: null,
                 type: 'File',
-                subType: 'csv',
+                subType: 'xlsx',
                 typeVersion:  '',
                 name: this.newName,
                 username: '',
                 password: '',
                 description: this.newDescription,
                 dataFields: this.fields,
-                dataFieldTypes: this.newDataFieldTypes,
+                dataFieldTypes: [],
                 dataFieldLengths: [],
                 datasourceFilters: null,
                 datasourceFilterForThisDashboard: false,
-                accessType: 'Private',
-                sourceIsAccessable: false,
+                accessType: '',
                 cacheResultsOnServer: true,
-                serverExpiryDateTime: this.globalVariableService.dateAdd(today, 'day', 2),
+                serverExpiryDateTime: null,
                 unRefreshable: true,
                 cacheResultsLocal: false,
                 oldnessMaxPeriodInterval: '',
@@ -409,7 +381,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                 oldnessRelatedDate: '',
                 oldnessRelatedTime: '',
                 refreshedLocalOn: null,
-                createMethod: 'directFileCSV',
+                createMethod: 'directFileJSON',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,
                 editor: '',
@@ -417,7 +389,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                 refreshedBy: '',
                 refreshedServerOn: null,
                 folder: '',
-                fileName: this.loadedFileName,
+                fileName: '',
                 excelWorksheet: '',
                 transposeOnLoad: false,
                 startLineNr: 0,
@@ -427,7 +399,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                 webTableIndex: '',
                 connectionID: null,
                 dataTableID: null,
-                businessGlossary: 'Obtained from CSV File' + this.loadedFileName ,
+                businessGlossary: 'Obtained from JSON File' + this.fileName ,
                 dataDictionary: '',
                 databaseName: '',
                 port: '',
@@ -451,6 +423,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                 serviceParams: '',
                 serviceQueryParams: '',
                 serviceHeaders: '',
+                sourceIsAccessable: true,
                 queryParameters: '',
                 metaDataFields: [],
                 transformations: [],
@@ -465,12 +438,12 @@ export class DataDirectFileJSONComponent implements OnInit {
                 sourceLocation: 'HTTP',
                 url: 'data',
                 folderName: '',
-                fileName: this.loadedFileName,
+                fileName: '',
                 cacheServerStorageID: null,
                 cacheLocalStorageID: null,
                 isLocalDirty: null,
-                data: [],
-                dataRaw: []
+                data: this.fileDataFull,
+                dataRaw: this.fileDataFull
             };
             let newData: any = {
                 id: null,
@@ -478,42 +451,22 @@ export class DataDirectFileJSONComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addDatasourceNEW(
-                newDatasource,
-                newdDataset,
-                newData).then(resData => {
+            this.globalVariableService.addData(newData).then(resData => {
+
+                newdDataset.url = 'data/' + resData.id.toString();
+                this.globalVariableService.addDatasource(newDatasource).then(resDS => {
+                    newdDataset.datasourceID = resDS.id;
+                    this.globalVariableService.addDataset(newdDataset);
+
+                });
 
                 // Indicate to the user
                 this.canSave = false;
                 this.savedMessage = 'Datasource created';
-
-                // Close form and open Transitions if requested
-                // if (action == 'Saved') {
-                //     this.formDataDirectSQLEditorClosed.emit(null);
-
-                // } else {
-                //     this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
-                // };
-
-            })
-            .catch(errorMessage => {
-                this.errorMessage = 'Save failed - ' + errorMessage;
             });
         };
 
     }
-
-    clickMoreOpen() {
-        // Show the More form for further info and actions
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoreOpen', '@Start');
-
-        this.showMore = true;
-    }
-
-    clickMoreClose() {
-        // Close the More form for further info and actions
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoreClose', '@Start');
-
-        this.showMore = false;
-    }
 }
+
+

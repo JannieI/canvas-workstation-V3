@@ -1,0 +1,204 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v4.json",
+  "width": 600,
+  "height": 1600,
+  "padding": 5,
+
+  "signals": [
+    {
+      "name": "labels", "value": true,
+      "bind": {"input": "checkbox"}
+    },
+    {
+      "name": "layout", "value": "tidy",
+      "bind": {"input": "radio", "options": ["tidy", "cluster"]}
+    },
+    {
+      "name": "links", "value": "diagonal",
+      "bind": {
+        "input": "select",
+        "options": ["line", "curve", "diagonal", "orthogonal"]
+      }
+    }
+  ],
+
+  "data": [
+    {
+      "name": "tree",
+      "values": [ 
+                    {
+                        "id" : 1,
+                        "name" : "Koos Bekker"
+                    }, 
+                    {
+                        "id" : 2,
+                        "name" : "Shareholder In",
+                        "parent" : 1
+                    }, 
+                    {
+                        "id" : 3,
+                        "name" : "Director Of",
+                        "parent" : 1
+                    }, 
+                    {
+                        "id" : 4,
+                        "name" : "Managers",
+                        "parent" : 1
+                    }, 
+                    {
+                        "id" : 5,
+                        "name" : "Sasol",
+                        "parent" : 3
+                    }, 
+                    {
+                        "id" : 6,
+                        "name" : "Anglo",
+                        "parent" : 3
+                    }, 
+                    {
+                        "id" : 7,
+                        "name" : "Fedwest",
+                        "parent" : 3
+                    }, 
+                    {
+                        "id" : 8,
+                        "name" : "PIC",
+                        "parent" : 3
+                    }, 
+                    {
+                        "id" : 9,
+                        "name" : "AL Hammond",
+                        "parent" : 4
+                    }, 
+                    {
+                        "id" : 10,
+                        "name" : "P Barker",
+                        "parent" : 4
+                    }, 
+                    {
+                        "id" : 11,
+                        "name" : "PJ Smith-Jones",
+                        "parent" : 4
+                    }, 
+                    {
+                        "id" : 12,
+                        "name" : "ZA Oliver",
+                        "parent" : 4
+                    }, 
+                    {
+                        "id" : 13,
+                        "name" : "Mica",
+                        "parent" : 2
+                    }, 
+                    {
+                        "id" : 14,
+                        "name" : "LH Bako",
+                        "parent" : 2
+                    }, 
+                    {
+                        "id" : 15,
+                        "name" : "Media 24",
+                        "parent" : 2
+                    }, 
+                    {
+                        "id" : 16,
+                        "name" : "Silvano",
+                        "parent" : 2
+                    }, 
+                    {
+                        "id" : 15,
+                        "name" : "Media 24",
+                        "parent" : 2
+                    }, 
+                    {
+                        "id" : 16,
+                        "name" : "Silvano",
+                        "parent" : 2
+                    }
+              ]
+          ,
+      "transform": [
+        {
+          "type": "stratify",
+          "key": "id",
+          "parentKey": "parent"
+        },
+        {
+          "type": "tree",
+          "method": {"signal": "layout"},
+          "size": [{"signal": "height"}, {"signal": "width - 100"}],
+          "as": ["y", "x", "depth", "children"]
+        }
+      ]
+    },
+    {
+      "name": "links",
+      "source": "tree",
+      "transform": [
+        { "type": "treelinks" },
+        {
+          "type": "linkpath",
+          "orient": "horizontal",
+          "shape": {"signal": "links"}
+        }
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "color",
+      "type": "sequential",
+      "range": {"scheme": "magma"},
+      "domain": {"data": "tree", "field": "depth"},
+      "zero": true
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "path",
+      "from": {"data": "links"},
+      "encode": {
+        "update": {
+          "path": {"field": "path"},
+          "stroke": {"value": "#ccc"}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "from": {"data": "tree"},
+      "encode": {
+        "enter": {
+          "size": {"value": 100},
+          "stroke": {"value": "#fff"}
+        },
+        "update": {
+          "x": {"field": "x"},
+          "y": {"field": "y"},
+          "fill": {"scale": "color", "field": "depth"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "tree"},
+      "encode": {
+        "enter": {
+          "text": {"field": "name"},
+          "fontSize": {"value": 9},
+          "baseline": {"value": "middle"}
+        },
+        "update": {
+          "x": {"field": "x"},
+          "y": {"field": "y"},
+          "dx": {"signal": "datum.children ? -7 : 7"},
+          "align": {"signal": "datum.children ? 'right' : 'left'"},
+          "opacity": {"signal": "labels ? 1 : 0"}
+        }
+      }
+    }
+  ]
+}
+

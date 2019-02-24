@@ -83,7 +83,7 @@ export class WidgetSingleComponent {
             w!=null? w.id : 'w = null')
         if (w != null) {
             this.widget = w;
-        }
+        };
 
         // Render graph for Vega-Lite
         if (this.widget.visualGrammar == 'Vega-Lite') {
