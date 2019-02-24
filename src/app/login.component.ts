@@ -56,9 +56,9 @@ export class LoginComponent implements OnInit {
     companyName: string = 'Clarity Analytics';  // Clarity Analytics
     errorMessage: string = '';
     message: string = '';
-    password: string = '123';                   // 123
+    password: string = '';                      // 123
     showTypeDashboard: boolean = false;
-    userID: string = 'JannieI';                 // JannieI
+    userID: string = '';                        // JannieI
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
