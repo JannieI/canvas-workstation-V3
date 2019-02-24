@@ -250,32 +250,31 @@ Note: make sure to have the latest version of Angular-CLI installed
     * enhanced-resolve NOT removed
     * typings NOT removed
     * webdriver-manager NOT removed
+    * ts-node@8.0.2 NOT upgraded
+    * tslint@5.13.0 NOT upgraded
 
     sudo npm uninstall ag-grid-angular
     sudo npm install --save file-saver@2.0.1    
     sudo npm uninstall --save sqlite3
     sudo npm install --save xlsx@0.14.1
 
+---------------------- 2019-02-24 2 ----------------------
 
+sudo npm install --save-dev @types/jasmine@3.3.9
+sudo npm install --save-dev @types/jasminewd2@2.0.6
+sudo npm install --save-dev @types/node@11.9.5
+sudo npm install --save-dev codelyzer@4.5.0
+sudo npm install --save-dev jasmine-core@3.3.0
+sudo npm install --save-dev karma@4.0.0
+sudo npm install --save-dev karma-cli@2.0.0
+sudo npm install --save-dev karma-jasmine@2.0.1
+sudo npm install --save-dev protractor@5.4.2
 
-npm install --save vega@4.4.0 to go from 4.2.0 to 4.4.0
-npm install --save vega-tooltip@0.16.0 to go from 0.13.0 to 0.16.0
+---------------------- 2019-02-24 3 ----------------------
 
+sudo npm install --save vega@4.4.0 - failed ?
+sudo npm install --save vega-tooltip@0.16.0 - failed ?
 
+---------------------- 2019-02-24 4 ----------------------
 
-
-npm install --save-dev @types/jasmine@3.3.9 to go from 2.8.8 to 3.3.9
-npm install --save-dev @types/jasminewd2@2.0.6 to go from 2.0.3 to 2.0.6
-npm install --save-dev @types/node@11.9.5 to go from 10.7.1 to 11.9.5
-npm install --save-dev codelyzer@4.5.0 to go from 4.4.4 to 4.5.0
-
-
-npm install --save-dev jasmine-core@3.3.0 to go from 3.2.1 to 3.3.0
-npm install --save-dev karma@4.0.0 to go from 3.0.0 to 4.0.0
-npm install --save-dev karma-cli@2.0.0 to go from 1.0.1 to 2.0.0
-npm install --save-dev karma-jasmine@2.0.1 to go from 1.1.2 to 2.0.1
-npm install --save-dev protractor@5.4.2 to go from 5.4.0 to 5.4.2
-npm install --save-dev ts-node@8.0.2 to go from 7.0.1 to 8.0.2
-npm install --save-dev tslint@5.13.0 to go from 5.11.0 to 5.13.0
-
-
+Cleanup issues from npm audit:
