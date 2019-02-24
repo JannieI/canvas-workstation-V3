@@ -238,133 +238,45 @@ Note: make sure to have the latest version of Angular-CLI installed
 
 ---------------------- 2019-02-24 1 ----------------------
 
-    Notes: 
+    Notes on packages shown as outdated with npm-check: 
     * core-js is outtdated, but I did NOT upgrade it ....
     * seems datalib is not needs, but I did NOT uninstall it
     * mutationobserver-shim NOT remove NEITHER updated
-
+    * ts-helpers NOT removed
+    * tslib NOT removed
+    * web-animations-js NOT removed
+    * @types/core-js NOT removed
+    * @types/file-saver NOT removed
+    * enhanced-resolve NOT removed
+    * typings NOT removed
+    * webdriver-manager NOT removed
 
     sudo npm uninstall ag-grid-angular
-    npm install --save file-saver@2.0.1    
+    sudo npm install --save file-saver@2.0.1    
     
+    npm uninstall --save sqlite3
 
 
-sqlite3                          😍  UPDATE!   Your local install is out of date. http://github.com/mapbox/node-sqlite3
-                                              npm install --save sqlite3@4.0.6 to go from 4.0.2 to 4.0.6
-                                 😕  NOTUSED?  Still using sqlite3?
-                                              Depcheck did not find code similar to require('sqlite3') or import from 'sqlite3'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save sqlite3
 
-ts-helpers                       😕  NOTUSED?  Still using ts-helpers?
-                                              Depcheck did not find code similar to require('ts-helpers') or import from 'ts-helpers'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save ts-helpers
 
-tslib                            😕  NOTUSED?  Still using tslib?
-                                              Depcheck did not find code similar to require('tslib') or import from 'tslib'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save tslib
+npm install --save vega@4.4.0 to go from 4.2.0 to 4.4.0
+npm install --save vega-tooltip@0.16.0 to go from 0.13.0 to 0.16.0
 
-vega                             😍  UPDATE!   Your local install is out of date. https://github.com/vega/vega
-                                              npm install --save vega@4.4.0 to go from 4.2.0 to 4.4.0
+npm install --save xlsx@0.14.1 to go from 0.14.0 to 0.14.1
 
-vega-tooltip                     😎  NEW VER!  NonSemver update available. https://github.com/vega/vega-tooltip#readme
-                                              npm install --save vega-tooltip@0.16.0 to go from 0.13.0 to 0.16.0
-                                 😕  NOTUSED?  Still using vega-tooltip?
-                                              Depcheck did not find code similar to require('vega-tooltip') or import from 'vega-tooltip'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save vega-tooltip
 
-web-animations-js                😕  NOTUSED?  Still using web-animations-js?
-                                              Depcheck did not find code similar to require('web-animations-js') or import from 'web-animations-js'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save web-animations-js
+npm install --save-dev @types/jasmine@3.3.9 to go from 2.8.8 to 3.3.9
+npm install --save-dev @types/jasminewd2@2.0.6 to go from 2.0.3 to 2.0.6
+npm install --save-dev @types/node@11.9.5 to go from 10.7.1 to 11.9.5
+npm install --save-dev codelyzer@4.5.0 to go from 4.4.4 to 4.5.0
 
-xlsx                             😍  UPDATE!   Your local install is out of date. http://sheetjs.com/opensource
-                                              npm install --save xlsx@0.14.1 to go from 0.14.0 to 0.14.1
 
-@types/core-js                   😕  NOTUSED?  Still using @types/core-js?
-                                              Depcheck did not find code similar to require('@types/core-js') or import from '@types/core-js'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save-dev @types/core-js
+npm install --save-dev jasmine-core@3.3.0 to go from 3.2.1 to 3.3.0
+npm install --save-dev karma@4.0.0 to go from 3.0.0 to 4.0.0
+npm install --save-dev karma-cli@2.0.0 to go from 1.0.1 to 2.0.0
+npm install --save-dev karma-jasmine@2.0.1 to go from 1.1.2 to 2.0.1
+npm install --save-dev protractor@5.4.2 to go from 5.4.0 to 5.4.2
+npm install --save-dev ts-node@8.0.2 to go from 7.0.1 to 8.0.2
+npm install --save-dev tslint@5.13.0 to go from 5.11.0 to 5.13.0
 
-@types/file-saver                😕  NOTUSED?  Still using @types/file-saver?
-                                              Depcheck did not find code similar to require('@types/file-saver') or import from '@types/file-saver'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save-dev @types/file-saver
 
-@types/jasmine                   😎  MAJOR UP  Major update available. https://github.com/DefinitelyTyped/DefinitelyTyped
-                                              npm install --save-dev @types/jasmine@3.3.9 to go from 2.8.8 to 3.3.9
-                                 😕  NOTUSED?  Still using @types/jasmine?
-                                              Depcheck did not find code similar to require('@types/jasmine') or import from '@types/jasmine'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save-dev @types/jasmine
-
-@types/jasminewd2                😍  UPDATE!   Your local install is out of date. https://github.com/DefinitelyTyped/DefinitelyTyped
-                                              npm install --save-dev @types/jasminewd2@2.0.6 to go from 2.0.3 to 2.0.6
-                                 😕  NOTUSED?  Still using @types/jasminewd2?
-                                              Depcheck did not find code similar to require('@types/jasminewd2') or import from '@types/jasminewd2'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save-dev @types/jasminewd2
-
-@types/node                      😎  MAJOR UP  Major update available. https://github.com/DefinitelyTyped/DefinitelyTyped
-                                              npm install --save-dev @types/node@11.9.5 to go from 10.7.1 to 11.9.5
-                                 😕  NOTUSED?  Still using @types/node?
-                                              Depcheck did not find code similar to require('@types/node') or import from '@types/node'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save-dev @types/node
-
-codelyzer                        😎  MINOR UP  Minor update available. https://github.com/mgechev/codelyzer#readme
-                                              npm install --save-dev codelyzer@4.5.0 to go from 4.4.4 to 4.5.0
-                                 😕  NOTUSED?  Still using codelyzer?
-                                              Depcheck did not find code similar to require('codelyzer') or import from 'codelyzer'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save-dev codelyzer
-
-enhanced-resolve                 😕  NOTUSED?  Still using enhanced-resolve?
-                                              Depcheck did not find code similar to require('enhanced-resolve') or import from 'enhanced-resolve'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save-dev enhanced-resolve
-
-jasmine-core                     😎  MINOR UP  Minor update available. https://jasmine.github.io
-                                              npm install --save-dev jasmine-core@3.3.0 to go from 3.2.1 to 3.3.0
-
-karma                            😎  MAJOR UP  Major update available. http://karma-runner.github.io/
-                                              npm install --save-dev karma@4.0.0 to go from 3.0.0 to 4.0.0
-
-karma-cli                        😎  MAJOR UP  Major update available. http://karma-runner.github.io/
-                                              npm install --save-dev karma-cli@2.0.0 to go from 1.0.1 to 2.0.0
-
-karma-jasmine                    😎  MAJOR UP  Major update available. https://github.com/karma-runner/karma-jasmine#readme
-                                              npm install --save-dev karma-jasmine@2.0.1 to go from 1.1.2 to 2.0.1
-
-protractor                       😍  UPDATE!   Your local install is out of date. https://github.com/angular/protractor
-                                              npm install --save-dev protractor@5.4.2 to go from 5.4.0 to 5.4.2
-
-ts-node                          😎  MAJOR UP  Major update available. https://github.com/TypeStrong/ts-node
-                                              npm install --save-dev ts-node@8.0.2 to go from 7.0.1 to 8.0.2
-
-tslint                           😍  UPDATE!   Your local install is out of date. https://palantir.github.io/tslint
-                                              npm install --save-dev tslint@5.13.0 to go from 5.11.0 to 5.13.0
-
-typings                          😕  NOTUSED?  Still using typings?
-                                              Depcheck did not find code similar to require('typings') or import from 'typings'.
-                                              Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
-                                              Use --skip-unused to skip this check.
-                                              To remove this package: npm uninstall --save-dev typings
-
-webdriver-manager                😍  UPDATE!   Your local install is out of date. https://github.com/angular/webdriver-manager#readme
-                                              npm install --save-dev webdriver-manager@12.1.1 to go from 12.1.0 to 12.1.1
