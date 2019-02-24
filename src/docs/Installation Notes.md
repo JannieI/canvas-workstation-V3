@@ -253,8 +253,7 @@ Note: make sure to have the latest version of Angular-CLI installed
 
     sudo npm uninstall ag-grid-angular
     sudo npm install --save file-saver@2.0.1    
-    
-    npm uninstall --save sqlite3
+    sudo npm uninstall --save sqlite3
 
 
 
