@@ -196,6 +196,7 @@ export class LandingComponent implements OnInit {
 		.catch(err => {
 			this.errorMessage = 'Error reading DatacachingTable: ', err;
 		});
+
 		// Load System Settings
 		this.globalVariableService.getSystemSettings();
 	}

@@ -832,88 +832,94 @@ export class AppComponent implements OnInit {
                 );
 
                 // TODO - set GV.canvasUser record
-                this.globalVariableService.getCanvasUsers().then(res => {
+		        this.globalVariableService.getDataCachingTable().then(dc => {
 
-                    // Get Users and Groups, async
-                    this.globalVariableService.getResource('canvasGroups');
+                    this.globalVariableService.getCanvasUsers().then(res => {
 
-                    // Set palette position
-                    if (this.globalVariableService.currentUser.lastPaletteLeft != null) {
-                        this.paletteLeft = this.globalVariableService.currentUser.lastPaletteLeft;
-                    };
-                    if (this.globalVariableService.currentUser.lastPaletteTop != null) {
-                        this.paletteTop = this.globalVariableService.currentUser.lastPaletteTop;
-                    };
+                        // Get Users and Groups, async
+                        this.globalVariableService.getResource('canvasGroups');
 
-                    let today = new Date();
-                    this.globalVariableService.sessionDateTimeLoggedin =
-                        this.globalVariableService.formatDate(today);
-                    // Snapshot at user defined interval: preferenceDefaultSnapshotMins = 0 => none
-                    let userMins: number = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
-                    if (userMins > 0) {
-                        let mins: number = userMins * 60 * 1000;
-                        let localTimer = timer(mins, mins);
-                        this.subscriptionSnapshot = localTimer.subscribe(t => {
-                            if (this.editMode) {
+                        // Set palette position
+                        if (this.globalVariableService.currentUser.lastPaletteLeft != null) {
+                            this.paletteLeft = this.globalVariableService.currentUser.lastPaletteLeft;
+                        };
+                        if (this.globalVariableService.currentUser.lastPaletteTop != null) {
+                            this.paletteTop = this.globalVariableService.currentUser.lastPaletteTop;
+                        };
 
-                                // Determine if any actions since session login
-                                let temp: CanvasAction[] = this.globalVariableService.actions.filter(act =>
-                                    act.created > new Date(this.globalVariableService.sessionDateTimeLoggedin)
-                                    &&
-                                    act.createor == this.globalVariableService.currentUser.userID
-                                );
+                        let today = new Date();
+                        this.globalVariableService.sessionDateTimeLoggedin =
+                            this.globalVariableService.formatDate(today);
+                        // Snapshot at user defined interval: preferenceDefaultSnapshotMins = 0 => none
+                        let userMins: number = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
+                        if (userMins > 0) {
+                            let mins: number = userMins * 60 * 1000;
+                            let localTimer = timer(mins, mins);
+                            this.subscriptionSnapshot = localTimer.subscribe(t => {
+                                if (this.editMode) {
 
-                                // Only snap if there were activities
-                                if (temp.length > 0) {
-
-                                    let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-                                        d => d.id ==
-                                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                                    // Determine if any actions since session login
+                                    let temp: CanvasAction[] = this.globalVariableService.actions.filter(act =>
+                                        act.created > new Date(this.globalVariableService.sessionDateTimeLoggedin)
+                                        &&
+                                        act.createor == this.globalVariableService.currentUser.userID
                                     );
-                                    if (dashboardIndex >= 0) {
-                                        let today = new Date();
-                                        let snapshotName: string = this.globalVariableService.dashboards[
-                                            dashboardIndex]
-                                            .name + ' ' + this.globalVariableService.formatDate(today);
-                                        let snapshotComment: string = 'Automated Snapshot after ' +
-                                            (mins / 60000).toString() + ' mins';
-                                        this.globalVariableService.newDashboardSnapshot(
-                                            snapshotName,
-                                            snapshotComment,
-                                            'AutoFrequency').then(res => {
-                                                this.showMessage(
-                                                    'Added automated Snapshot after ' +
-                                                    (mins / 60000).toString() + ' mins',
-                                                    'StatusBar',
-                                                    'Info',
-                                                    3000,
-                                                    ''
-                                                );
 
-                                        });
+                                    // Only snap if there were activities
+                                    if (temp.length > 0) {
+
+                                        let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+                                            d => d.id ==
+                                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                                        );
+                                        if (dashboardIndex >= 0) {
+                                            let today = new Date();
+                                            let snapshotName: string = this.globalVariableService.dashboards[
+                                                dashboardIndex]
+                                                .name + ' ' + this.globalVariableService.formatDate(today);
+                                            let snapshotComment: string = 'Automated Snapshot after ' +
+                                                (mins / 60000).toString() + ' mins';
+                                            this.globalVariableService.newDashboardSnapshot(
+                                                snapshotName,
+                                                snapshotComment,
+                                                'AutoFrequency').then(res => {
+                                                    this.showMessage(
+                                                        'Added automated Snapshot after ' +
+                                                        (mins / 60000).toString() + ' mins',
+                                                        'StatusBar',
+                                                        'Info',
+                                                        3000,
+                                                        ''
+                                                    );
+
+                                            });
+                                        };
                                     };
                                 };
-                            };
+                            });
+                        };
+
+                        this.globalVariableService.currentPaletteButtonsSelected.subscribe(i => {
+                            this.paletteButtons = i.slice();
+
+                            // Synch BehSubj that hold orientation
+                            this.globalVariableService.preferencePaletteHorisontal.next(
+                                this.globalVariableService.currentUser.preferencePaletteHorisontal
+                            );
+
+                            this.globalVariableService.preferencePaletteHorisontal.subscribe(i =>
+
+                                // Calc the W and H - store and this.paletteHeight and this.paletteWidth
+                                this.setPaletteHeightAndWidth()
+                            );
+
                         });
-                    };
-
-                    this.globalVariableService.currentPaletteButtonsSelected.subscribe(i => {
-                        this.paletteButtons = i.slice();
-
-                        // Synch BehSubj that hold orientation
-                        this.globalVariableService.preferencePaletteHorisontal.next(
-                            this.globalVariableService.currentUser.preferencePaletteHorisontal
-                        );
-
-                        this.globalVariableService.preferencePaletteHorisontal.subscribe(i =>
-
-                            // Calc the W and H - store and this.paletteHeight and this.paletteWidth
-                            this.setPaletteHeightAndWidth()
-                        );
-
                     });
+                })
+                .catch(err => {
+                    console.error('Error reading DatacachingTable: ', err);
                 });
-
+        
 
             } else  {
                 // get canvasSettings from DB too
