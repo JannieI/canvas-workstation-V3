@@ -9008,7 +9008,7 @@ export class GlobalVariableService {
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getDataCachingTable ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                this.statusBarMessageLogs.length);
+                this.dataCachingTable.length);
         };
 
         return new Promise<DataCachingTable[]>((resolve, reject) => {

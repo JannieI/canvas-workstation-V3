@@ -548,7 +548,7 @@ export class AppComponent implements OnInit {
 
         this.globalVariableService.loadVariableOnStartup.subscribe(res => {
             if (res) {
-                console.log('xx APP loadVariableOnStartup.subscribe start ')
+                console.log('APP loadVariableOnStartup.subscribe start ')
                 // Notes:
                 // When logging into the Server, a dedicated open connection is established with
                 // Workstation.  Workstation has two methods:
@@ -574,7 +574,7 @@ export class AppComponent implements OnInit {
                         // Once a message is received on the canvasNS Namespace, the callback will be
                         // triggered.
                         this.socket.on('canvasNS', (message) => {
-                            console.log('xx APP received websocket message:', message);
+                            console.log('APP received websocket message:', message);
                             this.showMessage(
                                 'Web Socket now connected',
                                 'StatusBar',
@@ -690,7 +690,7 @@ export class AppComponent implements OnInit {
                     if (w != null) {
                         // Note: amend this.currentWidgets as it is a ByRef to
                         // this.gv.currentWidgets, which Angular does not register that it has changed
-                        console.warn('xx APP start', this.globalVariableService.currentWidgets)
+                        console.warn('xx APP this.changedWidgetSubscription start', this.globalVariableService.currentWidgets)
                         // Deep copy
                         // let newW: Widget = Object.assign({}, w);
                         let newW: Widget = JSON.parse(JSON.stringify(w));
@@ -709,7 +709,7 @@ export class AppComponent implements OnInit {
                             this.currentWidgets.push(newW);
                         };
 
-                        console.warn('xx app changedWidget replaced', w, this.currentWidgets, this.globalVariableService.widgets, this.globalVariableService.currentWidgets)
+                        console.warn('xx app ngOnInit changedWidget replaced', w, this.currentWidgets, this.globalVariableService.widgets, this.globalVariableService.currentWidgets)
                     };
                 });
 
@@ -830,99 +830,91 @@ export class AppComponent implements OnInit {
                 );
 
                 // TODO - set GV.canvasUser record
-		        this.globalVariableService.getDataCachingTable().then(dc => {
+                this.globalVariableService.getCanvasUsers().then(res => {
 
-                    this.globalVariableService.getCanvasUsers().then(res => {
+                    // Get Users and Groups, async
+                    this.globalVariableService.getResource('canvasGroups');
+                    console.log('xx in app')
+                    // Set palette position
+                    if (this.globalVariableService.currentUser.lastPaletteLeft != null) {
+                        this.paletteLeft = this.globalVariableService.currentUser.lastPaletteLeft;
+                    };
+                    if (this.globalVariableService.currentUser.lastPaletteTop != null) {
+                        this.paletteTop = this.globalVariableService.currentUser.lastPaletteTop;
+                    };
 
-                        // Get Users and Groups, async
-                        this.globalVariableService.getResource('canvasGroups');
-                        console.log('xx in app')
-                        // Set palette position
-                        if (this.globalVariableService.currentUser.lastPaletteLeft != null) {
-                            this.paletteLeft = this.globalVariableService.currentUser.lastPaletteLeft;
-                        };
-                        if (this.globalVariableService.currentUser.lastPaletteTop != null) {
-                            this.paletteTop = this.globalVariableService.currentUser.lastPaletteTop;
-                        };
+                    let today = new Date();
+                    this.globalVariableService.sessionDateTimeLoggedin =
+                        this.globalVariableService.formatDate(today);
+                    // Snapshot at user defined interval: preferenceDefaultSnapshotMins = 0 => none
+                    let userMins: number = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
+                    if (userMins > 0) {
+                        let mins: number = userMins * 60 * 1000;
+                        let localTimer = timer(mins, mins);
+                        this.subscriptionSnapshot = localTimer.subscribe(t => {
+                            if (this.editMode) {
 
-                        let today = new Date();
-                        this.globalVariableService.sessionDateTimeLoggedin =
-                            this.globalVariableService.formatDate(today);
-                        // Snapshot at user defined interval: preferenceDefaultSnapshotMins = 0 => none
-                        let userMins: number = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
-                        if (userMins > 0) {
-                            let mins: number = userMins * 60 * 1000;
-                            let localTimer = timer(mins, mins);
-                            this.subscriptionSnapshot = localTimer.subscribe(t => {
-                                if (this.editMode) {
+                                // Determine if any actions since session login
+                                let temp: CanvasAction[] = this.globalVariableService.actions.filter(act =>
+                                    act.created > new Date(this.globalVariableService.sessionDateTimeLoggedin)
+                                    &&
+                                    act.createor == this.globalVariableService.currentUser.userID
+                                );
 
-                                    // Determine if any actions since session login
-                                    let temp: CanvasAction[] = this.globalVariableService.actions.filter(act =>
-                                        act.created > new Date(this.globalVariableService.sessionDateTimeLoggedin)
-                                        &&
-                                        act.createor == this.globalVariableService.currentUser.userID
+                                // Only snap if there were activities
+                                if (temp.length > 0) {
+
+                                    let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+                                        d => d.id ==
+                                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID
                                     );
+                                    if (dashboardIndex >= 0) {
+                                        let today = new Date();
+                                        let snapshotName: string = this.globalVariableService.dashboards[
+                                            dashboardIndex]
+                                            .name + ' ' + this.globalVariableService.formatDate(today);
+                                        let snapshotComment: string = 'Automated Snapshot after ' +
+                                            (mins / 60000).toString() + ' mins';
+                                        this.globalVariableService.newDashboardSnapshot(
+                                            snapshotName,
+                                            snapshotComment,
+                                            'AutoFrequency').then(res => {
+                                                this.showMessage(
+                                                    'Added automated Snapshot after ' +
+                                                    (mins / 60000).toString() + ' mins',
+                                                    'StatusBar',
+                                                    'Info',
+                                                    3000,
+                                                    ''
+                                                );
 
-                                    // Only snap if there were activities
-                                    if (temp.length > 0) {
-
-                                        let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-                                            d => d.id ==
-                                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-                                        );
-                                        if (dashboardIndex >= 0) {
-                                            let today = new Date();
-                                            let snapshotName: string = this.globalVariableService.dashboards[
-                                                dashboardIndex]
-                                                .name + ' ' + this.globalVariableService.formatDate(today);
-                                            let snapshotComment: string = 'Automated Snapshot after ' +
-                                                (mins / 60000).toString() + ' mins';
-                                            this.globalVariableService.newDashboardSnapshot(
-                                                snapshotName,
-                                                snapshotComment,
-                                                'AutoFrequency').then(res => {
-                                                    this.showMessage(
-                                                        'Added automated Snapshot after ' +
-                                                        (mins / 60000).toString() + ' mins',
-                                                        'StatusBar',
-                                                        'Info',
-                                                        3000,
-                                                        ''
-                                                    );
-
-                                            });
-                                        };
+                                        });
                                     };
                                 };
-                            });
-                        };
-
-                        this.globalVariableService.currentPaletteButtonsSelected.subscribe(i => {
-                            this.paletteButtons = i.slice();
-
-                            // Synch BehSubj that hold orientation
-                            this.globalVariableService.preferencePaletteHorisontal.next(
-                                this.globalVariableService.currentUser.preferencePaletteHorisontal
-                            );
-
-                            this.globalVariableService.preferencePaletteHorisontal.subscribe(i =>
-
-                                // Calc the W and H - store and this.paletteHeight and this.paletteWidth
-                                this.setPaletteHeightAndWidth()
-                            );
-
+                            };
                         });
+                    };
+
+                    this.globalVariableService.currentPaletteButtonsSelected.subscribe(i => {
+                        this.paletteButtons = i.slice();
+
+                        // Synch BehSubj that hold orientation
+                        this.globalVariableService.preferencePaletteHorisontal.next(
+                            this.globalVariableService.currentUser.preferencePaletteHorisontal
+                        );
+
+                        this.globalVariableService.preferencePaletteHorisontal.subscribe(i =>
+
+                            // Calc the W and H - store and this.paletteHeight and this.paletteWidth
+                            this.setPaletteHeightAndWidth()
+                        );
+
                     });
-                })
-                .catch(err => {
-                    console.error('Error reading DatacachingTable: ', err);
                 });
-        
 
             } else  {
                 // get canvasSettings from DB too
                 console.warn('xx res is false', res)
-                // this.globalVariableService.loadVariableOnStartup.next(true);
             };;
         });
 
@@ -1011,19 +1003,6 @@ export class AppComponent implements OnInit {
                                 console.warn('App ngOnInit: verified user ', res[0].currentUserID, ' with result ', result);
 
                                 if (result) {
-
-                                    // Store User ID info
-                                    // TODO - fix userID ID ID
-                                    // this.globalVariableService.canvasServerName = res[0].canvasServerName;
-                                    // this.globalVariableService.canvasServerURI = res[0].canvasServerURI;
-                                    // this.globalVariableService.currentCompany = res[0].currentCompany;
-                                    // this.globalVariableService.currentUserID = res[0].currentUserName;
-                                    // this.globalVariableService.currentToken = res[0].currentToken;
-
-                                    // Refresh
-                                    // this.globalVariableService.loadVariableOnStartup.next(true);
-                                    // console.warn(('xx 2'));
-
                                     // Show Landing page
                                     this.showModalLanding = true;
                                 } else {
