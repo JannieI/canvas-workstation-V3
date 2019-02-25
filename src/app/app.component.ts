@@ -969,7 +969,7 @@ export class AppComponent implements OnInit {
                 .toArray()
                 .then(res => {
 
-                    console.warn('xx App.ts: after read Dexie res: ', res)
+                    console.warn('App.ts: after reading Dexie table: ', res)
 
                     // Validate that all fields filled in
                     let localInfoGood: boolean = true;
@@ -1008,7 +1008,7 @@ export class AppComponent implements OnInit {
                             res[0].currentUserID,
                             res[0].currentToken).then(
                             result => {
-                                console.warn('xx App.ts: verified user ', res[0].currentUserID, ' with result ', result);
+                                console.warn('App.ts: verified user ', res[0].currentUserID, ' with result ', result);
 
                                 if (result) {
 

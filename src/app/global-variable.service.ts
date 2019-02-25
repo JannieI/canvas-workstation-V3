@@ -1622,25 +1622,25 @@ export class GlobalVariableService {
                 localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
                 localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                 localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-                console.warn('xx In Mem vars', dataCachingTableIndex, localCacheableMemory, localCacheableDisc, localVariableName);
+                console.warn('xx In Mem vars', {dataCachingTableIndex}, {localCacheableMemory}, {localCacheableDisc}, {localVariableName});
 
                 // Local Memory is used, if fresh
                 if (localCacheableMemory) {
-                    console.log('xx in local Memory: ', localVariableName)
+                    console.log('xx in local Memory for Resource: ', localVariableName, this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
 
                     // Fresh if not expired as yet
-                    let dn: Date = new Date();
-                    let tn: number = dn.getTime()
-                    let dl: Date = new Date(this.dataCachingTable[dataCachingTableIndex]
+                    let dateNow: Date = new Date();
+                    let timeNow: number = dateNow.getTime()
+                    let dateCaching: Date = new Date(this.dataCachingTable[dataCachingTableIndex]
                         .localExpiryDateTime);
-                    let tl: number = dl.getTime();
-                    if (tl >= tn) {
+                    let timeCaching: number = dateCaching.getTime();
+                    if (timeCaching >= timeNow) {
                         isFresh = true;
                     } else {
                         isFresh = false;
                     };
 
-                    console.log('xx fresh vars', dn, tn, dl, tl, isFresh)
+                    console.log('xx fresh vars', {dateNow}, {timeNow}, {dateCaching}, {timeCaching}, isFresh)
                     // Use local cache variable or table if fresh
                     // TODO - check the assumption that there is data when fresh (else returns [])
                     if (isFresh) {
