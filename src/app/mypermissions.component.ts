@@ -65,7 +65,7 @@ export class MyPermissionsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCanvasGroups().then(res => {
+        this.globalVariableService.getResource('canvasGroups').then(res => {
             this.groups = res;
 
             let filteredDashboard: Dashboard[] = [];

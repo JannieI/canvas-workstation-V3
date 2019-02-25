@@ -835,7 +835,7 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.getCanvasUsers().then(res => {
 
                     // Get Users and Groups, async
-                    this.globalVariableService.getCanvasGroups();
+                    this.globalVariableService.getResource('canvasGroups');
 
                     // Set palette position
                     if (this.globalVariableService.currentUser.lastPaletteLeft != null) {

@@ -97,7 +97,7 @@ export class DashboardOpenComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Prefetch data
-        this.globalVariableService.getCanvasGroups().then( res => {
+        this.globalVariableService.getResource('canvasGroups').then( res => {
             this.groups = res;
         });
 

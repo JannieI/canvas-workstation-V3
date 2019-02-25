@@ -107,7 +107,7 @@ export class DatasourceShareComponent implements OnInit {
                 this.userNames = ['', ...this.userNames];
                 this.users = usr;
 
-                this.globalVariableService.getCanvasGroups().then(grp => {
+                this.globalVariableService.getResource('canvasGroups').then(grp => {
                     this.groupNames = grp.sort((n1,n2) => {
                         if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
                             return 1;

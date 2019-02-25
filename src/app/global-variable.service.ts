@@ -1152,6 +1152,7 @@ export class GlobalVariableService {
     // isDirtyDataConnections: boolean = true;
     dashboardLayouts: DashboardLayout[] = [];
     widgetLayouts: WidgetLayout[] = [];
+    currentDashboardTags: DashboardTag[] = [];
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
@@ -1163,7 +1164,6 @@ export class GlobalVariableService {
     currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
     currentDashboardTabs: DashboardTab[] = [];
-    currentDashboardTags: DashboardTag[] = [];
     currentDatasets: any = [];                          // Used in current D, with data
     currentDatasources: Datasource[] = [];
     currentDatasourcePermissions: DatasourcePermission[] = [];
@@ -1613,7 +1613,7 @@ export class GlobalVariableService {
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
                 dct.key == resource
             );
-
+                console.log('xx dataCachingTableIndex', resource,  this.dataCachingTable, dataCachingTableIndex, this.canvasGroups)
             if (dataCachingTableIndex >= 0) {
                 console.log('xx inside IF')
                 // Get var and table names
@@ -10910,7 +10910,7 @@ export class GlobalVariableService {
                         // TODO - must this be done here ??  Needed to setBaseUrl
                         this.canvasServerURI = givenCanvasServerURI;
 
-                        this.getCanvasGroups().then();
+                        this.getResource('canvasGroups').then();
 
                         this.getCanvasUsers().then(usr => {
                             let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);

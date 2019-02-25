@@ -86,7 +86,7 @@ export class CollaborateMessageContentComponent implements OnInit {
                 });
                 this.userNames = ['', ...this.userNames];
 
-                this.globalVariableService.getCanvasGroups().then(grp => {
+                this.globalVariableService.getResource('canvasGroups').then(grp => {
                     grp = grp.sort((n1,n2) => {
                         if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
                             return 1;
