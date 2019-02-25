@@ -1821,23 +1821,25 @@ export class GlobalVariableService {
                         localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                         localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
 
-console.log('xx dataCachingTableIndex', dataCachingTableIndex, localVariableName, this[localVariableName])
                         // Fill local Vars
                         if (localCacheableMemory) {
 
                             if (localVariableName != null) {
-                                // TODO - TEST This !!!!
+
                                 let localIndex: number = this[localVariableName].findIndex(rec =>
                                     rec.id == data.id
                                 );
-                                console.log('xx localIndex', localIndex)
+
                                 if (localIndex >= 0) {
                                     this[localVariableName][localIndex] = data;
-                                };
-                                console.warn('xx updated cached Memory to', this[localVariableName]);
+                                } else {
+                                    this[localVariableName].push(data);
+                                }
+                                console.warn('GlobalVariableService.addResource updated cached Memory to', this[localVariableName]);
                             };
 
-                            // TODO - should we fill Current Var here a well?
+                            // TODO - should we fill Current Var here as well?  Dont think so ...
+                            //        at best, only for certain things, ie D that is open ...
                         };
 
                         // Fill Disc
