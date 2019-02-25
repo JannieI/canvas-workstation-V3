@@ -969,32 +969,32 @@ export class AppComponent implements OnInit {
                 .toArray()
                 .then(res => {
 
-                    console.warn('App.ts: after reading Dexie table: ', res)
+                    console.warn('App ngOnInit: after reading Dexie table: ', res)
 
                     // Validate that all fields filled in
                     let localInfoGood: boolean = true;
                     if (res[0].canvasServerName == null  ||  res[0].canvasServerName == '') {
-                        console.warn('xx App.ts: canvasServerName is bad - ', res[0].canvasServerName);
+                        console.warn('App ngOnInit: canvasServerName is bad - ', res[0].canvasServerName);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
                     if (res[0].canvasServerURI == null  ||  res[0].canvasServerURI == '') {
-                        console.warn('xx App.ts: canvasServerURI is bad - ', res[0].canvasServerURI);
+                        console.warn('App ngOnInit: canvasServerURI is bad - ', res[0].canvasServerURI);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
                     if (res[0].currentCompany == null  ||  res[0].currentCompany == '') {
-                        console.warn('xx App.ts: currentCompany is bad - ', res[0].currentCompany);
+                        console.warn('App ngOnInit: currentCompany is bad - ', res[0].currentCompany);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
                     if (res[0].currentUserID == null  ||  res[0].currentUserID == '') {
-                        console.warn('xx App.ts: currentUserID is bad - ', res[0].currentUserID);
+                        console.warn('App ngOnInit: currentUserID is bad - ', res[0].currentUserID);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
                     if (res[0].currentToken == null  ||  res[0].currentToken == '') {
-                        console.warn('xx App.ts: currentToken is bad - ', res[0].currentToken);
+                        console.warn('App ngOnInit: currentToken is bad - ', res[0].currentToken);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
@@ -1008,7 +1008,7 @@ export class AppComponent implements OnInit {
                             res[0].currentUserID,
                             res[0].currentToken).then(
                             result => {
-                                console.warn('App.ts: verified user ', res[0].currentUserID, ' with result ', result);
+                                console.warn('App ngOnInit: verified user ', res[0].currentUserID, ' with result ', result);
 
                                 if (result) {
 
