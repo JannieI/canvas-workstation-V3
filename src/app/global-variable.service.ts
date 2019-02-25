@@ -11008,10 +11008,13 @@ export class GlobalVariableService {
                                     }
                                 );
 
-                                // Refresh
-                                this.loadVariableOnStartup.next(true);
-
-                                resolve(true);
+                                // Refresh, but first get the cache
+                                this.getDataCachingTable()
+                                    .then( () => {
+                                        this.loadVariableOnStartup.next(true);
+                                        resolve(true);
+                                    })
+                                    .catch(err => console.error('Error in GlobalVariableService.verifyCanvasUser: ', err))
                             };
                         });
 
