@@ -1323,7 +1323,6 @@ export class GlobalVariableService {
                                 // Get info for W
                                 this.getWidgetsInfo().then(n => {
 
-                                    console.log('xx refreshCurrentDashboard BEFORE AMEND IN REFRESH D ****************************' )
                                     // Add to recent
                                     this.amendDashboardRecent(dashboardID, dashboardTabID); //.then(n => {
                                     if (this.currentDatasources.length > 0) {
@@ -1613,9 +1612,9 @@ export class GlobalVariableService {
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
                 dct.key == resource
             );
-                console.log('xx getResouce - dataCachingTableIndex', resource,  this.dataCachingTable, dataCachingTableIndex, this.canvasGroups)
+
             if (dataCachingTableIndex >= 0) {
-                console.log('xx inside IF')
+
                 // Get var and table names
                 localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
                 localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
@@ -1640,7 +1639,7 @@ export class GlobalVariableService {
                         isFresh = false;
                     };
 
-                    console.log('xx fresh variables for :', resource, {dateNow}, {timeNow}, {dateCaching}, {timeCaching}, isFresh)
+                    // console.log('xx fresh variables for :', resource, {dateNow}, {timeNow}, {dateCaching}, {timeCaching}, isFresh)
                     // Use local cache variable or table if fresh
                     // TODO - check the assumption that there is data when fresh (else returns [])
                     if (isFresh) {
@@ -1678,15 +1677,13 @@ export class GlobalVariableService {
                     };
                 };
             };
-            console.warn('xx Will now try GET HTTP for: ', resource)
+            console.warn('GlobalVariableService.getResource Will now try GET HTTP for: ', resource)
 
             // Get from HTTP server
             let pathUrl: string = resource + params;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
-            console.log('xx finalUrl for: ', resource, finalUrl)
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 httpResult  => {
-                    console.warn('xx inside HTTP for resource: ', resource)
 
                     if(httpResult.statusCode != 'success') {
                         if (this.sessionDebugging) {
@@ -1705,7 +1702,6 @@ export class GlobalVariableService {
                         localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
                         localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                         localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-                        console.warn('xx In HTTP vars', dataCachingTableIndex, localCacheableMemory, localCacheableDisc, localVariableName);
 
                         // Fill local Vars
                         if (localCacheableMemory) {
@@ -1713,7 +1709,7 @@ export class GlobalVariableService {
                             if (localVariableName != null) {
                                 this[localVariableName] = [];
                                 this[localVariableName] = httpResult.data;
-                                console.warn('xx updated cached Memory to ', this[localVariableName], httpResult);
+                                console.warn('GlobalVariablService updated cached Memory for ', resource);
                             };
 
                             // TODO - should we fill Current Var here a well?
@@ -1732,7 +1728,7 @@ export class GlobalVariableService {
                                         // Count
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
-                                                console.warn('xx updated local Disc to', resCount);
+                                                console.warn('GlobalVariableService updated local Disc for:', resource);
                                         });
                                     });
                                 });
@@ -1749,7 +1745,6 @@ export class GlobalVariableService {
                             this.dateAdd(dt, 'second', seconds);
                         this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                             new Date();
-                        console.log('xx dataCachingTable memory upd', this.dataCachingTable)
 
                         // Update dataCaching on Disc
                         this.dbDataCachingTable.table("localDataCachingTable")
@@ -1761,7 +1756,7 @@ export class GlobalVariableService {
                         });
                     };
 
-                    console.warn('xx data retured from HTTP for: ', resource, httpResult.data);
+                    console.warn('xx GV getResource data retured from HTTP for: ', resource, httpResult.data);
                     console.timeEnd("DURATION getResource: " + resource);
                     resolve(httpResult.data);
                     return;
@@ -3619,7 +3614,6 @@ export class GlobalVariableService {
                             };
                             return 0;
                         });
-                        console.log('xx amendDashboardRecent this.dashboardsRecent', this.dashboardsRecent)
                         this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
                         resolve(recentD)
@@ -9084,12 +9078,11 @@ export class GlobalVariableService {
             };
             return 0;
         });
-        console.log('xx refreshCurrentDashboard currentDashboardTabs', currentDashboardTabs)
 
         // Assume we have all currentD info
         if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
             (this.currentDashboardInfo == null) ) {
-            console.log('xx refreshCurrentDashboard returned in GV since this.currentDashboardInfo == null')
+            console.log('Error in GlobalVariableService.refreshCurrentDashboard returned in GV since this.currentDashboardInfo == null')
             return 'Error';
         };
 
@@ -9099,7 +9092,7 @@ export class GlobalVariableService {
 
         if (tabToShow != '') {
             if (currentDashboardTabs.length == 0) {
-                console.log('xx refreshCurrentDashboard returned in GV since currentDashboardTabs.length == 0', dashboardID, this.dashboards, this.dashboardTabs)
+                console.log('Error in GlobalVariableService.refreshCurrentDashboard returned in GV since currentDashboardTabs.length == 0', dashboardID, this.dashboards, this.dashboardTabs)
                 return 'Error';
             };
             if (tabToShow == 'First') {
@@ -10955,7 +10948,6 @@ export class GlobalVariableService {
 
                                 // Optional start D
                                 if (this.currentUser.preferenceStartupDashboardID != null) {
-                                    console.log('xx verifyCanvasUser NOOOOOOOOOOOOOOOOOOOOOOOOO *****************')
                                     let startTabID: number = -1;
                                     if (this.currentUser.preferenceStartupDashboardTabID != null) {
                                         startTabID = this.currentUser.preferenceStartupDashboardTabID;
@@ -11061,7 +11053,6 @@ export class GlobalVariableService {
             let givenCanvasServerURI: string = this.ENVCanvasServerList[serverURLIndex]
                 .serverHostURI;
 
-            console.warn('xx registerCanvasUser givenCanvasServerURI', givenCanvasServerURI)
             this.http.post<CanvasHttpResponse>(givenCanvasServerURI + '/auth/local/signup',
                 {
                     "companyName": givenCompanyName,
@@ -11071,7 +11062,7 @@ export class GlobalVariableService {
                 ).subscribe(res => {
 
                     if (res.statusCode == 'failed') {
-                        console.warn('xx registerCanvasUser GV Failed: ' + res.message, res);
+                        console.warn('Error in GlobalVariableService.registerCanvasUser GV Failed: ' + res.message, res);
 
                         resolve('Failed: ' + res.message);
                     };
@@ -11117,8 +11108,6 @@ export class GlobalVariableService {
             };
             let givenCanvasServerURI: string = this.ENVCanvasServerList[serverURLIndex]
                 .serverHostURI;
-
-                console.warn('xx loginCanvasUser givenCanvasServerURI', serverURLIndex, givenCanvasServerURI)
             this.http.post<CanvasHttpResponse>(givenCanvasServerURI + '/auth/local/login',
                 {
                     "companyName": givenCompanyName,
@@ -11127,26 +11116,24 @@ export class GlobalVariableService {
                 }
                 ).subscribe(res => {
 
-                    console.warn('xx loginCanvasUser Global-Variables loginCanvasServer res', res);
-
                     if (res.statusCode == 'failed') {
-                        console.warn('xx loginCanvasUser Global-Variables loginCanvasServer Failed: ' + res.message);
+                        console.warn('Error in GlobalVariableService.loginCanvasUser Global-Variables loginCanvasServer Failed: ' + res.message);
 
                         resolve({ message:'Failed: ' + res.message, token: null});
                     };
                     if (res.statusCode == 'success') {
-                        console.warn('xx loginCanvasUser Global-Variables loginCanvasServer Success: ' + res.message);
+                        console.warn('GlobalVariableService.loginCanvasUser Global-Variables loginCanvasServer Success: ' + res.message);
 
                         resolve({ message:'Success: ' + res.message, token: res.token});
                     };
                     if (res.statusCode == 'error') {
-                        console.warn('xx loginCanvasUser Global-Variables loginCanvasServer Error: ' + res.message);
+                        console.warn('Error in GlobalVariableService.loginCanvasUser Global-Variables loginCanvasServer Error: ' + res.message);
 
                         resolve({ message:'Error: ' + res.message, token: null});
                     };
             },
             err => {
-                console.log('xx loginCanvasUser Global-Variables loginCanvasServer Error Login FAILED', {err});
+                console.log('Error in GlobalVariableService.loginCanvasUser Global-Variables loginCanvasServer Error Login FAILED', {err});
                 resolve({ message:'Error: Login FAILED ' + err.message, token: null});
             });
         });
@@ -11445,7 +11432,6 @@ export class GlobalVariableService {
                         let datasetIndex: number = this.datasets.findIndex(ds => ds.id == datasetsAdded.id);
                         if (datasetIndex < 0) {
                             this.datasets.push(datasetsAdded);
-                            console.log('xx addDatasourceNew post', this.datasets.length)
                         };
                     };
 
@@ -11703,7 +11689,6 @@ export class GlobalVariableService {
         return new Promise<any>((resolve, reject) => {
 
             let localToken: Token = JSON.parse(localStorage.getItem('eazl-token'));
-            console.warn('xx getTributarData token', localToken)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Authorization", "JWT " + localToken.token);
@@ -11713,7 +11698,6 @@ export class GlobalVariableService {
                 res => {
 
                     if (this.sessionDebugging) {
-                        console.log('xx getTributarData Tributary Data', {res})
                     };
 
                     resolve(res);
@@ -11742,7 +11726,6 @@ export class GlobalVariableService {
         return new Promise<any>((resolve, reject) => {
 
             let localToken: Token = JSON.parse(localStorage.getItem('eazl-token'));
-            console.warn('xx token', localToken)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Authorization", "JWT " + localToken.token);
@@ -11752,14 +11735,12 @@ export class GlobalVariableService {
                 res => {
 
                     if (this.sessionDebugging) {
-                        console.log('xx getTributarSpec Tributary Data', {res})
                     };
 
                     resolve(res);
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('xx getTributarSpec Error Get Tributary Inspect FAILED', {err});
                     };
                     reject(err.message);
                 }
