@@ -5255,58 +5255,6 @@ export class GlobalVariableService {
         });
     }
 
-    getCanvasGroups(): Promise<CanvasGroup[]> {
-        // Description: Gets all G
-        // Returns: this.canvasGroups array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCanvasGroups ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<CanvasGroup[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.canvasGroups.length == 0)  ||  (this.isDirtyCanvasGroups) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'canvasGroups';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.canvasGroups = res.data;
-                        this.isDirtyCanvasGroups = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCanvasGroups 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {res})
-                        };
-
-                        resolve(this.canvasGroups);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                )
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCanvasGroups 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
-                };
-
-                resolve(this.canvasGroups);
-            }
-        });
-
-    }
-
     addCanvasGroup(data: CanvasGroup): Promise<any> {
         // Description: Adds a new canvasGroup
         // Returns: Added Data or error message
