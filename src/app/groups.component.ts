@@ -170,7 +170,7 @@ export class GroupsComponent implements OnInit {
             createdOn: this.canvasGroups[this.selectedRow].createdOn
         };
 
-        this.globalVariableService.saveCanvasGroup(newGroup).then( () => {
+        this.globalVariableService.saveResource('canvasGroups', newGroup).then( () => {
             this.message = "Group Updated"
             this.canvasGroups[this.selectedRow] = newGroup;
         })
