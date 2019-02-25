@@ -1815,7 +1815,13 @@ export class GlobalVariableService {
 
                     // If cached, fill local info
                     if (dataCachingTableIndex >= 0) {
+                        localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
+                        localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
+                        localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
+                        localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
+                        localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
 
+console.log('xx dataCachingTableIndex', dataCachingTableIndex, localVariableName, this[localVariableName])
                         // Fill local Vars
                         if (localCacheableMemory) {
 
@@ -1824,6 +1830,7 @@ export class GlobalVariableService {
                                 let localIndex: number = this[localVariableName].findIndex(rec =>
                                     rec.id == data.id
                                 );
+                                console.log('xx localIndex', localIndex)
                                 if (localIndex >= 0) {
                                     this[localVariableName][localIndex] = data;
                                 };
@@ -1865,7 +1872,7 @@ export class GlobalVariableService {
                             this.dateAdd(dt, 'second', seconds);
                         this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                             new Date();
-                        console.log('xx dataCachingTable memory upd', this.dataCachingTable)
+                        console.log('xx dataCachingTable memory add', this.dataCachingTable)
 
                         // Update dataCaching on Disc
                         this.dbDataCachingTable.table("localDataCachingTable")
