@@ -2089,6 +2089,12 @@ export class GlobalVariableService {
 
                     // If cached, fill local info
                     if (dataCachingTableIndex >= 0) {
+                        localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
+                        localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
+                        localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
+                        localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
+                        localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
+                        console.log('xx dataCachingTableIndex', dataCachingTableIndex, localCacheableMemory, localVariableName)
 
                         // Fill local Vars
                         if (localCacheableMemory) {
@@ -2108,8 +2114,6 @@ export class GlobalVariableService {
                         };
 
                     };
-
-
 
                     if (this.sessionDebugging) {
                         console.log('deleteResource DELETED id: ', {id})
