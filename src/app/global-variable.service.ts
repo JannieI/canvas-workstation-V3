@@ -10925,13 +10925,13 @@ export class GlobalVariableService {
                             if (foundIndex < 0) {
 
                                 if (this.sessionDebugging) {
-                                    console.warn('GV.verifyCanvasUser: Invalid userid', givenUserID)
+                                    console.warn('Global-Variables verifyCanvasUser: Invalid userid', givenUserID)
                                 };
                                 resolve(false);
                             } else {
 
                                 if (this.sessionDebugging) {
-                                    console.warn('GV.verifyCanvasUser: Valid userid', givenUserID)
+                                    console.warn('Global-Variables verifyCanvasUser: Valid userid', givenUserID)
                                 };
 
                                 // Set User var
@@ -10977,29 +10977,29 @@ export class GlobalVariableService {
                                         currentUserID: givenUserID,
                                         currentToken: givenToken
                                     };
-                                console.warn('GV.verifyCanvasUser localCanvasUser', localCanvasUser)
+                                console.warn('Global-Variables verifyCanvasUser localCanvasUser', localCanvasUser)
 
                                 // Add / Update DB with Put
                                 let currentCanvasUserCount: number = 0;
 
                                 // Local App info DB
-                                console.warn('GV.verifyCanvasUser: @local DB')
+                                console.warn('Global-Variables verifyCanvasUser: @local DB')
                                 // let dbCanvasAppDatabase = new CanvasAppDatabase
                                 // dbCanvasAppDatabase.open();
 
                                 this.dbCanvasAppDatabase.table("currentCanvasUser")
                                     .put(localCanvasUser)
                                     .then(res => {
-                                        console.warn('GV.verifyCanvasUser Add/Update currentCanvasUser res', res);
+                                        console.warn('Global-Variables verifyCanvasUser Add/Update currentCanvasUser res', res);
 
                                         // Count
                                         this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
-                                            console.warn('GV.verifyCanvasUser currentCanvasUser Count', res);
+                                            console.warn('Global-Variables verifyCanvasUser currentCanvasUser Count', res);
                                             currentCanvasUserCount = res;
 
                                             // Return
                                             if (currentCanvasUserCount > 0) {
-                                                console.warn('GV.verifyCanvasUser setCanvasServerState');
+                                                console.warn('Global-Variables verifyCanvasUser setCanvasServerState');
                                                 return true;
                                             } else {
                                                 return false;
@@ -11016,7 +11016,7 @@ export class GlobalVariableService {
                         });
 
                 } else {
-                    console.warn('GV.verifyCanvasUser: Registration failed on : ',
+                    console.warn('Global-Variables verifyCanvasUser: Registration failed on : ',
                         givenCanvasServerURI, givenUserID, res);
                     resolve(false);
                 };
@@ -11024,7 +11024,7 @@ export class GlobalVariableService {
             err => {
                 console.log('Error Registration FAILED on : ',
                 givenCanvasServerURI, {err});
-                console.warn('GV.verifyCanvasUser: HTTP Error'), err;
+                console.warn('Global-Variables verifyCanvasUser: HTTP Error'), err;
                 resolve(false);
             });
 
@@ -11123,26 +11123,26 @@ export class GlobalVariableService {
                 }
                 ).subscribe(res => {
 
-                    console.warn('xx loginCanvasUser GV.loginCanvasServer res', res);
+                    console.warn('xx loginCanvasUser Global-Variables loginCanvasServer res', res);
 
                     if (res.statusCode == 'failed') {
-                        console.warn('xx loginCanvasUser GV.loginCanvasServer Failed: ' + res.message);
+                        console.warn('xx loginCanvasUser Global-Variables loginCanvasServer Failed: ' + res.message);
 
                         resolve({ message:'Failed: ' + res.message, token: null});
                     };
                     if (res.statusCode == 'success') {
-                        console.warn('xx loginCanvasUser GV.loginCanvasServer Success: ' + res.message);
+                        console.warn('xx loginCanvasUser Global-Variables loginCanvasServer Success: ' + res.message);
 
                         resolve({ message:'Success: ' + res.message, token: res.token});
                     };
                     if (res.statusCode == 'error') {
-                        console.warn('xx loginCanvasUser GV.loginCanvasServer Error: ' + res.message);
+                        console.warn('xx loginCanvasUser Global-Variables loginCanvasServer Error: ' + res.message);
 
                         resolve({ message:'Error: ' + res.message, token: null});
                     };
             },
             err => {
-                console.log('xx loginCanvasUser GV.loginCanvasServer Error Login FAILED', {err});
+                console.log('xx loginCanvasUser Global-Variables loginCanvasServer Error Login FAILED', {err});
                 resolve({ message:'Error: Login FAILED ' + err.message, token: null});
             });
         });
