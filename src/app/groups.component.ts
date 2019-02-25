@@ -126,7 +126,7 @@ export class GroupsComponent implements OnInit {
         this.message = '';
         this.errorMessage = '';
 
-        this.globalVariableService.deleteCanvasGroup(id).then( () => {
+        this.globalVariableService.deleteResource('canvasGroups', id).then( () => {
             this.message = "Group Deleted"
             this.canvasGroups = this.canvasGroups.filter(
                 grp => grp.id != id
