@@ -9024,6 +9024,14 @@ export class GlobalVariableService {
 
                     this.dataCachingTable = res.data;
 
+                    // NB - need to remember cache has been refreshed locally
+                    //      This is not stored on Server; updated each time it is loaded here
+                    let today = new Date();
+                    this.dataCachingTable.forEach(dc => {
+                        dc.localLastUpdatedDateTime = today
+                    })
+                    
+
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getDataCachingTable',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
