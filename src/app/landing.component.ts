@@ -51,150 +51,145 @@ export class LandingComponent implements OnInit {
 		// });
 
 		// All Datasources
-		this.globalVariableService.getDataCachingTable().then(dc => {
-			this.globalVariableService.getDatasources();
-			this.globalVariableService.getDatasourcePermissions();
+		this.globalVariableService.getDatasources();
+		this.globalVariableService.getDatasourcePermissions();
 
-			// Load D
-			this.globalVariableService.getDashboards().then(readD => {
-				// Sample Dashboards
-				this.globalVariableService.getDashboardSamples().then(sD => {
-					this.sampleDashboards = sD;
+		// Load D
+		this.globalVariableService.getDashboards().then(readD => {
+			// Sample Dashboards
+			this.globalVariableService.getDashboardSamples().then(sD => {
+				this.sampleDashboards = sD;
 
-					// Set user stuffies
-					this.isFirstTimeUser = this.globalVariableService.currentUser.isFirstTimeUser;
+				// Set user stuffies
+				this.isFirstTimeUser = this.globalVariableService.currentUser.isFirstTimeUser;
 
-					// Recent D
-					this.globalVariableService.getDashboardsRecent(
-						this.globalVariableService.currentUser.userID)
-						.then(recD => {
-							this.dashboardsRecent = recD.slice(0, 5);
+				// Recent D
+				this.globalVariableService.getDashboardsRecent(
+					this.globalVariableService.currentUser.userID)
+					.then(recD => {
+						this.dashboardsRecent = recD.slice(0, 5);
 
-							console.warn('xx BEFORE filter', this.dashboardsRecent);
+						console.warn('xx BEFORE filter', this.dashboardsRecent);
 
-							this.globalVariableService.getDashboardPermissions().then(dP => {
+						this.globalVariableService.getDashboardPermissions().then(dP => {
 
-								// Determine access - different rights can achive View or Edit access
-								let accessIDs: number[] = [];
-								for (var i = 0; i < this.dashboardsRecent.length; i++) {
-									if (this.dashboardsRecent[i].editMode) {
+							// Determine access - different rights can achive View or Edit access
+							let accessIDs: number[] = [];
+							for (var i = 0; i < this.dashboardsRecent.length; i++) {
+								if (this.dashboardsRecent[i].editMode) {
 
-										if (this.globalVariableService.dashboardPermissionCheck(
+									if (this.globalVariableService.dashboardPermissionCheck(
 
-											this.dashboardsRecent[i].dashboardID, 'caneditright')) {
-												accessIDs.push(this.dashboardsRecent[i].dashboardID);
-										};
+										this.dashboardsRecent[i].dashboardID, 'caneditright')) {
+											accessIDs.push(this.dashboardsRecent[i].dashboardID);
+									};
 
-										if (this.globalVariableService.dashboardPermissionCheck(
+									if (this.globalVariableService.dashboardPermissionCheck(
 
-											this.dashboardsRecent[i].dashboardID, 'canviewandcanedit')) {
-												accessIDs.push(this.dashboardsRecent[i].dashboardID);
-										};
+										this.dashboardsRecent[i].dashboardID, 'canviewandcanedit')) {
+											accessIDs.push(this.dashboardsRecent[i].dashboardID);
+									};
 
-										if (this.globalVariableService.dashboardPermissionCheck(
+									if (this.globalVariableService.dashboardPermissionCheck(
 
-											this.dashboardsRecent[i].dashboardID, 'caneditandcandelete')) {
-												accessIDs.push(this.dashboardsRecent[i].dashboardID);
-										};
-									} else {
+										this.dashboardsRecent[i].dashboardID, 'caneditandcandelete')) {
+											accessIDs.push(this.dashboardsRecent[i].dashboardID);
+									};
+								} else {
 
-										if (this.globalVariableService.dashboardPermissionCheck(
+									if (this.globalVariableService.dashboardPermissionCheck(
 
-											this.dashboardsRecent[i].dashboardID, 'canviewright')) {
-												accessIDs.push(this.dashboardsRecent[i].dashboardID);
-										};
+										this.dashboardsRecent[i].dashboardID, 'canviewright')) {
+											accessIDs.push(this.dashboardsRecent[i].dashboardID);
+									};
 
-										if (this.globalVariableService.dashboardPermissionCheck(
+									if (this.globalVariableService.dashboardPermissionCheck(
 
-											this.dashboardsRecent[i].dashboardID, 'canviewandcanedit')) {
-												accessIDs.push(this.dashboardsRecent[i].dashboardID);
-										};
+										this.dashboardsRecent[i].dashboardID, 'canviewandcanedit')) {
+											accessIDs.push(this.dashboardsRecent[i].dashboardID);
 									};
 								};
+							};
 
-								this.dashboardsRecent = this.dashboardsRecent.filter(
-									dR => accessIDs.indexOf(dR.dashboardID) >= 0
-								);
-								console.warn('xx AFTER filter', this.dashboardsRecent, accessIDs);
+							this.dashboardsRecent = this.dashboardsRecent.filter(
+								dR => accessIDs.indexOf(dR.dashboardID) >= 0
+							);
+							console.warn('xx AFTER filter', this.dashboardsRecent, accessIDs);
 
-								// Palette buttons for current user
-								this.globalVariableService.getPaletteButtonsSelected().then(pBsel =>
-									{
+							// Palette buttons for current user
+							this.globalVariableService.getPaletteButtonsSelected().then(pBsel =>
+								{
 
-										// User has no Buttons selected, which will be the case for new users
-										if (pBsel.length == 0) {
-											// Load the default ones
-											this.globalVariableService.getPaletteButtonBar().then(pb => {
-												let promiseArray = [];
+									// User has no Buttons selected, which will be the case for new users
+									if (pBsel.length == 0) {
+										// Load the default ones
+										this.globalVariableService.getPaletteButtonBar().then(pb => {
+											let promiseArray = [];
 
-												pb.forEach(p => {
-													if (p.isDefault) {
-														let newButton: PaletteButtonsSelected = {
-																id: null,
-																userID: this.globalVariableService.currentUser.userID,
-																paletteButtonBarID: p.id,
-																mainmenuItem: p.mainmenuItem,
-																menuText: p.menuText,
-																shape: p.shape,
-																size: p.size,
-																class: p.class,
-																backgroundColor: p.backgroundColor,
-																accesskey: p.accesskey,
-																sortOrder: p.sortOrder,
-																sortOrderSelected: p.sortOrderSelected,
-																isDefault: p.isDefault,
-																functionName: p.functionName,
-																params: p.params,
-																tooltipContent: p.tooltipContent,
-																isSelected: p.isSelected
-														};
-														promiseArray.push(
-															this.globalVariableService.addPaletteButtonsSelected(newButton)
-														);
+											pb.forEach(p => {
+												if (p.isDefault) {
+													let newButton: PaletteButtonsSelected = {
+															id: null,
+															userID: this.globalVariableService.currentUser.userID,
+															paletteButtonBarID: p.id,
+															mainmenuItem: p.mainmenuItem,
+															menuText: p.menuText,
+															shape: p.shape,
+															size: p.size,
+															class: p.class,
+															backgroundColor: p.backgroundColor,
+															accesskey: p.accesskey,
+															sortOrder: p.sortOrder,
+															sortOrderSelected: p.sortOrderSelected,
+															isDefault: p.isDefault,
+															functionName: p.functionName,
+															params: p.params,
+															tooltipContent: p.tooltipContent,
+															isSelected: p.isSelected
 													};
-												});
-
-												this.globalVariableService.allWithAsync(...promiseArray)
-													.then(resolvedData => {
-
-													// Inform subscribers
-													this.globalVariableService.currentPaletteButtonsSelected.next(
-														this.globalVariableService.currentPaletteButtonsSelected.value
+													promiseArray.push(
+														this.globalVariableService.addPaletteButtonsSelected(newButton)
 													);
-												});
-
-												// // Inform subscribers
-												this.globalVariableService.dashboardsRecentBehSubject.next(recD);
+												};
 											});
-										} else {
-											pBsel = pBsel.filter(
-												s => s.userID == this.globalVariableService.currentUser.userID
-											);
 
-											// Inform subscribers
-											this.globalVariableService.currentPaletteButtonsSelected
-												.next(pBsel);
+											this.globalVariableService.allWithAsync(...promiseArray)
+												.then(resolvedData => {
+
+												// Inform subscribers
+												this.globalVariableService.currentPaletteButtonsSelected.next(
+													this.globalVariableService.currentPaletteButtonsSelected.value
+												);
+											});
+
+											// // Inform subscribers
 											this.globalVariableService.dashboardsRecentBehSubject.next(recD);
+										});
+									} else {
+										pBsel = pBsel.filter(
+											s => s.userID == this.globalVariableService.currentUser.userID
+										);
 
-										};
+										// Inform subscribers
+										this.globalVariableService.currentPaletteButtonsSelected
+											.next(pBsel);
+										this.globalVariableService.dashboardsRecentBehSubject.next(recD);
 
-										// Store for app to use
+									};
 
-									}
-								);
-							});
-						})
-						.catch(err => {
-							this.errorMessage = 'Error reading Database: ', err;
+									// Store for app to use
+
+								}
+							);
 						});
-			})
-				.catch(err => {
-					this.errorMessage = 'Error reading Database: ', err;
-				});
-			});
+					})
+					.catch(err => {
+						this.errorMessage = 'Error reading Database: ', err;
+					});
 		})
-		.catch(err => {
-			this.errorMessage = 'Error reading DatacachingTable: ', err;
+			.catch(err => {
+				this.errorMessage = 'Error reading Database: ', err;
+			});
 		});
 
 		// Load System Settings
