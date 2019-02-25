@@ -548,7 +548,7 @@ export class AppComponent implements OnInit {
 
         this.globalVariableService.loadVariableOnStartup.subscribe(res => {
             if (res) {
-
+                console.log('xx APP loadVariableOnStartup.subscribe start ')
                 // Notes:
                 // When logging into the Server, a dedicated open connection is established with
                 // Workstation.  Workstation has two methods:
@@ -559,7 +559,6 @@ export class AppComponent implements OnInit {
 
                 // Establishthe connection
                 this.socket = io(this.globalVariableService.canvasServerURI);
-                console.log('xx socket oject', this.socket)
 
                 // Notes on Namespaces (EventNames):
                 // Each socket on Workstation listens to a specific Namespace.  One can define
@@ -665,7 +664,6 @@ export class AppComponent implements OnInit {
                 this.showGridSubscription = this.globalVariableService.showGrid.subscribe(
                     i => this.showGrid = i
                 );
-                console.warn(('xx 14 2'));
 
                 // HasDS ?
                 this.hasDatasourcesSubscription = this.globalVariableService.hasDatasources.subscribe(
@@ -838,7 +836,7 @@ export class AppComponent implements OnInit {
 
                         // Get Users and Groups, async
                         this.globalVariableService.getResource('canvasGroups');
-
+                        console.log('xx in app')
                         // Set palette position
                         if (this.globalVariableService.currentUser.lastPaletteLeft != null) {
                             this.paletteLeft = this.globalVariableService.currentUser.lastPaletteLeft;
@@ -958,7 +956,6 @@ export class AppComponent implements OnInit {
 
         // Count
         this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
-            console.warn('xx App currentCanvasUser Count ', res);
 
             // If No record in localStorage, then login
             if (res != 1) {
