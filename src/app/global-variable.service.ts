@@ -1589,7 +1589,7 @@ export class GlobalVariableService {
         //       Also, it may be necessary to delete the whole IndexedDB before adding new tables ...
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getResource ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource});
         };
         console.time("DURATION getResource: " + resource);
 
@@ -1613,7 +1613,7 @@ export class GlobalVariableService {
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
                 dct.key == resource
             );
-                console.log('xx dataCachingTableIndex', resource,  this.dataCachingTable, dataCachingTableIndex, this.canvasGroups)
+                console.log('xx getResouce - dataCachingTableIndex', resource,  this.dataCachingTable, dataCachingTableIndex, this.canvasGroups)
             if (dataCachingTableIndex >= 0) {
                 console.log('xx inside IF')
                 // Get var and table names
@@ -1622,11 +1622,11 @@ export class GlobalVariableService {
                 localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
                 localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                 localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-                console.warn('xx In Mem vars', {dataCachingTableIndex}, {localCacheableMemory}, {localCacheableDisc}, {localVariableName});
+                console.warn('GlobalVariableService.getResource - In Mem vars for: ', resource, {dataCachingTableIndex}, {localCacheableMemory}, {localCacheableDisc}, {localVariableName});
 
                 // Local Memory is used, if fresh
                 if (localCacheableMemory) {
-                    console.log('xx in local Memory for Resource: ', localVariableName, this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
+                    console.log('GlobalVariableService.getResource - In local Memory for Resource: ', resource, localVariableName, this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
 
                     // Fresh if not expired as yet
                     let dateNow: Date = new Date();
@@ -1640,18 +1640,18 @@ export class GlobalVariableService {
                         isFresh = false;
                     };
 
-                    console.log('xx fresh vars', {dateNow}, {timeNow}, {dateCaching}, {timeCaching}, isFresh)
+                    console.log('xx fresh variables for :', resource, {dateNow}, {timeNow}, {dateCaching}, {timeCaching}, isFresh)
                     // Use local cache variable or table if fresh
                     // TODO - check the assumption that there is data when fresh (else returns [])
                     if (isFresh) {
-                        console.log('xx is FRESH')
+                        console.log('xx is FRESH for: ', resource)
 
                         // Get from Memory (local var)
                         if ( (localVariableName != null)
                                 &&
                                 (this[localVariableName].length != 0)
                             ) {
-                            console.warn('xx data returned from Memory', this[localVariableName]);
+                            console.warn('xx data returned from Memory for : ', resource, this[localVariableName]);
                             // var type = 'article';
                             // this[type+'_count'] = 1000;  // in a function we use "this";
                             // alert(this.article_count);
@@ -1661,12 +1661,12 @@ export class GlobalVariableService {
 
                         // Get from Disc (Dexie)
                         } else if (localTableName != null) {
-                            console.warn('xx in local Disc');
+                            console.warn('xx in local Disc for: ', resource);
                             this.dbCanvasAppDatabase.table(localTableName)
                             .toArray()
                             .then(res => {
                                 this[localVariableName] = res;
-                                console.log('xx data returned from Disc', this[localVariableName])
+                                console.log('xx data returned from Disc for: ', resource, this[localVariableName])
                                 console.timeEnd("DURATION getResource: " + resource);
                                 resolve(this[localVariableName]);
                             });
@@ -1678,15 +1678,15 @@ export class GlobalVariableService {
                     };
                 };
             };
-            console.warn('xx Will now try GET HTTP')
+            console.warn('xx Will now try GET HTTP for: ', resource)
 
             // Get from HTTP server
             let pathUrl: string = resource + params;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
-            console.log('xx finalUrl', finalUrl)
+            console.log('xx finalUrl for: ', resource, finalUrl)
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 httpResult  => {
-                    console.warn('xx inside HTTP')
+                    console.warn('xx inside HTTP for resource: ', resource)
 
                     if(httpResult.statusCode != 'success') {
                         if (this.sessionDebugging) {
@@ -1713,7 +1713,7 @@ export class GlobalVariableService {
                             if (localVariableName != null) {
                                 this[localVariableName] = [];
                                 this[localVariableName] = httpResult.data;
-                                console.warn('xx updated cached Memory to', this[localVariableName]);
+                                console.warn('xx updated cached Memory to ', this[localVariableName], httpResult);
                             };
 
                             // TODO - should we fill Current Var here a well?
@@ -1761,7 +1761,7 @@ export class GlobalVariableService {
                         });
                     };
 
-                    console.warn('xx data retured from HTTP', httpResult.data);
+                    console.warn('xx data retured from HTTP for: ', resource, httpResult.data);
                     console.timeEnd("DURATION getResource: " + resource);
                     resolve(httpResult.data);
                     return;
@@ -9024,6 +9024,7 @@ export class GlobalVariableService {
 
                     this.dataCachingTable = res.data;
 
+                    // TODO - should be done by the Server
                     // NB - need to remember cache has been refreshed locally
                     //      This is not stored on Server; updated each time it is loaded here
                     let today = new Date();
