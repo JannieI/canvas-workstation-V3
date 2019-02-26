@@ -45,7 +45,7 @@ export class DashboardTagsComponent implements OnInit {
     }
 
     availableDashboardTags: DashboardTag[] = [];
-    errorMessage: string: 'Errpr!';
+    errorMessage: string = '';
     selectedDashboardTags: DashboardTag[] = [];
     newTag: string = '';
     availableTagIndex: number = -1;
@@ -99,20 +99,23 @@ export class DashboardTagsComponent implements OnInit {
     clickAvailable(index: number){
         // Heighlight the clicked row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
-
+        
+        this.errorMessage = '';
         this.availableTagIndex = index;
     }
 
     clickSelected(index: number){
         // Heighlight the clicked row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelected', '@Start');
-
+        
+        this.errorMessage = '';
         this.selectedTagIndex = index;
     }
 
     clickAddNew() {
         // Add text for a new tag
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddNew', '@Start');
+        this.errorMessage = '';
 
         // Nothing to do
         if (this.newTag == ''  ||  this.newTag == null  ||  this.newTag == undefined) {
@@ -150,6 +153,7 @@ export class DashboardTagsComponent implements OnInit {
         // Add tag that is selected on the Avaliable Tag list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
+        this.errorMessage = '';
         // Nothing to do
         if (this.availableTagIndex < 0) {
             return;
@@ -185,7 +189,8 @@ export class DashboardTagsComponent implements OnInit {
     dblclickDelete(id: number, index: number){
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
-console.warn('xx ..', id, index)
+
+        this.errorMessage = '';
         // Remove from seleted list
         this.globalVariableService.deleteDashboardTag(id).then(res => {
             this.selectedDashboardTags.splice(index, 1);
@@ -204,6 +209,7 @@ console.warn('xx ..', id, index)
         // Save data, and Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        this.errorMessage = '';
         // TODO - this can of course be done more cleverly and eliquently and fasta
         // Delete all Tags for this D
         for (let i = this.globalVariableService.dashboardTags.length - 1; i >= 0; i--) {
