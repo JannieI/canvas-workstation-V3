@@ -45,6 +45,7 @@ export class DashboardTagsComponent implements OnInit {
     }
 
     availableDashboardTags: DashboardTag[] = [];
+    errorMessage: string: 'Errpr!';
     selectedDashboardTags: DashboardTag[] = [];
     newTag: string = '';
     availableTagIndex: number = -1;
@@ -90,7 +91,8 @@ export class DashboardTagsComponent implements OnInit {
                     return 0;
                 });
 
-            });
+            })
+            .catch(err => this.errorMessage = err);
 
     }
 
