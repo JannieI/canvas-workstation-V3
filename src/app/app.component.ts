@@ -219,6 +219,7 @@ export class AppComponent implements OnInit {
     currentTabName: string = '';
     currentDashboardTabIndex: number = 0;
     currentDashboardBackgroundColor: string = 'white';
+    currentDashboardBackgroundColorCode: string = 'white';
     currentDashboardBackgroundImage: string = '';
     currentTabBackgroundColor: string = '';
     currentTabColor: string = '';
@@ -1282,6 +1283,14 @@ export class AppComponent implements OnInit {
         if (action == 'Saved') {
             this.currentDashboardName = this.selectedDashboard.name;
             this.currentDashboardBackgroundColor = this.selectedDashboard.backgroundColor;
+
+            let bgIndex: number = this.globalVariableService.backgroundcolors
+                .findIndex(bc => bc.name == this.currentDashboardBackgroundColor);
+            if (bgIndex >= 0) {
+                this.currentDashboardBackgroundColorCode = this.globalVariableService
+                    .backgroundcolors[bgIndex].cssCode;
+            };
+
             this.currentDashboardBackgroundImage = this.selectedDashboard.backgroundImage;
         };
 
