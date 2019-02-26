@@ -253,7 +253,7 @@
     .gridCreated {
         grid-column-start: 8;
         /* autoprefixer: off */
-        grid-column-end: 14;
+        grid-column-end: 15;
         grid-row-start: 14;
         grid-row-end: 15;
         margin-left: 20px;
@@ -272,7 +272,7 @@
     .gridEdited {
         grid-column-start: 8;
         /* autoprefixer: off */
-        grid-column-end: 14;
+        grid-column-end: 15;
         grid-row-start: 15;
         grid-row-end: 16;
         margin-left: 20px;
