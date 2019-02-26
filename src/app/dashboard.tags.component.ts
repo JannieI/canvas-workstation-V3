@@ -59,37 +59,38 @@ export class DashboardTagsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getDashboardTags().then(dt => {
+        this.globalVariableService.getResource('dashboardTags')
+            .then(dt => {
 
-            // Get selected, before any manipulation done to dt
-            this.selectedDashboardTags = dt.filter(f =>
-                f.dashboardID == this.selectedDashboard.id
-            )
+                // Get selected, before any manipulation done to dt
+                this.selectedDashboardTags = dt.filter(f =>
+                    f.dashboardID == this.selectedDashboard.id
+                )
 
-            // Get a unique list of tags
-            let availableTagText = new Set(dt.map(t => t.tag));
-            let availableTagTextArray = Array.from(availableTagText);
+                // Get a unique list of tags
+                let availableTagText = new Set(dt.map(t => t.tag));
+                let availableTagTextArray = Array.from(availableTagText);
 
-            for (let i = 0; i < dt.length; i++) {
+                for (let i = 0; i < dt.length; i++) {
 
-                if (availableTagTextArray.indexOf(dt[i].tag) >= 0) {
-                    this.availableDashboardTags.push(dt[i]);
-                    availableTagTextArray = availableTagTextArray.slice(1);
+                    if (availableTagTextArray.indexOf(dt[i].tag) >= 0) {
+                        this.availableDashboardTags.push(dt[i]);
+                        availableTagTextArray = availableTagTextArray.slice(1);
+                    };
                 };
-            };
 
-            // Sort the available tags
-            this.availableDashboardTags.sort( (obj1,obj2) => {
-                if (obj1.tag.toLowerCase() > obj2.tag.toLowerCase()) {
-                    return 1;
-                };
-                if (obj1.tag.toLowerCase() < obj2.tag.toLowerCase()) {
-                    return -1;
-                };
-                return 0;
+                // Sort the available tags
+                this.availableDashboardTags.sort( (obj1,obj2) => {
+                    if (obj1.tag.toLowerCase() > obj2.tag.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.tag.toLowerCase() < obj2.tag.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
+
             });
-
-        });
 
     }
 
