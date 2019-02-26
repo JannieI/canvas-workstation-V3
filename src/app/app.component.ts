@@ -757,6 +757,14 @@ export class AppComponent implements OnInit {
 
                                         if (dashboardIndex >= 0) {
                                             this.currentDashboardBackgroundColor = this.globalVariableService.dashboards[dashboardIndex].backgroundColor;
+
+                                            let bgIndex: number = this.globalVariableService.backgroundcolors
+                                                .findIndex(bc => bc.name == this.currentDashboardBackgroundColor);
+                                            if (bgIndex >= 0) {
+                                                this.currentDashboardBackgroundColorCode = this.globalVariableService
+                                                    .backgroundcolors[bgIndex].cssCode;
+                                            };
+
                                             let templateDashboardID: number = this.globalVariableService.dashboards[dashboardIndex].templateDashboardID;
 
                                             if (templateDashboardID != null  &&  templateDashboardID > 0) {
