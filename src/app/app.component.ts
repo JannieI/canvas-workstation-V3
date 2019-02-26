@@ -219,7 +219,8 @@ export class AppComponent implements OnInit {
     currentTabName: string = '';
     currentDashboardTabIndex: number = 0;
     currentDashboardBackgroundColor: string = 'white';
-    currentDashboardBackgroundColorCode: string = 'white';
+    currentDashboardBackgroundColorCode: string = '';
+    currentDashboardBackgroundColorDefault: string = 'white';
     currentDashboardBackgroundImage: string = '';
     currentTabBackgroundColor: string = '';
     currentTabColor: string = '';
@@ -760,6 +761,8 @@ export class AppComponent implements OnInit {
 
                                             let bgIndex: number = this.globalVariableService.backgroundcolors
                                                 .findIndex(bc => bc.name == this.currentDashboardBackgroundColor);
+                                            this.currentDashboardBackgroundColorCode = 
+                                                this.currentDashboardBackgroundColorDefault;
                                             if (bgIndex >= 0) {
                                                 this.currentDashboardBackgroundColorCode = this.globalVariableService
                                                     .backgroundcolors[bgIndex].cssCode;
@@ -1294,6 +1297,8 @@ export class AppComponent implements OnInit {
 
             let bgIndex: number = this.globalVariableService.backgroundcolors
                 .findIndex(bc => bc.name == this.currentDashboardBackgroundColor);
+            this.currentDashboardBackgroundColorCode =
+                this.currentDashboardBackgroundColorDefault;
             if (bgIndex >= 0) {
                 this.currentDashboardBackgroundColorCode = this.globalVariableService
                     .backgroundcolors[bgIndex].cssCode;
