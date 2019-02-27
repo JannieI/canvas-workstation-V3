@@ -85,6 +85,7 @@ export class ShapeEditComponent implements OnInit {
     hasAutoFocusBrackets: boolean = false;
     editLineNr: number = -1;
     thinArrowLineLength: number = 70;
+    // TODO - make the base - 90,90 dynamic later on
     thinArrowLinePath = "M90,90 L" + (90 + this.thinArrowLineLength).toString() + ",90";
     localWidget: Widget;                            // W to modify, copied from selected
     oldText: string = '';
@@ -1158,8 +1159,16 @@ export class ShapeEditComponent implements OnInit {
     }
 
     changeThinArrowLength() {
-        this.thinArrowLinePath = "M90,90 L" + Math.max(
-            (90 + this.localWidget.shapeLineLength),80).toString() + ",90";
+        // Changes length of Thin Arrow Line
+        this.globalFunctionService.printToConsole(this.constructor.name,'mousedownArrow', '@Start');
+
+        // TODO - cater for longer Arrows later on (Remember that SVG width and height has to change as well ...)
+        if (this.localWidget.shapeLineLength > 80) {
+            this.localWidget.shapeLineLength = 80;
+        };
+        this.thinArrowLinePath = "M90,90 L" + (90 + this.localWidget.shapeLineLength).toString() 
+            + ",90";
+        console.log('xx this.thinArrowLinePath', this.thinArrowLinePath)
     }
 
     mousedownArrow(ev: any) {
