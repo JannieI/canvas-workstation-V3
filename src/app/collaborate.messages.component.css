@@ -6,7 +6,7 @@
 .closeButton {
     background-color: transparent;
     border: none;
-    left: 0;
+    right: 20;
     position: relative;
     top: 0;
 }
