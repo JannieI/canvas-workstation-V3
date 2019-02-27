@@ -9,17 +9,6 @@
     grid-template-rows: repeat(18, 1rem);
     margin-top: 2px;
 }
-    .closeButton {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 2;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        text-align: left;
-    }
 
     .gridTitle {
         font-size: 0.75rem;
