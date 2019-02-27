@@ -55,11 +55,15 @@ export class ShapeEditComponent implements OnInit {
             &&
             (!event.shiftKey)
            ) {
-               if (this.editLineNr == -1) {
-                   this.clickSave();
-                   return;
-                } else {
-                    this.editLineNr = -1;
+               if (this.bulletText != '') {
+                    this.clickBulletAdd()
+               } else {
+                if (this.editLineNr == -1) {
+                    this.clickSave();
+                    return;
+                    } else {
+                        this.editLineNr = -1;
+                    };
                 };
         };
 
@@ -73,6 +77,7 @@ export class ShapeEditComponent implements OnInit {
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
     dashboardTabList: string[];
+    editLineNr: number = -1;
     hasAutoFocusCircle: boolean = false;
     hasAutoFocusEllipse: boolean = false;
     hasAutoFocusRectangle: boolean = false;
@@ -83,7 +88,6 @@ export class ShapeEditComponent implements OnInit {
     hasAutoFocusBullets: boolean = false;
     hasAutoFocusValue: boolean = false;
     hasAutoFocusBrackets: boolean = false;
-    editLineNr: number = -1;
     thinArrowLineLength: number = 70;
     // TODO - make the base - 90,90 dynamic later on
     thinArrowLinePath = "M90,90 L" + (90 + this.thinArrowLineLength).toString() + ",90";
