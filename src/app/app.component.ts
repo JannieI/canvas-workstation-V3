@@ -10586,15 +10586,19 @@ console.log('xx action', action)
         // Toggles Palette - horisontal / vertical
         this.globalFunctionService.printToConsole(this.constructor.name,'togglePaletteHorisontal', '@Start');
 
-        // TODO - this must be written to DB for user
+        // Toggle horisontal / vertical
+        let newAngle: boolean = !this.globalVariableService.preferencePaletteHorisontal.value;
+
+        // Update user pref
         this.globalVariableService.updateCurrentUserProperties(
             {
-                preferencePaletteHorisontal: !this.globalVariableService.currentUser.preferencePaletteHorisontal
+                preferencePaletteHorisontal: newAngle   /// !this.globalVariableService.currentUser.preferencePaletteHorisontal
             }
         );
 
+        // Propagate through system
         this.globalVariableService.preferencePaletteHorisontal.next(
-            this.globalVariableService.currentUser.preferencePaletteHorisontal
+            newAngle
         );
     }
 
