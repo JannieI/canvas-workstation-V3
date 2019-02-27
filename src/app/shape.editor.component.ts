@@ -84,8 +84,8 @@ export class ShapeEditComponent implements OnInit {
     hasAutoFocusValue: boolean = false;
     hasAutoFocusBrackets: boolean = false;
     editLineNr: number = -1;
-    thinArrowLineLength: number = 160;
-    thinArrowLinePath = "M90,90 L" + this.thinArrowLineLength.toString() + ",90";
+    thinArrowLineLength: number = 70;
+    thinArrowLinePath = "M90,90 L" + (90 + this.thinArrowLineLength).toString() + ",90";
     localWidget: Widget;                            // W to modify, copied from selected
     oldText: string = '';
     oldWidget: Widget = null;                       // W at start
@@ -1155,6 +1155,11 @@ export class ShapeEditComponent implements OnInit {
         this.selectedColour = this.localWidget.shapeStroke;
         this.callingRoutine = 'ShapeEditorArrowThinColor';
         this.colourPickerClosed = true;
+    }
+
+    changeThinArrowLength() {
+        this.thinArrowLinePath = "M90,90 L" + Math.max(
+            (90 + this.localWidget.shapeLineLength),80).toString() + ",90";
     }
 
     mousedownArrow(ev: any) {
