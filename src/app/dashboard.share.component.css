@@ -16,11 +16,12 @@
         background-color: transparent;
         border: none;
         cursor: pointer;
-        grid-column-start: 1;
+        grid-column-start: 15;
         /* autoprefixer: off */
-        grid-column-end: 2;
+        grid-column-end: 16;
         grid-row-start: 1;
         grid-row-end: 2;
+        margin-right: 12px;
         text-align: left;
     }
     .gridTitle {
