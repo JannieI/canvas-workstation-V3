@@ -4210,7 +4210,7 @@
 
 
 <!-- Palette Toggle Button -->
-<div class="paletteIcon"
+<div class="paletteIcon" *ngIf="editMode  &&  showPalette"
     [style.left.px]="paletteLeft+2"
     [style.top.px]="paletteTop+2"
     style="z-index: 91;"

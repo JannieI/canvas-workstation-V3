@@ -2418,7 +2418,7 @@ export class AppComponent implements OnInit {
 
         // Hide Login form
         this.showModalDashboardLogin = false;
-console.log('xx action', action)
+
         // Show Landing page
         if (action != 'Cancel') {
             this.showModalLanding = true;
