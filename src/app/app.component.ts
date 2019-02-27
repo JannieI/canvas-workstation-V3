@@ -8993,7 +8993,7 @@ export class AppComponent implements OnInit {
 
         // // Must be first, else default behaviour takes over
         ev.preventDefault();
-
+console.log('xx ev', ev)
         // Clicked in main area, outside a Widget
         if (index == -1) {
             this.showMessage(
@@ -9011,6 +9011,8 @@ export class AppComponent implements OnInit {
             this.selectedDropdownID = index;
             this.showWidgetContextMenu = true;
             this.popupHyperlinkDashboardID = this.currentWidgets[index].hyperlinkDashboardID;
+            console.log('xx popupHyperlinkDashboardID', this.popupHyperlinkDashboardID)
+            
             this.popupHyperlinkDashboardTabID = this.currentWidgets[index]
                 .hyperlinkDashboardTabID;
             this.popupWidgetType = this.currentWidgets[index].widgetType;
