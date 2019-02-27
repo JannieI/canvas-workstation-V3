@@ -2049,19 +2049,17 @@
     <div class="widgetPopupMenu" *ngIf="showWidgetContextMenu"
         [style.left.px]="popupLeft"
         [style.top.px]="popupTop"
-        (click)="showWidgetContextMenu=false"
         >
 
-        <!-- Optional Hyperlink      -->
-        <div class="widgetPopupMenuItem">
-            <clr-icon shape="keyboard"
-                (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
-                >
-            </clr-icon>
+        <!-- Container for This Widget -->
+        <div class="widgetPopupMenuItem"
+            (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
+            >
+            <clr-icon shape="keyboard"></clr-icon>
             Edit Container
         </div>
 
-        <!-- Container for This Widget -->
+        <!-- Optional Hyperlink      -->
         <div class="widgetPopupMenuItem" *ngIf="popupHyperlinkDashboardID">
             <clr-icon shape="arrow right"
                 (click)="actionmenuJumpToLinked(popupHyperlinkDashboardID, popupHyperlinkDashboardTabID)"
@@ -2076,12 +2074,6 @@
             </i>
         </div>
 
-        <!-- <clr-icon
-            (click)="togglePaletteHorisontal()"
-            shape="trash"
-            size="18"
-            >
-        </clr-icon> -->
     </div>
 
     <!-- Widget Container -->
@@ -4116,32 +4108,22 @@
     </div>
 
 
-    <!-- Widget Popup -->
-    <div class="widgetPopupMenu" *ngIf="showDashboardContextMenu"
+    <!-- Dashboard Popup -->
+    <div class="dashboardPopupMenu" *ngIf="showDashboardContextMenu"
         [style.left.px]="popupLeft"
         [style.top.px]="popupTop"
-        (click)="showWidgetContextMenu=false"
         >
 
-        <!-- Optional Hyperlink      -->
-        <div class="widgetPopupMenuItem">
-            <clr-icon shape="keyboard"
-                (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
-                >
-            </clr-icon>
-            Edit Container
+        <!-- Add Widget  -->
+        <div class="dashboardPopupMenuItem"
+            (click)="clickMenuWidgetNew()"
+            >
+            <clr-icon shape="plus"></clr-icon>
+            Add Widget
         </div>
 
-        <!-- Container for This Widget -->
-        <div class="widgetPopupMenuItem" *ngIf="popupHyperlinkDashboardID">
-            <clr-icon shape="arrow right"
-                (click)="actionmenuJumpToLinked(popupHyperlinkDashboardID, popupHyperlinkDashboardTabID)"
-                >
-            </clr-icon>
-            Hyperlink
-        </div>
         <hr>
-        <div>
+        <div (click)="showDashboardContextMenu=false">
             <i>
                 Use the menu at the top for more Options
             </i>

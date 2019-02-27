@@ -4527,6 +4527,9 @@ export class AppComponent implements OnInit {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
 
+        // Reset
+        this.dashboardPopupMenuItem = false;
+        
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
@@ -8994,9 +8997,12 @@ export class AppComponent implements OnInit {
 
         // // Must be first, else default behaviour takes over
         ev.preventDefault();
-console.log('xx ev', ev)
+
         // Clicked in main area, outside a Widget
         if (index == -1) {
+            this.popupLeft = ev.clientX - 40;
+            this.popupTop = ev.clientY - 40;
+
             this.showDashboardContextMenu = true;
             // this.showMessage(
             //     'Please use menu at the top',
@@ -10618,6 +10624,7 @@ console.log('xx ev', ev)
 
         // Close popup menu
         this.showWidgetContextMenu = false;
+        this.showDashboardContextMenu = false;
 
         // Unselect all Ws
         this.clickMenuEditSelectAllNone('None');

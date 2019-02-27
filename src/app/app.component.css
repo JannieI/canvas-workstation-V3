@@ -11,6 +11,20 @@
     top: 0;
 }
 
+.dashboardPopupMenu {
+    background-color: rgb(211, 208, 208); 
+    border-width:1px;  
+    border-style:groove;        
+    color: black;
+    display: inline-block; 
+    position:absolute; 
+    z-index: 101;
+}
+.dashboardPopupMenuItem{
+    cursor: pointer;
+    margin-left: 6px;
+}
+
 .dqIcon {
    cursor:pointer;
 }
