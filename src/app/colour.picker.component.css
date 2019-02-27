@@ -2,7 +2,8 @@
     background-color: transparent;
     border: none;
     background-color: transparent;
-    left: 0;
+    float: right;
+    right: 20;
     position: relative;
     top: 0;
 }
