@@ -1576,6 +1576,7 @@ export class Widget {
     shapeIsBold: boolean;                   // True if text is bold
     shapeIsItalic: boolean;                 // True if text is italic
     shapeLineHeight: string;                // Line Height: normal, 1.6, 80%
+    shapeLineLength: number;                // Length of the line
     shapeOpacity: number;                   // Opacity, between 0 and 1, ie of rectangle
     shapeRotation: number;                  // Nr of degrees to rotate a Shape
     shapeSize: number;                      // Size of shape, used in scale(). For now: 0-9
