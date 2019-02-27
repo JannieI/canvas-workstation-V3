@@ -4528,8 +4528,8 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
 
         // Reset
-        this.dashboardPopupMenuItem = false;
-        
+        this.showDashboardContextMenu = false;
+
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
