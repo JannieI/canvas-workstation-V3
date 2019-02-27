@@ -12,16 +12,4 @@
     text-overflow: ellipsis;
 }
 
-.closeButton {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    grid-column-start: 24;
-    /* autoprefixer: off */
-    grid-column-end: 25;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    margin-right: 12px;
-    text-align: left;
-}
 
