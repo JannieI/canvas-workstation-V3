@@ -4115,6 +4115,46 @@
         </div>
     </div>
 
+
+    <!-- Widget Popup -->
+    <div class="widgetPopupMenu" *ngIf="showDashboardContextMenu"
+        [style.left.px]="popupLeft"
+        [style.top.px]="popupTop"
+        (click)="showWidgetContextMenu=false"
+        >
+
+        <!-- Optional Hyperlink      -->
+        <div class="widgetPopupMenuItem">
+            <clr-icon shape="keyboard"
+                (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
+                >
+            </clr-icon>
+            Edit Container
+        </div>
+
+        <!-- Container for This Widget -->
+        <div class="widgetPopupMenuItem" *ngIf="popupHyperlinkDashboardID">
+            <clr-icon shape="arrow right"
+                (click)="actionmenuJumpToLinked(popupHyperlinkDashboardID, popupHyperlinkDashboardTabID)"
+                >
+            </clr-icon>
+            Hyperlink
+        </div>
+        <hr>
+        <div>
+            <i>
+                Use the menu at the top for more Options
+            </i>
+        </div>
+
+        <!-- <clr-icon
+            (click)="togglePaletteHorisontal()"
+            shape="trash"
+            size="18"
+            >
+        </clr-icon> -->
+    </div>
+
     <!-- Status Bar -->
     <status-bar *ngIf="showMainMenu"
         #statusbarDOM

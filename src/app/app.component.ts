@@ -288,6 +288,7 @@ export class AppComponent implements OnInit {
     selectedWidgetID: number;
     selectedWidgetIndex: number;
     selectedWidgetLayout: WidgetLayout;
+    showDashboardContextMenu: boolean = false;
     showDatasourcePopup: boolean = false;
     showFavouriteDashboard: boolean = false;
     showGrid: boolean;
@@ -8996,13 +8997,14 @@ export class AppComponent implements OnInit {
 console.log('xx ev', ev)
         // Clicked in main area, outside a Widget
         if (index == -1) {
-            this.showMessage(
-                'Please use menu at the top',
-                'StatusBar',
-                'Info',
-                3000,
-                ''
-            );
+            this.showDashboardContextMenu = true;
+            // this.showMessage(
+            //     'Please use menu at the top',
+            //     'StatusBar',
+            //     'Info',
+            //     3000,
+            //     ''
+            // );
 
         } else {
 
@@ -9012,7 +9014,7 @@ console.log('xx ev', ev)
             this.showWidgetContextMenu = true;
             this.popupHyperlinkDashboardID = this.currentWidgets[index].hyperlinkDashboardID;
             console.log('xx popupHyperlinkDashboardID', this.popupHyperlinkDashboardID)
-            
+
             this.popupHyperlinkDashboardTabID = this.currentWidgets[index]
                 .hyperlinkDashboardTabID;
             this.popupWidgetType = this.currentWidgets[index].widgetType;
