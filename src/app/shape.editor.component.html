@@ -739,11 +739,12 @@
                         >
                         <defs>
                             <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
-                                <circle cx="5" cy="5" r="3"
-                                [style.stroke]="localWidget.shapeStroke"
-                                [style.fill]="localWidget.shapeStroke"
-
-                                />
+                                <circle cx="15" 
+                                    cy="15" 
+                                    r="13"
+                                    [style.stroke]="localWidget.shapeStroke"
+                                    [style.fill]="localWidget.shapeStroke"
+                                    />
                             </marker>
                             <!-- The following commands are available for path data:
                                 M = moveto
@@ -761,11 +762,18 @@
                             positioned. -->
                             <!-- <path d="M2,2 L2,11 L10,6 L2,2" -->
 
-                            <marker id="markerArrow" markerWidth="13" markerHeight="13" refX="2" refY="6"
-                                orient="auto">
-                                <path [attr.d]="linePath"
+                            <marker id="markerArrow" 
+                                markerWidth="13" 
+                                markerHeight="13" 
+                                refX="2" 
+                                refY="6"
+                                orient="auto"
                                 [style.stroke]="localWidget.shapeStroke"
                                 [style.fill]="localWidget.shapeStroke"
+                                >
+                                <path [attr.d]="linePath"
+                                    [style.stroke]="localWidget.shapeStroke"
+                                    [style.fill]="localWidget.shapeStroke"
                                 />
                             </marker>
                         </defs>
@@ -779,39 +787,6 @@
                                 "
                                 />
                     </svg>
-                    <!-- <svg width="300" height="300"
-                        [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'"
-                        >
-                        <defs
-                            [style.stroke]="localWidget.shapeStroke"                                >
-                            >
-                            <marker
-                                id="arrowThin"
-                                markerWidth="10"
-                                markerHeight="10"
-                                refX="0"
-                                refY="3"
-                                orient="auto"
-                                markerUnits="strokeWidth"
-                                [style.stroke]="localWidget.shapeStroke"                                >
-                            <path
-                                d="M0,0 L0,6 L9,3 z"
-                                [style.fill]="localWidget.shapeStroke"
-                                [style.stroke]="localWidget.shapeStroke"
-                                />
-                            </marker>
-                        </defs>
-
-                        <line
-                            x1="100"
-                            y1="100"
-                            x2="100"
-                            y2="155"
-                            [style.stroke]="localWidget.shapeStroke"
-                            stroke-width="3"
-                            marker-end="url(#arrowThin)"
-                            />
-                    </svg> -->
                 </div>
 
                 <div class="gridShape" *ngIf="showImage">
