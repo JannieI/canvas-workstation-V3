@@ -63,7 +63,7 @@ export class PreferencesComponent implements OnInit {
     preferenceDefaultSnapshotMins: number;
     preferencePaletteHorisontal: boolean;
     preferencePlaySound: boolean;
-    preferenceConsoleLog: boolean;
+    preferenceDebugSession: boolean;
     preferenceShowOpenStartupMessage: boolean;
     preferenceShowOpenDataCombinationMessage: boolean;
     preferenceShowViewStartupMessage: boolean;
@@ -88,7 +88,7 @@ export class PreferencesComponent implements OnInit {
         this.preferenceAutoSync = this.globalVariableService.currentUser.preferenceAutoSync;
         this.preferencePaletteHorisontal = this.globalVariableService.currentUser.preferencePaletteHorisontal;
         this.preferencePlaySound = this.globalVariableService.currentUser.preferencePlaySound;
-        this.preferenceConsoleLog = this.globalVariableService.currentUser.preferenceConsoleLog;
+        this.preferenceDebugSession = this.globalVariableService.currentUser.preferenceDebugSession;
         this.preferenceShowOpenStartupMessage = this.globalVariableService.currentUser.preferenceShowOpenStartupMessage;
         this.preferenceShowOpenDataCombinationMessage = this.globalVariableService.currentUser.preferenceShowOpenDataCombinationMessage;
         this.preferenceShowViewStartupMessage = this.globalVariableService.currentUser.preferenceShowViewStartupMessage;
@@ -259,7 +259,7 @@ console.warn('xx this.preferenceStartupDashboardTabID', this.preferenceStartupDa
             {
                 preferencePaletteHorisontal: this.preferencePaletteHorisontal,
                 preferencePlaySound: this.preferencePlaySound,
-                preferenceConsoleLog: this.preferenceConsoleLog,
+                preferenceDebugSession: this.preferenceDebugSession,
                 preferenceAutoSync: this.preferenceAutoSync,
                 preferenceShowOpenStartupMessage: this.preferenceShowOpenStartupMessage,
                 preferenceShowOpenDataCombinationMessage: this.preferenceShowOpenDataCombinationMessage,

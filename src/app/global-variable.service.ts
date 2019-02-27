@@ -8098,7 +8098,7 @@ export class GlobalVariableService {
             isFirstTimeUser?: boolean,
             preferencePaletteHorisontal?: boolean,
             preferencePlaySound?: boolean,
-            preferenceConsoleLog?: boolean,
+            preferenceDebugSession?: boolean,
             preferenceAutoSync?: boolean,
             preferenceShowOpenStartupMessage?: boolean,
             preferenceShowOpenDataCombinationMessage?: boolean,
@@ -8150,9 +8150,9 @@ export class GlobalVariableService {
                 this.canvasUsers[userIndex].preferencePlaySound = parameters.preferencePlaySound;
                 this.currentUser.preferencePlaySound = parameters.preferencePlaySound;
             };
-            if (parameters.preferenceConsoleLog != null) {
-                this.canvasUsers[userIndex].preferenceConsoleLog = parameters.preferenceConsoleLog;
-                this.currentUser.preferenceConsoleLog = parameters.preferenceConsoleLog;
+            if (parameters.preferenceDebugSession != null) {
+                this.canvasUsers[userIndex].preferenceDebugSession = parameters.preferenceDebugSession;
+                this.currentUser.preferenceDebugSession = parameters.preferenceDebugSession;
             };
             if (parameters.preferenceAutoSync != null) {
                 this.canvasUsers[userIndex].preferenceAutoSync = parameters.preferenceAutoSync;
@@ -8217,7 +8217,7 @@ export class GlobalVariableService {
             };
         
             // Update console.log
-            this.sessionDebugging = parameters.preferenceConsoleLog;
+            this.sessionDebugging = parameters.preferenceDebugSession;
 
             // Save in DB
             this.saveResource('canvasUsers', this.canvasUsers[userIndex]);
@@ -10640,7 +10640,7 @@ export class GlobalVariableService {
                                 this.currentUser = this.canvasUsers[foundIndex];
 
                                 // Set GVs
-                                this.sessionDebugging = this.currentUser.preferenceConsoleLog;
+                                this.sessionDebugging = this.currentUser.preferenceDebugSession;
 
                                 // Store User ID info
                                 this.canvasServerName = givenCanvasServerName;
