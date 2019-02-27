@@ -463,6 +463,7 @@
 }
 
 .presentationButton {
+    display: block;
     margin: 10px;
     z-index: 100;
 }
