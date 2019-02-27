@@ -1162,6 +1162,11 @@ export class ShapeEditComponent implements OnInit {
         // Changes length of Thin Arrow Line
         this.globalFunctionService.printToConsole(this.constructor.name,'mousedownArrow', '@Start');
 
+        // Validation
+        if (this.localWidget.shapeLineLength < 0) {
+            this.localWidget.shapeLineLength = 0;
+        };
+
         // TODO - cater for longer Arrows later on (Remember that SVG width and height has to change as well ...)
         if (this.localWidget.shapeLineLength > 80) {
             this.localWidget.shapeLineLength = 80;

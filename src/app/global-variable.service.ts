@@ -606,7 +606,7 @@ const widgetTemplate: Widget =
         "shapeFillName": "",
         "shapeFontSize": 24,
         "shapeLineHeight": "normal",
-        "shapeLineLength": 160,
+        "shapeLineLength": 70,
         "shapeFontFamily": "",
         "shapeImageUrl": "",
         "shapeIsBold": true,
