@@ -8233,62 +8233,97 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        if (parameters.isFirstTimeUser != null) {
-            this.currentUser.isFirstTimeUser = parameters.isFirstTimeUser;
-        };
-        if (parameters.preferencePaletteHorisontal != null) {
-            this.currentUser.preferencePaletteHorisontal = parameters.preferencePaletteHorisontal;
-        };
-        if (parameters.preferencePlaySound != null) {
-            this.currentUser.preferencePlaySound = parameters.preferencePlaySound;
-        };
-        if (parameters.preferenceAutoSync != null) {
-            this.currentUser.preferenceAutoSync = parameters.preferenceAutoSync;
-        };
-        if (parameters.preferenceShowOpenStartupMessage != null) {
-            this.currentUser.preferenceShowOpenStartupMessage = parameters.preferenceShowOpenStartupMessage;
-        };
-        if (parameters.preferenceShowOpenDataCombinationMessage != null) {
-            this.currentUser.preferenceShowOpenDataCombinationMessage = parameters.preferenceShowOpenDataCombinationMessage;
-        };
-        if (parameters.preferenceShowViewStartupMessage != null) {
-            this.currentUser.preferenceShowViewStartupMessage = parameters.preferenceShowViewStartupMessage;
-        };
-        if (parameters.preferenceShowDiscardStartupMessage != null) {
-            this.currentUser.preferenceShowDiscardStartupMessage = parameters.preferenceShowDiscardStartupMessage;
-        };
-        if (parameters.preferenceDefaultTemplateID != null) {
-            this.currentUser.preferenceDefaultTemplateID = parameters.preferenceDefaultTemplateID;
-        };
-        if (parameters.preferenceDefaultDateformat != null) {
-            this.currentUser.preferenceDefaultDateformat = parameters.preferenceDefaultDateformat;
-        };
-        if (parameters.preferenceDefaultFolder != null) {
-            this.currentUser.preferenceDefaultFolder = parameters.preferenceDefaultFolder;
-        };
-        if (parameters.preferenceDefaultPrinter != null) {
-            this.currentUser.preferenceDefaultPrinter = parameters.preferenceDefaultPrinter;
-        };
-        if (parameters.preferenceDefaultPageSize != null) {
-            this.currentUser.preferenceDefaultPageSize = parameters.preferenceDefaultPageSize;
-        };
-        if (parameters.preferenceDefaultPageLayout != null) {
-            this.currentUser.preferenceDefaultPageLayout = parameters.preferenceDefaultPageLayout;
-        };
-        if (parameters.preferenceDefaultSnapshotMins != null) {
-            this.currentUser.preferenceDefaultSnapshotMins = parameters.preferenceDefaultSnapshotMins;
-        };
+        let userid: number = this.currentUser.id;
+        let userIndex: number = this.canvasUsers.findIndex(u => u.id == userid);
+        if (userIndex < 0) {
+            this.showStatusBarMessage(
+                {
+                    message: 'Current user not in currentUsers array!',
+                    uiArea: 'StatusBar',
+                    classfication: 'Error',
+                    timeout: 3000,
+                    defaultMessage: ''
+                }
+            );
+        } else {
 
-        if (parameters.preferenceStartupDashboardID != null) {
-            this.currentUser.preferenceStartupDashboardID = parameters.preferenceStartupDashboardID;
-        };
-        if (parameters.preferenceStartupDashboardTabID != null) {
-            this.currentUser.preferenceStartupDashboardTabID = parameters.preferenceStartupDashboardTabID;
-        };
-        if (parameters.preferenceShowWidgetEditorLite != null) {
-            this.currentUser.preferenceShowWidgetEditorLite = parameters.preferenceShowWidgetEditorLite;
-        };
+            if (parameters.isFirstTimeUser != null) {
+                this.canvasUsers[userIndex].isFirstTimeUser = parameters.isFirstTimeUser;
+                this.currentUser.isFirstTimeUser = parameters.isFirstTimeUser;
+            };
+            if (parameters.preferencePaletteHorisontal != null) {
+                this.canvasUsers[userIndex].preferencePaletteHorisontal = parameters.preferencePaletteHorisontal;
+                this.currentUser.preferencePaletteHorisontal = parameters.preferencePaletteHorisontal;
+            };
+            if (parameters.preferencePlaySound != null) {
+                this.canvasUsers[userIndex].preferencePlaySound = parameters.preferencePlaySound;
+                this.currentUser.preferencePlaySound = parameters.preferencePlaySound;
+            };
+            if (parameters.preferenceAutoSync != null) {
+                this.canvasUsers[userIndex].preferenceAutoSync = parameters.preferenceAutoSync;
+                this.currentUser.preferenceAutoSync = parameters.preferenceAutoSync;
+            };
+            if (parameters.preferenceShowOpenStartupMessage != null) {
+                this.canvasUsers[userIndex].preferenceShowOpenStartupMessage = parameters.preferenceShowOpenStartupMessage;
+                this.currentUser.preferenceShowOpenStartupMessage = parameters.preferenceShowOpenStartupMessage;
+            };
+            if (parameters.preferenceShowOpenDataCombinationMessage != null) {
+                this.canvasUsers[userIndex].preferenceShowOpenDataCombinationMessage = parameters.preferenceShowOpenDataCombinationMessage;
+                this.currentUser.preferenceShowOpenDataCombinationMessage = parameters.preferenceShowOpenDataCombinationMessage;
+            };
+            if (parameters.preferenceShowViewStartupMessage != null) {
+                this.canvasUsers[userIndex].preferenceShowViewStartupMessage = parameters.preferenceShowViewStartupMessage;
+                this.currentUser.preferenceShowViewStartupMessage = parameters.preferenceShowViewStartupMessage;
+            };
+            if (parameters.preferenceShowDiscardStartupMessage != null) {
+                this.canvasUsers[userIndex].preferenceShowDiscardStartupMessage = parameters.preferenceShowDiscardStartupMessage;
+                this.currentUser.preferenceShowDiscardStartupMessage = parameters.preferenceShowDiscardStartupMessage;
+            };
+            if (parameters.preferenceDefaultTemplateID != null) {
+                this.canvasUsers[userIndex].preferenceDefaultTemplateID = parameters.preferenceDefaultTemplateID;
+                this.currentUser.preferenceDefaultTemplateID = parameters.preferenceDefaultTemplateID;
+            };
+            if (parameters.preferenceDefaultDateformat != null) {
+                this.canvasUsers[userIndex].preferenceDefaultDateformat = parameters.preferenceDefaultDateformat;
+                this.currentUser.preferenceDefaultDateformat = parameters.preferenceDefaultDateformat;
+            };
+            if (parameters.preferenceDefaultFolder != null) {
+                this.canvasUsers[userIndex].preferenceDefaultFolder = parameters.preferenceDefaultFolder;
+                this.currentUser.preferenceDefaultFolder = parameters.preferenceDefaultFolder;
+            };
+            if (parameters.preferenceDefaultPrinter != null) {
+                this.canvasUsers[userIndex].preferenceDefaultPrinter = parameters.preferenceDefaultPrinter;
+                this.currentUser.preferenceDefaultPrinter = parameters.preferenceDefaultPrinter;
+            };
+            if (parameters.preferenceDefaultPageSize != null) {
+                this.canvasUsers[userIndex].preferenceDefaultPageSize = parameters.preferenceDefaultPageSize;
+                this.currentUser.preferenceDefaultPageSize = parameters.preferenceDefaultPageSize;
+            };
+            if (parameters.preferenceDefaultPageLayout != null) {
+                this.canvasUsers[userIndex].preferenceDefaultPageLayout = parameters.preferenceDefaultPageLayout;
+                this.currentUser.preferenceDefaultPageLayout = parameters.preferenceDefaultPageLayout;
+            };
+            if (parameters.preferenceDefaultSnapshotMins != null) {
+                this.canvasUsers[userIndex].preferenceDefaultSnapshotMins = parameters.preferenceDefaultSnapshotMins;
+                this.currentUser.preferenceDefaultSnapshotMins = parameters.preferenceDefaultSnapshotMins;
+            };
 
+            if (parameters.preferenceStartupDashboardID != null) {
+                this.canvasUsers[userIndex].preferenceStartupDashboardID = parameters.preferenceStartupDashboardID;
+                this.currentUser.preferenceStartupDashboardID = parameters.preferenceStartupDashboardID;
+            };
+            if (parameters.preferenceStartupDashboardTabID != null) {
+                this.canvasUsers[userIndex].preferenceStartupDashboardTabID = parameters.preferenceStartupDashboardTabID;
+                this.currentUser.preferenceStartupDashboardTabID = parameters.preferenceStartupDashboardTabID;
+            };
+            if (parameters.preferenceShowWidgetEditorLite != null) {
+                this.canvasUsers[userIndex].preferenceShowWidgetEditorLite = parameters.preferenceShowWidgetEditorLite;
+                this.currentUser.preferenceShowWidgetEditorLite = parameters.preferenceShowWidgetEditorLite;
+            };
+        
+            // Save in DB
+            this.saveResource('canvasUser', this.canvasUsers[userIndex]);
+        };
     }
 
     saveCanvasUser(data: CanvasUser): Promise<string> {
