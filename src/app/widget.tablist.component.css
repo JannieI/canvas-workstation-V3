@@ -6,10 +6,14 @@
 .closeButton {
     background-color: transparent;
     border: none;
-    float: right;
-    right: 20;
-    position: relative;
-    top: 0;
+    cursor: pointer;
+    grid-column-start: 12;
+    /* autoprefixer: off */
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin-right: 12px;
+    text-align: left;
 }
 
 .overall {
