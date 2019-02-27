@@ -1018,6 +1018,7 @@ export class ShapeEditComponent implements OnInit {
         if (localIndex >= 0) {
             this.localWidget.shapeTextColour = this.backgroundcolors[localIndex].cssCode;
         };
+        console.log('xx clr', this.localWidget.shapeTextColour, this.localWidget.shapeTextColourName)
     }
 
     clickSelectBulletsColorPicker() {

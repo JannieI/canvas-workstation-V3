@@ -826,6 +826,7 @@
                         [style.font-size.px]="localWidget.shapeFontSize"
                         [style.text-align]="left"
                         [style.overflow-y]="scroll"
+                        [style.background-color]="'#F5F5F5'"
                         >
                         <li *ngFor="let row of localWidget.shapeBullet; let i = index"
                             [style.margin-bottom.px]="localWidget.shapeBulletMarginBottom"
@@ -874,6 +875,7 @@
                                         placeholder="Enter bullet text"
                                         [(ngModel)]="row.text"
                                         style="font-style: italic;"
+                                        [style.background-color]="'#F5F5F5'"
                                         >
                                     </textarea>
 
@@ -896,6 +898,7 @@
                         [style.font-size.px]="localWidget.shapeFontSize"
                         [style.text-align]="left"
                         [style.overflow-y]="scroll"
+                        [style.background-color]="'#F5F5F5'"
                         >
                         <li *ngFor="let row of localWidget.shapeBullet; let i = index"
                             [style.margin-bottom.px]="localWidget.shapeBulletMarginBottom"
@@ -937,9 +940,10 @@
                                         </select>
                                     </div>
                                     <textarea type="text" rows="3"
-                                        placeholder="true, false"
+                                        placeholder="Enter bullet text"
                                         [(ngModel)]="row.text"
                                         style="font-style: italic;"
+                                        [style.background-color]="'#F5F5F5'"
                                         >
                                     </textarea>
 
