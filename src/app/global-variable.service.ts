@@ -8322,7 +8322,7 @@ export class GlobalVariableService {
             };
         
             // Save in DB
-            this.saveResource('canvasUser', this.canvasUsers[userIndex]);
+            this.saveResource('canvasUsers', this.canvasUsers[userIndex]);
         };
     }
 
