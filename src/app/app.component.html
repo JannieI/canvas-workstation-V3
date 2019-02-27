@@ -2053,7 +2053,7 @@
         >
 
         <!-- Optional Hyperlink      -->
-        <div>
+        <div class="widgetPopupMenuItem">
             <clr-icon shape="keyboard"
                 (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
                 >
@@ -2062,7 +2062,7 @@
         </div>
 
         <!-- Container for This Widget -->
-        <div *ngIf="popupHyperlinkDashboardID">
+        <div class="widgetPopupMenuItem" *ngIf="popupHyperlinkDashboardID">
             <clr-icon shape="arrow right"
                 (click)="actionmenuJumpToLinked(popupHyperlinkDashboardID, popupHyperlinkDashboardTabID)"
                 >

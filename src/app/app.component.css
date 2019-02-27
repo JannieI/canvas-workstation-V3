@@ -156,11 +156,14 @@
     }
 
     .widgetPopupMenu {
-        background-color: rgb(153, 149, 149); 
+        background-color: rgb(211, 208, 208); 
         color: black;
         display: inline-block; 
         position:absolute; 
         z-index: 101;
+    }
+    .widgetPopupMenuItem{
+        cursor: pointer;
     }
     .widgetRelatedInfoMenu {
         display: inline-block;
