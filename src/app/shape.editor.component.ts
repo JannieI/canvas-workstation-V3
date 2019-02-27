@@ -84,6 +84,7 @@ export class ShapeEditComponent implements OnInit {
     hasAutoFocusValue: boolean = false;
     hasAutoFocusBrackets: boolean = false;
     editLineNr: number = -1;
+    linePath = "M2,2 L2,11 L10,6 L2,2";
     localWidget: Widget;                            // W to modify, copied from selected
     oldText: string = '';
     oldWidget: Widget = null;                       // W at start

@@ -745,10 +745,25 @@
 
                                 />
                             </marker>
+                            <!-- The following commands are available for path data:
+                                M = moveto
+                                L = lineto
+                                H = horizontal lineto
+                                V = vertical lineto
+                                C = curveto
+                                S = smooth curveto
+                                Q = quadratic Bézier curve
+                                T = smooth quadratic Bézier curveto
+                                A = elliptical Arc
+                                Z = closepath
+                            Note: All of the commands above can also be expressed with lower letters. 
+                            Capital letters means absolutely positioned, lower cases means relatively 
+                            positioned. -->
+                            <!-- <path d="M2,2 L2,11 L10,6 L2,2" -->
 
                             <marker id="markerArrow" markerWidth="13" markerHeight="13" refX="2" refY="6"
                                 orient="auto">
-                                <path d="M2,2 L2,11 L10,6 L2,2"
+                                <path [attr.d]="linePath"
                                 [style.stroke]="localWidget.shapeStroke"
                                 [style.fill]="localWidget.shapeStroke"
                                 />
