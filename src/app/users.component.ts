@@ -460,6 +460,7 @@ export class UsersComponent implements OnInit {
             cleanCacheOnLogout: false,
             preferencePaletteHorisontal: true,
             preferencePlaySound: false,
+            preferenceConsoleLog: false,
             preferenceAutoSync: false,
             preferenceShowOpenStartupMessage: false,
             preferenceShowOpenDataCombinationMessage: false,

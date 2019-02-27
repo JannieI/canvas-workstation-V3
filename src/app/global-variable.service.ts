@@ -8098,6 +8098,7 @@ export class GlobalVariableService {
             isFirstTimeUser?: boolean,
             preferencePaletteHorisontal?: boolean,
             preferencePlaySound?: boolean,
+            preferenceConsoleLog?: boolean,
             preferenceAutoSync?: boolean,
             preferenceShowOpenStartupMessage?: boolean,
             preferenceShowOpenDataCombinationMessage?: boolean,
@@ -8148,6 +8149,10 @@ export class GlobalVariableService {
             if (parameters.preferencePlaySound != null) {
                 this.canvasUsers[userIndex].preferencePlaySound = parameters.preferencePlaySound;
                 this.currentUser.preferencePlaySound = parameters.preferencePlaySound;
+            };
+            if (parameters.preferenceConsoleLog != null) {
+                this.canvasUsers[userIndex].preferenceConsoleLog = parameters.preferenceConsoleLog;
+                this.currentUser.preferenceConsoleLog = parameters.preferenceConsoleLog;
             };
             if (parameters.preferenceAutoSync != null) {
                 this.canvasUsers[userIndex].preferenceAutoSync = parameters.preferenceAutoSync;
