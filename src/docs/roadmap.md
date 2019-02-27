@@ -658,6 +658,7 @@ This document describes items for later versions of Canvas.
     - Include code blocks - like Vscode style!!!
     - Round buttons at bottom of presentation to navigate
     - store alignVertically, alignHorisontally on W -> after the text in bullet is changed, it will automatically align V or H
+    - load file with Browse button (consider [src] used in img HTML tag)
 
     - Slicer:
     - Consider Slicer per User on the Dashboard
@@ -1120,7 +1121,7 @@ This document describes items for later versions of Canvas.
         - the filter is not applied generally, but only applied when created explicit by the user on a DS.
         - during the transformation pipeline, table TN will be joined to the data (in SQLite or Pandas), and UserID filtered on the current userid.
         - the result is only the records that the current user may see.
-
+    - Make the caching variables generic (if we dont use something like MemCache)
 
     Create DS via File:
     -------------------

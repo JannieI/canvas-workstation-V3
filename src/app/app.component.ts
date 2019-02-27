@@ -1403,7 +1403,7 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseDashboardUsageStats(action: string) {
-        //
+        // Handle event when closing usage stats form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardUsageStats', '@Start');
 
         this.menuOptionClickPostAction();
@@ -1412,7 +1412,7 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseShapeEdit(changedWidget: Widget) {
-        //
+        // Handle event when closing Shape Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeEdit', '@Start');
 
         // Add to Action log

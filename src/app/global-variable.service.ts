@@ -1801,7 +1801,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables saveResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {data});
         };
-        console.time("DURATION saveResource" + resource);
+        console.time("DURATION saveResource " + resource + ' ' + data.id.toString() + ':');
 
         return new Promise<string>((resolve, reject) => {
 
@@ -1820,7 +1820,7 @@ export class GlobalVariableService {
             .subscribe(
                 httpResult => {
                     if(httpResult.statusCode != 'success') {
-                        console.timeEnd("DURATION saveResource" + resource);
+                        console.timeEnd("DURATION saveResource " + resource + ' ' + data.id.toString() + ':');
                         reject(httpResult.message);
                         return;
                     };
@@ -1915,14 +1915,14 @@ export class GlobalVariableService {
                         console.log('saveResource SAVED', {data})
                     };
 
-                    console.timeEnd("DURATION saveResource" + resource);
+                    console.timeEnd("DURATION saveResource " + resource + ' ' + data.id.toString() + ':');
                     resolve('Saved');
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error saveResource FAILED', {err});
                     };
-                    console.timeEnd("DURATION saveResource" + resource);
+                    console.timeEnd("DURATION saveResource " + resource + ' ' + data.id.toString() + ':');
                     reject(err.message);
                 }
             )
