@@ -1525,7 +1525,9 @@
                 <div class="gridShapeProperties" *ngIf="showArrowThin">
                     <div class="gridArrowThinArea">
                         <b>Direction:</b>
-                        <input type="text" [(ngModel)]="localWidget.shapeRotation"
+                        <input type="number" [(ngModel)]="localWidget.shapeRotation"
+                            min="0" 
+                            max="360"
                             placeholder="Degrees rotation"
                             [autofocus]="hasAutoFocusArrowThin"
                             >
