@@ -736,9 +736,18 @@
                     >
                     <svg width="180" height="180"
                         [attr.transform]="'translate(90, 90) rotate(' + localWidget.shapeRotation + ')'"
+                        [style.stroke]="localWidget.shapeStroke"
+                        [style.fill]="localWidget.shapeStroke"
                         >
                         <defs>
-                            <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+                            <marker id="markerCircle" 
+                                markerWidth="8" 
+                                markerHeight="8" 
+                                refX="5" 
+                                refY="5"
+                                [style.stroke]="localWidget.shapeStroke"
+                                [style.fill]="localWidget.shapeStroke"
+                                >
                                 <circle cx="15" 
                                     cy="15" 
                                     r="13"
@@ -771,14 +780,15 @@
                                 [style.stroke]="localWidget.shapeStroke"
                                 [style.fill]="localWidget.shapeStroke"
                                 >
-                                <path [attr.d]="linePath"
+                                <path d="M2,2 L2,11 L10,6 L2,2"
                                     [style.stroke]="localWidget.shapeStroke"
                                     [style.fill]="localWidget.shapeStroke"
                                 />
                             </marker>
                         </defs>
 
-                        <path d="M90,90 L160,90"
+                        <!-- d="M90,90 L160,90" -->
+                        <path [attr.d]="thinArrowLinePath"
                             [style.stroke]="localWidget.shapeStroke"
                             [style.fill]="localWidget.shapeStroke"
                             style="stroke-width: 1px;
