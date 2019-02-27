@@ -1368,6 +1368,7 @@ This document describes items for later versions of Canvas.
     ---------
     - the StatusBar must not grow beyond screen width, or to double line
     - page # from pages
+    - show clever tooltippie text on arrows, ie 'Click to show the Next tab which is Approach', 'Click to show the last tab which is Questions' to indicate what is coming.
     - custom select of elements on StatusBar: ie ViewMode/EditMode, Version, etc
     - add Ctrl-Backspace to go back to the previously opened tab, useful if jumped randomly using Tabs popup (just keep prevID, and if pressed then replace with current => toggle between two.  Think this can be useful)
     - Statusbar needs word (make more clear what it does), 
