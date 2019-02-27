@@ -435,14 +435,6 @@
                                 </clr-dropdown-menu>
                             </clr-dropdown>
 
-
-
-
-
-
-
-
-
                         <clr-dropdown>
                             <button
                                 type="button"
@@ -3051,9 +3043,7 @@
                                 />
                         </marker>
                     </defs>
-
-                    <!-- d="M90,90 L160,90" -->
-                    <path [attr.d]="thinArrowLinePath"
+                    <path [attr.d]="changeThinArrowLength(row.shapeLineLength)"
                         [style.stroke]="row.shapeStroke"
                         [style.fill]="row.shapeStroke"
                         style="stroke-width: 1px;
@@ -3062,37 +3052,6 @@
                             "
                             />
                 </svg>
-                <!-- <svg [style.height.px]="row.containerHeight"
-                    [style.width.px]="row.containerWidth"
-                    [style.marginTop.px]="-25"
-                    [style.marginLeft.px]="-9"
-                    [style.transform]="'rotate(' + row.shapeRotation + 'deg)'"
-                    >
-                    <defs>
-                        <marker id="arrowThin"
-                            markerWidth="10"
-                            markerHeight="10"
-                            refX="0"
-                            refY="3"
-                            orient="auto"
-                            markerUnits="strokeWidth">
-                        <path
-                            d="M0,0 L0,6 L9,3 z"
-                            [style.fill]="row.shapeStroke"
-                            />
-                        </marker>
-                    </defs>
-
-                    <line
-                        x1="1"
-                        y1="1"
-                        x2="55"
-                        y2="55"
-                        [style.stroke]="row.shapeStroke"
-                        stroke-width="5"
-                        marker-end="url(#arrowThin)"
-                        />
-                </svg> -->
             </div>
 
             <!-- Shape Image Object -->
@@ -4055,9 +4014,7 @@
                                 />
                         </marker>
                     </defs>
-
-                    <!-- d="M90,90 L160,90" -->
-                    <path [attr.d]="thinArrowLinePath"
+                    <path [attr.d]="changeThinArrowLength(row.shapeLineLength)"
                         [style.stroke]="row.shapeStroke"
                         [style.fill]="row.shapeStroke"
                         style="stroke-width: 1px;
@@ -4066,31 +4023,6 @@
                             "
                             />
                 </svg>
-                <!-- <svg [style.height.px]="row.containerHeight"
-                    [style.width.px]="row.containerWidth"
-                    [style.marginTop.px]="-25"
-                    [style.marginLeft.px]="-9"
-                    [style.transform]="'rotate(' + row.shapeRotation + 'deg)'"
-                    >
-                    <defs>
-                        <marker id="arrowThin" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
-                        <path
-                            d="M0,0 L0,6 L9,3 z"
-                            [style.fill]="row.shapeStroke"
-                            />
-                        </marker>
-                    </defs>
-
-                    <line
-                        x1="1"
-                        y1="1"
-                        x2="55"
-                        y2="55"
-                        [style.stroke]="row.shapeStroke"
-                        stroke-width="5"
-                        marker-end="url(#arrowThin)"
-                        />
-                </svg> -->
             </div>
 
             <!-- Shape Image Object -->
