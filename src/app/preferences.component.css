@@ -97,6 +97,24 @@
             margin-left: 20px;
             text-align: left;
         }
+        .gridSettingsConsoleLogTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 2;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .gridSettingsConsoleLog {
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 7;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin-left: 20px;
+            text-align: left;
+        }
 
     .gridMessagesTitle {
         font-size: 0.65rem;
