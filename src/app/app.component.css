@@ -95,13 +95,13 @@
 }
 
 .widgetFullScreenClose {
-    float: left;
-    margin: 8px 8px 8px 28px;
+    float: right;
+    margin: 8px 18px 8px 8px;
 }
 
 .widgetFullScreenButton {
-    float: right;
-    margin: 8px 18px 8px 8px;
+    float: left;
+    margin: 8px 8px 8px 18px;
 }
 
 /* Palette */
