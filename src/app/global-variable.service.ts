@@ -8216,6 +8216,9 @@ export class GlobalVariableService {
                 this.currentUser.preferenceShowWidgetEditorLite = parameters.preferenceShowWidgetEditorLite;
             };
         
+            // Update console.log
+            this.sessionDebugging = parameters.preferenceConsoleLog;
+
             // Save in DB
             this.saveResource('canvasUsers', this.canvasUsers[userIndex]);
         };
@@ -10635,6 +10638,9 @@ export class GlobalVariableService {
 
                                 // Set User var
                                 this.currentUser = this.canvasUsers[foundIndex];
+
+                                // Set GVs
+                                this.sessionDebugging = this.currentUser.preferenceConsoleLog;
 
                                 // Store User ID info
                                 this.canvasServerName = givenCanvasServerName;

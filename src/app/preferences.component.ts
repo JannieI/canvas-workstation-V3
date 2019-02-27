@@ -294,9 +294,6 @@ console.warn('xx this.preferenceStartupDashboardTabID', this.preferenceStartupDa
                 }
         );
 
-        // Update console.log
-        this.globalVariableService.sessionDebugging = this.preferenceConsoleLog;
-
         // Inform Subscribers
         this.globalVariableService.preferencePaletteHorisontal.next(
             this.preferencePaletteHorisontal
