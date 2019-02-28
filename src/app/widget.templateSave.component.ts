@@ -144,7 +144,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
                 updatedBy: this.globalVariableService.currentUser.userID,
             };
 
-            this.globalVariableService.saveWidgetStoredTemplate(newWidgetStoredTemplate)
+            this.globalVariableService.saveResource('widgetStoredTemplates', newWidgetStoredTemplate)
                 .then(res => {this.formWidgetTemplateSavedClosed.emit('Saved')})
                 .catch(err => {this.errorMessage = 'Saving failed ...'});
 
