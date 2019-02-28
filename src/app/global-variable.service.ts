@@ -1094,7 +1094,6 @@ export class GlobalVariableService {
     isDirtyUserPaletteButtonBar: boolean = true;
     isDirtyWidgetCheckpoints: boolean = true;
     isDirtyWidgets: boolean = true;
-    isDirtyWidgetGraphs: boolean = true;
 
 
 
