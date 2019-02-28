@@ -177,7 +177,7 @@ export class DashboardShareComponent implements OnInit {
         };
 
         // Update locally
-        this.globalVariableService.addDashboardPermission(newdP).then(res => {
+        this.globalVariableService.addResource('dashboardPermissions', newdP).then(res => {
             this.dashboardPermissions.push(res);
         });
     }
