@@ -7425,61 +7425,6 @@ export class GlobalVariableService {
         });
     }
 
-    deleteBackgroundColor(id: number): Promise<string> {
-        // Description: Deletes a BackgroundColor
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteBackgroundColor ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'canvasBackgroundcolors';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // This is a different case: BackgroundColors is an
-                    // Observable, and will be refreshed with a .next by the calling
-                    // routine
-                    let dID: number = -1;
-                    for (var i = 0; i < this.backgroundcolors.length; i++) {
-
-                        if (this.backgroundcolors[i].id == id) {
-                            dID = i;
-                            break;
-                        };
-                    };
-                    if (dID >=0) {
-                        this.backgroundcolors.splice(dID, 1);
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteBackgroundColor DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteBackgroundColor FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     updateCanvasMessagesAsRead(userID: string): Promise<string> {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
