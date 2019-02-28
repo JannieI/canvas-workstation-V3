@@ -119,7 +119,7 @@
         .gridSettingsRefreshLocalCache {
             grid-column-start: 12;
             /* autoprefixer: off */
-            grid-column-end: 13;
+            grid-column-end: 14;
             grid-row-start: 5;
             grid-row-end: 6;
             margin-left: 20px;
