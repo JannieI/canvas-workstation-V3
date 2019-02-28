@@ -4631,56 +4631,6 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentDashboardPermissions(dashboardID: number): Promise<DashboardPermission[]> {
-        // Description: Gets all Sch for current D
-        // Params:
-        //   dashboardID
-        // Returns: this.currentDashboardPermissions array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDashboardPermissions ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {dashboardID});
-        };
-
-        // Refresh from source at start, or if dirty
-        if ( (this.dashboardPermissions.length == 0)  ||  (this.isDirtyDashboardPermissions) ) {
-            return new Promise<DashboardPermission[]>((resolve, reject) => {
-                this.getDashboardPermissions()
-                    .then(res => {
-                        res = res.filter(
-                            i => i.dashboardID == dashboardID
-                        );
-                        this.currentDashboardPermissions =res;
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDashboardPermissions 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {dashboardID}, {res})
-                        };
-
-                        resolve(this.currentDashboardPermissions);
-                })
-             })
-        } else {
-            return new Promise<DashboardPermission[]>((resolve, reject) => {
-                let returnData: DashboardPermission[];
-                returnData = this.dashboardPermissions.filter(
-                    i => i.dashboardID == dashboardID
-                );
-                this.currentDashboardPermissions =returnData;
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentDashboardPermissions 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {dashboardID})
-                };
-
-                resolve(this.currentDashboardPermissions);
-            });
-        };
-    }
-
     addDashboardPermission(data: DashboardPermission): Promise<any> {
         // Description: Adds a new DashboardPermission
         // Returns: Added Data or error message
