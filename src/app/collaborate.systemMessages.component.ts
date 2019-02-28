@@ -52,8 +52,9 @@ export class CollaborateSystemMessagesComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getStatusBarMessageLogs(
-            this.globalVariableService.currentUser.userID
+        this.globalVariableService.getResource(
+            'statusBarMessageLogs', 
+            '?filterObject={"userID":"' + this.globalVariableService.currentUser.userID + '"}'
         ).then (sbm => {
 
             // Set the data for the grid
