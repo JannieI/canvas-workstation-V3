@@ -5978,53 +5978,6 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentTransformations(datasourceID: number): Promise<Transformation[]> {
-        // Description: Gets Tr for current DS
-        // Returns: this.currentTransformations.value array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentTransformations ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        if ( (this.currentTransformations.length == 0)  ||  (this.isDirtyTransformations) ) {
-            return new Promise<Transformation[]>((resolve, reject) => {
-                this.getTransformations()
-                    .then(res => {
-                        // data = data.filter(
-                        //     i => i.datasourceID == datasourceID
-                        // );
-                        this.currentTransformations = res;
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getTransformations 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {datasourceID}, {res})
-                        };
-
-                        resolve(this.currentTransformations);
-                })
-             })
-        } else {
-            return new Promise<Transformation[]>((resolve, reject) => {
-                let returnData: Transformation[];
-                returnData = this.transformations;
-                // returnData = this.transformations.filter(
-                //     i => i.datasourceID == datasourceID
-                // );
-                this.currentTransformations = returnData;
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getTransformations 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {datasourceID}, {returnData})
-                };
-
-                resolve(this.currentTransformations);
-            });
-        };
-    }
-
     getDatasourcePermissions(): Promise<DatasourcePermission[]> {
         // Description: Gets all DS-P
         // Returns: this.datasourcePermissions array, unless:
