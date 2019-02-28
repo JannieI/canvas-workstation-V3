@@ -235,7 +235,7 @@ console.warn('xx ..', id, index)
         this.errorMessage = '';
  
         // Remove from seleted list
-        this.globalVariableService.deleteBackgroundColor(id).then(res => {
+        this.globalVariableService.deleteResource('canvasBackgroundcolors', id).then(res => {
             this.backgroundcolors.splice(index, 1);
 
             // Sort the lists
