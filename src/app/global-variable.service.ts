@@ -7304,83 +7304,8 @@ export class GlobalVariableService {
             };
         })
     }
-
-    getBackgroundColors(): Promise<CSScolor[]> {
-        // Description: Gets all Background colors
-        // Returns: this.backgroundcolors array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getBackgroundColors ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<CSScolor[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.backgroundcolors.length == 0)  ||  (this.isDirtyBackgroundColors) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'canvasBackgroundcolors';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-                            return;
-                        };
-
-                        this.backgroundcolors = res.data;
-
-                        // Sort the list
-                        this.backgroundcolors.sort( (obj1,obj2) => {
-                            if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                                return 1;
-                            };
-                            if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                                return -1;
-                            };
-                            return 0;
-                        });
-
-                        this.isDirtyBackgroundColors = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getBackgroundColors 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.backgroundcolors)
-                        };
-
-                        resolve(this.backgroundcolors);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getBackgroundColors 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.backgroundcolors)
-                };
-
-                // Sort the list
-                this.backgroundcolors.sort( (obj1,obj2) => {
-                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                        return 1;
-                    };
-                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                        return -1;
-                    };
-                    return 0;
-                });
-
-                resolve(this.backgroundcolors);
-            }
-        });
-
-    }
-
+    isDirtyBackgroundColors
+    
     updateCanvasMessagesAsRead(userID: string): Promise<string> {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
