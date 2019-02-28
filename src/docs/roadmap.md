@@ -655,6 +655,7 @@ This document describes items for later versions of Canvas.
     -------
     - links (to web and other D, T)
     - Indented bullets !!!
+    - Thin Arrow: maybe start circle and end arrow head optional, and maybe dynamically sized
     - Some points un-bulleted - ie spaces ...  Maybe get a text editor !!!
     - Include code blocks - like Vscode style!!!
     - Round buttons at bottom of presentation to navigate
