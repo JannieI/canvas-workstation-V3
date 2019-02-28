@@ -377,6 +377,8 @@ export class ShapeEditComponent implements OnInit {
         };
         if (selectedShape == 'ArrowThin') {
             this.hasAutoFocusArrowThin = true;
+            // Calc initial ThinArrow
+            this.changeThinArrowLength();
         };
         if (selectedShape == 'Image') {
             this.hasAutoFocusImage = true;
