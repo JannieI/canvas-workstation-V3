@@ -1067,7 +1067,6 @@ export class GlobalVariableService {
 
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
-    isDirtyBackgroundColors: boolean = true;
     isDirtyCanvasGroups: boolean = true;
     isDirtyCanvasSettings: boolean = true;
     isDirtyCanvasUsers: boolean = true;
@@ -7304,8 +7303,7 @@ export class GlobalVariableService {
             };
         })
     }
-    isDirtyBackgroundColors
-    
+        
     updateCanvasMessagesAsRead(userID: string): Promise<string> {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
