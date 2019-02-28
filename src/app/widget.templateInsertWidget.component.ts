@@ -71,7 +71,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load Stored Widget Templates, adding DS Name for user
-        this.globalVariableService.getWidgetStoredTemplates()
+        this.globalVariableService.getResource('widgetStoredTemplates')
             .then(res => {
                 this.globalVariableService.getResource('widgetGraphs').then(graphs => {
                     this.widgetGraphs = graphs;
