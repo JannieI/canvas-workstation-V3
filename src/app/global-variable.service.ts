@@ -2852,7 +2852,7 @@ export class GlobalVariableService {
         });
     }
 
-    refreshLocalCacheMemory() {
+    refreshLocalCache() {
         // Refreshes ALL the local cache in Memory
 
         if (this.sessionDebugging) {

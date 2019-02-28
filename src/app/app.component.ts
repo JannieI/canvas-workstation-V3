@@ -8116,7 +8116,7 @@ export class AppComponent implements OnInit {
 
         // });
 
-        this.globalVariableService.refreshLocalCacheMemory()
+        this.globalVariableService.refreshLocalCache()
         // // Count
         // this.dbCanvasAppDatabase.table("localDashboards").count(res => {
         //     console.warn('xx count of localDashboard', res);

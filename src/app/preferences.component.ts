@@ -300,12 +300,12 @@ console.warn('xx this.preferenceStartupDashboardTabID', this.preferenceStartupDa
         );
 		this.formDashboardPreferencesClosed.emit(action);
     }
-    
+
     clickRefreshLocalCache() {
         // Refreshes local cache
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshLocalCache', '@Start');
 
-        this.globalVariableService.refreshLocalCacheMemory();
+        this.globalVariableService.refreshLocalCache();
     }
 
     //TODO
