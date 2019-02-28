@@ -602,7 +602,7 @@ export class DataTransformationComponent implements OnInit {
             };
 
             // Save to DB
-            this.globalVariableService.addDatasourceTransformation(newDatasourceTransition)
+            this.globalVariableService.addResource('datasourceTransformations', newDatasourceTransition)
                 .then(dtr => {
 
                     // Add Tr name to display on form
