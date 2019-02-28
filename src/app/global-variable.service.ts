@@ -7739,46 +7739,6 @@ export class GlobalVariableService {
         });
     }
 
-    deleteDashboardLayout(id: number): Promise<string> {
-        // Description: Deletes a DashboardLayout
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDashboardLayout ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardLayouts';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-                    this.dashboardLayouts = this.dashboardLayouts.filter(wl => wl.id != id);
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteDashboardLayout DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDashboardLayout FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteWidgetLayout(id: number, dashboardLayoutID: number): Promise<string> {
         // Description: Deletes a WidgetLayout
         // Returns: 'Deleted' or error message
