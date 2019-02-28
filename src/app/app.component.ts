@@ -9287,8 +9287,8 @@ export class AppComponent implements OnInit {
 
         this.showTitleForm = true;
     }
-    
-    actionmenuWidgetExpand(id: number) {
+
+    actionmenuWidgetExpand(ev: MouseEvent, index: number, id: number) {
         // Expand the data for this Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetExpand', '@Start');
 
