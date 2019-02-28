@@ -3711,57 +3711,6 @@ export class GlobalVariableService {
         });
     }
 
-    saveDatasourceTransformation(data: DatasourceTransformation): Promise<string> {
-        // Description: Saves DatasourceTransformation
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDatasourceTransformation ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'datasourceTransformations';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.datasourceTransformations.findIndex(d =>
-                        d.id == data.id
-                    );
-                    this.datasourceTransformations[localIndex] = data;
-
-                    if (this.sessionDebugging) {
-                        console.log('saveDatasourceTransformation SAVED', res.data)
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveDatasourceTransformation FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteDatasourceTransformation(id: number): Promise<string> {
         // Description: Deletes a DatasourceTransformations
         // Returns: 'Deleted' or error message
