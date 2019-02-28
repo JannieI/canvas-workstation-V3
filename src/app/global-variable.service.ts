@@ -1672,7 +1672,7 @@ export class GlobalVariableService {
         };
         var now = new Date();
         let unique: number = now.getMinutes() + now.getSeconds();
-        console.time("DURATION addResource " + resource + ' ' + unique.toString() + ':');
+        console.time("DURATION addResource " + resource + ' ' + unique.toString());
 
         return new Promise<any>((resolve, reject) => {
 
@@ -1687,7 +1687,7 @@ export class GlobalVariableService {
                     console.warn('xx inside POST HTTP')
 
                     if(httpResult.statusCode != 'success') {
-                        console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString() + ':');
+                        console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString());
                         reject(httpResult.message);
                         return;
                     };
@@ -1779,7 +1779,7 @@ export class GlobalVariableService {
                     };
 
                     console.warn('xx data retured from HTTP', httpResult.data);
-                    console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString() + ':');
+                    console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString());
                     resolve(httpResult.data);
                     return;
                 },
@@ -1788,7 +1788,7 @@ export class GlobalVariableService {
                         console.log('Error addResource FAILED', {err});
                     };
 
-                    console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString() + ':');
+                    console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString());
                     reject(err.message)
                 }
             );
@@ -1803,7 +1803,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables saveResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {data});
         };
-        console.time("DURATION saveResource " + resource + ' ' + data.id.toString() + ':');
+        console.time("DURATION saveResource " + resource + ' ' + data.id.toString());
 
         return new Promise<string>((resolve, reject) => {
 
@@ -1822,7 +1822,7 @@ export class GlobalVariableService {
             .subscribe(
                 httpResult => {
                     if(httpResult.statusCode != 'success') {
-                        console.timeEnd("DURATION saveResource " + resource + ' ' + data.id.toString() + ':');
+                        console.timeEnd("DURATION saveResource " + resource + ' ' + data.id.toString());
                         reject(httpResult.message);
                         return;
                     };
@@ -1917,14 +1917,14 @@ export class GlobalVariableService {
                         console.log('saveResource SAVED', {data})
                     };
 
-                    console.timeEnd("DURATION saveResource " + resource + ' ' + data.id.toString() + ':');
+                    console.timeEnd("DURATION saveResource " + resource + ' ' + data.id.toString());
                     resolve('Saved');
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error saveResource FAILED', {err});
                     };
-                    console.timeEnd("DURATION saveResource " + resource + ' ' + data.id.toString() + ':');
+                    console.timeEnd("DURATION saveResource " + resource + ' ' + data.id.toString());
                     reject(err.message);
                 }
             )
@@ -1938,7 +1938,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables deleteResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {id});
         };
-        console.time("DURATION deleteResource" + resource +  ' ' + id.toString() + ':');
+        console.time("DURATION deleteResource" + resource +  ' ' + id.toString());
 
         return new Promise<any>((resolve, reject) => {
 
@@ -1951,7 +1951,7 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
                     if(res.statusCode != 'success') {
-                        console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString() + ':');
+                        console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString());
                         reject(res.message);
                         return;
                     };
@@ -2011,7 +2011,7 @@ export class GlobalVariableService {
                         console.log('deleteResource DELETED id: ', {id})
                     };
 
-                    console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString() + ':');
+                    console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString());
                     resolve('Deleted');
                 },
                 err => {
@@ -2019,7 +2019,7 @@ export class GlobalVariableService {
                         console.log('Error deleteResource FAILED', {err});
                     };
 
-                    console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString() + ':');
+                    console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString());
                     reject(err.message);
                 }
             )

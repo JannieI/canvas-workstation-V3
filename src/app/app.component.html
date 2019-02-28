@@ -989,7 +989,22 @@
                                 Data related
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuWidgetExpand()"
+                                    title="Expand Dataset for selected Widget"
+                                    >
+                                    Expand
+                                </button>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuWidgetExport()"
+                                    title="Export Dataset for selected Widget"
+                                    >
+                                    Export
+                                </button>
+                                <div class="dropdown-divider"></div>
+        
                                 <button type="button"
                                     clrDropdownItem
                                     (click)="clickMenuWidgetBusinessGlossary()"
@@ -1043,20 +1058,6 @@
                             title="Duplicate selected Widget"
                             >
                             Duplicate
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuWidgetExpand()"
-                            title="Expand Dataset for selected Widget"
-                            >
-                            Expand
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuWidgetExport()"
-                            title="Export Dataset for selected Widget"
-                            >
-                            Export
                         </button>
                         <button type="button"
                             clrDropdownItem
