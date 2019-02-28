@@ -333,7 +333,7 @@ export class DashboardSubscribeComponent implements OnInit {
 
         // Delete globally and in DB
         // TODO - Proper error handling
-        this.globalVariableService.deleteDashboardSubscription(id).then( res => {
+        this.globalVariableService.deleteResource('dashboardSubscriptions', id).then( res => {
 
             // Update locally
             this.dashboardSubscriptions = this.globalVariableService.

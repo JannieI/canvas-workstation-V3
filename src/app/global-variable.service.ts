@@ -1062,7 +1062,6 @@ export class GlobalVariableService {
     isDirtyCanvasGroups: boolean = true;
     isDirtyCanvasSettings: boolean = true;
     isDirtyCanvasUsers: boolean = true;
-    isDirtyDashboardPermissions: boolean = true;
     isDirtyDashboards: boolean = true;
     isDirtyDashboardsRecent: boolean = true;
     isDirtyDashboardSchedules: boolean = true;
