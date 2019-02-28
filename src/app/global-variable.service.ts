@@ -22,7 +22,6 @@ import { DashboardRecent}             from './models';
 import { DashboardSnapshot }          from './models';
 import { DashboardSchedule }          from './models';
 import { DashboardScheduleLog }       from './models';
-import { DashboardSubscription }      from './models';
 import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
 import { DataCachingTable }           from './models';
@@ -988,7 +987,6 @@ export class GlobalVariableService {
     dashboards: Dashboard[] = [];
     dashboardSchedules: DashboardSchedule[] = [];
     dashboardSnapshots: DashboardSnapshot[] = [];
-    dashboardSubscriptions: DashboardSubscription[] = [];
     dashboardTabs: DashboardTab[] = [];
     dashboardTags: DashboardTag[] = [];
     datasources: Datasource[] = [];
@@ -1066,7 +1064,6 @@ export class GlobalVariableService {
     isDirtyDashboardsRecent: boolean = true;
     isDirtyDashboardSchedules: boolean = true;
     isDirtyDashboardSnapshots: boolean = true;
-    isDirtyDashboardSubscription: boolean = true;
     isDirtyDashboardTabs: boolean = true;
     isDirtyDataFields: boolean = true;
     isDirtyDatasets: boolean = true;
