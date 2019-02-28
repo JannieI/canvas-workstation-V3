@@ -7637,49 +7637,6 @@ export class GlobalVariableService {
         });
     }
 
-    addStatusBarMessageLog(data: StatusBarMessageLog): Promise<any> {
-        // Description: Adds a new statusBarMessageLogs
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addstatusBarMessageLogs ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'statusBarMessageLogs';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    this.statusBarMessageLogs.push(JSON.parse(JSON.stringify(res.data)));
-
-                    if (this.sessionDebugging) {
-                        console.log('addstatusBarMessageLogs ADDED', res.data, this.statusBarMessageLogs,
-                            this.statusBarMessageLogs.slice(0, 100))
-                    };
-
-                    resolve(res.data);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addstatusBarMessageLogs FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteWidgetLayout(id: number, dashboardLayoutID: number): Promise<string> {
         // Description: Deletes a WidgetLayout
         // Returns: 'Deleted' or error message
@@ -9240,7 +9197,7 @@ export class GlobalVariableService {
                 defaultMessage: statusBarMessage.defaultMessage
             };
 
-            this.addStatusBarMessageLog(newStatusBarMessageLog);
+            this.addResource('statusBarMessageLogs', newStatusBarMessageLog);
         };
 
         // No messages during dont disturb
