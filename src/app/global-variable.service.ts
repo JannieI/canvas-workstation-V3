@@ -1043,7 +1043,6 @@ export class GlobalVariableService {
     // isDirtyDataConnections: boolean = true;
     dashboardLayouts: DashboardLayout[] = [];
     widgetLayouts: WidgetLayout[] = [];
-    currentDashboardTags: DashboardTag[] = [];
 
 
     // Cache of Permanent Canvas-related data for the currentDashboard and
@@ -2504,7 +2503,6 @@ export class GlobalVariableService {
         this.currentWidgets = [];
         this.currentDashboardSnapshots = [];
         this.currentDashboardSchedules = [];
-        this.currentDashboardTags = [];
         this.currentDashboardPermissions = [];
         this.currentWidgetCheckpoints = [];
         this.currentDatasets = [];
