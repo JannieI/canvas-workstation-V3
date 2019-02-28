@@ -76,7 +76,7 @@ export class WidgetDeleteComponent implements OnInit {
         localWidget.isSelected = false;
 
         // Count Widget Stored Templates linked to this W
-        this.globalVariableService.getWidgetStoredTemplates().then(res => {
+        this.globalVariableService.getResource('widgetStoredTemplates').then(res => {
             if (res != null  && res.length > 0) {
                 res = res.filter(wst => wst.widgetID == localWidget.id)
                 this.nrWidgetStoredTemplates = res.length;
