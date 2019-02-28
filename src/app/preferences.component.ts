@@ -300,6 +300,13 @@ console.warn('xx this.preferenceStartupDashboardTabID', this.preferenceStartupDa
         );
 		this.formDashboardPreferencesClosed.emit(action);
     }
+    
+    clickRefreshLocalCache() {
+        // Refreshes local cache
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshLocalCache', '@Start');
+
+        this.globalVariableService.refreshLocalCacheMemory();
+    }
 
     //TODO
     //1. Set global var isFirstTimeDashboard = T/F depending on user input
