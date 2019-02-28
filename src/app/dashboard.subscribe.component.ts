@@ -336,10 +336,9 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalVariableService.deleteResource('dashboardSubscriptions', id).then( res => {
 
             // Update locally
-            this.dashboardSubscriptions = this.globalVariableService.
-                dashboardSubscriptions.filter(ds => 
-                    ds.userID == this.globalVariableService.currentUser.userID
-                );
+            this.dashboardSubscriptions = this.dashboardSubscriptions.filter(
+                ds => ds.id != id
+            );
 
             let index: number = -1;
             for(var i = 0; i < this.dashboards.length; i++) {
