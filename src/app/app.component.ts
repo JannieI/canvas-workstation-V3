@@ -9287,6 +9287,25 @@ export class AppComponent implements OnInit {
 
         this.showTitleForm = true;
     }
+    
+    actionmenuWidgetExpand(id: number) {
+        // Expand the data for this Widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetExpand', '@Start');
+
+        if (!this.menuOptionClickPreAction()) {
+            return;
+        };
+
+        // Indicate edit W and open Editor, which will work with selected W
+        this.currentWidgets.forEach(w => {
+            if (w.id == id) {
+                this.selectedWidget = w;
+            };
+        });
+
+        this.clickMenuWidgetExpand();
+        this.menuOptionClickPostAction();
+    }
 
     actionmenuWidgetFlipToTable(id: number) {
         // Change type to Graph for a Table

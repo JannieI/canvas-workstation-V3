@@ -3232,6 +3232,7 @@
                         type="button"
                         clrDropdownItem
                         (click)="actionmenuWidgetEditor($event, i, row.id)"
+                        title="Open the Editor for this Widget"
                         >
                         Graph Editor
                     </button>
@@ -3239,6 +3240,7 @@
                         type="button"
                         clrDropdownItem
                         (click)="actionmenuWidgetExplore($event, i, row.id)"
+                        title="Explore this Widget - no changes can be saved"
                         >
                         Explore
                     </button>
@@ -3246,6 +3248,7 @@
                         type="button"
                         clrDropdownItem
                         (click)="actionmenuWidgetFullScreen($event, i, row.id)"
+                        title="Show this Widget in full screen"
                         >
                         Full screen
                     </button>
@@ -3254,6 +3257,7 @@
                         type="button"
                         clrDropdownItem
                         (click)="actionmenuWidgetDescription($event, i, row.id)"
+                        title="Open Description for this Widget"
                         >
                         Description
                     </button>
@@ -3261,14 +3265,23 @@
                         type="button"
                         clrDropdownItem
                         (click)="actionmenuWidgetEditTitle($event, i, row.id)"
+                        title="Edit the title for this Widget"
                         >
                         Edit Title
+                    </button>
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuWidgetExpand()"
+                        title="Expand Dataset for this Widget"
+                        >
+                        Expand
                     </button>
 
                     <button class="dropdown-item" *ngIf="row.widgetType == 'Graph'"
                         type="button"
                         clrDropdownItem
                         (click)="actionmenuWidgetFlipToTable(row.id)"
+                        title="Flip to a Table view (use the same process to flip back)"
                         >
                         Flip to Table
                     </button>
@@ -3276,6 +3289,7 @@
                         type="button"
                         clrDropdownItem
                         (click)="actionmenuWidgetFlipToGraph(row.id)"
+                        title="Flip back to the original Graph"
                         >
                         Flip to Graph
                     </button>
