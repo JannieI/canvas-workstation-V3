@@ -1504,8 +1504,8 @@ export class GlobalVariableService {
                 console.warn('GlobalVariableService.getResource - In Mem vars for: ', resource, {dataCachingTableIndex}, {localCacheableMemory}, {localCacheableDisc}, {localVariableName});
 
                 // Local Memory is used, if fresh
-                if (localCacheableMemory) {
-                    console.log('GlobalVariableService.getResource - In local Memory for Resource: ', resource, localVariableName, this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
+                if (localCacheableMemory  ||  localCacheableDisc) {
+                    console.log('GlobalVariableService.getResource - In local Memory or Disc for Resource: ', resource, localVariableName, this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
 
                     // Fresh if not expired as yet
                     let dateNow: Date = new Date();
@@ -1523,36 +1523,37 @@ export class GlobalVariableService {
                     // Use local cache variable or table if fresh
                     // TODO - check the assumption that there is data when fresh (else returns [])
                     if (isFresh) {
-                        console.log('xx is FRESH for: ', resource)
+                        console.log('getResource cache is FRESH for: ', resource)
 
                         // Get from Memory (local var)
-                        if ( (localVariableName != null)
-                                &&
-                                (this[localVariableName].length != 0)
-                            ) {
-                            console.warn('xx data returned from Memory for : ', resource, this[localVariableName]);
-                            // var type = 'article';
-                            // this[type+'_count'] = 1000;  // in a function we use "this";
-                            // alert(this.article_count);
-                            console.timeEnd("DURATION getResource: " + resource);
-                            resolve(this[localVariableName]);
-                            return;
-
-                        // Get from Disc (Dexie)
-                        } else if (localTableName != null) {
-                            console.warn('xx in local Disc for: ', resource);
-                            this.dbCanvasAppDatabase.table(localTableName)
-                            .toArray()
-                            .then(res => {
-                                this[localVariableName] = res;
-                                console.log('xx data returned from Disc for: ', resource, this[localVariableName])
+                        if (localCacheableMemory) {
+                        
+                            if (localVariableName != null) {
+                                console.warn('getResource data returned from Memory for : ', resource, this[localVariableName]);
+                                // var type = 'article';
+                                // this[type+'_count'] = 1000;  // in a function we use "this";
+                                // alert(this.article_count);
                                 console.timeEnd("DURATION getResource: " + resource);
                                 resolve(this[localVariableName]);
-                            });
-
+                                return;
+                            };
+                        } else if (localCacheableDisc) {
+                            // Get from Disc (Dexie)
+                            if (localTableName != null) {
+                                console.warn('getResource in local Disc for: ', resource);
+                                this.dbCanvasAppDatabase.table(localTableName)
+                                .toArray()
+                                .then(res => {
+                                    this[localVariableName] = res;
+                                    console.log('getResource data returned from Disc for: ', resource, this[localVariableName])
+                                    console.timeEnd("DURATION getResource: " + resource);
+                                    resolve(this[localVariableName]);
+                                    return;
+                                });
+                            };
                             //  Return, else goes through to HTTP (its async)
-                            console.timeEnd("DURATION getResource: " + resource);
-                            return;
+                            // console.timeEnd("DURATION getResource: " + resource);
+                            // return;
                         };
                     };
                 };
