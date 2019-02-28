@@ -125,10 +125,15 @@ export class DashboardTabComponent {
         });
 
         // Get setup info
-        this.backgroundcolors = this.globalVariableService.canvasBackgroundcolors.slice();
-        this.backgroundcolors = [
-            {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, ...this.backgroundcolors
-        ];
+        this.globalVariableService.getResource('canvasBackgroundcolors')
+            .then(res => {
+                this.backgroundcolors = res;
+                this.backgroundcolors = [
+                    {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, 
+                    ...this.backgroundcolors
+                ];
+            });
+
     }
 
     ngOnDestroy() {
