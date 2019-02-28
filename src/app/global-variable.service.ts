@@ -48,7 +48,6 @@ import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 import { WidgetLayout }               from './models';
 import { WidgetGraph }                from './models';
-import { WidgetStoredTemplate }       from './models';
 
 // Dexie
 import Dexie                          from 'dexie';
@@ -1011,7 +1010,6 @@ export class GlobalVariableService {
     widgetCheckpoints: WidgetCheckpoint[] = [];
     widgets: Widget[] = [];
     widgetGraphs: WidgetGraph[] =[];
-    widgetStoredTemplates: WidgetStoredTemplate[] =[];
 
     // TODO - delete Depricated Caching when ready ...
     // backgroundcolorsDefault: CSScolor[] = [];
