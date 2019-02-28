@@ -192,7 +192,7 @@ export class DashboardTagsComponent implements OnInit {
 
         this.errorMessage = '';
         // Remove from seleted list
-        this.globalVariableService.deleteDashboardTag(id).then(res => {
+        this.globalVariableService.deleteResource('dashboardTags', id).then(res => {
             this.selectedDashboardTags.splice(index, 1);
         });
 
@@ -215,7 +215,8 @@ export class DashboardTagsComponent implements OnInit {
         for (let i = this.globalVariableService.dashboardTags.length - 1; i >= 0; i--) {
             if (this.globalVariableService.dashboardTags[i].dashboardID ==
                 this.selectedDashboard.id) {
-                    this.globalVariableService.deleteDashboardTag(
+                    this.globalVariableService.deleteResource(
+                        'dashboardTags',
                         this.globalVariableService.dashboardTags[i].id
                     );
                     // this.globalVariableService.dashboardTags.splice(i, 1)
