@@ -1043,7 +1043,6 @@ export class GlobalVariableService {
     // currentDatasources.  It holds complete data
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
     currentDashboardName = new BehaviorSubject<string>('');
-    currentDashboardPermissions: DashboardPermission[] = [];
     currentDashboards: Dashboard[] = [];
     currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
@@ -1185,7 +1184,6 @@ export class GlobalVariableService {
                         this.currentDashboardTabs.findIndex(t => t.id == dashboardTabID);
 
                     // Load Permissions for D
-                    // this.getCurrentDashboardPermissions(dashboardID).then( l => {
                     this.getResource(
                         'dashboardPermissions', 
                         '?filterObject={"dashboardID":' + dashboardID + '}').then( l => {
@@ -2498,7 +2496,6 @@ export class GlobalVariableService {
         this.currentWidgets = [];
         this.currentDashboardSnapshots = [];
         this.currentDashboardSchedules = [];
-        this.currentDashboardPermissions = [];
         this.currentWidgetCheckpoints = [];
         this.currentDatasets = [];
 
