@@ -1010,7 +1010,7 @@ export interface dataSchemaInterface {
             this.localWidget.visualGrammar = 'Vega-Lite';
 
             // Get Widget Graph Specs
-            this.globalVariableService.getWidgetGraphs().then(res => {
+            this.globalVariableService.getResource('widgetGraphs').then(res => {
                 this.widgetGraphsFull = res
                 this.widgetGraphs = res.filter(
                     wg => wg.visualGrammar==this.localWidget.visualGrammar
@@ -1188,7 +1188,7 @@ export interface dataSchemaInterface {
             this.showDatasourceMain = false;
 
             // Get Widget Graph Specs
-            this.globalVariableService.getWidgetGraphs().then(res => {
+            this.globalVariableService.getResource('widgetGraphs').then(res => {
                 this.widgetGraphsFull = res
                 this.widgetGraphs = res.filter(
                     wg => wg.visualGrammar==this.localWidget.visualGrammar
