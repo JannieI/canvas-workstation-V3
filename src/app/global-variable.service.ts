@@ -1936,7 +1936,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables deleteResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {id});
         };
-        console.time("DURATION deleteResource" + resource);
+        console.time("DURATION deleteResource" + resource +  ' ' + id.toString() + ':');
 
         return new Promise<any>((resolve, reject) => {
 
@@ -1949,7 +1949,7 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
                     if(res.statusCode != 'success') {
-                        console.timeEnd("DURATION deleteResource" + resource);
+                        console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString() + ':');
                         reject(res.message);
                         return;
                     };
@@ -2009,7 +2009,7 @@ export class GlobalVariableService {
                         console.log('deleteResource DELETED id: ', {id})
                     };
 
-                    console.timeEnd("DURATION deleteResource" + resource);
+                    console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString() + ':');
                     resolve('Deleted');
                 },
                 err => {
@@ -2017,7 +2017,7 @@ export class GlobalVariableService {
                         console.log('Error deleteResource FAILED', {err});
                     };
 
-                    console.timeEnd("DURATION deleteResource" + resource);
+                    console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString() + ':');
                     reject(err.message);
                 }
             )
