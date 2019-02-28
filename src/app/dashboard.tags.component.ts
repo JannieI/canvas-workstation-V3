@@ -143,7 +143,7 @@ export class DashboardTagsComponent implements OnInit {
                 createdOn: new Date()
             };
 
-        this.globalVariableService.addDashboardTag(newTag).then(res => {
+        this.globalVariableService.addResource('dashboardTags', newTag).then(res => {
             this.selectedDashboardTags.push(res);
         });
 
@@ -180,7 +180,7 @@ export class DashboardTagsComponent implements OnInit {
                 createdOn: new Date()
             };
 
-        this.globalVariableService.addDashboardTag(newTag).then(res => {
+        this.globalVariableService.addResource('dashboardTags', newTag).then(res => {
             this.selectedDashboardTags.push(res);
         });
 
@@ -227,7 +227,7 @@ export class DashboardTagsComponent implements OnInit {
             {
                 let newTag: DashboardTag = JSON.parse(JSON.stringify(dt));
                 newTag._id = null;
-                this.globalVariableService.addDashboardTag(newTag);
+                this.globalVariableService.addResource('dashboardTags', newTag);
             }
         );
 
