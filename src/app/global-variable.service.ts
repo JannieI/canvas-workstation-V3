@@ -28,7 +28,6 @@ import { DashboardSubscription }      from './models';
 import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
 import { DataCachingTable }           from './models';
-import { DatasourceTransformation }   from './models';
 import { DatasourceSchedule }         from './models';
 import { DatasourceScheduleLog }      from './models';
 import { DataField }                  from './models';
@@ -1002,7 +1001,6 @@ export class GlobalVariableService {
     dataFields: DataField[] = [];
     datasets: any = [];                                 // List of dSets, NO data
     datasourcePermissions: DatasourcePermission[] = [];
-    datasourceTransformations: DatasourceTransformation[] = [];
     dataTables: DataTable[] = [];
     finalFields: any = finalFields;
     hasNewMessage = new BehaviorSubject<boolean>(false);
@@ -1081,7 +1079,6 @@ export class GlobalVariableService {
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasources: boolean = true;
     isDirtyDataTables: boolean = true;
-    isDirtyDatasourceTransformations: boolean = true;
     isDirtyPaletteButtonBar: boolean = true;
     isDirtyPaletteButtonsSelected: boolean = true;
     isDirtyShapes: boolean = true;
