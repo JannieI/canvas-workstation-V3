@@ -9299,7 +9299,10 @@ export class AppComponent implements OnInit {
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
             if (w.id == id) {
+                w.isSelected = true;
                 this.selectedWidget = w;
+            } else {
+                w.isSelected = false;
             };
         });
 
