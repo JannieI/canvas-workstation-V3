@@ -983,7 +983,6 @@ export class GlobalVariableService {
     canvasUsers: CanvasUser[] = [];
     dashboardPermissions: DashboardPermission[] = [];
     dashboardsRecent: DashboardRecent[] = [];           // List of Recent Dashboards
-    dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     dashboards: Dashboard[] = [];
     dashboardSchedules: DashboardSchedule[] = [];
     dashboardSnapshots: DashboardSnapshot[] = [];
@@ -3456,7 +3455,6 @@ export class GlobalVariableService {
         // Note:  data is ALWAYS synced to 3 different places:
         // - DB
         // - this.dashboardsRecent (array in Global Vars)
-        // - dashboardsRecentBehSubject (.next)
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getDashboardsRecent ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
@@ -3504,7 +3502,6 @@ export class GlobalVariableService {
                     temp = temp.filter(t => t.stateAtRunTime != 'Deleted');
 
                     this.dashboardsRecent = temp;
-                    this.dashboardsRecentBehSubject.next(temp);
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                     this.isDirtyDashboardsRecent = false;
@@ -3587,7 +3584,6 @@ export class GlobalVariableService {
                             };
                             return 0;
                         });
-                        this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
                         resolve(dR)
                     })
@@ -3616,7 +3612,6 @@ export class GlobalVariableService {
                             };
                             return 0;
                         });
-                        this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
                         resolve(recentDashboard)
                     })
@@ -3652,7 +3647,6 @@ export class GlobalVariableService {
     deleteDashboardRecent(id: number): Promise<string> {
         // Description: Deletes a Recent Dashboard, and updates:
         // - this.dashboardsRecent
-        // - this.dashboardsRecentBehSubject.next()
         // Returns 'Deleted' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables deleteDashboardRecent ...',
@@ -3676,8 +3670,6 @@ export class GlobalVariableService {
                     this.dashboardsRecent = this.dashboardsRecent.filter(
                         rec => rec.id != id
                     );
-
-                    this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
                     if (this.sessionDebugging) {
                         console.log('deleteDashboardRecent DELETED id: ', {id})

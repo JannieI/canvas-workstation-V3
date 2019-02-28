@@ -161,9 +161,6 @@ export class LandingComponent implements OnInit {
 													this.globalVariableService.currentPaletteButtonsSelected.value
 												);
 											});
-
-											// // Inform subscribers
-											this.globalVariableService.dashboardsRecentBehSubject.next(recD);
 										});
 									} else {
 										pBsel = pBsel.filter(
@@ -173,7 +170,6 @@ export class LandingComponent implements OnInit {
 										// Inform subscribers
 										this.globalVariableService.currentPaletteButtonsSelected
 											.next(pBsel);
-										this.globalVariableService.dashboardsRecentBehSubject.next(recD);
 
 									};
 

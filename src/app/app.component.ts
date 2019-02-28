@@ -682,11 +682,6 @@ export class AppComponent implements OnInit {
                         }
                 );
 
-                // Recent Ds
-                this.globalVariableService.dashboardsRecentBehSubject.subscribe(i => {
-                    this.recentDashboards = i.slice(0, 5)
-                });
-
                 // This refreshes one W
                 this.changedWidgetSubscription = this.globalVariableService.changedWidget.subscribe(
                     w => {
