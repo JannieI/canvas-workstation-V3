@@ -96,7 +96,7 @@ import { GlobalVariableService }      from './global-variable.service';
         this.slicerType = 'List';
 
         // Get setup info
-        this.colors = this.globalVariableService.backgroundcolors.slice();
+        this.colors = this.globalVariableService.canvasBackgroundcolors.slice();
                 
         // TODO - fix hardcoding
         // Get Bin values

@@ -131,7 +131,7 @@ export class WidgetTitleComponent implements OnInit {
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
         // Get setup info
-        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+        this.backgroundcolors = this.globalVariableService.canvasBackgroundcolors.slice();
         this.backgroundcolors = [
             {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, ...this.backgroundcolors
         ];

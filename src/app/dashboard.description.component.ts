@@ -176,7 +176,7 @@ export class DashboardDescriptionComponent implements OnInit {
         });
 
         // Get setup info
-        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+        this.backgroundcolors = this.globalVariableService.canvasBackgroundcolors.slice();
 
     }
 

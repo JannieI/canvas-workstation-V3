@@ -206,11 +206,14 @@ export class ShapeEditComponent implements OnInit {
         });
 
         // Get setup info
-        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
-        this.backgroundcolors = [
-            {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, ...this.backgroundcolors
-        ];
-
+        this.globalVariableService.getResource('canvasBackgroundcolors')
+            .then(res => {
+                this.backgroundcolors = res;
+                this.backgroundcolors = [
+                    {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, 
+                    ...this.backgroundcolors
+                ];
+            });
         // Create list of Tabs to show: first is 'None', rest is name (sequence nr),
         //   where sequence nr = index + 1 - to look easier for user, 1 = 1st tab, etc
         this.dashboardTabList = ['None'];

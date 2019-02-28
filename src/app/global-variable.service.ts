@@ -977,7 +977,7 @@ export class GlobalVariableService {
     // It hold full sets (all the records) but not necessarily complete (some portions like
     // the data arrays may be missing)
     actions: CanvasAction[] = [];
-    backgroundcolors: CSScolor[] = [];
+    canvasBackgroundcolors: CSScolor[] = [];
     canvasGroups: CanvasGroup[] = [];
     canvasUsers: CanvasUser[] = [];
     dashboardPermissions: DashboardPermission[] = [];

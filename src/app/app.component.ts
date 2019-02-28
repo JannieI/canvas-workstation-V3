@@ -755,13 +755,13 @@ export class AppComponent implements OnInit {
                                         if (dashboardIndex >= 0) {
                                             this.currentDashboardBackgroundColor = this.globalVariableService.dashboards[dashboardIndex].backgroundColor;
 
-                                            let bgIndex: number = this.globalVariableService.backgroundcolors
+                                            let bgIndex: number = this.globalVariableService.canvasBackgroundcolors
                                                 .findIndex(bc => bc.name == this.currentDashboardBackgroundColor);
                                             this.currentDashboardBackgroundColorCode = 
                                                 this.currentDashboardBackgroundColorDefault;
                                             if (bgIndex >= 0) {
                                                 this.currentDashboardBackgroundColorCode = this.globalVariableService
-                                                    .backgroundcolors[bgIndex].cssCode;
+                                                    .canvasBackgroundcolors[bgIndex].cssCode;
                                             };
 
                                             let templateDashboardID: number = this.globalVariableService.dashboards[dashboardIndex].templateDashboardID;
@@ -1291,13 +1291,13 @@ export class AppComponent implements OnInit {
             this.currentDashboardName = this.selectedDashboard.name;
             this.currentDashboardBackgroundColor = this.selectedDashboard.backgroundColor;
 
-            let bgIndex: number = this.globalVariableService.backgroundcolors
+            let bgIndex: number = this.globalVariableService.canvasBackgroundcolors
                 .findIndex(bc => bc.name == this.currentDashboardBackgroundColor);
             this.currentDashboardBackgroundColorCode =
                 this.currentDashboardBackgroundColorDefault;
             if (bgIndex >= 0) {
                 this.currentDashboardBackgroundColorCode = this.globalVariableService
-                    .backgroundcolors[bgIndex].cssCode;
+                    .canvasBackgroundcolors[bgIndex].cssCode;
             };
 
             this.currentDashboardBackgroundImage = this.selectedDashboard.backgroundImage;
@@ -6986,7 +6986,7 @@ export class AppComponent implements OnInit {
         for (var i = 0; i < this.currentWidgets.length; i++) {
 
             oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
-
+console.log('xx i', i)
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex =
                     this.globalVariableService.canvasSettings.widgetsMinZindex;

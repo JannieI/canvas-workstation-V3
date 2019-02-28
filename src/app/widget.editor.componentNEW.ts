@@ -978,7 +978,7 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get setup info
-        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+        this.backgroundcolors = this.globalVariableService.canvasBackgroundcolors.slice();
         this.backgroundcolors = [
             {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false}, ...this.backgroundcolors
         ];

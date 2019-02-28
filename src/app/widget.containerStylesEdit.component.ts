@@ -139,7 +139,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // });
 
         // Get setup info
-        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+        this.backgroundcolors = this.globalVariableService.canvasBackgroundcolors.slice();
 
     }
 
