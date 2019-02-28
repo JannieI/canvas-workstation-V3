@@ -7788,59 +7788,6 @@ export class GlobalVariableService {
         });
     }
 
-    saveWidgetStoredTemplate(data: WidgetStoredTemplate): Promise<string> {
-        // Description: Saves WidgetStoredTemplate
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveWidgetStoredTemplate ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'widgetStoredTemplates';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.widgetStoredTemplates.findIndex(d =>
-                        d.id == data.id
-                    );
-                    if (localIndex >= 0) {
-                        this.widgetStoredTemplates[localIndex] = data;
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('saveWidgetStoredTemplate SAVED', res.data)
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveWidgetStoredTemplate FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteWidgetStoredTemplate(id: number): Promise<string> {
         // Description: Deletes a WidgetStoredTemplate
         // Returns: 'Deleted' or error message
