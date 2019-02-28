@@ -1671,7 +1671,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {data});
         };
         var now = new Date();
-        let unique: number = now.getMinutes() + now.getSeconds();
+        let unique: number = now.getMinutes() + now.getSeconds() + now.getMilliseconds();
         console.time("DURATION addResource " + resource + ' ' + unique.toString());
 
         return new Promise<any>((resolve, reject) => {
