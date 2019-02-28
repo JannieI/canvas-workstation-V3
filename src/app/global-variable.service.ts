@@ -4631,53 +4631,6 @@ export class GlobalVariableService {
 
     }
 
-    deleteDashboardPermission(id: number): Promise<string> {
-        // Description: Deletes a DashboardPermissions
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDashboardPermission ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-
-            let pathUrl: string = 'dashboardPermissions';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.dashboardPermissions = this.dashboardPermissions.filter(
-                        dsp => dsp.id != id
-                    );
-                    this.currentDashboardPermissions = this.currentDashboardPermissions.filter(
-                        dsp => dsp.id != id
-                    );
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteDashboardPermission DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDashboardPermission FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     getDashboardSnapshots(): Promise<DashboardSnapshot[]> {
         // Description: Gets all Sn
         // Returns: this.dashboardSnapshots array, unless:
