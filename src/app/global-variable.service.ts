@@ -5537,7 +5537,7 @@ export class GlobalVariableService {
                     );
 
                     // Delete where DS was used in Stored Template
-                    this.getWidgetStoredTemplates().then(swt => {
+                    this.getResource('widgetStoredTemplates').then(swt => {
                         swt.forEach(swt => {
                             this.widgets.forEach(w => {
                                 if (swt.widgetID == w.id  &&  w.datasourceID == id) {
@@ -6849,7 +6849,7 @@ export class GlobalVariableService {
                     });
 
                     // Delete where W was used in Stored Template
-                    this.getWidgetStoredTemplates().then(swt => {
+                    this.getResource('widgetStoredTemplates').then(swt => {
                         swt = swt.filter(w1 => w1.widgetID == id);
                         swt.forEach(w2 => {
                             this.deleteWidgetStoredTemplate(w2.id);
@@ -7786,49 +7786,6 @@ export class GlobalVariableService {
                 }
             )
         });
-    }
-
-    getWidgetStoredTemplates(): Promise<WidgetStoredTemplate[]> {
-        // Description: Gets WidgetStoredTemplates.
-        // Returns: this.WidgetStoredTemplates object, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getWidgetStoredTemplates ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<WidgetStoredTemplate[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-            let pathUrl: string = 'widgetStoredTemplates';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                    this.widgetStoredTemplates = res.data;
-
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getWidgetStoredTemplates 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.widgetStoredTemplates);
-                    };
-
-                    resolve(this.widgetStoredTemplates);
-                },
-                err => {
-                    reject(err.message)
-                }
-            );
-
-        });
-
     }
 
     addWidgetStoredTemplate(data: WidgetStoredTemplate): Promise<any> {
