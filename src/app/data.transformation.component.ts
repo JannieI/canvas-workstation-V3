@@ -343,9 +343,9 @@ export class DataTransformationComponent implements OnInit {
         this.datasourceTransformations[index].sequence = previousSequence;
 
         // Save to DB
-        this.globalVariableService.saveDatasourceTransformation(
+        this.globalVariableService.saveResource('datasourceTransformations', 
             this.datasourceTransformations[index - 1]);
-        this.globalVariableService.saveDatasourceTransformation(
+        this.globalVariableService.saveResource('datasourceTransformations', 
             this.datasourceTransformations[index]);
 
         // Resort
@@ -384,9 +384,9 @@ export class DataTransformationComponent implements OnInit {
         this.datasourceTransformations[index].sequence = nextSequence;
 
         // Save to DB
-        this.globalVariableService.saveDatasourceTransformation(
+        this.globalVariableService.saveResource('datasourceTransformations', 
             this.datasourceTransformations[index]);
-        this.globalVariableService.saveDatasourceTransformation(
+        this.globalVariableService.saveResource('datasourceTransformations', 
             this.datasourceTransformations[index + 1]);
 
         // Resort
@@ -629,7 +629,7 @@ export class DataTransformationComponent implements OnInit {
             ];
 
             // Save to DB
-            this.globalVariableService.saveDatasourceTransformation(
+            this.globalVariableService.saveResource('datasourceTransformations', 
                 this.datasourceTransformations[this.selectedDataRowIndex]);
         };
 
