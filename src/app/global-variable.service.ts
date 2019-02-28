@@ -1090,7 +1090,6 @@ export class GlobalVariableService {
     isDirtyShapes: boolean = true;
     isDirtySlicers: boolean = true;
     isDirtystatusBarMessageLogs: boolean = true;
-    isDirtyTransformations: boolean = true;
     isDirtyUserPaletteButtonBar: boolean = true;
     isDirtyWidgetCheckpoints: boolean = true;
     isDirtyWidgets: boolean = true;
