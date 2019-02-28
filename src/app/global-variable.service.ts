@@ -7425,58 +7425,6 @@ export class GlobalVariableService {
         });
     }
 
-    saveBackgroundColor(data: CSScolor): Promise<string> {
-        // Description: Saves BackgroundColor
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveBackgroundColor ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            let pathUrl: string = 'canvasBackgroundcolors';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.backgroundcolors.findIndex(d =>
-                        d.id == data.id
-                    );
-                    if (localIndex >= 0) {
-                        this.backgroundcolors[localIndex] = data;
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('saveBackgroundColor SAVED', {res})
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveBackgroundColor FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteBackgroundColor(id: number): Promise<string> {
         // Description: Deletes a BackgroundColor
         // Returns: 'Deleted' or error message
