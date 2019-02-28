@@ -254,7 +254,7 @@ export class DashboardShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardPermission(
+            this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 ;
         };
@@ -286,7 +286,7 @@ export class DashboardShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardPermission(
+            this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 ;
         };
@@ -318,7 +318,7 @@ export class DashboardShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardPermission(
+            this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 ;
         };
@@ -350,7 +350,7 @@ export class DashboardShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardPermission(
+            this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 ;
         };
@@ -383,7 +383,7 @@ export class DashboardShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardPermission(
+            this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 ;
         };
@@ -416,7 +416,7 @@ export class DashboardShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardPermission(
+            this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 ;
         };
