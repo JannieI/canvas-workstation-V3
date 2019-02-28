@@ -90,7 +90,10 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get setup info
-        this.backgroundcolors = this.globalVariableService.canvasBackgroundcolors.slice();
+        this.globalVariableService.getResource('canvasBackgroundcolors')
+            .then(res => {
+                this.backgroundcolors = res;
+            });
 
     }
 
