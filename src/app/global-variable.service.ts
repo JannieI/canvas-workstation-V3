@@ -7637,61 +7637,6 @@ export class GlobalVariableService {
         });
     }
 
-    getStatusBarMessageLogs(userID: string): Promise<StatusBarMessageLog[]> {
-        // Description: Gets all StatusBarMessageLogs
-        // Returns: this.statusBarMessageLogss array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getstatusBarMessageLogss ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                this.statusBarMessageLogs.length);
-        };
-
-        return new Promise<StatusBarMessageLog[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.statusBarMessageLogs.length == 0)  ||  (this.isDirtystatusBarMessageLogs) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'statusBarMessageLogs';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.statusBarMessageLogs = res.data;
-
-                        this.isDirtystatusBarMessageLogs = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getstatusBarMessageLogss 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.statusBarMessageLogs)
-                        };
-
-                        resolve(this.statusBarMessageLogs);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getstatusBarMessageLogss 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.statusBarMessageLogs.slice(0, 100))
-                };
-
-                resolve(this.statusBarMessageLogs);
-            }
-        });
-
-    }
-
     addStatusBarMessageLog(data: StatusBarMessageLog): Promise<any> {
         // Description: Adds a new statusBarMessageLogs
         // Returns: Added Data or error message
