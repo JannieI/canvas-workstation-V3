@@ -5541,7 +5541,7 @@ export class GlobalVariableService {
                         swt.forEach(swt => {
                             this.widgets.forEach(w => {
                                 if (swt.widgetID == w.id  &&  w.datasourceID == id) {
-                                    this.deleteWidgetStoredTemplate(swt.id);
+                                    this.deleteResource('widgetStoredTemplates', swt.id);
                                 };
                             });
                         });
@@ -6852,7 +6852,7 @@ export class GlobalVariableService {
                     this.getResource('widgetStoredTemplates').then(swt => {
                         swt = swt.filter(w1 => w1.widgetID == id);
                         swt.forEach(w2 => {
-                            this.deleteWidgetStoredTemplate(w2.id);
+                            this.deleteResource('widgetStoredTemplates', w2.id);
                         });
                     });
 
@@ -7780,49 +7780,6 @@ export class GlobalVariableService {
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error deleteWidgetLayout FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
-    deleteWidgetStoredTemplate(id: number): Promise<string> {
-        // Description: Deletes a WidgetStoredTemplate
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteWidgetStoredTemplate ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'widgetStoredTemplates';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.widgetStoredTemplates = this.widgetStoredTemplates.filter(
-                        wst => wst.id != id);
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteWidgetStoredTemplate DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteWidgetStoredTemplate FAILED', {err});
                     };
 
                     reject(err.message);
