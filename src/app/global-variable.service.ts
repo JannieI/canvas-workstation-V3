@@ -567,7 +567,6 @@ const widgetTemplate: Widget =
         "graphFillColor": "",
         "graphHoverColor": "",
         "graphPanAndZoom": false,
-        "graphSpecification": "",
         "graphDescription": "",
         "tableBackgroundColor" : "",
         "tableBackgroundColorName" : "",

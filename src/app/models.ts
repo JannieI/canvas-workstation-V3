@@ -1489,7 +1489,6 @@ export class Widget {
     graphFillColor: string;                 // Fill colour of the graph area
     graphHoverColor: string;                //
     graphPanAndZoom: boolean;               // True if selection = grid, with pan and zoom.  Only applies to single layer graphs
-    graphSpecification: any;                // Vega specification
     graphDescription: string;               // Description of graph for users
 
     // Data
