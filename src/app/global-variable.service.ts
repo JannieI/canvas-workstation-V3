@@ -4776,56 +4776,6 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentDashboardTags(dashboardID: number): Promise<DashboardTag[]> {
-        // Description: Gets all Tags for current D
-        // Params:
-        //   dashboardID
-        // Returns: this.currentDashboardTags array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDashboardTags ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {dashboardID});
-        };
-
-        // Refresh frogetm source at start, or if dirty
-        if ( (this.dashboardTags.length == 0)  ||  (this.isDirtyDashboardTags) ) {
-            return new Promise<DashboardTag[]>((resolve, reject) => {
-                this.getResource('getDashboardTags')
-                    .then(res => {
-                        res = res.filter(
-                            i => i.dashboardID == dashboardID
-                        );
-                        this.currentDashboardTags = res;
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDashboardTags 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {dashboardID}, {res})
-                        };
-
-                        resolve(this.currentDashboardTags);
-                })
-             })
-        } else {
-            return new Promise<DashboardTag[]>((resolve, reject) => {
-                let returnData: DashboardTag[];
-                returnData = this.dashboardTags.filter(
-                    i => i.dashboardID == dashboardID
-                );
-                this.currentDashboardTags = returnData;
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentDashboardTags 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {dashboardID})
-                };
-
-                resolve(this.currentDashboardTags);
-            });
-        };
-    }
-
     addDashboardTag(data: DashboardTag): Promise<any> {
         // Description: Adds a new DashboardTag
         // Returns: Added Data or error message
