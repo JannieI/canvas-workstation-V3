@@ -78,7 +78,7 @@ export class ManageColoursComponent implements OnInit {
             .catch(err => {
                 this.errorMessage = err;
             });
-        this.globalVariableService.getBackgroundColors().then(res => {
+        this.globalVariableService.getResource('canvasBackgroundcolors').then(res => {
             this.backgroundcolors = res.slice();
 
             // Sort the list
