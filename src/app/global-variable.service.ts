@@ -1076,7 +1076,6 @@ export class GlobalVariableService {
     isDirtyDashboardSnapshots: boolean = true;
     isDirtyDashboardSubscription: boolean = true;
     isDirtyDashboardTabs: boolean = true;
-    isDirtyDashboardTags: boolean = true;
     isDirtyDataFields: boolean = true;
     isDirtyDatasets: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
