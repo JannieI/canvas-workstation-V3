@@ -73,7 +73,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         // Load Stored Widget Templates, adding DS Name for user
         this.globalVariableService.getWidgetStoredTemplates()
             .then(res => {
-                this.globalVariableService.getWidgetGraphs().then(graphs => {
+                this.globalVariableService.getResource('widgetGraphs').then(graphs => {
                     this.widgetGraphs = graphs;
                 });
 
