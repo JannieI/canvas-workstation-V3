@@ -70,7 +70,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
         // Initials
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getWidgetStoredTemplates()
+        this.globalVariableService.getResource('widgetStoredTemplates')
             .then(res => {
                 this.widgetStoredTemplates = res.filter(wst => 
                     wst.widgetID == this.selectedWidget.id
