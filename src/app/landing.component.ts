@@ -71,7 +71,7 @@ export class LandingComponent implements OnInit {
 
 						console.warn('xx BEFORE filter', this.dashboardsRecent);
 
-						this.globalVariableService.getDashboardPermissions().then(dP => {
+						this.globalVariableService.getResource('dashboardPermissions').then(dP => {
 
 							// Determine access - different rights can achive View or Edit access
 							let accessIDs: number[] = [];
