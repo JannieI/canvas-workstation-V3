@@ -2850,6 +2850,115 @@ export class GlobalVariableService {
         });
     }
 
+    refreshLocalCacheMemory() {
+        // Refreshes ALL the local cache in Memory
+
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables refreshLocalCacheMemory ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        // Loop on localCachingTable
+        this.dataCachingTable.forEach(dct => {
+            // 
+            console.log('xx dct', dct.key, dct.localVariableName)
+
+            // Get from HTTP server
+            let resource: string = dct.key;
+            let pathUrl: string = resource;
+            let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                httpResult  => {
+
+                    if(httpResult.statusCode != 'success') {
+                        if (this.sessionDebugging) {
+                            console.log('Error getResource FAILED', {httpResult});
+                        };
+
+                        console.timeEnd("DURATION getResource: " + resource);
+                        // reject(httpResult.message);
+                        return;
+                    };
+
+                    // If cached, fill local info
+                    if (dataCachingTableIndex >= 0) {
+                        localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
+                        localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
+                        localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
+                        localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
+                        localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
+
+                        // Fill local Vars
+                        if (localCacheableMemory) {
+
+                            if (localVariableName != null) {
+                                this[localVariableName] = [];
+                                this[localVariableName] = httpResult.data;
+                                console.warn('GlobalVariablService updated cached Memory for ', resource);
+                            };
+
+                            // TODO - should we fill Current Var here a well?
+                        };
+
+                        // Fill Disc
+                        if (localCacheableDisc) {
+
+                            if (localTableName != null) {
+
+                                this.dbCanvasAppDatabase.table(localTableName).clear().then(res => {
+                                    this.dbCanvasAppDatabase.table(localTableName)
+                                    .bulkPut(httpResult.data)
+                                    .then(resPut => {
+
+                                        // Count
+                                        this.dbCanvasAppDatabase.table(localTableName)
+                                            .count(resCount => {
+                                                console.warn('GlobalVariableService updated local Disc for:', resource);
+                                        });
+                                    });
+                                });
+                            };
+                        };
+
+                        // Update dataCaching in Memory
+                        let dt: Date = new Date();
+                        let seconds: number = 86400;
+                        if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
+                            seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
+                        };
+                        this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime =
+                            this.dateAdd(dt, 'second', seconds);
+                        this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
+                            new Date();
+
+                        // Update dataCaching on Disc
+                        this.dbDataCachingTable.table("localDataCachingTable")
+                            .bulkPut(this.dataCachingTable)
+                            .then(res => {
+                                this.dbDataCachingTable.table("localDataCachingTable").count(res => {
+                                    console.warn('xx dataCachingTable updated count @end', res);
+                                });
+                        });
+                    };
+
+                    console.warn('xx GV getResource data retured from HTTP for: ', resource, httpResult.data);
+                    console.timeEnd("DURATION getResource: " + resource);
+                    resolve(httpResult.data);
+                    return;
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error getResource FAILED', {err});
+                    };
+                    console.timeEnd("DURATION getResource: " + resource);
+                    reject(err.message)
+                }
+            );
+        })
+
+
+        
+    }
     updateLocalCacheMemory(
         cacheAction: string,
         cachedEntityID: number,

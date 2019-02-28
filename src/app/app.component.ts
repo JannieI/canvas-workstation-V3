@@ -8109,14 +8109,14 @@ export class AppComponent implements OnInit {
         // Get GV values
         let resource: string = 'dashboards';            // Works !
         // let resource: string = 'datasources';        // Works !
-        this.globalVariableService.getResource(resource).then(res => {
-            let testDashboards: Dashboard[];
-            testDashboards = res;
-            console.warn('xx Returned for resource', resource, testDashboards)
+        // this.globalVariableService.getResource(resource).then(res => {
+        //     let testDashboards: Dashboard[];
+        //     testDashboards = res;
+        //     console.warn('xx Returned for resource', resource, testDashboards)
 
-        });
+        // });
 
-
+        this.globalVariableService.refreshLocalCacheMemory()
         // // Count
         // this.dbCanvasAppDatabase.table("localDashboards").count(res => {
         //     console.warn('xx count of localDashboard', res);
@@ -10746,8 +10746,9 @@ export class AppComponent implements OnInit {
 
     changeThinArrowLength(shapeLineLength: number) {
         // Changes length of Thin Arrow Line
-        this.globalFunctionService.printToConsole(this.constructor.name,'mousedownArrow', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeThinArrowLength', '@Start');
 
+        console.log('xx shapeLineLength', shapeLineLength)
         // TODO - change if 90,90 is made dynamic in Sh Ed
         return "M90,90 L" + (90 + shapeLineLength).toString() 
             + ",90";            
