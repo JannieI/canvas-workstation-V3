@@ -54,7 +54,7 @@ export class WidgetDescriptionComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getWidgetStoredTemplates().then(wst => {
+        this.globalVariableService.getResource('widgetStoredTemplates').then(wst => {
             wst = wst.filter(w => w.widgetID == this.selectedWidget.id);
             if (wst != null  &&  wst.length > 0) {
                 this.hasTemplate = true;
