@@ -1670,7 +1670,9 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables addResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {data});
         };
-        console.time("DURATION addResource" + resource);
+        var now = new Date();
+        let unique: number = now.getMinutes() + now.getSeconds();
+        console.time("DURATION addResource " + resource + ' ' + unique.toString() + ':');
 
         return new Promise<any>((resolve, reject) => {
 
@@ -1685,7 +1687,7 @@ export class GlobalVariableService {
                     console.warn('xx inside POST HTTP')
 
                     if(httpResult.statusCode != 'success') {
-                        console.timeEnd("DURATION addResource" + resource);
+                        console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString() + ':');
                         reject(httpResult.message);
                         return;
                     };
@@ -1777,7 +1779,7 @@ export class GlobalVariableService {
                     };
 
                     console.warn('xx data retured from HTTP', httpResult.data);
-                    console.timeEnd("DURATION addResource" + resource);
+                    console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString() + ':');
                     resolve(httpResult.data);
                     return;
                 },
@@ -1786,7 +1788,7 @@ export class GlobalVariableService {
                         console.log('Error addResource FAILED', {err});
                     };
 
-                    console.timeEnd("DURATION addResource" + resource);
+                    console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString() + ':');
                     reject(err.message)
                 }
             );
