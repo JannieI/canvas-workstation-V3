@@ -5738,48 +5738,6 @@ export class GlobalVariableService {
         });
     }
 
-    deleteDashboardSubscription(id: number): Promise<string> {
-        // Description: Deletes a DashboardSubscription
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDashboardSubscription ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardSubscriptions';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.dashboardSubscriptions = this.dashboardSubscriptions.
-                        filter(sub => sub.id != id);
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteDashboardSubscription DELETED', {id}, {res},
-                            this.dashboardSubscriptions)
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDashboardSubscription FAILED', {err});
-                    };
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     getPaletteButtonBar(): Promise<PaletteButtonBar[]> {
         // Description: Gets currentgetPaletteButtonBar
         // Returns: this.currentgetPaletteButtonBar object, unless:
