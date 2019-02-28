@@ -104,7 +104,8 @@ export class DashboardShareComponent implements OnInit {
             this.globalVariableService.dashboardPermissions.forEach(dp => {
                 dPIDs.push(dp.id);
             });
-            dPIDs.forEach(id => this.globalVariableService.deleteDashboardPermission(id));
+            dPIDs.forEach(id => this.globalVariableService.deleteResource(
+                'dashboardPermissions', id));
         };
 
         // Save data
@@ -195,7 +196,7 @@ export class DashboardShareComponent implements OnInit {
         };
 
         // Delete locally, globally and DB
-        this.globalVariableService.deleteDashboardPermission(id).then(res => {
+        this.globalVariableService.deleteResource('dashboardPermissions', id).then(res => {
             let index: number = -1;
             for(var i = 0; i < this.dashboardPermissions.length; i++) {
                 if (this.dashboardPermissions[i].id == id) {
