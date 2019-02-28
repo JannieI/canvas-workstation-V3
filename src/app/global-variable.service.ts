@@ -1185,8 +1185,11 @@ export class GlobalVariableService {
                         this.currentDashboardTabs.findIndex(t => t.id == dashboardTabID);
 
                     // Load Permissions for D
-                    this.getCurrentDashboardPermissions(dashboardID).then( l => {
-
+                    // this.getCurrentDashboardPermissions(dashboardID).then( l => {
+                    this.getResource(
+                        'dashboardPermissions', 
+                        '?filterObject={"dashboardID":' + dashboardID + '}').then( l => {
+                        
                     // Load Checkpoints for D
                     this.getCurrentWidgetCheckpoints(dashboardID).then( l => {
 
