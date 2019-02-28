@@ -93,10 +93,14 @@ export class WidgetContainerComponent implements OnInit {
         this.containerBorderColourName = this.localWidget.containerBorderColourName;
 
         // Get setup info
-        this.backgroundcolors = this.globalVariableService.canvasBackgroundcolors.slice();
-        this.backgroundcolors = [
-            {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, ...this.backgroundcolors
-        ];
+        this.globalVariableService.getResource('canvasBackgroundcolors')
+            .then(res => {
+                this.backgroundcolors = res;
+                this.backgroundcolors = [
+                    {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, 
+                    ...this.backgroundcolors
+                ];
+            });
 
         // Get list of Styles
         this.globalVariableService.getResource('containerStyles')
