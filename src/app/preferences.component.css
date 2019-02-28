@@ -116,6 +116,15 @@
             margin-left: 20px;
             text-align: left;
         }
+        .gridSettingsRefreshLocalCache {
+            grid-column-start: 12;
+            /* autoprefixer: off */
+            grid-column-end: 13;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin-left: 20px;
+            text-align: left;
+        }
 
     .gridMessagesTitle {
         font-size: 0.65rem;

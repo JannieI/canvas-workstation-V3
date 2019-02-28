@@ -70,7 +70,15 @@
                         title="Log Debug messages to the console (for Developers) (T/F)"
                         >
                 </div>
-
+                <div class="gridSettingsRefreshLocalCache">
+                    <button
+                        type="button"
+                        class="btn btn-linked"
+                        (click)="clickRefreshLocalCache()"
+                        >
+                        Cancel
+                    </button>
+                </div>
                 <div class="gridMessagesTitle">
                     <b>Show messages:</b>
                 </div>
@@ -238,7 +246,7 @@
                 </div>
 
                 <div class="gridButtonCancel">
-                        <button
+                    <button
                         type="button"
                         class="btn btn-secondary"
                         (click)="clickClose('Close')"
