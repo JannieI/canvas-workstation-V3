@@ -158,7 +158,7 @@ export class ManageColoursComponent implements OnInit {
                 shortList: false
             };
                 
-        this.globalVariableService.addBackgroundColor(newCSSColour).then(res => {
+        this.globalVariableService.addResource('canvasBackgroundcolors', newCSSColour).then(res => {
             console.warn('xx res', res);
             
             this.backgroundcolors.push(res);
@@ -207,7 +207,7 @@ export class ManageColoursComponent implements OnInit {
                 shortList: this.backgroundcolorsDefault[this.availableBgIndex].shortList
             };
                 
-        this.globalVariableService.addBackgroundColor(newCSSColour).then(res => {
+        this.globalVariableService.addResource('canvasBackgroundcolors', newCSSColour).then(res => {
 
             this.backgroundcolors.push(res);
             
