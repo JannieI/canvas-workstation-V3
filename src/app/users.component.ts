@@ -160,7 +160,7 @@ export class UsersComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardPermission(
+            this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 ;
         };
@@ -191,7 +191,7 @@ export class UsersComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardPermission(
+            this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 ;
         };
@@ -222,7 +222,7 @@ export class UsersComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardPermission(
+            this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 ;
         };
@@ -253,7 +253,7 @@ export class UsersComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardPermission(
+            this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 ;
         };
@@ -285,7 +285,7 @@ export class UsersComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardPermission(
+            this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 ;
         };
@@ -317,7 +317,7 @@ export class UsersComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardPermission(
+            this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 ;
         };
