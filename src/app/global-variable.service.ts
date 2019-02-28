@@ -1200,7 +1200,11 @@ export class GlobalVariableService {
                                 this.getWidgetsInfo().then(n => {
 
                                     // Add to recent
-                                    this.amendDashboardRecent(dashboardID, dashboardTabID); //.then(n => {
+                                    this.amendDashboardRecent(
+                                        dashboardID, 
+                                        dashboardTabID,
+                                        this.currentDashboardInfo.value.currentDashboardState
+                                    ); //.then(n => {
                                     if (this.currentDatasources.length > 0) {
                                         this.hasDatasources.next(true);
                                     } else {
@@ -3537,51 +3541,43 @@ export class GlobalVariableService {
 
     amendDashboardRecent(
         dashboardID: number,
-        dashboardTabID: number): Promise<any>  {
+        dashboardTabID: number,
+        newState: string): Promise<any>  {
         // Compares given IDs against the Recent list:
-        // - if D not there, call ADD
-        // - if D there but T change, call SAVE
-        // - if D & T there, do nothing
+        // - if D not there, call ADD.  Else SAVE
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables amendDashboardRecent ...',
                 "color: black; background: lightgray; font-size: 10px",
                 {dashboardID}, {dashboardTabID});
         };
 
-        // TODO - fix this timing issue, as I have no idea why this is happening here
-        // this.sleep(2000);
-
-        let indexD: number = this.dashboardsRecent.findIndex(dR =>
+        let dashboardRecentIndex: number = this.dashboardsRecent.findIndex(dR =>
             dR.dashboardID == dashboardID
         );
-        let indexTab: number = this.dashboardTabIndexInRecentList(dashboardID, dashboardTabID);
         let today = new Date();
 
         // D not in Recent List, so Add
-        if (indexD == -1) {
+        if (dashboardRecentIndex == -1) {
 
             let dashboardNameIndex: number = this.dashboards.findIndex(d => d.id == dashboardID);
-            let dashboardState: string = '';
             let dashboardName: string = '';
             if (dashboardNameIndex >= 0) {
                 dashboardName = this.dashboards[dashboardNameIndex].name;
-                dashboardState =  this.dashboards[dashboardNameIndex].state;
             };
             let newRecent: DashboardRecent = {
                 id: null,
                 userID: this.currentUser.userID,
                 dashboardID: dashboardID,
                 dashboardTabID: dashboardTabID,
-                editMode: dashboardState == 'Draft'?  true  :  false,
+                editMode: newState == 'Draft'?  true  :  false,
                 accessed: new Date(this.formatDate(today)),
-                stateAtRunTime: dashboardState,
+                stateAtRunTime: newState,
                 nameAtRunTime: dashboardName
             };
 
             return new Promise<any>((resolve, reject) => {
                 this.addResource('dashboardsRecent', newRecent)
                     .then(dR => {
-                        this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
                         this.dashboardsRecent = this.dashboardsRecent.sort( (obj1,obj2) => {
                             if (obj1.accessed > obj2.accessed) {
                                 return -1;
@@ -3591,6 +3587,7 @@ export class GlobalVariableService {
                             };
                             return 0;
                         });
+                        this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
                         resolve(dR)
                     })
@@ -3599,19 +3596,16 @@ export class GlobalVariableService {
         } else {
 
             // D + T in Recent List, so amend
-            let recentD: DashboardRecent = this.dashboardsRecent[indexD];
+            let recentDashboard: DashboardRecent = this.dashboardsRecent[dashboardRecentIndex];
 
-            // Change Tab
-            if (indexTab == -1) {
-                recentD.dashboardTabID = dashboardTabID;
-            };
-
-            // Reset editMode, accessed
-            recentD.editMode = this.editMode.value;
-            recentD.accessed = new Date(this.formatDate(today));
+            // Update fields
+            recentDashboard.dashboardTabID = dashboardTabID;
+            recentDashboard.stateAtRunTime =  newState;
+            recentDashboard.editMode = newState == 'Draft'?  true  :  false;
+            recentDashboard.accessed = new Date(this.formatDate(today));
 
             return new Promise<any>((resolve, reject) => {
-                this.saveResource('dashboardsRecent', recentD)
+                this.saveResource('dashboardsRecent', recentDashboard)
                     .then(res => {
                         this.dashboardsRecent = this.dashboardsRecent.sort( (obj1,obj2) => {
                             if (obj1.accessed > obj2.accessed) {
@@ -3624,7 +3618,7 @@ export class GlobalVariableService {
                         });
                         this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
-                        resolve(recentD)
+                        resolve(recentDashboard)
                     })
                     .catch(err => reject(err));
             });

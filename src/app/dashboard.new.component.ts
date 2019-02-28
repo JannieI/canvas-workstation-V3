@@ -337,7 +337,8 @@ export class DashboardNewComponent implements OnInit {
                         this.globalVariableService.addDashboardTab(newDashboardTab).then(draftTab => {
 
                             // Amend Recent list
-                            this.globalVariableService.amendDashboardRecent(draftD.id, draftTab.id).then(dR => {
+                            this.globalVariableService.amendDashboardRecent(
+                                draftD.id, draftTab.id, 'Draft').then(dR => {
 
                                 // Add the Dashboard Layout, other than Blank
                                 if (this.selectedLayoutIndex > 0) {

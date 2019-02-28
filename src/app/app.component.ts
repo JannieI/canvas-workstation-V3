@@ -10727,6 +10727,10 @@ export class AppComponent implements OnInit {
         });
     }
 
+    test() {
+        console.log('xx TEST !')
+        this.recentDashboards = []
+    }
 }
 
 // Naming conventions
