@@ -5162,58 +5162,6 @@ export class GlobalVariableService {
         });
     }
 
-    getWidgetGraphs(): Promise<WidgetGraph[]> {
-        // Description: Gets all G
-        // Returns: this.WidgetGraphs array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getWidgetGraphs ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<WidgetGraph[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.widgetGraphs.length == 0)  ||  (this.isDirtyWidgetGraphs) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'widgetGraphs';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.widgetGraphs = res.data;
-                        this.isDirtyWidgetGraphs = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getWidgetGraphs 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {res})
-                        };
-
-                        resolve(this.widgetGraphs);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                )
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getWidgetGraphs 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
-                };
-
-                resolve(this.widgetGraphs);
-            }
-        });
-
-    }
-
     getDashboardSnapshots(): Promise<DashboardSnapshot[]> {
         // Description: Gets all Sn
         // Returns: this.dashboardSnapshots array, unless:
