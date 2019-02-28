@@ -3087,6 +3087,15 @@ export class AppComponent implements OnInit {
         this.showModalDashboardNew = true;
     }
 
+    clickRecentDashboard() {
+        // Open or Import an existing D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardOpen', '@Start');
+
+        this.globalVariableService.getResource('dashboardsRecent')
+            .then(res => this.recentDashboards = res)
+            .catch(err => console.error('Error with getResource(dashboardsRecent): ', err));
+    }
+
     clickDashboardOpen() {
         // Open or Import an existing D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardOpen', '@Start');
@@ -10727,10 +10736,6 @@ export class AppComponent implements OnInit {
         });
     }
 
-    test() {
-        console.log('xx TEST !')
-        this.recentDashboards = []
-    }
 }
 
 // Naming conventions
