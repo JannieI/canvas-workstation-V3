@@ -3087,7 +3087,17 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardOpen', '@Start');
 
         this.globalVariableService.getResource('dashboardsRecent')
-            .then(res => this.recentDashboards = res)
+            .then(res => {
+                this.recentDashboards = res.sort( (obj1,obj2) => {
+                    if (obj1.accessed > obj2.accessed) {
+                        return -1;
+                    };
+                    if (obj1.accessed < obj2.accessed) {
+                        return 1;
+                    };
+                    return 0;
+                });
+            })
             .catch(err => console.error('Error with getResource(dashboardsRecent): ', err));
     }
 
