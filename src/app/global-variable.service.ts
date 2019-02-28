@@ -3711,48 +3711,6 @@ export class GlobalVariableService {
         });
     }
 
-    addDatasourceTransformation(data: DatasourceTransformation): Promise<any> {
-        // Description: Adds a new DatasourceTransformation
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDatasourceTransformation ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'datasourceTransformations';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    this.datasourceTransformations.push(JSON.parse(JSON.stringify(res.data)));
-
-                    if (this.sessionDebugging) {
-                        console.log('addDatasourceTransformation ADDED', res.data,
-                            this.datasourceTransformations)
-                    };
-
-                    resolve(res.data);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addDatasourceTransformation FAILED', {err});
-                    };
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     saveDatasourceTransformation(data: DatasourceTransformation): Promise<string> {
         // Description: Saves DatasourceTransformation
         // Returns: 'Saved' or error message
