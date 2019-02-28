@@ -7808,7 +7808,7 @@ export class GlobalVariableService {
                     //        which may be diff to DB
                     // Delete the DashboardLayout if last one
                     if (this.widgetLayouts.length == 0) {
-                        this.deleteDashboardLayout(dashboardLayoutID);
+                        this.deleteResource('dashboardLayouts', dashboardLayoutID);
                     };
 
                     if (this.sessionDebugging) {
