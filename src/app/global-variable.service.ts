@@ -3711,58 +3711,6 @@ export class GlobalVariableService {
         });
     }
 
-    getDatasourceTransformations(): Promise<DatasourceTransformation[]> {
-        // Description: Gets DatasourceTransformations
-        // Returns: this.DatasourceTransformation
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDatasourceTransformations ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<DatasourceTransformation[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.datasourceTransformations.length == 0)  ||  (this.isDirtyDatasourceTransformations) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'datasourceTransformations';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.datasourceTransformations = res.data;
-                        this.isDirtyDatasourceTransformations = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDatasourceTransformation 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.datasourceTransformations)
-                        };
-
-                        resolve(this.datasourceTransformations);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDatasourceTransformation 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.datasourceTransformations)
-                };
-
-                resolve(this.datasourceTransformations);
-            }
-        });
-
-    }
-
     addDatasourceTransformation(data: DatasourceTransformation): Promise<any> {
         // Description: Adds a new DatasourceTransformation
         // Returns: Added Data or error message
