@@ -606,7 +606,8 @@ const widgetTemplate: Widget =
         "shapeFillName": "",
         "shapeFontSize": 24,
         "shapeLineHeight": "normal",
-        "shapeLineLength": 70,
+        "shapeLineLength": 66,
+        "shapePath": "",
         "shapeFontFamily": "",
         "shapeImageUrl": "",
         "shapeIsBold": true,
@@ -2859,61 +2860,59 @@ export class GlobalVariableService {
         };
 
         // Loop on localCachingTable
-        this.dataCachingTable.forEach(dct => {
-            // 
-            console.log('xx dct', dct.key, dct.localVariableName)
+        for (var i = 0; i < this.dataCachingTable.length; i++) {
+            
+            // Only refresh those cacheable in Memory or on Disc
+            // Note: it could be any one of the above, or both
+            if (this.dataCachingTable[i].localCacheableMemory  
+                ||  
+                this.dataCachingTable[i].localCacheableDisc) {
+                console.log('xx this.dataCachingTable[dataCachingTableIndex]', this.dataCachingTable[i].key, this.dataCachingTable[i].localVariableName)
+                let resource: string = this.dataCachingTable[i].key;
+                console.time("DURATION refreshLocalCacheMemory: " + resource);
 
-            // Get from HTTP server
-            let resource: string = dct.key;
-            let pathUrl: string = resource;
-            let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                httpResult  => {
+                // Get from HTTP server
+                let pathUrl: string = resource;
+                let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    httpResult  => {
 
-                    if(httpResult.statusCode != 'success') {
-                        if (this.sessionDebugging) {
-                            console.log('Error getResource FAILED', {httpResult});
+                        if(httpResult.statusCode != 'success') {
+                            if (this.sessionDebugging) {
+                                console.log('Error getResource FAILED', {httpResult});
+                            };
+
+                            console.timeEnd("DURATION refreshLocalCacheMemory: " + resource);
+                            // reject(httpResult.message);
+                            return;
                         };
 
-                        console.timeEnd("DURATION getResource: " + resource);
-                        // reject(httpResult.message);
-                        return;
-                    };
-
-                    // If cached, fill local info
-                    if (dataCachingTableIndex >= 0) {
-                        localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
-                        localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
-                        localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
-                        localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
-                        localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-
                         // Fill local Vars
-                        if (localCacheableMemory) {
+                        if (this.dataCachingTable[i].localCacheableMemory) {
 
-                            if (localVariableName != null) {
-                                this[localVariableName] = [];
-                                this[localVariableName] = httpResult.data;
-                                console.warn('GlobalVariablService updated cached Memory for ', resource);
+                            if (this.dataCachingTable[i].localVariableName != null) {
+                                this[this.dataCachingTable[i].localVariableName] = [];
+                                this[this.dataCachingTable[i].localVariableName] = httpResult.data;
+                                console.warn('GlobalVariablService ' + httpResult.data.length.toString() + ' records updated cached Memory for ', resource);
                             };
 
                             // TODO - should we fill Current Var here a well?
                         };
 
                         // Fill Disc
-                        if (localCacheableDisc) {
+                        if (this.dataCachingTable[i].localCacheableDisc) {
 
-                            if (localTableName != null) {
+                            if (this.dataCachingTable[i].localTableName != null) {
 
-                                this.dbCanvasAppDatabase.table(localTableName).clear().then(res => {
-                                    this.dbCanvasAppDatabase.table(localTableName)
+                                this.dbCanvasAppDatabase.table(this.dataCachingTable[i].localTableName).clear().then(res => {
+                                    this.dbCanvasAppDatabase.table(this.dataCachingTable[i].localTableName)
                                     .bulkPut(httpResult.data)
                                     .then(resPut => {
 
                                         // Count
-                                        this.dbCanvasAppDatabase.table(localTableName)
+                                        this.dbCanvasAppDatabase.table(this.dataCachingTable[i].localTableName)
                                             .count(resCount => {
-                                                console.warn('GlobalVariableService updated local Disc for:', resource);
+                                                console.warn('GlobalVariableService ' + httpResult.data.length.toString() + ' records updated local Disc for:', resource);
                                         });
                                     });
                                 });
@@ -2923,12 +2922,12 @@ export class GlobalVariableService {
                         // Update dataCaching in Memory
                         let dt: Date = new Date();
                         let seconds: number = 86400;
-                        if (this.dataCachingTable[dataCachingTableIndex].localLifeSpan) {
-                            seconds = +this.dataCachingTable[dataCachingTableIndex].localLifeSpan;
+                        if (this.dataCachingTable[i].localLifeSpan) {
+                            seconds = +this.dataCachingTable[i].localLifeSpan;
                         };
-                        this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime =
+                        this.dataCachingTable[i].localExpiryDateTime =
                             this.dateAdd(dt, 'second', seconds);
-                        this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
+                        this.dataCachingTable[i].localLastUpdatedDateTime =
                             new Date();
 
                         // Update dataCaching on Disc
@@ -2939,24 +2938,20 @@ export class GlobalVariableService {
                                     console.warn('xx dataCachingTable updated count @end', res);
                                 });
                         });
-                    };
-
-                    console.warn('xx GV getResource data retured from HTTP for: ', resource, httpResult.data);
-                    console.timeEnd("DURATION getResource: " + resource);
-                    resolve(httpResult.data);
-                    return;
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error getResource FAILED', {err});
-                    };
-                    console.timeEnd("DURATION getResource: " + resource);
-                    reject(err.message)
-                }
-            );
-        })
-
-
+                        console.timeEnd("DURATION refreshLocalCacheMemory: " + resource);
+                        // resolve(httpResult.data);
+                        return;
+                    },
+                    err => {
+                        if (this.sessionDebugging) {
+                            console.log('Error getResource FAILED', {err});
+                        };
+                        console.timeEnd("DURATION refreshLocalCacheMemory: " + resource);
+                        // reject(err.message)
+                    }
+                );
+            };
+        };
         
     }
     updateLocalCacheMemory(
