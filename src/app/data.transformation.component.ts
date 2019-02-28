@@ -110,7 +110,7 @@ export class DataTransformationComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getDatasourceTransformations().then(dtr => {
+        this.globalVariableService.getResource('deleteDatasourceTransformation').then(dtr => {
             this.globalVariableService.getResource('transformations').then(tr => {
                 // Set local Vars
                 this.datasourceTransformations = dtr.filter(ftr =>
