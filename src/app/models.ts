@@ -1677,6 +1677,7 @@ export class CanvasHttpResponse {
     // failed = the request was processed by the server, but the result is bad, ie a
     //          POST failed due to trying to create a duplicate key, validation failed, etc
     // error = error on the server, ie TS or Node or Mongo error
+    "resourceOrRoute": string;              // Client requests a Single resource (ie dashboards) or compound route (ie DiscardDashboard)
     "message" : string;                     // Info Text message (short errorMessage for errors)
     "data": any;                            // Data returned, ie Json Array
     "metaData"?: {                          // OPTIONAL metadata, not always filled in by Server
