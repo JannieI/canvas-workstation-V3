@@ -1022,8 +1022,8 @@ export class GlobalVariableService {
     // isDirtyCanvasComments: boolean = true;
     // canvasAuditTrails: CanvasAuditTrail[] = [];
     // isDirtyCanvasAuditTrails: boolean = true;
-    canvasMessages: CanvasMessage[] = [];
-    isDirtyCanvasMessages: boolean = true;
+    // canvasMessages: CanvasMessage[] = [];
+    // isDirtyCanvasMessages: boolean = true;
     // dataQualityIssues: DataQualityIssue[] = [];
     // currentDataQualityIssues: DataQualityIssue[] = [];
     // isDirtyDataQualityIssues: boolean = true;
@@ -7312,18 +7312,6 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
         };
 
-
-        // TODO - this must be done via the DB: for now, only glob-var array
-        // let today = new Date();
-        // this.canvasMessages.forEach(msg => {
-        //     msg.recipients.forEach(rec => {
-        //         if (rec.userID == userID) {
-        //             rec.readOn = today;
-        //         };
-        //     });
-        // });
-
-
         return new Promise<string>((resolve, reject) => {
 
             // Perform steps (business logic in Server)
@@ -7348,8 +7336,6 @@ export class GlobalVariableService {
                     }
                 )
         })
-
-
     }
 
     getWidgetCheckpoints(): Promise<WidgetCheckpoint[]> {
