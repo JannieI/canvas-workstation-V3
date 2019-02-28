@@ -643,7 +643,7 @@ export class DataTransformationComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 
         // Delete from local and DB
-        this.globalVariableService.deleteDatasourceTransformation(id).then(res => {
+        this.globalVariableService.deleteResource('datasourceTransformations', id).then(res => {
             this.datasourceTransformations = this.datasourceTransformations.filter(dtr =>
                 dtr.id != id);
 
