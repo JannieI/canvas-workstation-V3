@@ -88,9 +88,6 @@ export class ShapeEditComponent implements OnInit {
     hasAutoFocusBullets: boolean = false;
     hasAutoFocusValue: boolean = false;
     hasAutoFocusBrackets: boolean = false;
-    thinArrowLineLength: number = 70;
-    // TODO - make the base - 90,90 dynamic later on
-    thinArrowLinePath = "M90,90 L" + (90 + this.thinArrowLineLength).toString() + ",90";
     localWidget: Widget;                            // W to modify, copied from selected
     oldText: string = '';
     oldWidget: Widget = null;                       // W at start
@@ -1176,9 +1173,8 @@ export class ShapeEditComponent implements OnInit {
         if (this.localWidget.shapeLineLength > 80) {
             this.localWidget.shapeLineLength = 80;
         };
-        this.thinArrowLinePath = "M90,90 L" + (90 + this.localWidget.shapeLineLength).toString() 
+        this.localWidget.shapePath = "M90,90 L" + (90 + this.localWidget.shapeLineLength).toString() 
             + ",90";
-        console.log('xx this.thinArrowLinePath', this.thinArrowLinePath)
     }
 
     mousedownArrow(ev: any) {

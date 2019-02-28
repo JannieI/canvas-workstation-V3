@@ -10744,15 +10744,6 @@ export class AppComponent implements OnInit {
         });
     }
 
-    changeThinArrowLength(shapeLineLength: number) {
-        // Changes length of Thin Arrow Line
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeThinArrowLength', '@Start');
-
-        console.log('xx shapeLineLength', shapeLineLength)
-        // TODO - change if 90,90 is made dynamic in Sh Ed
-        return "M90,90 L" + (90 + shapeLineLength).toString() 
-            + ",90";            
-    }
 }
 
 // Naming conventions

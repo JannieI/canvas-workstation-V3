@@ -2788,6 +2788,7 @@ export class GlobalVariableService {
 
     }
 
+    // TODO - complete or delete this method
     addDashboardToCache(dashboard: Dashboard,
         dashboardTabs: DashboardTab[],
         widgets: Widget[],
