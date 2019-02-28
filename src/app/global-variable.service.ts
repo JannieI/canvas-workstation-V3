@@ -3667,73 +3667,8 @@ export class GlobalVariableService {
 
         if (newRecentIndex >= 0) {
             this.dashboardsRecent[newRecentIndex].nameAtRunTime = dashboardName;
-            // this.saveDashboardRecent(this.dashboardsRecent[newRecentIndex],);
         };
 
-    }
-
-    saveDashboardRecent(data: DashboardRecent): Promise<string> {
-        // Description: Saves DashboardRecent
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDashboardRecent ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardsRecent';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.dashboardsRecent.findIndex(u =>
-                        u.id == data.id
-                    );
-
-                    if(localIndex>= 0) {
-
-                        this.dashboardsRecent[localIndex] = data;
-
-                        // Change order - last accessed one must be at top
-                        let temp: DashboardRecent[] = [ this.dashboardsRecent[localIndex] ].concat(
-                            this.dashboardsRecent.filter(dR => dR.id != data.id)
-                        );
-                        this.dashboardsRecent = temp;
-                        this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
-
-                        if (this.sessionDebugging) {
-                            console.log('saveDashboardRecent SAVED', res.data)
-                        };
-
-                        resolve('Saved');
-                    } else {
-                        resolve('Failed: id not in globalVariables.dashboardsRecent');
-                    };
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveDashboardRecent FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
     }
 
     deleteDashboardRecent(id: number): Promise<string> {
@@ -8949,9 +8884,6 @@ export class GlobalVariableService {
                 };
             };
         };
-
-        // Register in Recent
-        // this.amendDashboardRecent(dashboardID, y);
 
         // Inform subscribers of the change
         let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID)

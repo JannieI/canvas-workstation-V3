@@ -2641,25 +2641,6 @@ export class AppComponent implements OnInit {
                     };
                 };
 
-                // Update EditMode in D-Recent
-                // let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
-                //     u => u.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-                // );
-                // if (localIndex >= 0) {
-                //     this.globalVariableService.dashboardsRecent[localIndex].editMode = true;
-                //     this.globalVariableService.amendDashboardRecent(
-                //         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                //         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
-                //     );
-                // };
-            };
-        };
-
-        // // Register in recent
-        // this.globalVariableService.amendDashboardRecent(
-        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID);
-
         this.menuOptionClickPostAction();
     }
 
