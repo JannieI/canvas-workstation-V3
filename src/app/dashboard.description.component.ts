@@ -176,8 +176,8 @@ export class DashboardDescriptionComponent implements OnInit {
         });
 
         // Get setup info
-        this.backgroundcolors = this.globalVariableService.canvasBackgroundcolors.slice();
-
+        this.globalVariableService.getResource('canvasBackgroundcolors')
+            .then(res => this.backgroundcolors = res)
     }
 
     ngOnDestroy() {
