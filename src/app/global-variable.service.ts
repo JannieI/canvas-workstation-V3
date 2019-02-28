@@ -4580,57 +4580,6 @@ export class GlobalVariableService {
 
     }
 
-    getDashboardPermissions(): Promise<DashboardPermission[]> {
-        // Description: Gets all P
-        // Returns: this.dashboardPermissions array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardPermissions ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<DashboardPermission[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.dashboardPermissions.length == 0)  ||  (this.isDirtyDashboardPermissions) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'dashboardPermissions';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.dashboardPermissions = res.data;
-                        this.isDirtyDashboardPermissions = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDashboardPermissions 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {res})
-                        };
-
-                        resolve(this.dashboardPermissions);
-                    },
-                    err => {
-                        reject(err.message)
-                    });
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDashboardPermissions 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
-                };
-
-                resolve(this.dashboardPermissions);
-            }
-        });
-
-    }
-
     getDashboardSnapshots(): Promise<DashboardSnapshot[]> {
         // Description: Gets all Sn
         // Returns: this.dashboardSnapshots array, unless:
