@@ -1499,11 +1499,14 @@ export class GlobalVariableService {
                 localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
                 localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                 localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-                console.warn('GlobalVariableService.getResource - In Mem vars for: ', resource, {dataCachingTableIndex}, {localCacheableMemory}, {localCacheableDisc}, {localVariableName});
+                console.warn('    Global-Variables getResource - In Mem vars for: ',
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    resource, {dataCachingTableIndex}, {localCacheableMemory}, 
+                    {localCacheableDisc}, {localVariableName});
 
                 // Local Memory is used, if fresh
                 if (localCacheableMemory  ||  localCacheableDisc) {
-                    console.log('GlobalVariableService.getResource - In local Memory or Disc for Resource: ', resource, localVariableName, this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
+                    console.log('    Global-Variables getResource - In local Memory or Disc for Resource: ', resource, localVariableName, this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
 
                     // Fresh if not expired as yet
                     let dateNow: Date = new Date();
@@ -1556,7 +1559,7 @@ export class GlobalVariableService {
                     };
                 };
             };
-            console.warn('GlobalVariableService.getResource Will now try GET HTTP for: ', resource)
+            console.warn('    Global-Variables getResource Will now try GET HTTP for: ', resource)
 
             // Get from HTTP server
             let pathUrl: string = resource + params;
@@ -1588,7 +1591,11 @@ export class GlobalVariableService {
                             if (localVariableName != null) {
                                 this[localVariableName] = [];
                                 this[localVariableName] = httpResult.data;
-                                console.warn('GlobalVariablService updated cached Memory for ', resource);
+                                let rowCount: number = -1;
+                                if (httpResult.data != null) {
+                                    rowCount = httpResult.data.length;
+                                };
+                                console.warn('    Global-Variables getResource updated cached Memory for ', resource,'row count:', rowCount);
                             };
 
                             // TODO - should we fill Current Var here a well?
@@ -1607,7 +1614,7 @@ export class GlobalVariableService {
                                         // Count
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
-                                                console.warn('GlobalVariableService updated local Disc for:', resource);
+                                                console.warn('    Global-Variables getResource updated local Disc for:', resource, 'rowCount:', resCount);
                                         });
                                     });
                                 });
@@ -1630,12 +1637,12 @@ export class GlobalVariableService {
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.warn('xx dataCachingTable updated count @end', res);
+                                    console.warn('    Global-Variables getResource dataCachingTable updated with bulkPut, count @end', res);
                                 });
                         });
                     };
 
-                    console.warn('xx GV getResource data retured from HTTP for: ', resource, httpResult.data);
+                    console.warn('    Global-Variables getResource data retured from HTTP for: ', resource, httpResult.data);
                     console.timeEnd("DURATION getResource: " + resource);
                     resolve(httpResult.data);
                     return;
@@ -1716,7 +1723,7 @@ export class GlobalVariableService {
                                 } else {
                                     this[localVariableName].push(data);
                                 }
-                                console.warn('GlobalVariableService.addResource updated cached Memory to', this[localVariableName]);
+                                console.warn('    Global-Variables addResource updated cached Memory for:', resource, ' to', this[localVariableName]);
                             };
 
                             // TODO - should we fill Current Var here as well?  Dont think so ...
@@ -1738,7 +1745,7 @@ export class GlobalVariableService {
                                         // Count
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
-                                                console.warn('xx updated local Disc to', resCount);
+                                                console.warn('    Global-Variables addResource updated local Disc for:', resource, 'to', resCount);
                                         });
                                     });
                                 });
@@ -1762,7 +1769,7 @@ export class GlobalVariableService {
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.warn('xx dataCachingTable updated count @end', res);
+                                    console.warn('    Global-Variables addResource dataCachingTable updated: ', resource, 'count @end:', res);
                                 });
                         });
                     };
@@ -1852,7 +1859,7 @@ export class GlobalVariableService {
                                 if (localIndex >= 0) {
                                     this[localVariableName][localIndex] = data;
                                 };
-                                console.warn('xx updated cached Memory to', this[localVariableName]);
+                                console.warn('    Global-Variables saveResource updated cached Memory for:', resource, 'to', this[localVariableName]);
                             };
 
                             // TODO - should we fill Current Var here a well?
@@ -1873,7 +1880,7 @@ export class GlobalVariableService {
                                         // Count
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
-                                                console.warn('xx updated local Disc to', resCount);
+                                                console.warn('    Global-Variables saveResource updated local Disc for:', resource, 'to', resCount);
                                         });
                                     });
                                 });
@@ -1897,7 +1904,7 @@ export class GlobalVariableService {
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.warn('xx dataCachingTable updated count @end', res);
+                                    console.warn('    Global-Variables saveResource updataCachingTable updated count @end', res);
                                 });
                         });
                     };
@@ -1986,6 +1993,8 @@ export class GlobalVariableService {
                                 this[localVariableName] = this[localVariableName].filter(
                                     com => com.id != id
                                 );
+                                console.warn('    Global-Variables deleteResource updated cached Memory for ', resource,'row count:', this[localVariableName].length);
+
                             };
                         };
 
@@ -1997,7 +2006,7 @@ export class GlobalVariableService {
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('deleteResource DELETED id: ', {id})
+                        console.log('    Global-Variables deleteResource DELETED id: ', {id})
                     };
 
                     console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString());
@@ -2886,7 +2895,7 @@ export class GlobalVariableService {
                                 if (this.dataCachingTable[resultIndex].localVariableName != null) {
                                     this[this.dataCachingTable[resultIndex].localVariableName] = [];
                                     this[this.dataCachingTable[resultIndex].localVariableName] = httpResult.data;
-                                    console.warn('GlobalVariablService ' + httpResult.data.length.toString() + ' records updated cached Memory for ', resource);
+                                    console.warn('    Global-Variables refreshLocalCache ' + httpResult.data.length.toString() + ' records updated cached Memory for ', resource);
                                 };
 
                                 // TODO - should we fill Current Var here a well?
@@ -2905,7 +2914,7 @@ export class GlobalVariableService {
                                             // Count
                                             this.dbCanvasAppDatabase.table(this.dataCachingTable[resultIndex].localTableName)
                                                 .count(resCount => {
-                                                    console.warn('GlobalVariableService ' + httpResult.data.length.toString() + ' records updated local Disc for:', resource);
+                                                    console.warn('    Global-Variables refreshLocalCache ' + httpResult.data.length.toString() + ' records updated local Disc for:', resource);
                                             });
                                         });
                                     });
@@ -3551,7 +3560,7 @@ export class GlobalVariableService {
             dR.dashboardID == dashboardID
         );
         let today = new Date();
-
+console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID, dashboardRecentIndex)
         // D not in Recent List, so Add
         if (dashboardRecentIndex == -1) {
 
@@ -7474,7 +7483,7 @@ export class GlobalVariableService {
         // Assume we have all currentD info
         if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
             (this.currentDashboardInfo == null) ) {
-            console.log('Error in GlobalVariableService.refreshCurrentDashboard returned in GV since this.currentDashboardInfo == null')
+            console.log('Error in     Global-Variables refreshCurrentDashboard returned since this.currentDashboardInfo == null')
             return 'Error';
         };
 
@@ -7484,7 +7493,7 @@ export class GlobalVariableService {
 
         if (tabToShow != '') {
             if (currentDashboardTabs.length == 0) {
-                console.log('Error in GlobalVariableService.refreshCurrentDashboard returned in GV since currentDashboardTabs.length == 0', dashboardID, this.dashboards, this.dashboardTabs)
+                console.log('Error in     Global-Variables refreshCurrentDashboard returned since currentDashboardTabs.length == 0', dashboardID, this.dashboards, this.dashboardTabs)
                 return 'Error';
             };
             if (tabToShow == 'First') {
@@ -9399,7 +9408,7 @@ export class GlobalVariableService {
                                         this.loadVariableOnStartup.next(true);
                                         resolve(true);
                                     })
-                                    .catch(err => console.error('Error in GlobalVariableService.verifyCanvasUser: ', err))
+                                    .catch(err => console.error('Error in     Global-Variables verifyCanvasUser: ', err))
                             };
                         });
 
@@ -9454,7 +9463,7 @@ export class GlobalVariableService {
                 ).subscribe(res => {
 
                     if (res.statusCode == 'failed') {
-                        console.warn('Error in GlobalVariableService.registerCanvasUser GV Failed: ' + res.message, res);
+                        console.warn('Error in     Global-Variables registerCanvasUser Failed: ' + res.message, res);
 
                         resolve('Failed: ' + res.message);
                     };
@@ -9509,23 +9518,23 @@ export class GlobalVariableService {
                 ).subscribe(res => {
 
                     if (res.statusCode == 'failed') {
-                        console.warn('Error in GlobalVariableService.loginCanvasUser Global-Variables loginCanvasServer Failed: ' + res.message);
+                        console.warn('Error in     Global-Variables loginCanvasUser Failed: ' + res.message);
 
                         resolve({ message:'Failed: ' + res.message, token: null});
                     };
                     if (res.statusCode == 'success') {
-                        console.warn('GlobalVariableService.loginCanvasUser Global-Variables loginCanvasServer Success: ' + res.message);
+                        console.warn('    Global-Variables loginCanvasUser Success: ' + res.message);
 
                         resolve({ message:'Success: ' + res.message, token: res.token});
                     };
                     if (res.statusCode == 'error') {
-                        console.warn('Error in GlobalVariableService.loginCanvasUser Global-Variables loginCanvasServer Error: ' + res.message);
+                        console.warn('Error in     Global-Variables loginCanvasUser Error: ' + res.message);
 
                         resolve({ message:'Error: ' + res.message, token: null});
                     };
             },
             err => {
-                console.log('Error in GlobalVariableService.loginCanvasUser Global-Variables loginCanvasServer Error Login FAILED', {err});
+                console.log('Error in     Global-Variables loginCanvasUser Error: ', {err});
                 resolve({ message:'Error: Login FAILED ' + err.message, token: null});
             });
         });
