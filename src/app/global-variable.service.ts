@@ -1499,8 +1499,8 @@ export class GlobalVariableService {
                 localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
                 localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                 localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-                console.warn('    Global-Variables getResource - In Mem vars for: ',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                console.warn('%c    Global-Variables getResource - In Mem vars for: ',
+                    "color: black; color: rgba(25, 225, 25, 0.4); font-size: 10px", 
                     resource, {dataCachingTableIndex}, {localCacheableMemory}, 
                     {localCacheableDisc}, {localVariableName});
 
@@ -1564,6 +1564,7 @@ export class GlobalVariableService {
             // Get from HTTP server
             let pathUrl: string = resource + params;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
+            console.warn('    Global-Variables getResource finalUrl for:', resource, finalUrl);
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 httpResult  => {
 
@@ -1678,9 +1679,11 @@ export class GlobalVariableService {
 
             let pathUrl: string = resource;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
+            console.warn('    Global-Variables addResource finalUrl for:', resource, finalUrl);
+
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 httpResult  => {
-                    console.warn('xx inside POST HTTP')
+                    console.warn('xx inside POST HTTP, return:', httpResult)
 
                     if(httpResult.statusCode != 'success') {
                         console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString());
@@ -1715,15 +1718,16 @@ export class GlobalVariableService {
                             if (localVariableName != null) {
 
                                 let localIndex: number = this[localVariableName].findIndex(rec =>
-                                    rec.id == data.id
+                                    rec.id == httpResult.data.id
                                 );
 
                                 if (localIndex >= 0) {
-                                    this[localVariableName][localIndex] = data;
+                                    this[localVariableName][localIndex] = httpResult.data;
                                 } else {
-                                    this[localVariableName].push(data);
+                                    this[localVariableName].push(httpResult.data);
                                 }
-                                console.warn('    Global-Variables addResource updated cached Memory for:', resource, ' to', this[localVariableName]);
+                                console.warn('    Global-Variables addResource updated cached Memory for:', 
+                                    resource, ' to', this[localVariableName]);
                             };
 
                             // TODO - should we fill Current Var here as well?  Dont think so ...
@@ -1745,7 +1749,8 @@ export class GlobalVariableService {
                                         // Count
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
-                                                console.warn('    Global-Variables addResource updated local Disc for:', resource, 'to', resCount);
+                                                console.warn('    Global-Variables addResource updated local Disc for:', 
+                                                    resource, 'to', resCount);
                                         });
                                     });
                                 });
@@ -1762,19 +1767,21 @@ export class GlobalVariableService {
                             this.dateAdd(dt, 'second', seconds);
                         this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                             new Date();
-                        console.log('xx dataCachingTable memory add', this.dataCachingTable)
+                        console.log('    Global-Variables addResource dataCachingTable updated in Memory for:', 
+                            resource, 'to', this.dataCachingTable)
 
                         // Update dataCaching on Disc
                         this.dbDataCachingTable.table("localDataCachingTable")
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.warn('    Global-Variables addResource dataCachingTable updated: ', resource, 'count @end:', res);
+                                    console.warn('    Global-Variables addResource dataCachingTable updated on Disc for: ', 
+                                        resource, 'count @end:', res);
                                 });
                         });
                     };
 
-                    console.warn('xx data retured from HTTP', httpResult.data);
+                    console.warn('    Global-Variables addResource data retured from HTTP', httpResult.data);
                     console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString());
                     resolve(httpResult.data);
                     return;
@@ -1809,6 +1816,7 @@ export class GlobalVariableService {
             // Set final path
             let pathUrl: string = resource;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
+            console.warn('    Global-Variables saveResource finalUrl for:', resource, finalUrl);
 
             // Omit _id (immutable in Mongo)
             const copyData = { ...data };
@@ -1943,6 +1951,7 @@ export class GlobalVariableService {
 
             let pathUrl: string = resource;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
+            console.warn('    Global-Variables deleteResource finalUrl for:', resource, finalUrl);
             this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
             .subscribe(
                 res => {
