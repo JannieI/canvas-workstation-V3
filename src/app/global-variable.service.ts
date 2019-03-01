@@ -1499,14 +1499,17 @@ export class GlobalVariableService {
                 localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
                 localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                 localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-                console.warn('%c    Global-Variables getResource - In Mem vars for: ',
-                    "color: black; color: rgba(25, 225, 25, 0.4); font-size: 10px", 
+                console.log('%c    Global-Variables getResource - In Mem vars for: ',
+                    "color: black; background: lightgray; font-size: 10px",
                     resource, {dataCachingTableIndex}, {localCacheableMemory}, 
                     {localCacheableDisc}, {localVariableName});
 
                 // Local Memory is used, if fresh
                 if (localCacheableMemory  ||  localCacheableDisc) {
-                    console.log('    Global-Variables getResource - In local Memory or Disc for Resource: ', resource, localVariableName, this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
+                    console.log('%c    Global-Variables getResource - In local Memory or Disc for Resource: ', 
+                        "color: black; background: lightgray; font-size: 10px",
+                        resource, localVariableName, 
+                        this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
 
                     // Fresh if not expired as yet
                     let dateNow: Date = new Date();
@@ -1524,13 +1527,17 @@ export class GlobalVariableService {
                     // Use local cache variable or table if fresh
                     // TODO - check the assumption that there is data when fresh (else returns [])
                     if (isFresh) {
-                        console.log('getResource cache is FRESH for: ', resource)
+                        console.log('%c    Global-Variables getResource - cache is FRESH for: ', 
+                            "color: black; background: lightgray; font-size: 10px",
+                            resource)
 
                         // Get from Memory (local var)
                         if (localCacheableMemory) {
                         
                             if (localVariableName != null) {
-                                console.warn('getResource data returned from Memory for : ', resource, this[localVariableName]);
+                                console.log('%c    Global-Variables getResource - data returned from Memory for : ', 
+                                    "color: black; background: lightgray; font-size: 10px",
+                                    resource, this[localVariableName]);
                                 // var type = 'article';
                                 // this[type+'_count'] = 1000;  // in a function we use "this";
                                 // alert(this.article_count);
@@ -1541,12 +1548,16 @@ export class GlobalVariableService {
                         } else if (localCacheableDisc) {
                             // Get from Disc (Dexie)
                             if (localTableName != null) {
-                                console.warn('getResource in local Disc for: ', resource);
+                                console.log('%c    Global-Variables getResource - in local Disc for: ', 
+                                    "color: black; background: lightgray; font-size: 10px",
+                                    resource);
                                 this.dbCanvasAppDatabase.table(localTableName)
                                 .toArray()
                                 .then(res => {
                                     this[localVariableName] = res;
-                                    console.log('getResource data returned from Disc for: ', resource, this[localVariableName])
+                                    console.log('%c    Global-Variables getResource - data returned from Disc for: ', 
+                                        "color: black; background: lightgray; font-size: 10px",
+                                        resource, this[localVariableName])
                                     console.timeEnd("DURATION getResource: " + resource);
                                     resolve(this[localVariableName]);
                                     return;
@@ -1559,12 +1570,16 @@ export class GlobalVariableService {
                     };
                 };
             };
-            console.warn('    Global-Variables getResource Will now try GET HTTP for: ', resource)
+            console.log('%c    Global-Variables getResource - Will now try GET HTTP for: ', 
+                "color: black; background: lightgray; font-size: 10px",
+                resource)
 
             // Get from HTTP server
             let pathUrl: string = resource + params;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
-            console.warn('    Global-Variables getResource finalUrl for:', resource, finalUrl);
+            console.log('%c    Global-Variables getResource finalUrl for:', 
+                "color: black; background: lightgray; font-size: 10px",
+                resource, finalUrl);
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 httpResult  => {
 
@@ -1596,7 +1611,9 @@ export class GlobalVariableService {
                                 if (httpResult.data != null) {
                                     rowCount = httpResult.data.length;
                                 };
-                                console.warn('    Global-Variables getResource updated cached Memory for ', resource,'row count:', rowCount);
+                                console.log('%c    Global-Variables getResource updated cached Memory for ', 
+                                    "color: black; background: lightgray; font-size: 10px",
+                                    resource,'row count:', rowCount);
                             };
 
                             // TODO - should we fill Current Var here a well?
@@ -1615,7 +1632,9 @@ export class GlobalVariableService {
                                         // Count
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
-                                                console.warn('    Global-Variables getResource updated local Disc for:', resource, 'rowCount:', resCount);
+                                                console.log('%c    Global-Variables getResource updated local Disc for:', 
+                                                    "color: black; background: lightgray; font-size: 10px",
+                                                    resource, 'rowCount:', resCount);
                                         });
                                     });
                                 });
@@ -1638,12 +1657,16 @@ export class GlobalVariableService {
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.warn('    Global-Variables getResource dataCachingTable updated with bulkPut, count @end', res);
+                                    console.log('%c    Global-Variables getResource dataCachingTable updated with bulkPut, count @end', 
+                                        "color: black; background: lightgray; font-size: 10px",
+                                        res);
                                 });
                         });
                     };
 
-                    console.warn('    Global-Variables getResource data retured from HTTP for: ', resource, httpResult.data);
+                    console.log('%c    Global-Variables getResource data retured from HTTP for: ', 
+                        "color: black; background: lightgray; font-size: 10px",
+                        resource, httpResult.data);
                     console.timeEnd("DURATION getResource: " + resource);
                     resolve(httpResult.data);
                     return;
@@ -2002,7 +2025,9 @@ export class GlobalVariableService {
                                 this[localVariableName] = this[localVariableName].filter(
                                     com => com.id != id
                                 );
-                                console.warn('    Global-Variables deleteResource updated cached Memory for ', resource,'row count:', this[localVariableName].length);
+                                console.warn('%c    Global-Variables deleteResource updated cached Memory for ', 
+                                    "color: black; background: lightgray; font-size: 10px",
+                                    resource,'row count:', this[localVariableName].length);
 
                             };
                         };
