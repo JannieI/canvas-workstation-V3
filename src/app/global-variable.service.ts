@@ -1577,8 +1577,7 @@ export class GlobalVariableService {
             // Get from HTTP server
             let pathUrl: string = resource + params;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
-            console.log('%c    Global-Variables getResource finalUrl for:', 
-                "color: black; background: lightgray; font-size: 10px",
+            console.warn('    Global-Variables getResource finalUrl for:', 
                 resource, finalUrl);
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 httpResult  => {
@@ -1706,7 +1705,9 @@ export class GlobalVariableService {
 
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 httpResult  => {
-                    console.warn('xx inside POST HTTP, return:', httpResult)
+                    console.log('%c    Global-Variables addResource - inside POST HTTP, return:', 
+                        "color: black; background: lightgray; font-size: 10px",
+                        httpResult)
 
                     if(httpResult.statusCode != 'success') {
                         console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString());
@@ -1749,7 +1750,8 @@ export class GlobalVariableService {
                                 } else {
                                     this[localVariableName].push(httpResult.data);
                                 }
-                                console.warn('    Global-Variables addResource updated cached Memory for:', 
+                                console.log('%c    Global-Variables addResource updated cached Memory for:', 
+                                    "color: black; background: lightgray; font-size: 10px",
                                     resource, ' to', this[localVariableName]);
                             };
 
@@ -1772,7 +1774,8 @@ export class GlobalVariableService {
                                         // Count
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
-                                                console.warn('    Global-Variables addResource updated local Disc for:', 
+                                                console.log('%c    Global-Variables addResource updated local Disc for:', 
+                                                    "color: black; background: lightgray; font-size: 10px",
                                                     resource, 'to', resCount);
                                         });
                                     });
@@ -1790,7 +1793,8 @@ export class GlobalVariableService {
                             this.dateAdd(dt, 'second', seconds);
                         this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                             new Date();
-                        console.log('    Global-Variables addResource dataCachingTable updated in Memory for:', 
+                        console.log('%c    Global-Variables addResource dataCachingTable updated in Memory for:', 
+                            "color: black; background: lightgray; font-size: 10px",
                             resource, 'to', this.dataCachingTable)
 
                         // Update dataCaching on Disc
@@ -1798,13 +1802,16 @@ export class GlobalVariableService {
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.warn('    Global-Variables addResource dataCachingTable updated on Disc for: ', 
+                                    console.log('%c    Global-Variables addResource dataCachingTable updated on Disc for: ', 
+                                        "color: black; background: lightgray; font-size: 10px",
                                         resource, 'count @end:', res);
                                 });
                         });
                     };
 
-                    console.warn('    Global-Variables addResource data retured from HTTP', httpResult.data);
+                    console.log('%c    Global-Variables addResource data retured from HTTP', 
+                        "color: black; background: lightgray; font-size: 10px",
+                        httpResult.data);
                     console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString());
                     resolve(httpResult.data);
                     return;
@@ -1890,7 +1897,7 @@ export class GlobalVariableService {
                                 if (localIndex >= 0) {
                                     this[localVariableName][localIndex] = data;
                                 };
-                                console.warn('    Global-Variables saveResource updated cached Memory for:', resource, 'to', this[localVariableName]);
+                                console.log('%c    Global-Variables saveResource updated cached Memory for:', resource, 'to', this[localVariableName]);
                             };
 
                             // TODO - should we fill Current Var here a well?
@@ -1911,7 +1918,7 @@ export class GlobalVariableService {
                                         // Count
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
-                                                console.warn('    Global-Variables saveResource updated local Disc for:', resource, 'to', resCount);
+                                                console.log('%c    Global-Variables saveResource updated local Disc for:', resource, 'to', resCount);
                                         });
                                     });
                                 });
@@ -1928,14 +1935,14 @@ export class GlobalVariableService {
                             this.dateAdd(dt, 'second', seconds);
                         this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                             new Date();
-                        console.log('xx dataCachingTable memory upd', this.dataCachingTable)
+                        console.log('%c    Global-Variables saveResource - dataCachingTable memory upd', this.dataCachingTable)
 
                         // Update dataCaching on Disc
                         this.dbDataCachingTable.table("localDataCachingTable")
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.warn('    Global-Variables saveResource updataCachingTable updated count @end', res);
+                                    console.log('%c    Global-Variables saveResource updataCachingTable updated count @end', res);
                                 });
                         });
                     };
@@ -2025,7 +2032,7 @@ export class GlobalVariableService {
                                 this[localVariableName] = this[localVariableName].filter(
                                     com => com.id != id
                                 );
-                                console.warn('%c    Global-Variables deleteResource updated cached Memory for ', 
+                                console.log('%c    Global-Variables deleteResource updated cached Memory for ', 
                                     "color: black; background: lightgray; font-size: 10px",
                                     resource,'row count:', this[localVariableName].length);
 
@@ -2929,7 +2936,7 @@ export class GlobalVariableService {
                                 if (this.dataCachingTable[resultIndex].localVariableName != null) {
                                     this[this.dataCachingTable[resultIndex].localVariableName] = [];
                                     this[this.dataCachingTable[resultIndex].localVariableName] = httpResult.data;
-                                    console.warn('    Global-Variables refreshLocalCache ' + httpResult.data.length.toString() + ' records updated cached Memory for ', resource);
+                                    console.log('    Global-Variables refreshLocalCache ' + httpResult.data.length.toString() + ' records updated cached Memory for ', resource);
                                 };
 
                                 // TODO - should we fill Current Var here a well?
@@ -2948,7 +2955,7 @@ export class GlobalVariableService {
                                             // Count
                                             this.dbCanvasAppDatabase.table(this.dataCachingTable[resultIndex].localTableName)
                                                 .count(resCount => {
-                                                    console.warn('    Global-Variables refreshLocalCache ' + httpResult.data.length.toString() + ' records updated local Disc for:', resource);
+                                                    console.log('    Global-Variables refreshLocalCache ' + httpResult.data.length.toString() + ' records updated local Disc for:', resource);
                                             });
                                         });
                                     });
@@ -2971,7 +2978,7 @@ export class GlobalVariableService {
                                 .bulkPut(this.dataCachingTable)
                                 .then(res => {
                                     this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                        console.warn('xx dataCachingTable updated count @end', res);
+                                        console.log('xx dataCachingTable updated count @end', res);
                                     });
                             });
                         };
@@ -3057,7 +3064,7 @@ export class GlobalVariableService {
                                 .put(cachedEntityData)
                                 .then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                        console.warn('xx updateLocalCacheMem count @ end for localTableName: ', localTableName, res);
+                                        console.log('xx updateLocalCacheMem count @ end for localTableName: ', localTableName, res);
                                     });
                             });
                         };
@@ -3103,7 +3110,7 @@ export class GlobalVariableService {
                                 .put(cachedEntityData)
                                 .then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                        console.warn('xx updateLocalCacheMem Update count @ end for localTableName: ', localTableName, res);
+                                        console.log('xx updateLocalCacheMem Update count @ end for localTableName: ', localTableName, res);
                                     });
                             });
                         };
@@ -3144,7 +3151,7 @@ export class GlobalVariableService {
                                 .delete()
                                 .then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName).count(res => {
-                                        console.warn('xx updateLocalCacheMem Delete count @end for localTableName', localTableName, res);
+                                        console.log('xx updateLocalCacheMem Delete count @end for localTableName', localTableName, res);
                                     });
                             });
                         };
@@ -3169,7 +3176,7 @@ export class GlobalVariableService {
                     .bulkPut(this.dataCachingTable)
                     .then(res => {
                         this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                            console.warn('xx updateLocalCacheMem localDataCachingTable count @end', res);
+                            console.log('xx updateLocalCacheMem localDataCachingTable count @end', res);
                         });
                 });
 
