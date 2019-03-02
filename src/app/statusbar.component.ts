@@ -186,8 +186,25 @@ export class StatusbarComponent {
         // Show the list of Tabs
         this.globalFunctionService.printToConsole(this.constructor.name,'clickListTabs', '@Start');
 
-        // NB: this must execute before MoveUp and MoveDown as local currentDT loaded here
-        this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs.slice();
+        // NB: this must execute before MoveUp, MoveDown and selectTab as local 
+        // currentDashboardTabs array is loaded here from global.currentDashboardTabs
+        // For the rest of the actions, we need to rely on global values - as the StatusBar
+        // component is unawares of which Dashboard is currently shown.
+        // Thus, each time the Tabs array is changed ito order, the local currentDashboardTabs 
+        // must be sorted.
+
+        this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs
+            .slice()
+            .sort( (obj1,obj2) => {
+                if (obj1.displayOrder > obj2.displayOrder) {
+                    return 1;
+                };
+                if (obj1.displayOrder < obj2.displayOrder) {
+                    return -1;
+                };
+                return 0;
+            });
+        
         this.showTabList = true;
         this.showDashboardDescription = false;
         this.showDashboardTabDescription = false;
