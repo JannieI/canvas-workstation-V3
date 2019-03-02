@@ -271,10 +271,10 @@ export class StatusbarComponent {
         this.currentDashboardTabs[nextTabIndex].displayOrder = currentTabDisplayOrder;
 
         // Save to DB
-        this.globalVariableService.saveDashboardTab(
+        this.globalVariableService.saveResource('dashboardTabs', 
             this.currentDashboardTabs[currentTabIndex]
         );
-        this.globalVariableService.saveDashboardTab(
+        this.globalVariableService.saveResource('dashboardTabs', 
             this.currentDashboardTabs[nextTabIndex]
         );
 
