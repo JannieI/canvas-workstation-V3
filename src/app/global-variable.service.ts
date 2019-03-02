@@ -2624,54 +2624,6 @@ export class GlobalVariableService {
         });
     }
 
-    deleteDashboard(id: number): Promise<string> {
-        // Description: Deletes a Dashboard
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDashboard ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboards';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.dashboards = this.dashboards.filter(
-                        dsp => dsp.id != id
-                    );
-                    this.currentDashboards = this.currentDashboards.filter(
-                        dsp => dsp.id != id
-                    );
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteDashboard DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDashboard FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     getCurrentDashboard(dashboardID: number): Promise<Dashboard[]> {
         // Description: Gets current D (and optional Template)
         // Params:
