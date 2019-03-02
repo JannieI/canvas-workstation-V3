@@ -623,19 +623,10 @@ export class GlobalVariableService {
             let localCurrentVariableName: string = '';
             let localTableName: string = '';
 
-            // Initialise DB
-            // this.dbCanvasAppDatabase = new CanvasAppDatabase
-            // this.dbCanvasAppDatabase.open();
-            // this.dbDataCachingTable = new DataCachingDatabase;
-            // this.dbDataCachingTable.open();
-
             // Find DS in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
                 dct.key == resource
             );
-            console.log('xx resource', "'" + resource + "'")
-            console.log('xx resource', "'" + resource + "'", this.dataCachingTable)
-            console.log('xx resource', "'" + resource + "'",dataCachingTableIndex)
 
             if (dataCachingTableIndex >= 0) {
 
@@ -683,7 +674,7 @@ export class GlobalVariableService {
                             if (localVariableName != null) {
                                 console.log('%c    Global-Variables getResource - data returned from Memory for : ', 
                                     this.concoleLogStyleForCaching,
-                                    resource, this[localVariableName]);
+                                    resource);
                                 // var type = 'article';
                                 // this[type+'_count'] = 1000;  // in a function we use "this";
                                 // alert(this.article_count);
@@ -703,7 +694,7 @@ export class GlobalVariableService {
                                     this[localVariableName] = res;
                                     console.log('%c    Global-Variables getResource - data returned from Disc for: ', 
                                         this.concoleLogStyleForCaching,
-                                        resource, this[localVariableName])
+                                        resource)
                                     console.timeEnd("      DURATION getResource: " + resource);
                                     resolve(this[localVariableName]);
                                     return;
@@ -7403,7 +7394,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                             this.getResource('canvasUsers').then(usr => {
                                 let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
                                 if (foundIndex < 0) {
-    console.log('xx gv this.canvasUsers', this.canvasUsers)
+
                                     if (this.sessionDebugging) {
                                         console.warn('Global-Variables verifyCanvasUser: Invalid userid', givenUserID)
                                     };
