@@ -80,7 +80,7 @@ export class CollaborateTasksComponent implements OnInit {
                 this.canvasTasksOrignal = ca;
 
                 // Get User list
-                this.globalVariableService.getCanvasUsers().then(usr => {
+                this.globalVariableService.getResource('canvasUsers').then(usr => {
                     this.users = usr;
                     usr.forEach(u => {
                         this.userNames.push(u.userID);
