@@ -91,7 +91,7 @@ export class DatasourceShareComponent implements OnInit {
                 return 0;
             });
 
-            this.globalVariableService.getCanvasUsers().then(usr => {
+            this.globalVariableService.getResource('canvasUsers').then(usr => {
                 this.userNames = usr.sort((n1,n2) => {
                     if (n1.userID.toLowerCase() > n2.userID.toLowerCase()) {
                         return 1;
