@@ -3,6 +3,10 @@
 import { Dashboard }                  from './models';
 import { DashboardTab }               from './models';
 import { Datasource }                 from './models';
+import { Widget }                     from './models';
+import { WidgetCheckpoint }           from './models';
+import { WidgetLayout }               from './models';
+
 
 // Dexie
 import Dexie from 'dexie';
@@ -39,6 +43,27 @@ import Dexie from 'dexie';
     export interface ILocalDashboardTab {
         id: number,
         dashboardTab: DashboardTab
+    }
+    
+
+    // Dexie Interface: Local Widgets
+    export interface ILocalWidget {
+        id: number,
+        widget: Widget
+    }
+    
+
+    // Dexie Interface: Local WidgetCheckpoints
+    export interface ILocalWidgetCheckpoint {
+        id: number,
+        widgetCheckpoint: WidgetCheckpoint
+    }
+    
+
+    // Dexie Interface: Local WidgetLayout
+    export interface ILocalWidgetLayout {
+        id: number,
+        widgetLayout: WidgetLayout
     }
 
     // Dexie Interface: Local Datasources
@@ -106,6 +131,40 @@ import Dexie from 'dexie';
             this.dashboardTab = dashboardTab;
         }
     }
+    
+    // Dexie Table: Local Widgets
+    export class LocalWidget implements ILocalWidget {
+        id: number;
+        widget: Widget;
+
+        constructor(id:number, widget: Widget) {
+            this.id = id;
+            this.widget = widget;
+        }
+    }
+    
+    // Dexie Table: Local WidgetCheckpoints
+    export class LocalWidgetCheckpoint implements ILocalWidgetCheckpoint {
+        id: number;
+        widgetCheckpoint: WidgetCheckpoint;
+
+        constructor(id:number, widgetCheckpoint: WidgetCheckpoint) {
+            this.id = id;
+            this.widgetCheckpoint = widgetCheckpoint;
+        }
+    }
+    
+    // Dexie Table: Local WidgetLayouts
+    export class LocalWidgetLayout implements ILocalWidgetLayout {
+        id: number;
+        widgetLayout: WidgetLayout;
+
+        constructor(id:number, widgetLayout: WidgetLayout) {
+            this.id = id;
+            this.widgetLayout = widgetLayout;
+        }
+    }
+
 
     // Dexie Table: Local Datasources
     export class LocalDatasource implements ILocalDatasource {
@@ -128,8 +187,12 @@ import Dexie from 'dexie';
         contacts: Dexie.Table<IContact, number>; // number = type of the primkey
         localDashboards: Dexie.Table<ILocalDashboard, number>;
         localDashboardTabs: Dexie.Table<ILocalDashboardTab, number>;
+        localWidgets: Dexie.Table<ILocalWidget, number>;
+        localWidgetCheckpoints: Dexie.Table<ILocalWidgetCheckpoint, number>;
+        localWidgetLayouts: Dexie.Table<ILocalWidgetLayout, number>;
         localDatasources: Dexie.Table<ILocalDatasource, number>;
         currentCanvasUser: Dexie.Table<ICurrentCanvasUser, number>;
+        
         //...other tables goes ABOVE here...
 
         constructor () {
@@ -139,6 +202,9 @@ import Dexie from 'dexie';
                 contacts: 'id, first, last',
                 localDashboards: 'id',
                 localDashboardTabs: 'id',
+                localWidgets: 'id',
+                localWidgetCheckpoints: 'id',
+                localWidgetLayout: 'id',
                 localDatasources: 'id'
                 //...other tables goes here...
             });
