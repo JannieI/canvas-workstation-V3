@@ -118,7 +118,7 @@ export class UsersComponent implements OnInit {
         });
 
         // Reduce Permissions to current User (only direct, not indirect via Groups)
-        this.globalVariableService.getDashboards().then(d => {
+        this.globalVariableService.getResource('dashboards').then(d => {
             this.dashboards = d;
             this.dashboardPermissions = this.globalVariableService.dashboardPermissions
                 .filter(dp => dp.userID == userID);
