@@ -56,7 +56,8 @@ import * as dl                        from 'datalib';
 import { environment }                from '../environments/environment';
 import { message }                    from 'vega-lite/build/src/log';
 
-// Templates
+// Templates 
+import { canvasSettings }             from './templates';
 import { dashboardTemplate }          from './templates';
 import { dashboardTabTemplate }       from './templates';
 import { finalFields }                from './templates';
@@ -140,30 +141,7 @@ export class GlobalVariableService {
     loggedIntoServer = new BehaviorSubject<boolean>(true);  // Emits True when log in/out of server
 
     // Canvas Server Profile (and settings)
-    canvasSettings: CanvasSettings = {
-        id: 1,
-        companyName: '',
-        companyLogo: '',
-        dashboardTemplate: '',
-        maxTableLength: 500,
-        widgetsMinZindex: 50,
-        widgetsMaxZindex: 59,
-        gridSize: 3,
-        snapToGrid: true,
-        printDefault: '',
-        printSize: '',
-        printLayout: '',
-        notInEditModeMsg: 'Not in Edit Mode (see Edit menu Option)',
-        noQueryRunningMessage: 'No Query',
-        queryRunningMessage: 'Query running...',
-        cleanCacheOnLogin: false,
-        cleanCacheOnLogout: false,
-        editedBy: '',
-        editedOn: null,
-        createdBy: '',
-        createdOn: null
-
-    };
+    canvasSettings: CanvasSettings = canvasSettings;
 
     // Company Profile (and defaults)
 

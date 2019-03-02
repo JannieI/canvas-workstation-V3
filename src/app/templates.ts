@@ -1,5 +1,6 @@
 // List of templates used in the code
 
+import { CanvasSettings }             from './models';
 import { Dashboard }                  from './models';
 import { DashboardTab }               from './models';
 import { Transformation }             from './models';
@@ -812,3 +813,27 @@ export const serverTypes: TributaryServerType[] =
     }
 ];
 
+export const canvasSettings: CanvasSettings = {
+    id: 1,
+    companyName: '',
+    companyLogo: '',
+    dashboardTemplate: '',
+    maxTableLength: 500,
+    widgetsMinZindex: 50,
+    widgetsMaxZindex: 59,
+    gridSize: 3,
+    snapToGrid: true,
+    printDefault: '',
+    printSize: '',
+    printLayout: '',
+    notInEditModeMsg: 'Not in Edit Mode (see Edit menu Option)',
+    noQueryRunningMessage: 'No Query',
+    queryRunningMessage: 'Query running...',
+    cleanCacheOnLogin: false,
+    cleanCacheOnLogout: false,
+    editedBy: '',
+    editedOn: null,
+    createdBy: '',
+    createdOn: null
+
+};
