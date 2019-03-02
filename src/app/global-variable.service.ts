@@ -3277,53 +3277,6 @@ export class GlobalVariableService {
         });
     }
 
-    deleteDashboardTab(id: number): Promise<string> {
-        // Description: Deletes a DashboardTab
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDashboardTab ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardTabs';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.dashboardTabs = this.dashboardTabs.filter(
-                        dsp => dsp.id != id
-                    );
-                    this.currentDashboardTabs = this.currentDashboardTabs.filter(
-                        dsp => dsp.id != id
-                    );
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteDashboardTab DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDashboardTab FAILED', {err});
-                    };
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     getDashboardSamples(): Promise<Dashboard[]> {
         // Description: Gets all Sample D
         // Returns: an array extracted from [D], unless:

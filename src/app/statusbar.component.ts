@@ -521,7 +521,7 @@ export class StatusbarComponent {
             return;
         };
 
-        this.globalVariableService.deleteDashboardTab(
+        this.globalVariableService.deleteResource('dashboardTabs',
            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
         ).then(res => {
 
