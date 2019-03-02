@@ -2756,7 +2756,7 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.widgetCheckpoints.forEach(chk => {
                             if (chk.widgetID == filteredActions[0].oldWidget.id) {
                                 chk.parentWidgetIsDeleted = false;
-                                this.globalVariableService.saveWidgetCheckpoint(chk);
+                                this.globalVariableService.saveResource('widgetCheckpoints', chk);
                             };
                         });
                     };
@@ -2850,7 +2850,7 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.widgetCheckpoints.forEach(chk => {
                             if (chk.widgetID == filteredActions[0].oldWidget.id) {
                                 chk.parentWidgetIsDeleted = false;
-                                this.globalVariableService.saveWidgetCheckpoint(chk);
+                                this.globalVariableService.saveResource('widgetCheckpoints', chk);
                             };
                         });
                     };
