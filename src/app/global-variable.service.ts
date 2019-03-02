@@ -24,7 +24,6 @@ import { DashboardTag }               from './models';
 import { DataCachingTable }           from './models';
 import { DatasourceSchedule }         from './models';
 import { DatasourceScheduleLog }      from './models';
-import { DataField }                  from './models';
 import { Dataset }                    from './models';
 import { DataTable }                  from './models';
 import { Datasource }                 from './models';
@@ -998,7 +997,6 @@ export class GlobalVariableService {
     datasourceSchedules: DatasourceSchedule[] = [];
     datasourceScheduleLog: DatasourceScheduleLog[] = [];
     dataCachingTable: DataCachingTable[] = [];
-    dataFields: DataField[] = [];
     datasets: any = [];                                 // List of dSets, NO data
     datasourcePermissions: DatasourcePermission[] = [];
     dataTables: DataTable[] = [];
