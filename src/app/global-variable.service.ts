@@ -25,7 +25,6 @@ import { DataCachingTable }           from './models';
 import { DatasourceSchedule }         from './models';
 import { DatasourceScheduleLog }      from './models';
 import { Dataset }                    from './models';
-import { DataTable }                  from './models';
 import { Datasource }                 from './models';
 import { DatasourcePermission}        from './models';
 import { GraphCalculation }           from './models';
@@ -999,7 +998,6 @@ export class GlobalVariableService {
     dataCachingTable: DataCachingTable[] = [];
     datasets: any = [];                                 // List of dSets, NO data
     datasourcePermissions: DatasourcePermission[] = [];
-    dataTables: DataTable[] = [];
     finalFields: any = finalFields;
     hasNewMessage = new BehaviorSubject<boolean>(false);
     lastMessageDateTime: Date = new Date(); // Last time a caching message was received
@@ -1030,11 +1028,9 @@ export class GlobalVariableService {
     isDirtyDashboards: boolean = true;
     isDirtyDashboardSnapshots: boolean = true;
     isDirtyDashboardTabs: boolean = true;
-    isDirtyDataFields: boolean = true;
     isDirtyDatasets: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasources: boolean = true;
-    isDirtyDataTables: boolean = true;
     isDirtyPaletteButtonBar: boolean = true;
     isDirtyPaletteButtonsSelected: boolean = true;
     isDirtyWidgetCheckpoints: boolean = true;
