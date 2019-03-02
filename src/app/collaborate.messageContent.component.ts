@@ -69,7 +69,7 @@ export class CollaborateMessageContentComponent implements OnInit {
         this.globalVariableService.getResource('canvasMessages').then(msg => {
             this.canvasMessages = msg;
 
-            this.globalVariableService.getCanvasUsers().then(usr => {
+            this.globalVariableService.getResource('canvasUsers').then(usr => {
                 this.users = usr.sort((n1,n2) => {
                     if (n1.userID.toLowerCase() > n2.userID.toLowerCase()) {
                         return 1;
