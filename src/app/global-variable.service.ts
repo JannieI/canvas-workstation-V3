@@ -207,8 +207,6 @@ export class GlobalVariableService {
     isDirtyWidgets: boolean = true;
 
 
-
-
     // Global vars that guide all interactions
     // *********************************************************************************
     // Modes and Display

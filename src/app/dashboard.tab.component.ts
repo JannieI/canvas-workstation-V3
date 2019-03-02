@@ -288,7 +288,7 @@ export class DashboardTabComponent {
                 createdOn: new Date()
             };
 
-            this.globalVariableService.saveDashboardTab(tab).then(res => {
+            this.globalVariableService.saveResource('dashboardTabs', tab).then(res => {
                 this.formDashboardTabClosed.emit(tab)
             });
         }
