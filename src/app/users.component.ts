@@ -380,7 +380,7 @@ export class UsersComponent implements OnInit {
             firstName: this.userFirstName
         };
 
-        this.globalVariableService.saveCanvasUser(newUser).then( () => {
+        this.globalVariableService.saveResource('canvasUsers', newUser).then( () => {
             this.message = "User Updated"
             this.users[this.selectedRow] = newUser;
         })
