@@ -55,10 +55,14 @@ export class LandingComponent implements OnInit {
 		this.globalVariableService.getDatasourcePermissions();
 
 		// Load D
-		this.globalVariableService.getResource('dashboards').then(readD => {
-			// Sample Dashboards
-			this.globalVariableService.getDashboardSamples().then(sD => {
-				this.sampleDashboards = sD;
+		this.globalVariableService.getResource('dashboards')
+			.then(readD => {
+				// Sample Dashboards - max n, else the landing page overflows
+				this.sampleDashboards = readD
+					.filter(
+						i => (i.isSample)  && i.state == 'Complete'
+					)
+					.slice(0,5);
 
 				// Set user stuffies
 				this.isFirstTimeUser = this.globalVariableService.currentUser.isFirstTimeUser;
@@ -192,11 +196,10 @@ export class LandingComponent implements OnInit {
 					.catch(err => {
 						this.errorMessage = 'Error reading Database: ', err;
 					});
-		})
+			})
 			.catch(err => {
 				this.errorMessage = 'Error reading Database: ', err;
 			});
-		});
 
 		// Load System Settings
 		this.globalVariableService.getSystemSettings();
