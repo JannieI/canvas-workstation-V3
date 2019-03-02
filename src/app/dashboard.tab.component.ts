@@ -78,25 +78,29 @@ export class DashboardTabComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         if (!this.newTab) {
-            let tabIndex: number = this.globalVariableService.currentDashboardTabs
+            let tabIndex: number = this.globalVariableService.dashboardTabs
                 .findIndex(t => t.id == this.globalVariableService.currentDashboardInfo
                     .value.currentDashboardTabID);
-                    console.warn('xx this.globalVariableService.currentDashboardTabs[tabIndex]', this.globalVariableService.currentDashboardTabs[tabIndex]);
+                    console.warn('xx this.globalVariableService.dashboardTabs[tabIndex]', this.globalVariableService.dashboardTabs[tabIndex]);
                     
             if (tabIndex >= 0) {
-                this.name = this.globalVariableService.currentDashboardTabs[tabIndex].name;
-                this.description = this.globalVariableService.currentDashboardTabs[tabIndex]
+                this.name = this.globalVariableService.dashboardTabs[tabIndex].name;
+                this.description = this.globalVariableService.dashboardTabs[tabIndex]
                     .description;
-                this.backgroundColor = this.globalVariableService.currentDashboardTabs[tabIndex]
+                this.backgroundColor = this.globalVariableService.dashboardTabs[tabIndex]
                     .backgroundColor;
-                this.backgroundColorName = this.globalVariableService.currentDashboardTabs[tabIndex]
+                this.backgroundColorName = this.globalVariableService.dashboardTabs[tabIndex]
                     .backgroundColorName;
-                this.color = this.globalVariableService.currentDashboardTabs[tabIndex].color;
-                this.colorName = this.globalVariableService.currentDashboardTabs[tabIndex]
+                this.color = this.globalVariableService.dashboardTabs[tabIndex].color;
+                this.colorName = this.globalVariableService.dashboardTabs[tabIndex]
                     .colorName;
-                this.displayOrder = this.globalVariableService.currentDashboardTabs[tabIndex]
+                this.displayOrder = this.globalVariableService.dashboardTabs[tabIndex]
                     .displayOrder;
             };
+
+
+
+
         };
 
         // Manage colour picker
