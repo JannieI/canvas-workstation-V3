@@ -81,7 +81,6 @@ export class DashboardTabComponent {
             let tabIndex: number = this.globalVariableService.dashboardTabs
                 .findIndex(t => t.id == this.globalVariableService.currentDashboardInfo
                     .value.currentDashboardTabID);
-                    console.warn('xx this.globalVariableService.dashboardTabs[tabIndex]', this.globalVariableService.dashboardTabs[tabIndex]);
                     
             if (tabIndex >= 0) {
                 this.name = this.globalVariableService.dashboardTabs[tabIndex].name;
