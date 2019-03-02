@@ -7391,7 +7391,7 @@ export class GlobalVariableService {
                         // TODO - must this be done here ??  Needed to setBaseUrl
                         this.canvasServerURI = givenCanvasServerURI;
 
-                        this.getCanvasUsers().then(usr => {
+                        this.getResource('canvasUsers').then(usr => {
                             let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
                             if (foundIndex < 0) {
 
