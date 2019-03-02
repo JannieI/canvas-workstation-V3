@@ -846,7 +846,7 @@ export class AppComponent implements OnInit {
                 );
 
                 // TODO - set GV.canvasUser record
-                this.globalVariableService.getCanvasUsers().then(res => {
+                this.globalVariableService.getResource('canvasUsers').then(res => {
 
                     // Get Users and Groups, async
                     this.globalVariableService.getResource('canvasGroups');
