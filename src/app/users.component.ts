@@ -64,7 +64,7 @@ export class UsersComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCanvasUsers().then(u => {
+        this.globalVariableService.getResource('canvasUsers').then(u => {
             this.users = u.sort((n1,n2) => {
                 if (n1.userID.toLowerCase() > n2.userID.toLowerCase()) {
                     return 1;
