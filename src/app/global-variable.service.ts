@@ -5044,61 +5044,6 @@ export class GlobalVariableService {
         })
     }
 
-    getWidgetCheckpoints(): Promise<WidgetCheckpoint[]> {
-        // Description: Gets all Canvas Messages
-        // Returns: this.widgetCheckpoints array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getWidgetCheckpoints ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                this.widgetCheckpoints.length);
-        };
-
-        return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'widgetCheckpoints';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.widgetCheckpoints = res.data.filter(d => (!d.parentWidgetIsDeleted) );
-
-                        this.isDirtyWidgetCheckpoints = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getWidgetCheckpoints 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.widgetCheckpoints)
-                        };
-
-                        resolve(this.widgetCheckpoints);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getWidgetCheckpoints 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.widgetCheckpoints)
-                };
-
-                resolve(this.widgetCheckpoints);
-            }
-        });
-
-    }
-
     getCurrentWidgetCheckpoints(dashboardID: number): Promise<WidgetCheckpoint[]> {
         // Description: Gets all Checkpoints for current D
         // Returns: this.currentWidgetCheckpoints array, unless:
@@ -5112,7 +5057,7 @@ export class GlobalVariableService {
         // Refresh from source at start, or if dirty
         if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
             return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
-                this.getWidgetCheckpoints()
+                this.getResource('widgetCheckpoints')
                     .then(res => {
                         res = res.filter(
                             i => i.dashboardID == dashboardID
