@@ -49,6 +49,10 @@ import * as io                        from 'socket.io-client';
 // Local Data - Dexie
 import { CanvasAppDatabase }          from './dexieDatabase';
 import { LocalDashboard }             from './dexieDatabase';
+import { LocalDashboardTab }          from './dexieDatabase';
+import { LocalWidget }                from './dexieDatabase';
+import { LocalWidgetCheckpoint }      from './dexieDatabase';
+import { LocalWidgetLayout }          from './dexieDatabase';
 import { IDataCachingTable }          from './dexieDatabase';
 import { DataCachingDatabase }        from './dexieDatabase';
 
@@ -442,6 +446,10 @@ export class AppComponent implements OnInit {
     dbCanvasAppDatabase;
     localDataCachingTable: IDataCachingTable[];
     localDashboard: LocalDashboard[];
+    localDashboardTab: LocalDashboardTab[];
+    localWidget: LocalWidget[];
+    localWidgetCheckpoint: LocalWidgetCheckpoint[];
+    localWidgetLayout: LocalWidgetLayout[];
 
     // Create the socket (on the web socket Server) on the correct port (which is same as the
     // HTTP url as the web socket Server listens to the HTTP server traffic)

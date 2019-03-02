@@ -43,8 +43,16 @@ import { WidgetGraph }                from './models';
 
 // Dexie
 import Dexie                          from 'dexie';
-import { CanvasAppDatabase }          from './dexieDatabase';
 import { DataCachingDatabase }        from './dexieDatabase';
+
+// Local Data - Dexie
+import { CanvasAppDatabase }          from './dexieDatabase';
+import { LocalDashboard }             from './dexieDatabase';
+import { LocalDashboardTab }          from './dexieDatabase';
+import { LocalWidget }                from './dexieDatabase';
+import { LocalWidgetCheckpoint }      from './dexieDatabase';
+import { LocalWidgetLayout }          from './dexieDatabase';
+import { IDataCachingTable }          from './dexieDatabase';
 
 // TODO - to remove
 import { Token }                      from './models';
@@ -254,9 +262,16 @@ export class GlobalVariableService {
     statusBarMessage = new BehaviorSubject<StatusBarMessage>(null)
 
     // Dexie
-    dbCanvasAppDatabase;
     dbDataCachingTable;
 
+    // Dexie - Data
+    dbCanvasAppDatabase;
+    localDataCachingTable: IDataCachingTable[];
+    localDashboards: LocalDashboard[];
+    localDashboardTabs: LocalDashboardTab[];
+    localWidgets: LocalWidget[];
+    localWidgetCheckpoints: LocalWidgetCheckpoint[];
+    localWidgetLayouts: LocalWidgetLayout[];
 
     constructor(
         private http: HttpClient,
@@ -1055,27 +1070,21 @@ export class GlobalVariableService {
                             };
                         };
 
-                        // Fill Disc
+                        // Update record on Disc cache
+                        // It must be defined in the dexie.ts class, with an id col which
+                        // is also contained in the object to write ...
                         if (localCacheableDisc) {
 
                             if (localTableName != null) {
-                                // this.dbCanvasAppDatabase = new CanvasAppDatabase
-                                // this.dbCanvasAppDatabase.open();
-
-                                this.dbCanvasAppDatabase.table(localTableName).clear().then(res => {
-                                    this.dbCanvasAppDatabase.table(localTableName)
-                                    .bulkPut(httpResult.data)
-                                    .then(resPut => {
-
-                                        // Count
-                                        this.dbCanvasAppDatabase.table(localTableName)
-                                            .count(resCount => {
-                                                console.log('%c    Global-Variables saveResource updated local Disc for:', 
-                                                    this.concoleLogStyleForCaching,
-                                                    resource, 'to', resCount);
-                                        });
+                                this.dbCanvasAppDatabase.table(localTableName)
+                                    .put(copyData)
+                                    .then(res => {
+                                        console.log('%c    Global-Variables saveResource updated Local cached Disc for:', 
+                                        this.concoleLogStyleForCaching,
+                                        resource, 'into', localTableName
+                                        );
                                     });
-                                });
+
                             };
                         };
 
