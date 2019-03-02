@@ -180,9 +180,6 @@ export class DashboardScheduleEditComponent implements OnInit {
         let dashboardScheduleIndex: number = this.dashboardSchedules
             .findIndex(sch => sch.id == this.selectedDashboardSchedule.id);
         if (dashboardScheduleIndex >= 0) {
-            // this.selectedDashboardSchedule = Object.assign({},
-            //     this.currentDashboardSchedules[dashboardScheduleIndex]
-            // );
             this.selectedDashboardSchedule = JSON.parse(JSON.stringify(
                 this.dashboardSchedules[dashboardScheduleIndex]
             ));
@@ -302,7 +299,6 @@ export class DashboardScheduleEditComponent implements OnInit {
 
         // Add to local and DB
         if (this.adding) {
-            // this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
             this.selectedDashboardSchedule._id = null;
             this.selectedDashboardSchedule.id = null;
             this.selectedDashboardSchedule.dashboardID =

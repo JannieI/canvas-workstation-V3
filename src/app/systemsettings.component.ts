@@ -143,7 +143,7 @@ export class SystemSettingsComponent implements OnInit {
 
         // Save globally, and in DB
         this.globalVariableService.canvasSettings = data;
-        this.globalVariableService.saveSystemSettings(data)
+        this.globalVariableService.saveResource('canvasSettings', data)
             .then(
                 res => 
                     {

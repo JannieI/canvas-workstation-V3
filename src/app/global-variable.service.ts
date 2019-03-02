@@ -16,12 +16,9 @@ import { CombinationDetail }          from './models';
 import { CSScolor }                   from './models';
 import { CurrentDashboardInfo }       from './models';
 import { Dashboard }                  from './models';
-import { DashboardLayout }            from './models';
 import { DashboardPermission }        from './models';
 import { DashboardRecent}             from './models';
 import { DashboardSnapshot }          from './models';
-import { DashboardSchedule }          from './models';
-import { DashboardScheduleLog }       from './models';
 import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
 import { DataCachingTable }           from './models';
@@ -58,739 +55,749 @@ import { Token }                      from './models';
 import * as dl                        from 'datalib';
 
 // Environment
-import { environment } from '../environments/environment';
-import { message } from 'vega-lite/build/src/log';
+import { environment }                from '../environments/environment';
+import { message }                    from 'vega-lite/build/src/log';
+
+// Templates
+import { dashboardTemplate }          from './templates';
+import { dashboardTabTemplate }       from './templates';
+import { finalFields }                from './templates';
+import { transformationsFormat }      from './templates';
+import { vlTemplate }                 from './templates';
+import { widgetTemplateInner }        from './templates';
+import { widgetTemplate }             from './templates';
+
 
 // Vega template
-const vlTemplate: dl.spec.TopLevelExtendedSpec =
-    {
-        "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+// const vlTemplate: dl.spec.TopLevelExtendedSpec =
+//     {
+//         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
 
-        // Properties for top-level specification (e.g., standalone single view specifications)
-        "background": "",
-        "padding": {"left": 5, "top": 5, "right": 5, "bottom": 5},
-        "height": "100",
-        "width": "100",
-        "autosize": "fit",
-        // "autosize": "",          NB - add these only if needed, blank causes no graph display
-        // "config": "",            NB - add these only if needed, blank causes no graph display
+//         // Properties for top-level specification (e.g., standalone single view specifications)
+//         "background": "",
+//         "padding": {"left": 5, "top": 5, "right": 5, "bottom": 5},
+//         "height": "100",
+//         "width": "100",
+//         "autosize": "fit",
+//         // "autosize": "",          NB - add these only if needed, blank causes no graph display
+//         // "config": "",            NB - add these only if needed, blank causes no graph display
 
-        // Properties for any specifications
-        "title":
-            {
-                "text": "",
-                "anchor": "",
-                "offset": "",
-                "orient": "",
-                "style": ""
-            },
-        "name": "",
-        "transform": "",
+//         // Properties for any specifications
+//         "title":
+//             {
+//                 "text": "",
+//                 "anchor": "",
+//                 "offset": "",
+//                 "orient": "",
+//                 "style": ""
+//             },
+//         "name": "",
+//         "transform": "",
 
-        "description": "",
-        "data": null,
-        "mark":
-            {
-                "type": "",  //bar circle square tick line area point rule text
-                "style": "",
-                "clip": "",
-                "color": "#4682b4"
-            },
-        "encoding":
-            {
-                "color":
-                    {
-                        "field": "",
-                        "type": ""
-                    },
-                "x":
-                    {
-                        "aggregate": "",
-                        "field": "",
-                        "type": "ordinal",
-                        "bin": "",
-                        "timeUnit": "",
-                        "axis":
-                        {
-                            "title": ""
-                        },
-                        "scale": "",
-                        "legend": "",
-                        "format": "",
-                        "stack": "",
-                        "sort": "",
-                        "condition": ""
-                    },
-                "y":
-                    {
-                        "aggregate": "",
-                        "field": "",
-                        "type": "quantitative",
-                        "bin": "",
-                        "timeUnit": "",
-                        "axis":
-                            {
-                                "title": ""
-                            },
-                        "scale": "",
-                        "legend": "",
-                        "format": "",
-                        "stack": "",
-                        "sort": "",
-                        "condition": ""
-                        }
-            }
-    };
+//         "description": "",
+//         "data": null,
+//         "mark":
+//             {
+//                 "type": "",  //bar circle square tick line area point rule text
+//                 "style": "",
+//                 "clip": "",
+//                 "color": "#4682b4"
+//             },
+//         "encoding":
+//             {
+//                 "color":
+//                     {
+//                         "field": "",
+//                         "type": ""
+//                     },
+//                 "x":
+//                     {
+//                         "aggregate": "",
+//                         "field": "",
+//                         "type": "ordinal",
+//                         "bin": "",
+//                         "timeUnit": "",
+//                         "axis":
+//                         {
+//                             "title": ""
+//                         },
+//                         "scale": "",
+//                         "legend": "",
+//                         "format": "",
+//                         "stack": "",
+//                         "sort": "",
+//                         "condition": ""
+//                     },
+//                 "y":
+//                     {
+//                         "aggregate": "",
+//                         "field": "",
+//                         "type": "quantitative",
+//                         "bin": "",
+//                         "timeUnit": "",
+//                         "axis":
+//                             {
+//                                 "title": ""
+//                             },
+//                         "scale": "",
+//                         "legend": "",
+//                         "format": "",
+//                         "stack": "",
+//                         "sort": "",
+//                         "condition": ""
+//                         }
+//             }
+//     };
 
 // Widget template
-const widgetTemplateInner: any = {
+// const widgetTemplateInner: any = {
 
-    // Mark
-    "graphMark": "",
-    "graphMarkOrient": "",
-    "graphMarkLine": false,
-    "graphMarkPoint": false,
-    "graphMarkPointColorName": "",
-    "graphMarkPointColor": "",
-    "graphMarkColourName": "",
-    "graphMarkColour": "",
-    "graphMarkCornerRadius": 0,
-    "graphMarkExtent": "",
-    "graphMarkOpacity": 1,
-    "graphMarkBinSpacing": 0,
-    "graphMarkSize": "",
-    "graphMarkInterpolate": "",
+//     // Mark
+//     "graphMark": "",
+//     "graphMarkOrient": "",
+//     "graphMarkLine": false,
+//     "graphMarkPoint": false,
+//     "graphMarkPointColorName": "",
+//     "graphMarkPointColor": "",
+//     "graphMarkColourName": "",
+//     "graphMarkColour": "",
+//     "graphMarkCornerRadius": 0,
+//     "graphMarkExtent": "",
+//     "graphMarkOpacity": 1,
+//     "graphMarkBinSpacing": 0,
+//     "graphMarkSize": "",
+//     "graphMarkInterpolate": "",
 
-    // X
-    "graphXfield": "",
-    "graphXaggregateName": "",
-    "graphXaggregate": "",
-    "graphXtimeUnit": "",
-    "graphXbin": false,
-    "graphXMaxBins": 0,
-    "graphXformat": "",
-    "graphXimpute": "",
-    "graphXimputeValue": "",
-    "graphXstack": "",
-    "graphXsort": "",
-    "graphXtype": "",
-    "graphXtypeName": "",
+//     // X
+//     "graphXfield": "",
+//     "graphXaggregateName": "",
+//     "graphXaggregate": "",
+//     "graphXtimeUnit": "",
+//     "graphXbin": false,
+//     "graphXMaxBins": 0,
+//     "graphXformat": "",
+//     "graphXimpute": "",
+//     "graphXimputeValue": "",
+//     "graphXstack": "",
+//     "graphXsort": "",
+//     "graphXtype": "",
+//     "graphXtypeName": "",
 
-    // Y
-    "graphYfield": "",
-    "graphYaggregateName": "",
-    "graphYaggregate": "",
-    "graphYbin": false,
-    "graphYMaxBins": 0,
-    "graphYformat": "",
-    "graphYimpute": "",
-    "graphYimputeValue": 0,
-    "graphYstack": "",
-    "graphYsort": "",
-    "graphYtimeUnit": "",
-    "graphYtype": "",
-    "graphYtypeName": "",
+//     // Y
+//     "graphYfield": "",
+//     "graphYaggregateName": "",
+//     "graphYaggregate": "",
+//     "graphYbin": false,
+//     "graphYMaxBins": 0,
+//     "graphYformat": "",
+//     "graphYimpute": "",
+//     "graphYimputeValue": 0,
+//     "graphYstack": "",
+//     "graphYsort": "",
+//     "graphYtimeUnit": "",
+//     "graphYtype": "",
+//     "graphYtypeName": "",
 
-    // Color
-    "graphColorField": "",
-    "graphColorAggregateName": "",
-    "graphColorAggregate": "",
-    "graphColorBin": false,
-    "graphColorMaxBins": 0,
-    "graphColorFormat": "",
-    "graphColorImpute": "",
-    "graphColorImputeValue": "",
-    "graphColorScheme": "blues",
-    "graphColorSort": "",
-    "graphColorStack": "",
-    "graphColorType": "",
-    "graphColorTypeName": "",
-    "graphColorTimeUnit": "",
+//     // Color
+//     "graphColorField": "",
+//     "graphColorAggregateName": "",
+//     "graphColorAggregate": "",
+//     "graphColorBin": false,
+//     "graphColorMaxBins": 0,
+//     "graphColorFormat": "",
+//     "graphColorImpute": "",
+//     "graphColorImputeValue": "",
+//     "graphColorScheme": "blues",
+//     "graphColorSort": "",
+//     "graphColorStack": "",
+//     "graphColorType": "",
+//     "graphColorTypeName": "",
+//     "graphColorTimeUnit": "",
 
-    // X Axis
-    "graphXaxisFormat": "",
-    "graphXaxisGrid": true,
-    "graphXaxisGridColorName": "",
-    "graphXaxisGridColor": "",
-    "graphXaxisLabels": true,
-    "graphXaxisLabelAngle": 0,
-    "graphXaxisLabelColorName": "",
-    "graphXaxisLabelsLength": 0,
-    "graphXaxisLabelColor": "",
-    "graphXaxisTitle": "",
-    "graphXaxisTitleCheckbox": true,
-    "graphXaxisScaleType": "",
+//     // X Axis
+//     "graphXaxisFormat": "",
+//     "graphXaxisGrid": true,
+//     "graphXaxisGridColorName": "",
+//     "graphXaxisGridColor": "",
+//     "graphXaxisLabels": true,
+//     "graphXaxisLabelAngle": 0,
+//     "graphXaxisLabelColorName": "",
+//     "graphXaxisLabelsLength": 0,
+//     "graphXaxisLabelColor": "",
+//     "graphXaxisTitle": "",
+//     "graphXaxisTitleCheckbox": true,
+//     "graphXaxisScaleType": "",
 
-    // Y Axis
-    "graphYaxisFormat": "",
-    "graphYaxisGrid": true,
-    "graphYaxisGridColorName": "",
-    "graphYaxisGridColor": "",
-    "graphYaxisLabels": true,
-    "graphYaxisLabelAngle": 0,
-    "graphYaxisLabelColorName": "",
-    "graphYaxisLabelColor": "",
-    "graphYaxisScaleType": "",
-    "graphYaxisTitle": "",
-    "graphYaxisTitleCheckbox": true,
+//     // Y Axis
+//     "graphYaxisFormat": "",
+//     "graphYaxisGrid": true,
+//     "graphYaxisGridColorName": "",
+//     "graphYaxisGridColor": "",
+//     "graphYaxisLabels": true,
+//     "graphYaxisLabelAngle": 0,
+//     "graphYaxisLabelColorName": "",
+//     "graphYaxisLabelColor": "",
+//     "graphYaxisScaleType": "",
+//     "graphYaxisTitle": "",
+//     "graphYaxisTitleCheckbox": true,
 
-    // Legend
-    "graphLegendAxisScaleType": "",
-    "graphLegendHide": false,
-    "graphLegendTitleCheckbox": true,
-    "graphLegendTitle": "",
-    "graphLegendFormat": "",
-    "graphLegendLabels": true,
-    "graphLegendLabelColorName": "",
-    "graphLegendLabelColor": "",
+//     // Legend
+//     "graphLegendAxisScaleType": "",
+//     "graphLegendHide": false,
+//     "graphLegendTitleCheckbox": true,
+//     "graphLegendTitle": "",
+//     "graphLegendFormat": "",
+//     "graphLegendLabels": true,
+//     "graphLegendLabelColorName": "",
+//     "graphLegendLabelColor": "",
 
-    // Size
-    "graphSizeField": "",
-    "graphSizeType": "",
-    "graphSizeTypeName": "",
-    "graphSizeAggregateName": "",
-    "graphSizeAggregate": "",
-    "graphSizeBin": false,
-    "graphSizeMaxBins": 0,
+//     // Size
+//     "graphSizeField": "",
+//     "graphSizeType": "",
+//     "graphSizeTypeName": "",
+//     "graphSizeAggregateName": "",
+//     "graphSizeAggregate": "",
+//     "graphSizeBin": false,
+//     "graphSizeMaxBins": 0,
 
-    // Row
-    "graphRowField": "",
-    "graphRowType": "",
-    "graphRowTypeName": "",
+//     // Row
+//     "graphRowField": "",
+//     "graphRowType": "",
+//     "graphRowTypeName": "",
 
-    // Column
-    "graphColumnField": "",
-    "graphColumnType": "",
-    "graphColumnTypeName": "",
+//     // Column
+//     "graphColumnField": "",
+//     "graphColumnType": "",
+//     "graphColumnTypeName": "",
 
-    // Detail
-    "graphDetailField": "",
-    "graphDetailType": "",
-    "graphDetailTypeName": "",
+//     // Detail
+//     "graphDetailField": "",
+//     "graphDetailType": "",
+//     "graphDetailTypeName": "",
 
-    // X2
-    "graphX2Field": "",
-    "graphX2Type": "",
-    "graphX2TypeName": "",
-    "graphX2AggregateName": "",
+//     // X2
+//     "graphX2Field": "",
+//     "graphX2Type": "",
+//     "graphX2TypeName": "",
+//     "graphX2AggregateName": "",
 
-    // Y2
-    "graphY2Field": "",
-    "graphY2Type": "",
-    "graphY2TypeName": "",
-    "graphY2AggregateName": "",
+//     // Y2
+//     "graphY2Field": "",
+//     "graphY2Type": "",
+//     "graphY2TypeName": "",
+//     "graphY2AggregateName": "",
 
-    // Projection
-    "graphProjectionType": "",
-    "graphProjectionFieldLatitude": "",
-    "graphProjectionFieldLongitude": ""
-};
+//     // Projection
+//     "graphProjectionType": "",
+//     "graphProjectionFieldLatitude": "",
+//     "graphProjectionFieldLongitude": ""
+// };
 
-const widgetTemplate: Widget =
-    {
-        "widgetType": "",
-        "widgetSubType": "",
-        "isLocked": false,
-        "dashboardID": null,
-        "dashboardTabID": null,
-        "dashboardTabIDs": [],
-        "id": null,
-        "originalID": null,
-        "name": "New Widget",
-        "description": "New Widget from Template",
-        "annotation": '',
-        "annotationLastUserID": "",
-        "annotationLastUpdated": null,
-        "visualGrammar": "Vega-Lite",
-        "visualGrammarType": 'standard',
-        "version": 1,
-        "isSelected": false,
-        "isLiked": false,
-        "nrDataQualityIssues": 0,
-        "nrComments": 0,
-        "showCheckpoints": false,
-        "checkpointIDs": [],
-        "currentCheckpoint": 0,
-        "lastCheckpoint": -1,
-        "hyperlinkDashboardID": null,
-        "hyperlinkDashboardTabID": null,
-        "containerStyleID": null,
+// const widgetTemplate: Widget =
+//     {
+//         "widgetType": "",
+//         "widgetSubType": "",
+//         "isLocked": false,
+//         "dashboardID": null,
+//         "dashboardTabID": null,
+//         "dashboardTabIDs": [],
+//         "id": null,
+//         "originalID": null,
+//         "name": "New Widget",
+//         "description": "New Widget from Template",
+//         "annotation": '',
+//         "annotationLastUserID": "",
+//         "annotationLastUpdated": null,
+//         "visualGrammar": "Vega-Lite",
+//         "visualGrammarType": 'standard',
+//         "version": 1,
+//         "isSelected": false,
+//         "isLiked": false,
+//         "nrDataQualityIssues": 0,
+//         "nrComments": 0,
+//         "showCheckpoints": false,
+//         "checkpointIDs": [],
+//         "currentCheckpoint": 0,
+//         "lastCheckpoint": -1,
+//         "hyperlinkDashboardID": null,
+//         "hyperlinkDashboardTabID": null,
+//         "containerStyleID": null,
 
-        "datasourceID": null,
-        "data": null,
-        "dataFields": null,
-        "dataFieldTypes": null,
-        "dataFieldLengths": null,
-        "dataschema": null,
-        "datasetID": null,
-        "dataParameters": [],
-        "reportID": null,
-        "reportName": "",
-        "rowLimit": null,
-        "addRestRow": false,
-        "size": "",
+//         "datasourceID": null,
+//         "data": null,
+//         "dataFields": null,
+//         "dataFieldTypes": null,
+//         "dataFieldLengths": null,
+//         "dataschema": null,
+//         "datasetID": null,
+//         "dataParameters": [],
+//         "reportID": null,
+//         "reportName": "",
+//         "rowLimit": null,
+//         "addRestRow": false,
+//         "size": "",
 
-        "containerBackgroundcolor": "transparent",
-        "containerBackgroundcolorName": "transparent",
-        "containerBorder": "1px solid gray",
-        "containerBorderColourName" : "1px solid gray",
-        "containerBorderRadius": "6px",
-        "containerBoxshadow": "none",
-        "containerFontsize": 12,
-        "containerHeight": 320,
-        "containerLeft": 10,
-        "containerHasContextMenus": false,
-        "containerHasTitle": false,
-        "containerTop": 80,
-        "containerWidth": 410,
-        "containerZindex": 50,
+//         "containerBackgroundcolor": "transparent",
+//         "containerBackgroundcolorName": "transparent",
+//         "containerBorder": "1px solid gray",
+//         "containerBorderColourName" : "1px solid gray",
+//         "containerBorderRadius": "6px",
+//         "containerBoxshadow": "none",
+//         "containerFontsize": 12,
+//         "containerHeight": 320,
+//         "containerLeft": 10,
+//         "containerHasContextMenus": false,
+//         "containerHasTitle": false,
+//         "containerTop": 80,
+//         "containerWidth": 410,
+//         "containerZindex": 50,
 
-        "graphLayerFacet": "Single",
-        "graphLayers": [
-            {
-                // Optional Specification, used for Custom graphTypes
-                "graphSpecification": null,
+//         "graphLayerFacet": "Single",
+//         "graphLayers": [
+//             {
+//                 // Optional Specification, used for Custom graphTypes
+//                 "graphSpecification": null,
 
-                // Mark
-                "graphMark": "",
-                "graphMarkOrient": "",
-                "graphMarkLine": false,
-                "graphMarkPoint": false,
-                "graphMarkPointColorName": "",
-                "graphMarkPointColor": "",
-                "graphMarkColourName": "",
-                "graphMarkColour": "",
-                "graphMarkCornerRadius": 0,
-                "graphMarkExtent": "",
-                "graphMarkOpacity": 1,
-                "graphMarkBinSpacing": 0,
-                "graphMarkSize": 20,
-                "graphMarkInterpolate": "",
+//                 // Mark
+//                 "graphMark": "",
+//                 "graphMarkOrient": "",
+//                 "graphMarkLine": false,
+//                 "graphMarkPoint": false,
+//                 "graphMarkPointColorName": "",
+//                 "graphMarkPointColor": "",
+//                 "graphMarkColourName": "",
+//                 "graphMarkColour": "",
+//                 "graphMarkCornerRadius": 0,
+//                 "graphMarkExtent": "",
+//                 "graphMarkOpacity": 1,
+//                 "graphMarkBinSpacing": 0,
+//                 "graphMarkSize": 20,
+//                 "graphMarkInterpolate": "",
 
-                // X
-                "graphXfield": "",
-                "graphXaggregateName": "",
-                "graphXaggregate": "",
-                "graphXtimeUnit": "",
-                "graphXbin": false,
-                "graphXMaxBins": 0,
-                "graphXformat": "",
-                "graphXimpute": "",
-                "graphXimputeValue": 0,
-                "graphXstack": "",
-                "graphXsort": "",
-                "graphXtype": "",
-                "graphXtypeName": "",
+//                 // X
+//                 "graphXfield": "",
+//                 "graphXaggregateName": "",
+//                 "graphXaggregate": "",
+//                 "graphXtimeUnit": "",
+//                 "graphXbin": false,
+//                 "graphXMaxBins": 0,
+//                 "graphXformat": "",
+//                 "graphXimpute": "",
+//                 "graphXimputeValue": 0,
+//                 "graphXstack": "",
+//                 "graphXsort": "",
+//                 "graphXtype": "",
+//                 "graphXtypeName": "",
 
-                // Y
-                "graphYfield": "",
-                "graphYaggregateName": "",
-                "graphYaggregate": "",
-                "graphYbin": false,
-                "graphYMaxBins": 0,
-                "graphYformat": "",
-                "graphYimpute": "",
-                "graphYimputeValue": 0,
-                "graphYstack": "",
-                "graphYsort": "",
-                "graphYtimeUnit": "",
-                "graphYtype": "",
-                "graphYtypeName": "",
+//                 // Y
+//                 "graphYfield": "",
+//                 "graphYaggregateName": "",
+//                 "graphYaggregate": "",
+//                 "graphYbin": false,
+//                 "graphYMaxBins": 0,
+//                 "graphYformat": "",
+//                 "graphYimpute": "",
+//                 "graphYimputeValue": 0,
+//                 "graphYstack": "",
+//                 "graphYsort": "",
+//                 "graphYtimeUnit": "",
+//                 "graphYtype": "",
+//                 "graphYtypeName": "",
 
-                // Color
-                "graphColorField": "",
-                "graphColorAggregateName": "",
-                "graphColorAggregate": "",
-                "graphColorBin": false,
-                "graphColorMaxBins": 0,
-                "graphColorFormat": "",
-                "graphColorImpute": "",
-                "graphColorImputeValue": 0,
-                "graphColorScheme": "blues",
-                "graphColorSort": "",
-                "graphColorStack": "",
-                "graphColorType": "",
-                "graphColorTypeName": "",
-                "graphColorTimeUnit": "",
+//                 // Color
+//                 "graphColorField": "",
+//                 "graphColorAggregateName": "",
+//                 "graphColorAggregate": "",
+//                 "graphColorBin": false,
+//                 "graphColorMaxBins": 0,
+//                 "graphColorFormat": "",
+//                 "graphColorImpute": "",
+//                 "graphColorImputeValue": 0,
+//                 "graphColorScheme": "blues",
+//                 "graphColorSort": "",
+//                 "graphColorStack": "",
+//                 "graphColorType": "",
+//                 "graphColorTypeName": "",
+//                 "graphColorTimeUnit": "",
 
-                // X Axis
-                "graphXaxisFormat": "",
-                "graphXaxisGrid": true,
-                "graphXaxisGridColorName": "",
-                "graphXaxisGridColor": "",
-                "graphXaxisLabels": true,
-                "graphXaxisLabelAngle": 0,
-                "graphXaxisLabelColorName": "",
-                "graphXaxisLabelsLength": 0,
-                "graphXaxisLabelColor": "",
-                "graphXaxisScaleType": "",
-                "graphXaxisScaleDomainStart": "",
-                "graphXaxisScaleDomainEnd": "",
-                "graphXaxisTitle": "",
-                "graphXaxisTitleCheckbox": true,
+//                 // X Axis
+//                 "graphXaxisFormat": "",
+//                 "graphXaxisGrid": true,
+//                 "graphXaxisGridColorName": "",
+//                 "graphXaxisGridColor": "",
+//                 "graphXaxisLabels": true,
+//                 "graphXaxisLabelAngle": 0,
+//                 "graphXaxisLabelColorName": "",
+//                 "graphXaxisLabelsLength": 0,
+//                 "graphXaxisLabelColor": "",
+//                 "graphXaxisScaleType": "",
+//                 "graphXaxisScaleDomainStart": "",
+//                 "graphXaxisScaleDomainEnd": "",
+//                 "graphXaxisTitle": "",
+//                 "graphXaxisTitleCheckbox": true,
 
-                // Y Axis
-                "graphYaxisFormat": "",
-                "graphYaxisGrid": true,
-                "graphYaxisGridColorName": "",
-                "graphYaxisGridColor": "",
-                "graphYaxisLabels": true,
-                "graphYaxisLabelAngle": 0,
-                "graphYaxisLabelColorName": "",
-                "graphYaxisLabelColor": "",
-                "graphYaxisLabelsLength": 0,
-                "graphYaxisScaleType": "",
-                "graphYaxisScaleDomainStart": "",
-                "graphYaxisScaleDomainEnd": "",
-                "graphYaxisTitle": "",
-                "graphYaxisTitleCheckbox": true,
+//                 // Y Axis
+//                 "graphYaxisFormat": "",
+//                 "graphYaxisGrid": true,
+//                 "graphYaxisGridColorName": "",
+//                 "graphYaxisGridColor": "",
+//                 "graphYaxisLabels": true,
+//                 "graphYaxisLabelAngle": 0,
+//                 "graphYaxisLabelColorName": "",
+//                 "graphYaxisLabelColor": "",
+//                 "graphYaxisLabelsLength": 0,
+//                 "graphYaxisScaleType": "",
+//                 "graphYaxisScaleDomainStart": "",
+//                 "graphYaxisScaleDomainEnd": "",
+//                 "graphYaxisTitle": "",
+//                 "graphYaxisTitleCheckbox": true,
 
-                // Legend
-                "graphLegendAxisScaleType": "",
-                "graphLegendHide": false,
-                "graphLegendTitleCheckbox": true,
-                "graphLegendTitle": "",
-                "graphLegendFormat": "",
-                "graphLegendLabels": true,
-                "graphLegendLabelColorName": "",
-                "graphLegendLabelColor": "",
-                "graphLegendLabelsLength" : 0,
+//                 // Legend
+//                 "graphLegendAxisScaleType": "",
+//                 "graphLegendHide": false,
+//                 "graphLegendTitleCheckbox": true,
+//                 "graphLegendTitle": "",
+//                 "graphLegendFormat": "",
+//                 "graphLegendLabels": true,
+//                 "graphLegendLabelColorName": "",
+//                 "graphLegendLabelColor": "",
+//                 "graphLegendLabelsLength" : 0,
 
-                // Size
-                "graphSizeField": "",
-                "graphSizeType": "",
-                "graphSizeTypeName": "",
-                "graphSizeAggregateName": "",
-                "graphSizeAggregate": "",
-                "graphSizeBin": false,
-                "graphSizeMaxBins": 0,
+//                 // Size
+//                 "graphSizeField": "",
+//                 "graphSizeType": "",
+//                 "graphSizeTypeName": "",
+//                 "graphSizeAggregateName": "",
+//                 "graphSizeAggregate": "",
+//                 "graphSizeBin": false,
+//                 "graphSizeMaxBins": 0,
 
-                // Row
-                "graphRowField": "",
-                "graphRowType": "",
-                "graphRowTypeName": "",
-                "graphRowTitleCheckbox" : true,
-                "graphRowTitle" : "",
+//                 // Row
+//                 "graphRowField": "",
+//                 "graphRowType": "",
+//                 "graphRowTypeName": "",
+//                 "graphRowTitleCheckbox" : true,
+//                 "graphRowTitle" : "",
 
-                // Column
-                "graphColumnField": "",
-                "graphColumnType": "",
-                "graphColumnTypeName": "",
-                "graphColumnTitleCheckbox" : true,
-                "graphColumnTitle" : "",
+//                 // Column
+//                 "graphColumnField": "",
+//                 "graphColumnType": "",
+//                 "graphColumnTypeName": "",
+//                 "graphColumnTitleCheckbox" : true,
+//                 "graphColumnTitle" : "",
 
-                // Detail
-                "graphDetailField": "",
-                "graphDetailType": "",
-                "graphDetailTypeName": "",
+//                 // Detail
+//                 "graphDetailField": "",
+//                 "graphDetailType": "",
+//                 "graphDetailTypeName": "",
 
-                // X2
-                "graphX2Field": "",
-                "graphX2Type": "",
-                "graphX2TypeName": "",
-                "graphX2AggregateName": "",
+//                 // X2
+//                 "graphX2Field": "",
+//                 "graphX2Type": "",
+//                 "graphX2TypeName": "",
+//                 "graphX2AggregateName": "",
 
-                // Y2
-                "graphY2Field": "",
-                "graphY2Type": "",
-                "graphY2TypeName": "",
-                "graphY2AggregateName": "",
+//                 // Y2
+//                 "graphY2Field": "",
+//                 "graphY2Type": "",
+//                 "graphY2TypeName": "",
+//                 "graphY2AggregateName": "",
 
-                // Projection
-                "graphProjectionType": "",
-                "graphProjectionFieldLatitude": "",
-                "graphProjectionFieldLongitude": "",
+//                 // Projection
+//                 "graphProjectionType": "",
+//                 "graphProjectionFieldLatitude": "",
+//                 "graphProjectionFieldLongitude": "",
 
-                // Condition
-                "conditionColourName": "",
-                "conditionColour": "",
-                "conditionFieldName": "",
-                "conditionOperator": "",
-                "conditionValue": "",
-                "conditionValueFrom": "",
-                "conditionValueTo": "",
-            }
-        ],
+//                 // Condition
+//                 "conditionColourName": "",
+//                 "conditionColour": "",
+//                 "conditionFieldName": "",
+//                 "conditionOperator": "",
+//                 "conditionValue": "",
+//                 "conditionValueFrom": "",
+//                 "conditionValueTo": "",
+//             }
+//         ],
 
-        "graphUrl": "",
-        "graphData": "",
+//         "graphUrl": "",
+//         "graphData": "",
 
-        "graphTitleText": "",
-        "graphTitleAnchor": "Middle",
-        "graphTitleAngle": 0,
-        "graphBackgroundColorName": "transparent",
-        "graphBackgroundColor": "transparent",
-        "graphBorderColorName": "lightgray",
-        "graphBorderColor": "lightgray",
+//         "graphTitleText": "",
+//         "graphTitleAnchor": "Middle",
+//         "graphTitleAngle": 0,
+//         "graphBackgroundColorName": "transparent",
+//         "graphBackgroundColor": "transparent",
+//         "graphBorderColorName": "lightgray",
+//         "graphBorderColor": "lightgray",
 
-        "graphTitleBaseline": "Bottom",
-        "graphTitleColorName": "Gray",
-        "graphTitleColor": "Gray",
-        "graphTitleFont": "",
-        "graphTitleFontSize": 10,
-        "graphTitleFontWeight": 400,
-        "graphTitleLength": 0,
-        "graphTitleOrientation": "Top",
+//         "graphTitleBaseline": "Bottom",
+//         "graphTitleColorName": "Gray",
+//         "graphTitleColor": "Gray",
+//         "graphTitleFont": "",
+//         "graphTitleFontSize": 10,
+//         "graphTitleFontWeight": 400,
+//         "graphTitleLength": 0,
+//         "graphTitleOrientation": "Top",
 
-        "graphTransformations": [{
-            "id": 0,
-            "sequence": 0,
-            "transformationType": ""
-        }],
-        "graphCalculations": [],
-        "graphFilters": [],
-        "sampleNumberRows": 0,
+//         "graphTransformations": [{
+//             "id": 0,
+//             "sequence": 0,
+//             "transformationType": ""
+//         }],
+//         "graphCalculations": [],
+//         "graphFilters": [],
+//         "sampleNumberRows": 0,
 
-        "titleText": "Title of new Widget",
-        "titleBackgroundColor": "lightgray",
-        "titleBackgroundColorName": "lightgray",
-        "titleBorder": "",
-        "titleBorderName": "",
-        "titleColor": "black",
-        "titleColorName": "black",
-        "titleFontsize": 12,
-        "titleFontWeight": "",
-        "titleHeight": 24,
-        "titleMargin": "0",
-        "titlePadding": "0 0 0 5px",
-        "titleTextAlign": "center",
-        "titleWidth": 100,
-        "graphHeight": 240,
-        "graphLeft": 1,
-        "graphTop": 1,
-        "graphWidth": 240,
-        "graphDimensionRight": 140,
-        "graphDimensionLeft": 80,
-        "graphDimensionBottom": 70,
-        "graphGraphPadding": 1,
-        "graphHasSignals": false,
-        "graphFillColor": "",
-        "graphHoverColor": "",
-        "graphPanAndZoom": false,
-        "graphDescription": "",
-        "tableBackgroundColor" : "",
-        "tableBackgroundColorName" : "",
-        "tableColor": "",
-        "tableColorName": "",
-        "tableCols": 1,
-        "fontSize": 12,
-        "tableHeight": 1,
-        "tableHideHeader": false,
-        "tableLeft": 1,
-        "tableLineHeight": 12,
-        "tableRows": 1,
-        "tableTop": 1,
-        "tableWidth": 1,
-        "slicerAddRest": false,
-        "slicerAddRestValue": false,
-        "slicerBins": null,
-        "slicerColor": "gray",
-        "slicerFieldName": "",
-        "slicerNumberToShow": '',
-        "slicerSelection": null,
-        "slicerSortField": '',
-        "slicerSortFieldOrder": '',
-        "slicerType": "",
-        "shapeBullet": [],
-        "shapeBulletStyleType": "",
-        "shapeBulletsOrdered": false,
-        "shapeBulletMarginBottom": 3,
-        "shapeCorner": 15,
-        "shapeFill": "",
-        "shapeFillName": "",
-        "shapeFontSize": 24,
-        "shapeLineHeight": "normal",
-        "shapeLineLength": 66,
-        "shapePath": "",
-        "shapeFontFamily": "",
-        "shapeImageUrl": "",
-        "shapeIsBold": true,
-        "shapeIsItalic": false,
-        "shapeOpacity": 1,
-        "shapeRotation": 0,
-        "shapeSize": 1,
-        "shapeStroke": "",
-        "shapeStrokeName": "",
-        "shapeStrokeWidth": "",
-        "shapeSvgHeight": 30,
-        "shapeSvgWidth": 30,
-        "shapeText": "",
-        "shapeTextDisplay": "",
-        "shapeTextAlign": 'Left',
-        "shapeTextColour": "",
-        "shapeTextColourName": "",
-        "shapeValue": "",
-        "refreshMode": "",
-        "refreshFrequency": 1,
-        "widgetRefreshedOn": "",
-        "widgetRefreshedBy": "",
-        "widgetCreatedOn": null,
-        "widgetCreatedBy": "",
-        "widgetUpdatedOn": null,
-        "widgetUpdatedBy": ""
-    };
+//         "titleText": "Title of new Widget",
+//         "titleBackgroundColor": "lightgray",
+//         "titleBackgroundColorName": "lightgray",
+//         "titleBorder": "",
+//         "titleBorderName": "",
+//         "titleColor": "black",
+//         "titleColorName": "black",
+//         "titleFontsize": 12,
+//         "titleFontWeight": "",
+//         "titleHeight": 24,
+//         "titleMargin": "0",
+//         "titlePadding": "0 0 0 5px",
+//         "titleTextAlign": "center",
+//         "titleWidth": 100,
+//         "graphHeight": 240,
+//         "graphLeft": 1,
+//         "graphTop": 1,
+//         "graphWidth": 240,
+//         "graphDimensionRight": 140,
+//         "graphDimensionLeft": 80,
+//         "graphDimensionBottom": 70,
+//         "graphGraphPadding": 1,
+//         "graphHasSignals": false,
+//         "graphFillColor": "",
+//         "graphHoverColor": "",
+//         "graphPanAndZoom": false,
+//         "graphDescription": "",
+//         "tableBackgroundColor" : "",
+//         "tableBackgroundColorName" : "",
+//         "tableColor": "",
+//         "tableColorName": "",
+//         "tableCols": 1,
+//         "fontSize": 12,
+//         "tableHeight": 1,
+//         "tableHideHeader": false,
+//         "tableLeft": 1,
+//         "tableLineHeight": 12,
+//         "tableRows": 1,
+//         "tableTop": 1,
+//         "tableWidth": 1,
+//         "slicerAddRest": false,
+//         "slicerAddRestValue": false,
+//         "slicerBins": null,
+//         "slicerColor": "gray",
+//         "slicerFieldName": "",
+//         "slicerNumberToShow": '',
+//         "slicerSelection": null,
+//         "slicerSortField": '',
+//         "slicerSortFieldOrder": '',
+//         "slicerType": "",
+//         "shapeBullet": [],
+//         "shapeBulletStyleType": "",
+//         "shapeBulletsOrdered": false,
+//         "shapeBulletMarginBottom": 3,
+//         "shapeCorner": 15,
+//         "shapeFill": "",
+//         "shapeFillName": "",
+//         "shapeFontSize": 24,
+//         "shapeLineHeight": "normal",
+//         "shapeLineLength": 66,
+//         "shapePath": "",
+//         "shapeFontFamily": "",
+//         "shapeImageUrl": "",
+//         "shapeIsBold": true,
+//         "shapeIsItalic": false,
+//         "shapeOpacity": 1,
+//         "shapeRotation": 0,
+//         "shapeSize": 1,
+//         "shapeStroke": "",
+//         "shapeStrokeName": "",
+//         "shapeStrokeWidth": "",
+//         "shapeSvgHeight": 30,
+//         "shapeSvgWidth": 30,
+//         "shapeText": "",
+//         "shapeTextDisplay": "",
+//         "shapeTextAlign": 'Left',
+//         "shapeTextColour": "",
+//         "shapeTextColourName": "",
+//         "shapeValue": "",
+//         "refreshMode": "",
+//         "refreshFrequency": 1,
+//         "widgetRefreshedOn": "",
+//         "widgetRefreshedBy": "",
+//         "widgetCreatedOn": null,
+//         "widgetCreatedBy": "",
+//         "widgetUpdatedOn": null,
+//         "widgetUpdatedBy": ""
+//     };
 
 // Dashboard template
-const dashboardTemplate: Dashboard =
-    {
-        id: null,
-        originalID: null,
-        draftID: null,
-        version: 0,
-        state: 'Draft',
-        code: '',
-        name: '',
-        description: '',
-        accessType: 'Private',
-        password: '',
-        refreshMode: '',
-        refreshTimer: 0,
-        defaultTabID: 0,
-        defaultExportFileType: '',
-        url: '',
-        qaRequired: false,
-        isSample: false,
-        backgroundColor: '',
-        backgroundImage: '',
-        templateDashboardID: 0,
-        creator: '',
-        dateCreated: null,
-        editor: '',
-        dateEdited: null,
-        refresher: '',
-        dateRefreshed: null,
-        nrWidgets: 0,
-        nrShapes: 0,
-        nrRecords: 0,
-        nrTimesOpened: 0,
-        nrTimesChanged: 0,
-        tabs: [],
-        permissions: [],
+// const dashboardTemplate: Dashboard =
+//     {
+//         id: null,
+//         originalID: null,
+//         draftID: null,
+//         version: 0,
+//         state: 'Draft',
+//         code: '',
+//         name: '',
+//         description: '',
+//         accessType: 'Private',
+//         password: '',
+//         refreshMode: '',
+//         refreshTimer: 0,
+//         defaultTabID: 0,
+//         defaultExportFileType: '',
+//         url: '',
+//         qaRequired: false,
+//         isSample: false,
+//         backgroundColor: '',
+//         backgroundImage: '',
+//         templateDashboardID: 0,
+//         creator: '',
+//         dateCreated: null,
+//         editor: '',
+//         dateEdited: null,
+//         refresher: '',
+//         dateRefreshed: null,
+//         nrWidgets: 0,
+//         nrShapes: 0,
+//         nrRecords: 0,
+//         nrTimesOpened: 0,
+//         nrTimesChanged: 0,
+//         tabs: [],
+//         permissions: [],
 
-        // Special info
-        userCanViewList: [],
-        userCanEditList: [],
-        userCanDeleteList: [],
-        userCanRefreshList: [],
-        userCanGrantList: [],
-        groupCanViewList: [],
-        groupCanEditList: [],
-        groupCanDeleteList: [],
-        groupCanRefreshList: [],
-        groupCanGrantList: []
+//         // Special info
+//         userCanViewList: [],
+//         userCanEditList: [],
+//         userCanDeleteList: [],
+//         userCanRefreshList: [],
+//         userCanGrantList: [],
+//         groupCanViewList: [],
+//         groupCanEditList: [],
+//         groupCanDeleteList: [],
+//         groupCanRefreshList: [],
+//         groupCanGrantList: []
 
-    };
+//     };
 
-const dashboardTabTemplate: DashboardTab =
-    {
-        id: null,
-        originalID: null,
-        dashboardID: 0,
-        name: 'First',
-        description: '',
-        displayOrder: 0,            // Note: this must start at 0
-        backgroundColor: '',
-        backgroundColorName: '',
-        color: '',
-        colorName: '',
-        editedBy: '',
-        editedOn: null,
-        createdBy: '',
-        createdOn: null
-    };
+// const dashboardTabTemplate: DashboardTab =
+//     {
+//         id: null,
+//         originalID: null,
+//         dashboardID: 0,
+//         name: 'First',
+//         description: '',
+//         displayOrder: 0,            // Note: this must start at 0
+//         backgroundColor: '',
+//         backgroundColorName: '',
+//         color: '',
+//         colorName: '',
+//         editedBy: '',
+//         editedOn: null,
+//         createdBy: '',
+//         createdOn: null
+//     };
 
 
 // Data
-const transformationsFormat: Transformation[] =
-[
-    {
-        id: 1,
-        category: 'Column-level',
-        name: 'FormatDate',
-        description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.',
-        nrParameters: 6,
-        parameterPlaceholder: ['place1','place2','place3','place4','place5','place6'],
-        parameterTitle: ['tit1','tit2','tit3','tit4','tit5','tit6'],
-        parameterDefaultValue: ['txt1','txt2','txt3','txt4','txt5','txt6'],
-        parameterHeading: ['head1','head2','head3','head4','head5','head6'],
-        parameterType: ['','','','','',''],
-        editedBy: '',
-        editedOn: null,
-        createdBy: '',
-        createdOn: null
-    },
-    {
-        id: 16,
-        category: 'Column-level',
-        name: 'DatePart',
-        description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second',
-        nrParameters: 1,
-        parameterPlaceholder: ['place1'],
-        parameterTitle: ['tit1'],
-        parameterDefaultValue: ['txt1'],
-        parameterHeading: ['head1'],
-        parameterType: ['','','','','',''],
-        editedBy: '',
-        editedOn: null,
-        createdBy: '',
-        createdOn: null
-    },
-    {
-        id: 20,
-        category: 'Column-level',
-        name: 'FormatNumber',
-        description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’',
-        nrParameters: 1,
-        parameterPlaceholder: ['place1'],
-        parameterTitle: ['tit1'],
-        parameterDefaultValue: ['txt1'],
-        parameterHeading: ['head1'],
-        parameterType: ['','','','','',''],
-        editedBy: '',
-        editedOn: null,
-        createdBy: '',
-        createdOn: null
-    }
-];
+// const transformationsFormat: Transformation[] =
+// [
+//     {
+//         id: 1,
+//         category: 'Column-level',
+//         name: 'FormatDate',
+//         description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.',
+//         nrParameters: 6,
+//         parameterPlaceholder: ['place1','place2','place3','place4','place5','place6'],
+//         parameterTitle: ['tit1','tit2','tit3','tit4','tit5','tit6'],
+//         parameterDefaultValue: ['txt1','txt2','txt3','txt4','txt5','txt6'],
+//         parameterHeading: ['head1','head2','head3','head4','head5','head6'],
+//         parameterType: ['','','','','',''],
+//         editedBy: '',
+//         editedOn: null,
+//         createdBy: '',
+//         createdOn: null
+//     },
+//     {
+//         id: 16,
+//         category: 'Column-level',
+//         name: 'DatePart',
+//         description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second',
+//         nrParameters: 1,
+//         parameterPlaceholder: ['place1'],
+//         parameterTitle: ['tit1'],
+//         parameterDefaultValue: ['txt1'],
+//         parameterHeading: ['head1'],
+//         parameterType: ['','','','','',''],
+//         editedBy: '',
+//         editedOn: null,
+//         createdBy: '',
+//         createdOn: null
+//     },
+//     {
+//         id: 20,
+//         category: 'Column-level',
+//         name: 'FormatNumber',
+//         description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’',
+//         nrParameters: 1,
+//         parameterPlaceholder: ['place1'],
+//         parameterTitle: ['tit1'],
+//         parameterDefaultValue: ['txt1'],
+//         parameterHeading: ['head1'],
+//         parameterType: ['','','','','',''],
+//         editedBy: '',
+//         editedOn: null,
+//         createdBy: '',
+//         createdOn: null
+//     }
+// ];
 
-const finalFields =
-[
-    {
-        fieldName: 'MonthTraded',
-        dataType: 'string',
-        localName: 'Date',
-        filtered: '2 flters',
-        transformed: ''
-    },
-    {
-        fieldName: 'TradeType',
-        dataType: 'string',
-        localName: '',
-        filtered: '',
-        transformed: ''
-    },
-    {
-        fieldName: 'Volume',
-        dataType: 'number',
-        localName: '',
-        filtered: '1 flters',
-        transformed: '2 transf'
-    },
-    {
-        fieldName: 'Price',
-        dataType: 'number',
-        localName: '',
-        filtered: '',
-        transformed: '6 transf'
-    },
-    {
-        fieldName: 'Value',
-        dataType: 'Calculated: number',
-        localName: '',
-        filtered: '',
-        transformed: '1 transf'
-    }
-];
+// const finalFields =
+// [
+//     {
+//         fieldName: 'MonthTraded',
+//         dataType: 'string',
+//         localName: 'Date',
+//         filtered: '2 flters',
+//         transformed: ''
+//     },
+//     {
+//         fieldName: 'TradeType',
+//         dataType: 'string',
+//         localName: '',
+//         filtered: '',
+//         transformed: ''
+//     },
+//     {
+//         fieldName: 'Volume',
+//         dataType: 'number',
+//         localName: '',
+//         filtered: '1 flters',
+//         transformed: '2 transf'
+//     },
+//     {
+//         fieldName: 'Price',
+//         dataType: 'number',
+//         localName: '',
+//         filtered: '',
+//         transformed: '6 transf'
+//     },
+//     {
+//         fieldName: 'Value',
+//         dataType: 'Calculated: number',
+//         localName: '',
+//         filtered: '',
+//         transformed: '1 transf'
+//     }
+// ];
 
 
 @Injectable()
@@ -807,15 +814,16 @@ export class GlobalVariableService {
     >(null);
     conditionFieldDataType: string = '';
     conditionOperator: string = '';
+    concoleLogStyleForCaching: string = "color: black; background: transparent; font-size: 10px; font-weight: bold;";
     continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Canvas Server
     headers = new HttpHeaders().set("Content-Type", "application/json");
 
     selectedWidgetIDs: number[] = [];
+
     previousGraphEditDSID: number = -1;
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
-
 
 
 
@@ -983,7 +991,6 @@ export class GlobalVariableService {
     dashboardPermissions: DashboardPermission[] = [];
     dashboardsRecent: DashboardRecent[] = [];           // List of Recent Dashboards
     dashboards: Dashboard[] = [];
-    dashboardSchedules: DashboardSchedule[] = [];
     dashboardSnapshots: DashboardSnapshot[] = [];
     dashboardTabs: DashboardTab[] = [];
     dashboardTags: DashboardTag[] = [];
@@ -999,48 +1006,13 @@ export class GlobalVariableService {
     hasNewMessage = new BehaviorSubject<boolean>(false);
     lastMessageDateTime: Date = new Date(); // Last time a caching message was received
     statusBarMessageLogs: StatusBarMessageLog[] = [];
-    transformations: Transformation[] = [];
     transformationsFormat: Transformation[] = transformationsFormat;
     widgetCheckpoints: WidgetCheckpoint[] = [];
     widgets: Widget[] = [];
-    widgetGraphs: WidgetGraph[] =[];
 
-    // TODO - delete Depricated Caching when ready ...
-    // backgroundcolorsDefault: CSScolor[] = [];
-    // isDirtyBackgroundColorsDefault: boolean = true;
-    // canvasComments: CanvasComment[] = [];
-    // isDirtyCanvasComments: boolean = true;
-    // canvasAuditTrails: CanvasAuditTrail[] = [];
-    // isDirtyCanvasAuditTrails: boolean = true;
-    // canvasMessages: CanvasMessage[] = [];
-    // isDirtyCanvasMessages: boolean = true;
-    // dataQualityIssues: DataQualityIssue[] = [];
-    // currentDataQualityIssues: DataQualityIssue[] = [];
-    // isDirtyDataQualityIssues: boolean = true;
-    // dataOwnerships: DataOwnership[] = [];
-    // currentDataOwnerships: DataOwnership[] = [];
-    // isDirtyDataOwnership: boolean = true;
-    // canvasTasks: CanvasTask[] = [];
-    // isDirtyCanvasTasks: boolean = true;
-    // containerStyles: ContainerStyle[] = [];
-    // isDirtyContainerStyles: boolean = true;
-    dashboardScheduleLog: DashboardScheduleLog[] = [];
-    // currentDatasourceSchedules: DatasourceSchedule[] = [];
-    // isDirtyDatasourceSchedules: boolean = true;
-    // dashboardThemes: DashboardTheme[] = [];
-    // isDirtyDashboardThemes: boolean = true;
-    // dataConnections: DataConnection[] = [];
-    // isDirtyDataConnections: boolean = true;
-    dashboardLayouts: DashboardLayout[] = [];
-    widgetLayouts: WidgetLayout[] = [];
-
-
-    // Cache of Permanent Canvas-related data for the currentDashboard and
-    // currentDatasources.  It holds complete data
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
     currentDashboardName = new BehaviorSubject<string>('');
     currentDashboards: Dashboard[] = [];
-    currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
     currentDashboardTabs: DashboardTab[] = [];
     currentDatasets: any = [];                          // Used in current D, with data
@@ -1048,7 +1020,6 @@ export class GlobalVariableService {
     currentDatasourcePermissions: DatasourcePermission[] = [];
     currentPaletteButtonBar: PaletteButtonBar[];
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
-    currentTransformations: Transformation[] = [];
     changedWidget = new BehaviorSubject<Widget>(null);    // W that must be changed
     currentWidgetCheckpoints: WidgetCheckpoint[] = [];
     currentWidgets: Widget[] = [];
@@ -1059,8 +1030,6 @@ export class GlobalVariableService {
     isDirtyCanvasSettings: boolean = true;
     isDirtyCanvasUsers: boolean = true;
     isDirtyDashboards: boolean = true;
-    isDirtyDashboardsRecent: boolean = true;
-    isDirtyDashboardSchedules: boolean = true;
     isDirtyDashboardSnapshots: boolean = true;
     isDirtyDashboardTabs: boolean = true;
     isDirtyDataFields: boolean = true;
@@ -1070,10 +1039,6 @@ export class GlobalVariableService {
     isDirtyDataTables: boolean = true;
     isDirtyPaletteButtonBar: boolean = true;
     isDirtyPaletteButtonsSelected: boolean = true;
-    isDirtyShapes: boolean = true;
-    isDirtySlicers: boolean = true;
-    isDirtystatusBarMessageLogs: boolean = true;
-    isDirtyUserPaletteButtonBar: boolean = true;
     isDirtyWidgetCheckpoints: boolean = true;
     isDirtyWidgets: boolean = true;
 
@@ -1141,7 +1106,7 @@ export class GlobalVariableService {
         // Initial
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables databaseInit',
-                "color: black; background: lightgray; font-size: 10px",)
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
         };
 
         // Initialise
@@ -1158,7 +1123,7 @@ export class GlobalVariableService {
         // Returns True if all worked, False if something went wrong
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables refreshCurrentDashboardInfo D,T id = ',
-                "color: black; background: lightgray; font-size: 10px",
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {dashboardID}, {dashboardTabID}, this.dashboards, this.dashboardTabs, this.currentDashboards, this.currentDashboardTabs)
         };
 
@@ -1468,7 +1433,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables getResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource});
         };
-        console.time("DURATION getResource: " + resource);
+        console.time("      DURATION getResource: " + resource);
 
         return new Promise<any>((resolve, reject) => {
 
@@ -1499,15 +1464,15 @@ export class GlobalVariableService {
                 localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
                 localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                 localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-                console.log('%c    Global-Variables getResource - In Mem vars for: ',
-                    "color: black; background: lightgray; font-size: 10px",
+                    console.log('%c    Global-Variables getResource - In Mem vars for: ',
+                    this.concoleLogStyleForCaching,
                     resource, {dataCachingTableIndex}, {localCacheableMemory}, 
                     {localCacheableDisc}, {localVariableName});
 
                 // Local Memory is used, if fresh
                 if (localCacheableMemory  ||  localCacheableDisc) {
                     console.log('%c    Global-Variables getResource - In local Memory or Disc for Resource: ', 
-                        "color: black; background: lightgray; font-size: 10px",
+                        this.concoleLogStyleForCaching,
                         resource, localVariableName, 
                         this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
 
@@ -1528,7 +1493,7 @@ export class GlobalVariableService {
                     // TODO - check the assumption that there is data when fresh (else returns [])
                     if (isFresh) {
                         console.log('%c    Global-Variables getResource - cache is FRESH for: ', 
-                            "color: black; background: lightgray; font-size: 10px",
+                            this.concoleLogStyleForCaching,
                             resource)
 
                         // Get from Memory (local var)
@@ -1536,12 +1501,12 @@ export class GlobalVariableService {
                         
                             if (localVariableName != null) {
                                 console.log('%c    Global-Variables getResource - data returned from Memory for : ', 
-                                    "color: black; background: lightgray; font-size: 10px",
+                                    this.concoleLogStyleForCaching,
                                     resource, this[localVariableName]);
                                 // var type = 'article';
                                 // this[type+'_count'] = 1000;  // in a function we use "this";
                                 // alert(this.article_count);
-                                console.timeEnd("DURATION getResource: " + resource);
+                                console.timeEnd("      DURATION getResource: " + resource);
                                 resolve(this[localVariableName]);
                                 return;
                             };
@@ -1549,29 +1514,29 @@ export class GlobalVariableService {
                             // Get from Disc (Dexie)
                             if (localTableName != null) {
                                 console.log('%c    Global-Variables getResource - in local Disc for: ', 
-                                    "color: black; background: lightgray; font-size: 10px",
+                                    this.concoleLogStyleForCaching,
                                     resource);
                                 this.dbCanvasAppDatabase.table(localTableName)
                                 .toArray()
                                 .then(res => {
                                     this[localVariableName] = res;
                                     console.log('%c    Global-Variables getResource - data returned from Disc for: ', 
-                                        "color: black; background: lightgray; font-size: 10px",
+                                        this.concoleLogStyleForCaching,
                                         resource, this[localVariableName])
-                                    console.timeEnd("DURATION getResource: " + resource);
+                                    console.timeEnd("      DURATION getResource: " + resource);
                                     resolve(this[localVariableName]);
                                     return;
                                 });
                             };
                             //  Return, else goes through to HTTP (its async)
-                            // console.timeEnd("DURATION getResource: " + resource);
+                            // console.timeEnd("      DURATION getResource: " + resource);
                             // return;
                         };
                     };
                 };
             };
             console.log('%c    Global-Variables getResource - Will now try GET HTTP for: ', 
-                "color: black; background: lightgray; font-size: 10px",
+                this.concoleLogStyleForCaching,
                 resource)
 
             // Get from HTTP server
@@ -1587,7 +1552,7 @@ export class GlobalVariableService {
                             console.log('Error getResource FAILED', {httpResult});
                         };
 
-                        console.timeEnd("DURATION getResource: " + resource);
+                        console.timeEnd("      DURATION getResource: " + resource);
                         reject(httpResult.message);
                         return;
                     };
@@ -1611,7 +1576,7 @@ export class GlobalVariableService {
                                     rowCount = httpResult.data.length;
                                 };
                                 console.log('%c    Global-Variables getResource updated cached Memory for ', 
-                                    "color: black; background: lightgray; font-size: 10px",
+                                    this.concoleLogStyleForCaching,
                                     resource,'row count:', rowCount);
                             };
 
@@ -1632,7 +1597,7 @@ export class GlobalVariableService {
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
                                                 console.log('%c    Global-Variables getResource updated local Disc for:', 
-                                                    "color: black; background: lightgray; font-size: 10px",
+                                                    this.concoleLogStyleForCaching,
                                                     resource, 'rowCount:', resCount);
                                         });
                                     });
@@ -1657,16 +1622,16 @@ export class GlobalVariableService {
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
                                     console.log('%c    Global-Variables getResource dataCachingTable updated with bulkPut, count @end', 
-                                        "color: black; background: lightgray; font-size: 10px",
+                                        this.concoleLogStyleForCaching,
                                         res);
                                 });
                         });
                     };
 
                     console.log('%c    Global-Variables getResource data retured from HTTP for: ', 
-                        "color: black; background: lightgray; font-size: 10px",
+                        this.concoleLogStyleForCaching,
                         resource, httpResult.data);
-                    console.timeEnd("DURATION getResource: " + resource);
+                    console.timeEnd("      DURATION getResource: " + resource);
                     resolve(httpResult.data);
                     return;
                 },
@@ -1674,7 +1639,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('Error getResource FAILED', {err});
                     };
-                    console.timeEnd("DURATION getResource: " + resource);
+                    console.timeEnd("      DURATION getResource: " + resource);
                     reject(err.message)
                 }
             );
@@ -1691,7 +1656,7 @@ export class GlobalVariableService {
         };
         var now = new Date();
         let unique: number = now.getMinutes() + now.getSeconds() + now.getMilliseconds();
-        console.time("DURATION addResource " + resource + ' ' + unique.toString());
+        console.time("      DURATION addResource " + resource + ' ' + unique.toString());
 
         return new Promise<any>((resolve, reject) => {
 
@@ -1706,11 +1671,11 @@ export class GlobalVariableService {
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 httpResult  => {
                     console.log('%c    Global-Variables addResource - inside POST HTTP, return:', 
-                        "color: black; background: lightgray; font-size: 10px",
+                        this.concoleLogStyleForCaching,
                         httpResult)
 
                     if(httpResult.statusCode != 'success') {
-                        console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString());
+                        console.timeEnd("      DURATION addResource " + resource + ' ' + unique.toString());
                         reject(httpResult.message);
                         return;
                     };
@@ -1751,7 +1716,7 @@ export class GlobalVariableService {
                                     this[localVariableName].push(httpResult.data);
                                 }
                                 console.log('%c    Global-Variables addResource updated cached Memory for:', 
-                                    "color: black; background: lightgray; font-size: 10px",
+                                    this.concoleLogStyleForCaching,
                                     resource, ' to', this[localVariableName]);
                             };
 
@@ -1775,7 +1740,7 @@ export class GlobalVariableService {
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
                                                 console.log('%c    Global-Variables addResource updated local Disc for:', 
-                                                    "color: black; background: lightgray; font-size: 10px",
+                                                    this.concoleLogStyleForCaching,
                                                     resource, 'to', resCount);
                                         });
                                     });
@@ -1794,7 +1759,7 @@ export class GlobalVariableService {
                         this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                             new Date();
                         console.log('%c    Global-Variables addResource dataCachingTable updated in Memory for:', 
-                            "color: black; background: lightgray; font-size: 10px",
+                            this.concoleLogStyleForCaching,
                             resource, 'to', this.dataCachingTable)
 
                         // Update dataCaching on Disc
@@ -1803,16 +1768,16 @@ export class GlobalVariableService {
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
                                     console.log('%c    Global-Variables addResource dataCachingTable updated on Disc for: ', 
-                                        "color: black; background: lightgray; font-size: 10px",
+                                        this.concoleLogStyleForCaching,
                                         resource, 'count @end:', res);
                                 });
                         });
                     };
 
                     console.log('%c    Global-Variables addResource data retured from HTTP', 
-                        "color: black; background: lightgray; font-size: 10px",
+                        this.concoleLogStyleForCaching,
                         httpResult.data);
-                    console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString());
+                    console.timeEnd("      DURATION addResource " + resource + ' ' + unique.toString());
                     resolve(httpResult.data);
                     return;
                 },
@@ -1821,7 +1786,7 @@ export class GlobalVariableService {
                         console.log('Error addResource FAILED', {err});
                     };
 
-                    console.timeEnd("DURATION addResource " + resource + ' ' + unique.toString());
+                    console.timeEnd("      DURATION addResource " + resource + ' ' + unique.toString());
                     reject(err.message)
                 }
             );
@@ -1836,7 +1801,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables saveResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {data});
         };
-        console.time("DURATION saveResource " + resource + ' ' + data.id.toString());
+        console.time("      DURATION saveResource " + resource + ' ' + data.id.toString());
 
         return new Promise<string>((resolve, reject) => {
 
@@ -1856,7 +1821,7 @@ export class GlobalVariableService {
             .subscribe(
                 httpResult => {
                     if(httpResult.statusCode != 'success') {
-                        console.timeEnd("DURATION saveResource " + resource + ' ' + data.id.toString());
+                        console.timeEnd("      DURATION saveResource " + resource + ' ' + data.id.toString());
                         reject(httpResult.message);
                         return;
                     };
@@ -1897,7 +1862,9 @@ export class GlobalVariableService {
                                 if (localIndex >= 0) {
                                     this[localVariableName][localIndex] = data;
                                 };
-                                console.log('%c    Global-Variables saveResource updated cached Memory for:', resource, 'to', this[localVariableName]);
+                                console.log('%c    Global-Variables saveResource updated cached Memory for:', 
+                                    this.concoleLogStyleForCaching,
+                                    resource, 'to', this[localVariableName]);
                             };
 
                             // TODO - should we fill Current Var here a well?
@@ -1918,7 +1885,9 @@ export class GlobalVariableService {
                                         // Count
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
-                                                console.log('%c    Global-Variables saveResource updated local Disc for:', resource, 'to', resCount);
+                                                console.log('%c    Global-Variables saveResource updated local Disc for:', 
+                                                    this.concoleLogStyleForCaching,
+                                                    resource, 'to', resCount);
                                         });
                                     });
                                 });
@@ -1935,14 +1904,18 @@ export class GlobalVariableService {
                             this.dateAdd(dt, 'second', seconds);
                         this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                             new Date();
-                        console.log('%c    Global-Variables saveResource - dataCachingTable memory upd', this.dataCachingTable)
+                        console.log('%c    Global-Variables saveResource - dataCachingTable memory upd', 
+                            this.concoleLogStyleForCaching,
+                            this.dataCachingTable)
 
                         // Update dataCaching on Disc
                         this.dbDataCachingTable.table("localDataCachingTable")
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.log('%c    Global-Variables saveResource updataCachingTable updated count @end', res);
+                                    console.log('%c    Global-Variables saveResource updataCachingTable updated count @end', 
+                                        this.concoleLogStyleForCaching,
+                                        res);
                                 });
                         });
                     };
@@ -1951,14 +1924,14 @@ export class GlobalVariableService {
                         console.log('saveResource SAVED', {data})
                     };
 
-                    console.timeEnd("DURATION saveResource " + resource + ' ' + data.id.toString());
+                    console.timeEnd("      DURATION saveResource " + resource + ' ' + data.id.toString());
                     resolve('Saved');
                 },
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error saveResource FAILED', {err});
                     };
-                    console.timeEnd("DURATION saveResource " + resource + ' ' + data.id.toString());
+                    console.timeEnd("      DURATION saveResource " + resource + ' ' + data.id.toString());
                     reject(err.message);
                 }
             )
@@ -1972,7 +1945,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables deleteResource ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {id});
         };
-        console.time("DURATION deleteResource" + resource +  ' ' + id.toString());
+        console.time("      DURATION deleteResource" + resource +  ' ' + id.toString());
 
         return new Promise<any>((resolve, reject) => {
 
@@ -1986,7 +1959,7 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
                     if(res.statusCode != 'success') {
-                        console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString());
+                        console.timeEnd("      DURATION deleteResource" + resource +  ' ' + id.toString());
                         reject(res.message);
                         return;
                     };
@@ -2033,7 +2006,7 @@ export class GlobalVariableService {
                                     com => com.id != id
                                 );
                                 console.log('%c    Global-Variables deleteResource updated cached Memory for ', 
-                                    "color: black; background: lightgray; font-size: 10px",
+                                    this.concoleLogStyleForCaching,
                                     resource,'row count:', this[localVariableName].length);
 
                             };
@@ -2047,10 +2020,12 @@ export class GlobalVariableService {
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('    Global-Variables deleteResource DELETED id: ', {id})
+                        console.log('%c    Global-Variables deleteResource DELETED id: ', 
+                            this.concoleLogStyleForCaching,
+                            {id})
                     };
 
-                    console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString());
+                    console.timeEnd("      DURATION deleteResource" + resource +  ' ' + id.toString());
                     resolve('Deleted');
                 },
                 err => {
@@ -2058,7 +2033,7 @@ export class GlobalVariableService {
                         console.log('Error deleteResource FAILED', {err});
                     };
 
-                    console.timeEnd("DURATION deleteResource" + resource +  ' ' + id.toString());
+                    console.timeEnd("      DURATION deleteResource" + resource +  ' ' + id.toString());
                     reject(err.message);
                 }
             )
@@ -2194,7 +2169,8 @@ export class GlobalVariableService {
         // Returns the given D from the internal arrays
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables letDashboard ...',
-                "color: black; background: lightgray; font-size: 10px", {dashboardID});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID});
         };
 
         // Set to current if none provided
@@ -2319,7 +2295,6 @@ export class GlobalVariableService {
             this.isDirtyDashboardTabs = true;
             this.isDirtyWidgets = true;
             this.isDirtyWidgetCheckpoints = true;
-            this.isDirtyDashboardsRecent = true;
 
             // Perform steps (business logic in Server)
             const headers = new HttpHeaders()
@@ -2536,7 +2511,7 @@ export class GlobalVariableService {
         // Clears all related Entities of a D
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables clearDashboardInfo ...',
-                "color: black; background: lightgray; font-size: 10px");
+                "color: black; 10px; font-weight: bold;");
         };
 
         // TODO - find a better way to keep all related items in sync, and list updated
@@ -2544,7 +2519,6 @@ export class GlobalVariableService {
         this.currentDashboardTabs = [];
         this.currentWidgets = [];
         this.currentDashboardSnapshots = [];
-        this.currentDashboardSchedules = [];
         this.currentWidgetCheckpoints = [];
         this.currentDatasets = [];
 
@@ -2906,7 +2880,7 @@ export class GlobalVariableService {
                 this.dataCachingTable[initialIndex].localCacheableDisc) {
                 console.log('xx this.dataCachingTable[dataCachingTableIndex]', this.dataCachingTable[initialIndex].key, this.dataCachingTable[initialIndex].localVariableName)
                 let resource: string = this.dataCachingTable[initialIndex].key;
-                console.time("DURATION refreshLocalCacheMemory: " + resource);
+                console.time("      DURATION refreshLocalCacheMemory: " + resource);
 
                 // Get from HTTP server
                 let pathUrl: string = resource;
@@ -2919,7 +2893,7 @@ export class GlobalVariableService {
                                 console.log('Error getResource FAILED', {httpResult});
                             };
 
-                            console.timeEnd("DURATION refreshLocalCacheMemory: " + resource);
+                            console.timeEnd("      DURATION refreshLocalCacheMemory: " + resource);
                             // reject(httpResult.message);
                             return;
                         };
@@ -2936,7 +2910,7 @@ export class GlobalVariableService {
                                 if (this.dataCachingTable[resultIndex].localVariableName != null) {
                                     this[this.dataCachingTable[resultIndex].localVariableName] = [];
                                     this[this.dataCachingTable[resultIndex].localVariableName] = httpResult.data;
-                                    console.log('    Global-Variables refreshLocalCache ' + httpResult.data.length.toString() + ' records updated cached Memory for ', resource);
+                                    console.log('%c    Global-Variables refreshLocalCache ' + httpResult.data.length.toString() + ' records updated cached Memory for ', resource);
                                 };
 
                                 // TODO - should we fill Current Var here a well?
@@ -2982,7 +2956,7 @@ export class GlobalVariableService {
                                     });
                             });
                         };
-                        console.timeEnd("DURATION refreshLocalCacheMemory: " + resource);
+                        console.timeEnd("      DURATION refreshLocalCacheMemory: " + resource);
                         // resolve(httpResult.data);
                         return;
                     },
@@ -2990,7 +2964,7 @@ export class GlobalVariableService {
                         if (this.sessionDebugging) {
                             console.log('Error getResource FAILED', {err});
                         };
-                        console.timeEnd("DURATION refreshLocalCacheMemory: " + resource);
+                        console.timeEnd("      DURATION refreshLocalCacheMemory: " + resource);
                         // reject(err.message)
                     }
                 );
@@ -2998,6 +2972,7 @@ export class GlobalVariableService {
         };
         
     }
+    
     updateLocalCacheMemory(
         cacheAction: string,
         cachedEntityID: number,
@@ -3183,7 +3158,6 @@ export class GlobalVariableService {
             };
 
             // Done
-            console.log('xx After cache update localTableName: ', this.dashboardsRecent)
             resolve(true);
         });
     }
@@ -3501,7 +3475,7 @@ export class GlobalVariableService {
     getDashboardsRecent(userID: string): Promise<DashboardRecent[]>  {
         // Description: Gets an array of recently used D (not the Ds itself)
         // Returns: return array from source, not cached
-        // Note:  data is ALWAYS synced to 3 different places:
+        // Note:  data is ALWAYS synced to the different places:
         // - DB
         // - this.dashboardsRecent (array in Global Vars)
         if (this.sessionDebugging) {
@@ -3553,8 +3527,6 @@ export class GlobalVariableService {
                     this.dashboardsRecent = temp;
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                    this.isDirtyDashboardsRecent = false;
-
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables dashboardsRecent 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {temp})
@@ -3568,23 +3540,6 @@ export class GlobalVariableService {
         });
     }
 
-    dashboardTabIndexInRecentList(dashboardID: number, dashboardTabID: number): number {
-        // Returns index of first D, T in the Recent list.  Else -1
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables dashboardTabIndexInRecentList ...',
-                "color: black; background: lightgray; font-size: 10px",
-                {dashboardID}, {dashboardTabID});
-        };
-
-        // Determine index in Recent list
-        let index: number = this.dashboardsRecent.findIndex(dR =>
-            dR.dashboardID == dashboardID
-            &&
-            dR.dashboardTabID == dashboardTabID
-        );
-        return index;
-    }
-
     amendDashboardRecent(
         dashboardID: number,
         dashboardTabID: number,
@@ -3593,7 +3548,7 @@ export class GlobalVariableService {
         // - if D not there, call ADD.  Else SAVE
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables amendDashboardRecent ...',
-                "color: black; background: lightgray; font-size: 10px",
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {dashboardID}, {dashboardTabID});
         };
 
@@ -3601,7 +3556,7 @@ export class GlobalVariableService {
             dR.dashboardID == dashboardID
         );
         let today = new Date();
-console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID, dashboardRecentIndex)
+
         // D not in Recent List, so Add
         if (dashboardRecentIndex == -1) {
 
@@ -3681,101 +3636,6 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         if (newRecentIndex >= 0) {
             this.dashboardsRecent[newRecentIndex].nameAtRunTime = dashboardName;
         };
-
-    }
-
-    deleteDashboardRecent(id: number): Promise<string> {
-        // Description: Deletes a Recent Dashboard, and updates:
-        // - this.dashboardsRecent
-        // Returns 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDashboardRecent ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardsRecent';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.dashboardsRecent = this.dashboardsRecent.filter(
-                        rec => rec.id != id
-                    );
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteDashboardRecent DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDashboardRecent FAILED', {err});
-                    };
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
-    getDataTable(): Promise<DataTable[]> {
-        // Description: Gets DataTables, WITHOUT data
-        // Returns: this.dataTable
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDataTable ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<DataTable[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.dataTables.length == 0)  ||  (this.isDirtyDataTables) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'dataTables';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.dataTables = res.data;
-                        this.isDirtyDataTables = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDataTable 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.dataTables)
-                        };
-
-                        resolve(this.dataTables);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDataTable 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.dataTables)
-                };
-
-                resolve(this.dataTables);
-            }
-        });
 
     }
 
@@ -4332,7 +4192,8 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         // string, boolean are passed by value.  Thus, original object (dSet) is modified here.
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables filterSlicer ...',
-                "color: black; background: lightgray; font-size: 10px", {dataSet});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dataSet});
         };
 
         // Get all Sl for the given dSet
@@ -4433,171 +4294,6 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
 
         console.warn('xx filterSlicer @ End: currentW, dataSet', this.currentWidgets, dataSet)
         return dataSet;
-    }
-
-    deleteDashboardSchedule(id: number): Promise<string> {
-        // Description: Deletes a DashboardSchedules
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDashboardSchedule ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardSchedules';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.dashboardSchedules = this.dashboardSchedules.filter(
-                        dsp => dsp.id != id
-                    );
-                    this.currentDashboardSchedules = this.currentDashboardSchedules.filter(
-                        dsp => dsp.id != id
-                    );
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteDashboardSchedule DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDashboardSchedule FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
-    getDashboardScheduleLog(
-        dashboardID: number = null,
-        sentAfter: Date = null,
-        sentBefore: Date = null): Promise<DashboardScheduleLog[]> {
-        // Description: Gets the Schedule Log for a single D or requested range
-        // Returns: this.dashboardScheduleLog array
-        // NOTE: this routine does NOT use cached or if dirty (goes to DB each time)
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardScheduleLog ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {dashboardID} , {sentAfter}, {sentBefore})
-        };
-
-        return new Promise<DashboardScheduleLog[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-            let pathUrl: string = 'dashboardScheduleLog';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    this.dashboardScheduleLog = res.data;
-
-                    // TODO - perform on DB side
-                    if (dashboardID != null) {
-                        this.dashboardScheduleLog = this.dashboardScheduleLog.filter(
-                            dsl => dsl.dashboardID == dashboardID);
-                    };
-                    if (sentAfter != null) {
-                        this.dashboardScheduleLog = this.dashboardScheduleLog.filter(
-                            dsl => dsl.sentOn >= sentAfter);
-                    };
-                    if (sentBefore != null) {
-                        this.dashboardScheduleLog = this.dashboardScheduleLog.filter(
-                            dsl => dsl.sentOn <= sentBefore);
-                    };
-
-                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getDashboardScheduleLog 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.dashboardScheduleLog)
-                    };
-
-                    resolve(this.dashboardScheduleLog);
-                },
-                err => {
-                    reject(err.message)
-                });
-        });
-
-    }
-
-    getDatasourceScheduleLog(
-        datasourceID: number = null,
-        sentAfter: Date = null,
-        sentBefore: Date = null): Promise<DatasourceScheduleLog[]> {
-        // Description: Gets the Schedule Log for a single DS or requested range
-        // Returns: this.datasourceScheduleLog array
-        // NOTE: this routine does NOT use cached or if dirty (goes to DB each time)
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDatasourceScheduleLog ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {datasourceID} , {sentAfter}, {sentBefore})
-        };
-
-        return new Promise<DatasourceScheduleLog[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-            let pathUrl: string = 'datasourceScheduleLog';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // TODO - perform on DB side
-                    this.datasourceScheduleLog = res.data;
-                    if (datasourceID != null) {
-                        this.datasourceScheduleLog = this.datasourceScheduleLog.filter(
-                            dsl => dsl.datasourceID == datasourceID);
-                    };
-                    if (sentAfter != null) {
-                        this.datasourceScheduleLog = this.datasourceScheduleLog.filter(
-                            dsl => dsl.sentOn >= sentAfter);
-                    };
-                    if (sentBefore != null) {
-                        this.datasourceScheduleLog = this.datasourceScheduleLog.filter(
-                            dsl => dsl.sentOn <= sentBefore);
-                    };
-                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getDatasourceScheduleLog 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {res})
-                    };
-                    resolve(this.datasourceScheduleLog);
-                },
-                err => {
-                    reject(err.message)
-                }
-            );
-        });
-
     }
 
     getDashboardSnapshots(): Promise<DashboardSnapshot[]> {
@@ -4887,76 +4583,6 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
                 }
             )
         });
-    }
-
-    getDashboardTemplates(): Promise<Dashboard[]> {
-        // Description: Gets all Tpl
-        // Returns: recent [D] array, unless:
-        //   If not cached or if dirty, get from File
-        // Refresh from source at start, or if dirty
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardTemplates ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        if ( this.dashboards == []  ||  (this.isDirtyDashboards) ) {
-            return new Promise<Dashboard[]>((resolve, reject) => {
-                this.getDashboards()
-                    .then(res => {
-                        let arrTemplateIDs: number[] = [];
-                        for (var i = 0; i < res.length; i++) {
-                            if (res[i].templateDashboardID != 0  &&
-                                res[i].templateDashboardID != null) {
-                                arrTemplateIDs.push(res[i].templateDashboardID)
-                            };
-                        };
-                        let returnData: Dashboard[] = [];
-                        if (arrTemplateIDs.length > 0) {
-                            for (var i = 0; i < res.length; i++) {
-                                if (arrTemplateIDs.indexOf(res[i].id) != -1) {
-                                    returnData.push(res[i]);
-                                };
-                            };
-                        };
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDashboardTemplates 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {returnData})
-                        };
-
-                        resolve(returnData);
-                    });
-            });
-        } else {
-            return new Promise<Dashboard[]>((resolve, reject) => {
-                let arrTemplateIDs: number[] = [];
-                for (var i = 0; i < this.dashboards.length; i++) {
-                    if (this.dashboards[i].templateDashboardID != 0  &&
-                        this.dashboards[i].templateDashboardID != null) {
-                        arrTemplateIDs.push(this.dashboards[i].templateDashboardID)
-                    };
-                };
-                let returnData: Dashboard[] = [];
-                if (arrTemplateIDs.length > 0) {
-                    for (var i = 0; i < this.dashboards.length; i++) {
-                        if (arrTemplateIDs.indexOf(this.dashboards[i].id) != -1) {
-                            returnData.push(this.dashboards[i]);
-                        };
-                    };
-                };
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDashboardTemplates 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {returnData})
-                };
-
-                resolve(returnData);
-
-            });
-        };
-
     }
 
     getDatasources(): Promise<Datasource[]> {
@@ -5339,32 +4965,6 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         });
     }
 
-    // TODO - is this still needed?
-    deleteCurrentDatasource(id: number) {
-        // Delete current DS
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteCurrentDatasource',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                {id}, this.currentDatasources)
-        };
-
-        let index: number = -1;
-        for (var i = 0; i < this.currentDatasources.length; i++) {
-            if (this.currentDatasources[i].id == id) {
-                index = i;
-            };
-        };
-        if (index != -1) {
-            this.currentDatasources.splice(index,1)
-        };
-
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteCurrentDatasource end',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                this.currentDatasources)
-        };
-    }
-
     getDatasourcePermissions(): Promise<DatasourcePermission[]> {
         // Description: Gets all DS-P
         // Returns: this.datasourcePermissions array, unless:
@@ -5664,23 +5264,6 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
                         };
                         this.canvasSettings = res.data[0];
 
-                        // Load global Vars
-                        // TODO - create glob vars when needed, or delete totally
-                        // this.canvasSettings.companyName = res.data.companyName;
-                        // this.canvasSettings.companyLogo = res.data.companyLogo;
-                        // this.canvasSettings.dashboardTemplate = res.data.dashboardTemplate;
-                        // this.canvasSettings.maxTableLength = +res.data.maxTableLength;
-                        // this.canvasSettings.widgetsMinZindex = +res.data.widgetsMinZindex;
-                        // this.canvasSettings.widgetsMaxZindex = +res.data.widgetsMaxZindex;
-                        // this.canvasSettings.gridSize = +res.data.gridSize;
-                        // this.canvasSettings.snapToGrid = res.data.snapToGrid;
-                        // this.canvasSettings.printDefault = res.data.printDefault;
-                        // this.canvasSettings.printSize = res.data.printSize;
-                        // this.canvasSettings.printLayout = res.data.printLayout;
-                        // this.canvasSettings.notInEditModeMsg = res.data.notInEditModeMsg;
-                        // this.canvasSettings.noQueryRunningMessage = res.data.noQueryRunningMessage;
-                        // this.canvasSettings.queryRunningMessage = res.data.queryRunningMessage;
-
                         // Sanitize
                         if (this.canvasSettings.gridSize > 100
                             || this.canvasSettings.gridSize == null
@@ -5714,220 +5297,68 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
 
     }
 
-    saveSystemSettings(data: CanvasSettings): Promise<string> {
-        // Description: Saves system settings
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveSystemSettings ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
+    // getPaletteButtonsSelected(): Promise<PaletteButtonsSelected[]> {
+    //     // Description: Gets currentgetPaletteButtonsSelected
+    //     // Returns: this.currentgetPaletteButtonsSelected object, unless:
+    //     //   If not cached or if dirty, get from File
+    //     if (this.sessionDebugging) {
+    //         console.log('%c    Global-Variables getPaletteButtonsSelected ...',
+    //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+    //     };
 
-        return new Promise<string>((resolve, reject) => {
+    //     return new Promise<PaletteButtonsSelected[]>((resolve, reject) => {
 
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
+    //         // Refresh from source at start, or if dirty
+    //         if (this.isDirtyPaletteButtonsSelected) {
+    //             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
-            let pathUrl: string = 'canvasSettings';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+    //             let pathUrl: string = 'paletteButtonsSelecteds';
+    //             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+    //             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+    //                 res  => {
+    //                     if(res.statusCode != 'success') {
+    //                         reject(res.message);
+	// 						return;
+    //                     };
 
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
+    //                     res.data = res.data.sort( (obj1,obj2) => {
+    //                         if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
+    //                             return 1;
+    //                         };
+    //                         if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
+    //                             return -1;
+    //                         };
+    //                         return 0;
+    //                     });
+    //                     this.currentPaletteButtonsSelected.next(res.data);
 
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
+    //                     this.isDirtyPaletteButtonsSelected = false;
+    //                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                    this.canvasSettings = JSON.parse(JSON.stringify(res.data));
+    //                     if (this.sessionDebugging) {
+    //                         console.log('%c    Global-Variables getPaletteButtonsSelected 1',
+    //                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+    //                             this.currentPaletteButtonsSelected.value);
+    //                     };
 
-                    if (this.sessionDebugging) {
-                        console.log('saveSystemSettings SAVED', {res})
-                    };
+    //                     resolve(this.currentPaletteButtonsSelected.value);
+    //                 },
+    //                 err => {
+    //                     reject(err.message)
+    //                 }
+    //             );
+    //         } else {
+    //             if (this.sessionDebugging) {
+    //                 console.log('%c    Global-Variables getPaletteButtonsSelected 2',
+    //                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+    //                     this.currentPaletteButtonsSelected.value);
+    //             };
 
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveSystemSettings FAILED', {err});
-                    };
+    //             resolve(this.currentPaletteButtonsSelected.value);
+    //         }
+    //     });
 
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
-    getPaletteButtonBar(): Promise<PaletteButtonBar[]> {
-        // Description: Gets currentgetPaletteButtonBar
-        // Returns: this.currentgetPaletteButtonBar object, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getPaletteButtonBar ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<PaletteButtonBar[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if (this.isDirtyPaletteButtonBar) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'paletteButtonBars';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.currentPaletteButtonBar = res.data;
-
-                        this.isDirtyPaletteButtonBar = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getPaletteButtonBar 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.currentPaletteButtonBar)
-                        };
-
-                        resolve(this.currentPaletteButtonBar);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getPaletteButtonBar 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.currentPaletteButtonBar)
-                };
-
-                resolve(this.currentPaletteButtonBar);
-            }
-        });
-
-    }
-
-    savePaletteButtonBar(data: PaletteButtonBar): Promise<string> {
-        // Description: Saves PaletteButtonBar
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables savePaletteButtonBar ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'paletteButtonBars';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.currentPaletteButtonBar.findIndex(d =>
-                        d.id == data.id
-                    );
-                    this.currentPaletteButtonBar[localIndex] = data;
-
-                    if (this.sessionDebugging) {
-                        console.log('savePaletteButtonBar SAVED', res.data)
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error savePaletteButtonBar FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
-    getPaletteButtonsSelected(): Promise<PaletteButtonsSelected[]> {
-        // Description: Gets currentgetPaletteButtonsSelected
-        // Returns: this.currentgetPaletteButtonsSelected object, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getPaletteButtonsSelected ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<PaletteButtonsSelected[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if (this.isDirtyPaletteButtonsSelected) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'paletteButtonsSelecteds';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        res.data = res.data.sort( (obj1,obj2) => {
-                            if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
-                                return 1;
-                            };
-                            if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
-                                return -1;
-                            };
-                            return 0;
-                        });
-                        this.currentPaletteButtonsSelected.next(res.data);
-
-                        this.isDirtyPaletteButtonsSelected = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getPaletteButtonsSelected 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.currentPaletteButtonsSelected.value);
-                        };
-
-                        resolve(this.currentPaletteButtonsSelected.value);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getPaletteButtonsSelected 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.currentPaletteButtonsSelected.value);
-                };
-
-                resolve(this.currentPaletteButtonsSelected.value);
-            }
-        });
-
-    }
+    // }
 
     addPaletteButtonsSelected(data: PaletteButtonsSelected): Promise<any> {
         // Description: Adds a new PaletteButtonsSelected
@@ -6687,7 +6118,7 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         // Resolve all promises in array
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables allWithAsync ...',
-                "color: black; background: lightgray; font-size: 10px");
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
         return new Promise(async (resolve, reject) => {
@@ -7374,55 +6805,6 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         });
     }
 
-    deleteWidgetLayout(id: number, dashboardLayoutID: number): Promise<string> {
-        // Description: Deletes a WidgetLayout
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteWidgetLayout ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'widgetLayouts';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.widgetLayouts = this.widgetLayouts.filter(wl => wl.id != id);
-
-                    // TODO - do this better in DB as we are checking local Array length
-                    //        which may be diff to DB
-                    // Delete the DashboardLayout if last one
-                    if (this.widgetLayouts.length == 0) {
-                        this.deleteResource('dashboardLayouts', dashboardLayoutID);
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteWidgetLayout DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteWidgetLayout FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     setBaseUrl(pathUrl: string): string {
        // Description: Gets the caching table that drives local caching process
        if (this.sessionDebugging) {
@@ -7501,7 +6883,7 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         // parameters.
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables refreshCurrentDashboard ...',
-                "color: black; background: lightgray; font-size: 10px",
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {refreshingRoutine}, {dashboardID}, {dashboardTabID}, {tabToShow},
                 {widgetsToRefresh});
         };
@@ -7618,7 +7000,8 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         // Sleep for a while
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables sleep ...',
-                "color: black; background: lightgray; font-size: 10px", {milliseconds});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {milliseconds});
         };
 
         var start: number = new Date().getTime();
@@ -7650,7 +7033,8 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         if (this.sessionDebugging) {
             let widgetID: number = widget.id;
             console.log('%c    Global-Variables createVegaSpec ...',
-                "color: black; background: lightgray; font-size: 10px", {widgetID});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {widgetID});
         };
 
         // Sanitiy Check
@@ -7712,7 +7096,8 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         if (this.sessionDebugging) {
             let widgetID: number = widget.id;
             console.log('%c    Global-Variables createVegaLiteSpec ...',
-                "color: black; background: lightgray; font-size: 10px", {widgetID});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {widgetID});
         };
 
         let specification: any = {
@@ -8732,8 +8117,8 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         let actID: number = 1;
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables actionUpsert ...',
-                "color: black; background: lightgray; font-size: 10px", {logToDB},
-                {oldWidget}, {newWidget});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {logToDB}, {oldWidget}, {newWidget});
         };
 
         // Make snapshot when start changing
@@ -8896,7 +8281,8 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         // This routine recalcs a value to a gridpoint IF snapping is enabled
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables alignToGripPoint ...',
-                "color: black; background: lightgray; font-size: 10px", {inputValue});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {inputValue});
         };
 
         if (this.canvasSettings.snapToGrid) {
@@ -8916,7 +8302,8 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         // Shows a message in the right area, ie StatusBar
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables showStatusBarMessage ...',
-                "color: black; background: lightgray; font-size: 10px", {statusBarMessage});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {statusBarMessage});
         };
 
         // Add to DB (if a Dashboard on display)
@@ -8959,7 +8346,8 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables dashboardPermissionCheck ...',
-                "color: black; background: lightgray; font-size: 10px", {dashboardID}, {accessRequired});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID}, {accessRequired});
         };
 
         // Assume no access
@@ -9184,7 +8572,8 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         // Returns Array of Permissions for the current user to the given D.
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables dashboardPermissionList ...',
-                "color: black; background: lightgray; font-size: 10px", {id});
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {id});
         };
 
         // Assume no access
@@ -9282,10 +8671,10 @@ console.log('xx AMEND this.dashboardsRecent', this.dashboardsRecent, dashboardID
         //   = date (YYYY/MM/DD) - Default
         //   = time (HH:MM:SS)
         //   = dateTime (YYYY/MM/DD HH:MM:SS)
-        if (this.sessionDebugging) {
+        // if (this.sessionDebugging) {
             // console.log('%c    Global-Variables formatDate ...',
-            //     "color: black; background: lightgray; font-size: 10px", {date});
-        };
+            //     this.concoleLogStyleForCaching, {date});
+        // };
 
         let d = new Date(date);
         let month = '' + (d.getMonth() + 1);

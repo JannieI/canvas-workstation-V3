@@ -57,7 +57,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Set Selected and Total Available Arrays
-        this.globalVariableService.getPaletteButtonBar().then( pb => {
+        this.globalVariableService.getResource('paletteButtonBars').then( pb => {
 
             // Total list of available buttons afresh from DB - slice is NB for ByVal
             this.paletteButtons = pb.slice();

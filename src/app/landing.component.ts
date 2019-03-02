@@ -117,13 +117,23 @@ export class LandingComponent implements OnInit {
 							console.warn('xx AFTER filter', this.dashboardsRecent, accessIDs);
 
 							// Palette buttons for current user
-							this.globalVariableService.getPaletteButtonsSelected().then(pBsel =>
+							this.globalVariableService.getResource('paletteButtonsSelecteds').then(pBsel =>
 								{
 
+									pBsel = pBsel.sort( (obj1,obj2) => {
+										if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
+											return 1;
+										};
+										if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
+											return -1;
+										};
+										return 0;
+									});
+			
 									// User has no Buttons selected, which will be the case for new users
 									if (pBsel.length == 0) {
 										// Load the default ones
-										this.globalVariableService.getPaletteButtonBar().then(pb => {
+										this.globalVariableService.getResource('paletteButtonBars').then(pb => {
 											let promiseArray = [];
 
 											pb.forEach(p => {
@@ -199,6 +209,10 @@ export class LandingComponent implements OnInit {
 		// Get setup info
 		this.globalVariableService.getResource('canvasBackgroundcolors');
 
+		console.log('xx TEST', this.globalVariableService.vlTemplate, 
+		this.globalVariableService.widgetTemplateInner)
+
+
 	}
 
 	ngAfterViewInit() {
@@ -255,7 +269,7 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDeleteRecent', '@Start');
 
 		// Delete from temp array, refresh
-		this.globalVariableService.deleteDashboardRecent(id).then(
+		this.globalVariableService.deleteResource('dashboardsRecent', id).then(
 			i => {
 
 				let index: number = this.dashboardsRecent.findIndex(dR =>

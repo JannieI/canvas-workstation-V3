@@ -168,7 +168,7 @@ export class DashboardOpenComponent implements OnInit {
             this.dashboardTags = res);
 
         // Get Schedule Logs in advance
-        this.globalVariableService.getDashboardScheduleLog().then(res =>
+        this.globalVariableService.getResource('dashboardScheduleLog').then(res =>
             this.dashboardScheduleLog = res);
 
         // Get Schedules in advance

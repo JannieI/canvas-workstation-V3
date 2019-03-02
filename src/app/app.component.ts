@@ -8953,11 +8953,8 @@ console.log('xx i', i)
         // Clicked Delete button on Widget Layout object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerDelete', '@Start');
 
-        // TODO - this is a hack - do better in backend
-        let localDashboardID: number = this.widgetLayouts[index].dashboardLayoutID;
-
         // Delete from DB and Filter local Array
-        this.globalVariableService.deleteWidgetLayout(widgetLayoutID, localDashboardID)
+        this.globalVariableService.deleteResource('widgetLayouts', widgetLayoutID)
             .then(res =>
                 {
                     this.widgetLayouts = this.widgetLayouts.
