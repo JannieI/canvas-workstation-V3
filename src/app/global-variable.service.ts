@@ -60,6 +60,7 @@ import { message }                    from 'vega-lite/build/src/log';
 import { dashboardTemplate }          from './templates';
 import { dashboardTabTemplate }       from './templates';
 import { finalFields }                from './templates';
+import { serverTypes }                from './templates';
 import { transformationsFormat }      from './templates';
 import { vlTemplate }                 from './templates';
 import { widgetTemplateInner }        from './templates';
@@ -102,84 +103,7 @@ export class GlobalVariableService {
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
     widgetTemplateInner: any = widgetTemplateInner;
-    serverTypes: TributaryServerType[] =
-    [
-        {
-            serverType: 'MySQL',
-            driverName: 'mysql',
-            inspector: 'tributary.inspectors.sql:SqlInspector',
-            connector: 'tributary.connectors.sql:SqlConnector',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-
-        },
-        {
-            serverType: 'PostgresSQL',
-            driverName: 'postgresql',
-            inspector: 'tributary.inspectors.sql:SqlInspector',
-            connector: 'tributary.connectors.sql:SqlConnector',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-
-        },
-        {
-            serverType:'MicrosoftSQL',
-            driverName: 'mssql',    // "mssql+pyodbc", "mssql+pymssql"
-            inspector: 'tributary.inspectors.sql:SqlInspector',
-            connector: 'tributary.connectors.sql:SqlConnector',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-
-        },
-        {
-            serverType:'SQLite',
-            driverName: 'sqlite',
-            inspector: 'tributary.inspectors.sql:SqlInspector',
-            connector: 'tributary.connectors.sql:SqlConnector',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-
-        },
-        {
-            serverType:'Oracle',
-            driverName: 'oracle',
-            inspector: 'tributary.inspectors.sql:SqlInspector',
-            connector: 'tributary.connectors.sql:SqlConnector',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-
-        },
-        {
-            serverType:'Mongo',
-            driverName: 'mongo',
-            inspector: 'tributary.inspectors.mongodb:MongoDBInspector',
-            connector: 'tributary.connectors.mongodb:MongoDBConnector',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-        },
-        {
-            serverType:'MicrosoftSSAS',
-            driverName: 'Microsoft SSAS',
-            inspector: 'tributary.inspectors...',
-            connector: 'tributary.connectors...',
-            editedBy: '',
-            editedOn: null,
-            createdBy: '',
-            createdOn: null
-        }
-    ];
+    serverTypes: TributaryServerType[] = serverTypes;
 
 
     // Environment settings: Server Url, etc read from external

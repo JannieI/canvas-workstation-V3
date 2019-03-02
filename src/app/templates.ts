@@ -3,6 +3,7 @@
 import { Dashboard }                  from './models';
 import { DashboardTab }               from './models';
 import { Transformation }             from './models';
+import { TributaryServerType }        from './models';
 import { Widget }                     from './models';
 import * as dl                        from 'datalib';
 
@@ -693,8 +694,7 @@ export const transformationsFormat: Transformation[] =
     }
 ];
 
-export 
-const finalFields =
+export const finalFields =
 [
     {
         fieldName: 'MonthTraded',
@@ -732,3 +732,83 @@ const finalFields =
         transformed: '1 transf'
     }
 ];
+
+export const serverTypes: TributaryServerType[] =
+[
+    {
+        serverType: 'MySQL',
+        driverName: 'mysql',
+        inspector: 'tributary.inspectors.sql:SqlInspector',
+        connector: 'tributary.connectors.sql:SqlConnector',
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
+
+    },
+    {
+        serverType: 'PostgresSQL',
+        driverName: 'postgresql',
+        inspector: 'tributary.inspectors.sql:SqlInspector',
+        connector: 'tributary.connectors.sql:SqlConnector',
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
+
+    },
+    {
+        serverType:'MicrosoftSQL',
+        driverName: 'mssql',    // "mssql+pyodbc", "mssql+pymssql"
+        inspector: 'tributary.inspectors.sql:SqlInspector',
+        connector: 'tributary.connectors.sql:SqlConnector',
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
+
+    },
+    {
+        serverType:'SQLite',
+        driverName: 'sqlite',
+        inspector: 'tributary.inspectors.sql:SqlInspector',
+        connector: 'tributary.connectors.sql:SqlConnector',
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
+
+    },
+    {
+        serverType:'Oracle',
+        driverName: 'oracle',
+        inspector: 'tributary.inspectors.sql:SqlInspector',
+        connector: 'tributary.connectors.sql:SqlConnector',
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
+
+    },
+    {
+        serverType:'Mongo',
+        driverName: 'mongo',
+        inspector: 'tributary.inspectors.mongodb:MongoDBInspector',
+        connector: 'tributary.connectors.mongodb:MongoDBConnector',
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
+    },
+    {
+        serverType:'MicrosoftSSAS',
+        driverName: 'Microsoft SSAS',
+        inspector: 'tributary.inspectors...',
+        connector: 'tributary.connectors...',
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
+    }
+];
+
