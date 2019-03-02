@@ -1230,59 +1230,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         });
     }
 
-    getDashboards(params: string = ''): Promise<Dashboard[]> {
-        // Description: Gets all D
-        // Returns: this.dashboards array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboards ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        if (params.length > 2  &&  params.substring(0 ,1) != '?') {
-            params = '?' + params;
-        };
-
-        return new Promise<Dashboard[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'dashboards' + params;
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.dashboards = res.data;
-                        this.isDirtyDashboards = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDashboards 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.dashboards);
-                        };
-                        resolve(this.dashboards);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                )
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDashboards 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
-                };
-                resolve(this.dashboards);
-            }
-        });
-
-    }
-
     dashboardCopy(originalDashboardID: number, newName: string, newState: string): Promise<any> {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
@@ -2426,7 +2373,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Refresh from source at start, or if dirty
         if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
-                this.getDashboards()
+                this.getResource('dashboards')
                     .then(res => {
                         res = res.filter(
                             i => (i.isSample)  && i.state == 'Complete'
