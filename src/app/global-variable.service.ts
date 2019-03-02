@@ -5094,49 +5094,49 @@ export class GlobalVariableService {
 
     }
 
-    addWidgetCheckpoint(data: WidgetCheckpoint): Promise<any> {
-        // Description: Adds a new WidgetCheckpoint
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addWidgetCheckpoint ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
+    // addWidgetCheckpoint(data: WidgetCheckpoint): Promise<any> {
+    //     // Description: Adds a new WidgetCheckpoint
+    //     // Returns: Added Data or error message
+    //     if (this.sessionDebugging) {
+    //         console.log('%c    Global-Variables addWidgetCheckpoint ...',
+    //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+    //     };
 
-        return new Promise<any>((resolve, reject) => {
+    //     return new Promise<any>((resolve, reject) => {
 
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
+    //         const headers = new HttpHeaders()
+    //             .set("Content-Type", "application/json");
 
-            let pathUrl: string = 'widgetCheckpoints';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
+    //         let pathUrl: string = 'widgetCheckpoints';
+    //         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+    //         this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
+    //             res => {
+    //                 if(res.statusCode != 'success') {
+    //                     reject(res.message);
+	// 					return;
+    //                 };
 
-                    // Update Global vars to make sure they remain in sync
-                    this.widgetCheckpoints.push(JSON.parse(JSON.stringify(res.data)));
-                    this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(res.data)));
+    //                 // Update Global vars to make sure they remain in sync
+    //                 this.widgetCheckpoints.push(JSON.parse(JSON.stringify(res.data)));
+    //                 this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(res.data)));
 
-                    if (this.sessionDebugging) {
-                        console.log('addWidgetCheckpoint ADDED', res.data,
-                            this.currentWidgetCheckpoints, this.widgetCheckpoints)
-                    };
+    //                 if (this.sessionDebugging) {
+    //                     console.log('addWidgetCheckpoint ADDED', res.data,
+    //                         this.currentWidgetCheckpoints, this.widgetCheckpoints)
+    //                 };
 
-                    resolve(res.data);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addWidgetCheckpoint FAILED', {err});
-                    };
+    //                 resolve(res.data);
+    //             },
+    //             err => {
+    //                 if (this.sessionDebugging) {
+    //                     console.log('Error addWidgetCheckpoint FAILED', {err});
+    //                 };
 
-                    reject(err.message);
-                }
-            )
-        });
-    }
+    //                 reject(err.message);
+    //             }
+    //         )
+    //     });
+    // }
 
     saveWidgetCheckpoint(data: WidgetCheckpoint): Promise<string> {
         // Description: Saves Widget Checkpoint

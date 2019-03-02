@@ -142,7 +142,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         };
 
         // Add locally, globally and to DB (with new ID)
-        this.globalVariableService.addWidgetCheckpoint(newCheckpoint).then(res => {
+        this.globalVariableService.addResource('widgetCheckpoints', newCheckpoint).then(res => {
 
             newCheckpoint.id = res.id;
             this.currentWidgetCheckpoints.splice(0, 0, newCheckpoint);
