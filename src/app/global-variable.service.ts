@@ -3639,58 +3639,6 @@ export class GlobalVariableService {
 
     }
 
-    getDataField(): Promise<DataField[]> {
-        // Description: Gets DataFields, WITHOUT data
-        // Returns: this.dataField
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDataField ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<DataField[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.dataFields.length == 0)  ||  (this.isDirtyDataFields) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'dataFields';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.dataFields = res.data;
-                        this.isDirtyDataFields = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDataField 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.dataFields)
-                        };
-
-                        resolve(this.dataFields);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDataField 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.dataFields)
-                };
-
-                resolve(this.dataFields);
-            }
-        });
-
-    }
-
     getDataset(): Promise<Dataset[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
