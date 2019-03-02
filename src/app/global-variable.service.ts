@@ -149,7 +149,8 @@ export class GlobalVariableService {
     loggedIntoServer = new BehaviorSubject<boolean>(true);  // Emits True when log in/out of server
 
     // Canvas Server Profile (and settings)
-    canvasSettings: CanvasSettings = canvasSettings;
+    canvasSettings: CanvasSettings = canvasSettings;        // Used by components
+    canvasSettingsArray: CanvasSettings[];                  // Returned by getResource
 
     // Company Profile (and defaults)
 
@@ -4185,53 +4186,24 @@ export class GlobalVariableService {
 
         return new Promise<CanvasSettings>((resolve, reject) => {
 
-            // Refresh from source at start, or if dirty
-            if (this.isDirtyCanvasSettings) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+            this.getResource('canvasSettings')
+                .then(res  => {
 
-                let pathUrl: string = 'canvasSettings';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-                            return;
-                        };
-                        if(res.data.length == 0) {
-                            reject(res.message);
-                            return;
-                        };
-                        this.canvasSettings = res.data[0];
+                    // Note: the other global vars are arrays, this one is NOT
+                    if (this.canvasSettingsArray != null) {
+                        this.canvasSettings = this.canvasSettingsArray[0];
+                    };
 
-                        // Sanitize
-                        if (this.canvasSettings.gridSize > 100
-                            || this.canvasSettings.gridSize == null
-                            || this.canvasSettings.gridSize == undefined) {
-                            this.canvasSettings.gridSize = 100;
-                        };
+                    // Sanitize
+                    if (this.canvasSettings.gridSize > 100
+                        || this.canvasSettings.gridSize == null
+                        || this.canvasSettings.gridSize == undefined) {
+                        this.canvasSettings.gridSize = 100;
+                    };
 
-                        this.isDirtyCanvasSettings = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getSystemSettings 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.canvasSettings, this.canvasSettings.companyName, res)
-                        };
-                        resolve(this.canvasSettings);
-                    },
-                    err => {
-                        reject(err.message)
-                    });
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getSystemSettings 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.canvasSettings)
-                };
-
-                resolve(this.canvasSettings);
-            }
+                    resolve(res);
+                })
+                .catch(err => reject(err.message));
         });
 
     }
@@ -7418,8 +7390,6 @@ export class GlobalVariableService {
 
                         // TODO - must this be done here ??  Needed to setBaseUrl
                         this.canvasServerURI = givenCanvasServerURI;
-
-                        // this.getResource('canvasGroups').then();
 
                         this.getCanvasUsers().then(usr => {
                             let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
