@@ -332,7 +332,7 @@ export class UsersComponent implements OnInit {
         this.message = '';
         this.errorMessage = '';
 
-        this.globalVariableService.deleteCanvasUser(id).then( () => {
+        this.globalVariableService.deleteResource('canvasUsers', id).then( () => {
             this.message = "User Deleted"
             this.users = this.users.filter(
                 usr => usr.id != id
