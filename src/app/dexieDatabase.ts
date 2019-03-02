@@ -26,8 +26,7 @@ import Dexie from 'dexie';
     export interface IContact {
         id?: number,
         first: string,
-        last: string,
-        dashboard: Dashboard
+        last: string
     }
 
     // Dexie Interface: Local Dashboards
@@ -78,13 +77,10 @@ import Dexie from 'dexie';
         id: number;
         first: string;
         last: string;
-        dashboard: Dashboard;
-        dashboardTab: DashboardTab;
 
-        constructor(first: string, last: string, dashboard: Dashboard, id?:number) {
+        constructor(first: string, last: string, id?:number) {
         this.first = first;
         this.last = last;
-        this.dashboard = dashboard;
         if (id) this.id = id;
         }
     }
@@ -142,6 +138,7 @@ import Dexie from 'dexie';
                 currentCanvasUser: 'canvasServerName, currentCompany, currentUserID',
                 contacts: 'id, first, last',
                 localDashboards: 'id',
+                localDashboardTabs: 'id',
                 localDatasources: 'id'
                 //...other tables goes here...
             });
