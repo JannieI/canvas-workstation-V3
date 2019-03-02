@@ -180,7 +180,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         if (index >= 0) {
             this.currentWidgetCheckpoints.splice(index, 1);
         };
-        this.globalVariableService.deleteWidgetCheckpoint(id).then(res => {
+        this.globalVariableService.deleteResource('widgetCheckpoints', id).then(res => {
 
             this.nrCheckpoints = this.currentWidgetCheckpoints.length;
 
