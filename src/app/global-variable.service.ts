@@ -633,6 +633,9 @@ export class GlobalVariableService {
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
                 dct.key == resource
             );
+            console.log('xx resource', "'" + resource + "'")
+            console.log('xx resource', "'" + resource + "'", this.dataCachingTable)
+            console.log('xx resource', "'" + resource + "'",dataCachingTableIndex)
 
             if (dataCachingTableIndex >= 0) {
 
@@ -734,7 +737,7 @@ export class GlobalVariableService {
                         reject(httpResult.message);
                         return;
                     };
-
+console.log('dataCachingTableIndex', dataCachingTableIndex)
                     // If cached, fill local info
                     if (dataCachingTableIndex >= 0) {
                         localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
@@ -743,9 +746,10 @@ export class GlobalVariableService {
                         localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                         localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
 
+                        console.log('xx localVariableName', localVariableName)
                         // Fill local Vars
                         if (localCacheableMemory) {
-
+console.log('xx localCacheableMemory', localCacheableMemory)
                             if (localVariableName != null) {
                                 this[localVariableName] = [];
                                 this[localVariableName] = httpResult.data;
@@ -755,7 +759,7 @@ export class GlobalVariableService {
                                 };
                                 console.log('%c    Global-Variables getResource updated cached Memory for ', 
                                     this.concoleLogStyleForCaching,
-                                    resource,'row count:', rowCount);
+                                    resource,'row count:', rowCount, this[localVariableName]);
                             };
 
                             // TODO - should we fill Current Var here a well?
@@ -7388,108 +7392,111 @@ export class GlobalVariableService {
 
                 if (res) {
 
-                        // TODO - must this be done here ??  Needed to setBaseUrl
-                        this.canvasServerURI = givenCanvasServerURI;
+                    // TODO - must this be done here ??  Needed to setBaseUrl
+                    this.canvasServerURI = givenCanvasServerURI;
 
-                        this.getResource('canvasUsers').then(usr => {
-                            let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
-                            if (foundIndex < 0) {
 
-                                if (this.sessionDebugging) {
-                                    console.warn('Global-Variables verifyCanvasUser: Invalid userid', givenUserID)
-                                };
-                                resolve(false);
-                            } else {
+                    // Refresh, but first get the cache
+                    this.getDataCachingTable()
+                        .then( () => {
 
-                                if (this.sessionDebugging) {
-                                    console.warn('Global-Variables verifyCanvasUser: Valid userid', givenUserID)
-                                };
+                            this.getResource('canvasUsers').then(usr => {
+                                let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
+                                if (foundIndex < 0) {
+    console.log('xx gv this.canvasUsers', this.canvasUsers)
+                                    if (this.sessionDebugging) {
+                                        console.warn('Global-Variables verifyCanvasUser: Invalid userid', givenUserID)
+                                    };
+                                    resolve(false);
+                                } else {
 
-                                // Set User var
-                                this.currentUser = this.canvasUsers[foundIndex];
-
-                                // Set GVs
-                                this.sessionDebugging = this.currentUser.preferenceDebugSession;
-
-                                // Store User ID info
-                                this.canvasServerName = givenCanvasServerName;
-                                this.canvasServerURI = givenCanvasServerURI;
-                                this.currentCompany = givenCompanyName;
-                                this.currentUserID = givenUserID;
-                                this.currentToken = givenToken;
-
-                                // Register session start time
-                                let today = new Date();
-                                this.sessionDateTimeLoggedin =
-                                    this.formatDate(today);
-
-                                // Indicate logged in; so StatusBar shows Server Name
-                                this.loggedIntoServer.next(true);
-
-                                // Optional start D
-                                if (this.currentUser.preferenceStartupDashboardID != null) {
-                                    let startTabID: number = -1;
-                                    if (this.currentUser.preferenceStartupDashboardTabID != null) {
-                                        startTabID = this.currentUser.preferenceStartupDashboardTabID;
+                                    if (this.sessionDebugging) {
+                                        console.warn('Global-Variables verifyCanvasUser: Valid userid', givenUserID)
                                     };
 
-                                    this.refreshCurrentDashboard(
-                                        'statusbar-clickTabDelete',
-                                        this.currentUser.preferenceStartupDashboardID,
-                                        startTabID,
-                                        ''
+                                    // Set User var
+                                    this.currentUser = this.canvasUsers[foundIndex];
+
+                                    // Set GVs
+                                    this.sessionDebugging = this.currentUser.preferenceDebugSession;
+
+                                    // Store User ID info
+                                    this.canvasServerName = givenCanvasServerName;
+                                    this.canvasServerURI = givenCanvasServerURI;
+                                    this.currentCompany = givenCompanyName;
+                                    this.currentUserID = givenUserID;
+                                    this.currentToken = givenToken;
+
+                                    // Register session start time
+                                    let today = new Date();
+                                    this.sessionDateTimeLoggedin =
+                                        this.formatDate(today);
+
+                                    // Indicate logged in; so StatusBar shows Server Name
+                                    this.loggedIntoServer.next(true);
+
+                                    // Optional start D
+                                    if (this.currentUser.preferenceStartupDashboardID != null) {
+                                        let startTabID: number = -1;
+                                        if (this.currentUser.preferenceStartupDashboardTabID != null) {
+                                            startTabID = this.currentUser.preferenceStartupDashboardTabID;
+                                        };
+
+                                        this.refreshCurrentDashboard(
+                                            'statusbar-clickTabDelete',
+                                            this.currentUser.preferenceStartupDashboardID,
+                                            startTabID,
+                                            ''
+                                        );
+                                    };
+
+                                    // Create Var with data
+                                    let localCanvasUser =
+                                        {
+                                            canvasServerName: givenCanvasServerName,
+                                            canvasServerURI: givenCanvasServerURI,
+                                            currentCompany: givenCompanyName,
+                                            currentUserID: givenUserID,
+                                            currentToken: givenToken
+                                        };
+                                    console.warn('Global-Variables verifyCanvasUser localCanvasUser', localCanvasUser)
+
+                                    // Add / Update DB with Put
+                                    let currentCanvasUserCount: number = 0;
+
+                                    // Local App info DB
+                                    console.warn('Global-Variables verifyCanvasUser: @local DB')
+                                    // let dbCanvasAppDatabase = new CanvasAppDatabase
+                                    // dbCanvasAppDatabase.open();
+
+                                    this.dbCanvasAppDatabase.table("currentCanvasUser")
+                                        .put(localCanvasUser)
+                                        .then(res => {
+                                            console.warn('Global-Variables verifyCanvasUser Add/Update currentCanvasUser res', res);
+
+                                            // Count
+                                            this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
+                                                console.warn('Global-Variables verifyCanvasUser currentCanvasUser Count', res);
+                                                currentCanvasUserCount = res;
+
+                                                // Return
+                                                if (currentCanvasUserCount > 0) {
+                                                    console.warn('Global-Variables verifyCanvasUser setCanvasServerState');
+                                                    return true;
+                                                } else {
+                                                    return false;
+                                                };
+                                            });
+                                        }
                                     );
+                                    this.loadVariableOnStartup.next(true);
+                                    resolve(true);
                                 };
+                            })
+                            .catch(err => console.error('Error in     Global-Variables verifyCanvasUser: ', err))
 
-                                // Create Var with data
-                                let localCanvasUser =
-                                    {
-                                        canvasServerName: givenCanvasServerName,
-                                        canvasServerURI: givenCanvasServerURI,
-                                        currentCompany: givenCompanyName,
-                                        currentUserID: givenUserID,
-                                        currentToken: givenToken
-                                    };
-                                console.warn('Global-Variables verifyCanvasUser localCanvasUser', localCanvasUser)
-
-                                // Add / Update DB with Put
-                                let currentCanvasUserCount: number = 0;
-
-                                // Local App info DB
-                                console.warn('Global-Variables verifyCanvasUser: @local DB')
-                                // let dbCanvasAppDatabase = new CanvasAppDatabase
-                                // dbCanvasAppDatabase.open();
-
-                                this.dbCanvasAppDatabase.table("currentCanvasUser")
-                                    .put(localCanvasUser)
-                                    .then(res => {
-                                        console.warn('Global-Variables verifyCanvasUser Add/Update currentCanvasUser res', res);
-
-                                        // Count
-                                        this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
-                                            console.warn('Global-Variables verifyCanvasUser currentCanvasUser Count', res);
-                                            currentCanvasUserCount = res;
-
-                                            // Return
-                                            if (currentCanvasUserCount > 0) {
-                                                console.warn('Global-Variables verifyCanvasUser setCanvasServerState');
-                                                return true;
-                                            } else {
-                                                return false;
-                                            };
-                                        });
-                                    }
-                                );
-
-                                // Refresh, but first get the cache
-                                this.getDataCachingTable()
-                                    .then( () => {
-                                        this.loadVariableOnStartup.next(true);
-                                        resolve(true);
-                                    })
-                                    .catch(err => console.error('Error in     Global-Variables verifyCanvasUser: ', err))
-                            };
-                        });
+                        })
+                        .catch(err => console.error('Error in     Global-Variables verifyCanvasUser: ', err))
 
                 } else {
                     console.warn('Global-Variables verifyCanvasUser: Registration failed on : ',
