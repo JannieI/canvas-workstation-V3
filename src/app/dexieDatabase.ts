@@ -1,6 +1,7 @@
 // This class defines the tables and DB structure for Dexie DBs
 
 import { Dashboard }                  from './models';
+import { DashboardTab }               from './models';
 import { Datasource }                 from './models';
 
 // Dexie
@@ -33,6 +34,12 @@ import Dexie from 'dexie';
     export interface ILocalDashboard {
         id: number,
         dashboard: Dashboard
+    }
+
+    // Dexie Interface: Local DashboardTabs
+    export interface ILocalDashboardTab {
+        id: number,
+        dashboardTab: DashboardTab
     }
 
     // Dexie Interface: Local Datasources
@@ -72,6 +79,7 @@ import Dexie from 'dexie';
         first: string;
         last: string;
         dashboard: Dashboard;
+        dashboardTab: DashboardTab;
 
         constructor(first: string, last: string, dashboard: Dashboard, id?:number) {
         this.first = first;
@@ -89,6 +97,17 @@ import Dexie from 'dexie';
         constructor(id:number, dashboard: Dashboard) {
             this.id = id;
             this.dashboard = dashboard;
+        }
+    }
+
+    // Dexie Table: Local DashboardTabs
+    export class LocalDashboardTab implements ILocalDashboardTab {
+        id: number;
+        dashboardTab: DashboardTab;
+
+        constructor(id:number, dashboardTab: DashboardTab) {
+            this.id = id;
+            this.dashboardTab = dashboardTab;
         }
     }
 
@@ -112,6 +131,7 @@ import Dexie from 'dexie';
         // (just to inform Typescript. Instanciated by Dexie in stores() method)
         contacts: Dexie.Table<IContact, number>; // number = type of the primkey
         localDashboards: Dexie.Table<ILocalDashboard, number>;
+        localDashboardTabs: Dexie.Table<ILocalDashboardTab, number>;
         localDatasources: Dexie.Table<ILocalDatasource, number>;
         currentCanvasUser: Dexie.Table<ICurrentCanvasUser, number>;
         //...other tables goes ABOVE here...
