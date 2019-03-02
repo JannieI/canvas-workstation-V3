@@ -279,8 +279,10 @@ console.warn('xx this.preferenceStartupDashboardTabID', this.preferenceStartupDa
         );
 
         // Save globally, and in DB
-        this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser).then(
-            res =>
+        this.globalVariableService.saveResource(
+            'canvasUsers', 
+            this.globalVariableService.currentUser
+            ).then(res =>
                 {
                     this.globalVariableService.showStatusBarMessage(
                         {
