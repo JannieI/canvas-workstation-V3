@@ -5218,59 +5218,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         };
     }
 
-    saveCanvasUser(data: CanvasUser): Promise<string> {
-        // Description: Saves CanvasUser
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveCanvasUser ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'canvasUsers';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-            // this.http.put(finalUrl + '?id=' + data.id, data, {headers}).subscribe(res => {
-
-                // Replace local
-                let localIndex: number = this.canvasUsers.findIndex(u =>
-                    u.id == data.id
-                );
-                if (localIndex >= 0) {
-                    this.canvasUsers[localIndex] = data;
-                };
-
-                if (this.sessionDebugging) {
-                    console.log('saveCanvasUser SAVED', res.data)
-                };
-
-                resolve('Saved');
-            },
-            err => {
-                if (this.sessionDebugging) {
-                    console.log('Error saveCanvasUser FAILED', {err});
-                };
-
-                reject(err.message);
-            });
-        });
-    }
-
     deleteCanvasUser(id: number, widgetID: number = null): Promise<string> {
         // Description: Deletes a canvasUsers
         // Returns: 'Deleted' or error message
