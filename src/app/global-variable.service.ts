@@ -1838,7 +1838,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
             ||  (this.isDirtyDashboards)
             ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
-                this.getDashboards()
+                this.getResource('dashboards')
                     .then(res => {
 
                         // Load the current Dashboard, and Optional template

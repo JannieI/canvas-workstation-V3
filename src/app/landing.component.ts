@@ -55,7 +55,7 @@ export class LandingComponent implements OnInit {
 		this.globalVariableService.getDatasourcePermissions();
 
 		// Load D
-		this.globalVariableService.getDashboards().then(readD => {
+		this.globalVariableService.getResource('dashboards').then(readD => {
 			// Sample Dashboards
 			this.globalVariableService.getDashboardSamples().then(sD => {
 				this.sampleDashboards = sD;
