@@ -186,7 +186,7 @@ export class StatusbarComponent {
         // Show the list of Tabs
         this.globalFunctionService.printToConsole(this.constructor.name,'clickListTabs', '@Start');
 
-        // NB: this must execute before MoveUp, MoveDown and selectTab as local 
+        // NB: this must execute before MoveUp and MoveDown as local 
         // currentDashboardTabs array is loaded here from global.currentDashboardTabs
         // For the rest of the actions, we need to rely on global values - as the StatusBar
         // component is unawares of which Dashboard is currently shown.
@@ -305,7 +305,6 @@ export class StatusbarComponent {
             };
             return 0;
         });
-console.log('xx this.currentDashboardTabs', this.currentDashboardTabs)
     }
 
     selectDashboardTab(index: number) {

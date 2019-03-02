@@ -2409,65 +2409,6 @@ export class GlobalVariableService {
         });
     }
 
-    saveDashboardTab(data: DashboardTab): Promise<string> {
-        // Description: Saves DashboardTab
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDashboardTab ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardTabs';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.currentDashboardTabs.findIndex(d =>
-                        d.id == data.id
-                    );
-                    if (localIndex >= 0) {
-                        this.currentDashboardTabs[localIndex] = data;
-                    };
-                    localIndex = this.dashboardTabs.findIndex(d =>
-                        d.id == data.id
-                    );
-                    if (localIndex >= 0) {
-                        this.dashboardTabs[localIndex] = data;
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('saveDashboardTab SAVED', res.data);
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveDashboardTab FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     getDashboardSamples(): Promise<Dashboard[]> {
         // Description: Gets all Sample D
         // Returns: an array extracted from [D], unless:
