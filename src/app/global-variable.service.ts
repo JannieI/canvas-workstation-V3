@@ -4227,69 +4227,6 @@ export class GlobalVariableService {
 
     }
 
-    // getPaletteButtonsSelected(): Promise<PaletteButtonsSelected[]> {
-    //     // Description: Gets currentgetPaletteButtonsSelected
-    //     // Returns: this.currentgetPaletteButtonsSelected object, unless:
-    //     //   If not cached or if dirty, get from File
-    //     if (this.sessionDebugging) {
-    //         console.log('%c    Global-Variables getPaletteButtonsSelected ...',
-    //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-    //     };
-
-    //     return new Promise<PaletteButtonsSelected[]>((resolve, reject) => {
-
-    //         // Refresh from source at start, or if dirty
-    //         if (this.isDirtyPaletteButtonsSelected) {
-    //             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-    //             let pathUrl: string = 'paletteButtonsSelecteds';
-    //             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-    //             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-    //                 res  => {
-    //                     if(res.statusCode != 'success') {
-    //                         reject(res.message);
-	// 						return;
-    //                     };
-
-    //                     res.data = res.data.sort( (obj1,obj2) => {
-    //                         if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
-    //                             return 1;
-    //                         };
-    //                         if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
-    //                             return -1;
-    //                         };
-    //                         return 0;
-    //                     });
-    //                     this.currentPaletteButtonsSelected.next(res.data);
-
-    //                     this.isDirtyPaletteButtonsSelected = false;
-    //                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-    //                     if (this.sessionDebugging) {
-    //                         console.log('%c    Global-Variables getPaletteButtonsSelected 1',
-    //                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-    //                             this.currentPaletteButtonsSelected.value);
-    //                     };
-
-    //                     resolve(this.currentPaletteButtonsSelected.value);
-    //                 },
-    //                 err => {
-    //                     reject(err.message)
-    //                 }
-    //             );
-    //         } else {
-    //             if (this.sessionDebugging) {
-    //                 console.log('%c    Global-Variables getPaletteButtonsSelected 2',
-    //                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-    //                     this.currentPaletteButtonsSelected.value);
-    //             };
-
-    //             resolve(this.currentPaletteButtonsSelected.value);
-    //         }
-    //     });
-
-    // }
-
     addPaletteButtonsSelected(data: PaletteButtonsSelected): Promise<any> {
         // Description: Adds a new PaletteButtonsSelected
         // Returns: Added Data or error message
