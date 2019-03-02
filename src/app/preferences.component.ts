@@ -104,7 +104,7 @@ export class PreferencesComponent implements OnInit {
         this.preferenceStartupDashboardTabID = this.globalVariableService.currentUser.preferenceStartupDashboardTabID;
 
         // Get list of D for dropdown
-        this.globalVariableService.getDashboards().then(d => {
+        this.globalVariableService.getResource('dashboards').then(d => {
             this.dashboards = d;
             let dashboards = d.sort((n1,n2) => {
                 if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
