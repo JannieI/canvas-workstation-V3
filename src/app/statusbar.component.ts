@@ -288,7 +288,7 @@ export class StatusbarComponent {
             };
             return 0;
         });
-
+console.log('xx this.currentDashboardTabs', this.currentDashboardTabs)
     }
 
     selectDashboardTab(index: number) {

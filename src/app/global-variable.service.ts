@@ -1013,7 +1013,8 @@ export class GlobalVariableService {
                         // Fill local Vars
                         if (localCacheableMemory) {
 
-                            if (localVariableName != null) {
+                            // Update the main variable if cached
+                            if (localVariableName != null  &&  localVariableName) {
 
                                 // Replace local
                                 // TODO - TEST This !!!!
@@ -1026,10 +1027,32 @@ export class GlobalVariableService {
                                 };
                                 console.log('%c    Global-Variables saveResource updated cached Memory for:', 
                                     this.concoleLogStyleForCaching,
-                                    resource, 'to', this[localVariableName]);
+                                    resource, 'to', this[localVariableName]
+                                    ,this.currentDashboardTabs
+                                    );
                             };
 
-                            // TODO - should we fill Current Var here a well?
+                            // Update the Current Variable - currently this is only used for
+                            // the currentDashboard and its core entities that are cached in
+                            // memory.  There should be no currentXXX vars for any other 
+                            // Entitiy.  2019-03-02
+                            if (localCurrentVariableName != null  &&  localCurrentVariableName) {
+
+                                // Replace local
+                                // TODO - TEST This !!!!
+                                let localIndex: number = this[localCurrentVariableName].findIndex(rec =>
+                                    rec.id == data.id
+                                );
+                                console.log('xx localIndex', localIndex, data)
+                                if (localIndex >= 0) {
+                                    this[localCurrentVariableName][localIndex] = data;
+                                };
+                                console.log('%c    Global-Variables saveResource updated CURRENT cached Memory for:', 
+                                    this.concoleLogStyleForCaching,
+                                    resource, 'to', this[localCurrentVariableName]
+                                    ,this.currentDashboardTabs
+                                    );
+                            };
                         };
 
                         // Fill Disc
