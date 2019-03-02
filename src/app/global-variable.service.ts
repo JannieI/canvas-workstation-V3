@@ -5218,50 +5218,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         };
     }
 
-    deleteCanvasUser(id: number, widgetID: number = null): Promise<string> {
-        // Description: Deletes a canvasUsers
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteCanvasUser ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'canvasUsers';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    this.canvasUsers = this.canvasUsers.filter(
-                        grp => grp.id != id
-                    );
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteCanvasUser DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteCanvasUser FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     setBaseUrl(pathUrl: string): string {
        // Description: Gets the caching table that drives local caching process
        if (this.sessionDebugging) {
