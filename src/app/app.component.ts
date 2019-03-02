@@ -9422,7 +9422,10 @@ console.log('xx i', i)
         // Save to DB
         this.globalVariableService.currentUser.lastPaletteLeft = this.paletteLeft;
         this.globalVariableService.currentUser.lastPaletteTop = this.paletteTop;
-        this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser)
+        this.globalVariableService.saveResource(
+            'canvasUsers', 
+            this.globalVariableService.currentUser
+        );
     }
 
     showRecentDashboard(index: number) {
@@ -10329,7 +10332,10 @@ console.log('xx i', i)
         this.showPopupMessage = false;
 
         this.globalVariableService.currentUser.lastAppShowPopupMessageGotIt = true;
-        this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser)
+        this.globalVariableService.saveResource(
+            'canvasUsers', 
+            this.globalVariableService.currentUser
+        );
     }
 
     clickMenuWidgetDuplicate(widgetType: string) {
