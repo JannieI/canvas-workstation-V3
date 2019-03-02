@@ -309,7 +309,10 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
 
 		this.globalVariableService.currentUser.isFirstTimeUser = !ev.srcElement.checked;
-		this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser);
+		this.globalVariableService.saveResource(
+			'canvasUsers', 
+			this.globalVariableService.currentUser
+		);
 	}
 
 }
