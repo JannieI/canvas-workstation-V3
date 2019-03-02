@@ -2361,51 +2361,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         });
     }
 
-    getDashboardSamples(): Promise<Dashboard[]> {
-        // Description: Gets all Sample D
-        // Returns: an array extracted from [D], unless:
-        //   If D not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardSamples ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        // Refresh from source at start, or if dirty
-        if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
-            return new Promise<Dashboard[]>((resolve, reject) => {
-                this.getResource('dashboards')
-                    .then(res => {
-                        res = res.filter(
-                            i => (i.isSample)  && i.state == 'Complete'
-                        );
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDashboardSamples 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {res})
-                        };
-
-                        resolve(res);
-
-                    })
-                    .catch(err => reject(err.message))
-            })
-        } else {
-            return new Promise<Dashboard[]>((resolve, reject) => {
-                let data: Dashboard[] = this.dashboards.filter(
-                    i => (i.isSample)
-                )
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDashboardSamples 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data})
-                };
-
-                resolve(data);
-            });
-        };
-
-    }
-
     getDashboardsRecent(userID: string): Promise<DashboardRecent[]>  {
         // Description: Gets an array of recently used D (not the Ds itself)
         // Returns: return array from source, not cached
