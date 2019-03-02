@@ -3108,55 +3108,6 @@ export class GlobalVariableService {
         });
     }
 
-    getDashboardTabs(): Promise<DashboardTab[]> {
-        // Description: Gets all T
-        // Returns: this.dashboardTabs array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardTabs ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<DashboardTab[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'dashboardTabs';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.dashboardTabs = res.data;
-                        this.isDirtyDashboardTabs = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDashboardTabs 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.dashboardTabs)
-                        };
-                        resolve(this.dashboardTabs);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDashboardTabs 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
-                };
-                resolve(this.dashboardTabs);
-            }
-        });
-
-    }
-
     getCurrentDashboardTabs(dashboardID: number): Promise<DashboardTab[]> {
         // Description: Gets all T for current D
         // Params:
@@ -3172,7 +3123,7 @@ export class GlobalVariableService {
         // Refresh from source at start, or if dirty
         if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
             return new Promise<DashboardTab[]>((resolve, reject) => {
-                this.getDashboardTabs()
+                this.getResource('dashboardTabs')
                     .then(res => {
                         res = res.filter(
                             i => i.dashboardID == dashboardID
