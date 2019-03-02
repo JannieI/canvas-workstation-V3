@@ -75,7 +75,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getWidgetCheckpoints().then (ca => {
+        this.globalVariableService.getResource('widgetCheckpoints').then (ca => {
             // Set the data for the grid
             this.currentWidgetCheckpoints = ca.filter(wc =>
                 wc.dashboardID == this.selectedWidget.dashboardID
