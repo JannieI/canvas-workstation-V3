@@ -215,7 +215,7 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
                 this.datasources[datasourceIndex].dataDictionary =
                     this.selectedDatasource.dataDictionary
             };
-            this.globalVariableService.saveDatasource(this.selectedDatasource)
+            this.globalVariableService.saveResource('datasources', this.selectedDatasource)
         };
 
         // Reset
