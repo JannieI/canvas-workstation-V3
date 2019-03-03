@@ -266,7 +266,7 @@ export class DashboardDescriptionComponent implements OnInit {
         this.selectedDashboard.accessType = this.dashboardAccessType;
 
         // Update global D
-        this.globalVariableService.saveDashboard(this.selectedDashboard);
+        this.globalVariableService.saveResource('dashboards', this.selectedDashboard);
 
         // Refresh if Template changes to show changes on screen
         if (this.dashboardTemplateIDoriginal != this.selectedDashboard.templateDashboardID) {

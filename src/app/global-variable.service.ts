@@ -1469,8 +1469,8 @@ export class GlobalVariableService {
                         resolve(originalDashboardID);
                     },
                     err => {
-                        console.log('Error in     Global-Variables saveDashboard', err);
-                        reject('Error saveDashboard FAILED: ' + err.message);
+                        console.log('Error in     Global-Variables saveDraftDashboard', err);
+                        reject('Error saveDraftDashboard FAILED: ' + err.message);
                     }
                 )
 
