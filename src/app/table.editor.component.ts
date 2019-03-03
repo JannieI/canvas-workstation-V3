@@ -372,7 +372,7 @@ import { GlobalVariableService }      from './global-variable.service';
             // this.globalVariableService.widgets.push(this.localWidget);
             // this.globalVariableService.currentWidgets.push(this.localWidget);
 
-            this.globalVariableService.addWidget(this.localWidget).then(res => {
+            this.globalVariableService.addResource('widgets', this.localWidget).then(res => {
                 this.localWidget.id = res.id;
 
                 // Action
