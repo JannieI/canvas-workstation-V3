@@ -2321,48 +2321,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
     }
 
-    addDashboardTab(data: DashboardTab): Promise<any> {
-        // Description: Adds a new DashboardTab
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDashboardTab starts',
-                this.concoleLogStyleForStartOfMethod, {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardTabs';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    this.dashboardTabs.push(JSON.parse(JSON.stringify(res.data)));
-                    this.currentDashboardTabs.push(JSON.parse(JSON.stringify(res.data)));
-
-                    if (this.sessionDebugging) {
-                        console.log('addDashboardTab ADDED', res.data, this.dashboardTabs)
-                    };
-
-                    resolve(res.data);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addDashboardTab FAILED', {err});
-                    };
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     getDashboardsRecent(userID: string): Promise<DashboardRecent[]>  {
         // Description: Gets an array of recently used D (not the Ds itself)
         // Returns: return array from source, not cached
