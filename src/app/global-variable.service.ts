@@ -3181,57 +3181,35 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         return new Promise<DatasourcePermission[]>((resolve, reject) => {
 
-            // Refresh from source at start, or if dirty
-            if ( (this.datasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+            this.getResource( 'datasourcePermissions')
+                .then( res  => {
 
-                let pathUrl: string = 'datasourcePermissions';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        // Fill in @RunTime info
-                        res.data.forEach(d => {
-                            this.datasources.forEach(ds => {
-                                if (ds.id == d.datasourceID) {
-                                    d.name = ds.name;
-                                };
-                            });
-                            this.canvasGroups.forEach(grp => {
-                                if (grp.id == d.groupID) {
-                                    d.groupName = grp.name;
-                                };
-                            });
+                    // Fill in @RunTime info
+                    res.forEach(d => {
+                        this.datasources.forEach(ds => {
+                            if (ds.id == d.datasourceID) {
+                                d.name = ds.name;
+                            };
                         });
-                        this.datasourcePermissions = res.data;
-                        this.isDirtyDatasourcePermissions = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        this.canvasGroups.forEach(grp => {
+                            if (grp.id == d.groupID) {
+                                d.groupName = grp.name;
+                            };
+                        });
+                    });
 
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDatasourcePermissions ends',
-                                this.concoleLogStyleForEndOfMethod,
-                                this.datasourcePermissions)
-                        };
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getDatasourcePermissions ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            this.datasourcePermissions)
+                    };
 
-                        resolve(this.datasourcePermissions);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDatasourcePermissions ends',
-                        this.concoleLogStyleForEndOfMethod,
-                        this.datasourcePermissions)
-                };
-
-                resolve(this.datasourcePermissions);
-            }
+                    resolve(this.datasourcePermissions);
+                })
+                .catch(err => {
+                    console.error('Erron in Global-Variables getDatasourcePermissions', err)
+                    reject(err.message)
+                });
         });
     }
 
