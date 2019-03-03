@@ -725,7 +725,7 @@ export class GlobalVariableService {
                         reject(httpResult.message);
                         return;
                     };
-console.log('dataCachingTableIndex', dataCachingTableIndex)
+
                     // If cached, fill local info
                     if (dataCachingTableIndex >= 0) {
                         localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
@@ -737,7 +737,7 @@ console.log('dataCachingTableIndex', dataCachingTableIndex)
                         console.log('xx localVariableName', localVariableName)
                         // Fill local Vars
                         if (localCacheableMemory) {
-console.log('xx localCacheableMemory', localCacheableMemory)
+
                             if (localVariableName != null) {
                                 this[localVariableName] = [];
                                 this[localVariableName] = httpResult.data;
@@ -800,7 +800,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     console.log('%c    Global-Variables getResource data retured from HTTP for: ', 
                         this.concoleLogStyleForCaching,
-                        resource, httpResult.data);
+                        resource, httpResult.data, this.datasourcePermissions);
                     console.timeEnd("      DURATION getResource: " + resource);
                     resolve(httpResult.data);
                     return;
@@ -3185,7 +3185,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 .then( res  => {
 
                     // Fill in @RunTime info
-                    res.forEach(d => {
+                    this.datasourcePermissions.forEach(d => {
                         this.datasources.forEach(ds => {
                             if (ds.id == d.datasourceID) {
                                 d.name = ds.name;
@@ -3385,170 +3385,101 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         return new Promise<Widget[]>((resolve, reject) => {
 
-            // Refresh from source at start, or if dirty
-            if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+            this.getResource('widgets')
+                .then(res => {
 
-                let pathUrl: string = 'widgets' + params;
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res => {
+                    // TODO - fix hardcoding, issue with datalib jsonTree
+                    this.widgets.forEach(w => {
 
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
+                        // TODO - with DB, get summarised fields like NrComments, NrDataQual, etc
+
+                        // Get Checkpoint info for ALL W, not only current one
+                        // TODO - fix when using DB
+                        let tempChk: WidgetCheckpoint[] = this.widgetCheckpoints
+                            .filter(wc =>
+                                wc.dashboardID == w.dashboardID
+                                &&
+                                wc.widgetID == w.id
+                        );
+
+                        if (tempChk.length > 0) {
+                            w.showCheckpoints = false;
+                            w.checkpointIDs = [];
+                            w.currentCheckpoint = 0;
+                            w.lastCheckpoint = tempChk.length - 1;
+
+                            for (var x = 0; x < tempChk.length; x++) {
+                                w.checkpointIDs.push(tempChk[x].id);
+                            };
+
+                        } else {
+                            w.showCheckpoints = false;
+                            w.checkpointIDs = [];
+                            w.currentCheckpoint = 0;
+                            w.lastCheckpoint = -1;
                         };
 
-                        this.widgets = res.data;
+                        // Constants in Text and Bullets
+                        if (w.widgetType == 'Shape') {
+                            if (w.widgetSubType == 'Text') {
+                                w.shapeTextDisplay =
+                                    this.calcShapeTextDisplay(w.shapeText);
+                            };
+                        };
 
-                        // TODO - fix hardcoding, issue with datalib jsonTree
-                        this.widgets.forEach(w => {
-
-                            // TODO - with DB, get summarised fields like NrComments, NrDataQual, etc
-
-                            // Get Checkpoint info for ALL W, not only current one
-                            // TODO - fix when using DB
-                            let tempChk: WidgetCheckpoint[] = this.widgetCheckpoints
-                                .filter(wc =>
-                                    wc.dashboardID == w.dashboardID
-                                    &&
-                                    wc.widgetID == w.id
-                            );
-
-                            if (tempChk.length > 0) {
-                                w.showCheckpoints = false;
-                                w.checkpointIDs = [];
-                                w.currentCheckpoint = 0;
-                                w.lastCheckpoint = tempChk.length - 1;
-
-                                for (var x = 0; x < tempChk.length; x++) {
-                                    w.checkpointIDs.push(tempChk[x].id);
+                        // TODO - fix when using DB
+                        // Update slicerBins
+                        if (w.slicerBins != null) {
+                            let s: string = w.slicerBins.toString();
+                            let sF: string[] = s.split(',');
+                            let sO: {
+                                isSelected: boolean; name: string; fromValue: number; toValue: number
+                            }[] = [];
+                            let i: number = 0;
+                            let oSel: boolean;
+                            let oName: string;
+                            let oFrom: number;
+                            let oTo: number;
+                            w.slicerBins = [];
+                            sF.forEach(s => {
+                                i = i + 1;
+                                if (i == 1) {
+                                    oSel = (s == 'true');
                                 };
-
-                            } else {
-                                w.showCheckpoints = false;
-                                w.checkpointIDs = [];
-                                w.currentCheckpoint = 0;
-                                w.lastCheckpoint = -1;
-                            };
-
-                            // Constants in Text and Bullets
-                            if (w.widgetType == 'Shape') {
-                                if (w.widgetSubType == 'Text') {
-                                    w.shapeTextDisplay =
-                                        this.calcShapeTextDisplay(w.shapeText);
+                                if (i == 2) {
+                                    oName = s;
                                 };
-                            };
+                                if (i == 3) {
+                                    oFrom = +s;
+                                };
+                                if (i == 4) {
+                                    oTo  = +s;
+                                    i = 0;
+                                    let o: {isSelected: boolean; name: string; fromValue: number; toValue: number} =
+                                        {isSelected: oSel, name: oName, fromValue: oFrom, toValue: oTo};
 
-                            // TODO - this does NOT work in datalib: if the first dashboardTabIDs
-                            // = "a,b,c", then all works.  Else, it gives a big number 1046785...
-                            // irrespective ...
-                            // if (w.dashboardTabIDs != null) {
-                            //     // re = regEx
-                            //     var re = /t/gi;
-                            //     let d: string = w.dashboardTabIDs.toString();
-                            //     d = d.replace(re, '');
-                            //     let dA: string[] = d.split(',');
-                            //     w.dashboardTabIDs = [];
-                            //     dA.forEach(da => w.dashboardTabIDs.push(+da));
-                            // }
-
-                            // TODO - fix when using DB
-                            // Update slicerSelection
-                            // if (w.slicerSelection != null) {
-                            //     let s: string = w.slicerSelection.toString();
-                            //     let sF: string[] = s.split(',');
-                            //     let sO: {isSelected: boolean; fieldValue: string}[] = [];
-                            //     let i: number = 0;
-                            //     let oSel: boolean;
-                            //     let oFld: string;
-                            //     w.slicerSelection = [];
-                            //     sF.forEach(s => {
-                            //         i = i + 1;
-                            //         if (i == 1) {
-                            //             oSel = (s == 'true');
-                            //         } else {
-                            //             oFld = s;
-                            //             i = 0;
-                            //             let o: {isSelected: boolean; fieldValue: string} =
-                            //                 {isSelected: oSel, fieldValue: oFld};
-                            //             w.slicerSelection.push(o);
-                            //         }
-                            //     })
-                            // };
-
-                            // TODO - fix when using DB
-                            // Update slicerBins
-                            if (w.slicerBins != null) {
-                                let s: string = w.slicerBins.toString();
-                                let sF: string[] = s.split(',');
-                                let sO: {
-                                    isSelected: boolean; name: string; fromValue: number; toValue: number
-                                }[] = [];
-                                let i: number = 0;
-                                let oSel: boolean;
-                                let oName: string;
-                                let oFrom: number;
-                                let oTo: number;
-                                w.slicerBins = [];
-                                sF.forEach(s => {
-                                    i = i + 1;
-                                    if (i == 1) {
-                                        oSel = (s == 'true');
-                                    };
-                                    if (i == 2) {
-                                        oName = s;
-                                    };
-                                    if (i == 3) {
-                                        oFrom = +s;
-                                    };
-                                    if (i == 4) {
-                                        oTo  = +s;
-                                        i = 0;
-                                        let o: {isSelected: boolean; name: string; fromValue: number; toValue: number} =
-                                            {isSelected: oSel, name: oName, fromValue: oFrom, toValue: oTo};
-
-                                        w.slicerBins.push(o);
-                                    }
-                                })
-                            };
-                        });
-
-                        this.isDirtyWidgets = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getWidgets ends',
-                                this.concoleLogStyleForEndOfMethod,
-                                this.widgets)
+                                    w.slicerBins.push(o);
+                                }
+                            })
                         };
+                    });
 
-                        resolve(this.widgets);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                )
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getWidgets ends',
-                        this.concoleLogStyleForEndOfMethod,
-                        this.widgets)
-                };
+                    this.isDirtyWidgets = false;
+                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                this.widgets.forEach(w => {
-
-                    // Constants in Text and Bullets
-                    if (w.widgetType == 'Shape') {
-                        if (w.widgetSubType == 'Text') {
-                            w.shapeTextDisplay =
-                                this.calcShapeTextDisplay(w.shapeText);
-                        };
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getWidgets ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            this.widgets)
                     };
+
+                    resolve(this.widgets);
+                })
+                .catch(err => {
+                    console.error('Error in getWidgets', err);
+                    reject(err.message)
                 });
 
-                resolve(this.widgets);
-            }
         });
 
     }
@@ -3567,74 +3498,28 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 {dashboardID}, {dashboardTabID});
         };
 
-        // Refresh from source at start, or if dirty
-        if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
-            return new Promise<Widget[]>((resolve, reject) => {
-                this.getWidgets()
-                    .then(res => {
+        return new Promise<Widget[]>((resolve, reject) => {
+            this.getWidgets()
+                .then(res => {
 
-                        // Filter the widgets
-                        // TODO - use i.dashboardTabIDs.indexOf(dashboardTabID) >= 0 once datalib
-                        // reads arrays correctly.  That should be the only change ...
-                        res = res.filter(
-                            i => (i.dashboardID == dashboardID)
-                                 &&
-                                 (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
-                        );
-                        this.currentWidgets = res;
+                    // Filter the widgets
+                    // TODO - combine with getWidget('..', FILTER)
+                    this.currentWidgets = res.filter(
+                        i => (i.dashboardID == dashboardID)
+                                &&
+                                (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
+                    );
 
-                        // Constants in Text and Bullets
-                        this.currentWidgets.forEach(w => {
-                            if (w.widgetType == 'Shape') {
-                                if (w.widgetSubType == 'Text') {
-                                    w.shapeTextDisplay =
-                                        this.calcShapeTextDisplay(w.shapeText);
-                                };
-                            };
-                        });
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentWidgets ends',
-                                this.concoleLogStyleForEndOfMethod,
-                                this.currentWidgets)
-                        };
-
-                        resolve(this.currentWidgets);
-                })
-             })
-        } else {
-            return new Promise<Widget[]>((resolve, reject) => {
-
-                // Filter all Tabs belonging to this D
-                let data: Widget[];
-                data = this.widgets.filter(
-                    i => (i.dashboardID == dashboardID)
-                    &&
-                    (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
-                )
-
-                // Constants in Text and Bullets
-                this.currentWidgets.forEach(w => {
-                    if (w.widgetType == 'Shape') {
-                        if (w.widgetSubType == 'Text') {
-                            w.shapeTextDisplay =
-                                this.calcShapeTextDisplay(w.shapeText);
-                        };
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getCurrentWidgets ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            this.currentWidgets)
                     };
-                });
 
-                this.currentWidgets = data;
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentWidgets ends',
-                        this.concoleLogStyleForEndOfMethod,
-                        {dashboardID}, {dashboardTabID},  this.currentWidgets, this.widgets)
-                };
-
-                resolve(this.currentWidgets);
-
-            });
-        };
+                    resolve(this.currentWidgets);
+                })
+                .catch(err => console.error('Error in getCurrentWidgets', err));
+        });
 
     }
 
@@ -3668,46 +3553,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     // Update widgets and currentWidgets
                     this.widgetReplace(data);
-
-                    //     // TODO - do this better in a DB
-                    //     if (this.currentWidgetCheckpoints.length > 0) {
-                    //         this.currentWidgetCheckpoints.forEach(chk => {
-                    //             if (chk.widgetID == data.id) {
-                    //                 chk.parentWidgetIsDeleted = true;
-                    //             };
-                    //         });
-                    //     };
-                    //     if (this.widgetCheckpoints.length > 0) {
-                    //         this.widgetCheckpoints.forEach(chk => {
-                    //             if (chk.widgetID == data.id) {
-                    //                 chk.parentWidgetIsDeleted = true;
-                    //                 this.saveWidgetCheckpoint(chk);
-                    //             };
-                    //         });
-                    //     };
-                    // };
-
-                    // TODO - remove the commented code once all good
-                    // Mark Checkpoints to indicate parentW is dead
-                    // if (data.isTrashed) {
-
-                    //     // TODO - do this better in a DB
-                    //     if (this.currentWidgetCheckpoints.length > 0) {
-                    //         this.currentWidgetCheckpoints.forEach(chk => {
-                    //             if (chk.widgetID == data.id) {
-                    //                 chk.parentWidgetIsDeleted = true;
-                    //             };
-                    //         });
-                    //     };
-                    //     if (this.widgetCheckpoints.length > 0) {
-                    //         this.widgetCheckpoints.forEach(chk => {
-                    //             if (chk.widgetID == data.id) {
-                    //                 chk.parentWidgetIsDeleted = true;
-                    //                 this.saveWidgetCheckpoint(chk);
-                    //             };
-                    //         });
-                    //     };
-                    // };
 
                     if (this.sessionDebugging) {
                         console.log('saveWidget SAVED', res.data)
