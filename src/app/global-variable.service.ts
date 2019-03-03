@@ -3402,55 +3402,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
     }
 
-    addDatasourcePermission(data: DatasourcePermission): Promise<any> {
-        // Description: Adds a new DatasourcePermission, if it does not exist
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDatasourcePermission starts',
-                this.concoleLogStyleForStartOfMethod, {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'datasourcePermissions';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    let newDS: DatasourcePermission = JSON.parse(JSON.stringify(res.data))
-                    if (this.datasourcePermissions.filter(i => i.id == newDS.id).length == 0) {
-                        this.datasourcePermissions.push(newDS);
-                    };
-                    if (this.currentDatasourcePermissions.filter(i => i.id == newDS.id).length == 0) {
-                        this.currentDatasourcePermissions.push(newDS);
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('addDatasourcePermission ADDED', res.data,
-                            this.currentDatasourcePermissions, this.datasourcePermissions)
-                    };
-
-                    resolve(res.data);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addDatasourcePermission FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     saveDatasourcePermission(data: DatasourcePermission): Promise<string> {
         // Description: Saves DatasourcePermission
         // Returns: 'Saved' or error message
