@@ -133,7 +133,7 @@ export class DataManagedBusGlossaryComponent implements OnInit {
             sourceLocation: ''
         }
 
-        this.globalVariableService.getDatasources().then(dc => {
+        this.globalVariableService.getResource('datasources').then(dc => {
             // Fill local Var
             this.datasources = dc.slice();
 
