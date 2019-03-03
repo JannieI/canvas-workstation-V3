@@ -3062,63 +3062,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         });
     }
 
-    addDatasource(data: Datasource): Promise<any> {
-        // Description: Adds a new Datasource, if it does not exist
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDatasource starts',
-                this.concoleLogStyleForStartOfMethod, {data});
-        };
-
-                    // this.getResource('dashboardTabs')
-                    // .then(res => {
-                    //     res = res.filter(
-                    //         i => i.dashboardID == dashboardID
-                    //     );
-                    //     this.currentDashboardTabs = res;
-
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'datasources';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    let newDS: Datasource = JSON.parse(JSON.stringify(res.data))
-                    if (this.datasources.filter(i => i.id == newDS.id).length == 0) {
-                        this.datasources.push(newDS);
-                    };
-                    if (this.currentDatasources.filter(i => i.id == newDS.id).length == 0) {
-                        this.currentDatasources.push(newDS);
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('addDatasource ADDED', res.data,
-                            this.currentDatasources, this.datasources)
-                    };
-
-                    resolve(res.data);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addDatasource FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     addCurrentDatasource(datasourceID: number){
         // Add DS AND dSet to current-arrays (from DS and dSet arrays) for a given DS-id
         if (this.sessionDebugging) {
