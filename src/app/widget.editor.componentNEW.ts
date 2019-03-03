@@ -1765,7 +1765,7 @@ export interface dataSchemaInterface {
             this.localWidget.dashboardTabIDs.push(this.globalVariableService.
                 currentDashboardInfo.value.currentDashboardTabID);
 
-            this.globalVariableService.addWidget(this.localWidget).then(res => {
+            this.globalVariableService.addResource('widgets', this.localWidget).then(res => {
                 this.localWidget.id = res.id;
 
                 console.log('xx added W res', res)
