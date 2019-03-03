@@ -2212,59 +2212,32 @@ export class GlobalVariableService {
                 {dashboardID});
         };
 
-        // Refresh from source at start, or if dirty
-        if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
-            return new Promise<DashboardTab[]>((resolve, reject) => {
-                this.getResource('dashboardTabs')
-                    .then(res => {
-                        res = res.filter(
-                            i => i.dashboardID == dashboardID
-                        );
-                        this.currentDashboardTabs = res;
-                        this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
-                            if (obj1.displayOrder > obj2.displayOrder) {
-                                return 1;
-                            };
-                            if (obj1.displayOrder < obj2.displayOrder) {
-                                return -1;
-                            };
-                            return 0;
-                        });
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDashboardTabs ends',
-                                this.concoleLogStyleForEndOfMethod,
-                                {dashboardID}, this.currentDashboardTabs)
-                        };
-                        resolve(this.currentDashboardTabs);
-
-                })
-             })
-        } else {
-            return new Promise<DashboardTab[]>((resolve, reject) => {
-                let returnData: DashboardTab[];
-                returnData = this.dashboardTabs.filter(
+        return new Promise<DashboardTab[]>((resolve, reject) => {
+            this.getResource('dashboardTabs')
+                .then(res => {
+                    res = res.filter(
                         i => i.dashboardID == dashboardID
-                );
-                this.currentDashboardTabs = returnData;
-                this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
-                    if (obj1.displayOrder > obj2.displayOrder) {
-                        return 1;
-                    };
-                    if (obj1.displayOrder < obj2.displayOrder) {
-                        return -1;
-                    };
-                    return 0;
-                });
+                    );
+                    this.currentDashboardTabs = res;
+                    this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
+                        if (obj1.displayOrder > obj2.displayOrder) {
+                            return 1;
+                        };
+                        if (obj1.displayOrder < obj2.displayOrder) {
+                            return -1;
+                        };
+                        return 0;
+                    });
 
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentDashboardTabs ends',
-                      this.concoleLogStyleForEndOfMethod,
-                        {dashboardID}, this.currentDashboardTabs)
-                };
-                resolve(this.currentDashboardTabs);
-            });
-        };
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getCurrentDashboardTabs ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            {dashboardID}, this.currentDashboardTabs)
+                    };
+                    resolve(this.currentDashboardTabs);
+
+            })
+        })
 
     }
 
