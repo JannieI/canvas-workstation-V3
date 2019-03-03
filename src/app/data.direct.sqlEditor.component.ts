@@ -440,7 +440,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.globalVariableService.saveDatasource(this.selectedDatasource).then(
                     resDS => {
                         updatedDataset.datasourceID = this.selectedDatasource.id;
-                        this.globalVariableService.saveDataset(updatedDataset);
+                        this.globalVariableService.saveResource('datasets', updatedDataset);
                 });
 
                 // Indicate to the user
