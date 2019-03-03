@@ -3434,57 +3434,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         });
     }
 
-    savePaletteButtonsSelected(data: PaletteButtonsSelected): Promise<string> {
-        // Description: Saves PaletteButtonsSelected
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables savePaletteButtonsSelected starts',
-                this.concoleLogStyleForStartOfMethod, {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'paletteButtonsSelecteds';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.currentPaletteButtonsSelected.value.findIndex(d =>
-                        d.id == data.id
-                    );
-                    this.currentPaletteButtonsSelected.value[localIndex] = data;
-
-                    if (this.sessionDebugging) {
-                        console.log('savePaletteButtonsSelected SAVED', res.data)
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error savePaletteButtonsSelected FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deletePaletteButtonsSelected(id: number): Promise<string> {
         // Description: Deletes a PaletteButtonsSelected
         // Returns: 'Deleted' or error message
