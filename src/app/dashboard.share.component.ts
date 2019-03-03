@@ -110,7 +110,7 @@ export class DashboardShareComponent implements OnInit {
 
         // Save data
         this.selectedDashboard.accessType = this.accessType;
-        this.globalVariableService.saveDashboard(this.selectedDashboard);
+        this.globalVariableService.saveResource('dashboards', this.selectedDashboard);
 
         this.formDashboardShareClosed.emit('Saved');
     }
