@@ -127,7 +127,7 @@ export class DatasourceDescriptionComponent implements OnInit {
             };
 
         // Update DS
-        this.globalVariableService.saveDatasource(this.selectedDatasource).then(res => {
+        this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(res => {
             this.infoMessage = 'Datasource Saved';
           
             this.datasources = this.globalVariableService.datasources
