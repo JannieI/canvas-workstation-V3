@@ -257,7 +257,7 @@ export class DashboardTabComponent {
                 createdOn: null
             }
 
-            this.globalVariableService.addDashboardTab(newTab).then(res => {
+            this.globalVariableService.addResource('dashboardTabs', newTab).then(res => {
 
                 // Browse to it
                 this.globalVariableService.refreshCurrentDashboard(
