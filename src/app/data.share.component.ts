@@ -302,7 +302,7 @@ export class DatasourceShareComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeletePermission', '@Start');
 
         this.datasourcePermissions.splice(index,1);
-        this.globalVariableService.deleteDatasourcePermission(id);
+        this.globalVariableService.deleteResource('datasourcePermissions', id);
     }
 
     clickAdd() {
