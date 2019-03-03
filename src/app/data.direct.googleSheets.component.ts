@@ -332,7 +332,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
             this.globalVariableService.addData(newData).then(resData => {
 
                 newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addDatasource(newDatasource).then(resDS => {
+                this.globalVariableService.addResource('datasources', newDatasource).then(resDS => {
                     newdDataset.datasourceID = resDS.id;
                     this.globalVariableService.addDataset(newdDataset);
 
