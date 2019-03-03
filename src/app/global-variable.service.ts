@@ -3064,53 +3064,9 @@ console.log('xx localCacheableMemory', localCacheableMemory)
             };
 
             // Add to DB
-            this.addDashboardSnapshot(newSn).then(res => {
+            this.addResource('dashboardSnapshots', newSn).then(res => {
                 resolve(res);
             });
-        });
-    }
-
-    addDashboardSnapshot(data: DashboardSnapshot): Promise<any> {
-        // Description: Adds a new DashboardSnapshot
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDashboardSnapshot starts',
-                this.concoleLogStyleForStartOfMethod, {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardSnapshots';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    this.dashboardSnapshots.push(JSON.parse(JSON.stringify(res.data)));
-                    this.currentDashboardSnapshots.push(JSON.parse(JSON.stringify(res.data)));
-
-                    if (this.sessionDebugging) {
-                        console.log('addDashboardSnapshot ADDED', res.data,
-                            this.currentDashboardSnapshots, this.dashboardSnapshots)
-                    };
-
-                    resolve(res.data);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addDashboardSnapshot FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
         });
     }
 
