@@ -2700,62 +2700,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         });
     }
 
-    saveDataset(data: Dataset): Promise<string> {
-        // Description: Saves Dataset
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDataset ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'datasets';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.datasets.findIndex(dSet =>
-                        dSet.id == data.id
-                    );
-                    this.datasets[localIndex] = data;
-
-                    let localCurrentIndex: number = this.currentDatasets.findIndex(dSet =>
-                        dSet.id == data.id
-                    );
-                    this.currentDatasets[localCurrentIndex] = data;
-
-                    if (this.sessionDebugging) {
-                        console.log('saveDataset SAVED', res.data)
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveDataset FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteDataset(id: number): Promise<string> {
         // Description: Deletes a Dataset
         // Returns: 'Deleted' or error message
