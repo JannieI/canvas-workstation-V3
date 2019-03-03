@@ -163,7 +163,7 @@ export class DatasourceShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDatasourcePermission(
+            this.globalVariableService.saveResource('datasourcePermissions',
                 this.datasourcePermissions[index]).then(res => {
                     this.infoMessage = 'Changes saved';
                 });
@@ -195,7 +195,7 @@ export class DatasourceShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDatasourcePermission(
+            this.globalVariableService.saveResource('datasourcePermissions',
                 this.datasourcePermissions[index]).then(res => {
                     this.infoMessage = 'Changes saved';
                 });
@@ -227,7 +227,7 @@ export class DatasourceShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDatasourcePermission(
+            this.globalVariableService.saveResource('datasourcePermissions', 
                 this.datasourcePermissions[index]).then(res => {
                     this.infoMessage = 'Changes saved';
                 });
@@ -258,7 +258,7 @@ export class DatasourceShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDatasourcePermission(
+            this.globalVariableService.saveResource('datasourcePermissions', 
                 this.datasourcePermissions[index]).then(res => {
                     this.infoMessage = 'Changes saved';
                 });
@@ -290,7 +290,7 @@ export class DatasourceShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDatasourcePermission(
+            this.globalVariableService.saveResource('datasourcePermissions', 
                 this.datasourcePermissions[index]).then(res => {
                     this.infoMessage = 'Changes saved';
                 });
