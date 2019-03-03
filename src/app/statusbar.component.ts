@@ -598,7 +598,7 @@ export class StatusbarComponent {
                         clipboardWidget.isSelected = false;
 
                         // Add to DB
-                        this.globalVariableService.addWidget(clipboardWidget).then(res => {
+                        this.globalVariableService.addResource('widgets', clipboardWidget).then(res => {
                             clipboardWidget.id = res.id;
 
                             this.globalVariableService.changedWidget.next(clipboardWidget);
