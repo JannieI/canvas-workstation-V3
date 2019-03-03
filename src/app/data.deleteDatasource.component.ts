@@ -110,7 +110,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
                     if (dataID != null) {
                         this.globalVariableService.deleteData(dataID);
                     };
-                    this.globalVariableService.deleteDataset(dSet.id).then();
+                    this.globalVariableService.deleteResource('datasets', dSet.id).then();
                 };
             });
 
