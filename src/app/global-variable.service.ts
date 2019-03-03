@@ -2700,53 +2700,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         });
     }
 
-    deleteDataset(id: number): Promise<string> {
-        // Description: Deletes a Dataset
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDataset ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'datasets';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.datasets = this.datasets.filter(
-                        dSet => dSet.id != id
-                    );
-                    this.currentDatasets = this.currentDatasets.filter(
-                        dSet => dSet.id != id
-                    );
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteDataset DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDataset FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     getData(parameters: string): Promise<any[]> {
         // Description: Gets Data
         // parameters: list of ways to modify the result, for example:
