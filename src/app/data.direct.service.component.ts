@@ -138,7 +138,7 @@ export class DataDirectServiceComponent implements OnInit {
         //         this.datasources[datasourceIndex].dataDictionary = 
         //             this.selectedDatasource.dataDictionary
         //     };
-        //     this.globalVariableService.saveDatasource(this.selectedDatasource)
+        //     this.globalVariableService.saveResources('datasources', this.selectedDatasource)
         // };
 
     }
