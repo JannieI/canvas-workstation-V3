@@ -1315,6 +1315,13 @@ export class GlobalVariableService {
         // Get D
         let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID);
         if (dashboardIndex >= 0) {
+
+            if (this.sessionDebugging) {
+                console.log('%c    Global-Variables letDashboard ends',
+                    this.concoleLogStyleForEndOfMethod,
+                    this.dashboards[dashboardIndex])
+            };
+
             return this.dashboards[dashboardIndex];
         } else {
             alert ('Dashboard ID ' + dashboardID.toString() + ' does not exist in the dashboards array - should be impossible');
@@ -1384,6 +1391,13 @@ export class GlobalVariableService {
                         this.currentWidgets = this.currentWidgets.filter(x => x.dashboardID != draftDashboardID)
                         this.currentWidgetCheckpoints = this.currentWidgetCheckpoints.filter(x => x.dashboardID != draftDashboardID)
 
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables discardDashboard ends',
+                                this.concoleLogStyleForEndOfMethod,
+                                '?draftDashboardID=' + draftDashboardID 
+                                + '&originalDashboardID=' + originalDashboardID)
+                        };
+            
                         resolve(originalDashboardID);
                     },
                     err => {
@@ -1444,6 +1458,14 @@ export class GlobalVariableService {
                         if(res.statusCode != 'success') {
                             reject('Error saving Draft Dashboard: '+ res.message);
                         };
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables saveDraftDashboard ends',
+                                this.concoleLogStyleForEndOfMethod,
+                                '?draftDashboardID=' + draftDashboardID 
+                                + '&originalDashboardID=' + originalDashboardID)
+                        };
+
                         resolve(originalDashboardID);
                     },
                     err => {
@@ -1626,11 +1648,17 @@ export class GlobalVariableService {
                             // TODO - improve this to not update ALL users
                         });
 
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables deleteDashboardInfo ends',
+                                this.concoleLogStyleForEndOfMethod,
+                                dashboardID)
+                        };
+
                         resolve('Deleted');
                     },
                     err => {
                         if (this.sessionDebugging) {
-                            console.log('Error in     Global-Variables deleteDashboard', err);
+                            console.log('Error in     Global-Variables deleteDashboardInfo', err);
                         };
 
                         reject(err.message);
@@ -1643,7 +1671,7 @@ export class GlobalVariableService {
     clearDashboardInfo() {
         // Clears all related Entities of a D
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables clearDashboardInfo starts',
+            console.log('%c    Global-Variables clearDashboard starts',
                 this.concoleLogStyleForEndOfMethod);
         };
 
@@ -1666,28 +1694,16 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboards';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
+            this.addResource('dashboards', data)
+                .then(res => {
 
                     // Clear all related info
                     this.clearDashboardInfo();
 
-                    // Update Global vars to make sure they remain in sync
-                    this.dashboards.push(JSON.parse(JSON.stringify(res.data)));
-                    this.currentDashboards.push(JSON.parse(JSON.stringify(res.data)));
-
                     if (this.sessionDebugging) {
-                        console.log('addDashboard ADDED', res.data, this.dashboards)
+                        console.log('%c    Global-Variables addDashboard ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            res.data)
                     };
 
                     resolve(res.data);
@@ -1743,9 +1759,10 @@ export class GlobalVariableService {
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('saveDashboard SAVED', res.data)
+                        console.log('%c    Global-Variables saveDashboard ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            res.data)
                     };
-
                     resolve('Saved');
                 },
                 err => {
