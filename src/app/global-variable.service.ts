@@ -3076,6 +3076,14 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
+                    // this.getResource('dashboardTabs')
+                    // .then(res => {
+                    //     res = res.filter(
+                    //         i => i.dashboardID == dashboardID
+                    //     );
+                    //     this.currentDashboardTabs = res;
+
+
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()

@@ -247,8 +247,6 @@ export class AppComponent implements OnInit {
     endX: number;                               // Position for dragging
     endY: number;                               // Position for dragging
     hasDashboard: boolean = false;
-    hasDatasources: boolean = true;             // TODO - consider removing this totally
-    hasDatasourcesSubscription: Subscription;   // Observable
     hasNewMessage: boolean;                     // True if a new message arrived
     isBusyResizing: boolean = false;
     isFirstTimeUser: boolean = false;
@@ -676,11 +674,6 @@ export class AppComponent implements OnInit {
                     i => this.showGrid = i
                 );
 
-                // HasDS ?
-                this.hasDatasourcesSubscription = this.globalVariableService.hasDatasources.subscribe(
-                    i => this.hasDatasources = i
-                );
-
                 // Mode: Edit / ViewOnly
                 this.editModeSubscription = this.globalVariableService.editMode.subscribe(
                     i => {
@@ -1064,7 +1057,6 @@ export class AppComponent implements OnInit {
 
         this.showGridSubscription.unsubscribe();
         this.showPaletteSubscription.unsubscribe();
-        this.hasDatasourcesSubscription.unsubscribe();
         this.editModeSubscription.unsubscribe();
         this.changedWidgetSubscription.unsubscribe();
         this.currentDashboardInfoSubscription.unsubscribe();
@@ -5951,6 +5943,18 @@ export class AppComponent implements OnInit {
         if (!this.editMode) {
             this.showMessage(
                 this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        // Must be at least one DS
+        if (this.globalVariableService.currentDatasources.length == 0) {
+            this.showMessage(
+                'First link a Datasource (automatically linked when a Widget is added)',
                 'StatusBar',
                 'Warning',
                 3000,
