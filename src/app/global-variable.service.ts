@@ -2980,56 +2980,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         return dataSet;
     }
 
-    getCurrentDashboardSnapshots(dashboardID: number): Promise<DashboardSnapshot[]> {
-        // Description: Gets all Sn for current D
-        // Params:
-        //   dashboardID
-        // Returns: this.getDashboardSnapshots array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDashboardSnapshots starts',
-                this.concoleLogStyleForStartOfMethod,
-                {dashboardID});
-        };
-
-        // Refresh from source at start, or if dirty
-        if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
-            return new Promise<DashboardSnapshot[]>((resolve, reject) => {
-                this.getResource('dashboardSnapshots')
-                    .then(res => {
-                        res = res.filter(
-                            i => i.dashboardID == dashboardID
-                        );
-                        this.currentDashboardSnapshots = res;
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDashboardSnapshots ends',
-                                this.concoleLogStyleForEndOfMethod,
-                                {dashboardID}, {res})
-                        };
-
-                        resolve(this.currentDashboardSnapshots);
-                })
-             })
-        } else {
-            return new Promise<DashboardSnapshot[]>((resolve, reject) => {
-                let returnData: DashboardSnapshot[];
-                returnData = this.dashboardSnapshots.filter(
-                    i => i.dashboardID == dashboardID
-                );
-                this.currentDashboardSnapshots = returnData;
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentDashboardSnapshots ends',
-                        this.concoleLogStyleForEndOfMethod,
-                        {dashboardID})
-                };
-
-                resolve(this.currentDashboardSnapshots);
-            });
-        };
-    }
-
     newDashboardSnapshot(
         snapshotName: string,
         snapshotComment: string,
