@@ -117,7 +117,8 @@ export class DatasourceDescriptionComponent implements OnInit {
                 this.globalVariableService.getDatasourcePermissions().then(res => {
                     res.forEach(dP => {
                         if (dP.datasourceID == this.selectedDatasource.id) {
-                            this.globalVariableService.deleteDatasourcePermission(
+                            this.globalVariableService.deleteResource(
+                                'datasourcePermissions',
                                 dP.datasourceID
                             );
                         };
