@@ -56,7 +56,7 @@ export class DataBusinessGlossaryComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getDatasources().then(dc => {
+        this.globalVariableService.getResource('datasources').then(dc => {
             // Fill local Var
             this.datasources = dc.slice();
             
