@@ -166,7 +166,7 @@ export class DataDirectImportComponent implements OnInit {
         datasource.id = null;
         datasource.name = this.datasourceName;
         datasource.description = this.datasourceDescription;
-        this.globalVariableService.addDatasource(datasource);
+        this.globalVariableService.addResource('datasources', datasource);
 
         this.formDataDirectImportClosed.emit('Added');
 
