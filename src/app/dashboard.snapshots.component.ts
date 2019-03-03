@@ -70,9 +70,11 @@ export class DashboardSnapshotsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCurrentDashboardSnapshots(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
-              (i => this.currentDashboardSnapshots = i.slice());
+        this.globalVariableService.getResource('dashboardSnapshots',
+            '?filterObject={"dashboardID": '
+            + this.globalVariableService.currentDashboardInfo.value.currentDashboardID.toString()
+            + '}')
+            .then(i => this.currentDashboardSnapshots = i.slice());
 
         let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
             d => d.id ==
