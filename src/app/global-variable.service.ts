@@ -3972,10 +3972,20 @@ export class GlobalVariableService {
                 this.dataCachingTable.length);
         };
 
+        // Note: this does NOT use getResources, since getResources uses this table
+        // to determine what to load in memory !!  So, it cant work that way.
         return new Promise<DataCachingTable[]>((resolve, reject) => {
 
-            this.getResource('dataCachingTable')
-                .then(res  => {
+            let pathUrl: string = 'dataCachingTable';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    this.dataCachingTable = res.data;
 
                     // TODO - should be done by the Server
                     // NB - need to remember cache has been refreshed locally
@@ -3984,6 +3994,7 @@ export class GlobalVariableService {
                     this.dataCachingTable.forEach(dc => {
                         dc.localLastUpdatedDateTime = today
                     })
+                    
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getDataCachingTable ends',
@@ -3992,10 +4003,9 @@ export class GlobalVariableService {
                     };
 
                     resolve(this.dataCachingTable);
-                })
-                .catch(err => {
-                    console.log('Error in     Global-Variables getDataCachingTable', err);
-                    reject(err.message);
+                },
+                err => {
+                    reject(err.message)
                 }
             );
         });
