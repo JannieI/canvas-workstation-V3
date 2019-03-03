@@ -213,7 +213,7 @@ export class DataManagedBusGlossaryComponent implements OnInit {
                 this.datasources[datasourceIndex].businessGlossary =
                     this.selectedDatasource.businessGlossary
             };
-            this.globalVariableService.saveDatasource(this.selectedDatasource)
+            this.globalVariableService.saveResource('datasources', this.selectedDatasource)
         };
 
         // Reset
