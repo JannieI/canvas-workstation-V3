@@ -644,7 +644,7 @@ export class ShapeEditComponent implements OnInit {
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
             );
 
-            this.globalVariableService.addWidget(this.localWidget).then(res => {
+            this.globalVariableService.addResource('widgets', this.localWidget).then(res => {
 
                 // Action
                 // TODO - cater for errors + make more generic
