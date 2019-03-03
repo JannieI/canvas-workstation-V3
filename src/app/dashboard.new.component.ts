@@ -328,13 +328,13 @@ export class DashboardNewComponent implements OnInit {
                     // Add Original Tab to DB
                     let newDashboardTab: DashboardTab = this.globalVariableService.dashboardTabTemplate;
                     newDashboardTab.dashboardID = newD.id;
-                    this.globalVariableService.addDashboardTab(newDashboardTab).then(originalTab => {
+                    this.globalVariableService.addResource('dashboardTabs', newDashboardTab).then(originalTab => {
 
                         // Add Draft Tab to DB
                         let newDashboardTab: DashboardTab = this.globalVariableService.dashboardTabTemplate;
                         newDashboardTab.dashboardID = draftD.id;
                         newDashboardTab.originalID = originalTab.id;
-                        this.globalVariableService.addDashboardTab(newDashboardTab).then(draftTab => {
+                        this.globalVariableService.addResource('dashboardTabs', newDashboardTab).then(draftTab => {
 
                             // Amend Recent list
                             this.globalVariableService.amendDashboardRecent(
