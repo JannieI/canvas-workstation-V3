@@ -3175,6 +3175,11 @@ export class GlobalVariableService {
                         this.canvasSettings.gridSize = 100;
                     };
 
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getSystemSettings ends',
+                            this.concoleLogStyleForEndOfMethod)
+                    };
+
                     resolve(this.canvasSettings);
                 })
                 .catch(err => {
@@ -3969,16 +3974,8 @@ export class GlobalVariableService {
 
         return new Promise<DataCachingTable[]>((resolve, reject) => {
 
-            let pathUrl: string = 'dataCachingTable';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    this.dataCachingTable = res.data;
+            this.getResource('dataCachingTable')
+                .then(res  => {
 
                     // TODO - should be done by the Server
                     // NB - need to remember cache has been refreshed locally
@@ -3987,7 +3984,6 @@ export class GlobalVariableService {
                     this.dataCachingTable.forEach(dc => {
                         dc.localLastUpdatedDateTime = today
                     })
-                    
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getDataCachingTable ends',
@@ -3996,9 +3992,10 @@ export class GlobalVariableService {
                     };
 
                     resolve(this.dataCachingTable);
-                },
-                err => {
-                    reject(err.message)
+                })
+                .catch(err => {
+                    console.log('Error in     Global-Variables getDataCachingTable', err);
+                    reject(err.message);
                 }
             );
         });
