@@ -3070,53 +3070,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         });
     }
 
-    deleteDashboardSnapshot(id: number): Promise<string> {
-        // Description: Deletes a DashboardSnapshots
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDashboardSnapshot starts',
-                this.concoleLogStyleForStartOfMethod, {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboardSnapshots';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.dashboardSnapshots = this.dashboardSnapshots.filter(
-                        dsp => dsp.id != id
-                    );
-                    this.currentDashboardSnapshots = this.currentDashboardSnapshots.filter(
-                        dsp => dsp.id != id
-                    );
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteDashboardSnapshot DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDashboardSnapshot FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     getDatasources(): Promise<Datasource[]> {
         // Description: Gets all DS
         // Returns: this.datasources array, unless:
