@@ -3030,62 +3030,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         };
     }
 
-    findlastDashboardSnapshot(dashboardID: number): Promise<DashboardSnapshot> {
-        // Description: Gets all Sn for current D
-        // Params:
-        //   dashboardID
-        // Returns: this.getDashboardSnapshots array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables findlastDashboardSnapshot starts',
-                this.concoleLogStyleForStartOfMethod,
-                {dashboardID});
-        };
-
-        // Refresh from source at start, or if dirty
-        if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
-            return new Promise<DashboardSnapshot>((resolve, reject) => {
-                this.getResource('dashboardSnapshots')
-                    .then(res => {
-                        res = res.filter(
-                            i => i.dashboardID == dashboardID
-                        );
-                        let lastDashboardSnapshot: DashboardSnapshot = null;
-                        if (res.length > 0) {
-                            lastDashboardSnapshot = res[res.length - 1];
-                        };
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables findlastDashboardSnapshot ends',
-                                this.concoleLogStyleForEndOfMethod,
-                                {lastDashboardSnapshot})
-                        };
-
-                        resolve(lastDashboardSnapshot);
-                })
-             })
-        } else {
-            return new Promise<DashboardSnapshot>((resolve, reject) => {
-                let returnData: DashboardSnapshot[];
-                returnData = this.dashboardSnapshots.filter(
-                    i => i.dashboardID == dashboardID
-                );
-                let lastDashboardSnapshot: DashboardSnapshot = null;
-                if (returnData.length > 0) {
-                    lastDashboardSnapshot = returnData[returnData.length - 1];
-                };
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables findlastDashboardSnapshot ends',
-                        this.concoleLogStyleForEndOfMethod,
-                        {dashboardID})
-                };
-
-                resolve(lastDashboardSnapshot);
-            });
-        };
-    }
-
     newDashboardSnapshot(
         snapshotName: string,
         snapshotComment: string,
@@ -6249,12 +6193,13 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 + '} &sortObject=-createdOn &nrRowsToReturn=1'
                 
             ).then(lss => {
-                console.log('xx lss', lss)
+
                 // Add if last snap was not an auto (null returned if no last snapshot)
                 if (lss != null) {
                     if (lss.comment != snapshotComment) {
                         this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit')
                             .then(res => {
+
                                 this.showStatusBarMessage(
                                     {
                                         message: 'Added automated Snapshot before first Action',
