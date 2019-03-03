@@ -3139,51 +3139,35 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         return new Promise<any>((resolve, reject) => {
 
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
+            this.deleteResource('datasources', id)
+                .then(
+                    res => {
 
-            let pathUrl: string = 'datasources';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    this.datasources = this.datasources.filter(
-                        dsp => dsp.id != id
-                    );
-                    this.currentDatasources = this.currentDatasources.filter(
-                        dsp => dsp.id != id
-                    );
-
-                    // Delete where DS was used in Stored Template
-                    this.getResource('widgetStoredTemplates').then(swt => {
-                        swt.forEach(swt => {
-                            this.widgets.forEach(w => {
-                                if (swt.widgetID == w.id  &&  w.datasourceID == id) {
-                                    this.deleteResource('widgetStoredTemplates', swt.id);
-                                };
+                        // Delete where DS was used in Stored Template
+                        this.getResource('widgetStoredTemplates').then(swt => {
+                            swt.forEach(swt => {
+                                this.widgets.forEach(w => {
+                                    if (swt.widgetID == w.id  &&  w.datasourceID == id) {
+                                        this.deleteResource('widgetStoredTemplates', swt.id);
+                                    };
+                                });
                             });
                         });
-                    });
 
-                    if (this.sessionDebugging) {
-                        console.log('deleteDatasource DELETED id: ', {id})
-                    };
+                        if (this.sessionDebugging) {
+                            console.log('deleteDatasource DELETED id: ', {id})
+                        };
 
-                    resolve('Deleted');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDatasource FAILED', {err});
-                    };
+                        resolve('Deleted');
+                    })
+                    .catch(err => {
+                        if (this.sessionDebugging) {
+                            console.log('Error deleteDatasource FAILED', {err});
+                        };
 
-                    reject(err.message);
-                }
-            )
+                        reject(err.message);
+                    })
+            
         });
     }
 
@@ -3278,7 +3262,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         this.canvasSettings.gridSize = 100;
                     };
 
-                    resolve(res);
+                    resolve(this.canvasSettings);
                 })
                 .catch(err => reject(err.message));
         });
