@@ -3140,33 +3140,32 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         return new Promise<any>((resolve, reject) => {
 
             this.deleteResource('datasources', id)
-                .then(
-                    res => {
+                .then( () => {
 
-                        // Delete where DS was used in Stored Template
-                        this.getResource('widgetStoredTemplates').then(swt => {
-                            swt.forEach(swt => {
-                                this.widgets.forEach(w => {
-                                    if (swt.widgetID == w.id  &&  w.datasourceID == id) {
-                                        this.deleteResource('widgetStoredTemplates', swt.id);
-                                    };
-                                });
+                    // Delete where DS was used in Stored Template
+                    this.getResource('widgetStoredTemplates').then(swt => {
+                        swt.forEach(swt => {
+                            this.widgets.forEach(w => {
+                                if (swt.widgetID == w.id  &&  w.datasourceID == id) {
+                                    this.deleteResource('widgetStoredTemplates', swt.id);
+                                };
                             });
                         });
+                    });
 
-                        if (this.sessionDebugging) {
-                            console.log('deleteDatasource DELETED id: ', {id})
-                        };
+                    if (this.sessionDebugging) {
+                        console.log('deleteDatasource DELETED id: ', {id})
+                    };
 
-                        resolve('Deleted');
-                    })
-                    .catch(err => {
-                        if (this.sessionDebugging) {
-                            console.log('Error deleteDatasource FAILED', {err});
-                        };
+                    resolve('Deleted');
+                })
+                .catch(err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDatasource FAILED', {err});
+                    };
 
-                        reject(err.message);
-                    })
+                    reject(err.message);
+                })
             
         });
     }
@@ -3279,40 +3278,46 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         return new Promise<any>((resolve, reject) => {
 
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
+            // const headers = new HttpHeaders()
+            //     .set("Content-Type", "application/json");
 
-            let pathUrl: string = 'paletteButtonsSelecteds';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
+            // let pathUrl: string = 'paletteButtonsSelecteds';
+            // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            // this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
+            //     res => {
+            //         if(res.statusCode != 'success') {
+            //             reject(res.message);
+			// 			return;
+            //         };
+
+            this.addResource('paletteButtonsSelecteds', data) 
+                .then( (res) => {
+                    // Update Global vars to make sure they remain in sync
+                    // this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res.data)));
+                    this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res)));
+
+                    // Inform subscribers
+                    this.currentPaletteButtonsSelected.next(
+                        this.currentPaletteButtonsSelected.value
+                    );
+
+                    if (this.sessionDebugging) {
+                        // console.log('PaletteButtonsSelected ADDED', res.data, this.currentPaletteButtonsSelected)
+                        console.log('%c    Global-Variables addPaletteButtonsSelected ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            res);
                     };
 
-                        // Update Global vars to make sure they remain in sync
-                        this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res.data)));
+                    // resolve(res.data);
+                    resolve(res);
+                })
+                .catch(err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error addPaletteButtonsSelected FAILED', {err});
+                    };
 
-                        // Inform subscribers
-                        this.currentPaletteButtonsSelected.next(
-                            this.currentPaletteButtonsSelected.value
-                        );
-
-                        if (this.sessionDebugging) {
-                            console.log('PaletteButtonsSelected ADDED', res.data, this.currentPaletteButtonsSelected)
-                        };
-
-                        resolve(res.data);
-                    },
-                    err => {
-                        if (this.sessionDebugging) {
-                            console.log('Error addPaletteButtonsSelected FAILED', {err});
-                        };
-
-                        reject(err.message);
-                    }
-                )
+                    reject(err.message);
+                })
         });
     }
 
