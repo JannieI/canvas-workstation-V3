@@ -278,7 +278,7 @@ export class DataDirectWebComponent implements OnInit {
                     resDS => {
                         updatedDataset.datasourceID = this.selectedDatasource.id;
                         console.warn('xx updatedDataset', updatedDataset)
-                        this.globalVariableService.saveDataset(updatedDataset);
+                        this.globalVariableService.saveResource('datasets', updatedDataset);
                 });
 
                 // Indicate to the user
