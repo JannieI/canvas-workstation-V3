@@ -4015,50 +4015,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
     }
 
-    addWidget(data: Widget): Promise<any> {
-        // Description: Adds a new Widget
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addWidget starts',
-                this.concoleLogStyleForStartOfMethod, {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'widgets';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    this.widgets.push(JSON.parse(JSON.stringify(res.data)));
-                    this.currentWidgets.push(JSON.parse(JSON.stringify(res.data)));
-
-                    if (this.sessionDebugging) {
-                        console.log('addWidget ADDED', res.data, this.widgets)
-                    };
-
-                    resolve(res.data);
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addWidget FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     saveWidget(data: Widget): Promise<string> {
         // Description: Saves Widget
         // Returns: 'Saved' or error message
@@ -4182,7 +4138,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
             copyPosition.toString() + ')';
 
         // Add to all and current W
-        this.addWidget(copiedWidget).then(res => {
+        this.addResource('widgets', copiedWidget).then(res => {
             copiedWidget.id = res.id;
 
             this.changedWidget.next(copiedWidget);
