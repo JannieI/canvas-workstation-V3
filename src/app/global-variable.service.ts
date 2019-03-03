@@ -3557,7 +3557,7 @@ export class GlobalVariableService {
                 })
                 .catch(err => {
                     if (this.sessionDebugging) {
-                        console.log('Error saveWidget FAILED', {err});
+                        console.log('Error in     Global-Variables saveWidget', {err});
                     };
 
                     reject(err.message);
@@ -3600,27 +3600,40 @@ export class GlobalVariableService {
             copyPosition.toString() + ')';
 
         // Add to all and current W
-        this.addResource('widgets', copiedWidget).then(res => {
-            copiedWidget.id = res.id;
+        this.addResource('widgets', copiedWidget)
+            .then(res => {
+                copiedWidget.id = res.id;
 
-            this.changedWidget.next(copiedWidget);
+                this.changedWidget.next(copiedWidget);
 
-            // Add to Action log
-            this.actionUpsert(
-                null,
-                this.currentDashboardInfo.value.currentDashboardID,
-                this.currentDashboardInfo.value.currentDashboardTabID,
-                copiedWidget.id,
-                'Widget',
-                'Edit',
-                'Duplicate',
-                'App clickMenuWidgetDuplicate',
-                null,
-                null,
-                null,
-                copiedWidget
-            );
-        });
+                // Add to Action log
+                this.actionUpsert(
+                    null,
+                    this.currentDashboardInfo.value.currentDashboardID,
+                    this.currentDashboardInfo.value.currentDashboardTabID,
+                    copiedWidget.id,
+                    'Widget',
+                    'Edit',
+                    'Duplicate',
+                    'App clickMenuWidgetDuplicate',
+                    null,
+                    null,
+                    null,
+                    copiedWidget
+                );
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables duplicateSingleWidget ends',
+                        this.concoleLogStyleForEndOfMethod,
+                        res)
+                };
+            })
+            .catch(err => {
+                if (this.sessionDebugging) {
+                    console.log('Error in     Global-Variables duplicateSingleWidget', {err});
+                };
+
+            });
 
     }
 
@@ -3635,25 +3648,8 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'widgets';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    this.widgets = this.widgets.filter(
-                        w => w.id != id
-                    );
-                    this.currentWidgets = this.currentWidgets.filter(
-                        w => w.id != id
-                    );
+            this.deleteResource('widgets', id)
+                .then(res => {
 
                     // Delete where W was used in Chkpnt
                     this.widgetCheckpoints.forEach(chk => {
@@ -3671,13 +3667,14 @@ export class GlobalVariableService {
                     });
 
                     if (this.sessionDebugging) {
-                        console.log('deleteWidget DELETED id: ', {id}, this.widgetCheckpoints,
-                            this.currentWidgetCheckpoints)
+                        console.log('%c    Global-Variables deleteWidget ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            {id}, this.widgetCheckpoints, this.currentWidgetCheckpoints)
                     };
 
                     resolve('Deleted');
-                },
-                err => {
+                })
+                .catch(err => {
                     console.log('Error deleteWidget FAILED', {err});
                     reject(err.message);
                 }
