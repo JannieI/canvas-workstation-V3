@@ -2301,6 +2301,12 @@ export class GlobalVariableService {
                             this.concoleLogStyleForEndOfMethod, {temp})
                     };
 
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getDashboardsRecent ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            userID)
+                    };
+
                     resolve(temp);
                 })
                 .catch(err => {
@@ -2350,6 +2356,12 @@ export class GlobalVariableService {
                 this.addResource('dashboardsRecent', newRecent)
                     .then(dR => {
 
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables amendDashboardRecent ends',
+                                this.concoleLogStyleForEndOfMethod,
+                                dashboardID)
+                        };
+    
                         resolve(dR)
                     })
                     .catch(err => {
@@ -2381,6 +2393,12 @@ export class GlobalVariableService {
                             return 0;
                         });
 
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables amendDashboardRecent ends',
+                                this.concoleLogStyleForEndOfMethod,
+                                dashboardID)
+                        };
+    
                         resolve(recentDashboard)
                     })
                     .catch(err => {
@@ -6316,10 +6334,10 @@ export class GlobalVariableService {
         });
     };
 
-    getDashboardSummaryNEW(dashboardID: number): Promise<any> {
+    getDashboardSummary(dashboardID: number): Promise<any> {
         // Gets a summary of related Entities for the given Dashboard
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardSummaryNEW starts',
+            console.log('%c    Global-Variables getDashboardSummary starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };

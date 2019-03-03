@@ -81,7 +81,7 @@ export class DashboardDeleteComponent implements OnInit {
             d => d.id == dashboardID
         )[0];
 
-        this.globalVariableService.getDashboardSummaryNEW(dashboardID)
+        this.globalVariableService.getDashboardSummary(dashboardID)
             .then(res => {
                 console.log('xx res', res);
                 
