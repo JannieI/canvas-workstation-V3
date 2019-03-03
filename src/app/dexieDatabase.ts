@@ -220,9 +220,9 @@ import Dexie from 'dexie';
                 localDashboardTabs: 'id',
                 localWidgets: 'id',
                 localWidgetCheckpoints: 'id',
-                localWidgetLayout: 'id',
+                localWidgetLayouts: 'id',
                 localDatasources: 'id',
-                localDataset: 'id'
+                localDatasets: 'id'
                 //...other tables goes here...
             });
         }
