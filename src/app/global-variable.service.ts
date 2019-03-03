@@ -3353,18 +3353,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         return new Promise<any>((resolve, reject) => {
 
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'paletteButtonsSelecteds';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
+            this.deleteResource('paletteButtonsSelecteds', id)
+                .then(res => {
 
                     // This is a different case: currentPaletteButtonsSelected is an
                     // Observable, and will be refreshed with a .next by the calling
@@ -3387,19 +3377,21 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     );
 
                     if (this.sessionDebugging) {
-                        console.log('deletePaletteButtonsSelected DELETED id: ', {id})
+                        console.log('%c    Global-Variables deletePaletteButtonsSelected ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            res);
                     };
 
                     resolve('Deleted');
-                },
-                err => {
+                })
+                .catch( err => {
                     if (this.sessionDebugging) {
                         console.log('Error deletePaletteButtonsSelected FAILED', {err});
                     };
 
                     reject(err.message);
-                }
-            )
+                })
+    
         });
     }
 
