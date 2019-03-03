@@ -375,7 +375,7 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
             this.globalVariableService.saveData(updatedData).then(resData => {
 
                 updatedDataset.url = 'data/' + dataID;
-                this.globalVariableService.saveDatasource(this.selectedDatasource).then(
+                this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
                     resDS => {
                         updatedDataset.datasourceID = this.selectedDatasource.id;
                         this.globalVariableService.saveResource('datasets', updatedDataset);
