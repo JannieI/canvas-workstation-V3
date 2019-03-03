@@ -360,7 +360,7 @@ export class DataManagedOverlayEditorComponent implements OnInit {
             this.globalVariableService.addData(newData).then(resData => {
 
                 newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addDatasource(this.selectedDatasource).then(resDS => {
+                this.globalVariableService.addResource('datasources', this.selectedDatasource).then(resDS => {
                     newdDataset.datasourceID = resDS.id;
                     this.globalVariableService.addDataset(newdDataset);
 
