@@ -276,7 +276,8 @@ export class UserPaletteButtonBarComponent implements OnInit {
             paletteIndex = this.paletteButtonsSelected.findIndex(
                 ps => ps.id == changedIDs[i] );
             if (paletteIndex >= 0) {
-                this.globalVariableService.savePaletteButtonsSelected(
+                this.globalVariableService.saveResource(
+                    'paletteButtonsSelecteds',
                     this.paletteButtonsSelected[paletteIndex]
                 );                
             };
@@ -351,7 +352,8 @@ export class UserPaletteButtonBarComponent implements OnInit {
             paletteIndex = this.paletteButtonsSelected.findIndex(
                 ps => ps.id == changedIDs[i] );
             if (paletteIndex >= 0) {
-                this.globalVariableService.savePaletteButtonsSelected(
+                this.globalVariableService.saveResource(
+                    'paletteButtonsSelecteds',
                     this.paletteButtonsSelected[paletteIndex]
                 );                
             };
