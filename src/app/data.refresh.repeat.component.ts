@@ -56,7 +56,7 @@ export class DataRefreshRepeatComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // this.globalVariableService.getDatasources().then(dc => {
+        // this.globalVariableService.getResources('datasources').then(dc => {
         //     // Fill local Var
         //     this.datasources = dc.slice();
         //     console.warn('xx this.datasources.length', this.datasources.length)
