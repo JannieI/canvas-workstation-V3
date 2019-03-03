@@ -2763,7 +2763,7 @@ export class AppComponent implements OnInit {
 
                     // Add (previous action was a Delete) / Save to DB
                     if (filteredActions[0].actionType == 'Delete') {
-                        this.globalVariableService.addWidget(filteredActions[0].oldWidget);
+                        this.globalVariableService.addResource('widgets', filteredActions[0].oldWidget);
                     console.warn('xx IN DELETE', filteredActions[0].oldWidget.id);
 
                     } else {
