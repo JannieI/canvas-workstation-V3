@@ -92,6 +92,7 @@ export class GlobalVariableService {
     conditionOperator: string = '';
     concoleLogStyleForCaching: string = "color: black; background: transparent; font-size: 10px; font-weight: bold;";
     concoleLogStyleForStartOfMethod: string = "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px; font-weight: bold;";
+    concoleLogStyleForEndOfMethod: string = "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px;";
     concoleLogStyleForStartOfUtilFunctions: string = "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px;";
     continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Canvas Server
@@ -285,7 +286,7 @@ export class GlobalVariableService {
      databaseInit() {
         // Initial
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables databaseInit',
+            console.log('%c    Global-Variables databaseInit starts',
                 this.concoleLogStyleForStartOfMethod)
         };
 
@@ -302,7 +303,7 @@ export class GlobalVariableService {
         // dashboardTabID = -1 if unknown, so get first T
         // Returns True if all worked, False if something went wrong
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables refreshCurrentDashboardInfo D,T id = ',
+            console.log('%c    Global-Variables refreshCurrentDashboardInfo starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID}, {dashboardTabID}, this.dashboards, this.dashboardTabs, this.currentDashboards, this.currentDashboardTabs)
         };
@@ -377,7 +378,7 @@ export class GlobalVariableService {
         // Handles all the WebSocket messages, depending on the type messageType and Action
         // It is async, so returns a Promise<boolean>
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables actionWebSocket ...',
+            console.log('%c    Global-Variables actionWebSocket starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -610,7 +611,7 @@ export class GlobalVariableService {
         // Note: in order to use a resource, it must be defined in the Dexie.ts file.
         //       Also, it may be necessary to delete the whole IndexedDB before adding new tables ...
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getResource ...',
+            console.log('%c    Global-Variables getResource starts',
                 this.concoleLogStyleForStartOfMethod, {resource});
         };
         console.time("      DURATION getResource: " + resource);
@@ -826,7 +827,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Adds a new Resource
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addResource ...',
+            console.log('%c    Global-Variables addResource starts',
                 this.concoleLogStyleForStartOfMethod, {resource}, {data});
         };
         var now = new Date();
@@ -973,7 +974,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Saves Resource
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveResource ...',
+            console.log('%c    Global-Variables saveResource starts',
                 this.concoleLogStyleForStartOfMethod, {resource}, {data});
         };
         console.time("      DURATION saveResource " + resource + ' ' + data.id.toString());
@@ -1134,7 +1135,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Deletes a Resources
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteResource ...',
+            console.log('%c    Global-Variables deleteResource starts',
                 this.concoleLogStyleForStartOfMethod, {resource}, {id});
         };
         console.time("      DURATION deleteResource" + resource +  ' ' + id.toString());
@@ -1237,7 +1238,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables dashboardCopy ...',
+            console.log('%c    Global-Variables dashboardCopy starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -1290,8 +1291,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     );
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables dashboardCopy 1',
-                            this.concoleLogStyleForStartOfMethod,
+                        console.log('%c    Global-Variables dashboardCopy ends',
+                            this.concoleLogStyleForEndOfMethod,
                             "Draft created for current Dashboard", this.currentDashboardTabs)
                     };
 
@@ -1307,7 +1308,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     letDashboard(dashboardID: number = null): Dashboard {
         // Returns the given D from the internal arrays
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables letDashboard ...',
+            console.log('%c    Global-Variables letDashboard starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -1332,7 +1333,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns true if successfull
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables discardDashboard ...',
+            console.log('%c    Global-Variables discardDashboard starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -1407,7 +1408,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - the AuditTrails are kept against the Draft
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDraftDashboard ...',
+            console.log('%c    Global-Variables saveDraftDashboard starts',
                 this.concoleLogStyleForStartOfMethod,
                 {deleteSnapshots});
         };
@@ -1577,7 +1578,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     deleteDashboardInfo(dashboardID: number): Promise<string> {
         // Deletes D with all related Entities
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDashboardInfo ...',
+            console.log('%c    Global-Variables deleteDashboardInfo starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -1648,8 +1649,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     clearDashboardInfo() {
         // Clears all related Entities of a D
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables clearDashboardInfo ...',
-                "color: black; 10px; font-weight: bold;");
+            console.log('%c    Global-Variables clearDashboardInfo starts',
+                this.concoleLogStyleForEndOfMethod);
         };
 
         // TODO - find a better way to keep all related items in sync, and list updated
@@ -1666,7 +1667,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Adds a new Dashboard
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDashboard ...',
+            console.log('%c    Global-Variables addDashboard starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -1713,7 +1714,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Saves Dashboard
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDashboard ...',
+            console.log('%c    Global-Variables saveDashboard starts',
                 this.concoleLogStyleForStartOfMethod,{data});
         };
 
@@ -1775,7 +1776,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: this.currentDashboards array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDashboards ...',
+            console.log('%c    Global-Variables getCurrentDashboards starts',
                 this.concoleLogStyleForStartOfMethod, {dashboardID});
         };
 
@@ -1837,8 +1838,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         // this.currentDashboards.next(currentDashboards);
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDashboards 1',
-                                this.concoleLogStyleForStartOfMethod,
+                            console.log('%c    Global-Variables getCurrentDashboards ends',
+                                this.concoleLogStyleForEndOfMethod,
                                 {dashboardID}, this.currentDashboards)
                         };
 
@@ -1877,8 +1878,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 };
 
                 if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentDashboards 2',
-                        this.concoleLogStyleForStartOfMethod,
+                    console.log('%c    Global-Variables getCurrentDashboards ends',
+                        this.concoleLogStyleForEndOfMethod,
                         {dashboardID}, this.currentDashboards)
                 };
 
@@ -1906,7 +1907,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
 
 
-            console.log('%c    Global-Variables addDashboardToCache ...',
+            console.log('%c    Global-Variables addDashboardToCache starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -1956,7 +1957,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Refreshes ALL the local cache in Memory
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables refreshLocalCacheMemory ...',
+            console.log('%c    Global-Variables refreshLocalCacheMemory starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -2075,7 +2076,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   cachedEntityData = data to add, update
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables updateLocalCacheMemory ...',
+            console.log('%c    Global-Variables updateLocalCacheMemory starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -2259,7 +2260,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: this.currentDashboardTabs array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDashboardTabs ...',
+            console.log('%c    Global-Variables getCurrentDashboardTabs starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -2284,8 +2285,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         });
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDashboardTabs 1',
-                                this.concoleLogStyleForStartOfMethod,
+                            console.log('%c    Global-Variables getCurrentDashboardTabs ends',
+                                this.concoleLogStyleForEndOfMethod,
                                 {dashboardID}, this.currentDashboardTabs)
                         };
                         resolve(this.currentDashboardTabs);
@@ -2310,8 +2311,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 });
 
                 if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentDashboardTabs 2',
-                      this.concoleLogStyleForStartOfMethod,
+                    console.log('%c    Global-Variables getCurrentDashboardTabs ends',
+                      this.concoleLogStyleForEndOfMethod,
                         {dashboardID}, this.currentDashboardTabs)
                 };
                 resolve(this.currentDashboardTabs);
@@ -2324,7 +2325,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Adds a new DashboardTab
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDashboardTab ...',
+            console.log('%c    Global-Variables addDashboardTab starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -2369,7 +2370,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - DB
         // - this.dashboardsRecent (array in Global Vars)
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardsRecent ...',
+            console.log('%c    Global-Variables getDashboardsRecent starts',
                 this.concoleLogStyleForStartOfMethod, {userID});
         };
 
@@ -2418,8 +2419,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables dashboardsRecent 1',
-                            this.concoleLogStyleForStartOfMethod, {temp})
+                        console.log('%c    Global-Variables dashboardsRecent ends',
+                            this.concoleLogStyleForEndOfMethod, {temp})
                     };
 
                     resolve(temp);
@@ -2437,7 +2438,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Compares given IDs against the Recent list:
         // - if D not there, call ADD.  Else SAVE
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables amendDashboardRecent ...',
+            console.log('%c    Global-Variables amendDashboardRecent starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID}, {dashboardTabID});
         };
@@ -2515,7 +2516,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - change current D Desc => position remains unchanged
         // - D Rename => position should not be affected
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables touchupDashboardRecent ...',
+            console.log('%c    Global-Variables touchupDashboardRecent starts',
                 this.concoleLogStyleForStartOfMethod
                 , {dashboardID}, {dashboardName});
         };
@@ -2534,7 +2535,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // this.currentDatasets.  Then add the data from respective data location.
         // Returns: dataset
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDataset ...',
+            console.log('%c    Global-Variables getCurrentDataset starts',
                 this.concoleLogStyleForStartOfMethod,
                 {datasourceID}, {datasetID});
         };
@@ -2628,8 +2629,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         };
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                                this.concoleLogStyleForStartOfMethod,
+                            console.log('%c    Global-Variables getCurrentDataset ends from ',
+                                this.concoleLogStyleForEndOfMethod,
                                 {dsSourceLocation}, ' for DS-id  = ', {datasourceID}, '.  Added dSet: ',
                                 {newdSet}, ', and currentDatasets = ', this.currentDatasets)
                         };
@@ -2654,7 +2655,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Adds a new Dataset
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDataset ...',
+            console.log('%c    Global-Variables addDataset starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -2712,7 +2713,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   &nrRowsToReturn=2                     Rows to return after ALL else have been done
         // Returns: res.data
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getData ...',
+            console.log('%c    Global-Variables getData starts',
                 this.concoleLogStyleForStartOfMethod, {parameters});
         };
 
@@ -2738,8 +2739,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getData',
-                            this.concoleLogStyleForStartOfMethod,
+                        console.log('%c    Global-Variables getData ends',
+                            this.concoleLogStyleForEndOfMethod,
                             {res})
                     };
 
@@ -2761,7 +2762,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Adds DATA used in a new Dataset
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addData  ...',
+            console.log('%c    Global-Variables addData  starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -2799,7 +2800,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Saves Data
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveData ...',
+            console.log('%c    Global-Variables saveData starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -2837,7 +2838,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Deletes given Data
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteData ...',
+            console.log('%c    Global-Variables deleteData starts',
                 this.concoleLogStyleForStartOfMethod, {id});
         };
 
@@ -2874,7 +2875,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Note: Objects and arrays are passed by reference. Primitive values like number,
         // string, boolean are passed by value.  Thus, original object (dSet) is modified here.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables filterSlicer ...',
+            console.log('%c    Global-Variables filterSlicer starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dataSet});
         };
@@ -2986,7 +2987,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: this.getDashboardSnapshots array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDashboardSnapshots ...',
+            console.log('%c    Global-Variables getCurrentDashboardSnapshots starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -3002,8 +3003,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         this.currentDashboardSnapshots = res;
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDashboardSnapshots 1',
-                                this.concoleLogStyleForStartOfMethod,
+                            console.log('%c    Global-Variables getCurrentDashboardSnapshots ends',
+                                this.concoleLogStyleForEndOfMethod,
                                 {dashboardID}, {res})
                         };
 
@@ -3019,8 +3020,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 this.currentDashboardSnapshots = returnData;
 
                 if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentDashboardSnapshots 2',
-                        this.concoleLogStyleForStartOfMethod,
+                    console.log('%c    Global-Variables getCurrentDashboardSnapshots ends',
+                        this.concoleLogStyleForEndOfMethod,
                         {dashboardID})
                 };
 
@@ -3036,7 +3037,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: this.getDashboardSnapshots array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables findlastDashboardSnapshot ...',
+            console.log('%c    Global-Variables findlastDashboardSnapshot starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -3055,8 +3056,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         };
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables findlastDashboardSnapshot 1',
-                                this.concoleLogStyleForStartOfMethod,
+                            console.log('%c    Global-Variables findlastDashboardSnapshot ends',
+                                this.concoleLogStyleForEndOfMethod,
                                 {lastDashboardSnapshot})
                         };
 
@@ -3075,8 +3076,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 };
 
                 if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables findlastDashboardSnapshot 2',
-                        this.concoleLogStyleForStartOfMethod,
+                    console.log('%c    Global-Variables findlastDashboardSnapshot ends',
+                        this.concoleLogStyleForEndOfMethod,
                         {dashboardID})
                 };
 
@@ -3092,7 +3093,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables newDashboardSnapshot ...',
+            console.log('%c    Global-Variables newDashboardSnapshot starts',
                 this.concoleLogStyleForStartOfMethod,
                 {snapshotName}, {snapshotComment}, {snapshotType});
         };
@@ -3129,7 +3130,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDashboardSnapshot ...',
+            console.log('%c    Global-Variables addDashboardSnapshot starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -3173,7 +3174,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Deletes a DashboardSnapshots
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDashboardSnapshot ...',
+            console.log('%c    Global-Variables deleteDashboardSnapshot starts',
                 this.concoleLogStyleForStartOfMethod, {id});
         };
 
@@ -3221,7 +3222,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: this.datasources array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDatasources ...',
+            console.log('%c    Global-Variables getDatasources starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -3245,8 +3246,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDatasources 1',
-                                this.concoleLogStyleForStartOfMethod,
+                            console.log('%c    Global-Variables getDatasources ends',
+                                this.concoleLogStyleForEndOfMethod,
                                 this.datasources)
                         };
 
@@ -3258,8 +3259,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 );
             } else {
                 if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDatasources 2',
-                        this.concoleLogStyleForStartOfMethod)
+                    console.log('%c    Global-Variables getDatasources ends',
+                        this.concoleLogStyleForEndOfMethod)
                 };
 
                 resolve(this.datasources);
@@ -3275,7 +3276,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         // NB: assume this.currentWidgets exists !!
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDatasources ...',
+            console.log('%c    Global-Variables getCurrentDatasources starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -3315,8 +3316,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                             this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                             if (this.sessionDebugging) {
-                                console.log('%c    Global-Variables getCurrentDatasources 1',
-                                    this.concoleLogStyleForStartOfMethod,
+                                console.log('%c    Global-Variables getCurrentDatasources ends',
+                                    this.concoleLogStyleForEndOfMethod,
                                     {dashboardID}, this.currentDatasources);
                             };
 
@@ -3348,8 +3349,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                 if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentDatasources 2',
-                        this.concoleLogStyleForStartOfMethod,
+                    console.log('%c    Global-Variables getCurrentDatasources ends',
+                        this.concoleLogStyleForEndOfMethod,
                         {dashboardID}, this.currentDatasources);
                 };
 
@@ -3362,7 +3363,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Adds a new Datasource, if it does not exist
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDatasource ...',
+            console.log('%c    Global-Variables addDatasource starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -3413,7 +3414,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     addCurrentDatasource(datasourceID: number){
         // Add DS AND dSet to current-arrays (from DS and dSet arrays) for a given DS-id
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addCurrentDatasource ...',
+            console.log('%c    Global-Variables addCurrentDatasource starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -3483,7 +3484,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Saves Datasource
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDatasource ...',
+            console.log('%c    Global-Variables saveDatasource starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -3542,7 +3543,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Deletes a Datasources
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDatasource ...',
+            console.log('%c    Global-Variables deleteDatasource starts',
             this.concoleLogStyleForStartOfMethod, {id});
         };
 
@@ -3601,7 +3602,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: this.datasourcePermissions array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDatasourcePermissions ...',
+            console.log('%c    Global-Variables getDatasourcePermissions starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -3638,8 +3639,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDatasourcePermissions 1',
-                                this.concoleLogStyleForStartOfMethod,
+                            console.log('%c    Global-Variables getDatasourcePermissions ends',
+                                this.concoleLogStyleForEndOfMethod,
                                 this.datasourcePermissions)
                         };
 
@@ -3651,8 +3652,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 );
             } else {
                 if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDatasourcePermissions 2',
-                        this.concoleLogStyleForStartOfMethod,
+                    console.log('%c    Global-Variables getDatasourcePermissions ends',
+                        this.concoleLogStyleForEndOfMethod,
                         this.datasourcePermissions)
                 };
 
@@ -3666,7 +3667,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: this.datasourcePermissions.value array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDatasourcePermissions ...',
+            console.log('%c    Global-Variables getCurrentDatasourcePermissions starts',
                 this.concoleLogStyleForStartOfMethod,
                 {datasourceID});
         };
@@ -3681,8 +3682,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         this.currentDatasourcePermissions = res;
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDatasourcePermissions 1',
-                                this.concoleLogStyleForStartOfMethod,
+                            console.log('%c    Global-Variables getCurrentDatasourcePermissions ends',
+                                this.concoleLogStyleForEndOfMethod,
                                 {datasourceID}, {res})
                         };
 
@@ -3698,8 +3699,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 this.currentDatasourcePermissions = returnData;
 
                 if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentDatasourcePermissions 2',
-                        this.concoleLogStyleForStartOfMethod,
+                    console.log('%c    Global-Variables getCurrentDatasourcePermissions ends',
+                        this.concoleLogStyleForEndOfMethod,
                         {datasourceID})
                 };
 
@@ -3713,7 +3714,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Adds a new DatasourcePermission, if it does not exist
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDatasourcePermission ...',
+            console.log('%c    Global-Variables addDatasourcePermission starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -3762,7 +3763,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Saves DatasourcePermission
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDatasourcePermission ...',
+            console.log('%c    Global-Variables saveDatasourcePermission starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -3821,7 +3822,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     deleteDatasourcePermission(id: number) {
         // Remove a record from the global and current DatasourcePermissions
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDatasourcePermission ...',
+            console.log('%c    Global-Variables deleteDatasourcePermission starts',
                 this.concoleLogStyleForStartOfMethod, {id});
         };
 
@@ -3871,7 +3872,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: this.canvasSettings object, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getSystemSettings ...',
+            console.log('%c    Global-Variables getSystemSettings starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -3903,7 +3904,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Adds a new PaletteButtonsSelected
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addPaletteButtonsSelected ...',
+            console.log('%c    Global-Variables addPaletteButtonsSelected starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -3950,7 +3951,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Saves PaletteButtonsSelected
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables savePaletteButtonsSelected ...',
+            console.log('%c    Global-Variables savePaletteButtonsSelected starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -4001,7 +4002,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Deletes a PaletteButtonsSelected
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deletePaletteButtonsSelected ...',
+            console.log('%c    Global-Variables deletePaletteButtonsSelected starts',
                 this.concoleLogStyleForStartOfMethod, {id});
         };
 
@@ -4062,7 +4063,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getWidgets ...',
+            console.log('%c    Global-Variables getWidgets starts',
                 this.concoleLogStyleForStartOfMethod,
                 this.widgets.length);
         };
@@ -4202,8 +4203,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getWidgets 1',
-                                this.concoleLogStyleForStartOfMethod,
+                            console.log('%c    Global-Variables getWidgets ends',
+                                this.concoleLogStyleForEndOfMethod,
                                 this.widgets)
                         };
 
@@ -4215,8 +4216,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 )
             } else {
                 if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getWidgets 2',
-                        this.concoleLogStyleForStartOfMethod,
+                    console.log('%c    Global-Variables getWidgets ends',
+                        this.concoleLogStyleForEndOfMethod,
                         this.widgets)
                 };
 
@@ -4246,7 +4247,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         // Usage: getWidgets(1, -1)  =>  Returns W for DashboardID = 1
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentWidgets ...',
+            console.log('%c    Global-Variables getCurrentWidgets starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID}, {dashboardTabID});
         };
@@ -4278,8 +4279,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         });
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentWidgets 1',
-                                this.concoleLogStyleForStartOfMethod,
+                            console.log('%c    Global-Variables getCurrentWidgets ends',
+                                this.concoleLogStyleForEndOfMethod,
                                 this.currentWidgets)
                         };
 
@@ -4310,8 +4311,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 this.currentWidgets = data;
 
                 if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentWidgets 2',
-                        this.concoleLogStyleForStartOfMethod,
+                    console.log('%c    Global-Variables getCurrentWidgets ends',
+                        this.concoleLogStyleForEndOfMethod,
                         {dashboardID}, {dashboardTabID},  this.currentWidgets, this.widgets)
                 };
 
@@ -4326,7 +4327,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Adds a new Widget
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addWidget ...',
+            console.log('%c    Global-Variables addWidget starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -4370,7 +4371,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Saves Widget
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveWidget ...',
+            console.log('%c    Global-Variables saveWidget starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -4457,7 +4458,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     duplicateSingleWidget(originalWidget: Widget) {
         // Duplicate the given Widget
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables duplicateSingleWidget ...',
+            console.log('%c    Global-Variables duplicateSingleWidget starts',
                 this.concoleLogStyleForStartOfMethod, {originalWidget});
         };
 
@@ -4518,7 +4519,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Deleted' or error message
         // NOTE: this permananently deletes a W, from arrays and DB.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteWidget ...',
+            console.log('%c    Global-Variables deleteWidget starts',
                 this.concoleLogStyleForStartOfMethod, {id});
         };
 
@@ -4579,7 +4580,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: this.datasets, currentDataset array
         // NB: this assumes [W] and [datasets] are available !!
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getWidgetsInfo ...',
+            console.log('%c    Global-Variables getWidgetsInfo starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -4642,8 +4643,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     })
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getWidgetsInfo 1 True',
-                            this.concoleLogStyleForStartOfMethod);
+                        console.log('%c    Global-Variables getWidgetsInfo ends',
+                            this.concoleLogStyleForEndOfMethod);
                     };
 
                     resolve(true);
@@ -4656,7 +4657,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     allWithAsync = (...listOfPromises) => {
         // Resolve all promises in array
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables allWithAsync ...',
+            console.log('%c    Global-Variables allWithAsync starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -4677,7 +4678,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables updateCanvasMessagesAsRead ...',
+            console.log('%c    Global-Variables updateCanvasMessagesAsRead starts',
                 this.concoleLogStyleForStartOfMethod, {userID});
         };
 
@@ -4712,7 +4713,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: this.currentWidgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentWidgetCheckpoints ...',
+            console.log('%c    Global-Variables getCurrentWidgetCheckpoints starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -4728,8 +4729,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         this.currentWidgetCheckpoints = res;
 
                         if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentWidgetCheckpoints 1',
-                                this.concoleLogStyleForStartOfMethod,
+                            console.log('%c    Global-Variables getCurrentWidgetCheckpoints ends',
+                                this.concoleLogStyleForEndOfMethod,
                                 {dashboardID}, {res})
                         };
 
@@ -4746,8 +4747,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 this.currentWidgetCheckpoints = returnData;
 
                 if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentWidgetCheckpoints 2',
-                        this.concoleLogStyleForStartOfMethod,
+                    console.log('%c    Global-Variables getCurrentWidgetCheckpoints ends',
+                        this.concoleLogStyleForEndOfMethod,
                         {dashboardID}, {returnData})
                 };
 
@@ -4760,7 +4761,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     clearCurrentUser() {
         // Description: reset the Global currentUser variable
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables clearCurrentUser ...',
+            console.log('%c    Global-Variables clearCurrentUser starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -4810,7 +4811,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // NOTE: This does NOT update the DB or any other Variable
         // Returns: 'Setted', else 'Error: userID does not exist in canvasUsers'
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables updateCurrentUserProperties ...',
+            console.log('%c    Global-Variables updateCurrentUserProperties starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -4917,7 +4918,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     setBaseUrl(pathUrl: string): string {
        // Description: Gets the caching table that drives local caching process
        if (this.sessionDebugging) {
-        console.log('%c    Global-Variables setBaseUrl ...',
+        console.log('%c    Global-Variables setBaseUrl starts',
             this.concoleLogStyleForStartOfUtilFunctions,
             pathUrl);
         };
@@ -4933,7 +4934,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     getDataCachingTable(): Promise<DataCachingTable[]> {
        // Description: Gets the caching table that drives local caching process
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDataCachingTable ...',
+            console.log('%c    Global-Variables getDataCachingTable starts',
                 this.concoleLogStyleForStartOfMethod,
                 this.dataCachingTable.length);
         };
@@ -4961,8 +4962,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getDataCachingTable',
-                            this.concoleLogStyleForStartOfMethod,
+                        console.log('%c    Global-Variables getDataCachingTable ends',
+                            this.concoleLogStyleForEndOfMethod,
                             this.dataCachingTable)
                     };
 
@@ -4991,7 +4992,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // It does assume that we have a currentDashboardInfo object if Previous/Next are
         // parameters.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables refreshCurrentDashboard ...',
+            console.log('%c    Global-Variables refreshCurrentDashboard starts',
                 this.concoleLogStyleForStartOfMethod,
                 {refreshingRoutine}, {dashboardID}, {dashboardTabID}, {tabToShow},
                 {widgetsToRefresh});
@@ -5083,7 +5084,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Replaces (ByVal) the global W and currentW
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables ... widgetReplace',
-                "   color: black; background: lightgray; font-size: 10px", {changedWidget});
+                this.concoleLogStyleForEndOfMethod, {changedWidget});
         };
 
         // Replace into widgets
@@ -5108,7 +5109,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     sleep(milliseconds: number) {
         // Sleep for a while
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables sleep ...',
+            console.log('%c    Global-Variables sleep starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {milliseconds});
         };
@@ -5141,7 +5142,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // The specification All the information needed to create
         if (this.sessionDebugging) {
             let widgetID: number = widget.id;
-            console.log('%c    Global-Variables createVegaSpec ...',
+            console.log('%c    Global-Variables createVegaSpec starts',
                 this.concoleLogStyleForStartOfMethod,
                 {widgetID});
         };
@@ -5204,7 +5205,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Creates and returns a specification for Vega-Lite visual grammar
         if (this.sessionDebugging) {
             let widgetID: number = widget.id;
-            console.log('%c    Global-Variables createVegaLiteSpec ...',
+            console.log('%c    Global-Variables createVegaLiteSpec starts',
                 this.concoleLogStyleForStartOfMethod,
                 {widgetID});
         };
@@ -6225,7 +6226,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
      ): number {
         let actID: number = 1;
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables actionUpsert ...',
+            console.log('%c    Global-Variables actionUpsert starts',
                 this.concoleLogStyleForStartOfMethod,
                 {logToDB}, {oldWidget}, {newWidget});
         };
@@ -6304,8 +6305,11 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 createor: this.currentUser.userID,
                 created: today
             });
-
-            console.warn('Upsert action done for:', this.actions);
+            if (this.sessionDebugging) {
+                console.log('%c    Global-Variables actionUpsert done for:', 
+                    this.concoleLogStyleForEndOfMethod,
+                    this.actions);
+            };
 
         } else {
             this.actions.forEach(ac => {
@@ -6392,7 +6396,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     alignToGripPoint(inputValue: number) {
         // This routine recalcs a value to a gridpoint IF snapping is enabled
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables alignToGripPoint ...',
+            console.log('%c    Global-Variables alignToGripPoint starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {inputValue});
         };
@@ -6413,7 +6417,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         ): void {
         // Shows a message in the right area, ie StatusBar
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables showStatusBarMessage ...',
+            console.log('%c    Global-Variables showStatusBarMessage starts',
                 this.concoleLogStyleForStartOfMethod,
                 {statusBarMessage});
         };
@@ -6457,7 +6461,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   It is NOT case sensitive, and only applicable to accessType = 'AccessList'
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables dashboardPermissionCheck ...',
+            console.log('%c    Global-Variables dashboardPermissionCheck starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {dashboardID}, {accessRequired});
         };
@@ -6588,7 +6592,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // belongs).
         // Returns: T/F
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables datasourcePermissionsCheck ...',
+            console.log('%c    Global-Variables datasourcePermissionsCheck starts',
                 this.concoleLogStyleForStartOfMethod);
         };
         // Assume no access
@@ -6683,7 +6687,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     dashboardPermissionList(id: number): string[] {
         // Returns Array of Permissions for the current user to the given D.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables dashboardPermissionList ...',
+            console.log('%c    Global-Variables dashboardPermissionList starts',
                 this.concoleLogStyleForStartOfMethod,
                 {id});
         };
@@ -6784,7 +6788,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   = time (HH:MM:SS)
         //   = dateTime (YYYY/MM/DD HH:MM:SS)
         // if (this.sessionDebugging) {
-            // console.log('%c    Global-Variables formatDate ...',
+            // console.log('%c    Global-Variables formatDate starts',
             //     this.concoleLogStyleForStartOfUtilFunctions, {date});
         // };
 
@@ -6824,7 +6828,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Checks if userID exists.  If not, return false.
         // If so, set currentUser object and return true
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables verifyCanvasUser ...',
+            console.log('%c    Global-Variables verifyCanvasUser starts',
                 this.concoleLogStyleForStartOfMethod,
                 {givenCanvasServerName}, {givenCanvasServerURI}, {givenCompanyName}, {givenUserID});
         };
@@ -6979,7 +6983,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Registers a user on a given Server & Company (add to Users) if he/she does not
         // already exist
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables registerCanvasUser ...',
+            console.log('%c    Global-Variables registerCanvasUser starts',
                 this.concoleLogStyleForStartOfMethod,
                 {givenCanvasServerName}, {givenCompanyName},
                 {givenUserID}, {givenPassword});
@@ -7035,7 +7039,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         givenPassword: string): Promise<{ message: string, token: string}> {
         // Logs a user on a given Server & Company
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables loginCanvasServer ...',
+            console.log('%c    Global-Variables loginCanvasServer starts',
                 this.concoleLogStyleForStartOfMethod,
                 {givenCanvasServerName}, {givenCompanyName},
                 {givenUserID}, {givenPassword});
@@ -7092,7 +7096,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         password: string): Promise<CanvasHttpResponse> {
         // Description: Returns an Array of tables in the given Server and DB
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getListTables ...',
+            console.log('%c    Global-Variables getListTables starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -7117,8 +7121,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getListTables 1',
-                            this.concoleLogStyleForStartOfMethod,
+                        console.log('%c    Global-Variables getListTables ends',
+                            this.concoleLogStyleForEndOfMethod,
                             res.data);
                     };
                     resolve(res);
@@ -7141,7 +7145,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         password: string): Promise<CanvasHttpResponse> {
         // Description: Returns an Array of Fields in the given Server and DB
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getListFields ...',
+            console.log('%c    Global-Variables getListFields starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -7167,8 +7171,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getListTables 1',
-                            this.concoleLogStyleForStartOfMethod,
+                        console.log('%c    Global-Variables getListTables ends',
+                            this.concoleLogStyleForEndOfMethod,
                             res.data.length);
                     };
                     resolve(res);
@@ -7200,7 +7204,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - nrRowsToReturn = Optional number of rows to return, 0 = all
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getExecQuery ...',
+            console.log('%c    Global-Variables getExecQuery starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -7227,8 +7231,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getExecQuery 1',
-                            this.concoleLogStyleForStartOfMethod,
+                        console.log('%c    Global-Variables getExecQuery ends',
+                            this.concoleLogStyleForEndOfMethod,
                             res.data.length);
                     };
                     resolve(res);
@@ -7255,7 +7259,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //
         // Clear the CurrentXXX vars and reload with the info read from the DB.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDashboardAndTabNEW ...',
+            console.log('%c    Global-Variables getCurrentDashboardAndTabNEW starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardTabID}, {datasourceIDexclude});
         };
@@ -7281,8 +7285,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getCurrentDashboardAndTabNEW 1',
-                            this.concoleLogStyleForStartOfMethod,
+                        console.log('%c    Global-Variables getCurrentDashboardAndTabNEW ends',
+                            this.concoleLogStyleForEndOfMethod,
                             "Current Dashboard retrieved")
                     };
 
@@ -7298,7 +7302,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     getDashboardSummaryNEW(dashboardID: number): Promise<any> {
         // Gets a summary of related Entities for the given Dashboard
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardSummaryNEW ...',
+            console.log('%c    Global-Variables getDashboardSummaryNEW starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -7314,8 +7318,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables canvasDashboardSummary',
-                            this.concoleLogStyleForStartOfMethod,
+                        console.log('%c    Global-Variables canvasDashboardSummary ends',
+                            this.concoleLogStyleForEndOfMethod,
                             "Data retrieved")
                     };
 
@@ -7335,7 +7339,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - data
         // The Server adds the records, with the correct IDs
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDatasourceNEW ...',
+            console.log('%c    Global-Variables addDatasourceNEW starts',
                 this.concoleLogStyleForStartOfMethod,
                 datasourceInput.name);
         };
@@ -7380,8 +7384,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables addDatasourceNEW 1',
-                            this.concoleLogStyleForStartOfMethod,
+                        console.log('%c    Global-Variables addDatasourceNEW ends',
+                            this.concoleLogStyleForEndOfMethod,
                             "Datasource and related records saved", this.datasources, this.datasets)
                     };
 
@@ -7393,8 +7397,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
             );
             // } else {
             //     if (this.sessionDebugging) {
-            //         console.log('%c    Global-Variables getDatasources 2',
-            //             this.concoleLogStyleForStartOfMethod)
+            //         console.log('%c    Global-Variables getDatasources ends',
+            //             this.concoleLogStyleForEndOfMethod)
             //     };
 
             //     resolve("success");
@@ -7409,7 +7413,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - data
         // The Server adds the records, with the correct IDs
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDatasourceNEW ...',
+            console.log('%c    Global-Variables saveDatasourceNEW starts',
                 this.concoleLogStyleForStartOfMethod,
                 datasourceInput.name);
         };
@@ -7474,8 +7478,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables saveDatasourceNEW 1',
-                            this.concoleLogStyleForStartOfMethod,
+                        console.log('%c    Global-Variables saveDatasourceNEW ends',
+                            this.concoleLogStyleForEndOfMethod,
                             "Datasource and related records saved", this.datasources, this.datasets, this.currentDatasources, this.currentDatasets)
                     };
 
@@ -7487,8 +7491,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
             );
             // } else {
             //     if (this.sessionDebugging) {
-            //         console.log('%c    Global-Variables getDatasources 2',
-            //             this.concoleLogStyleForStartOfMethod)
+            //         console.log('%c    Global-Variables getDatasources ends',
+            //             this.concoleLogStyleForEndOfMethod)
             //     };
 
             //     resolve("success");
@@ -7500,7 +7504,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Create a new Tributary Session
         // - sampleSize = optional nr of rows to return
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables tributaryCreateSession ...',
+            console.log('%c    Global-Variables tributaryCreateSession starts',
                 this.concoleLogStyleForStartOfMethod,
                 {sampleSize});
         };
@@ -7543,7 +7547,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - inspectURL - url obtained from tributaryCreateSession()
         // - source = specification for Tributary
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables tributaryInspect ...',
+            console.log('%c    Global-Variables tributaryInspect starts',
                 this.concoleLogStyleForStartOfMethod,
                 {inspectURL});
         };
@@ -7584,7 +7588,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - executeURL - url obtained from tributaryCreateSession()
         // - source = specification for Tributary
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables tributaryExecute ...',
+            console.log('%c    Global-Variables tributaryExecute starts',
                 this.concoleLogStyleForStartOfMethod,
                 {executeURL});
         };
@@ -7624,7 +7628,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getTributaryData ...',
+            console.log('%c    Global-Variables getTributaryData starts',
                 this.concoleLogStyleForStartOfMethod, {source});
         };
 
@@ -7661,7 +7665,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getTributaryData ...',
+            console.log('%c    Global-Variables getTributaryData starts',
                 this.concoleLogStyleForStartOfMethod, {source});
         };
 
@@ -7703,7 +7707,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         query: string): TributarySource {
         // Description: constructs a Tributary Source object from the given parameters
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables constructTributarySQLSource ...',
+            console.log('%c    Global-Variables constructTributarySQLSource starts',
                 this.concoleLogStyleForStartOfMethod,
                 {connector}, {drivername}, {username}, {password}, {database}, {host}, {port},
                 {query});
@@ -7734,7 +7738,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
         // Returns: Amended Date
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables dateAdd ...',
+            console.log('%c    Global-Variables dateAdd starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {date}, {interval}, {units});
         };
@@ -7782,7 +7786,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
         // Returns: Amended Date
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
+            console.log('%c    Global-Variables getTributaryDirectDBSchema starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {fromDate}, {toDate}, {interval});
         };
@@ -7819,7 +7823,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // keywords like #pagenr, #pages, #date
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            // console.log('%c    Global-Variables calcShapeTextDisplay ...',
+            // console.log('%c    Global-Variables calcShapeTextDisplay starts',
             //     this.concoleLogStyleForStartOfUtilFunctions, {shapeText});
         };
 
@@ -7844,7 +7848,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: calculate the Height of the graph in a Widget
         // Returns: Graph Height, null if impossible to do so
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables calcGraphHeight ...',
+            console.log('%c    Global-Variables calcGraphHeight starts',
                 this.concoleLogStyleForStartOfUtilFunctions);
         };
 
@@ -7873,7 +7877,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: calculate the Width of the graph in a Widget
         // Returns: Graph Width, null if impossible to do so
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables calcGraphWidth ...',
+            console.log('%c    Global-Variables calcGraphWidth starts',
                 this.concoleLogStyleForStartOfUtilFunctions);
         };
 
