@@ -3231,65 +3231,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
     }
 
-    saveDatasource(data: Datasource): Promise<string> {
-        // Description: Saves Datasource
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDatasource starts',
-                this.concoleLogStyleForStartOfMethod, {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'datasources';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.currentDatasources.findIndex(d =>
-                        d.id == data.id
-                    );
-                    if (localIndex >= 0) {
-                        this.currentDatasources[localIndex] = data;
-                    };
-                    localIndex = this.datasources.findIndex(d =>
-                        d.id == data.id
-                    );
-                    if (localIndex >= 0) {
-                        this.datasources[localIndex] = data;
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('saveDatasource SAVED', {res})
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveDatasource FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     deleteDatasource(id: number): Promise<string> {
         // Description: Deletes a Datasources
         // Returns: 'Deleted' or error message
