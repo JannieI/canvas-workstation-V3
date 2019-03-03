@@ -323,7 +323,7 @@ export class DashboardNewComponent implements OnInit {
 
                 // Reset draftID on Original
                 newD.draftID = draftD.id;
-                this.globalVariableService.saveDashboard(newD).then(originalD => {
+                this.globalVariableService.saveResource('dashboards', newD).then(originalD => {
 
                     // Add Original Tab to DB
                     let newDashboardTab: DashboardTab = this.globalVariableService.dashboardTabTemplate;
