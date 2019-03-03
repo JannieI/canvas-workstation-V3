@@ -91,6 +91,7 @@ export class GlobalVariableService {
     conditionFieldDataType: string = '';
     conditionOperator: string = '';
     concoleLogStyleForCaching: string = "color: black; background: transparent; font-size: 10px; font-weight: bold;";
+    concoleLogStyleForStartOfMethod: string = "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px; font-weight: bold;";
     continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Canvas Server
     headers = new HttpHeaders().set("Content-Type", "application/json");
@@ -284,7 +285,7 @@ export class GlobalVariableService {
         // Initial
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables databaseInit',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                this.concoleLogStyleForStartOfMethod)
         };
 
         // Initialise
@@ -301,7 +302,7 @@ export class GlobalVariableService {
         // Returns True if all worked, False if something went wrong
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables refreshCurrentDashboardInfo D,T id = ',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardID}, {dashboardTabID}, this.dashboards, this.dashboardTabs, this.currentDashboards, this.currentDashboardTabs)
         };
 
@@ -376,7 +377,7 @@ export class GlobalVariableService {
         // It is async, so returns a Promise<boolean>
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables actionWebSocket ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         // Handle each messageType
@@ -609,7 +610,7 @@ export class GlobalVariableService {
         //       Also, it may be necessary to delete the whole IndexedDB before adding new tables ...
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getResource ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource});
+                this.concoleLogStyleForStartOfMethod, {resource});
         };
         console.time("      DURATION getResource: " + resource);
 
@@ -825,7 +826,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addResource ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {data});
+                this.concoleLogStyleForStartOfMethod, {resource}, {data});
         };
         var now = new Date();
         let unique: number = now.getMinutes() + now.getSeconds() + now.getMilliseconds();
@@ -972,7 +973,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables saveResource ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {data});
+                this.concoleLogStyleForStartOfMethod, {resource}, {data});
         };
         console.time("      DURATION saveResource " + resource + ' ' + data.id.toString());
 
@@ -1133,7 +1134,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables deleteResource ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {resource}, {id});
+                this.concoleLogStyleForStartOfMethod, {resource}, {id});
         };
         console.time("      DURATION deleteResource" + resource +  ' ' + id.toString());
 
@@ -1236,7 +1237,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables dashboardCopy ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -1289,7 +1290,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables dashboardCopy 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.concoleLogStyleForStartOfMethod,
                             "Draft created for current Dashboard", this.currentDashboardTabs)
                     };
 
@@ -1306,7 +1307,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns the given D from the internal arrays
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables letDashboard ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
 
@@ -1331,7 +1332,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables discardDashboard ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         return new Promise<number>((resolve, reject) => {
@@ -1406,7 +1407,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables saveDraftDashboard ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {deleteSnapshots});
         };
 
@@ -1577,7 +1578,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Deletes D with all related Entities
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables deleteDashboardInfo ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
 
@@ -1666,7 +1667,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addDashboard ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -1713,7 +1714,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables saveDashboard ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",{data});
+                this.concoleLogStyleForStartOfMethod,{data});
         };
 
         return new Promise<string>((resolve, reject) => {
@@ -1775,7 +1776,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCurrentDashboards ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {dashboardID});
+                this.concoleLogStyleForStartOfMethod, {dashboardID});
         };
 
         // Refresh from source at start, or if dirty
@@ -1837,7 +1838,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getCurrentDashboards 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.concoleLogStyleForStartOfMethod,
                                 {dashboardID}, this.currentDashboards)
                         };
 
@@ -1877,7 +1878,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getCurrentDashboards 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.concoleLogStyleForStartOfMethod,
                         {dashboardID}, this.currentDashboards)
                 };
 
@@ -1906,7 +1907,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
 
             console.log('%c    Global-Variables addDashboardToCache ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         // TODO - this does NOT cater for async case when cached is only on Disc
@@ -1956,7 +1957,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables refreshLocalCacheMemory ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         // Loop on localCachingTable
@@ -2075,7 +2076,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables updateLocalCacheMemory ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         return new Promise<boolean>((resolve, reject) => {
@@ -2259,7 +2260,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCurrentDashboardTabs ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
 
@@ -2284,7 +2285,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getCurrentDashboardTabs 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.concoleLogStyleForStartOfMethod,
                                 {dashboardID}, this.currentDashboardTabs)
                         };
                         resolve(this.currentDashboardTabs);
@@ -2310,7 +2311,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getCurrentDashboardTabs 2',
-                      "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                      this.concoleLogStyleForStartOfMethod,
                         {dashboardID}, this.currentDashboardTabs)
                 };
                 resolve(this.currentDashboardTabs);
@@ -2324,7 +2325,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addDashboardTab ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -2369,7 +2370,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - this.dashboardsRecent (array in Global Vars)
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getDashboardsRecent ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
+                this.concoleLogStyleForStartOfMethod, {userID});
         };
 
         return new Promise<DashboardRecent[]>((resolve, reject) => {
@@ -2418,7 +2419,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables dashboardsRecent 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {temp})
+                            this.concoleLogStyleForStartOfMethod, {temp})
                     };
 
                     resolve(temp);
@@ -2437,7 +2438,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - if D not there, call ADD.  Else SAVE
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables amendDashboardRecent ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardID}, {dashboardTabID});
         };
 
@@ -2515,7 +2516,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - D Rename => position should not be affected
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables touchupDashboardRecent ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px"
+                this.concoleLogStyleForStartOfMethod
                 , {dashboardID}, {dashboardName});
         };
 
@@ -2534,7 +2535,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: dataset
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCurrentDataset ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {datasourceID}, {datasetID});
         };
 
@@ -2628,7 +2629,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.concoleLogStyleForStartOfMethod,
                                 {dsSourceLocation}, ' for DS-id  = ', {datasourceID}, '.  Added dSet: ',
                                 {newdSet}, ', and currentDatasets = ', this.currentDatasets)
                         };
@@ -2654,7 +2655,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addDataset ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -2712,7 +2713,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: res.data
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getData ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {parameters});
+                this.concoleLogStyleForStartOfMethod, {parameters});
         };
 
         return new Promise<Dataset[]>((resolve, reject) => {
@@ -2738,7 +2739,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getData',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.concoleLogStyleForStartOfMethod,
                             {res})
                     };
 
@@ -2761,7 +2762,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addData  ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         // TODO - kill all 'data' paths, kill the collection in Mongo and
@@ -2799,7 +2800,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables saveData ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         let pathUrl: string = 'data';
@@ -2837,7 +2838,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables deleteData ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+                this.concoleLogStyleForStartOfMethod, {id});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -2874,7 +2875,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // string, boolean are passed by value.  Thus, original object (dSet) is modified here.
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables filterSlicer ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dataSet});
         };
 
@@ -2986,7 +2987,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCurrentDashboardSnapshots ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
 
@@ -3002,7 +3003,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getCurrentDashboardSnapshots 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.concoleLogStyleForStartOfMethod,
                                 {dashboardID}, {res})
                         };
 
@@ -3019,7 +3020,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getCurrentDashboardSnapshots 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.concoleLogStyleForStartOfMethod,
                         {dashboardID})
                 };
 
@@ -3036,7 +3037,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables findlastDashboardSnapshot ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
 
@@ -3055,7 +3056,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables findlastDashboardSnapshot 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.concoleLogStyleForStartOfMethod,
                                 {lastDashboardSnapshot})
                         };
 
@@ -3075,7 +3076,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables findlastDashboardSnapshot 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.concoleLogStyleForStartOfMethod,
                         {dashboardID})
                 };
 
@@ -3092,7 +3093,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables newDashboardSnapshot ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {snapshotName}, {snapshotComment}, {snapshotType});
         };
 
@@ -3129,7 +3130,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addDashboardSnapshot ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -3173,7 +3174,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables deleteDashboardSnapshot ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+                this.concoleLogStyleForStartOfMethod, {id});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -3221,7 +3222,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getDatasources ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         return new Promise<Datasource[]>((resolve, reject) => {
@@ -3245,7 +3246,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getDatasources 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.concoleLogStyleForStartOfMethod,
                                 this.datasources)
                         };
 
@@ -3258,7 +3259,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getDatasources 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                        this.concoleLogStyleForStartOfMethod)
                 };
 
                 resolve(this.datasources);
@@ -3275,7 +3276,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // NB: assume this.currentWidgets exists !!
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCurrentDatasources ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
 
@@ -3315,7 +3316,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                             if (this.sessionDebugging) {
                                 console.log('%c    Global-Variables getCurrentDatasources 1',
-                                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                    this.concoleLogStyleForStartOfMethod,
                                     {dashboardID}, this.currentDatasources);
                             };
 
@@ -3348,7 +3349,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getCurrentDatasources 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.concoleLogStyleForStartOfMethod,
                         {dashboardID}, this.currentDatasources);
                 };
 
@@ -3362,7 +3363,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addDatasource ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -3413,7 +3414,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Add DS AND dSet to current-arrays (from DS and dSet arrays) for a given DS-id
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addCurrentDatasource ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -3483,7 +3484,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables saveDatasource ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         return new Promise<string>((resolve, reject) => {
@@ -3542,7 +3543,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables deleteDatasource ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+            this.concoleLogStyleForStartOfMethod, {id});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -3601,7 +3602,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getDatasourcePermissions ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         return new Promise<DatasourcePermission[]>((resolve, reject) => {
@@ -3638,7 +3639,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getDatasourcePermissions 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.concoleLogStyleForStartOfMethod,
                                 this.datasourcePermissions)
                         };
 
@@ -3651,7 +3652,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getDatasourcePermissions 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.concoleLogStyleForStartOfMethod,
                         this.datasourcePermissions)
                 };
 
@@ -3666,7 +3667,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCurrentDatasourcePermissions ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {datasourceID});
         };
 
@@ -3681,7 +3682,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getCurrentDatasourcePermissions 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.concoleLogStyleForStartOfMethod,
                                 {datasourceID}, {res})
                         };
 
@@ -3698,7 +3699,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getCurrentDatasourcePermissions 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.concoleLogStyleForStartOfMethod,
                         {datasourceID})
                 };
 
@@ -3713,7 +3714,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addDatasourcePermission ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -3762,7 +3763,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables saveDatasourcePermission ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         return new Promise<string>((resolve, reject) => {
@@ -3821,7 +3822,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Remove a record from the global and current DatasourcePermissions
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables deleteDatasourcePermission ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+                this.concoleLogStyleForStartOfMethod, {id});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -3871,7 +3872,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getSystemSettings ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         return new Promise<CanvasSettings>((resolve, reject) => {
@@ -3903,7 +3904,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addPaletteButtonsSelected ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -3950,7 +3951,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables savePaletteButtonsSelected ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         return new Promise<string>((resolve, reject) => {
@@ -4001,7 +4002,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables deletePaletteButtonsSelected ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+                this.concoleLogStyleForStartOfMethod, {id});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -4062,7 +4063,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getWidgets ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 this.widgets.length);
         };
 
@@ -4202,7 +4203,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getWidgets 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.concoleLogStyleForStartOfMethod,
                                 this.widgets)
                         };
 
@@ -4215,7 +4216,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
             } else {
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getWidgets 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.concoleLogStyleForStartOfMethod,
                         this.widgets)
                 };
 
@@ -4246,7 +4247,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Usage: getWidgets(1, -1)  =>  Returns W for DashboardID = 1
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCurrentWidgets ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardID}, {dashboardTabID});
         };
 
@@ -4278,7 +4279,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getCurrentWidgets 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.concoleLogStyleForStartOfMethod,
                                 this.currentWidgets)
                         };
 
@@ -4310,7 +4311,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getCurrentWidgets 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.concoleLogStyleForStartOfMethod,
                         {dashboardID}, {dashboardTabID},  this.currentWidgets, this.widgets)
                 };
 
@@ -4326,7 +4327,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addWidget ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -4370,7 +4371,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables saveWidget ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+                this.concoleLogStyleForStartOfMethod, {data});
         };
 
         return new Promise<string>((resolve, reject) => {
@@ -4457,7 +4458,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Duplicate the given Widget
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables duplicateSingleWidget ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {originalWidget});
+                this.concoleLogStyleForStartOfMethod, {originalWidget});
         };
 
         // Find latest copy #
@@ -4518,7 +4519,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // NOTE: this permananently deletes a W, from arrays and DB.
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables deleteWidget ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+                this.concoleLogStyleForStartOfMethod, {id});
         };
 
         return new Promise<any>((resolve, reject) => {
@@ -4579,7 +4580,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // NB: this assumes [W] and [datasets] are available !!
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getWidgetsInfo ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         // Empty the necessary
@@ -4642,7 +4643,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getWidgetsInfo 1 True',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                            this.concoleLogStyleForStartOfMethod);
                     };
 
                     resolve(true);
@@ -4656,7 +4657,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Resolve all promises in array
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables allWithAsync ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         return new Promise(async (resolve, reject) => {
@@ -4677,7 +4678,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // is closed, or at logout.
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables updateCanvasMessagesAsRead ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
+                this.concoleLogStyleForStartOfMethod, {userID});
         };
 
         return new Promise<string>((resolve, reject) => {
@@ -4712,7 +4713,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCurrentWidgetCheckpoints ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
 
@@ -4728,7 +4729,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getCurrentWidgetCheckpoints 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.concoleLogStyleForStartOfMethod,
                                 {dashboardID}, {res})
                         };
 
@@ -4746,7 +4747,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                 if (this.sessionDebugging) {
                     console.log('%c    Global-Variables getCurrentWidgetCheckpoints 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.concoleLogStyleForStartOfMethod,
                         {dashboardID}, {returnData})
                 };
 
@@ -4760,7 +4761,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: reset the Global currentUser variable
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables clearCurrentUser ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         this.currentUser.userID = '';
@@ -4810,7 +4811,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: 'Setted', else 'Error: userID does not exist in canvasUsers'
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables updateCurrentUserProperties ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         let userid: number = this.currentUser.id;
@@ -4917,7 +4918,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
        // Description: Gets the caching table that drives local caching process
        if (this.sessionDebugging) {
         console.log('%c    Global-Variables setBaseUrl ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            this.concoleLogStyleForStartOfMethod,
             pathUrl);
         };
 
@@ -4933,7 +4934,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
        // Description: Gets the caching table that drives local caching process
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getDataCachingTable ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 this.dataCachingTable.length);
         };
 
@@ -4961,7 +4962,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getDataCachingTable',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.concoleLogStyleForStartOfMethod,
                             this.dataCachingTable)
                     };
 
@@ -4991,7 +4992,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // parameters.
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables refreshCurrentDashboard ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {refreshingRoutine}, {dashboardID}, {dashboardTabID}, {tabToShow},
                 {widgetsToRefresh});
         };
@@ -5108,7 +5109,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Sleep for a while
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables sleep ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {milliseconds});
         };
 
@@ -5141,7 +5142,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         if (this.sessionDebugging) {
             let widgetID: number = widget.id;
             console.log('%c    Global-Variables createVegaSpec ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {widgetID});
         };
 
@@ -5204,7 +5205,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         if (this.sessionDebugging) {
             let widgetID: number = widget.id;
             console.log('%c    Global-Variables createVegaLiteSpec ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {widgetID});
         };
 
@@ -6225,7 +6226,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         let actID: number = 1;
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables actionUpsert ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {logToDB}, {oldWidget}, {newWidget});
         };
 
@@ -6242,9 +6243,12 @@ console.log('xx localCacheableMemory', localCacheableMemory)
             let snapshotComment: string = 'Added automated Snapshot before first Action';
 
             // Determine if last snapshot for this D was an auto first
-            this.findlastDashboardSnapshot(
-                this.currentDashboardInfo.value.currentDashboardID
+            this.getResource('dashboardSnapshots','?filterObject={"dashboardID": '
+                + this.currentDashboardInfo.value.currentDashboardID.toString() 
+                + '} &sortObject=-createdOn &nrRowsToReturn=1'
+                
             ).then(lss => {
+                console.log('xx lss', lss)
                 // Add if last snap was not an auto (null returned if no last snapshot)
                 if (lss != null) {
                     if (lss.comment != snapshotComment) {
@@ -6389,7 +6393,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // This routine recalcs a value to a gridpoint IF snapping is enabled
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables alignToGripPoint ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {inputValue});
         };
 
@@ -6410,7 +6414,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Shows a message in the right area, ie StatusBar
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables showStatusBarMessage ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {statusBarMessage});
         };
 
@@ -6454,7 +6458,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables dashboardPermissionCheck ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardID}, {accessRequired});
         };
 
@@ -6585,7 +6589,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: T/F
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables datasourcePermissionsCheck ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
         // Assume no access
         let hasAccess: boolean = false;
@@ -6680,7 +6684,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns Array of Permissions for the current user to the given D.
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables dashboardPermissionList ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {id});
         };
 
@@ -6821,7 +6825,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // If so, set currentUser object and return true
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables verifyCanvasUser ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {givenCanvasServerName}, {givenCanvasServerURI}, {givenCompanyName}, {givenUserID});
         };
 
@@ -6976,7 +6980,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // already exist
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables registerCanvasUser ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {givenCanvasServerName}, {givenCompanyName},
                 {givenUserID}, {givenPassword});
         };
@@ -7032,7 +7036,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Logs a user on a given Server & Company
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables loginCanvasServer ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {givenCanvasServerName}, {givenCompanyName},
                 {givenUserID}, {givenPassword});
         };
@@ -7089,7 +7093,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Returns an Array of tables in the given Server and DB
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getListTables ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         return new Promise<CanvasHttpResponse>((resolve, reject) => {
@@ -7114,7 +7118,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getListTables 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.concoleLogStyleForStartOfMethod,
                             res.data);
                     };
                     resolve(res);
@@ -7138,7 +7142,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: Returns an Array of Fields in the given Server and DB
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getListFields ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         return new Promise<CanvasHttpResponse>((resolve, reject) => {
@@ -7164,7 +7168,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getListTables 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.concoleLogStyleForStartOfMethod,
                             res.data.length);
                     };
                     resolve(res);
@@ -7197,7 +7201,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getExecQuery ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         return new Promise<CanvasHttpResponse>((resolve, reject) => {
@@ -7224,7 +7228,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getExecQuery 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.concoleLogStyleForStartOfMethod,
                             res.data.length);
                     };
                     resolve(res);
@@ -7252,7 +7256,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Clear the CurrentXXX vars and reload with the info read from the DB.
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCurrentDashboardAndTabNEW ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardTabID}, {datasourceIDexclude});
         };
         return new Promise<string>((resolve, reject) => {
@@ -7278,7 +7282,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getCurrentDashboardAndTabNEW 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.concoleLogStyleForStartOfMethod,
                             "Current Dashboard retrieved")
                     };
 
@@ -7295,7 +7299,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Gets a summary of related Entities for the given Dashboard
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getDashboardSummaryNEW ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
         return new Promise<any>((resolve, reject) => {
@@ -7311,7 +7315,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables canvasDashboardSummary',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.concoleLogStyleForStartOfMethod,
                             "Data retrieved")
                     };
 
@@ -7332,7 +7336,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // The Server adds the records, with the correct IDs
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables addDatasourceNEW ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 datasourceInput.name);
         };
         return new Promise<string>((resolve, reject) => {
@@ -7377,7 +7381,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables addDatasourceNEW 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.concoleLogStyleForStartOfMethod,
                             "Datasource and related records saved", this.datasources, this.datasets)
                     };
 
@@ -7390,7 +7394,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
             // } else {
             //     if (this.sessionDebugging) {
             //         console.log('%c    Global-Variables getDatasources 2',
-            //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+            //             this.concoleLogStyleForStartOfMethod)
             //     };
 
             //     resolve("success");
@@ -7406,7 +7410,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // The Server adds the records, with the correct IDs
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables saveDatasourceNEW ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 datasourceInput.name);
         };
         return new Promise<string>((resolve, reject) => {
@@ -7471,7 +7475,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables saveDatasourceNEW 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.concoleLogStyleForStartOfMethod,
                             "Datasource and related records saved", this.datasources, this.datasets, this.currentDatasources, this.currentDatasets)
                     };
 
@@ -7484,7 +7488,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
             // } else {
             //     if (this.sessionDebugging) {
             //         console.log('%c    Global-Variables getDatasources 2',
-            //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+            //             this.concoleLogStyleForStartOfMethod)
             //     };
 
             //     resolve("success");
@@ -7497,7 +7501,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - sampleSize = optional nr of rows to return
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables tributaryCreateSession ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {sampleSize});
         };
 
@@ -7540,7 +7544,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - source = specification for Tributary
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables tributaryInspect ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {inspectURL});
         };
 
@@ -7581,7 +7585,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // - source = specification for Tributary
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables tributaryExecute ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {executeURL});
         };
 
@@ -7621,7 +7625,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getTributaryData ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
+                this.concoleLogStyleForStartOfMethod, {source});
         };
 
         let pathUrl: string = this.canvasServerURI + 'canvas/enqueue/';
@@ -7658,7 +7662,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getTributaryData ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
+                this.concoleLogStyleForStartOfMethod, {source});
         };
 
         let pathUrl: string = this.canvasServerURI + 'canvas/inspect/';
@@ -7700,7 +7704,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Description: constructs a Tributary Source object from the given parameters
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables constructTributarySQLSource ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {connector}, {drivername}, {username}, {password}, {database}, {host}, {port},
                 {query});
         };
@@ -7731,7 +7735,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Amended Date
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables dateAdd ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {date}, {interval}, {units});
         };
 
@@ -7779,7 +7783,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Amended Date
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.concoleLogStyleForStartOfMethod,
                 {fromDate}, {toDate}, {interval});
         };
 
@@ -7816,7 +7820,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             // console.log('%c    Global-Variables calcShapeTextDisplay ...',
-            //     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {shapeText});
+            //     this.concoleLogStyleForStartOfMethod, {shapeText});
         };
 
         let today = new Date();
@@ -7841,7 +7845,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Graph Height, null if impossible to do so
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables calcGraphHeight ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         // Ignore bad input
@@ -7870,7 +7874,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Graph Width, null if impossible to do so
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables calcGraphWidth ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                this.concoleLogStyleForStartOfMethod);
         };
 
         // Ignore bad input
