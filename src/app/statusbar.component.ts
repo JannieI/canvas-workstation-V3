@@ -578,7 +578,7 @@ export class StatusbarComponent {
             duplicateTab.displayOrder = maxDisplayOrder;
 
             // Add to DB
-            this.globalVariableService.addDashboardTab(duplicateTab).then(res => {
+            this.globalVariableService.addResource('dashboardTabs', duplicateTab).then(res => {
                 let newTabID: number = res.id;
 
                 // Duplicate the Widgets
