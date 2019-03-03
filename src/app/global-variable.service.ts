@@ -92,6 +92,7 @@ export class GlobalVariableService {
     conditionOperator: string = '';
     concoleLogStyleForCaching: string = "color: black; background: transparent; font-size: 10px; font-weight: bold;";
     concoleLogStyleForStartOfMethod: string = "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px; font-weight: bold;";
+    concoleLogStyleForStartOfUtilFunctions: string = "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px;";
     continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Canvas Server
     headers = new HttpHeaders().set("Content-Type", "application/json");
@@ -1572,7 +1573,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
     // TODO - finish these once overall design is done !
     // DatasourceFilter                    Delete  -
     // Combinations                  ?     Not Sure !!!
-
 
     deleteDashboardInfo(dashboardID: number): Promise<string> {
         // Deletes D with all related Entities
@@ -4918,7 +4918,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
        // Description: Gets the caching table that drives local caching process
        if (this.sessionDebugging) {
         console.log('%c    Global-Variables setBaseUrl ...',
-            this.concoleLogStyleForStartOfMethod,
+            this.concoleLogStyleForStartOfUtilFunctions,
             pathUrl);
         };
 
@@ -5109,7 +5109,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Sleep for a while
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables sleep ...',
-                this.concoleLogStyleForStartOfMethod,
+                this.concoleLogStyleForStartOfUtilFunctions,
                 {milliseconds});
         };
 
@@ -6393,7 +6393,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // This routine recalcs a value to a gridpoint IF snapping is enabled
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables alignToGripPoint ...',
-                this.concoleLogStyleForStartOfMethod,
+                this.concoleLogStyleForStartOfUtilFunctions,
                 {inputValue});
         };
 
@@ -6458,7 +6458,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables dashboardPermissionCheck ...',
-                this.concoleLogStyleForStartOfMethod,
+                this.concoleLogStyleForStartOfUtilFunctions,
                 {dashboardID}, {accessRequired});
         };
 
@@ -6785,7 +6785,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         //   = dateTime (YYYY/MM/DD HH:MM:SS)
         // if (this.sessionDebugging) {
             // console.log('%c    Global-Variables formatDate ...',
-            //     this.concoleLogStyleForCaching, {date});
+            //     this.concoleLogStyleForStartOfUtilFunctions, {date});
         // };
 
         let d = new Date(date);
@@ -7735,7 +7735,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Amended Date
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables dateAdd ...',
-                this.concoleLogStyleForStartOfMethod,
+                this.concoleLogStyleForStartOfUtilFunctions,
                 {date}, {interval}, {units});
         };
 
@@ -7783,7 +7783,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Amended Date
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
-                this.concoleLogStyleForStartOfMethod,
+                this.concoleLogStyleForStartOfUtilFunctions,
                 {fromDate}, {toDate}, {interval});
         };
 
@@ -7820,7 +7820,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             // console.log('%c    Global-Variables calcShapeTextDisplay ...',
-            //     this.concoleLogStyleForStartOfMethod, {shapeText});
+            //     this.concoleLogStyleForStartOfUtilFunctions, {shapeText});
         };
 
         let today = new Date();
@@ -7845,7 +7845,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Graph Height, null if impossible to do so
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables calcGraphHeight ...',
-                this.concoleLogStyleForStartOfMethod);
+                this.concoleLogStyleForStartOfUtilFunctions);
         };
 
         // Ignore bad input
@@ -7874,7 +7874,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         // Returns: Graph Width, null if impossible to do so
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables calcGraphWidth ...',
-                this.concoleLogStyleForStartOfMethod);
+                this.concoleLogStyleForStartOfUtilFunctions);
         };
 
         // Ignore bad input
