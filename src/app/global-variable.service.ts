@@ -3278,22 +3278,9 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         return new Promise<any>((resolve, reject) => {
 
-            // const headers = new HttpHeaders()
-            //     .set("Content-Type", "application/json");
-
-            // let pathUrl: string = 'paletteButtonsSelecteds';
-            // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            // this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
-            //     res => {
-            //         if(res.statusCode != 'success') {
-            //             reject(res.message);
-			// 			return;
-            //         };
-
             this.addResource('paletteButtonsSelecteds', data) 
                 .then( (res) => {
                     // Update Global vars to make sure they remain in sync
-                    // this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res.data)));
                     this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res)));
 
                     // Inform subscribers
@@ -3302,13 +3289,11 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     );
 
                     if (this.sessionDebugging) {
-                        // console.log('PaletteButtonsSelected ADDED', res.data, this.currentPaletteButtonsSelected)
                         console.log('%c    Global-Variables addPaletteButtonsSelected ends',
                             this.concoleLogStyleForEndOfMethod,
                             res);
                     };
 
-                    // resolve(res.data);
                     resolve(res);
                 })
                 .catch(err => {
@@ -3331,23 +3316,8 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
         return new Promise<string>((resolve, reject) => {
 
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'paletteButtonsSelecteds';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
+            this.saveResource('paletteButtonsSelecteds', data)
+                .then( res => {
 
                     // Replace local
                     let localIndex: number = this.currentPaletteButtonsSelected.value.findIndex(d =>
@@ -3356,19 +3326,20 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                     this.currentPaletteButtonsSelected.value[localIndex] = data;
 
                     if (this.sessionDebugging) {
-                        console.log('savePaletteButtonsSelected SAVED', res.data)
+                        console.log('%c    Global-Variables savePaletteButtonsSelected ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            res);
                     };
 
                     resolve('Saved');
-                },
-                err => {
+                })
+                .catch( err => {
                     if (this.sessionDebugging) {
                         console.log('Error savePaletteButtonsSelected FAILED', {err});
                     };
 
                     reject(err.message);
-                }
-            )
+                })
         });
     }
 
