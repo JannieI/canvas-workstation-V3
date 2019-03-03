@@ -1716,63 +1716,6 @@ export class GlobalVariableService {
         });
     }
 
-    saveDashboard(data: Dashboard): Promise<string> {
-        // Description: Saves Dashboard
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDashboard starts',
-                this.concoleLogStyleForStartOfMethod,{data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'dashboards';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.dashboards.findIndex(d =>
-                        d.id == data.id
-                    );
-                    if (localIndex >= 0) {
-                        this.dashboards[localIndex] = data;
-                    };
-                    localIndex = this.currentDashboards.findIndex(d =>
-                        d.id == data.id
-                    );
-                    if (localIndex >= 0) {
-                        this.currentDashboards[localIndex] = data;
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables saveDashboard ends',
-                            this.concoleLogStyleForEndOfMethod,
-                            res.data)
-                    };
-                    resolve('Saved');
-                },
-                err => {
-                    console.log('Error in     Global-Variables saveDashboard', err);
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     getCurrentDashboard(dashboardID: number): Promise<Dashboard[]> {
         // Description: Gets current D (and optional Template)
         // Params:
