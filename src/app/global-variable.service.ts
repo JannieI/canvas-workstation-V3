@@ -3354,54 +3354,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         });
     }
 
-    getCurrentDatasourcePermissions(datasourceID: number): Promise<DatasourcePermission[]> {
-        // Description: Gets DS-P for current DS
-        // Returns: this.datasourcePermissions.value array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDatasourcePermissions starts',
-                this.concoleLogStyleForStartOfMethod,
-                {datasourceID});
-        };
-
-        if ( (this.currentDatasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
-            return new Promise<DatasourcePermission[]>((resolve, reject) => {
-                this.getDatasourcePermissions()
-                    .then(res => {
-                        res = res.filter(
-                            i => i.datasourceID == datasourceID
-                        );
-                        this.currentDatasourcePermissions = res;
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentDatasourcePermissions ends',
-                                this.concoleLogStyleForEndOfMethod,
-                                {datasourceID}, {res})
-                        };
-
-                        resolve(this.currentDatasourcePermissions);
-                })
-             })
-        } else {
-            return new Promise<DatasourcePermission[]>((resolve, reject) => {
-                let returnData: DatasourcePermission[];
-                returnData = this.datasourcePermissions.filter(
-                    i => i.datasourceID == datasourceID
-                );
-                this.currentDatasourcePermissions = returnData;
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentDatasourcePermissions ends',
-                        this.concoleLogStyleForEndOfMethod,
-                        {datasourceID})
-                };
-
-                resolve(this.currentDatasourcePermissions);
-            });
-        };
-
-    }
-
     getSystemSettings(): Promise<CanvasSettings> {
         // Description: Gets system settings
         // Returns: this.canvasSettings object, unless:
