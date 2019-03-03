@@ -3,6 +3,7 @@
 import { Dashboard }                  from './models';
 import { DashboardTab }               from './models';
 import { Datasource }                 from './models';
+import { Dataset }                    from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 import { WidgetLayout }               from './models';
@@ -52,7 +53,6 @@ import Dexie from 'dexie';
         widget: Widget
     }
     
-
     // Dexie Interface: Local WidgetCheckpoints
     export interface ILocalWidgetCheckpoint {
         id: number,
@@ -71,7 +71,12 @@ import Dexie from 'dexie';
         id: number,
         datasource: Datasource
     }
-
+    
+    // Dexie Interface: Local Dataset
+    export interface ILocalDataset {
+        id: number,
+        dataset: Dataset
+    }
 
 // 2. Tables / Classes *********************************************************************
 
@@ -165,7 +170,6 @@ import Dexie from 'dexie';
         }
     }
 
-
     // Dexie Table: Local Datasources
     export class LocalDatasource implements ILocalDatasource {
         id: number;
@@ -174,6 +178,17 @@ import Dexie from 'dexie';
         constructor(id:number, datasource: Datasource) {
             this.id = id;
             this.datasource = datasource;
+        }
+    }
+     
+    // Dexie Table: Local Datasets
+    export class LocalDataset implements ILocalDataset {
+        id: number;
+        dataset: Dataset;
+
+        constructor(id:number, dataset: Dataset) {
+            this.id = id;
+            this.dataset = dataset;
         }
     }
 
@@ -191,6 +206,7 @@ import Dexie from 'dexie';
         localWidgetCheckpoints: Dexie.Table<ILocalWidgetCheckpoint, number>;
         localWidgetLayouts: Dexie.Table<ILocalWidgetLayout, number>;
         localDatasources: Dexie.Table<ILocalDatasource, number>;
+        localDatasets: Dexie.Table<ILocalDataset, number>;
         currentCanvasUser: Dexie.Table<ICurrentCanvasUser, number>;
         
         //...other tables goes ABOVE here...
@@ -205,7 +221,8 @@ import Dexie from 'dexie';
                 localWidgets: 'id',
                 localWidgetCheckpoints: 'id',
                 localWidgetLayout: 'id',
-                localDatasources: 'id'
+                localDatasources: 'id',
+                localDataset: 'id'
                 //...other tables goes here...
             });
         }
