@@ -238,7 +238,6 @@ export class GlobalVariableService {
 
     // Opening forms
     openDashboardFormOnStartup: boolean = false;
-    hasDatasources = new BehaviorSubject<boolean>(false);   // Used to set menu
     showModalLanding = new BehaviorSubject<boolean>(true);  // Shows Landing page
     lastDashboardOpened:
         {
@@ -348,12 +347,7 @@ export class GlobalVariableService {
                                         dashboardID, 
                                         dashboardTabID,
                                         this.currentDashboardInfo.value.currentDashboardState
-                                    ); //.then(n => {
-                                    if (this.currentDatasources.length > 0) {
-                                        this.hasDatasources.next(true);
-                                    } else {
-                                        this.hasDatasources.next(false);
-                                    }
+                                    );
 
                                     // Set the EditMode according to the D State
                                     this.editMode.next(
@@ -3107,9 +3101,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                         this.currentDatasources.push(newDS);
                     };
 
-                    // Inform that we now at a DS
-                    this.hasDatasources.next(true);
-
                     if (this.sessionDebugging) {
                         console.log('addDatasource ADDED', res.data,
                             this.currentDatasources, this.datasources)
@@ -3152,8 +3143,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
                 // Add DS to currentDS
                 localDatasource = this.datasources[datasourceIndex];
                 this.currentDatasources.push(localDatasource);
-
-                this.hasDatasources.next(true);
             };
             let dataSetIndex: number = this.datasets.findIndex(dS =>
                 dS.datasourceID == datasourceID

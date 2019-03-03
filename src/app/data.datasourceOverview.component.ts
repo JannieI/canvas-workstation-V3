@@ -269,8 +269,6 @@ export class DataDatasourceOverviewComponent implements OnInit {
     //             // Add DS and Dset to gv
     //             this.globalVariableService.currentDatasources.push(localDatasource);
 
-    //             this.globalVariableService.hasDatasources.next(true);
-
     //             // Dset exists in gv datasets, but not in currentDatasets
     //             if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
     //                 localDataset = this.globalVariableService.datasets[globalDsetIndex];
