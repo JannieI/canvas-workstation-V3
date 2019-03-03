@@ -329,7 +329,7 @@ export class GlobalVariableService {
                     this.getCurrentWidgetCheckpoints(dashboardID).then( l => {
 
                     // Load Datasets
-                    this.getDataset().then(m => {
+                    this.getResource('datasets').then(m => {
 
                         // Load Widgets
                         this.getCurrentWidgets(dashboardID, dashboardTabID).then(n => {
@@ -2525,58 +2525,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         if (newRecentIndex >= 0) {
             this.dashboardsRecent[newRecentIndex].nameAtRunTime = dashboardName;
         };
-
-    }
-
-    getDataset(): Promise<Dataset[]> {
-        // Description: Gets Datasets, WITHOUT data
-        // Returns: this.dataset
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDataset ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-        };
-
-        return new Promise<Dataset[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'datasets';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.datasets = res.data;
-                        this.isDirtyDatasets = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDataset 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.datasets)
-                        };
-
-                        resolve(this.datasets);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDataset 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.datasets)
-                };
-
-                resolve(this.datasets);
-            }
-        });
 
     }
 
