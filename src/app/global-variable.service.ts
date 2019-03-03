@@ -3020,58 +3020,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
         });
     }
 
-    getDatasources(): Promise<Datasource[]> {
-        // Description: Gets all DS
-        // Returns: this.datasources array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDatasources starts',
-                this.concoleLogStyleForStartOfMethod);
-        };
-
-        return new Promise<Datasource[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-
-                let pathUrl: string = 'datasources';
-                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                    res  => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
-							return;
-                        };
-
-                        this.datasources = res.data;
-                        this.isDirtyDatasources = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDatasources ends',
-                                this.concoleLogStyleForEndOfMethod,
-                                this.datasources)
-                        };
-
-                        resolve(this.datasources);
-                    },
-                    err => {
-                        reject(err.message)
-                    }
-                );
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDatasources ends',
-                        this.concoleLogStyleForEndOfMethod)
-                };
-
-                resolve(this.datasources);
-            }
-        });
-
-    }
-
     getCurrentDatasources(dashboardID: number): Promise<Datasource[]> {
         // Description: Gets DS for current D
         // Params: dashboardID = current D
@@ -3089,7 +3037,7 @@ console.log('xx localCacheableMemory', localCacheableMemory)
             // Refresh from source at start, or if dirty
             // TODO - What if databoards empty or diry - is that okay?
             if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
-                this.getDatasources()
+                this.getResource('datasources')
                     .then(ds =>
                         {
                             let datasourceIDs: number[] = [];
