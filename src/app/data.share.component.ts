@@ -361,7 +361,7 @@ export class DatasourceShareComponent implements OnInit {
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: new Date()
         };
-        this.globalVariableService.addDatasourcePermission(newDatasourcePermision).then(
+        this.globalVariableService.addResource('datasourcePermissions', newDatasourcePermision).then(
             res => this.datasourcePermissions.push(res)
         );
 
