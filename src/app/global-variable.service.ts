@@ -3669,13 +3669,13 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables deleteWidget ends',
                             this.concoleLogStyleForEndOfMethod,
-                            {id}, this.widgetCheckpoints, this.currentWidgetCheckpoints)
+                            {id})
                     };
 
                     resolve('Deleted');
                 })
                 .catch(err => {
-                    console.log('Error deleteWidget FAILED', {err});
+                    console.log('Error in     Global-Variables deleteWidget', {err});
                     reject(err.message);
                 }
             )
