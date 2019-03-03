@@ -2378,6 +2378,7 @@ export class GlobalVariableService {
                     resolve(temp);
                 })
                 .catch(err => {
+                    console.error('Error in     Global-Variables getDashboardsRecent', err)
                     reject(err.message)
                 });
         });
@@ -2425,7 +2426,10 @@ export class GlobalVariableService {
 
                         resolve(dR)
                     })
-                    .catch(err => reject(err));
+                    .catch(err => {
+                        console.error('Error in     Global-Variables amendDashboardsRecent', err)
+                        reject(err)
+                    });
             });
         } else {
 
@@ -2453,7 +2457,10 @@ export class GlobalVariableService {
 
                         resolve(recentDashboard)
                     })
-                    .catch(err => reject(err));
+                    .catch(err => {
+                        console.error('Error in     Global-Variables amendDashboardsRecent', err)
+                        reject(err)
+                    });
             });
         };
 
@@ -3117,6 +3124,7 @@ export class GlobalVariableService {
                             resolve(res);
                         })
                         .catch(err => {
+                            console.error('Error in     Global-Variables addCurrentDatasources', err)
                             console.log('GV 5')
                             reject('Error:' + err.message);
                         });
@@ -3160,10 +3168,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 })
                 .catch(err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error deleteDatasource FAILED', {err});
-                    };
-
+                    console.error('Error in     Global-Variables deleteDatasources', err)
                     reject(err.message);
                 })
             
@@ -3207,7 +3212,7 @@ export class GlobalVariableService {
                     resolve(this.datasourcePermissions);
                 })
                 .catch(err => {
-                    console.error('Erron in Global-Variables getDatasourcePermissions', err)
+                    console.error('Error in     Global-Variables getDatasourcePermissions', err)
                     reject(err.message)
                 });
         });
@@ -3241,7 +3246,10 @@ export class GlobalVariableService {
 
                     resolve(this.canvasSettings);
                 })
-                .catch(err => reject(err.message));
+                .catch(err => {
+                    console.error('Error in     Global-Variables getSystemSettings', err);
+                    reject(err.message)
+                });
         });
 
     }
@@ -3275,10 +3283,7 @@ export class GlobalVariableService {
                     resolve(res);
                 })
                 .catch(err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error addPaletteButtonsSelected FAILED', {err});
-                    };
-
+                    console.log('Error in     Global-Variables addPaletteButtonsSelected', err);
                     reject(err.message);
                 })
         });
@@ -3476,7 +3481,7 @@ export class GlobalVariableService {
                     resolve(this.widgets);
                 })
                 .catch(err => {
-                    console.error('Error in getWidgets', err);
+                    console.error('Error in     Global-Variables getWidgets', err);
                     reject(err.message)
                 });
 
@@ -3518,7 +3523,10 @@ export class GlobalVariableService {
 
                     resolve(this.currentWidgets);
                 })
-                .catch(err => console.error('Error in getCurrentWidgets', err));
+                .catch(err => {
+                    console.error('Error in     Global-Variables getCurrentWidgets', err);
+                    reject(err.message);
+                });
         });
 
     }
@@ -3533,41 +3541,27 @@ export class GlobalVariableService {
 
         return new Promise<string>((resolve, reject) => {
 
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'widgets';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
+            this.saveResource('widgets', data)
+                .then(res => {
 
                     // Update widgets and currentWidgets
                     this.widgetReplace(data);
 
                     if (this.sessionDebugging) {
-                        console.log('saveWidget SAVED', res.data)
+                        console.log('%c    Global-Variables saveWidget ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            res)
                     };
 
                     resolve('Saved');
-                },
-                err => {
+                })
+                .catch(err => {
                     if (this.sessionDebugging) {
                         console.log('Error saveWidget FAILED', {err});
                     };
 
                     reject(err.message);
-                }
-            )
+                });
         });
     }
 
@@ -6071,10 +6065,16 @@ export class GlobalVariableService {
                                     resolve(true);
                                 };
                             })
-                            .catch(err => console.error('Error in     Global-Variables verifyCanvasUser: ', err))
+                            .catch(err => {
+                                console.error('Error in     Global-Variables verifyCanvasUser: ', err);
+                                reject(err.message);
+                            })       
 
                         })
-                        .catch(err => console.error('Error in     Global-Variables verifyCanvasUser: ', err))
+                        .catch(err => {
+                            console.error('Error in     Global-Variables verifyCanvasUser: ', err);
+                            reject(err.message);
+                        })
 
                 } else {
                     console.warn('Global-Variables verifyCanvasUser: Registration failed on : ',
