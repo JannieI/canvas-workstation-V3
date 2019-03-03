@@ -96,7 +96,7 @@ export class DashboardSnapshotsComponent implements OnInit {
         // Delete the selected Snapshot
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 
-        this.globalVariableService.deleteDashboardSnapshot(id).then(res => {
+        this.globalVariableService.deleteResource('dashboardSnapshots', id).then(res => {
             this.currentDashboardSnapshots.splice(index, 1)
         });
     }
