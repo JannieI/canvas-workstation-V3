@@ -597,7 +597,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.globalVariableService.addData(newData).then(resData => {
 
             newdSet.url = 'data/' + resData.id.toString();
-            this.globalVariableService.addDatasource(newDatasource).then(resDS => {
+            this.globalVariableService.addResource('datasources', newDatasource).then(resDS => {
                 newdSet.datasourceID = resDS.id;
                 this.globalVariableService.addDataset(newdSet);
 
