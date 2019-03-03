@@ -3402,66 +3402,6 @@ console.log('xx localCacheableMemory', localCacheableMemory)
 
     }
 
-    saveDatasourcePermission(data: DatasourcePermission): Promise<string> {
-        // Description: Saves DatasourcePermission
-        // Returns: 'Saved' or error message
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDatasourcePermission starts',
-                this.concoleLogStyleForStartOfMethod, {data});
-        };
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'datasourcePermissions';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-            // Omit _id (immutable in Mongo)
-            const copyData = { ...data };
-            delete copyData._id;
-
-            this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
-            .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Replace local
-                    let localIndex: number = this.datasourcePermissions.findIndex(d =>
-                        d.id == data.id
-                    );
-                    if (localIndex >= 0) {
-                        this.datasourcePermissions[localIndex] = data;
-                    };
-                    localIndex = this.currentDatasourcePermissions.findIndex(d =>
-                        d.id == data.id
-                    );
-                    if (localIndex >= 0) {
-                        this.currentDatasourcePermissions[localIndex] = data;
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('saveDatasourcePermission SAVED', res.data)
-                    };
-
-                    resolve('Saved');
-                },
-                err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveDatasourcePermission FAILED', {err});
-                    };
-
-                    reject(err.message);
-                }
-            )
-        });
-
-    }
-
     deleteDatasourcePermission(id: number) {
         // Remove a record from the global and current DatasourcePermissions
         if (this.sessionDebugging) {
