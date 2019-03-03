@@ -134,7 +134,7 @@ export class DataManagedDataDictionaryComponent implements OnInit {
             sourceLocation: ''
         }
 
-        this.globalVariableService.getDatasources().then(dc => {
+        this.globalVariableService.getResource('datasources').then(dc => {
             // Fill local Var
             this.datasources = dc.slice();
             console.warn('xx this.datasources.length', this.datasources.length)
