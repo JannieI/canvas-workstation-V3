@@ -111,7 +111,6 @@ export class DataManagedDataDictionaryComponent implements OnInit {
             dataNoSQLStatement: '',
             dataNeo4jStatement: '',
             dataGraphQLStatement: '',
-            dataOverlaySpecification: '',
             nrWidgets: null,
             dataDictionary: '',
             datasourceCombinationSpec: null,

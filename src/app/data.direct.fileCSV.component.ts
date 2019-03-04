@@ -441,7 +441,6 @@ export class DataDirectFileCSVComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
-                dataOverlaySpecification: '',
                 nrWidgets: null,
                 datasourceCombinationSpec: null,
                 rowLimitFromSource: 0,

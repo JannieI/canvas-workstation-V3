@@ -149,7 +149,6 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                         }
                     }
                 `,
-                dataOverlaySpecification: '',
                 businessGlossary: 'Obtained using SQL Editor',
                 dataDictionary: '',
                 datasourceCombinationSpec: null,

@@ -139,7 +139,6 @@ export class DataManagedOverlayEditorComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
-                dataOverlaySpecification: "albums",
                 businessGlossary: 'Obtained using SQL Editor',
                 dataDictionary: '',
                 datasourceCombinationSpec: null,
@@ -209,7 +208,7 @@ export class DataManagedOverlayEditorComponent implements OnInit {
                     "database": database,
                     "host": serverName,
                     "port": port,
-                    "source": this.selectedDatasource.dataOverlaySpecification,
+                    "source": '',
                     "source_type": "table",
                     "specification": {
                         "options": {

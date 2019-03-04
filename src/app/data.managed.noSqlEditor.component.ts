@@ -138,7 +138,6 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                 dataNoSQLStatement: 'db.inventory.find( { status: { $in: [ "A", "D" ] } } )',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
-                dataOverlaySpecification: '',
                 businessGlossary: 'Obtained using SQL Editor',
                 dataDictionary: '',
                 datasourceCombinationSpec: null,

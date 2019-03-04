@@ -135,7 +135,6 @@ export class DataDirectNoSQLComponent implements OnInit {
                 dataNoSQLStatement: 'db.bios.find( { _id: 5 } )',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
-                dataOverlaySpecification: '',
                 businessGlossary: 'Obtained using NoSQL Editor',
                 dataDictionary: '',
                 datasourceCombinationSpec: null,

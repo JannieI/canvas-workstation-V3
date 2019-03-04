@@ -288,7 +288,6 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
-                dataOverlaySpecification: '',
                 nrWidgets: null,
                 datasourceCombinationSpec: null,
                 rowLimitFromSource: 0,

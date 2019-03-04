@@ -168,7 +168,6 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
-                dataOverlaySpecification: '',
                 businessGlossary: 'Obtained using SQL Editor',
                 dataDictionary: '',
                 datasourceCombinationSpec: null,

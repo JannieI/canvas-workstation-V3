@@ -139,7 +139,6 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
-                dataOverlaySpecification: '',
                 businessGlossary: 'Obtained using SQL Editor',
                 dataDictionary: '',
                 datasourceCombinationSpec: null,
