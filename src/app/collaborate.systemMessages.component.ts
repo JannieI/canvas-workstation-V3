@@ -40,6 +40,7 @@ export class CollaborateSystemMessagesComponent implements OnInit {
 
     }
 
+    errorMessage: string = '';
     statusBarMessages: StatusBarMessage[];
     selectedRow: number = 0;
 
@@ -60,6 +61,10 @@ export class CollaborateSystemMessagesComponent implements OnInit {
             // Set the data for the grid
             this.statusBarMessages = sbm.slice(100);
 
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Collaborate.systemMessages reading statusBarMessageLogs: ' + err)
         });
 
     }
