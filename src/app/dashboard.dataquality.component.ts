@@ -51,6 +51,7 @@ export class DashboardDataQualityComponent implements OnInit {
 
     canvasComments: CanvasComment[] = [];
     dataQualityIssues: DataQualityIssue[] = [];
+    errorMessage: string = '';
     headerText: string;
     selectedRow: number = 0;
 
@@ -81,7 +82,10 @@ export class DashboardDataQualityComponent implements OnInit {
                 this.dataQualityIssues = ca.filter(c =>
                     dsArray.indexOf(c['datasourceID']) >= 0)
             })
-            .catch(err => console.log('Error reading dataQualityIssues: ' + err));
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.dataQuality reading dataQualityIssues: ' + err);
+            });
     }
 
     clickClose(action: string) {

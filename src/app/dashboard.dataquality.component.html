@@ -5,6 +5,7 @@
                 <button type="button" class="closeButton" (click)="clickClose('Close')">
                     <b>X</b>
                 </button>
+
                 <div class="gridTitle">
                     <b>Data Quality Issues for {{ headerText }}</b>
                     <clr-signpost>
@@ -22,6 +23,10 @@
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
+                </div>
+
+                <div class="gridErrorMessage">
+                    {{ errorMessage }}
                 </div>
 
 
