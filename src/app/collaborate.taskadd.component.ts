@@ -11,6 +11,7 @@ import { ViewChild }                  from '@angular/core';
 // Our models
 import { CanvasTask }                 from './models';
 import { CanvasUser }                 from './models';
+import { Dashboard }                  from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -51,6 +52,7 @@ export class CollaborateTaskAddComponent implements OnInit {
 
     canvasTasks: CanvasTask[] = [];
     dashboardNames: string[] = [];
+    dashboards: Dashboard[] = [];
     errorMessage: string = '....';
     selectedTaskText: string = '';
     selectedActivityType: string = '';
@@ -113,19 +115,42 @@ export class CollaborateTaskAddComponent implements OnInit {
                     });
 
                     // Get Dashboard list
-                    this.globalVariableService.dashboards.forEach(d => {
-                        this.dashboardNames.push(d.name + ' (' + d.state + ')');
-                    });
-                    this.dashboardNames = ['', ...this.dashboardNames];
-                    this.dashboardNames = this.dashboardNames.sort( (obj1,obj2) => {
-                        if (obj1.toLowerCase() > obj2.toLowerCase()) {
-                            return 1;
-                        };
-                        if (obj1.toLowerCase() < obj2.toLowerCase()) {
-                            return -1;
-                        };
-                        return 0;
-                    });
+                    // this.globalVariableService.dashboards.forEach(d => {
+                    //     this.dashboardNames.push(d.name + ' (' + d.state + ')');
+                    // });
+                    // this.dashboardNames = ['', ...this.dashboardNames];
+                    // this.dashboardNames = this.dashboardNames.sort( (obj1,obj2) => {
+                    //     if (obj1.toLowerCase() > obj2.toLowerCase()) {
+                    //         return 1;
+                    //     };
+                    //     if (obj1.toLowerCase() < obj2.toLowerCase()) {
+                    //         return -1;
+                    //     };
+                    //     return 0;
+                    // });
+                    this.globalVariableService.getResource('dashboards')
+                        .then(res => {
+                            this.dashboards = res;
+                            this.dashboardNames = [];
+                            this.dashboards.forEach(d => {
+                                this.dashboardNames.push(d.name + ' (' + d.state + ')');
+                            });
+                            this.dashboardNames = ['', ...this.dashboardNames];
+
+                            this.dashboardNames = this.dashboardNames.sort( (obj1,obj2) => {
+                                if (obj1.toLowerCase() > obj2.toLowerCase()) {
+                                    return 1;
+                                };
+                                if (obj1.toLowerCase() < obj2.toLowerCase()) {
+                                    return -1;
+                                };
+                                return 0;
+                            });
+                        })
+                        .catch(err => {
+                            console.error('Error in Collaborate.addTask reading dashboards: ' + err)
+                            this.errorMessage = err.slice(0, 100);
+                        });
                 })
                 .catch(err => {
                     console.error('Error in Collaborate.addTask reading canvasUsers: ' + err)
@@ -154,12 +179,12 @@ export class CollaborateTaskAddComponent implements OnInit {
             this.errorMessage = 'Please select Activity Type';
             return;
         };
-        
+
         if (this.selectedTaskStatus == null  ||  this.selectedTaskStatus == '') {
             this.errorMessage = 'Please select Activity Status';
             return;
         };
-        
+
         if (this.selectedTaskText == null  ||  this.selectedTaskText == '') {
             this.errorMessage = 'Please enter a Description';
             return;
@@ -181,13 +206,13 @@ export class CollaborateTaskAddComponent implements OnInit {
         let today = new Date();
         let dashboardID: number = null;
         if (dashboardName != '') {
-            let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+            let dashboardIndex: number = this.dashboards.findIndex(
                 d => d.name == dashboardName
                      &&
                      d.state == dashboardState
             );
             if (dashboardIndex >= 0) {
-                dashboardID = this.globalVariableService.dashboards[
+                dashboardID = this.dashboards[
                     dashboardIndex].id;
             };
         };
