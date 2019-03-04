@@ -20,6 +20,7 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { CanvasTask }                 from './models';
 import { CanvasUser }                 from './models';
+import { Dashboard }                  from './models';
 
 // Vega, Vega-Lite
 import { compile }                    from 'vega-lite';
@@ -52,6 +53,7 @@ export class CollaborateTasksComponent implements OnInit {
     canvasTasks: CanvasTask[] = [];
     canvasTasksOrignal: CanvasTask[] = [];
     dashboardNames: string[] = [];
+    dashboards: Dashboard[] = [];
     errorMessage: string = '';
     selectedDashboard: string = '';
     selectedDetailRow: number = 0;
@@ -106,10 +108,33 @@ export class CollaborateTasksComponent implements OnInit {
                         });
 
                         // Get Dashboard list
-                        this.globalVariableService.dashboards.forEach(d => {
-                            this.dashboardNames.push(d.name);
+                        // this.globalVariableService.dashboards.forEach(d => {
+                        //     this.dashboardNames.push(d.name);
+                        // });
+                        // this.dashboardNames = ['', ...this.dashboardNames];
+                        this.globalVariableService.getResource('dashboards')
+                        .then(res => {
+                            this.dashboards = res;
+                            this.dashboardNames = [];
+                            this.dashboards.forEach(d => {
+                                this.dashboardNames.push(d.name + ' (' + d.state + ')');
+                            });
+                            this.dashboardNames = ['', ...this.dashboardNames];
+
+                            this.dashboardNames = this.dashboardNames.sort( (obj1,obj2) => {
+                                if (obj1.toLowerCase() > obj2.toLowerCase()) {
+                                    return 1;
+                                };
+                                if (obj1.toLowerCase() < obj2.toLowerCase()) {
+                                    return -1;
+                                };
+                                return 0;
+                            });
+                        })
+                        .catch(err => {
+                            console.error('Error in Collaborate.addTask reading dashboards: ' + err)
+                            this.errorMessage = err.slice(0, 100);
                         });
-                        this.dashboardNames = ['', ...this.dashboardNames];
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);
@@ -208,14 +233,41 @@ export class CollaborateTasksComponent implements OnInit {
         };
 
         // TODO - make this better with a DB
-        if (this.selectedDashboard != '') {
-            let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-                d => d.name == this.selectedDashboard
+        // if (this.selectedDashboard != '') {
+        //     let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+        //         d => d.name == this.selectedDashboard
+        //     );
+        //     if (dashboardIndex >= 0) {
+        //         let dashboardID: number = this.globalVariableService.dashboards[
+        //             dashboardIndex].id;
+
+        //         this.canvasTasks = this.canvasTasks.filter(
+        //             tsk => tsk.linkedDashboardID == dashboardID
+        //         );
+        //     };
+        // };
+        let dashboardName: string = '';
+        let dashboardState: string = '';
+        if (this.selectedDashboard != null  &&  this.selectedDashboard != '') {
+            let index: number = this.selectedDashboard.indexOf(' (');
+            if (index >= 0) {
+                dashboardName = this.selectedDashboard.substring(0, index);
+                dashboardState = this.selectedDashboard.substring(
+                    index + 2, this.selectedDashboard.length - 1
+                );
+            };
+        };
+
+        let today = new Date();
+        let dashboardID: number = null;
+        if (dashboardName != '') {
+            let dashboardIndex: number = this.dashboards.findIndex(
+                d => d.name == dashboardName
+                     &&
+                     d.state == dashboardState
             );
             if (dashboardIndex >= 0) {
-                let dashboardID: number = this.globalVariableService.dashboards[
-                    dashboardIndex].id;
-
+                dashboardID = this.dashboards[dashboardIndex].id;
                 this.canvasTasks = this.canvasTasks.filter(
                     tsk => tsk.linkedDashboardID == dashboardID
                 );

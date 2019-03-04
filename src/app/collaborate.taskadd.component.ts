@@ -114,20 +114,6 @@ export class CollaborateTaskAddComponent implements OnInit {
                         };
                     });
 
-                    // Get Dashboard list
-                    // this.globalVariableService.dashboards.forEach(d => {
-                    //     this.dashboardNames.push(d.name + ' (' + d.state + ')');
-                    // });
-                    // this.dashboardNames = ['', ...this.dashboardNames];
-                    // this.dashboardNames = this.dashboardNames.sort( (obj1,obj2) => {
-                    //     if (obj1.toLowerCase() > obj2.toLowerCase()) {
-                    //         return 1;
-                    //     };
-                    //     if (obj1.toLowerCase() < obj2.toLowerCase()) {
-                    //         return -1;
-                    //     };
-                    //     return 0;
-                    // });
                     this.globalVariableService.getResource('dashboards')
                         .then(res => {
                             this.dashboards = res;
