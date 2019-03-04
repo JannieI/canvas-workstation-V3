@@ -60,7 +60,7 @@ export class CollaborateAuditTrailComponent implements OnInit {
             .then (cau => this.canvasAuditTrail = cau)
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Collaborate.auditTrail reading auditTrails: ' + err)
+                console.error('Error in Collaborate.auditTrail reading auditTrails: ' + err);
             });
     }
 

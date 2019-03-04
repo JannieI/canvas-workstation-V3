@@ -126,10 +126,16 @@ export class CollaborateTaskAddComponent implements OnInit {
                         };
                         return 0;
                     });
+                })
+                .catch(err => {
+                    console.error('Error in Collaborate.addTask reading canvasUsers: ' + err)
+                    this.errorMessage = err.slice(0, 100);
                 });
             })
-            .catch(err => this.errorMessage = 'Error getting tasks: ' + err);
-
+            .catch(err => {
+                console.error('Error in Collaborate.addTask reading canvasTasks: ' + err)
+                this.errorMessage = err.slice(0, 100);
+            });
     }
 
   	clickClose(action: string) {
@@ -208,10 +214,13 @@ export class CollaborateTaskAddComponent implements OnInit {
         };
 
         this.globalVariableService.addResource('canvasTasks', newTask)
-            .then(res => console.log('xx added') )
-            .catch(err => this.errorMessage = 'Error adding resource: ' + err);
-
-        this.formCollaborateTaskAddClosed.emit(action);
+            .then(res => {
+                this.formCollaborateTaskAddClosed.emit(action);
+            })
+            .catch(err => {
+                console.error('Error in Collaborate.addTask adding canvasTasks: ' + err)
+                this.errorMessage = err.slice(0, 100);
+            });
     }
 
 
