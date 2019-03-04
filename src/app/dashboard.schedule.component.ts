@@ -60,7 +60,10 @@ export class DashboardScheduleComponent implements OnInit {
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID + '}'
             )
             .then(i => this.dashboardSchedules = i)
-            .catch(err => this.errorMessage = err);
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.schedule reading dashboardSchedules: ' + err);
+            });
     }
 
     clickClose(action: string) {
