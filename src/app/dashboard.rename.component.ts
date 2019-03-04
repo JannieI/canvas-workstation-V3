@@ -48,6 +48,7 @@ export class DashboardRenameComponent implements OnInit {
 
     }
 
+    dashboards: Dashboard[] = [];
     errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
     filterCreatedBy: string;
     filterDatasource: string;
@@ -79,18 +80,26 @@ export class DashboardRenameComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.filteredDashboards = this.globalVariableService.dashboards
-            .slice()
-            .sort( (obj1,obj2) => {
-                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                    return 1;
-                };
-                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                    return -1;
-                };
-                return 0;
+        this.globalVariableService.getResource('dashboards')
+            .then (res => {
+                this.dashboards = res;
+                this.filteredDashboards = this.dashboards
+                    .slice()
+                    .sort( (obj1,obj2) => {
+                        if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                            return 1;
+                        };
+                        if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                            return -1;
+                        };
+                        return 0;
+                    });
+            })
+            .catch(err => {
+                console.error('Error in Dashboard.rename reading dashboards: ' + err)
+                this.errorMessage = err.slice(0, 100);
             });
-    }
+}
 
     clickClose(action: string) {
         // Close form, no futher changes
@@ -135,7 +144,7 @@ export class DashboardRenameComponent implements OnInit {
 
         // Start afresh
         this.errorMessage = '';
-        this.filteredDashboards = this.globalVariableService.dashboards.slice();
+        this.filteredDashboards = this.dashboards.slice();
 
         if (this.filterCreatedBy != ''  &&  this.filterCreatedBy != undefined) {
             this.filteredDashboards = this.filteredDashboards.filter(d =>
@@ -162,7 +171,7 @@ export class DashboardRenameComponent implements OnInit {
             });
 
             // Filter D that are in above list of dIDs
-            this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
+            this.filteredDashboards = this.dashboards.filter(d =>
                 dIDs.indexOf(d.id) >= 0
             );
 
@@ -194,7 +203,7 @@ export class DashboardRenameComponent implements OnInit {
             });
 
             // Filter D that are in above list of dIDs
-            this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
+            this.filteredDashboards = this.dashboards.filter(d =>
                 dIDs.indexOf(d.id) >= 0
             );
         };
@@ -221,7 +230,7 @@ export class DashboardRenameComponent implements OnInit {
                 };
             });
 
-            this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
+            this.filteredDashboards = this.dashboards.filter(d =>
                 pIDs.indexOf(d.id) >= 0
             );
         };
@@ -236,7 +245,7 @@ export class DashboardRenameComponent implements OnInit {
                 };
             });
 
-            this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
+            this.filteredDashboards = this.dashboards.filter(d =>
                 pIDs.indexOf(d.id) >= 0
             );
         };
@@ -253,7 +262,7 @@ export class DashboardRenameComponent implements OnInit {
                 };
             });
 
-            this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
+            this.filteredDashboards = this.dashboards.filter(d =>
                 pIDs.indexOf(d.id) >= 0
             );
         };
@@ -266,7 +275,7 @@ export class DashboardRenameComponent implements OnInit {
                  };
              });
 
-             this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
+             this.filteredDashboards = this.dashboards.filter(d =>
                  pIDs.indexOf(d.id) >= 0
              );
         };
@@ -288,7 +297,7 @@ export class DashboardRenameComponent implements OnInit {
             });
 
             // Filter D that are in above list of tIDs
-            this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
+            this.filteredDashboards = this.dashboards.filter(d =>
                 tIDs.indexOf(d.id) >= 0
             );
         };

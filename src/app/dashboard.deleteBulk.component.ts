@@ -73,7 +73,6 @@ export class DashboardDeleteBulkComponent implements OnInit {
 
         this.globalVariableService.getResource('dashboards')
             .then (res => {
-                console.log('xx res', res)
                 this.dashboards = res
                     .filter(d => d.state != 'Draft')
                     .filter(d => d.draftID == null)
