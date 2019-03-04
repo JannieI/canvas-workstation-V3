@@ -56,7 +56,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
 
     }
 
-    dashboards: Dashboard[];
+    dashboards: Dashboard[] = [];
     errorMessage: string = '';
     filterName = new FilterName();
     filterDescription = new FilterDescription();
@@ -71,22 +71,29 @@ export class DashboardDeleteBulkComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards
-            .filter(d => d.state != 'Draft')
-            .filter(d => d.draftID == null)
-            .slice()
-            .sort((n1,n2) => {
-                if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
-                    return 1;
-                };
+        this.globalVariableService.getResource('dashboards')
+            .then (res => {
+                console.log('xx res', res)
+                this.dashboards = res
+                    .filter(d => d.state != 'Draft')
+                    .filter(d => d.draftID == null)
+                    .sort((n1,n2) => {
+                        if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
+                            return 1;
+                        };
 
-                if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
-                    return -1;
-                };
+                        if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
+                            return -1;
+                        };
 
-                return 0;
+                        return 0;
+                    })
+            })
+            .catch(err => {
+                console.error('Error in Collaborate.addTask reading dashboards: ' + err)
+                this.errorMessage = err.slice(0, 100);
             });
-    }
+}
 
     clickClose(action: string) {
         // Close form

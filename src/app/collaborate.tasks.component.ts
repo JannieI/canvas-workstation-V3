@@ -108,10 +108,6 @@ export class CollaborateTasksComponent implements OnInit {
                         });
 
                         // Get Dashboard list
-                        // this.globalVariableService.dashboards.forEach(d => {
-                        //     this.dashboardNames.push(d.name);
-                        // });
-                        // this.dashboardNames = ['', ...this.dashboardNames];
                         this.globalVariableService.getResource('dashboards')
                         .then(res => {
                             this.dashboards = res;
@@ -232,20 +228,7 @@ export class CollaborateTasksComponent implements OnInit {
             );
         };
 
-        // TODO - make this better with a DB
-        // if (this.selectedDashboard != '') {
-        //     let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-        //         d => d.name == this.selectedDashboard
-        //     );
-        //     if (dashboardIndex >= 0) {
-        //         let dashboardID: number = this.globalVariableService.dashboards[
-        //             dashboardIndex].id;
-
-        //         this.canvasTasks = this.canvasTasks.filter(
-        //             tsk => tsk.linkedDashboardID == dashboardID
-        //         );
-        //     };
-        // };
+        
         let dashboardName: string = '';
         let dashboardState: string = '';
         if (this.selectedDashboard != null  &&  this.selectedDashboard != '') {
