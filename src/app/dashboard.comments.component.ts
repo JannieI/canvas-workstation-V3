@@ -79,7 +79,7 @@ export class DashboardCommentsComponent implements OnInit {
         };
 
         // Set the data for the grid
-        this.globalVariableService.getResource('canvasComments')
+        this.globalVariableService.getResource('canvasCommentss')
             .then (ca => {
                 console.log('COMM ca', ca)
                 this.canvasComments = ca.filter( c =>
@@ -91,7 +91,8 @@ export class DashboardCommentsComponent implements OnInit {
                 this.indexLastRecord = this.canvasComments.length - 1;
             })
             .catch(err => {
-                this.errorMessage = err
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.comments reading canvasComments: ' + err);
             });
     }
 
@@ -157,9 +158,10 @@ export class DashboardCommentsComponent implements OnInit {
                     this.message = 'Comment saved';
                 })
                 .catch(err => {
-                    this.errorMessage = err;
-                })
-
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.comments saving canvasComments: ' + err);
+                });
+    
     }
 
     clickAdd() {
@@ -197,7 +199,8 @@ export class DashboardCommentsComponent implements OnInit {
                     this.indexLastRecord = this.canvasComments.length - 1;
             })
             .catch(err => {
-                this.errorMessage = err;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.comments adding canvasComments: ' + err);
             });
 
     }
