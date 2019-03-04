@@ -52,6 +52,7 @@ export class DashboardDiscardComponent implements OnInit {
 
     }
 
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdf';
     isFirstTimeDashboardDiscard: boolean;
     isFirstTimeDashboardDiscardSubscription: Subscription;
 
@@ -102,8 +103,9 @@ export class DashboardDiscardComponent implements OnInit {
                 this.formDashboardDiscardClosed.emit(action); 
             })
             .catch(err => {
-                    alert ('Error encountered with delete in discardDashboard: ' + err);
-            })
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.discard with discardDashboard: ' + err);
+            });
     }
 
 }
