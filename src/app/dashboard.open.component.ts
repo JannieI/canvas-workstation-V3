@@ -99,6 +99,10 @@ export class DashboardOpenComponent implements OnInit {
         // Prefetch data
         this.globalVariableService.getResource('canvasGroups').then( res => {
             this.groups = res;
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Dashboard.open reading canvasGroups: ' + err);
         });
 
         // Get DSs
@@ -159,23 +163,39 @@ export class DashboardOpenComponent implements OnInit {
         this.showAdvancedFilters = !this.showAdvancedFilters;
 
         // Get AuditTrail in advance
-        this.globalVariableService.getResource('canvasAuditTrails').then( res => {
-            this.canvasAuditTrails = res;
-        });
+        this.globalVariableService.getResource('canvasAuditTrails')
+            .then( res => this.canvasAuditTrails = res)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.open reading canvasAuditTrails: ' + err);
+            });
 
         // Get Tags in advance
-        this.globalVariableService.getResource('dashboardTags').then(res =>
-            this.dashboardTags = res);
+        this.globalVariableService.getResource('dashboardTags')
+            .then(res =>
+                this.dashboardTags = res
+            )
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.open reading dashboardTags: ' + err);
+            });
 
         // Get Schedule Logs in advance
-        this.globalVariableService.getResource('dashboardScheduleLog').then(res =>
-            this.dashboardScheduleLog = res);
+        this.globalVariableService.getResource('dashboardScheduleLog')
+            .then(res => this.dashboardScheduleLog = res)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.open reading dashboardScheduleLog: ' + err);
+            });
 
         // Get Schedules in advance
         this.globalVariableService.getResource('dashboardSchedules')
             .then(res => this.dashboardSchedules = res)
-            .catch(err => this.errorMessage = err);
-
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.open reading dashboardSchedules: ' + err);
+            });
+    
         // Nothing selected 
         this.filteredDashboardIDs = [];
     }
