@@ -1932,21 +1932,6 @@ export class AppComponent implements OnInit {
         };
     }
 
-    handleCloseDataManagedOverlayEditor(returnDS: Datasource) {
-        // Handle Close of Overlay Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedOverlayEditor', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalDataManagedOverlayEditor = false;
-
-        // Open Transformations if so requested
-        if (returnDS != null) {
-            this.selectedDatasource = returnDS;
-            this.showModalDataTransformation = true;
-        };
-    }
-
     handleCloseDataTransformation(action: string) {
         // Handle Close of Overlay Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataTransformation', '@Start');
