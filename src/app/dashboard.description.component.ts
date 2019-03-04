@@ -105,32 +105,37 @@ export class DashboardDescriptionComponent implements OnInit {
         this.dashboardTemplateIDoriginal = this.selectedDashboard.templateDashboardID;
 
         // Get list of D for dropdown
-        this.globalVariableService.getResource('dashboards').then(d => {
-            this.dashboards = d;
-            let dashboards = d.sort((n1,n2) => {
-                if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
-                    return 1;
-                };
+        this.globalVariableService.getResource('dashboards')
+            .then(d => {
+                this.dashboards = d;
+                let dashboards = d.sort((n1,n2) => {
+                    if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
+                        return 1;
+                    };
 
-                if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
-                    return -1;
-                };
+                    if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
+                        return -1;
+                    };
 
-                return 0;
+                    return 0;
+                });
+                dashboards.forEach(d => {
+                    // List of ngFor (needs ID at later stage, state is useful for user)
+                    this.dashboardList.push(d.name + ' (' + d.id.toString() + ') ' + d.state);
+
+                    // Fill Initial
+                    if (this.selectedDashboard.templateDashboardID != null
+                        &&
+                        this.selectedDashboard.templateDashboardID == d.id) {
+                        this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ') ' + d.state;
+                    };
+                });
+
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.description reading dashboards: ' + err);
             });
-            dashboards.forEach(d => {
-                // List of ngFor (needs ID at later stage, state is useful for user)
-                this.dashboardList.push(d.name + ' (' + d.id.toString() + ') ' + d.state);
-
-                // Fill Initial
-                if (this.selectedDashboard.templateDashboardID != null
-                    &&
-                    this.selectedDashboard.templateDashboardID == d.id) {
-                    this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ') ' + d.state;
-                };
-            });
-
-        });
 
         // Update local properties
         this.dashboardName = this.selectedDashboard.name;
@@ -178,6 +183,10 @@ export class DashboardDescriptionComponent implements OnInit {
         // Get setup info
         this.globalVariableService.getResource('canvasBackgroundcolors')
             .then(res => this.backgroundcolors = res)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.description reading canvasBackgroundcolors: ' + err);
+            });
     }
 
     ngOnDestroy() {
@@ -229,6 +238,10 @@ export class DashboardDescriptionComponent implements OnInit {
         };
         if (this.dashboardCode == '') {
             this.errorMessage = 'Please enter a Code';
+            return;
+        };
+        if (this.errorMessage != '') {
+            this.errorMessage = 'An Error occured when loading the form, thus cannot save';
             return;
         };
 
