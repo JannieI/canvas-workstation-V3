@@ -354,7 +354,6 @@ export class AppComponent implements OnInit {
     showModalDataManagedGraphQLEditor: boolean = false;
     showModalDataManagedNeo4jEditor: boolean = false;
     showModalDataManagedNoSQLEditor: boolean = false;
-    showModalDataManagedOverlayEditor: boolean = false;
     showModalDataManagedQueryBuilder: boolean = false;
     showModalDataManagedSQLEditor: boolean = false;
     showModalDataOverview: boolean = false;
