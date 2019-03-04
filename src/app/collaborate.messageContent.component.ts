@@ -69,54 +69,64 @@ export class CollaborateMessageContentComponent implements OnInit {
         this.globalVariableService.getResource('canvasMessages').then(msg => {
             this.canvasMessages = msg;
 
-            this.globalVariableService.getResource('canvasUsers').then(usr => {
-                this.users = usr.sort((n1,n2) => {
-                    if (n1.userID.toLowerCase() > n2.userID.toLowerCase()) {
-                        return 1;
-                    };
-                
-                    if (n1.userID.toLowerCase() < n2.userID.toLowerCase()) {
-                        return -1;
-                    };
-                
-                    return 0;
-                }); 
-                usr.forEach(u => {
-                    this.userNames.push(u.userID);
-                });
-                this.userNames = ['', ...this.userNames];
-
-                this.globalVariableService.getResource('canvasGroups').then(grp => {
-                    grp = grp.sort((n1,n2) => {
-                        if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
+            this.globalVariableService.getResource('canvasUsers')
+                .then(usr => {
+                    this.users = usr.sort((n1,n2) => {
+                        if (n1.userID.toLowerCase() > n2.userID.toLowerCase()) {
                             return 1;
                         };
                     
-                        if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
+                        if (n1.userID.toLowerCase() < n2.userID.toLowerCase()) {
+                            return -1;
+                        };
+                    
+                        return 0;
+                    }); 
+                    usr.forEach(u => {
+                        this.userNames.push(u.userID);
+                    });
+                    this.userNames = ['', ...this.userNames];
+
+                    this.globalVariableService.getResource('canvasGroups')
+                        .then(grp => {
+                            grp = grp.sort((n1,n2) => {
+                                if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
+                                    return 1;
+                                };
+                            
+                                if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
+                                    return -1;
+                                };
+                            
+                                return 0;
+                            });
+                            grp.forEach(g => {
+                                this.groupNames.push(g.name);
+                            });
+                        })
+                        .catch(err => {
+                            this.errorMessage = err.slice(0, 100);
+                            console.error('Error in Collaborate.messageContant canvasGroups: ' + err)
+                        });
+                
+                    this.groupNames = this.groupNames.sort((n1,n2) => {
+                        if (n1.toLowerCase() > n2.toLowerCase()) {
+                            return 1;
+                        };
+                    
+                        if (n1.toLowerCase() < n2.toLowerCase()) {
                             return -1;
                         };
                     
                         return 0;
                     });
-                    grp.forEach(g => {
-                        this.groupNames.push(g.name);
-                    });
-                });
 
-                this.groupNames = this.groupNames.sort((n1,n2) => {
-                    if (n1.toLowerCase() > n2.toLowerCase()) {
-                        return 1;
-                    };
-                
-                    if (n1.toLowerCase() < n2.toLowerCase()) {
-                        return -1;
-                    };
-                
-                    return 0;
+                    this.groupNames = ['', ...this.groupNames];
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Collaborate.messageContant canvasUsers: ' + err)
                 });
-
-                this.groupNames = ['', ...this.groupNames];
-            });
 
             if (this.existingMessagge != null  &&  this.messageAction == 'reply') {
                 this.selectedUser = this.existingMessagge.sender;
