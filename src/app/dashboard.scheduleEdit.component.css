@@ -63,11 +63,11 @@
     }
     .gridErrorMessage {
         color: red;
-        grid-column-start: 18;
+        grid-column-start: 9;
         /* autoprefixer: off */
         grid-column-end: 23;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 2;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }

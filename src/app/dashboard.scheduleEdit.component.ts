@@ -95,7 +95,10 @@ export class DashboardScheduleEditComponent implements OnInit {
                     this.clickRow(0, this.dashboardSchedules[0].id);
                   };
             })
-            .catch(err => this.errorMessage = err);
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.scheduleEdit reading dashboardSchedules: ' + err);
+            });
     }
 
     clickRow(index: number, id: number) {
@@ -317,8 +320,11 @@ export class DashboardScheduleEditComponent implements OnInit {
                     this.dashboardSchedules.push(res);
                     this.message = 'Added Schedule';
                 })
-                .catch(err => this.errorMessage = 'Add failed !' + err);
-        };
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.scheduleEdit adding dashboardSchedules: ' + err);
+                });
+            };
 
         // Save the changes
         if (this.editing) {
@@ -330,8 +336,11 @@ export class DashboardScheduleEditComponent implements OnInit {
             };
             this.globalVariableService.saveResource('dashboardSchedules', this.selectedDashboardSchedule)
                 .then(res => this.message = 'Saved Schedule')
-                .catch(err => this.errorMessage = 'Save failed !');
-        };
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.scheduleEdit savding dashboardSchedules: ' + err);
+                });
+            };
 
         // Reset
         this.editing = false;
@@ -372,7 +381,10 @@ export class DashboardScheduleEditComponent implements OnInit {
                 this.dashboardSchedules = this.dashboardSchedules.filter(
                     sch => sch.id != id);
             })
-            .catch(err => this.errorMessage = 'Error with delete: ' + err);
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.scheduleEdit deleting dashboardSchedules: ' + err);
+            });
 
         this.selectedRow = null;
         this.scheduleID = null;
