@@ -49,6 +49,7 @@ export class DashboardSaveAsComponent implements OnInit {
 
     }
 
+    errorMessage: string = '';
     newName: string = '';
 
 	constructor(
