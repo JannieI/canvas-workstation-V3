@@ -56,7 +56,7 @@ export class DataTransformationComponent implements OnInit {
     dataFields: DataField[];
     datasourceTransformations: localDatasourceTransformation[] = [];
     editing: boolean = false;                       // True if editing a selected Tr
-    errorMessage: string = "";
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdfasdf';
     nrParameters: number = 0;                       // Nr of Parameters for current Tr
 
     // Parameter info on form
@@ -143,9 +143,18 @@ export class DataTransformationComponent implements OnInit {
                 if (this.datasourceTransformations.length > 0) {
                     this.clickRow(0, this.datasourceTransformations[0].id);
                 };
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Data.transformation reading transformations: ' + err);
             });
+
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Data.transformation reading datasourceTransformations: ' + err);
         });
-    }
+}
 
 
     clickSelectedTransformation() {
@@ -616,9 +625,12 @@ export class DataTransformationComponent implements OnInit {
                         d.id == newID);
                     this.clickRow(newIndex, newID);
 
-                }
-            );
-        };
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Data.transformation adding datasourceTransformations: ' + err);
+                });
+            };
 
         // Save EDITs
         if (this.editing) {
@@ -651,6 +663,10 @@ export class DataTransformationComponent implements OnInit {
             let newIndex: number = index > 0? index - 1 : 0;
             let newID: number = this.datasourceTransformations[newIndex].id;
             this.clickRow(newIndex, newID);
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Data.transformation deleting datasourceTransformations: ' + err);
         });
 
     }

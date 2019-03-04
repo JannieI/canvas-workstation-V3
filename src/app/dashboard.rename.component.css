@@ -179,12 +179,12 @@
     }
     .gridErrorMessage {
         color: red;
-        grid-column-start: 12;
+        grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 14;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin: 2px 2px 2px 10px;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin-left: 12px;
         text-align: left;
     }
 
