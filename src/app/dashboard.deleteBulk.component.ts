@@ -90,7 +90,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
                     })
             })
             .catch(err => {
-                console.error('Error in Collaborate.addTask reading dashboards: ' + err)
+                console.error('Error in Dashboard.bulkDelete reading dashboards: ' + err)
                 this.errorMessage = err.slice(0, 100);
             });
 }

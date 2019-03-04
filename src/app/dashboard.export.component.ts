@@ -51,7 +51,16 @@ export class DashboardExportComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards.slice();
+
+        this.globalVariableService.getResource('dashboards')
+            .then (res => {
+                this.dashboards = res;
+            })
+            .catch(err => {
+                console.error('Error in Dashboard.export reading dashboards: ' + err)
+                this.errorMessage = err.slice(0, 100);
+            });
+
     }
 
     clickExport() {
@@ -72,9 +81,9 @@ export class DashboardExportComponent implements OnInit {
             this.errorMessage = 'Unexpected error, current dashboard not found in local cache';
             return;
         };
-        let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(d =>
+        let dashboardIndex: number = this.dashboards.findIndex(d =>
             d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
-        let newD: Dashboard = this.globalVariableService.dashboards[dashboardIndex];
+        let newD: Dashboard = this.dashboards[dashboardIndex];
         console.warn('xx d', this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
         newD)
         var obj = JSON.stringify(newD);
