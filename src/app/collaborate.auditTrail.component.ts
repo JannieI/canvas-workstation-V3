@@ -44,6 +44,7 @@ export class CollaborateAuditTrailComponent implements OnInit {
     }
 
     canvasAuditTrail: CanvasAuditTrail[];
+    errorMessage: string = '';
     selectedRow: number = 0;
 
     constructor(
@@ -57,7 +58,10 @@ export class CollaborateAuditTrailComponent implements OnInit {
 
         this.globalVariableService.getResource('canvasAuditTrails')
             .then (cau => this.canvasAuditTrail = cau)
-            .catch(err => console.log('Error reading auditTrails: ' + err));
+            .catch(err => {
+                this.errorMessage = err.message;
+                console.error('Error reading auditTrails: ' + err)
+            });
 
     }
 
