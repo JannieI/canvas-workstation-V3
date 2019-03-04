@@ -8,8 +8,11 @@
                 </button>
 
                 <div class="gridTitle">
-                    <b>Delete the current Dashboard: </b> {{ dashboard.name }} 
-                    ({{ dashboard.state }})
+                    <b>Delete the current Dashboard: </b> 
+                    <span *ngIf="dashboard">
+                        {{ dashboard.name }} 
+                        ({{ dashboard.state }})
+                    </span>
                     <clr-signpost>
                         <clr-icon shape="info-circle"
                             clrSignpostTrigger>
@@ -127,9 +130,11 @@
                 </div>
 
                 <div class="gridDesription">
-                    <i>
-                        {{ dashboard.description }}
-                    </i>
+                    <span *ngIf="dashboard">
+                        <i>
+                            {{ dashboard.description }}
+                        </i>
+                    </span>
                 </div>
                 <div class="gridButtonCancel">
                     <button

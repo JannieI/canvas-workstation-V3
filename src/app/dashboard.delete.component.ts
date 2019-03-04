@@ -77,9 +77,14 @@ export class DashboardDeleteComponent implements OnInit {
 
         // Set the D and nr of times the current D is used in other entities.
         let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-        this.dashboard = this.globalVariableService.dashboards.filter(
-            d => d.id == dashboardID
-        )[0];
+        this.globalVariableService.getResource('dashboards').then(res => {
+            this.dashboard = res.filter(d => d.id == dashboardID)[0];
+            console.log('xx dashboard', this.dashboard)
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Dashboard.delete reading dashboards: ' + err);
+        });
 
         this.globalVariableService.getDashboardSummary(dashboardID)
             .then(res => {
