@@ -48,7 +48,7 @@ export class DashboardRenameComponent implements OnInit {
 
     }
 
-    errorMessage: string = '';
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
     filterCreatedBy: string;
     filterDatasource: string;
     filteredDashboards: Dashboard[] = [];       // Filtered Ds, shown on form

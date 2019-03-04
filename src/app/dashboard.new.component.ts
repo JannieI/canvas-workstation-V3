@@ -364,21 +364,48 @@ export class DashboardNewComponent implements OnInit {
                                                             'addDashboard-clickCreate', draftD.id, draftTab.id, ''
                                                         );
                                                     })
-                                                    .catch(err => this.errorMessage = 'Error adding Layout: ' + err);
+                                                    .catch(err => {
+                                                        this.errorMessage = err.slice(0, 100);
+                                                        console.error('Error in Dashboard.new with widgetLayouts: ' + err);
+                                                    });
                                                 };
+                                            });
+                                        })
+                                        .catch(err => {
+                                            this.errorMessage = err.slice(0, 100);
+                                            console.error('Error in Dashboard.new with dashboardLayouts: ' + err);
                                         });
-                                    });
                                 } else {
                                     this.globalVariableService.refreshCurrentDashboard(
                                         'addDashboard-clickCreate', draftD.id, draftTab.id, ''
                                     );
                                 };
                                 this.formDashboardNewClosed.emit('Created');
+                            })
+                            .catch(err => {
+                                this.errorMessage = err.slice(0, 100);
+                                console.error('Error in Dashboard.new with amendDashboardRecent: ' + err);
                             });
                         });
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Dashboard.new with dashboardTabs: ' + err);
                     });
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.new with dashboards: ' + err);
                 });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.new with addDashboard: ' + err);
             });
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Dashboard.new with addDashboard: ' + err);
         });
 
     }

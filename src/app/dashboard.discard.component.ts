@@ -52,7 +52,7 @@ export class DashboardDiscardComponent implements OnInit {
 
     }
 
-    errorMessage: string = 'asdfasdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     isFirstTimeDashboardDiscard: boolean;
     isFirstTimeDashboardDiscardSubscription: Subscription;
 

@@ -91,11 +91,11 @@
 
     .gridErrorMessage {
         color: red;
-        grid-column-start: 9;
+        grid-column-start: 5;
         /* autoprefixer: off */
         grid-column-end: 14;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 1;
+        grid-row-end: 2;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }

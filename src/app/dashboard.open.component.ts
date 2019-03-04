@@ -58,7 +58,7 @@ export class DashboardOpenComponent implements OnInit {
     dashboardSchedules: DashboardSchedule[] = [];
     dashboardTags: DashboardTag[] =[];
     datasources: Datasource[] = [];
-    errorMessage: string = '';
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdfasdf';
     filteredDashboardIDs: number[] = [];
     filterDashboardName: string = '';
     filterSchedulesSendTo: string = '';

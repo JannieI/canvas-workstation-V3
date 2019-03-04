@@ -1703,10 +1703,10 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables addDashboard ends',
                             this.concoleLogStyleForEndOfMethod,
-                            res.data)
+                            res)
                     };
 
-                    resolve(res.data);
+                    resolve(res);
                 },
                 err => {
                     console.error('Error in     Global-Variables addDashboard', err);
