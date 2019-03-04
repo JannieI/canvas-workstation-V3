@@ -106,63 +106,68 @@ export class CollaborateMessagesComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
 
         // TODO - the filtering must be done in DB
-        this.globalVariableService.getResource('canvasMessages').then(msg => {
-            this.canvasMessages = msg;
+        this.globalVariableService.getResource('canvasMessages')
+            .then(msg => {
+                this.canvasMessages = msg;
 
-            if (this.sender != '') {
-                this.canvasMessages = this.canvasMessages.filter(
-                    m => m.sender.toLowerCase().indexOf(this.sender.toLowerCase()) >= 0
-                );
-            };
-            if (this.recipient != '') {
-                this.canvasMessages = this.canvasMessages.filter(m => {
-                    let isFound: boolean = false;
-                    m.recipients.forEach(r => {
-                        if (r.userID.toLowerCase().indexOf(this.recipient.toLowerCase()) >= 0) {
-                            isFound = true;
-                        };
+                if (this.sender != '') {
+                    this.canvasMessages = this.canvasMessages.filter(
+                        m => m.sender.toLowerCase().indexOf(this.sender.toLowerCase()) >= 0
+                    );
+                };
+                if (this.recipient != '') {
+                    this.canvasMessages = this.canvasMessages.filter(m => {
+                        let isFound: boolean = false;
+                        m.recipients.forEach(r => {
+                            if (r.userID.toLowerCase().indexOf(this.recipient.toLowerCase()) >= 0) {
+                                isFound = true;
+                            };
+                        });
+                        return isFound;
                     });
-                    return isFound;
-                });
-            };
-            if (this.messageUnRead) {
-                this.canvasMessages = this.canvasMessages.filter(m => {
-                    let isFound: boolean = false;
-                    m.recipients.forEach(r => {
-                        if (r.readOn == null) {
-                            isFound = true;
-                        };
+                };
+                if (this.messageUnRead) {
+                    this.canvasMessages = this.canvasMessages.filter(m => {
+                        let isFound: boolean = false;
+                        m.recipients.forEach(r => {
+                            if (r.readOn == null) {
+                                isFound = true;
+                            };
+                        });
+                        return isFound;
                     });
-                    return isFound;
-                });
-            };
-            if (this.body != '') {
-                this.canvasMessages = this.canvasMessages.filter(
-                    m => m.body.toLowerCase().includes(this.body.toLowerCase())
-                );
-            };
-            if (this.subject != ''  &&  this.subject != null) {
-                this.canvasMessages = this.canvasMessages.filter(
-                    m => m.subject.toLowerCase().includes(this.subject.toLowerCase())
-                );
-            };
-            if (this.sentAfter != '') {
-                this.canvasMessages = this.canvasMessages.filter(
-                    m => new Date(m.sentOn).getTime() >= new Date(this.sentAfter).getTime()
-                );
-            };
-            if (this.sendBefore != '') {
-                this.canvasMessages = this.canvasMessages.filter(
-                    m => new Date(m.sentOn).getTime() <= new Date(this.sendBefore).getTime()
-                );
-            };
+                };
+                if (this.body != '') {
+                    this.canvasMessages = this.canvasMessages.filter(
+                        m => m.body.toLowerCase().includes(this.body.toLowerCase())
+                    );
+                };
+                if (this.subject != ''  &&  this.subject != null) {
+                    this.canvasMessages = this.canvasMessages.filter(
+                        m => m.subject.toLowerCase().includes(this.subject.toLowerCase())
+                    );
+                };
+                if (this.sentAfter != '') {
+                    this.canvasMessages = this.canvasMessages.filter(
+                        m => new Date(m.sentOn).getTime() >= new Date(this.sentAfter).getTime()
+                    );
+                };
+                if (this.sendBefore != '') {
+                    this.canvasMessages = this.canvasMessages.filter(
+                        m => new Date(m.sentOn).getTime() <= new Date(this.sendBefore).getTime()
+                    );
+                };
 
-            // Sort Desc
-            this.canvasMessages.sort(
-                (a, b) => new Date(b.sentOn).getTime() - new Date(a.sentOn).getTime()
-            );
+                // Sort Desc
+                this.canvasMessages.sort(
+                    (a, b) => new Date(b.sentOn).getTime() - new Date(a.sentOn).getTime()
+                );
 
-        });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Collaborate.messages reading canvasMessages: ' + err)
+            });
 
         // Show/hide new message form
         this.newMessage = showNewMessage;
@@ -267,9 +272,14 @@ export class CollaborateMessagesComponent implements OnInit {
                 };
             });
             if (readCount == 0) {
-                this.globalVariableService.deleteResource('canvasMessages', id).then(res => {
-                    this.clickFilter(false);
-                });
+                this.globalVariableService.deleteResource('canvasMessages', id)
+                    .then(res => {
+                        this.clickFilter(false);
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Collaborate.messages deleting canvasMessages: ' + err)
+                    });
             } else {
                 this.errorMessage = 'Message was read - cannot Recall';
             };
