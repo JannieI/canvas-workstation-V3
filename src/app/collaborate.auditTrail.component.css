@@ -35,13 +35,12 @@
 
     .gridErrorMessage {
         color: red;
-        font-size: 0.75rem;
-        grid-column-start: 8;
+        font-size: 0.6rem;
+        grid-column-start: 7;
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 1;
         grid-row-end: 2;
-        margin-left: 30px;
         text-align: left;
     }
 
