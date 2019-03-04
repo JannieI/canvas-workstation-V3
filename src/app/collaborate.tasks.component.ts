@@ -52,6 +52,7 @@ export class CollaborateTasksComponent implements OnInit {
     canvasTasks: CanvasTask[] = [];
     canvasTasksOrignal: CanvasTask[] = [];
     dashboardNames: string[] = [];
+    errorMessage: string = '';
     selectedDashboard: string = '';
     selectedDetailRow: number = 0;
     selectedRow: number = 0;
@@ -80,39 +81,47 @@ export class CollaborateTasksComponent implements OnInit {
                 this.canvasTasksOrignal = ca;
 
                 // Get User list
-                this.globalVariableService.getResource('canvasUsers').then(usr => {
-                    this.users = usr;
-                    usr.forEach(u => {
-                        this.userNames.push(u.userID);
-                    });
-                    this.userNames = ['', ...this.userNames];
+                this.globalVariableService.getResource('canvasUsers')
+                    .then(usr => {
+                        this.users = usr;
+                        usr.forEach(u => {
+                            this.userNames.push(u.userID);
+                        });
+                        this.userNames = ['', ...this.userNames];
 
-                    // Add 'dead' users from Tasks - in case not in Users any longer
-                    let isFound: boolean = false;
-                    this.canvasTasks.forEach(tsk => {
-                        isFound = false;
-                        if (tsk.assignedToUserID != ''  &&  tsk.assignedToUserID != null) {
-                            this.userNames.forEach(usn => {
-                                if (usn.toLowerCase() == tsk.assignedToUserID.toLowerCase()) {
-                                    isFound = true;
+                        // Add 'dead' users from Tasks - in case not in Users any longer
+                        let isFound: boolean = false;
+                        this.canvasTasks.forEach(tsk => {
+                            isFound = false;
+                            if (tsk.assignedToUserID != ''  &&  tsk.assignedToUserID != null) {
+                                this.userNames.forEach(usn => {
+                                    if (usn.toLowerCase() == tsk.assignedToUserID.toLowerCase()) {
+                                        isFound = true;
+                                    };
+                                });
+                                if (!isFound) {
+                                    this.userNames.push(tsk.assignedToUserID);
                                 };
-                            });
-                            if (!isFound) {
-                                this.userNames.push(tsk.assignedToUserID);
                             };
-                        };
-                    });
+                        });
 
-                    // Get Dashboard list
-                    this.globalVariableService.dashboards.forEach(d => {
-                        this.dashboardNames.push(d.name);
+                        // Get Dashboard list
+                        this.globalVariableService.dashboards.forEach(d => {
+                            this.dashboardNames.push(d.name);
+                        });
+                        this.dashboardNames = ['', ...this.dashboardNames];
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Collaborate.tasks reading canvasUsers: ' + err);
                     });
-                    this.dashboardNames = ['', ...this.dashboardNames];
-                });
-
+    
             })
-            .catch(err => console.log('Error getting tasks: ' + err));
-            
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Collaborate.tasks reading canvasTasks: ' + err);
+            });
+
 
         this.clickGantt()
     }
