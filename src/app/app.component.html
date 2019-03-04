@@ -590,14 +590,6 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataManagedOverlayEditor()"
-                                        title="Create a new Datasources using the Overlay Editor"
-                                        >
-                                        New Overlay Editor
-                                    </button>
-                                    <button
-                                        type="button"
-                                        clrDropdownItem
                                         (click)="clickMenuDataManagedGraphQLEditor()"
                                         title="Create a new Datasources using the GraphQL Editor"
                                         >
@@ -4973,7 +4965,7 @@
 </shape-deleteAll>
 
 
-<!-- Overlay: Help -->
+<!-- Modal: Help -->
 <dashboard-help
     *ngIf="isFirstTimeUser"
     (formDashboardHelpClosed)="handleCloseDashboardHelp($event)">Load Help form ...

@@ -1105,8 +1105,6 @@ This document describes items for later versions of Canvas.
     - chart Real Time data, maybe via Web Sockets.  Can also be a summary / snapshot of the data every x minutes, something that Dries would want
     - authenticate via their system, ie AD
     - must be able to create new Widget
-    - consider: get the SQL for an Overlay query, might be useful
-    - get SQL back from an Overlay query -> show on screen so user can see
     - consider data filters - then we have to store this and include in SQL Where clause ...
     - Add Named-Transformations: have a CRUD form where user specifies a name, and a list of transformations to be performed with it.  Maybe give a start DS -> can only work if the requested DS has this layout, plus has field types, etc to calc and also know it will work.  Seems best solution to have a start DS.
     - Show Transformations and Spec as json !!
