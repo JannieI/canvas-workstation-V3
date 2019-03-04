@@ -1979,8 +1979,6 @@ export class AppComponent implements OnInit {
                     this.showModalDataManagedQueryBuilder = true;
                 } else if (returnedDatasource.createMethod == 'managedSQLEditor') {
                     this.showModalDataManagedSQLEditor = true;
-                } else if (returnedDatasource.createMethod == 'managedOverlayEditor') {
-                    this.showModalDataManagedOverlayEditor = true;
                 } else if (returnedDatasource.createMethod == 'managedGraphQLEditor') {
                     this.showModalDataManagedGraphQLEditor = true;
                 } else if (returnedDatasource.createMethod == 'managedNoSQLEditor') {
@@ -3869,31 +3867,6 @@ export class AppComponent implements OnInit {
         };
 
         this.showModalDataManagedNeo4jEditor = true;
-    }
-
-    clickMenuDataManagedOverlayEditor() {
-        // Overlay Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedOverlayEditor', '@Start');
-
-        // Permissions
-        if (!this.globalVariableService.currentUser.datasourceCanCreateRole
-            &&
-            !this.globalVariableService.currentUser.isAdministrator) {
-            this.showMessage(
-                'You cannot add a new Datasource (role must be added to your user)',
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
-
-        if (!this.menuOptionClickPreAction()) {
-            return;
-        };
-
-        this.showModalDataManagedOverlayEditor = true;
     }
 
     clickMenuDataTransformation() {
