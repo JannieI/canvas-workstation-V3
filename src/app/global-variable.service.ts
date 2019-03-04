@@ -807,7 +807,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error in     Global-Variables getResource', err);
+                        console.error('Error in     Global-Variables getResource', err);
                     };
                     console.timeEnd("      DURATION getResource: " + resource);
                     reject(err.message)
@@ -953,7 +953,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error in     Global-Variables addResource', err);
+                        console.error('Error in     Global-Variables addResource', err);
                     };
 
                     console.timeEnd("      DURATION addResource " + resource + ' ' + unique.toString());
@@ -1116,7 +1116,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error in     Global-Variables saveResource', err);
+                        console.error('Error in     Global-Variables saveResource', err);
                     };
                     console.timeEnd("      DURATION saveResource " + resource + ' ' + data.id.toString());
                     reject(err.message);
@@ -1217,7 +1217,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error in     Global-Variables deleteResource', err);
+                        console.error('Error in     Global-Variables deleteResource', err);
                     };
 
                     console.timeEnd("      DURATION deleteResource" + resource +  ' ' + id.toString());
@@ -1401,7 +1401,7 @@ export class GlobalVariableService {
                         resolve(originalDashboardID);
                     },
                     err => {
-                        console.log('Error in     Global-Variables discardDashboard', err);
+                        console.error('Error in     Global-Variables discardDashboard', err);
                         reject('Error discardDashboard FAILED: ' + err.message);
                     }
                 )
@@ -1469,7 +1469,7 @@ export class GlobalVariableService {
                         resolve(originalDashboardID);
                     },
                     err => {
-                        console.log('Error in     Global-Variables saveDraftDashboard', err);
+                        console.error('Error in     Global-Variables saveDraftDashboard', err);
                         reject('Error saveDraftDashboard FAILED: ' + err.message);
                     }
                 )
@@ -1658,7 +1658,7 @@ export class GlobalVariableService {
                     },
                     err => {
                         if (this.sessionDebugging) {
-                            console.log('Error in     Global-Variables deleteDashboardInfo', err);
+                            console.error('Error in     Global-Variables deleteDashboardInfo', err);
                         };
 
                         reject(err.message);
@@ -1709,7 +1709,7 @@ export class GlobalVariableService {
                     resolve(res.data);
                 },
                 err => {
-                    console.log('Error in     Global-Variables addDashboard', err);
+                    console.error('Error in     Global-Variables addDashboard', err);
                     reject(err.message);
                 }
             )
@@ -2000,7 +2000,7 @@ export class GlobalVariableService {
                     },
                     err => {
                         if (this.sessionDebugging) {
-                            console.log('Error in     Global-Variables refreshLocalCache', err);
+                            console.error('Error in     Global-Variables refreshLocalCache', err);
                         };
                         console.timeEnd("      DURATION refreshLocalCache: " + resource);
                         // reject(err.message)
@@ -2483,7 +2483,7 @@ export class GlobalVariableService {
                     };
                 } else {
                     if (this.sessionDebugging) {
-                        console.log('Error in getCurrentDataset - datasetIndex == null')
+                        console.error('Error in getCurrentDataset - datasetIndex == null')
                     };
 
                 };
@@ -2502,7 +2502,7 @@ export class GlobalVariableService {
                     res  => {
                         console.log('getCurrentDataset after http.get', res)
                         if(res.statusCode != 'success') {
-                            console.log('Error in getCurrentDataset after http.get');
+                            console.error('Error in getCurrentDataset after http.get');
                             reject(res.message);
                             return;
                         };
@@ -2543,7 +2543,7 @@ export class GlobalVariableService {
                         resolve(newdSet);
                     },
                     err => {
-                        console.log('ERROR in getCurrentDataset !', err)
+                        console.error('ERROR in getCurrentDataset !', err)
                         reject(err.message)
                     }
                 );
@@ -2596,7 +2596,7 @@ export class GlobalVariableService {
                     });
                 },
                 err => {
-                    console.log('Error in     Global-Variables addDataset', err);
+                    console.error('Error in     Global-Variables addDataset', err);
                     reject(err.message);
                 }
             )
@@ -2648,7 +2648,7 @@ export class GlobalVariableService {
                     resolve(res.data);
                 },
                 err => {
-                    console.log('Error in     Global-Variables deleteDataset', err);
+                    console.error('Error in     Global-Variables deleteDataset', err);
                     reject(err.message);
                 }
             );
@@ -2685,7 +2685,7 @@ export class GlobalVariableService {
                     resolve(res.data);
                 },
                 err => {
-                    console.log('Error in     Global-Variables addData', err);
+                    console.error('Error in     Global-Variables addData', err);
                     reject(err.message);
                 }
             )
@@ -2720,7 +2720,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error in     Global-Variables saveData', err);
+                    console.error('Error in     Global-Variables saveData', err);
                     reject(err.message);
                 }
             )
@@ -2752,7 +2752,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error in     Global-Variables deleteData', err);
+                    console.error('Error in     Global-Variables deleteData', err);
                     reject(err.message);
                 }
             )
@@ -3219,7 +3219,7 @@ export class GlobalVariableService {
                     resolve(res);
                 })
                 .catch(err => {
-                    console.log('Error in     Global-Variables addPaletteButtonsSelected', err);
+                    console.error('Error in     Global-Variables addPaletteButtonsSelected', err);
                     reject(err.message);
                 })
         });
@@ -3253,7 +3253,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 })
                 .catch( err => {
-                    console.log('Error in     Global-Variables savePaletteButtonsSelected', err);
+                    console.error('Error in     Global-Variables savePaletteButtonsSelected', err);
                     reject(err.message);
                 })
         });
@@ -3301,7 +3301,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 })
                 .catch( err => {
-                    console.log('Error in     Global-Variables deletePaletteButtonsSelected', err);
+                    console.error('Error in     Global-Variables deletePaletteButtonsSelected', err);
                     reject(err.message);
                 })
     
@@ -3486,7 +3486,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 })
                 .catch(err => {
-                    console.log('Error in     Global-Variables saveWidget', err);
+                    console.error('Error in     Global-Variables saveWidget', err);
 
                     reject(err.message);
                 });
@@ -3557,7 +3557,7 @@ export class GlobalVariableService {
                 };
             })
             .catch(err => {
-                console.log('Error in     Global-Variables duplicateSingleWidget', err);
+                console.error('Error in     Global-Variables duplicateSingleWidget', err);
 
             });
 
@@ -3601,7 +3601,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 })
                 .catch(err => {
-                    console.log('Error in     Global-Variables deleteWidget', err);
+                    console.error('Error in     Global-Variables deleteWidget', err);
                     reject(err.message);
                 }
             )
@@ -3734,7 +3734,7 @@ export class GlobalVariableService {
                         resolve("Done");
                     },
                     err => {
-                        console.log('Error in     Global-Variables  marking MessagesAsRead: ', err);
+                        console.error('Error in     Global-Variables  marking MessagesAsRead: ', err);
                         reject('Error marking Messages as read FAILED: ' + err.message);
                     }
                 )
@@ -4051,7 +4051,7 @@ export class GlobalVariableService {
         // Assume we have all currentD info
         if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
             (this.currentDashboardInfo == null) ) {
-            console.log('Error in     Global-Variables refreshCurrentDashboard returned since this.currentDashboardInfo == null')
+            console.error('Error in     Global-Variables refreshCurrentDashboard returned since this.currentDashboardInfo == null')
             return 'Error';
         };
 
@@ -4061,7 +4061,7 @@ export class GlobalVariableService {
 
         if (tabToShow != '') {
             if (currentDashboardTabs.length == 0) {
-                console.log('Error in     Global-Variables refreshCurrentDashboard returned since currentDashboardTabs.length == 0', dashboardID, this.dashboards, this.dashboardTabs)
+                console.error('Error in     Global-Variables refreshCurrentDashboard returned since currentDashboardTabs.length == 0', dashboardID, this.dashboards, this.dashboardTabs)
                 return 'Error';
             };
             if (tabToShow == 'First') {
@@ -6068,7 +6068,7 @@ export class GlobalVariableService {
                     };
             },
             err => {
-                console.log('Error in     Global-Variables Registration', err);
+                console.error('Error in     Global-Variables Registration', err);
                 resolve('Error: Registration FAILED ' + err.message);
             });
         });
@@ -6123,7 +6123,7 @@ export class GlobalVariableService {
                     };
             },
             err => {
-                console.log('Error in     Global-Variables loginCanvasUser Error: ', err);
+                console.error('Error in     Global-Variables loginCanvasUser Error: ', err);
                 resolve({ message:'Error: Login FAILED ' + err.message, token: null});
             });
         });
@@ -6575,7 +6575,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error in     Global-Variables tributaryCreateSession', err);
+                        console.error('Error in     Global-Variables tributaryCreateSession', err);
                     };
                     reject(err.message);
                 }
@@ -6616,7 +6616,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error in     Global-Variables tributaryInspect', err);
+                        console.error('Error in     Global-Variables tributaryInspect', err);
                     };
                     reject(err.message);
                 }
@@ -6657,7 +6657,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error in     Global-Variables tributaryExecute', err);
+                        console.error('Error in     Global-Variables tributaryExecute', err);
                     };
                     reject(err.message);
                 }
@@ -6694,7 +6694,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error in     Global-Variables getTributaryData', err);
+                        console.error('Error in     Global-Variables getTributaryData', err);
                     };
 
                     reject(err.message);

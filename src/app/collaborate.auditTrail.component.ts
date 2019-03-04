@@ -56,8 +56,8 @@ export class CollaborateAuditTrailComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getResource('canvasAuditTrails')
-            .then (cau => this.canvasAuditTrail = cau)
+        this.globalVariableService.getResource('canvasAuditTrailss')
+            .then (cau => { console.log('xx cau', cau); this.canvasAuditTrail = cau})
             .catch(err => {
                 this.errorMessage = err.message;
                 console.error('Error reading auditTrails: ' + err)
