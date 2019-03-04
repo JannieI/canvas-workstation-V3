@@ -101,8 +101,11 @@ export class DashboardDeleteComponent implements OnInit {
                 this.favouriteDashboards = res.data.numberUsedAsFav;
 
             })
-            .catch(err => this.errorMessage = 'Error reading Dasbobard Summary: ' + err);
-    }
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.delete reading dashboardSummary: ' + err);
+            });
+        }
 
     clickClose(action: string) {
         // Close form
@@ -133,9 +136,11 @@ export class DashboardDeleteComponent implements OnInit {
         // Delete D, as all related Entities
         this.globalVariableService.deleteDashboardInfo(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-        );
-
-		this.formDashboardDeleteClosed.emit('Deleted');
+        ).then( () => this.formDashboardDeleteClosed.emit('Deleted') )
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Dashboard.delete deleting: ' + err);
+        });
 
     }
 

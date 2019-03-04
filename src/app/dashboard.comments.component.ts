@@ -79,7 +79,7 @@ export class DashboardCommentsComponent implements OnInit {
         };
 
         // Set the data for the grid
-        this.globalVariableService.getResource('canvasCommentss')
+        this.globalVariableService.getResource('canvasComments')
             .then (ca => {
                 console.log('COMM ca', ca)
                 this.canvasComments = ca.filter( c =>
