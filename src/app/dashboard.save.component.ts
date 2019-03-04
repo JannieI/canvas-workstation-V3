@@ -54,6 +54,7 @@ export class DashboardSaveComponent implements OnInit {
     }
 
     deleteSnapshots: boolean = true;
+    errorMessage: string = '';
     isFirstTimeDashboardSave: boolean;
     qaRequired: boolean = false;
 
@@ -87,13 +88,17 @@ export class DashboardSaveComponent implements OnInit {
         // Save the D (replace the original as Completed and delete the Draft)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        this.globalVariableService.saveDraftDashboard(this.deleteSnapshots).then(res => {
-            this.globalVariableService.refreshCurrentDashboard(
-                'discardDashboard-clickDiscard', res, -1, ''
-            );
-            // this.globalVariableService.editMode.next(false);
-            this.formDashboardSaveClosed.emit('Saved');
-        });
+        this.globalVariableService.saveDraftDashboard(this.deleteSnapshots)
+            .then(res => {
+                this.globalVariableService.refreshCurrentDashboard(
+                    'saveDraftDashboard-clickSave', res, -1, ''
+                );
+                this.formDashboardSaveClosed.emit('Saved');
+            })
+            .catch(err => {
+                console.error('Error in Dashboard.saveDraft saving Draft dashboard: ' + err)
+                this.errorMessage = err.slice(0, 100);
+            });
 
     }
 }
