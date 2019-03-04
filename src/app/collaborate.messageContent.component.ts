@@ -122,8 +122,12 @@ export class CollaborateMessageContentComponent implements OnInit {
                 this.selectedUser = this.existingMessagge.sender;
             };
 
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Collaborate.messageContant Startup: ' + err)
         });
-    }
+}
 
     clickClose(action: string) {
         // Close the form
@@ -237,21 +241,26 @@ export class CollaborateMessageContentComponent implements OnInit {
         }
 
         // Send
-        this.globalVariableService.addResource('canvasMessages', newMessage).then(res => {
+        this.globalVariableService.addResource('canvasMessages', newMessage)
+            .then(res => {
 
-            this.globalVariableService.showStatusBarMessage(
-                {
-                    message: 'Message has been sent',
-                    uiArea: 'StatusBar',
-                    classfication: 'Info',
-                    timeout: 3000,
-                    defaultMessage: ''
-                }
-            );
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Message has been sent',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
 
-            // TODO - this may cause delays: test and put outside Promise if needed
-            this.formMessageContentClosed.emit(action);
-        });
+                // TODO - this may cause delays: test and put outside Promise if needed
+                this.formMessageContentClosed.emit(action);
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Collaborate.messageContant Send: ' + err)
+            });
 
     }
 
