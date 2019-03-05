@@ -80,11 +80,12 @@ export class DataEditDatasourceComponent implements OnInit {
     }
 
     datasources: Datasource[];
-    errorMessage: string = "";
+    errorMessage: string = '';
     filterName = new FilterDatasourceName();
     filterDescription = new FilterDescription();
     selectedRowIndex: number = null;
     selectedDatasource: Datasource;
+    widgets: Widget[];
 
 
 	constructor(
@@ -97,27 +98,43 @@ export class DataEditDatasourceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load from global variables
-        this.datasources = this.globalVariableService.datasources
-            .slice()
-            .sort((n1,n2) => {
-                if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
-                    return 1;
-                };
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res.sort((n1,n2) => {
+                    if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
+                        return 1;
+                    };
 
-                if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
-                    return -1;
-                };
+                    if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
+                        return -1;
+                    };
 
-                return 0;
+                    return 0;
+                });
+
+                // Count the Ws
+                let widgetsFiltered: Widget[];
+                this.globalVariableService.getResource('widgets')
+                    .then(w => {
+                        this.widgets = w;
+                        this.datasources.forEach(ds => {
+                            widgetsFiltered = this.widgets.filter(w => w.datasourceID == ds.id);
+                            ds.nrWidgets = widgetsFiltered.length;
+                        });
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Datasource.edit reading widgets: ' + err);
+                    });
+
+
+
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.edit reading datasources: ' + err);
             });
 
-        // Count the Ws
-        let widgets: Widget[];
-        this.datasources.forEach(ds => {
-            widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
-            ds.nrWidgets = widgets.length;
-        });
-        console.warn('xx INIT this.selectedDatasource', this.selectedDatasource)
 
     }
 
@@ -129,7 +146,7 @@ export class DataEditDatasourceComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedRowIndex = index;
 
-        this.errorMessage = '';
+        this.errorMessage = 'asdfasdfasdfasdf';
     }
 
     clickTransformation(index: number, id: number) {
