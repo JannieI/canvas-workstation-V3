@@ -56,7 +56,14 @@ export class DataDirectExportComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load from global variables
-        this.datasources = this.globalVariableService.datasources.slice();
+        this.globalVariableService.getResource('datasources')
+        .then(res => {
+            this.datasources = res;
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Datasource.export reading datasources: ' + err);
+        });        
     }
 
     clickSelectedDatasource(index: number, id: number) {
