@@ -62,10 +62,10 @@ export class DashboardTabComponent {
     displayOrder: number;
     dashboardID: number;                  // FK to DashboardID to which widget belongs
     description: string = '';             // T description
-    errorMessage: string = 'asdfasdfgasdfasdfasdfaas';
+    errorMessage: string = '';
     name: string = '';                    // Name of new T
     selectedColour: string;
-    showErrorMessage: boolean = true;
+    showErrorMessage: boolean = false;
 
 
     constructor(
@@ -78,28 +78,27 @@ export class DashboardTabComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         if (!this.newTab) {
-            let tabIndex: number = this.globalVariableService.dashboardTabs
-                .findIndex(t => t.id == this.globalVariableService.currentDashboardInfo
-                    .value.currentDashboardTabID);
-                    
-            if (tabIndex >= 0) {
-                this.name = this.globalVariableService.dashboardTabs[tabIndex].name;
-                this.description = this.globalVariableService.dashboardTabs[tabIndex]
-                    .description;
-                this.backgroundColor = this.globalVariableService.dashboardTabs[tabIndex]
-                    .backgroundColor;
-                this.backgroundColorName = this.globalVariableService.dashboardTabs[tabIndex]
-                    .backgroundColorName;
-                this.color = this.globalVariableService.dashboardTabs[tabIndex].color;
-                this.colorName = this.globalVariableService.dashboardTabs[tabIndex]
-                    .colorName;
-                this.displayOrder = this.globalVariableService.dashboardTabs[tabIndex]
-                    .displayOrder;
-            };
+            this.globalVariableService.getResource(
+                'dashboardTabs', 
+                '?filterObject={"id": ' + this.globalVariableService
+                .currentDashboardInfo.value.currentDashboardTabID
+                ).then(res => {
 
-
-
-
+                    if (res  &&  res.length > 0) {
+                        this.name = res[0].name;
+                        this.description = res[0].description;
+                        this.backgroundColor = res[0].backgroundColor;
+                        this.backgroundColorName = res[0].backgroundColorName;
+                        this.color = res[0].color;
+                        this.colorName = res[0].colorName;
+                        this.displayOrder = res[0].displayOrder;
+                        console.log('xx res this.description', this.description)
+                    };
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.tab finding dashboardTabs: ' + err);
+                });
         };
 
         // Manage colour picker
