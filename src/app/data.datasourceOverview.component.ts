@@ -63,7 +63,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
     dataFieldTypes: string[] = [];
     dataQualityIssues: DataQualityIssue[];
     datasources: localDatasources[];
-    errorMessage: string = "";
+    errorMessage: string = '';
     fileName: string = '';
     folderName: string = '';
     finalFields: any = [];
@@ -157,9 +157,14 @@ export class DataDatasourceOverviewComponent implements OnInit {
                 this.currentData = selectedDataset[maxDsetIndex].dataRaw;
             } else {
 
-                this.globalVariableService.getData('datasourceID=' + selectedDataset[maxDsetIndex].id.toString()).then(dt => {
-                    this.currentData = dt;
-                });
+                this.globalVariableService.getData('datasourceID=' + selectedDataset[maxDsetIndex].id.toString())
+                    .then(dt => {
+                        this.currentData = dt;
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Datasource.overview reading datasourceID: ' + err);
+                    });
             };
         };
 

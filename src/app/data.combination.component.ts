@@ -115,7 +115,7 @@ export class DataCombinationComponent implements OnInit {
             this.selectedRowDescription = this.datasources[dsIndex].description;
 
         };
-        this.errorMessage = 'asdfasdfasdfasdfasfasdfasdfasdf';
+        this.errorMessage = '';
     }
 
     clickSelectedDatasourceRH(index: number, id: number) {
