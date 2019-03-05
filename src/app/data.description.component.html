@@ -33,7 +33,7 @@
                 <div class="gridDatasourceNameTitle">
                     <b>DS Name:</b>
                 </div>
-                <div class="gridDatasourceName" *ngIf="selectedDatasource.name">
+                <div class="gridDatasourceName" *ngIf="selectedDatasource  &&  selectedDatasource.name">
                     <input [(ngModel)]="selectedDatasource.name"
                         name="name"
                         type="text"
@@ -50,7 +50,7 @@
                     <b>Description:</b>
                 </div>
                 <div class="gridDatasourceDescription">
-                    <input [(ngModel)]="selectedDatasource.description"
+                    <input [(ngModel)]="selectedDatasource  &&  selectedDatasource.description"
                         name="description"
                         type="text"
                         title="Datasource description"
@@ -68,7 +68,7 @@
                 <div class="select gridDatasourceAccessType">
                     <select
                         name="accessType"
-                        [(ngModel)]="selectedDatasource.accessType"
+                        [(ngModel)]="selectedDatasource  &&  selectedDatasource.accessType"
                         >
                         <option>Private</option>
                         <option>Public</option>
@@ -80,7 +80,7 @@
                     <b>Cache Srv:</b>
                 </div>
                 <div class="gridDatasourceCacheServer">
-                    <input [(ngModel)]="selectedDatasource.cacheResultsOnServer"
+                    <input [(ngModel)]="selectedDatasource  &&  selectedDatasource.cacheResultsOnServer"
                         type="checkbox"
                         name="cacheResultsOnServer"
                         #cacheServerVar="ngModel"
@@ -93,7 +93,7 @@
                     <b>Unrefreshable?:</b>
                 </div>
                 <div class="gridDatasourceUnrefreshable">
-                    <input [(ngModel)]="selectedDatasource.unRefreshable"
+                    <input [(ngModel)]="selectedDatasource  &&  selectedDatasource.unRefreshable"
                         type="checkbox"
                         name="unRefreshable"
                         #unrefreshableVar="ngModel"
@@ -106,7 +106,7 @@
                     <b>Cache Local:</b>
                 </div>
                 <div class="gridDatasourceCacheLocal">
-                    <input [(ngModel)]="selectedDatasource.cacheResultsLocal"
+                    <input [(ngModel)]="selectedDatasource  &&  selectedDatasource.cacheResultsLocal"
                         type="checkbox"
                         name="cacheResultsLocal"
                         #cacheLocalVar="ngModel"
@@ -119,7 +119,7 @@
                     <b>Cached Copies:</b>
                 </div>
                 <div class="gridDatasourceNrCachedCopies">
-                    <!-- <input [(ngModel)]="selectedDatasource.nrCacheCopies"
+                    <!-- <input [(ngModel)]="selectedDatasource  &&  selectedDatasource.nrCacheCopies"
                         type="checkbox"
                         name="nrCacheCopies"
                         #cachedCopiesVar="ngModel"
@@ -134,7 +134,7 @@
                 <div class="select gridDatasourceMaxPeriodInterval">
                     <select
                         name="oldnessMaxPeriodInterval"
-                        [(ngModel)]="selectedDatasource.oldnessMaxPeriodInterval"
+                        [(ngModel)]="selectedDatasource  &&  selectedDatasource.oldnessMaxPeriodInterval"
                         >
                         <option>Second</option>
                         <option>Minute</option>
@@ -149,7 +149,7 @@
                     <b>Max Units:</b>
                 </div>
                 <div class="gridDatasourceMaxPeriodUnits">
-                    <input [(ngModel)]="selectedDatasource.oldnessMaxPeriodUnits"
+                    <input [(ngModel)]="selectedDatasource  &&  selectedDatasource.oldnessMaxPeriodUnits"
                         name="oldnessMaxPeriodUnits"
                         type="number"
                         title="Maximum number of units for oldness"
@@ -167,7 +167,7 @@
                     <b>Related Date:</b>
                 </div>
                 <div class="gridDatasourceRelatedDate">
-                    <input [(ngModel)]="selectedDatasource.oldnessRelatedDate"
+                    <input [(ngModel)]="selectedDatasource  &&  selectedDatasource.oldnessRelatedDate"
                         name="oldnessRelatedDate"
                         type="text"
                         title="Related date for oldness"
@@ -183,7 +183,7 @@
                     <b>Related:</b>
                 </div>
                 <div class="gridDatasourceRelatedTime">
-                    <input [(ngModel)]="selectedDatasource.oldnessRelatedTime"
+                    <input [(ngModel)]="selectedDatasource  &&  selectedDatasource.oldnessRelatedTime"
                         name="oldnessRelatedTime"
                         type="text"
                         title="Related time for oldness"

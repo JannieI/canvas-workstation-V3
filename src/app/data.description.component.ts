@@ -143,10 +143,9 @@ export class DatasourceDescriptionComponent implements OnInit {
                     this.datasources[datasourceIndex] = this.selectedDatasource;
                 };
 
-                // TODO - is it correct to reset the selected DS?
-                if (this.datasources.length > 0) {
-                    this.selectedDatasource = this.datasources[0];
-                };            
+                // if (this.datasources.length > 0) {
+                //     this.selectedDatasource = this.datasources[0];
+                // };            
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
