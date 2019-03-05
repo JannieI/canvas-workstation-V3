@@ -45,10 +45,10 @@ export class DashboardTagsComponent implements OnInit {
     }
 
     availableDashboardTags: DashboardTag[] = [];
-    errorMessage: string = '';
-    selectedDashboardTags: DashboardTag[] = [];
-    newTag: string = '';
     availableTagIndex: number = -1;
+    errorMessage: string = '';
+    newTag: string = '';
+    selectedDashboardTags: DashboardTag[] = [];
     selectedTagIndex: number = -1;
 
 	constructor(
@@ -92,7 +92,10 @@ export class DashboardTagsComponent implements OnInit {
                 });
 
             })
-            .catch(err => this.errorMessage = err);
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.tags reading dashboardTags: ' + err);
+            });
 
     }
 
@@ -143,9 +146,14 @@ export class DashboardTagsComponent implements OnInit {
                 createdOn: new Date()
             };
 
-        this.globalVariableService.addResource('dashboardTags', newTag).then(res => {
-            this.selectedDashboardTags.push(res);
-        });
+        this.globalVariableService.addResource('dashboardTags', newTag)
+            .then(res => {
+                this.selectedDashboardTags.push(res);
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.tags adding dashboardTags: ' + err);
+            });
 
     }
 
@@ -180,8 +188,13 @@ export class DashboardTagsComponent implements OnInit {
                 createdOn: new Date()
             };
 
-        this.globalVariableService.addResource('dashboardTags', newTag).then(res => {
+        this.globalVariableService.addResource('dashboardTags', newTag)
+        .then(res => {
             this.selectedDashboardTags.push(res);
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Dashboard.tags adding dashboardTags: ' + err);
         });
 
     }
@@ -192,9 +205,14 @@ export class DashboardTagsComponent implements OnInit {
 
         this.errorMessage = '';
         // Remove from seleted list
-        this.globalVariableService.deleteResource('dashboardTags', id).then(res => {
-            this.selectedDashboardTags.splice(index, 1);
-        });
+        this.globalVariableService.deleteResource('dashboardTags', id)
+            .then(res => {
+                this.selectedDashboardTags.splice(index, 1);
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.tags deleting dashboardTags: ' + err);
+            });
 
     }
 
