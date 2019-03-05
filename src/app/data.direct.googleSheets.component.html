@@ -9,7 +9,7 @@
                     </button>
                     <div class="gridTitle">
                         <b>
-                            <span *ngIf="!editingDS">Create a new </span>
+                            <span *ngIf="!editingDS">New </span>
                             <span *ngIf="editingDS">Edit </span>
                             Datasource
                             <span *ngIf="editingDS"
@@ -17,7 +17,7 @@
                                 >
                                 {{ selectedDatasource.name }}
                             </span>
-                            obtained from Google Sheets
+                            from Google Sheets
                         </b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"

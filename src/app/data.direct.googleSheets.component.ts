@@ -53,7 +53,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
     dataFieldsSelected: string[];
     datasources: Datasource[] = [];
     element: string = '';
-    errorMessage: string = '';
+    errorMessage: string = 'asdfasdfasdf';
     firstTimeEdit: boolean = false;
     newName: string = '';
     newDescription: string = '';
@@ -133,13 +133,9 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 this.spinner = false;
                 console.warn('xx res', res.length, this.dataFieldsSelected)
             })
-            .catch(errorMessage => {
-                this.errorMessage = errorMessage + '. ';
-                if (errorMessage.status == 401) {
-                    this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ';
-                } else {
-                    this.errorMessage = errorMessage;
-                };
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.googleSheets getTributaryData: ' + err);
                 this.spinner = false;
 
                 // Cannot save as yet
@@ -218,20 +214,30 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
             };
             console.warn('xx dataID updatedata', dataID, updatedData)
             // Add Data, then dataset, then DS
-            this.globalVariableService.saveData(updatedData).then(resData => {
+            this.globalVariableService.saveData(updatedData)
+                .then(resData => {
 
-                updatedDataset.url = 'data/' + dataID;
-                this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
-                    resDS => {
-                        updatedDataset.datasourceID = this.selectedDatasource.id;
-                        console.warn('xx updatedDataset', updatedDataset)
-                        this.globalVariableService.saveResource('datasets', updatedDataset);
+                    updatedDataset.url = 'data/' + dataID;
+                    this.globalVariableService.saveResource('datasources', this.selectedDatasource)
+                        .then(
+                            resDS => {
+                                updatedDataset.datasourceID = this.selectedDatasource.id;
+                                console.warn('xx updatedDataset', updatedDataset)
+                                this.globalVariableService.saveResource('datasets', updatedDataset);
+                        })
+                        .catch(err => {
+                            this.errorMessage = err.slice(0, 100);
+                            console.error('Error in Datasource.googleSheets reading datasources: ' + err);
+                        });
+            
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource updated';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.googleSheets saveData: ' + err);
                 });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource updated';
-            });
 
         } else {
             // Add new one
@@ -328,19 +334,24 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData).then(resData => {
+            this.globalVariableService.addData(newData)
+                .then(resData => {
 
-                newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addResource('datasources', newDatasource).then(resDS => {
-                    newdDataset.datasourceID = resDS.id;
-                    this.globalVariableService.addDataset(newdDataset);
+                    newdDataset.url = 'data/' + resData.id.toString();
+                    this.globalVariableService.addResource('datasources', newDatasource).then(resDS => {
+                        newdDataset.datasourceID = resDS.id;
+                        this.globalVariableService.addDataset(newdDataset);
 
+                    });
+
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource created';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.googleSheets addData: ' + err);
                 });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource created';
-            });
         };
     }
 
