@@ -62,10 +62,10 @@ export class DashboardTabComponent {
     displayOrder: number;
     dashboardID: number;                  // FK to DashboardID to which widget belongs
     description: string = '';             // T description
-    errorMessageText: string = '';
+    errorMessage: string = 'asdfasdfgasdfasdfasdfaas';
     name: string = '';                    // Name of new T
     selectedColour: string;
-    showErrorMessage: boolean = false;
+    showErrorMessage: boolean = true;
 
 
     constructor(
@@ -135,8 +135,11 @@ export class DashboardTabComponent {
                     {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, 
                     ...this.backgroundcolors
                 ];
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.tab reading canvasBackgroundcolors: ' + err);
             });
-
     }
 
     ngOnDestroy() {
@@ -222,16 +225,16 @@ export class DashboardTabComponent {
 
         // Validation
         this.showErrorMessage = false;
-        this.errorMessageText = '';
+        this.errorMessage = '';
 
         if (this.name == ''  ||  this.name.length > 20) {
             this.showErrorMessage = true;
-            this.errorMessageText = 'Please enter a name, and less than 20 char';
+            this.errorMessage = 'Please enter a name, and less than 20 char';
         };
 
         if (this.description == '') {
             this.showErrorMessage = true;
-            this.errorMessageText = 'Please enter a description';
+            this.errorMessage = 'Please enter a description';
         };
 
         if (this.showErrorMessage) {
@@ -257,20 +260,26 @@ export class DashboardTabComponent {
                 createdOn: null
             }
 
-            this.globalVariableService.addResource('dashboardTabs', newTab).then(res => {
+            this.globalVariableService.addResource('dashboardTabs', newTab)
+                .then(res => {
 
-                // Browse to it
-                this.globalVariableService.refreshCurrentDashboard(
-                    'tabNew-clickSave',
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    0,
-                    'Last'
-                );
+                    // Browse to it
+                    this.globalVariableService.refreshCurrentDashboard(
+                        'tabNew-clickSave',
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        0,
+                        'Last'
+                    );
 
-                newTab.id = res.id;
-                this.formDashboardTabClosed.emit(newTab);
+                    newTab.id = res.id;
+                    this.formDashboardTabClosed.emit(newTab);
 
-            });
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.tab adding dashboardTabs: ' + err);
+                });
+
         } else {
             let tab: DashboardTab = {
                 id: this.globalVariableService.currentDashboardInfo.value
@@ -291,9 +300,14 @@ export class DashboardTabComponent {
                 createdOn: new Date()
             };
 
-            this.globalVariableService.saveResource('dashboardTabs', tab).then(res => {
-                this.formDashboardTabClosed.emit(tab)
-            });
+            this.globalVariableService.saveResource('dashboardTabs', tab)
+                .then(res => {
+                    this.formDashboardTabClosed.emit(tab)
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.tab saving dashboardTabs: ' + err);
+                });
         }
     }
   }
