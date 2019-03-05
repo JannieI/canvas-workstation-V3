@@ -49,7 +49,7 @@ export class DataCombinationComponent implements OnInit {
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
     datasources: Datasource[];
-    errorMessage: string = "";
+    errorMessage: string = '';
     // TODO - fix!!
     fieldTypes: string[] = ['MonthTraded', 'TradeType', 'Volume' ,'Price', 'Value'];
     headers: string[] = [];
@@ -76,18 +76,25 @@ export class DataCombinationComponent implements OnInit {
         console.warn('xx combinationType', this.combinationType)
 
         // Load from global variables
-        this.datasources = this.globalVariableService.datasources.slice();
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res;
 
-        // Reset
-        this.selectedRowID = -1;
-        this.selectedRowIndexLH = -1;
-        this.selectedRowIndexRH = -1;
-        this.selectedRowName = '';
+            // Reset
+            this.selectedRowID = -1;
+            this.selectedRowIndexLH = -1;
+            this.selectedRowIndexRH = -1;
+            this.selectedRowName = '';
 
-        // Select first row if exists
-        if (this.datasources.length > 0) {
-            this.clickSelectedDatasourceLH(0, this.datasources[0].id);
-        };
+            // Select first row if exists
+            if (this.datasources.length > 0) {
+                this.clickSelectedDatasourceLH(0, this.datasources[0].id);
+            };
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Data.combination reading datasources: ' + err);
+        });
 
     }
 
@@ -108,7 +115,7 @@ export class DataCombinationComponent implements OnInit {
             this.selectedRowDescription = this.datasources[dsIndex].description;
 
         };
-        this.errorMessage = '';
+        this.errorMessage = 'asdfasdfasdfasdfasfasdfasdfasdf';
     }
 
     clickSelectedDatasourceRH(index: number, id: number) {

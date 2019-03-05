@@ -29,6 +29,11 @@
                             </clr-signpost-content>
                         </clr-signpost>
                     </div> 
+
+                    <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+
                     <div class="gridSubTitle">
                         <i *ngIf="combinationType=='Join'">
                             Create a new Datasources by joining the RH Datasource to the
@@ -67,10 +72,6 @@
                                 </clr-dg-cell>
                             </clr-dg-row>
                         </clr-datagrid>
-                    </div>
-
-                    <div *ngIf="errorMessage!=''" class="gridErrorMessage">
-                        {{ errorMessage }}
                     </div>
 
                     <div class="gridFieldsLHHeading">
