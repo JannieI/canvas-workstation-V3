@@ -42,8 +42,9 @@ export class DataDeleteDatasourceComponent implements OnInit {
 
     datasources: Datasource[];
     deleteMessage: string = '';
-    errorMessage: string = "";
+    errorMessage: string = 'asdfasdfasdf';
     selectedRowIndex: number = 0;
+    widgets: Widget[];
 
 
 	constructor(
@@ -55,25 +56,38 @@ export class DataDeleteDatasourceComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Load from global variables
-        this.datasources = this.globalVariableService.datasources
-            .slice()
-            .sort( (obj1, obj2) => {
-                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                    return 1;
-                };
-                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                    return -1;
-                };
-                return 0;
-            });
+        // Load data
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res.sort( (obj1, obj2) => {
+                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
 
-        // Count the Ws
-        let widgets: Widget[];
-        this.datasources.forEach(ds => {
-            widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
-            ds.nrWidgets = widgets.length;
-        });
+                // Count the Ws
+                let widgetsFiltered: Widget[];
+                this.globalVariableService.getResource('widgets')
+                    .then(w => {
+                        this.widgets = w;
+                        this.datasources.forEach(ds => {
+                            widgetsFiltered = this.widgets.filter(w => w.datasourceID == ds.id);
+                            ds.nrWidgets = widgetsFiltered.length;
+                        });
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Datasource.delete reading widgets: ' + err);
+                    });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.delete reading datasources: ' + err);
+            });
 
     }
 
@@ -85,7 +99,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedRowIndex = index;
 
-        this.errorMessage = '';
+        this.errorMessage = 'asdfasdfasdf';
     }
 
     dblclickDelete(index: number, id: number) {
