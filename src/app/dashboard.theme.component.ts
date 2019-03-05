@@ -41,9 +41,10 @@ export class DashboardThemeComponent implements OnInit {
 
     }
 
-    showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
     dashboardThemes: DashboardTheme[];
+    errorMessage: string = '';
+    showTypeDashboard: boolean = false;
 
 
 	constructor(
@@ -52,10 +53,18 @@ export class DashboardThemeComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards.slice();
+        this.globalVariableService.getResource('dashboards')
+            .then(res => this.dashboards = res)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.them reading dashboards: ' + err);
+            });
         this.globalVariableService.getResource('dashboardThemes')
             .then(res => this.dashboardThemes = res)
-            .catch(err => console.log('Error getting dashboardThemes: ' + err))
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.them reading dashboardThemes: ' + err);
+            });
     }
 
     clickClose(action: string) {

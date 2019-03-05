@@ -43,7 +43,7 @@ export class DashboardTemplateComponent implements OnInit {
     currentDashboard: Dashboard;
     currentTemplateName: string = '';
     dashboards: Dashboard[];
-    errorMessage: string = 'asdfasdfasdf sdf';
+    errorMessage: string = '';
     selectedRow: number = 0;
     showTypeDashboard: boolean = false;
 
