@@ -131,11 +131,11 @@
 
     .errorMessage {
         color: red;
-        grid-column-start: 7;
+        grid-column-start: 8;
         /* autoprefixer: off */
         grid-column-end: 21;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 1;
+        grid-row-end: 2;
         margin: 6px 2px 2px 2px;
         text-align: left;
     }

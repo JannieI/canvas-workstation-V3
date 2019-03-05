@@ -46,7 +46,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
     canSave: boolean = false;
     datasourceName: string;
-    errorMessage: string = "";
+    errorMessage: string = 'asdfasdfasdfasdfasdf';
     fields: string[] = [];
     fileName: string = '';
     headerRow: string = '0';
@@ -165,20 +165,22 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             };
         };
 
-        this.globalVariableService.getTributaryInspect(specification).then(res => {
-            this.worksheets = [];
-            res.forEach(row => {
-                this.worksheets.push(row.name);
-                this.worksheetColumns.push(row.fields);
-            });
+        this.globalVariableService.getTributaryInspect(specification)
+            .then(res => {
+                this.worksheets = [];
+                res.forEach(row => {
+                    this.worksheets.push(row.name);
+                    this.worksheetColumns.push(row.fields);
+                });
 
-            if (this.worksheets.length > 0) {
-                this.clickWorksheet(0);
-            };
-        })
-        .catch(errorMessage => {
-            this.errorMessage = errorMessage;
-        });
+                if (this.worksheets.length > 0) {
+                    this.clickWorksheet(0);
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.spreadsheet getTributaryInspect: ' + err);
+            });
 
     }
 
@@ -296,12 +298,17 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 return;
             };
         };
-        this.globalVariableService.getTributaryData(specification).then(res => {
+        this.globalVariableService.getTributaryData(specification)
+            .then(res => {
 
-            // Fill the data
-            this.worksheetData = res.slice(0,10);
-            this.worksheetDataFull = res;
-        });
+                // Fill the data
+                this.worksheetData = res.slice(0,10);
+                this.worksheetDataFull = res;
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.spreadsheet getTributaryData: ' + err);
+            });
 
     }
 
@@ -384,20 +391,25 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.saveData(updatedData).then(resData => {
+            this.globalVariableService.saveData(updatedData)
+                .then(resData => {
 
-                updatedDataset.url = 'data/' + dataID;
-                this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
-                    resDS => {
-                        updatedDataset.datasourceID = this.selectedDatasource.id;
-                        this.globalVariableService.saveResource('datasets', updatedDataset);
+                    updatedDataset.url = 'data/' + dataID;
+                    this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
+                        resDS => {
+                            updatedDataset.datasourceID = this.selectedDatasource.id;
+                            this.globalVariableService.saveResource('datasets', updatedDataset);
+                    });
+
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource updated';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.spreadsheet saveResource: ' + err);
                 });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource updated';
-            });
-
+    
         } else {
             // Add new one
             let newDatasource: Datasource = {
@@ -493,19 +505,24 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData).then(resData => {
+            this.globalVariableService.addData(newData)
+                .then(resData => {
 
-                newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addResource('datasources', newDatasource).then(resDS => {
-                    newdDataset.datasourceID = resDS.id;
-                    this.globalVariableService.addDataset(newdDataset);
+                    newdDataset.url = 'data/' + resData.id.toString();
+                    this.globalVariableService.addResource('datasources', newDatasource).then(resDS => {
+                        newdDataset.datasourceID = resDS.id;
+                        this.globalVariableService.addDataset(newdDataset);
 
+                    });
+
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource created';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.spreadsheet addResource: ' + err);
                 });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource created';
-            });
         };
 
 
