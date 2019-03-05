@@ -31,6 +31,10 @@
 
                 </div>
 
+                <div class="gridErrorMessage">
+                    {{ errorMessage }}
+                </div>
+
                 <div class="gridSubTitle">
                     Double click a Dashboard in the grid to add it as a Template to the 
                     current Dashboard.  
@@ -81,9 +85,9 @@
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
-                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.name (row.state)}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.description}}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.id }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.name }} ( {{ row.state }} )</clr-dg-cell>
+                            <clr-dg-cell>{{ row.description }}</clr-dg-cell>
                         </clr-dg-row>
 
                     </clr-datagrid>
