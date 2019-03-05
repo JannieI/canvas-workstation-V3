@@ -32,6 +32,15 @@
         margin-left: 30px;
         text-align: left;
     }
+
+    .gridErrorMessage {
+        color: red;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
     .gridSubTitle {
         color: red;
         grid-column-start: 1;
@@ -122,15 +131,6 @@
         grid-column-start: 6;
         /* autoprefixer: off */
         grid-column-end: 8;
-        grid-row-start: 13;
-        grid-row-end: 14;
-    }
-
-    .gridErrorMessage {
-        color: red;
-        grid-column-start: 9;
-        /* autoprefixer: off */
-        grid-column-end: 21;
         grid-row-start: 13;
         grid-row-end: 14;
     }

@@ -43,10 +43,10 @@ export class DataDirectServiceComponent implements OnInit {
     }
 
     datasources: Datasource[] = [];
-    parameters: string = '';
     errorMessage: string = '';
     newName: string = '';
     newDescription: string = '';
+    parameters: string = '';
     url: string = '';
 
 	constructor(
