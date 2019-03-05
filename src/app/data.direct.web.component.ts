@@ -68,7 +68,7 @@ export class DataDirectWebComponent implements OnInit {
     dataFieldsSelected: string[];
     datasources: Datasource[] = [];
     element: string = '';
-    errorMessage: string = '';
+    errorMessage: string = 'asdfasdfasdfasdf';
     firstTimeEdit: boolean = false;
     newName: string = '';
     newDescription: string = '';
@@ -139,12 +139,9 @@ export class DataDirectWebComponent implements OnInit {
                 };
 
             })
-            .catch(errorMessage => {
-                if (errorMessage.status == 401) {
-                    this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ';
-                } else {
-                    this.errorMessage = errorMessage;
-                };
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.web getTributaryInspect: ' + err);
             });
 
         // Cannot save as yet
@@ -170,36 +167,37 @@ export class DataDirectWebComponent implements OnInit {
             }
         };
 
-        this.globalVariableService.getTributaryData(source).then(res => {
-            this.currentData = res;
-            this.currentDataSnippet = res;
-            this.nrRows = res.length;
+        this.globalVariableService.getTributaryData(source)
+            .then(res => {
+                this.currentData = res;
+                this.currentDataSnippet = res;
+                this.nrRows = res.length;
 
-            // Show the preview data table
-            this.showPreview = true;
+                // Show the preview data table
+                this.showPreview = true;
 
-            // Construct a list of field name / column headings from the data
-            this.dataFieldsSelected = [];
+                // Construct a list of field name / column headings from the data
+                this.dataFieldsSelected = [];
 
-            if (res.length > 0) {
-                console.warn('xx res[0]', res[0])
-                for(var key in res[0]) {
-                    console.warn('xx key', key)
-                    this.dataFieldsSelected.push(key);
-                }
-            };
+                if (res.length > 0) {
+                    console.warn('xx res[0]', res[0])
+                    for(var key in res[0]) {
+                        console.warn('xx key', key)
+                        this.dataFieldsSelected.push(key);
+                    }
+                };
 
-            // The User can save now
-            this.canSave = true;
-            this.savedMessage = '';
-            this.spinner = false;
-            console.warn('xx res', res.length, this.dataFieldsSelected)
-        })
-        .catch(errorMessage => {
-            this.spinner = false;
-            this.errorMessage = 'Error connecting to server: check login or permissions'
-                + errorMessage;
-        });
+                // The User can save now
+                this.canSave = true;
+                this.savedMessage = '';
+                this.spinner = false;
+                console.warn('xx res', res.length, this.dataFieldsSelected)
+            })
+            .catch(err => {
+                this.spinner = false;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.web getTributaryData: ' + err);
+            });
     }
 
     clickClose(action: string) {
@@ -271,21 +269,29 @@ export class DataDirectWebComponent implements OnInit {
             };
             console.warn('xx dataID updatedata', dataID, updatedData)
             // Add Data, then dataset, then DS
-            this.globalVariableService.saveData(updatedData).then(resData => {
+            this.globalVariableService.saveData(updatedData)
+                .then(resData => {
 
-                updatedDataset.url = 'data/' + dataID;
-                this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
-                    resDS => {
-                        updatedDataset.datasourceID = this.selectedDatasource.id;
-                        console.warn('xx updatedDataset', updatedDataset)
-                        this.globalVariableService.saveResource('datasets', updatedDataset);
+                    updatedDataset.url = 'data/' + dataID;
+                    this.globalVariableService.saveResource('datasources', this.selectedDatasource)
+                        .then(
+                            resDS => {
+                                updatedDataset.datasourceID = this.selectedDatasource.id;
+                                console.warn('xx updatedDataset', updatedDataset)
+                                this.globalVariableService.saveResource('datasets', updatedDataset);
+                        })
+                        .catch(err => {
+                        });
+            
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource updated';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.web saveData: ' + err);
                 });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource updated';
-            });
-
+    
         } else {
             // Add new one
             let newDatasource: Datasource = {
@@ -381,20 +387,29 @@ export class DataDirectWebComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData).then(resData => {
+            this.globalVariableService.addData(newData)
+                .then(resData => {
 
-                newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addResource('datasources', newDatasource).then(resDS => {
-                    newdDataset.datasourceID = resDS.id;
-                    this.globalVariableService.addDataset(newdDataset);
+                    newdDataset.url = 'data/' + resData.id.toString();
+                    this.globalVariableService.addResource('datasources', newDatasource).then(resDS => {
+                        newdDataset.datasourceID = resDS.id;
+                        this.globalVariableService.addDataset(newdDataset);
 
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Datasource.web addResource: ' + err);
+                    });
+    
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource created';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.web addData: ' + err);
                 });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource created';
-            });
-        };
+            };
     }
 
 }
