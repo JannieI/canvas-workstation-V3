@@ -44,6 +44,7 @@ export class DataManagedDataDictionaryComponent implements OnInit {
 
     datasources: Datasource[] = [];
     editing: boolean = false;
+    errorMessage: string = '';
     selectedDatasourceID: number = null;
     selectedDatasource: Datasource;
     selectedDatasourcesRowIndex: number = 0;
@@ -133,16 +134,21 @@ export class DataManagedDataDictionaryComponent implements OnInit {
             sourceLocation: ''
         }
 
-        this.globalVariableService.getResource('datasources').then(dc => {
-            // Fill local Var
-            this.datasources = dc.slice();
-            console.warn('xx this.datasources.length', this.datasources.length)
+        this.globalVariableService.getResource('datasources')
+            .then(dc => {
+                // Fill local Var
+                this.datasources = dc.slice();
+                console.warn('xx this.datasources.length', this.datasources.length)
 
-            // Click on first one, if available
-            if (this.datasources.length > 0) {
-                this.clickRow(0, this.datasources[0].id);
-            };
-        });
+                // Click on first one, if available
+                if (this.datasources.length > 0) {
+                    this.clickRow(0, this.datasources[0].id);
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Managed.dictionary reading datasources: ' + err);
+            });
 
     }
 
@@ -215,6 +221,11 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
                     this.selectedDatasource.dataDictionary
             };
             this.globalVariableService.saveResource('datasources', this.selectedDatasource)
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Managed.dictionary reading datasources: ' + err);
+                });
+
         };
 
         // Reset
