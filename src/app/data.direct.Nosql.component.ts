@@ -47,7 +47,7 @@ export class DataDirectNoSQLComponent implements OnInit {
 
 
     canSave: boolean = false;
-    errorMessage: string = "";
+    errorMessage: string = '';
     fileData: any = [];
     fileDataFull: any = [];
     reader = new FileReader();
@@ -203,76 +203,78 @@ export class DataDirectNoSQLComponent implements OnInit {
         };
 
         // Call Tributary
-        this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
-            console.warn('xx res I', res)
+        this.globalVariableService.getTributaryInspect(specificationInspect)
+            .then(res => {
+                console.warn('xx res I', res)
 
-            // Set up specification
-            this.selectedDatasource.dataNoSQLStatement = this.selectedDatasource.dataNoSQLStatement.trim();
-            // let specificationConnect: any = {
-            //     "source": {
-            //         "connector": "tributary.connectors.mongodb:MongoDBConnector",
-            //         "specification": {
-            //             "collection": 'cars',
-            //             "username": this.selectedDatasource.username,
-            //             "password": this.selectedDatasource.password,
-            //             "database": this.selectedDatasource.databaseName,
-            //             "host": this.selectedDatasource.serverName,
-            //             "port": +this.selectedDatasource.port,
-            //             "query": this.selectedDatasource.dataNoSQLStatement
-            //         }
-            //     }
-            // };
-            let specificationConnect: any = {
-                "source": {
-                    "connector": "tributary.connectors.mongodb:MongoDBConnector",
-                    "specification": {
-                        "collection": 'cars',
-                        "database": this.selectedDatasource.databaseName,
-                        "host": this.selectedDatasource.serverName,
-                        "port": +this.selectedDatasource.port,
-                        "query": {}
-                    }
-                }
-            };
-
-
-            this.globalVariableService.getTributaryData(specificationConnect).then(res => {
-
-                // Fill the data
-                this.fileData = res.slice(0,10);
-                this.fileDataFull = res;
-
-                // Construct a list of field name / column headings from the data
-                this.selectedDatasource.dataFields = [];
-
-                if (res.length > 0) {
-                    console.warn('xx res[0]', res[0])
-                    for(var key in res[0]) {
-                        console.warn('xx key', key)
-                        this.selectedDatasource.dataFields.push(key);
+                // Set up specification
+                this.selectedDatasource.dataNoSQLStatement = this.selectedDatasource.dataNoSQLStatement.trim();
+                // let specificationConnect: any = {
+                //     "source": {
+                //         "connector": "tributary.connectors.mongodb:MongoDBConnector",
+                //         "specification": {
+                //             "collection": 'cars',
+                //             "username": this.selectedDatasource.username,
+                //             "password": this.selectedDatasource.password,
+                //             "database": this.selectedDatasource.databaseName,
+                //             "host": this.selectedDatasource.serverName,
+                //             "port": +this.selectedDatasource.port,
+                //             "query": this.selectedDatasource.dataNoSQLStatement
+                //         }
+                //     }
+                // };
+                let specificationConnect: any = {
+                    "source": {
+                        "connector": "tributary.connectors.mongodb:MongoDBConnector",
+                        "specification": {
+                            "collection": 'cars',
+                            "database": this.selectedDatasource.databaseName,
+                            "host": this.selectedDatasource.serverName,
+                            "port": +this.selectedDatasource.port,
+                            "query": {}
+                        }
                     }
                 };
-                
-                // Show the results
-                this.showPreview = true;
-                this.spinner = false;
 
-                // Can Add now
-                this.canSave = true;
 
+                this.globalVariableService.getTributaryData(specificationConnect).then(res => {
+
+                    // Fill the data
+                    this.fileData = res.slice(0,10);
+                    this.fileDataFull = res;
+
+                    // Construct a list of field name / column headings from the data
+                    this.selectedDatasource.dataFields = [];
+
+                    if (res.length > 0) {
+                        console.warn('xx res[0]', res[0])
+                        for(var key in res[0]) {
+                            console.warn('xx key', key)
+                            this.selectedDatasource.dataFields.push(key);
+                        }
+                    };
+                    
+                    // Show the results
+                    this.showPreview = true;
+                    this.spinner = false;
+
+                    // Can Add now
+                    this.canSave = true;
+
+                })
+                .catch(errorMessage => {
+                    this.spinner = false;
+                    this.errorMessage = 'Error connecting to server: check login or permissions'
+                        + errorMessage;
+                });
             })
-            .catch(errorMessage => {
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.noSQL getTributaryInspect: ' + err);
                 this.spinner = false;
                 this.errorMessage = 'Error connecting to server: check login or permissions'
-                    + errorMessage;
+                    + err;
             });
-        })
-        .catch(errorMessage => {
-            console.warn('xx err', errorMessage)
-            this.spinner = false;
-            this.errorMessage = 'Error connecting to server: check login or permissions'
-                + errorMessage;
-        });
 
     }
 
@@ -344,19 +346,24 @@ export class DataDirectNoSQLComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.saveData(updatedData).then(resData => {
+            this.globalVariableService.saveData(updatedData)
+                .then(resData => {
 
-                updatedDataset.url = 'data/' + dataID;
-                this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
-                    resDS => {
-                        updatedDataset.datasourceID = this.selectedDatasource.id;
-                        this.globalVariableService.saveResource('datasets', updatedDataset);
+                    updatedDataset.url = 'data/' + dataID;
+                    this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
+                        resDS => {
+                            updatedDataset.datasourceID = this.selectedDatasource.id;
+                            this.globalVariableService.saveResource('datasets', updatedDataset);
+                    });
+
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource updated';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.noSQL saveData: ' + err);
                 });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource updated';
-            });
 
         } else {
             // Add new one
@@ -379,19 +386,29 @@ export class DataDirectNoSQLComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData).then(resData => {
+            this.globalVariableService.addData(newData)
+                .then(resData => {
 
-                newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addResource('datasources', this.selectedDatasource).then(resDS => {
-                    newdDataset.datasourceID = resDS.id;
-                    this.globalVariableService.addDataset(newdDataset);
+                    newdDataset.url = 'data/' + resData.id.toString();
+                    this.globalVariableService.addResource('datasources', this.selectedDatasource)
+                        .then(resDS => {
+                            newdDataset.datasourceID = resDS.id;
+                            this.globalVariableService.addDataset(newdDataset);
 
+                        })
+                        .catch(err => {
+                            this.errorMessage = err.slice(0, 100);
+                            console.error('Error in Datasource.noDQL reading datasources: ' + err);
+                        });
+            
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource created';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.noSQL addData: ' + err);
                 });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource created';
-            });
         };
 
         // Close form and open Transitions if requested
