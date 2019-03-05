@@ -50,6 +50,7 @@ export class DashboardSnapshotsComponent implements OnInit {
 
     }
     currentDashboardSnapshots: DashboardSnapshot[];
+    errorMessage: string = '';
     setClickedRow : Function;  // use (click)="setClickedRow(i)" in html to call this
     selectedRow : Number = 0;
     snapshotComment: string = '';
@@ -74,7 +75,12 @@ export class DashboardSnapshotsComponent implements OnInit {
             '?filterObject={"dashboardID": '
             + this.globalVariableService.currentDashboardInfo.value.currentDashboardID.toString()
             + '}')
-            .then(i => this.currentDashboardSnapshots = i.slice());
+            .then(i => this.currentDashboardSnapshots = i.slice())
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.snapshots reading dashboardSnapshots: ' + err);
+            });
+
 
         let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
             d => d.id ==
@@ -100,8 +106,12 @@ export class DashboardSnapshotsComponent implements OnInit {
 
         this.globalVariableService.deleteResource('dashboardSnapshots', id).then(res => {
             this.currentDashboardSnapshots.splice(index, 1)
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Dashboard.snapshots deleting dashboardSnapshots: ' + err);
         });
-    }
+}
 
     clickAdd() {
         // Add a new snapshot
@@ -110,8 +120,12 @@ export class DashboardSnapshotsComponent implements OnInit {
         this.globalVariableService.newDashboardSnapshot(
             this.snapshotName, this.snapshotComment,'UserDefined').then(res => {
             this.currentDashboardSnapshots.push(res);
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Dashboard.snapshots adding dashboardSnapshots: ' + err);
         });
-    }
+}
 
     clickRestore(index: number) {
         // Refresh the D to the selected Snapshot, after saving the current D
