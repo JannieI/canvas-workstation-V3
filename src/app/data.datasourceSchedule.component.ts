@@ -43,6 +43,7 @@ export class DataDatasourceScheduleComponent implements OnInit {
 
     datasourceSchedules: DatasourceSchedule[];
     datasources: Datasource[];
+    errorMessage: string = '';
     selectedRow: number = 0;
 
 
@@ -55,10 +56,18 @@ export class DataDatasourceScheduleComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.datasources = this.globalVariableService.datasources.slice();
+        this.globalVariableService.getResource('datasources')
+            .then(data => this.datasources = data)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.schedules reading datasources: ' + err);
+            });
         this.globalVariableService.getResource('datasourceSchedules')
             .then(data => this.datasourceSchedules = data)
-            .catch(err => console.log('Error in getting schedules: ' + err));
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.schedules reading datasourceSchedules: ' + err);
+            });
     }
 
     clickClose(action: string) {
