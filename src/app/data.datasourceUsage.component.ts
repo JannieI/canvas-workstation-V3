@@ -44,7 +44,7 @@ export class DataDatasourceUsageComponent implements OnInit {
 
     datasources: Datasource[];
     dashboards: Dashboard[] = [];
-    errorMessage: string = "";
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdf';
     selectedRowIndex: number = 0;
     widgets: Widget[] = [];
 
@@ -110,7 +110,7 @@ export class DataDatasourceUsageComponent implements OnInit {
             }
         })
 
-        this.errorMessage = '';
+        this.errorMessage = 'asdfasdfasdfasdf';
     }
    
     clickClose(action: string) {
