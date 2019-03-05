@@ -53,7 +53,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
     dataFieldsSelected: string[];
     datasources: Datasource[] = [];
     element: string = '';
-    errorMessage: string = 'asdfasdfasdf';
+    errorMessage: string = '';
     firstTimeEdit: boolean = false;
     newName: string = '';
     newDescription: string = '';

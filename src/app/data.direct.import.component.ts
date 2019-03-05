@@ -42,7 +42,7 @@ export class DataDirectImportComponent implements OnInit {
     currentData: any = [];
     datasourceName: string = '';
     datasourceDescription: string = '';
-    errorMessage: string = "";
+    errorMessage: string = '';
     fileName: string = 'datasource.sharePrices.json';
     folderName: string = './assets/';
     importedDatasource: Datasource;
@@ -166,7 +166,12 @@ export class DataDirectImportComponent implements OnInit {
         datasource.id = null;
         datasource.name = this.datasourceName;
         datasource.description = this.datasourceDescription;
-        this.globalVariableService.addResource('datasources', datasource);
+        this.globalVariableService.addResource('datasources', datasource)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.import addResource: ' + err);
+            });
+
 
         this.formDataDirectImportClosed.emit('Added');
 
