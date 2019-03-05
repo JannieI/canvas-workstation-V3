@@ -186,25 +186,26 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.selectedDatasource.databaseName,
             this.selectedDatasource.port,
             this.selectedDatasource.username,
-            this.selectedDatasource.password).then(res => {
+            this.selectedDatasource.password)
+                .then(res => {
 
-                this.tables = [''];
+                    this.tables = [''];
 
-                res.data.forEach(row => {
+                    res.data.forEach(row => {
 
-                    this.tables.push(row);
+                        this.tables.push(row);
+                    });
+
+                    // Reset
+                    this.spinner = false;
+                    this.message = 'Tables loaded';
+
+                })
+                .catch(err => {
+                    this.spinner = false;
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource SQL getListTables: ' + err);
                 });
-
-                // Reset
-                this.spinner = false;
-                this.message = 'Tables loaded';
-
-            })
-            .catch(errorMessage => {
-                this.spinner = false;
-                this.errorMessage = 'Error connecting to server (maybe check login or permissions): '
-                    + errorMessage;
-            });
 
     }
 
@@ -221,18 +222,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
         // Show user
         this.spinner = true;
-
-
-        // TEST
-        // this.globalVariableService.getCurrentDashboardAndTab(82, 175, "1,2")
-        //     .then(res => {
-        //         console.log('xx SQL ED done')
-        //     })
-        //     .catch(errorMessage => {
-        //         console.log('xx SQL Ed err', this.errorMessage)
-        //     });
-
-
 
         // Set up specification for Connector
         this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
@@ -289,10 +278,10 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.canSave = true;
 
             })
-            .catch(errorMessage => {
+            .catch(err => {
                 this.spinner = false;
-                this.errorMessage = 'Error in query execution (maybe check login or permissions) '
-                    + errorMessage;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource SQL getExecQuery: ' + err);
             });
 
     }
@@ -329,10 +318,10 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.spinner = false;
                 this.message = 'Fields loaded';
             })
-            .catch(errorMessage => {
+            .catch(err => {
                 this.spinner = false;
-                this.errorMessage = 'Error getting fields from server (maybe check login or permissions): '
-                    + errorMessage;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource SQL getListFields: ' + err);
             });
     }
 
@@ -433,19 +422,29 @@ export class DataDirectSQLEditorComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.saveData(updatedData).then(resData => {
+            this.globalVariableService.saveData(updatedData)
+                .then(resData => {
 
-                updatedDataset.url = 'data/' + dataID;
-                this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
-                    resDS => {
-                        updatedDataset.datasourceID = this.selectedDatasource.id;
-                        this.globalVariableService.saveResource('datasets', updatedDataset);
+                    updatedDataset.url = 'data/' + dataID;
+                    this.globalVariableService.saveResource('datasources', this.selectedDatasource)
+                        .then(
+                            resDS => {
+                                updatedDataset.datasourceID = this.selectedDatasource.id;
+                                this.globalVariableService.saveResource('datasets', updatedDataset);
+                        })
+                        .catch(err => {
+                            this.errorMessage = err.slice(0, 100);
+                            console.error('Error in Datasource SQL saveResource: ' + err);
+                        });
+        
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource updated';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource SQL saveData: ' + err);
                 });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource updated';
-            });
 
         } else {
             let today: Date = new Date();
@@ -489,37 +488,12 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 //     this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
                 // };
 
-            })
-            .catch(errorMessage => {
-                this.errorMessage = 'Save failed - ' + errorMessage;
-            });
-            // this.globalVariableService.addData(newData)
-            //     .then(resData => {
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource SQL addDatasourceNew: ' + err);
+                });
 
-            //         newdDataset.url = 'data/' + resData.id.toString();
-            //         this.globalVariableService.addResource('datasources', this.selectedDatasource).then(resDS => {
-            //             newdDataset.datasourceID = resDS.id;
-            //             this.globalVariableService.addDataset(newdDataset);
-
-            //         });
-
-            //         // Indicate to the user
-            //         this.canSave = false;
-            //         this.savedMessage = 'Datasource created';
-
-            //         // Close form and open Transitions if requested
-            //         if (action == 'Saved') {
-            //             this.formDataDirectSQLEditorClosed.emit(null);
-
-            //         } else {
-            //             this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
-
-            //         };
-
-            //     })
-            //     .catch(errorMessage => {
-            //         this.errorMessage = 'Save failed - ' + errorMessage;
-            //     });
         };
     }
 
