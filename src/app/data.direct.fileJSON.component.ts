@@ -57,7 +57,7 @@ export class DataDirectFileJSONComponent implements OnInit {
     clearQuotes: boolean = true;
     datasourceName: string = '';
     editMessage: string = 'Note: the data have to be reloaded with Browse before clicking Save.';
-    errorMessage: string = "";
+    errorMessage: string = '';
     fields: string[] = [];
     // fileColumns: any[] = [];
     fileData: any = [];
@@ -93,18 +93,24 @@ export class DataDirectFileJSONComponent implements OnInit {
         if (this.selectedDatasource != null) {
             let params: string = 'datasourceID=' + this.selectedDatasource.id.toString()
                 + '&nrRowsToReturn=10';
-            this.globalVariableService.getData(params).then(dat => {
-                this.fileData = [];
-                this.fields = Object.keys(dat[0]);
-                let row: any = [];
-                for (var i = 0; i < dat.length; i++) {
-                    row = [];
-                    for (var j = 0; j < this.fields.length; j++) {
-                        row.push(dat[i][this.fields[j]]);
+            this.globalVariableService.getData(params)
+                .then(dat => {
+                    this.fileData = [];
+                    this.fields = Object.keys(dat[0]);
+                    let row: any = [];
+                    for (var i = 0; i < dat.length; i++) {
+                        row = [];
+                        for (var j = 0; j < this.fields.length; j++) {
+                            row.push(dat[i][this.fields[j]]);
+                        };
+                        this.fileData.push(row)
                     };
-                    this.fileData.push(row)
-                };
-            });
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.json getData: ' + err);
+                });
+
         };
 
     }
@@ -245,7 +251,6 @@ export class DataDirectFileJSONComponent implements OnInit {
         this.savedMessage = '';
 
         // Validation
-        this.errorMessage = '';
         if (this.newName == '') {
             this.errorMessage = 'Please enter a Name for the Datasource';
             return;
@@ -323,14 +328,15 @@ export class DataDirectFileJSONComponent implements OnInit {
                 updatedDataset,
                 updatedData).then(resData => {
 
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource updated';
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource updated';
 
-            })
-            .catch(errorMessage => {
-                this.errorMessage = 'Save failed - ' + errorMessage;
-            });
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.json saveDatasourceNEW: ' + err);
+                });
         } else {
             // Add new one
             let newDatasource: Datasource = {
@@ -431,22 +437,23 @@ export class DataDirectFileJSONComponent implements OnInit {
                 newdDataset,
                 newData).then(resData => {
 
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource created';
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource created';
 
-                // Close form and open Transitions if requested
-                // if (action == 'Saved') {
-                //     this.formDataDirectSQLEditorClosed.emit(null);
+                    // Close form and open Transitions if requested
+                    // if (action == 'Saved') {
+                    //     this.formDataDirectSQLEditorClosed.emit(null);
 
-                // } else {
-                //     this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
-                // };
+                    // } else {
+                    //     this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
+                    // };
 
-            })
-            .catch(errorMessage => {
-                this.errorMessage = 'Save failed - ' + errorMessage;
-            });
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.json addDatasourceNEW: ' + err);
+                });
         };
 
     }
