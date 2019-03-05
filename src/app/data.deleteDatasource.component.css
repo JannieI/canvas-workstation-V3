@@ -33,6 +33,17 @@
         text-align: left;
     }
 
+    .gridErrorMessage {
+        color: red;
+        font-size: 0.6rem;
+        grid-column-start: 6;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
+
     .gridDeleteMessage {
         color: red;
         grid-column-start: 6;

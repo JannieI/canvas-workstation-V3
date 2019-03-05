@@ -42,7 +42,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
 
     datasources: Datasource[];
     deleteMessage: string = '';
-    errorMessage: string = 'asdfasdfasdf';
+    errorMessage: string = '';
     selectedRowIndex: number = 0;
     widgets: Widget[];
 
@@ -99,7 +99,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedRowIndex = index;
 
-        this.errorMessage = 'asdfasdfasdf';
+        this.errorMessage = '';
     }
 
     dblclickDelete(index: number, id: number) {
