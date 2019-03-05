@@ -47,7 +47,7 @@ export class DashboardShareComponent implements OnInit {
     accessType: string = '';
     canChangePermissions: boolean = false;
     dashboardPermissions: DashboardPermission[];
-    errorMessage: string = '';
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasfdsdfasdfasdafasdf';
     groupID: number;
     groupName: string = '';
     groups: CanvasGroup[];
@@ -68,11 +68,16 @@ export class DashboardShareComponent implements OnInit {
         this.accessType = this.selectedDashboard.accessType;
         this.originalAccessType = this.selectedDashboard.accessType;
 
-        this.globalVariableService.getResource('canvasGroups').then( res => {
-            this.dashboardPermissions = this.globalVariableService.dashboardPermissions
-                .filter(dP => dP.dashboardID == this.selectedDashboard.id);
-            this.groups = res;
-        });
+        this.globalVariableService.getResource('canvasGroups')
+            .then( res => {
+                this.dashboardPermissions = this.globalVariableService.dashboardPermissions
+                    .filter(dP => dP.dashboardID == this.selectedDashboard.id);
+                this.groups = res;
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.share reading canvasGroups: ' + err);
+            });
 
         // Check permissions
         if (this.globalVariableService.dashboardPermissionCheck(
@@ -178,9 +183,14 @@ export class DashboardShareComponent implements OnInit {
         };
 
         // Update locally
-        this.globalVariableService.addResource('dashboardPermissions', newdP).then(res => {
-            this.dashboardPermissions.push(res);
-        });
+        this.globalVariableService.addResource('dashboardPermissions', newdP)
+            .then(res => {
+                this.dashboardPermissions.push(res);
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.share adding dashboardPermissions: ' + err);
+            });
     }
 
     dblclickDelete(id: number)  {
@@ -196,17 +206,22 @@ export class DashboardShareComponent implements OnInit {
         };
 
         // Delete locally, globally and DB
-        this.globalVariableService.deleteResource('dashboardPermissions', id).then(res => {
-            let index: number = -1;
-            for(var i = 0; i < this.dashboardPermissions.length; i++) {
-                if (this.dashboardPermissions[i].id == id) {
-                    index = i;
+        this.globalVariableService.deleteResource('dashboardPermissions', id)
+            .then(res => {
+                let index: number = -1;
+                for(var i = 0; i < this.dashboardPermissions.length; i++) {
+                    if (this.dashboardPermissions[i].id == id) {
+                        index = i;
+                    };
                 };
-            };
-            if (index >= 0) {
-                this.dashboardPermissions.splice(index, 1);
-            };
-        });
+                if (index >= 0) {
+                    this.dashboardPermissions.splice(index, 1);
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.share adding dashboardPermissions: ' + err);
+            });
 
     }
 
