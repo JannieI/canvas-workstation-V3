@@ -47,7 +47,7 @@ export class DashboardShareComponent implements OnInit {
     accessType: string = '';
     canChangePermissions: boolean = false;
     dashboardPermissions: DashboardPermission[];
-    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasfdsdfasdfasdafasdf';
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasfdsdfasdfasdafasdf ....';
     groupID: number;
     groupName: string = '';
     groups: CanvasGroup[];
