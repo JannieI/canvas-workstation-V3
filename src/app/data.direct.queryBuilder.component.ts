@@ -71,7 +71,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     dataFieldsSelected: string[] = [];
     dataSchemas: DataSchema[] = [];
     dataTables: DataTable[] = [];
-    errorMessage: string = "";
+    errorMessage: string = '';
     helpMessage: string = '';
     nrRows: number = 0;
     selectedFieldRowIndex: number = 0;
@@ -289,16 +289,10 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
                 };
             })
-            .catch(errorMessage => {
+            .catch(err => {
                 this.spinner = false;
-                this.errorMessage = errorMessage.message + '. ';
-                this.helpMessage = '';
-                if (errorMessage.status == 401) {
-                    this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. '
-                        + errorMessage.message;
-                } else {
-                    this.errorMessage = errorMessage;
-                };
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.queryBuilder getTributaryInspect: ' + err);
             });
 
     }
@@ -417,27 +411,23 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         };
 
         // Get data from Tributary
-        this.globalVariableService.getTributaryData(specificationConnect).then(res => {
-            this.spinner = false;
-            this.currentData = res;
-            this.helpMessage = '';
-            this.showPreview = true;
-            this.nrRows = res.length;
-            this.currentDataSnippet = res.slice(0, 8);
+        this.globalVariableService.getTributaryData(specificationConnect)
+            .then(res => {
+                this.spinner = false;
+                this.currentData = res;
+                this.helpMessage = '';
+                this.showPreview = true;
+                this.nrRows = res.length;
+                this.currentDataSnippet = res.slice(0, 8);
 
-        })
-        .catch(errorMessage => {
-            this.showPreview = true;
-            this.errorMessage = errorMessage.message + '. ';
-            this.helpMessage = '';
-            this.spinner = false;
-            if (errorMessage.status == 401) {
-                this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. '
-                    + errorMessage;
-            } else {
-                this.errorMessage = errorMessage;
-            };
-        });
+            })
+            .catch(err => {
+                this.showPreview = true;
+                this.helpMessage = '';
+                this.spinner = false;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.queryBuilder getTributaryData: ' + err);
+            });
 
     }
 
@@ -592,15 +582,24 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         };
 
         // Add Data, then dataset, then DS
-        this.globalVariableService.addData(newData).then(resData => {
+        this.globalVariableService.addData(newData)
+            .then(resData => {
 
-            newdSet.url = 'data/' + resData.id.toString();
-            this.globalVariableService.addResource('datasources', newDatasource).then(resDS => {
-                newdSet.datasourceID = resDS.id;
-                this.globalVariableService.addDataset(newdSet);
-
+                newdSet.url = 'data/' + resData.id.toString();
+                this.globalVariableService.addResource('datasources', newDatasource)
+                    .then(resDS => {
+                        newdSet.datasourceID = resDS.id;
+                        this.globalVariableService.addDataset(newdSet);
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Datasource.queryBuilder addDataset: ' + err);
+                    });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.queryBuilder reading datasources: ' + err);
             });
-        });
 
         // Close form and open Transitions if requested
         if (action == 'Saved') {
