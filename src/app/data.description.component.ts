@@ -59,21 +59,26 @@ export class DatasourceDescriptionComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.datasources = this.globalVariableService.datasources
-            .slice()
-            .sort( (obj1, obj2) => {
-                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                    return 1;
-                };
-                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                    return -1;
-                };
-                return 0;
-            });
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res.sort( (obj1, obj2) => {
+                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
 
-        if (this.datasources.length > 0) {
-            this.selectedDatasource = this.datasources[0];
-        };
+                if (this.datasources.length > 0) {
+                    this.selectedDatasource = this.datasources[0];
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.description reading datasources: ' + err);
+            });
 
     }
 
@@ -128,26 +133,25 @@ export class DatasourceDescriptionComponent implements OnInit {
             };
 
         // Update DS
-        this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(res => {
-            this.infoMessage = 'Datasource Saved';
-          
-            this.datasources = this.globalVariableService.datasources
-                .slice()
-                .sort( (obj1, obj2) => {
-                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                        return 1;
-                    };
-                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                        return -1;
-                    };
-                    return 0;
-                });
+        this.globalVariableService.saveResource('datasources', this.selectedDatasource)
+            .then(res => {
+                this.infoMessage = 'Datasource Saved';
+            
+                let datasourceIndex: number = this.datasources.findIndex(
+                    ds => ds.id == this.selectedDatasource.id);
+                if (datasourceIndex >= 0) {
+                    this.datasources[datasourceIndex] = this.selectedDatasource;
+                };
 
-            if (this.datasources.length > 0) {
-                this.selectedDatasource = this.datasources[0];
-            };            
-        });
-
+                // TODO - is it correct to reset the selected DS?
+                if (this.datasources.length > 0) {
+                    this.selectedDatasource = this.datasources[0];
+                };            
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.description saving datasources: ' + err);
+            });
 
     }
 
