@@ -54,7 +54,7 @@ export class DataCombinationAppendComponent implements OnInit {
     dataFieldTypes: string[] = [];
     dataQualityIssues: DataQualityIssue[];
     datasources: localDatasources[];
-    errorMessage: string = "";
+    errorMessage: string = '';
     fileName: string = '';
     folderName: string = '';
     fieldTypes: {MonthTraded: string; TradeType: string; Volume: string; Price: string; Value: string;}[] = [];
