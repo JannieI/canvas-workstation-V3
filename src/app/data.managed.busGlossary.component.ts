@@ -43,6 +43,7 @@ export class DataManagedBusGlossaryComponent implements OnInit {
 
     datasources: Datasource[] = [];
     editing: boolean = false;
+    errorMessage: string = 'asdfasdfasdfasdf';
     selectedDatasourceID: number = null;
     selectedDatasource: Datasource;
     selectedDatasourcesRowIndex: number = 0;
@@ -140,6 +141,10 @@ export class DataManagedBusGlossaryComponent implements OnInit {
             if (this.datasources.length > 0) {
                 this.clickRow(0, this.datasources[0].id);
             };
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Managed.businessGlossary reading auditTrails: ' + err);
         });
 
     }
@@ -213,6 +218,11 @@ export class DataManagedBusGlossaryComponent implements OnInit {
                     this.selectedDatasource.businessGlossary
             };
             this.globalVariableService.saveResource('datasources', this.selectedDatasource)
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Managed.businessGlossary reading auditTrails: ' + err);
+                });
+
         };
 
         // Reset
