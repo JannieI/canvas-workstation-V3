@@ -52,9 +52,10 @@ export class DashboardSubscribeComponent implements OnInit {
 
     }
 
-    dashboards: Dashboard[];
     availableDashboards: string[] = [];
+    dashboards: Dashboard[];
     dashboardSubscriptions: DashboardSubscription[] = [];
+    errorMessage: string = '';
     selectedDashboard: string = '';
     selectedRow: number = 0;
 
@@ -69,7 +70,14 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get all dashboards
-        this.dashboards = this.globalVariableService.dashboards.slice();
+        this.globalVariableService.getResource('dashboards')
+            .then(data => {
+                this.dashboards = data;
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.subscribe reading dashboards: ' + err);
+            });
 
         // Get subscriptions for current User
         this.globalVariableService.getResource('dashboardSubscriptions')
@@ -104,7 +112,10 @@ export class DashboardSubscribeComponent implements OnInit {
                     this.selectedDashboard = this.availableDashboards[0];
                 };
             })
-            .catch(err => console.log('Error in getting schedules: ' + err));
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.subscribe reading dashboardSubscriptions: ' + err);
+            });
         
     }
 
@@ -125,8 +136,11 @@ export class DashboardSubscribeComponent implements OnInit {
             this.globalVariableService.saveResource('dashboardSubscriptions',
                 this.dashboardSubscriptions[index])
                 .then(res => console.log('Saved'))
-                .catch(err => console.log('Error in getting schedules: ' + err));
-            };
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.subscribe saving dashboardSubscriptions: ' + err);
+                });
+        };
 
     }
 
@@ -147,8 +161,11 @@ export class DashboardSubscribeComponent implements OnInit {
             this.globalVariableService.saveResource('dashboardSubscriptions',
                 this.dashboardSubscriptions[index])
                 .then(res => console.log('Saved'))
-                .catch(err => console.log('Error in getting schedules: ' + err));
-
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.subscribe saving dashboardSubscriptions: ' + err);
+                });
+    
         };
     }
 
@@ -169,8 +186,11 @@ export class DashboardSubscribeComponent implements OnInit {
             this.globalVariableService.saveResource('dashboardSubscriptions',
                 this.dashboardSubscriptions[index])
                 .then(res => console.log('Saved'))
-                .catch(err => console.log('Error in getting schedules: ' + err));
-
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.subscribe saving dashboardSubscriptions: ' + err);
+                });
+    
         };
     }
 
@@ -191,8 +211,11 @@ export class DashboardSubscribeComponent implements OnInit {
             this.globalVariableService.saveResource('dashboardSubscriptions',
                 this.dashboardSubscriptions[index])
                 .then(res => console.log('Saved'))
-                .catch(err => console.log('Error in getting schedules: ' + err));
-
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.subscribe saving dashboardSubscriptions: ' + err);
+                });
+    
         };
     }
 
@@ -230,8 +253,11 @@ export class DashboardSubscribeComponent implements OnInit {
             this.globalVariableService.saveResource('dashboardSubscriptions',
                 this.dashboardSubscriptions[index])
                 .then(res => console.log('Saved'))
-                .catch(err => console.log('Error in getting schedules: ' + err));
-        };
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.subscribe saving dashboardSubscriptions: ' + err);
+                });
+            };
     }
 
     clickClose(action: string) {
@@ -321,7 +347,10 @@ export class DashboardSubscribeComponent implements OnInit {
                         this.selectedDashboard = this.availableDashboards[0];
                     };
                 })
-                .catch(err => console.log('Error in getting schedules: ' + err));
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.subscribe adding dashboardSubscriptions: ' + err);
+                });
         } else {
             console.log('ERROR - dID = -1 which means its not in the list!  Ai toggie')
         };
@@ -333,36 +362,41 @@ export class DashboardSubscribeComponent implements OnInit {
 
         // Delete globally and in DB
         // TODO - Proper error handling
-        this.globalVariableService.deleteResource('dashboardSubscriptions', id).then( res => {
+        this.globalVariableService.deleteResource('dashboardSubscriptions', id)
+            .then( res => {
 
-            // Update locally
-            this.dashboardSubscriptions = this.dashboardSubscriptions.filter(
-                ds => ds.id != id
-            );
+                // Update locally
+                this.dashboardSubscriptions = this.dashboardSubscriptions.filter(
+                    ds => ds.id != id
+                );
 
-            let index: number = -1;
-            for(var i = 0; i < this.dashboards.length; i++) {
-                if (this.dashboards[i].id == id) { 
-                    index = i;
+                let index: number = -1;
+                for(var i = 0; i < this.dashboards.length; i++) {
+                    if (this.dashboards[i].id == id) { 
+                        index = i;
+                    };
                 };
-            };
 
-            // Nothing to do
-            if (index == -1) {
-                return;
-            };
-    
-            // Add to available List
-            this.availableDashboards.push('(' + this.dashboards[index].id + ') ' + 
-                this.dashboards[index].code
-            );
+                // Nothing to do
+                if (index == -1) {
+                    return;
+                };
         
-            // Get First one
-            if (this.availableDashboards.length > 0) {
-                this.selectedDashboard = this.availableDashboards[0];
-            };
+                // Add to available List
+                this.availableDashboards.push('(' + this.dashboards[index].id + ') ' + 
+                    this.dashboards[index].code
+                );
+            
+                // Get First one
+                if (this.availableDashboards.length > 0) {
+                    this.selectedDashboard = this.availableDashboards[0];
+                };
 
-        });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.subscribe deleting dashboardSubscriptions: ' + err);
+            });
         
     }
  
