@@ -56,6 +56,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
     }
 
     adding: boolean = false;
+    datasources: Datasource[] = [];
     datasourceSchedules: DatasourceSchedule[] = [];
     datasourceID: number;
     datasourceName: string = '';
@@ -78,33 +79,45 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get Datasource list
-        this.globalVariableService.datasources.forEach(ds => {
-            this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
-        });
-        this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
-            if (obj1.toLowerCase() > obj2.toLowerCase()) {
-                return 1;
-            };
-            if (obj1.toLowerCase() < obj2.toLowerCase()) {
-                return -1;
-            };
-            return 0;
-        });
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res;
+                this.datasources.forEach(ds => {
+                    this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
+                });
+                this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
+                    if (obj1.toLowerCase() > obj2.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.toLowerCase() < obj2.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
 
-        let datasource: Datasource = this.globalVariableService.datasources[0];
-        this.datasourceName = datasource.name;
-        this.clearRecord();
+                if (this.datasources.length > 0) {
+                    let datasource: Datasource = this.datasources[0];
+                    this.datasourceName = datasource.name;
+                };
+                this.clearRecord();
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.scheduleEdit reading datasources: ' + err);
+            });
 
         this.globalVariableService.getResource('datasourceSchedules')
-            .then
-                (i => {
-                    this.datasourceSchedules = i;
-                    if (this.datasourceSchedules.length > 0) {
-                        this.clickRow(0, this.datasourceSchedules[0].id);
-                    };
+            .then(i => {
+                this.datasourceSchedules = i;
+                if (this.datasourceSchedules.length > 0) {
+                    this.clickRow(0, this.datasourceSchedules[0].id);
+                };
             })
-            .catch(err => this.errorMessage = 'Error in getting schedules: ' + err);
-    }
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.scheduleEdit reading datasourceSchedules: ' + err);
+            });
+}
 
     clickRow(index: number, id: number) {
         // Click Row
@@ -126,14 +139,14 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                 this.datasourceSchedules[datasourceScheduleIndex]
             ));
 
-            let datasourceIndex: number = this.globalVariableService.datasources.findIndex(
-                ds => ds.id == this.globalVariableService.datasourceSchedules[
+            let datasourceIndex: number = this.datasources.findIndex(
+                ds => ds.id == this.datasourceSchedules[
                       datasourceScheduleIndex].datasourceID
             );
 
             if (datasourceIndex >= 0) {
-                this.selectedDatasource = this.globalVariableService.datasources[datasourceIndex]
-                    .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
+                this.selectedDatasource = this.datasources[datasourceIndex]
+                    .name + ' (' + this.datasources[datasourceIndex].id + ')';
 
             } else {
                 this.selectedDatasource = '';
@@ -345,17 +358,18 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
             this.selectedDatasourceSchedule.id = null;
             this.globalVariableService.addResource(
                 'datasourceSchedules', this.selectedDatasourceSchedule)
-                .then(
-                    res => {
+                .then(res => {
                         if (this.selectedRow == null) {
                             this.selectedRow = 0;
                             this.scheduleID = this.selectedDatasourceSchedule.id;
                         };
 
-                    }
-                )
-                .catch(err => this.errorMessage = 'Error in adding schedule: ' + err);
-            };
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.scheduleEdit adding datasourceSchedules: ' + err);
+                });
+        };
 
         // Save the changes
         if (this.editing) {
@@ -366,9 +380,12 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                     JSON.parse(JSON.stringify(this.selectedDatasourceSchedule));
             };
             this.globalVariableService.saveResource(
-                'datasourceSchedules', this.selectedDatasourceSchedule)
-                    .then(res => console.log('Saved'))
-                    .catch(err => this.errorMessage = 'Error in saving schedule: ' + err);
+                'datasourceSchedules', this.selectedDatasourceSchedule
+                ).then(res => console.log('Saved'))
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.scheduleEdit saving datasourceSchedules: ' + err);
+                });
         };
 
         // Reset
@@ -405,12 +422,17 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         this.clearRecord();
-        this.globalVariableService.deleteResource('datasourceSchedules', id).then(res => {
-            this.datasourceSchedules = this.datasourceSchedules.filter(
-                dsp => dsp.id != id
-            );
-        });
-        
+        this.globalVariableService.deleteResource('datasourceSchedules', id)
+            .then(res => {
+                this.datasourceSchedules = this.datasourceSchedules.filter(
+                    dsp => dsp.id != id
+                );
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.scheduleEdit deleting datasourceSchedules: ' + err);
+            });
+    
         this.selectedRow = null;
         this.scheduleID = null;
     }
