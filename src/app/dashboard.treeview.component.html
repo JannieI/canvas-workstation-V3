@@ -29,6 +29,11 @@
                     </clr-signpost>
 
                 </div>
+
+                <div class="gridErrorMessage">
+                    {{ errorMessage }}
+                </div>
+
                 <div class="gridTreeView">
                     <clr-tree-node *ngFor="let row of objectTree">
                         <clr-icon [attr.shape]="row.icon"></clr-icon>

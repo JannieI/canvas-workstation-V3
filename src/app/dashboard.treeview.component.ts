@@ -45,6 +45,7 @@ export class DashboardTreeviewComponent implements OnInit {
 
     dashboards: Dashboard[];
     dataQualityIssues: DataQualityIssue[] = [];
+    errorMessage: string = 'asdfasdfasdfasdfs';
     objectTree: any[] = [];
     showTypeDashboard: boolean = false;
 
