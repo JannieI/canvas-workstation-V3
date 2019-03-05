@@ -32,6 +32,17 @@
         text-align: left;
     }
 
+    .gridErrorMessage {
+        color: red;
+        font-size: 0.6rem;
+        grid-column-start: 7;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
+    
     .gridTable {
         border: 1px solid gray;
         border-radius: 4px;

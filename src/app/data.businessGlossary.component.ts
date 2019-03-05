@@ -43,6 +43,7 @@ export class DataBusinessGlossaryComponent implements OnInit {
 
     datasources: Datasource[] = [];
     editing: boolean = false;
+    errorMessage: string = '';
     selectedDatasourceID: number = null;
     selectedDatasource: Datasource;
     selectedDatasourcesRowIndex: number = 0;
@@ -56,15 +57,20 @@ export class DataBusinessGlossaryComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getResource('datasources').then(dc => {
-            // Fill local Var
-            this.datasources = dc.slice();
-            
-            // Click on first one, if available
-            if (this.datasources.length > 0) {
-                this.clickRow(0, this.datasources[0].id);
-            };
-        });
+        this.globalVariableService.getResource('datasources')
+            .then(ds => {
+                // Fill local Var
+                this.datasources = ds;
+                
+                // Click on first one, if available
+                if (this.datasources.length > 0) {
+                    this.clickRow(0, this.datasources[0].id);
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in data.businessGlossary reading datasources: ' + err);
+            });
 
     }
 
