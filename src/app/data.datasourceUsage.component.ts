@@ -44,7 +44,7 @@ export class DataDatasourceUsageComponent implements OnInit {
 
     datasources: Datasource[];
     dashboards: Dashboard[] = [];
-    errorMessage: string = 'asdfasdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     selectedRowIndex: number = 0;
     widgets: Widget[] = [];
 
@@ -60,20 +60,26 @@ export class DataDatasourceUsageComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load from global variables
-        this.datasources = this.globalVariableService.datasources
-            .slice()
-            .sort((n1,n2) => {
-                if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
-                    return 1;
-                };
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res
+                    .sort((n1,n2) => {
+                        if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
+                            return 1;
+                        };
 
-                if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
-                    return -1;
-                };
+                        if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
+                            return -1;
+                        };
 
-                return 0;
+                        return 0;
+                    });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.usage reading datasources: ' + err);
             });
-
+    
         // Show D for DS
         if (this.datasources.length > 0) {
             this.clickSelectedDatasource(0, this.datasources[0].id);
@@ -110,7 +116,7 @@ export class DataDatasourceUsageComponent implements OnInit {
             }
         })
 
-        this.errorMessage = 'asdfasdfasdfasdf';
+        this.errorMessage = '';
     }
    
     clickClose(action: string) {
