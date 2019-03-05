@@ -39,15 +39,15 @@ export class DataManagedConnectionComponent implements OnInit {
 
     }
 
+    
     adding: boolean = false;
     connectionID: number = null;
     dataConnections: DataConnection[];
     editing: boolean = false;
-    errorMessage: string = "";
+    errorMessage: string = '';
     selectedConnection: DataConnection;
     selectedConnectionRowIndex: number = 0;
 
-    // connections ->
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -68,7 +68,8 @@ export class DataManagedConnectionComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Managed.connections getResource: ' + err);
             });
 
     }
@@ -199,9 +200,10 @@ export class DataManagedConnectionComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err;
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Managed.connections addResource: ' + err);
                 });
-            };
+        };
 
         // Save the changes
         if (this.editing) {
@@ -213,8 +215,15 @@ export class DataManagedConnectionComponent implements OnInit {
                 this.dataConnections[dataconnectionIndex] =
                     JSON.parse(JSON.stringify(this.selectedConnection));
             };
-            this.globalVariableService.saveResource('dataConnections', this.selectedConnection)
-        };
+            this.globalVariableService.saveResource(
+                'dataConnections', 
+                this.selectedConnection
+                )
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Managed.connections saveResource: ' + err);
+                });
+            };
 
         // Reset
         this.editing = false;
@@ -255,7 +264,8 @@ export class DataManagedConnectionComponent implements OnInit {
                 this.dataConnections = this.dataConnections.filter(dc => dc.id != id);
             })
             .catch(err => {
-                this.errorMessage = err;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Managed.connections deleteResource: ' + err);
             });
 
         this.selectedConnectionRowIndex = null;
