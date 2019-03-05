@@ -42,6 +42,7 @@ export class DataDictionaryComponent implements OnInit {
 
     }
 
+    errorMessage: string = '';
     finalFields: any = [];
     selectedRow: number = 0;
 
