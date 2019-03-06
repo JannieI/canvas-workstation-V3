@@ -63,28 +63,44 @@ export class DataRefreshOnceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get DS
-        this.currentDatasources = this.globalVariableService.datasources
-            .slice()
-            .sort( (obj1, obj2) => {
-                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                    return 1;
-                };
-                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                    return -1;
-                };
-                return 0;
-            });
+        this.globalVariableService.getResource('datasources')
+        .then(d =>{
+            let widgets: Widget[];
+            this.globalVariableService.getResource('widgets')
+                .then(w => {
+                    widgets = w;
+                    this.currentDatasources = d
+                        .sort( (obj1, obj2) => {
+                            if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                                return 1;
+                            };
+                            if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                                return -1;
+                            };
+                            return 0;
+                        });
 
-        if (this.currentDatasources.length > 0) {
-            this.dataFieldNames = this.currentDatasources[0].dataFields;
-        };
+                    if (this.currentDatasources.length > 0) {
+                        this.dataFieldNames = this.currentDatasources[0].dataFields;
+                    };
 
-        // Count the Ws
-        let widgets: Widget[];
-        this.currentDatasources.forEach(ds => {
-            widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
-            ds.nrWidgets = widgets.length;
+                    // Count the Ws
+                    this.currentDatasources.forEach(ds => {
+                        widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
+                        ds.nrWidgets = widgets.length;
+                    });
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.refreshOnce reading widgets: ' + err);
+                });
+
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in managed.SQL Datasource.refreshOnce reading datasources: ' + err);
         });
+
     }
 
     clickRow(index: number, id: number) {
@@ -137,32 +153,37 @@ export class DataRefreshOnceComponent implements OnInit {
 
             this.isBusyRetrievingData = true;
             this.errorMessage = 'Getting data ...'
-            this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+            this.globalVariableService.addCurrentDatasource(datasourceID)
+                .then(res => {
 
-                // Reset
-                this.isBusyRetrievingData = false
+                    // Reset
+                    this.isBusyRetrievingData = false
 
-                let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-                .findIndex(dS => dS.id == datasourceID
-                );
-                if (globalCurrentDSIndex >= 0) {
-                    this.currentDatasources.push(
-                        this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
-                };
+                    let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
+                    .findIndex(dS => dS.id == datasourceID
+                    );
+                    if (globalCurrentDSIndex >= 0) {
+                        this.currentDatasources.push(
+                            this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
+                    };
 
-                let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                    .findIndex(dS => dS.datasourceID == datasourceID
-                );
-                if (globalCurrentDsetIndex >= 0) {
-                    this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-                };
+                    let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
+                        .findIndex(dS => dS.datasourceID == datasourceID
+                    );
+                    if (globalCurrentDsetIndex >= 0) {
+                        this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
+                    };
 
-                // Tell user
-                this.errorMessage = 'Data retrieved - click row again to continue';
+                    // Tell user
+                    this.errorMessage = 'Data retrieved - click row again to continue';
 
-            });
-
-            // Stop Synch execution
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in managed.SQL Datasource.refreshOnce addCurrentDatasource: ' + err);
+                });
+        
+            // Stop Sync execution
             return;
         };
 
@@ -183,31 +204,43 @@ export class DataRefreshOnceComponent implements OnInit {
             };
 
             this.isBusyRetrievingData = true;
-            this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
-                this.isBusyRetrievingData = false
+            this.globalVariableService.addCurrentDatasource(datasourceID)
+                .then(res => {
+                    this.isBusyRetrievingData = false
 
-                let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-                .findIndex(dS => dS.id == datasourceID
-                );
-                if (globalCurrentDSIndex >= 0) {
-                    this.currentDatasources.push(
-                        this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
-                };
+                    let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
+                    .findIndex(dS => dS.id == datasourceID
+                    );
+                    if (globalCurrentDSIndex >= 0) {
+                        this.currentDatasources.push(
+                            this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
+                    };
 
-                let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                    .findIndex(dS => dS.datasourceID == datasourceID
-                );
-                if (globalCurrentDsetIndex >= 0) {
-                    this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-                };
+                    let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
+                        .findIndex(dS => dS.datasourceID == datasourceID
+                    );
+                    if (globalCurrentDsetIndex >= 0) {
+                        this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
+                    };
 
-                // Update Refresh info
-                let today = new Date();
-                this.currentDatasources[dsIndex].refreshedBy = this.globalVariableService
-                    .currentUser.userID;
-                this.currentDatasources[dsIndex].refreshedServerOn = today;
-                this.globalVariableService.saveResource('datasources', this.currentDatasources[dsIndex]);
-            });
+                    // Update Refresh info
+                    let today = new Date();
+                    this.currentDatasources[dsIndex].refreshedBy = this.globalVariableService
+                        .currentUser.userID;
+                    this.currentDatasources[dsIndex].refreshedServerOn = today;
+                    this.globalVariableService.saveResource(
+                        'datasources', 
+                        this.currentDatasources[dsIndex]
+                        )
+                        .catch(err => {
+                            this.errorMessage = err.slice(0, 100);
+                            console.error('Error in managed.SQL Datasource.refreshOnce saving datasources: ' + err);
+                        });
+                    })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in managed.SQL Datasource.refreshOnce addCurrentDatasource: ' + err);
+                });
         };
 
 
