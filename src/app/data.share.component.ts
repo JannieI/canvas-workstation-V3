@@ -71,62 +71,81 @@ export class DatasourceShareComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.datasources = this.globalVariableService.datasources
-            .filter(ds => ds.accessType == 'AccessList')
-            .slice();
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res
+                    .filter(ds => ds.accessType == 'AccessList')
+                    .slice();
 
-        this.globalVariableService.getDatasourcePermissions().then (dp => {
-            this.datasourcePermissions = dp.slice();
-            this.datasourcePermissions.forEach(tdsp => {
-                tdsp.name = this.globalVariableService.datasources.filter(
-                    ds => ds.id == tdsp.datasourceID)[0].name;
-            });
-            this.datasourcePermissions = this.datasourcePermissions.sort( (obj1, obj2) => {
-                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                    return 1;
-                };
-                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                    return -1;
-                };
-                return 0;
-            });
-
-            this.globalVariableService.getResource('canvasUsers').then(usr => {
-                this.userNames = usr.sort((n1,n2) => {
-                    if (n1.userID.toLowerCase() > n2.userID.toLowerCase()) {
-                        return 1;
-                    };
-
-                    if (n1.userID.toLowerCase() < n2.userID.toLowerCase()) {
-                        return -1;
-                    };
-
-                    return 0;
-                })
-                .map(u => u.userID);
-                this.userNames = ['', ...this.userNames];
-                this.users = usr;
-
-                this.globalVariableService.getResource('canvasGroups').then(grp => {
-                    this.groupNames = grp.sort((n1,n2) => {
-                        if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
+                this.globalVariableService.getDatasourcePermissions().then (dp => {
+                    this.datasourcePermissions = dp.slice();
+                    this.datasourcePermissions.forEach(tdsp => {
+                        tdsp.name = this.datasources.filter(
+                            ds => ds.id == tdsp.datasourceID)[0].name;
+                    });
+                    this.datasourcePermissions = this.datasourcePermissions.sort( (obj1, obj2) => {
+                        if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
                             return 1;
                         };
-
-                        if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
+                        if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
                             return -1;
                         };
-
                         return 0;
+                    });
+
+                    this.globalVariableService.getResource('canvasUsers').then(usr => {
+                        this.userNames = usr.sort((n1,n2) => {
+                            if (n1.userID.toLowerCase() > n2.userID.toLowerCase()) {
+                                return 1;
+                            };
+
+                            if (n1.userID.toLowerCase() < n2.userID.toLowerCase()) {
+                                return -1;
+                            };
+
+                            return 0;
+                        })
+                        .map(u => u.userID);
+                        this.userNames = ['', ...this.userNames];
+                        this.users = usr;
+
+                        this.globalVariableService.getResource('canvasGroups').then(grp => {
+                            this.groupNames = grp.sort((n1,n2) => {
+                                if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
+                                    return 1;
+                                };
+
+                                if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
+                                    return -1;
+                                };
+
+                                return 0;
+                            })
+                            .map(g => g.name);
+
+                            this.groups = grp.slice();
+                            this.groupNames = ['', ...this.groupNames];
+                        })
+                        .catch(err => {
+                            this.errorMessage = err.slice(0, 100);
+                            console.error('Error in Datasource.share reading canvasGroups: ' + err);
+                        });
                     })
-                    .map(g => g.name);
-
-                    this.groups = grp.slice();
-                    this.groupNames = ['', ...this.groupNames];
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Datasource.share reading canvasUsers: ' + err);
+                    });
+    
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.share getDatasourcePermissions: ' + err);
                 });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.share reading datasources: ' + err);
             });
-
-        });
 
     }
 
@@ -163,9 +182,15 @@ export class DatasourceShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveResource('datasourcePermissions',
-                this.datasourcePermissions[index]).then(res => {
+            this.globalVariableService.saveResource(
+                'datasourcePermissions',
+                this.datasourcePermissions[index]
+                ).then(res => {
                     this.infoMessage = 'Changes saved';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.share saving datasourcePermissions: ' + err);
                 });
         };
     }
@@ -195,9 +220,15 @@ export class DatasourceShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveResource('datasourcePermissions',
-                this.datasourcePermissions[index]).then(res => {
+            this.globalVariableService.saveResource(
+                'datasourcePermissions',
+                this.datasourcePermissions[index]
+                ).then(res => {
                     this.infoMessage = 'Changes saved';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.share saving datasourcePermissions: ' + err);
                 });
         };
     }
@@ -227,9 +258,15 @@ export class DatasourceShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveResource('datasourcePermissions', 
-                this.datasourcePermissions[index]).then(res => {
+            this.globalVariableService.saveResource(
+                'datasourcePermissions', 
+                this.datasourcePermissions[index]
+                ).then(res => {
                     this.infoMessage = 'Changes saved';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.share saving datasourcePermissions: ' + err);
                 });
         };
     }
@@ -258,9 +295,15 @@ export class DatasourceShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveResource('datasourcePermissions', 
-                this.datasourcePermissions[index]).then(res => {
+            this.globalVariableService.saveResource(
+                'datasourcePermissions', 
+                this.datasourcePermissions[index]
+                ).then(res => {
                     this.infoMessage = 'Changes saved';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.share saving datasourcePermissions: ' + err);
                 });
         };
     }
@@ -290,10 +333,17 @@ export class DatasourceShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveResource('datasourcePermissions', 
-                this.datasourcePermissions[index]).then(res => {
+            this.globalVariableService.saveResource(
+                'datasourcePermissions', 
+                this.datasourcePermissions[index]
+                ).then(res => {
                     this.infoMessage = 'Changes saved';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.share saving datasourcePermissions: ' + err);
                 });
+
         };
     }
 
@@ -302,8 +352,12 @@ export class DatasourceShareComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeletePermission', '@Start');
 
         this.datasourcePermissions.splice(index,1);
-        this.globalVariableService.deleteResource('datasourcePermissions', id);
-    }
+        this.globalVariableService.deleteResource('datasourcePermissions', id)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.share deleting datasourcePermissions: ' + err);
+            });
+}
 
     clickAdd() {
         // Add a new Permission
@@ -361,9 +415,14 @@ export class DatasourceShareComponent implements OnInit {
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: new Date()
         };
-        this.globalVariableService.addResource('datasourcePermissions', newDatasourcePermision).then(
-            res => this.datasourcePermissions.push(res)
-        );
+        this.globalVariableService.addResource(
+            'datasourcePermissions', 
+            newDatasourcePermision
+            ).then(res => this.datasourcePermissions.push(res))
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.share adding datasourcePermissions: ' + err);
+            });
 
     }
 

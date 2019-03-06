@@ -50,11 +50,11 @@
 
     .gridErrorMessage {
         color: red;
-        grid-column-start: 3;
+        grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 21;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 2;
+        grid-row-end: 3;
     }
 
     .gridButtonCancel {

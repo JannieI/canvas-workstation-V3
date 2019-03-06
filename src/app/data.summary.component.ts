@@ -42,6 +42,7 @@ export class DataSummaryComponent implements OnInit {
 
     }
 
+    errorMessage: string = 'asdfasdfasdfasdfasdf';
     finalFields: any = [];
     selectedRow: number = 0;
 
