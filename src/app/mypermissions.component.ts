@@ -49,6 +49,7 @@ export class MyPermissionsComponent implements OnInit {
     }
 
     dashboardPermissions: localDashboardPermission[];
+    errorMessage: string = 'asdfasdfasdfasdfasdf';
     groupID: number;
     groupName: string = '';
     groups: CanvasGroup[];
@@ -65,38 +66,43 @@ export class MyPermissionsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getResource('canvasGroups').then(res => {
-            this.groups = res;
+        this.globalVariableService.getResource('canvasGroups')
+            .then(res => {
+                this.groups = res;
 
-            let filteredDashboard: Dashboard[] = [];
-            this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
+                let filteredDashboard: Dashboard[] = [];
+                this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
 
-            // Get supplimentary info
-            // TODO - do this better with DB
-            this.dashboardPermissions.forEach(dP => {
-                filteredDashboard = this.globalVariableService.dashboards.filter(d =>
-                    d.id == dP.dashboardID
-                );
-                if (filteredDashboard.length > 0) {
-                    dP.dashboardName = filteredDashboard[0].name;
-                };
-
-                this.groups.forEach(grp => {
-                    if (grp.id == dP.groupID) {
-                        dP.groupName = grp.name;
+                // Get supplimentary info
+                // TODO - do this better with DB
+                this.dashboardPermissions.forEach(dP => {
+                    filteredDashboard = this.globalVariableService.dashboards.filter(d =>
+                        d.id == dP.dashboardID
+                    );
+                    if (filteredDashboard.length > 0) {
+                        dP.dashboardName = filteredDashboard[0].name;
                     };
-                });
-            });
 
-            // Filter for current user
-            this.dashboardPermissions = this.dashboardPermissions.filter(dP =>
-                (dP.userID == this.globalVariableService.currentUser.userID)
-                ||
-                (this.globalVariableService.currentUser.groups
-                    .map(x => x.toLowerCase())
-                    .indexOf(dP.groupName.toLocaleLowerCase()) > 0)
-            );
-        });
+                    this.groups.forEach(grp => {
+                        if (grp.id == dP.groupID) {
+                            dP.groupName = grp.name;
+                        };
+                    });
+                });
+
+                // Filter for current user
+                this.dashboardPermissions = this.dashboardPermissions.filter(dP =>
+                    (dP.userID == this.globalVariableService.currentUser.userID)
+                    ||
+                    (this.globalVariableService.currentUser.groups
+                        .map(x => x.toLowerCase())
+                        .indexOf(dP.groupName.toLocaleLowerCase()) > 0)
+                );
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 45);
+                console.error('Error in myPermission reading canvasGroups: ' + err);
+            });
 
     }
 

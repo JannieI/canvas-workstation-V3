@@ -129,7 +129,7 @@
         text-align: left;
     }
 
-    .errorMessage {
+    .gridErrorMessage {
         color: red;
         grid-column-start: 8;
         /* autoprefixer: off */

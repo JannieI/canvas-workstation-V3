@@ -33,6 +33,10 @@
 
                     </div>
 
+                    <div class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+
                     <div class="gridAddName">
                         New Name:
                         <input [(ngModel)]="newColorName"
@@ -133,10 +137,6 @@
                             >
                             Cancel
                         </button>
-                    </div>
-
-                    <div class="errorMessage">
-                        {{ errorMessage }}
                     </div>
                 </div>
             </form>

@@ -45,7 +45,7 @@ export class ManageColoursComponent implements OnInit {
     availableBgIndex: number = -1;
     backgroundcolors: CSScolor[];
     backgroundcolorsDefault: CSScolor[];
-    errorMessage: string = 'asdfasdfasdfasdfa';
+    errorMessage: string = '';
     newColorCode: string = '';
     newColorName: string = '';
     selectedBgIndex: number = -1;

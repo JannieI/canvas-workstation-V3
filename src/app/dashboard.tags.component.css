@@ -52,7 +52,7 @@
         margin-top: 12px;
     }
 
-    .errorMessage {
+    .gridErrorMessage {
         color: red;
         grid-column-start: 5;
         /* autoprefixer: off */
