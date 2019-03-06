@@ -4436,17 +4436,6 @@ export class AppComponent implements OnInit {
         this.showModalDataDictionary = true;
     }
 
-    clickMenuDataSummary() {
-        // Shows Data Summary
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSummary', '@Start');
-
-        if (!this.menuOptionClickPreAction()) {
-            return;
-        };
-
-        this.showModalDataSummary = true;
-    }
-
     clickMenuDataDeleteDatasource() {
         // Shows form to Delete Datasources
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDeleteDatasource', '@Start');

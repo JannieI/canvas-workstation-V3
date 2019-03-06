@@ -48,7 +48,7 @@
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 18;
-        grid-row-start: 2;
+        grid-row-start: 3;
         grid-row-end: 5;
         text-align: left;
     }
