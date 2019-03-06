@@ -236,11 +236,11 @@
     }
     .gridErrorMessage {
         color: red;
-        grid-column-start: 13;
+        grid-column-start: 6;
         /* autoprefixer: off */
         grid-column-end: 21;
-        grid-row-start: 18;
-        grid-row-end: 19;
+        grid-row-start: 1;
+        grid-row-end: 2;
     }
 
     .gridSpinner {

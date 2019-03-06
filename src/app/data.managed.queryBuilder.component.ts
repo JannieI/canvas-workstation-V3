@@ -64,7 +64,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
     dataFieldsSelected: string[] = [];
     dataSchemas: DataSchema[] = [];
     dataTables: DataTable[] = [];
-    errorMessage: string = "";
+    errorMessage: string = 'asdfasdfasdfasdfasdf';
     helpMessage: string = '';
     nrRows: number = 0;
     selectedFieldRowIndex: number = 0;
@@ -95,7 +95,8 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 console.warn('xx this.dataConnectionNames = ', this.dataConnectionNames )
             })
             .catch(err => {
-                this.errorMessage = err;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in managed.QB reading dataConnections: ' + err);
             });
 
         if (!this.editingDS) {
@@ -307,16 +308,11 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 };
 
             })
-            .catch(errorMessage => {
+            .catch(err => {
                 this.spinner = false;
-                this.errorMessage = errorMessage.message + '. ';
                 this.helpMessage = '';
-                if (errorMessage.status == 401) {
-                    this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. '
-                        + errorMessage;
-                } else {
-                    this.errorMessage = errorMessage;
-                };
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in managed.QB reading dataConnections: ' + err);
             });
 
     }
@@ -430,27 +426,23 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         };
 
         // Get data from Tributary
-        this.globalVariableService.getTributaryData(specificationConnect).then(res => {
-            this.spinner = false;
-            this.currentData = res;
-            this.helpMessage = '';
-            this.showPreview = true;
-            this.nrRows = res.length;
-            this.currentDataSnippet = res.slice(0, 8);
+        this.globalVariableService.getTributaryData(specificationConnect)
+            .then(res => {
+                this.spinner = false;
+                this.currentData = res;
+                this.helpMessage = '';
+                this.showPreview = true;
+                this.nrRows = res.length;
+                this.currentDataSnippet = res.slice(0, 8);
 
-        })
-        .catch(errorMessage => {
-            this.showPreview = true;
-            this.errorMessage = errorMessage + '. ';
-            this.helpMessage = '';
-            this.spinner = false;
-            if (errorMessage.status == 401) {
-                this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. '
-                    + errorMessage;
-            } else {
-                this.errorMessage = errorMessage;
-            };
-        });
+            })
+            .catch(err => {
+                this.showPreview = true;
+                this.helpMessage = '';
+                this.spinner = false;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in managed.QB reading dataConnections: ' + err);   
+            });
 
     }
 
@@ -612,6 +604,10 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 newdSet.datasourceID = resDS.id;
                 this.globalVariableService.addDataset(newdSet);
 
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in managed.QB adding datasources: ' + err);
             });
         });
 

@@ -52,7 +52,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
     connectionString: string = '';
     dataConnections: DataConnection[];
     dataConnectionNames: string[] = [];
-    errorMessage: string = 'asdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     fileData: any = [];
     fileDataFull: any = [];
     reader = new FileReader();
