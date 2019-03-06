@@ -63,11 +63,11 @@
                             type="text"
                             name="companyName"
                             placeholder="CompanyName"
-                            #dashboardDescriptionVar="ngModel"
+                            #companyNameVar="ngModel"
                             required
                             minlength="2"
                             maxlength="250"
-                            [style.color]="!dashboardDescriptionVar.valid ? 'red' : 'gray'"
+                            [style.color]="!companyNameVar.valid ? 'red' : 'gray'"
                             >
                     </div>
 
@@ -83,11 +83,11 @@
                             type="text"
                             name="userID"
                             placeholder="UserName"
-                            #dashboardDescriptionVar="ngModel"
+                            #userIDVar="ngModel"
                             required
                             minlength="2"
                             maxlength="250"
-                            [style.color]="!dashboardDescriptionVar.valid ? 'red' : 'gray'"
+                            [style.color]="!userIDVar.valid ? 'red' : 'gray'"
                             >
                     </div>
 

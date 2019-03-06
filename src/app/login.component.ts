@@ -118,20 +118,28 @@ export class LoginComponent implements OnInit {
 
         // Set current Server Name and URI
         this.globalVariableService.registerCanvasUser(
-            this.canvasServerName, this.companyName, this.userID, this.password).then(res => {
+            this.canvasServerName, 
+            this.companyName, 
+            this.userID, 
+            this.password
+            ).then(res => {
 
-            console.warn('xx res', res);
+                console.warn('xx res', res);
 
-            if (res.substring(0, 5) == 'Error') {
-                this.errorMessage = res.substring(7);
-            };
-            if (res.substring(0, 6) == 'Failed') {
-                this.errorMessage = res.substring(8);
-            };
-            if (res.substring(0, 7) == 'Success') {
-                this.message = res.substring(9);
-            };
-        });
+                if (res.substring(0, 5) == 'Error') {
+                    this.errorMessage = res.substring(7);
+                };
+                if (res.substring(0, 6) == 'Failed') {
+                    this.errorMessage = res.substring(8);
+                };
+                if (res.substring(0, 7) == 'Success') {
+                    this.message = res.substring(9);
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 45);
+                console.error('Error in login registerCanvasUser: ' + err);
+            });
 
     }
 
@@ -163,62 +171,49 @@ export class LoginComponent implements OnInit {
 
         // Validate user.  Return for loginCanvasServer is { message: string, token: string}
         this.globalVariableService.loginCanvasServer(
-            this.canvasServerName, this.companyName, this.userID, this.password).then(res => {
+            this.canvasServerName, 
+            this.companyName, 
+            this.userID, 
+            this.password
+            ).then(res => {
 
-            console.warn('xx res', res);
+                console.warn('xx res', res);
 
-            if (res.token == null) {
-                this.errorMessage = res.message.substring(7);
-                return;
-            } else {
+                if (res.token == null) {
+                    this.errorMessage = res.message.substring(7);
+                    return;
+                } else {
 
-                let canvasServerURI: string = this.globalVariableService.ENVCanvasServerList.find(
-                    srv => srv.serverName == this.canvasServerName
-                ).serverHostURI;
-                console.warn('xx canvasServerURI', canvasServerURI)
+                    let canvasServerURI: string = this.globalVariableService.ENVCanvasServerList.find(
+                        srv => srv.serverName == this.canvasServerName
+                    ).serverHostURI;
+                    console.warn('xx canvasServerURI', canvasServerURI)
 
-                this.globalVariableService.verifyCanvasUser(
-                    this.canvasServerName,
-                    canvasServerURI,
-                    this.companyName,
-                    this.userID,
-                    res.token).then(result => {
+                    this.globalVariableService.verifyCanvasUser(
+                        this.canvasServerName,
+                        canvasServerURI,
+                        this.companyName,
+                        this.userID,
+                        res.token).then(result => {
 
-                        if (!result) {
-                            this.errorMessage = 'User not verified @CanvasUser list';
-                            return;
-                        };
+                            if (!result) {
+                                this.errorMessage = 'User not verified @CanvasUser list';
+                                return;
+                            };
 
-                        // // Register session start time
-                        // let today = new Date();
-                        // this.globalVariableService.sessionDateTimeLoggedin =
-                        //     this.globalVariableService.formatDate(today);
-
-                        // // Indicate logged in; so StatusBar shows Server Name
-                        // this.globalVariableService.loggedIntoServer.next(true);
-
-                        // // Optional start D
-                        // if (this.globalVariableService.currentUser.preferenceStartupDashboardID != null) {
-                        //     let startTabID: number = -1;
-                        //     if (this.globalVariableService.currentUser.preferenceStartupDashboardTabID != null) {
-                        //         startTabID = this.globalVariableService.currentUser.preferenceStartupDashboardTabID;
-                        //     };
-
-                        //     this.globalVariableService.refreshCurrentDashboard(
-                        //         'statusbar-clickTabDelete',
-                        //         this.globalVariableService.currentUser.preferenceStartupDashboardID,
-                        //         startTabID,
-                        //         ''
-                        //     );
-                        // };
-
-                        this.formUserLoginClosed.emit('LoggedIn');
-
-                    }
-                );
-
-            };
-        });
+                            this.formUserLoginClosed.emit('LoggedIn');
+                        })
+                        .catch(err => {
+                            this.errorMessage = err.slice(0, 45);
+                            console.error('Error in login verifyCanvasUser: ' + err);
+                        });
+            
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 45);
+                console.error('Error in login loginCanvasServer: ' + err);
+            });
 
     }
 
