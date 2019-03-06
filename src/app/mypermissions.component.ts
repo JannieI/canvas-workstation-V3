@@ -49,7 +49,7 @@ export class MyPermissionsComponent implements OnInit {
     }
 
     dashboardPermissions: localDashboardPermission[];
-    errorMessage: string = 'asdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     groupID: number;
     groupName: string = '';
     groups: CanvasGroup[];
