@@ -353,9 +353,17 @@ export class DataTransformationComponent implements OnInit {
 
         // Save to DB
         this.globalVariableService.saveResource('datasourceTransformations', 
-            this.datasourceTransformations[index - 1]);
+            this.datasourceTransformations[index - 1])
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Data.transformation saving transformations: ' + err);
+            });
         this.globalVariableService.saveResource('datasourceTransformations', 
-            this.datasourceTransformations[index]);
+            this.datasourceTransformations[index])
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Data.transformation saving transformations: ' + err);
+            });
 
         // Resort
         this.datasourceTransformations = this.datasourceTransformations.sort( (obj1,obj2) => {
@@ -394,9 +402,17 @@ export class DataTransformationComponent implements OnInit {
 
         // Save to DB
         this.globalVariableService.saveResource('datasourceTransformations', 
-            this.datasourceTransformations[index]);
+            this.datasourceTransformations[index])
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Data.transformation saving transformations: ' + err);
+            });
         this.globalVariableService.saveResource('datasourceTransformations', 
-            this.datasourceTransformations[index + 1]);
+            this.datasourceTransformations[index + 1])
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Data.transformation saving transformations: ' + err);
+            });
 
         // Resort
         this.datasourceTransformations = this.datasourceTransformations.sort( (obj1,obj2) => {
@@ -642,8 +658,12 @@ export class DataTransformationComponent implements OnInit {
 
             // Save to DB
             this.globalVariableService.saveResource('datasourceTransformations', 
-                this.datasourceTransformations[this.selectedDataRowIndex]);
-        };
+                this.datasourceTransformations[this.selectedDataRowIndex])
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Data.transformation saving transformations: ' + err);
+                });
+            };
 
         // Disable
         this.adding = false;
