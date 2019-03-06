@@ -3,13 +3,11 @@ import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
-import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { Widget }                     from './models';
 
 // Our Services
 import { GlobalFunctionService }      from './global-function.service';
@@ -51,6 +49,8 @@ export class ShapeDeleteAllComponent implements OnInit {
     }
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
+
+    errorMessage: string = '';
 
 
     constructor(
