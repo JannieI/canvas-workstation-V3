@@ -41,16 +41,6 @@ export class MyProfileComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        // if (
-        //     (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-        //     &&
-        //     (!event.ctrlKey)
-        //     &&
-        //     (!event.shiftKey)
-        //    ) {
-        //     this.clickSave('Saved');
-        //     return;
-        // };
 
     }
 
@@ -59,6 +49,7 @@ export class MyProfileComponent implements OnInit {
     currentUser: CanvasUser;
     dashboardPermissions: DashboardPermission[];
     dataFieldNames: number[] = [];
+    errorMessage: string = 'asdfasdfasdfasdfasdf';
     favDashboards: Dashboard[] = [];
     showFavs: boolean = false;
 
@@ -74,10 +65,17 @@ export class MyProfileComponent implements OnInit {
         this.currentUser = this.globalVariableService.currentUser;
         this.accessType = this.selectedDashboard.accessType;
 
-        this.dashboardPermissions = this.globalVariableService.dashboardPermissions
-            .filter(dp => dp.dashboardID == 
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardID)
-            .slice();
+        this.globalVariableService.getResource('dashboardPermissions')
+            .then(res => {
+                this.dashboardPermissions = res
+                    .filter(dp => dp.dashboardID == 
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID)
+                    .slice();
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 45);
+                console.error('Error in myProfile reading dashboardPermissions: ' + err);
+            });
 
 
         // KEEP - getting my Fav Ds, and put into fancy table.  Could be useful somewhere
