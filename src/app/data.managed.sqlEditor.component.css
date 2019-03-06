@@ -141,11 +141,11 @@
 
     .gridErrorMessage {
         color: red;
-        grid-column-start: 13;
+        grid-column-start: 5;
         /* autoprefixer: off */
         grid-column-end: 21;
-        grid-row-start: 7;
-        grid-row-end: 10;
+        grid-row-start: 1;
+        grid-row-end: 2;
     }
 
     .gridGoButton {

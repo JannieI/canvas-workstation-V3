@@ -64,7 +64,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
     dataFieldsSelected: string[] = [];
     dataSchemas: DataSchema[] = [];
     dataTables: DataTable[] = [];
-    errorMessage: string = 'asdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     helpMessage: string = '';
     nrRows: number = 0;
     selectedFieldRowIndex: number = 0;
