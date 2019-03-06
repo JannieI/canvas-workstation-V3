@@ -49,7 +49,7 @@ export class MyProfileComponent implements OnInit {
     currentUser: CanvasUser;
     dashboardPermissions: DashboardPermission[];
     dataFieldNames: number[] = [];
-    errorMessage: string = 'asdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     favDashboards: Dashboard[] = [];
     showFavs: boolean = false;
 

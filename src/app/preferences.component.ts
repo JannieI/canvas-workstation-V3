@@ -53,6 +53,7 @@ export class PreferencesComponent implements OnInit {
     dashboardList: string[] = ['None'];
     dashboardTabList: string[] = ['None'];
     dashboards: Dashboard[];
+    errorMessage: string = 'asdfasdfasdfasdfasdf';
     preferenceAutoSync: boolean;
     preferenceDefaultTemplateID: number;
     preferenceDefaultDateformat: string;
