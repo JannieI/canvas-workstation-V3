@@ -53,7 +53,7 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
     connectionString: string = '';
     dataConnections: DataConnection[];
     dataConnectionNames: string[] = [];
-    errorMessage: string = 'asdfasdfasdfasdf';
+    errorMessage: string = '';
     fileData: any = [];
     fileDataFull: any = [];
     reader = new FileReader();
@@ -376,11 +376,20 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                 .then(resData => {
 
                     updatedDataset.url = 'data/' + dataID;
-                    this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
-                        resDS => {
+                    this.globalVariableService.saveResource(
+                        'datasources', 
+                        this.selectedDatasource
+                        ).then(resDS => {
                             updatedDataset.datasourceID = this.selectedDatasource.id;
-                            this.globalVariableService.saveResource('datasets', updatedDataset);
-                    });
+                            this.globalVariableService.saveResource(
+                                'datasets', 
+                                updatedDataset)
+                                .catch(err => {
+                                    this.spinner = false;
+                                    this.errorMessage = err.slice(0, 100);
+                                    console.error('Error in managed.GraphQL saving datasets: ' + err);
+                                });
+                        });
 
                     // Indicate to the user
                     this.canSave = false;
