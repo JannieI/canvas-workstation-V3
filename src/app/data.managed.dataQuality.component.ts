@@ -17,6 +17,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { DataQualityIssue }           from './models';
+import { Datasource }                 from './models';
 
 @Component({
     selector: 'data-managed-dataQuality',
@@ -46,8 +47,9 @@ export class DataManageDataQualityComponent implements OnInit {
     datasourceID: number;
     datasourceName: string;
     datasourceNames: string[] = [];
+    datasources: Datasource[] = [];
     editing: boolean = false;
-    errorMessage: string = "";
+    errorMessage: string = '';
     selectedDatasourceID: number = null;
     selectedDataQualityIssue: DataQualityIssue;
     selectedDataQualityIssueRowIndex: number = 0;
@@ -66,26 +68,40 @@ export class DataManageDataQualityComponent implements OnInit {
         this.clearRecord();
 
         // Get Datasource list
-        this.globalVariableService.datasources.forEach(ds => {
-            this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
-        });
-        this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
-            if (obj1.toLowerCase() > obj2.toLowerCase()) {
-                return 1;
-            };
-            if (obj1.toLowerCase() < obj2.toLowerCase()) {
-                return -1;
-            };
-            return 0;
-        });
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res;
 
-        this.globalVariableService.getResource('dataQualityIssues').then(dc => {
+                this.datasources.forEach(ds => {
+                    this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
+                });
+                this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
+                    if (obj1.toLowerCase() > obj2.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.toLowerCase() < obj2.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.dataQuality reading datasources: ' + err);
+            });
 
-            this.dataQualityIssues = dc.slice();
-            if (this.dataQualityIssues.length > 0) {
-                this.clickRow(0, this.dataQualityIssues[0].id);
-            };
-        });
+        this.globalVariableService.getResource('dataQualityIssues')
+            .then(dc => {
+
+                this.dataQualityIssues = dc.slice();
+                if (this.dataQualityIssues.length > 0) {
+                    this.clickRow(0, this.dataQualityIssues[0].id);
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.dataQuality reading dataQualityIssues: ' + err);
+            });
 
     }
 
@@ -105,13 +121,13 @@ export class DataManageDataQualityComponent implements OnInit {
             .findIndex(dc => dc.id == id);
         if (selectedDatasourceIndex >= 0) {
 
-            let datasourceIndex: number = this.globalVariableService.datasources.findIndex(ds =>
+            let datasourceIndex: number = this.datasources.findIndex(ds =>
                 ds.id == this.dataQualityIssues[selectedDatasourceIndex].datasourceID
             );
             this.selectedLinkedDatasource = 'Unknown';
             if (datasourceIndex >= 0) {
-                this.selectedLinkedDatasource = this.globalVariableService.datasources[datasourceIndex]
-                    .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
+                this.selectedLinkedDatasource = this.datasources[datasourceIndex]
+                    .name + ' (' + this.datasources[datasourceIndex].id + ')';
             };
 
             this.selectedDataQualityIssue = JSON.parse(JSON.stringify(
@@ -220,9 +236,10 @@ export class DataManageDataQualityComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = 'Save failed ' + err;
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.dataQuality adding dataQualityIssues: ' + err);
                 });
-        };
+            };
 
         // Save the changes
         if (this.editing) {
@@ -235,7 +252,14 @@ export class DataManageDataQualityComponent implements OnInit {
                     JSON.parse(JSON.stringify(this.selectedDataQualityIssue));
             };
             this.selectedDataQualityIssue.datasourceID = this.datasourceID;
-            this.globalVariableService.saveResource('dataQualityIssues', this.selectedDataQualityIssue)
+            this.globalVariableService.saveResource(
+                'dataQualityIssues', 
+                this.selectedDataQualityIssue
+                ).catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.dataQuality saving dataQualityIssues: ' + err);
+                });
+    
         };
 
         // Reset
@@ -277,7 +301,10 @@ export class DataManageDataQualityComponent implements OnInit {
                 this.dataQualityIssues = this.dataQualityIssues.filter(
                     dq => dq.id != id);
             })
-            .catch(err => this.errorMessage = 'Error with Save: ' + err);
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.dataQuality deleting dataQualityIssues: ' + err);
+            });
 
         this.selectedDataQualityIssueRowIndex = null;
         this.selectedDatasourceID = null;
