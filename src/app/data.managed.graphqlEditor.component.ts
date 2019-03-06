@@ -53,7 +53,7 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
     connectionString: string = '';
     dataConnections: DataConnection[];
     dataConnectionNames: string[] = [];
-    errorMessage: string = "";
+    errorMessage: string = 'asdfasdfasdfasdf';
     fileData: any = [];
     fileDataFull: any = [];
     reader = new FileReader();
@@ -82,7 +82,8 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                 console.warn('xx this.dataConnectionNames = ', this.dataConnectionNames )
             })
             .catch(err => {
-                this.errorMessage = err;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in managed.GraphQL reading dataConnections: ' + err);
             });
 
         if (this.selectedDatasource == null) {
@@ -223,83 +224,83 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
         };
 
         // Call Tributary
-        this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
-            console.warn('xx res I', res)
+        this.globalVariableService.getTributaryInspect(specificationInspect)
+            .then(res => {
+                console.warn('xx res I', res)
 
-            // Get connection detail
-            let connection: DataConnection[] = this.dataConnections.filter(
-                con => con.connectionName == this.connectionName
-            );
-            let serverType: string = '';
-            let serverName: string = '';
-            let port: number = 0;
-            let database: string = '';
-            if (connection.length > 0) {
-                serverType = connection[0].serverType;
-                serverName = connection[0].serverName;
-                port = +connection[0].port;
-                database = connection[0].database;
-            };
+                // Get connection detail
+                let connection: DataConnection[] = this.dataConnections.filter(
+                    con => con.connectionName == this.connectionName
+                );
+                let serverType: string = '';
+                let serverName: string = '';
+                let port: number = 0;
+                let database: string = '';
+                if (connection.length > 0) {
+                    serverType = connection[0].serverType;
+                    serverName = connection[0].serverName;
+                    port = +connection[0].port;
+                    database = connection[0].database;
+                };
 
-            // Get the driver
-            let driver: string = this.serverTypes
-                .filter(styp => styp.serverType == serverType)
-                .map(styp => styp.driverName)[0];
+                // Get the driver
+                let driver: string = this.serverTypes
+                    .filter(styp => styp.serverType == serverType)
+                    .map(styp => styp.driverName)[0];
 
-            // Build Spec
-            this.selectedDatasource.dataGraphQLStatement = this.selectedDatasource.dataGraphQLStatement.trim();
-            let specificationConnect: any = {
-                "source": {
-                    "connector": "tributary.connectors.sql:SqlConnector",
-                    "specification": {
-                        "drivername": driver,
-                        "username": this.selectedDatasource.username,
-                        "password": this.selectedDatasource.password,
-                        "database": database,
-                        "host": serverName,
-                        "port": port,
-                        "query": this.selectedDatasource.dataGraphQLStatement
-                    }
-                }
-            };
-
-            this.globalVariableService.getTributaryData(specificationConnect).then(res => {
-
-                // Fill the data
-                this.fileData = res.slice(0,10);
-                this.fileDataFull = res;
-                // this.selectedDatasource.dataFields = this.selectedFields.split(",");
-
-                // Construct a list of field name / column headings from the data
-                this.selectedDatasource.dataFields = [];
-
-                if (res.length > 0) {
-                    console.warn('xx res[0]', res[0])
-                    for(var key in res[0]) {
-                        console.warn('xx key', key)
-                        this.selectedDatasource.dataFields.push(key);
+                // Build Spec
+                this.selectedDatasource.dataGraphQLStatement = this.selectedDatasource.dataGraphQLStatement.trim();
+                let specificationConnect: any = {
+                    "source": {
+                        "connector": "tributary.connectors.sql:SqlConnector",
+                        "specification": {
+                            "drivername": driver,
+                            "username": this.selectedDatasource.username,
+                            "password": this.selectedDatasource.password,
+                            "database": database,
+                            "host": serverName,
+                            "port": port,
+                            "query": this.selectedDatasource.dataGraphQLStatement
+                        }
                     }
                 };
-                // Show the results
-                this.showPreview = true;
-                this.spinner = false;
 
-                // Can Add now
-                this.canSave = true;
+                this.globalVariableService.getTributaryData(specificationConnect).then(res => {
 
+                    // Fill the data
+                    this.fileData = res.slice(0,10);
+                    this.fileDataFull = res;
+                    // this.selectedDatasource.dataFields = this.selectedFields.split(",");
+
+                    // Construct a list of field name / column headings from the data
+                    this.selectedDatasource.dataFields = [];
+
+                    if (res.length > 0) {
+                        console.warn('xx res[0]', res[0])
+                        for(var key in res[0]) {
+                            console.warn('xx key', key)
+                            this.selectedDatasource.dataFields.push(key);
+                        }
+                    };
+                    // Show the results
+                    this.showPreview = true;
+                    this.spinner = false;
+
+                    // Can Add now
+                    this.canSave = true;
+
+                })
+                .catch(err => {
+                    this.spinner = false;
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in managed.GraphQL getTributarydata: ' + err);
+                    });
             })
-            .catch(errorMessage => {
+            .catch(err => {
                 this.spinner = false;
-                this.errorMessage = 'Error connecting to server: check login or permissions'
-                    + errorMessage;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in managed.GraphQL getTributaryInspector: ' + err);
             });
-        })
-        .catch(errorMessage => {
-            console.warn('xx err', errorMessage)
-            this.spinner = false;
-            this.errorMessage = 'Error connecting to server: check login or permissions'
-                + errorMessage;
-        });
 
     }
 
@@ -371,19 +372,25 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.saveData(updatedData).then(resData => {
+            this.globalVariableService.saveData(updatedData)
+                .then(resData => {
 
-                updatedDataset.url = 'data/' + dataID;
-                this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
-                    resDS => {
-                        updatedDataset.datasourceID = this.selectedDatasource.id;
-                        this.globalVariableService.saveResource('datasets', updatedDataset);
+                    updatedDataset.url = 'data/' + dataID;
+                    this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
+                        resDS => {
+                            updatedDataset.datasourceID = this.selectedDatasource.id;
+                            this.globalVariableService.saveResource('datasets', updatedDataset);
+                    });
+
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource updated';
+                })
+                .catch(err => {
+                    this.spinner = false;
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in managed.GraphQL saveData: ' + err);
                 });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource updated';
-            });
 
         } else {
             // Add new one
@@ -406,20 +413,26 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData).then(resData => {
+            this.globalVariableService.addData(newData)
+                .then(resData => {
 
-                newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addResource('datasources', this.selectedDatasource).then(resDS => {
-                    newdDataset.datasourceID = resDS.id;
-                    this.globalVariableService.addDataset(newdDataset);
+                    newdDataset.url = 'data/' + resData.id.toString();
+                    this.globalVariableService.addResource('datasources', this.selectedDatasource).then(resDS => {
+                        newdDataset.datasourceID = resDS.id;
+                        this.globalVariableService.addDataset(newdDataset);
 
+                    });
+
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource created';
+                })
+                .catch(err => {
+                    this.spinner = false;
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in managed.GraphQL adding datasource: ' + err);
                 });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource created';
-            });
-        };
+            };
 
         // Close form and open Transitions if requested
         if (action == 'Saved') {
