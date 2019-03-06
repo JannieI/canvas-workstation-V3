@@ -53,7 +53,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
     connectionString: string = '';
     dataConnections: DataConnection[];
     dataConnectionNames: string[] = [];
-    errorMessage: string = 'asdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     fileData: any = [];
     fileDataFull: any = [];
     reader = new FileReader();

@@ -52,7 +52,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
     connectionString: string = '';
     dataConnections: DataConnection[];
     dataConnectionNames: string[] = [];
-    errorMessage: string = "";
+    errorMessage: string = 'asdfasdfasdfasdfasdf';
     fileData: any = [];
     fileDataFull: any = [];
     reader = new FileReader();
@@ -81,7 +81,8 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                 console.warn('xx this.dataConnectionNames = ', this.dataConnectionNames )
             })
             .catch(err => {
-                this.errorMessage = err;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in managed.noSQL reading dataConnections: ' + err);
             });
 
         if (this.selectedDatasource == null) {
@@ -238,11 +239,11 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
             this.canSave = true;
 
         })
-        .catch(errorMessage => {
+        .catch(err => {
             this.spinner = false;
-            this.errorMessage = 'Error connecting to server: check login or permissions'
-                + errorMessage;
-        });
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in managed.noSQL getTributaryData: ' + err);
+        }); 
     }
 
     clickClose(action: string) {
@@ -316,17 +317,34 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
             this.globalVariableService.saveData(updatedData).then(resData => {
 
                 updatedDataset.url = 'data/' + dataID;
-                this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
-                    resDS => {
+                this.globalVariableService.saveResource(
+                    'datasources', 
+                    this.selectedDatasource
+                    ).then(resDS => {
                         updatedDataset.datasourceID = this.selectedDatasource.id;
-                        this.globalVariableService.saveResource('datasets', updatedDataset);
-                });
+                        this.globalVariableService.saveResource(
+                            'datasets', 
+                            updatedDataset
+                            )
+                            .catch(err => {
+                                this.errorMessage = err.slice(0, 100);
+                                console.error('Error in managed.noSQL saving datasets: ' + err);
+                            });
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in managed.noSQL saving datasources: ' + err);
+                    });
 
                 // Indicate to the user
                 this.canSave = false;
                 this.savedMessage = 'Datasource updated';
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in managed.noSQL saveData: ' + err);
             });
-
+    
         } else {
             // Add new one
             let newdDataset: Dataset = {
@@ -351,15 +369,28 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
             this.globalVariableService.addData(newData).then(resData => {
 
                 newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addResource('datasources', this.selectedDatasource).then(resDS => {
-                    newdDataset.datasourceID = resDS.id;
-                    this.globalVariableService.addDataset(newdDataset);
+                this.globalVariableService.addResource(
+                    'datasources', 
+                    this.selectedDatasource
+                    ).then(resDS => {
+                        newdDataset.datasourceID = resDS.id;
+                        this.globalVariableService.addDataset(newdDataset);
 
-                });
-
+                    })
+                    .catch(err => {
+                        this.spinner = false;
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in managed.noSQL adding datasources: ' + err);
+                    });
+            
                 // Indicate to the user
                 this.canSave = false;
                 this.savedMessage = 'Datasource created';
+            })
+            .catch(err => {
+                this.spinner = false;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in managed.noSQL addData: ' + err);
             });
         };
 
