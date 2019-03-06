@@ -53,6 +53,7 @@ export class ShapeDeleteComponent implements OnInit {
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
+    errorMessage: string = 'asdfasdfasdfasdf';
     widgetText: string = '';
 
 
