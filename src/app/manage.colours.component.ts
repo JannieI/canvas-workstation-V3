@@ -45,7 +45,7 @@ export class ManageColoursComponent implements OnInit {
     availableBgIndex: number = -1;
     backgroundcolors: CSScolor[];
     backgroundcolorsDefault: CSScolor[];
-    errorMessage: string = '';
+    errorMessage: string = 'asdfasdfasdfasdfa';
     newColorCode: string = '';
     newColorName: string = '';
     selectedBgIndex: number = -1;
@@ -76,7 +76,8 @@ export class ManageColoursComponent implements OnInit {
                 });
             })
             .catch(err => {
-                this.errorMessage = err;
+                this.errorMessage = err.slice(0, 45);
+                console.error('Error in manage.colours reading canvasBackgroundcolorsDefault: ' + err);
             });
         this.globalVariableService.getResource('canvasBackgroundcolors').then(res => {
             this.backgroundcolors = res.slice();
@@ -91,6 +92,10 @@ export class ManageColoursComponent implements OnInit {
                 };
                 return 0;
             });
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 45);
+            console.error('Error in manage.colours reading canvasBackgroundcolors: ' + err);
         });
 
     }
@@ -158,22 +163,27 @@ export class ManageColoursComponent implements OnInit {
                 shortList: false
             };
                 
-        this.globalVariableService.addResource('canvasBackgroundcolors', newCSSColour).then(res => {
-            console.warn('xx res', res);
-            
-            this.backgroundcolors.push(res);
+        this.globalVariableService.addResource('canvasBackgroundcolors', newCSSColour)
+            .then(res => {
+                console.warn('xx res', res);
+                
+                this.backgroundcolors.push(res);
 
-            // Sort the lists
-            this.backgroundcolors.sort( (obj1,obj2) => {
-                if (obj1.name > obj2.name) {
-                    return 1;
-                };
-                if (obj1.name < obj2.name) {
-                    return -1;
-                };
-                return 0;
-            });                
-        });
+                // Sort the lists
+                this.backgroundcolors.sort( (obj1,obj2) => {
+                    if (obj1.name > obj2.name) {
+                        return 1;
+                    };
+                    if (obj1.name < obj2.name) {
+                        return -1;
+                    };
+                    return 0;
+                });                
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 45);
+                console.error('Error in manage.colours adding canvasBackgroundcolorsDefault: ' + err);
+            });
 
     }
 
@@ -207,22 +217,27 @@ export class ManageColoursComponent implements OnInit {
                 shortList: this.backgroundcolorsDefault[this.availableBgIndex].shortList
             };
                 
-        this.globalVariableService.addResource('canvasBackgroundcolors', newCSSColour).then(res => {
+        this.globalVariableService.addResource('canvasBackgroundcolors', newCSSColour)
+            .then(res => {
 
-            this.backgroundcolors.push(res);
-            
-            // Sort the lists
-            this.backgroundcolors.sort( (obj1,obj2) => {
-                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                    return 1;
-                };
-                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                    return -1;
-                };
-                return 0;
-            });                
+                this.backgroundcolors.push(res);
+                
+                // Sort the lists
+                this.backgroundcolors.sort( (obj1,obj2) => {
+                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });                
 
-        });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 45);
+                console.error('Error in manage.colours adding canvasBackgroundcolorsDefault: ' + err);
+            });
 
     }
 
@@ -235,20 +250,25 @@ console.warn('xx ..', id, index)
         this.errorMessage = '';
  
         // Remove from seleted list
-        this.globalVariableService.deleteResource('canvasBackgroundcolors', id).then(res => {
-            this.backgroundcolors.splice(index, 1);
+        this.globalVariableService.deleteResource('canvasBackgroundcolors', id)
+            .then(res => {
+                this.backgroundcolors.splice(index, 1);
 
-            // Sort the lists
-            this.backgroundcolors.sort( (obj1,obj2) => {
-                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                    return 1;
-                };
-                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                    return -1;
-                };
-                return 0;
-            });                
-        });
+                // Sort the lists
+                this.backgroundcolors.sort( (obj1,obj2) => {
+                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });                
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 45);
+                console.error('Error in manage.colours deleting canvasBackgroundcolorsDefault: ' + err);
+            });
 
     }
 
