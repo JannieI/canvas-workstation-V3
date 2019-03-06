@@ -56,7 +56,7 @@ export class DataTransformationComponent implements OnInit {
     dataFields: DataField[];
     datasourceTransformations: localDatasourceTransformation[] = [];
     editing: boolean = false;                       // True if editing a selected Tr
-    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     nrParameters: number = 0;                       // Nr of Parameters for current Tr
 
     // Parameter info on form

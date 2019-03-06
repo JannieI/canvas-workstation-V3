@@ -60,34 +60,40 @@ export class GroupsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.selectedRow = 0;
-        this.canvasGroups = this.globalVariableService.canvasGroups.filter(g =>
-            g.name != ''
-        ).sort((n1,n2) => {
-            if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
-                return 1;
-            };
+        this.globalVariableService.getResource('canvasGroups')
+            .then(res => {
+                this.canvasGroups = res.filter(g => g.name != '' )
+                    .sort((n1,n2) => {
+                        if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
+                            return 1;
+                        };
 
-            if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
-                return -1;
-            };
+                        if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
+                            return -1;
+                        };
 
-            return 0;
-        }).slice();
+                        return 0;
+                    })
+                    .slice();
 
-        // Click first row
-        if (this.canvasGroups.length > 0) {
-            this.clickRow(0, this.canvasGroups[0].id);
-        };
+                // Click first row
+                if (this.canvasGroups.length > 0) {
+                    this.clickRow(0, this.canvasGroups[0].id);
+                };
 
-        if (this.canvasGroups.length > 0) {
-            this.canvasUsers = this.globalVariableService.canvasUsers.filter(u =>
-                u.groups.map(x => x.toLowerCase()).indexOf(this.canvasGroups[0].name.toLowerCase()) >= 0
-            )
-        } else {
-            this.canvasUsers = [];
-        };
-
-    }
+                if (this.canvasGroups.length > 0) {
+                    this.canvasUsers = this.globalVariableService.canvasUsers.filter(u =>
+                        u.groups.map(x => x.toLowerCase()).indexOf(this.canvasGroups[0].name.toLowerCase()) >= 0
+                    )
+                } else {
+                    this.canvasUsers = [];
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in groups reading canvasGroups: ' + err);
+            });
+        }
 
     clickClose(action: string) {
         // Close the form, nothing saved
@@ -138,9 +144,10 @@ export class GroupsComponent implements OnInit {
             };
         })
         .catch(err => {
-            this.errorMessage = "Deletion of group failed " + err;
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in groups deleting canvasGroups: ' + err);
         });
-    }
+}
 
     clickSave() {
         // Save groupName back (~Edit)
@@ -175,7 +182,8 @@ export class GroupsComponent implements OnInit {
             this.canvasGroups[this.selectedRow] = newGroup;
         })
         .catch(err => {
-            this.errorMessage = "Updating of group failed " + err;
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in groups saving canvasGroups: ' + err);
         });
 
     }
@@ -216,7 +224,8 @@ export class GroupsComponent implements OnInit {
 
         })
         .catch(err => {
-            this.errorMessage = "Addition of the group failed " + err;
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in groups adding canvasGroups: ' + err);
         });
 
     }
