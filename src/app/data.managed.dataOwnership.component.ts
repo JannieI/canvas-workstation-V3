@@ -18,7 +18,8 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
-import { DataOwnership }           from './models';
+import { DataOwnership }              from './models';
+import { Datasource }                 from './models';
 
 @Component({
     selector: 'data-managed-dataOwnership',
@@ -48,8 +49,9 @@ export class DataManageDataOwnershipComponent implements OnInit {
     datasourceID: number;
     datasourceName: string;
     datasourceNames: string[] = [];
+    datasources: Datasource[] = [];
     editing: boolean = false;
-    errorMessage: string = "";
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
     selectedDatasourceID: number = null;
     selectedDataOwnership: DataOwnership;
     selectedDataOwnershipRowIndex: number = 0;
@@ -68,32 +70,50 @@ export class DataManageDataOwnershipComponent implements OnInit {
         this.clearRecord();
 
         // Get Datasource list
-        this.globalVariableService.datasources.forEach(ds => {
-            this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
-        });
-        this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
-            if (obj1.toLowerCase() > obj2.toLowerCase()) {
-                return 1;
-            };
-            if (obj1.toLowerCase() < obj2.toLowerCase()) {
-                return -1;
-            };
-            return 0;
-        });
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res;
+
+                this.datasources.forEach(ds => {
+                    this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
+                });
+                this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
+                    if (obj1.toLowerCase() > obj2.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.toLowerCase() < obj2.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.ownership reading datasources: ' + err);
+            });
+
 
         // Get UserID list
-        this.globalVariableService.canvasUsers.forEach(usr => {
-            this.userIDs.push(usr.userID);
-        });
-        this.userIDs = this.userIDs.sort( (obj1,obj2) => {
-            if (obj1.toLowerCase() > obj2.toLowerCase()) {
-                return 1;
-            };
-            if (obj1.toLowerCase() < obj2.toLowerCase()) {
-                return -1;
-            };
-            return 0;
-        });
+        this.globalVariableService.getResource('canvasUsers')
+            .then(res => {
+                res.forEach(usr => {
+                    this.userIDs.push(usr.userID);
+                });
+
+                this.userIDs = this.userIDs.sort( (obj1,obj2) => {
+                    if (obj1.toLowerCase() > obj2.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.toLowerCase() < obj2.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.ownership reading canvasUsers: ' + err);
+            });
 
         this.globalVariableService.getResource('dataOwnerships')
             .then(dc => {
@@ -103,7 +123,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
 
                 // Append RunTime datasourceName
                 this.dataOwnerships.forEach(dow => {
-                    this.globalVariableService.datasources.forEach(ds => {
+                    this.datasources.forEach(ds => {
                         if (ds.id == dow.datasourceID) {
                             dow.datasourceName = ds.name;
                         };
@@ -115,8 +135,11 @@ export class DataManageDataOwnershipComponent implements OnInit {
                     this.clickRow(0, this.dataOwnerships[0].id);
                 };
             })
-            .catch(err => this.errorMessage = 'Error getting Ownership data: ' + err);
-
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.ownership reading dataOwnerships: ' + err);
+            });
+    
     }
 
     clickRow(index: number, id: number) {
@@ -135,11 +158,11 @@ export class DataManageDataOwnershipComponent implements OnInit {
             .findIndex(dc => dc.id == id);
         if (selectedDatasourceIndex >= 0) {
 
-            let datasourceIndex: number = this.globalVariableService.datasources.findIndex(ds =>
+            let datasourceIndex: number = this.datasources.findIndex(ds =>
                 ds.id == this.dataOwnerships[selectedDatasourceIndex].datasourceID
             );
-            this.selectedLinkedDatasource = this.globalVariableService.datasources[datasourceIndex]
-                .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
+            this.selectedLinkedDatasource = this.datasources[datasourceIndex]
+                .name + ' (' + this.datasources[datasourceIndex].id + ')';
 
             // this.selectedDataOwnership = Object.assign({},
             //     this.dataOwnerships[selectedDatasourceIndex]
@@ -231,7 +254,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
         };
 
         // Get RunTime datasourceName
-        this.globalVariableService.datasources.forEach(ds => {
+        this.datasources.forEach(ds => {
             if (ds.id == this.datasourceID) {
                 this.datasourceName = ds.name;
             };
@@ -254,8 +277,11 @@ export class DataManageDataOwnershipComponent implements OnInit {
                     this.dataOwnerships.push(this.selectedDataOwnership);
 
                 })
-                .catch(err => this.errorMessage = 'Error adding ownership: ' + err);
-        };
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.ownership adding dataOwnerships: ' + err);
+                });
+            };
 
         // Save the changes
         if (this.editing) {
@@ -270,9 +296,11 @@ export class DataManageDataOwnershipComponent implements OnInit {
                     JSON.parse(JSON.stringify(this.selectedDataOwnership));
             };
             this.globalVariableService.saveResource('dataOwnerships', this.selectedDataOwnership)
-                .then(res => console.log('xx Save Done'))
-                .catch(err => this.errorMessage = 'Error saving ownership: ' + err)
-        };
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.ownership saving dataOwnerships: ' + err);
+                });
+            };
 
         // Reset
         this.editing = false;
@@ -308,9 +336,14 @@ export class DataManageDataOwnershipComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         this.clearRecord();
-        this.globalVariableService.deleteResource('dataOwnerships', id).then(res => {
-            this.dataOwnerships = this.dataOwnerships.filter(dow => dow.id != id)
-        });
+        this.globalVariableService.deleteResource('dataOwnerships', id)
+            .then(res => {
+                this.dataOwnerships = this.dataOwnerships.filter(dow => dow.id != id)
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.ownership deleting dataOwnerships: ' + err);
+            });
 
         this.selectedDataOwnershipRowIndex = null;
         this.selectedDatasourceID = null;
