@@ -77,12 +77,17 @@ export class WidgetDeleteComponent implements OnInit {
         localWidget.isSelected = false;
 
         // Count Widget Stored Templates linked to this W
-        this.globalVariableService.getResource('widgetStoredTemplates').then(res => {
-            if (res != null  && res.length > 0) {
-                res = res.filter(wst => wst.widgetID == localWidget.id)
-                this.nrWidgetStoredTemplates = res.length;
-            };
-        });
+        this.globalVariableService.getResource('widgetStoredTemplates')
+            .then(res => {
+                if (res != null  && res.length > 0) {
+                    res = res.filter(wst => wst.widgetID == localWidget.id)
+                    this.nrWidgetStoredTemplates = res.length;
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.delete reading widgetStoredTemplates: ' + err);
+            });
 
         // TODO - a huge graph shows too big - change Vega param to fix this.
         localWidget.graphTitle = '';
