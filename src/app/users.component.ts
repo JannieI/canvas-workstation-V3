@@ -46,7 +46,7 @@ export class UsersComponent implements OnInit {
     accessType: string = '';
     dashboards: Dashboard[];
     dashboardPermissions: DashboardPermission[];
-    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     groups: string[];
     message: string = '';
     selectedRow: number = 0;

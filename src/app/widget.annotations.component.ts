@@ -53,6 +53,7 @@ export class WidgetAnnotationsComponent implements OnInit {
     }
 
     annotation: string;
+    errorMessage = '';
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -82,7 +83,11 @@ export class WidgetAnnotationsComponent implements OnInit {
         this.selectedWidget.annotation = this.annotation;
         this.selectedWidget.annotationLastUserID = this.globalVariableService.currentUser.userID;
         this.selectedWidget.annotationLastUpdated = today;
-        this.globalVariableService.saveWidget(this.selectedWidget);
+        this.globalVariableService.saveWidget(this.selectedWidget)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.annotation saveWidget: ' + err);
+            });
 
 		this.formWidgetAnnotationsClosed.emit();
 
