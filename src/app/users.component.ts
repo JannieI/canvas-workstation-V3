@@ -46,7 +46,7 @@ export class UsersComponent implements OnInit {
     accessType: string = '';
     dashboards: Dashboard[];
     dashboardPermissions: DashboardPermission[];
-    errorMessage: string = '';
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
     groups: string[];
     message: string = '';
     selectedRow: number = 0;
@@ -86,8 +86,11 @@ export class UsersComponent implements OnInit {
                 this.clickRow(0, this.users[0].userID);
             };
 
-         });
-
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in users reading canvasUsers: ' + err);
+        });
 
     }
 
@@ -130,6 +133,10 @@ export class UsersComponent implements OnInit {
                     };
                 });
             });
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in users reading dashboards: ' + err);
         });
 
     }
@@ -162,7 +169,11 @@ export class UsersComponent implements OnInit {
         if (index != -1) {
             this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
-                ;
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in users saving dashboardPermissions: ' + err);
+                });
+                       
         };
     }
 
@@ -193,7 +204,11 @@ export class UsersComponent implements OnInit {
         if (index != -1) {
             this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
-                ;
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in users saving dashboardPermissions: ' + err);
+                });
+                
         };
     }
 
@@ -224,7 +239,11 @@ export class UsersComponent implements OnInit {
         if (index != -1) {
             this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
-                ;
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in users saving dashboardPermissions: ' + err);
+                });
+                
         };
     }
 
@@ -255,7 +274,11 @@ export class UsersComponent implements OnInit {
         if (index != -1) {
             this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
-                ;
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in users saving dashboardPermissions: ' + err);
+                });
+                
         };
 
     }
@@ -287,7 +310,11 @@ export class UsersComponent implements OnInit {
         if (index != -1) {
             this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
-                ;
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in users saving dashboardPermissions: ' + err);
+                });
+                
         };
 
     }
@@ -319,7 +346,11 @@ export class UsersComponent implements OnInit {
         if (index != -1) {
             this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
-                ;
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in users saving dashboardPermissions: ' + err);
+                });
+                
         };
 
     }
@@ -344,7 +375,8 @@ export class UsersComponent implements OnInit {
             };
         })
         .catch(err => {
-            this.errorMessage = "Deletion of user failed " + err;
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in users deleting canvasUsers: ' + err);
         });
     }
 
@@ -385,7 +417,8 @@ export class UsersComponent implements OnInit {
             this.users[this.selectedRow] = newUser;
         })
         .catch(err => {
-            this.errorMessage = "Updating of user failed " + err;
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in users saving canvasUsers: ' + err);
         });
 
     }
@@ -491,7 +524,8 @@ export class UsersComponent implements OnInit {
 
         })
         .catch(err => {
-            this.errorMessage = "Addition of the user failed " + err;
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in users adding canvasUsers: ' + err);
         });
 
     }

@@ -43,7 +43,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
     }
 
 
-    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     paletteButtons: PaletteButtonBar[];
     paletteButtonsOriginal: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
