@@ -50,12 +50,12 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
 
     }
 
-    errorMessage: string = '';
+    errorMessage: string = 'asdfasdfasdfasdf';
     // graphVisualGrammar: string = 'Vega-Lite';
     localWidget: Widget;
     selectedRow: number = 0;
     selectedWidgetID: number;
-    sortOrderName: number = 1;      
+    sortOrderName: number = 1;
     specification: any;              // Vega-Lite, Vega, or other grammar
     widgetGraphs: WidgetGraph[] =[];
     widgetStoredTemplates: WidgetStoredTemplate[] = [];
@@ -73,9 +73,15 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         // Load Stored Widget Templates, adding DS Name for user
         this.globalVariableService.getResource('widgetStoredTemplates')
             .then(res => {
-                this.globalVariableService.getResource('widgetGraphs').then(graphs => {
-                    this.widgetGraphs = graphs;
-                });
+                this.globalVariableService.getResource('widgetGraphs')
+                    .then(graphs => {
+                        this.widgetGraphs = graphs;
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in widgetTemplate.insert reading widgetGraphs: ' + err);
+                    });
+    
 
                 this.widgetStoredTemplates = res
                     .slice()
@@ -103,8 +109,11 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                 if (this.widgetStoredTemplates.length > 0) {
                     this.clickRow(0, this.widgetStoredTemplates[0].widgetID);
                 };
-            }
-        );        
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widgetTemplate.insert reading widgetStoredTemplates: ' + err);
+            });
     }
 
     clickColumn() {
@@ -140,90 +149,59 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.localWidget.id = null;
         this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
-    
+
         // Add DS to current DS (no action if already there)
         this.globalVariableService.addCurrentDatasource(
-            this.localWidget.datasourceID).then(res => {
+            this.localWidget.datasourceID
+            ).then(res => {
 
-            // Render graph for Vega-Lite
-            if (this.localWidget.visualGrammar == 'Vega-Lite') {
+                // Render graph for Vega-Lite
+                if (this.localWidget.visualGrammar == 'Vega-Lite') {
 
-                // Create specification
-                this.specification = this.globalVariableService.createVegaLiteSpec(
-                    this.localWidget,
-                    this.localWidget.graphHeight,
-                    this.localWidget.graphWidth
-                );
+                    // Create specification
+                    this.specification = this.globalVariableService.createVegaLiteSpec(
+                        this.localWidget,
+                        this.localWidget.graphHeight,
+                        this.localWidget.graphWidth
+                    );
 
-                // Render in DOM
-                let vegaSpecification = compile(this.specification).spec;
-                let view = new View(parse(vegaSpecification));
+                    // Render in DOM
+                    let vegaSpecification = compile(this.specification).spec;
+                    let view = new View(parse(vegaSpecification));
 
-                view.renderer('svg')
-                    .initialize(this.widgetDOM.nativeElement)
-                    .width(372)
-                    .hover()
-                    .run()
-                    .finalize();
-            };
+                    view.renderer('svg')
+                        .initialize(this.widgetDOM.nativeElement)
+                        .width(372)
+                        .hover()
+                        .run()
+                        .finalize();
+                };
 
-            // Render graph for Vega
-            if (this.localWidget.visualGrammar == 'Vega') {
+                // Render graph for Vega
+                if (this.localWidget.visualGrammar == 'Vega') {
 
-                // Create specification
-                this.specification = this.globalVariableService.createVegaSpec(
-                    this.localWidget,
-                    this.localWidget.graphHeight,
-                    this.localWidget.graphWidth
-                );
+                    // Create specification
+                    this.specification = this.globalVariableService.createVegaSpec(
+                        this.localWidget,
+                        this.localWidget.graphHeight,
+                        this.localWidget.graphWidth
+                    );
 
-                // Render in DOM
-                let view = new View(parse(this.specification));
-                view.renderer('svg')
-                    .initialize(this.widgetDOM.nativeElement)
-                    .width(372)
-                    .hover()
-                    .run()
-                    .finalize();
-            };
+                    // Render in DOM
+                    let view = new View(parse(this.specification));
+                    view.renderer('svg')
+                        .initialize(this.widgetDOM.nativeElement)
+                        .width(372)
+                        .hover()
+                        .run()
+                        .finalize();
+                };
 
-            // // Create Spec
-            // this.specification = this.globalVariableService.createVegaLiteSpec(
-            //     this.localWidget,
-            //     200,
-            //     300
-            // );
-
-            // console.warn('xx @END of ShowGraph specification', this.specification);
-
-            // // Render graph for Vega-Lite
-            // if (this.localWidget.visualGrammar == 'Vega-Lite') {
-            //     if (this.specification != undefined) {
-            //         let vegaSpecification = compile(this.specification).spec;
-            //         let view = new View(parse(vegaSpecification));
-
-            //         view.renderer('svg')
-            //             .initialize(this.domWidget.nativeElement)
-            //             .width(372)
-            //             .hover()
-            //             .run()
-            //             .finalize();
-            //     };
-            // };
-            // // Render graph for Vega
-            // if (this.localWidget.visualGrammar == 'Vega') {
-            //     if (this.localWidget.graphSpecification != undefined) {
-            //         let view = new View(parse(this.localWidget.graphSpecification));
-
-            //         view.renderer('svg')
-            //             .initialize(this.domWidget.nativeElement)
-            //             .width(372)
-            //             .hover()
-            //             .run()
-            //             .finalize();
-            //     };
-            // };            
-        });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widgetTemplate.insert addCurrentDatasource: ' + err);
+            });
 
     }
 
@@ -255,7 +233,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.localWidget.id = null;
         this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
-    
+
         // Add DS to current DS (no action if already there)
         this.globalVariableService.addCurrentDatasource(
             this.localWidget.datasourceID).then(res => {
@@ -264,43 +242,48 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             this.localWidget.dashboardTabIDs.push(this.globalVariableService.
                 currentDashboardInfo.value.currentDashboardTabID);
 
-            this.globalVariableService.addResource('widgets', this.localWidget).then(addedWidget => {
-                this.localWidget.id = addedWidget.id;
+            this.globalVariableService.addResource('widgets', this.localWidget)
+                .then(addedWidget => {
+                    this.localWidget.id = addedWidget.id;
 
-                // Action
-                // TODO - cater for errors + make more generic
-                let actID: number = this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    this.localWidget.id,
-                    'Widget',
-                    'Edit',
-                    'Update Title',
-                    'W Title clickSave',
-                    null,
-                    null,
-                    null,
-                    this.localWidget,
-                    false               // Dont log to DB yet
-                );
+                    // Action
+                    // TODO - cater for errors + make more generic
+                    let actID: number = this.globalVariableService.actionUpsert(
+                        null,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        this.localWidget.id,
+                        'Widget',
+                        'Edit',
+                        'Update Title',
+                        'W Title clickSave',
+                        null,
+                        null,
+                        null,
+                        this.localWidget,
+                        false               // Dont log to DB yet
+                    );
 
-                // Tell user
-                this.globalVariableService.showStatusBarMessage(
-                    {
-                        message: 'Graph Added',
-                        uiArea: 'StatusBar',
-                        classfication: 'Info',
-                        timeout: 3000,
-                        defaultMessage: ''
-                    }
-                );
+                    // Tell user
+                    this.globalVariableService.showStatusBarMessage(
+                        {
+                            message: 'Graph Added',
+                            uiArea: 'StatusBar',
+                            classfication: 'Info',
+                            timeout: 3000,
+                            defaultMessage: ''
+                        }
+                    );
 
-                // Return to main menu
-                this.formWidgetTemplateInsertWidgetClosed.emit(addedWidget);
+                    // Return to main menu
+                    this.formWidgetTemplateInsertWidgetClosed.emit(addedWidget);
 
-            });
-
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in widgetTemplate.insert addding widgets: ' + err);
+                });
+    
         });
 
     }
