@@ -167,7 +167,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectStyleName', '@Start');
 
         // Reset
-        this.errorMessage = '';
+        this.errorMessage = 'asdfasdfasdfasdfasdfasdfasdf';
         this.infoMessage = '';
 
         let selectedContainerStyleName: string = ev.target.value;

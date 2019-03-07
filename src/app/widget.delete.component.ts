@@ -56,6 +56,7 @@ export class WidgetDeleteComponent implements OnInit {
     }
 
 
+    errorMessage = 'asdfasdfasdfasdfasdfasdfasdf';
     nrWidgetStoredTemplates: number = 0;
     specification: any;
 
