@@ -55,7 +55,7 @@ export class SystemSettingsComponent implements OnInit {
     createdBy: string;
     createdOn: Date;
     dashboardTemplate: string;
-    errorMessage: string;
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
     gridSize: number;
     maxTableLength: number;
     notInEditModeMsg: string;
@@ -159,8 +159,8 @@ export class SystemSettingsComponent implements OnInit {
                     }
             )
             .catch(err => {
-                console.error('System Settings save failed');
-                this.errorMessage = err;
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Collaborate.auditTrail saving canvasSettings: ' + err);
             });
 
 		this.formDashboardSystemSettingsClosed.emit(action);
