@@ -61,7 +61,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
     checkpointName: string;
     currentWidgetCheckpoints: WidgetCheckpoint[];
-    errorMessage = 'asdfasdfasdfasdfasdfasdfasdf';
+    errorMessage = '';
     nrCheckpoints: number = 1;
     selectedRow: number = 0;
 

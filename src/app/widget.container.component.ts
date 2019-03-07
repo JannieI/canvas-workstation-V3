@@ -69,7 +69,7 @@ export class WidgetContainerComponent implements OnInit {
     containerStyleName: string = '';
     containerStyleNameList: string[] = [];
     containerStyles: ContainerStyle[] = [];
-    errorMessage: string;
+    errorMessage = '';
     infoMessage: string;
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget;
@@ -100,6 +100,10 @@ export class WidgetContainerComponent implements OnInit {
                     {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, 
                     ...this.backgroundcolors
                 ];
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.container reading canvasBackgroundcolors: ' + err);
             });
 
         // Get list of Styles
