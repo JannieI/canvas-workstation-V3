@@ -281,8 +281,10 @@ export class DataDirectWebComponent implements OnInit {
                                 this.globalVariableService.saveResource('datasets', updatedDataset);
                         })
                         .catch(err => {
+                            this.errorMessage = err.slice(0, 100);
+                            console.error('Error in Datasource.web saving datasources: ' + err);
                         });
-            
+                    
                     // Indicate to the user
                     this.canSave = false;
                     this.savedMessage = 'Datasource updated';
@@ -398,7 +400,7 @@ export class DataDirectWebComponent implements OnInit {
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);
-                        console.error('Error in Datasource.web addResource: ' + err);
+                        console.error('Error in Datasource.web adding datasources: ' + err);
                     });
     
                     // Indicate to the user
