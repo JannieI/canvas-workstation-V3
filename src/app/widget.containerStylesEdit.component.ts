@@ -72,7 +72,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     containerStyleName: string = '';
     containerStyleNameList: string[] = [];
     containerStyles: ContainerStyle[] = [];
-    errorMessage: string;
+    errorMessage = 'asdfasdfasdfasdfasdfasdfasdf';
     gridStyleName: string;
     infoMessage: string;
     oldWidget: Widget;
@@ -113,7 +113,10 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                     this.updateForm(0);
                 };
             })
-            .catch(err => this.errorMessage = 'Error getting styles: ' + err);
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.containerStyleEdit adding containerStyles: ' + err);
+            });
 
 
         // Manage colour picker

@@ -68,7 +68,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     containerBorderSize: string = '1px';
     containerBoxshadow: string;
     containerFontsize: number = 12;
-    errorMessage: string;
+    errorMessage = 'asdfasdfasdfasdfasdfasdfasdf';
     infoMessage: string;
     oldWidget: Widget;
     selectedColour: string;
@@ -93,6 +93,10 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         this.globalVariableService.getResource('canvasBackgroundcolors')
             .then(res => {
                 this.backgroundcolors = res;
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.containerStyleAdd reading canvasBackgroundcolors: ' + err);
             });
 
     }
@@ -278,8 +282,9 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err;
-            })
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.containerStyleAdd adding containerStyles: ' + err);
+            });
     }
 
 }
