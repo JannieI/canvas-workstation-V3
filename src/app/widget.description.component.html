@@ -27,6 +27,10 @@
                         </clr-signpost>
                     </div>
 
+                    <div class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+    
                     <div class="griDescription">
                         <b>Description:</b>
                         <textarea [(ngModel)]="selectedWidget.description"

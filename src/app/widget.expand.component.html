@@ -8,7 +8,7 @@
                 </button>
 
                 <div class="gridTitle">
-                    <b>Expand dataset: </b> 
+                    <b>Expand dataset: </b>
                     <clr-signpost>
                         <clr-icon shape="info-circle"
                             clrSignpostTrigger>
@@ -18,21 +18,26 @@
                             <h5 style="margin-top: 0; color:gray;">
                                 Help
                             </h5>
-                            <p style="margin-top: 0; color:gray;"> 
+                            <p style="margin-top: 0; color:gray;">
                                 This form expands the Datasource used by the selected Widget
-                                by showing all the records.  
+                                by showing all the records.
                                 Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
-                </div>                
+                </div>
+
+                <div class="gridErrorMessage">
+                    {{ errorMessage }}
+                </div>
+
                 <div class="gridSubTitle">
-                    <i>  
-                        Your dataset is <b>Current Budget</b>, which has 
-                        {{ currentDatasetLength }} rows. 
+                    <i>
+                        Your dataset is <b>Current Budget</b>, which has
+                        {{ currentDatasetLength }} rows.
                     </i>
-                </div> 
-    
+                </div>
+
                 <div class="gridDatagrid">
                     <clr-datagrid>
                         <clr-dg-column *ngFor="let row of datagridColumns">{{ row }}</clr-dg-column>
@@ -45,7 +50,7 @@
                             of {{pagination.totalItems}} rows
                             <clr-dg-pagination #pagination [clrDgPageSize]="datagridPaginationSize"></clr-dg-pagination>
                         </clr-dg-footer>
-                    </clr-datagrid>                    
+                    </clr-datagrid>
                 </div>
             </div>
         </div>

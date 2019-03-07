@@ -43,7 +43,7 @@ export class WidgetExpandComponent implements OnInit {
     datagridColumns: string[];
     datagridData: any[];
     datagridPaginationSize: number = 10;
-    
+    errorMessage: string = '';
     records: number = 6;
 
     constructor(

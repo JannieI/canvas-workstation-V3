@@ -49,7 +49,7 @@ export class WidgetExportComponent implements OnInit {
 
     }
 
-    errorMessage: string = '';
+    errorMessage: string = 'asdfasdfasdfasdfasdf';
     fileName: string = '';
 
 
