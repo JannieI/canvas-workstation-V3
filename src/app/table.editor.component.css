@@ -46,9 +46,15 @@
         z-index: 100;     
     }
 
-        .errorMessage {
+        .gridErrorMessage {
             color: red;
-            margin-left: 10px;
+            font-size: 0.6rem;
+            grid-column-start: 7;
+            /* autoprefixer: off */
+            grid-column-end: 21;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            text-align: left;
         }
 
         .datasourceList {

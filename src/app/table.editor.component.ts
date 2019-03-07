@@ -67,7 +67,7 @@ import { GlobalVariableService }      from './global-variable.service';
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverColor: boolean = false;
-    errorMessage: string = '';
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
     filterPivotFields: string = '';
     hasClicked: boolean = false;
     isBusyRetrievingData: boolean = false;

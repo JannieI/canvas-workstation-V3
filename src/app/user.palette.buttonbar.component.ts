@@ -42,6 +42,8 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
     }
 
+
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
     paletteButtons: PaletteButtonBar[];
     paletteButtonsOriginal: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
@@ -77,6 +79,10 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 });
             };
 
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in userpalette reading paletteButtonBars: ' + err);
         });
 
     }
@@ -127,9 +133,9 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 // Increment numbers
                 maxCurrentPaletteButtonsSelectedID = maxCurrentPaletteButtonsSelectedID + 1;
                 maxSortOrderSelectedSelectedID = maxSortOrderSelectedSelectedID + 1;
-                
+
                 // Create new record
-                let newPaletteButton: PaletteButtonsSelected = 
+                let newPaletteButton: PaletteButtonsSelected =
                     {
                         id: maxCurrentPaletteButtonsSelectedID,
                         userID: this.globalVariableService.currentUser.userID,
@@ -151,9 +157,12 @@ export class UserPaletteButtonBarComponent implements OnInit {
                     };
 
                 // Add to DB, and local Array
-                this.globalVariableService.addPaletteButtonsSelected(newPaletteButton).then(
-                    res => this.paletteButtonsSelected.push(res)
-                );
+                this.globalVariableService.addPaletteButtonsSelected(newPaletteButton)
+                    .then(res => this.paletteButtonsSelected.push(res))
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in userpalette addPaletteButtonsSelected: ' + err);
+                    });
 
             };
         };
@@ -178,7 +187,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
             if (this.paletteButtonsSelected[i].isSelected) {
 
                 // Add to Available
-                let newPaletteButton: PaletteButtonBar = 
+                let newPaletteButton: PaletteButtonBar =
                 {
                     id: this.paletteButtonsSelected[i].id,
                     mainmenuItem: this.paletteButtonsSelected[i].mainmenuItem,
@@ -200,12 +209,16 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
                 // Delete from Selected
                 this.globalVariableService.deletePaletteButtonsSelected(
-                    this.paletteButtonsSelected[i].id).then(res => {
+                    this.paletteButtonsSelected[i].id)
+                    .then(res => {
                         this.paletteButtonsSelected.splice(i, 1);
-                    }
-                );
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in userpalette deletePaletteButtonsSelected: ' + err);
+                    });
             };
-        };  
+        };
 
         // Sort the altered list
         this.paletteButtons.sort( (obj1,obj2) => {
@@ -270,7 +283,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
         };
 
         // Save alter ones to DB
-        let paletteIndex: number; 
+        let paletteIndex: number;
 
         for (var i = 0; i < changedIDs.length; i++) {
             paletteIndex = this.paletteButtonsSelected.findIndex(
@@ -278,9 +291,13 @@ export class UserPaletteButtonBarComponent implements OnInit {
             if (paletteIndex >= 0) {
                 this.globalVariableService.savePaletteButtonsSelected(
                     this.paletteButtonsSelected[paletteIndex]
-                );                
+                )
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in userpalette savePaletteButtonsSelected: ' + err);
+                });
             };
-        };            
+        };
 
         // Sort the altered list
         this.paletteButtonsSelected.sort( (obj1,obj2) => {
@@ -345,7 +362,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
         };
 
         // Save alter ones to DB
-        let paletteIndex: number; 
+        let paletteIndex: number;
 
         for (var i = 0; i < changedIDs.length; i++) {
             paletteIndex = this.paletteButtonsSelected.findIndex(
@@ -353,9 +370,13 @@ export class UserPaletteButtonBarComponent implements OnInit {
             if (paletteIndex >= 0) {
                 this.globalVariableService.savePaletteButtonsSelected(
                     this.paletteButtonsSelected[paletteIndex]
-                );                
+                )
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in userpalette savePaletteButtonsSelected: ' + err);
+                });
             };
-        };     
+        };
 
         // Sort the altered list
         this.paletteButtonsSelected.sort( (obj1,obj2) => {

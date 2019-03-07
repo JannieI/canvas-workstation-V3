@@ -55,7 +55,7 @@ export class SystemSettingsComponent implements OnInit {
     createdBy: string;
     createdOn: Date;
     dashboardTemplate: string;
-    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     gridSize: number;
     maxTableLength: number;
     notInEditModeMsg: string;
