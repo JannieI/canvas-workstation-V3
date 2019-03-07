@@ -327,14 +327,13 @@
 
     .gridErrorMessage {
         color: red;
-        grid-column-start: 1;
+        grid-column-start: 9;
         /* autoprefixer: off */
         grid-column-end: 28;
-        grid-row-start: 2;
-        grid-row-end: 3;
-        padding-left: 15px;
-        padding-top: 6px;
+        grid-row-start: 1;
+        grid-row-end: 2;
     }
+
     .gridInfoMessage {
         color: blue;
         grid-column-start: 13;

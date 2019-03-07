@@ -115,7 +115,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in widget.containerStyleEdit adding containerStyles: ' + err);
+                console.error('Error in widget.containerStyleEdit reading containerStyles: ' + err);
             });
 
 
@@ -145,6 +145,10 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.globalVariableService.getResource('canvasBackgroundcolors')
             .then(res => {
                 this.backgroundcolors = res;
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.containerStyleEdit reading canvasBackgroundcolors: ' + err);
             });
 
     }
@@ -429,7 +433,10 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                 );
                 this.containerStyles[localIndex] = newContainerStyle;
             })
-            .catch(err => this.errorMessage = 'Error saving Style: ' + err);
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.containerStyleEdit saving containerStyles: ' + err);
+            });
 
         // Tell user
         this.infoMessage = 'Container Style saved';
@@ -461,46 +468,59 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             this.errorMessage = 'Cannot delete the last one.';
             return;
         };
-        let filteredWidgets: Widget[] = this.globalVariableService.widgets.filter(w => 
-            w.containerStyleID == this.containerSelectedStyleID
-        );
-        if (filteredWidgets.length > 0) {
-            this.errorMessage = 'No Delete - linked to ' + filteredWidgets.length.toString() + ' widget(s)';
-            return;
-        };
 
-        // Update DB
-        this.globalVariableService.deleteResource('containerStyles', this.containerSelectedStyleID)
-        .then(
-            res => {
 
-                this.infoMessage = 'Container Style deleted';
+        this.globalVariableService.getResource(
+            'widgets', 
+            'filterObject={"containerStyleID": ' + 
+                this.containerSelectedStyleID.toString() + '}'
+            ).then(filteredWidgets => {
+            // let filteredWidgets: Widget[] = this.globalVariableService.widgets.filter(w => 
+            //     w.containerStyleID == this.containerSelectedStyleID
+            // );
+            if (filteredWidgets.length > 0) {
+                this.errorMessage = 'No Delete - linked to ' + filteredWidgets.length.toString() + ' widget(s)';
+                return;
+            };
 
-                // Update local Array
-                this.containerStyles = this.containerStyles.filter(cs =>
-                    cs.id != this.containerSelectedStyleID);
+            // Update DB
+            this.globalVariableService.deleteResource('containerStyles', this.containerSelectedStyleID)
+                .then(res => {
 
-                // Reload dropdown displayed on form, and refresh info with first one
-                this.containerStyleNameList = [];
+                    this.infoMessage = 'Container Style deleted';
 
-                this.containerStyles.forEach(cs => {
-                    // List of ngFor (needs ID at later stage, state is useful for user)
-                    this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
+                    // Update local Array
+                    this.containerStyles = this.containerStyles.filter(cs =>
+                        cs.id != this.containerSelectedStyleID);
+
+                    // Reload dropdown displayed on form, and refresh info with first one
+                    this.containerStyleNameList = [];
+
+                    this.containerStyles.forEach(cs => {
+                        // List of ngFor (needs ID at later stage, state is useful for user)
+                        this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
+                    });
+
+                    // Fill Initial
+                    if (this.containerStyles.length >= 0) {
+                        this.containerSelectedStyleID = this.containerStyles[0].id;
+                        this.containerSelectedStyleName = this.containerStyles[0].name;
+                        this.updateForm(0);
+                        this.containerStyleName = this.containerStyles[0].name +
+                            ' (' + this.containerStyles[0].id.toString() + ')';
+                    };
+
+                    // Tell User
+                    this.infoMessage = 'Style deleted';
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in widget.containerStyleEdit deleting containerStyles: ' + err);
                 });
-
-                // Fill Initial
-                if (this.containerStyles.length >= 0) {
-                    this.containerSelectedStyleID = this.containerStyles[0].id;
-                    this.containerSelectedStyleName = this.containerStyles[0].name;
-                    this.updateForm(0);
-                    this.containerStyleName = this.containerStyles[0].name +
-                        ' (' + this.containerStyles[0].id.toString() + ')';
-                };
-
-                // Tell User
-                this.infoMessage = 'Style deleted';
-            }
-        )
-        .catch(err => this.errorMessage = 'Error saving Style: ' + err);
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in widget.containerStyleEdit reading widgets: ' + err);
+        });
     }
 }
