@@ -49,6 +49,15 @@
         text-align: left;
     }
 
+    .gridErrorMessage {
+        color: red;
+        grid-column-start: 10;
+        /* autoprefixer: off */
+        grid-column-end: 28;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
     .gridShape {
         border-left: 1px solid black;
         grid-column-start: 13;
@@ -323,14 +332,6 @@
         padding-top: 6px;
     }
 
-    .gridErrorMessage {
-        color: red;
-        grid-column-start: 10;
-        /* autoprefixer: off */
-        grid-column-end: 28;
-        grid-row-start: 1;
-        grid-row-end: 2;
-    }
     .gridInfoMessage {
         color: blue;
         grid-column-start: 13;

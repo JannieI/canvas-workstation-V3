@@ -72,7 +72,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     containerStyleName: string = '';
     containerStyleNameList: string[] = [];
     containerStyles: ContainerStyle[] = [];
-    errorMessage = 'asdfasdfasdfasdfasdfasdfasdf';
+    errorMessage = '';
     gridStyleName: string;
     infoMessage: string;
     oldWidget: Widget;
@@ -167,7 +167,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectStyleName', '@Start');
 
         // Reset
-        this.errorMessage = 'asdfasdfasdfasdfasdfasdfasdf';
+        this.errorMessage = '';
         this.infoMessage = '';
 
         let selectedContainerStyleName: string = ev.target.value;
