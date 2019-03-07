@@ -47,6 +47,7 @@ export class WidgetLinksComponent implements OnInit {
     dashboardIsLinked: boolean = false;
     dashboards: Dashboard[];
     dashboardTabs: DashboardTab[];
+    errorMessage: string = '';
     linkedDashboard: string;
     linkedTab: string;
     selectedDashboardTabs: DashboardTab[] = [];
@@ -89,7 +90,7 @@ export class WidgetLinksComponent implements OnInit {
                     return -1;
                 };
                 return 0;
-            });
+            })
 
         // Show linking
         if (this.selectedWidget.hyperlinkDashboardID != null
@@ -140,7 +141,11 @@ export class WidgetLinksComponent implements OnInit {
         this.dashboardIsLinked = false;
 
         // Save to DB
-        this.globalVariableService.saveWidget(this.selectedWidget);
+        this.globalVariableService.saveWidget(this.selectedWidget)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.hyperlink saveWidget: ' + err);
+            });
 
     }
 
@@ -162,7 +167,11 @@ export class WidgetLinksComponent implements OnInit {
         };
 
         // Save to DB
-        this.globalVariableService.saveWidget(this.selectedWidget);
+        this.globalVariableService.saveWidget(this.selectedWidget)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.hyperlink saveWidget: ' + err);
+            });
 
         // Show the linked info
         this.dashboardIsLinked = true;

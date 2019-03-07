@@ -56,6 +56,7 @@ export class WidgetTitleComponent implements OnInit {
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
+    errorMessage: string = 'asdfasdfasdfasdfasdf';
     lineColor: string = 'none';
     lineSize: string = 'none';
     localWidget: Widget;                            // W to modify, copied from selected
@@ -138,7 +139,11 @@ export class WidgetTitleComponent implements OnInit {
                     {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, 
                     ...this.backgroundcolors
                 ];
-            });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.title reading canvasBackgroundcolors: ' + err);
+            })
 
     }
 
@@ -267,36 +272,41 @@ export class WidgetTitleComponent implements OnInit {
             this.localWidget.titleBorder = this.lineSize
         };
 
-        this.globalVariableService.saveWidget(this.localWidget).then(res => {
-            // Action
-            // TODO - cater for errors + make more generic
-            let actID: number = this.globalVariableService.actionUpsert(
-                null,
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                this.localWidget.id,
-                'Widget',
-                'Edit',
-                'Update Title',
-                'W Title clickSave',
-                null,
-                null,
-                this.oldWidget,
-                this.localWidget,
-                false               // Dont log to DB yet
-            );
+        this.globalVariableService.saveWidget(this.localWidget)
+            .then(res => {
+                // Action
+                // TODO - cater for errors + make more generic
+                let actID: number = this.globalVariableService.actionUpsert(
+                    null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    this.localWidget.id,
+                    'Widget',
+                    'Edit',
+                    'Update Title',
+                    'W Title clickSave',
+                    null,
+                    null,
+                    this.oldWidget,
+                    this.localWidget,
+                    false               // Dont log to DB yet
+                );
 
-            // Tell user
-            this.globalVariableService.showStatusBarMessage(
-                {
-                    message: 'Slicer Saved',
-                    uiArea: 'StatusBar',
-                    classfication: 'Info',
-                    timeout: 3000,
-                    defaultMessage: ''
-                }
-            );
-        });
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Slicer Saved',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.title saveWidget: ' + err);
+            });
 
         this.formWidgetTitleClosed.emit(this.localWidget);
     }

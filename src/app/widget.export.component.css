@@ -55,8 +55,8 @@
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 18;
-        grid-row-start: 4;
-        grid-row-end: 5;
+        grid-row-start: 2;
+        grid-row-end: 3;
         text-align: left;
     }
 
