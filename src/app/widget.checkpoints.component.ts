@@ -61,6 +61,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
     checkpointName: string;
     currentWidgetCheckpoints: WidgetCheckpoint[];
+    errorMessage = 'asdfasdfasdfasdfasdfasdfasdf';
     nrCheckpoints: number = 1;
     selectedRow: number = 0;
 
@@ -75,27 +76,32 @@ export class WidgetCheckpointsComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getResource('widgetCheckpoints').then (ca => {
-            // Set the data for the grid
-            this.currentWidgetCheckpoints = ca.filter(wc =>
-                wc.dashboardID == this.selectedWidget.dashboardID
-                &&
-                wc.widgetID == this.selectedWidget.id
-            );
+        this.globalVariableService.getResource('widgetCheckpoints')
+            .then (ca => {
+                // Set the data for the grid
+                this.currentWidgetCheckpoints = ca.filter(wc =>
+                    wc.dashboardID == this.selectedWidget.dashboardID
+                    &&
+                    wc.widgetID == this.selectedWidget.id
+                );
 
-            this.nrCheckpoints = this.currentWidgetCheckpoints.length;
+                this.nrCheckpoints = this.currentWidgetCheckpoints.length;
 
-            if (this.currentWidgetCheckpoints != undefined) {
-                if (this.currentWidgetCheckpoints.length > 0) {
-                    let definition = this.globalVariableService.createVegaLiteSpec(
-                        this.currentWidgetCheckpoints[0].widgetSpec);
+                if (this.currentWidgetCheckpoints != undefined) {
+                    if (this.currentWidgetCheckpoints.length > 0) {
+                        let definition = this.globalVariableService.createVegaLiteSpec(
+                            this.currentWidgetCheckpoints[0].widgetSpec);
 
-                    // Render
-                    this.renderGraph(definition)
+                        // Render
+                        this.renderGraph(definition)
+                    };
                 };
-            };
 
-        })
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.checkpoint reading widgetCheckpoints: ' + err);
+            });
     }
 
     clickRow(index: number, id: number) {
@@ -142,27 +148,32 @@ export class WidgetCheckpointsComponent implements OnInit {
         };
 
         // Add locally, globally and to DB (with new ID)
-        this.globalVariableService.addResource('widgetCheckpoints', newCheckpoint).then(res => {
+        this.globalVariableService.addResource('widgetCheckpoints', newCheckpoint)
+            .then(res => {
 
-            newCheckpoint.id = res.id;
-            this.currentWidgetCheckpoints.splice(0, 0, newCheckpoint);
-            this.nrCheckpoints = this.currentWidgetCheckpoints.length;
+                newCheckpoint.id = res.id;
+                this.currentWidgetCheckpoints.splice(0, 0, newCheckpoint);
+                this.nrCheckpoints = this.currentWidgetCheckpoints.length;
 
-            // Update W
-            this.selectedWidget.showCheckpoints = false;
-            if (this.selectedWidget.checkpointIDs.indexOf(res.id) < 0) {
-                this.selectedWidget.checkpointIDs.push(res.id);
-            };
-            this.selectedWidget.currentCheckpoint = 0;
-            this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
+                // Update W
+                this.selectedWidget.showCheckpoints = false;
+                if (this.selectedWidget.checkpointIDs.indexOf(res.id) < 0) {
+                    this.selectedWidget.checkpointIDs.push(res.id);
+                };
+                this.selectedWidget.currentCheckpoint = 0;
+                this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
 
-            // Save to DB
-            this.globalVariableService.saveWidget(this.selectedWidget);
+                // Save to DB
+                this.globalVariableService.saveWidget(this.selectedWidget);
 
-            // Show the Graph
-            this.clickRow(0, res.id);
-        });
-
+                // Show the Graph
+                this.clickRow(0, res.id);
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.checkpoint adding widgetCheckpoints: ' + err);
+            });
+    
     }
 
     dblclickDeleteCheckpoint(id: number) {
@@ -180,33 +191,38 @@ export class WidgetCheckpointsComponent implements OnInit {
         if (index >= 0) {
             this.currentWidgetCheckpoints.splice(index, 1);
         };
-        this.globalVariableService.deleteResource('widgetCheckpoints', id).then(res => {
+        this.globalVariableService.deleteResource('widgetCheckpoints', id)
+            .then(res => {
 
-            this.nrCheckpoints = this.currentWidgetCheckpoints.length;
+                this.nrCheckpoints = this.currentWidgetCheckpoints.length;
 
-            // Update W
-            this.selectedWidget.showCheckpoints = false;
-            index = -1;
-            for (var i = 0; i < this.selectedWidget.checkpointIDs.length; i++) {
-                if (this.selectedWidget.checkpointIDs[i] == id) {
-                    index = i;
+                // Update W
+                this.selectedWidget.showCheckpoints = false;
+                index = -1;
+                for (var i = 0; i < this.selectedWidget.checkpointIDs.length; i++) {
+                    if (this.selectedWidget.checkpointIDs[i] == id) {
+                        index = i;
+                    };
                 };
-            };
-            if (index > -1) {
-                this.selectedWidget.checkpointIDs.splice(index, 1);
-            };
-            this.selectedWidget.currentCheckpoint = 0;
-            this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
+                if (index > -1) {
+                    this.selectedWidget.checkpointIDs.splice(index, 1);
+                };
+                this.selectedWidget.currentCheckpoint = 0;
+                this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
 
-            // Save to DB
-            this.globalVariableService.saveWidget(this.selectedWidget);
+                // Save to DB
+                this.globalVariableService.saveWidget(this.selectedWidget);
 
-            // Show the Graph
-            if (this.currentWidgetCheckpoints.length > 0) {
-                this.clickRow(0, this.currentWidgetCheckpoints[0].id);
-            };
-        });
-    }
+                // Show the Graph
+                if (this.currentWidgetCheckpoints.length > 0) {
+                    this.clickRow(0, this.currentWidgetCheckpoints[0].id);
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.checkpoint deleting widgetCheckpoints: ' + err);
+            });
+        }
 
     renderGraph(definition: any) {
         //
