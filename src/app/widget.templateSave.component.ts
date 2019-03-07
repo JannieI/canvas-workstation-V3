@@ -83,8 +83,11 @@ export class WidgetTemplateSaveComponent implements OnInit {
                         this.widgetStoredTemplates[0].description;
                     this.errorMessage = 'This template was saved before';
                 };
-            }
-        );
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widgetTemplate.save reading widgetStoredTemplates: ' + err);
+            });
     }
 
     clickClose(action: string) {
@@ -128,8 +131,11 @@ export class WidgetTemplateSaveComponent implements OnInit {
 
             this.globalVariableService.addResource('widgetStoredTemplates', newWidgetStoredTemplate)
                 .then(res => {this.formWidgetTemplateSavedClosed.emit('Saved')})
-                .catch(err => {this.errorMessage = 'Adding failed ...'});
-        } else {
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in widgetTemplate.save adding widgetStoredTemplates: ' + err);
+                });
+            } else {
             let dt = new Date();
 
             let newWidgetStoredTemplate: WidgetStoredTemplate = {
@@ -146,8 +152,11 @@ export class WidgetTemplateSaveComponent implements OnInit {
 
             this.globalVariableService.saveResource('widgetStoredTemplates', newWidgetStoredTemplate)
                 .then(res => {this.formWidgetTemplateSavedClosed.emit('Saved')})
-                .catch(err => {this.errorMessage = 'Saving failed ...'});
-
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in widgetTemplate.save saving widgetStoredTemplates: ' + err);
+                });
+    
         };
 
     }

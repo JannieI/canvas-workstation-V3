@@ -50,7 +50,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
 
     }
 
-    errorMessage: string = 'asdfasdfasdfasdf';
+    errorMessage: string = '';
     // graphVisualGrammar: string = 'Vega-Lite';
     localWidget: Widget;
     selectedRow: number = 0;

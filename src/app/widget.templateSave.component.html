@@ -30,8 +30,12 @@
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
-                    </div>
+                </div>
 
+                <div class="gridErrorMessage">
+                    {{ errorMessage }}
+                </div>
+    
                 <div class="gridTextMain">
                     The selected Widget will be added to the list of predefined Widget Templates.
                     Widget Templates simplify the creation of Widgets on a Dashboard:
@@ -64,10 +68,6 @@
                         #deleteSnapshotsVar="ngModel"
                         title="Description of the Template (ie what it is used for)"
                         >
-                </div>
-
-                <div class="gridErrorMessage">
-                    {{ errorMessage }}
                 </div>
 
                 <div class="gridButtonCancel">
