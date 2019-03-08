@@ -153,8 +153,9 @@ export interface dataSchemaInterface {
     draggedField: string = '';
     dragoverColours: boolean = false;
     dsFilterMessage: string = '(filtered)';
-    errorMessage: string = 'asdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     errorMessageEditor: string = '';
+    errorMessageHTTP: string = '';
     filterErrorMessage: string = ' ';
     filterID: number = -1;
     filterFieldName: string = '';
@@ -328,7 +329,7 @@ export interface dataSchemaInterface {
     ngOnInit() {
         // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-console.log('xx timeUnits', timeUnits)
+
         // Get setup info
         this.backgroundcolors = this.globalVariableService.canvasBackgroundcolors.slice();
         this.backgroundcolors = [
@@ -513,7 +514,7 @@ console.log('xx timeUnits', timeUnits)
             this.selectedDSName = this.localDatasources[arrayIndex].name.slice(0,22) +
                 (this.localDatasources[arrayIndex].name.length > 22?  '...'  :  '');
             this.selectedDescription = this.localDatasources[arrayIndex].description;
-            this.errorMessage = 'asdfasdfasdfasdf';
+            this.errorMessage = '';
             this.currentData = null;
 
             // Construct Schema
@@ -540,7 +541,7 @@ console.log('xx timeUnits', timeUnits)
             this.showDatasourceMain = false;
 
             // Get Widget Graph Specs
-            this.globalVariableService.getResource('widgetGraphs').then(res => {
+            this.globalVariableService.getResource('widgetGraphss').then(res => {
                 this.widgetGraphsFull = res
                 this.widgetGraphs = res.filter(
                     wg => wg.visualGrammar==this.localWidget.visualGrammar
@@ -557,6 +558,10 @@ console.log('xx timeUnits', timeUnits)
                     wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
                 );
                 this.showGraph(this.widgetGraphs[graphIndex].id);
+            })
+            .catch(err => {
+                this.errorMessageHTTP = err.slice(0, 100);
+                console.error('Error in widget.editor reading widgetGraphs: ' + err);
             });
 
             // Switch if Complex graph in Lite mode
