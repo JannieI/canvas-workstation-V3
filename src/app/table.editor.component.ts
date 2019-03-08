@@ -221,31 +221,36 @@ import { GlobalVariableService }      from './global-variable.service';
 
             this.isBusyRetrievingData = true;
             this.errorMessage = 'Getting data ...'
-            this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+            this.globalVariableService.addCurrentDatasource(datasourceID)
+                .then(res => {
 
-                // Reset
-                this.isBusyRetrievingData = false
-                this.currentDatasources = this.globalVariableService.datasources
-                    .slice()
-                    .filter(ds => 
-                        this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
-                    )
-                    .sort( (obj1, obj2) => {
-                        if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                            return 1;
-                        };
-                        if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                            return -1;
-                        };
-                        return 0;
-                    }
-                );
+                    // Reset
+                    this.isBusyRetrievingData = false
+                    this.currentDatasources = this.globalVariableService.datasources
+                        .slice()
+                        .filter(ds => 
+                            this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
+                        )
+                        .sort( (obj1, obj2) => {
+                            if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                                return 1;
+                            };
+                            if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                                return -1;
+                            };
+                            return 0;
+                        }
+                    );
+        
+                    // Tell user
+                    this.errorMessage = 'Data retrieved - click row again to continue';
+
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in table.editor reading widgetGraphs: ' + err);
+                });
     
-                // Tell user
-                this.errorMessage = 'Data retrieved - click row again to continue';
-
-            });
-
             // Stop Synch execution
             return;
         };
