@@ -67,7 +67,7 @@ import { GlobalVariableService }      from './global-variable.service';
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverColor: boolean = false;
-    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     filterPivotFields: string = '';
     hasClicked: boolean = false;
     isBusyRetrievingData: boolean = false;
@@ -274,10 +274,14 @@ import { GlobalVariableService }      from './global-variable.service';
             };
 
             this.isBusyRetrievingData = true;
-            this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
-                this.isBusyRetrievingData = false
-
-            });
+            this.globalVariableService.addCurrentDatasource(datasourceID)
+                .then(res => {
+                    this.isBusyRetrievingData = false
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in table.editor addCurrentDatasources: ' + err);
+                });
         };
         console.warn('xx this.dataFieldNames', this.dataFieldNames)
 
@@ -377,110 +381,91 @@ import { GlobalVariableService }      from './global-variable.service';
             // this.globalVariableService.widgets.push(this.localWidget);
             // this.globalVariableService.currentWidgets.push(this.localWidget);
 
-            this.globalVariableService.addResource('widgets', this.localWidget).then(res => {
-                this.localWidget.id = res.id;
+            this.globalVariableService.addResource('widgets', this.localWidget)
+                .then(res => {
+                    this.localWidget.id = res.id;
 
-                // Action
-                // TODO - cater for errors + make more generic
-                let actID: number = this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    this.localWidget.id,
-                    'Widget',
-                    'Edit',
-                    'Update Title',
-                    'W Title clickSave',
-                    null,
-                    null,
-                    null,
-                    this.localWidget,
-                    false               // Dont log to DB yet
-                );
-                // Tell user
-                this.globalVariableService.showStatusBarMessage(
-                    {
-                        message: 'Table Added',
-                        uiArea: 'StatusBar',
-                        classfication: 'Info',
-                        timeout: 3000,
-                        defaultMessage: ''
-                    }
-                );
+                    // Action
+                    // TODO - cater for errors + make more generic
+                    let actID: number = this.globalVariableService.actionUpsert(
+                        null,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        this.localWidget.id,
+                        'Widget',
+                        'Edit',
+                        'Update Title',
+                        'W Title clickSave',
+                        null,
+                        null,
+                        null,
+                        this.localWidget,
+                        false               // Dont log to DB yet
+                    );
+                    // Tell user
+                    this.globalVariableService.showStatusBarMessage(
+                        {
+                            message: 'Table Added',
+                            uiArea: 'StatusBar',
+                            classfication: 'Info',
+                            timeout: 3000,
+                            defaultMessage: ''
+                        }
+                    );
 
-                // Return to main menu
-                this.formWidgetEditorClosed.emit(this.localWidget);
+                    // Return to main menu
+                    this.formWidgetEditorClosed.emit(this.localWidget);
 
-            });
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in table.editor adding widgets: ' + err);
+                });
 
         } else {
-            // if (this.selectedWidget.graphColorField != ''
-            //     &&  this.selectedWidget.graphColorField != null) {
-            //         if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
-            //             this.localWidget.graphWidth = this.selectedWidget.graphWidth + 70;
-            //         };
-            // };
-            // if (this.selectedWidget.graphColorField == ''
-            //     ||  this.selectedWidget.graphColorField == null) {
-            //         if (this.localWidget.graphColorField != ''
-            //             &&  this.localWidget.graphColorField != null) {
-            //             this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
-            //         };
-            // };
-
-            // Replace the W
-            // this.globalVariableService.widgetReplace(this.localWidget);
 
             // Update global W and DB
-            this.globalVariableService.saveWidget(this.localWidget).then(res => {
+            this.globalVariableService.saveWidget(this.localWidget)
+                .then(res => {
 
-                // Action
-                // TODO - cater for errors + make more generic
-                let actID: number = this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    this.localWidget.id,
-                    'Widget',
-                    'Edit',
-                    'Update Title',
-                    'W Title clickSave',
-                    null,
-                    null,
-                    this.oldWidget,
-                    this.localWidget,
-                    false               // Dont log to DB yet
-                );
+                    // Action
+                    // TODO - cater for errors + make more generic
+                    let actID: number = this.globalVariableService.actionUpsert(
+                        null,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        this.localWidget.id,
+                        'Widget',
+                        'Edit',
+                        'Update Title',
+                        'W Title clickSave',
+                        null,
+                        null,
+                        this.oldWidget,
+                        this.localWidget,
+                        false               // Dont log to DB yet
+                    );
 
-                // Tell user
-                this.globalVariableService.showStatusBarMessage(
-                    {
-                        message: 'Graph Saved',
-                        uiArea: 'StatusBar',
-                        classfication: 'Info',
-                        timeout: 3000,
-                        defaultMessage: ''
-                    }
-                );
+                    // Tell user
+                    this.globalVariableService.showStatusBarMessage(
+                        {
+                            message: 'Graph Saved',
+                            uiArea: 'StatusBar',
+                            classfication: 'Info',
+                            timeout: 3000,
+                            defaultMessage: ''
+                        }
+                    );
 
-                this.formWidgetEditorClosed.emit(this.localWidget);
+                    this.formWidgetEditorClosed.emit(this.localWidget);
 
-            });
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in table.editor saveWidget: ' + err);
+                });
 
         };
-
-        // // Tell user
-        // this.globalVariableService.showStatusBarMessage(
-        //     {
-        //         message: 'Table Saved',
-        //         uiArea: 'StatusBar',
-        //         classfication: 'Info',
-        //         timeout: 3000,
-        //         defaultMessage: ''
-        //     }
-        // );
-
-        // this.formWidgetEditorClosed.emit(this.localWidget);
     }
 
   }

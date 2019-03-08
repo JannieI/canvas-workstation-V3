@@ -30,6 +30,10 @@
                     </clr-signpost>
                 </div>
 
+                <div class="gridErrorMessage">
+                    {{ errorMessage }}
+                </div>
+
                 <div class="datasources" *ngIf="showDatasourcePopup">
                     Select a <b>Datasources</b> added before, and click Continue.
 
@@ -38,10 +42,6 @@
                         (click)="clickContinue()">
                         Continue
                     </button>
-
-                    <div class="gridErrorMessage">
-                        {{ errorMessage }}
-                    </div>
 
                     <div class="datasourceList">
                         <clr-datagrid>
