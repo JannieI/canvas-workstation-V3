@@ -34,7 +34,9 @@ export class StatusbarComponent {
 
     currentDashboardInfoSubscription: Subscription;
     currentDashboardTabs: DashboardTab[];
-    dashboardDescription: string;
+    dashboardCreator: string = '';
+    dashboardDescription: string = '';
+    dashboardLastEditored: string = '';
     dashboardTabDescription: string;
     dontDisturb: boolean = false;
     dontDisturbSubscription: Subscription;
@@ -176,11 +178,34 @@ export class StatusbarComponent {
         // Show the popup for the Tab Description
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDescription', '@Start');
 
-        this.dashboardDescription = this.globalVariableService.currentDashboards[0].description;
-        this.showTabList = false;
-        this.showDashboardDescription = true;
-        this.showDashboardTabDescription = false;
-    }
+        this.globalVariableService.getResource(
+            'dashboards', 
+            '?filterObject={"id":' + 
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID.toString()
+                + '}')
+            .then(res => {
+                console.log('xx res', res[0])
+                this.dashboardCreator = res[0].creator;
+                this.dashboardLastEditored = res[0].dateEdited  ||  res[0].dateCreated;
+                this.dashboardDescription = res[0].description;
+                this.showTabList = false;
+                this.showDashboardDescription = true;
+                this.showDashboardTabDescription = false;
+        
+            })
+            .catch(err => {
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: err.slice(0, 100),
+                        uiArea: 'StatusBar',
+                        classfication: 'Error',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+                console.error('Error in statusBar reading dashboards: ' + err);
+            });
+}
 
     clickListTabs() {
         // Show the list of Tabs

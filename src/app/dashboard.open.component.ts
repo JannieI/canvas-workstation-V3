@@ -106,29 +106,43 @@ export class DashboardOpenComponent implements OnInit {
         });
 
         // Get DSs
-        this.datasources = this.globalVariableService.datasources.slice();
+        this.globalVariableService.getResource('datasources')
+            .then(res =>{
+                this.datasources = res;
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.open reading datasources: ' + err);
+            });
 
         // Template list
-        this.globalVariableService.dashboards.forEach(d => {
-            if (d.state == 'Complete') {
-                this.dashboardList.push(d.name + ' (' + d.id.toString() + ')');
-            };
-        });
+        this.globalVariableService.getResource('dashboards')
+            .then(res =>{
+                this.dashboardsOriginal = res;                
+                this.dashboardsOriginal.forEach(d => {
+                    if (d.state == 'Complete') {
+                        this.dashboardList.push(d.name + ' (' + d.id.toString() + ')');
+                    };
+                });
 
-        // Get Ds
-        this.dashboardsOriginal = this.globalVariableService.dashboards.slice()
-        this.dashboards = this.dashboardsOriginal.slice().sort((n1,n2) => {
-            if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
-                return 1;
-            };
+                // Get Ds
+                this.dashboards = this.dashboardsOriginal.slice().sort((n1,n2) => {
+                    if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
+                        return 1;
+                    };
 
-            if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
-                return -1;
-            };
+                    if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
+                        return -1;
+                    };
 
-            return 0;
-        });
-    }
+                    return 0;
+                });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.open reading dashboards: ' + err);
+            });
+}
 
     clickSearch() {
         // Create a new Dashboard, and close form
@@ -326,47 +340,73 @@ export class DashboardOpenComponent implements OnInit {
         };
 
         if (this.filterSharedByUserID != '') {
-            let dIDs: number[] = this.globalVariableService.dashboardPermissions
-                .filter(dP => dP.grantor.toLowerCase() == this.filterSharedByUserID.toLowerCase())
-                .map(dP => dP.dashboardID);
+            this.globalVariableService.getResource('dashboardPermissions')
+                .then(res => {
 
-            this.dashboards = this.dashboards.filter(d => {
-                if (dIDs.indexOf(d.id) >= 0) {
-                    return d;
-                };
-            });
+                    let dIDs: number[] = res
+                        .filter(dP => dP.grantor.toLowerCase() == this.filterSharedByUserID.toLowerCase())
+                        .map(dP => dP.dashboardID);
+
+                    this.dashboards = this.dashboards.filter(d => {
+                        if (dIDs.indexOf(d.id) >= 0) {
+                            return d;
+                        };
+                    });
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.open reading dashboardPermissions: ' + err);
+                });
+
         };
         if (this.filterSharedWithUserID != '') {
-            let dIDs: number[] = this.globalVariableService.dashboardPermissions
-                .filter(dP => dP.userID.toLowerCase() == this.filterSharedWithUserID.toLowerCase())
-                .map(dP => dP.dashboardID);
+            this.globalVariableService.getResource('dashboardPermissions')
+                .then(res => {
 
-            this.dashboards = this.dashboards.filter(d => {
-                if (dIDs.indexOf(d.id) >= 0) {
-                    return d;
-                };
-            });
+                    let dIDs: number[] = res
+                        .filter(dP => dP.userID.toLowerCase() == this.filterSharedWithUserID.toLowerCase())
+                        .map(dP => dP.dashboardID);
+
+                    this.dashboards = this.dashboards.filter(d => {
+                        if (dIDs.indexOf(d.id) >= 0) {
+                            return d;
+                        };
+                    });
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.open reading dashboardPermissions: ' + err);
+                });
         };
+
         if (this.filterSharedWithGroup != '') {
-            let groupIndex: number = this.groups.findIndex(
-                grp => grp.name.toLowerCase() == this.filterSharedWithGroup.toLowerCase());
-            let groupID: number = null;
-            if (groupIndex >= 0) {
-                groupID = this.groups[groupIndex].id;
-            } else {
-                this.errorMessage = 'Unexpected error: The group does not exist in the DB';
-                return;
-            };
+            this.globalVariableService.getResource('dashboardPermissions')
+                .then(res => {
+    
+                    let groupIndex: number = this.groups.findIndex(
+                        grp => grp.name.toLowerCase() == this.filterSharedWithGroup.toLowerCase());
+                    let groupID: number = null;
+                    if (groupIndex >= 0) {
+                        groupID = this.groups[groupIndex].id;
+                    } else {
+                        this.errorMessage = 'Unexpected error: The group does not exist in the DB';
+                        return;
+                    };
 
-            let dIDs: number[] = this.globalVariableService.dashboardPermissions
-                .filter(dP => dP.groupID == groupID)
-                .map(dP => dP.dashboardID);
+                    let dIDs: number[] = res
+                        .filter(dP => dP.groupID == groupID)
+                        .map(dP => dP.dashboardID);
 
-            this.dashboards = this.dashboards.filter(d => {
-                if (dIDs.indexOf(d.id) >= 0) {
-                    return d;
-                };
-            });
+                    this.dashboards = this.dashboards.filter(d => {
+                        if (dIDs.indexOf(d.id) >= 0) {
+                            return d;
+                        };
+                    });
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.open reading dashboardPermissions: ' + err);
+                });
 
         };
 
@@ -446,15 +486,23 @@ export class DashboardOpenComponent implements OnInit {
 
             // Loop on W and get list of their D-ids that use this D
             let dISs: number[] = [];
-            this.globalVariableService.widgets.forEach(w => {
-                if (w.datasourceID == datasourceID) {
-                    if (dISs.indexOf(w.dashboardID) < 0) {
-                        dISs.push(w.dashboardID);
-                    };
-                };
-            });
+            this.globalVariableService.getResource('widgets')
+                .then(res => {
 
-            this.dashboards = this.dashboards.filter(d => dISs.indexOf(d.id) >= 0);
+                    res.forEach(w => {
+                        if (w.datasourceID == datasourceID) {
+                            if (dISs.indexOf(w.dashboardID) < 0) {
+                                dISs.push(w.dashboardID);
+                            };
+                        };
+                    });
+
+                    this.dashboards = this.dashboards.filter(d => dISs.indexOf(d.id) >= 0);
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.open reading widgets: ' + err);
+                });
 
         };
         if (this.filterState != '') {

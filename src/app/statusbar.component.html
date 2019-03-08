@@ -186,11 +186,22 @@
 
 
 <!-- Dashboard Description -->
-<div class="dashboardDescription" *ngIf="showDashboardDescription">
+<div class="dashboardDescription" *ngIf="showDashboardDescription"
+    style="padding: 10px 10px 10px 20px ;"
+    >
+    <div>
+        The current dashboard is {{ currentDashboardName }}
+    </div>
     <div> {{ dashboardDescription }}</div>
+    <div>
+            It was created by {{ dashboardCreator }}
+    </div>
+    <div>
+        It was last edited on {{ dashboardLastEditored }}
+    </div>
     <button style="color: white"
         type="button"
-        class="btn btn-link"
+        class="btn btn-secondary"
         (click)="showDashboardDescription=!showDashboardDescription"
         >
         Close
