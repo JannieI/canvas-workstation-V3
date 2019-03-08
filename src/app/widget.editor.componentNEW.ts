@@ -267,11 +267,6 @@ export interface dataSchemaInterface {
     yField: string = dragFieldMessage;
     y2Field: string = dragFieldMessage;
 
-    // TODO - remove this later on when we dont use D3 time formats at all
-   
-
-
-    
     
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -299,7 +294,7 @@ export interface dataSchemaInterface {
         // Get DS to which user has permissions
         this.globalVariableService.getResource('datasources')
             .then(res => {
-                this.datasources = res.sort( (obj1, obj2) => {
+                this.localDatasources = res.sort( (obj1, obj2) => {
                     if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
                         return 1;
                     };
@@ -308,55 +303,49 @@ export interface dataSchemaInterface {
                     };
                     return 0;
                 });
-
+                // .filter(ds =>
+                //     this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
+                // )
+    
                 // Count the Ws
                 let widgetsFiltered: Widget[];
                 this.globalVariableService.getResource('widgets')
                     .then(w => {
                         this.widgets = w;
-                        this.datasources.forEach(ds => {
+                        this.localDatasources.forEach(ds => {
                             widgetsFiltered = this.widgets.filter(w => w.datasourceID == ds.id);
                             ds.nrWidgets = widgetsFiltered.length;
                         });
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);
-                        console.error('Error in Datasource.delete reading widgets: ' + err);
+                        console.error('Error in widget.editor reading widgets: ' + err);
                     });
             })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        this.localDatasources = this.globalVariableService.datasources
-            .slice()
-            .filter(ds =>
-                this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
-            )
-            .sort( (obj1, obj2) => {
-                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                    return 1;
-                };
-                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                    return -1;
-                };
-                return 0;
+            .catch(err => {
+                this.errorMessageHTTP = err.slice(0, 100);
+                console.error('Error in widget.editor reading datasources: ' + err);
             });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
         // Start afresh for new W~
         if (this.newWidget) {
