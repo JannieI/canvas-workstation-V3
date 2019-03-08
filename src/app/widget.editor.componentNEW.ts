@@ -33,8 +33,11 @@ import { ExcelService }               from './excel.service';
 // Templates
 import { timeUnits }                  from './templates';
 import { vegaColorSchemes }           from './templates';
-// import {  }                  from './templates';
+import { aggregations }               from './templates';
 
+// import {  }                  from './templates';
+// import {  }                  from './templates';
+// import {  }                  from './templates';
 const dragFieldMessage: string = 'Drag a field here ...';
 
 export interface dataSchemaInterface {
@@ -122,98 +125,7 @@ export interface dataSchemaInterface {
 
     }
 
-    aggregations: { displayName: string; vegaLiteName: string; description: string}[] = [
-        {
-            displayName: '',
-            vegaLiteName: '',
-            description: 'None.'
-        },
-        {
-            displayName: 'Average',
-            vegaLiteName: 'average',
-            description: 'The mean (average) field value. Identical to mean.'
-        },
-        {
-            displayName: 'Count',
-            vegaLiteName: 'count',
-            description: 'The total count of data objects in the group.  Similar to SQL’s count(*), count can be specified with a field "*".'
-        },
-        {
-            displayName: 'Distinct',
-            vegaLiteName: 'distinct',
-            description: 'The count of distinct field values.'
-        },
-        {
-            displayName: 'Max',
-            vegaLiteName: 'max',
-            description: 'The maximum field value.'
-        },
-        {
-            displayName: 'Mean',
-            vegaLiteName: 'mean',
-            description: 'The mean (average) field value.'
-        },
-        {
-            displayName: 'Median',
-            vegaLiteName: 'median',
-            description: 'The median field value.'
-        },
-        {
-            displayName: 'Min',
-            vegaLiteName: 'min',
-            description: 'The minimum field value.'
-        },
-        {
-            displayName: 'Mising',
-            vegaLiteName: 'missing',
-            description: 'The count of null or undefined field values.'
-        },
-        {
-            displayName: 'Lower quartile boundary',
-            vegaLiteName: 'q1',
-            description: 'The lower quartile boundary of field values.'
-        },
-        {
-            displayName: 'Lower Confidence',
-            vegaLiteName: 'ci0',
-            description: 'The lower boundary of the bootstrapped 95% confidence interval of the mean field value.'
-        },
-        {
-            displayName: 'Standard Deviation',
-            vegaLiteName: 'stdev',
-            description: 'The sample standard deviation of field values.'
-        },
-        {
-            displayName: 'Standard Error',
-            vegaLiteName: 'stderr',
-            description: 'The standard error of field values.'
-        },
-        {
-            displayName: 'Sum',
-            vegaLiteName: 'sum',
-            description: 'The sum of field values.'
-        },
-        {
-            displayName: 'Upper Confidence',
-            vegaLiteName: 'ci1',
-            description: 'The upper boundary of the bootstrapped 95% confidence interval of the mean field value.'
-        },
-        {
-            displayName: 'Upper quartile boundary',
-            vegaLiteName: 'q3',
-            description: 'The upper quartile boundary of field values.'
-        },
-        {
-            displayName: 'Valid',
-            vegaLiteName: 'valid',
-            description: 'The count of field values that are not null, undefined or NaN.'
-        },
-        {
-            displayName: 'Variance',
-            vegaLiteName: 'variance',
-            description: 'The sample variance of field values.'
-        }
-    ]
+    aggregations = aggregations;
     backgroundcolors: CSScolor[];
     calculatedID: number = -1;
     calculatedAs: string = '';
