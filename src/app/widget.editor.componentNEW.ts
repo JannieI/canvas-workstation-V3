@@ -277,6 +277,7 @@ export interface dataSchemaInterface {
     ngOnInit() {
         // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
 
         // Get setup info
         this.globalVariableService.getResource('canvasBackgroundcolors')

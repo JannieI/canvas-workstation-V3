@@ -223,46 +223,5 @@ export class DashboardTagsComponent implements OnInit {
 		this.formDashboardTagsClosed.emit(action);
     }
 
-    clickSave(action: string) {
-        // Save data, and Close the form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-
-        this.errorMessage = '';
-        // TODO - this can of course be done more cleverly and eliquently and fasta
-        // Delete all Tags for this D
-        for (let i = this.globalVariableService.dashboardTags.length - 1; i >= 0; i--) {
-            if (this.globalVariableService.dashboardTags[i].dashboardID ==
-                this.selectedDashboard.id) {
-                    this.globalVariableService.deleteResource(
-                        'dashboardTags',
-                        this.globalVariableService.dashboardTags[i].id
-                    );
-                    // this.globalVariableService.dashboardTags.splice(i, 1)
-            };
-        };
-
-        // Add the new ones to the DB
-        this.selectedDashboardTags.forEach(dt => 
-            {
-                let newTag: DashboardTag = JSON.parse(JSON.stringify(dt));
-                newTag._id = null;
-                this.globalVariableService.addResource('dashboardTags', newTag);
-            }
-        );
-
-        // Tell user
-        this.globalVariableService.showStatusBarMessage(
-            {
-                message: 'Changes Saved',
-                uiArea: 'StatusBar',
-                classfication: 'Info',
-                timeout: 3000,
-                defaultMessage: ''
-            }
-        );
-
-		this.formDashboardTagsClosed.emit(action);
-    }
-
 }
 
