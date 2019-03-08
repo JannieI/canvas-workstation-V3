@@ -316,6 +316,248 @@ export interface dataSchemaInterface {
                             widgetsFiltered = this.widgets.filter(w => w.datasourceID == ds.id);
                             ds.nrWidgets = widgetsFiltered.length;
                         });
+
+                        // Start afresh for new W~
+                        if (this.newWidget) {
+
+                            // Create new W
+                            this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
+                            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+                            this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+                            this.localWidget.widgetType = 'Graph';
+                            this.localWidget.visualGrammar = 'Vega-Lite';
+
+                            // Get Widget Graph Specs
+                            this.globalVariableService.getResource('widgetGraphs').then(res => {
+                                this.widgetGraphsFull = res
+                                this.widgetGraphs = res.filter(
+                                    wg => wg.visualGrammar==this.localWidget.visualGrammar
+                                );
+
+                                if (this.showWidgetEditorLite) {
+                                    this.widgetGraphs = this.widgetGraphs
+                                        .filter(wgr => this.widgetGraphsLite.indexOf(wgr.mark) >= 0 );
+                                };
+                            });
+
+                            // Count the Ws
+                            let widgets: Widget[];
+                            this.localDatasources.forEach(ds => {
+                                widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
+                                ds.nrWidgets = widgets.length;
+                            });
+
+                            // Populate predefined dimensions, considering layouts
+                            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''
+                                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
+                                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme = 'None';
+                            };
+                            if (this.newWidgetContainerLeft > 0) {
+                                this.localWidget.containerLeft = this.newWidgetContainerLeft;
+                            };
+                            if (this.newWidgetContainerTop > 0) {
+                                this.localWidget.containerTop = this.newWidgetContainerTop;
+                            };
+                            if (this.selectedWidgetLayout != null) {
+
+                                if (this.selectedWidgetLayout.id != null
+                                    &&
+                                    this.selectedWidgetLayout.id != undefined) {
+                                        this.localWidget.containerLeft = this.selectedWidgetLayout.left;
+                                        this.localWidget.containerHeight = this.selectedWidgetLayout.height;
+                                        this.localWidget.containerTop = this.selectedWidgetLayout.top;
+                                        this.localWidget.containerWidth = this.selectedWidgetLayout.width;
+                                };
+                            };
+
+                            // Select previously used DS, and then click it to load relevant info
+                            // NB: AFTER the localWidget has been initialised
+                            if (this.globalVariableService.previousGraphEditDSID != -1) {
+
+                                let datasourceIndex: number = this.localDatasources.findIndex(ds =>
+                                    ds.id == this.globalVariableService.previousGraphEditDSID
+                                );
+                                if (datasourceIndex >= 0) {
+                                    this.selectedRowID = this.globalVariableService.previousGraphEditDSID;
+                                    this.selectedRowIndex = datasourceIndex;
+
+                                    // Reset: assume we are starting afresh ..
+                                    this.globalVariableService.previousGraphEditDSID = null;
+                                    this.clickDSrow(this.selectedRowIndex, this.selectedRowID)
+                                }
+                            };
+
+                        } else {
+
+                            // Deep copy original W
+                            this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+                            // Deep copy Local W
+                            this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+                            // Populate the visible layers, and set Defaults
+                            for (let i = 0; i < this.localWidget.graphLayers.length; i++){
+                                // if (this.localWidget.graphLayers[i].graphMarkSize == null
+                                //     ||
+                                //     this.localWidget.graphLayers[i].graphMarkSize == 0) {
+                                //     this.localWidget.graphLayers[i].graphMarkSize = 20;
+                                // };
+
+                                this.graphLayers.push(i + 1);
+                            };
+
+                            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''
+                                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
+                                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme = 'None';
+                            };
+
+                            // TODO - handle properly and close form
+                            if (this.localWidget.datasourceID == 0) {
+                                alert('No Widget was selected, or could not find it in glob vars.  In: ngOnInit, ELSE +- line 170 inside WidgetEditor.ts')
+                            };
+
+                            // Fill in defaults
+                            if (this.localWidget.graphHeight == null) {
+                                this.localWidget.graphHeight = 240;
+                            };
+                            if (this.localWidget.graphLeft == null) {
+                                this.localWidget.graphLeft = 1;
+                            };
+                            if (this.localWidget.graphTop == null) {
+                                this.localWidget.graphTop = 1;
+                            };
+                            if (this.localWidget.graphWidth == null) {
+                                this.localWidget.graphWidth = 240;
+                            };
+                            if (this.localWidget.graphDimensionRight == null) {
+                                this.localWidget.graphDimensionRight = 140;
+                            };
+                            if (this.localWidget.graphDimensionLeft == null) {
+                                this.localWidget.graphDimensionLeft = 80;
+                            };
+                            if (this.localWidget.graphDimensionBottom == null) {
+                                this.localWidget.graphDimensionBottom = 70;
+                            };
+                            if (this.localWidget.graphLayerFacet == null  ||  this.localWidget.graphLayerFacet == '') {
+                                this.localWidget.graphLayerFacet = 'Single';
+                            };
+                            if (this.localWidget.visualGrammar == ''
+                                ||
+                                this.localWidget.visualGrammar == null) {
+                                this.localWidget.visualGrammar = 'Vega-Lite';
+                            };
+
+                            // Load local Vars from localWidget
+                            this.loadLocalVarsFromWidget()
+
+                            // Get local vars - easier for ngFor
+                            this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
+                            this.showWidgetEditorLite = this.globalVariableService.currentUser
+                                .preferenceShowWidgetEditorLite;
+
+                            this.conditionColourName =
+                                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColourName;
+                            this.conditionColour =
+                                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColour;
+                            this.conditionFieldName =
+                                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName;
+                            this.conditionOperator =
+                                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionOperator;
+                            this.conditionValue =
+                                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValue;
+
+                            let arrayIndex: number = this.localDatasources.findIndex(
+                                ds => ds.id == this.localWidget.datasourceID
+                            );
+                            if (arrayIndex < 0) {
+                                alert('Datasource for current Dashboard not found in global currentDatasources')
+                            };
+
+                            // Reset, Highlight selected row
+                            this.selectedRowIndex = arrayIndex;
+                            this.selectedRowID = this.localDatasources[arrayIndex].id;
+                            this.selectedDSName = this.localDatasources[arrayIndex].name.slice(0,22) +
+                                (this.localDatasources[arrayIndex].name.length > 22?  '...'  :  '');
+                            this.selectedDescription = this.localDatasources[arrayIndex].description;
+                            this.errorMessage = '';
+                            this.currentData = null;
+
+                            // Construct Schema
+                            this.constructDataSchema(this.selectedRowIndex);
+
+                            // Determine if data in Glob Var
+                            let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+                                ds => ds.datasourceID == this.selectedRowID
+                            );
+                            if (dataSetIndex >= 0) {
+
+                                // Load first few rows into preview
+                                this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
+                                    .data.slice(0,5);
+
+                                // Switch on the preview after the first row was clicked
+                                this.showPreview = true;
+                            };
+
+                            // Remember ID for next time
+                            this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
+
+                            // Show the Editor form
+                            this.showDatasourceMain = false;
+
+                            // Get Widget Graph Specs
+                            this.globalVariableService.getResource('widgetGraphs').then(res => {
+                                this.widgetGraphsFull = res
+                                this.widgetGraphs = res.filter(
+                                    wg => wg.visualGrammar==this.localWidget.visualGrammar
+                                );
+
+                                if (this.showWidgetEditorLite) {
+                                    this.widgetGraphs = this.widgetGraphs
+                                        .filter(wgr => this.widgetGraphsLite.indexOf(wgr.mark) >= 0 );
+                                };
+
+                                // TODO - fix
+                                // Show graph
+                                let graphIndex: number = this.widgetGraphs.findIndex(wgr =>
+                                    wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
+                                );
+                                this.showGraph(this.widgetGraphs[graphIndex].id);
+                            })
+                            .catch(err => {
+                                this.errorMessageHTTP = err.slice(0, 100);
+                                console.error('Error in widget.editor reading widgetGraphs: ' + err);
+                            });
+
+                            // Switch if Complex graph in Lite mode
+                            if (this.localWidget.graphLayerFacet != 'Single'
+                                ||
+                                this.x2Field != dragFieldMessage
+                                ||
+                                this.y2Field != dragFieldMessage
+                                ||
+                                this.rowField != dragFieldMessage
+                                ||
+                                this.colorField != dragFieldMessage
+                                ||
+                                this.sizeField != dragFieldMessage
+                                ||
+                                this.detailField != dragFieldMessage
+                                ||
+                                this.projectionFieldLatitude != dragFieldMessage
+                                ||
+                                this.projectionFieldLongitude != dragFieldMessage
+                                )  {
+                                this.showWidgetEditorLite = false;
+                            };
+
+                            // Indicate calulations and filters present
+                            if (this.localWidget.graphCalculations.length > 0
+                                ||
+                                this.localWidget.graphFilters.length > 0) {
+                                    this.hasCalculationsOrFilters = true;
+                            };
+                        }                        
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);
@@ -326,268 +568,6 @@ export interface dataSchemaInterface {
                 this.errorMessageHTTP = err.slice(0, 100);
                 console.error('Error in widget.editor reading datasources: ' + err);
             });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-        // Start afresh for new W~
-        if (this.newWidget) {
-
-            // Create new W
-            this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
-            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-            this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
-            this.localWidget.widgetType = 'Graph';
-            this.localWidget.visualGrammar = 'Vega-Lite';
-
-            // Get Widget Graph Specs
-            this.globalVariableService.getResource('widgetGraphs').then(res => {
-                this.widgetGraphsFull = res
-                this.widgetGraphs = res.filter(
-                    wg => wg.visualGrammar==this.localWidget.visualGrammar
-                );
-
-                if (this.showWidgetEditorLite) {
-                    this.widgetGraphs = this.widgetGraphs
-                        .filter(wgr => this.widgetGraphsLite.indexOf(wgr.mark) >= 0 );
-                };
-            });
-
-            // Count the Ws
-            let widgets: Widget[];
-            this.localDatasources.forEach(ds => {
-                widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
-                ds.nrWidgets = widgets.length;
-            });
-
-            // Populate predefined dimensions, considering layouts
-            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''
-                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
-                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme = 'None';
-            };
-            if (this.newWidgetContainerLeft > 0) {
-                this.localWidget.containerLeft = this.newWidgetContainerLeft;
-            };
-            if (this.newWidgetContainerTop > 0) {
-                this.localWidget.containerTop = this.newWidgetContainerTop;
-            };
-            if (this.selectedWidgetLayout != null) {
-
-                if (this.selectedWidgetLayout.id != null
-                    &&
-                    this.selectedWidgetLayout.id != undefined) {
-                        this.localWidget.containerLeft = this.selectedWidgetLayout.left;
-                        this.localWidget.containerHeight = this.selectedWidgetLayout.height;
-                        this.localWidget.containerTop = this.selectedWidgetLayout.top;
-                        this.localWidget.containerWidth = this.selectedWidgetLayout.width;
-                };
-            };
-
-            // Select previously used DS, and then click it to load relevant info
-            // NB: AFTER the localWidget has been initialised
-            if (this.globalVariableService.previousGraphEditDSID != -1) {
-
-                let datasourceIndex: number = this.localDatasources.findIndex(ds =>
-                    ds.id == this.globalVariableService.previousGraphEditDSID
-                );
-                if (datasourceIndex >= 0) {
-                    this.selectedRowID = this.globalVariableService.previousGraphEditDSID;
-                    this.selectedRowIndex = datasourceIndex;
-
-                    // Reset: assume we are starting afresh ..
-                    this.globalVariableService.previousGraphEditDSID = null;
-                    this.clickDSrow(this.selectedRowIndex, this.selectedRowID)
-                }
-            };
-
-        } else {
-
-            // Deep copy original W
-            this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-
-            // Deep copy Local W
-            this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-
-            // Populate the visible layers, and set Defaults
-            for (let i = 0; i < this.localWidget.graphLayers.length; i++){
-                // if (this.localWidget.graphLayers[i].graphMarkSize == null
-                //     ||
-                //     this.localWidget.graphLayers[i].graphMarkSize == 0) {
-                //     this.localWidget.graphLayers[i].graphMarkSize = 20;
-                // };
-
-                this.graphLayers.push(i + 1);
-            };
-
-            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''
-                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
-                this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme = 'None';
-            };
-
-            // TODO - handle properly and close form
-            if (this.localWidget.datasourceID == 0) {
-                alert('No Widget was selected, or could not find it in glob vars.  In: ngOnInit, ELSE +- line 170 inside WidgetEditor.ts')
-            };
-
-            // Fill in defaults
-            if (this.localWidget.graphHeight == null) {
-                this.localWidget.graphHeight = 240;
-            };
-            if (this.localWidget.graphLeft == null) {
-                this.localWidget.graphLeft = 1;
-            };
-            if (this.localWidget.graphTop == null) {
-                this.localWidget.graphTop = 1;
-            };
-            if (this.localWidget.graphWidth == null) {
-                this.localWidget.graphWidth = 240;
-            };
-            if (this.localWidget.graphDimensionRight == null) {
-                this.localWidget.graphDimensionRight = 140;
-            };
-            if (this.localWidget.graphDimensionLeft == null) {
-                this.localWidget.graphDimensionLeft = 80;
-            };
-            if (this.localWidget.graphDimensionBottom == null) {
-                this.localWidget.graphDimensionBottom = 70;
-            };
-            if (this.localWidget.graphLayerFacet == null  ||  this.localWidget.graphLayerFacet == '') {
-                this.localWidget.graphLayerFacet = 'Single';
-            };
-            if (this.localWidget.visualGrammar == ''
-                ||
-                this.localWidget.visualGrammar == null) {
-                this.localWidget.visualGrammar = 'Vega-Lite';
-            };
-
-            // Load local Vars from localWidget
-            this.loadLocalVarsFromWidget()
-
-            // Get local vars - easier for ngFor
-            this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
-            this.showWidgetEditorLite = this.globalVariableService.currentUser
-                .preferenceShowWidgetEditorLite;
-
-            this.conditionColourName =
-                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColourName;
-            this.conditionColour =
-                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionColour;
-            this.conditionFieldName =
-                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionFieldName;
-            this.conditionOperator =
-                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionOperator;
-            this.conditionValue =
-                this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValue;
-
-            let arrayIndex: number = this.localDatasources.findIndex(
-                ds => ds.id == this.localWidget.datasourceID
-            );
-            if (arrayIndex < 0) {
-                alert('Datasource for current Dashboard not found in global currentDatasources')
-            };
-
-            // Reset, Highlight selected row
-            this.selectedRowIndex = arrayIndex;
-            this.selectedRowID = this.localDatasources[arrayIndex].id;
-            this.selectedDSName = this.localDatasources[arrayIndex].name.slice(0,22) +
-                (this.localDatasources[arrayIndex].name.length > 22?  '...'  :  '');
-            this.selectedDescription = this.localDatasources[arrayIndex].description;
-            this.errorMessage = '';
-            this.currentData = null;
-
-            // Construct Schema
-            this.constructDataSchema(this.selectedRowIndex);
-
-            // Determine if data in Glob Var
-            let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-                ds => ds.datasourceID == this.selectedRowID
-            );
-            if (dataSetIndex >= 0) {
-
-                // Load first few rows into preview
-                this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
-                    .data.slice(0,5);
-
-                // Switch on the preview after the first row was clicked
-                this.showPreview = true;
-            };
-
-            // Remember ID for next time
-            this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
-
-            // Show the Editor form
-            this.showDatasourceMain = false;
-
-            // Get Widget Graph Specs
-            this.globalVariableService.getResource('widgetGraphss').then(res => {
-                this.widgetGraphsFull = res
-                this.widgetGraphs = res.filter(
-                    wg => wg.visualGrammar==this.localWidget.visualGrammar
-                );
-
-                if (this.showWidgetEditorLite) {
-                    this.widgetGraphs = this.widgetGraphs
-                        .filter(wgr => this.widgetGraphsLite.indexOf(wgr.mark) >= 0 );
-                };
-
-                // TODO - fix
-                // Show graph
-                let graphIndex: number = this.widgetGraphs.findIndex(wgr =>
-                    wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
-                );
-                this.showGraph(this.widgetGraphs[graphIndex].id);
-            })
-            .catch(err => {
-                this.errorMessageHTTP = err.slice(0, 100);
-                console.error('Error in widget.editor reading widgetGraphs: ' + err);
-            });
-
-            // Switch if Complex graph in Lite mode
-            if (this.localWidget.graphLayerFacet != 'Single'
-                ||
-                this.x2Field != dragFieldMessage
-                ||
-                this.y2Field != dragFieldMessage
-                ||
-                this.rowField != dragFieldMessage
-                ||
-                this.colorField != dragFieldMessage
-                ||
-                this.sizeField != dragFieldMessage
-                ||
-                this.detailField != dragFieldMessage
-                ||
-                this.projectionFieldLatitude != dragFieldMessage
-                ||
-                this.projectionFieldLongitude != dragFieldMessage
-                )  {
-                this.showWidgetEditorLite = false;
-            };
-
-            // Indicate calulations and filters present
-            if (this.localWidget.graphCalculations.length > 0
-                ||
-                this.localWidget.graphFilters.length > 0) {
-                    this.hasCalculationsOrFilters = true;
-            };
-        }
 
     }
 

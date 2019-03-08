@@ -250,7 +250,7 @@
                     <div class="editorSamplingTitle">
                         Random Sample (Number rows):
                     </div>
-                    <div class="editorSampling">
+                    <div class="editorSampling" *ngIf="localWidget">
                         <input type="number"
                             [(ngModel)]="localWidget.graphLayers[currentGraphLayer - 1].sampleNumberRows"
                             name="sampleNumberRows"
