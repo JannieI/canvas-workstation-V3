@@ -56,7 +56,7 @@ export class WidgetTitleComponent implements OnInit {
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
-    errorMessage: string = 'asdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     lineColor: string = 'none';
     lineSize: string = 'none';
     localWidget: Widget;                            // W to modify, copied from selected

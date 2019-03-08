@@ -49,7 +49,7 @@ export class DashboardRenameComponent implements OnInit {
     }
 
     dashboards: Dashboard[] = [];
-    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     filterCreatedBy: string;
     filterDatasource: string;
     filteredDashboards: Dashboard[] = [];       // Filtered Ds, shown on form

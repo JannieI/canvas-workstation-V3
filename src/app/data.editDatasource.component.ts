@@ -146,7 +146,7 @@ export class DataEditDatasourceComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedRowIndex = index;
 
-        this.errorMessage = 'asdfasdfasdfasdf';
+        this.errorMessage = '';
     }
 
     clickTransformation(index: number, id: number) {

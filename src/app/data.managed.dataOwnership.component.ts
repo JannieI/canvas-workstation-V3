@@ -51,7 +51,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
     datasourceNames: string[] = [];
     datasources: Datasource[] = [];
     editing: boolean = false;
-    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     selectedDatasourceID: number = null;
     selectedDataOwnership: DataOwnership;
     selectedDataOwnershipRowIndex: number = 0;

@@ -68,7 +68,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     containerBorderSize: string = '1px';
     containerBoxshadow: string;
     containerFontsize: number = 12;
-    errorMessage = 'asdfasdfasdfasdfasdfasdfasdf';
+    errorMessage = '';
     infoMessage: string;
     oldWidget: Widget;
     selectedColour: string;

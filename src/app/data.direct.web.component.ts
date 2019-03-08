@@ -68,7 +68,7 @@ export class DataDirectWebComponent implements OnInit {
     dataFieldsSelected: string[];
     datasources: Datasource[] = [];
     element: string = '';
-    errorMessage: string = 'asdfasdfasdfasdf';
+    errorMessage: string = '';
     firstTimeEdit: boolean = false;
     newName: string = '';
     newDescription: string = '';

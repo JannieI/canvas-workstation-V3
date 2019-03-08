@@ -54,7 +54,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
 
     }
 
-    errorMessage: string = 'asdfasdfasdfasdf';
+    errorMessage: string = '';
     isEditing: boolean = false;
     widgetStoredTemplates: WidgetStoredTemplate[] = [];
     widgetStoreTemplateDescription: string = '';

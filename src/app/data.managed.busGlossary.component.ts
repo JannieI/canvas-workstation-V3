@@ -43,7 +43,7 @@ export class DataManagedBusGlossaryComponent implements OnInit {
 
     datasources: Datasource[] = [];
     editing: boolean = false;
-    errorMessage: string = 'asdfasdfasdfasdf';
+    errorMessage: string = '';
     selectedDatasourceID: number = null;
     selectedDatasource: Datasource;
     selectedDatasourcesRowIndex: number = 0;

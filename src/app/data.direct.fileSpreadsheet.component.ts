@@ -46,7 +46,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
     canSave: boolean = false;
     datasourceName: string;
-    errorMessage: string = 'asdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     fields: string[] = [];
     fileName: string = '';
     headerRow: string = '0';
