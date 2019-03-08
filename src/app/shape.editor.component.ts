@@ -78,7 +78,7 @@ export class ShapeEditComponent implements OnInit {
     colourPickerSubscription: Subscription;
     dashboardTabList: string[];
     editLineNr: number = -1;
-    errorMessage: string = '';
+    errorMessage: string = 'asdfasdfasdfasdf';
     hasAutoFocusCircle: boolean = false;
     hasAutoFocusEllipse: boolean = false;
     hasAutoFocusRectangle: boolean = false;
