@@ -288,7 +288,7 @@ export interface dataSchemaInterface {
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in shape.editor reading canvasBackgroundcolors: ' + err);
+                console.error('Error in widget.editor reading canvasBackgroundcolors: ' + err);
             });
 
         // Get DS to which user has permissions
@@ -343,7 +343,7 @@ export interface dataSchemaInterface {
                             // Count the Ws
                             let widgets: Widget[];
                             this.localDatasources.forEach(ds => {
-                                widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
+                                widgets = this.widgets.filter(w => w.datasourceID == ds.id);
                                 ds.nrWidgets = widgets.length;
                             });
 
@@ -1068,113 +1068,129 @@ export interface dataSchemaInterface {
 
         // Update new/edit
         if (this.newWidget) {
+            this.globalVariableService.getResource('widgetCheckpoints')
+            .then(wchk => {
+                let tempChk: WidgetCheckpoint[] = wchk
+                    .filter(wc =>
+                        wc.dashboardID == this.localWidget.dashboardID
+                        &&
+                        wc.widgetID == this.localWidget.id
+                );
 
-            let tempChk: WidgetCheckpoint[] = this.globalVariableService.widgetCheckpoints
-                .filter(wc =>
-                    wc.dashboardID == this.localWidget.dashboardID
-                    &&
-                    wc.widgetID == this.localWidget.id
-            );
+                if (tempChk.length > 0) {
+                    this.localWidget.showCheckpoints = false;
+                    this.localWidget.checkpointIDs = [];
+                    this.localWidget.currentCheckpoint = 0;
+                    this.localWidget.lastCheckpoint = tempChk.length - 1;
 
-            if (tempChk.length > 0) {
-                this.localWidget.showCheckpoints = false;
-                this.localWidget.checkpointIDs = [];
-                this.localWidget.currentCheckpoint = 0;
-                this.localWidget.lastCheckpoint = tempChk.length - 1;
+                    for (var x = 0; x < tempChk.length; x++) {
+                        this.localWidget.checkpointIDs.push(tempChk[x].id);
+                    };
 
-                for (var x = 0; x < tempChk.length; x++) {
-                    this.localWidget.checkpointIDs.push(tempChk[x].id);
+                } else {
+                    this.localWidget.showCheckpoints = false;
+                    this.localWidget.checkpointIDs = [];
+                    this.localWidget.currentCheckpoint = 0;
+                    this.localWidget.lastCheckpoint = -1;
                 };
 
-            } else {
-                this.localWidget.showCheckpoints = false;
-                this.localWidget.checkpointIDs = [];
-                this.localWidget.currentCheckpoint = 0;
-                this.localWidget.lastCheckpoint = -1;
-            };
+                // Update local and global vars
+                this.localWidget.dashboardTabIDs.push(this.globalVariableService.
+                    currentDashboardInfo.value.currentDashboardTabID);
 
-            // Update local and global vars
-            this.localWidget.dashboardTabIDs.push(this.globalVariableService.
-                currentDashboardInfo.value.currentDashboardTabID);
+                this.globalVariableService.addResource('widgets', this.localWidget)
+                    .then(res => {
+                        this.localWidget.id = res.id;
 
-            this.globalVariableService.addResource('widgets', this.localWidget).then(res => {
-                this.localWidget.id = res.id;
+                        console.log('xx added W res', res)
+                        // Action
+                        // TODO - cater for errors + make more generic
+                        let actID: number = this.globalVariableService.actionUpsert(
+                            null,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                            this.localWidget.id,
+                            'Widget',
+                            'Edit',
+                            'Update Title',
+                            'W Title clickSave',
+                            null,
+                            null,
+                            null,
+                            this.localWidget,
+                            false               // Dont log to DB yet
+                        );
 
-                console.log('xx added W res', res)
-                // Action
-                // TODO - cater for errors + make more generic
-                let actID: number = this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    this.localWidget.id,
-                    'Widget',
-                    'Edit',
-                    'Update Title',
-                    'W Title clickSave',
-                    null,
-                    null,
-                    null,
-                    this.localWidget,
-                    false               // Dont log to DB yet
-                );
+                        // Tell user
+                        this.globalVariableService.showStatusBarMessage(
+                            {
+                                message: 'Graph Added',
+                                uiArea: 'StatusBar',
+                                classfication: 'Info',
+                                timeout: 3000,
+                                defaultMessage: ''
+                            }
+                        );
 
-                // Tell user
-                this.globalVariableService.showStatusBarMessage(
-                    {
-                        message: 'Graph Added',
-                        uiArea: 'StatusBar',
-                        classfication: 'Info',
-                        timeout: 3000,
-                        defaultMessage: ''
-                    }
-                );
+                        // Return to main menu
+                        this.formWidgetEditorClosed.emit(this.localWidget);
 
-                // Return to main menu
-                this.formWidgetEditorClosed.emit(this.localWidget);
-
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in widget.editor adding widgets: ' + err);
+                    });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.editor reading widgetCheckpoints: ' + err);
             });
-
+    
         } else {
 
             // Update global W and DB
-            this.globalVariableService.saveWidget(this.localWidget).then(res => {
+            this.globalVariableService.saveWidget(this.localWidget)
+                .then(res => {
 
-                console.log('xx saved W res', res)
+                    console.log('xx saved W res', res)
 
-                // Action
-                // TODO - cater for errors + make more generic
-                let actID: number = this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    this.localWidget.id,
-                    'Widget',
-                    'Edit',
-                    'Update Title',
-                    'W Title clickSave',
-                    null,
-                    null,
-                    this.oldWidget,
-                    this.localWidget,
-                    false               // Dont log to DB yet
-                );
+                    // Action
+                    // TODO - cater for errors + make more generic
+                    let actID: number = this.globalVariableService.actionUpsert(
+                        null,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        this.localWidget.id,
+                        'Widget',
+                        'Edit',
+                        'Update Title',
+                        'W Title clickSave',
+                        null,
+                        null,
+                        this.oldWidget,
+                        this.localWidget,
+                        false               // Dont log to DB yet
+                    );
 
-                // Tell user
-                this.globalVariableService.showStatusBarMessage(
-                    {
-                        message: 'Graph Saved',
-                        uiArea: 'StatusBar',
-                        classfication: 'Info',
-                        timeout: 3000,
-                        defaultMessage: ''
-                    }
-                );
+                    // Tell user
+                    this.globalVariableService.showStatusBarMessage(
+                        {
+                            message: 'Graph Saved',
+                            uiArea: 'StatusBar',
+                            classfication: 'Info',
+                            timeout: 3000,
+                            defaultMessage: ''
+                        }
+                    );
 
-                this.formWidgetEditorClosed.emit(this.localWidget);
+                    this.formWidgetEditorClosed.emit(this.localWidget);
 
-            });
-
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in widget.editor saving widgets: ' + err);
+                });
+    
         };
     }
 
@@ -2389,36 +2405,37 @@ export interface dataSchemaInterface {
         };
 
         // Add DS to current DS (no action if already there)
-        this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+        this.globalVariableService.addCurrentDatasource(datasourceID)
+            .then(res => {
 
-            // Load local arrays for ngFor - this is required for the Preview
-            this.constructDataSchema(arrayIndex);
-            console.log('WE this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
+                // Load local arrays for ngFor - this is required for the Preview
+                this.constructDataSchema(arrayIndex);
+                console.log('WE this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
 
-            // Determine if data obtains in Glob Var
-            dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
-                ds => ds.datasourceID == datasourceID
-            );
-            if (dataSetIndex < 0) {
-                this.errorMessage = 'The Data not yet available (click again to retry) ...';
-                return;
-            };
+                // Determine if data obtains in Glob Var
+                dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
+                    ds => ds.datasourceID == datasourceID
+                );
+                if (dataSetIndex < 0) {
+                    this.errorMessage = 'The Data not yet available (click again to retry) ...';
+                    return;
+                };
 
-            // Nr rows
-            this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
+                // Nr rows
+                this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
 
-            // Load first few rows into preview
-            this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
-                .data.slice(0,5);
+                // Load first few rows into preview
+                this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
+                    .data.slice(0,5);
 
-            // Switch on the preview after the first row was clicked
-            this.showPreview = true;
+                // Switch on the preview after the first row was clicked
+                this.showPreview = true;
 
-        })
-        .catch(err => {
-            this.errorMessage = err;
-            return;
-        });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.editor addCurrentDatasource: ' + err);
+            });
 
         console.warn('xx clicked row', dataSetIndex);
 
