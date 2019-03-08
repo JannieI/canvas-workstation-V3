@@ -30,6 +30,9 @@ import { parse }                      from 'vega';
 import { View }                       from 'vega';
 import { ExcelService }               from './excel.service';
 
+// Templates
+import { timeUnits }                  from './templates';
+
 const dragFieldMessage: string = 'Drag a field here ...';
 
 export interface dataSchemaInterface {
@@ -231,13 +234,13 @@ export interface dataSchemaInterface {
     currentGraphLayer: number = 1;              // Current layer being defined
     // Note 14: this number is the LAYER as seen by the UserPaletteButtonBarComponent.  The Arrays are
     // however base 0.  So, take care in making changes to iterateListLike.
-
+timeUnits: string[] = timeUnits;
     dataSchema: dataSchemaInterface[] = [];
     detailField: string = dragFieldMessage;
     draggedField: string = '';
     dragoverColours: boolean = false;
     dsFilterMessage: string = '(filtered)';
-    errorMessage: string = '';
+    errorMessage: string = 'asdfasdfasdfasdfasdf';
     errorMessageEditor: string = '';
     filterErrorMessage: string = ' ';
     filterID: number = -1;
@@ -615,32 +618,6 @@ export interface dataSchemaInterface {
     yField: string = dragFieldMessage;
     y2Field: string = dragFieldMessage;
 
-    timeUnits: string[] = [
-        "",
-        "Date",
-        "Day",
-        "Hours",
-        "HoursMinutes",
-        "HoursMinutesSeconds",
-        "Milliseconds",
-        "Minutes",
-        "MinutesSeconds",
-        "Month",
-        "MonthDate",
-        "Quarter",
-        "QuarterMonth",
-        "Seconds",
-        "SecondsMilliseconds",
-        "Year",
-        "YearMonth",
-        "YearMonthDate",
-        "YearMonthDateHours",
-        "YearMonthDateHoursMinutes",
-        "YearMonthDateHoursMinutesSeconds",
-        "YearQuarter",
-        "YearQuarterMonth"
-    ];
-
     // TODO - remove this later on when we dont use D3 time formats at all
     dateTimeFormats: {displayFormat: string; d3Format: string, description: string}[] =
     [
@@ -976,7 +953,7 @@ export interface dataSchemaInterface {
     ngOnInit() {
         // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
+console.log('xx timeUnits', timeUnits)
         // Get setup info
         this.backgroundcolors = this.globalVariableService.canvasBackgroundcolors.slice();
         this.backgroundcolors = [
@@ -1161,7 +1138,7 @@ export interface dataSchemaInterface {
             this.selectedDSName = this.localDatasources[arrayIndex].name.slice(0,22) +
                 (this.localDatasources[arrayIndex].name.length > 22?  '...'  :  '');
             this.selectedDescription = this.localDatasources[arrayIndex].description;
-            this.errorMessage = '';
+            this.errorMessage = 'asdfasdfasdfasdf';
             this.currentData = null;
 
             // Construct Schema

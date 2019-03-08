@@ -138,11 +138,11 @@ clr-dg-cell {
 
         .datasourceMainError {
             color: red;
-            grid-column-start: 2;
+            grid-column-start: 4;
             /* autoprefixer: off */
             grid-column-end: 50;
-            grid-row-start: 2;
-            grid-row-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 2;
             margin-left: 33px;
             text-align: left;
         }

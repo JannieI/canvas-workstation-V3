@@ -837,3 +837,30 @@ export const canvasSettings: CanvasSettings = {
     createdOn: null
 
 };
+
+export const 
+timeUnits: string[] = [
+    "",
+    "Date",
+    "Day",
+    "Hours",
+    "HoursMinutes",
+    "HoursMinutesSeconds",
+    "Milliseconds",
+    "Minutes",
+    "MinutesSeconds",
+    "Month",
+    "MonthDate",
+    "Quarter",
+    "QuarterMonth",
+    "Seconds",
+    "SecondsMilliseconds",
+    "Year",
+    "YearMonth",
+    "YearMonthDate",
+    "YearMonthDateHours",
+    "YearMonthDateHoursMinutes",
+    "YearMonthDateHoursMinutesSeconds",
+    "YearQuarter",
+    "YearQuarterMonth"
+];
