@@ -214,7 +214,12 @@ export class ShapeEditComponent implements OnInit {
                     {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, 
                     ...this.backgroundcolors
                 ];
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in shape.editor reading canvasBackgroundcolors: ' + err);
             });
+            
         // Create list of Tabs to show: first is 'None', rest is name (sequence nr),
         //   where sequence nr = index + 1 - to look easier for user, 1 = 1st tab, etc
         this.dashboardTabList = ['None'];
@@ -645,81 +650,91 @@ export class ShapeEditComponent implements OnInit {
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
             );
 
-            this.globalVariableService.addResource('widgets', this.localWidget).then(res => {
+            this.globalVariableService.addResource('widgets', this.localWidget)
+                .then(res => {
 
-                // Action
-                // TODO - cater for errors + make more generic
-                let actID: number = this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    this.localWidget.id,
-                    'Widget',
-                    'Edit',
-                    'Update Title',
-                    'W Title clickSave',
-                    null,
-                    null,
-                    null,
-                    this.localWidget,
-                    false               // Dont log to DB yet
-                );
+                    // Action
+                    // TODO - cater for errors + make more generic
+                    let actID: number = this.globalVariableService.actionUpsert(
+                        null,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        this.localWidget.id,
+                        'Widget',
+                        'Edit',
+                        'Update Title',
+                        'W Title clickSave',
+                        null,
+                        null,
+                        null,
+                        this.localWidget,
+                        false               // Dont log to DB yet
+                    );
 
-                this.localWidget.id = res.id;
+                    this.localWidget.id = res.id;
 
-                // Tell user
-                this.globalVariableService.showStatusBarMessage(
-                    {
-                        message: 'Shape Added',
-                        uiArea: 'StatusBar',
-                        classfication: 'Info',
-                        timeout: 3000,
-                        defaultMessage: ''
-                    }
-                );
+                    // Tell user
+                    this.globalVariableService.showStatusBarMessage(
+                        {
+                            message: 'Shape Added',
+                            uiArea: 'StatusBar',
+                            classfication: 'Info',
+                            timeout: 3000,
+                            defaultMessage: ''
+                        }
+                    );
 
-                this.formShapeEditClosed.emit(this.localWidget);
-            });
-
+                    this.formShapeEditClosed.emit(this.localWidget);
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in shape.editor adding widgets: ' + err);
+                });
+    
         } else {
             // Replace the W
             this.globalVariableService.widgetReplace(this.localWidget);
 
             // Update global W and DB
-            this.globalVariableService.saveWidget(this.localWidget).then(res => {
+            this.globalVariableService.saveWidget(this.localWidget)
+                .then(res => {
 
-                // Action
-                // TODO - cater for errors + make more generic
-                let actID: number = this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    this.localWidget.id,
-                    'Widget',
-                    'Edit',
-                    'Update Title',
-                    'W Title clickSave',
-                    null,
-                    null,
-                    this.oldWidget,
-                    this.localWidget,
-                    false               // Dont log to DB yet
-                );
+                    // Action
+                    // TODO - cater for errors + make more generic
+                    let actID: number = this.globalVariableService.actionUpsert(
+                        null,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        this.localWidget.id,
+                        'Widget',
+                        'Edit',
+                        'Update Title',
+                        'W Title clickSave',
+                        null,
+                        null,
+                        this.oldWidget,
+                        this.localWidget,
+                        false               // Dont log to DB yet
+                    );
 
-                // Tell user
-                this.globalVariableService.showStatusBarMessage(
-                    {
-                        message: 'Shape Saved',
-                        uiArea: 'StatusBar',
-                        classfication: 'Info',
-                        timeout: 3000,
-                        defaultMessage: ''
-                    }
-                );
+                    // Tell user
+                    this.globalVariableService.showStatusBarMessage(
+                        {
+                            message: 'Shape Saved',
+                            uiArea: 'StatusBar',
+                            classfication: 'Info',
+                            timeout: 3000,
+                            defaultMessage: ''
+                        }
+                    );
 
-                this.formShapeEditClosed.emit(this.localWidget);
-            });
-        };
+                    this.formShapeEditClosed.emit(this.localWidget);
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in shape.editor saveWidget: ' + err);
+                });
+            };
 
     }
 

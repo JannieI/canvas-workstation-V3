@@ -41,7 +41,7 @@
     .gridErrorMessage {
         color: red;
         font-size: 0.6rem;
-        grid-column-start: 5;
+        grid-column-start: 8;
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 1;
