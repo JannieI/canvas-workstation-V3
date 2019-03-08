@@ -59,7 +59,7 @@ import { GlobalVariableService }      from './global-variable.service';
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
     containerslicerAddRest: boolean = false;
-    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
+    errorMessage: string = '';
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
     selectedColor: string = 'Gray';
@@ -100,6 +100,10 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalVariableService.getResource('canvasBackgroundcolors')
             .then(res => {
                 this.colors = res;
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in slicer.editor reading canvasBackgroundcolors: ' + err);
             });
                 
         // TODO - fix hardcoding
@@ -108,7 +112,6 @@ import { GlobalVariableService }      from './global-variable.service';
         if (this.newWidget) {
 
             // Create new W
-            // this.localWidget = this.globalVariableService.widgetTemplate;
             this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
             this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
@@ -483,97 +486,92 @@ import { GlobalVariableService }      from './global-variable.service';
 
             // this.globalVariableService.widgets.push(this.localWidget);
             // this.globalVariableService.currentWidgets.push(this.localWidget);
-            this.globalVariableService.addResource('widgets', this.localWidget).then(res => {
-                this.localWidget.id = res.id;
+            this.globalVariableService.addResource('widgets', this.localWidget)
+                .then(res => {
+                    this.localWidget.id = res.id;
 
-                // Action
-                // TODO - cater for errors + make more generic
-                let actID: number = this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    this.localWidget.id,
-                    'Widget',
-                    'Edit',
-                    'Update Title',
-                    'W Title clickSave',
-                    null,
-                    null,
-                    null,
-                    this.localWidget,
-                    false               // Dont log to DB yet
-                );
+                    // Action
+                    // TODO - cater for errors + make more generic
+                    let actID: number = this.globalVariableService.actionUpsert(
+                        null,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        this.localWidget.id,
+                        'Widget',
+                        'Edit',
+                        'Update Title',
+                        'W Title clickSave',
+                        null,
+                        null,
+                        null,
+                        this.localWidget,
+                        false               // Dont log to DB yet
+                    );
 
-                // Tell user
-                this.globalVariableService.showStatusBarMessage(
-                    {
-                        message: 'Slicer Added',
-                        uiArea: 'StatusBar',
-                        classfication: 'Info',
-                        timeout: 3000,
-                        defaultMessage: ''
-                    }
-                );
+                    // Tell user
+                    this.globalVariableService.showStatusBarMessage(
+                        {
+                            message: 'Slicer Added',
+                            uiArea: 'StatusBar',
+                            classfication: 'Info',
+                            timeout: 3000,
+                            defaultMessage: ''
+                        }
+                    );
 
-                // Return to main menu
-                this.formDataSlicersClosed.emit(this.localWidget);
+                    // Return to main menu
+                    this.formDataSlicersClosed.emit(this.localWidget);
 
-            });
-
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in slicer.editor adding widgets: ' + err);
+                });
+    
         } else {
-            // Replace the W
-            // this.globalVariableService.widgetReplace(this.localWidget);
  
             // Update global W and DB
-            this.globalVariableService.saveWidget(this.localWidget).then(res => {
+            this.globalVariableService.saveWidget(this.localWidget)
+                .then(res => {
 
-                // Action
-                // TODO - cater for errors + make more generic
-                let actID: number = this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    this.localWidget.id,
-                    'Widget',
-                    'Edit',
-                    'Update Title',
-                    'W Title clickSave',
-                    null,
-                    null,
-                    this.oldWidget,
-                    this.localWidget,
-                    false               // Dont log to DB yet
-                );
+                    // Action
+                    // TODO - cater for errors + make more generic
+                    let actID: number = this.globalVariableService.actionUpsert(
+                        null,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        this.localWidget.id,
+                        'Widget',
+                        'Edit',
+                        'Update Title',
+                        'W Title clickSave',
+                        null,
+                        null,
+                        this.oldWidget,
+                        this.localWidget,
+                        false               // Dont log to DB yet
+                    );
 
-                // Tell user
-                this.globalVariableService.showStatusBarMessage(
-                    {
-                        message: 'Slicer Saved',
-                        uiArea: 'StatusBar',
-                        classfication: 'Info',
-                        timeout: 3000,
-                        defaultMessage: ''
-                    }
-                );
+                    // Tell user
+                    this.globalVariableService.showStatusBarMessage(
+                        {
+                            message: 'Slicer Saved',
+                            uiArea: 'StatusBar',
+                            classfication: 'Info',
+                            timeout: 3000,
+                            defaultMessage: ''
+                        }
+                    );
 
-                this.formDataSlicersClosed.emit(this.localWidget);
+                    this.formDataSlicersClosed.emit(this.localWidget);
+                    
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in slicer.editor saveWidget: ' + err);
+                });
                 
-            });
-            
         };
-
-        // // Tell user
-        // this.globalVariableService.showStatusBarMessage(
-        //     {
-        //         message: 'Slicer Saved',
-        //         uiArea: 'StatusBar',
-        //         classfication: 'Info',
-        //         timeout: 3000,
-        //         defaultMessage: ''
-        //     }
-        // );
-
-	  	// this.formDataSlicersClosed.emit(this.localWidget);
     }
 
     clickSelectAll(ev: any){
