@@ -38,6 +38,17 @@
         width: 100%;
     }
 
+    .gridErrorMessage {
+        color: red;
+        font-size: 0.6rem;
+        grid-column-start: 5;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
+
     .datasourceList {
         border: 1px solid gray;
         border-radius: 4px;

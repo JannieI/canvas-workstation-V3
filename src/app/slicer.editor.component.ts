@@ -59,6 +59,7 @@ import { GlobalVariableService }      from './global-variable.service';
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
     containerslicerAddRest: boolean = false;
+    errorMessage: string = 'asdfasdfasdfasdfasdfasdfasdf';
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
     selectedColor: string = 'Gray';
