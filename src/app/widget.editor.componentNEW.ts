@@ -261,6 +261,7 @@ export interface dataSchemaInterface {
     widgetGraphsLite: string[] = ['area', 'bar', 'line', 'point'];
     widgetGraphs: WidgetGraph[] =[];
     widgetGraphsFull: WidgetGraph[] =[];
+    widgets: Widget[];
     xField: string = dragFieldMessage;
     x2Field: string = dragFieldMessage;
     yField: string = dragFieldMessage;
@@ -269,55 +270,7 @@ export interface dataSchemaInterface {
     // TODO - remove this later on when we dont use D3 time formats at all
    
 
-    // D3 formatting 101:
-    // [[fill]align][sign][symbol][0][width][,][.precision][type]
-    //
-    // type:
-    //   e = scientific
-    //   d = integer (IGNORES non-integer values, no change to integers)
-    //   % = This multiplies the number times 100 and appends a "%" symbol at the end of the string.
-    //   s = Converts numbers to SI units.
-    //
-    // precision
-    //   g = General - A precision type provides precision total length numerical output.
-    //   f = Fixed - A fixed type provides precision length after the decimal point.
-    //       d3.format(".4f")(3.14159); //"3.1416"
-    //   r = Rounded - An general type will round the number to a fixed number.
-    //
-    // , Thousands Seperator
-    //   ie format(".2f")(10101);    //"10,101.00"
-    //
-    // width = pads to same widht,
-    //   ie format("8")(1);      //"       1"
-    //   NOTE - this is the TOTAL length of the string, so 12.34 count as 4 digits
-    //
-    // 0 = zero padding, use with width
-    //   ie format("08")(1234);         //"00001234"
-    //      format("09,")(123456);      //"0,123,456"
-    //
-    // Symbols - seems you can only use $ here, which should automatically pick up your locale
-    //   ie format("$,")(1250);         //"$1,250"
-    //   ie  format("$,.2f")(1250);     //"$1,250.00"
-    //
-    // Sign - determines how to view negative/postive values
-    //   ie format("+")(125);           //"+125"
-    //   ie format("+")(-125);          //"-125"
-    //   ie format("-")(125);           //"125"
-    //   ie format("-")(-125);          //"-125"
-    //   ie format(" ")(125);           //" 125"
-    //   ie format(" ")(-125);          //"-125"
-    //
-    // Alignment and Fill - You can also align the formatter output string with any
-    //   character you want as long as it isn't { or }. You will need to tell the formatter
-    //   how you want to align characters and what character to use as the fill. The fill
-    //   character would need to preseed an alignment indicator:
-    //      "<" - left alignment
-    //      ">" - right alignment
-    //      "^" - center alignment
-    //   format("4>8")(1);              //"44444441"
-    //   format("4^8")(1);              //"44441444"
-    //   format("4<8")(1);              //"14444444"
-    //
+
     
     
     constructor(
@@ -331,12 +284,65 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get setup info
-        this.backgroundcolors = this.globalVariableService.canvasBackgroundcolors.slice();
-        this.backgroundcolors = [
-            {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false}, ...this.backgroundcolors
-        ];
+        this.globalVariableService.getResource('canvasBackgroundcolors')
+            .then(res => {
+                this.backgroundcolors = res;
+                this.backgroundcolors = [
+                    {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false}, ...this.backgroundcolors
+                ];
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in shape.editor reading canvasBackgroundcolors: ' + err);
+            });
 
         // Get DS to which user has permissions
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res.sort( (obj1, obj2) => {
+                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
+
+                // Count the Ws
+                let widgetsFiltered: Widget[];
+                this.globalVariableService.getResource('widgets')
+                    .then(w => {
+                        this.widgets = w;
+                        this.datasources.forEach(ds => {
+                            widgetsFiltered = this.widgets.filter(w => w.datasourceID == ds.id);
+                            ds.nrWidgets = widgetsFiltered.length;
+                        });
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Datasource.delete reading widgets: ' + err);
+                    });
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         this.localDatasources = this.globalVariableService.datasources
             .slice()
             .filter(ds =>
