@@ -317,39 +317,7 @@ export interface dataSchemaInterface {
     //   format("4^8")(1);              //"44441444"
     //   format("4<8")(1);              //"14444444"
     //
-    numberFormats: {displayFormat: string; d3Format: string; description: string}[] =
-    [
-        {
-            displayFormat: 'Exponent',
-            d3Format: 'e',
-            description: 'exponent notation.'
-        },
-        {
-            displayFormat: 'Fixed point',
-            d3Format: 'f',
-            description: 'fixed point notation.'
-        },
-        {
-            displayFormat: 'Rounded',
-            d3Format: 'r',
-            description: 'decimal notation, rounded to significant digits.'
-        },
-        {
-            displayFormat: 'SI Prefix',
-            d3Format: 's',
-            description: 'decimal notation with an SI prefix, rounded to significant digits.'
-        },
-        {
-            displayFormat: 'Percentage',
-            d3Format: '%',
-            description: 'multiply by 100, and then decimal notation with a percent sign.'
-        },
-        {
-            displayFormat: 'Percentage rounded',
-            d3Format: 'p',
-            description: 'multiply by 100, round to significant digits, and then decimal notation with a percent sign.'
-        }
-    ]
+    
 
     siPrefix: {displayFormat: string; d3Format: string; description: string}[] =
     [
