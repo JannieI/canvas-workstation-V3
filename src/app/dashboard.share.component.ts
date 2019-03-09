@@ -70,9 +70,20 @@ export class DashboardShareComponent implements OnInit {
 
         this.globalVariableService.getResource('canvasGroups')
             .then( res => {
-                this.dashboardPermissions = this.globalVariableService.dashboardPermissions
-                    .filter(dP => dP.dashboardID == this.selectedDashboard.id);
                 this.groups = res;
+
+                let parameters: string = '?filterObject= {"dashboardID":' + this.selectedDashboard.id + '}' 
+                this.globalVariableService.getResource('dashboardPermissions', parameters)
+                    .then( dP => {
+                        this.dashboardPermissions = dP;
+                // this.dashboardPermissions = this.globalVariableService.dashboardPermissions
+                //     .filter(dP => dP.dashboardID == this.selectedDashboard.id);
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Dashboard.share reading canvasGroups: ' + err);
+                    });
+
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -106,16 +117,25 @@ export class DashboardShareComponent implements OnInit {
         if (this.originalAccessType == 'AccessList'  &&  this.accessType != 'AccessList') {
             // Get all the IDs and delete
             let dPIDs: number[] = [];
-            this.globalVariableService.dashboardPermissions.forEach(dp => {
+            this.dashboardPermissions.forEach(dp => {
                 dPIDs.push(dp.id);
             });
-            dPIDs.forEach(id => this.globalVariableService.deleteResource(
-                'dashboardPermissions', id));
+            dPIDs.forEach(id => 
+                this.globalVariableService.deleteResource('dashboardPermissions', id)
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Dashboard.share deleting dashboardPermissions: ' + err);
+                    })
+            );
         };
 
         // Save data
         this.selectedDashboard.accessType = this.accessType;
-        this.globalVariableService.saveResource('dashboards', this.selectedDashboard);
+        this.globalVariableService.saveResource('dashboards', this.selectedDashboard)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.share saving dashboards: ' + err);
+            });
 
         this.formDashboardShareClosed.emit('Saved');
     }
@@ -270,9 +290,14 @@ export class DashboardShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveResource('dashboardPermissions',
-                this.dashboardPermissions[index])
-                ;
+            this.globalVariableService.saveResource(
+                'dashboardPermissions',
+                this.dashboardPermissions[index]
+                )
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.share saving dashboardPermissions: ' + err);
+                });
         };
     }
 
@@ -302,9 +327,15 @@ export class DashboardShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveResource('dashboardPermissions',
-                this.dashboardPermissions[index])
-                ;
+            this.globalVariableService.saveResource(
+                'dashboardPermissions',
+                this.dashboardPermissions[index]
+                )
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.share saving dashboardPermissions: ' + err);
+                });
+
         };
     }
 
@@ -334,9 +365,15 @@ export class DashboardShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveResource('dashboardPermissions',
-                this.dashboardPermissions[index])
-                ;
+            this.globalVariableService.saveResource(
+                'dashboardPermissions',
+                this.dashboardPermissions[index]
+                )
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.share saving dashboardPermissions: ' + err);
+                });
+
         };
     }
 
@@ -366,9 +403,15 @@ export class DashboardShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveResource('dashboardPermissions',
-                this.dashboardPermissions[index])
-                ;
+            this.globalVariableService.saveResource(
+                'dashboardPermissions',
+                this.dashboardPermissions[index]
+                )
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.share saving dashboardPermissions: ' + err);
+                });
+
         };
 
     }
@@ -399,9 +442,15 @@ export class DashboardShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveResource('dashboardPermissions',
-                this.dashboardPermissions[index])
-                ;
+            this.globalVariableService.saveResource(
+                'dashboardPermissions',
+                this.dashboardPermissions[index]
+                )
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.share saving dashboardPermissions: ' + err);
+                });
+
         };
 
     }
@@ -432,9 +481,15 @@ export class DashboardShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveResource('dashboardPermissions',
-                this.dashboardPermissions[index])
-                ;
+            this.globalVariableService.saveResource(
+                'dashboardPermissions',
+                this.dashboardPermissions[index]
+                )
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Dashboard.share saving dashboardPermissions: ' + err);
+                });
+
         };
 
     }
