@@ -44,6 +44,7 @@ export class GroupsComponent implements OnInit {
 
     canvasGroups: CanvasGroup[];
     canvasUsers: CanvasUser[];
+    canvasUsersOriginal: CanvasUser[];
     errorMessage: string = '';
     groupName: string = '';
     message: string = '';
@@ -76,18 +77,27 @@ export class GroupsComponent implements OnInit {
                     })
                     .slice();
 
-                // Click first row
-                if (this.canvasGroups.length > 0) {
-                    this.clickRow(0, this.canvasGroups[0].id);
-                };
+                    this.globalVariableService.getResource('canvasUsers')
+                    .then(res => {
+                        this.canvasUsersOriginal = res;
 
-                if (this.canvasGroups.length > 0) {
-                    this.canvasUsers = this.globalVariableService.canvasUsers.filter(u =>
-                        u.groups.map(x => x.toLowerCase()).indexOf(this.canvasGroups[0].name.toLowerCase()) >= 0
-                    )
-                } else {
-                    this.canvasUsers = [];
-                };
+                        // Click first row
+                        if (this.canvasGroups.length > 0) {
+                            this.clickRow(0, this.canvasGroups[0].id);
+                        };
+
+                        if (this.canvasGroups.length > 0) {
+                            this.canvasUsers = this.canvasUsersOriginal.filter(u =>
+                                u.groups.map(x => x.toLowerCase()).indexOf(this.canvasGroups[0].name.toLowerCase()) >= 0
+                            )
+                        } else {
+                            this.canvasUsers = [];
+                        };
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in groups reading canvasUsers: ' + err);
+                    });
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -116,11 +126,11 @@ export class GroupsComponent implements OnInit {
         this.groupName = this.canvasGroups[index].name;
         this.canvasGroups.forEach(g => {
             if (g.id == groupID) {
-                this.canvasUsers = this.globalVariableService.canvasUsers.filter(u =>
+                this.canvasUsers = this.canvasUsersOriginal.filter(u =>
                     u.groups.map(x => x.toLowerCase()).indexOf(g.name.toLowerCase()) > 0
                 )
             };
-        })
+        });
 
     }
 
