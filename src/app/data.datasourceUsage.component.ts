@@ -74,16 +74,16 @@ export class DataDatasourceUsageComponent implements OnInit {
 
                         return 0;
                     });
+    
+                    // Show D for DS
+                    if (this.datasources.length > 0) {
+                        this.clickSelectedDatasource(0, this.datasources[0].id);
+                    };
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in Datasource.usage reading datasources: ' + err);
             });
-    
-        // Show D for DS
-        if (this.datasources.length > 0) {
-            this.clickSelectedDatasource(0, this.datasources[0].id);
-        };
 
     }
 
@@ -97,13 +97,29 @@ export class DataDatasourceUsageComponent implements OnInit {
 
         this.widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == id);
 
-        // Build a list of unique D
-        let dashboardIDs: number[] = [];
-        this.widgets.forEach(w => {
-            if (dashboardIDs.indexOf(w.dashboardID) < 0) {
-                dashboardIDs.push(w.dashboardID);
-            };
-        });
+                // Build a list of unique D
+                let dashboardIDs: number[] = [];
+                this.widgets.forEach(w => {
+                    if (dashboardIDs.indexOf(w.dashboardID) < 0) {
+                        dashboardIDs.push(w.dashboardID);
+                    };
+                });
+
+
+                let parameters: string = '?filterObject= {"datasourceID":' + id + '}'
+                this.globalVariableService.getResource('widgets', parameters)
+                .then(res => {
+                    console.log('xx res', res, parameters)
+
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.usage reading widgets: ' + err);
+                });
+    
+
+
+
 
         // Build list to display
         this.dashboards = [];

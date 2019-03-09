@@ -675,8 +675,21 @@ export class GlobalVariableService {
                                 // var type = 'article';
                                 // this[type+'_count'] = 1000;  // in a function we use "this";
                                 // alert(this.article_count);
+
+                                // Set to the full set, and then sortFilter if requested
+                                let results: any = this[localVariableName];
+                                if (params != '') {
+                                    results = this.sortFilterFieldsAggregate(
+                                        results,
+                                        params);
+                                };
+                                 
+                                console.log('xx in cache after sort', results)
+                                
                                 console.timeEnd("      DURATION getResource: " + resource);
-                                resolve(this[localVariableName]);
+
+                                resolve(results)
+                                // resolve(this[localVariableName]);
                                 return;
                             };
                         } else if (localCacheableDisc) {

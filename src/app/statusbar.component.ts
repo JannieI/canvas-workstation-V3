@@ -184,7 +184,7 @@ export class StatusbarComponent {
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID.toString()
                 + '}')
             .then(res => {
-                console.log('xx res', res[0])
+
                 this.dashboardCreator = res[0].creator;
                 this.dashboardLastEditored = res[0].dateEdited  ||  res[0].dateCreated;
                 this.dashboardDescription = res[0].description;
