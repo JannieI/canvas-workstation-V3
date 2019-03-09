@@ -6946,14 +6946,33 @@ export class GlobalVariableService {
     sortFilterFieldsAggregate(
         inputResults: any = null, parameters: string
         ): any {
-        // This routines receives data as an array and instructions, and then returns the
+        // This routines receives data as an array and parameters, and then returns the
         // data after manipulations, like sorting, filtering, field selection and
-        // aggregations.
-        // Inputs (examples):
+        // aggregations.  The parameters are the instructions for the manipulations.
+        // Note: the format of the parameters must comply with what the Server requires,
+        //       so that the same parameters works for data from HTTP or Cache
+
+        // Examples of how the manipulations are used:
         //   sortObject=-Month
         //   fields=Month Year
         //   filterObject={"Month":"January"}
         //   aggregationObject= TODO: not done as yet ...
+        //   nrRowsToReturn=1
+
+        // Calling Examples
+        //   let parameters: string  = '?sortObject=-id';
+        //   parameters = parameters + '&fields=id, name, creator ';
+        //   parameters = parameters + '&filterObject= {"creator": "JannieI"}'
+        //   parameters = parameters + '&nrRowsToReturn=3';
+
+        //   let parameters: string = '?sortObject=-id';
+        //   parameters = parameters + '&fields=id, name, creator ';
+        //   parameters = parameters + '&filterObject= {"id": 116}'
+        //   parameters = parameters + '&nrRowsToReturn=3'
+
+        //   let parameters: string = '?sortObject=-id';
+        //   parameters = parameters + '&fields=id, name, creator, dateRefreshed ';
+        //   parameters = parameters + '&filterObject= {"dateRefreshed" : null}'
 
         // Return if nothing to do
         if (inputResults == null) {
