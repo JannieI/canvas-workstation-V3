@@ -64,7 +64,7 @@ import * as dl                        from 'datalib';
 import { environment }                from '../environments/environment';
 import { message }                    from 'vega-lite/build/src/log';
 
-// Templates 
+// Templates
 import { canvasSettings }             from './templates';
 import { dashboardTemplate }          from './templates';
 import { dashboardTabTemplate }       from './templates';
@@ -324,9 +324,9 @@ export class GlobalVariableService {
 
                     // Load Permissions for D
                     this.getResource(
-                        'dashboardPermissions', 
+                        'dashboardPermissions',
                         '?filterObject={"dashboardID":' + dashboardID + '}').then( l => {
-                        
+
                     // Load Checkpoints for D
                     this.getCurrentWidgetCheckpoints(dashboardID).then( l => {
 
@@ -344,7 +344,7 @@ export class GlobalVariableService {
 
                                     // Add to recent
                                     this.amendDashboardRecent(
-                                        dashboardID, 
+                                        dashboardID,
                                         dashboardTabID,
                                         this.currentDashboardInfo.value.currentDashboardState
                                     );
@@ -635,14 +635,14 @@ export class GlobalVariableService {
                 localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
                     console.log('%c    Global-Variables getResource - In Mem vars for: ',
                     this.concoleLogStyleForCaching,
-                    resource, {dataCachingTableIndex}, {localCacheableMemory}, 
+                    resource, {dataCachingTableIndex}, {localCacheableMemory},
                     {localCacheableDisc}, {localVariableName});
 
                 // Local Memory is used, if fresh
                 if (localCacheableMemory  ||  localCacheableDisc) {
-                    console.log('%c    Global-Variables getResource - In local Memory or Disc for Resource: ', 
+                    console.log('%c    Global-Variables getResource - In local Memory or Disc for Resource: ',
                         this.concoleLogStyleForCaching,
-                        resource, localVariableName, 
+                        resource, localVariableName,
                         this.dataCachingTable[dataCachingTableIndex].localExpiryDateTime)
 
                     // Fresh if not expired as yet
@@ -661,15 +661,15 @@ export class GlobalVariableService {
                     // Use local cache variable or table if fresh
                     // TODO - check the assumption that there is data when fresh (else returns [])
                     if (isFresh) {
-                        console.log('%c    Global-Variables getResource - cache is FRESH for: ', 
+                        console.log('%c    Global-Variables getResource - cache is FRESH for: ',
                             this.concoleLogStyleForCaching,
                             resource)
 
                         // Get from Memory (local var)
                         if (localCacheableMemory) {
-                        
+
                             if (localVariableName != null) {
-                                console.log('%c    Global-Variables getResource - data returned from Memory for : ', 
+                                console.log('%c    Global-Variables getResource - data returned from Memory for : ',
                                     this.concoleLogStyleForCaching,
                                     resource);
                                 // var type = 'article';
@@ -682,14 +682,14 @@ export class GlobalVariableService {
                         } else if (localCacheableDisc) {
                             // Get from Disc (Dexie)
                             if (localTableName != null) {
-                                console.log('%c    Global-Variables getResource - in local Disc for: ', 
+                                console.log('%c    Global-Variables getResource - in local Disc for: ',
                                     this.concoleLogStyleForCaching,
                                     resource);
                                 this.dbCanvasAppDatabase.table(localTableName)
                                 .toArray()
                                 .then(res => {
                                     this[localVariableName] = res;
-                                    console.log('%c    Global-Variables getResource - data returned from Disc for: ', 
+                                    console.log('%c    Global-Variables getResource - data returned from Disc for: ',
                                         this.concoleLogStyleForCaching,
                                         resource)
                                     console.timeEnd("      DURATION getResource: " + resource);
@@ -704,14 +704,14 @@ export class GlobalVariableService {
                     };
                 };
             };
-            console.log('%c    Global-Variables getResource - Will now try GET HTTP for: ', 
+            console.log('%c    Global-Variables getResource - Will now try GET HTTP for: ',
                 this.concoleLogStyleForCaching,
                 resource)
 
             // Get from HTTP server
             let pathUrl: string = resource + params;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
-            console.warn('    Global-Variables getResource finalUrl for:', 
+            console.warn('    Global-Variables getResource finalUrl for:',
                 resource, finalUrl);
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 httpResult  => {
@@ -745,7 +745,7 @@ export class GlobalVariableService {
                                 if (httpResult.data != null) {
                                     rowCount = httpResult.data.length;
                                 };
-                                console.log('%c    Global-Variables getResource updated cached Memory for ', 
+                                console.log('%c    Global-Variables getResource updated cached Memory for ',
                                     this.concoleLogStyleForCaching,
                                     resource,'row count:', rowCount, this[localVariableName]);
                             };
@@ -766,7 +766,7 @@ export class GlobalVariableService {
                                         // Count
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
-                                                console.log('%c    Global-Variables getResource updated local Disc for:', 
+                                                console.log('%c    Global-Variables getResource updated local Disc for:',
                                                     this.concoleLogStyleForCaching,
                                                     resource, 'rowCount:', resCount);
                                         });
@@ -791,14 +791,14 @@ export class GlobalVariableService {
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.log('%c    Global-Variables getResource dataCachingTable updated with bulkPut, count @end', 
+                                    console.log('%c    Global-Variables getResource dataCachingTable updated with bulkPut, count @end',
                                         this.concoleLogStyleForCaching,
                                         res);
                                 });
                         });
                     };
 
-                    console.log('%c    Global-Variables getResource data retured from HTTP for: ', 
+                    console.log('%c    Global-Variables getResource data retured from HTTP for: ',
                         this.concoleLogStyleForCaching,
                         resource, httpResult.data, this.datasourcePermissions);
                     console.timeEnd("      DURATION getResource: " + resource);
@@ -840,7 +840,7 @@ export class GlobalVariableService {
 
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
                 httpResult  => {
-                    console.log('%c    Global-Variables addResource - inside POST HTTP, return:', 
+                    console.log('%c    Global-Variables addResource - inside POST HTTP, return:',
                         this.concoleLogStyleForCaching,
                         httpResult)
 
@@ -885,7 +885,7 @@ export class GlobalVariableService {
                                 } else {
                                     this[localVariableName].push(httpResult.data);
                                 }
-                                console.log('%c    Global-Variables addResource updated cached Memory for:', 
+                                console.log('%c    Global-Variables addResource updated cached Memory for:',
                                     this.concoleLogStyleForCaching,
                                     resource, ' to', this[localVariableName]);
                             };
@@ -909,7 +909,7 @@ export class GlobalVariableService {
                                         // Count
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
-                                                console.log('%c    Global-Variables addResource updated local Disc for:', 
+                                                console.log('%c    Global-Variables addResource updated local Disc for:',
                                                     this.concoleLogStyleForCaching,
                                                     resource, 'to', resCount);
                                         });
@@ -928,7 +928,7 @@ export class GlobalVariableService {
                             this.dateAdd(dt, 'second', seconds);
                         this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                             new Date();
-                        console.log('%c    Global-Variables addResource dataCachingTable updated in Memory for:', 
+                        console.log('%c    Global-Variables addResource dataCachingTable updated in Memory for:',
                             this.concoleLogStyleForCaching,
                             resource, 'to', this.dataCachingTable)
 
@@ -937,14 +937,14 @@ export class GlobalVariableService {
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.log('%c    Global-Variables addResource dataCachingTable updated on Disc for: ', 
+                                    console.log('%c    Global-Variables addResource dataCachingTable updated on Disc for: ',
                                         this.concoleLogStyleForCaching,
                                         resource, 'count @end:', res);
                                 });
                         });
                     };
 
-                    console.log('%c    Global-Variables addResource data retured from HTTP', 
+                    console.log('%c    Global-Variables addResource data retured from HTTP',
                         this.concoleLogStyleForCaching,
                         httpResult.data);
                     console.timeEnd("      DURATION addResource " + resource + ' ' + unique.toString());
@@ -1033,7 +1033,7 @@ export class GlobalVariableService {
                                 if (localIndex >= 0) {
                                     this[localVariableName][localIndex] = data;
                                 };
-                                console.log('%c    Global-Variables saveResource updated cached Memory for:', 
+                                console.log('%c    Global-Variables saveResource updated cached Memory for:',
                                     this.concoleLogStyleForCaching,
                                     resource, 'to', this[localVariableName]
                                     ,this.currentDashboardTabs
@@ -1042,7 +1042,7 @@ export class GlobalVariableService {
 
                             // Update the Current Variable - currently this is only used for
                             // the currentDashboard and its core entities that are cached in
-                            // memory.  There should be no currentXXX vars for any other 
+                            // memory.  There should be no currentXXX vars for any other
                             // Entitiy.  2019-03-02
                             if (localCurrentVariableName != null  &&  localCurrentVariableName) {
 
@@ -1055,7 +1055,7 @@ export class GlobalVariableService {
                                 if (localIndex >= 0) {
                                     this[localCurrentVariableName][localIndex] = data;
                                 };
-                                console.log('%c    Global-Variables saveResource updated CURRENT cached Memory for:', 
+                                console.log('%c    Global-Variables saveResource updated CURRENT cached Memory for:',
                                     this.concoleLogStyleForCaching,
                                     resource, 'to', this[localCurrentVariableName]
                                     ,this.currentDashboardTabs
@@ -1072,7 +1072,7 @@ export class GlobalVariableService {
                                 this.dbCanvasAppDatabase.table(localTableName)
                                     .put(copyData)
                                     .then(res => {
-                                        console.log('%c    Global-Variables saveResource updated Local cached Disc for:', 
+                                        console.log('%c    Global-Variables saveResource updated Local cached Disc for:',
                                         this.concoleLogStyleForCaching,
                                         resource, 'into', localTableName
                                         );
@@ -1091,7 +1091,7 @@ export class GlobalVariableService {
                             this.dateAdd(dt, 'second', seconds);
                         this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                             new Date();
-                        console.log('%c    Global-Variables saveResource - dataCachingTable memory upd', 
+                        console.log('%c    Global-Variables saveResource - dataCachingTable memory upd',
                             this.concoleLogStyleForCaching,
                             this.dataCachingTable)
 
@@ -1100,7 +1100,7 @@ export class GlobalVariableService {
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.log('%c    Global-Variables saveResource updataCachingTable updated count @end', 
+                                    console.log('%c    Global-Variables saveResource updataCachingTable updated count @end',
                                         this.concoleLogStyleForCaching,
                                         res);
                                 });
@@ -1192,7 +1192,7 @@ export class GlobalVariableService {
                                 this[localVariableName] = this[localVariableName].filter(
                                     com => com.id != id
                                 );
-                                console.log('%c    Global-Variables deleteResource updated cached Memory for ', 
+                                console.log('%c    Global-Variables deleteResource updated cached Memory for ',
                                     this.concoleLogStyleForCaching,
                                     resource,'row count:', this[localVariableName].length);
 
@@ -1207,7 +1207,7 @@ export class GlobalVariableService {
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables deleteResource DELETED id: ', 
+                        console.log('%c    Global-Variables deleteResource DELETED id: ',
                             this.concoleLogStyleForCaching,
                             {id})
                     };
@@ -1265,19 +1265,19 @@ export class GlobalVariableService {
 
                     this.dashboards.push(res.data.dashboard);
                     this.currentDashboards.push(res.data.dashboard);
-                    res.data.dashboardTabs.forEach(tab => 
+                    res.data.dashboardTabs.forEach(tab =>
                         {
                             this.dashboardTabs.push(tab);
                             this.currentDashboardTabs.push(tab);
                         }
                     );
-                    res.data.widgets.forEach(widget => 
+                    res.data.widgets.forEach(widget =>
                         {
                             this.widgets.push(widget);
                             this.currentWidgets.push(widget);
                         }
                     );
-                    res.data.widgetCheckpoints.forEach(widgetCheckpoint => 
+                    res.data.widgetCheckpoints.forEach(widgetCheckpoint =>
                         {
                             this.widgetCheckpoints.push(widgetCheckpoint);
                             this.currentWidgetCheckpoints.push(widgetCheckpoint);
@@ -1394,10 +1394,10 @@ export class GlobalVariableService {
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables discardDashboard ends',
                                 this.concoleLogStyleForEndOfMethod,
-                                '?draftDashboardID=' + draftDashboardID 
+                                '?draftDashboardID=' + draftDashboardID
                                 + '&originalDashboardID=' + originalDashboardID)
                         };
-            
+
                         resolve(originalDashboardID);
                     },
                     err => {
@@ -1462,7 +1462,7 @@ export class GlobalVariableService {
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables saveDraftDashboard ends',
                                 this.concoleLogStyleForEndOfMethod,
-                                '?draftDashboardID=' + draftDashboardID 
+                                '?draftDashboardID=' + draftDashboardID
                                 + '&originalDashboardID=' + originalDashboardID)
                         };
 
@@ -1910,11 +1910,11 @@ export class GlobalVariableService {
 
         // Loop on localCachingTable
         for (var initialIndex = 0; initialIndex < this.dataCachingTable.length; initialIndex++) {
-            
+
             // Only refresh those cacheable in Memory or on Disc
             // Note: it could be any one of the above, or both
-            if (this.dataCachingTable[initialIndex].localCacheableMemory  
-                ||  
+            if (this.dataCachingTable[initialIndex].localCacheableMemory
+                ||
                 this.dataCachingTable[initialIndex].localCacheableDisc) {
                 console.log('xx this.dataCachingTable[dataCachingTableIndex]', this.dataCachingTable[initialIndex].key, this.dataCachingTable[initialIndex].localVariableName)
                 let resource: string = this.dataCachingTable[initialIndex].key;
@@ -2008,9 +2008,9 @@ export class GlobalVariableService {
                 );
             };
         };
-        
+
     }
-    
+
     updateLocalCacheMemory(
         cacheAction: string,
         cachedEntityID: number,
@@ -2361,7 +2361,7 @@ export class GlobalVariableService {
                                 this.concoleLogStyleForEndOfMethod,
                                 dashboardID)
                         };
-    
+
                         resolve(dR)
                     })
                     .catch(err => {
@@ -2398,7 +2398,7 @@ export class GlobalVariableService {
                                 this.concoleLogStyleForEndOfMethod,
                                 dashboardID)
                         };
-    
+
                         resolve(recentDashboard)
                     })
                     .catch(err => {
@@ -3102,7 +3102,7 @@ export class GlobalVariableService {
                     console.error('Error in     Global-Variables deleteDatasources', err)
                     reject(err.message);
                 })
-            
+
         });
     }
 
@@ -3200,7 +3200,7 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
-            this.addResource('paletteButtonsSelecteds', data) 
+            this.addResource('paletteButtonsSelecteds', data)
                 .then( (res) => {
                     // Update Global vars to make sure they remain in sync
                     this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res)));
@@ -3304,7 +3304,7 @@ export class GlobalVariableService {
                     console.error('Error in     Global-Variables deletePaletteButtonsSelected', err);
                     reject(err.message);
                 })
-    
+
         });
     }
 
@@ -3706,7 +3706,7 @@ export class GlobalVariableService {
             };
         })
     }
-        
+
     updateCanvasMessagesAsRead(userID: string): Promise<string> {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
@@ -3939,7 +3939,7 @@ export class GlobalVariableService {
                 this.canvasUsers[userIndex].preferenceShowWidgetEditorLite = parameters.preferenceShowWidgetEditorLite;
                 this.currentUser.preferenceShowWidgetEditorLite = parameters.preferenceShowWidgetEditorLite;
             };
-        
+
             // Update console.log
             this.sessionDebugging = parameters.preferenceDebugSession;
 
@@ -3994,7 +3994,7 @@ export class GlobalVariableService {
                     this.dataCachingTable.forEach(dc => {
                         dc.localLastUpdatedDateTime = today
                     })
-                    
+
 
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getDataCachingTable ends',
@@ -5280,9 +5280,9 @@ export class GlobalVariableService {
 
             // Determine if last snapshot for this D was an auto first
             this.getResource('dashboardSnapshots','?filterObject={"dashboardID": '
-                + this.currentDashboardInfo.value.currentDashboardID.toString() 
+                + this.currentDashboardInfo.value.currentDashboardID.toString()
                 + '} &sortObject=-createdOn &nrRowsToReturn=1'
-                
+
             ).then(lss => {
 
                 // Add if last snap was not an auto (null returned if no last snapshot)
@@ -5342,7 +5342,7 @@ export class GlobalVariableService {
                 created: today
             });
             if (this.sessionDebugging) {
-                console.log('%c    Global-Variables actionUpsert done for:', 
+                console.log('%c    Global-Variables actionUpsert done for:',
                     this.concoleLogStyleForEndOfMethod,
                     this.actions);
             };
@@ -5993,7 +5993,7 @@ export class GlobalVariableService {
                             .catch(err => {
                                 console.error('Error in     Global-Variables verifyCanvasUser: ', err);
                                 reject(err.message);
-                            })       
+                            })
 
                         })
                         .catch(err => {
@@ -6944,22 +6944,17 @@ export class GlobalVariableService {
     }
 
     sortFilterFieldsAggregate(
-        inputResults: any = null, 
-        sortObject: any = null, 
-        fieldsObject: string = null,
-        filterObject: any = null,
-        aggregationObject: any = null,
-        nrRowsToReturn: number = 0
+        inputResults: any = null, parameters: string
         ): any {
-        // This routines receives data as an array and instructions, and then returns the 
-        // data after manipulations, like sorting, filtering, field selection and 
+        // This routines receives data as an array and instructions, and then returns the
+        // data after manipulations, like sorting, filtering, field selection and
         // aggregations.
         // Inputs (examples):
         //   sortObject=-Month
         //   fields=Month Year
         //   filterObject={"Month":"January"}
         //   aggregationObject= TODO: not done as yet ...
-    
+
         // Return if nothing to do
         if (inputResults == null) {
             return [];
@@ -6968,18 +6963,52 @@ export class GlobalVariableService {
             return [];
         };
 
+        let sortObject: any = null;
+        let fieldsObject: string = null;
+        let filterObject: any = null;
+        let aggregationObject: any = null;
+        let nrRowsToReturn: number = 0;
+
         // try {
             // 1. Extract Query properties: these are used by the Widget to reduce the data block returned
             let results: any = inputResults;
-    
+
+            let parametersArray: string[] = parameters.split("&")
+            console.log('xx temp parametersArray', parametersArray)
+
+            parametersArray.forEach(par => {
+
+                // Make sure its not empty, else TS will get the hizzy fit
+                if (par.length > 0) {
+
+                    // Strip of indicator chars
+                    if (par[0] == '?') {
+                        par = par.substring(1);
+                    };
+                    if (par[0] == '&') {
+                        par = par.substring(1);
+                    };
+
+                    // Get two parts of parameter
+                    if (par.indexOf('=') > 0) {
+                        let parKey: string = par.substring(0, par.indexOf('='));
+                        let parValue: string = par.substring(par.indexOf('='));
+                        console.log('xx temp parKey', parKey, parValue)
+
+                    }
+
+
+                }
+            })
+
             // 2. If (SORT_OBJECT) then results = results.sort()
             // Sort ASC on given field, -field means DESC
             // NB: this is NOT mongoose notation with {field: 1}, it is ONE
-            //     field, ie sortObject=-createdOn       
-    
+            //     field, ie sortObject=-createdOn
+
             // TODO - return sortOrder = 1 depending on - in field, see TypeScript
             if (sortObject != null) {
-    
+
                 // When DESC, and take off -
                 // For example, sortOrder=-Month
                 let sortDirection: number = 1;
@@ -7001,10 +7030,10 @@ export class GlobalVariableService {
                 });
                 console.log('xx temp after sort', results)
             };
-    
+
             // 3. If (FIELDS_STRING) then results = results[fields]
             if (fieldsObject != null) {
-    
+
                 // Create Array of Fields, un-trimmed
                 let fieldsArray = fieldsObject.split(",");
                 fieldsArray = fieldsArray.map(x => x.trim());
@@ -7015,7 +7044,7 @@ export class GlobalVariableService {
                 // Loop on keys in Object = row 1, delete field from each element in array if not
                 // in fieldsArray
                 Object.keys(results[0]).forEach(key => {
-    
+
                     if (fieldsArray.indexOf(key) < 0) {
                         for (var i = 0; i < results.length; i++) {
                             delete results[i][key];
@@ -7024,7 +7053,7 @@ export class GlobalVariableService {
                 });
                 console.log('xx temp after fields', results)
             };
-    
+
             // 4. If (FILTER_OBJECT) then results = results.filter()
             if (filterObject != null) {
                 console.log('xx temp filter', filterObject)
@@ -7040,31 +7069,31 @@ export class GlobalVariableService {
                 });
                 console.log('xx temp after filter', results)
             };
-    
+
             // TODO
             // 5. If (AGGREGATION_OBJECT) then results = results.clever-thing
             if (aggregationObject != null) {
-    
+
             };
-            
+
             // 6. Reduce nr of rows to return: 0 or null means all rows
-            if (nrRowsToReturn != 0  &&  nrRowsToReturn != null) {
+            if (nrRowsToReturn > 0) {
                 results = results.slice(0, nrRowsToReturn)
                 console.log('xx temp after slice', results)
             };
-            
+
             // 7. Return
             return results;
         // }
         // catch (error) {
         //     return {
-        //         error: error, 
+        //         error: error,
         //         results: null
         //     };
         // };
-        
+
     }
-    
+
     testBingMaps() {
         // Test to get DistanceMatrix from Bing via Async - not sure how to get results !
         console.log('bingMaps Start')

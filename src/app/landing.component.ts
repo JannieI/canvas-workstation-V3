@@ -59,8 +59,12 @@ export class LandingComponent implements OnInit {
 			.then(readD => {
 
 				let temp: any = readD.slice()
-				console.log('xx temp LAND', temp, this.globalVariableService.sortFilterFieldsAggregate(
-					readD,"-id", "id, name, creator",'{"creator": "JannieI"}',null, 3))
+				let parameters: string  = '?sortObject=-id';
+				parameters = parameters + '&fields=id, name, creator ';
+				parameters = parameters + '&filterObject= {"creator": "JannieI"}'
+				parameters = parameters + '&nrRowsToReturn=3'
+				console.log('xx temp LAND', parameters, this.globalVariableService.sortFilterFieldsAggregate(
+					readD, parameters))
 
 
 				// Sample Dashboards - max n, else the landing page overflows
