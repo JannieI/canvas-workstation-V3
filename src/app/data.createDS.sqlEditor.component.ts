@@ -2,6 +2,7 @@
  * Create a new Datasource using a SQL Editor.
  */
 
+ // NOTE: this form is experimental, and not completed
 // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';

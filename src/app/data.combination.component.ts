@@ -1,4 +1,4 @@
-    /*
+/*
  * Combine selected Datasources by appending it to the first one.
  */
 
