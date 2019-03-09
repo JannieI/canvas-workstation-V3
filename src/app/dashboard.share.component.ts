@@ -70,14 +70,12 @@ export class DashboardShareComponent implements OnInit {
 
         this.globalVariableService.getResource('canvasGroups')
             .then( res => {
-                this.groups = res;
+                this.groups = ['', ...res];
 
                 let parameters: string = '?filterObject= {"dashboardID":' + this.selectedDashboard.id + '}' 
                 this.globalVariableService.getResource('dashboardPermissions', parameters)
                     .then( dP => {
                         this.dashboardPermissions = dP;
-                // this.dashboardPermissions = this.globalVariableService.dashboardPermissions
-                //     .filter(dP => dP.dashboardID == this.selectedDashboard.id);
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);

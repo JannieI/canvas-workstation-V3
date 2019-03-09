@@ -17,6 +17,8 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
+import { DashboardTab }               from './models';
+
 
 @Component({
     selector: 'preferences',
@@ -53,6 +55,7 @@ export class PreferencesComponent implements OnInit {
     dashboardList: string[] = ['None'];
     dashboardTabList: string[] = ['None'];
     dashboards: Dashboard[];
+    dashboardTabs: DashboardTab[] = [];
     errorMessage: string = '';
     preferenceAutoSync: boolean;
     preferenceDefaultTemplateID: number;
@@ -105,63 +108,76 @@ export class PreferencesComponent implements OnInit {
         this.preferenceStartupDashboardTabID = this.globalVariableService.currentUser.preferenceStartupDashboardTabID;
 
         // Get list of D for dropdown
-        this.globalVariableService.getResource('dashboards').then(d => {
-            this.dashboards = d;
-            let dashboards = d.sort((n1,n2) => {
-                if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
-                    return 1;
-                };
+        this.globalVariableService.getResource('dashboards')
+            .then(d => {
+                this.dashboards = d;
+                let dashboards = d.sort((n1,n2) => {
+                    if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
+                        return 1;
+                    };
 
-                if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
-                    return -1;
-                };
+                    if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
+                        return -1;
+                    };
 
-                return 0;
+                    return 0;
+                });
+                dashboards.forEach(d => {
+                    if (d.state = 'Complete') {
+                        this.dashboardList.push(d.name + ' (' + d.id.toString() + ')');
+                    };
+
+                    // Fill Initial Template
+                    if (this.preferenceDefaultTemplateID != null
+                        &&
+                        this.preferenceDefaultTemplateID == d.id) {
+                        this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ')';
+                    };
+
+                    // Fill Initial Startup D
+                    if (this.preferenceStartupDashboardID != null
+                        &&
+                        this.preferenceStartupDashboardID == d.id) {
+                        this.selectedStartupDashboard = d.name + ' (' + d.id.toString() + ')';
+                    };
+
+                });
+
+                this.globalVariableService.getResource('dashboardTabs')
+                    .then(t => {
+                        this.dashboardTabs = t;
+                        this.dashboardTabs.forEach(t => {
+
+                            // Fill TabList
+                            if (this.preferenceStartupDashboardID != null 
+                                &&
+                                this.preferenceStartupDashboardID == t.dashboardID) {
+                                    this.dashboardTabList.push(t.name + ' (' + t.id.toString() + ')');
+                            };
+
+                            // Fill Initial Startup T
+                            if (this.preferenceStartupDashboardID != null 
+                                &&
+                                this.preferenceStartupDashboardID == t.dashboardID
+                                &&
+                                this.preferenceStartupDashboardTabID != null
+                                &&
+                                this.preferenceStartupDashboardTabID == t.id) {
+                                this.selectedStartupDashboardTab = t.name + ' (' + t.id.toString() + ')';
+                            };
+                        });
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 45);
+                        console.error('Error in preferences reading dashboardTabs: ' + err);
+                    });
+
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 45);
+                console.error('Error in preferences reading dashboards: ' + err);
             });
-            dashboards.forEach(d => {
-                if (d.state = 'Complete') {
-                    this.dashboardList.push(d.name + ' (' + d.id.toString() + ')');
-                };
-
-                // Fill Initial Template
-                if (this.preferenceDefaultTemplateID != null
-                    &&
-                    this.preferenceDefaultTemplateID == d.id) {
-                    this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ')';
-                };
-
-                // Fill Initial Startup D
-                if (this.preferenceStartupDashboardID != null
-                    &&
-                    this.preferenceStartupDashboardID == d.id) {
-                    this.selectedStartupDashboard = d.name + ' (' + d.id.toString() + ')';
-                };
-
-            });
-
-            this.globalVariableService.dashboardTabs.forEach(t => {
-
-                // Fill TabList
-                if (this.preferenceStartupDashboardID != null 
-                    &&
-                    this.preferenceStartupDashboardID == t.dashboardID) {
-                        this.dashboardTabList.push(t.name + ' (' + t.id.toString() + ')');
-                };
-
-                // Fill Initial Startup T
-                if (this.preferenceStartupDashboardID != null 
-                    &&
-                    this.preferenceStartupDashboardID == t.dashboardID
-                    &&
-                    this.preferenceStartupDashboardTabID != null
-                    &&
-                    this.preferenceStartupDashboardTabID == t.id) {
-                    this.selectedStartupDashboardTab = t.name + ' (' + t.id.toString() + ')';
-                };
-            });
-
-        });
-    }
+}
 
     
     clickTemplateDashboard(ev:any) {
