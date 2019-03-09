@@ -59,6 +59,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
     specification: any;              // Vega-Lite, Vega, or other grammar
     widgetGraphs: WidgetGraph[] =[];
     widgetStoredTemplates: WidgetStoredTemplate[] = [];
+    widgets: Widget[] = [];
 
 
 	constructor(
@@ -69,6 +70,16 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
     ngOnInit() {
         // Initials
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Load Widgets
+        this.globalVariableService.getResource('widgets')
+        .then(res => {
+            this.widgets = res;
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in widgetTemplate.insert reading widgets: ' + err);
+        });
 
         // Load Stored Widget Templates, adding DS Name for user
         this.globalVariableService.getResource('widgetStoredTemplates')
@@ -95,6 +106,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                         return 0;
                     });
 
+                    // TODO - this must be done in DB
                 this.widgetStoredTemplates.forEach(wst => {
                     this.globalVariableService.widgets.forEach(w => {
                         if (w.id == wst.widgetID) {
@@ -135,7 +147,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
 
         // Create new W
         this.selectedWidgetID = widgetID;
-        let widgetIndex: number = this.globalVariableService.widgets.findIndex(w =>
+        let widgetIndex: number = this.widgets.findIndex(w =>
             w.id == widgetID
         );
 
@@ -144,7 +156,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             return;
         };
         this.localWidget = JSON.parse(JSON.stringify(
-            this.globalVariableService.widgets[widgetIndex])
+            this.widgets[widgetIndex])
         );
         this.localWidget.id = null;
         this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
@@ -218,7 +230,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         };
 
         // Create new W
-        let widgetIndex: number = this.globalVariableService.widgets.findIndex(w =>
+        let widgetIndex: number = this.widgets.findIndex(w =>
             w.id == this.selectedWidgetID
         );
 
@@ -227,7 +239,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             return;
         };
         this.localWidget = JSON.parse(JSON.stringify(
-            this.globalVariableService.widgets[widgetIndex])
+            this.widgets[widgetIndex])
         );
         this.localWidget._id = null;
         this.localWidget.id = null;
