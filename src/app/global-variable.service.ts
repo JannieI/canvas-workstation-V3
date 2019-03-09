@@ -6988,9 +6988,9 @@ export class GlobalVariableService {
                     sortDirection = -1;
                     sortColumn = sortObject.substr(1);
                 };
-                
+                console.log('xx temp sortings', sortDirection, sortColumn, sortObject)
                 // Sort given column in given direction
-                results.sort( (a,b) => {
+                results = results.sort( (a,b) => {
                     if (a[sortColumn] > b[sortColumn]) {
                         return sortDirection;
                     };
@@ -6999,6 +6999,7 @@ export class GlobalVariableService {
                     };
                     return 0;
                 });
+                console.log('xx temp after sort', results)
             };
     
             // 3. If (FIELDS_STRING) then results = results[fields]
@@ -7010,7 +7011,7 @@ export class GlobalVariableService {
                 // for (var i = 0; i < fieldsArray.length; i++) {
                 //     fieldsArray[i] = fieldsArray[i].trim();
                 // };
-                
+                console.log('xx temp fieldsArray', fieldsArray)
                 // Loop on keys in Object = row 1, delete field from each element in array if not
                 // in fieldsArray
                 Object.keys(results[0]).forEach(key => {
@@ -7021,6 +7022,7 @@ export class GlobalVariableService {
                         };
                     };
                 });
+                console.log('xx temp after fields', results)
             };
     
             // 4. If (FILTER_OBJECT) then results = results.filter()
@@ -7028,11 +7030,13 @@ export class GlobalVariableService {
                 filterObject = JSON.parse(filterObject)
                 Object.keys(filterObject).forEach( key => {
                     // Get the key-value pair
+                    console.log('xx temp key', key)
                     let value = filterObject[key];
                     results = results.filter(r => {
                         return value == r[key];
                     });
                 });
+                console.log('xx temp after filter', results)
             };
     
             // TODO
@@ -7044,6 +7048,7 @@ export class GlobalVariableService {
             // 6. Reduce nr of rows to return: 0 or null means all rows
             if (nrRowsToReturn != 0  &&  nrRowsToReturn != null) {
                 results = results.slice(0, nrRowsToReturn)
+                console.log('xx temp after slice', results)
             };
             
             // 7. Return

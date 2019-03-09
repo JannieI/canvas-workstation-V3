@@ -57,6 +57,12 @@ export class LandingComponent implements OnInit {
 		// Load D
 		this.globalVariableService.getResource('dashboards')
 			.then(readD => {
+
+				let temp: any = readD.slice()
+				console.log('xx temp LAND', temp, this.globalVariableService.sortFilterFieldsAggregate(
+					readD,"-id", "id, name, creator",'{name: "Test2"}'))
+
+
 				// Sample Dashboards - max n, else the landing page overflows
 				this.sampleDashboards = readD
 					.filter(
