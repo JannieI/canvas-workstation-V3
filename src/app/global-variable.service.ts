@@ -6969,150 +6969,129 @@ export class GlobalVariableService {
         let aggregationObject: any = null;
         let nrRowsToReturn: number = 0;
 
-        // try {
-            // 1. Extract Query properties: these are used by the Widget to reduce the data block returned
-            let results: any = inputResults;
+        // 1. Extract Query properties: these are used by the Widget to reduce the data block returned
+        let results: any = inputResults;
 
-            let parametersArray: string[] = parameters.split("&")
-            console.log('xx temp parametersArray', parametersArray)
+        let parametersArray: string[] = parameters.split("&")
 
-            parametersArray.forEach(par => {
+        parametersArray.forEach(par => {
 
-                // Make sure its not empty, else TS will get the hizzy fit
-                if (par.length > 0) {
+            // Make sure its not empty, else TS will get the hizzy fit
+            if (par.length > 0) {
 
-                    // Strip of indicator chars
-                    if (par[0] == '?') {
-                        par = par.substring(1);
-                    };
-                    if (par[0] == '&') {
-                        par = par.substring(1);
-                    };
-
-                    // Get two parts of parameter
-                    if (par.indexOf('=') > 0) {
-                        let parKey: string = par.substring(0, par.indexOf('='));
-                        let parValue: string = par.substring(par.indexOf('=') + 1);
-                        parKey = parKey.trim();
-                        parValue = parValue.trim();
-                        console.log('xx temp 2', parKey, parValue)
-                        if (parKey == 'sortObject') {
-                            sortObject = parValue;
-                        };
-                        if (parKey == 'fields') {
-                            fieldsObject = parValue;
-                        };
-                        if (parKey == 'filterObject') {
-                            filterObject = parValue;
-                        };
-                        if (parKey == 'aggregationObject') {
-                            aggregationObject = parValue;
-                        };
-                        if (parKey == 'nrRowsToReturn') {
-                            nrRowsToReturn = +parValue;
-                            if (nrRowsToReturn == null) {
-                                nrRowsToReturn = 0;
-                            };
-                        };
-                    }
+                // Strip of indicator chars
+                if (par[0] == '?') {
+                    par = par.substring(1);
                 };
-            })
-            console.log('xx temp sortObject', sortObject)
-            console.log('xx temp fieldsObject', fieldsObject)
-            console.log('xx temp filterObject', filterObject)
-            console.log('xx temp aggregationObject', aggregationObject)
-            console.log('xx temp nrRowsToReturn', nrRowsToReturn)
-
-            // 2. If (SORT_OBJECT) then results = results.sort()
-            // Sort ASC on given field, -field means DESC
-            // NB: this is NOT mongoose notation with {field: 1}, it is ONE
-            //     field, ie sortObject=-createdOn
-
-            // TODO - return sortOrder = 1 depending on - in field, see TypeScript
-            if (sortObject != null) {
-
-                // When DESC, and take off -
-                // For example, sortOrder=-Month
-                let sortDirection: number = 1;
-                let sortColumn: string = sortObject;
-                if (sortObject[0] === "-") {
-                    sortDirection = -1;
-                    sortColumn = sortObject.substr(1);
+                if (par[0] == '&') {
+                    par = par.substring(1);
                 };
-                console.log('xx temp sortings', sortDirection, sortColumn, sortObject)
-                // Sort given column in given direction
-                results = results.sort( (a,b) => {
-                    if (a[sortColumn] > b[sortColumn]) {
-                        return sortDirection;
+
+                // Get two parts of parameter
+                if (par.indexOf('=') > 0) {
+                    let parKey: string = par.substring(0, par.indexOf('='));
+                    let parValue: string = par.substring(par.indexOf('=') + 1);
+                    parKey = parKey.trim();
+                    parValue = parValue.trim();
+
+                    if (parKey == 'sortObject') {
+                        sortObject = parValue;
                     };
-                    if (a[sortColumn] < b[sortColumn]) {
-                        return sortDirection * -1;
+                    if (parKey == 'fields') {
+                        fieldsObject = parValue;
                     };
-                    return 0;
-                });
-                console.log('xx temp after sort', results)
-            };
-
-            // 3. If (FIELDS_STRING) then results = results[fields]
-            if (fieldsObject != null) {
-
-                // Create Array of Fields, un-trimmed
-                let fieldsArray = fieldsObject.split(",");
-                fieldsArray = fieldsArray.map(x => x.trim());
-                // for (var i = 0; i < fieldsArray.length; i++) {
-                //     fieldsArray[i] = fieldsArray[i].trim();
-                // };
-                console.log('xx temp fieldsArray', fieldsArray)
-                // Loop on keys in Object = row 1, delete field from each element in array if not
-                // in fieldsArray
-                Object.keys(results[0]).forEach(key => {
-
-                    if (fieldsArray.indexOf(key) < 0) {
-                        for (var i = 0; i < results.length; i++) {
-                            delete results[i][key];
+                    if (parKey == 'filterObject') {
+                        filterObject = parValue;
+                    };
+                    if (parKey == 'aggregationObject') {
+                        aggregationObject = parValue;
+                    };
+                    if (parKey == 'nrRowsToReturn') {
+                        nrRowsToReturn = +parValue;
+                        if (nrRowsToReturn == null) {
+                            nrRowsToReturn = 0;
                         };
                     };
+                }
+            };
+        })
+
+        // 2. If (SORT_OBJECT) then results = results.sort()
+        // Sort ASC on given field, -field means DESC
+        // NB: this is NOT mongoose notation with {field: 1}, it is ONE
+        //     field, ie sortObject=-createdOn
+
+        // TODO - return sortOrder = 1 depending on - in field, see TypeScript
+        if (sortObject != null) {
+
+            // When DESC, and take off -
+            // For example, sortOrder=-Month
+            let sortDirection: number = 1;
+            let sortColumn: string = sortObject;
+            if (sortObject[0] === "-") {
+                sortDirection = -1;
+                sortColumn = sortObject.substr(1);
+            };
+
+            // Sort given column in given direction
+            results = results.sort( (a,b) => {
+                if (a[sortColumn] > b[sortColumn]) {
+                    return sortDirection;
+                };
+                if (a[sortColumn] < b[sortColumn]) {
+                    return sortDirection * -1;
+                };
+                return 0;
+            });
+
+        };
+
+        // 3. If (FIELDS_STRING) then results = results[fields]
+        if (fieldsObject != null) {
+
+            // Create Array of Fields, un-trimmed
+            let fieldsArray = fieldsObject.split(",");
+            fieldsArray = fieldsArray.map(x => x.trim());
+
+            // Loop on keys in Object = row 1, delete field from each element in array if not
+            // in fieldsArray
+            Object.keys(results[0]).forEach(key => {
+
+                if (fieldsArray.indexOf(key) < 0) {
+                    for (var i = 0; i < results.length; i++) {
+                        delete results[i][key];
+                    };
+                };
+            });
+        };
+
+        // 4. If (FILTER_OBJECT) then results = results.filter()
+        if (filterObject != null) {
+
+            filterObject = JSON.parse(filterObject)
+
+            Object.keys(filterObject).forEach( key => {
+                // Get the key-value pair
+                let value = filterObject[key];
+                results = results.filter(r => {
+                    return value == r[key];
                 });
-                console.log('xx temp after fields', results)
-            };
+            });
+        };
 
-            // 4. If (FILTER_OBJECT) then results = results.filter()
-            if (filterObject != null) {
-                console.log('xx temp filter', filterObject)
-                filterObject = JSON.parse(filterObject)
-                console.log('xx temp filter', filterObject)
-                Object.keys(filterObject).forEach( key => {
-                    // Get the key-value pair
-                    console.log('xx temp key', key)
-                    let value = filterObject[key];
-                    results = results.filter(r => {
-                        return value == r[key];
-                    });
-                });
-                console.log('xx temp after filter', results)
-            };
+        // TODO
+        // 5. If (AGGREGATION_OBJECT) then results = results.clever-thing
+        if (aggregationObject != null) {
 
-            // TODO
-            // 5. If (AGGREGATION_OBJECT) then results = results.clever-thing
-            if (aggregationObject != null) {
+        };
 
-            };
+        // 6. Reduce nr of rows to return: 0 or null means all rows
+        if (nrRowsToReturn > 0) {
+            results = results.slice(0, nrRowsToReturn)
+        };
 
-            // 6. Reduce nr of rows to return: 0 or null means all rows
-            if (nrRowsToReturn > 0) {
-                results = results.slice(0, nrRowsToReturn)
-                console.log('xx temp after slice', results)
-            };
-
-            // 7. Return
-            return results;
-        // }
-        // catch (error) {
-        //     return {
-        //         error: error,
-        //         results: null
-        //     };
-        // };
+        // 7. Return
+        return results;
 
     }
 
