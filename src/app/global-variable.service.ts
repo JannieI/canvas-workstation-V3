@@ -6943,6 +6943,121 @@ export class GlobalVariableService {
         return graphWidth;
     }
 
+    sortFilterFieldsAggregate(
+        inputResults: any = null, 
+        sortObject: any = null, 
+        fieldsObject: string = null,
+        filterObject: any = null,
+        aggregationObject: any = null,
+        nrRowsToReturn: number = 0
+        ): any {
+        // This routines receives data as an array and instructions, and then returns the 
+        // data after manipulations, like sorting, filtering, field selection and 
+        // aggregations.
+        // Inputs (examples):
+        //   sortObject=-Month
+        //   fields=Month Year
+        //   filterObject={"Month":"January"}
+        //   aggregationObject= TODO: not done as yet ...
+    
+        // Return if nothing to do
+        if (inputResults == null) {
+            return [];
+        };
+        if (inputResults.length == 0) {
+            return [];
+        };
+
+        // try {
+            // 1. Extract Query properties: these are used by the Widget to reduce the data block returned
+            let results: any = inputResults;
+    
+            // 2. If (SORT_OBJECT) then results = results.sort()
+            // Sort ASC on given field, -field means DESC
+            // NB: this is NOT mongoose notation with {field: 1}, it is ONE
+            //     field, ie sortObject=-createdOn       
+    
+            // TODO - return sortOrder = 1 depending on - in field, see TypeScript
+            if (sortObject != null) {
+    
+                // When DESC, and take off -
+                // For example, sortOrder=-Month
+                let sortDirection: number = 1;
+                let sortColumn: string = sortObject;
+                if (sortObject[0] === "-") {
+                    sortDirection = -1;
+                    sortColumn = sortObject.substr(1);
+                };
+                
+                // Sort given column in given direction
+                results.sort( (a,b) => {
+                    if (a[sortColumn] > b[sortColumn]) {
+                        return sortDirection;
+                    };
+                    if (a[sortColumn] < b[sortColumn]) {
+                        return sortDirection * -1;
+                    };
+                    return 0;
+                });
+            };
+    
+            // 3. If (FIELDS_STRING) then results = results[fields]
+            if (fieldsObject != null) {
+    
+                // Create Array of Fields, un-trimmed
+                let fieldsArray = fieldsObject.split(",");
+                fieldsArray = fieldsArray.map(x => x.trim());
+                // for (var i = 0; i < fieldsArray.length; i++) {
+                //     fieldsArray[i] = fieldsArray[i].trim();
+                // };
+                
+                // Loop on keys in Object = row 1, delete field from each element in array if not
+                // in fieldsArray
+                Object.keys(results[0]).forEach(key => {
+    
+                    if (fieldsArray.indexOf(key) < 0) {
+                        for (var i = 0; i < results.length; i++) {
+                            delete results[i][key];
+                        };
+                    };
+                });
+            };
+    
+            // 4. If (FILTER_OBJECT) then results = results.filter()
+            if (filterObject != null) {
+                filterObject = JSON.parse(filterObject)
+                Object.keys(filterObject).forEach( key => {
+                    // Get the key-value pair
+                    let value = filterObject[key];
+                    results = results.filter(r => {
+                        return value == r[key];
+                    });
+                });
+            };
+    
+            // TODO
+            // 5. If (AGGREGATION_OBJECT) then results = results.clever-thing
+            if (aggregationObject != null) {
+    
+            };
+            
+            // 6. Reduce nr of rows to return: 0 or null means all rows
+            if (nrRowsToReturn != 0  &&  nrRowsToReturn != null) {
+                results = results.slice(0, nrRowsToReturn)
+            };
+            
+            // 7. Return
+            return results;
+        // }
+        // catch (error) {
+        //     return {
+        //         error: error, 
+        //         results: null
+        //     };
+        // };
+        
+    }
+    
     testBingMaps() {
         // Test to get DistanceMatrix from Bing via Async - not sure how to get results !
         console.log('bingMaps Start')
