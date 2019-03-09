@@ -7027,7 +7027,9 @@ export class GlobalVariableService {
     
             // 4. If (FILTER_OBJECT) then results = results.filter()
             if (filterObject != null) {
+                console.log('xx temp filter', filterObject)
                 filterObject = JSON.parse(filterObject)
+                console.log('xx temp filter', filterObject)
                 Object.keys(filterObject).forEach( key => {
                     // Get the key-value pair
                     console.log('xx temp key', key)
