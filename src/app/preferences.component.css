@@ -128,10 +128,10 @@
             text-align: left;
         }
         .gridSettingsRefreshLocalCache {
-            grid-column-start: 12;
+            grid-column-start: 11;
             /* autoprefixer: off */
             grid-column-end: 14;
-            grid-row-start: 5;
+            grid-row-start: 3;
             grid-row-end: 6;
             margin-left: 20px;
             text-align: left;

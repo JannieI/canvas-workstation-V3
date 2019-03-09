@@ -214,7 +214,7 @@ export class PreferencesComponent implements OnInit {
             // Fill relevant Tabs
             this.dashboardTabList = ['None'];
 
-            this.globalVariableService.dashboardTabs.forEach(t => {
+            this.dashboardTabs.forEach(t => {
 
                 // Fill TabList
                 if (this.preferenceStartupDashboardID != null 
