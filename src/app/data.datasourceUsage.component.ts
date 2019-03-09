@@ -31,7 +31,6 @@ export class DataDatasourceUsageComponent implements OnInit {
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
-        console.log(event);
         event.preventDefault();
 
         // Known ones
@@ -44,6 +43,7 @@ export class DataDatasourceUsageComponent implements OnInit {
 
     datasources: Datasource[];
     dashboards: Dashboard[] = [];
+    dashboardsOrignal: Dashboard[] = [];
     errorMessage: string = '';
     selectedRowIndex: number = 0;
     widgets: Widget[] = [];
@@ -74,7 +74,7 @@ export class DataDatasourceUsageComponent implements OnInit {
 
                         return 0;
                     });
-    
+
                     // Show D for DS
                     if (this.datasources.length > 0) {
                         this.clickSelectedDatasource(0, this.datasources[0].id);
@@ -84,6 +84,14 @@ export class DataDatasourceUsageComponent implements OnInit {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in Datasource.usage reading datasources: ' + err);
             });
+            this.globalVariableService.getResource('dashboards')
+                .then(res => {
+                    this.dashboardsOrignal = res
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.usage reading dashboards: ' + err);
+                });
 
     }
 
@@ -95,7 +103,11 @@ export class DataDatasourceUsageComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedRowIndex = index;
 
-        this.widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == id);
+        let parameters: string = '?filterObject= {"datasourceID":' + id + '}'
+        this.globalVariableService.getResource('widgets', parameters)
+            .then(res => {
+
+                this.widgets = res;
 
                 // Build a list of unique D
                 let dashboardIDs: number[] = [];
@@ -104,37 +116,33 @@ export class DataDatasourceUsageComponent implements OnInit {
                         dashboardIDs.push(w.dashboardID);
                     };
                 });
-
-
-                let parameters: string = '?filterObject= {"datasourceID":' + id + '}'
-                this.globalVariableService.getResource('widgets', parameters)
-                .then(res => {
-                    console.log('xx res', res, parameters)
-
+        
+                // Build list to display
+                this.dashboards = [];
+                let dashboardIndex: number;
+                dashboardIDs.forEach(did => {
+                    dashboardIndex = this.dashboardsOrignal.findIndex(d =>
+                        d.id == did);
+                    if (dashboardIndex >= 0) {
+                        this.dashboards.push(this.dashboardsOrignal[dashboardIndex]);
+                    }
                 })
-                .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
-                    console.error('Error in Datasource.usage reading widgets: ' + err);
-                });
-    
+
+                this.errorMessage = '';
+                
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.usage reading widgets: ' + err);
+            });
 
 
 
 
-        // Build list to display
-        this.dashboards = [];
-        let dashboardIndex: number;
-        dashboardIDs.forEach(did => {
-            dashboardIndex = this.globalVariableService.dashboards.findIndex(d =>
-                d.id == did);
-            if (dashboardIndex >= 0) {
-                this.dashboards.push(this.globalVariableService.dashboards[dashboardIndex]);
-            }
-        })
 
-        this.errorMessage = '';
+
     }
-   
+
     clickClose(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
