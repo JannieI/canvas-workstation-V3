@@ -6992,17 +6992,14 @@ export class GlobalVariableService {
                     // Get two parts of parameter
                     if (par.indexOf('=') > 0) {
                         let parKey: string = par.substring(0, par.indexOf('='));
-                        let parValue: string = par.substring(par.indexOf('='));
-
-
-                        console.log('xx temp parKey', parKey, parValue)
+                        let parValue: string = par.substring(par.indexOf('=') + 1);
                         parKey = parKey.trim();
                         parValue = parValue.trim();
-
+                        console.log('xx temp 2', parKey, parValue)
                         if (parKey == 'sortObject') {
                             sortObject = parValue;
                         };
-                        if (parKey == 'fieldsObject') {
+                        if (parKey == 'fields') {
                             fieldsObject = parValue;
                         };
                         if (parKey == 'filterObject') {
@@ -7012,15 +7009,19 @@ export class GlobalVariableService {
                             aggregationObject = parValue;
                         };
                         if (parKey == 'nrRowsToReturn') {
-                            if (typeof parValue == 'number') {
-                                nrRowsToReturn = +parValue;
+                            nrRowsToReturn = +parValue;
+                            if (nrRowsToReturn == null) {
+                                nrRowsToReturn = 0;
                             };
                         };
                     }
-                    console.log('xx temp vars', sortObject, fieldsObject, filterObject, aggregationObject, nrRowsToReturn)
-
-                }
+                };
             })
+            console.log('xx temp sortObject', sortObject)
+            console.log('xx temp fieldsObject', fieldsObject)
+            console.log('xx temp filterObject', filterObject)
+            console.log('xx temp aggregationObject', aggregationObject)
+            console.log('xx temp nrRowsToReturn', nrRowsToReturn)
 
             // 2. If (SORT_OBJECT) then results = results.sort()
             // Sort ASC on given field, -field means DESC
