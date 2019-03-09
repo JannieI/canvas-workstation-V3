@@ -6993,10 +6993,31 @@ export class GlobalVariableService {
                     if (par.indexOf('=') > 0) {
                         let parKey: string = par.substring(0, par.indexOf('='));
                         let parValue: string = par.substring(par.indexOf('='));
+
+
                         console.log('xx temp parKey', parKey, parValue)
+                        parKey = parKey.trim();
+                        parValue = parValue.trim();
 
+                        if (parKey == 'sortObject') {
+                            sortObject = parValue;
+                        };
+                        if (parKey == 'fieldsObject') {
+                            fieldsObject = parValue;
+                        };
+                        if (parKey == 'filterObject') {
+                            filterObject = parValue;
+                        };
+                        if (parKey == 'aggregationObject') {
+                            aggregationObject = parValue;
+                        };
+                        if (parKey == 'nrRowsToReturn') {
+                            if (typeof parValue == 'number') {
+                                nrRowsToReturn = +parValue;
+                            };
+                        };
                     }
-
+                    console.log('xx temp vars', sortObject, fieldsObject, filterObject, aggregationObject, nrRowsToReturn)
 
                 }
             })
