@@ -135,12 +135,6 @@ export class DataDatasourceUsageComponent implements OnInit {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in Datasource.usage reading widgets: ' + err);
             });
-
-
-
-
-
-
     }
 
     clickClose(action: string) {

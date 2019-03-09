@@ -69,48 +69,64 @@ export class WidgetLinksComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards
-            .slice()
-            .sort( (obj1,obj2) => {
-                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                    return 1;
-                };
-                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                    return -1;
-                };
-                return 0;
-            });
-        this.dashboardTabs = this.globalVariableService.dashboardTabs
-            .slice()
-            .sort( (obj1,obj2) => {
-                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                    return 1;
-                };
-                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                    return -1;
-                };
-                return 0;
-            })
+        this.globalVariableService.getResource('dashboards')
+        .then(res => {
+            this.dashboards = res
+                .sort( (obj1,obj2) => {
+                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
 
-        // Show linking
-        if (this.selectedWidget.hyperlinkDashboardID != null
-            &&
-            this.selectedWidget.hyperlinkDashboardTabID != null) {
+            this.globalVariableService.getResource('dashboardTabs')
+                .then(res => {
 
-            this.showLink(
-                this.selectedWidget.hyperlinkDashboardID,
-                this.selectedWidget.hyperlinkDashboardTabID
-            );
+                    this.dashboardTabs = res
+                        .sort( (obj1,obj2) => {
+                            if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                                return 1;
+                            };
+                            if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                                return -1;
+                            };
+                            return 0;
+                        });
+            
+                    // Show linking
+                    if (this.selectedWidget.hyperlinkDashboardID != null
+                        &&
+                        this.selectedWidget.hyperlinkDashboardTabID != null) {
+
+                        this.showLink(
+                            this.selectedWidget.hyperlinkDashboardID,
+                            this.selectedWidget.hyperlinkDashboardTabID
+                        );
 
 
-        } else {
-            this.dashboardIsLinked = false;
-        };
+                    } else {
+                        this.dashboardIsLinked = false;
+                    };
 
-        // Select the topmost D
-        if (this.dashboards.length > 0) {
-            this.clickSelectDashboard(0, this.dashboards[0].id, this.dashboards[0].name)
-        };
+                    // Select the topmost D
+                    if (this.dashboards.length > 0) {
+                        this.clickSelectDashboard(0, this.dashboards[0].id, this.dashboards[0].name)
+                    };
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in widget.hyperLink reading dashboardTabs: ' + err);
+                });
+                
+
+        })
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in widget.hyperLink reading dashboards: ' + err);
+        });
 
     }
 
