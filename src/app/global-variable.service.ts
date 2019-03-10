@@ -672,13 +672,10 @@ export class GlobalVariableService {
                         if (localCacheableMemory) {
 
                             if (localVariableName != null) {
-                                console.log('%c    Global-Variables getResource - data returned from Memory for : ',
-                                    this.concoleLogStyleForCaching,
-                                    resource);
                                 // var type = 'article';
                                 // this[type+'_count'] = 1000;  // in a function we use "this";
                                 // alert(this.article_count);
-
+                                console.log('xx in cache PRE sort', resource, params)
                                 // Set to the full set, and then sortFilter if requested
                                 let results: any = this[localVariableName];
                                 if (params != '') {
@@ -687,7 +684,10 @@ export class GlobalVariableService {
                                         params);
                                 };
                                  
-                                console.log('xx in cache after sort', results)
+                                console.log('xx in cache POST sort', resource, params, results)
+                                console.log('%c    Global-Variables getResource - data returned from Memory for : ',
+                                    this.concoleLogStyleForCaching,
+                                    resource);
                                 
                                 console.timeEnd("      DURATION getResource: " + resource);
 

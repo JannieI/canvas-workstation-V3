@@ -85,9 +85,9 @@ export class DashboardTabComponent {
             this.globalVariableService.getResource(
                 'dashboardTabs', 
                 '?filterObject={"id": ' + this.globalVariableService
-                .currentDashboardInfo.value.currentDashboardTabID
+                .currentDashboardInfo.value.currentDashboardTabID + '}'
                 ).then(res => {
-
+console.log('xx res', res)
                     if (res  &&  res.length > 0) {
                         this.name = res[0].name;
                         this.description = res[0].description;
@@ -136,6 +136,7 @@ export class DashboardTabComponent {
                 this.backgroundcolors = res;
                 this.backgroundcolors = [
                     {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, 
+                    {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false},
                     ...this.backgroundcolors
                 ];
             })

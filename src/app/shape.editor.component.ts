@@ -1,5 +1,5 @@
 /*
- * Shows form to delete all Shapes on the current Tab
+ * Shows form to add, edit selected Shape
  */
 
 // Angular

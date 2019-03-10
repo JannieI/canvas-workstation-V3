@@ -1,3 +1,7 @@
+/*
+ * Shows form to delete all Shapes on the current Tab
+ */
+
 // Angular
 import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
