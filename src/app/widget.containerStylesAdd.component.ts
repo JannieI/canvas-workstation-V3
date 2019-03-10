@@ -93,6 +93,10 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         this.globalVariableService.getResource('canvasBackgroundcolors')
             .then(res => {
                 this.backgroundcolors = res;
+                this.backgroundcolors = [
+                    {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false},
+                    ...this.backgroundcolors
+                ];
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
