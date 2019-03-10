@@ -192,6 +192,9 @@ export class DashboardDescriptionComponent implements OnInit {
                 this.dashboardRefreshed = this.selectedDashboard.dateRefreshed;
                 this.dashboardAccessType = this.selectedDashboard.accessType;
 
+                this.dashboardBackgroundColorName = this.selectedDashboard.backgroundColorName;
+                this.dashboardBackgroundColor = this.selectedDashboard.backgroundColor;
+            
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -275,8 +278,6 @@ export class DashboardDescriptionComponent implements OnInit {
         this.selectedDashboard.url = this.dashboardExportUrl;
         this.selectedDashboard.password = this.dashboardPassword;
         this.selectedDashboard.templateDashboardID = this.dashboardTemplateID;
-        this.selectedDashboard.backgroundColor = this.dashboardBackgroundColor;
-        this.selectedDashboard.backgroundImage = this.dashboardBackgroundImage;
         this.selectedDashboard.state = this.dashboardState;
         this.selectedDashboard.version = this.dashboardVersion;
         this.selectedDashboard.creator = this.dashboardCreator;
@@ -287,8 +288,16 @@ export class DashboardDescriptionComponent implements OnInit {
         this.selectedDashboard.dateRefreshed = this.dashboardRefreshed;
         this.selectedDashboard.accessType = this.dashboardAccessType;
 
+        this.selectedDashboard.backgroundColorName = this.dashboardBackgroundColorName;
+        this.selectedDashboard.backgroundColor = this.dashboardBackgroundColor;
+        this.selectedDashboard.backgroundImage = this.dashboardBackgroundImage;
+
         // Update global D
-        this.globalVariableService.saveResource('dashboards', this.selectedDashboard);
+        this.globalVariableService.saveResource('dashboards', this.selectedDashboard)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.description saving dashboards: ' + err);
+            });
 
         // Refresh if Template changes to show changes on screen
         if (this.dashboardTemplateIDoriginal != this.selectedDashboard.templateDashboardID) {
@@ -323,7 +332,20 @@ export class DashboardDescriptionComponent implements OnInit {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
-        this.dashboardBackgroundColor = ev.target.value;
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectBgColorPicker(null);
+        };
+
+        this.dashboardBackgroundColorName = ev.target.value;
+        this.dashboardBackgroundColor = this.dashboardBackgroundColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.dashboardBackgroundColorName
+        );
+        if (localIndex >= 0) {
+            this.dashboardBackgroundColor = this.backgroundcolors[localIndex].cssCode;
+        };
+
     }
 
     clickSelectBgColorPicker(ev: any) {

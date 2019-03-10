@@ -173,7 +173,7 @@
                         <b>Bg Colour:</b>
                     </div>
                     <div class="select gridBackgroundColor">
-                        <select [(ngModel)]="dashboardBackgroundColor"
+                        <select [(ngModel)]="dashboardBackgroundColorName"
                             name="dashboardBackgroundColor"
                             (change)="clickSelectBgColor($event)"
                             >
@@ -195,7 +195,7 @@
                         <clr-icon
                             shape="circle"
                             size="14"
-                            [style.background-color]="localWidget.containerBackgroundcolor"
+                            [style.background-color]="dashboardBackgroundColor"
                             [style.color]="dashboardBackgroundColor"
                             >
                         </clr-icon>

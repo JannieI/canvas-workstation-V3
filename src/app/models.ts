@@ -903,10 +903,10 @@ export class Dashboard {
     password: string;                       // Optional password to lock Dashboard
     refreshMode: string;                    // OnDemand, OnOpen, Repeatedly
     refreshTimer: number;                   // Nr seconds to repeat, if refreshMode = Repeatedly
-    defaultTabID: number;
+    defaultTabID: number;                   // Default Tab to open with
     defaultExportFileType: string;          // Default file type on export
-    url: string;
-    qaRequired: boolean;
+    url: string;                            //
+    qaRequired: boolean;                    // True if QA is required - 4 eyed principle
     isSample: boolean;                      // True if this is a sample
 
     // Overlay looks
