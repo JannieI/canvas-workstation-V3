@@ -58,11 +58,11 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     // colourPickerClosed: boolean = false;
     // colourPickerSubscription: Subscription;
     containerStyleName: string = '';
-    containerBackgroundcolor: string = 'transparent';
-    containerBackgroundcolorName: string = 'transparent';
+    containerBackgroundcolor: string = '';
+    containerBackgroundcolorName: string = '';
     containerBorder: string = '1px solid black';
-    containerBorderColour: string = 'black';
-    containerBorderColourName: string = 'Black';
+    containerBorderColour: string = '';
+    containerBorderColourName: string = '';
     containerBorderRadius: string;
     containerBorderType: string = 'solid';
     containerBorderSize: string = '1px';
@@ -97,6 +97,13 @@ export class WidgetContainerStylesAddComponent implements OnInit {
                     {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false},
                     ...this.backgroundcolors
                 ];
+
+                // Defaults
+                this.containerBackgroundcolor = 'white';
+                this.containerBackgroundcolorName = 'White';
+                this.containerBorderColour = 'gray';
+                this.containerBorderColourName = 'Gray';
+            
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);

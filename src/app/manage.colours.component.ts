@@ -92,10 +92,6 @@ export class ManageColoursComponent implements OnInit {
                 };
                 return 0;
             });
-            this.backgroundcolors = [
-                {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false},
-                ...this.backgroundcolors
-            ];
         
         })
         .catch(err => {

@@ -105,6 +105,7 @@
                             shape="circle"
                             size="14"
                             [style.background-color]="containerBackgroundcolor"
+                            [style.border-color]="gray"
                             [style.color]="containerBackgroundcolor"
                             >
                         </clr-icon>
@@ -122,8 +123,8 @@
                     </div>
                     <div class="select containerBorderColor">
                         <select [(ngModel)]="containerBorderColourName"
+                            name="containerBordercolour"
                             (change)="clickSelectBorderColor($event)"
-                            name="containerBorderColourName"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.cssCode"
@@ -137,6 +138,7 @@
                             shape="circle"
                             size="14"
                             [style.background-color]="containerBorderColour"
+                            [style.border-color]="gray"
                             [style.color]="containerBorderColour"
                             >
                         </clr-icon>
