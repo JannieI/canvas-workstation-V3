@@ -17,6 +17,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Datasource }                 from './models';
 import { Dataset }                    from './models';
 import { DataQualityIssue }           from './models';
+import { Widget }                     from './models';
 
 interface localDatasources extends Datasource
     {
@@ -66,6 +67,7 @@ export class DataCombinationAppendComponent implements OnInit {
     selectedRowName: string = '';
     selectedRowDescription: string = '';
     selectedRowNrWidgetsInUse: number = 0;
+    widgets: Widget[] = [];
 
 
 	constructor(
@@ -91,20 +93,37 @@ export class DataCombinationAppendComponent implements OnInit {
         });
 
         // Load from global variables
-        this.datasources = this.globalVariableService.datasources.slice();
-        this.datasources.forEach(ds => {
-            if (currentWidgetIDs.indexOf(ds.id) >= 0) {
-                ds.hasWidget = true;
-            } else {
-                ds.hasWidget = false;
-            };
-            if (this.currentDSids.indexOf(ds.id) >= 0) {
-                ds.isSelected = true;
-            } else {
-                ds.isSelected = false;
-            };
-        });
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res;
 
+                this.datasources.forEach(ds => {
+                    if (currentWidgetIDs.indexOf(ds.id) >= 0) {
+                        ds.hasWidget = true;
+                    } else {
+                        ds.hasWidget = false;
+                    };
+                    if (this.currentDSids.indexOf(ds.id) >= 0) {
+                        ds.isSelected = true;
+                    } else {
+                        ds.isSelected = false;
+                    };
+                });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in dataCombination.append reading datasources: ' + err);
+            });
+
+        this.globalVariableService.getResource('widgets')
+            .then(res => {
+                this.widgets = res;
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in dataCombination.append reading widgets: ' + err);
+            });
+    
         // Reset
         this.selectedRowID = -1;
         this.selectedRowIndex = -1;
@@ -115,7 +134,7 @@ export class DataCombinationAppendComponent implements OnInit {
         if (this.datasources.length > 0) {
             this.clickSelectedDatasource(0, this.datasources[0].id);
         };
-        console.warn('xx DS, dSet', this.globalVariableService.datasources, this.globalVariableService.currentDatasources, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
+        console.warn('xx DS, dSet', this.datasources, this.globalVariableService.currentDatasources, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
         // TODO - fix!!
         this.fieldTypes = [{MonthTraded: 'MonthTraded', TradeType: 'TradeType', Volume: 'Volume', Price: 'Price', Value: 'Value'}];
 
@@ -138,7 +157,7 @@ export class DataCombinationAppendComponent implements OnInit {
             this.selectedRowName = this.datasources[dsIndex].name;
             this.selectedRowDescription = this.datasources[dsIndex].description;
 
-            this.selectedRowNrWidgetsInUse = this.globalVariableService.widgets.filter(w =>
+            this.selectedRowNrWidgetsInUse = this.widgets.filter(w =>
                 w.datasourceID == this.datasources[index].id
                 &&
                 w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
@@ -159,13 +178,13 @@ export class DataCombinationAppendComponent implements OnInit {
             let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
                 .findIndex(dS => dS.id == id
             );
-            let globalDSIndex: number = this.globalVariableService.datasources.findIndex(ds =>
+            let globalDSIndex: number = this.datasources.findIndex(ds =>
                 ds.id == id
             );
 
             // DS exists in gv datasources, but not in currentDatasources
             if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
-                localDatasource = this.globalVariableService.datasources[globalDSIndex];
+                localDatasource = this.datasources[globalDSIndex];
 
                 let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
                     .findIndex(dS => dS.id == id
@@ -182,15 +201,20 @@ export class DataCombinationAppendComponent implements OnInit {
                     localDataset = this.globalVariableService.datasets[globalDsetIndex];
 
                     // Get data for Dset
-                    this.globalVariableService.getData('datasourceID=' + localDataset.id.toString()).then(res => {
+                    this.globalVariableService.getData('datasourceID=' + localDataset.id.toString())
+                        .then(res => {
 
-                        // Add data to dataset
-                        localDataset.dataRaw = res;
-                        localDataset.data = res;
+                            // Add data to dataset
+                            localDataset.dataRaw = res;
+                            localDataset.data = res;
 
-                        this.globalVariableService.currentDatasets.push(localDataset);
+                            this.globalVariableService.currentDatasets.push(localDataset);
 
-                    });
+                        })
+                        .catch(err => {
+                            this.errorMessage = err.slice(0, 100);
+                            console.error('Error in dataCombination.append getData: ' + err);
+                        });
                 };
             };
         } else {

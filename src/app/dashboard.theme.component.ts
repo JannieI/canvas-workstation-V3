@@ -57,13 +57,13 @@ export class DashboardThemeComponent implements OnInit {
             .then(res => this.dashboards = res)
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Dashboard.them reading dashboards: ' + err);
+                console.error('Error in Dashboard.theme reading dashboards: ' + err);
             });
         this.globalVariableService.getResource('dashboardThemes')
             .then(res => this.dashboardThemes = res)
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Dashboard.them reading dashboardThemes: ' + err);
+                console.error('Error in Dashboard.theme reading dashboardThemes: ' + err);
             });
     }
 
