@@ -59,6 +59,8 @@ export class WidgetContainerComponent implements OnInit {
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
+    containerBackgroundcolorName: string = '';
+    containerBackgroundcolor: string = '';
     containerBorderColour: string = 'black';
     containerBorderColourName: string = 'black';
     containerBorderType: string = 'solid';
@@ -90,8 +92,7 @@ export class WidgetContainerComponent implements OnInit {
 
         // Deep copy local copy - Note: this must be done at the start of this method
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-        this.containerBorderColourName = this.localWidget.containerBorderColourName;
-
+        
         // Get setup info
         this.globalVariableService.getResource('canvasBackgroundcolors')
             .then(res => {
@@ -101,6 +102,12 @@ export class WidgetContainerComponent implements OnInit {
                     {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false},
                     ...this.backgroundcolors
                 ];
+
+                // Startup
+                this.containerBackgroundcolorName = this.localWidget.containerBackgroundcolorName;
+                this.containerBackgroundcolor = this.localWidget.containerBackgroundcolor;
+                this.containerBorderColourName = this.localWidget.containerBorderColourName;
+                this.containerBorderColour = this.localWidget.containerBackgroundcolor;
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
