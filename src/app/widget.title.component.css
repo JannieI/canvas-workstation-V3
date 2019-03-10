@@ -71,10 +71,19 @@
         width: 100%;
     }
 
-    .titleText {
+    .titleTextTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 9;
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+    .titleText {
+        grid-column-start: 4;
+        /* autoprefixer: off */
+        grid-column-end: 10;
         grid-row-start: 3;
         grid-row-end: 4;
         margin: 2px 2px 2px 20px;
@@ -82,16 +91,16 @@
     }
 
     .titleBackgroundColourTitle {
-        grid-column-start: 10;
+        grid-column-start: 11;
         /* autoprefixer: off */
-        grid-column-end: 13;
+        grid-column-end: 14;
         grid-row-start: 3;
         grid-row-end: 4;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
     .titleBackgroundColour {
-        grid-column-start: 13;
+        grid-column-start: 14;
         /* autoprefixer: off */
         grid-column-end: 17;
         grid-row-start: 3;
@@ -109,10 +118,19 @@
         width: 100%;
     }
 
-    .titlePadding {
+    .titlePaddingTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 9;
+        grid-column-end: 4;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+    .titlePadding {
+        grid-column-start: 4;
+        /* autoprefixer: off */
+        grid-column-end: 10;
         grid-row-start: 5;
         grid-row-end: 6;
         margin: 2px 2px 2px 20px;
@@ -120,16 +138,16 @@
     }
     
     .titleColourTitle {
-        grid-column-start: 10;
+        grid-column-start: 11;
         /* autoprefixer: off */
-        grid-column-end: 13;
+        grid-column-end: 14;
         grid-row-start: 5;
         grid-row-end: 6;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
     .titleColour {
-        grid-column-start: 13;
+        grid-column-start: 14;
         /* autoprefixer: off */
         grid-column-end: 17;
         grid-row-start: 5;
@@ -150,7 +168,7 @@
     .titleBorderSizeTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 7;
         grid-row-end: 8;
         margin: 2px 2px 2px 20px;
@@ -158,9 +176,9 @@
     }
 
     .titleBorderSize {
-        grid-column-start: 3;
+        grid-column-start: 4;
         /* autoprefixer: off */
-        grid-column-end: 6;
+        grid-column-end: 7;
         grid-row-start: 7;
         grid-row-end: 8;
         margin: 2px 2px 2px 20px;
@@ -168,16 +186,16 @@
     }
 
     .titleBorderColorTitle {
-        grid-column-start: 10;
+        grid-column-start: 11;
         /* autoprefixer: off */
-        grid-column-end: 13;
+        grid-column-end: 14;
         grid-row-start: 7;
         grid-row-end: 8;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
     .titleBorderColor {
-        grid-column-start: 13;
+        grid-column-start: 14;
         /* autoprefixer: off */
         grid-column-end: 17;
         grid-row-start: 7;
@@ -198,14 +216,14 @@
     .titleTextAlignTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 9;
         grid-row-end: 10;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
     .titleTextAlign {
-        grid-column-start: 3;
+        grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 9;
@@ -215,16 +233,16 @@
     }
 
     .titleMarginTitle {
-        grid-column-start: 10;
+        grid-column-start: 11;
         /* autoprefixer: off */
-        grid-column-end: 13;
+        grid-column-end: 14;
         grid-row-start: 9;
         grid-row-end: 10;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
     .titleMargin {
-        grid-column-start: 13;
+        grid-column-start: 14;
         /* autoprefixer: off */
         grid-column-end: 17;
         grid-row-start: 9;
@@ -233,18 +251,36 @@
         width: 100%;
     }
 
-    .titleFontsize {
+    .titleFontsizeTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 9;
+        grid-column-end: 4;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+    .titleFontsize {
+        grid-column-start: 4;
+        /* autoprefixer: off */
+        grid-column-end: 10;
         grid-row-start: 11;
         grid-row-end: 12;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
 
+    .titleFontWeightTitle {
+        grid-column-start: 11;
+        /* autoprefixer: off */
+        grid-column-end: 13;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
     .titleFontWeight {
-        grid-column-start: 10;
+        grid-column-start: 14;
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 11;
@@ -253,20 +289,38 @@
         width: 100%;
     }
 
-    .titleHeight {
+    .titleHeightTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 9;
+        grid-column-end: 4;
+        grid-row-start: 13;
+        grid-row-end: 14;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+    .titleHeight {
+        grid-column-start: 4;
+        /* autoprefixer: off */
+        grid-column-end: 10;
         grid-row-start: 13;
         grid-row-end: 14;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
 
-    .titleWidth {
-        grid-column-start: 10;
+    .titleWidthTitle {
+        grid-column-start: 11;
         /* autoprefixer: off */
-        grid-column-end: 21;
+        grid-column-end: 13;
+        grid-row-start: 13;
+        grid-row-end: 14;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+    .titleWidth {
+        grid-column-start: 14;
+        /* autoprefixer: off */
+        grid-column-end: 17;
         grid-row-start: 13;
         grid-row-end: 14;
         margin: 2px 2px 2px 20px;
