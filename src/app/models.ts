@@ -1430,7 +1430,7 @@ export class Widget {
     containerBackgroundcolor: string;       // Actual colour (CSS name or HEX code)
     containerBackgroundcolorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
     containerBorder: string;                // HTML Border def, is 1px solid gray
-    containerBordercolour: string;          // Actual colour (CSS name or HEX code)
+    containerBorderColour: string;          // Actual colour (CSS name or HEX code)
     containerBorderColourName: string;      // Name - CSS (ie black) or Custome Name (Our company blue)
     containerBorderRadius: string;          // Border radius of container in px
     containerBoxshadow: string;             // HTML shadow def, is 2px 2px gray

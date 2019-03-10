@@ -107,7 +107,7 @@ export class WidgetContainerComponent implements OnInit {
                 this.containerBackgroundcolorName = this.localWidget.containerBackgroundcolorName;
                 this.containerBackgroundcolor = this.localWidget.containerBackgroundcolor;
                 this.containerBorderColourName = this.localWidget.containerBorderColourName;
-                this.containerBorderColour = this.localWidget.containerBordercolour ;
+                this.containerBorderColour = this.localWidget.containerBorderColour;
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -405,6 +405,7 @@ export class WidgetContainerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Construct Border
+        this.localWidget.containerBorderColour = this.containerBorderColour;
         this.localWidget.containerBorderColourName = this.containerBorderColourName;
 
         if (this.containerBorderSize != 'none') {
