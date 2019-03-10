@@ -211,11 +211,7 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
 		// Get setup info
-		this.globalVariableService.getResource('canvasBackgroundcolors');
-
-		console.log('xx TEST', this.globalVariableService.vlTemplate, 
 		this.globalVariableService.widgetTemplateInner)
-
 
 	}
 
