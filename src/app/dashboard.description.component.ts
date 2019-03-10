@@ -182,7 +182,13 @@ export class DashboardDescriptionComponent implements OnInit {
 
         // Get setup info
         this.globalVariableService.getResource('canvasBackgroundcolors')
-            .then(res => this.backgroundcolors = res)
+            .then(res => {
+                this.backgroundcolors = res
+                this.backgroundcolors = [
+                    {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false},
+                    ...this.backgroundcolors
+                ];
+            })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in Dashboard.description reading canvasBackgroundcolors: ' + err);
