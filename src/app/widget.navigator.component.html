@@ -9,7 +9,7 @@
                 </button>
 
                 <!-- TOP FORM TITLE -->
-                <div class="gridNetworkTitle">
+                <div class="gridTitle">
                     <b>Navigator</b>
                     <clr-signpost>
                         <clr-icon shape="info-circle"
@@ -34,7 +34,7 @@
                 </div>
 
                 <!-- GRAPH TYPES -->
-                <div class="editorTypesTitle">
+                <div class="gridNetworkAreaTitle">
                     <b>
                         Networks (web)
                     </b>
@@ -55,9 +55,8 @@
                         </clr-signpost-content>
                     </clr-signpost>
                 </div>
-                <div class="gridNetwork">
+                <div class="gridNetworkArea">
                     <div class="gridNetworkBlock"
-                        [style.border]="'1px solid gray'"
                         >
                         WOWEB Companies
                         >
@@ -65,11 +64,10 @@
                 </div>
 
 
-
                 <!-- GRAPH Area -->
-                <div class="gridGraphAreaTitle">
+                <div class="gridGraphArea">
                     For 
-                    <div class="select gridGraphAreaNodeType"
+                    <div class="select gridGraphAreaNodeTypeXXX"
                         title="Select a node type to filter on"
                         >
                         <select [(ngModel)]="filterTimeUnit"
@@ -82,7 +80,7 @@
                         </select>
                     </div>
 
-                    <div class="select gridGraphAreaNodeName"
+                    <div class="select gridGraphAreaNodeNameXXX"
                         title="Select a specific node"
                         >
                         <select [(ngModel)]="filterTimeUnit"
@@ -94,8 +92,8 @@
                             <option>Capitec</option>
                         </select>
                     </div>
-                    <div>
-                        <clr-icon *ngIf="row.isActive"
+                    <div class="gridGraphAreaFilterXXX">
+                        <clr-icon
                             shape="filter"
                             size="12"
                             (dblclick)="dblClickFilterMakeInActive()"
@@ -103,7 +101,7 @@
                         </clr-icon>
 
                     </div>
-                    <div class="gridGraphArea"
+                    <div class="gridGraphAreaGraphicXXX"
                         #dragWidget
                         >
                     </div>

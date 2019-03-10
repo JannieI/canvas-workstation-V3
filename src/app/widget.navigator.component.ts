@@ -64,12 +64,12 @@ export class WidgetNavigatorComponent {
         );
 
         // Render in DOM
-        let view = new View(parse(this.specification));
-        view.renderer('svg')
-            .initialize(this.dragWidget.nativeElement)
-            .hover()
-            .run()
-            .finalize();
+        // let view = new View(parse(this.specification));
+        // view.renderer('svg')
+        //     .initialize(this.dragWidget.nativeElement)
+        //     .hover()
+        //     .run()
+        //     .finalize();
     }
 
 
