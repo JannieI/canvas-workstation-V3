@@ -59,8 +59,6 @@ export class WidgetContainerComponent implements OnInit {
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
-    containerBackgroundcolorName: string = '';
-    containerBackgroundcolor: string = '';
     containerBorderColour: string = 'black';
     containerBorderColourName: string = 'black';
     containerBorderType: string = 'solid';
@@ -86,12 +84,6 @@ export class WidgetContainerComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
-        // Deep copy original
-        this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-
-        // Deep copy local copy - Note: this must be done at the start of this method
-        this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
         
         // Get setup info
         this.globalVariableService.getResource('canvasBackgroundcolors')
@@ -103,99 +95,104 @@ export class WidgetContainerComponent implements OnInit {
                     ...this.backgroundcolors
                 ];
 
+                // Deep copy original
+                this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+                // Deep copy local copy - Note: this must be done at the start of this method
+                this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
                 // Startup
-                this.containerBackgroundcolorName = this.localWidget.containerBackgroundcolorName;
-                this.containerBackgroundcolor = this.localWidget.containerBackgroundcolor;
                 this.containerBorderColourName = this.localWidget.containerBorderColourName;
                 this.containerBorderColour = this.localWidget.containerBorderColour;
+
+                // Get list of Styles
+                this.globalVariableService.getResource('containerStyles')
+                    .then(res => {
+                        this.containerStyles = res;
+                        this.containerStyleNameList = [''];
+                        this.containerStyles.forEach(cs => {
+                            // List of ngFor (needs ID at later stage, state is useful for user)
+                            this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
+                        });
+
+                        // Fill Initial
+                        if (this.containerStyles.length >= 0) {
+
+                            // Load if linked
+                            if (this.localWidget.containerStyleID != null) {
+
+                                let localStyleIndex: number = this.containerStyles.findIndex(cs =>
+                                    cs.id == this.localWidget.containerStyleID
+                                );
+                                if (localStyleIndex != -1) {
+                                    this.containerSelectedStyleID = this.containerStyles[localStyleIndex].id;
+                                    this.containerSelectedStyleName = this.containerStyles[localStyleIndex].name;
+                                    this.updateForm(localStyleIndex);
+                                    this.containerStyleName = this.containerStyles[localStyleIndex].name.trim() +
+                                        ' (' + this.containerStyles[localStyleIndex].id.toString() + ')';
+
+                                };
+                            };
+                        };
+                    })
+                    .catch(err => this.errorMessage = 'Error getting styles: ' + err);
+
+                // Deconstruct border
+                if (this.localWidget.containerBorder != ''
+                    &&
+                    this.localWidget.containerBorder != 'none') {
+                        let space1: number = this.localWidget.containerBorder.indexOf(' ');
+                        if (space1 > 0) {
+                            this.containerBorderSize = this.localWidget.containerBorder.
+                                substr(0, space1).trim();
+                            let rest: string = this.localWidget.containerBorder.substr(space1 + 1, 999);
+
+                            let space2: number = rest.indexOf(' ');
+                            if (space2 > 0) {
+
+                                this.containerBorderType = rest.substr(0, space2).trim();
+                                this.containerBorderColour = rest.substr(space2 + 1, 999).trim();
+                            };
+                        };
+
+                };
+
+                // Manage colour picker
+                this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
+
+                    if (this.localWidget != undefined  &&  clp != null) {
+
+                        if (clp.cancelled) {
+                            this.colourPickerClosed = false;
+                        } else {
+
+                            if (clp.callingRoutine == 'BgColour') {
+                                this.colourPickerClosed = false;
+                                this.localWidget.containerBackgroundcolor = clp.selectedColor;
+                                this.localWidget.containerBackgroundcolorName = 'Open Picker ...';
+                            };
+                            if (clp.callingRoutine == 'LineColour') {
+                                this.colourPickerClosed = false;
+                                this.containerBorderColour = clp.selectedColor;
+                                this.containerBorderColourName = 'Open Picker ...';
+
+                                // Construct line size
+                                if (this.containerBorderSize != 'none') {
+                                    this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
+                                };
+
+                                // Reset
+                                clp.callingRoutine = '';
+                            };
+                        };
+                    };
+                });
+
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in widget.container reading canvasBackgroundcolors: ' + err);
             });
-
-        // Get list of Styles
-        this.globalVariableService.getResource('containerStyles')
-            .then(res => {
-                this.containerStyles = res;
-                this.containerStyleNameList = [''];
-                this.containerStyles.forEach(cs => {
-                    // List of ngFor (needs ID at later stage, state is useful for user)
-                    this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
-                });
-
-                // Fill Initial
-                if (this.containerStyles.length >= 0) {
-
-                    // Load if linked
-                    if (this.localWidget.containerStyleID != null) {
-
-                        let localStyleIndex: number = this.containerStyles.findIndex(cs =>
-                            cs.id == this.localWidget.containerStyleID
-                        );
-                        if (localStyleIndex != -1) {
-                            this.containerSelectedStyleID = this.containerStyles[localStyleIndex].id;
-                            this.containerSelectedStyleName = this.containerStyles[localStyleIndex].name;
-                            this.updateForm(localStyleIndex);
-                            this.containerStyleName = this.containerStyles[localStyleIndex].name.trim() +
-                                ' (' + this.containerStyles[localStyleIndex].id.toString() + ')';
-
-                        };
-                    };
-                };
-            })
-            .catch(err => this.errorMessage = 'Error getting styles: ' + err);
-
-        // Deconstruct border
-        if (this.localWidget.containerBorder != ''
-            &&
-            this.localWidget.containerBorder != 'none') {
-                let space1: number = this.localWidget.containerBorder.indexOf(' ');
-                if (space1 > 0) {
-                    this.containerBorderSize = this.localWidget.containerBorder.
-                        substr(0, space1).trim();
-                    let rest: string = this.localWidget.containerBorder.substr(space1 + 1, 999);
-
-                    let space2: number = rest.indexOf(' ');
-                    if (space2 > 0) {
-
-                        this.containerBorderType = rest.substr(0, space2).trim();
-                        this.containerBorderColour = rest.substr(space2 + 1, 999).trim();
-                    };
-                };
-
-        };
-
-        // Manage colour picker
-        this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
-
-            if (this.localWidget != undefined  &&  clp != null) {
-
-                if (clp.cancelled) {
-                    this.colourPickerClosed = false;
-                } else {
-
-                    if (clp.callingRoutine == 'BgColour') {
-                        this.colourPickerClosed = false;
-                        this.localWidget.containerBackgroundcolor = clp.selectedColor;
-                        this.localWidget.containerBackgroundcolorName = 'Open Picker ...';
-                    };
-                    if (clp.callingRoutine == 'LineColour') {
-                        this.colourPickerClosed = false;
-                        this.containerBorderColour = clp.selectedColor;
-                        this.containerBorderColourName = 'Open Picker ...';
-
-                        // Construct line size
-                        if (this.containerBorderSize != 'none') {
-                            this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-                        };
-
-                        // Reset
-                        clp.callingRoutine = '';
-                    };
-                };
-            };
-        });
 
     }
 
