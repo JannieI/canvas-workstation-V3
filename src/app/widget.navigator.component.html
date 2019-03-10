@@ -1,6 +1,118 @@
-<h5>
-    Canvas Navigator
-</h5>
-<div>
-    This tool is used ...
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true"
+        style="width: 53rem; max-width: 53rem;">
+		<div class="modal-content modalContent">
+
+            <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose('Close')">
+                    <b>X</b>
+                </button>
+
+                <!-- TOP FORM TITLE -->
+                <div class="gridNetworkTitle">
+                    <b>Navigator</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                        <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;">
+                                Navigates / explores a web of relationships in a graphical fashion.  
+                                One can start at any node (entity, like a company called Absa or a person
+                                called John), and then show the related nodes for a specific relationship 
+                                (ie directorships of the company).  After, one can proceed by clicking one 
+                                of the children, or start with a totally different entity.  There is no limit
+                                to the number of nodes, or the relationships per node.
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                </div>
+
+                <!-- GRAPH TYPES -->
+                <div class="editorTypesTitle">
+                    <b>
+                        Networks (web)
+                    </b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle" style="margin-top: -4px;"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                        <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray; text-align: left;">
+                                A network is a pre-defined web of relationships.  For example,
+                                it can be the relationships between companies, subsidaries,
+                                directors (executive and non-executive), shareholders, etc.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                </div>
+                <div class="gridNetwork">
+                    <div class="gridNetworkBlock"
+                        [style.border]="'1px solid gray'"
+                        >
+                        WOWEB Companies
+                        >
+                    </div>
+                </div>
+
+
+
+                <!-- GRAPH Area -->
+                <div class="gridGraphAreaTitle">
+                    For 
+                    <div class="select gridGraphAreaNodeType"
+                        title="Select a node type to filter on"
+                        >
+                        <select [(ngModel)]="filterTimeUnit"
+                            (change)="filterTimeUnitSelected($event)"
+                            name="filterTimeUnit"
+                            >
+                            <option>Company</option>
+                            <option>Person</option>
+                            <option>Day</option>
+                        </select>
+                    </div>
+
+                    <div class="select gridGraphAreaNodeName"
+                        title="Select a specific node"
+                        >
+                        <select [(ngModel)]="filterTimeUnit"
+                            (change)="filterTimeUnitSelected($event)"
+                            name="filterTimeUnit"
+                            >
+                            <option>Absa</option>
+                            <option>Bidvest</option>
+                            <option>Capitec</option>
+                        </select>
+                    </div>
+                    <div>
+                        <clr-icon *ngIf="row.isActive"
+                            shape="filter"
+                            size="12"
+                            (dblclick)="dblClickFilterMakeInActive()"
+                            >
+                        </clr-icon>
+
+                    </div>
+                    <div class="gridGraphArea"
+                        #dragWidget
+                        >
+                    </div>
+
+                    Click a director to move to the top.
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
+
