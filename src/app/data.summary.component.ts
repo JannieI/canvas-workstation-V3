@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows a form with summary information per Datasource
  */
 
 // Angular

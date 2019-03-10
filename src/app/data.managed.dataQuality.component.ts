@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Show form with Data Quality issues
  */
 
 // Angular

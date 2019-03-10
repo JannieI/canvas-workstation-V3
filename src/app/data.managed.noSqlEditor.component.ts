@@ -1,5 +1,5 @@
 /*
- * Create a new Datasource to a managed NoSQL database.
+ * Create a new Datasource to a managed NoSQL database
  */
 
 // Angular

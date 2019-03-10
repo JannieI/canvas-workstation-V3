@@ -1,5 +1,5 @@
 /*
- * Data refresh Datasources once
+ * Shows form to refresh Datasources once off
  */
 
 // Angular

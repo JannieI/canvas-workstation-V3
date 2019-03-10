@@ -1,5 +1,5 @@
 /*
- * Manage (add, edit, delete) Transformations for a Datasource.
+ * Shows form to delete a Datasource
  */
 
 // Angular

@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Show form to manage templates for the current Dashboard
  */
 
 // Angular

@@ -1,4 +1,6 @@
-// This class defines the tables and DB structure for Dexie DBs
+/*
+ * This class defines the tables and DB structure for Dexie DBs
+ */
 
 import { Dashboard }                  from './models';
 import { DashboardTab }               from './models';

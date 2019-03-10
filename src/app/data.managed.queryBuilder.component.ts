@@ -1,5 +1,5 @@
 /*
- * Create / Edit a SQL database query, using the Query Builder.
+ * Create / Edit a SQL database query, using the Query Builder
  */
 
 // Angular

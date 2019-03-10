@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows form with usage stats for the current Dashboard
  */
 
 // Angular

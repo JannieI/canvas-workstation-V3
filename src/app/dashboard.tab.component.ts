@@ -1,3 +1,7 @@
+/*
+ * Shows form to add, amend the properties of a Dashboard Tab
+ */
+
 // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';

@@ -1,5 +1,5 @@
 /*
- * Create a new Datasource to a managed Neo4j database.
+ * Create a new Datasource to a managed Neo4j database
  */
 
 // Angular

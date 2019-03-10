@@ -1,4 +1,7 @@
-// Global functions
+/*
+ * Global functions used by all components
+*/
+
 import { Injectable }                 from '@angular/core';
 
 // Our Services

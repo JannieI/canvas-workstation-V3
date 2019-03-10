@@ -1,5 +1,5 @@
 /*
- * Select Datasource to be editied in next form.
+ * Select Datasource to be edited in next form.
  */
 
 // Angular

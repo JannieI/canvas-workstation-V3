@@ -1,5 +1,5 @@
 /*
- * Repeatly refresh the Datasources for the current Dashboard.
+ * Repeatly refresh the Datasources for the current Dashboard
  */
 
 // Angular

@@ -1,4 +1,7 @@
-// Service to provide global variables
+/*
+ * Global variables and methods used by all components
+ */
+
 import { BehaviorSubject }            from 'rxjs';
 import { Injectable }                 from '@angular/core';
 import { HttpClient }                 from '@angular/common/http';

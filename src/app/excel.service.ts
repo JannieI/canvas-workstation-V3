@@ -1,3 +1,7 @@
+/*
+ * This class defines methods for an Excel spreadsheet
+ */
+
 import { Injectable } from '@angular/core';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';

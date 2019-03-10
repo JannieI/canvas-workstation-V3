@@ -1,5 +1,5 @@
 /*
- * Create a new managed Datasource using a SQL Editor.
+ * Create a new managed Datasource using GraphQL
  */
 
 // Angular

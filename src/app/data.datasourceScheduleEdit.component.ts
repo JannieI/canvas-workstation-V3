@@ -1,5 +1,5 @@
 /*
- * Manages Schedules for the current D
+ * Manages Schedules for the current Dashboard
  */
 
 // Angular

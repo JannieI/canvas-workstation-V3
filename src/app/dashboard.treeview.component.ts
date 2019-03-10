@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows a treeview of the current Dashboard content
  */
 
 // Angular
