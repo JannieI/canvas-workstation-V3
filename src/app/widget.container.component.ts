@@ -1,5 +1,5 @@
 /*
- * Specify properties about the W container
+ * Specify properties about the Widget container
  */
 
 // Angular

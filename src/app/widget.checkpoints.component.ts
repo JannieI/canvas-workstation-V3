@@ -1,4 +1,8 @@
-// Angular
+/*
+ * Shows form to manage Widget checkpoints
+ */
+
+ // Angular
 import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';

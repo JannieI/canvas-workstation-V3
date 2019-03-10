@@ -1,5 +1,5 @@
 /*
- * Show form to manage groups, showing users per group
+ * Shows form to manage groups, showing users per group
  */
 
 // Angular

@@ -1,3 +1,7 @@
+/*
+ * Shows form to add, edit a graph Widget
+ */
+
 // Angular
 import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';

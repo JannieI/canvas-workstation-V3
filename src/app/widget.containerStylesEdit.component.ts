@@ -1,5 +1,5 @@
 /*
- * Specify properties about the W container
+ * Shows form to edit the properties of a Widget container
  */
 
 // Angular

@@ -1,4 +1,8 @@
-// Edit Widget Title
+/*
+ * Shows form to manage the title for the selected Widget
+ */
+
+ // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';

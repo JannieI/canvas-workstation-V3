@@ -1,5 +1,5 @@
 /*
- * Show form to manage templates for the current Dashboard
+ * Shows form to manage templates for the current Dashboard
  */
 
 // Angular

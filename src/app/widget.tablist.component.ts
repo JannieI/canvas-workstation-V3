@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows the form to manage the tablist
  */
 
 // Angular

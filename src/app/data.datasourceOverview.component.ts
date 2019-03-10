@@ -1,5 +1,5 @@
 /*
- * Show an overview of different properties for a selected Datasources.
+ * Shows an overview of different properties for a selected Datasources.
  */
 
 // Angular

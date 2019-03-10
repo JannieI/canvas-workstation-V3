@@ -1,5 +1,5 @@
 /*
- * Show page to manage colours, and create custom ones
+ * Shows page to manage colours, and create custom ones
  */
 
 // Angular

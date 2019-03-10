@@ -1,5 +1,5 @@
 /*
- * Save the selected Widget as a Widget Template, for later use
+ * Shows the form to save the selected Widget as a Widget Template, for later use
  */
 
 // Angular

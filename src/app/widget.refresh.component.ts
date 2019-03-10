@@ -1,3 +1,7 @@
+/*
+ * Shows form to refresh the datasource for the selected Widget
+ */
+
 // Angular
 import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';

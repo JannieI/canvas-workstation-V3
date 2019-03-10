@@ -1,3 +1,7 @@
+/*
+ * Shows form to expand the datasource on which a Widget is based
+ */
+
 // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';

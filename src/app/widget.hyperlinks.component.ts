@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows form to manage hyperlinks on a Widget
  */
 
 // Angular

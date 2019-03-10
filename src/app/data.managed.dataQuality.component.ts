@@ -1,5 +1,5 @@
 /*
- * Show form with Data Quality issues
+ * Shows form with Data Quality issues
  */
 
 // Angular

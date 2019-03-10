@@ -1,4 +1,8 @@
-// Angular
+/*
+ * Shows form to export the structure of a Widget (data is excluded)
+ */
+
+ // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';

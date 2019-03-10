@@ -1,5 +1,5 @@
 /*
- * Show form to manage ownerships for a Datasource
+ * Shows form to manage ownerships for a Datasource
  */
 
 // Angular

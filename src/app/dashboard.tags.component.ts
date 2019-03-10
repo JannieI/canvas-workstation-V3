@@ -1,5 +1,5 @@
 /*
- * Show form to manage tags for the current Dashboard
+ * Shows form to manage tags for the current Dashboard
  */
 
 // Angular

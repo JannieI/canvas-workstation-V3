@@ -1,5 +1,5 @@
 /*
- * Show in which Dashboards a selected Datasource is currently in use.
+ * Shows in which Dashboards a selected Datasource is currently in use.
  */
 
 // Angular
