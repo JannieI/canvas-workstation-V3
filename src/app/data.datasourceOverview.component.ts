@@ -18,6 +18,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Datasource }                 from './models';
 import { Dataset }                    from './models';
 import { DataQualityIssue }           from './models';
+import { Widget }                     from './models';
 
 interface localDatasources extends Datasource
     {
@@ -73,6 +74,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
     selectedRowName: string = '';
     selectedRowDescription: string = '';
     selectedRowNrWidgetsInUse: number = 0;
+    widgets: Widget[] = [];
 
 
 	constructor(
@@ -94,36 +96,53 @@ export class DataDatasourceOverviewComponent implements OnInit {
         });
 
         // Load from global variables
-        this.datasources = this.globalVariableService.datasources.slice();
-        this.datasources.forEach(ds => {
-            if (widgetIDs.indexOf(ds.id) >= 0) {
-                ds.hasWidget = true;
-            } else {
-                ds.hasWidget = false;
-            };
-            if (this.currentDSids.indexOf(ds.id) >= 0) {
-                ds.isSelected = true;
-            } else {
-                ds.isSelected = false;
-            };
-        });
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res;
 
-        // Reset
-        this.selectedRowID = -1;
-        this.selectedRowIndex = -1;
-        this.selectedRowName = '';
-        this.selectedRowNrWidgetsInUse = 0;
+                this.datasources.forEach(ds => {
+                    if (widgetIDs.indexOf(ds.id) >= 0) {
+                        ds.hasWidget = true;
+                    } else {
+                        ds.hasWidget = false;
+                    };
+                    if (this.currentDSids.indexOf(ds.id) >= 0) {
+                        ds.isSelected = true;
+                    } else {
+                        ds.isSelected = false;
+                    };
+                });
 
-        // Select first row if exists
-        if (this.datasources.length > 0) {
-            this.clickSelectedDatasource(0, this.datasources[0].id);
-        };
-        console.warn('xx DS, dSet', this.globalVariableService.datasources, this.globalVariableService.currentDatasources, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
-        // TODO - fix!!
-        this.finalFields = this.globalVariableService.finalFields.slice();
+                // Reset
+                this.selectedRowID = -1;
+                this.selectedRowIndex = -1;
+                this.selectedRowName = '';
+                this.selectedRowNrWidgetsInUse = 0;
 
-        // Show first tab
-        this.clickDSDescription('gridViewDescription');
+                // Select first row if exists
+                if (this.datasources.length > 0) {
+                    this.clickSelectedDatasource(0, this.datasources[0].id);
+                };
+                console.warn('xx DS, dSet', this.globalVariableService.datasources, this.globalVariableService.currentDatasources, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
+                // TODO - fix!!
+                this.finalFields = this.globalVariableService.finalFields.slice();
+
+                // Show first tab
+                this.clickDSDescription('gridViewDescription');
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Datasource.overview reading datasources: ' + err);
+            });
+        
+        this.globalVariableService.getResource('widgets')
+            .then(res => {
+                this.widgets = res;
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in dataCombination.append reading widgets: ' + err);
+            });
     }
 
     clickDSDescription(area: string) {
@@ -232,7 +251,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
             this.selectedRowName = this.datasources[dsIndex].name;
             this.selectedRowDescription = this.datasources[dsIndex].description;
 
-            this.selectedRowNrWidgetsInUse = this.globalVariableService.widgets.filter(w =>
+            this.selectedRowNrWidgetsInUse = this.widgets.filter(w =>
                 w.datasourceID == this.datasources[index].id
                 &&
                 w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID

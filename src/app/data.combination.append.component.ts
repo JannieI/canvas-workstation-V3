@@ -109,6 +109,21 @@ export class DataCombinationAppendComponent implements OnInit {
                         ds.isSelected = false;
                     };
                 });
+    
+                // Reset
+                this.selectedRowID = -1;
+                this.selectedRowIndex = -1;
+                this.selectedRowName = '';
+                this.selectedRowNrWidgetsInUse = 0;
+
+                // Select first row if exists
+                if (this.datasources.length > 0) {
+                    this.clickSelectedDatasource(0, this.datasources[0].id);
+                };
+                console.warn('xx DS, dSet', this.datasources, this.globalVariableService.currentDatasources, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
+                // TODO - fix!!
+                this.fieldTypes = [{MonthTraded: 'MonthTraded', TradeType: 'TradeType', Volume: 'Volume', Price: 'Price', Value: 'Value'}];
+
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -124,20 +139,6 @@ export class DataCombinationAppendComponent implements OnInit {
                 console.error('Error in dataCombination.append reading widgets: ' + err);
             });
     
-        // Reset
-        this.selectedRowID = -1;
-        this.selectedRowIndex = -1;
-        this.selectedRowName = '';
-        this.selectedRowNrWidgetsInUse = 0;
-
-        // Select first row if exists
-        if (this.datasources.length > 0) {
-            this.clickSelectedDatasource(0, this.datasources[0].id);
-        };
-        console.warn('xx DS, dSet', this.datasources, this.globalVariableService.currentDatasources, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
-        // TODO - fix!!
-        this.fieldTypes = [{MonthTraded: 'MonthTraded', TradeType: 'TradeType', Volume: 'Volume', Price: 'Price', Value: 'Value'}];
-
     }
 
     clickSelectedDatasource(index: number, id: number) {
