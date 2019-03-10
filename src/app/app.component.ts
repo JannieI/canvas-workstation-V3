@@ -8851,6 +8851,7 @@ export class AppComponent implements OnInit {
 
             // Only one can be selected
             if (!this.checkForOnlyOneWidget()) {
+                // TODO - why this !!!???
                 this.clickMenuWidgetDuplicate('Graph');
             }
 

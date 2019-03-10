@@ -68,6 +68,7 @@ import { WidgetAnnotationsComponent } from './widget.annotations.component';
 import { WidgetDescriptionComponent } from './widget.description.component';
 import { WidgetTemplateSaveComponent } from './widget.templateSave.component';
 import { WidgetTemplateInsertWidgetComponent } from './widget.templateInsertWidget.component';
+import { WidgetNavigatorComponent }   from './widget.navigator.component';
 
 import { TableSingleComponent }       from './table.single.component';
 import { TableEditorComponent }       from './table.editor.component';
@@ -254,6 +255,7 @@ import { StatusbarComponent }         from './statusbar.component';
         WidgetDescriptionComponent,
         WidgetTemplateSaveComponent,
         WidgetTemplateInsertWidgetComponent,
+        WidgetNavigatorComponent,
 
         TableSingleComponent,
         TableEditorComponent,

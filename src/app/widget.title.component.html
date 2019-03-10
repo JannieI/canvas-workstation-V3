@@ -45,7 +45,7 @@
                     <div class="titleTextTitle">
                         Text:
                     </div>
-                    <div class="titleText">
+                    <div class="titleText" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.titleText"
                             type="text"
                             name="titleText"
@@ -56,7 +56,7 @@
                     <div class="titleBackgroundColourTitle">
                         Bg Colour:
                     </div>
-                    <div class="select titleBackgroundColour">
+                    <div class="select titleBackgroundColour" *ngIf="localWidget">
                         <select [(ngModel)]="localWidget.titleBackgroundColorName"
                             name="titleBackgroundColorName"
                             (change)="clickSelectTitleBgColor($event)"
@@ -68,7 +68,7 @@
                             </option>
                         </select>
                     </div>
-                    <div class="titleBackgroundColourPicker">
+                    <div class="titleBackgroundColourPicker" *ngIf="localWidget">
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
@@ -88,7 +88,7 @@
                     <div class="titlePaddingTitle">
                         Padding:
                     </div>
-                    <div class="titlePadding">
+                    <div class="titlePadding" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.titlePadding"
                             type="text"
                             name="titlePadding"
@@ -99,7 +99,7 @@
                     <div class="titleColourTitle">
                         Colour:
                     </div>
-                    <div class="select titleColour">
+                    <div class="select titleColour" *ngIf="localWidget">
                         <select [(ngModel)]="localWidget.titleColorName"
                             name="titleColor"
                             (change)="clickSelectTitleColor($event)"
@@ -111,7 +111,7 @@
                             </option>
                         </select>
                     </div>
-                    <div class="titleColourPicker">
+                    <div class="titleColourPicker" *ngIf="localWidget">
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
@@ -147,7 +147,7 @@
                     <div class="titleBorderColorTitle">
                         Border:
                     </div>
-                    <div class="select titleBorderColor">
+                    <div class="select titleBorderColor" *ngIf="localWidget">
                         <select [(ngModel)]="localWidget.titleBorderName"
                             name="titleBorderName"
                             (change)="clickSelectBorderColor($event)"
@@ -179,7 +179,7 @@
                     <div class="titleTextAlignTitle">
                         TextAlign:
                     </div>
-                    <div class="select titleTextAlign">
+                    <div class="select titleTextAlign" *ngIf="localWidget">
                         <select [(ngModel)]="localWidget.titleTextAlign"
                             name="titleTextAlign"
                             >
@@ -192,7 +192,7 @@
                     <div class="titleMarginTitle">
                         Margin:
                     </div>
-                    <div class="titleMargin">
+                    <div class="titleMargin" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.titleMargin"
                             type="text"
                             name="titleMargin"
@@ -203,7 +203,7 @@
                     <div class="titleFontsizeTitle">
                         Font Size:
                     </div>
-                    <div class="titleFontsize">
+                    <div class="titleFontsize" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.titleFontsize"
                             type="number"
                             min="0"
@@ -216,7 +216,7 @@
                     <div class="titleFontWeightTitle">
                         Font Weight:
                     </div>
-                    <div class="titleFontWeight">
+                    <div class="titleFontWeight" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.titleFontWeight"
                             type="number"
                             min="0"
@@ -229,7 +229,7 @@
                     <div class="titleHeightTitle">
                         Height (px):
                     </div>
-                    <div class="titleHeight">
+                    <div class="titleHeight" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.titleHeight"
                             type="text"
                             name="titleHeight"
@@ -240,7 +240,7 @@
                     <div class="titleWidthTitle">
                         Width (%):
                     </div>
-                    <div class="titleWidth">
+                    <div class="titleWidth" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.titleWidth"
                             type="text"
                             min="0"
