@@ -104,6 +104,10 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalVariableService.getResource('canvasBackgroundcolors')
             .then(res => {
                 this.colors = res;
+                this.colors = [
+                    {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false},
+                    ...this.colors
+                ];
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
