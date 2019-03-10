@@ -62,7 +62,6 @@ export class DataDirectServiceComponent implements OnInit {
         // this.globalVariableService.getResource('datasources').then(dc => {
         //     // Fill local Var
         //     this.datasources = dc.slice();
-        //     console.warn('xx this.datasources.length', this.datasources.length)
             
         //     // Click on first one, if available
         //     if (this.datasources.length > 0) {
@@ -115,7 +114,6 @@ export class DataDirectServiceComponent implements OnInit {
 
         // xmlhttp.open("GET", 'https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser', false);
         // // xmlhttp.send();    
-        // console.warn('xx after SEND')
     }
     
     clickClose(action: string) {

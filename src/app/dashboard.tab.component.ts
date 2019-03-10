@@ -96,7 +96,6 @@ export class DashboardTabComponent {
                         this.color = res[0].color;
                         this.colorName = res[0].colorName;
                         this.displayOrder = res[0].displayOrder;
-                        console.log('xx res this.description', this.description)
                     };
                 })
                 .catch(err => {

@@ -180,9 +180,7 @@ export class DataDirectWebComponent implements OnInit {
                 this.dataFieldsSelected = [];
 
                 if (res.length > 0) {
-                    console.warn('xx res[0]', res[0])
                     for(var key in res[0]) {
-                        console.warn('xx key', key)
                         this.dataFieldsSelected.push(key);
                     }
                 };
@@ -191,7 +189,6 @@ export class DataDirectWebComponent implements OnInit {
                 this.canSave = true;
                 this.savedMessage = '';
                 this.spinner = false;
-                console.warn('xx res', res.length, this.dataFieldsSelected)
             })
             .catch(err => {
                 this.spinner = false;

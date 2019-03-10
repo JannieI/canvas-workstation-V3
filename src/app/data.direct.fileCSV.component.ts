@@ -176,7 +176,6 @@ export class DataDirectFileCSVComponent implements OnInit {
     }
 
     updateProgress(evt) {
-        // console.warn('xx progress')
 
         // evt is an ProgressEvent.
         if (evt.lengthComputable) {

@@ -75,7 +75,7 @@ export class DashboardTemplateComponent implements OnInit {
                 let dashboardIndex: number = this.dashboards.findIndex(d => d.id 
                     == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
                 this.currentDashboard = this.dashboards[dashboardIndex];
-console.log('xx this.currentDashboard', this.currentDashboard)
+
                 // Get Template info
                 if (this.currentDashboard.templateDashboardID != null) {
                     let templateIndex: number = this.dashboards.findIndex(

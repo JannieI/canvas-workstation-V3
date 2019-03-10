@@ -80,7 +80,6 @@ export class DataDirectImportComponent implements OnInit {
 
         // Access and handle the files
         this.theFile = inp.files[0];
-        console.warn('xx pre readAsText', this.theFile, this.theFile.name, this.theFile.type, this.theFile.size, this.theFile.lastModifiedDate, this.theFile.lastModifiedDate.toLocaleDateString())
 
         // Read file as Text
 
@@ -90,7 +89,6 @@ export class DataDirectImportComponent implements OnInit {
 
         // Read in the image file as a data URL.
         this.reader.readAsText(this.theFile);
-        console.warn('xx Post readAsText')
     }
 
     loadFile(theFile) {
@@ -129,7 +127,6 @@ export class DataDirectImportComponent implements OnInit {
             var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
             // Increase the progress bar length.
             if (percentLoaded < 100) {
-                console.warn('xx % loaded', percentLoaded)
                 // progress.style.width = percentLoaded + '%';
                 // progress.textContent = percentLoaded + '%';
             };

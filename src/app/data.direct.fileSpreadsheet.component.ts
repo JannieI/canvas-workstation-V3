@@ -125,7 +125,6 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         let specification: any;
         let lastFive: string = this.fileName.slice(-5);
         if (lastFive.toLowerCase() == '.xlsx') {
-            console.warn('xx xlsx')
             specification = {
                 "source": {
                     "inspector": "tributary.inspectors.spreadsheet:XlsxInspector",
@@ -138,7 +137,6 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             let lastFour: string = this.fileName.slice(-4);
         
             if (lastFour.toLowerCase() == '.xls') {
-                console.warn('xx xls')
 
                 specification = {
                     "source": {
@@ -149,7 +147,6 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                     }
                 };
             } else if (lastFour.toLowerCase() == '.ods') {
-                console.warn('xx ods')
 
                 specification = {
                     "source": {
@@ -250,7 +247,6 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         let specification: any;
         let lastFive: string = this.fileName.slice(-5);
         if (lastFive.toLowerCase() == '.xlsx') {
-            console.warn('xx xlsx')
             specification = {
                 "source": {
                     "connector": "tributary.connectors.spreadsheet:XlsxConnector",
@@ -266,7 +262,6 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             let lastFour: string = this.fileName.slice(-4);
         
             if (lastFour.toLowerCase() == '.xls') {
-                console.warn('xx xls')
 
                 specification = {
                     "source": {
@@ -280,7 +275,6 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                     }
                 };
             } else if (lastFour.toLowerCase() == '.ods') {
-                console.warn('xx ods')
 
                 specification = {
                     "source": {

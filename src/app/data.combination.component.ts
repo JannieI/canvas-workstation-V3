@@ -73,8 +73,6 @@ export class DataCombinationComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        console.warn('xx combinationType', this.combinationType)
-
         // Load from global variables
         this.globalVariableService.getResource('datasources')
             .then(res => {

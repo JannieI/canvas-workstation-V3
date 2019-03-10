@@ -123,7 +123,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
                 if (this.datasources.length > 0) {
                     this.clickSelectedDatasource(0, this.datasources[0].id);
                 };
-                console.warn('xx DS, dSet', this.globalVariableService.datasources, this.globalVariableService.currentDatasources, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
+
                 // TODO - fix!!
                 this.finalFields = this.globalVariableService.finalFields.slice();
 

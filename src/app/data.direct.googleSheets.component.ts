@@ -120,9 +120,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 this.dataFieldsSelected = [];
 
                 if (res.length > 0) {
-                    console.warn('xx res[0]', res[0])
                     for(var key in res[0]) {
-                        console.warn('xx key', key)
                         this.dataFieldsSelected.push(key);
                     }
                 };
@@ -131,7 +129,6 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 this.canSave = true;
                 this.savedMessage = '';
                 this.spinner = false;
-                console.warn('xx res', res.length, this.dataFieldsSelected)
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -212,7 +209,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 id: dataID,
                 data: this.currentData
             };
-            console.warn('xx dataID updatedata', dataID, updatedData)
+
             // Add Data, then dataset, then DS
             this.globalVariableService.saveData(updatedData)
                 .then(resData => {
@@ -222,7 +219,6 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                         .then(
                             resDS => {
                                 updatedDataset.datasourceID = this.selectedDatasource.id;
-                                console.warn('xx updatedDataset', updatedDataset)
                                 this.globalVariableService.saveResource('datasets', updatedDataset);
                         })
                         .catch(err => {

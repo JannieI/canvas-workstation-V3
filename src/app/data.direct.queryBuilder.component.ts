@@ -350,7 +350,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.helpMessage = '';
         this.spinner = true;
         this.errorMessage = '';
-        console.warn('xx selectedFields', this.selectedFields)
 
         // No Fields, no data
         if (this.selectedFields.length == 0) {
@@ -378,7 +377,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             sqlFields = sqlFields + '"' + fld.fieldName + '"';
         });
         this.selectedDatasource.dataSQLStatement = 'SELECT ' + sqlFields + ' FROM ' + sqlTable;
-        console.warn('xx',this.selectedDatasource.dataSQLStatement)
 
         // Build source string
         // let specificationConnect: any = {

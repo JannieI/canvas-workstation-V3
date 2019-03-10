@@ -95,7 +95,6 @@ export class DashboardDiscardComponent implements OnInit {
             .then(dashboardOrignal => {
 
                 // Navigate to original
-                console.log('xx DISCARD dashboardOrignal', dashboardOrignal)
                 this.globalVariableService.refreshCurrentDashboard(
                     'discardDashboard-clickDiscard', +dashboardOrignal, -1, ''
                 );

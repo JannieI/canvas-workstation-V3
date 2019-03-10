@@ -167,7 +167,6 @@ export class CollaborateTasksComponent implements OnInit {
             "x2": {"field": "end", "type": "quantitative"}
         };
 
-        console.warn('xx this.widgetDOM', this.widgetDOM)
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
         view.renderer('svg')
@@ -204,7 +203,6 @@ export class CollaborateTasksComponent implements OnInit {
     clickFilter() {
         // Filter results
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
-        console.warn('xx sel', this.selectedUser, this.selectedDashboard, this.selectedStatus)
 
         // Reset
         this.canvasTasks = this.canvasTasksOrignal;

@@ -123,7 +123,6 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
-        console.warn('xx selD Sch', this.selectedDatasourceSchedule)
         // Set the row index
         this.selectedRow = index;
         this.adding = false;

@@ -137,31 +137,6 @@ export class DashboardDescriptionComponent implements OnInit {
                 console.error('Error in Dashboard.description reading dashboards: ' + err);
             });
 
-        // Update local properties
-        this.dashboardName = this.selectedDashboard.name;
-        this.dashboardDescription = this.selectedDashboard.description;
-        this.dashboardQArequired = this.selectedDashboard.qaRequired;
-        this.dashboardIsSample = this.selectedDashboard.isSample;
-        this.dashboardCode = this.selectedDashboard.code;
-        this.dashboardDefaultTab = this.selectedDashboard.defaultTabID;
-        this.dashboardRefreshMode = this.selectedDashboard.refreshMode;
-        this.dashboardRefreshTimer = this.selectedDashboard.refreshTimer;
-        this.dashboardExportFileType = this.selectedDashboard.defaultExportFileType;
-        this.dashboardExportUrl = this.selectedDashboard.url;
-        this.dashboardPassword = this.selectedDashboard.password;
-        this.dashboardTemplateID = this.selectedDashboard.templateDashboardID;
-        this.dashboardBackgroundColor = this.selectedDashboard.backgroundColor;
-        this.dashboardBackgroundImage = this.selectedDashboard.backgroundImage;
-        this.dashboardState = this.selectedDashboard.state;
-        this.dashboardVersion = this.selectedDashboard.version;
-        this.dashboardCreator = this.selectedDashboard.creator;
-        this.dashboardCreated = this.selectedDashboard.dateCreated;
-        this.dashboardEditor = this.selectedDashboard.editor;
-        this.dashboardEdited = this.selectedDashboard.dateEdited;
-        this.dashboardRefresher = this.selectedDashboard.refresher;
-        this.dashboardRefreshed = this.selectedDashboard.dateRefreshed;
-        this.dashboardAccessType = this.selectedDashboard.accessType;
-
         // Manage colour picker
         this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
@@ -188,6 +163,32 @@ export class DashboardDescriptionComponent implements OnInit {
                     {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false},
                     ...this.backgroundcolors
                 ];
+
+                // Update local properties
+                this.dashboardName = this.selectedDashboard.name;
+                this.dashboardDescription = this.selectedDashboard.description;
+                this.dashboardQArequired = this.selectedDashboard.qaRequired;
+                this.dashboardIsSample = this.selectedDashboard.isSample;
+                this.dashboardCode = this.selectedDashboard.code;
+                this.dashboardDefaultTab = this.selectedDashboard.defaultTabID;
+                this.dashboardRefreshMode = this.selectedDashboard.refreshMode;
+                this.dashboardRefreshTimer = this.selectedDashboard.refreshTimer;
+                this.dashboardExportFileType = this.selectedDashboard.defaultExportFileType;
+                this.dashboardExportUrl = this.selectedDashboard.url;
+                this.dashboardPassword = this.selectedDashboard.password;
+                this.dashboardTemplateID = this.selectedDashboard.templateDashboardID;
+                this.dashboardBackgroundColor = this.selectedDashboard.backgroundColor;
+                this.dashboardBackgroundImage = this.selectedDashboard.backgroundImage;
+                this.dashboardState = this.selectedDashboard.state;
+                this.dashboardVersion = this.selectedDashboard.version;
+                this.dashboardCreator = this.selectedDashboard.creator;
+                this.dashboardCreated = this.selectedDashboard.dateCreated;
+                this.dashboardEditor = this.selectedDashboard.editor;
+                this.dashboardEdited = this.selectedDashboard.dateEdited;
+                this.dashboardRefresher = this.selectedDashboard.refresher;
+                this.dashboardRefreshed = this.selectedDashboard.dateRefreshed;
+                this.dashboardAccessType = this.selectedDashboard.accessType;
+
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -219,7 +220,6 @@ export class DashboardDescriptionComponent implements OnInit {
         } else {
             this.dashboardTemplateID = null;
         };
-        console.warn('xx this.dashboardTemplateID', this.dashboardTemplateID)
     }
 
     clickClose(action: string) {

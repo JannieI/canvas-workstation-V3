@@ -210,9 +210,6 @@ export class LandingComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-		// Get setup info
-		this.globalVariableService.widgetTemplateInner)
-
 	}
 
 	ngAfterViewInit() {

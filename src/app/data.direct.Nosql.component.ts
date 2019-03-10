@@ -205,7 +205,6 @@ export class DataDirectNoSQLComponent implements OnInit {
         // Call Tributary
         this.globalVariableService.getTributaryInspect(specificationInspect)
             .then(res => {
-                console.warn('xx res I', res)
 
                 // Set up specification
                 this.selectedDatasource.dataNoSQLStatement = this.selectedDatasource.dataNoSQLStatement.trim();
@@ -247,9 +246,7 @@ export class DataDirectNoSQLComponent implements OnInit {
                     this.selectedDatasource.dataFields = [];
 
                     if (res.length > 0) {
-                        console.warn('xx res[0]', res[0])
                         for(var key in res[0]) {
-                            console.warn('xx key', key)
                             this.selectedDatasource.dataFields.push(key);
                         }
                     };

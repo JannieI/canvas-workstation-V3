@@ -79,7 +79,6 @@ export class DashboardDeleteComponent implements OnInit {
         let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.globalVariableService.getResource('dashboards').then(res => {
             this.dashboard = res.filter(d => d.id == dashboardID)[0];
-            console.log('xx dashboard', this.dashboard)
         })
         .catch(err => {
             this.errorMessage = err.slice(0, 100);
@@ -88,7 +87,6 @@ export class DashboardDeleteComponent implements OnInit {
 
         this.globalVariableService.getDashboardSummary(dashboardID)
             .then(res => {
-                console.log('xx res', res);
                 
                 this.dashboardTags = res.data.numberDashboardTags;
                 this.dashboardSnapshots = res.data.numberDashboardSnapshots;

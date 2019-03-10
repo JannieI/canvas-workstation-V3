@@ -51,7 +51,6 @@ export class CollaborateSendMessageComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        console.warn('xx init sM', this.messageAction, this.existingMessagge)
 
     }
 

@@ -120,7 +120,6 @@ export class DashboardScheduleEditComponent implements OnInit {
                 this.dashboardSchedules[dashboardScheduleIndex]
             ));
         };
-        console.warn('xx selD Sch', this.selectedRow, this.selectedDashboardSchedule)
 
     }
 

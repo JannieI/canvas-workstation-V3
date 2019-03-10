@@ -84,8 +84,6 @@ export class DashboardExportComponent implements OnInit {
         let dashboardIndex: number = this.dashboards.findIndex(d =>
             d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
         let newD: Dashboard = this.dashboards[dashboardIndex];
-        console.warn('xx d', this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-        newD)
         var obj = JSON.stringify(newD);
         this.saveText(JSON.stringify(obj), this.fileName);
 

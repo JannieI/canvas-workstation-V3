@@ -305,14 +305,12 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
                 })
                 .catch(errorMessage => {
-                    console.warn('xx err', errorMessage)
                     this.spinner = false;
                     this.whereErrorMessage = 'Error connecting to server (1st check login or permissions) '
                         + errorMessage;
                 });
             })
             .catch(errorMessage => {
-                console.warn('xx err', errorMessage);
                 this.whereErrorMessage = errorMessage;
                 return;
             });

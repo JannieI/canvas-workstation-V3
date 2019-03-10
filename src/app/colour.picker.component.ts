@@ -69,7 +69,6 @@ export class ColourPickerComponent implements OnInit {
 
         this.selectedColor = color;
 
-        console.warn('xx colourPicker', color)
     }
 
     mouseOutMap() {
@@ -77,7 +76,6 @@ export class ColourPickerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'mouseOutMap', '@Start');
 
         this.selectedColor = 'transparent';
-        console.warn('xx colourPicker OutMap')
     }
 
   }
