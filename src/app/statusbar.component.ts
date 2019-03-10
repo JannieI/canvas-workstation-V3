@@ -607,7 +607,6 @@ export class StatusbarComponent {
 
                 // Duplicate the Widgets
                 this.globalVariableService.currentWidgets.forEach(w => {
-                    .currentDashboardInfo.value.currentDashboardID)
                     if (w.dashboardTabID == this.globalVariableService
                         .currentDashboardInfo.value.currentDashboardTabID) {
 

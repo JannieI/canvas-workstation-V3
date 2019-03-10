@@ -910,9 +910,10 @@ export class Dashboard {
     isSample: boolean;                      // True if this is a sample
 
     // Overlay looks
-    backgroundColor: string;
-    backgroundImage: string;
-    templateDashboardID: number;
+    backgroundColor: string;                // Actual color of X gridline in hex, rgb, etc    
+    backgroundColorName: string;            // Name of color for X gridlines
+    backgroundImage: string;                // Image 
+    templateDashboardID: number;            // ID of template Dashboard shown behind this Dashboard
 
     // Creation, update and refresh
     creator: string;                        // Creator UserID

@@ -75,6 +75,7 @@ export class DashboardDescriptionComponent implements OnInit {
     dashboardPassword: string;
     dashboardTemplateID: number;
     dashboardTemplateIDoriginal: number;
+    dashboardBackgroundColorName: string;
     dashboardBackgroundColor: string;
     dashboardBackgroundImage: string;
     dashboardState: string;
@@ -149,6 +150,7 @@ export class DashboardDescriptionComponent implements OnInit {
                     if (clp.callingRoutine == 'BgColour') {
                         this.colourPickerClosed = false;
                         this.dashboardBackgroundColor = clp.selectedColor;
+                        this.dashboardBackgroundColorName = 'Open Picker ...';
                     };
 
                 };
@@ -160,6 +162,7 @@ export class DashboardDescriptionComponent implements OnInit {
             .then(res => {
                 this.backgroundcolors = res
                 this.backgroundcolors = [
+                    {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, 
                     {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false},
                     ...this.backgroundcolors
                 ];

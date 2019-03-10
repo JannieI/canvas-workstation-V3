@@ -175,25 +175,36 @@
                     <div class="select gridBackgroundColor">
                         <select [(ngModel)]="dashboardBackgroundColor"
                             name="dashboardBackgroundColor"
+                            (change)="clickSelectBgColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.cssCode"
                                 >
-                                <span
-                                    (change)="clickSelectBgColor($event, row.id)"
-                                    >
                                     {{ row.name }}
-                                </span>
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridBackgroundColorPicker"
-                        (click)="clickSelectBgColorPicker($event)"
-                        >
-                        Picker
-                    </button>
+                    <div class="gridBackgroundColorPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectBgColorPicker($event)"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.containerBackgroundcolor"
+                            [style.color]="dashboardBackgroundColor"
+                            >
+                        </clr-icon>
+                    </div>
+
+
+
+
+
 
                     <div class="gridBackgroundImage">
                         <b>Bg Image:</b>
