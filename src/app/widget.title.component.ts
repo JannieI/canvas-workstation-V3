@@ -78,28 +78,6 @@ export class WidgetTitleComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Deconstruct border
-        if (this.selectedWidget.titleBorder != ''
-            &&
-            this.selectedWidget.titleBorder != 'none') {
-                let space: number = this.selectedWidget.titleBorder.indexOf(' ');
-                if (space > 0) {
-                    this.lineSize = this.selectedWidget.titleBorder.substr(0, space);
-                    let rest: string = this.selectedWidget.titleBorder.substr(space + 1, 999);
-
-                    space = rest.indexOf(' ');
-                    if (space > 0) {
-                        let rest: string = this.selectedWidget.titleBorder.substr(space + 1, 999);
-
-                        space = rest.indexOf(' ');
-                        if (space > 0) {
-                            this.lineColor = rest.substr(space + 1, 999);
-                        };
-                    };
-                };
-                
-        };
-
         // Manage colour picker
         this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
@@ -129,12 +107,6 @@ export class WidgetTitleComponent implements OnInit {
             };
         });
 
-        // Deep copy original W
-        this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-
-        // Deep copy Local W
-        this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-
         // Get setup info
         this.globalVariableService.getResource('canvasBackgroundcolors')
             .then(res => {
@@ -144,7 +116,36 @@ export class WidgetTitleComponent implements OnInit {
                     {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false}, 
                     ...this.backgroundcolors
                 ];
-            })
+
+                // Deep copy original W
+                this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+                // Deep copy Local W
+                this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+                // Deconstruct border
+                if (this.selectedWidget.titleBorder != ''
+                    &&
+                    this.selectedWidget.titleBorder != 'none') {
+                        let space: number = this.selectedWidget.titleBorder.indexOf(' ');
+                        if (space > 0) {
+                            this.lineSize = this.selectedWidget.titleBorder.substr(0, space);
+                            let rest: string = this.selectedWidget.titleBorder.substr(space + 1, 999);
+
+                            space = rest.indexOf(' ');
+                            if (space > 0) {
+                                let rest: string = this.selectedWidget.titleBorder.substr(space + 1, 999);
+
+                                space = rest.indexOf(' ');
+                                if (space > 0) {
+                                    this.lineColor = rest.substr(space + 1, 999);
+                                };
+                            };
+                        };
+                        
+                };
+
+        })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in widget.title reading canvasBackgroundcolors: ' + err);
