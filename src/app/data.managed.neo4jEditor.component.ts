@@ -79,7 +79,6 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 this.dataConnections = dc.slice();
                 this.dataConnectionNames = this.dataConnections.map(con => con.connectionName);
                 this.dataConnectionNames = ['', ...this.dataConnectionNames];
-                console.warn('xx this.dataConnectionNames = ', this.dataConnectionNames )
             })
             .catch(err => {
                 this.spinner = false;
@@ -217,7 +216,6 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
         // Call Tributary
         this.globalVariableService.getTributaryInspect(specificationInspect)
             .then(res => {
-                console.warn('xx res I', res)
 
                 // Get connection detail
                 let connection: DataConnection[] = this.dataConnections.filter(
@@ -267,9 +265,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                     this.selectedDatasource.dataFields = [];
 
                     if (res.length > 0) {
-                        console.warn('xx res[0]', res[0])
                         for(var key in res[0]) {
-                            console.warn('xx key', key)
                             this.selectedDatasource.dataFields.push(key);
                         }
                     };

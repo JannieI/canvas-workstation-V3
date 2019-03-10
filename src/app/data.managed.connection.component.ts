@@ -86,7 +86,6 @@ export class DataManagedConnectionComponent implements OnInit {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
-        console.warn('xx clickRow STRT', this.selectedConnection, this.dataConnections)
         // Set the row index
         this.selectedConnectionRowIndex = index;
         this.adding = false;
@@ -105,7 +104,6 @@ export class DataManagedConnectionComponent implements OnInit {
                 this.dataConnections[connectionIndex]
             ));
         };
-        console.warn('xx END selectedConnection', this.selectedConnection, this.selectedConnection.serverType)
 
     }
 

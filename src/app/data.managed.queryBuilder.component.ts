@@ -92,7 +92,6 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 this.dataConnections = dc.slice();
                 this.dataConnectionNames = this.dataConnections.map(con => con.connectionName);
                 this.dataConnectionNames = ['', ...this.dataConnectionNames];
-                console.warn('xx this.dataConnectionNames = ', this.dataConnectionNames )
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -386,8 +385,6 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             sqlFields = sqlFields + '"' + fld.fieldName + '"';
         });
         this.selectedDatasource.dataSQLStatement = 'SELECT ' + sqlFields + ' FROM ' + sqlTable;
-        console.warn('xx',this.selectedDatasource.dataSQLStatement)
-
 
         // Get connection detail
         let connection: DataConnection[] = this.dataConnections.filter(

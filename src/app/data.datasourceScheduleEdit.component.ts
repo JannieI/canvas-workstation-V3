@@ -151,7 +151,6 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                 this.selectedDatasource = '';
             };
         };
-        console.warn('xx this selDS', this.selectedDatasource)
 
     }
 

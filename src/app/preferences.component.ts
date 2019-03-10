@@ -246,7 +246,6 @@ export class PreferencesComponent implements OnInit {
             let openBracket: number = selectedDashboardTabString.indexOf('(');
             let closeBracket: number = selectedDashboardTabString.indexOf(')');
             this.preferenceStartupDashboardTabID = +selectedDashboardTabString.substring(openBracket + 1, closeBracket);
-console.warn('xx this.preferenceStartupDashboardTabID', this.preferenceStartupDashboardTabID);
 
         } else {
             this.preferenceStartupDashboardID = null;

@@ -82,7 +82,6 @@ export class AppComponent implements OnInit {
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
         event.preventDefault();
-        console.log('xx key pressed: ', event.code)
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
 
             if (this.showWidgetFullScreenWidth > 0) {
@@ -1014,7 +1013,6 @@ export class AppComponent implements OnInit {
                                     // Show Landing page
                                     this.showModalLanding = true;
                                 } else {
-                                    // console.warn('xx failed');
                                     this.showModalDashboardLogin = true;
                                 };
                             }
@@ -2680,7 +2678,6 @@ export class AppComponent implements OnInit {
         filteredActions = ourActions.filter(act => act.id == maxActID);
 
         if (filteredActions[0].undoID == null) {
-            console.warn('xx IN undoID == null WITH filteredActions[0]', filteredActions[0])
             // Previous was not an UNDO, so just reverse it
             let widgetID: number = null;
             if (filteredActions[0].newWidget != null) {
@@ -2701,8 +2698,6 @@ export class AppComponent implements OnInit {
                 filteredActions[0].newWidget,
                 filteredActions[0].oldWidget
             );
-
-            console.warn('xx AFTER this.globalVariableService.actionUpsert filteredActions[0]', filteredActions[0]);
 
             if (filteredActions[0].objectType == 'Widget') {
                 if (filteredActions[0].oldWidget == null) {
@@ -2738,11 +2733,9 @@ export class AppComponent implements OnInit {
                     // Add (previous action was a Delete) / Save to DB
                     if (filteredActions[0].actionType == 'Delete') {
                         this.globalVariableService.addResource('widgets', filteredActions[0].oldWidget);
-                    console.warn('xx IN DELETE', filteredActions[0].oldWidget.id);
 
                     } else {
                         this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
-                        console.warn('xx IN SAVE', filteredActions[0].oldWidget.id);
                     };
 
                     this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
@@ -2753,7 +2746,6 @@ export class AppComponent implements OnInit {
             console.log('undo prev DO, id ',filteredActions[0].id, this.globalVariableService.actions )
         } else {
             // Get highest DO id < (undoID - 1)
-            console.warn('xx IN Else: undoID != null');
 
             let lastUndoID: number = filteredActions[0].undoID;
             let undoActID: number = 1;
@@ -6944,7 +6936,6 @@ export class AppComponent implements OnInit {
         for (var i = 0; i < this.currentWidgets.length; i++) {
 
             oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
-console.log('xx i', i)
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex =
                     this.globalVariableService.canvasSettings.widgetsMinZindex;
@@ -8067,31 +8058,26 @@ console.log('xx i', i)
         // this.globalVariableService.getResource(resource).then(res => {
         //     let testDashboards: Dashboard[];
         //     testDashboards = res;
-        //     console.warn('xx Returned for resource', resource, testDashboards)
 
         // });
 
         this.globalVariableService.refreshLocalCache()
         // // Count
         // this.dbCanvasAppDatabase.table("localDashboards").count(res => {
-        //     console.warn('xx count of localDashboard', res);
         // });
 
         // // Count
         // this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-        //     console.warn('xx count of localDataCachingTable', res);
         // });
 
         // this.dbDataCachingTable.table("localDataCachingTable")
         //     .where('localExpiryDateTime').below(new Date())
         //     .count(res => {
-        //         console.warn('xx count of below', res);
         // });
 
         // this.dbDataCachingTable.table("localDataCachingTable")
         //     .where('localExpiryDateTime').above(new Date())
         //     .count(res => {
-        //         console.warn('xx count of above', res);
         // });
 
         // let localDashboardArray: Dashboard[] = [];
@@ -8099,7 +8085,6 @@ console.log('xx i', i)
         //     .toArray()
         //     .then(res => {
         //         localDashboardArray = res.map(row => row.dashboard);
-        //         console.log('xx Array', localDashboardArray)
         //     });
 
     }
@@ -8356,23 +8341,18 @@ console.log('xx i', i)
         // db.version(1).stores({contacts: 'id, first, last'});
         // db.open()
         //     .then(res => {
-                // console.log('xx Opened DB', res);
                 // // Count
                 // db.table("contacts").count(res => {
-                //     console.warn('xx count 1 at START', {res});
                 // });
 
                 // // Query DB
                 // db.table("contacts")
                 //     .where('id').belowOrEqual(2)
-                //     .toArray(res => console.warn('xx res', res) ).then(data => {
-                //         console.log('xx End WHERE', {data});
 
                 //     })
 
             //     if (this.testIndexDB) {
 
-            //         console.warn('xx testIndexDB', this.testIndexDB);
 
             //         // Clear var
             //         this.dexieDB = [];
@@ -8387,7 +8367,6 @@ console.log('xx i', i)
 
             //         // // Clear DB
             //         db.table("contacts").clear().then(result => {
-            //             console.log('xx CLEARED DB', result);
 
 
             //                 // }).catch((err) => {
@@ -8397,7 +8376,6 @@ console.log('xx i', i)
             //                 // });
 
             //             // Msg
-            //             console.log('xx Start')
 
             //             // Load Ds individually
             //             for (var i = 0; i < 0; i++) {
@@ -8410,13 +8388,11 @@ console.log('xx i', i)
             //                         id: i
             //                     }
             //                 ).then(res => {
-            //                     // console.log('xx res', res);
 
             //                 });
             //             };
 
             //             // Msg
-            //             console.log('xx after Dexie, before Var')
 
             //             // Load var
             //             for (var i = 0; i < 10000; i++) {
@@ -8432,29 +8408,24 @@ console.log('xx i', i)
 
             //             // Load DB with bulkPut
             //             db.table("contacts").bulkPut(this.dexieDB).then(res => {
-            //                 console.warn('xx End BulkPut');
 
             //                 // Count
             //                 db.table("contacts").count(res => {
-            //                     console.warn('xx count 3 at END', res);
             //                 });
             //             });
 
 
             //             // Msg
-            //             console.log('xx End')
             //         });
             //     // });
             //     };
             // })
             // .catch((error) => {
-            //     console.log('xx Error in Open DB', error);
             // });
 
         // // Delete DB
         // db.table("contacts").delete().catch(err => console.warn('xx Del failed', err);
         // )
-        // console.log('xx Deleted DB');
 
 
 
@@ -8463,7 +8434,6 @@ console.log('xx i', i)
 
         // Count
         // db.table("contacts").count(res => {
-        //     console.warn('xx count 2 at START', res);
         // })
 
 
@@ -8708,8 +8678,6 @@ console.log('xx i', i)
         widgetType: string = '') {
         // Clicked the Edit option on palette - decide what to do
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteEdit', '@Start');
-
-        console.warn('xx clickMenuPaletteEdit input:', widgetID, widgetIndex, canSave, widgetType);
 
         // Graph type has been supplied
         if (widgetType == 'Graph') {
@@ -8971,7 +8939,6 @@ console.log('xx i', i)
             this.selectedDropdownID = index;
             this.showWidgetContextMenu = true;
             this.popupHyperlinkDashboardID = this.currentWidgets[index].hyperlinkDashboardID;
-            console.log('xx popupHyperlinkDashboardID', this.popupHyperlinkDashboardID)
 
             this.popupHyperlinkDashboardTabID = this.currentWidgets[index]
                 .hyperlinkDashboardTabID;
@@ -10177,7 +10144,6 @@ console.log('xx i', i)
 
         let datasetID: number = -1;
 
-        console.log('xx z widgetType, widgetID', widgetType, widgetID)
         // Delete the local one
         // let delIDs: number[] = [];
         let deleteWidget: Widget;
@@ -10194,7 +10160,6 @@ console.log('xx i', i)
 
                 // deleteWidget = Object.assign({}, this.currentWidgets[i]);
                 deleteWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
-                console.log('xx z deleteWidget', deleteWidget)
                 datasetID = this.currentWidgets[i].datasetID;
                 // delIDs.push(this.currentWidgets[i].id);
                 this.currentWidgets.splice(i,1);
@@ -10637,7 +10602,6 @@ console.log('xx i', i)
     //     this.globalFunctionService.printToConsole(this.constructor.name,'mousemoveDashboard', '@Start');
 
     //     // Store X & Y
-    //     console.warn('xx', ev.x, ev.y);
     // }
 
     mouseupDashboard(ev: any) {

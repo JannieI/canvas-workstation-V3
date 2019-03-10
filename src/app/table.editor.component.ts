@@ -261,7 +261,6 @@ import { GlobalVariableService }      from './global-variable.service';
 
         // Load local arrays for ngFor
         let dsIndex: number = this.currentDatasources.findIndex(ds => ds.id == datasourceID);
-        console.warn('xx dSetIndex', dSetIndex)
 
         if (dsIndex >= 0) {
             this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
@@ -287,7 +286,6 @@ import { GlobalVariableService }      from './global-variable.service';
                     console.error('Error in table.editor addCurrentDatasources: ' + err);
                 });
         };
-        console.warn('xx this.dataFieldNames', this.dataFieldNames)
 
         // Switch on the preview after the first row was clicked
         this.hasClicked = true;
@@ -307,7 +305,6 @@ import { GlobalVariableService }      from './global-variable.service';
             // Make proper error handling
             alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
         };
-        console.warn('xx this.globalVariableService.currentDatasets', dSetID, this.globalVariableService.currentDatasets)
 
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(

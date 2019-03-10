@@ -94,7 +94,6 @@ export class SystemSettingsComponent implements OnInit {
         this.createdBy = this.globalVariableService.canvasSettings.createdBy;
         this.createdOn = this.globalVariableService.canvasSettings.createdOn;
 
-        console.warn('xx cs', this.globalVariableService.canvasSettings)
     }
 
     clickClose(action: string) {

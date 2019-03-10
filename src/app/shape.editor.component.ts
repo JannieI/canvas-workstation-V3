@@ -1037,7 +1037,6 @@ export class ShapeEditComponent implements OnInit {
         if (localIndex >= 0) {
             this.localWidget.shapeTextColour = this.backgroundcolors[localIndex].cssCode;
         };
-        console.log('xx clr', this.localWidget.shapeTextColour, this.localWidget.shapeTextColourName)
     }
 
     clickSelectBulletsColorPicker() {
@@ -1204,7 +1203,6 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'mousedownArrow', '@Start');
 
         // Store X & Y
-        console.warn('xx ', ev.x, ev.y)
 
     }
 
@@ -1212,7 +1210,6 @@ export class ShapeEditComponent implements OnInit {
         // Toggles Palette - horisontal / vertical
         this.globalFunctionService.printToConsole(this.constructor.name,'mouseupArrow', '@Start');
 
-        console.warn('xx ', ev.x, ev.y)
     }
 }
 

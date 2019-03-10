@@ -78,9 +78,6 @@ export class WidgetSingleComponent {
         //       do the work.  Else the incorrect W will be refreshed
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidget', '@Start');
 
-        console.warn('xx refreshWidget start- calling, this.widget, w, selectedWidget: ',
-            callingRoutine, this.widget!=null? this.widget.id : 'this.widget = null',
-            w!=null? w.id : 'w = null')
         if (w != null) {
             this.widget = w;
         };
@@ -95,7 +92,6 @@ export class WidgetSingleComponent {
                 this.widget.graphWidth
             );
 
-            console.log('xx this.specification', this.specification)
             // Render in DOM
             let vegaSpecification = compile(this.specification).spec;
             let view = new View(parse(vegaSpecification));

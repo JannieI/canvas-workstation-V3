@@ -142,8 +142,6 @@ export class ManageColoursComponent implements OnInit {
             return;
         };
         
-        console.warn('xx len', this.backgroundcolors.length, this.backgroundcolorsDefault.length);
-        
         let isFound: boolean = false;
         this.backgroundcolors.forEach(bg => {
             if (bg.name == this.newColorName) {
@@ -166,7 +164,6 @@ export class ManageColoursComponent implements OnInit {
                 
         this.globalVariableService.addResource('canvasBackgroundcolors', newCSSColour)
             .then(res => {
-                console.warn('xx res', res);
                 
                 this.backgroundcolors.push(res);
 
@@ -245,7 +242,6 @@ export class ManageColoursComponent implements OnInit {
     dblclickDelete(id: number, index: number){
         // Delete the selected Color
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
-console.warn('xx ..', id, index)
 
         // Reset 
         this.errorMessage = '';

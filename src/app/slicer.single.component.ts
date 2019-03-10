@@ -127,14 +127,12 @@ export class SlicerSingleComponent {
 
         // Filter the data in the dSets to which the Sl points.
         // In addition, apply all Sl that relates to each one
-        console.warn('xx t pre W', this.globalVariableService.currentWidgets)
         this.globalVariableService.currentDatasets.forEach(cd => {
             if (cd.id == datasetID) {
 
                 this.globalVariableService.filterSlicer(cd);
             };
         });
-        console.warn('xx t post W', this.globalVariableService.currentWidgets)
 
         // Refresh Ws that are related to Sl
         this.globalVariableService.currentWidgets.forEach(w => {

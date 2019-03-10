@@ -535,7 +535,7 @@ export class GlobalVariableService {
                     this.dateAdd(dt, 'second', seconds);
                 this.dataCachingTable[dataCachingTableIndex].localLastUpdatedDateTime =
                     webSocketMessage.messageDateTime;
-                console.log('xx dataCachingTable memory upd', this.dataCachingTable)
+                console.log('xx actionWebSocket dataCachingTable memory upd', this.dataCachingTable)
 
 
                 // Update dataCaching on Disc
@@ -543,7 +543,7 @@ export class GlobalVariableService {
                     .bulkPut(this.dataCachingTable)
                     .then(res => {
                         this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                            console.warn('xx localDataCachingTable count @end', res);
+                            console.warn('xx actionWebSocket localDataCachingTable count @end', res);
                         });
                 });
 
@@ -660,7 +660,7 @@ export class GlobalVariableService {
                         isFresh = false;
                     };
 
-                    // console.log('xx fresh variables for :', resource, {dateNow}, {timeNow}, {dateCaching}, {timeCaching}, isFresh)
+                    // console.log('xx actionWebSocket fresh variables for :', resource, {dateNow}, {timeNow}, {dateCaching}, {timeCaching}, isFresh)
                     // Use local cache variable or table if fresh
                     // TODO - check the assumption that there is data when fresh (else returns [])
                     if (isFresh) {
@@ -675,7 +675,7 @@ export class GlobalVariableService {
                                 // var type = 'article';
                                 // this[type+'_count'] = 1000;  // in a function we use "this";
                                 // alert(this.article_count);
-                                console.log('xx in cache PRE sort', resource, params)
+
                                 // Set to the full set, and then sortFilter if requested
                                 let results: any = this[localVariableName];
                                 if (params != '') {
@@ -684,7 +684,6 @@ export class GlobalVariableService {
                                         params);
                                 };
                                  
-                                console.log('xx in cache POST sort', resource, params, results)
                                 console.log('%c    Global-Variables getResource - data returned from Memory for : ',
                                     this.concoleLogStyleForCaching,
                                     resource);
@@ -750,7 +749,6 @@ export class GlobalVariableService {
                         localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                         localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
 
-                        console.log('xx localVariableName', localVariableName)
                         // Fill local Vars
                         if (localCacheableMemory) {
 
@@ -1045,7 +1043,6 @@ export class GlobalVariableService {
                                 let localIndex: number = this[localVariableName].findIndex(rec =>
                                     rec.id == data.id
                                 );
-                                console.log('xx localIndex', localIndex, data)
                                 if (localIndex >= 0) {
                                     this[localVariableName][localIndex] = data;
                                 };
@@ -1067,7 +1064,6 @@ export class GlobalVariableService {
                                 let localIndex: number = this[localCurrentVariableName].findIndex(rec =>
                                     rec.id == data.id
                                 );
-                                console.log('xx localIndex', localIndex, data)
                                 if (localIndex >= 0) {
                                     this[localCurrentVariableName][localIndex] = data;
                                 };
@@ -1197,7 +1193,6 @@ export class GlobalVariableService {
                         localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
                         localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                         localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-                        console.log('xx dataCachingTableIndex', dataCachingTableIndex, localCacheableMemory, localVariableName)
 
                         // Fill local Vars
                         if (localCacheableMemory) {
@@ -1956,7 +1951,6 @@ export class GlobalVariableService {
                         // thus not the same order as the current loop
                         let resultIndex: number = this.dataCachingTable.findIndex(
                             dct => dct.key == httpResult.resourceOrRoute);
-                        console.log('xx resultIndex', resultIndex, httpResult.resourceOrRoute)
                         if (resultIndex >= 0) {
                             // Fill local Vars
                             if (this.dataCachingTable[resultIndex].localCacheableMemory) {
@@ -2006,7 +2000,6 @@ export class GlobalVariableService {
                                 .bulkPut(this.dataCachingTable)
                                 .then(res => {
                                     this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                        console.log('xx dataCachingTable updated count @end', res);
                                     });
                             });
                         };
@@ -2125,7 +2118,6 @@ export class GlobalVariableService {
                                 this[localCurrentVariableName][localCurrentVarIndex] = cachedEntityData;
                             };
                         };
-                        console.log('xx updateLocalCacheMem Updated for localCurrentVariableName: ', localCurrentVariableName, this[localCurrentVariableName])
 
                     };
 

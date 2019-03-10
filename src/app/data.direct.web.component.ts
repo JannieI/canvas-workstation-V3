@@ -264,7 +264,7 @@ export class DataDirectWebComponent implements OnInit {
                 id: dataID,
                 data: this.currentData
             };
-            console.warn('xx dataID updatedata', dataID, updatedData)
+
             // Add Data, then dataset, then DS
             this.globalVariableService.saveData(updatedData)
                 .then(resData => {
@@ -274,7 +274,6 @@ export class DataDirectWebComponent implements OnInit {
                         .then(
                             resDS => {
                                 updatedDataset.datasourceID = this.selectedDatasource.id;
-                                console.warn('xx updatedDataset', updatedDataset)
                                 this.globalVariableService.saveResource('datasets', updatedDataset);
                         })
                         .catch(err => {

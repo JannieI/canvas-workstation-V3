@@ -78,7 +78,6 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                 this.dataConnections = dc.slice();
                 this.dataConnectionNames = this.dataConnections.map(con => con.connectionName);
                 this.dataConnectionNames = ['', ...this.dataConnectionNames];
-                console.warn('xx this.dataConnectionNames = ', this.dataConnectionNames )
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -225,9 +224,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
             this.selectedDatasource.dataFields = [];
 
             if (res.length > 0) {
-                console.warn('xx res[0]', res[0])
                 for(var key in res[0]) {
-                    console.warn('xx key', key)
                     this.selectedDatasource.dataFields.push(key);
                 }
             };

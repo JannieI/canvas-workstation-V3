@@ -238,7 +238,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
             null,
             10).then(res => {
 
-                console.log('xx meta', res.metaData, res.data.length)
                 let dataArray: any = res.data
                 // Fill the data
                 this.fileData = dataArray.slice(0,10);

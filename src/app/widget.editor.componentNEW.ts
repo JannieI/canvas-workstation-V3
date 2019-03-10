@@ -97,7 +97,6 @@ export interface dataSchemaInterface {
 
         // if (this.currentGraphID >= 0  &&  event.code == 'KeyS'  &&  (event.ctrlKey)
         //     &&  (!event.shiftKey)  ) {
-        // //    console.warn('xx');
         //     this.showGraph(this.currentGraphID);
         //     return;
         // };
@@ -871,7 +870,6 @@ export interface dataSchemaInterface {
                 this.showSpecificGraphLayer,
                 (this.currentGraphLayer - 1)
             );
-            console.warn('xx spec', this.specification, this.localWidget);
 
             // Render in DOM
             let vegaSpecification = compile(this.specification).spec;
@@ -901,7 +899,7 @@ export interface dataSchemaInterface {
                 this.showSpecificGraphLayer,
                 (this.currentGraphLayer - 1)
             );
-            console.log('xx Vega graph', this.specification)
+
             // Render in DOM
             let view = new View(parse(this.specification));
             view.renderer('svg')
@@ -1067,7 +1065,6 @@ export interface dataSchemaInterface {
                 w.graphSpecification.height = 1200;    
             };
         });
-        console.log('xx this.localWidget', this.localWidget)
         // Calc the graph dimensions
         // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphHeight = this.globalVariableService.calcGraphHeight(this.localWidget);
         // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphWidth = this.globalVariableService.calcGraphWidth(this.localWidget);
@@ -1108,7 +1105,6 @@ export interface dataSchemaInterface {
                     .then(res => {
                         this.localWidget.id = res.id;
 
-                        console.log('xx added W res', res)
                         // Action
                         // TODO - cater for errors + make more generic
                         let actID: number = this.globalVariableService.actionUpsert(
@@ -1157,8 +1153,6 @@ export interface dataSchemaInterface {
             // Update global W and DB
             this.globalVariableService.saveWidget(this.localWidget)
                 .then(res => {
-
-                    console.log('xx saved W res', res)
 
                     // Action
                     // TODO - cater for errors + make more generic
@@ -2389,7 +2383,6 @@ export interface dataSchemaInterface {
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
             ds => ds.datasourceID == datasourceID
         );
-        console.warn('xx clicked row', dataSetIndex, datasourceID);
         if (dataSetIndex >= 0) {
 
             // Load local arrays for ngFor - this is required for the Preview
@@ -2398,8 +2391,6 @@ export interface dataSchemaInterface {
             // Load first few rows into preview
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
                 .data.slice(0,5);
-
-            console.log('xx this.currentData', this.currentData)
 
             // Nr rows
             this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
@@ -2442,8 +2433,6 @@ export interface dataSchemaInterface {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in widget.editor addCurrentDatasource: ' + err);
             });
-
-        console.warn('xx clicked row', dataSetIndex);
 
     }
 
@@ -2626,7 +2615,6 @@ export interface dataSchemaInterface {
             };
             this.dataSchema.push(newDataSchema);
         });
-        console.warn('xx this.dataSchema', this.dataSchema);
 
     }
 

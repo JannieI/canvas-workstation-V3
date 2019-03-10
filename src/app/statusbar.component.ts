@@ -582,7 +582,6 @@ export class StatusbarComponent {
         // Duplicate a Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTabDuplicate', '@Start');
 
-        console.warn('xx tab index', this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex, this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID, this.globalVariableService.currentWidgets)
         if (this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex >= 0) {
 
             let duplicateTab: DashboardTab =JSON.parse(JSON.stringify(
@@ -608,7 +607,6 @@ export class StatusbarComponent {
 
                 // Duplicate the Widgets
                 this.globalVariableService.currentWidgets.forEach(w => {
-                    console.warn('xx ids', w.dashboardTabID, this.globalVariableService
                     .currentDashboardInfo.value.currentDashboardID)
                     if (w.dashboardTabID == this.globalVariableService
                         .currentDashboardInfo.value.currentDashboardTabID) {

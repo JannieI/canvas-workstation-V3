@@ -124,8 +124,6 @@ export class LoginComponent implements OnInit {
             this.password
             ).then(res => {
 
-                console.warn('xx res', res);
-
                 if (res.substring(0, 5) == 'Error') {
                     this.errorMessage = res.substring(7);
                 };
@@ -177,8 +175,6 @@ export class LoginComponent implements OnInit {
             this.password
             ).then(res => {
 
-                console.warn('xx res', res);
-
                 if (res.token == null) {
                     this.errorMessage = res.message.substring(7);
                     return;
@@ -187,7 +183,6 @@ export class LoginComponent implements OnInit {
                     let canvasServerURI: string = this.globalVariableService.ENVCanvasServerList.find(
                         srv => srv.serverName == this.canvasServerName
                     ).serverHostURI;
-                    console.warn('xx canvasServerURI', canvasServerURI)
 
                     this.globalVariableService.verifyCanvasUser(
                         this.canvasServerName,

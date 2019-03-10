@@ -98,7 +98,6 @@ export class MyProfileComponent implements OnInit {
         //     for (var i = 0; i < nrCols; i++) {
         //         this.dataFieldNames.push((i));
         //     };
-        //     console.warn('xx dataFieldNames', this.dataFieldNames)
 
         //     // Create the data
         //     let c: number = 0;
@@ -120,7 +119,6 @@ export class MyProfileComponent implements OnInit {
         //         };
 
         //     })
-        //     console.warn('xx rows', this.currentData.length, row0, row1)
         //     if (row0.length > 0) {
         //         this.currentData.push(row0);
         //     };
@@ -128,7 +126,6 @@ export class MyProfileComponent implements OnInit {
         //         this.currentData.push(row1);
         //     };
         //     // this.currentData.push( row0, row1)
-        //     console.warn('xx cData', this.currentData.length, this.currentData)
         // };
     }
 
@@ -136,8 +133,6 @@ export class MyProfileComponent implements OnInit {
         // Upload a profile pic
         this.globalFunctionService.printToConsole(this.constructor.name,'clickProfilePic', '@Start');
 
-        console.warn('xx upload file here and store url');
-        
     }
 
     clickClose(action: string) {

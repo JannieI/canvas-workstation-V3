@@ -259,7 +259,6 @@ export class DataRefreshOnceComponent implements OnInit {
             // Make proper error handling
             alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
         };
-        console.warn('xx this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
 
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
