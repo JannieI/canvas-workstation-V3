@@ -80,7 +80,7 @@ export class ManageColoursComponent implements OnInit {
                 console.error('Error in manage.colours reading canvasBackgroundcolorsDefault: ' + err);
             });
         this.globalVariableService.getResource('canvasBackgroundcolors').then(res => {
-            this.backgroundcolors = res.slice();
+            this.backgroundcolors = res;
 
             // Sort the list
             this.backgroundcolors.sort( (obj1,obj2) => {
@@ -92,6 +92,11 @@ export class ManageColoursComponent implements OnInit {
                 };
                 return 0;
             });
+            this.backgroundcolors = [
+                {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false},
+                ...this.backgroundcolors
+            ];
+        
         })
         .catch(err => {
             this.errorMessage = err.slice(0, 45);
