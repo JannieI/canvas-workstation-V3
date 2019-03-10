@@ -1,5 +1,5 @@
 /*
- * Help page, including Recently opened Dashboards
+ * Landing page, including Add, Open Dashboards, recently used Dashboards and Help
  */
 
 // Angular

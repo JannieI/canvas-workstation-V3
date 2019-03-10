@@ -1,2 +1,3 @@
+// TODO - lets delete this
 export * from './app.component';
 export * from './app.module';

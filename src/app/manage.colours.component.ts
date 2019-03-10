@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Show page to manage colours, and create custom ones
  */
 
 // Angular

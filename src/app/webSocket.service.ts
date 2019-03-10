@@ -1,3 +1,9 @@
+/*
+ * Service for web sockets
+ */
+
+// TODO - is this still used?
+
 // Web socket import { Injectable } from '@angular/core';
 
 // @Injectable()

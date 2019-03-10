@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows form to delete all Shapes on the current Tab
  */
 
 // Angular

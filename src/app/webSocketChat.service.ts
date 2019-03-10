@@ -1,4 +1,9 @@
-// Chat service using the web socket service
+/*
+ * Chat service using the web socket service
+ */
+
+// TODO - is this still used?
+
 
 import { Injectable }                 from '@angular/core';
 import { WebsocketService }           from './webSocket.service';

@@ -1,5 +1,5 @@
 /*
- * Dashboard
+ * Component with a single Slicer
  */
 
 // From Angular

@@ -1,5 +1,5 @@
 /*
- * Manage Permissions of the current user
+ * Shows Permissions for the current user
  */
 
 // Angular

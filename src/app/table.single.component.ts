@@ -1,5 +1,5 @@
 /*
- * Dashboard
+ * Compoonent for a single Table
  */
 
 // From Angular

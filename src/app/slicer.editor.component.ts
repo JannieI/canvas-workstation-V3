@@ -1,3 +1,7 @@
+/*
+ * Shows form add, edit a Slicer
+ */
+
 // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';

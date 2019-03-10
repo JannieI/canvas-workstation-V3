@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows a profile of the current user, ie roles.
  */
 
 // Angular

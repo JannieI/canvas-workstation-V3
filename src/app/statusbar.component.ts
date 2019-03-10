@@ -1,5 +1,5 @@
 /*
- * StatusBar
+ * StatusBar Form, shown at bottom of Dashboard
  */
 
 // From Angular

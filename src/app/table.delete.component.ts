@@ -1,3 +1,7 @@
+/*
+ * Shows form to delete the selected Table
+ */
+
 // Angular
 import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';

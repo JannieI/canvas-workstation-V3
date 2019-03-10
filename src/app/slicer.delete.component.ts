@@ -1,3 +1,7 @@
+/*
+ * Shows form to delete the selected Slicer
+ */
+
 // Angular
 import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';

@@ -1,4 +1,7 @@
-// Custom filter pipe
+/*
+ * Custom filter pipe
+ */
+
 // Angular
 import { Pipe }                       from '@angular/core';
 import { PipeTransform }              from '@angular/core';
