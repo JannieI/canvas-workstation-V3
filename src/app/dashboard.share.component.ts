@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows the form with Dashboard permissions; per user and per group
  */
 
 // Angular

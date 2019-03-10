@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows form to export the structure of a Dashboard
  */
 
 // Angular

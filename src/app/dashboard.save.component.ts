@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows the form to save the Draft Dashboard back over the original Complete Dashboard
  */
 
 // Angular

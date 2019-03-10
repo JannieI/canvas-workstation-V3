@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows the form to rename any Dashboard
  */
 
 // Angular
@@ -142,6 +142,7 @@ export class DashboardRenameComponent implements OnInit {
         // Search Ds according to the filter criteria filled in
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
 
+        // TODO - this whole search must be done with the compound route Dashboard search
         // Start afresh
         this.errorMessage = '';
         this.filteredDashboards = this.dashboards.slice();

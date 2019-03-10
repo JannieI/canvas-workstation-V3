@@ -1,5 +1,5 @@
 /*
- * Create a new Dashboard
+ * Shows the form to create a new Dashboard
  */
 
 // Angular

@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows form to send Canvas messages
  */
 
 // Angular

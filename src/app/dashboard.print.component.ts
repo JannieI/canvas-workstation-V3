@@ -1,3 +1,7 @@
+/*
+ * Shows form to print a Dashboard
+ */
+
 // Angular
 import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';

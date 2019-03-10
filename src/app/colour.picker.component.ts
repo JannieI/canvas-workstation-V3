@@ -1,3 +1,8 @@
+/*
+ * Shows form with the colour picker
+ */
+
+// Angular
 import { Component }                  from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';

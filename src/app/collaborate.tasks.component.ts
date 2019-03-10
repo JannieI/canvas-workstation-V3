@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Shows form with all tasks, as table or gannt chart
  */
 
 // Angular

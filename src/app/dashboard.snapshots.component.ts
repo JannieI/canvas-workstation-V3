@@ -82,6 +82,7 @@ export class DashboardSnapshotsComponent implements OnInit {
             });
 
 
+        // TODO - this should be done via a compound route ?
         let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
             d => d.id ==
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID

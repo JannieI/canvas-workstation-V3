@@ -1,5 +1,5 @@
 /*
- * Main Component, with menu
+ * Main Component, with menu and all Widgets.  Shows statusBar component
  */
 
 // Angular

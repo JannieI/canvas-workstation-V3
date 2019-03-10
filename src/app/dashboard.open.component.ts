@@ -1,5 +1,5 @@
 /*
- * Open an existing Dashboard
+ * Shows the form to open an existing Dashboard
  */
 
 // Angular

@@ -1,3 +1,7 @@
+/*
+ * Shows form to add a new Task
+ */
+
 // Angular
 import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
