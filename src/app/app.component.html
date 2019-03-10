@@ -2344,6 +2344,16 @@
 
             </div>
 
+            <!-- Navigator Object -->
+            <div class="widgetGraph" *ngIf="row.widgetType=='Navigator'">
+                <widget-navigator
+                    [widget]="row"
+                    style="margin: 1px; padding: 0; white-space: normal; background-color: transparent;"
+                    (click)="clickWidgetGraph($event, i, row.id)"
+                    >
+                </widget-navigator>
+            </div>
+
             <!-- Graph Object -->
             <div class="widgetGraph" *ngIf="row.widgetType=='Graph'  &&  !row.showCheckpoints">
                 <widget-single
