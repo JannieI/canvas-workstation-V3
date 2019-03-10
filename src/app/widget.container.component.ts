@@ -107,7 +107,7 @@ export class WidgetContainerComponent implements OnInit {
                 this.containerBackgroundcolorName = this.localWidget.containerBackgroundcolorName;
                 this.containerBackgroundcolor = this.localWidget.containerBackgroundcolor;
                 this.containerBorderColourName = this.localWidget.containerBorderColourName;
-                this.containerBorderColour = this.localWidget.containerBackgroundcolor;
+                this.containerBorderColour = this.localWidget.containerBordercolour ;
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
