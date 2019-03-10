@@ -141,6 +141,7 @@ export class WidgetTitleComponent implements OnInit {
                 this.backgroundcolors = res;
                 this.backgroundcolors = [
                     {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, 
+                    {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false}, 
                     ...this.backgroundcolors
                 ];
             })

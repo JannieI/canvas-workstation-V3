@@ -288,7 +288,8 @@ export interface dataSchemaInterface {
             .then(res => {
                 this.backgroundcolors = res;
                 this.backgroundcolors = [
-                    {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false}, ...this.backgroundcolors
+                    {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false}, 
+                    ...this.backgroundcolors
                 ];
             })
             .catch(err => {
