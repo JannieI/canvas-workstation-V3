@@ -5296,9 +5296,9 @@ export class GlobalVariableService {
 
                 // Add if last snap was not an auto (null returned if no last snapshot)
                 if (lss != null) {
+                    console.log('GV calls', lss)
 
                     if (lss[0].comment != snapshotComment) {
-                        console.log('GV calls', lss, lss.comment)
                         this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit')
                             .then(res => {
 
