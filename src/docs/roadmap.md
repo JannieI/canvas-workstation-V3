@@ -1383,6 +1383,7 @@ This document describes items for later versions of Canvas.
     - add Ctrl-Backspace to go back to the previously opened tab, useful if jumped randomly using Tabs popup (just keep prevID, and if pressed then replace with current => toggle between two.  Think this can be useful)
     - Statusbar needs word (make more clear what it does), 
     - Also, the background is very dark and heavy.  Relook at this with the menu bar background.
+    - click anywhere on Dashboard, and any open statusbar menus closes.  Must be done via a Behaviour Subject methinks ...
 
     Audible sounds (on statusbar):
     -----------------------------
