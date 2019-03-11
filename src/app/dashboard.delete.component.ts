@@ -80,8 +80,7 @@ export class DashboardDeleteComponent implements OnInit {
         this.globalVariableService.getResource('dashboards', 
             '?filterObject={"id": ' + dashboardID + '}'
             ).then(res => {
-                console.log('xx res', dashboardID, res)
-                this.dashboard = res.filter(d => d.id == dashboardID)[0];
+                this.dashboard = res;
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -140,14 +139,13 @@ export class DashboardDeleteComponent implements OnInit {
         };
 
         // Delete D, as all related Entities
-        // this.globalVariableService.deleteDashboardInfo(
-        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-        // ).then( () => this.formDashboardDeleteClosed.emit('Deleted') )
-        // .catch(err => {
-        //     this.errorMessage = err.slice(0, 100);
-        //     console.error('Error in Dashboard.delete deleting: ' + err);
-        // });
-console.log('DELETED !!!')
+        this.globalVariableService.deleteDashboardInfo(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        ).then( () => this.formDashboardDeleteClosed.emit('Deleted') )
+        .catch(err => {
+            this.errorMessage = err.slice(0, 100);
+            console.error('Error in Dashboard.delete deleting: ' + err);
+        });
     }
 
 }
