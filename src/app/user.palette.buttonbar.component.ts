@@ -42,7 +42,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
     }
 
-
     errorMessage: string = '';
     paletteButtons: PaletteButtonBar[];
     paletteButtonsOriginal: PaletteButtonBar[];
@@ -190,7 +189,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 // Add to Available
                 let newPaletteButton: PaletteButtonBar =
                 {
-                    id: this.paletteButtonsSelected[i].id,
+                    id: this.paletteButtonsSelected[i].paletteButtonBarID,
                     mainmenuItem: this.paletteButtonsSelected[i].mainmenuItem,
                     menuText: this.paletteButtonsSelected[i].menuText,
                     shape: this.paletteButtonsSelected[i].shape,
