@@ -119,8 +119,11 @@ export class AppComponent implements OnInit {
             return;
         };
         if (event.code == 'KeyV'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
-            this.clickMenuWidgetPaste();
-            return;
+            console.log('xx this.clipboardWidget', this.clipboardWidget)
+            if (this.clipboardWidget != null  &&  this.clipboardWidget != undefined) {
+                this.clickMenuWidgetPaste();
+                return;
+            };
         };
         if (event.code == 'Delete'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
             this.clickMenuPaletteDelete();
