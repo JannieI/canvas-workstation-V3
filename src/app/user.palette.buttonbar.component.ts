@@ -68,6 +68,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
             // Set selected, already obtained at startup
             this.paletteButtonsSelected = this.globalVariableService
                 .currentPaletteButtonsSelected.value.slice();
+            this.paletteButtonsSelected.forEach(pab => pab.isSelected = false);
 
             // Loop on selected ones in Available, and remove them
             for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
