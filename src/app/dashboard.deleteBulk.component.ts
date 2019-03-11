@@ -119,6 +119,12 @@ export class DashboardDeleteBulkComponent implements OnInit {
             return;
         };
 
+        // Cannot delete Draft from here
+        if (this.dashboards[index].draftID != null) {
+            this.errorMessage = 'First discard the Draft for this Dashboard';
+            return;
+        };
+
         // Delete D, as all related Entities
         this.dashboards = this.dashboards.filter(d => d.id != id);
         this.globalVariableService.deleteDashboardInfo(id);

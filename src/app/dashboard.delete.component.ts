@@ -133,7 +133,7 @@ export class DashboardDeleteComponent implements OnInit {
         };
 
         // Cannot remove if Draft present
-        if (this.dashboard.draftID != null){
+        if (this.dashboard.draftID != null) {
             this.errorMessage = 'First discard the Draft for this Dashboard';
             return;
         };
