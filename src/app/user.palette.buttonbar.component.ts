@@ -208,10 +208,12 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 this.paletteButtons.push(newPaletteButton);
 
                 // Delete from Selected
+                let paletteSelectedIndex: number = i;
+
                 this.globalVariableService.deletePaletteButtonsSelected(
-                    this.paletteButtonsSelected[i].id)
+                    this.paletteButtonsSelected[paletteSelectedIndex].id)
                     .then(res => {
-                        this.paletteButtonsSelected.splice(i, 1);
+                        this.paletteButtonsSelected.splice(paletteSelectedIndex, 1);
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);
