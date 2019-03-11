@@ -77,13 +77,16 @@ export class DashboardDeleteComponent implements OnInit {
 
         // Set the D and nr of times the current D is used in other entities.
         let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-        this.globalVariableService.getResource('dashboards').then(res => {
-            this.dashboard = res.filter(d => d.id == dashboardID)[0];
-        })
-        .catch(err => {
-            this.errorMessage = err.slice(0, 100);
-            console.error('Error in Dashboard.delete reading dashboards: ' + err);
-        });
+        this.globalVariableService.getResource('dashboards', 
+            '?filterObject={"id": ' + dashboardID + '}'
+            ).then(res => {
+                console.log('xx res', dashboardID, res)
+                this.dashboard = res.filter(d => d.id == dashboardID)[0];
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.delete reading dashboards: ' + err);
+            });
 
         this.globalVariableService.getDashboardSummary(dashboardID)
             .then(res => {
@@ -137,14 +140,14 @@ export class DashboardDeleteComponent implements OnInit {
         };
 
         // Delete D, as all related Entities
-        this.globalVariableService.deleteDashboardInfo(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-        ).then( () => this.formDashboardDeleteClosed.emit('Deleted') )
-        .catch(err => {
-            this.errorMessage = err.slice(0, 100);
-            console.error('Error in Dashboard.delete deleting: ' + err);
-        });
-
+        // this.globalVariableService.deleteDashboardInfo(
+        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        // ).then( () => this.formDashboardDeleteClosed.emit('Deleted') )
+        // .catch(err => {
+        //     this.errorMessage = err.slice(0, 100);
+        //     console.error('Error in Dashboard.delete deleting: ' + err);
+        // });
+console.log('DELETED !!!')
     }
 
 }
