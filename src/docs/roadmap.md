@@ -92,6 +92,7 @@ This document describes items for later versions of Canvas.
         - in Open D we list those 'Due on' a date.  This can only be done when we calculate the due date given the schedule - remember the Omega complexity with this.
         - rename shapes for icons = angle-double, line-chart, wand.  AND look for others
         - gracefully show message to user when HTTP disconnects, like WebSockets does now
+        - when SRV down, give user-friendly message on WS
 
 
 
@@ -335,6 +336,9 @@ This document describes items for later versions of Canvas.
     2.3 Calc Hours between two date-time variables - both continues / elapsed and working hours 
     2.4 Calc Number of days between two events, ie number of days between two calls per technicial (from workorders)
     2.5 Period lookup - not sure if we need this: how long before a call was preventative maintenance done on an ATM
+    2.6 Make extensible with user-written functions.
+    2.7 Add accounting rations (Prof Brummer)
+    2.8 Add beta, regression, standard deviation per day, etc
 
     3. Data augmentation - how far do we go?
     3.1 Adding lat-long for a suburb or town.
@@ -1095,7 +1099,7 @@ This document describes items for later versions of Canvas.
 
 
     Canvas Server:
-    ----------
+    -------------
     - consider a much larger project, say with a visual GUI to show processes / transformations
     - connector for S3 - https://github.com/andrewrk/node-s3-client
     - connector for Analytics Services - https://docs.microsoft.com/en-us/javascript/api/overview/azure/analysis-services?view=azure-node-latest
@@ -1128,6 +1132,7 @@ This document describes items for later versions of Canvas.
     - consider multiple files, in which case to loop over files Array
     - consider drag and drop from external places - see example in
         https://www.html5rocks.com/en/tutorials/file/dndfiles/
+    - ensure fieldNames no spaces, commas, etc
 
     Auto create of Dashboards:
     -------------------------
@@ -1325,6 +1330,10 @@ This document describes items for later versions of Canvas.
     - Canvas = powerpoint-lite, dashboard, data virtualisation-lite, transformations, data - governance-lite
     - World class, easy insight from any data, agile tool, full BI scope (1 tool with less resources), instant deployment, short learning curve (hrs not weeks), can blend data together, analysis = slice and dice, impact = actionable insights, deploy = cloud, on-prem, hybrid, embed = secure and white label, govern = secure and control your data, customer success, instant impact: quickly up and running and deliver ROI within weeks or months, no need to involve IT resources to tackle complex data, no DBA or scripts required, increase customer satisfaction, easy to use front end, open API architecture, latest socket technology, access control, full reporting suite allowing for user customisation, dashboard for key statistics, easy to use with minimal training, unlimited number of users, no upfront capital expenditure (if in cloud), easily scale up or down, pay as you go?, remote working, empower your employees
     share Dashboard – also sends out email
+
+    Services:
+    --------
+    - look at a custom API to demo, ie the Movie one
 
     Data Profiling:
     --------------

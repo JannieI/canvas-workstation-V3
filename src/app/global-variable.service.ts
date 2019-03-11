@@ -1030,7 +1030,6 @@ export class GlobalVariableService {
                         localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
                         localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                         localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-                        console.log('xx dataCachingTableIndex', dataCachingTableIndex, localCacheableMemory, localVariableName)
 
                         // Fill local Vars
                         if (localCacheableMemory) {
@@ -1049,7 +1048,6 @@ export class GlobalVariableService {
                                 console.log('%c    Global-Variables saveResource updated cached Memory for:',
                                     this.concoleLogStyleForCaching,
                                     resource, 'to', this[localVariableName]
-                                    ,this.currentDashboardTabs
                                     );
                             };
 
@@ -1075,22 +1073,27 @@ export class GlobalVariableService {
                             };
                         };
 
-                        // Update record on Disc cache
+                        // Update all records on Disc cache
                         // It must be defined in the dexie.ts class, with an id col which
                         // is also contained in the object to write ...
+                        // TODO - what if not cached in MEM but only on Disc !!
                         if (localCacheableDisc) {
 
                             if (localTableName != null) {
                                 this.dbCanvasAppDatabase.table(localTableName)
-                                    .put(copyData)
-                                    .then(res => {
-                                        console.log('%c    Global-Variables saveResource updated Local cached Disc for:',
-                                        this.concoleLogStyleForCaching,
-                                        resource, 'into', localTableName
-                                        );
-                                    });
+                                .bulkPut(this[localVariableName])
+                                .then(resPut => {
 
+                                    // Count
+                                    this.dbCanvasAppDatabase.table(localTableName)
+                                        .count(resCount => {
+                                            console.log('%c    Global-Variables addResource updated local Disc for:',
+                                                this.concoleLogStyleForCaching,
+                                                resource, 'to', resCount);
+                                    });
+                                });
                             };
+
                         };
 
                         // Update dataCaching in Memory
