@@ -882,6 +882,7 @@ export class AppComponent implements OnInit {
                                             .name + ' ' + this.globalVariableService.formatDate(today);
                                         let snapshotComment: string = 'Automated Snapshot after ' +
                                             (mins / 60000).toString() + ' mins';
+
                                         this.globalVariableService.newDashboardSnapshot(
                                             snapshotName,
                                             snapshotComment,

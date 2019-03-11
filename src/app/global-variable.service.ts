@@ -5290,12 +5290,15 @@ export class GlobalVariableService {
             this.getResource('dashboardSnapshots','?filterObject={"dashboardID": '
                 + this.currentDashboardInfo.value.currentDashboardID.toString()
                 + '} &sortObject=-createdOn &nrRowsToReturn=1'
+                + '&fields=id, comment '
 
             ).then(lss => {
 
                 // Add if last snap was not an auto (null returned if no last snapshot)
                 if (lss != null) {
-                    if (lss.comment != snapshotComment) {
+
+                    if (lss[0].comment != snapshotComment) {
+                        console.log('GV calls', lss, lss.comment)
                         this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit')
                             .then(res => {
 
@@ -7072,6 +7075,7 @@ export class GlobalVariableService {
             });
 
         };
+        console.log('xx post sort', sortObject, results)
 
         // 3. If (FIELDS_STRING) then results = results[fields]
         if (fieldsObject != null) {
@@ -7091,6 +7095,7 @@ export class GlobalVariableService {
                 };
             });
         };
+        console.log('xx post fields', results)
 
         // 4. If (FILTER_OBJECT) then results = results.filter()
         if (filterObject != null) {
@@ -7105,7 +7110,7 @@ export class GlobalVariableService {
                 });
             });
         };
-
+console.log('xx post filter', results)
         // TODO
         // 5. If (AGGREGATION_OBJECT) then results = results.clever-thing
         if (aggregationObject != null) {
