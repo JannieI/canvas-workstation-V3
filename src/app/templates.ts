@@ -289,7 +289,7 @@ export const widgetTemplate: Widget =
         "containerHasTitle": false,
         "containerTop": 80,
         "containerWidth": 410,
-        "containerZindex": 50,
+        "containerZindex": 51,      // So that Widget->Back has an effect
 
         "graphLayerFacet": "Single",
         "graphLayers": [
