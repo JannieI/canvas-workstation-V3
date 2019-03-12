@@ -4616,6 +4616,18 @@ export class AppComponent implements OnInit {
         };
 
         // Check if Locked - after id is obtained
+        if (this.selectedWidget == null) {
+            this.showMessage(
+                'No Widget selected',
+                'StatusBar',
+                'Info',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        // Check if Locked - after id is obtained
         if (canSave) {
             if (this.selectedWidget.isLocked) {
                 this.showMessage(
