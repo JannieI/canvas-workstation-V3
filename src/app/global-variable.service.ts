@@ -4224,6 +4224,9 @@ export class GlobalVariableService {
                 let xColumnValues: any = widget.graphData.map(
                     x => x[widget.graphLayers[0].graphXfield]
                 );
+
+                // Remove nulls as WordCloud doesnot like it
+                xColumnValues = xColumnValues.filter(x => x != null);
                 specification['data'][0]['values'] = xColumnValues;
 
                 return specification;
@@ -4288,6 +4291,7 @@ export class GlobalVariableService {
         if (widget.visualGrammarType == null) {
             widget.visualGrammarType = 'standard';
         };
+        
         if (widget.visualGrammarType.toLowerCase() == 'custom') {
             specification = widget.graphLayers[0].graphSpecification;
 
@@ -4315,9 +4319,8 @@ export class GlobalVariableService {
             };
         };
 
-
+        
         // NB - the rest of the Code deals ONLY with the STANDARD visualGrammarType
-
 
 
         // Optional Sampling
@@ -4331,6 +4334,7 @@ export class GlobalVariableService {
         specification['height'] = height;
 
 
+        
         // Title
         specification['title']['text'] = widget.graphTitleText;
         if (widget.graphTitleAnchor != null) {
@@ -4349,6 +4353,7 @@ export class GlobalVariableService {
             specification['title']['orient'] = widget.graphTitleOrientation.toLowerCase();
         };
 
+        
 
         // Data
         if (widget.graphUrl != ""  &&  widget.graphUrl != null) {
@@ -4367,6 +4372,7 @@ export class GlobalVariableService {
                 };
         };
 
+        
         // Calculated Fields
         if (widget.graphCalculations == null) {
             widget.graphCalculations = [];
@@ -4395,6 +4401,7 @@ export class GlobalVariableService {
                     .split(",");
             };
 
+            
             // Cumulation Function
             if (calcFunction.toLowerCase() == 'sum'  &&  calcFields.length > 0) {
                 specification['transform'].push(
@@ -4450,6 +4457,7 @@ export class GlobalVariableService {
             };
         };
 
+        
 
         // Filter
         if (widget.graphFilters == null) {
@@ -4470,6 +4478,7 @@ export class GlobalVariableService {
             };
 
 
+            
             if (graphFilters[i].filterOperator == 'Not Equal') {
                 if (filterFieldDataType == 'string'
                     ||
@@ -4514,6 +4523,7 @@ export class GlobalVariableService {
                 };
             };
 
+            
             if (graphFilters[i].filterOperator == 'Less Than') {
 
                 if (filterFieldDataType == 'string') {
@@ -4536,6 +4546,7 @@ export class GlobalVariableService {
 
             };
 
+            
             if (graphFilters[i].filterOperator == 'Less Than Equal') {
 
                 if (filterFieldDataType == 'string') {
@@ -4692,6 +4703,7 @@ export class GlobalVariableService {
 
         }
 
+        
         let currentGraphLayer: number = 0;
         let specificationInnerArray: any[] = [];
 
@@ -4774,6 +4786,7 @@ export class GlobalVariableService {
                     widget.graphLayers[currentGraphLayer].graphMarkSize;
             };
 
+            
 
             // Text Channel
             if (widget.graphLayers[currentGraphLayer].graphMark == 'text') {
@@ -4791,6 +4804,7 @@ export class GlobalVariableService {
             };
 
 
+            
             // X field
             if (widget.graphLayers[currentGraphLayer].graphXfield != '') {
                 specificationInner['encoding']['x']['field'] = widget.graphLayers[currentGraphLayer].graphXfield;
@@ -4881,9 +4895,11 @@ export class GlobalVariableService {
                             ];
                         specificationInner['mark']['clip'] = true;
                     };
-                };            };
+                };            
+            };
 
 
+            
             // Y field
             if (widget.graphLayers[currentGraphLayer].graphYfield != '') {
                 specificationInner['encoding']['y']['field'] = widget.graphLayers[currentGraphLayer].graphYfield;
@@ -4978,6 +4994,7 @@ export class GlobalVariableService {
             };
 
 
+            
             // Conditional pre-work
             this.conditionFieldDataType = 'string';
             this.conditionOperator = '==';
@@ -5004,6 +5021,7 @@ export class GlobalVariableService {
                 };
             };
 
+            
             // Color field
             if (widget.graphLayers[currentGraphLayer].graphColorField != '') {
                 let colorBinMax: any = false;
@@ -5125,6 +5143,7 @@ export class GlobalVariableService {
             };
 
 
+            
             // Size field
             if (widget.graphLayers[currentGraphLayer].graphSizeField != '') {
 
@@ -5146,6 +5165,7 @@ export class GlobalVariableService {
             };
 
 
+            
             // Row field
             if (widget.graphLayers[currentGraphLayer].graphRowField != '') {
 
@@ -5236,6 +5256,7 @@ export class GlobalVariableService {
                 };
             };
 
+            
             // Add to Inner Array
             specificationInnerArray.push(specificationInner);
         };
@@ -5247,6 +5268,7 @@ export class GlobalVariableService {
             specification = {...specification, [widget.graphLayerFacet.toLowerCase()]: specificationInnerArray}
         };
 
+        
         // Tooltip setting
         // specification['mark']['tooltip']['content'] = "";
 

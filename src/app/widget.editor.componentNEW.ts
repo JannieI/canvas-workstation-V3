@@ -512,11 +512,10 @@ export interface dataSchemaInterface {
 
                             // Get Widget Graph Specs
                             this.globalVariableService.getResource('widgetGraphs').then(res => {
-                                this.widgetGraphsFull = res
+                                this.widgetGraphsFull = res;
                                 this.widgetGraphs = res.filter(
-                                    wg => wg.visualGrammar==this.localWidget.visualGrammar
+                                    wg => wg.visualGrammar == this.localWidget.visualGrammar
                                 );
-
                                 if (this.showWidgetEditorLite) {
                                     this.widgetGraphs = this.widgetGraphs
                                         .filter(wgr => this.widgetGraphsLite.indexOf(wgr.mark) >= 0 );
