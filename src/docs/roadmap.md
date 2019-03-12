@@ -1631,6 +1631,7 @@ This document describes items for later versions of Canvas.
         - visualise and repeat (Oksana !)
     - read data from other schemas: Excel, PowerBI models, Tableau - which means migration is easy !
     - hyperlinks to external docs, ie SENS
+    - consider changing serverName to host in the DB and models and code
 
     Renderers:
     ---------
