@@ -1058,6 +1058,7 @@ This document describes items for later versions of Canvas.
     - consider palette per Widget (Jaco)
     - group related things together, see Google
     - if more than 1 widget type has same function, make ONE on palette menu (thus icon is used once), and figure out inside what fn to call depending on type
+    - add search capability: text search for items (list changes as you type) and Canvas main menu search (ie show the main menu options and select one to show sub-menu items)
 
     Themes:
     -------

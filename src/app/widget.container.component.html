@@ -42,7 +42,7 @@
                     </div>
     
                     <!-- Right Hand Side -->
-                    <div class="gridShape"
+                    <div class="gridShape"  *ngIf="localWidget"
                         [style.width.px]="300"
                         [style.height.px]="300"
                         [style.background-color]="localWidget.containerBackgroundcolor"
@@ -89,7 +89,7 @@
                     <div class="gridHasTitleTitle">
                         C-Title:
                     </div>
-                    <div class="gridHasTitle">
+                    <div class="gridHasTitle" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.containerHasTitle"
                             type="checkbox"
                             name="containerHasTitle"
@@ -100,7 +100,7 @@
                         Menus:
                     </div>
 
-                    <div class="gridHasContextMenus">
+                    <div class="gridHasContextMenus" *ngIf="localWidget">
                             <input [(ngModel)]="localWidget.containerHasContextMenus"
                                 type="checkbox"
                                 name="containerHasContextMenus"
@@ -111,7 +111,7 @@
                     <div class="gridBackgroundcolorTitle">
                         Bg Colour:
                     </div>
-                    <div class="select gridBackgroundcolor">
+                    <div class="select gridBackgroundcolor" *ngIf="localWidget">
                         <select [(ngModel)]="localWidget.containerBackgroundcolorName"
                             name="containerBackgroundcolorName"
                             (change)="clickSelectBgColor($event)"
@@ -123,7 +123,7 @@
                             </option>
                         </select>
                     </div>
-                    <div class="gridBackgroundcolorPicker">
+                    <div class="gridBackgroundcolorPicker" *ngIf="localWidget">
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
@@ -143,7 +143,7 @@
                     <div class="gridLinecolorTitle">
                         Border Colour:
                     </div>
-                    <div class="select gridLinecolor">
+                    <div class="select gridLinecolor" *ngIf="backgroundcolors">
                         <select [(ngModel)]="containerBorderColourName"
                             name="containerBorderColourName"
                             (change)="clickSelectLineColor($event)"
@@ -205,7 +205,7 @@
                     <div class="gridBorderRadiusTitle">
                         Border Radius:
                     </div>
-                    <div class="gridBorderRadius">
+                    <div class="gridBorderRadius" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.containerBorderRadius"
                             type="text"
                             name="containerBorderRadius"
@@ -216,7 +216,7 @@
                     <div class="gridBoxShadowTitle">
                         Box Shadow:
                     </div>
-                    <div class="gridBoxShadow">
+                    <div class="gridBoxShadow" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.containerBoxshadow"
                             type="text"
                             name="containerBoxshadow"
@@ -227,7 +227,7 @@
                     <div class="gridFontSizeTitle">
                         FontSize:
                     </div>
-                    <div class="gridFontSize">
+                    <div class="gridFontSize" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.containerFontsize"
                             type="number"
                             name="containerFontsize"
@@ -243,7 +243,7 @@
                     <div class="gridTopTitle">
                         Top:
                     </div>
-                    <div class="gridTop">
+                    <div class="gridTop" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.containerTop"
                             type="number"
                             name="containerTop"
@@ -259,7 +259,7 @@
                     <div class="gridLeftTitle">
                         Left:
                     </div>
-                    <div class="gridLeft">
+                    <div class="gridLeft" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.containerLeft"
                             type="number"
                             name="containerLeft"
@@ -275,7 +275,7 @@
                     <div class="gridHeightTitle">
                         Height:
                     </div>
-                    <div class="gridHeight">
+                    <div class="gridHeight" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.containerHeight"
                             type="number"
                             name="containerHeight"
@@ -291,7 +291,7 @@
                     <div class="gridWidthTitle">
                         Width:
                     </div>
-                    <div class="gridWidth">
+                    <div class="gridWidth" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.containerWidth"
                             type="number"
                             name="containerWidth"
@@ -307,7 +307,7 @@
                     <div class="gridZindexTitle">
                         Z-index:
                     </div>
-                    <div class="gridZindex">
+                    <div class="gridZindex" *ngIf="localWidget">
                         <input [(ngModel)]="localWidget.containerZindex"
                             type="number"
                             name="containerZindex"
