@@ -3,7 +3,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(23, 1rem);
+    grid-template-rows: repeat(21, 1rem);
     margin-top: 2px;
 }
     .closeButton {
@@ -48,6 +48,7 @@
         grid-row-start: 2;
         grid-row-end: 3;
         text-align: left;
+        overflow-y: scroll; 
     }
 
     .gridNetworkArea {

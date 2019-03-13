@@ -56,10 +56,9 @@
                     </clr-signpost>
                 </div>
                 <div class="gridNetworkArea">
-                    <div class="gridNetworkBlock"
+                    <div class="gridNetworkBlock" *ngFor="let row of networks; let i = index"
                         >
-                        WOWEB Companies
-                        >
+                        {{ row.name }}
                     </div>
                 </div>
 

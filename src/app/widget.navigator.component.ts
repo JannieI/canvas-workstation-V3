@@ -35,6 +35,7 @@ export class WidgetNavigatorComponent {
 
     showSpecificGraphLayer: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
+    networks: {id: number; name: string; description: string}[] = [];
     specification: any;              // Full spec for Vega, or other grammar
 
     constructor(
@@ -50,6 +51,31 @@ export class WidgetNavigatorComponent {
     ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Populate networks
+        let networksNew: {id: number; name: string; description: string} = 
+            {id: 1, name: "WOWEB", description: "WOWEB"};
+        this.networks.push(networksNew);
+        networksNew = {id: 2, name: "Facebook", description: "Facebook"}
+        this.networks.push(networksNew);
+        networksNew = {id: 3, name: "Family", description: "Family"}
+        this.networks.push(networksNew);
+        networksNew = {id: 4, name: "Industries", description: "Industries"}
+        this.networks.push(networksNew);
+        networksNew = {id: 5, name: "Companies", description: "Companies"}
+        this.networks.push(networksNew);
+        networksNew = {id: 6, name: "Contacts", description: "Contacts"}
+        this.networks.push(networksNew);
+        networksNew = {id: 7, name: "Friends", description: "Friends"}
+        this.networks.push(networksNew);
+        networksNew = {id: 8, name: "Shopping", description: "Shopping"}
+        this.networks.push(networksNew);
+        networksNew = {id: 9, name: "Restaurants", description: "Restaurants"}
+        this.networks.push(networksNew);
+        networksNew = {id: 10, name: "UN structure", description: "UN structure"}
+        this.networks.push(networksNew);
+        networksNew = {id: 11, name: "Government structure", description: "Government structure"}
+        this.networks.push(networksNew);
 
         // Deep copy Local W
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
