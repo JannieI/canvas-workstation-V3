@@ -33,6 +33,7 @@ export class WidgetNavigatorComponent {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @Input() selectedWidget: Widget;
 
+    graphAreaWidth: number = 900;
     history: 
     {
         id: number; 
@@ -45,6 +46,9 @@ export class WidgetNavigatorComponent {
         equal: boolean;
         isSelected: boolean;
     }[] = [];
+    historyAreaWidth: number = 170;
+    navigatorWidth: number = 1360;
+    networkAreaWidth: number = 170;
     selectedNode: string = 'Absa';
     selectedNodeType: string = 'Company';
     showSpecificGraphLayer: boolean = false;

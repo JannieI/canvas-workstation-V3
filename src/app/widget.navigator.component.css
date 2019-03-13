@@ -7,37 +7,38 @@
         text-align: left;
     }
 
-    .gridNetworkAreaTitle {
-        font-size: 0.6rem;
-        text-align: left;
-    }
-
     .gridNetworkArea {
+        float: left;
         font-size: 0.6rem;
         text-align: left;
         overflow-y: scroll; 
     }
+        .gridNetworkAreaTitle {
+            font-size: 0.6rem;
+            text-align: left;
+        }
         .gridNetworkBlock {
             background-color: lightgray;
         }
 
-    .gridHistoryAreaTitle {
-        font-size: 0.6rem;
-        margin-left: 8px;
-        text-align: left;
-    }
-
     .gridHistoryArea {
+        float: left;
         font-size: 0.6rem;
         text-align: left;
         margin-left: 8px;
         overflow-y: scroll; 
     }
+        .gridHistoryAreaTitle {
+            font-size: 0.6rem;
+            margin-left: 8px;
+            text-align: left;
+        }
         .gridHistoryBlock {
             background-color: lightgray;
         }
 
     .gridGraphArea {
+        float: right;
         font-size: 0.6rem;
         margin-left: 8px;
         text-align: left;
