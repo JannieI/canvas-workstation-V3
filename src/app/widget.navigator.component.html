@@ -1,10 +1,10 @@
 <div class="gridOverall">
-    <button type="button" class="closeButton" (click)="clickClose('Close')">
+    <!-- <button type="button" class="closeButton" (click)="clickClose('Close')">
         <b>X</b>
-    </button>
+    </button> -->
 
     <!-- TOP FORM TITLE -->
-    <div class="gridTitle">
+    <!-- <div class="gridTitle">
         <b>Navigator</b>
         <clr-signpost>
             <clr-icon shape="info-circle"
@@ -26,12 +26,12 @@
                 </p>
             </clr-signpost-content>
         </clr-signpost>
-    </div>
+    </div> -->
 
-    <!-- GRAPH TYPES -->
+    <!-- NETWORKS -->
     <div class="gridNetworkAreaTitle">
         <b>
-            Networks (web)
+            Networks
         </b>
         <clr-signpost>
             <clr-icon shape="info-circle" style="margin-top: -4px;"
@@ -52,6 +52,38 @@
     </div>
     <div class="gridNetworkArea">
         <div class="gridNetworkBlock" *ngFor="let row of networks; let i = index"
+        [style.background-color]="row.isSelected? 'white'  :  'lightgray'"
+        [style.border]="row.isSelected? '1px solid black'  :  '1px solid gray'"
+        >
+            {{ row.name }}
+        </div>
+    </div>
+
+
+
+    <div class="gridHistoryAreaTitle">
+        <b>
+            History
+        </b>
+        <clr-signpost>
+            <clr-icon shape="info-circle" style="margin-top: -4px;"
+                clrSignpostTrigger>
+            </clr-icon>
+            <clr-signpost-content *clrIfOpen
+                [clrPosition]="'bottom-middle'">
+                <h5 style="margin-top: 0; color:gray;">
+                    Help
+                </h5>
+                <p style="margin-top: 0; color:gray; text-align: left;">
+                    A network is a pre-defined web of relationships.  For example,
+                    it can be the relationships between companies, subsidaries,
+                    directors (executive and non-executive), shareholders, etc.
+                </p>
+            </clr-signpost-content>
+        </clr-signpost>
+    </div>
+    <div class="gridHistoryArea">
+        <div class="gridHistoryBlock" *ngFor="let row of networks; let i = index"
         [style.background-color]="row.isSelected? 'white'  :  'lightgray'"
         [style.border]="row.isSelected? '1px solid black'  :  '1px solid gray'"
         >
