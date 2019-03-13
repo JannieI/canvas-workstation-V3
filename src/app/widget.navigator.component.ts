@@ -33,6 +33,18 @@ export class WidgetNavigatorComponent {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @Input() selectedWidget: Widget;
 
+    history: 
+    {
+        id: number; 
+        text: string; 
+        nodeType: string;
+        node: string;
+        filter: string;
+        relationship: string;
+        childFilter: string;
+        equal: boolean;
+        isSelected: boolean;
+    }[] = []
     showSpecificGraphLayer: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     networks: 
@@ -90,6 +102,50 @@ export class WidgetNavigatorComponent {
         this.networks.push(networksNew);
         networksNew = {id: 11, name: "Government structure", description: "Government structure", equal: false, isSelected: false}
         this.networks.push(networksNew);
+
+        let historyNew: 
+            {
+                id: number; 
+                text: string; 
+                nodeType: string;
+                node: string;
+                filter: string;
+                relationship: string;
+                childFilter: string;
+                equal: boolean;
+                isSelected: boolean;
+            } = 
+            {
+                id: 1,
+                text: 'Directors for Absa',
+                nodeType: 'Company',
+                node: 'Absa',
+                filter: '',
+                relationship: 'Directors',
+                childFilter: '',
+                equal: true,
+                isSelected: false,
+            };
+        this.history.push(historyNew);
+        historyNew =
+            {
+                id: 2,
+                text: 'Managers for Maria Ramos',
+                nodeType: 'Person',
+                node: 'Maria Ramos',
+                filter: '',
+                relationship: 'Managers',
+                childFilter: '',
+                equal: true,
+                isSelected: true,
+            };
+            this.history.push(historyNew);
+
+
+
+
+
+
 
         // Deep copy Local W
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));

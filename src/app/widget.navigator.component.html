@@ -75,9 +75,8 @@
                     Help
                 </h5>
                 <p style="margin-top: 0; color:gray; text-align: left;">
-                    A network is a pre-defined web of relationships.  For example,
-                    it can be the relationships between companies, subsidaries,
-                    directors (executive and non-executive), shareholders, etc.
+                    A new History row is added with each exploration.  Click on a previous
+                    history record to revisit its graph.
                 </p>
             </clr-signpost-content>
         </clr-signpost>
@@ -87,7 +86,7 @@
         [style.background-color]="row.isSelected? 'white'  :  'lightgray'"
         [style.border]="row.isSelected? '1px solid black'  :  '1px solid gray'"
         >
-            {{ row.name }}
+            {{ row.text }}
         </div>
     </div>
 
