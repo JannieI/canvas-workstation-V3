@@ -57,7 +57,9 @@
                 </div>
                 <div class="gridNetworkArea">
                     <div class="gridNetworkBlock" *ngFor="let row of networks; let i = index"
-                        >
+                    [style.background-color]="row.even? 'white'  :  'lightgray'"
+                    [style.border]="row.isSelected? '1px solid black'  :  '1px solid gray'"
+                    >
                         {{ row.name }}
                     </div>
                 </div>

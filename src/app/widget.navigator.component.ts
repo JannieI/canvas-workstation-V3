@@ -35,7 +35,13 @@ export class WidgetNavigatorComponent {
 
     showSpecificGraphLayer: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
-    networks: {id: number; name: string; description: string}[] = [];
+    networks: 
+        {
+            id: number; 
+            name: string; 
+            description: string}[] = [],
+            equal: boolean,
+            isSelected: boolean;
     specification: any;              // Full spec for Vega, or other grammar
 
     constructor(
@@ -56,25 +62,25 @@ export class WidgetNavigatorComponent {
         let networksNew: {id: number; name: string; description: string} = 
             {id: 1, name: "WOWEB", description: "WOWEB"};
         this.networks.push(networksNew);
-        networksNew = {id: 2, name: "Facebook", description: "Facebook"}
+        networksNew = {id: 2, name: "Facebook", description: "Facebook", equal: false, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 3, name: "Family", description: "Family"}
+        networksNew = {id: 3, name: "Family", description: "Family", equal: false, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 4, name: "Industries", description: "Industries"}
+        networksNew = {id: 4, name: "Industries", description: "Industries", equal: false, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 5, name: "Companies", description: "Companies"}
+        networksNew = {id: 5, name: "Companies", description: "Companies", equal: false, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 6, name: "Contacts", description: "Contacts"}
+        networksNew = {id: 6, name: "Contacts", description: "Contacts", equal: false, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 7, name: "Friends", description: "Friends"}
+        networksNew = {id: 7, name: "Friends", description: "Friends", equal: false, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 8, name: "Shopping", description: "Shopping"}
+        networksNew = {id: 8, name: "Shopping", description: "Shopping", equal: false, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 9, name: "Restaurants", description: "Restaurants"}
+        networksNew = {id: 9, name: "Restaurants", description: "Restaurants", equal: false, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 10, name: "UN structure", description: "UN structure"}
+        networksNew = {id: 10, name: "UN structure", description: "UN , equal: false, isSelected: falsestructure"}
         this.networks.push(networksNew);
-        networksNew = {id: 11, name: "Government structure", description: "Government structure"}
+        networksNew = {id: 11, name: "Government structure", description: "Government , equal: false, isSelected: falsestructure"}
         this.networks.push(networksNew);
 
         // Deep copy Local W
