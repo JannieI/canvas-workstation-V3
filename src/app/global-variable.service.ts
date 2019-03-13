@@ -4236,7 +4236,6 @@ export class GlobalVariableService {
                 return specification;
             };
             if (widget.graphLayers[0].graphMark == 'navigator') {
-                console.log('xx gv create 2')
 
                 return specification;
             };
