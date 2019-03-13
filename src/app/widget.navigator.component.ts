@@ -62,6 +62,7 @@ export class WidgetNavigatorComponent {
             isSelected: boolean;
         }[] = []
     specification: any;              // Full spec for Vega, or other grammar
+    totalNavigatorWidth: number = 1000;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -77,6 +78,9 @@ export class WidgetNavigatorComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.totalNavigatorWidth = this.networkAreaWidth + this.historyAreaWidth 
+            + this.graphAreaWidth;
+            
         // Populate networks
         let networksNew: 
             {

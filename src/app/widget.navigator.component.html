@@ -1,122 +1,132 @@
-<!-- NETWORKS -->
-<div class="gridNetworkArea"
-    [style.width.px]="networkAreaWidth"
+Total Navigator container, which allows scolling inside it.  The external Widget container
+dimensions is set in app.html, and cannot be changed here.
+<div class="totalNavigator"
+    [style.width.px]="totalNavigatorWidth"
     >
-    <div class="gridNetworkAreaTitle">
-        <b>
-            Networks
-        </b>
-        <clr-signpost>
-            <clr-icon shape="info-circle" style="margin-top: -4px;"
-                clrSignpostTrigger>
+    <!-- NETWORKS -->
+    <div class="gridNetworkArea"
+        [style.width.px]="networkAreaWidth"
+        >
+        <div class="gridNetworkAreaTitle">
+            <b>
+                Networks
+            </b>
+            <clr-signpost>
+                <clr-icon shape="info-circle" style="margin-top: -4px;"
+                    clrSignpostTrigger>
+                </clr-icon>
+                <clr-signpost-content *clrIfOpen
+                    [clrPosition]="'bottom-middle'">
+                    <h5 style="margin-top: 0; color:gray;">
+                        Help
+                    </h5>
+                    <p style="margin-top: 0; color:gray; text-align: left;">
+                        A network is a pre-defined web of relationships.  For example,
+                        it can be the relationships between companies, subsidaries,
+                        directors (executive and non-executive), shareholders, etc.
+                    </p>
+                </clr-signpost-content>
+            </clr-signpost>
+        </div>
+        
+        <div class="gridNetworkBlock" *ngFor="let row of networks; let i = index"
+            [style.background-color]="row.isSelected? 'white'  :  'lightgray'"
+            [style.border]="row.isSelected? '1px solid black'  :  '1px solid gray'"
+            >
+            {{ row.name }}
+        </div>
+    </div>
+
+
+
+    <!-- HISTORY AREA -->
+    <div class="gridHistoryArea"
+        [style.width.px]="historyAreaWidth"
+        >
+        <div class="gridHistoryAreaTitle">
+            <b>
+                History
+            </b>
+            <clr-signpost>
+                <clr-icon shape="info-circle" style="margin-top: -4px;"
+                    clrSignpostTrigger>
+                </clr-icon>
+                <clr-signpost-content *clrIfOpen
+                    [clrPosition]="'bottom-middle'">
+                    <h5 style="margin-top: 0; color:gray;">
+                        Help
+                    </h5>
+                    <p style="margin-top: 0; color:gray; text-align: left;">
+                        A new History row is added with each exploration.  Click on a previous
+                        history record to revisit its graph.
+                    </p>
+                </clr-signpost-content>
+            </clr-signpost>
+        </div>
+        <div class="gridHistoryBlock" *ngFor="let row of history; let i = index"
+            [style.background-color]="row.isSelected? 'white'  :  'lightgray'"
+            [style.border]="row.isSelected? '1px solid black'  :  '1px solid gray'"
+            >
+            {{ row.text }}
+        </div>
+    </div>
+
+
+
+
+    <!-- GRAPH Area -->
+    <!-- [style.width.px]="graphAreaWidth" -->
+    <div class="gridGraphArea"
+        
+        >
+        For
+        <div class="select gridGraphAreaNodeTypeXXX"
+            style="display: inline-block; margin-left: 12px;"
+            title="Select a node type to filter on"
+            >
+            <select [(ngModel)]="selectedNodeType"
+                (change)="filterTimeUnitSelected($event)"
+                name="filterTimeUnit"
+                >
+                <option>Company</option>
+                <option>Person</option>
+                <option>Day</option>
+            </select>
+        </div>
+
+        <div class="select gridGraphAreaNodeNameXXX"
+            style="display: inline-block; margin-left: 12px;"
+            title="Select a specific node"
+            >
+            <select [(ngModel)]="selectedNode"
+                (change)="filterTimeUnitSelected($event)"
+                name="filterTimeUnit"
+                >
+                <option>Absa</option>
+                <option>Bidvest</option>
+                <option>Capitec</option>
+            </select>
+        </div>
+        <div class="gridGraphAreaFilterXXX"
+            style="display: inline-block; margin-left: 12px;"
+            >
+            <clr-icon
+                shape="filter"
+                size="12"
+                (dblclick)="dblClickFilterMakeInActive()"
+                >
             </clr-icon>
-            <clr-signpost-content *clrIfOpen
-                [clrPosition]="'bottom-middle'">
-                <h5 style="margin-top: 0; color:gray;">
-                    Help
-                </h5>
-                <p style="margin-top: 0; color:gray; text-align: left;">
-                    A network is a pre-defined web of relationships.  For example,
-                    it can be the relationships between companies, subsidaries,
-                    directors (executive and non-executive), shareholders, etc.
-                </p>
-            </clr-signpost-content>
-        </clr-signpost>
-    </div>
-    
-    <div class="gridNetworkBlock" *ngFor="let row of networks; let i = index"
-        [style.background-color]="row.isSelected? 'white'  :  'lightgray'"
-        [style.border]="row.isSelected? '1px solid black'  :  '1px solid gray'"
-        >
-        {{ row.name }}
-    </div>
-</div>
 
+        </div>
 
+        <br>
 
-<div class="gridHistoryArea"
-    [style.width.px]="historyAreaWidth"
-    >
-    <div class="gridHistoryAreaTitle">
-        <b>
-            History
-        </b>
-        <clr-signpost>
-            <clr-icon shape="info-circle" style="margin-top: -4px;"
-                clrSignpostTrigger>
-            </clr-icon>
-            <clr-signpost-content *clrIfOpen
-                [clrPosition]="'bottom-middle'">
-                <h5 style="margin-top: 0; color:gray;">
-                    Help
-                </h5>
-                <p style="margin-top: 0; color:gray; text-align: left;">
-                    A new History row is added with each exploration.  Click on a previous
-                    history record to revisit its graph.
-                </p>
-            </clr-signpost-content>
-        </clr-signpost>
-    </div>
-    <div class="gridHistoryBlock" *ngFor="let row of history; let i = index"
-        [style.background-color]="row.isSelected? 'white'  :  'lightgray'"
-        [style.border]="row.isSelected? '1px solid black'  :  '1px solid gray'"
-        >
-        {{ row.text }}
-    </div>
-</div>
-
-
-<!-- GRAPH Area -->
-<div class="gridGraphArea"
-    [style.width.px]="graphAreaWidth"
-    >
-    For
-    <div class="select gridGraphAreaNodeTypeXXX"
-        style="display: inline-block; margin-left: 12px;"
-        title="Select a node type to filter on"
-        >
-        <select [(ngModel)]="selectedNodeType"
-            (change)="filterTimeUnitSelected($event)"
-            name="filterTimeUnit"
+        <div class="gridGraphAreaGraphicXXX"
+            #dragWidget
             >
-            <option>Company</option>
-            <option>Person</option>
-            <option>Day</option>
-        </select>
+        </div>
+
+        Click a <i>director</i> to move to the top.
     </div>
 
-    <div class="select gridGraphAreaNodeNameXXX"
-        style="display: inline-block; margin-left: 12px;"
-        title="Select a specific node"
-        >
-        <select [(ngModel)]="selectedNode"
-            (change)="filterTimeUnitSelected($event)"
-            name="filterTimeUnit"
-            >
-            <option>Absa</option>
-            <option>Bidvest</option>
-            <option>Capitec</option>
-        </select>
-    </div>
-    <div class="gridGraphAreaFilterXXX"
-        style="display: inline-block; margin-left: 12px;"
-        >
-        <clr-icon
-            shape="filter"
-            size="12"
-            (dblclick)="dblClickFilterMakeInActive()"
-            >
-        </clr-icon>
-
-    </div>
-
-    <br>
-
-    <div class="gridGraphAreaGraphicXXX"
-        #dragWidget
-        >
-    </div>
-
-    Click a <i>director</i> to move to the top.
 </div>
-
