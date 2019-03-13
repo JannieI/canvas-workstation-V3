@@ -39,9 +39,10 @@ export class WidgetNavigatorComponent {
         {
             id: number; 
             name: string; 
-            description: string}[] = [],
-            equal: boolean,
+            description: string;
+            equal: boolean;
             isSelected: boolean;
+        }[] = []
     specification: any;              // Full spec for Vega, or other grammar
 
     constructor(
@@ -59,8 +60,15 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Populate networks
-        let networksNew: {id: number; name: string; description: string} = 
-            {id: 1, name: "WOWEB", description: "WOWEB"};
+        let networksNew: 
+            {
+                id: number; 
+                name: string; 
+                description: string;
+                equal: boolean;
+                isSelected: boolean;
+            } = 
+            {id: 1, name: "WOWEB", description: "WOWEB", equal: true, isSelected: true};
         this.networks.push(networksNew);
         networksNew = {id: 2, name: "Facebook", description: "Facebook", equal: false, isSelected: false}
         this.networks.push(networksNew);
@@ -78,9 +86,9 @@ export class WidgetNavigatorComponent {
         this.networks.push(networksNew);
         networksNew = {id: 9, name: "Restaurants", description: "Restaurants", equal: false, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 10, name: "UN structure", description: "UN , equal: false, isSelected: falsestructure"}
+        networksNew = {id: 10, name: "UN structure", description: "UN structure", equal: false, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 11, name: "Government structure", description: "Government , equal: false, isSelected: falsestructure"}
+        networksNew = {id: 11, name: "Government structure", description: "Government structure", equal: false, isSelected: false}
         this.networks.push(networksNew);
 
         // Deep copy Local W
