@@ -44,7 +44,9 @@ export class WidgetNavigatorComponent {
         childFilter: string;
         equal: boolean;
         isSelected: boolean;
-    }[] = []
+    }[] = [];
+    selectedNode: string = 'Absa';
+    selectedNodeType: string = 'Company';
     showSpecificGraphLayer: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     networks: 
