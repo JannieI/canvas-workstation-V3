@@ -4201,7 +4201,7 @@ export class GlobalVariableService {
         if (widget.graphLayers == null  ||  widget.graphLayers.length == 0) {
             return;
         };
-console.log('xx gv create 1')
+
         // Custom visualGrammarType - return after each one
         if (widget.visualGrammarType.toLowerCase() == 'custom') {
             specification = widget.graphLayers[0].graphSpecification;
@@ -4232,6 +4232,11 @@ console.log('xx gv create 1')
                 return specification;
             };
             if (widget.graphLayers[0].graphMark == 'networkCircle') {
+
+                return specification;
+            };
+            if (widget.graphLayers[0].graphMark == 'navigator') {
+                console.log('xx gv create 2')
 
                 return specification;
             };
