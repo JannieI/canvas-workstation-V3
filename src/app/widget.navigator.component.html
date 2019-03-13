@@ -1,7 +1,9 @@
-Total Navigator container, which allows scolling inside it.  The external Widget container
-dimensions is set in app.html, and cannot be changed here.
+<!-- Total Navigator container, which allows scolling inside it.  The external Widget container
+dimensions is set in app.html, and cannot be changed here. -->
+<!-- [style.width.px]="totalNavigatorWidth" -->
 <div class="totalNavigator"
-    [style.width.px]="totalNavigatorWidth"
+    [style.height.px]="selectedWidget.containerHeight-30"
+    [style.width.px]="selectedWidget.containerWidth-5"
     >
     <!-- NETWORKS -->
     <div class="gridNetworkArea"
