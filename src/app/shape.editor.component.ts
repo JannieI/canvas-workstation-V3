@@ -108,6 +108,9 @@ export class ShapeEditComponent implements OnInit {
 
 
     arrowLine: string = "M10,10 L150,10";
+    points: string = "0,10     10,0    10,5   20,5   20,15   10,15   10,20    0, 10"
+
+
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -118,6 +121,20 @@ export class ShapeEditComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
         
+        let stubLength: number = 10;
+        let stubLength2: number = stubLength * 2;
+        let stubLength3: number = stubLength * 3;
+        let stubLength4: number = stubLength * 4;
+        this.points = stubLength2.toString() + "," + stubLength.toString();
+        this.points = this.points + '   ' + stubLength4.toString() + "," + stubLength.toString();
+        this.points = this.points + '   ' + stubLength4.toString() + "," + stubLength3.toString();
+        this.points = this.points + '   ' + stubLength2.toString() + "," + stubLength3.toString();
+        this.points = this.points + '   ' + stubLength2.toString() + "," + stubLength4.toString();
+        this.points = this.points + '   ' + '0'                    + "," + stubLength2.toString();
+        this.points = this.points + '   ' + stubLength2.toString() + "," + '0';
+        this.points = this.points + '   ' + stubLength2.toString() + "," + stubLength.toString();
+
+        console.log('xx points', this.points);
         // Manage colour picker
         this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 

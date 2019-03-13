@@ -324,7 +324,28 @@
                     >
                     <!-- TODO - Make this DYNAMIC !!!  -->
                     <!-- [attr.transform]="'translate(90, 90) rotate(' + localWidget.shapeRotation + ')'" -->
+                    <!-- points="0,10     10,0    10,5   20,5   20,15   10,15   10,20    0, 10" -->
+                    <!-- [attr.transform]="'translate(40, 0) rotate(90)'"  -->
+                    <!-- [attr.transform]="'translate(20, 0) rotate(45)'"  -->
+                    
                     <svg class="gridShapeArrow" *ngIf="localWidget.shapeSize==1
+                            &&
+                            localWidget.shapeRotation==0"
+                        height="100"
+                        width="100"
+                        style="display: block;"
+                        >
+                        <polygon
+                            [attr.points]="points"
+                            [attr.transform]="'translate(30, 0) rotate(67)'" 
+                            [style.fill]="localWidget.shapeFill"
+                            [style.stroke]="localWidget.shapeStroke"
+                            stroke-width:1
+                            />
+                    </svg>
+
+                    <!-- Working, Old one -->
+                    <!-- <svg class="gridShapeArrow" *ngIf="localWidget.shapeSize==1
                             &&
                             localWidget.shapeRotation==0"
                         height="100"
@@ -339,8 +360,8 @@
                             viewBox="0 0 20 20"
                             stroke-width:1
                             />
-                    </svg>
-                    <svg class="gridShapeArrow" *ngIf="localWidget.shapeSize==1
+                    </svg> -->
+                    <!-- <svg class="gridShapeArrow" *ngIf="localWidget.shapeSize==1
                             &&
                             localWidget.shapeRotation==45"
                         height="100"
@@ -356,7 +377,7 @@
                             transform="rotate(45 11 11) scale(1 1)"
                             stroke-width:1
                             />
-                    </svg>
+                    </svg> -->
                     <svg class="gridShapeArrow" *ngIf="localWidget.shapeSize==1
                             &&
                             localWidget.shapeRotation==90"
