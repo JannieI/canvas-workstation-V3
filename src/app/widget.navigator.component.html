@@ -29,7 +29,13 @@ dimensions is set in app.html, and cannot be changed here. -->
                     </p>
                 </clr-signpost-content>
             </clr-signpost>
-        </div>
+            <clr-icon (click)="clickShowFilterArea()"
+                shape="circle-arrow right"
+                size="14"
+                style="color: blue; float: right; margin-right: 10px;"
+                >
+            </clr-icon>
+    </div>
         
         <div class="gridNetworkBlock" *ngFor="let row of networks; let i = index"
             [style.background-color]="row.isSelected? 'white'  :  'lightgray'"
@@ -64,6 +70,12 @@ dimensions is set in app.html, and cannot be changed here. -->
                     </p>
                 </clr-signpost-content>
             </clr-signpost>
+            <clr-icon (click)="clickShowFilterArea()"
+                shape="circle-arrow right"
+                size="14"
+                style="color: blue; float: right; margin-right: 10px;"
+                >
+            </clr-icon>
         </div>
         <div class="gridHistoryBlock" *ngFor="let row of history; let i = index"
             [style.background-color]="row.isSelected? 'white'  :  'lightgray'"
