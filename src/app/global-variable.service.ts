@@ -4201,7 +4201,7 @@ export class GlobalVariableService {
         if (widget.graphLayers == null  ||  widget.graphLayers.length == 0) {
             return;
         };
-
+console.log('xx gv create 1')
         // Custom visualGrammarType - return after each one
         if (widget.visualGrammarType.toLowerCase() == 'custom') {
             specification = widget.graphLayers[0].graphSpecification;
@@ -4332,8 +4332,6 @@ export class GlobalVariableService {
         specification['description'] = widget.graphDescription;
         specification['width'] = width;
         specification['height'] = height;
-
-
         
         // Title
         specification['title']['text'] = widget.graphTitleText;
