@@ -47,12 +47,9 @@ export class WidgetNavigatorComponent {
         isSelected: boolean;
     }[] = [];
     historyAreaWidth: number = 170;
+    localWidget: Widget;                            // W to modify, copied from selected
     navigatorWidth: number = 1360;
     networkAreaWidth: number = 170;
-    selectedNode: string = 'Absa';
-    selectedNodeType: string = 'Company';
-    showSpecificGraphLayer: boolean = false;
-    localWidget: Widget;                            // W to modify, copied from selected
     networks: 
         {
             id: number; 
@@ -61,7 +58,12 @@ export class WidgetNavigatorComponent {
             equal: boolean;
             isSelected: boolean;
         }[] = []
-    specification: any;              // Full spec for Vega, or other grammar
+    selectedNode: string = 'Absa';
+    selectedNodeType: string = 'Company';
+    showSpecificGraphLayer: boolean = false;
+    specification: any;             // Full spec for Vega, or other grammar
+    svgHeight: number = 800;        // TODO - fill this into Spec
+    svgWidth: number = 400;         // TODO - fill this into Spec
     totalNavigatorWidth: number = 1000;
 
     constructor(
@@ -78,9 +80,10 @@ export class WidgetNavigatorComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.totalNavigatorWidth = this.networkAreaWidth + this.historyAreaWidth 
-            + this.graphAreaWidth;
-            
+        // The Total width is that of the two panels, plus the svg, plus some scrolling space
+        this.totalNavigatorWidth = this.networkAreaWidth + this.historyAreaWidth + 22
+            + (this.svgWidth * 1.2);
+
         // Populate networks
         let networksNew: 
             {

@@ -1,7 +1,7 @@
 
 /* TOTAL NAVIGATOR */
 .totalNavigator {
-    overflow: scroll;
+    overflow: hidden;
 }
 
     .gridErrorMessage {
@@ -13,13 +13,13 @@
     .gridNetworkArea {
         /* display: inline-block; */
         float: left;
-        font-size: 0.6rem;
+        font-size: 0.5rem;
         height: 100%;
         text-align: left;
         overflow-y: scroll; 
     }
         .gridNetworkAreaTitle {
-            font-size: 0.5rem;
+            font-size: 0.6rem;
             text-align: left;
         }
         .gridNetworkBlock {
@@ -29,14 +29,14 @@
     .gridHistoryArea {
         /* display: inline-block; */
         float: left;
-        font-size: 0.6rem;
+        font-size: 0.5rem;
         height: 100%;
         text-align: left;
         margin-left: 8px;
         overflow-y: scroll; 
     }
         .gridHistoryAreaTitle {
-            font-size: 0.5rem;
+            font-size: 0.6rem;
             margin-left: 8px;
             text-align: left;
         }
@@ -48,29 +48,30 @@
         /* display: inline-block; */
         float: left;
         /* float: right; */
-        font-size: 0.6rem;
+        font-size: 0.5rem;
         height: 100%;
         margin-left: 8px;
         text-align: left;
         overflow: scroll;
+        top: 0;
     }
 
         .gridGraphAreaNodeType {
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             text-align: left;
         }
 
         .gridGraphAreaNodeName {
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             text-align: left;
         }
 
         .gridGraphAreaFilter {
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             text-align: left;
         }
 
         .gridGraphAreaGraphic {
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             text-align: left;
         }
