@@ -215,13 +215,21 @@ export class WidgetNavigatorComponent {
             this.graphHeight = 100;
         };
 
-        
-graphWidth
+        // Set H & W
+        if (inputWidth != 0) {
+            this.graphWidth = inputWidth;
+        } else {
+            this.graphWidth = this.localWidget.graphWidth
+        };
+        if (this.graphWidth < 100) {
+            this.graphWidth = 100;
+        };        
+
         // Create specification
         this.specification = this.globalVariableService.createVegaSpec(
             this.localWidget,
             this.graphHeight,
-            this.localWidget.graphWidth,
+            this.graphWidth,
             this.showSpecificGraphLayer,
             0
         );
