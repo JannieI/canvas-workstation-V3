@@ -54,8 +54,9 @@ dimensions is set in app.html, and cannot be changed here. -->
     </div>
         
         <div class="gridNetworkBlock" *ngFor="let row of networks; let i = index"
-            [style.background-color]="row.isSelected? 'white'  :  'lightgray'"
-            [style.border]="row.isSelected? '1px solid black'  :  '1px solid gray'"
+            [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
+            [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
+            [style.color]="row.isSelected? 'black'  :  'darkgray'"
             >
             {{ row.name }}
         </div>
@@ -111,9 +112,15 @@ dimensions is set in app.html, and cannot be changed here. -->
             </clr-icon>
         </div>
         <div class="gridHistoryBlock" *ngFor="let row of history; let i = index"
-            [style.background-color]="row.isSelected? 'white'  :  'lightgray'"
-            [style.border]="row.isSelected? '1px solid black'  :  '1px solid gray'"
+            [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
+            [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
+            [style.color]="row.isSelected? 'black'  :  'darkgray'"
             >
+            <clr-icon (click)="clickDeleteHistory()"
+                shape="trash"
+                size="12"
+                >
+            </clr-icon>
             {{ row.text }}
         </div>
     </div>
@@ -135,6 +142,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 (change)="filterTimeUnitSelected($event)"
                 name="filterTimeUnit"
                 >
+                <option></option>
                 <option>Company</option>
                 <option>Person</option>
                 <option>Day</option>
@@ -149,6 +157,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 (change)="filterTimeUnitSelected($event)"
                 name="filterTimeUnit"
                 >
+                <option></option>
                 <option>Absa</option>
                 <option>Bidvest</option>
                 <option>Capitec</option>
@@ -164,7 +173,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 >
             </clr-icon>
         </div> -->
-        <clr-signpost>
+        <clr-signpost style="width: 400;">
             <clr-icon shape="filter" 
                 style="color: blue; margin-top: -4px;"
                 size="12"
@@ -180,6 +189,72 @@ dimensions is set in app.html, and cannot be changed here. -->
                     The dropdown will be reduced by the filter(s) below.  This filter will stay
                     active until 1. it is changed here, or 2. the node type is changed.
                 </p>
+                <div class="editorWidgetFilterFieldTitle">
+                    Field:
+                    <select id="selects_3"
+                        [(ngModel)]="filterFieldName"
+                        (change)="filterFieldSelected($event)"
+                        name="filterFieldName"
+                        >
+                        <option>Age</option>
+                        <option>Name</option>
+                        <option>BEE Rating</option>
+                    </select>
+                </div>
+                <div class="editorWidgetFilterOperatorTitle">
+                    Operator:
+                    <select id="selects_3"
+                        [(ngModel)]="filterOperator"
+                        (change)="filterOperatorSelected($event)"
+                        name="filterOperator"
+                        >
+                        <option>Less Than</option>
+                        <option>Less Than Equal</option>
+                        <option>Equal</option>
+                        <option>Not Equal</option>
+                        <option>Greater Than</option>
+                        <option>Greater Than Equal</option>
+                        <option>Range</option>
+                        <option>One Of</option>
+                        <option>Valid</option>
+                        <option>Selection</option>
+                    </select>
+                </div>
+
+                <div class="editorWidgetFilterValueTitle">
+                    Value:
+                    <input type="text"
+                        [(ngModel)]="filterValue"
+                        name="filterValue"
+                        placeholder=""
+                        title="Enter a value for the filter. "
+                        >
+                </div>
+
+                <div>
+                    <div class="btn-group btn-link">
+                        <button class="btn" (click)="clickFilterClear()">
+                            Clear
+                        </button>
+                        <button class="btn" (click)="clickFilterAdd()">
+                            <span *ngIf="filterID==-1">
+                                Add
+                            </span>
+                            <span *ngIf="filterID!=-1">
+                                Save
+                            </span>
+                        </button>
+                    </div>
+
+                    <button class="btn btn-secondary editorWidgetFilterCloseButton"
+                        (click)="clickFilterClose()">
+                        Close
+                    </button>
+                    <span class="editorWidgetFilterErrorMessage">
+                        {{ filterErrorMessage }}
+                    </span>
+                </div>
+
             </clr-signpost-content>
         </clr-signpost>
 
@@ -198,14 +273,6 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </clr-icon>
             </button>
             <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                <button
-                    type="button"
-                    clrDropdownItem
-                    (click)="clickMenuEditMode()"
-                    title="Enable EditMode to make changes"
-                    >
-                    Nr items
-                </button>
                 <button
                     type="button"
                     clrDropdownItem
@@ -252,6 +319,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 (change)="filterTimeUnitSelected($event)"
                 name="filterTimeUnit"
                 >
+                <option></option>
                 <option>Directors</option>
                 <option>Shareholders</option>
                 <option>Subsidiaries</option>
@@ -269,6 +337,10 @@ dimensions is set in app.html, and cannot be changed here. -->
 
         </div>
 
+        <div>
+            <clr-icon shape="step-forward-2" style="float: right; margin-right: 50px;"></clr-icon>
+            <clr-icon shape="step-forward-2 down" style="float: right; margin-right: 12px;"></clr-icon>
+        </div>
         <br>
 
         <div class="gridGraphAreaGraphicXXX"

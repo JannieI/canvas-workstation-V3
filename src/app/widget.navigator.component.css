@@ -39,7 +39,7 @@
             text-align: left;
         }
         .gridNetworkBlock {
-            background-color: lightgray;
+            border-radius: 4px;
         }
 
 
@@ -71,7 +71,7 @@
             text-align: left;
         }
         .gridHistoryBlock {
-            background-color: lightgray;
+            border-radius: 4px;
         }
 
     .gridGraphArea {

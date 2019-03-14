@@ -158,7 +158,20 @@ export class WidgetNavigatorComponent {
                 equal: true,
                 isSelected: true,
             };
-            this.history.push(historyNew);
+        this.history.push(historyNew);
+        historyNew =
+            {
+                id: 2,
+                text: 'Subsidiaries of Bidvest',
+                nodeType: 'Companies',
+                node: 'Bidvest',
+                filter: '',
+                relationship: 'Subsidiaries',
+                childFilter: '',
+                equal: true,
+                isSelected: false,
+            };
+        this.history.push(historyNew);
 
         // Deep copy Local W
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
@@ -239,9 +252,6 @@ export class WidgetNavigatorComponent {
                 this.graphWidth = this.localWidget.graphLayers[0].graphSpecification.width;
             };
         };
-        if (this.graphHeight < 100) {
-            this.graphHeight = 100;
-        };        
         if (this.graphWidth < 100) {
             this.graphWidth = 100;
         };        
@@ -259,11 +269,25 @@ export class WidgetNavigatorComponent {
 
         // Render in DOM
         let view = new View(parse(this.specification));
+        view.addEventListener('click', function(event, item) {
+            // Needs separate object, else item.datum.text is sometimes undefined.  
+            let datumClick: any = item.datum;
+            console.log('CLICK', item, item.datum.text, datumClick.name);
+            this.selectedNodeType = 'Person';
+            this.selectedNode = 'Bidvest';
+            this.selectedRelationship = 'Shareholders';
+        });
         view.renderer('svg')
             .initialize(this.dragWidget.nativeElement)
             .hover()
             .run()
             .finalize();
+
+    }
+
+    clickDeleteHistory() {
+        // Delete selected history row.  If current, move to first
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteHistory', '@Start');
 
     }
 }
