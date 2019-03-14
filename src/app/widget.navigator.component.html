@@ -66,12 +66,27 @@ dimensions is set in app.html, and cannot be changed here. -->
 
 
     <!-- HISTORY AREA -->
-    <div class="gridHistoryArea"
+    <!-- History minimised     -->
+    <div class="gridNetworkAreaVertical" *ngIf="!showHistoryMax">
+        <div>
+            <clr-icon (click)="clickNetworkMinMax()"
+                shape="circle-arrow right"
+                size="14"
+                style="color: blue;"
+                >
+            </clr-icon>
+        </div>
+        <div class="vericaltext">
+            <b>Navigated</b>
+        </div>
+    </div>
+    <!-- History maximised     -->
+    <div class="gridHistoryArea" *ngIf="showHistoryMax"
         [style.width.px]="historyAreaWidth"
         >
         <div class="gridHistoryAreaTitle">
             <b>
-                History
+                Navigated
             </b>
             <clr-signpost>
                 <clr-icon shape="info-circle" style="margin-top: -4px;"

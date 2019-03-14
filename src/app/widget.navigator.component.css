@@ -11,6 +11,8 @@
     }
 
     .gridNetworkAreaVertical {
+        background-color: rgb(235, 231, 231);
+        border-right: 1px solid black;
         float: left;
         font-size: 0.5rem;
         height: 100%;
@@ -39,6 +41,20 @@
         .gridNetworkBlock {
             background-color: lightgray;
         }
+
+
+
+
+
+    .gridHistoryAreaVertical {
+        background-color: rgb(235, 231, 231);
+        border-right: 1px solid black;
+        float: left;
+        font-size: 0.5rem;
+        height: 100%;
+        text-align: center;
+        width: 40px;
+    }
 
     .gridHistoryArea {
         /* display: inline-block; */
