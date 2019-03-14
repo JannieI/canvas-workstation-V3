@@ -149,6 +149,22 @@ dimensions is set in app.html, and cannot be changed here. -->
         </clr-icon>
 
         <br>
+        show all 
+        <div class="select gridGraphAreaNodeTypeXXX"
+            style="display: inline-block; margin-left: 12px;"
+            title="Select a node type to filter on"
+            >
+            <select [(ngModel)]="selectedRelationship"
+                (change)="filterTimeUnitSelected($event)"
+                name="filterTimeUnit"
+                >
+                <option>Directors</option>
+                <option>Shareholders</option>
+                <option>Subsidiaries</option>
+            </select>
+        </div>
+
+        <br>
 
         <div class="gridGraphAreaGraphicXXX"
             #dragWidget

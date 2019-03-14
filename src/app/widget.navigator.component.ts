@@ -60,6 +60,7 @@ export class WidgetNavigatorComponent {
         }[] = []
     selectedNode: string = 'Absa';
     selectedNodeType: string = 'Company';
+    selectedRelationship: string = 'Directors';
     showSpecificGraphLayer: boolean = false;
     specification: any;             // Full spec for Vega, or other grammar
     svgHeight: number = 800;        // TODO - fill this into Spec
