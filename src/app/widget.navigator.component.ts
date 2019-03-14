@@ -195,9 +195,9 @@ export class WidgetNavigatorComponent {
 
         this.showHistoryMax = !this.showHistoryMax;
 
-        // Refresh graph
+        // Refresh graph - take margin into account
         this.graphWidth = this.graphWidthOriginal + 
-            (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130)
+            (this.showHistoryMax?  0  : 138) +  (this.showNetworkMax?  0  :  130);
         console.log('xx this.graphWidth', this.graphWidth)
         this.showGraph(0, this.graphWidth)
     }

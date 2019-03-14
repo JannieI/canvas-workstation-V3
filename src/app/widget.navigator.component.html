@@ -154,7 +154,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <option>Capitec</option>
             </select>
         </div>
-        <div class="gridGraphAreaFilterXXX"
+        <!-- <div class="gridGraphAreaFilterXXX"
             style="color: blue; display: inline-block; margin-left: 12px;"
             >
             <clr-icon
@@ -163,8 +163,25 @@ dimensions is set in app.html, and cannot be changed here. -->
                 (dblclick)="dblClickFilterMakeInActive()"
                 >
             </clr-icon>
-
-        </div>
+        </div> -->
+        <clr-signpost>
+            <clr-icon shape="filter" 
+                style="color: blue; margin-top: -4px;"
+                size="12"
+                clrSignpostTrigger
+                >
+            </clr-icon>
+            <clr-signpost-content *clrIfOpen
+                [clrPosition]="'bottom-middle'">
+                <h5 style="margin-top: 0; color:gray;">
+                    Filter on node type <b>Company</b>
+                </h5>
+                <p style="margin-top: 0; color:gray; text-align: left;">
+                    The dropdown will be reduced by the filter(s) below.  This filter will stay
+                    active until 1. it is changed here, or 2. the node type is changed.
+                </p>
+            </clr-signpost-content>
+        </clr-signpost>
 
         <clr-dropdown class="menuText"
             style="color: blue; float: right; margin-right: 12px;"
