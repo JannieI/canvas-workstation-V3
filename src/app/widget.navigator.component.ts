@@ -194,6 +194,12 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHistoryMinMax', '@Start');
 
         this.showHistoryMax = !this.showHistoryMax;
+
+        // Refresh graph
+        this.graphWidth = this.graphWidthOriginal + 
+            (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130)
+        console.log('xx this.graphWidth', this.graphWidth)
+        this.showGraph(0, this.graphWidth)
     }
 
     clickNetworkMinMax() {
