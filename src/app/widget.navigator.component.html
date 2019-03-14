@@ -6,14 +6,19 @@ dimensions is set in app.html, and cannot be changed here. -->
     [style.width.px]="totalNavigatorWidth"
     >
 
-    
-    <!-- TODO - later -->
-    <!-- <div class="gridNetworkAreaVertical">
+    <!-- NETWORKS AREA -->
+    <!-- Network minimised     -->
+    <div class="gridNetworkAreaVertical" *ngIf="!showNetworkMax">
         <b>Networks</b>
-    </div> -->
-
-    <!-- NETWORKS -->
-    <div class="gridNetworkArea"
+        <clr-icon (click)="clickNetworkMinMax()"
+            shape="circle-arrow right"
+            size="14"
+            style="color: blue; float: right; margin-top: 4px; margin-right: 10px;"
+            >
+        </clr-icon>
+    </div>
+    <!-- Network maximised -->
+    <div class="gridNetworkArea" *ngIf="showNetworkMax"
         [style.width.px]="networkAreaWidth"
         >
         <div class="gridNetworkAreaTitle">
@@ -36,7 +41,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     </p>
                 </clr-signpost-content>
             </clr-signpost>
-            <clr-icon (click)="clickShowFilterArea()"
+            <clr-icon (click)="clickNetworkMinMax()"
                 shape="circle-arrow left"
                 size="14"
                 style="color: blue; float: right; margin-top: 4px; margin-right: 10px;"
@@ -141,12 +146,6 @@ dimensions is set in app.html, and cannot be changed here. -->
             </clr-icon>
 
         </div>
-        <!-- <clr-icon (click)="clickShowNodeFilters()"
-            shape="bars"
-            size="14"
-            style="color: blue; float: right; margin-top: 4px; margin-right: 12px;"
-            >
-        </clr-icon> -->
 
         <clr-dropdown class="menuText"
             style="color: blue; float: right; margin-right: 12px;"

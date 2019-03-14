@@ -10,10 +10,7 @@
         text-align: left;
     }
 
-    /* TODO - later */
     .gridNetworkAreaVertical {
-        transform: translate(30, 0) rotate(90deg);
-    	transform-origin: left top 0;
         float: left;
         font-size: 0.5rem;
         height: 100%;
