@@ -66,8 +66,8 @@ export class WidgetNavigatorComponent {
     showHistoryMax: boolean = true;
     showNetworkMax: boolean = true;
     specification: any;             // Full spec for Vega, or other grammar
-    svgHeight: number = 800;        // TODO - fill this into Spec
-    svgWidth: number = 400;         // TODO - fill this into Spec
+    graphHeight: number = 800;        // TODO - fill this into Spec
+    graphWidth: number = 400;         // TODO - fill this into Spec
     totalNavigatorWidth: number = 1000;
 
     constructor(
@@ -201,14 +201,26 @@ export class WidgetNavigatorComponent {
         this.showNetworkMax = !this.showNetworkMax;
     }
 
-    showGraph() {
+    showGraph(inputHeight: number = 0, inputWidth: number = 0) {
         // Re-create the Vega spec, and show the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
 
+        // Set H & W
+        if (inputHeight != 0) {
+            this.graphHeight = inputHeight;
+        } else {
+            this.graphHeight = this.localWidget.graphHeight
+        };
+        if (this.graphHeight < 100) {
+            this.graphHeight = 100;
+        };
+
+        
+graphWidth
         // Create specification
         this.specification = this.globalVariableService.createVegaSpec(
             this.localWidget,
-            this.localWidget.graphHeight,
+            this.graphHeight,
             this.localWidget.graphWidth,
             this.showSpecificGraphLayer,
             0
