@@ -160,35 +160,9 @@ export class WidgetNavigatorComponent {
 
         // Deep copy Local W
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-
-        // Create specification
-        this.specification = this.globalVariableService.createVegaSpec(
-            this.localWidget,
-            this.localWidget.graphHeight,
-            this.localWidget.graphWidth,
-            this.showSpecificGraphLayer,
-            0
-        );
-console.log('xx this.specification', this.specification)
-
-            // // Render in DOM - VegaLite testing
-            // let vegaSpecification = compile(this.specification).spec;
-            // let view = new View(parse(vegaSpecification));
-
-            // view.renderer('svg')
-            //     .initialize(this.dragWidget.nativeElement)
-            //     // .width(372)
-            //     .hover()
-            //     .run()
-            //     .finalize();
         
-        // Render in DOM
-        let view = new View(parse(this.specification));
-        view.renderer('svg')
-            .initialize(this.dragWidget.nativeElement)
-            .hover()
-            .run()
-            .finalize();
+        // Display graph
+        this.showGraph();
     }
 
 
@@ -227,4 +201,27 @@ console.log('xx this.specification', this.specification)
         this.showNetworkMax = !this.showNetworkMax;
     }
 
+    showGraph() {
+        // Re-create the Vega spec, and show the graph
+        this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
+
+        // Create specification
+        this.specification = this.globalVariableService.createVegaSpec(
+            this.localWidget,
+            this.localWidget.graphHeight,
+            this.localWidget.graphWidth,
+            this.showSpecificGraphLayer,
+            0
+        );
+
+        
+        // Render in DOM
+        let view = new View(parse(this.specification));
+        view.renderer('svg')
+            .initialize(this.dragWidget.nativeElement)
+            .hover()
+            .run()
+            .finalize();
+
+    }
 }
