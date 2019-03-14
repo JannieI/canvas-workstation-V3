@@ -141,12 +141,41 @@ dimensions is set in app.html, and cannot be changed here. -->
             </clr-icon>
 
         </div>
-        <clr-icon (click)="clickShowFilterArea()"
+        <clr-icon (click)="clickShowNodeFilters()"
             shape="bars"
             size="14"
             style="color: blue; float: right; margin-top: 4px; margin-right: 12px;"
             >
         </clr-icon>
+
+        <clr-dropdown class="menuText"
+            style="color: blue; float: right; margin-top: 4px; margin-right: 12px;"
+            >
+            <button
+                type="button"
+                class="btn btn-link btn-sm menuButton"
+                clrDropdownTrigger
+                >
+                <clr-icon (click)="clickShowNodeFilters()"
+                    shape="bars"
+                    size="14"
+                    style="color: blue; float: right; margin-top: 4px; margin-right: 12px;"
+                    >
+                </clr-icon>
+            </button>
+            <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                <button
+                    type="button"
+                    clrDropdownItem
+                    (click)="clickMenuEditMode()"
+                    title="Enable EditMode to make changes"
+                    >
+                    Graph Width
+                </button>
+
+                <div class="dropdown-divider"></div>
+            </clr-dropdown-menu>
+        </clr-dropdown>
 
         <br>
         show all 
@@ -173,5 +202,6 @@ dimensions is set in app.html, and cannot be changed here. -->
 
     </div>
 
+    <div>showNodeFilters</div>
 
 </div>

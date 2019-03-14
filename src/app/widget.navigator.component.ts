@@ -61,6 +61,7 @@ export class WidgetNavigatorComponent {
     selectedNode: string = 'Absa';
     selectedNodeType: string = 'Company';
     selectedRelationship: string = 'Directors';
+    showNodeFilters: boolean = false;
     showSpecificGraphLayer: boolean = false;
     specification: any;             // Full spec for Vega, or other grammar
     svgHeight: number = 800;        // TODO - fill this into Spec
@@ -203,4 +204,10 @@ console.log('xx this.specification', this.specification)
 
     }
 
+    clickShowNodeFilters() {
+        // Click W object
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowNodeFilters', '@Start');
+
+        this.showNodeFilters = true;
+    }
 }
