@@ -205,6 +205,7 @@ export class WidgetNavigatorComponent {
         // Refresh graph
         this.graphWidth = this.graphWidthOriginal + 
             (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130)
+        console.log('xx this.graphWidth', this.graphWidth)
         this.showGraph(0, this.graphWidth)
     }
 
@@ -216,7 +217,9 @@ export class WidgetNavigatorComponent {
         if (inputHeight != 0) {
             this.graphHeight = inputHeight;
         } else {
-            this.graphHeight = this.localWidget.graphHeight
+            if (this.localWidget.graphLayers.length > 0) {
+                this.graphHeight = this.localWidget.graphLayers[0].graphSpecification.height;
+            };
         };
         if (this.graphHeight < 100) {
             this.graphHeight = 100;
@@ -226,8 +229,13 @@ export class WidgetNavigatorComponent {
         if (inputWidth != 0) {
             this.graphWidth = inputWidth;
         } else {
-            this.graphWidth = this.localWidget.graphWidth
+            if (this.localWidget.graphLayers.length > 0) {
+                this.graphWidth = this.localWidget.graphLayers[0].graphSpecification.width;
+            };
         };
+        if (this.graphHeight < 100) {
+            this.graphHeight = 100;
+        };        
         if (this.graphWidth < 100) {
             this.graphWidth = 100;
         };        
@@ -241,7 +249,8 @@ export class WidgetNavigatorComponent {
             0
         );
 
-        
+        console.log('xx this.specification', this.specification)
+
         // Render in DOM
         let view = new View(parse(this.specification));
         view.renderer('svg')

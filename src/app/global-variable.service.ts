@@ -4179,8 +4179,8 @@ export class GlobalVariableService {
 
     createVegaSpec(
         widget: Widget,
-        height: number = 0,
-        width: number = 0,
+        height: number = 400,
+        width: number = 400,
         showSpecificGraphLayer: boolean = false,
         specificLayerToShow: number = 0): dl.spec.TopLevelExtentedSpec {
 
@@ -4205,6 +4205,11 @@ export class GlobalVariableService {
         // Custom visualGrammarType - return after each one
         if (widget.visualGrammarType.toLowerCase() == 'custom') {
             specification = widget.graphLayers[0].graphSpecification;
+
+            // General
+            specification['description'] = widget.graphDescription;
+            specification['width'] = width;
+            specification['height'] = height;
 
             // Replace the data in the spec - each custom one is different
             if (widget.graphLayers[0].graphMark == 'donutSliders') {
