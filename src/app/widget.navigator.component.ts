@@ -66,8 +66,10 @@ export class WidgetNavigatorComponent {
     showHistoryMax: boolean = true;
     showNetworkMax: boolean = true;
     specification: any;             // Full spec for Vega, or other grammar
-    graphHeight: number = 800;        // TODO - fill this into Spec
+    graphHeight: number = 400;        // TODO - fill this into Spec
+    graphHeightOriginal: number = 400;        // TODO - fill this into Spec
     graphWidth: number = 400;         // TODO - fill this into Spec
+    graphWidthOriginal: number = 400;         // TODO - fill this into Spec
     totalNavigatorWidth: number = 1000;
 
     constructor(
@@ -86,7 +88,7 @@ export class WidgetNavigatorComponent {
 
         // The Total width is that of the two panels, plus the svg, plus some scrolling space
         this.totalNavigatorWidth = this.networkAreaWidth + this.historyAreaWidth + 22
-            + (this.svgWidth * 1.2);
+            + (this.graphWidth * 1.2);
 
         // Populate networks
         let networksNew: 
@@ -199,6 +201,11 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkMinMax', '@Start');
 
         this.showNetworkMax = !this.showNetworkMax;
+
+        // Refresh graph
+        this.graphWidth = this.graphWidthOriginal + 
+            (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130)
+        this.showGraph(0, this.graphWidth)
     }
 
     showGraph(inputHeight: number = 0, inputWidth: number = 0) {
