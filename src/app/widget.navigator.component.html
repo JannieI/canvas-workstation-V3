@@ -37,9 +37,9 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </clr-signpost-content>
             </clr-signpost>
             <clr-icon (click)="clickShowFilterArea()"
-                shape="circle-arrow right"
+                shape="circle-arrow left"
                 size="14"
-                style="color: blue; float: right; margin-right: 10px;"
+                style="color: blue; float: right; margin-top: 4px; margin-right: 10px;"
                 >
             </clr-icon>
     </div>
@@ -51,6 +51,8 @@ dimensions is set in app.html, and cannot be changed here. -->
             {{ row.name }}
         </div>
     </div>
+
+
 
 
 
@@ -78,9 +80,9 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </clr-signpost-content>
             </clr-signpost>
             <clr-icon (click)="clickShowFilterArea()"
-                shape="circle-arrow right"
+                shape="circle-arrow left"
                 size="14"
-                style="color: blue; float: right; margin-right: 10px;"
+                style="color: blue; float: right; margin-top: 4px; margin-right: 10px;"
                 >
             </clr-icon>
         </div>
@@ -129,7 +131,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             </select>
         </div>
         <div class="gridGraphAreaFilterXXX"
-            style="display: inline-block; margin-left: 12px;"
+            style="color: blue; display: inline-block; margin-left: 12px;"
             >
             <clr-icon
                 shape="filter"
@@ -139,6 +141,12 @@ dimensions is set in app.html, and cannot be changed here. -->
             </clr-icon>
 
         </div>
+        <clr-icon (click)="clickShowFilterArea()"
+            shape="bars"
+            size="14"
+            style="color: blue; float: right; margin-top: 4px; margin-right: 12px;"
+            >
+        </clr-icon>
 
         <br>
 
@@ -147,7 +155,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             >
         </div>
 
-        Click a <i>director</i> to move to the top.
     </div>
+
 
 </div>
