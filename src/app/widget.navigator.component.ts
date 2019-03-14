@@ -63,6 +63,7 @@ export class WidgetNavigatorComponent {
     selectedRelationship: string = 'Directors';
     showNodeFilters: boolean = false;
     showSpecificGraphLayer: boolean = false;
+    showHistoryMax: boolean = true;
     showNetworkMax: boolean = true;
     specification: any;             // Full spec for Vega, or other grammar
     svgHeight: number = 800;        // TODO - fill this into Spec
@@ -212,9 +213,16 @@ console.log('xx this.specification', this.specification)
         this.showNodeFilters = true;
     }
 
+    clickHistoryMinMax() {
+        // Click W object
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHistoryMinMax', '@Start');
+
+        this.showHistoryMax = !this.showHistoryMax;
+    }
+
     clickNetworkMinMax() {
         // Click W object
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowNodeFilters', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkMinMax', '@Start');
 
         this.showNetworkMax = !this.showNetworkMax;
     }
