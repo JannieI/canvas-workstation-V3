@@ -9,13 +9,15 @@ dimensions is set in app.html, and cannot be changed here. -->
     <!-- NETWORKS AREA -->
     <!-- Network minimised     -->
     <div class="gridNetworkAreaVertical" *ngIf="!showNetworkMax">
-        <b>Networks</b>
         <clr-icon (click)="clickNetworkMinMax()"
             shape="circle-arrow right"
             size="14"
-            style="color: blue; float: right; margin-top: 4px; margin-right: 10px;"
+            style="color: blue;"
             >
         </clr-icon>
+        <div class="vericaltext">
+            <b>Networks</b>
+        </div>
     </div>
     <!-- Network maximised -->
     <div class="gridNetworkArea" *ngIf="showNetworkMax"

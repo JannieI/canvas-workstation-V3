@@ -14,11 +14,16 @@
         float: left;
         font-size: 0.5rem;
         height: 100%;
-        text-align: left;
+        text-align: center;
         overflow-y: scroll; 
-        width: 30px;
+        width: 60px;
     }
-
+        .vericaltext{
+            display: inline-block;
+            font-family: monospace; /* this is just for good looks */
+            width:1px;
+            word-wrap: break-word;
+        }
     .gridNetworkArea {
         /* display: inline-block; */
         float: left;
