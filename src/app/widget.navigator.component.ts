@@ -79,6 +79,7 @@ export class WidgetNavigatorComponent {
     graphWidthOriginal: number = 400;         // TODO - fill this into Spec
     totalNavigatorWidth: number = 1000;
     watchList: watchList;
+    watchListFiltered: boolean = false;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -316,5 +317,6 @@ export class WidgetNavigatorComponent {
         // this dropdown.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterOnWatchList', '@Start');
 
+        this.watchListFiltered = !this.watchListFiltered;
     }
 }

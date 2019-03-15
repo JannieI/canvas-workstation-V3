@@ -150,7 +150,7 @@ dimensions is set in app.html, and cannot be changed here. -->
         </div>
 
         <div *ngIf="watchList">
-            <clr-icon
+            <clr-icon [style.color]="watchListFiltered?  'blue' :  'gray'"
                 shape="list"
                 size="12"
                 (click)="clickFilterOnWatchList()"
