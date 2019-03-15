@@ -1098,6 +1098,21 @@ This document describes items for later versions of Canvas.
     - permissions (who has or has not): Maryke needs this at data content level
     - link to Business Glossary
 
+    Navigator - V2:
+    ---------
+    - colour scale for child nodes: 1. one node red, rest gray  2. all nodes grouped by field X is red, those by field Y blue, etc and the rest gray  3. colour by property
+    - size the graph with a slider
+    - add icons / images for networks
+    - concatenate fields in the child nodes, say name and surname, from their source data.  This means reading the child node record, do a lookup and then display.
+    - consider a single graph with all the graphs in the history concatenated together
+    - save history for next time
+    - rotate the graph vertically
+    - show multiple relationships per parent node in the same graph
+    - show more info per child node, ie the sales volume, or even a small graph / sparkline
+    - show detail per child node, maybe a predefined form that pops up
+    - use the child node to Drill down another Widget
+    - show more info or a graph when the mouse hovers over a child node
+    - 
 
     Canvas Server:
     -------------
