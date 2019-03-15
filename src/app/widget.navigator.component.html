@@ -149,7 +149,9 @@ dimensions is set in app.html, and cannot be changed here. -->
             </select>
         </div>
 
-        <div *ngIf="watchList">
+        <div *ngIf="watchList"
+            title="Click to filter the parent nodes on your wathclist"
+            >
             <clr-icon [style.color]="watchListFiltered?  'blue' :  'gray'"
                 shape="list"
                 size="12"
@@ -173,16 +175,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <option>Capitec</option>
             </select>
         </div>
-        <!-- <div class="gridGraphAreaFilterXXX"
-            style="color: blue; display: inline-block; margin-left: 12px;"
-            >
-            <clr-icon
-                shape="filter"
-                size="12"
-                (dblclick)="dblClickFilterMakeInActive()"
-                >
-            </clr-icon>
-        </div> -->
+
         <clr-signpost style="width: 400;">
             <clr-icon shape="filter" 
                 style="color: blue; margin-top: -4px;"
@@ -350,6 +343,10 @@ dimensions is set in app.html, and cannot be changed here. -->
         <div>
             <clr-icon shape="step-forward-2" style="float: right; margin-right: 50px;"></clr-icon>
             <clr-icon shape="step-forward-2 down" style="float: right; margin-right: 12px;"></clr-icon>
+        </div>
+
+        <div class="gridGraphAreaFilterXXX">
+            {{ graphTitle }}
         </div>
         <br>
 

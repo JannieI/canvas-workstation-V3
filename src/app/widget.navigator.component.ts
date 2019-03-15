@@ -41,6 +41,7 @@ export class WidgetNavigatorComponent {
     @Input() selectedWidget: Widget;
 
     graphAreaWidth: number = 900;
+    graphTitle: string = 'Directors for Absa, filtered by Age';
     history: 
     {
         id: number; 
