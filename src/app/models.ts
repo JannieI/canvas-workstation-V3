@@ -1735,3 +1735,9 @@ export class NavigatorParentRelatedChild {
     childNode: string;
     role: string;
 }
+
+export class NavigatorNodeTypeFields {
+    id: number; 
+    nodeType: string; 
+    fields: string[]; 
+}
