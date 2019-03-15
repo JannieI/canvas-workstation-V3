@@ -1753,3 +1753,10 @@ export class NavigatorNodeProperties {
     age: number;
     gender: string;
 }
+
+export class NavigatorWatchList {
+    id: number; 
+    userID: string; 
+    nodeType: string; 
+    nodes: string[]; 
+}
