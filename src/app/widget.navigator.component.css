@@ -19,7 +19,7 @@
         text-align: center;
         width: 40px;
     }
-        .vericaltext{
+        .networkAreaVericaltext{
             display: inline-block;
             font-family: monospace; /* this is just for good looks */
             margin-top: 12px;
@@ -38,7 +38,7 @@
             font-size: 0.6rem;
             text-align: left;
         }
-        .networkBlock {
+        .networkAreaBlock {
             border-radius: 4px;
         }
 
@@ -46,7 +46,7 @@
 
 
 
-    .gridHistoryAreaVertical {
+    .historyAreaVertical {
         background-color: rgb(206, 203, 203);
         border-right: 1px solid black;
         float: left;
@@ -55,8 +55,15 @@
         text-align: center;
         width: 40px;
     }
+        .historyAreaVericaltext{
+            display: inline-block;
+            font-family: monospace; /* this is just for good looks */
+            margin-top: 12px;
+            width:1px;
+            word-wrap: break-word;
+        }
 
-    .gridHistoryArea {
+    .historyArea {
         /* display: inline-block; */
         float: left;
         font-size: 0.5rem;
@@ -65,16 +72,16 @@
         margin-left: 8px;
         overflow-y: scroll; 
     }
-        .gridHistoryAreaTitle {
+        .historyAreaTitle {
             font-size: 0.6rem;
             margin-left: 8px;
             text-align: left;
         }
-        .gridHistoryBlock {
+        .historyAreaBlock {
             border-radius: 4px;
         }
 
-    .gridGraphArea {
+    .graphArea {
         /* display: inline-block; */
         float: left;
         /* float: right; */
@@ -86,22 +93,63 @@
         top: 0;
     }
 
-        .gridGraphAreaNodeType {
+        .graphAreaParentNodeType {
+            display: inline-block; 
+            font-size: 0.5rem;
+            margin-left: 12px;
+            text-align: left;
+        }
+
+        .graphAreaParentNode {
+            display: inline-block; 
+            font-size: 0.5rem;
+            margin-left: 12px;
+            text-align: left;
+        }
+            .graphAreaParentFilterFieldTitle {
+                text-align: left;
+            }
+            .graphAreaParentFilterOperatorTitle {
+                text-align: left;
+            }
+            .graphAreaParentFilterValueTitle {
+                text-align: left;
+            }
+            .graphAreaParentFilterErrorMessage {
+                color: red;
+                text-align: left;
+            }
+        
+        .graphAreaMenuText {
+            color: blue; 
+            float: right; 
+            margin-right: 12px;
+        }
+
+        .graphAreaRelationship {
+            display: inline-block;
+            margin-right: 12px;
+        }
+
+        .graphAreaChildFilter {
+            color: blue; 
+            display: inline-block; 
+            margin-left: 12px;
+        }
+
+        .graphAreaTitle {
+            margin-left: 12px;
+        }
+
+        .graphAreaGraphic {
             font-size: 0.5rem;
             text-align: left;
         }
 
-        .gridGraphAreaNodeName {
+        .graphAreaNote {
+            background-color: lightgray; 
             font-size: 0.5rem;
             text-align: left;
+            z-index: 10;
         }
 
-        .gridGraphAreaFilter {
-            font-size: 0.5rem;
-            text-align: left;
-        }
-
-        .gridGraphAreaGraphic {
-            font-size: 0.5rem;
-            text-align: left;
-        }

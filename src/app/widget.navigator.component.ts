@@ -6,8 +6,6 @@
 import { Component }                  from '@angular/core';
 import { Input }                      from '@angular/core';
 import { ElementRef }                 from '@angular/core';
-import { EventEmitter }               from '@angular/core';
-import { HostListener }               from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
@@ -67,6 +65,7 @@ export class WidgetNavigatorComponent {
             equal: boolean;
             isSelected: boolean;
         }[] = []
+    filterID: number = -1;
     selectedNode: string = 'Absa';
     selectedNodeType: string = 'Company';
     selectedRelationship: string = 'Directors';
@@ -218,9 +217,9 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickShowNodeFilters() {
-        // Click W object
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowNodeFilters', '@Start');
+    clickShowParentFilter() {
+        // Open Filter for Parent Nodes
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowParentFilter', '@Start');
 
         this.showNodeFilters = true;
     }
@@ -329,4 +328,54 @@ export class WidgetNavigatorComponent {
 
         this.selectedNetworkID = networkID;
     }
+
+    clickParentFilterClear() {
+        // Clear the Parent Filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClear', '@Start');
+
+    }
+
+    clickParentFilterAdd() {
+        // Add Parent Filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickParentFilterAdd', '@Start');
+
+    }
+
+    clickParentFilterClose() {
+        // Close Parent Filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickParentFilterClose', '@Start');
+
+    }
+
+    clickMenuGraphHeight() {
+        // Menu option to adjust graph height
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphHeight', '@Start');
+
+    }
+
+    clickMenuGraphWidth() {
+        // Menu option to adjust graph width
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphWidth', '@Start');
+
+    }
+
+    clickMenuClearHistory() {
+        // Clear history for the current Network
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuClearHistory', '@Start');
+
+    }
+
+    clickMenuExportGraph() {
+        // Export the current graph
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuExportGraph', '@Start');
+
+    }
+
+    dblClickFilterMakeInActive() {
+        // Make the filter inactive
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFilterMakeInActive', '@Start');
+
+    }
+
+
 }

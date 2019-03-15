@@ -18,7 +18,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 >
             </clr-icon>
         </div>
-        <div class="vericaltext">
+        <div class="networkAreaVericaltext">
             <b>Networks</b>
         </div>
     </div>
@@ -54,7 +54,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             </clr-icon>
         </div>
         
-        <div class="networkBlock" *ngFor="let row of networks; let i = index"
+        <div class="networkAreaBlock" *ngFor="let row of networks; let i = index"
             [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
             [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
             [style.color]="row.isSelected? 'black'  :  'darkgray'"
@@ -70,7 +70,7 @@ dimensions is set in app.html, and cannot be changed here. -->
 
     <!-- HISTORY AREA -->
     <!-- History minimised     -->
-    <div class="gridHistoryAreaVertical" *ngIf="!showHistoryMax">
+    <div class="istoryAreaVertical" *ngIf="!showHistoryMax">
         <div>
             <clr-icon (click)="clickHistoryMinMax()"
                 shape="circle-arrow right"
@@ -79,15 +79,15 @@ dimensions is set in app.html, and cannot be changed here. -->
                 >
             </clr-icon>
         </div>
-        <div class="vericaltext">
+        <div class="historyAreaVericaltext">
             <b>Navigated</b>
         </div>
     </div>
     <!-- History maximised     -->
-    <div class="gridHistoryArea" *ngIf="showHistoryMax"
+    <div class="historyArea" *ngIf="showHistoryMax"
         [style.width.px]="historyAreaWidth"
         >
-        <div class="gridHistoryAreaTitle">
+        <div class="historyAreaTitle">
             <b>
                 Navigated
             </b>
@@ -113,7 +113,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 >
             </clr-icon>
         </div>
-        <div class="gridHistoryBlock" *ngFor="let row of history; let i = index"
+        <div class="historyAreaBlock" *ngFor="let row of history; let i = index"
             [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
             [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
             [style.color]="row.isSelected? 'black'  :  'darkgray'"
@@ -131,13 +131,11 @@ dimensions is set in app.html, and cannot be changed here. -->
 
 
     <!-- GRAPH Area -->
-    <!-- [style.width.px]="graphAreaWidth" -->
-    <div class="gridGraphArea"
+    <div class="graphArea"
         
         >
         For
-        <div class="select gridGraphAreaNodeTypeXXX"
-            style="display: inline-block; margin-left: 12px;"
+        <div class="select graphAreaParentNodeType"
             title="Select a node type to filter on"
             >
             <select [(ngModel)]="selectedNodeType"
@@ -163,8 +161,7 @@ dimensions is set in app.html, and cannot be changed here. -->
 
         </div>
 
-        <div class="select gridGraphAreaNodeNameXXX"
-            style="display: inline-block; margin-left: 12px;"
+        <div class="select graphAreaParentNode"
             title="Select a specific node"
             >
             <select [(ngModel)]="selectedNode"
@@ -194,7 +191,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     The dropdown will be reduced by the filter(s) below.  This filter will stay
                     active until 1. it is changed here, or 2. the node type is changed.
                 </p>
-                <div class="editorWidgetFilterFieldTitle">
+                <div class="graphAreaParentFilterFieldTitle">
                     Field:
                     <select id="selects_3"
                         [(ngModel)]="filterFieldName"
@@ -206,7 +203,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                         <option>BEE Rating</option>
                     </select>
                 </div>
-                <div class="editorWidgetFilterOperatorTitle">
+                <div class="graphAreaParentFilterOperatorTitle">
                     Operator:
                     <select id="selects_3"
                         [(ngModel)]="filterOperator"
@@ -226,7 +223,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     </select>
                 </div>
 
-                <div class="editorWidgetFilterValueTitle">
+                <div class="graphAreaParentFilterValueTitle">
                     Value:
                     <input type="text"
                         [(ngModel)]="filterValue"
@@ -238,10 +235,10 @@ dimensions is set in app.html, and cannot be changed here. -->
 
                 <div>
                     <div class="btn-group btn-link">
-                        <button class="btn" (click)="clickFilterClear()">
+                        <button class="btn" (click)="clickParentFilterClear()">
                             Clear
                         </button>
-                        <button class="btn" (click)="clickFilterAdd()">
+                        <button class="btn" (click)="clickParentFilterAdd()">
                             <span *ngIf="filterID==-1">
                                 Add
                             </span>
@@ -251,11 +248,11 @@ dimensions is set in app.html, and cannot be changed here. -->
                         </button>
                     </div>
 
-                    <button class="btn btn-secondary editorWidgetFilterCloseButton"
-                        (click)="clickFilterClose()">
+                    <button class="btn btn-secondary"
+                        (click)="clickParentFilterClose()">
                         Close
                     </button>
-                    <span class="editorWidgetFilterErrorMessage">
+                    <span class="graphAreaParentFilterErrorMessage">
                         {{ filterErrorMessage }}
                     </span>
                 </div>
@@ -263,15 +260,13 @@ dimensions is set in app.html, and cannot be changed here. -->
             </clr-signpost-content>
         </clr-signpost>
 
-        <clr-dropdown class="menuText"
-            style="color: blue; float: right; margin-right: 12px;"
-            >
+        <clr-dropdown class="graphAreaMenuText">
             <button
                 type="button"
                 class="btn btn-link btn-sm"
                 clrDropdownTrigger
                 >
-                <clr-icon (click)="clickShowNodeFilters()"
+                <clr-icon (click)="clickShowParentFilter()"
                     shape="bars"
                     size="14"
                     >
@@ -281,32 +276,32 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <button
                     type="button"
                     clrDropdownItem
-                    (click)="clickMenuEditMode()"
-                    title="Enable EditMode to make changes"
+                    (click)="clickMenuGraphHeight()"
+                    title="Adjust the height of the graph"
                     >
                     Graph Height
                 </button>
                 <button
                     type="button"
                     clrDropdownItem
-                    (click)="clickMenuEditMode()"
-                    title="Enable EditMode to make changes"
+                    (click)="clickMenuGraphWidth()"
+                    title="Adjust the width of the graph"
                     >
                     Graph Width
                 </button>
                 <button
                     type="button"
                     clrDropdownItem
-                    (click)="clickMenuEditMode()"
-                    title="Enable EditMode to make changes"
+                    (click)="clickMenuClearHistory()"
+                    title="Clear history for current Network"
                     >
                     Clear History
                 </button>
                 <button
                     type="button"
                     clrDropdownItem
-                    (click)="clickMenuEditMode()"
-                    title="Enable EditMode to make changes"
+                    (click)="clickMenuExportGraph()"
+                    title="Export the current Graph"
                     >
                     Export Graph
                 </button>
@@ -316,8 +311,7 @@ dimensions is set in app.html, and cannot be changed here. -->
 
         <br>
         show all 
-        <div class="select gridGraphAreaNodeTypeXXX"
-            style="display: inline-block; margin-left: 12px;"
+        <div class="select graphAreaRelationship"
             title="Select a node type to filter on"
             >
             <select [(ngModel)]="selectedRelationship"
@@ -330,8 +324,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <option>Subsidiaries</option>
             </select>
         </div>
-        <div class="gridGraphAreaFilterXXX"
-            style="color: blue; display: inline-block; margin-left: 12px;"
+        <div class="graphAreaChildFilter"
             >
             <clr-icon
                 shape="filter"
@@ -347,18 +340,17 @@ dimensions is set in app.html, and cannot be changed here. -->
             <clr-icon shape="step-forward-2 down" style="float: right; margin-right: 12px;"></clr-icon>
         </div>
 
-        <div class="gridGraphAreaFilterXXX">
+        <div class="graphAreaTitle">
             {{ graphTitle }}
         </div>
         <br>
 
-        <div class="gridGraphAreaGraphicXXX"
+        <div class="graphAreaGraphic"
             #dragWidget
             >
         </div>
 
-        <div class="graphNote"
-            style="background-color: lightgray; z-index: 10;">
+        <div class="graphAreaNote">
             {{ graphNote }}
         </div>
     </div>
