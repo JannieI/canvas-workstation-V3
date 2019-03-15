@@ -1741,3 +1741,15 @@ export class NavigatorNodeTypeFields {
     nodeType: string; 
     fields: string[]; 
 }
+
+export class NavigatorNodeProperties {
+    id: number; 
+    sourceRecordID: number; 
+    nodeType: string; 
+    node: string; 
+    sector: string; 
+    country: string;
+    city: string;
+    age: number;
+    gender: string;
+}
