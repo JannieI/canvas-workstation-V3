@@ -1715,3 +1715,12 @@ export class CanvasHttpResponse {
     };
     "token"?: string;                       // Token, only provided by Login
 }
+
+export class NavigatorNetwork {
+    id: number; 
+    name: string; 
+    description: string;
+    userPermissions: string[];
+    groupPermissions: string[];
+    isSelected: boolean;
+}
