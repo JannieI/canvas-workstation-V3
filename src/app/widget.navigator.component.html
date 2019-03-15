@@ -6,9 +6,10 @@ dimensions is set in app.html, and cannot be changed here. -->
     [style.width.px]="totalNavigatorWidth"
     >
 
+
     <!-- NETWORKS AREA -->
     <!-- Network minimised     -->
-    <div class="gridNetworkAreaVertical" *ngIf="!showNetworkMax">
+    <div class="networkAreaVertical" *ngIf="!showNetworkMax">
         <div>
             <clr-icon (click)="clickNetworkMinMax()"
                 shape="circle-arrow right"
@@ -22,10 +23,10 @@ dimensions is set in app.html, and cannot be changed here. -->
         </div>
     </div>
     <!-- Network maximised -->
-    <div class="gridNetworkArea" *ngIf="showNetworkMax"
+    <div class="networkArea" *ngIf="showNetworkMax"
         [style.width.px]="networkAreaWidth"
         >
-        <div class="gridNetworkAreaTitle">
+        <div class="networkAreaTitle">
             <b>
                 Networks
             </b>
@@ -51,12 +52,13 @@ dimensions is set in app.html, and cannot be changed here. -->
                 style="color: blue; float: right; margin-top: 4px; margin-right: 10px;"
                 >
             </clr-icon>
-    </div>
+        </div>
         
-        <div class="gridNetworkBlock" *ngFor="let row of networks; let i = index"
+        <div class="networkBlock" *ngFor="let row of networks; let i = index"
             [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
             [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
             [style.color]="row.isSelected? 'black'  :  'darkgray'"
+            (click)="clickNetwork()"
             >
             {{ row.name }}
         </div>
@@ -68,7 +70,7 @@ dimensions is set in app.html, and cannot be changed here. -->
 
     <!-- HISTORY AREA -->
     <!-- History minimised     -->
-    <div class="gridNetworkAreaVertical" *ngIf="!showHistoryMax">
+    <div class="gridHistoryAreaVertical" *ngIf="!showHistoryMax">
         <div>
             <clr-icon (click)="clickHistoryMinMax()"
                 shape="circle-arrow right"
@@ -341,7 +343,6 @@ dimensions is set in app.html, and cannot be changed here. -->
         </div>
 
         <div>
-            {{ childResult }}
             <clr-icon shape="step-forward-2" style="float: right; margin-right: 50px;"></clr-icon>
             <clr-icon shape="step-forward-2 down" style="float: right; margin-right: 12px;"></clr-icon>
         </div>

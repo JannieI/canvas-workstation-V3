@@ -41,9 +41,8 @@ export class WidgetNavigatorComponent {
     @Input() selectedWidget: Widget;
 
     graphAreaWidth: number = 900;
-    graphTitle: string = 'Directors for Absa, filtered by Watchlist';
-    graphNote: string = 'Additional information';
-    childResult: string = 'Filtered by age (9/24)'
+    graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
+    graphNote: string = 'Optional Additional information';
     history: 
     {
         id: number; 
@@ -319,6 +318,13 @@ export class WidgetNavigatorComponent {
         // only when clicked - the next navigation does not automatically filter the 
         // this dropdown.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterOnWatchList', '@Start');
+
+        this.watchListFiltered = !this.watchListFiltered;
+    }
+    
+    clickNetwork() {
+        // Click a network
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetwork', '@Start');
 
         this.watchListFiltered = !this.watchListFiltered;
     }
