@@ -1112,7 +1112,9 @@ This document describes items for later versions of Canvas.
     - show detail per child node, maybe a predefined form that pops up
     - use the child node to Drill down another Widget
     - show more info or a graph when the mouse hovers over a child node
-    - 
+    - sort child fields on properties
+    - click inside Navigator = selected Widget.  Should this happen, and how do we manipulate Widget - ie click and delete it.  Work out what is most practical.
+    - sync resizing / or not: change graph size => widget reseizes, and vice versa.
 
     Canvas Server:
     -------------
