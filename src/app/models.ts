@@ -1724,3 +1724,14 @@ export class NavigatorNetwork {
     groupPermissions: string[];
     isSelected: boolean;
 }
+
+export class NavigatorParentRelatedChild {
+    id: number; 
+    ParentNodeID: number; 
+    ParentNodeType: string; 
+    ParentNode: string; 
+    Relationship: string; 
+    childNodeType: string;
+    childNode: string;
+    role: string;
+}
