@@ -79,6 +79,7 @@ export class WidgetNavigatorComponent {
     graphHeightOriginal: number = 400;        // TODO - fill this into Spec
     graphWidth: number = 400;         // TODO - fill this into Spec
     graphWidthOriginal: number = 400;         // TODO - fill this into Spec
+    selectedNetworkID: number;
     totalNavigatorWidth: number = 1000;
     watchList: watchList;
     watchListFiltered: boolean = false;
@@ -321,11 +322,11 @@ export class WidgetNavigatorComponent {
 
         this.watchListFiltered = !this.watchListFiltered;
     }
-    
-    clickNetwork() {
-        // Click a network
+
+    clickNetwork(index: number, networkID: number) {
+        // Clicked a network
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNetwork', '@Start');
 
-        this.watchListFiltered = !this.watchListFiltered;
+        this.selectedNetworkID = networkID;
     }
 }
