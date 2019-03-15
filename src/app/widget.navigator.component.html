@@ -139,7 +139,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             title="Select a node type to filter on"
             >
             <select [(ngModel)]="selectedNodeType"
-                (change)="filterTimeUnitSelected($event)"
+                (change)="changeParentNodeType($event)"
                 name="filterTimeUnit"
                 >
                 <option></option>
@@ -165,7 +165,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             title="Select a specific node"
             >
             <select [(ngModel)]="selectedNode"
-                (change)="filterTimeUnitSelected($event)"
+                (change)="changeParentNode($event)"
                 name="filterTimeUnit"
                 >
                 <option></option>
@@ -195,7 +195,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     Field:
                     <select id="selects_3"
                         [(ngModel)]="filterFieldName"
-                        (change)="filterFieldSelected($event)"
+                        (change)="changeParentFilterField($event)"
                         name="filterFieldName"
                         >
                         <option>Age</option>
@@ -207,7 +207,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     Operator:
                     <select id="selects_3"
                         [(ngModel)]="filterOperator"
-                        (change)="filterOperatorSelected($event)"
+                        (change)="changeParentFilterOperator($event)"
                         name="filterOperator"
                         >
                         <option>Less Than</option>
@@ -315,7 +315,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             title="Select a node type to filter on"
             >
             <select [(ngModel)]="selectedRelationship"
-                (change)="filterTimeUnitSelected($event)"
+                (change)="changeRelationship($event)"
                 name="filterTimeUnit"
                 >
                 <option></option>

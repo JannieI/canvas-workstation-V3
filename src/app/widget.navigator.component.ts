@@ -377,5 +377,34 @@ export class WidgetNavigatorComponent {
 
     }
 
+    changeParentNodeType() {
+        // Make the filter inactive
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeParentNodeType', '@Start');
+
+    }
+
+    changeParentNode() {
+        // Make the filter inactive
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeParentNode', '@Start');
+
+    }
+
+    changeParentFilterField() {
+        // Make the filter inactive
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeParentFilterField', '@Start');
+
+    }
+
+    changeParentFilterOperator() {
+        // Make the filter inactive
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeParentFilterOperator', '@Start');
+
+    }
+
+    changeRelationship() {
+        // Make the filter inactive
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeRelationship', '@Start');
+
+    }
 
 }
