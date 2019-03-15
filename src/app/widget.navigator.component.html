@@ -149,6 +149,16 @@ dimensions is set in app.html, and cannot be changed here. -->
             </select>
         </div>
 
+        <div *ngIf="watchList">
+            <clr-icon
+                shape="list"
+                size="12"
+                (click)="clickFilterOnWatchList()"
+                >
+            </clr-icon>
+
+        </div>
+
         <div class="select gridGraphAreaNodeNameXXX"
             style="display: inline-block; margin-left: 12px;"
             title="Select a specific node"

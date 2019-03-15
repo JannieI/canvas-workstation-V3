@@ -23,6 +23,13 @@ import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
 
+interface watchList 
+    {
+        id: number; 
+        userID: string; 
+        nodeType: string;	
+        nodes: string[];
+    }[];
 
 @Component({
     selector: 'widget-navigator',
@@ -71,6 +78,7 @@ export class WidgetNavigatorComponent {
     graphWidth: number = 400;         // TODO - fill this into Spec
     graphWidthOriginal: number = 400;         // TODO - fill this into Spec
     totalNavigatorWidth: number = 1000;
+    watchList: watchList;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -172,6 +180,17 @@ export class WidgetNavigatorComponent {
                 isSelected: false,
             };
         this.history.push(historyNew);
+
+
+        // Populate the watchList
+        let watchListNew: watchList =
+            {
+                id: 1,
+                userID: 'JannieI',
+                nodeType: 'Company',	
+                nodes: ['Absa','PSG']
+            };
+
 
         // Deep copy Local W
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
@@ -288,6 +307,14 @@ export class WidgetNavigatorComponent {
     clickDeleteHistory() {
         // Delete selected history row.  If current, move to first
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteHistory', '@Start');
+
+    }
+
+    clickFilterOnWatchList() {
+        // Filter the parent node dropdown on the watchlist as well.  This action happens
+        // only when clicked - the next navigation does not automatically filter the 
+        // this dropdown.
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterOnWatchList', '@Start');
 
     }
 }
