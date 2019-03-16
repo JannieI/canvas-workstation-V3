@@ -14,12 +14,13 @@ import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
-import { Widget }                     from './models'
+import { NavigatorHistory }           from './models'
 import { NavigatorNetwork }           from './models'
-import { NavigatorParentRelatedChild }      from './models'
-import { NavigatorNodeTypeFields }    from './models'
 import { NavigatorNodeProperties }    from './models'
+import { NavigatorNodeTypeFields }    from './models'
+import { NavigatorParentRelatedChild }      from './models'
 import { NavigatorWatchList }         from './models'
+import { Widget }                     from './models'
 
 // Functions, 3rd Party
 import { compile }                    from 'vega-lite';
@@ -54,22 +55,12 @@ export class WidgetNavigatorComponent {
 
 
     // Working
+    history: NavigatorHistory[] = [];
+
 
     graphAreaWidth: number = 900;
     graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
     graphNote: string = 'Optional Additional information';
-    history: 
-    {
-        id: number; 
-        text: string; 
-        nodeType: string;
-        node: string;
-        filter: string;
-        relationship: string;
-        childFilter: string;
-        equal: boolean;
-        isSelected: boolean;
-    }[] = [];
     historyAreaWidth: number = 170;
     localWidget: Widget;                            // W to modify, copied from selected
     navigatorWidth: number = 1360;
@@ -133,27 +124,18 @@ export class WidgetNavigatorComponent {
         networksNew = {id: 11, name: "Government structure", description: "Government structure", userPermissions: null, groupPermissions: null, isSelected: false}
         this.networks.push(networksNew);
 
-        let historyNew: 
-            {
-                id: number; 
-                text: string; 
-                nodeType: string;
-                node: string;
-                filter: string;
-                relationship: string;
-                childFilter: string;
-                equal: boolean;
-                isSelected: boolean;
-            } = 
+        let historyNew: NavigatorHistory = 
             {
                 id: 1,
                 text: 'Directors for Absa',
-                nodeType: 'Company',
-                node: 'Absa',
-                filter: '',
+                networkID: 1,
+                parentNodeID: 1, 
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
                 relationship: 'Directors',
-                childFilter: '',
-                equal: true,
+                showRoles: false,
+                parentNodeFiler: null,
+                childNodeFiler: null,
                 isSelected: false,
             };
         this.history.push(historyNew);
@@ -161,12 +143,14 @@ export class WidgetNavigatorComponent {
             {
                 id: 2,
                 text: 'Managers for Maria Ramos',
-                nodeType: 'Person',
-                node: 'Maria Ramos',
-                filter: '',
+                networkID: 1,
+                parentNodeID: 1, 
+                parentNodeType: 'Person',
+                parentNode: 'Maria Ramos',
                 relationship: 'Managers',
-                childFilter: '',
-                equal: true,
+                showRoles: false,
+                parentNodeFiler: null,
+                childNodeFiler: null,
                 isSelected: true,
             };
         this.history.push(historyNew);
@@ -174,12 +158,14 @@ export class WidgetNavigatorComponent {
             {
                 id: 2,
                 text: 'Subsidiaries of Bidvest',
-                nodeType: 'Companies',
-                node: 'Bidvest',
-                filter: '',
+                networkID: 1,
+                parentNodeID: 1, 
+                parentNodeType: 'Companies',
+                parentNode: 'Bidvest',
                 relationship: 'Subsidiaries',
-                childFilter: '',
-                equal: true,
+                showRoles: false,
+                parentNodeFiler: null,
+                childNodeFiler: null,
                 isSelected: false,
             };
         this.history.push(historyNew);

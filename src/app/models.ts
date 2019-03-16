@@ -1763,6 +1763,7 @@ export class NavigatorWatchList {
 
 export class NavigatorHistory {
     id: number; 
+    text: string;
     networkID: number;
     parentNodeID: number; 
     parentNodeType: string; 
@@ -1783,4 +1784,5 @@ export class NavigatorHistory {
             operator: string;
             value: string;
         };
+    isSelected: boolean;
 }
