@@ -580,7 +580,7 @@ export class WidgetNavigatorComponent {
 
     clickParentFilterSave() {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickParentFilterAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickParentFilterSave', '@Start');
 
         // TODO - for now, only one filter by choice.  In future, consider more than one as
         // data structurs allows it
@@ -609,6 +609,12 @@ export class WidgetNavigatorComponent {
     clickParentFilterClose() {
         // Close Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickParentFilterClose', '@Start');
+
+    }
+    clickChildFilterSave()
+    clickChildFilterClose() {
+        // Close Parent Filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickChildFilterClose', '@Start');
 
     }
 
