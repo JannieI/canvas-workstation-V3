@@ -67,18 +67,23 @@ export class WidgetNavigatorComponent {
 
     // Working
     history: NavigatorHistory[] = [];
-    childData: any[] = [];
+    childDataAll: any[] = [];
+    childDataVisible: any[] = [];
     childNodes: string[] = [];
     filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
     filteredParentNodes: string[] = [];                 // List of Node, after filtered on NodeProperties
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
+    relationshipRoles: string[] = [];
     filterParentFieldName: string = '';
     filterParentOperator: string = '';
     filterParentValue: string = '';
     filterChildFieldName: string = '';
     filterChildOperator: string = '';
     filterChildValue: string = '';
+    visibleNumberChildren: number = 12;
+    showChildPageLeft: boolean = true;
+    showChildPageRight: boolean = true;
 
     // Form dimensions
     graphAreaWidth: number = 900;
@@ -96,7 +101,7 @@ export class WidgetNavigatorComponent {
     graphNote: string = 'Optional Additional information';
     showHistoryMax: boolean = true;
     showNetworkMax: boolean = true;
-    
+
     // Widget and Graph (Vega)
     localWidget: Widget;                            // W to modify, copied from selected
     showSpecificGraphLayer: boolean = false;
@@ -479,17 +484,40 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
 
         // Set the data
-        this.childData = this.parentRelatedChildren
+        this.childDataAll = this.parentRelatedChildren
             .filter(x => x.parentNodeType == this.selectedParentNodeType
                 && x.parentNode == this.selectedParentNode
                 && x.relationship == this.selectedRelationship)
             .map(y => y.childNode);
+        this.relationshipRoles = this.parentRelatedChildren
+            .filter(x => x.parentNodeType == this.selectedParentNodeType
+                && x.parentNode == this.selectedParentNode
+                && x.relationship == this.selectedRelationship)
+            .map(y => y.role);
 
         // Filter
-        this.childData = this.childData.filter(z => this.filteredChildNodes.indexOf(z) >= 0);
+        // TODO - later filter on watchlist as well, or not ?
+        this.childDataAll = this.childDataAll.filter(z => this.filteredChildNodes.indexOf(z) >= 0);
 
+        // Set title, etc
+        this.graphTitle = this.selectedRelationship + ' for ' + this.selectedParentNode;
+        if (this.filterChildFieldName != '') {
+            this.graphTitle = this.graphTitle + ', filtered on ' + this.filterChildFieldName;
+        };
 
+        // Reduce visible list
+        this.childDataVisible = this.childDataVisible.slice(0, ( this.visibleNumberChildren - 1) );
 
+        // Show child page indicators
+        this.showChildPageLeft = false;
+        this.showChildPageRight = false;
+        if (this.childDataAll.length > this.visibleNumberChildren) {
+            this.showChildPageRight = true;
+        };
+
+        // Add to History
+        let historyNew: NavigatorHistory = {};
+        this.history = 
         // Set H & W
         if (inputHeight != 0) {
             this.graphHeight = inputHeight;
@@ -616,7 +644,7 @@ export class WidgetNavigatorComponent {
         this.filteredParentNodes = this.nodeProperties
             .filter(x => x[this.filterParentFieldName] == this.filterParentValue)
             .map(y => y.node);
-        
+
     }
 
     clickParentFilterClose() {
@@ -624,6 +652,7 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickParentFilterClose', '@Start');
 
     }
+
     clickChildFilterSave() {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickChildFilterSave', '@Start');
@@ -649,7 +678,7 @@ export class WidgetNavigatorComponent {
         this.filteredChildNodes = this.nodeProperties
             .filter(x => x[this.filterChildFieldName] == this.filterChildValue)
             .map(y => y.node);
-        
+
     }
 
     clickChildFilterClose() {
@@ -746,8 +775,8 @@ export class WidgetNavigatorComponent {
         // Show the graph when all fields selected
         if (this.selectedParentNodeType != ''
             &&
-            this.selectedParentNode != ''  
-            &&  
+            this.selectedParentNode != ''
+            &&
             this.selectedRelationship != '') {
             this.showGraph();
         };
@@ -762,8 +791,8 @@ export class WidgetNavigatorComponent {
         // Show the graph when all fields selected
         if (this.selectedParentNodeType != ''
             &&
-            this.selectedParentNode != ''  
-            &&  
+            this.selectedParentNode != ''
+            &&
             this.selectedRelationship != '') {
             this.showGraph();
         };
