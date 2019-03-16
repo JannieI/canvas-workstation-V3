@@ -67,6 +67,7 @@ export class WidgetNavigatorComponent {
 
     // Working
     history: NavigatorHistory[] = [];
+    childData: any[] = [];
     childNodes: string[] = [];
     filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
     filteredParentNodes: string[] = [];                 // List of Node, after filtered on NodeProperties
@@ -477,6 +478,18 @@ export class WidgetNavigatorComponent {
         // Re-create the Vega spec, and show the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
 
+        // Set the data
+        this.childData = this.parentRelatedChildren
+            .filter(x => x.parentNodeType == this.selectedParentNodeType
+                && x.parentNode == this.selectedParentNode
+                && x.relationship == this.selectedRelationship)
+            .map(y => y.childNode);
+
+        // Filter
+        this.childData = this.childData.filter(z => this.filteredChildNodes.indexOf(z) >= 0);
+
+
+
         // Set H & W
         if (inputHeight != 0) {
             this.graphHeight = inputHeight;
@@ -712,7 +725,7 @@ export class WidgetNavigatorComponent {
             )
         }
         this.dropdownParentNodes = this.dropdownParentNodes.filter(
-            x => this.filteredParentNodes.indexOf(x)
+            x => this.filteredParentNodes.indexOf(x) >= 0
         );
 
         this.selectedParentNode = '';
