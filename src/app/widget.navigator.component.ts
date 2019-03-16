@@ -179,7 +179,7 @@ export class WidgetNavigatorComponent {
                 nodeType: 'Company',	
                 nodes: ['Absa','PSG']
             };
-
+        this.watchList.push(watchListNew);
 
         // Deep copy Local W
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
