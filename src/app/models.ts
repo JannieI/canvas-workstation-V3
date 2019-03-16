@@ -1727,10 +1727,10 @@ export class NavigatorNetwork {
 
 export class NavigatorParentRelatedChild {
     id: number; 
-    ParentNodeID: number; 
-    ParentNodeType: string; 
-    ParentNode: string; 
-    Relationship: string; 
+    parentNodeID: number; 
+    parentNodeType: string; 
+    parentNode: string; 
+    relationship: string; 
     childNodeType: string;
     childNode: string;
     role: string;
@@ -1761,3 +1761,26 @@ export class NavigatorWatchList {
     nodes: string[]; 
 }
 
+export class NavigatorHistory {
+    id: number; 
+    networkID: number;
+    parentNodeID: number; 
+    parentNodeType: string; 
+    parentNode: string; 
+    relationship: string; 
+    showRoles: boolean;
+    parentNodeFiler:
+        {
+            id: number;
+            field: string;
+            operator: string;
+            value: string;
+        };
+    childNodeFiler:
+        {
+            id: number;
+            field: string;
+            operator: string;
+            value: string;
+        };
+}
