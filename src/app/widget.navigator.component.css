@@ -131,11 +131,36 @@
             margin-right: 12px;
         }
 
-        .graphAreaChildFilter {
-            color: blue; 
+
+
+
+
+        /* ?? */
+        .graphAreaChildNode {
             display: inline-block; 
+            font-size: 0.5rem;
             margin-left: 12px;
+            text-align: left;
         }
+            .graphAreaChildFilterFieldTitle {
+                text-align: left;
+            }
+            .graphAreaChildFilterOperatorTitle {
+                text-align: left;
+            }
+            .graphAreaChildFilterValueTitle {
+                text-align: left;
+            }
+            .graphAreaChildFilterErrorMessage {
+                color: red;
+                text-align: left;
+            }
+
+
+
+
+
+
 
         .graphAreaTitle {
             margin-left: 12px;

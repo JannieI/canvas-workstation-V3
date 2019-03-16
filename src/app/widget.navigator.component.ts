@@ -72,9 +72,12 @@ export class WidgetNavigatorComponent {
     filteredParentNodes: string[] = [];                 // List of Node, after filtered on NodeProperties
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
-    filterFieldName: string = '';
-    filterOperator: string = '';
-    filterValue: string = '';
+    filterParentFieldName: string = '';
+    filterParentOperator: string = '';
+    filterParentValue: string = '';
+    filterChildFieldName: string = '';
+    filterChildOperator: string = '';
+    filterChildValue: string = '';
 
     // Form dimensions
     graphAreaWidth: number = 900;
@@ -590,15 +593,15 @@ export class WidgetNavigatorComponent {
         this.parentNodeFilter.push(
             {
                 id: 1,
-                field: this.filterFieldName,
-                operator: this.filterOperator,
-                value: this.filterValue
+                field: this.filterParentFieldName,
+                operator: this.filterParentOperator,
+                value: this.filterParentValue
             });
 
         // Filter ParentNodes
         // TODO - do other operands than ==
         this.filteredParentNodes = this.nodeProperties
-            .filter(x => x[this.filterFieldName] == this.filterValue)
+            .filter(x => x[this.filterParentFieldName] == this.filterParentValue)
             .map(y => y.node);
         
     }
@@ -630,12 +633,6 @@ export class WidgetNavigatorComponent {
     clickMenuExportGraph() {
         // Export the current graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuExportGraph', '@Start');
-
-    }
-
-    dblClickFilterMakeInActive() {
-        // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFilterMakeInActive', '@Start');
 
     }
 
