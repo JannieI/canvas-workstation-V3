@@ -665,11 +665,6 @@ export class WidgetNavigatorComponent {
             )
             .slice(0, 100)
             .map(x => x.parentNode);
-        if (watchListIndex >= 0) {
-            this.dropdownParentNodes = this.dropdownParentNodes.filter(
-                x => this.watchList[watchListIndex].nodes.indexOf(x) >= 0
-            )
-        }
         this.dropdownRelationships = this.parentRelatedChildren
             .filter(
                 x => x.parentNodeType == this.selectedParentNodeType
@@ -680,7 +675,16 @@ export class WidgetNavigatorComponent {
             this.parentNodeFilter = [];
             this.selectedParentFilterID = -1;
 
-        // TODO - filter ParentNode op parentFilter and watchlist
+        // Filter the Parent Nodes on parentFilter and watchlist
+        if (watchListIndex >= 0) {
+            this.dropdownParentNodes = this.dropdownParentNodes.filter(
+                x => this.watchList[watchListIndex].nodes.indexOf(x) >= 0
+            )
+        }
+        this.dropdownParentNodes = this.dropdownParentNodes.filter(
+            x => this.filteredParentNodes.indexOf(x)
+        );
+
         this.selectedParentNode = '';
         this.selectedRelationship = '';
         this.childNodes = [];
@@ -690,10 +694,36 @@ export class WidgetNavigatorComponent {
 
     }
 
-    changeParentNode() {
+    changeParentNode(ev: string) {
         // Make the filter inactive
         this.globalFunctionService.printToConsole(this.constructor.name,'changeParentNode', '@Start');
 
+        this.selectedParentNode = ev;
+
+        // Show the graph when all fields selected
+        if (this.selectedParentNodeType != ''
+            &&
+            this.selectedParentNode != ''  
+            &&  
+            this.selectedRelationship != '') {
+            this.showGraph();
+        };
+    }
+
+    changeRelationship(ev: string) {
+        // Make the filter inactive
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeRelationship', '@Start');
+
+        this.selectedRelationship = ev;
+
+        // Show the graph when all fields selected
+        if (this.selectedParentNodeType != ''
+            &&
+            this.selectedParentNode != ''  
+            &&  
+            this.selectedRelationship != '') {
+            this.showGraph();
+        };
     }
 
     changeParentFilterField() {
@@ -708,10 +738,5 @@ export class WidgetNavigatorComponent {
 
     }
 
-    changeRelationship() {
-        // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeRelationship', '@Start');
-
-    }
 
 }
