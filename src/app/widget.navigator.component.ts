@@ -27,11 +27,11 @@ import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
 
-interface watchList 
+interface watchList
     {
-        id: number; 
-        userID: string; 
-        nodeType: string;	
+        id: number;
+        userID: string;
+        nodeType: string;
         nodes: string[];
     }[];
 
@@ -124,12 +124,12 @@ export class WidgetNavigatorComponent {
         networksNew = {id: 11, name: "Government structure", description: "Government structure", userPermissions: null, groupPermissions: null, isSelected: false}
         this.networks.push(networksNew);
 
-        let historyNew: NavigatorHistory = 
+        let historyNew: NavigatorHistory =
             {
                 id: 1,
                 text: 'Directors for Absa',
                 networkID: 1,
-                parentNodeID: 1, 
+                parentNodeID: 1,
                 parentNodeType: 'Company',
                 parentNode: 'Absa',
                 relationship: 'Directors',
@@ -144,7 +144,7 @@ export class WidgetNavigatorComponent {
                 id: 2,
                 text: 'Managers for Maria Ramos',
                 networkID: 1,
-                parentNodeID: 1, 
+                parentNodeID: 1,
                 parentNodeType: 'Person',
                 parentNode: 'Maria Ramos',
                 relationship: 'Managers',
@@ -159,7 +159,7 @@ export class WidgetNavigatorComponent {
                 id: 2,
                 text: 'Subsidiaries of Bidvest',
                 networkID: 1,
-                parentNodeID: 1, 
+                parentNodeID: 1,
                 parentNodeType: 'Companies',
                 parentNode: 'Bidvest',
                 relationship: 'Subsidiaries',
@@ -173,11 +173,11 @@ export class WidgetNavigatorComponent {
         // Populate persisted data - TODO via DB
         let newParentRelatedChildren: NavigatorParentRelatedChild =
             {
-                id: 1, 
+                id: 1,
                 parentNodeID: null,
-                parentNodeType: 'Company', 
+                parentNodeType: 'Company',
                 parentNode: 'Absa',
-                relationship: 'Director', 
+                relationship: 'Director',
                 childNodeType: 'Person',
                 childNode: 'Koos',
                 role: 'Executive'
@@ -185,11 +185,11 @@ export class WidgetNavigatorComponent {
         this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
             {
-                id: 2, 
+                id: 2,
                 parentNodeID: null,
-                parentNodeType: 'Company', 
+                parentNodeType: 'Company',
                 parentNode: 'Absa',
-                relationship: 'Director', 
+                relationship: 'Director',
                 childNodeType: 'Person',
                 childNode: 'Anna',
                 role: 'Executive'
@@ -197,11 +197,11 @@ export class WidgetNavigatorComponent {
         this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
         {
-            id: 3, 
+            id: 3,
             parentNodeID: null,
-            parentNodeType: 'Company', 
+            parentNodeType: 'Company',
             parentNode: 'Absa',
-            relationship: 'Shareholder', 
+            relationship: 'Shareholder',
             childNodeType: 'Company',
             childNode: 'Nedbank',
             role: 'Executive'
@@ -209,11 +209,11 @@ export class WidgetNavigatorComponent {
         this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
         {
-            id: 4, 
+            id: 4,
             parentNodeID: null,
-            parentNodeType: 'Company', 
+            parentNodeType: 'Company',
             parentNode: 'Absa',
-            relationship: 'Shareholder', 
+            relationship: 'Shareholder',
             childNodeType: 'Person',
             childNode: 'John',
             role: 'Executive'
@@ -221,11 +221,11 @@ export class WidgetNavigatorComponent {
         this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
         {
-            id: 5, 
+            id: 5,
             parentNodeID: null,
-            parentNodeType: 'Person', 
+            parentNodeType: 'Person',
             parentNode: 'Koos',
-            relationship: 'Director-Of', 
+            relationship: 'Director-Of',
             childNodeType: 'Company',
             childNode: 'PSG',
             role: 'Listed'
@@ -233,11 +233,11 @@ export class WidgetNavigatorComponent {
         this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
         {
-            id: 6, 
+            id: 6,
             parentNodeID: null,
-            parentNodeType: 'Person', 
+            parentNodeType: 'Person',
             parentNode: 'Koos',
-            relationship: 'Director-Of', 
+            relationship: 'Director-Of',
             childNodeType: 'Company',
             childNode: 'AECI',
             role: 'Non-Listed'
@@ -245,11 +245,11 @@ export class WidgetNavigatorComponent {
         this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
         {
-            id: 7, 
+            id: 7,
             parentNodeID: null,
-            parentNodeType: 'Person', 
+            parentNodeType: 'Person',
             parentNode: 'Koos',
-            relationship: 'Manager-Of', 
+            relationship: 'Manager-Of',
             childNodeType: 'Person',
             childNode: 'Chris',
             role: ''
@@ -257,11 +257,11 @@ export class WidgetNavigatorComponent {
         this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
         {
-            id: 8, 
+            id: 8,
             parentNodeID: null,
-            parentNodeType: 'Person', 
+            parentNodeType: 'Person',
             parentNode: 'Koos',
-            relationship: 'Manager-Of', 
+            relationship: 'Manager-Of',
             childNodeType: 'Person',
             childNode: 'Anna',
             role: ''
@@ -270,34 +270,129 @@ export class WidgetNavigatorComponent {
 
         let newNodeTypeFields: NavigatorNodeTypeFields =
         {
-            id: 1, 
-            nodeType: 'Company', 
-            fields: ['Sector', 'Country', 'City'] 
+            id: 1,
+            nodeType: 'Company',
+            fields: ['Sector', 'Country', 'City']
         }
         this.nodeTypeFields.push(newNodeTypeFields)
         newNodeTypeFields =
         {
-            id: 2, 
-            nodeType: 'Person', 
-            fields: ['Age', 'Gender'] 
+            id: 2,
+            nodeType: 'Person',
+            fields: ['Age', 'Gender']
         }
         this.nodeTypeFields.push(newNodeTypeFields)
-        
-        let newNodeProperties: NavigatorNodeProperties[] =
-        this.nodeProperties.push()
+
+        let newNodeProperties: NavigatorNodeProperties = {
+            id: 1,
+            sourceRecordID: 1,
+            nodeType: 'Company',
+            node: 'Absa',
+            sector: 'Bank',
+            country: 'South Africa',
+            city: 'Cape Town',
+            age: null,
+            gender: null
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 2,
+            sourceRecordID: 2,
+            nodeType: 'Company',
+            node: 'Bidvest',
+            sector: 'Industrial',
+            country: 'South Africa',
+            city: 'Durban',
+            age: null,
+            gender: null
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 3,
+            sourceRecordID: 3,
+            nodeType: 'Company',
+            node: 'AECI',
+            sector: 'Industrial',
+            country: 'Botswana',
+            city: 'Gabarone',
+            age: null,
+            gender: null
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 4,
+            sourceRecordID: 12,
+            nodeType: 'Company',
+            node: 'Nedbank',
+            sector: 'Bank',
+            country: 'South Africa',
+            city: 'Durban',
+            age: null,
+            gender: null
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 5,
+            sourceRecordID: 510,
+            nodeType: 'Company',
+            node: 'PSG',
+            sector: 'Financial',
+            country: 'South Africa',
+            city: 'Johannesburg',
+            age: null,
+            gender: null
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 6,
+            sourceRecordID: 2,
+            nodeType: 'Person',
+            node: 'Koos',
+            sector: null,
+            country: null,
+            city: null,
+            age: 59,
+            gender: 'Male'
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 7,
+            sourceRecordID: 2,
+            nodeType: 'Person',
+            node: 'Anna',
+            sector: null,
+            country: null,
+            city: null,
+            age: 44,
+            gender: 'Female'
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 8,
+            sourceRecordID: 2,
+            nodeType: 'Person',
+            node: 'Chris',
+            sector: null,
+            country: null,
+            city: null,
+            age: 37,
+            gender: 'Male'
+        }
+        this.nodeProperties.push(newNodeProperties);
+
         // Populate the watchList - TODO via DB
         let watchListNew: watchList =
             {
                 id: 1,
                 userID: 'JannieI',
-                nodeType: 'Company',	
+                nodeType: 'Company',
                 nodes: ['Absa','PSG']
             };
         this.watchList.push(watchListNew);
 
         // Deep copy Local W
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-        
+
         // Display graph
         this.showGraph();
     }
@@ -332,7 +427,7 @@ export class WidgetNavigatorComponent {
         this.showHistoryMax = !this.showHistoryMax;
 
         // Refresh graph - take margin into account
-        this.graphWidth = this.graphWidthOriginal + 
+        this.graphWidth = this.graphWidthOriginal +
             (this.showHistoryMax?  0  : 138) +  (this.showNetworkMax?  0  :  130);
         console.log('xx this.graphWidth', this.graphWidth)
         this.showGraph(0, this.graphWidth)
@@ -345,7 +440,7 @@ export class WidgetNavigatorComponent {
         this.showNetworkMax = !this.showNetworkMax;
 
         // Refresh graph
-        this.graphWidth = this.graphWidthOriginal + 
+        this.graphWidth = this.graphWidthOriginal +
             (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130)
         console.log('xx this.graphWidth', this.graphWidth)
         this.showGraph(0, this.graphWidth)
@@ -377,7 +472,7 @@ export class WidgetNavigatorComponent {
         };
         if (this.graphWidth < 100) {
             this.graphWidth = 100;
-        };        
+        };
 
         // Create specification
         this.specification = this.globalVariableService.createVegaSpec(
@@ -393,7 +488,7 @@ export class WidgetNavigatorComponent {
         // Render in DOM
         let view = new View(parse(this.specification));
         view.addEventListener('click', function(event, item) {
-            // Needs separate object, else item.datum.text is sometimes undefined.  
+            // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             console.log('CLICK', item, item.datum.text, datumClick.name);
             this.selectedNodeType = 'Person';
@@ -416,7 +511,7 @@ export class WidgetNavigatorComponent {
 
     clickFilterOnWatchList() {
         // Filter the parent node dropdown on the watchlist as well.  This action happens
-        // only when clicked - the next navigation does not automatically filter the 
+        // only when clicked - the next navigation does not automatically filter the
         // this dropdown.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterOnWatchList', '@Start');
 
