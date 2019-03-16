@@ -620,6 +620,13 @@ export class WidgetNavigatorComponent {
         // Set selected Nod
         this.selectedParentNodeType = ev;
 
+        // Find watchlist for this NodeType
+        let watchListIndex: number = this.watchList.findIndex(x =>
+                x.userID == this.globalVariableService.currentUserID 
+                && 
+                x.nodeType == this.selectedParentNodeType
+        );
+
         // Set Dropdowns & reset selected
         this.dropdownParentNodes = this.parentRelatedChildren
             .filter(
@@ -627,6 +634,11 @@ export class WidgetNavigatorComponent {
             )
             .slice(0, 100)
             .map(x => x.parentNode);
+        if (watchListIndex >= 0) {
+            this.dropdownParentNodes = this.dropdownParentNodes.filter(
+                x => this.watchList[watchListIndex].nodes.indexOf(x) >= 0
+            )
+        }
         this.dropdownRelationships = this.parentRelatedChildren
             .filter(
                 x => x.parentNodeType == this.selectedParentNodeType
