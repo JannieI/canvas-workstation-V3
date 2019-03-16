@@ -170,8 +170,110 @@ export class WidgetNavigatorComponent {
             };
         this.history.push(historyNew);
 
+        // Populate persisted data - TODO via DB
+        let newParentRelatedChildren: NavigatorParentRelatedChild =
+            {
+                id: 1, 
+                parentNodeID: null,
+                parentNodeType: 'Company', 
+                parentNode: 'Absa',
+                relationship: 'Director', 
+                childNodeType: 'Person',
+                childNode: 'Koos',
+                role: 'Executive'
+            }
+        this.parentRelatedChildren.push()
+        newParentRelatedChildren =
+            {
+                id: 2, 
+                parentNodeID: null,
+                parentNodeType: 'Company', 
+                parentNode: 'Absa',
+                relationship: 'Director', 
+                childNodeType: 'Person',
+                childNode: 'Anna',
+                role: 'Executive'
+            }
+        this.parentRelatedChildren.push()
+        newParentRelatedChildren =
+        {
+            id: 3, 
+            parentNodeID: null,
+            parentNodeType: 'Company', 
+            parentNode: 'Absa',
+            relationship: 'Shareholder', 
+            childNodeType: 'Company',
+            childNode: 'Nedbank',
+            role: 'Executive'
+        }
+        this.parentRelatedChildren.push()
+        newParentRelatedChildren =
+        {
+            id: 4, 
+            parentNodeID: null,
+            parentNodeType: 'Company', 
+            parentNode: 'Absa',
+            relationship: 'Shareholder', 
+            childNodeType: 'Person',
+            childNode: 'John',
+            role: 'Executive'
+        }
+        this.parentRelatedChildren.push()
+        newParentRelatedChildren =
+        {
+            id: 5, 
+            parentNodeID: null,
+            parentNodeType: 'Person', 
+            parentNode: 'Koos',
+            relationship: 'Director-Of', 
+            childNodeType: 'Company',
+            childNode: 'PSG',
+            role: 'Listed'
+        }
+        this.parentRelatedChildren.push()
+        newParentRelatedChildren =
+        {
+            id: 6, 
+            parentNodeID: null,
+            parentNodeType: 'Person', 
+            parentNode: 'Koos',
+            relationship: 'Director-Of', 
+            childNodeType: 'Company',
+            childNode: 'AECI',
+            role: 'Non-Listed'
+        }
+        this.parentRelatedChildren.push()
+        newParentRelatedChildren =
+        {
+            id: 7, 
+            parentNodeID: null,
+            parentNodeType: 'Person', 
+            parentNode: 'Koos',
+            relationship: 'Manager-Of', 
+            childNodeType: 'Person',
+            childNode: 'Chris',
+            role: ''
+        }
+        this.parentRelatedChildren.push()
+        newParentRelatedChildren =
+        {
+            id: 8, 
+            parentNodeID: null,
+            parentNodeType: 'Person', 
+            parentNode: 'Koos',
+            relationship: 'Manager-Of', 
+            childNodeType: 'Person',
+            childNode: 'Anna',
+            role: ''
+        }
+        this.parentRelatedChildren.push()
 
-        // Populate the watchList
+        let newNodeTypeFields: NavigatorNodeTypeFields =
+        this.nodeTypeFields.push()
+        
+        let newNodeProperties: NavigatorNodeProperties[] =
+        this.nodeProperties.push()
+        // Populate the watchList - TODO via DB
         let watchListNew: watchList =
             {
                 id: 1,
@@ -187,6 +289,7 @@ export class WidgetNavigatorComponent {
         // Display graph
         this.showGraph();
     }
+
 
 
     clickSingleWidget() {
