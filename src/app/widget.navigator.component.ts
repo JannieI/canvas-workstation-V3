@@ -67,8 +67,9 @@ export class WidgetNavigatorComponent {
 
     // Working
     history: NavigatorHistory[] = [];
-    childDataAll: any[] = [];
-    childDataVisible: any[] = [];
+    childDataAll: any[] = [];                           // List of all children after filter
+    childDataVisible: any[] = [];                       // Visible children, based on nrShown
+    graphData: any[] = [];                              // childDataAll formatted for Vega 
     childNodes: string[] = [];
     filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
     filteredParentNodes: string[] = [];                 // List of Node, after filtered on NodeProperties
@@ -516,6 +517,30 @@ export class WidgetNavigatorComponent {
             this.showChildPageRight = true;
         };
 
+        // Format the graphData
+        this.graphData = [];
+        if (!this.showRoles) {
+
+            // Parent
+            this.graphData.push( 
+            { "id": 1,
+             "name": this.selectedParentNode
+            });
+
+            // Children
+            for (var i = 0; i < this.childDataVisible.length; i++) {
+                this.graphData.push({
+                    id: i + 2,
+                    name: this.childDataVisible,
+                    parent: 1
+                });
+            }
+            this.childDataVisible.forEach(chl => 
+
+            }))
+        } else {
+            // TODO - loop inside loop - eezy peezy
+        }
         // Add to History
         // TODO - keep ParentNodeID of selected for here
         // TODO - cater for more than 1 Filter; Parent and Child
@@ -537,6 +562,9 @@ export class WidgetNavigatorComponent {
             childFilterValue = this.childNodeFilter[0].value;
     
         };
+
+        // Deselect all history, and add a new one at the top
+        this.history.forEach(x => x.isSelected = false);
          let historyNew: NavigatorHistory = 
             {
                 id: this.history.length, 
@@ -560,10 +588,11 @@ export class WidgetNavigatorComponent {
                         field: childFilterFieldName,
                         operator: childFilterOperator,
                         value: childFilterValue
-                    };
+                    },
                 isSelected: true
             };
-        this.history = 
+        this.history = [historyNew, ...this.history];
+
         // Set H & W
         if (inputHeight != 0) {
             this.graphHeight = inputHeight;
