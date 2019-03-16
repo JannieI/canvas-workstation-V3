@@ -1786,3 +1786,10 @@ export class NavigatorHistory {
         };
     isSelected: boolean;
 }
+
+export class NavigatorNodeFiler {
+    id: number;
+    field: string;
+    operator: string;
+    value: string;
+}
