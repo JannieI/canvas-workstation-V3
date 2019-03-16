@@ -608,9 +608,24 @@ export class WidgetNavigatorComponent {
 
     }
 
-    changeParentNodeType() {
+    changeParentNodeType(ev: string) {
         // Make the filter inactive
         this.globalFunctionService.printToConsole(this.constructor.name,'changeParentNodeType', '@Start');
+
+        // Set selected ParentNodeId
+        let parentNodeTypeIndex: number = this.dropdownParentNodeTypes.findIndex(
+            p => p == ev
+        );
+
+        // Set selected Nod
+        this.selectedParentNodeType = ev;
+
+        // Set Dropdowns
+        this.dropdownParentNodes = this.parentRelatedChildren
+            .filter(
+                x => x.parentNodeType == this.selectedParentNodeType
+            )
+            .map(x => x.parentNode);
 
     }
 
