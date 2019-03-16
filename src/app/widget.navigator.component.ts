@@ -101,6 +101,7 @@ export class WidgetNavigatorComponent {
     graphNote: string = 'Optional Additional information';
     showHistoryMax: boolean = true;
     showNetworkMax: boolean = true;
+    showRoles: boolean = false;
 
     // Widget and Graph (Vega)
     localWidget: Widget;                            // W to modify, copied from selected
@@ -516,7 +517,52 @@ export class WidgetNavigatorComponent {
         };
 
         // Add to History
-        let historyNew: NavigatorHistory = {};
+        // TODO - keep ParentNodeID of selected for here
+        // TODO - cater for more than 1 Filter; Parent and Child
+        let parentFilterFieldName: string = '';
+        let parentFilterOperator: string = '';
+        let parentFilterValue: string = '';
+        let childFilterFieldName: string = '';
+        let childFilterOperator: string = '';
+        let childFilterValue: string = '';
+        if (this.parentNodeFilter.length > 0) {
+            parentFilterFieldName = this.parentNodeFilter[0].field;
+            parentFilterOperator = this.parentNodeFilter[0].operator;
+            parentFilterValue = this.parentNodeFilter[0].value;
+    
+        };
+        if (this.childNodeFilter.length > 0) {
+            childFilterFieldName = this.childNodeFilter[0].field;
+            childFilterOperator = this.childNodeFilter[0].operator;
+            childFilterValue = this.childNodeFilter[0].value;
+    
+        };
+         let historyNew: NavigatorHistory = 
+            {
+                id: this.history.length, 
+                text: this.graphTitle,
+                networkID: this.selectedNetworkID,
+                parentNodeID: null, 
+                parentNodeType: this.selectedParentNodeType, 
+                parentNode: this.selectedParentNode,
+                relationship: this.selectedRelationship,
+                showRoles: this.showRoles,
+                parentNodeFiler:
+                    {
+                        id: 0,
+                        field: parentFilterFieldName,
+                        operator: parentFilterOperator,
+                        value: parentFilterValue
+                    },
+                childNodeFiler:
+                    {
+                        id: 0,
+                        field: childFilterFieldName,
+                        operator: childFilterOperator,
+                        value: childFilterValue
+                    };
+                isSelected: true
+            };
         this.history = 
         // Set H & W
         if (inputHeight != 0) {
