@@ -72,26 +72,31 @@ export class WidgetNavigatorComponent {
     parentNodeFilter: NavigatorNodeFiler[] = [];
     childNodeFilter: NavigatorNodeFiler[] = [];
 
-
+    // Form dimensions
     graphAreaWidth: number = 900;
-    graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
-    graphNote: string = 'Optional Additional information';
-    historyAreaWidth: number = 170;
-    localWidget: Widget;                            // W to modify, copied from selected
-    navigatorWidth: number = 1360;
-    networkAreaWidth: number = 170;
-    filterID: number = -1;
-    selectedNode: string = 'Absa';
-    showNodeFilters: boolean = false;
-    showSpecificGraphLayer: boolean = false;
-    showHistoryMax: boolean = true;
-    showNetworkMax: boolean = true;
-    specification: any;             // Full spec for Vega, or other grammar
     graphHeight: number = 400;        // TODO - fill this into Spec
     graphHeightOriginal: number = 400;        // TODO - fill this into Spec
     graphWidth: number = 400;         // TODO - fill this into Spec
     graphWidthOriginal: number = 400;         // TODO - fill this into Spec
+    historyAreaWidth: number = 170;
+    navigatorWidth: number = 1360;
+    networkAreaWidth: number = 170;
     totalNavigatorWidth: number = 1000;
+
+    // Form layout and elements
+    graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
+    graphNote: string = 'Optional Additional information';
+    showHistoryMax: boolean = true;
+    showNetworkMax: boolean = true;
+    
+    // Widget and Graph (Vega)
+    localWidget: Widget;                            // W to modify, copied from selected
+    showSpecificGraphLayer: boolean = false;
+    specification: any;             // Full spec for Vega, or other grammar
+
+    filterID: number = -1;
+    selectedNode: string = 'Absa';
+    showNodeFilters: boolean = false;
     watchListFiltered: boolean = false;
 
     constructor(
@@ -557,7 +562,7 @@ export class WidgetNavigatorComponent {
         this.selectedRelationship = '';
         this.selectedParentFilterID = -1;
         this.selectedChildFilterID = -1;
-    
+
     }
 
     clickParentFilterClear() {
@@ -622,8 +627,8 @@ export class WidgetNavigatorComponent {
 
         // Find watchlist for this NodeType
         let watchListIndex: number = this.watchList.findIndex(x =>
-                x.userID == this.globalVariableService.currentUserID 
-                && 
+                x.userID == this.globalVariableService.currentUserID
+                &&
                 x.nodeType == this.selectedParentNodeType
         );
 
@@ -645,7 +650,7 @@ export class WidgetNavigatorComponent {
             )
             .slice(0, 100)
             .map(x => x.relationship);
-            
+
             this.parentNodeFilter = [];
             this.selectedParentFilterID = -1;
 
@@ -656,7 +661,7 @@ export class WidgetNavigatorComponent {
         this.childNodeFilter = [];
         this.selectedChildFilterID = -1;
 
-    
+
     }
 
     changeParentNode() {
