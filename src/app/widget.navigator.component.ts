@@ -72,6 +72,9 @@ export class WidgetNavigatorComponent {
     filteredParentNodes: string[] = [];                 // List of Node, after filtered on NodeProperties
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
+    filterFieldName: string = '';
+    filterOperator: string = '';
+    filterValue: string = '';
 
     // Form dimensions
     graphAreaWidth: number = 900;
@@ -572,10 +575,24 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickParentFilterAdd() {
-        // Add Parent Filter
+    clickParentFilterSave() {
+        // Add Parent Filter, and create list of parent nodes as a result of the filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickParentFilterAdd', '@Start');
 
+        // TODO - for now, only one filter by choice.  In future, consider more than one as
+        // data structurs allows it
+
+        this.parentNodeFilter = [];
+        this.filteredParentNodes = [];
+
+        this.parentNodeFilter.push(
+            {
+                id: 1,
+                field: this.filterFieldName,
+                operator: this.filterOperator,
+                value: this.filterValue
+            })
+        filteredParentNodes
     }
 
     clickParentFilterClose() {
