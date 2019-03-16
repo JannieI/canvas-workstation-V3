@@ -611,7 +611,34 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickParentFilterClose', '@Start');
 
     }
-    clickChildFilterSave()
+    clickChildFilterSave() {
+        // Add Parent Filter, and create list of parent nodes as a result of the filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickChildFilterSave', '@Start');
+
+        // TODO - for now, only one filter by choice.  In future, consider more than one as
+        // data structurs allows it
+
+        // Clear all
+        this.childNodeFilter = [];
+        this.filteredChildNodes = [];
+
+        // Save parent filter
+        this.childNodeFilter.push(
+            {
+                id: 1,
+                field: this.filterChildFieldName,
+                operator: this.filterChildOperator,
+                value: this.filterChildValue
+            });
+
+        // Filter ParentNodes
+        // TODO - do other operands than ==
+        this.filteredChildNodes = this.nodeProperties
+            .filter(x => x[this.filterChildFieldName] == this.filterChildValue)
+            .map(y => y.node);
+        
+    }
+
     clickChildFilterClose() {
         // Close Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickChildFilterClose', '@Start');
