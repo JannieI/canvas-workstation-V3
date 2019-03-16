@@ -582,17 +582,25 @@ export class WidgetNavigatorComponent {
         // TODO - for now, only one filter by choice.  In future, consider more than one as
         // data structurs allows it
 
+        // Clear all
         this.parentNodeFilter = [];
         this.filteredParentNodes = [];
 
+        // Save parent filter
         this.parentNodeFilter.push(
             {
                 id: 1,
                 field: this.filterFieldName,
                 operator: this.filterOperator,
                 value: this.filterValue
-            })
-        filteredParentNodes
+            });
+
+        // Filter ParentNodes
+        // TODO - do other operands than ==
+        this.filteredParentNodes = this.nodeProperties
+            .filter(x => x[this.filterFieldName] == this.filterValue)
+            .map(y => y.node);
+        
     }
 
     clickParentFilterClose() {
