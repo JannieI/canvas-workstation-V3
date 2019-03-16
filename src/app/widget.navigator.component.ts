@@ -16,6 +16,7 @@ import { GlobalFunctionService }      from './global-function.service';
 // Our Models
 import { NavigatorHistory }           from './models'
 import { NavigatorNetwork }           from './models'
+import { NavigatorNodeFiler }         from './models'
 import { NavigatorNodeProperties }    from './models'
 import { NavigatorNodeTypeFields }    from './models'
 import { NavigatorParentRelatedChild }      from './models'
@@ -68,8 +69,8 @@ export class WidgetNavigatorComponent {
     // Working
     history: NavigatorHistory[] = [];
     childNodes: string[] = [];
-    parentNodeFilter:
-    childNodeFilter
+    parentNodeFilter: NavigatorNodeFiler[] = [];
+    childNodeFilter: NavigatorNodeFiler[] = [];
 
 
     graphAreaWidth: number = 900;
@@ -81,7 +82,6 @@ export class WidgetNavigatorComponent {
     networkAreaWidth: number = 170;
     filterID: number = -1;
     selectedNode: string = 'Absa';
-    selectedRelationship: string = 'Directors';
     showNodeFilters: boolean = false;
     showSpecificGraphLayer: boolean = false;
     showHistoryMax: boolean = true;
@@ -541,8 +541,23 @@ export class WidgetNavigatorComponent {
         this.selectedNetworkID = networkID;
 
         // Create the ParentNodeType dropdown according to the network
+        this.dropdownParentNodeTypes = this.parentRelatedChildren.map(x => x.parentNodeType)
+        this.dropdownParentNodeTypes = ['', ...this.dropdownParentNodeTypes];
+        // TODO - make Unique
 
-        dropdownParentNodeTypes
+        // Clear the rest & reset pointers
+        this.dropdownParentNodes = [];
+        this.dropdownRelationships = [];
+        this.childNodes = [];
+        this.parentNodeFilter = [];
+        this.childNodeFilter = [];
+
+        this.selectedParentNodeType = '';
+        this.selectedParentNode = '';
+        this.selectedRelationship = '';
+        this.selectedParentFilterID = -1;
+        this.selectedChildFilterID = -1;
+    
     }
 
     clickParentFilterClear() {
