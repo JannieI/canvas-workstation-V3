@@ -57,7 +57,6 @@ export class WidgetNavigatorComponent {
     dropdownParentNodes: string[];
     dropdownRelationships: string[];
 
-
     // Selected - value selected in a dropdown
     selectedNetworkID: number = -1;
     selectedParentNodeType: string = '';
@@ -69,8 +68,10 @@ export class WidgetNavigatorComponent {
     // Working
     history: NavigatorHistory[] = [];
     childNodes: string[] = [];
-    parentNodeFilter: NavigatorNodeFiler[] = [];
-    childNodeFilter: NavigatorNodeFiler[] = [];
+    filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
+    filteredParentNodes: string[] = [];                 // List of Node, after filtered on NodeProperties
+    parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
+    childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
 
     // Form dimensions
     graphAreaWidth: number = 900;
