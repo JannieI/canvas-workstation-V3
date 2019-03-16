@@ -620,13 +620,31 @@ export class WidgetNavigatorComponent {
         // Set selected Nod
         this.selectedParentNodeType = ev;
 
-        // Set Dropdowns
+        // Set Dropdowns & reset selected
         this.dropdownParentNodes = this.parentRelatedChildren
             .filter(
                 x => x.parentNodeType == this.selectedParentNodeType
             )
+            .slice(0, 100)
             .map(x => x.parentNode);
+        this.dropdownRelationships = this.parentRelatedChildren
+            .filter(
+                x => x.parentNodeType == this.selectedParentNodeType
+            )
+            .slice(0, 100)
+            .map(x => x.relationship);
+            
+            this.parentNodeFilter = [];
+            this.selectedParentFilterID = -1;
 
+        // TODO - filter ParentNode op parentFilter and watchlist
+        this.selectedParentNode = '';
+        this.selectedRelationship = '';
+        this.childNodes = [];
+        this.childNodeFilter = [];
+        this.selectedChildFilterID = -1;
+
+    
     }
 
     changeParentNode() {
