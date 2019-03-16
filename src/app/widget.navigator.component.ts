@@ -15,6 +15,11 @@ import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
 import { Widget }                     from './models'
+import { NavigatorNetwork }           from './models'
+import { NavigatorParentRelatedChild }      from './models'
+import { NavigatorNodeTypeFields }    from './models'
+import { NavigatorNodeProperties }    from './models'
+import { NavigatorWatchList }         from './models'
 
 // Functions, 3rd Party
 import { compile }                    from 'vega-lite';
@@ -37,6 +42,18 @@ interface watchList
 export class WidgetNavigatorComponent {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @Input() selectedWidget: Widget;
+
+    // Input
+    networks: NavigatorNetwork[] = [];
+    parentRelatedChildren: NavigatorParentRelatedChild[];  // Parents and related children
+    nodeTypeFields: NavigatorNodeTypeFields[] = [];     // Property Fields per NodeType
+    nodeProperties: NavigatorNodeProperties[] = [];     // Properties per node for fields above
+    watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
+
+    // Selected
+
+
+    // Working
 
     graphAreaWidth: number = 900;
     graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
