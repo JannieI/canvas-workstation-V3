@@ -182,7 +182,7 @@ export class WidgetNavigatorComponent {
                 childNode: 'Koos',
                 role: 'Executive'
             }
-        this.parentRelatedChildren.push()
+        this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
             {
                 id: 2, 
@@ -194,7 +194,7 @@ export class WidgetNavigatorComponent {
                 childNode: 'Anna',
                 role: 'Executive'
             }
-        this.parentRelatedChildren.push()
+        this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
         {
             id: 3, 
@@ -206,7 +206,7 @@ export class WidgetNavigatorComponent {
             childNode: 'Nedbank',
             role: 'Executive'
         }
-        this.parentRelatedChildren.push()
+        this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
         {
             id: 4, 
@@ -218,7 +218,7 @@ export class WidgetNavigatorComponent {
             childNode: 'John',
             role: 'Executive'
         }
-        this.parentRelatedChildren.push()
+        this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
         {
             id: 5, 
@@ -230,7 +230,7 @@ export class WidgetNavigatorComponent {
             childNode: 'PSG',
             role: 'Listed'
         }
-        this.parentRelatedChildren.push()
+        this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
         {
             id: 6, 
@@ -242,7 +242,7 @@ export class WidgetNavigatorComponent {
             childNode: 'AECI',
             role: 'Non-Listed'
         }
-        this.parentRelatedChildren.push()
+        this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
         {
             id: 7, 
@@ -254,7 +254,7 @@ export class WidgetNavigatorComponent {
             childNode: 'Chris',
             role: ''
         }
-        this.parentRelatedChildren.push()
+        this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
         {
             id: 8, 
@@ -266,10 +266,22 @@ export class WidgetNavigatorComponent {
             childNode: 'Anna',
             role: ''
         }
-        this.parentRelatedChildren.push()
+        this.parentRelatedChildren.push(newParentRelatedChildren)
 
         let newNodeTypeFields: NavigatorNodeTypeFields =
-        this.nodeTypeFields.push()
+        {
+            id: 1, 
+            nodeType: 'Company', 
+            fields: ['Sector', 'Country', 'City'] 
+        }
+        this.nodeTypeFields.push(newNodeTypeFields)
+        newNodeTypeFields =
+        {
+            id: 2, 
+            nodeType: 'Person', 
+            fields: ['Age', 'Gender'] 
+        }
+        this.nodeTypeFields.push(newNodeTypeFields)
         
         let newNodeProperties: NavigatorNodeProperties[] =
         this.nodeProperties.push()
