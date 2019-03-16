@@ -393,8 +393,11 @@ export class WidgetNavigatorComponent {
         // Deep copy Local W
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
-        // Display graph
-        this.showGraph();
+        // Select the first network
+        if (this.networks.length > 0) {
+            this.clickNetwork(0, this.networks[0].id);
+        };
+
     }
 
 
