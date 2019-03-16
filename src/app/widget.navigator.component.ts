@@ -74,14 +74,6 @@ export class WidgetNavigatorComponent {
     localWidget: Widget;                            // W to modify, copied from selected
     navigatorWidth: number = 1360;
     networkAreaWidth: number = 170;
-    networks: 
-        {
-            id: number; 
-            name: string; 
-            description: string;
-            equal: boolean;
-            isSelected: boolean;
-        }[] = []
     filterID: number = -1;
     selectedNode: string = 'Absa';
     selectedNodeType: string = 'Company';
@@ -97,7 +89,6 @@ export class WidgetNavigatorComponent {
     graphWidthOriginal: number = 400;         // TODO - fill this into Spec
     selectedNetworkID: number;
     totalNavigatorWidth: number = 1000;
-    watchList: watchList;
     watchListFiltered: boolean = false;
 
     constructor(
@@ -118,36 +109,28 @@ export class WidgetNavigatorComponent {
         this.totalNavigatorWidth = this.networkAreaWidth + this.historyAreaWidth + 22
             + (this.graphWidth * 1.2);
 
-        // Populate networks
-        let networksNew: 
-            {
-                id: number; 
-                name: string; 
-                description: string;
-                equal: boolean;
-                isSelected: boolean;
-            } = 
-            {id: 1, name: "WOWEB", description: "WOWEB", equal: true, isSelected: true};
+        // Populate networks - TODO make from DB
+        let networksNew: NavigatorNetwork = {id: 1, name: "WOWEB", description: "WOWEB", userPermissions: null, groupPermissions: null, isSelected: true};
         this.networks.push(networksNew);
-        networksNew = {id: 2, name: "Facebook", description: "Facebook", equal: false, isSelected: false}
+        networksNew = {id: 2, name: "Facebook", description: "Facebook", userPermissions: null, groupPermissions: null, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 3, name: "Family", description: "Family", equal: false, isSelected: false}
+        networksNew = {id: 3, name: "Family", description: "Family", userPermissions: null, groupPermissions: null, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 4, name: "Industries", description: "Industries", equal: false, isSelected: false}
+        networksNew = {id: 4, name: "Industries", description: "Industries", userPermissions: null, groupPermissions: null, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 5, name: "Companies", description: "Companies", equal: false, isSelected: false}
+        networksNew = {id: 5, name: "Companies", description: "Companies", userPermissions: null, groupPermissions: null, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 6, name: "Contacts", description: "Contacts", equal: false, isSelected: false}
+        networksNew = {id: 6, name: "Contacts", description: "Contacts", userPermissions: null, groupPermissions: null, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 7, name: "Friends", description: "Friends", equal: false, isSelected: false}
+        networksNew = {id: 7, name: "Friends", description: "Friends", userPermissions: null, groupPermissions: null, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 8, name: "Shopping", description: "Shopping", equal: false, isSelected: false}
+        networksNew = {id: 8, name: "Shopping", description: "Shopping", userPermissions: null, groupPermissions: null, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 9, name: "Restaurants", description: "Restaurants", equal: false, isSelected: false}
+        networksNew = {id: 9, name: "Restaurants", description: "Restaurants", userPermissions: null, groupPermissions: null, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 10, name: "UN structure", description: "UN structure", equal: false, isSelected: false}
+        networksNew = {id: 10, name: "UN structure", description: "UN structure", userPermissions: null, groupPermissions: null, isSelected: false}
         this.networks.push(networksNew);
-        networksNew = {id: 11, name: "Government structure", description: "Government structure", equal: false, isSelected: false}
+        networksNew = {id: 11, name: "Government structure", description: "Government structure", userPermissions: null, groupPermissions: null, isSelected: false}
         this.networks.push(networksNew);
 
         let historyNew: 
