@@ -44,18 +44,32 @@ export class WidgetNavigatorComponent {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @Input() selectedWidget: Widget;
 
-    // Input
+    // External Input - pre-built
     networks: NavigatorNetwork[] = [];
     parentRelatedChildren: NavigatorParentRelatedChild[];  // Parents and related children
     nodeTypeFields: NavigatorNodeTypeFields[] = [];     // Property Fields per NodeType
     nodeProperties: NavigatorNodeProperties[] = [];     // Properties per node for fields above
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
 
-    // Selected
+    // Dropdowns & filters - fills the dropdowns in the Graph Area
+    dropdownParentNodeTypes: string[];
+    dropdownParentNodes: string[];
+    dropdownRelationships: string[];
 
+
+    // Selected - value selected in a dropdown
+    selectedNetworkID: number = -1;
+    selectedParentNodeType: string = '';
+    selectedParentNode: string = '';
+    selectedRelationship: string = '';
+    selectedParentFilterID: number = -1;
+    selectedChildFilterID: number = -1;
 
     // Working
     history: NavigatorHistory[] = [];
+    childNodes: string[] = [];
+    parentNodeFilter:
+    childNodeFilter
 
 
     graphAreaWidth: number = 900;
@@ -67,7 +81,6 @@ export class WidgetNavigatorComponent {
     networkAreaWidth: number = 170;
     filterID: number = -1;
     selectedNode: string = 'Absa';
-    selectedNodeType: string = 'Company';
     selectedRelationship: string = 'Directors';
     showNodeFilters: boolean = false;
     showSpecificGraphLayer: boolean = false;
@@ -78,7 +91,6 @@ export class WidgetNavigatorComponent {
     graphHeightOriginal: number = 400;        // TODO - fill this into Spec
     graphWidth: number = 400;         // TODO - fill this into Spec
     graphWidthOriginal: number = 400;         // TODO - fill this into Spec
-    selectedNetworkID: number;
     totalNavigatorWidth: number = 1000;
     watchListFiltered: boolean = false;
 
@@ -525,7 +537,12 @@ export class WidgetNavigatorComponent {
         // Clicked a network
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNetwork', '@Start');
 
+        // Remember the ID of the selected Network
         this.selectedNetworkID = networkID;
+
+        // Create the ParentNodeType dropdown according to the network
+
+        dropdownParentNodeTypes
     }
 
     clickParentFilterClear() {
