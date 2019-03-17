@@ -459,7 +459,7 @@ export class WidgetNavigatorComponent {
         this.selectedParentNodeType = this.history[this.selectedHistoryID].parentNodeType;
         this.selectedParentNode = this.history[this.selectedHistoryID].parentNode;
         this.selectedRelationship = this.history[this.selectedHistoryID].relationship;
-        this.showGraph()
+        this.showGraph(0, 0, false)
     }
 
     showGraph(inputHeight: number = 0, inputWidth: number = 0) {
