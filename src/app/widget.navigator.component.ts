@@ -103,8 +103,6 @@ export class WidgetNavigatorComponent {
     showSpecificGraphLayer: boolean = false;
     specification: any;             // Full spec for Vega, or other grammar
 
-    selectedNode: string = 'Absa';
-    showNodeFilters: boolean = false;
     watchListFiltered: boolean = false;
 
     constructor(
@@ -425,13 +423,6 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickShowParentFilter() {
-        // Open Filter for Parent Nodes
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowParentFilter', '@Start');
-
-        this.showNodeFilters = true;
-    }
-
     clickHistoryMinMax() {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHistoryMinMax', '@Start');
@@ -643,8 +634,8 @@ export class WidgetNavigatorComponent {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             console.log('CLICK', item, item.datum.text, datumClick.name);
-            this.selectedNodeType = 'Person';
-            this.selectedNode = 'Bidvest';
+            this.selectedParentNodeType = 'Person';
+            this.selectedParentNode = 'Bidvest';
             this.selectedRelationship = 'Shareholders';
         });
         view.renderer('svg')

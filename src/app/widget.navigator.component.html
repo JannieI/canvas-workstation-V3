@@ -165,7 +165,7 @@ dimensions is set in app.html, and cannot be changed here. -->
         <div class="select graphAreaParentNode"
             title="Select a specific node"
             >
-            <select [(ngModel)]="selectedNode"
+            <select [(ngModel)]="selectedParentNode"
                 (change)="changeParentNode($event)"
                 name="filterTimeUnit"
                 >
@@ -268,7 +268,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 class="btn btn-link btn-sm"
                 clrDropdownTrigger
                 >
-                <clr-icon (click)="clickShowParentFilter()"
+                <clr-icon
                     shape="bars"
                     size="14"
                     >
