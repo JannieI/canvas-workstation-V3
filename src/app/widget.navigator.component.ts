@@ -1,5 +1,5 @@
 /*
- * Manage a single Graph component
+ * Manage a single Navigator component
  */
 
 // From Angular
@@ -27,6 +27,7 @@ import { Widget }                     from './models'
 import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
+import { filter } from 'rxjs/operators';
 
 interface watchList
     {
@@ -432,8 +433,6 @@ export class WidgetNavigatorComponent {
 
     }
 
-
-
     clickShowParentFilter() {
         // Open Filter for Parent Nodes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowParentFilter', '@Start');
@@ -651,10 +650,12 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickDeleteHistory() {
+    clickDeleteHistory(index: number, historyID: number) {
         // Delete selected history row.  If current, move to first
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteHistory', '@Start');
 
+        this.history = this.history.filter(h => h.id != historyID);
+        
     }
 
     clickFilterOnWatchList() {

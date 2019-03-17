@@ -118,7 +118,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
             [style.color]="row.isSelected? 'black'  :  'darkgray'"
             >
-            <clr-icon (click)="clickDeleteHistory()"
+            <clr-icon (click)="clickDeleteHistory(i, row.id)"
                 shape="trash"
                 size="12"
                 >
@@ -261,7 +261,7 @@ dimensions is set in app.html, and cannot be changed here. -->
         </clr-signpost>
 
         <input type="checkbox" [(ngModel)]="showRoles">
-        
+
         <clr-dropdown class="graphAreaMenuText">
             <button
                 type="button"
