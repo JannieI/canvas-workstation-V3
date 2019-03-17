@@ -58,6 +58,7 @@ export class WidgetNavigatorComponent {
     selectedRelationship: string = '';
     selectedParentFilterID: number = -1;
     selectedChildFilterID: number = -1;
+    selectedHistoryID: number = -1;
 
     // Working
     history: NavigatorHistory[] = [];
@@ -407,7 +408,7 @@ export class WidgetNavigatorComponent {
         this.nodeProperties.push(newNodeProperties);
 
         // Populate the watchList - TODO via DB
-        let watchListNew: watchList =
+        let watchListNew: NavigatorWatchList =
             {
                 id: 1,
                 userID: 'JannieI',
@@ -457,6 +458,18 @@ export class WidgetNavigatorComponent {
             (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130)
         console.log('xx this.graphWidth', this.graphWidth)
         this.showGraph(0, this.graphWidth)
+    }
+
+    clickHistory(index: number, historyID: number) {
+        // Click a point in history, and show that graph
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHistory', '@Start');
+
+        // Set the history id and show the graph
+        this.selectedHistoryID = historyID;
+        this.selectedParentNodeType = this.history[this.selectedHistoryID].parentNodeType;
+        this.selectedParentNode = this.history[this.selectedHistoryID].parentNode;
+        this.selectedRelationship = this.history[this.selectedHistoryID].relationship;
+        this.showGraph()
     }
 
     showGraph(inputHeight: number = 0, inputWidth: number = 0) {
@@ -562,6 +575,7 @@ export class WidgetNavigatorComponent {
 
         // Deselect all history, and add a new one at the top
         this.history.forEach(x => x.isSelected = false);
+        this.selectedHistoryID = this.history.length;
          let historyNew: NavigatorHistory =
             {
                 id: this.history.length,

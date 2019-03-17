@@ -117,6 +117,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
             [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
             [style.color]="row.isSelected? 'black'  :  'darkgray'"
+            (click)="clickHistory(i, row.id)"
             >
             <clr-icon (click)="clickDeleteHistory(i, row.id)"
                 shape="trash"
