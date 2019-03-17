@@ -103,7 +103,6 @@ export class WidgetNavigatorComponent {
     showSpecificGraphLayer: boolean = false;
     specification: any;             // Full spec for Vega, or other grammar
 
-    filterID: number = -1;
     selectedNode: string = 'Absa';
     showNodeFilters: boolean = false;
     watchListFiltered: boolean = false;
