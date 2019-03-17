@@ -65,7 +65,6 @@ export class WidgetNavigatorComponent {
     childDataAll: any[] = [];                           // List of all children after filter
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
     graphData: any[] = [];                              // childDataAll formatted for Vega
-    childNodes: string[] = [];
     filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
     filteredParentNodes: string[] = [];                 // List of Node, after filtered on NodeProperties
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
@@ -689,7 +688,6 @@ export class WidgetNavigatorComponent {
         // Clear the rest & reset pointers
         this.dropdownParentNodes = [];
         this.dropdownRelationships = [];
-        this.childNodes = [];
         this.parentNodeFilter = [];
         this.childNodeFilter = [];
 
@@ -859,7 +857,6 @@ export class WidgetNavigatorComponent {
 
         this.selectedParentNode = '';
         this.selectedRelationship = '';
-        this.childNodes = [];
         this.childNodeFilter = [];
         this.selectedChildFilterID = -1;
 
