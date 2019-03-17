@@ -711,6 +711,10 @@ export class WidgetNavigatorComponent {
         // Clear the Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClear', '@Start');
 
+        // Clear all
+        this.childNodeFilter = [];
+        this.filteredChildNodes = [];
+
     }
 
     clickParentFilterSave() {
@@ -755,8 +759,7 @@ export class WidgetNavigatorComponent {
         // data structurs allows it
 
         // Clear all
-        this.childNodeFilter = [];
-        this.filteredChildNodes = [];
+        this.clickParentFilterClear();
 
         // Save parent filter
         this.childNodeFilter.push(
