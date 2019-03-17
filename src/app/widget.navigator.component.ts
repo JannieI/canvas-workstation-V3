@@ -434,20 +434,6 @@ export class WidgetNavigatorComponent {
 
 
 
-    clickSingleWidget() {
-        // Click W object
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSingleWidget', '@Start');
-
-        // // TODO - fix index..
-        // this.currentWidgets[index].isSelected = !this.currentWidgets[index].isSelected;
-        // this.globalVariableService.currentWidgets.forEach(w => {
-        //     if (w.id == id) {
-        //         w.isSelected = this.currentWidgets[index].isSelected;
-        //     };
-        // });
-
-    }
-
     clickShowParentFilter() {
         // Open Filter for Parent Nodes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowParentFilter', '@Start');
@@ -711,6 +697,10 @@ export class WidgetNavigatorComponent {
         // Clear the Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClear', '@Start');
 
+        // Clear all
+        this.parentNodeFilter = [];
+        this.filteredParentNodes = [];
+
     }
 
     clickParentFilterSave() {
@@ -721,8 +711,7 @@ export class WidgetNavigatorComponent {
         // data structurs allows it
 
         // Clear all
-        this.parentNodeFilter = [];
-        this.filteredParentNodes = [];
+        this.clickParentFilterClear();
 
         // Save parent filter
         this.parentNodeFilter.push(
