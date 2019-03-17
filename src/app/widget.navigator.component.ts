@@ -29,13 +29,6 @@ import { parse }                      from 'vega';
 import { View }                       from 'vega';
 import { filter } from 'rxjs/operators';
 
-interface watchList
-    {
-        id: number;
-        userID: string;
-        nodeType: string;
-        nodes: string[];
-    }[];
 
 @Component({
     selector: 'widget-navigator',
