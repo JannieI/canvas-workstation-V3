@@ -41,15 +41,15 @@ export class WidgetNavigatorComponent {
 
     // External Input - pre-built
     networks: NavigatorNetwork[] = [];
-    parentRelatedChildren: NavigatorParentRelatedChild[];  // Parents and related children
+    parentRelatedChildren: NavigatorParentRelatedChild[] = [];  // Parents and related children
     nodeTypeFields: NavigatorNodeTypeFields[] = [];     // Property Fields per NodeType
     nodeProperties: NavigatorNodeProperties[] = [];     // Properties per node for fields above
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
 
     // Dropdowns & filters - fills the dropdowns in the Graph Area
-    dropdownParentNodeTypes: string[];
-    dropdownParentNodes: string[];
-    dropdownRelationships: string[];
+    dropdownParentNodeTypes: string[] = [];
+    dropdownParentNodes: string[] = [];
+    dropdownRelationships: string[] = [];
 
     // Selected - value selected in a dropdown
     selectedNetworkID: number = -1;
