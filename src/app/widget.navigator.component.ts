@@ -795,6 +795,7 @@ export class WidgetNavigatorComponent {
         // Clear history for the current Network
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuClearHistory', '@Start');
 
+        this.history = this.history.filter(h => h.networkID != this.selectedNetworkID);
     }
 
     clickMenuExportGraph() {

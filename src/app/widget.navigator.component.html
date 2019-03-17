@@ -142,10 +142,10 @@ dimensions is set in app.html, and cannot be changed here. -->
                 (change)="changeParentNodeType($event)"
                 name="filterTimeUnit"
                 >
-                <option></option>
-                <option>Company</option>
-                <option>Person</option>
-                <option>Day</option>
+                <option *ngFor="let row of dropdownParentNodeTypes">
+                    {{ row }}
+                </option>
+
             </select>
         </div>
 
@@ -168,10 +168,9 @@ dimensions is set in app.html, and cannot be changed here. -->
                 (change)="changeParentNode($event)"
                 name="filterTimeUnit"
                 >
-                <option></option>
-                <option>Absa</option>
-                <option>Bidvest</option>
-                <option>Capitec</option>
+                <option *ngFor="let row of dropdownParentNodes">
+                    {{ row }}
+                </option>
             </select>
         </div>
 
@@ -320,10 +319,9 @@ dimensions is set in app.html, and cannot be changed here. -->
                 (change)="changeRelationship($event)"
                 name="filterTimeUnit"
                 >
-                <option></option>
-                <option>Directors</option>
-                <option>Shareholders</option>
-                <option>Subsidiaries</option>
+                <option *ngFor="let row of dropdownRelationships">
+                    {{ row }}
+                </option>
             </select>
         </div>
 
