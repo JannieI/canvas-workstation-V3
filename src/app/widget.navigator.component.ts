@@ -551,7 +551,13 @@ export class WidgetNavigatorComponent {
                     { "id": roleID + 1,
                      "name": this.selectedParentNode
                     });
-            })
+                for (var childID = 0; childID < this.childDataVisible.length; childID++) {
+                    this.graphData.push(
+                        { "id": childID + roleID + 1,
+                         "name": this.childDataVisible
+                        });
+                }    
+            };
         };
 
         // Add to History
