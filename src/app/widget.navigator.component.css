@@ -96,7 +96,7 @@
         .graphAreaParentNodeType {
             display: inline-block; 
             font-size: 0.5rem;
-            margin-left: 12px;
+            margin-left: 32px;
             text-align: left;
         }
 
@@ -135,6 +135,7 @@
 
         .graphAreaRelationship {
             display: inline-block;
+            margin-left: 32px;
             margin-right: 12px;
         }
 
