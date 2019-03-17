@@ -481,9 +481,11 @@ export class WidgetNavigatorComponent {
         let relationshipRolesSet = new Set(this.relationshipRoles);
         this.relationshipRoles = Array.from(relationshipRolesSet);
 
-        // Filter
+        // Filter If a Child filter is active
         // TODO - later filter on watchlist as well, or not ?
-        this.childDataAll = this.childDataAll.filter(z => this.filteredChildNodes.indexOf(z) >= 0);
+        if (this.childDataAll.length > 0) {
+            this.childDataAll = this.childDataAll.filter(z => this.filteredChildNodes.indexOf(z) >= 0);
+        };
 
         // Set title, etc
         this.graphTitle = this.selectedRelationship + ' for ' + this.selectedParentNode;
@@ -492,7 +494,7 @@ export class WidgetNavigatorComponent {
         };
 
         // Reduce visible list
-        this.childDataVisible = this.childDataVisible.slice(0, ( this.visibleNumberChildren - 1) );
+        this.childDataVisible = this.childDataAll.slice(0, ( this.visibleNumberChildren - 1) );
 
         // Show child page indicators
         this.showChildPageLeft = false;
