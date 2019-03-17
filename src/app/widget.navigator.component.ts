@@ -73,7 +73,8 @@ export class WidgetNavigatorComponent {
     filterParentOperator: string = '';
     filterParentValue: string = '';
     graphData: any[] = [];                              // childDataAll formatted for Vega
-    history: NavigatorHistory[] = [];
+    history: NavigatorHistory[] = [];                   // History for current network
+    historyAll: NavigatorHistory[] = [];                // All history for All networks
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
     relationshipRoles: string[] = [];
     showChildPageLeft: boolean = true;
@@ -161,7 +162,7 @@ export class WidgetNavigatorComponent {
                 childNodeFiler: null,
                 isSelected: false,
             };
-        this.history.push(historyNew);
+        this.historyAll.push(historyNew);
         historyNew =
             {
                 id: 2,
@@ -176,7 +177,7 @@ export class WidgetNavigatorComponent {
                 childNodeFiler: null,
                 isSelected: true,
             };
-        this.history.push(historyNew);
+        this.historyAll.push(historyNew);
         historyNew =
             {
                 id: 2,
@@ -191,7 +192,7 @@ export class WidgetNavigatorComponent {
                 childNodeFiler: null,
                 isSelected: false,
             };
-        this.history.push(historyNew);
+        this.historyAll.push(historyNew);
 
         // Populate persisted data - TODO via DB
         let newParentRelatedChildren: NavigatorParentRelatedChild =
@@ -594,6 +595,7 @@ export class WidgetNavigatorComponent {
                 isSelected: true
             };
         this.history = [historyNew, ...this.history];
+        this.historyAll = [historyNew, ...this.historyAll];
 
         // Set H & W
         if (inputHeight != 0) {
@@ -653,6 +655,7 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteHistory', '@Start');
 
         this.history = this.history.filter(h => h.id != historyID);
+        this.historyAll = this.historyAll.filter(h => h.id != historyID);
         
     }
 
@@ -688,6 +691,19 @@ export class WidgetNavigatorComponent {
         this.selectedRelationship = '';
         this.selectedParentFilterID = -1;
         this.selectedChildFilterID = -1;
+
+        this.history = this.historyAll
+            .filter(h => h.networkID == networkID)
+            .sort( (a,b) => {
+                if (a.id < b.id) {
+                    return 1;
+                };
+                if (a.id > b.id) {
+                    return -1;
+                };
+                return 0;
+            });
+
 
     }
 
@@ -793,6 +809,7 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuClearHistory', '@Start');
 
         this.history = this.history.filter(h => h.networkID != this.selectedNetworkID);
+        this.historyAll = this.historyAll.filter(h => h.networkID != this.selectedNetworkID);
     }
 
     clickMenuExportGraph() {
