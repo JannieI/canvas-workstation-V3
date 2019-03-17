@@ -135,11 +135,13 @@ dimensions is set in app.html, and cannot be changed here. -->
     <div class="graphArea"
         
         >
+        <div class="graphAreaText1">
+            For
+        </div>
         
         <div class="select graphAreaParentNodeType"
             title="Select a node type to filter on"
             >
-            For
             <select [(ngModel)]="selectedNodeType"
                 (change)="changeParentNodeType($event)"
                 name="filterTimeUnit"
@@ -311,10 +313,10 @@ dimensions is set in app.html, and cannot be changed here. -->
         </clr-dropdown>
 
         <br>
+        show all 
         <div class="select graphAreaRelationship"
             title="Select a node type to filter on"
             >
-            show all 
             <select [(ngModel)]="selectedRelationship"
                 (change)="changeRelationship($event)"
                 name="filterTimeUnit"

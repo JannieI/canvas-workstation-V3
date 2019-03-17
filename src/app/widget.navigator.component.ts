@@ -41,44 +41,44 @@ export class WidgetNavigatorComponent {
 
     // External Input - pre-built
     networks: NavigatorNetwork[] = [];
-    parentRelatedChildren: NavigatorParentRelatedChild[] = [];  // Parents and related children
     nodeTypeFields: NavigatorNodeTypeFields[] = [];     // Property Fields per NodeType
     nodeProperties: NavigatorNodeProperties[] = [];     // Properties per node for fields above
+    parentRelatedChildren: NavigatorParentRelatedChild[] = [];  // Parents and related children
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
 
     // Dropdowns & filters - fills the dropdowns in the Graph Area
-    dropdownParentNodeTypes: string[] = [];
     dropdownParentNodes: string[] = [];
+    dropdownParentNodeTypes: string[] = [];
     dropdownRelationships: string[] = [];
 
     // Selected - value selected in a dropdown
-    selectedNetworkID: number = -1;
-    selectedParentNodeType: string = '';
-    selectedParentNode: string = '';
-    selectedRelationship: string = '';
-    selectedParentFilterID: number = -1;
     selectedChildFilterID: number = -1;
     selectedHistoryID: number = -1;
+    selectedNetworkID: number = -1;
+    selectedParentFilterID: number = -1;
+    selectedParentNode: string = '';
+    selectedParentNodeType: string = '';
+    selectedRelationship: string = '';
 
     // Working
-    history: NavigatorHistory[] = [];
     childDataAll: any[] = [];                           // List of all children after filter
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
-    graphData: any[] = [];                              // childDataAll formatted for Vega
-    filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
-    filteredParentNodes: string[] = [];                 // List of Node, after filtered on NodeProperties
-    parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
-    relationshipRoles: string[] = [];
-    filterParentFieldName: string = '';
-    filterParentOperator: string = '';
-    filterParentValue: string = '';
+    filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
     filterChildFieldName: string = '';
     filterChildOperator: string = '';
     filterChildValue: string = '';
-    visibleNumberChildren: number = 12;
+    filteredParentNodes: string[] = [];                 // List of Node, after filtered on NodeProperties
+    filterParentFieldName: string = '';
+    filterParentOperator: string = '';
+    filterParentValue: string = '';
+    graphData: any[] = [];                              // childDataAll formatted for Vega
+    history: NavigatorHistory[] = [];
+    parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
+    relationshipRoles: string[] = [];
     showChildPageLeft: boolean = true;
     showChildPageRight: boolean = true;
+    visibleNumberChildren: number = 12;
 
     // Form dimensions
     graphAreaWidth: number = 900;
@@ -92,8 +92,8 @@ export class WidgetNavigatorComponent {
     totalNavigatorWidth: number = 1000;
 
     // Form layout and elements
-    graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
     graphNote: string = 'Optional Additional information';
+    graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
     showHistoryMax: boolean = true;
     showNetworkMax: boolean = true;
     showRoles: boolean = false;
