@@ -648,6 +648,13 @@ export class WidgetNavigatorComponent {
             0
         );
 
+        // Load the data
+        console.log('xx loading data to follow')
+        this.specification['data'] = this.graphData;
+
+        this.specification.graphLayers[0].graphSpecification.data = this.graphData;
+
+
         console.log('xx this.specification', this.specification)
 
         // Render in DOM
