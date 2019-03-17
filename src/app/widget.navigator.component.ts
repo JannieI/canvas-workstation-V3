@@ -69,7 +69,7 @@ export class WidgetNavigatorComponent {
     history: NavigatorHistory[] = [];
     childDataAll: any[] = [];                           // List of all children after filter
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
-    graphData: any[] = [];                              // childDataAll formatted for Vega 
+    graphData: any[] = [];                              // childDataAll formatted for Vega
     childNodes: string[] = [];
     filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
     filteredParentNodes: string[] = [];                 // List of Node, after filtered on NodeProperties
@@ -485,7 +485,7 @@ export class WidgetNavigatorComponent {
         // Re-create the Vega spec, and show the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
 
-        // Set the data
+        // Set the data, some unique
         this.childDataAll = this.parentRelatedChildren
             .filter(x => x.parentNodeType == this.selectedParentNodeType
                 && x.parentNode == this.selectedParentNode
@@ -496,6 +496,10 @@ export class WidgetNavigatorComponent {
                 && x.parentNode == this.selectedParentNode
                 && x.relationship == this.selectedRelationship)
             .map(y => y.role);
+
+        // Make unique
+        let relationshipRolesSet = new Set(this.relationshipRoles);
+        this.relationshipRoles = Array.from(relationshipRolesSet);
 
         // Filter
         // TODO - later filter on watchlist as well, or not ?
@@ -522,7 +526,7 @@ export class WidgetNavigatorComponent {
         if (!this.showRoles) {
 
             // Parent
-            this.graphData.push( 
+            this.graphData.push(
             { "id": 1,
              "name": this.selectedParentNode
             });
@@ -534,13 +538,22 @@ export class WidgetNavigatorComponent {
                     name: this.childDataVisible,
                     parent: 1
                 });
-            }
-            this.childDataVisible.forEach(chl => 
-
-            }))
+            };
         } else {
-            // TODO - loop inside loop - eezy peezy
-        }
+
+            // Parent
+            this.graphData.push(
+                { "id": 1,
+                 "name": this.selectedParentNode
+                });
+            for (var roleID = 0; roleID < this.relationshipRoles.length; roleID++) {
+                this.graphData.push(
+                    { "id": roleID + 1,
+                     "name": this.selectedParentNode
+                    });
+            })
+        };
+
         // Add to History
         // TODO - keep ParentNodeID of selected for here
         // TODO - cater for more than 1 Filter; Parent and Child
@@ -554,24 +567,24 @@ export class WidgetNavigatorComponent {
             parentFilterFieldName = this.parentNodeFilter[0].field;
             parentFilterOperator = this.parentNodeFilter[0].operator;
             parentFilterValue = this.parentNodeFilter[0].value;
-    
+
         };
         if (this.childNodeFilter.length > 0) {
             childFilterFieldName = this.childNodeFilter[0].field;
             childFilterOperator = this.childNodeFilter[0].operator;
             childFilterValue = this.childNodeFilter[0].value;
-    
+
         };
 
         // Deselect all history, and add a new one at the top
         this.history.forEach(x => x.isSelected = false);
-         let historyNew: NavigatorHistory = 
+         let historyNew: NavigatorHistory =
             {
-                id: this.history.length, 
+                id: this.history.length,
                 text: this.graphTitle,
                 networkID: this.selectedNetworkID,
-                parentNodeID: null, 
-                parentNodeType: this.selectedParentNodeType, 
+                parentNodeID: null,
+                parentNodeType: this.selectedParentNodeType,
                 parentNode: this.selectedParentNode,
                 relationship: this.selectedRelationship,
                 showRoles: this.showRoles,
