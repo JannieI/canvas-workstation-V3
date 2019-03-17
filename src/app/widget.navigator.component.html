@@ -155,7 +155,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             >
             <clr-icon [style.color]="watchListFiltered?  'blue' :  'gray'"
                 shape="list"
-                size="12"
+                size="16"
                 (click)="clickFilterOnWatchList()"
                 >
             </clr-icon>
@@ -412,16 +412,17 @@ dimensions is set in app.html, and cannot be changed here. -->
         <div class="graphAreaShowRoles">
             <input type="checkbox" [(ngModel)]="showRoles">
         </div>
-        
-        <div>
-            <clr-icon shape="step-forward-2" style="float: right; margin-right: 50px;"></clr-icon>
-            <clr-icon shape="step-forward-2 down" style="float: right; margin-right: 12px;"></clr-icon>
-        </div>
 
+        
         <div class="graphAreaTitle">
             {{ graphTitle }}
         </div>
         <br>
+        <div>
+            <clr-icon shape="step-forward-2" style="float: left; margin-left: 12px;"></clr-icon>
+            <clr-icon shape="step-forward-2 down" style="float: left; margin-left: 12px;"></clr-icon>
+        </div>
+    
 
         <div class="graphAreaGraphic"
             #dragWidget

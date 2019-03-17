@@ -140,7 +140,9 @@
 
         .graphAreaShowRoles {
             display: inline-block;
+            margin-left: 12px;
             margin-right: 12px;
+            margin-top: 4px;
         }
 
 
@@ -174,7 +176,10 @@
 
 
         .graphAreaTitle {
+            color: black;
+            font-size: 0.55rem;
             margin-left: 12px;
+            margin-top: 22px;
         }
 
         .graphAreaGraphic {
