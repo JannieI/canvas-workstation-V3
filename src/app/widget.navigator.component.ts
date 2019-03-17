@@ -462,7 +462,7 @@ export class WidgetNavigatorComponent {
         this.showGraph(0, 0, false)
     }
 
-    showGraph(inputHeight: number = 0, inputWidth: number = 0) {
+    showGraph(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Re-create the Vega spec, and show the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
 
@@ -483,9 +483,9 @@ export class WidgetNavigatorComponent {
         this.relationshipRoles = Array.from(relationshipRolesSet);
 
         // Filter If a Child filter is active
-        // TODO - later filter on watchlist as well, or not ?
         if (this.childDataAll.length > 0) {
-            this.childDataAll = this.childDataAll.filter(z => this.filteredChildNodes.indexOf(z) >= 0);
+            this.childDataAll = this.childDataAll
+                .filter(z => this.filteredChildNodes.indexOf(z) >= 0);
         };
 
         // Set title, etc
@@ -518,7 +518,7 @@ export class WidgetNavigatorComponent {
             for (var i = 0; i < this.childDataVisible.length; i++) {
                 this.graphData.push({
                     id: i + 2,
-                    name: this.childDataVisible,
+                    name: this.childDataVisible[i],
                     parent: 1
                 });
             };
@@ -529,73 +529,91 @@ export class WidgetNavigatorComponent {
                 { "id": 1,
                  "name": this.selectedParentNode
                 });
+
+            // Offset
+            let offset: number = 2;
+
             for (var roleID = 0; roleID < this.relationshipRoles.length; roleID++) {
                 this.graphData.push(
-                    { "id": roleID + 1,
-                     "name": this.selectedParentNode
+                    { "id": roleID + offset,
+                     "name": this.relationshipRoles[roleID]
                     });
-                for (var childID = 0; childID < this.childDataVisible.length; childID++) {
+
+                // Get list of Children for this role
+                let childrenFilteredRole: string[] = this.parentRelatedChildren
+                    .filter(x => x.parentNodeType == this.selectedParentNodeType
+                        && x.parentNode == this.selectedParentNode
+                        && x.relationship == this.selectedRelationship
+                        && x.role == this.relationshipRoles[roleID])
+                    .map(y => y.childNode);
+                
+                // Increment with 1, which was added above
+                offset = offset + 1;
+                for (var childID = 0; childID < childrenFilteredRole.length; childID++) {
                     this.graphData.push(
-                        { "id": childID + roleID + 1,
-                         "name": this.childDataVisible
+                        { "id": childID + offset,
+                         "name": childrenFilteredRole[childID]
                         });
-                }    
+                };
+                offset = offset + childrenFilteredRole.length;
             };
         };
 
         // Add to History
         // TODO - keep ParentNodeID of selected for here
         // TODO - cater for more than 1 Filter; Parent and Child
-        let parentFilterFieldName: string = '';
-        let parentFilterOperator: string = '';
-        let parentFilterValue: string = '';
-        let childFilterFieldName: string = '';
-        let childFilterOperator: string = '';
-        let childFilterValue: string = '';
-        if (this.parentNodeFilter.length > 0) {
-            parentFilterFieldName = this.parentNodeFilter[0].field;
-            parentFilterOperator = this.parentNodeFilter[0].operator;
-            parentFilterValue = this.parentNodeFilter[0].value;
+        if (addToHistory) {
+            let parentFilterFieldName: string = '';
+            let parentFilterOperator: string = '';
+            let parentFilterValue: string = '';
+            let childFilterFieldName: string = '';
+            let childFilterOperator: string = '';
+            let childFilterValue: string = '';
+            if (this.parentNodeFilter.length > 0) {
+                parentFilterFieldName = this.parentNodeFilter[0].field;
+                parentFilterOperator = this.parentNodeFilter[0].operator;
+                parentFilterValue = this.parentNodeFilter[0].value;
 
-        };
-        if (this.childNodeFilter.length > 0) {
-            childFilterFieldName = this.childNodeFilter[0].field;
-            childFilterOperator = this.childNodeFilter[0].operator;
-            childFilterValue = this.childNodeFilter[0].value;
-
-        };
-
-        // Deselect all history, and add a new one at the top
-        this.history.forEach(x => x.isSelected = false);
-        this.selectedHistoryID = this.history.length;
-         let historyNew: NavigatorHistory =
-            {
-                id: this.history.length,
-                text: this.graphTitle,
-                networkID: this.selectedNetworkID,
-                parentNodeID: null,
-                parentNodeType: this.selectedParentNodeType,
-                parentNode: this.selectedParentNode,
-                relationship: this.selectedRelationship,
-                showRoles: this.showRoles,
-                parentNodeFiler:
-                    {
-                        id: 0,
-                        field: parentFilterFieldName,
-                        operator: parentFilterOperator,
-                        value: parentFilterValue
-                    },
-                childNodeFiler:
-                    {
-                        id: 0,
-                        field: childFilterFieldName,
-                        operator: childFilterOperator,
-                        value: childFilterValue
-                    },
-                isSelected: true
             };
-        this.history = [historyNew, ...this.history];
-        this.historyAll = [historyNew, ...this.historyAll];
+            if (this.childNodeFilter.length > 0) {
+                childFilterFieldName = this.childNodeFilter[0].field;
+                childFilterOperator = this.childNodeFilter[0].operator;
+                childFilterValue = this.childNodeFilter[0].value;
+
+            };
+
+            // Deselect all history, and add a new one at the top
+            this.history.forEach(x => x.isSelected = false);
+            this.selectedHistoryID = this.history.length;
+            let historyNew: NavigatorHistory =
+                {
+                    id: this.history.length,
+                    text: this.graphTitle,
+                    networkID: this.selectedNetworkID,
+                    parentNodeID: null,
+                    parentNodeType: this.selectedParentNodeType,
+                    parentNode: this.selectedParentNode,
+                    relationship: this.selectedRelationship,
+                    showRoles: this.showRoles,
+                    parentNodeFiler:
+                        {
+                            id: 0,
+                            field: parentFilterFieldName,
+                            operator: parentFilterOperator,
+                            value: parentFilterValue
+                        },
+                    childNodeFiler:
+                        {
+                            id: 0,
+                            field: childFilterFieldName,
+                            operator: childFilterOperator,
+                            value: childFilterValue
+                        },
+                    isSelected: true
+                };
+            this.history = [historyNew, ...this.history];
+            this.historyAll = [historyNew, ...this.historyAll];
+        };
 
         // Set H & W
         if (inputHeight != 0) {
@@ -656,7 +674,7 @@ export class WidgetNavigatorComponent {
 
         this.history = this.history.filter(h => h.id != historyID);
         this.historyAll = this.historyAll.filter(h => h.id != historyID);
-        
+
     }
 
     clickFilterOnWatchList() {

@@ -412,7 +412,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             </clr-signpost-content>
         </clr-signpost>
 
-        <div class="graphAreaShowRoles">
+        <div class="graphAreaShowRoles" *ngIf="relationshipRoles">
             <input type="checkbox" [(ngModel)]="showRoles">
         </div>
 
