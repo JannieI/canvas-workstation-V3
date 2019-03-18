@@ -548,7 +548,7 @@ export class WidgetNavigatorComponent {
                         && x.relationship == this.selectedRelationship
                         && x.role == this.relationshipRoles[roleID])
                     .map(y => y.childNode);
-                
+
                 // Increment with 1, which was added above
                 offset = offset + 1;
                 for (var childID = 0; childID < childrenFilteredRole.length; childID++) {
@@ -804,7 +804,19 @@ export class WidgetNavigatorComponent {
         // TODO - for now, only one filter by choice.  In future, consider more than one as
         // data structurs allows it
 
-        childFilterErrorMessage
+        // Validation
+        if (this.filterChildFieldName == '') {
+            this.childFilterErrorMessage = 'The field name is compulsory';
+            return;
+        };
+        if (this.filterChildOperator) {
+            this.childFilterErrorMessage = 'The operator is compulsory';
+            return;
+        };
+        if (this.filterChildValue) {
+            this.childFilterErrorMessage = 'The value is compulsory';
+            return;
+        };
 
         // Clear all
         this.clickChildFilterClear();
