@@ -992,6 +992,10 @@ export class WidgetNavigatorComponent {
             this.selectedRelationship != '') {
             this.showGraph();
         };
+ 
+        // Clear child filter
+        this.clickChildFilterClear();
+
     }
 
     changeParentFilterField() {
