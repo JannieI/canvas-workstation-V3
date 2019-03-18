@@ -198,7 +198,9 @@ export class WidgetNavigatorComponent {
             };
         this.historyAll.push(historyNew);
 
+        // Testing
         this.historyAll = [];
+
 
         // Populate persisted data - TODO via DB
         let newParentRelatedChildren: NavigatorParentRelatedChild =
@@ -945,6 +947,7 @@ export class WidgetNavigatorComponent {
 
         console.log('xx pn rel', this.dropdownParentNodes, this.dropdownRelationships)
         console.log('xx ',    this.selectedParentNodeType, this.parentRelatedChildren )
+        console.log('xx w', watchListIndex, this.watchList )
 
         // Filter the Parent Nodes on parentFilter and watchlist
         if (watchListIndex >= 0) {
@@ -964,12 +967,17 @@ export class WidgetNavigatorComponent {
 
         let dropdownRelationshipSet = new Set(this.dropdownRelationships);
         this.dropdownRelationships = Array.from(dropdownRelationshipSet);
+        
+        console.log('xx pn rel END', this.dropdownParentNodes, this.dropdownRelationships)
 
-        this.selectedParentNode = '';
-        this.selectedRelationship = '';
+        // Add blank at start
+        this.dropdownParentNodes = ['', ...this.dropdownParentNodes];
+        this.dropdownRelationships = ['', ...this.dropdownRelationships];
+
+        this.selectedParentNode = this.dropdownParentNodes[0];
+        this.selectedRelationship = this.dropdownRelationships[0];
         this.childNodeFilter = [];
         this.selectedChildFilterID = -1;
-
 
     }
 
