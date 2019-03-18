@@ -704,6 +704,10 @@ export class WidgetNavigatorComponent {
         this.dropdownParentNodeTypes = this.parentRelatedChildren.map(x => x.parentNodeType)
         this.dropdownParentNodeTypes = ['', ...this.dropdownParentNodeTypes];
 
+        // Make unique
+        let parentNodeTypesSet = new Set(this.dropdownParentNodeTypes);
+        this.dropdownParentNodeTypes = Array.from(parentNodeTypesSet);
+
         // Clear the rest & reset pointers
         this.dropdownParentNodes = [];
         this.dropdownRelationships = [];
