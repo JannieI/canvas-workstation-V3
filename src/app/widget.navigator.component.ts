@@ -64,6 +64,7 @@ export class WidgetNavigatorComponent {
     childDataAll: any[] = [];                           // List of all children after filter
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
+    childFields: string[] = ['Sector', 'Country', 'City'];
     childFilterErrorMessage: string = '';
     filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
     filterChildFieldName: string = '';
@@ -76,6 +77,7 @@ export class WidgetNavigatorComponent {
     graphData: any[] = [];                              // childDataAll formatted for Vega
     history: NavigatorHistory[] = [];                   // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
+    parentFields: string[] = ['Sector', 'Country', 'City'];
     parentFilterErrorMessage: string = '';
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
     relationshipRoles: string[] = [];
@@ -666,8 +668,8 @@ export class WidgetNavigatorComponent {
             let datumClick: any = item.datum;
             console.log('CLICK', item, item.datum.text, datumClick.name);
             this.selectedParentNodeType = 'Person';
-            this.selectedParentNode = 'Bidvest';
-            this.selectedRelationship = 'Shareholders';
+            this.selectedParentNode = 'Koos';
+            this.selectedRelationship = 'Director-Of';
         });
         view.renderer('svg')
             .initialize(this.dragWidget.nativeElement)

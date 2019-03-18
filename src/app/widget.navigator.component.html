@@ -201,9 +201,9 @@ dimensions is set in app.html, and cannot be changed here. -->
                         (change)="changeParentFilterField($event)"
                         name="filterFieldName"
                         >
-                        <option></option>
-                        <option>Name</option>
-                        <option>BEE Rating</option>
+                        <option *ngFor="let row of childFields">
+                            {{ row }}
+                        </option>
                     </select>
                 </div>
                 <div class="graphAreaParentFilterOperatorTitle">
@@ -366,9 +366,9 @@ dimensions is set in app.html, and cannot be changed here. -->
                         (change)="changeChildFilterField($event)"
                         name="filterFieldName"
                         >
-                        <option>Age</option>
-                        <option>Name</option>
-                        <option>BEE Rating</option>
+                        <option *ngFor="let row of parentFields">
+                            {{ row }}
+                        </option>
                     </select>
                 </div>
                 <div class="graphAreaChildFilterOperatorTitle">
