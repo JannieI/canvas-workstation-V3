@@ -129,7 +129,7 @@ export class WidgetNavigatorComponent {
             + (this.graphWidth * 1.2);
         this.graphWidth = this.graphWidthOriginal +
             (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130);
-            
+
         // Populate networks - TODO make from DB
         let networksNew: NavigatorNetwork = {id: 1, name: "WOWEB", description: "WOWEB", userPermissions: null, groupPermissions: null, isSelected: true};
         this.networks.push(networksNew);
@@ -464,8 +464,17 @@ export class WidgetNavigatorComponent {
         // Click a point in history, and show that graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHistory', '@Start');
 
-        // Set the history id and show the graph
+        // Set the history id and reset the isSelected field in history
         this.selectedHistoryID = historyID;
+        this.history.forEach(h => {
+            if (h.id == historyID) {
+                h.isSelected = true;
+            } else {
+                h.isSelected = false;
+            };
+        });
+
+        // Set the history id, selected fields and show the graph
         this.selectedParentNodeType = this.history[this.selectedHistoryID].parentNodeType;
         this.selectedParentNode = this.history[this.selectedHistoryID].parentNode;
         this.selectedRelationship = this.history[this.selectedHistoryID].relationship;
@@ -687,9 +696,9 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickDeleteHistory(index: number, historyID: number) {
+    dblclickDeleteHistory(index: number, historyID: number) {
         // Delete selected history row.  If current, move to first
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteHistory', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDeleteHistory', '@Start');
 
         this.history = this.history.filter(h => h.id != historyID);
         this.historyAll = this.historyAll.filter(h => h.id != historyID);
