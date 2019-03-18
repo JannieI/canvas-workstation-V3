@@ -703,7 +703,6 @@ export class WidgetNavigatorComponent {
         // Create the ParentNodeType dropdown according to the network
         this.dropdownParentNodeTypes = this.parentRelatedChildren.map(x => x.parentNodeType)
         this.dropdownParentNodeTypes = ['', ...this.dropdownParentNodeTypes];
-        // TODO - make Unique
 
         // Clear the rest & reset pointers
         this.dropdownParentNodes = [];

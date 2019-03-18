@@ -1115,6 +1115,8 @@ This document describes items for later versions of Canvas.
     - sort child fields on properties
     - click inside Navigator = selected Widget.  Should this happen, and how do we manipulate Widget - ie click and delete it.  Work out what is most practical.
     - sync resizing / or not: change graph size => widget reseizes, and vice versa.
+    - Menu option: network summary, showing a tree of the network: name, parent node types (with number of parent nodes for each in brackets) and relationships per each node type (with number of child nodes in brackets).  Click on a node type or a relationship, and that is filled in the dropdowns and the summary becomes blank.
+    - Menu option: help test that replaces the graph, short and to the point.  In addition, snippets to click on for help, as well as tooltips.
 
     Canvas Server:
     -------------
