@@ -205,7 +205,7 @@ export class WidgetNavigatorComponent {
                 parentNodeID: null,
                 parentNodeType: 'Company',
                 parentNode: 'Absa',
-                relationship: 'Director',
+                relationship: 'Directors',
                 childNodeType: 'Person',
                 childNode: 'Koos',
                 role: 'Executive'
@@ -217,7 +217,7 @@ export class WidgetNavigatorComponent {
                 parentNodeID: null,
                 parentNodeType: 'Company',
                 parentNode: 'Absa',
-                relationship: 'Director',
+                relationship: 'Directors',
                 childNodeType: 'Person',
                 childNode: 'Anna',
                 role: 'Executive'
@@ -470,6 +470,9 @@ export class WidgetNavigatorComponent {
         // Re-create the Vega spec, and show the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
 
+        console.log('xx selecteds', this.selectedParentNodeType,
+                this.selectedParentNode,
+                this.selectedRelationship)
         // Set the data, some unique
         this.childDataAll = this.parentRelatedChildren
             .filter(x => x.parentNodeType == this.selectedParentNodeType
@@ -501,6 +504,7 @@ export class WidgetNavigatorComponent {
         // Reduce visible list
         this.childDataVisible = this.childDataAll.slice(0, ( this.visibleNumberChildren - 1) );
 
+        console.log('xx datas', this.parentRelatedChildren, this.childDataAll, this.childDataVisible, this.visibleNumberChildren)
         // Show child page indicators
         this.showChildPageLeft = false;
         this.showChildPageRight = false;
@@ -619,6 +623,8 @@ export class WidgetNavigatorComponent {
             this.historyAll = [historyNew, ...this.historyAll];
         };
 
+        console.log('xx graphData', this.graphData);
+
         // Set H & W
         if (inputHeight != 0) {
             this.graphHeight = inputHeight;
@@ -653,11 +659,10 @@ export class WidgetNavigatorComponent {
         );
 
         // Load the data
-        console.log('xx loading data to follow')
-        this.specification['data'] = this.graphData;
+        this.specification['data'][0]['values'] = this.graphData;
 
-        this.specification.graphLayers[0].graphSpecification.data = this.graphData;
-
+        // TODO - decide if we need to update the Widget Data too ?
+        // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
 
         console.log('xx this.specification', this.specification)
 
