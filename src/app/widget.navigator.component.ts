@@ -732,7 +732,10 @@ export class WidgetNavigatorComponent {
                 return 0;
             });
 
-
+        // Click the first row
+        if (history.length > 0) {
+            this.clickHistory(0, this.history[0].id);
+        }
     }
 
     clickParentFilterClear() {
