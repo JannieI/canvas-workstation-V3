@@ -789,6 +789,10 @@ export class WidgetNavigatorComponent {
             .filter(x => x[this.filterParentFieldName] == this.filterParentValue)
             .map(y => y.node);
 
+        // Make unique
+        let filteredParentNodeSet = new Set(this.filteredParentNodes);
+        this.filteredParentNodes = Array.from(filteredParentNodeSet);
+
     }
 
     clickParentFilterClose() {
