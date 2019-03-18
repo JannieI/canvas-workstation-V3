@@ -861,6 +861,14 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickMenuGraphTitle() {
+        // Menu option to edit the Title
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphTitle', '@Start');
+
+    }
+
+ 
+
     clickMenuGraphHeight() {
         // Menu option to adjust graph height
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphHeight', '@Start');
