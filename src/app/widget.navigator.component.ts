@@ -967,9 +967,11 @@ export class WidgetNavigatorComponent {
             // this.parentNodeFilter = [];
             // this.selectedParentFilterID = -1;
 
-        console.log('xx pn rel', this.dropdownParentNodes, this.dropdownRelationships)
+            console.log('xx pn rel', this.dropdownParentNodes, this.dropdownRelationships)
         console.log('xx ',    this.selectedParentNodeType, this.parentRelatedChildren )
         console.log('xx w', watchListIndex, this.watchList )
+        console.log('xx role', this.relationshipRoles)
+       
 
         // Filter the Parent Nodes on parentFilter and watchlist
         if (watchListIndex >= 0) {
@@ -995,7 +997,7 @@ export class WidgetNavigatorComponent {
         // Add blank at start
         this.dropdownParentNodes = ['', ...this.dropdownParentNodes];
         this.dropdownRelationships = ['', ...this.dropdownRelationships];
-
+        this.relationshipRoles = [];
         this.selectedParentNode = this.dropdownParentNodes[0];
         this.selectedRelationship = this.dropdownRelationships[0];
         this.childNodeFilter = [];
@@ -1017,6 +1019,17 @@ export class WidgetNavigatorComponent {
             this.selectedRelationship != '') {
             this.showGraph();
         };
+
+        // Determine relationship roles
+        this.relationshipRoles = this.parentRelatedChildren
+            .filter(x => x.parentNodeType == this.selectedParentNodeType
+                && x.parentNode == this.selectedParentNode
+                && x.relationship == this.selectedRelationship)
+            .map(y => y.role);
+
+        // Make unique
+        let relationshipRolesSet = new Set(this.relationshipRoles);
+        this.relationshipRoles = Array.from(relationshipRolesSet);
 
         // Clear child filter
         this.clickChildFilterClear();
