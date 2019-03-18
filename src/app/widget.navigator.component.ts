@@ -198,6 +198,8 @@ export class WidgetNavigatorComponent {
             };
         this.historyAll.push(historyNew);
 
+        this.historyAll = [];
+
         // Populate persisted data - TODO via DB
         let newParentRelatedChildren: NavigatorParentRelatedChild =
             {
@@ -470,9 +472,6 @@ export class WidgetNavigatorComponent {
         // Re-create the Vega spec, and show the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
 
-        console.log('xx selecteds', this.selectedParentNodeType,
-                this.selectedParentNode,
-                this.selectedRelationship)
         // Set the data, some unique
         this.childDataAll = this.parentRelatedChildren
             .filter(x => x.parentNodeType == this.selectedParentNodeType
@@ -490,7 +489,7 @@ export class WidgetNavigatorComponent {
         this.relationshipRoles = Array.from(relationshipRolesSet);
 
         // Filter If a Child filter is active
-        if (this.childDataAll.length > 0) {
+        if (this.filteredChildNodes.length > 0) {
             this.childDataAll = this.childDataAll
                 .filter(z => this.filteredChildNodes.indexOf(z) >= 0);
         };
@@ -742,9 +741,11 @@ export class WidgetNavigatorComponent {
             });
 
         // Click the first row
-        if (history.length > 0) {
+        if (this.history.length > 0) {
             this.clickHistory(0, this.history[0].id);
-        }
+        };
+
+        console.log('xx clickNetwork', this.dropdownParentNodeTypes, this.history)
     }
 
     clickParentFilterClear() {
@@ -906,17 +907,17 @@ export class WidgetNavigatorComponent {
 
     }
 
-    changeParentNodeType(ev: string) {
+    changeParentNodeType(ev: any) {
         // Make the filter inactive
         this.globalFunctionService.printToConsole(this.constructor.name,'changeParentNodeType', '@Start');
 
+        // Set selected Nod
+        this.selectedParentNodeType = ev.target.value;
+
         // Set selected ParentNodeId
         let parentNodeTypeIndex: number = this.dropdownParentNodeTypes.findIndex(
-            p => p == ev
+            p => p == this.selectedParentNodeType
         );
-
-        // Set selected Nod
-        this.selectedParentNodeType = ev;
 
         // Find watchlist for this NodeType
         let watchListIndex: number = this.watchList.findIndex(x =>
@@ -942,6 +943,9 @@ export class WidgetNavigatorComponent {
             // this.parentNodeFilter = [];
             // this.selectedParentFilterID = -1;
 
+        console.log('xx pn rel', this.dropdownParentNodes, this.dropdownRelationships)
+        console.log('xx ',    this.selectedParentNodeType, this.parentRelatedChildren )
+
         // Filter the Parent Nodes on parentFilter and watchlist
         if (watchListIndex >= 0) {
             this.dropdownParentNodes = this.dropdownParentNodes.filter(
@@ -966,11 +970,11 @@ export class WidgetNavigatorComponent {
 
     }
 
-    changeParentNode(ev: string) {
+    changeParentNode(ev: any) {
         // Make the filter inactive
         this.globalFunctionService.printToConsole(this.constructor.name,'changeParentNode', '@Start');
 
-        this.selectedParentNode = ev;
+        this.selectedParentNode = ev.target.value;
 
         // Show the graph when all fields selected
         if (this.selectedParentNodeType != ''
@@ -985,11 +989,11 @@ export class WidgetNavigatorComponent {
         this.clickChildFilterClear();
     }
 
-    changeRelationship(ev: string) {
+    changeRelationship(ev: any) {
         // Make the filter inactive
         this.globalFunctionService.printToConsole(this.constructor.name,'changeRelationship', '@Start');
 
-        this.selectedRelationship = ev;
+        this.selectedRelationship = ev.target.value;
 
         // Show the graph when all fields selected
         if (this.selectedParentNodeType != ''
