@@ -496,7 +496,9 @@ export class WidgetNavigatorComponent {
         this.relationshipRoles = this.parentRelatedChildren
             .filter(x => x.parentNodeType == this.selectedParentNodeType
                 && x.parentNode == this.selectedParentNode
-                && x.relationship == this.selectedRelationship)
+                && x.relationship == this.selectedRelationship
+                && x.role != ''
+                && x.role != null)
             .map(y => y.role);
 
         // Make unique
@@ -1024,7 +1026,9 @@ export class WidgetNavigatorComponent {
         this.relationshipRoles = this.parentRelatedChildren
             .filter(x => x.parentNodeType == this.selectedParentNodeType
                 && x.parentNode == this.selectedParentNode
-                && x.relationship == this.selectedRelationship)
+                && x.relationship == this.selectedRelationship
+                && x.role != ''
+                && x.role != null)
             .map(y => {
                 if (y.role != '') { return y.role};
             });
@@ -1057,12 +1061,20 @@ export class WidgetNavigatorComponent {
         this.relationshipRoles = this.parentRelatedChildren
             .filter(x => x.parentNodeType == this.selectedParentNodeType
                 && x.parentNode == this.selectedParentNode
-                && x.relationship == this.selectedRelationship)
+                && x.relationship == this.selectedRelationship
+                && x.role != ''
+                && x.role != null)
             .map(y => {
                 if (y.role != '') { return y.role};
             });
     
         // Make unique
+        console.log('xx role', this.relationshipRoles,
+        this.parentRelatedChildren
+            .filter(x => x.parentNodeType == this.selectedParentNodeType
+                && x.parentNode == this.selectedParentNode
+                && x.relationship == this.selectedRelationship)
+        );
         let relationshipRolesSet = new Set(this.relationshipRoles);
         this.relationshipRoles = Array.from(relationshipRolesSet);
         console.log('xx role', this.relationshipRoles)
