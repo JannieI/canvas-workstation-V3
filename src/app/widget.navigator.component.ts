@@ -127,7 +127,9 @@ export class WidgetNavigatorComponent {
         // The Total width is that of the two panels, plus the svg, plus some scrolling space
         this.totalNavigatorWidth = this.networkAreaWidth + this.historyAreaWidth + 22
             + (this.graphWidth * 1.2);
-
+        this.graphWidth = this.graphWidthOriginal +
+            (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130);
+            
         // Populate networks - TODO make from DB
         let networksNew: NavigatorNetwork = {id: 1, name: "WOWEB", description: "WOWEB", userPermissions: null, groupPermissions: null, isSelected: true};
         this.networks.push(networksNew);
