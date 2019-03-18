@@ -64,6 +64,7 @@ export class WidgetNavigatorComponent {
     childDataAll: any[] = [];                           // List of all children after filter
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
+    childFilterErrorMessage: string = '';
     filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
     filterChildFieldName: string = '';
     filterChildOperator: string = '';
@@ -75,6 +76,7 @@ export class WidgetNavigatorComponent {
     graphData: any[] = [];                              // childDataAll formatted for Vega
     history: NavigatorHistory[] = [];                   // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
+    parentFilterErrorMessage: string = '';
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
     relationshipRoles: string[] = [];
     showChildPageLeft: boolean = true;
@@ -755,6 +757,20 @@ export class WidgetNavigatorComponent {
         // TODO - for now, only one filter by choice.  In future, consider more than one as
         // data structurs allows it
 
+        // Validation
+        if (this.filterParentFieldName == '') {
+                this.parentFilterErrorMessage = 'The field name is compulsory';
+                return;
+        };
+        if (this.filterParentOperator) {
+            this.parentFilterErrorMessage = 'The operator is compulsory';
+            return;
+        };
+        if (this.filterParentValue) {
+            this.parentFilterErrorMessage = 'The value is compulsory';
+            return;
+        };
+
         // Clear all
         this.clickParentFilterClear();
 
@@ -787,6 +803,8 @@ export class WidgetNavigatorComponent {
 
         // TODO - for now, only one filter by choice.  In future, consider more than one as
         // data structurs allows it
+
+        childFilterErrorMessage
 
         // Clear all
         this.clickChildFilterClear();
