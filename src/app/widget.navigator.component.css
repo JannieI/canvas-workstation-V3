@@ -182,7 +182,8 @@
             color: black;
             font-size: 0.55rem;
             margin-left: 12px;
-            margin-top: 22px;
+            margin-top: 12px;
+            text-align: center;
         }
 
         .graphAreaGraphic {
