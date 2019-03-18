@@ -464,6 +464,11 @@ export class WidgetNavigatorComponent {
         // Click a point in history, and show that graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHistory', '@Start');
 
+        // Set the history id, selected fields
+        this.selectedParentNodeType = this.history[index].parentNodeType;
+        this.selectedParentNode = this.history[index].parentNode;
+        this.selectedRelationship = this.history[index].relationship;
+
         // Set the history id and reset the isSelected field in history
         this.selectedHistoryID = historyID;
         this.history.forEach(h => {
@@ -474,10 +479,7 @@ export class WidgetNavigatorComponent {
             };
         });
 
-        // Set the history id, selected fields and show the graph
-        this.selectedParentNodeType = this.history[this.selectedHistoryID].parentNodeType;
-        this.selectedParentNode = this.history[this.selectedHistoryID].parentNode;
-        this.selectedRelationship = this.history[this.selectedHistoryID].relationship;
+        // Show the graph
         this.showGraph(0, 0, false)
     }
 
