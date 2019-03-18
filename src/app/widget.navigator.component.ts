@@ -1054,5 +1054,16 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickPageLeft() {
+        // Move the visible children left / up
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickPageLeft', '@Start');
+
+    }
+
+    clickPageRight() {
+        // Move the visible children right / down
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickPageRight', '@Start');
+
+    }
 
 }

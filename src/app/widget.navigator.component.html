@@ -434,14 +434,20 @@ dimensions is set in app.html, and cannot be changed here. -->
 
         
         <div class="graphAreaTitle">
-            <span>
-                {{ graphTitle }}
-            </span>
+            <clr-icon shape="angle left" 
+                style="margin-right: 12px;"
+                (click)="clickPageLeft"
+                >
+            </clr-icon>
+            <b>{{ graphTitle }}</b>
+            <clr-icon shape="angle right" 
+                style="margin-left: 12px;"
+                (click)="clickPageRight"
+                >
+            </clr-icon>
         </div>
         <br>
         <div>
-            <clr-icon shape="step-forward-2" style="float: left; margin-left: 12px;"></clr-icon>
-            <clr-icon shape="step-forward-2 down" style="float: left; margin-left: 12px;"></clr-icon>
         </div>
     
 
