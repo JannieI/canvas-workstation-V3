@@ -867,7 +867,11 @@ export class WidgetNavigatorComponent {
 
     }
 
- 
+    clickMenuGraphNotes(){
+        // Menu option to edit the notes
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphNotes', '@Start');
+
+    }
 
     clickMenuGraphHeight() {
         // Menu option to adjust graph height
