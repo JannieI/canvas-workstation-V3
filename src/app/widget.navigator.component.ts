@@ -763,7 +763,7 @@ export class WidgetNavigatorComponent {
                 n.isSelected = false;
             };
         });
-    
+
         // Click the first row
         if (this.history.length > 0) {
             this.clickHistory(0, this.history[0].id);
@@ -971,7 +971,7 @@ export class WidgetNavigatorComponent {
         console.log('xx ',    this.selectedParentNodeType, this.parentRelatedChildren )
         console.log('xx w', watchListIndex, this.watchList )
         console.log('xx role', this.relationshipRoles)
-       
+
 
         // Filter the Parent Nodes on parentFilter and watchlist
         if (watchListIndex >= 0) {
@@ -991,7 +991,7 @@ export class WidgetNavigatorComponent {
 
         let dropdownRelationshipSet = new Set(this.dropdownRelationships);
         this.dropdownRelationships = Array.from(dropdownRelationshipSet);
-        
+
         console.log('xx pn rel END', this.dropdownParentNodes, this.dropdownRelationships)
 
         // Add blank at start
@@ -1025,11 +1025,14 @@ export class WidgetNavigatorComponent {
             .filter(x => x.parentNodeType == this.selectedParentNodeType
                 && x.parentNode == this.selectedParentNode
                 && x.relationship == this.selectedRelationship)
-            .map(y => y.role);
+            .map(y => {
+                if (y.role != '') { return y.role};
+            });
 
         // Make unique
         let relationshipRolesSet = new Set(this.relationshipRoles);
         this.relationshipRoles = Array.from(relationshipRolesSet);
+        console.log('xx role', this.relationshipRoles)
 
         // Clear child filter
         this.clickChildFilterClear();
@@ -1049,17 +1052,20 @@ export class WidgetNavigatorComponent {
             this.selectedRelationship != '') {
             this.showGraph();
         };
- 
+
         // Determine relationship roles
         this.relationshipRoles = this.parentRelatedChildren
             .filter(x => x.parentNodeType == this.selectedParentNodeType
                 && x.parentNode == this.selectedParentNode
                 && x.relationship == this.selectedRelationship)
-            .map(y => y.role);
-
+            .map(y => {
+                if (y.role != '') { return y.role};
+            });
+    
         // Make unique
         let relationshipRolesSet = new Set(this.relationshipRoles);
         this.relationshipRoles = Array.from(relationshipRolesSet);
+        console.log('xx role', this.relationshipRoles)
 
         // Clear child filter
         this.clickChildFilterClear();
