@@ -1050,6 +1050,17 @@ export class WidgetNavigatorComponent {
             this.showGraph();
         };
  
+        // Determine relationship roles
+        this.relationshipRoles = this.parentRelatedChildren
+            .filter(x => x.parentNodeType == this.selectedParentNodeType
+                && x.parentNode == this.selectedParentNode
+                && x.relationship == this.selectedRelationship)
+            .map(y => y.role);
+
+        // Make unique
+        let relationshipRolesSet = new Set(this.relationshipRoles);
+        this.relationshipRoles = Array.from(relationshipRolesSet);
+
         // Clear child filter
         this.clickChildFilterClear();
 
