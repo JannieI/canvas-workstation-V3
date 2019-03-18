@@ -962,6 +962,9 @@ export class WidgetNavigatorComponent {
         let dropdownParentNodeSet = new Set(this.dropdownParentNodes);
         this.dropdownParentNodes = Array.from(dropdownParentNodeSet);
 
+        let dropdownRelationshipSet = new Set(this.dropdownRelationships);
+        this.dropdownRelationships = Array.from(dropdownRelationshipSet);
+
         this.selectedParentNode = '';
         this.selectedRelationship = '';
         this.childNodeFilter = [];
