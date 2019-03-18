@@ -840,6 +840,10 @@ export class WidgetNavigatorComponent {
             .filter(x => x[this.filterChildFieldName] == this.filterChildValue)
             .map(y => y.node);
 
+        // Make unique
+        let filteredChildNodeSet = new Set(this.filteredChildNodes);
+        this.filteredChildNodes = Array.from(filteredChildNodeSet);
+
     }
 
     clickChildFilterClear() {
