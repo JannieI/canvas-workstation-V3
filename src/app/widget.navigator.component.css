@@ -81,18 +81,21 @@
             border-radius: 4px;
         }
 
+    /* MIN-WIDTH to show wide enough when no graph */
     .graphArea {
-        /* display: inline-block; */
         float: left;
-        /* float: right; */
         font-size: 0.5rem;
         height: 100%;
         margin-left: 8px;
+        min-width: 454px;             
         text-align: left;
         overflow: scroll;
         top: 0;
     }
 
+        .graphAreaText1{
+            display: inline-block; 
+        }
         .graphAreaParentNodeType {
             display: inline-block; 
             font-size: 0.5rem;
