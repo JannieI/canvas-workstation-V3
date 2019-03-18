@@ -920,8 +920,8 @@ export class WidgetNavigatorComponent {
             .slice(0, 100)
             .map(x => x.relationship);
 
-            this.parentNodeFilter = [];
-            this.selectedParentFilterID = -1;
+            // this.parentNodeFilter = [];
+            // this.selectedParentFilterID = -1;
 
         // Filter the Parent Nodes on parentFilter and watchlist
         if (watchListIndex >= 0) {
@@ -929,9 +929,15 @@ export class WidgetNavigatorComponent {
                 x => this.watchList[watchListIndex].nodes.indexOf(x) >= 0
             )
         }
-        this.dropdownParentNodes = this.dropdownParentNodes.filter(
-            x => this.filteredParentNodes.indexOf(x) >= 0
-        );
+        if (this.filteredParentNodes.length > 0) {
+            this.dropdownParentNodes = this.dropdownParentNodes.filter(
+                x => this.filteredParentNodes.indexOf(x) >= 0
+            );
+        };
+
+        // Make unique
+        let dropdownParentNodeSet = new Set(this.dropdownParentNodes);
+        this.dropdownParentNodes = Array.from(dropdownParentNodeSet);
 
         this.selectedParentNode = '';
         this.selectedRelationship = '';
