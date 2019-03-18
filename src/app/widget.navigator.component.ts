@@ -753,6 +753,15 @@ export class WidgetNavigatorComponent {
                 return 0;
             });
 
+        // Reset isSelected field
+        this.networks.forEach(n => {
+        if (n.id == networkID) {
+                n.isSelected = true;
+            } else {
+                n.isSelected = false;
+            };
+        });
+    
         // Click the first row
         if (this.history.length > 0) {
             this.clickHistory(0, this.history[0].id);
