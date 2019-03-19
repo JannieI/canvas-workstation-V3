@@ -495,6 +495,7 @@ export class UsersComponent implements OnInit {
             preferencePlaySound: false,
             preferenceDebugSession: false,
             preferenceAutoSync: false,
+            preferenceSnapToGrid: true,
             preferenceShowOpenStartupMessage: false,
             preferenceShowOpenDataCombinationMessage: false,
             preferenceShowViewStartupMessage: false,

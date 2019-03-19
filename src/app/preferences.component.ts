@@ -58,6 +58,7 @@ export class PreferencesComponent implements OnInit {
     dashboardTabs: DashboardTab[] = [];
     errorMessage: string = '';
     preferenceAutoSync: boolean;
+    preferenceSnapToGrid: boolean;
     preferenceDefaultTemplateID: number;
     preferenceDefaultDateformat: string;
     preferenceDefaultFolder: string;
@@ -90,6 +91,7 @@ export class PreferencesComponent implements OnInit {
 
         // Fill local vars for ngModel
         this.preferenceAutoSync = this.globalVariableService.currentUser.preferenceAutoSync;
+        this.preferenceSnapToGrid = this.globalVariableService.currentUser.preferenceSnapToGrid;
         this.preferencePaletteHorisontal = this.globalVariableService.currentUser.preferencePaletteHorisontal;
         this.preferencePlaySound = this.globalVariableService.currentUser.preferencePlaySound;
         this.preferenceDebugSession = this.globalVariableService.currentUser.preferenceDebugSession;
@@ -277,6 +279,7 @@ export class PreferencesComponent implements OnInit {
                 preferencePlaySound: this.preferencePlaySound,
                 preferenceDebugSession: this.preferenceDebugSession,
                 preferenceAutoSync: this.preferenceAutoSync,
+                preferenceSnapToGrid: this.preferenceSnapToGrid,
                 preferenceShowOpenStartupMessage: this.preferenceShowOpenStartupMessage,
                 preferenceShowOpenDataCombinationMessage: this.preferenceShowOpenDataCombinationMessage,
                 preferenceShowViewStartupMessage: this.preferenceShowViewStartupMessage,

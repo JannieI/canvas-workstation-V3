@@ -3835,6 +3835,7 @@ export class GlobalVariableService {
             preferencePlaySound?: boolean,
             preferenceDebugSession?: boolean,
             preferenceAutoSync?: boolean,
+            preferenceSnapToGrid?: boolean,
             preferenceShowOpenStartupMessage?: boolean,
             preferenceShowOpenDataCombinationMessage?: boolean,
             preferenceShowViewStartupMessage?: boolean,
@@ -3892,6 +3893,10 @@ export class GlobalVariableService {
             if (parameters.preferenceAutoSync != null) {
                 this.canvasUsers[userIndex].preferenceAutoSync = parameters.preferenceAutoSync;
                 this.currentUser.preferenceAutoSync = parameters.preferenceAutoSync;
+            };
+            if (parameters.preferenceSnapToGrid != null) {
+                this.canvasUsers[userIndex].preferenceSnapToGrid = parameters.preferenceSnapToGrid;
+                this.currentUser.preferenceSnapToGrid = parameters.preferenceSnapToGrid;
             };
             if (parameters.preferenceShowOpenStartupMessage != null) {
                 this.canvasUsers[userIndex].preferenceShowOpenStartupMessage = parameters.preferenceShowOpenStartupMessage;
