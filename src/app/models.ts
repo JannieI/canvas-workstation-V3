@@ -11,7 +11,7 @@ export class CanvasSettings {
     widgetsMinZindex: number;               // Widgets Min Zindex
     widgetsMaxZindex: number;               // Widgets Max Zindex
     gridSize: number;                       // Size of the Grid
-    snapToGrid: boolean;                    // Snap to grid (T/F)
+    // snapToGrid: boolean;                    // Snap to grid (T/F)
     printDefault: string;                   // Deflt: Local HP
     printSize: string;                      // Deflt Page Size: A4
     printLayout: string;                    // Deflt Layout: Single page, B and W

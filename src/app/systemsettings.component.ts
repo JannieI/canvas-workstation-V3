@@ -84,7 +84,7 @@ export class SystemSettingsComponent implements OnInit {
         this.widgetsMinZindex = this.globalVariableService.canvasSettings.widgetsMinZindex;
         this.widgetsMaxZindex = this.globalVariableService.canvasSettings.widgetsMaxZindex;
         this.gridSize = this.globalVariableService.canvasSettings.gridSize;
-        this.snapToGrid = this.globalVariableService.canvasSettings.snapToGrid;
+        // this.snapToGrid = this.globalVariableService.canvasSettings.snapToGrid;
         this.printDefault = this.globalVariableService.canvasSettings.printDefault;
         this.printSize = this.globalVariableService.canvasSettings.printSize;
         this.printLayout = this.globalVariableService.canvasSettings.printLayout;
@@ -124,7 +124,7 @@ export class SystemSettingsComponent implements OnInit {
             widgetsMinZindex: this.widgetsMinZindex,
             widgetsMaxZindex: this.widgetsMaxZindex,
             gridSize: this.gridSize,
-            snapToGrid: this.snapToGrid,
+            // snapToGrid: this.snapToGrid,
             printDefault: this.printDefault,
             printSize: this.printSize,
             printLayout: this.printLayout,
