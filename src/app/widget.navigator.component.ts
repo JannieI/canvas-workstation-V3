@@ -498,7 +498,7 @@ export class WidgetNavigatorComponent {
             this.clickHistory(0, this.history[0].id);
         } else {
             // Clear the graph
-            this.showGraph();
+            this.showSummary();
         };
 
     }
@@ -868,6 +868,85 @@ export class WidgetNavigatorComponent {
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
 
+        // TODO - decide if we need to update the Widget Data too ?
+        // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
+
+        // Render in DOM
+        let view = new View(parse(this.specification));
+        view.addEventListener('click', function(event, item) {
+            // Needs separate object, else item.datum.text is sometimes undefined.
+            let datumClick: any = item.datum;
+            console.log('CLICK', item, item.datum.text, datumClick.name);
+            this.selectedParentNodeType = 'Person';
+            this.selectedParentNode = 'Koos';
+            this.selectedRelationship = 'Director-Of';
+        });
+        view.renderer('svg')
+            .initialize(this.dragWidget.nativeElement)
+            .hover()
+            .run()
+            .finalize();
+
+    }
+
+    showSummary() {
+        // Show a summary of the network
+        this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
+
+        // Set data
+        this.graphData = [];
+        this.graphData.push(
+            { "id": 1,
+                "name": "WOWEB Network"
+            });
+        this.graphData.push({
+            id: 2,
+            name: "Companies (11 000)",
+            parent: 1
+        });
+        this.graphData.push({
+            id: 3,
+            name: "Directors",
+            parent: 2
+        });
+        this.graphData.push({
+            id: 4,
+            name: "Shareholders",
+            parent: 2
+        });
+        this.graphData.push({
+            id: 5,
+            name: "Persons (54 000)",
+            parent: 1
+        });
+        this.graphData.push({
+            id: 6,
+            name: "Director-Of",
+            parent: 5
+        });
+        this.graphData.push({
+            id: 7,
+            name: "Manager-Of",
+            parent: 5
+        });
+
+        // Dimension it
+        this.graphHeight = this.localWidget.graphLayers[0].graphSpecification.height;
+        this.graphWidth = this.localWidget.graphLayers[0].graphSpecification.width;
+
+        // Create specification
+        this.specification = this.globalVariableService.createVegaSpec(
+            this.localWidget,
+            this.graphHeight,
+            this.graphWidth,
+            this.showSpecificGraphLayer,
+            0
+        );
+
+        // Load the data
+        this.specification['data'][0]['values'] = this.graphData;
+
+        console.log('xx summ', this.graphData, this.specification)
         // TODO - decide if we need to update the Widget Data too ?
         // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
 
