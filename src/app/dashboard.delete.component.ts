@@ -80,7 +80,10 @@ export class DashboardDeleteComponent implements OnInit {
         this.globalVariableService.getResource('dashboards', 
             '?filterObject={"id": ' + dashboardID + '}'
             ).then(res => {
-                this.dashboard = res;
+                if (res.length > 0) {
+                    this.dashboard = res[0];
+                };
+                console.log('xx d', this.dashboard)
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
