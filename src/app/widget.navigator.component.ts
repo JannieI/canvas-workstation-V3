@@ -592,6 +592,8 @@ export class WidgetNavigatorComponent {
         };
 
         // Determine relationship roles
+        this.relationshipRoles = [];
+        this.showRoles = false;
         this.relationshipRoles = this.parentRelatedChildren
             .filter(x => x.parentNodeType == this.selectedParentNodeType
                 && x.parentNode == this.selectedParentNode
@@ -616,16 +618,9 @@ export class WidgetNavigatorComponent {
 
         this.selectedRelationship = ev.target.value;
 
-        // Show the graph when all fields selected
-        if (this.selectedParentNodeType != ''
-            &&
-            this.selectedParentNode != ''
-            &&
-            this.selectedRelationship != '') {
-            this.showGraph();
-        };
-
         // Determine relationship roles
+        this.relationshipRoles = [];
+        this.showRoles = false;
         this.relationshipRoles = this.parentRelatedChildren
             .filter(x => x.parentNodeType == this.selectedParentNodeType
                 && x.parentNode == this.selectedParentNode
@@ -642,6 +637,15 @@ export class WidgetNavigatorComponent {
 
         // Clear child filter
         this.clickChildFilterClear();
+
+        // Show the graph when all fields selected
+        if (this.selectedParentNodeType != ''
+            &&
+            this.selectedParentNode != ''
+            &&
+            this.selectedRelationship != '') {
+            this.showGraph();
+        };
 
     }
 
@@ -885,7 +889,7 @@ export class WidgetNavigatorComponent {
 
         this.showGraph(0, this.graphWidth)
     }
-    
+
     dblclickDeleteHistory(index: number, historyID: number) {
         // Delete selected history row.  If current, move to first
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDeleteHistory', '@Start');
