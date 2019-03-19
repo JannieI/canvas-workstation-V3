@@ -1092,4 +1092,13 @@ export class WidgetNavigatorComponent {
 
     }
 
+    changeShowRoles() {
+        // Move the visible children right / down
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeShowRoles', '@Start');
+
+        // Refresh the graph
+        console.log('xx showRoles', this.showRoles);
+        this.showGraph();
+    }
+
 }
