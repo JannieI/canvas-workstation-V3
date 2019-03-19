@@ -1473,9 +1473,14 @@ export class GlobalVariableService {
                             reject('Error saving Draft Dashboard: '+ res.message);
                         };
 
-                        // Update Original D
-                        originalDashboardID
-                        // Remove Draft
+                        // Update Original D in Memory
+                        let dashboardIndex: number = this.dashboards.findIndex(d => 
+                            d.id == originalDashboardID);
+                        if (dashboardIndex >= 0) {
+                            this.dashboards[dashboardIndex].draftID = null;
+                        };
+                        
+                        // Remove Draft from Memory
                         this.dashboards = this.dashboards.filter(
                             d => d.id != draftDashboardID
                         );
@@ -5340,43 +5345,44 @@ export class GlobalVariableService {
                 d => d.id ==
                 this.currentDashboardInfo.value.currentDashboardID
             );
-            let today = new Date();
-            let snapshotName: string = this.dashboards[
-                dashboardIndex]
-                .name + ' ' + this.formatDate(today);
-            let snapshotComment: string = 'Added automated Snapshot before first Action';
+            if (dashboardIndex >= 0) {
+                let today = new Date();
+                let snapshotName: string = this.dashboards
+                    [dashboardIndex].name + ' ' + this.formatDate(today);
+                let snapshotComment: string = 'Added automated Snapshot before first Action';
 
-            // Determine if last snapshot for this D was an auto first
-            this.getResource('dashboardSnapshots','?filterObject={"dashboardID": '
-                + this.currentDashboardInfo.value.currentDashboardID.toString()
-                + '} &sortObject=-createdOn &nrRowsToReturn=1'
-                + '&fields=id, comment '
+                // Determine if last snapshot for this D was an auto first
+                this.getResource('dashboardSnapshots','?filterObject={"dashboardID": '
+                    + this.currentDashboardInfo.value.currentDashboardID.toString()
+                    + '} &sortObject=-createdOn &nrRowsToReturn=1'
+                    + '&fields=id, comment '
 
-            ).then(lss => {
+                ).then(lss => {
 
-                // Add if last snap was not an auto (null returned if no last snapshot)
-                if (lss != null) {
+                    // Add if last snap was not an auto (null returned if no last snapshot)
+                    if (lss != null) {
 
-                    if (lss.length == 0  ||  lss[0].comment != snapshotComment) {
-                        this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit')
-                            .then(res => {
+                        if (lss.length == 0  ||  lss[0].comment != snapshotComment) {
+                            this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit')
+                                .then(res => {
 
-                                this.showStatusBarMessage(
-                                    {
-                                        message: 'Added automated Snapshot before first Action',
-                                        uiArea: 'StatusBar',
-                                        classfication: 'Info',
-                                        timeout: 3000,
-                                        defaultMessage: ''
-                                    }
-                                );
+                                    this.showStatusBarMessage(
+                                        {
+                                            message: 'Added automated Snapshot before first Action',
+                                            uiArea: 'StatusBar',
+                                            classfication: 'Info',
+                                            timeout: 3000,
+                                            defaultMessage: ''
+                                        }
+                                    );
 
-                            });
+                                });
+                        };
                     };
-                };
-            });
+                });
 
-            this.firstAction = false;
+                this.firstAction = false;
+            };
         };
 
         if (id == null) {
