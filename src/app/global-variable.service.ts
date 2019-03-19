@@ -1484,7 +1484,7 @@ export class GlobalVariableService {
                         this.dashboards = this.dashboards.filter(
                             d => d.id != draftDashboardID
                         );
-                        this.dashboards = this.currentDashboards.filter(
+                        this.currentDashboards = this.currentDashboards.filter(
                             d => d.id != draftDashboardID
                         );
 
