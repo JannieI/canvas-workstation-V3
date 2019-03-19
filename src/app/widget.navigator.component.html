@@ -283,6 +283,11 @@ dimensions is set in app.html, and cannot be changed here. -->
                     title="Adjust the height of the graph"
                     >
                     Graph Title
+                    <!-- <input [(ngModel)]="visibleNumber" *ngIf="showVisibleNumberInput"
+                        type="text"
+                        name="visibleNumber"
+                        title="Number of visible children in Graph"
+                        > -->
                 </button>
                 <button
                     type="button"
@@ -440,7 +445,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 >
             </clr-icon>
             <b>{{ graphTitle }}</b>
-            <clr-icon shape="angle right" *ngIf=showChildPageRight"
+            <clr-icon shape="angle right" *ngIf="showChildPageRight"
                 style="cursor: pointer; margin-left: 12px;"
                 (click)="clickPageRight"
                 >

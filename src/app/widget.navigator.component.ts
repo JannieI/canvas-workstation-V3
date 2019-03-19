@@ -102,6 +102,7 @@ export class WidgetNavigatorComponent {
     showHistoryMax: boolean = true;
     showNetworkMax: boolean = true;
     showRoles: boolean = false;
+    showVisibleNumberInput: boolean = false;
 
     // Widget and Graph (Vega)
     localWidget: Widget;                            // W to modify, copied from selected
@@ -899,6 +900,7 @@ export class WidgetNavigatorComponent {
         // Menu option to edit the Title
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphTitle', '@Start');
 
+        this.showVisibleNumberInput = true;
     }
 
     clickMenuGraphNotes(){
