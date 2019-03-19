@@ -435,30 +435,59 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickHistoryMinMax() {
-        // Click W object
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickHistoryMinMax', '@Start');
+    clickNetwork(index: number, networkID: number) {
+        // Clicked a network
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetwork', '@Start');
 
-        this.showHistoryMax = !this.showHistoryMax;
+        // Remember the ID of the selected Network
+        this.selectedNetworkID = networkID;
 
-        // Refresh graph - take margin into account
-        this.graphWidth = this.graphWidthOriginal +
-            (this.showHistoryMax?  0  : 138) +  (this.showNetworkMax?  0  :  130);
+        // Create the ParentNodeType dropdown according to the network
+        this.dropdownParentNodeTypes = this.parentRelatedChildren.map(x => x.parentNodeType)
+        this.dropdownParentNodeTypes = ['', ...this.dropdownParentNodeTypes];
 
-        this.showGraph(0, this.graphWidth)
-    }
+        // Make unique
+        let parentNodeTypesSet = new Set(this.dropdownParentNodeTypes);
+        this.dropdownParentNodeTypes = Array.from(parentNodeTypesSet);
 
-    clickNetworkMinMax() {
-        // Click W object
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkMinMax', '@Start');
+        // Clear the rest & reset pointers
+        this.dropdownParentNodes = [];
+        this.dropdownRelationships = [];
+        this.parentNodeFilter = [];
+        this.childNodeFilter = [];
 
-        this.showNetworkMax = !this.showNetworkMax;
+        this.selectedParentNodeType = '';
+        this.selectedParentNode = '';
+        this.selectedRelationship = '';
+        this.selectedParentFilterID = -1;
+        this.selectedChildFilterID = -1;
 
-        // Refresh graph
-        this.graphWidth = this.graphWidthOriginal +
-            (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130)
+        this.history = this.historyAll
+            .filter(h => h.networkID == networkID)
+            .sort( (a,b) => {
+                if (a.id < b.id) {
+                    return 1;
+                };
+                if (a.id > b.id) {
+                    return -1;
+                };
+                return 0;
+            });
 
-        this.showGraph(0, this.graphWidth)
+        // Reset isSelected field
+        this.networks.forEach(n => {
+        if (n.id == networkID) {
+                n.isSelected = true;
+            } else {
+                n.isSelected = false;
+            };
+        });
+
+        // Click the first row
+        if (this.history.length > 0) {
+            this.clickHistory(0, this.history[0].id);
+        };
+
     }
 
     clickHistory(index: number, historyID: number) {
@@ -482,6 +511,138 @@ export class WidgetNavigatorComponent {
 
         // Show the graph
         this.showGraph(0, 0, false)
+    }
+
+    changeParentNodeType(ev: any) {
+        // Make the filter inactive
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeParentNodeType', '@Start');
+
+        // Set selected Nod
+        this.selectedParentNodeType = ev.target.value;
+
+        // Set selected ParentNodeId
+        let parentNodeTypeIndex: number = this.dropdownParentNodeTypes.findIndex(
+            p => p == this.selectedParentNodeType
+        );
+
+        // Find watchlist for this NodeType
+        let watchListIndex: number = this.watchList.findIndex(x =>
+                x.userID == this.globalVariableService.currentUserID
+                &&
+                x.nodeType == this.selectedParentNodeType
+        );
+
+        // Set Dropdowns & reset selected
+        this.dropdownParentNodes = this.parentRelatedChildren
+            .filter(
+                x => x.parentNodeType == this.selectedParentNodeType
+            )
+            .slice(0, 100)
+            .map(x => x.parentNode);
+        this.dropdownRelationships = this.parentRelatedChildren
+            .filter(
+                x => x.parentNodeType == this.selectedParentNodeType
+            )
+            .slice(0, 100)
+            .map(x => x.relationship);
+
+        // Filter the Parent Nodes on parentFilter and watchlist
+        if (watchListIndex >= 0) {
+            this.dropdownParentNodes = this.dropdownParentNodes.filter(
+                x => this.watchList[watchListIndex].nodes.indexOf(x) >= 0
+            )
+        }
+        if (this.filteredParentNodes.length > 0) {
+            this.dropdownParentNodes = this.dropdownParentNodes.filter(
+                x => this.filteredParentNodes.indexOf(x) >= 0
+            );
+        };
+
+        // Make unique
+        let dropdownParentNodeSet = new Set(this.dropdownParentNodes);
+        this.dropdownParentNodes = Array.from(dropdownParentNodeSet);
+
+        let dropdownRelationshipSet = new Set(this.dropdownRelationships);
+        this.dropdownRelationships = Array.from(dropdownRelationshipSet);
+
+        // Add blank at start
+        this.dropdownParentNodes = ['', ...this.dropdownParentNodes];
+        this.dropdownRelationships = ['', ...this.dropdownRelationships];
+        this.relationshipRoles = [];
+        this.selectedParentNode = this.dropdownParentNodes[0];
+        this.selectedRelationship = this.dropdownRelationships[0];
+        this.childNodeFilter = [];
+        this.selectedChildFilterID = -1;
+
+    }
+
+    changeParentNode(ev: any) {
+        // Make the filter inactive
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeParentNode', '@Start');
+
+        this.selectedParentNode = ev.target.value;
+
+        // Show the graph when all fields selected
+        if (this.selectedParentNodeType != ''
+            &&
+            this.selectedParentNode != ''
+            &&
+            this.selectedRelationship != '') {
+            this.showGraph();
+        };
+
+        // Determine relationship roles
+        this.relationshipRoles = this.parentRelatedChildren
+            .filter(x => x.parentNodeType == this.selectedParentNodeType
+                && x.parentNode == this.selectedParentNode
+                && x.relationship == this.selectedRelationship
+                && x.role != ''
+                && x.role != null)
+            .map(y => {
+                if (y.role != '') { return y.role};
+            });
+
+        // Make unique
+        let relationshipRolesSet = new Set(this.relationshipRoles);
+        this.relationshipRoles = Array.from(relationshipRolesSet);
+
+        // Clear child filter
+        this.clickChildFilterClear();
+    }
+
+    changeRelationship(ev: any) {
+        // Make the filter inactive
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeRelationship', '@Start');
+
+        this.selectedRelationship = ev.target.value;
+
+        // Show the graph when all fields selected
+        if (this.selectedParentNodeType != ''
+            &&
+            this.selectedParentNode != ''
+            &&
+            this.selectedRelationship != '') {
+            this.showGraph();
+        };
+
+        // Determine relationship roles
+        this.relationshipRoles = this.parentRelatedChildren
+            .filter(x => x.parentNodeType == this.selectedParentNodeType
+                && x.parentNode == this.selectedParentNode
+                && x.relationship == this.selectedRelationship
+                && x.role != ''
+                && x.role != null)
+            .map(y => {
+                if (y.role != '') { return y.role};
+            });
+    
+        // Make unique
+        let relationshipRolesSet = new Set(this.relationshipRoles);
+        this.relationshipRoles = Array.from(relationshipRolesSet);
+
+        // Clear child filter
+        this.clickChildFilterClear();
+
     }
 
     showGraph(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
@@ -582,7 +743,7 @@ export class WidgetNavigatorComponent {
                          parent: parentRoleID
                         });
                 };
-                offset = offset + childrenFilteredRole.length - 1;
+                offset = offset + childrenFilteredRole.length;
             };
         };
 
@@ -642,8 +803,6 @@ export class WidgetNavigatorComponent {
             this.historyAll = [historyNew, ...this.historyAll];
         };
 
-        console.log('xx graphData', this.graphData);
-
         // Set H & W
         if (inputHeight != 0) {
             this.graphHeight = inputHeight;
@@ -701,6 +860,32 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickHistoryMinMax() {
+        // Click W object
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHistoryMinMax', '@Start');
+
+        this.showHistoryMax = !this.showHistoryMax;
+
+        // Refresh graph - take margin into account
+        this.graphWidth = this.graphWidthOriginal +
+            (this.showHistoryMax?  0  : 138) +  (this.showNetworkMax?  0  :  130);
+
+        this.showGraph(0, this.graphWidth)
+    }
+
+    clickNetworkMinMax() {
+        // Click W object
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkMinMax', '@Start');
+
+        this.showNetworkMax = !this.showNetworkMax;
+
+        // Refresh graph
+        this.graphWidth = this.graphWidthOriginal +
+            (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130)
+
+        this.showGraph(0, this.graphWidth)
+    }
+    
     dblclickDeleteHistory(index: number, historyID: number) {
         // Delete selected history row.  If current, move to first
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDeleteHistory', '@Start');
@@ -717,61 +902,6 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterOnWatchList', '@Start');
 
         this.watchListFiltered = !this.watchListFiltered;
-    }
-
-    clickNetwork(index: number, networkID: number) {
-        // Clicked a network
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetwork', '@Start');
-
-        // Remember the ID of the selected Network
-        this.selectedNetworkID = networkID;
-
-        // Create the ParentNodeType dropdown according to the network
-        this.dropdownParentNodeTypes = this.parentRelatedChildren.map(x => x.parentNodeType)
-        this.dropdownParentNodeTypes = ['', ...this.dropdownParentNodeTypes];
-
-        // Make unique
-        let parentNodeTypesSet = new Set(this.dropdownParentNodeTypes);
-        this.dropdownParentNodeTypes = Array.from(parentNodeTypesSet);
-
-        // Clear the rest & reset pointers
-        this.dropdownParentNodes = [];
-        this.dropdownRelationships = [];
-        this.parentNodeFilter = [];
-        this.childNodeFilter = [];
-
-        this.selectedParentNodeType = '';
-        this.selectedParentNode = '';
-        this.selectedRelationship = '';
-        this.selectedParentFilterID = -1;
-        this.selectedChildFilterID = -1;
-
-        this.history = this.historyAll
-            .filter(h => h.networkID == networkID)
-            .sort( (a,b) => {
-                if (a.id < b.id) {
-                    return 1;
-                };
-                if (a.id > b.id) {
-                    return -1;
-                };
-                return 0;
-            });
-
-        // Reset isSelected field
-        this.networks.forEach(n => {
-        if (n.id == networkID) {
-                n.isSelected = true;
-            } else {
-                n.isSelected = false;
-            };
-        });
-
-        // Click the first row
-        if (this.history.length > 0) {
-            this.clickHistory(0, this.history[0].id);
-        };
-
     }
 
     clickParentFilterClear() {
@@ -931,138 +1061,6 @@ export class WidgetNavigatorComponent {
     clickMenuExportGraph() {
         // Export the current graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuExportGraph', '@Start');
-
-    }
-
-    changeParentNodeType(ev: any) {
-        // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeParentNodeType', '@Start');
-
-        // Set selected Nod
-        this.selectedParentNodeType = ev.target.value;
-
-        // Set selected ParentNodeId
-        let parentNodeTypeIndex: number = this.dropdownParentNodeTypes.findIndex(
-            p => p == this.selectedParentNodeType
-        );
-
-        // Find watchlist for this NodeType
-        let watchListIndex: number = this.watchList.findIndex(x =>
-                x.userID == this.globalVariableService.currentUserID
-                &&
-                x.nodeType == this.selectedParentNodeType
-        );
-
-        // Set Dropdowns & reset selected
-        this.dropdownParentNodes = this.parentRelatedChildren
-            .filter(
-                x => x.parentNodeType == this.selectedParentNodeType
-            )
-            .slice(0, 100)
-            .map(x => x.parentNode);
-        this.dropdownRelationships = this.parentRelatedChildren
-            .filter(
-                x => x.parentNodeType == this.selectedParentNodeType
-            )
-            .slice(0, 100)
-            .map(x => x.relationship);
-
-        // Filter the Parent Nodes on parentFilter and watchlist
-        if (watchListIndex >= 0) {
-            this.dropdownParentNodes = this.dropdownParentNodes.filter(
-                x => this.watchList[watchListIndex].nodes.indexOf(x) >= 0
-            )
-        }
-        if (this.filteredParentNodes.length > 0) {
-            this.dropdownParentNodes = this.dropdownParentNodes.filter(
-                x => this.filteredParentNodes.indexOf(x) >= 0
-            );
-        };
-
-        // Make unique
-        let dropdownParentNodeSet = new Set(this.dropdownParentNodes);
-        this.dropdownParentNodes = Array.from(dropdownParentNodeSet);
-
-        let dropdownRelationshipSet = new Set(this.dropdownRelationships);
-        this.dropdownRelationships = Array.from(dropdownRelationshipSet);
-
-        // Add blank at start
-        this.dropdownParentNodes = ['', ...this.dropdownParentNodes];
-        this.dropdownRelationships = ['', ...this.dropdownRelationships];
-        this.relationshipRoles = [];
-        this.selectedParentNode = this.dropdownParentNodes[0];
-        this.selectedRelationship = this.dropdownRelationships[0];
-        this.childNodeFilter = [];
-        this.selectedChildFilterID = -1;
-
-    }
-
-    changeParentNode(ev: any) {
-        // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeParentNode', '@Start');
-
-        this.selectedParentNode = ev.target.value;
-
-        // Show the graph when all fields selected
-        if (this.selectedParentNodeType != ''
-            &&
-            this.selectedParentNode != ''
-            &&
-            this.selectedRelationship != '') {
-            this.showGraph();
-        };
-
-        // Determine relationship roles
-        this.relationshipRoles = this.parentRelatedChildren
-            .filter(x => x.parentNodeType == this.selectedParentNodeType
-                && x.parentNode == this.selectedParentNode
-                && x.relationship == this.selectedRelationship
-                && x.role != ''
-                && x.role != null)
-            .map(y => {
-                if (y.role != '') { return y.role};
-            });
-
-        // Make unique
-        let relationshipRolesSet = new Set(this.relationshipRoles);
-        this.relationshipRoles = Array.from(relationshipRolesSet);
-
-        // Clear child filter
-        this.clickChildFilterClear();
-    }
-
-    changeRelationship(ev: any) {
-        // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeRelationship', '@Start');
-
-        this.selectedRelationship = ev.target.value;
-
-        // Show the graph when all fields selected
-        if (this.selectedParentNodeType != ''
-            &&
-            this.selectedParentNode != ''
-            &&
-            this.selectedRelationship != '') {
-            this.showGraph();
-        };
-
-        // Determine relationship roles
-        this.relationshipRoles = this.parentRelatedChildren
-            .filter(x => x.parentNodeType == this.selectedParentNodeType
-                && x.parentNode == this.selectedParentNode
-                && x.relationship == this.selectedRelationship
-                && x.role != ''
-                && x.role != null)
-            .map(y => {
-                if (y.role != '') { return y.role};
-            });
-    
-        // Make unique
-        let relationshipRolesSet = new Set(this.relationshipRoles);
-        this.relationshipRoles = Array.from(relationshipRolesSet);
-
-        // Clear child filter
-        this.clickChildFilterClear();
 
     }
 
