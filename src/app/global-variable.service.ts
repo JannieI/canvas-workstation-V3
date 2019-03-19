@@ -1473,6 +1473,16 @@ export class GlobalVariableService {
                             reject('Error saving Draft Dashboard: '+ res.message);
                         };
 
+                        // Update Original D
+                        originalDashboardID
+                        // Remove Draft
+                        this.dashboards = this.dashboards.filter(
+                            d => d.id != draftDashboardID
+                        );
+                        this.dashboards = this.currentDashboards.filter(
+                            d => d.id != draftDashboardID
+                        );
+
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables saveDraftDashboard ends',
                                 this.concoleLogStyleForEndOfMethod,

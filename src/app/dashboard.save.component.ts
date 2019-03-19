@@ -15,11 +15,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 // Our Services
 import { GlobalVariableService}       from './global-variable.service';
 
-// Models
-import { Dashboard }                  from './models';
-
-// Other
-import { Subscription }               from 'rxjs';
 
 @Component({
     selector: 'dashboard-save',
