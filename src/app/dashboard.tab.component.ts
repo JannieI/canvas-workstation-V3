@@ -244,13 +244,14 @@ export class DashboardTabComponent {
             return;
         }
 
-        // Add new one
+        // Add new one, incre displayOrder
         let displayOrderNew: number = 0;
-        if (this.globalVariableService.currentDashboardTabs.length > 0) {
-            displayOrderNew = this.globalVariableService.currentDashboardTabs
-            [this.globalVariableService.currentDashboardTabs.length - 1].displayOrder + 1;
-        };
-        console.log('xx displayOrderNew', displayOrderNew)
+        this.globalVariableService.currentDashboardTabs.forEach(t => {
+            if (t.displayOrder > displayOrderNew) {
+                displayOrderNew = t.displayOrder + 1;
+            };
+        });
+
         if (this.newTab) {
             let newTab: DashboardTab = {
                 id: null,
