@@ -199,8 +199,6 @@ export class LandingComponent implements OnInit {
 				this.errorMessage = 'Error reading Database: ', err;
 			});
 
-		// Load System Settings
-		this.globalVariableService.getSystemSettings();
 	}
 
 	ngOnInit() {
