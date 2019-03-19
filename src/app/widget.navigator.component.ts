@@ -451,7 +451,9 @@ export class WidgetNavigatorComponent {
         this.selectedNetworkID = networkID;
 
         // Create the ParentNodeType dropdown according to the network
-        this.dropdownParentNodeTypes = this.parentRelatedChildren.map(x => x.parentNodeType)
+        this.dropdownParentNodeTypes = this.parentRelatedChildren
+            .filter(x => x.networkID == this.selectedNetworkID)
+            .map(x => x.parentNodeType)
         this.dropdownParentNodeTypes = ['', ...this.dropdownParentNodeTypes];
 
         // Make unique
