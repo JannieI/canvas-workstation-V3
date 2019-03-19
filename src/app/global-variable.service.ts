@@ -1664,7 +1664,7 @@ export class GlobalVariableService {
 
                         // Remove from D-Recent
                         this.dashboardsRecent = this.dashboardsRecent.filter(
-                            d => d.id != dashboardID
+                            d => d.dashboardID != dashboardID
                         );
 
                         // Remove from Ds

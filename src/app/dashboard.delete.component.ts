@@ -83,7 +83,6 @@ export class DashboardDeleteComponent implements OnInit {
                 if (res.length > 0) {
                     this.dashboard = res[0];
                 };
-                console.log('xx d', this.dashboard)
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -134,7 +133,7 @@ export class DashboardDeleteComponent implements OnInit {
             this.errorMessage = 'No access';
             return;
         };
-
+console.log('xx dashboard', this.dashboard)
         // Cannot remove if Draft present
         if (this.dashboard.draftID != null) {
             this.errorMessage = 'First discard the Draft for this Dashboard';
