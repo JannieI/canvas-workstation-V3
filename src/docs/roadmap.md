@@ -1606,6 +1606,10 @@ This document describes items for later versions of Canvas.
     - DS inspector: looks for DS that are identical / similar to spot duplication and copy - paste problems where DS are just duplicated and not re-used
     - Business Glossary must be super powerful to help preventabove problem
 
+    User Preferences:
+    ----------------
+    - consider which of these must be Behaviour Subjects, for example: currently, when SnapToGrid is changed on the Preferrences form, the Main Menu in app.ts does not update automatically.  Is this correct ?
+    
 
 **********************************************************************************
 **********************************************************************************

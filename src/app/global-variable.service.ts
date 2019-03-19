@@ -5484,7 +5484,7 @@ export class GlobalVariableService {
                 {inputValue});
         };
 
-        if (this.canvasSettings.snapToGrid) {
+        if (this.currentUser.snapToGrid) {
             if ( (inputValue % this.canvasSettings.gridSize) >= (this.canvasSettings.gridSize / 2)) {
                 inputValue = inputValue + this.canvasSettings.gridSize - (inputValue % this.canvasSettings.gridSize);
             } else {
