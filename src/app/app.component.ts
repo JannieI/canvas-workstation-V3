@@ -665,7 +665,7 @@ export class AppComponent implements OnInit {
                 );
 
                 // Snap to grid
-                this.snapToGrid = this.globalVariableService.canvasSettings.snapToGrid;
+                this.snapToGrid = this.globalVariableService.currentUser.preferenceSnapToGrid;
 
                 // Current user
                 this.currentUserID = this.globalVariableService.currentUser.userID;

@@ -73,6 +73,16 @@
                         title="Log Debug messages to the console (for Developers) (T/F)"
                         >
                 </div>
+                <div class="gridSettingsSnapToGridTitle">
+                    <b>Snap Grid?</b>
+                </div>
+                <div class="gridSettingsSnapToGrid">
+                    <input [(ngModel)]="preferenceSnapToGrid"
+                        type="checkbox"
+                        title="Snap To Grid (T/F)"
+                        >
+                </div>
+
                 <div class="gridSettingsRefreshLocalCache">
                     <button
                         type="button"
@@ -81,12 +91,6 @@
                         >
                         Refresh Local Cache
                     </button>
-                </div>
-                <div class="gridSettingsSnapToGrid">
-                    <input [(ngModel)]="preferenceSnapToGrid"
-                        type="checkbox"
-                        title="Snap To Grid (T/F)"
-                        >
                 </div>
 
 
