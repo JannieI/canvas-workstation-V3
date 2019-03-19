@@ -498,7 +498,7 @@ export class WidgetNavigatorComponent {
             this.clickHistory(0, this.history[0].id);
         } else {
             // Clear the graph
-            this.showGraph();
+            this.showSummary();
         };
 
     }
@@ -894,6 +894,11 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'showSummary', '@Start');
 
         // Set data
+        this.graphData = [];
+        this.graphData.push(
+            { "id": 1,
+             "name": this.selectedParentNode
+            });
         this.graphData.push({
             id: 2,
             name: "Companies (11 000)",
