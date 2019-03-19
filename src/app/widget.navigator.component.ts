@@ -489,6 +489,9 @@ export class WidgetNavigatorComponent {
         // Click the first row
         if (this.history.length > 0) {
             this.clickHistory(0, this.history[0].id);
+        } else {
+            // Clear the graph
+            this.showGraph();
         };
 
     }
@@ -504,6 +507,7 @@ export class WidgetNavigatorComponent {
         this.selectedParentNodeType = this.history[index].parentNodeType;
         this.selectedParentNode = this.history[index].parentNode;
         this.selectedRelationship = this.history[index].relationship;
+        this.showRoles = this.history[index].showRoles;
 
         // Set the history id and reset the isSelected field in history
         this.selectedHistoryID = historyID;
