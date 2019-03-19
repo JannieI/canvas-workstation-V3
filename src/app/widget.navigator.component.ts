@@ -444,7 +444,7 @@ export class WidgetNavigatorComponent {
         // Refresh graph - take margin into account
         this.graphWidth = this.graphWidthOriginal +
             (this.showHistoryMax?  0  : 138) +  (this.showNetworkMax?  0  :  130);
-        console.log('xx this.graphWidth', this.graphWidth)
+
         this.showGraph(0, this.graphWidth)
     }
 
@@ -457,7 +457,7 @@ export class WidgetNavigatorComponent {
         // Refresh graph
         this.graphWidth = this.graphWidthOriginal +
             (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130)
-        console.log('xx this.graphWidth', this.graphWidth)
+
         this.showGraph(0, this.graphWidth)
     }
 
@@ -521,7 +521,6 @@ export class WidgetNavigatorComponent {
         // Reduce visible list
         this.childDataVisible = this.childDataAll.slice(0, ( this.visibleNumberChildren - 1) );
 
-        console.log('xx datas', this.parentRelatedChildren, this.childDataAll, this.childDataVisible, this.visibleNumberChildren)
         // Show child page indicators
         this.showChildPageLeft = false;
         this.showChildPageRight = false;
@@ -681,8 +680,6 @@ export class WidgetNavigatorComponent {
         // TODO - decide if we need to update the Widget Data too ?
         // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
 
-        console.log('xx this.specification', this.specification)
-
         // Render in DOM
         let view = new View(parse(this.specification));
         view.addEventListener('click', function(event, item) {
@@ -772,7 +769,6 @@ export class WidgetNavigatorComponent {
             this.clickHistory(0, this.history[0].id);
         };
 
-        console.log('xx clickNetwork', this.dropdownParentNodeTypes, this.history)
     }
 
     clickParentFilterClear() {
@@ -968,15 +964,6 @@ export class WidgetNavigatorComponent {
             .slice(0, 100)
             .map(x => x.relationship);
 
-            // this.parentNodeFilter = [];
-            // this.selectedParentFilterID = -1;
-
-            console.log('xx pn rel', this.dropdownParentNodes, this.dropdownRelationships)
-        console.log('xx ',    this.selectedParentNodeType, this.parentRelatedChildren )
-        console.log('xx w', watchListIndex, this.watchList )
-        console.log('xx role', this.relationshipRoles)
-
-
         // Filter the Parent Nodes on parentFilter and watchlist
         if (watchListIndex >= 0) {
             this.dropdownParentNodes = this.dropdownParentNodes.filter(
@@ -995,8 +982,6 @@ export class WidgetNavigatorComponent {
 
         let dropdownRelationshipSet = new Set(this.dropdownRelationships);
         this.dropdownRelationships = Array.from(dropdownRelationshipSet);
-
-        console.log('xx pn rel END', this.dropdownParentNodes, this.dropdownRelationships)
 
         // Add blank at start
         this.dropdownParentNodes = ['', ...this.dropdownParentNodes];
@@ -1038,7 +1023,6 @@ export class WidgetNavigatorComponent {
         // Make unique
         let relationshipRolesSet = new Set(this.relationshipRoles);
         this.relationshipRoles = Array.from(relationshipRolesSet);
-        console.log('xx role', this.relationshipRoles)
 
         // Clear child filter
         this.clickChildFilterClear();
@@ -1071,15 +1055,8 @@ export class WidgetNavigatorComponent {
             });
     
         // Make unique
-        console.log('xx role', this.relationshipRoles,
-        this.parentRelatedChildren
-            .filter(x => x.parentNodeType == this.selectedParentNodeType
-                && x.parentNode == this.selectedParentNode
-                && x.relationship == this.selectedRelationship)
-        );
         let relationshipRolesSet = new Set(this.relationshipRoles);
         this.relationshipRoles = Array.from(relationshipRolesSet);
-        console.log('xx role', this.relationshipRoles)
 
         // Clear child filter
         this.clickChildFilterClear();
