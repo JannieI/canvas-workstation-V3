@@ -64,7 +64,7 @@ export class WidgetNavigatorComponent {
     childDataAll: any[] = [];                           // List of all children after filter
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
-    childFields: string[] = ['Sector', 'Country', 'City'];
+    childFields: string[] = ['Gender', 'Age'];
     childFilterErrorMessage: string = '';
     filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
     filterChildFieldName: string = '';
@@ -236,7 +236,7 @@ export class WidgetNavigatorComponent {
             parentNodeID: null,
             parentNodeType: 'Company',
             parentNode: 'Absa',
-            relationship: 'Shareholder',
+            relationship: 'Shareholders',
             childNodeType: 'Company',
             childNode: 'Nedbank',
             role: ''
@@ -248,7 +248,7 @@ export class WidgetNavigatorComponent {
             parentNodeID: null,
             parentNodeType: 'Company',
             parentNode: 'Absa',
-            relationship: 'Shareholder',
+            relationship: 'Shareholders',
             childNodeType: 'Person',
             childNode: 'John',
             role: ''
