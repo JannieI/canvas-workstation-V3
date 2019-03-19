@@ -305,6 +305,7 @@ export class CanvasUser {
     preferencePlaySound: boolean;                           // T/F - play a sound when showing a message on the StatusBar
     preferenceDebugSession: boolean;                        // T/F - switch on/off console.log, used by Developers & Deguggers
     preferenceAutoSync: boolean;                            // T/F - can auto sync
+    preferenceSnapToGrid: boolean;                          // T/F - snap Widgets to grid 
     preferenceShowOpenStartupMessage: boolean;              // T/F - show open startup msg
     preferenceShowOpenDataCombinationMessage: boolean;      // T/F - show msg on open combination form
     preferenceShowViewStartupMessage: boolean;              // T/F - show msg on open view form

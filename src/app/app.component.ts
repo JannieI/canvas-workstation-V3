@@ -664,6 +664,9 @@ export class AppComponent implements OnInit {
                     this.dontDisturb = ddb
                 );
 
+                // Snap to grid
+                this.snapToGrid = this.globalVariableService.canvasSettings.snapToGrid;
+
                 // Current user
                 this.currentUserID = this.globalVariableService.currentUser.userID;
 
