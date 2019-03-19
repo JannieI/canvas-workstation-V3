@@ -498,7 +498,7 @@ export class WidgetNavigatorComponent {
             this.clickHistory(0, this.history[0].id);
         } else {
             // Clear the graph
-            this.showSummary();
+            this.showSummary(index);
         };
 
     }
@@ -889,7 +889,7 @@ export class WidgetNavigatorComponent {
 
     }
 
-    showSummary() {
+    showSummary(networkIndex: number) {
         // Show a summary of the network
         this.globalFunctionService.printToConsole(this.constructor.name,'showSummary', '@Start');
 
@@ -930,7 +930,8 @@ export class WidgetNavigatorComponent {
             parent: 5
         });
 
-        this.graphTitle = 'Summary of WOWEB network';
+        this.graphTitle = 'Summary of ' + this.networks[networkIndex].name
+            + ' network';
 
         // Dimension it
         this.graphHeight = 400; //this.localWidget.graphLayers[0].graphSpecification.height;
