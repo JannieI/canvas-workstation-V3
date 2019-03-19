@@ -498,7 +498,7 @@ export class WidgetNavigatorComponent {
             this.clickHistory(0, this.history[0].id);
         } else {
             // Clear the graph
-            this.showSummary();
+            this.showGraph();
         };
 
     }
@@ -891,7 +891,213 @@ export class WidgetNavigatorComponent {
 
     showSummary() {
         // Show a summary of the network
+        this.globalFunctionService.printToConsole(this.constructor.name,'showSummary', '@Start');
+
+
+        // Re-create the Vega spec, and show the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
+
+        // Set the data, some unique
+        this.childDataAll = this.parentRelatedChildren
+            .filter(x => x.parentNodeType == this.selectedParentNodeType
+                && x.parentNode == this.selectedParentNode
+                && x.relationship == this.selectedRelationship)
+            .map(y => y.childNode);
+        this.relationshipRoles = this.parentRelatedChildren
+            .filter(x => x.parentNodeType == this.selectedParentNodeType
+                && x.parentNode == this.selectedParentNode
+                && x.relationship == this.selectedRelationship
+                && x.role != ''
+                && x.role != null)
+            .map(y => y.role);
+
+        // Make unique
+        let relationshipRolesSet = new Set(this.relationshipRoles);
+        this.relationshipRoles = Array.from(relationshipRolesSet);
+
+        // Filter If a Child filter is active
+        if (this.filteredChildNodes.length > 0) {
+            this.childDataAll = this.childDataAll
+                .filter(z => this.filteredChildNodes.indexOf(z) >= 0);
+        };
+
+        // Set title, etc
+        this.graphTitle = '';
+        if (this.selectedParentNodeType != ''
+            && this.selectedParentNode != ''
+            && this.selectedRelationship != '') {
+
+            this.graphTitle = this.showRoles?  '*'  :  '';
+            this.graphTitle = this.graphTitle + this.selectedRelationship + ' for ' 
+                + this.selectedParentNode;
+            if (this.filterChildFieldName != '') {
+                this.graphTitle = this.graphTitle + ', filtered on ' + this.filterChildFieldName;
+            };
+        };
+
+        // Reduce visible list
+        this.childDataVisible = this.childDataAll.slice(0, ( this.visibleNumberChildren - 1) );
+
+        // Show child page indicators
+        this.showChildPageLeft = false;
+        this.showChildPageRight = false;
+        if (this.childDataAll.length > this.visibleNumberChildren) {
+            this.showChildPageRight = true;
+        };
+
+        // Format the graphData
+        this.graphData = [];
+        if (!this.showRoles) {
+
+            // Parent
+            this.graphData.push(
+            { "id": 1,
+            "name": this.selectedParentNode
+            });
+
+            // Children
+            for (var i = 0; i < this.childDataVisible.length; i++) {
+                this.graphData.push({
+                    id: i + 2,
+                    name: this.childDataVisible[i],
+                    parent: 1
+                });
+            };
+        } else {
+
+            // Parent
+            this.graphData.push(
+                { "id": 1,
+                "name": this.selectedParentNode
+                });
+
+            // Offset
+            let offset: number = 2;
+
+            for (var roleID = 0; roleID < this.relationshipRoles.length; roleID++) {
+                let parentRoleID = offset;
+                this.graphData.push(
+                    { "id": parentRoleID,
+                    "name": this.relationshipRoles[roleID],
+                    parent: 1
+                    });
+
+                // Get list of Children for this role
+                let childrenFilteredRole: string[] = this.parentRelatedChildren
+                    .filter(x => x.parentNodeType == this.selectedParentNodeType
+                        && x.parentNode == this.selectedParentNode
+                        && x.relationship == this.selectedRelationship
+                        && x.role == this.relationshipRoles[roleID])
+                    .map(y => y.childNode);
+
+                // Increment with 1, which was added above
+                offset = offset + 1;
+                for (var childID = 0; childID < childrenFilteredRole.length; childID++) {
+                    this.graphData.push(
+                        { "id": childID + offset,
+                        "name": childrenFilteredRole[childID],
+                        parent: parentRoleID
+                        });
+                };
+                offset = offset + childrenFilteredRole.length;
+            };
+        };
+
+        // Add to History
+        // TODO - keep ParentNodeID of selected for here
+        // TODO - cater for more than 1 Filter; Parent and Child
+        let addToHistory: boolean = false;
+        let inputHeight: number = 0;
+        let inputWidth: number = 0;
+
+        if (addToHistory 
+            && this.selectedParentNodeType != ''
+            && this.selectedParentNode != ''
+            && this.selectedRelationship != '') {
+            let parentFilterFieldName: string = '';
+            let parentFilterOperator: string = '';
+            let parentFilterValue: string = '';
+            let childFilterFieldName: string = '';
+            let childFilterOperator: string = '';
+            let childFilterValue: string = '';
+            if (this.parentNodeFilter.length > 0) {
+                parentFilterFieldName = this.parentNodeFilter[0].field;
+                parentFilterOperator = this.parentNodeFilter[0].operator;
+                parentFilterValue = this.parentNodeFilter[0].value;
+
+            };
+            if (this.childNodeFilter.length > 0) {
+                childFilterFieldName = this.childNodeFilter[0].field;
+                childFilterOperator = this.childNodeFilter[0].operator;
+                childFilterValue = this.childNodeFilter[0].value;
+
+            };
+
+            // Deselect all history, and add a new one at the top
+            this.history.forEach(x => x.isSelected = false);
+            this.selectedHistoryID = this.history.length;
+            let historyNew: NavigatorHistory =
+                {
+                    id: this.history.length,
+                    text: this.graphTitle,
+                    networkID: this.selectedNetworkID,
+                    parentNodeID: null,
+                    parentNodeType: this.selectedParentNodeType,
+                    parentNode: this.selectedParentNode,
+                    relationship: this.selectedRelationship,
+                    showRoles: this.showRoles,
+                    parentNodeFiler:
+                        {
+                            id: 0,
+                            field: parentFilterFieldName,
+                            operator: parentFilterOperator,
+                            value: parentFilterValue
+                        },
+                    childNodeFiler:
+                        {
+                            id: 0,
+                            field: childFilterFieldName,
+                            operator: childFilterOperator,
+                            value: childFilterValue
+                        },
+                    isSelected: true
+                };
+            this.history = [historyNew, ...this.history];
+            this.historyAll = [historyNew, ...this.historyAll];
+        };
+
+        // Set H & W
+        if (inputHeight != 0) {
+            this.graphHeight = inputHeight;
+        } else {
+            if (this.localWidget.graphLayers.length > 0) {
+                this.graphHeight = this.localWidget.graphLayers[0].graphSpecification.height;
+            };
+        };
+        if (this.graphHeight < 100) {
+            this.graphHeight = 100;
+        };
+
+        // Set H & W
+        if (inputWidth != 0) {
+            this.graphWidth = inputWidth;
+        } else {
+            if (this.localWidget.graphLayers.length > 0) {
+                this.graphWidth = this.localWidget.graphLayers[0].graphSpecification.width;
+            };
+        };
+        if (this.graphWidth < 100) {
+            this.graphWidth = 100;
+        };
+
+
+
+
+
+
+
+
+
 
         // Set data
         this.graphData = [];
@@ -930,9 +1136,11 @@ export class WidgetNavigatorComponent {
             parent: 5
         });
 
+        this.graphTitle = 'Summary of WOWEB network';
+
         // Dimension it
-        this.graphHeight = this.localWidget.graphLayers[0].graphSpecification.height;
-        this.graphWidth = this.localWidget.graphLayers[0].graphSpecification.width;
+        this.graphHeight = 400; //this.localWidget.graphLayers[0].graphSpecification.height;
+        this.graphWidth = 400; //this.localWidget.graphLayers[0].graphSpecification.width;
 
         // Create specification
         this.specification = this.globalVariableService.createVegaSpec(
@@ -946,7 +1154,7 @@ export class WidgetNavigatorComponent {
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
 
-        console.log('xx summ', this.graphData, this.specification)
+        console.log('xx summ', this.graphHeight, this.graphWidth, this.graphData, this.specification)
         // TODO - decide if we need to update the Widget Data too ?
         // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
 
