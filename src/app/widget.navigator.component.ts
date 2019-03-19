@@ -582,15 +582,6 @@ export class WidgetNavigatorComponent {
 
         this.selectedParentNode = ev.target.value;
 
-        // Show the graph when all fields selected
-        if (this.selectedParentNodeType != ''
-            &&
-            this.selectedParentNode != ''
-            &&
-            this.selectedRelationship != '') {
-            this.showGraph();
-        };
-
         // Determine relationship roles
         this.relationshipRoles = [];
         this.showRoles = false;
@@ -610,6 +601,15 @@ export class WidgetNavigatorComponent {
 
         // Clear child filter
         this.clickChildFilterClear();
+
+        // Show the graph when all fields selected
+        if (this.selectedParentNodeType != ''
+            &&
+            this.selectedParentNode != ''
+            &&
+            this.selectedRelationship != '') {
+            this.showGraph();
+        };
     }
 
     changeRelationship(ev: any) {
