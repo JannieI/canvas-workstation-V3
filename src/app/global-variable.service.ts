@@ -1632,24 +1632,24 @@ export class GlobalVariableService {
                         // Remove where D used as template
                         this.dashboards.forEach(d => {
                             if (d.templateDashboardID == dashboardID) {
-                                d.templateDashboardID == 0;
+                                d.templateDashboardID = null;
                             };
                         });
                         this.currentDashboards.forEach(d => {
                             if (d.templateDashboardID == dashboardID) {
-                                d.templateDashboardID == 0;
+                                d.templateDashboardID = null;
                             };
                         });
 
                         // Remove where D was used for hyperlink
                         this.widgets.forEach(w => {
                             if (w.hyperlinkDashboardID == dashboardID) {
-                                w.hyperlinkDashboardID = 0;
+                                w.hyperlinkDashboardID = null;
                             };
                         });
                         this.currentWidgets.forEach(w => {
                             if (w.hyperlinkDashboardID == dashboardID) {
-                                w.hyperlinkDashboardID = 0;
+                                w.hyperlinkDashboardID = null;
                             };
                         });
 

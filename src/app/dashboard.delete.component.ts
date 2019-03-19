@@ -141,11 +141,12 @@ export class DashboardDeleteComponent implements OnInit {
         // Delete D, as all related Entities
         this.globalVariableService.deleteDashboardInfo(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-        ).then( () => this.formDashboardDeleteClosed.emit('Deleted') )
-        .catch(err => {
-            this.errorMessage = err.slice(0, 100);
-            console.error('Error in Dashboard.delete deleting: ' + err);
-        });
+        )
+            .then( () => this.formDashboardDeleteClosed.emit('Deleted') )
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Dashboard.delete deleting: ' + err);
+            });
     }
 
 }
