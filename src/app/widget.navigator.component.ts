@@ -442,6 +442,9 @@ export class WidgetNavigatorComponent {
         // Remember the ID of the selected Network
         this.selectedNetworkID = networkID;
 
+        // Reset data
+        this.graphData = [];
+
         // Create the ParentNodeType dropdown according to the network
         this.dropdownParentNodeTypes = this.parentRelatedChildren.map(x => x.parentNodeType)
         this.dropdownParentNodeTypes = ['', ...this.dropdownParentNodeTypes];
@@ -493,6 +496,9 @@ export class WidgetNavigatorComponent {
     clickHistory(index: number, historyID: number) {
         // Click a point in history, and show that graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHistory', '@Start');
+
+        // Reset data
+        this.graphData = [];
 
         // Set the history id, selected fields
         this.selectedParentNodeType = this.history[index].parentNodeType;
