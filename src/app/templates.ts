@@ -824,7 +824,6 @@ export const canvasSettings: CanvasSettings = {
     widgetsMinZindex: 50,
     widgetsMaxZindex: 59,
     gridSize: 3,
-    snapToGrid: true,
     printDefault: '',
     printSize: '',
     printLayout: '',
