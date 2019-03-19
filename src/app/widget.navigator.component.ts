@@ -682,9 +682,16 @@ export class WidgetNavigatorComponent {
         };
 
         // Set title, etc
-        this.graphTitle = this.selectedRelationship + ' for ' + this.selectedParentNode;
-        if (this.filterChildFieldName != '') {
-            this.graphTitle = this.graphTitle + ', filtered on ' + this.filterChildFieldName;
+        if (this.selectedParentNodeType != ''
+            && this.selectedParentNode != ''
+            && this.selectedRelationship != '') {
+
+            this.graphTitle = this.showRoles?  '*'  :  '';
+            this.graphTitle = this.graphTitle + this.selectedRelationship + ' for ' 
+                + this.selectedParentNode;
+            if (this.filterChildFieldName != '') {
+                this.graphTitle = this.graphTitle + ', filtered on ' + this.filterChildFieldName;
+            };
         };
 
         // Reduce visible list
