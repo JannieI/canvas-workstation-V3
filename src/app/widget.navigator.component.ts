@@ -558,7 +558,7 @@ export class WidgetNavigatorComponent {
             let offset: number = 2;
 
             for (var roleID = 0; roleID < this.relationshipRoles.length; roleID++) {
-                let parentRoleID = roleID + offset;
+                let parentRoleID = offset;
                 this.graphData.push(
                     { "id": parentRoleID,
                      "name": this.relationshipRoles[roleID],
@@ -582,7 +582,7 @@ export class WidgetNavigatorComponent {
                          parent: parentRoleID
                         });
                 };
-                offset = offset + childrenFilteredRole.length;
+                offset = offset + childrenFilteredRole.length - 1;
             };
         };
 
