@@ -227,7 +227,7 @@ export class WidgetNavigatorComponent {
                 relationship: 'Directors',
                 childNodeType: 'Person',
                 childNode: 'Anna',
-                role: 'Executive'
+                role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
@@ -239,7 +239,7 @@ export class WidgetNavigatorComponent {
             relationship: 'Shareholder',
             childNodeType: 'Company',
             childNode: 'Nedbank',
-            role: 'Executive'
+            role: ''
         }
         this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
@@ -251,7 +251,7 @@ export class WidgetNavigatorComponent {
             relationship: 'Shareholder',
             childNodeType: 'Person',
             childNode: 'John',
-            role: 'Executive'
+            role: ''
         }
         this.parentRelatedChildren.push(newParentRelatedChildren)
         newParentRelatedChildren =
@@ -558,9 +558,11 @@ export class WidgetNavigatorComponent {
             let offset: number = 2;
 
             for (var roleID = 0; roleID < this.relationshipRoles.length; roleID++) {
+                let parentRoleID = roleID + offset;
                 this.graphData.push(
-                    { "id": roleID + offset,
-                     "name": this.relationshipRoles[roleID]
+                    { "id": parentRoleID,
+                     "name": this.relationshipRoles[roleID],
+                     parent: 1
                     });
 
                 // Get list of Children for this role
@@ -576,7 +578,8 @@ export class WidgetNavigatorComponent {
                 for (var childID = 0; childID < childrenFilteredRole.length; childID++) {
                     this.graphData.push(
                         { "id": childID + offset,
-                         "name": childrenFilteredRole[childID]
+                         "name": childrenFilteredRole[childID],
+                         parent: parentRoleID
                         });
                 };
                 offset = offset + childrenFilteredRole.length;
