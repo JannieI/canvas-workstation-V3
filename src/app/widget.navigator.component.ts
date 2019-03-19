@@ -209,6 +209,7 @@ export class WidgetNavigatorComponent {
         let newParentRelatedChildren: NavigatorParentRelatedChild =
             {
                 id: 1,
+                networkID: 1,
                 parentNodeID: null,
                 parentNodeType: 'Company',
                 parentNode: 'Absa',
@@ -221,6 +222,7 @@ export class WidgetNavigatorComponent {
         newParentRelatedChildren =
             {
                 id: 2,
+                networkID: 1,
                 parentNodeID: null,
                 parentNodeType: 'Company',
                 parentNode: 'Absa',
@@ -233,6 +235,7 @@ export class WidgetNavigatorComponent {
         newParentRelatedChildren =
         {
             id: 3,
+            networkID: 1,
             parentNodeID: null,
             parentNodeType: 'Company',
             parentNode: 'Absa',
@@ -245,6 +248,7 @@ export class WidgetNavigatorComponent {
         newParentRelatedChildren =
         {
             id: 4,
+            networkID: 1,
             parentNodeID: null,
             parentNodeType: 'Company',
             parentNode: 'Absa',
@@ -257,6 +261,7 @@ export class WidgetNavigatorComponent {
         newParentRelatedChildren =
         {
             id: 5,
+            networkID: 1,
             parentNodeID: null,
             parentNodeType: 'Person',
             parentNode: 'Koos',
@@ -269,6 +274,7 @@ export class WidgetNavigatorComponent {
         newParentRelatedChildren =
         {
             id: 6,
+            networkID: 1,
             parentNodeID: null,
             parentNodeType: 'Person',
             parentNode: 'Koos',
@@ -281,6 +287,7 @@ export class WidgetNavigatorComponent {
         newParentRelatedChildren =
         {
             id: 7,
+            networkID: 1,
             parentNodeID: null,
             parentNodeType: 'Person',
             parentNode: 'Koos',
@@ -293,6 +300,7 @@ export class WidgetNavigatorComponent {
         newParentRelatedChildren =
         {
             id: 8,
+            networkID: 1,
             parentNodeID: null,
             parentNodeType: 'Person',
             parentNode: 'Koos',
@@ -682,6 +690,7 @@ export class WidgetNavigatorComponent {
         };
 
         // Set title, etc
+        this.graphTitle = '';
         if (this.selectedParentNodeType != ''
             && this.selectedParentNode != ''
             && this.selectedRelationship != '') {

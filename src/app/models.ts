@@ -1727,6 +1727,7 @@ export class NavigatorNetwork {
 
 export class NavigatorParentRelatedChild {
     id: number; 
+    networkID: number;
     parentNodeID: number; 
     parentNodeType: string; 
     parentNode: string; 
