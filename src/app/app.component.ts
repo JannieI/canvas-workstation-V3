@@ -6799,7 +6799,13 @@ export class AppComponent implements OnInit {
         };
 
         this.snapToGrid = !this.snapToGrid;
-        this.globalVariableService.canvasSettings.snapToGrid = this.snapToGrid;
+        this.globalVariableService.updateCurrentUserProperties(
+            {
+                preferenceSnapToGrid: this.snapToGrid
+            }
+        );
+
+        // this.globalVariableService.canvasSettings.snapToGrid = this.snapToGrid;
         this.menuOptionClickPostAction();
     }
 
