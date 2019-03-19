@@ -1662,6 +1662,11 @@ export class GlobalVariableService {
                             // TODO - improve this to not update ALL users
                         });
 
+                        // Remove from D-Recent 
+                        this.dashboardsRecent = this.dashboardsRecent.filter(
+                            d => d.id != dashboardID
+                        );
+                        
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables deleteDashboardInfo ends',
                                 this.concoleLogStyleForEndOfMethod,
