@@ -245,6 +245,12 @@ export class DashboardTabComponent {
         }
 
         // Add new one
+        let displayOrderNew: number = 0;
+        if (this.globalVariableService.currentDashboardTabs.length > 0) {
+            displayOrderNew = this.globalVariableService.currentDashboardTabs
+            [this.globalVariableService.currentDashboardTabs.length - 1].displayOrder + 1;
+        };
+        console.log('xx displayOrderNew', displayOrderNew)
         if (this.newTab) {
             let newTab: DashboardTab = {
                 id: null,
@@ -252,7 +258,7 @@ export class DashboardTabComponent {
                 dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 name: this.name,
                 description: this.description,
-                displayOrder: this.globalVariableService.currentDashboardTabs.length + 1,
+                displayOrder: displayOrderNew,
                 backgroundColor: this.backgroundColor,
                 backgroundColorName: this.backgroundColorName,
                 color: this.color,
