@@ -362,9 +362,10 @@ export class AppComponent implements OnInit {
     showModalDataOverview: boolean = false;
     showModalDataRefreshOnce: boolean = false;
     showModalDataRefreshRepeat: boolean = false;
+    showModalDataSchedule: boolean = false;
+    showModalDataScheduleLog: boolean = false;
     showModalDataScheduleEdit: boolean = false;
     showModalDataShare: boolean = false;
-    showModalDataSchedule: boolean = false;
     showModalDataSummary: boolean = false;
     showModalDataTransformation: boolean = false;
     showModalDataUsage: boolean = false;
@@ -1825,15 +1826,6 @@ export class AppComponent implements OnInit {
         this.showModalDataUsage = false;
     }
 
-    handleCloseDataDatasourceScheduleEdit(action: string) {
-        // Handle close of Datasource Schedule Edit
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceScheduleEdit', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalDataScheduleEdit = false;
-    }
-
     handleCloseDataDatasourceSchedule(action: string) {
         // Handle close of Datasource Schedules
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceSchedule', '@Start');
@@ -1841,6 +1833,24 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDataSchedule = false;
+    }
+
+    handleCloseDataDatasourceScheduleLog(action: string) {
+        // Handle close of Datasource ScheduleLogs
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceScheduleLog', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataScheduleLog = false;
+    }
+
+    handleCloseDataDatasourceScheduleEdit(action: string) {
+        // Handle close of Datasource Schedule Edit
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceScheduleEdit', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataScheduleEdit = false;
     }
 
     handleCloseDataDatasourceRefreshOnce(action: string) {
