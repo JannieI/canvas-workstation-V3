@@ -375,9 +375,10 @@ import { GlobalVariableService }      from './global-variable.service';
             // };
             // this.localWidget.id = newID;
 
-            this.localWidget.dashboardTabIDs.push(this.globalVariableService.
-                currentDashboardInfo.value.currentDashboardTabID
-            );
+            // ** TABIDS
+            // this.localWidget.dashboardTabIDs.push(this.globalVariableService.
+            //     currentDashboardInfo.value.currentDashboardTabID
+            // );
 
             // this.globalVariableService.widgets.push(this.localWidget);
             // this.globalVariableService.currentWidgets.push(this.localWidget);
