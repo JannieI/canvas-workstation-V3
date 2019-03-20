@@ -1451,12 +1451,29 @@ export class GlobalVariableService {
             // Clear related Actions in Memory
             this.actions = this.actions.filter(act => act.dashboardID != draftDashboardID);
 
-            // TODO - Fix / Improve this with single Caching routine
-            // For now, just make the core Dashboard entities dirty
+            // Reset all the cached to Dirty
+            // TODO - make this faster as and when required
             this.isDirtyDashboards = true;
             this.isDirtyDashboardTabs = true;
             this.isDirtyWidgets = true;
             this.isDirtyWidgetCheckpoints = true;
+
+            console.log('%c    Global-Variables getResource - start resetting cache in Memory & Disc to dirty: ',
+                this.concoleLogStyleForCaching);
+            for (var i = 0; i < this.dataCachingTable.length; i++) {
+
+                // Update dataCaching in Memory
+                this.dataCachingTable[i].localExpiryDateTime = new Date();
+                
+                // Update dataCaching on Disc
+                this.dbDataCachingTable.table("localDataCachingTable")
+                    .bulkPut(this.dataCachingTable)
+                    .catch(err => {
+                        console.error('Error in     Global-Variables saveDraftDashboard', err)
+                        reject(err.message)
+                    });
+    
+            };
 
             // Perform steps (business logic in Server)
             const headers = new HttpHeaders()
