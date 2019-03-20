@@ -207,7 +207,6 @@ export class GlobalVariableService {
 
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
-    isDirtyDashboardSnapshots: boolean = true;
     isDirtyDatasets: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasources: boolean = true;
