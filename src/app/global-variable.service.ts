@@ -214,7 +214,6 @@ export class GlobalVariableService {
     isDirtyDatasets: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasources: boolean = true;
-    isDirtyPaletteButtonsSelected: boolean = true;
     isDirtyWidgetCheckpoints: boolean = true;
     isDirtyWidgets: boolean = true;
 
