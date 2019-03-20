@@ -3584,7 +3584,8 @@ export class GlobalVariableService {
         copiedWidget.dashboardTabID = this.currentDashboardInfo.value.currentDashboardTabID;
 
         // Assume this is a NEW W, so forget about tabs that original belongs
-        copiedWidget.dashboardTabIDs = [copiedWidget.dashboardTabID];
+        // ** TABIDS
+        // copiedWidget.dashboardTabIDs = [copiedWidget.dashboardTabID];
         copiedWidget.isSelected = false;
         copiedWidget.containerLeft = 120;
         copiedWidget.containerTop = 120;
