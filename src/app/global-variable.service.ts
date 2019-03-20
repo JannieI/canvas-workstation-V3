@@ -1385,6 +1385,7 @@ export class GlobalVariableService {
                             };
                         };
 
+                        this.dashboardsRecent = this.dashboardsRecent.filter(x => x.dashboardID != draftDashboardID)
                         this.dashboards = this.dashboards.filter(x => x.id != draftDashboardID)
                         this.dashboardTabs = this.dashboardTabs.filter(x => x.dashboardID != draftDashboardID)
                         this.widgets = this.widgets.filter(x => x.dashboardID != draftDashboardID)
@@ -1442,7 +1443,7 @@ export class GlobalVariableService {
 
             // Reset all the cached to Dirty
             // TODO - make this faster as and when required
-            console.log('%c    Global-Variables getResource - start resetting cache in Memory & Disc to dirty: ',
+            console.log('%c    Global-Variables getResource - start resetting cache in Memory & Disc to dirty ...',
                 this.concoleLogStyleForCaching);
             for (var i = 0; i < this.dataCachingTable.length; i++) {
 
