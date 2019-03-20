@@ -486,9 +486,10 @@ import { GlobalVariableService }      from './global-variable.service';
             // };
             // this.localWidget.id = newID;
 
-            this.localWidget.dashboardTabIDs.push(this.globalVariableService.
-                currentDashboardInfo.value.currentDashboardTabID
-            );
+            // ** TABIDS
+            // this.localWidget.dashboardTabIDs.push(this.globalVariableService.
+            //     currentDashboardInfo.value.currentDashboardTabID
+            // );
             this.localWidget.datasourceID = this.selectedDatasourceID;
             this.localWidget.datasetID = this.selectedDatasetID;
 
