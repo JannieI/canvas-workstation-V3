@@ -708,9 +708,15 @@ export class AppComponent implements OnInit {
                         };
 
                         // Add the given one, if [TabID] has current TabID
-                        if (newW.dashboardTabIDs.indexOf(
+                        // ** TABIDS
+                        // if (newW.dashboardTabIDs.indexOf(
+                        //     this.globalVariableService.currentDashboardInfo.value.
+                        //     currentDashboardTabID) >= 0) {
+                        //     this.currentWidgets.push(newW);
+                        // };
+                        if (newW.dashboardTabID ==
                             this.globalVariableService.currentDashboardInfo.value.
-                            currentDashboardTabID) >= 0) {
+                            currentDashboardTabID) {
                             this.currentWidgets.push(newW);
                         };
 

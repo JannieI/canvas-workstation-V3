@@ -517,7 +517,7 @@ This document describes items for later versions of Canvas.
 
 
     Canvas Server:
-    ----
+    -------------
     - consider a REST API for Canvas Server Accounts => other users can add, delete stuff ...
     - consider Guest login - can do 1 private Dashboard, access to files ?  Is this useful?
     - Word and Pdf readers
