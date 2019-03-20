@@ -211,7 +211,6 @@ export class GlobalVariableService {
     isDirtyCanvasSettings: boolean = true;
     isDirtyCanvasUsers: boolean = true;
     isDirtyDashboardSnapshots: boolean = true;
-    isDirtyDashboardTabs: boolean = true;
     isDirtyDatasets: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasources: boolean = true;
