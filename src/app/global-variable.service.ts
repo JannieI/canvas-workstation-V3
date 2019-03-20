@@ -210,7 +210,6 @@ export class GlobalVariableService {
     isDirtyCanvasGroups: boolean = true;
     isDirtyCanvasSettings: boolean = true;
     isDirtyCanvasUsers: boolean = true;
-    isDirtyDashboards: boolean = true;
     isDirtyDashboardSnapshots: boolean = true;
     isDirtyDashboardTabs: boolean = true;
     isDirtyDatasets: boolean = true;
@@ -1453,11 +1452,6 @@ export class GlobalVariableService {
 
             // Reset all the cached to Dirty
             // TODO - make this faster as and when required
-            this.isDirtyDashboards = true;
-            this.isDirtyDashboardTabs = true;
-            this.isDirtyWidgets = true;
-            this.isDirtyWidgetCheckpoints = true;
-
             console.log('%c    Global-Variables getResource - start resetting cache in Memory & Disc to dirty: ',
                 this.concoleLogStyleForCaching);
             for (var i = 0; i < this.dataCachingTable.length; i++) {
@@ -1790,7 +1784,6 @@ export class GlobalVariableService {
         if (
             (this.currentDashboards.length == 0
             ||  this.dashboards.length == 0)
-            ||  (this.isDirtyDashboards)
             ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
                 this.getResource('dashboards')
