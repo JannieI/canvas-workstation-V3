@@ -3498,10 +3498,16 @@ export class GlobalVariableService {
 
                     // Filter the widgets
                     // TODO - combine with getWidget('..', FILTER)
+                    // ** TABIDS
+                    // this.currentWidgets = res.filter(
+                    //     i => (i.dashboardID == dashboardID)
+                    //             &&
+                    //             (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
+                    // );
                     this.currentWidgets = res.filter(
                         i => (i.dashboardID == dashboardID)
                                 &&
-                                (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
+                                (i.dashboardTabID == dashboardTabID)
                     );
 
                     if (this.sessionDebugging) {
