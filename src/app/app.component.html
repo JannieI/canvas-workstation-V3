@@ -4706,8 +4706,15 @@
 <!-- Modal: Datasource Schedule -->
 <data-datasourceSchedule
     *ngIf="showModalDataSchedule"
-    (formDataDatasourceScheduleClosed)="handleCloseDataDatasourceSchedule($event)">Load Datasource Schedule ...
+    (formDataDatasourceScheduleClosed)="handleCloseDataDatasourceSchedule($event)">Load Datasource Schedules ...
 </data-datasourceSchedule>
+
+
+<!-- Modal: Datasource Schedule Log -->
+<data-datasourceSchedule-log
+    *ngIf="showModalDataScheduleLog"
+    (formDataDatasourceScheduleLogClosed)="handleCloseDataDatasourceScheduleLog($event)">Load Datasource Schedule Log ...
+</data-datasourceSchedule-log>
 
 
 <!-- Modal: Datasource Refresh Once -->
