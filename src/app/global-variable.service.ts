@@ -209,7 +209,6 @@ export class GlobalVariableService {
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     isDirtyDatasets: boolean = true;
     isDirtyDatasources: boolean = true;
-    isDirtyWidgetCheckpoints: boolean = true;
 
 
     // Global vars that guide all interactions
@@ -3791,7 +3790,7 @@ export class GlobalVariableService {
         };
 
         // Refresh from source at start, or if dirty
-        if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
+        if (this.widgetCheckpoints.length == 0) {
             return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
                 this.getResource('widgetCheckpoints')
                     .then(res => {
