@@ -6061,40 +6061,41 @@ export class AppComponent implements OnInit {
         this.showModalSlicerEditor = true;
     }
 
-    clickMenuWidgetTablist() {
-        // Open the list of tabs to which the selected W belongs
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetTablist', '@Start');
+    // ** TABIDS
+    // clickMenuWidgetTablist() {
+    //     // Open the list of tabs to which the selected W belongs
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetTablist', '@Start');
 
-        // Has to be in editMode
-        if (!this.editMode) {
-            this.showMessage(
-                this.globalVariableService.canvasSettings.notInEditModeMsg,
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
+    //     // Has to be in editMode
+    //     if (!this.editMode) {
+    //         this.showMessage(
+    //             this.globalVariableService.canvasSettings.notInEditModeMsg,
+    //             'StatusBar',
+    //             'Warning',
+    //             3000,
+    //             ''
+    //         );
+    //         return;
+    //     };
 
-        if (!this.checkForOnlyOneWidget()) {
-            return;
-        };
+    //     if (!this.checkForOnlyOneWidget()) {
+    //         return;
+    //     };
 
-        if (!this.menuOptionClickPreAction()) {
-            return;
-        };
+    //     if (!this.menuOptionClickPreAction()) {
+    //         return;
+    //     };
 
-        // Send list of current Tabs it belongs to
-        this.currentWidgets.forEach(w => {
-            if (w.isSelected) {
-                this.currentWidgetDashboardTabIDs = w.dashboardTabIDs;
-            }
-        });
+    //     // Send list of current Tabs it belongs to
+    //     this.currentWidgets.forEach(w => {
+    //         if (w.isSelected) {
+    //             this.currentWidgetDashboardTabIDs = w.dashboardTabIDs;
+    //         }
+    //     });
 
-        this.showModalWidgetTablist = true;
+    //     this.showModalWidgetTablist = true;
 
-    }
+    // }
 
     clickMenuWidgetDescription(
         widgetID: number = null,
