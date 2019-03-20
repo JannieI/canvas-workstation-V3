@@ -1604,30 +1604,31 @@ export class AppComponent implements OnInit {
         this.showModalWidgetEditor = false;
     }
 
-    handleCloseWidgetTablist(tabIDs: number[]) {
-        // Handle close of Tablist form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetTablist', '@Start');
+    // ** TABIDS
+    // handleCloseWidgetTablist(tabIDs: number[]) {
+    //     // Handle close of Tablist form
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetTablist', '@Start');
 
-        // Close without change returns null
-        if (tabIDs != null) {
+    //     // Close without change returns null
+    //     if (tabIDs != null) {
 
-            // Work on selected W
-            this.currentWidgets.forEach(w => {
-                if (w.isSelected) {
+    //         // Work on selected W
+    //         this.currentWidgets.forEach(w => {
+    //             if (w.isSelected) {
 
-                    // Update local, and global Ws
-                    w.dashboardTabIDs = tabIDs;
-                    this.globalVariableService.widgetReplace(w);
-                    this.globalVariableService.changedWidget.next(w);
-                }
-            });
+    //                 // Update local, and global Ws
+    //                 w.dashboardTabIDs = tabIDs;
+    //                 this.globalVariableService.widgetReplace(w);
+    //                 this.globalVariableService.changedWidget.next(w);
+    //             }
+    //         });
 
-        };
+    //     };
 
-        this.menuOptionClickPostAction();
+    //     this.menuOptionClickPostAction();
 
-        this.showModalWidgetTablist = false;
-    }
+    //     this.showModalWidgetTablist = false;
+    // }
 
     handleCloseWidgetDescription(tabIDs: number[]) {
         // Handle close of Description form
