@@ -97,8 +97,12 @@ export class DashboardTreeviewComponent implements OnInit {
                                             });
 
                                             // Get widgets for this T
+                                            // ** TABIDS
+                                            // let widgetsTab: Widget[] = this.widgets.filter(
+                                            //     w => w.dashboardTabIDs.indexOf(tabs[i].id)>=0
+                                            // );
                                             let widgetsTab: Widget[] = this.widgets.filter(
-                                                w => w.dashboardTabIDs.indexOf(tabs[i].id)>=0
+                                                w => w.dashboardTabID == tabs[i].id
                                             );
 
                                             let dsIDs: number[] = [];
