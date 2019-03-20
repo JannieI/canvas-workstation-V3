@@ -238,7 +238,7 @@ export const widgetTemplate: Widget =
         "isLocked": false,
         "dashboardID": null,
         "dashboardTabID": null,
-        "dashboardTabIDs": [],
+        // "dashboardTabIDs": [],    // ** TABIDS
         "id": null,
         "originalID": null,
         "name": "New Widget",
