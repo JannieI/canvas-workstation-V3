@@ -1,0 +1,87 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose('Close')">
+                    <b>X</b>
+                </button>
+
+                <div class="gridTitle">
+                    <b>Audit Trail of user actions.</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;">
+                                This form shows an Audit trail of all actions created by users.
+                                An action is stored when a user makes a changes to a Dashboard
+                                or to a Widget.  Actions are kept until pruned by the
+                                administrator.  Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+
+                </div>
+
+                <div class="gridErrorMessage">
+                    {{ errorMessage }}
+                </div>
+
+                <div class="gridTable">
+                    <clr-datagrid>
+                        <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardID'">DashboardID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">TabID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'widgetID'">WidgetID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">Object</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">ActionType</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">Action</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dashboardTabID'">Description</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'userID'">User ID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'keyChanged'">keyChanged</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'oldValue'">oldValue</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'newValue'">newValue</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'changedOn'">changedOn</clr-dg-column>
+
+                        <clr-dg-row *clrDgItems="let row of canvasAuditTrail;
+                            let i = index"
+                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                            (click)="clickRow(i, row.id)"
+                            >
+                            <clr-dg-cell>{{ row.id }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.dashboardID }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.dashboardTabID }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.widgetID }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.objectType }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.actionType }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.action }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.userID }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.keyChanged }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.oldValue }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.newValue }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.changedOn }}</clr-dg-cell>
+                        </clr-dg-row>
+
+                        <clr-dg-footer>
+                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                            of {{pagination.totalItems}} rows
+                            <clr-dg-pagination #pagination [clrDgPageSize]="9"></clr-dg-pagination>
+                        </clr-dg-footer>
+
+                    </clr-datagrid>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
