@@ -4391,8 +4391,16 @@
 <dashboard-schedule
     class="formPopupDashboard"
     *ngIf="showModalDashboardSchedule"
-    (formDashboardScheduleClosed)="handleCloseDashboardSchedule($event)">Load Show all Dashboard Schedule ...
+    (formDashboardScheduleClosed)="handleCloseDashboardSchedule($event)">Load Show all Dashboard Schedules ...
 </dashboard-schedule>
+
+
+<!-- Modal: Dashboard Show all Schedule Logs -->
+<dashboard-schedule-log
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardScheduleLog"
+    (formDashboardScheduleClosed)="handleCloseDashboardScheduleLog($event)">Load Show all Dashboard Schedule Logs ...
+</dashboard-schedule-log>
 
 
 <!-- Modal: Manage current Dashboard Schedule -->
