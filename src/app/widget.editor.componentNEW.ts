@@ -1097,8 +1097,9 @@ export interface dataSchemaInterface {
                 };
 
                 // Update local and global vars
-                this.localWidget.dashboardTabIDs.push(this.globalVariableService.
-                    currentDashboardInfo.value.currentDashboardTabID);
+                // ** TABIDS
+                // this.localWidget.dashboardTabIDs.push(this.globalVariableService.
+                //     currentDashboardInfo.value.currentDashboardTabID);
 
                 this.globalVariableService.addResource('widgets', this.localWidget)
                     .then(res => {
