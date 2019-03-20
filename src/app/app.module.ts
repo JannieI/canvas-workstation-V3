@@ -146,7 +146,8 @@ import { GroupsComponent }                      from './groups.component';
 import { SystemSettingsComponent }              from './systemsettings.component';
 import { LogoutComponent}                       from './logout.component';
 
-import { WidgetTablistComponent }               from './widget.tablist.component';
+// ** TABIDS
+// import { WidgetTablistComponent }               from './widget.tablist.component';
 
 import { PipeFilterDSType }                     from './pipe.filter.component';
 
@@ -298,7 +299,8 @@ import { StatusbarComponent }         from './statusbar.component';
         PipeFilterDSType,
         StatusbarComponent,
 
-        WidgetTablistComponent,
+        // ** TABIDS
+        // WidgetTablistComponent,
 
 
     ],
