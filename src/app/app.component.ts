@@ -324,6 +324,7 @@ export class AppComponent implements OnInit {
     showModalDashboardSave: boolean = false;
     showModalDashboardSaveAs: boolean = false;
     showModalDashboardSchedule: boolean = false;
+    showModalDashboardScheduleLog:boolean = false;
     showModalDashboardScheduleEdit: boolean = false;
     showModalDashboardShare: boolean = false;
     showModalDashboardSnapshots: boolean = false;
@@ -3563,6 +3564,17 @@ export class AppComponent implements OnInit {
         };
 
         this.showModalDashboardSchedule = true;
+    }
+
+    clickMenuDashboardScheduleLog() {
+        // Manage Schedule logs for the current D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardScheduleLog', '@Start');
+
+        if (!this.menuOptionClickPreAction()) {
+            return;
+        };
+
+        this.showModalDashboardScheduleLog = true;
     }
 
     clickMenuDashboardScheduleEdit() {
