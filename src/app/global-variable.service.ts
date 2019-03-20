@@ -1385,15 +1385,35 @@ export class GlobalVariableService {
                             };
                         };
 
-                        this.dashboardsRecent = this.dashboardsRecent.filter(x => x.dashboardID != draftDashboardID)
-                        this.dashboards = this.dashboards.filter(x => x.id != draftDashboardID)
-                        this.dashboardTabs = this.dashboardTabs.filter(x => x.dashboardID != draftDashboardID)
-                        this.widgets = this.widgets.filter(x => x.dashboardID != draftDashboardID)
-                        this.widgetCheckpoints = this.widgetCheckpoints.filter(x => x.dashboardID != draftDashboardID)
-                        this.currentDashboards = this.currentDashboards.filter(x => x.id != draftDashboardID)
-                        this.currentDashboardTabs = this.currentDashboardTabs.filter(x => x.dashboardID != draftDashboardID)
-                        this.currentWidgets = this.currentWidgets.filter(x => x.dashboardID != draftDashboardID)
-                        this.currentWidgetCheckpoints = this.currentWidgetCheckpoints.filter(x => x.dashboardID != draftDashboardID)
+                    //     this.dashboardsRecent = this.dashboardsRecent.filter(x => x.dashboardID != draftDashboardID)
+                    //     this.dashboards = this.dashboards.filter(x => x.id != draftDashboardID)
+                    //     this.dashboardTabs = this.dashboardTabs.filter(x => x.dashboardID != draftDashboardID)
+                    //     this.widgets = this.widgets.filter(x => x.dashboardID != draftDashboardID)
+                    //     this.widgetCheckpoints = this.widgetCheckpoints.filter(x => x.dashboardID != draftDashboardID)
+                    //     this.currentDashboards = this.currentDashboards.filter(x => x.id != draftDashboardID)
+                    //     this.currentDashboardTabs = this.currentDashboardTabs.filter(x => x.dashboardID != draftDashboardID)
+                    //     this.currentWidgets = this.currentWidgets.filter(x => x.dashboardID != draftDashboardID)
+                    //     this.currentWidgetCheckpoints = this.currentWidgetCheckpoints.filter(x => x.dashboardID != draftDashboardID)
+                    // console.log('xx this.dashboardTabs', this.dashboardTabs)
+
+                    console.log('%c    Global-Variables discardDashboard - start resetting cache in Memory & Disc to dirty ...',
+                        this.concoleLogStyleForCaching);
+                    for (var i = 0; i < this.dataCachingTable.length; i++) {
+        
+                        // Update dataCaching in Memory
+                        this.dataCachingTable[i].localExpiryDateTime = new Date();
+                        
+                        // Update dataCaching on Disc
+                        this.dbDataCachingTable.table("localDataCachingTable")
+                            .bulkPut(this.dataCachingTable)
+                            .catch(err => {
+                                console.error('Error in     Global-Variables saveDraftDashboard', err)
+                                reject(err.message)
+                            });
+            
+                    };
+        
+    
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables discardDashboard ends',
@@ -1443,7 +1463,7 @@ export class GlobalVariableService {
 
             // Reset all the cached to Dirty
             // TODO - make this faster as and when required
-            console.log('%c    Global-Variables getResource - start resetting cache in Memory & Disc to dirty ...',
+            console.log('%c    Global-Variables saveDraftDashboard - start resetting cache in Memory & Disc to dirty ...',
                 this.concoleLogStyleForCaching);
             for (var i = 0; i < this.dataCachingTable.length; i++) {
 
