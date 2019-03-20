@@ -215,7 +215,6 @@ export class GlobalVariableService {
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasources: boolean = true;
     isDirtyWidgetCheckpoints: boolean = true;
-    isDirtyWidgets: boolean = true;
 
 
     // Global vars that guide all interactions
@@ -3445,7 +3444,6 @@ export class GlobalVariableService {
                         };
                     });
 
-                    this.isDirtyWidgets = false;
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                     if (this.sessionDebugging) {
