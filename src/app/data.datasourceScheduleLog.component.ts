@@ -1,5 +1,5 @@
 /*
- * Shows all Schedules in the system
+ * Shows all Schedule Logs in the system
  */
 
 // Angular
@@ -17,7 +17,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Datasource }                 from './models';
-import { DatasourceSchedule }         from './models';
+import { DatasourceScheduleLog }      from './models';
 
 @Component({
     selector: 'data-datasourceSchedule-log',
@@ -41,8 +41,7 @@ export class DataDatasourceScheduleLogComponent implements OnInit {
 
     }
 
-    datasourceSchedules: DatasourceSchedule[];
-    datasources: Datasource[];
+    datasourceScheduleLogs: DatasourceScheduleLog[];
     errorMessage: string = '';
     selectedRow: number = 0;
 
@@ -56,17 +55,11 @@ export class DataDatasourceScheduleLogComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getResource('datasources')
-            .then(data => this.datasources = data)
+        this.globalVariableService.getResource('datasourceScheduleLogs')
+            .then(data => this.datasourceScheduleLogs = data)
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Datasource.schedules reading datasources: ' + err);
-            });
-        this.globalVariableService.getResource('datasourceSchedules')
-            .then(data => this.datasourceSchedules = data)
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Datasource.schedules reading datasourceSchedules: ' + err);
+                console.error('Error in Datasource.schedules reading datasourceScheduleLogs: ' + err);
             });
     }
 
