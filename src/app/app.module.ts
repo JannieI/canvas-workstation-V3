@@ -38,6 +38,7 @@ import { DashboardTagsComponent }     from './dashboard.tags.component';
 import { DashboardThemeComponent }    from './dashboard.theme.component';
 import { DashboardTemplateComponent } from './dashboard.template.component';
 import { DashboardScheduleComponent } from './dashboard.schedule.component';
+import { DashboardScheduleLogComponent }        from './dashboard.scheduleLog.component';
 import { DashboardScheduleEditComponent }       from './dashboard.scheduleEdit.component';
 import { DashboardDeleteComponent }   from './dashboard.delete.component';
 import { DashboardDeleteBulkComponent }         from './dashboard.deleteBulk.component';
@@ -184,6 +185,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardThemeComponent,
         DashboardTemplateComponent,
         DashboardScheduleComponent,
+        DashboardScheduleLogComponent,
         DashboardScheduleEditComponent,
         DashboardDeleteComponent,
         DashboardDeleteBulkComponent,

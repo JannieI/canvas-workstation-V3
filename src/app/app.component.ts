@@ -4023,6 +4023,17 @@ export class AppComponent implements OnInit {
         this.showModalDataSchedule = true;
     }
 
+    clickMenuDatasourceScheduleLog() {
+        // Show DS ScheduleLogs
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceScheduleLog', '@Start');
+
+        if (!this.menuOptionClickPreAction()) {
+            return;
+        };
+
+        this.showModalDataScheduleLog = true;
+    }
+
     clickMenuDatasourceRefreshOnce() {
         // Refresh selected DS Once off
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceRefreshOnce', '@Start');
