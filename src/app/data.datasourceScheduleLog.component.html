@@ -1,0 +1,112 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose('Close')">
+                    <b>X</b>
+                </button>
+
+                <div class="gridTitle">
+                    Datasource Schedules
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;">
+                                This form shows a list of all Schedules in the system.  Each schedule will be
+                                executed on the specified date and time: the Datasource will be refreshed.
+                                Click the delete icon or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                </div>
+
+                <div class="gridErrorMessage">
+                    {{ errorMessage }}
+                </div>
+
+                <div class="gridSchedules">
+
+                    <clr-datagrid>
+                        <clr-dg-column>ID</clr-dg-column>
+                        <clr-dg-column>Name</clr-dg-column>
+                        <clr-dg-column>description</clr-dg-column>
+                        <clr-dg-column>Frequency</clr-dg-column>
+                        <clr-dg-column>repeatsEvery</clr-dg-column>
+                        <clr-dg-column>weeklyMonday</clr-dg-column>
+                        <clr-dg-column>weeklyTuesday</clr-dg-column>
+                        <clr-dg-column>weeklyWednesday</clr-dg-column>
+                        <clr-dg-column>weeklyThursday</clr-dg-column>
+                        <clr-dg-column>weeklyFriday</clr-dg-column>
+                        <clr-dg-column>weeklySaturday</clr-dg-column>
+                        <clr-dg-column>weeklySunday</clr-dg-column>
+                        <clr-dg-column>monthlyOn</clr-dg-column>
+                        <clr-dg-column>yearlyJanuary</clr-dg-column>
+                        <clr-dg-column>yearlyFebruary</clr-dg-column>
+                        <clr-dg-column>yearlyMarch</clr-dg-column>
+                        <clr-dg-column>yearlyApril</clr-dg-column>
+                        <clr-dg-column>yearlyMay</clr-dg-column>
+                        <clr-dg-column>yearlyJune</clr-dg-column>
+                        <clr-dg-column>yearlyJuly</clr-dg-column>
+                        <clr-dg-column>yearlyAugust</clr-dg-column>
+                        <clr-dg-column>yearlySeptember</clr-dg-column>
+                        <clr-dg-column>yearlyOctober</clr-dg-column>
+                        <clr-dg-column>yearlyNovember</clr-dg-column>
+                        <clr-dg-column>yearlyDecember</clr-dg-column>
+                        <clr-dg-column>startsOn</clr-dg-column>
+                        <clr-dg-column>EndsNever</clr-dg-column>
+                        <clr-dg-column>EndsAfter</clr-dg-column>
+                        <clr-dg-column>EndsOn</clr-dg-column>
+
+                        <clr-dg-row *clrDgItems="let row of datasourceSchedules
+                            let i = index"
+                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                            (click)="clickRow(i)"
+                            >
+                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.description}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.repeatFrequency}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.repeatsEvery}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.weeklyMonday}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.weeklyTuesday}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.weeklyWednesday}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.weeklyThursday}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.weeklyFriday}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.weeklySaturday}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.weeklySunday}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.monthlyOn}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.yearlyJanuary}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.yearlyFebruary}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.yearlyMarch}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.yearlyApril}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.yearlyMay}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.yearlyJune}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.yearlyJuly}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.yearlyAugust}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.yearlySeptember}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.yearlyOctober}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.yearlyNovember}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.yearlyDecember}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.startsOn}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.EndsNever}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.EndsAfter}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.EndsOn}}</clr-dg-cell>
+                        </clr-dg-row>
+
+                    </clr-datagrid>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
