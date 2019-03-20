@@ -1339,12 +1339,21 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseDashboardSchedule(action: string) {
-        //
+        // Handle closing of D schedules
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSchedule', '@Start');
 
         this.menuOptionClickPostAction();
 
         this.showModalDashboardSchedule = false;
+    }
+
+    handleCloseDashboardScheduleLog(action: string) {
+        // Handle closing of D schedule logs form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardScheduleLog', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDashboardScheduleLog = false;
     }
 
     handleCloseDashboardScheduleEdit(action: string) {
