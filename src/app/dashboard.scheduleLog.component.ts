@@ -1,5 +1,5 @@
 /*
- * Shows form with auditTrail records
+ * Shows form with Dashboard Schedule Log records
  */
 
 // Angular
@@ -18,7 +18,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { CanvasAuditTrail }           from './models';
+import { DashboardScheduleLog }       from './models';
 
 @Component({
     selector: 'dashboard-schedule-log',
@@ -43,7 +43,7 @@ export class DashboardScheduleLogComponent implements OnInit {
 
     }
 
-    canvasAuditTrail: CanvasAuditTrail[];
+    dashboardScheduleLog: DashboardScheduleLog[];
     errorMessage: string = '';
     selectedRow: number = 0;
 
@@ -56,11 +56,11 @@ export class DashboardScheduleLogComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getResource('canvasAuditTrails')
-            .then (cau => this.canvasAuditTrail = cau)
+        this.globalVariableService.getResource('dashboardScheduleLog')
+            .then (cau => this.dashboardScheduleLog = cau)
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Collaborate.auditTrail reading auditTrails: ' + err);
+                console.error('Error in Dashboard.scheduleLog reading logs: ' + err);
             });
     }
 

@@ -8,7 +8,7 @@
                 </button>
 
                 <div class="gridTitle">
-                    <b>Audit Trail of user actions.</b>
+                    <b>Schedule log for the current Dashboard.</b>
                     <clr-signpost>
                         <clr-icon shape="info-circle"
                             clrSignpostTrigger>
@@ -19,10 +19,8 @@
                                 Help
                             </h5>
                             <p style="margin-top: 0; color:gray;">
-                                This form shows an Audit trail of all actions created by users.
-                                An action is stored when a user makes a changes to a Dashboard
-                                or to a Widget.  Actions are kept until pruned by the
-                                administrator.  Click the X or press Escape to close this form.
+                                This form shows all the Schedule Logs for the current Dashboard.
+                                Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
@@ -37,19 +35,17 @@
                     <clr-datagrid>
                         <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
                         <clr-dg-column [clrDgField]="'dashboardID'">DashboardID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'dashboardTabID'">TabID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'widgetID'">WidgetID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'dashboardTabID'">Object</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'dashboardTabID'">ActionType</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'dashboardTabID'">Action</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'dashboardTabID'">Description</clr-dg-column>
                         <clr-dg-column [clrDgField]="'userID'">User ID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'keyChanged'">keyChanged</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'oldValue'">oldValue</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'newValue'">newValue</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'changedOn'">changedOn</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'groupID'">Group ID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'sentOn'">Sent On</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'status'">Status</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'errorMessage'">Error Msg</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'editedBy'">Edited By</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'editedOn'">Edited On</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'createdBy'">Created By</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'createdOn'">Created On</clr-dg-column>
 
-                        <clr-dg-row *clrDgItems="let row of canvasAuditTrail;
+                        <clr-dg-row *clrDgItems="let row of dashboardScheduleLog;
                             let i = index"
                             [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
@@ -57,17 +53,15 @@
                             >
                             <clr-dg-cell>{{ row.id }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.dashboardID }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.dashboardTabID }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.widgetID }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.objectType }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.actionType }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.action }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.description }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.userID }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.keyChanged }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.oldValue }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.newValue }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.changedOn }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.groupID }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.sentOn }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.status }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.errorMessage }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.editedBy }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.editedOn }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.createdBy }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.createdOn }}</clr-dg-cell>
                         </clr-dg-row>
 
                         <clr-dg-footer>
