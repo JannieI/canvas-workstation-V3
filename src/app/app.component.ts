@@ -400,7 +400,7 @@ export class AppComponent implements OnInit {
     showModalWidgetExport: boolean = false;
     showModalWidgetHyperlinks: boolean = false;
     showModalWidgetRefresh: boolean = false;
-    showModalWidgetTablist: boolean = false;
+    // showModalWidgetTablist: boolean = false;   ** TABIDS
     showModalUserSystemSettings: boolean = false;
     showPalette: boolean = true;
     showPaletteSubscription: Subscription;          // Observable
