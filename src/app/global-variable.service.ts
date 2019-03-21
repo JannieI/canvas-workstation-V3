@@ -178,7 +178,6 @@ export class GlobalVariableService {
     dashboardTabs: DashboardTab[] = [];
     dashboardTags: DashboardTag[] = [];
     datasources: Datasource[] = [];
-    datasourceScheduleLog: DatasourceScheduleLog[] = [];
     dataCachingTable: DataCachingTable[] = [];
     datasets: any = [];                                 // List of dSets, NO data
     datasourcePermissions: DatasourcePermission[] = [];
