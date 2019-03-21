@@ -191,7 +191,6 @@ export class GlobalVariableService {
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
     currentDashboardName = new BehaviorSubject<string>('');
     currentDashboards: Dashboard[] = [];
-    currentDashboardSnapshots: DashboardSnapshot[] = [];
     currentDashboardTabs: DashboardTab[] = [];
     currentDatasets: any = [];                          // Used in current D, with data
     currentDatasources: Datasource[] = [];
