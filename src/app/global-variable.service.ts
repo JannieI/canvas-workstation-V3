@@ -198,7 +198,6 @@ export class GlobalVariableService {
     currentDashboardTabs: DashboardTab[] = [];
     currentDatasets: any = [];                          // Used in current D, with data
     currentDatasources: Datasource[] = [];
-    currentDatasourcePermissions: DatasourcePermission[] = [];
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
     changedWidget = new BehaviorSubject<Widget>(null);    // W that must be changed
     currentWidgetCheckpoints: WidgetCheckpoint[] = [];
