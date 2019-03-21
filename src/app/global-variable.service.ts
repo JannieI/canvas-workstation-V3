@@ -174,7 +174,6 @@ export class GlobalVariableService {
     dashboardPermissions: DashboardPermission[] = [];
     dashboardsRecent: DashboardRecent[] = [];           // List of Recent Dashboards
     dashboards: Dashboard[] = [];
-    dashboardSnapshots: DashboardSnapshot[] = [];
     dashboardTabs: DashboardTab[] = [];
     dashboardTags: DashboardTag[] = [];
     datasources: Datasource[] = [];
