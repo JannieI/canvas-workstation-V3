@@ -1399,10 +1399,10 @@ export class GlobalVariableService {
                     console.log('%c    Global-Variables discardDashboard - start resetting cache in Memory & Disc to dirty ...',
                         this.concoleLogStyleForCaching);
                     for (var i = 0; i < this.dataCachingTable.length; i++) {
-        
+
                         // Update dataCaching in Memory
                         this.dataCachingTable[i].localExpiryDateTime = new Date();
-                        
+
                         // Update dataCaching on Disc
                         this.dbDataCachingTable.table("localDataCachingTable")
                             .bulkPut(this.dataCachingTable)
@@ -1410,10 +1410,10 @@ export class GlobalVariableService {
                                 console.error('Error in     Global-Variables saveDraftDashboard', err)
                                 reject(err.message)
                             });
-            
+
                     };
-        
-    
+
+
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables discardDashboard ends',
@@ -1469,7 +1469,7 @@ export class GlobalVariableService {
 
                 // Update dataCaching in Memory
                 this.dataCachingTable[i].localExpiryDateTime = new Date();
-                
+
                 // Update dataCaching on Disc
                 this.dbDataCachingTable.table("localDataCachingTable")
                     .bulkPut(this.dataCachingTable)
@@ -1477,7 +1477,7 @@ export class GlobalVariableService {
                         console.error('Error in     Global-Variables saveDraftDashboard', err)
                         reject(err.message)
                     });
-    
+
             };
 
             // Perform steps (business logic in Server)
@@ -1496,12 +1496,12 @@ export class GlobalVariableService {
                         };
 
                         // Update Original D in Memory
-                        let dashboardIndex: number = this.dashboards.findIndex(d => 
+                        let dashboardIndex: number = this.dashboards.findIndex(d =>
                             d.id == originalDashboardID);
                         if (dashboardIndex >= 0) {
                             this.dashboards[dashboardIndex].draftID = null;
                         };
-                        
+
                         // Remove Draft from Memory
                         this.dashboards = this.dashboards.filter(
                             d => d.id != draftDashboardID
@@ -2970,6 +2970,7 @@ export class GlobalVariableService {
         });
     }
 
+
     getCurrentDatasources(dashboardID: number): Promise<Datasource[]> {
         // Description: Gets DS for current D
         // Params: dashboardID = current D
@@ -3059,6 +3060,96 @@ export class GlobalVariableService {
             }
         });
     }
+
+    // getCurrentDatasourcesOLD(dashboardID: number): Promise<Datasource[]> {
+    //     // Description: Gets DS for current D
+    //     // Params: dashboardID = current D
+    //     // Returns: this.datasources array, unless:
+    //     //   If not cached or if dirty, get from File
+    //     // NB: assume this.currentWidgets exists !!
+    //     if (this.sessionDebugging) {
+    //         console.log('%c    Global-Variables getCurrentDatasources starts',
+    //             this.concoleLogStyleForStartOfMethod,
+    //             {dashboardID});
+    //     };
+
+    //     return new Promise<Datasource[]>((resolve, reject) => {
+
+    //         // Refresh from source at start, or if dirty
+    //         // TODO - What if databoards empty or diry - is that okay?
+    //         if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
+    //             this.getResource('datasources')
+    //                 .then(ds =>
+    //                     {
+    //                         let datasourceIDs: number[] = [];
+    //                         let dashboardWidgets: Widget[] = this.widgets.filter(w =>
+    //                             w.dashboardID == dashboardID
+    //                         );
+
+    //                         for (var i = 0; i < dashboardWidgets.length; i++) {
+    //                             if (datasourceIDs.indexOf(dashboardWidgets[i].datasourceID) < 0) {
+
+    //                                 if (dashboardWidgets[i].datasourceID != null) {
+    //                                     datasourceIDs.push(dashboardWidgets[i].datasourceID)
+    //                                 };
+    //                             }
+    //                         };
+    //                         let returnData: Datasource[] = [];
+    //                         for (var i = 0; i < ds.length; i++) {
+    //                             if (datasourceIDs.indexOf(ds[i].id) >= 0) {
+    //                                 if (ds[i] != null) {
+    //                                     returnData.push(ds[i]);
+    //                                 };
+    //                             };
+    //                         };
+
+    //                         this.isDirtyDatasources = false;
+    //                         this.currentDatasources = returnData;
+    //                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+
+    //                         if (this.sessionDebugging) {
+    //                             console.log('%c    Global-Variables getCurrentDatasources ends',
+    //                                 this.concoleLogStyleForEndOfMethod,
+    //                                 {dashboardID}, this.currentDatasources);
+    //                         };
+
+    //                         resolve(this.currentDatasources);
+    //                     }
+    //                 )
+    //         } else {
+    //             let datasourceIDs: number[] = [];
+    //             let dashboardWidgets: Widget[] = this.widgets.filter(w =>
+    //                 w.dashboardID == dashboardID
+    //             );
+
+    //             for (var i = 0; i < dashboardWidgets.length; i++) {
+    //                 if (datasourceIDs.indexOf(dashboardWidgets[i].datasourceID) < 0) {
+    //                     if (dashboardWidgets[i].datasourceID != null) {
+    //                         datasourceIDs.push(dashboardWidgets[i].datasourceID)
+    //                     };
+    //                 };
+    //             };
+    //             let returnData: Datasource[] = [];
+    //             for (var i = 0; i < this.datasources.length; i++) {
+    //                 if (datasourceIDs.indexOf(this.datasources[i].id) >= 0) {
+    //                     returnData.push(this.datasources[i]);
+    //                 };
+    //             };
+
+    //             this.isDirtyDatasources = false;
+    //             this.currentDatasources = returnData;
+    //             this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+
+    //             if (this.sessionDebugging) {
+    //                 console.log('%c    Global-Variables getCurrentDatasources ends',
+    //                     this.concoleLogStyleForEndOfMethod,
+    //                     {dashboardID}, this.currentDatasources);
+    //             };
+
+    //             resolve(this.currentDatasources);
+    //         }
+    //     });
+    // }
 
     addCurrentDatasource(datasourceID: number){
         // Add DS AND dSet to current-arrays (from DS and dSet arrays) for a given DS-id
@@ -6420,9 +6511,6 @@ export class GlobalVariableService {
         };
         return new Promise<string>((resolve, reject) => {
 
-            // Refresh from source at start, or if dirty
-            // if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
-            //     this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
             // TODO - fix HARD Coding !!!
             // TODO - add CACHED

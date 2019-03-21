@@ -463,10 +463,11 @@ export class DataCachingTable {
 export class DatasourceFilter {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID
-    dashboardID: number;                    // FK to Dashboard
+    widgetID: number;                       // FK to Slicer (that is based on this DS)
     sequence: number;                       // Sequence Nr - for LATER user
     filterFieldName: string;                // Name (text) of field
     filterOperator: string;                 // ie Equal, Less Than, etc
+    // filterOperator can be 'in' (for checked values) and 'not-in' for The Rest
     filterValue: string;                    // ie. 12 Japan  1,5  a,b,c  true
     filterValueFrom: string;                // From value for Range
     filterValueTo: string;                  // To value for Range
