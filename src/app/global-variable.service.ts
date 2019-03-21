@@ -199,7 +199,6 @@ export class GlobalVariableService {
     currentDatasets: any = [];                          // Used in current D, with data
     currentDatasources: Datasource[] = [];
     currentDatasourcePermissions: DatasourcePermission[] = [];
-    currentPaletteButtonBar: PaletteButtonBar[];
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
     changedWidget = new BehaviorSubject<Widget>(null);    // W that must be changed
     currentWidgetCheckpoints: WidgetCheckpoint[] = [];
@@ -6512,8 +6511,10 @@ export class GlobalVariableService {
         return new Promise<string>((resolve, reject) => {
 
 
-            // TODO - fix HARD Coding !!!
-            // TODO - add CACHED
+            // TODO - 1. fix HARD Coding !!!
+            // TODO - 2. add CACHED (replace currentXXX vars)
+            // TODO - 3. set this.currentDashboard object values
+            //           remember: if given Tid = -1, set 1st one
             let pathUrl: string = '/canvasCurrentDashboard?id=68&dashboardTabID=175&datasourceIDexclude=1,2';
             let finalUrl: string = this.canvasServerURI + pathUrl;
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
