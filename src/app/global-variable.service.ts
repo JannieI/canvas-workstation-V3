@@ -83,7 +83,8 @@ import { widgetTemplate }             from './templates';
 export class GlobalVariableService {
 
 
-    // Utility vars, ie used on more than one accasion:
+    // Utility vars, ie used on more than one occasion
+    // ***********************************************
     colourPickerClosed = new BehaviorSubject<
         {
             callingRoutine: string;
@@ -106,7 +107,6 @@ export class GlobalVariableService {
     previousGraphEditDSID: number = -1;
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
-
 
 
     // Prerequired info for Canvas
@@ -134,14 +134,6 @@ export class GlobalVariableService {
     ENVCanvasDatabaseLocalUrlS5: string = environment.ENVCanvasDatabaseLocalUrlS5;
 
 
-
-
-    // Identification info: Canvas-Server, Company, User
-    // *********************************************************************************
-    // TODO - get from DB, not Constants
-
-
-
     // User
     // *********************************************************************************
 
@@ -157,8 +149,6 @@ export class GlobalVariableService {
     // Canvas Server Profile (and settings)
     canvasSettings: CanvasSettings = canvasSettings;        // Used by components
     canvasSettingsArray: CanvasSettings[];                  // Returned by getResource
-
-    // Company Profile (and defaults)
 
 
     // Canvas-related info and Data
@@ -201,7 +191,6 @@ export class GlobalVariableService {
 
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
-    isDirtyDatasets: boolean = true;
     isDirtyDatasources: boolean = true;
 
 
@@ -2675,7 +2664,6 @@ export class GlobalVariableService {
         return new Promise<Dataset[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            // if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
             if (parameters.substring(0, 1) != '?') {
