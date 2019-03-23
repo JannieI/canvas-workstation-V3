@@ -497,14 +497,23 @@ export class GlobalVariableService {
         };
     }
 
-    applyWidgetFilter(widgetID: number) {
+    applyWidgetFilter(widget: Widget) {
         // Apply W-Filter set to W.dataFull and update W.dataFiltered 
         // When there are NO W-Filters, then .dataFull = .dataFiltered
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables applyWidgetFilter starts',
                 this.concoleLogStyleForStartOfMethod);
         };
-    
+
+        let currentDatasourceIndex: number = this.currentDatasources.findIndex(
+            ds => ds.id == widget.datasourceID);
+        
+        // TODO - code the full filter later
+        if (currentDatasourceIndex >= 0) {
+            widget.dataFiltered = this.currentDatasources[currentDatasourceIndex].dataFiltered;
+        } else {
+            widget.dataFiltered = [];
+        };
     }
 
     actionWebSocket(webSocketMessage: WebSocketMessage) {
