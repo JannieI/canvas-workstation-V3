@@ -646,7 +646,6 @@ export class Datasource {
     // DATA
 	// Data is loaded at @Runtime
     datasourceFilters: DatasourceFilter[];      // Optional Array of DS-Filters per Dashboard
-    datasourceFilterForThisDashboard: boolean;  // @ RunTime, changes: true if THIS D has filters on THIS DS
 	dataFull: any[];                            // Full array of data, filled @Runtime
 	dataFiltered: any[];                        // Filtered array of data, based on DS-Filter. Filled @Runtime
 

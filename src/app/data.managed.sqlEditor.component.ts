@@ -106,7 +106,6 @@ export class DataManagedSQLEditorComponent implements OnInit {
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
                 datasourceFilters: [],
-                datasourceFilterForThisDashboard: false,
                 accessType: '',
                 cacheResultsOnServer: true,
                 serverExpiryDateTime: null,

@@ -80,7 +80,6 @@ export class DataManagedDataDictionaryComponent implements OnInit {
             dataFieldTypes: null,
             dataFieldLengths: null,
             datasourceFilters: [],
-            datasourceFilterForThisDashboard: false,
             accessType: '',
             cacheResultsOnServer: true,
             serverExpiryDateTime: null,

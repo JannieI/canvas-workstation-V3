@@ -121,7 +121,6 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
                 datasourceFilters: [],
-                datasourceFilterForThisDashboard: false,
                 accessType: '',
                 cacheResultsOnServer: true,
                 serverExpiryDateTime: null,
@@ -524,7 +523,6 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             dataFieldTypes: dataFieldTypes,
             dataFieldLengths: dataFieldLengths,
             datasourceFilters: [], // TODO - fix this
-            datasourceFilterForThisDashboard: false,
             accessType: this.selectedDatasource.accessType,
             cacheResultsOnServer: this.selectedDatasource.cacheResultsOnServer,
             serverExpiryDateTime: this.selectedDatasource.serverExpiryDateTime,

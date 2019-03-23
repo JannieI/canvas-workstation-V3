@@ -305,7 +305,6 @@ export class DataDirectWebComponent implements OnInit {
                 dataFieldTypes: [],
                 dataFieldLengths: [],
                 datasourceFilters: [],
-                datasourceFilterForThisDashboard: false,
                 accessType: '',
                 cacheResultsOnServer: true,
                 serverExpiryDateTime: null,

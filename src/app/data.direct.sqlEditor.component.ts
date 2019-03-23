@@ -99,7 +99,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
                 datasourceFilters: [],
-                datasourceFilterForThisDashboard: false,
                 accessType: 'Private',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,

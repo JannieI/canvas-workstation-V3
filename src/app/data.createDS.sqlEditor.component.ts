@@ -130,7 +130,6 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
                 datasourceFilters: [],
-                datasourceFilterForThisDashboard: false,
                 accessType: '',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,

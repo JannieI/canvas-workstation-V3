@@ -108,7 +108,6 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
                 datasourceFilters: [],
-                datasourceFilterForThisDashboard: false,
                 accessType: '',
                 cacheResultsOnServer: true,
                 serverExpiryDateTime: null,

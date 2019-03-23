@@ -404,7 +404,6 @@ export class DataDirectFileCSVComponent implements OnInit {
                 dataFieldTypes: this.newDataFieldTypes,
                 dataFieldLengths: [],
                 datasourceFilters: [],
-                datasourceFilterForThisDashboard: false,
                 accessType: 'Private',
                 sourceIsAccessable: false,
                 cacheResultsOnServer: true,
