@@ -262,7 +262,6 @@ export const widgetTemplate: Widget =
         "containerStyleID": null,
 
         "datasourceID": null,
-        "data": null,
         "dataFields": null,
         "dataFieldTypes": null,
         "dataFieldLengths": null,
