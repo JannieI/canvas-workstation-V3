@@ -452,14 +452,37 @@ export class GlobalVariableService {
                 this.concoleLogStyleForStartOfMethod);
         };
 
-        //  Run getCurrentDS(DSid) = 
-        //   1. get slicersForW(Wid): number[]
-        //   2. get DS.dataFull
-        //   3. mark DS.DS-Filters in slicersForW as active
-        //   4. Run Apply-DS-Filter =
-        //      4.1 Loop on active DS.DS-Filters
-        //      4.2 create DS.dataFiltered
-        //   5. add ds to currentDS
+        return new Promise<boolean>((resolve, reject) => {
+
+            //   1. get slicersOnD(Wid): number[]
+            let slicersOnDashboard: number[] = this.currentWidgets
+                .filter(w => w.widgetType == 'Slicer')
+                .map(x => x.id);
+
+            //   2. get DS.dataFull
+            let datasourceDataPromise: any = [];
+
+            this.getData('datasourceID=' + DSid)
+                .then(res => {
+                    let currentDatasourceIndex: number = this.currentDatasources
+                        .findIndex(ds => ds.id == DSid);
+
+                    if (currentDatasourceIndex >= 0) {
+                        this.currentDatasources[currentDatasourceIndex].dataf
+                    }
+                    //   3. mark DS.DS-Filters in slicersOnD as active
+                    //   4. Run Apply-DS-Filter =
+                    //      4.1 Loop on active DS.DS-Filters
+                    //      4.2 create DS.dataFiltered
+                    //   5. add ds to currentDS
+
+                })
+                .catch(err => {
+                    console.error('Error in     Global-Variables saveDraftDashboard', err)
+                    reject(err.message)
+                })
+
+        });
     }
 
 
