@@ -282,10 +282,9 @@ export class GlobalVariableService {
                 {dashboardID}, {dashboardTabID}, this.dashboards, this.dashboardTabs, this.currentDashboards, this.currentDashboardTabs)
         };
 
-        // Load the current Dashboard, and Optional template.  The dependants are stakced
-        // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
 
+            // Load the current Dashboard Core info
             let pathUrl: string = '/canvasDashboardCore?id=' + dashboardID 
                 + '&dashboardTabID=' + dashboardTabID;
             let finalUrl: string = this.canvasServerURI + pathUrl;
@@ -329,7 +328,8 @@ export class GlobalVariableService {
                                 );
 
                                 if (templateDashboard == null) {
-                                    alert('Dashboard template id does not exist in Dashboards Array')
+                                    console.error('Error in     Global-Variables refreshCurrentDashboardInfo: Dashboard template id does not exist in Dashboards Array')
+                                    this.templateInUse.next(false);
                                 } else {
                                     this.currentDashboards.push(templateDashboard[0]);
                                     this.templateInUse.next(true);
@@ -359,62 +359,55 @@ export class GlobalVariableService {
                         .then( l => {
 
                             // Get all DS-ids for the currentWs
-                            let currentDSinWidgets: number[] = this.currentWidgets
+                            let currentDSinWidgetIDs: number[] = this.currentWidgets
                                 .map(w => w.datasourceID);
 
                             // Get all currentDSids
                             let currentDSids: number[] = this.currentDatasources
                                 .map(ds => ds.id);
 
-                            // For those DS used in currentW and not in currentDS:
+                            // Get the data for those DS used in currentW and not in currentDS
                             let getCurrentDSPromises: any = [];
-                            currentDSinWidgets.forEach(DSid => {
+                            currentDSinWidgetIDs.forEach(DSid => {
                                 if (currentDSids.indexOf(DSid) < 0) {
 
                                     // Get the dataFull, and then filter it down to dataFilters
                                     // using DS-Filters
                                     getCurrentDSPromises.push(this.getCurrentDatasource(DSid));
-
-                                    Promise.all(getCurrentDSPromises)
-                                        .then( () => {
-
-                                            // For each currentW:
-                                            //   1. W.dataFiltered = DS.dataFiltered filtered on W-Filters
-                                            this.currentWidgets.forEach(w => {
-                                                this.applyWidgetFilter(w.id);
-                                            });
-                                        })
-                                        .catch(err => {
-                                            console.error('Error in     Global-Variables refreshCurrentDashboardInfo', err)
-                                            reject(err.message)
-                                        })
                                 };
                             });
 
+                            // Execute all the getData promises
+                            Promise.all(getCurrentDSPromises)
+                                .then( () => {
 
+                                    // Get data and filter for each currentW
+                                    this.currentWidgets.forEach(w => {
 
-                            // Load current DS
-                            this.getCurrentDatasources(dashboardID)
-                                .then(k => {
+                                        if (w.datasourceID != null) {
+                                            this.applyWidgetFilter(w);
+                                        };
 
-                                    // Get info for W
-                                    this.getWidgetsInfo().then(n => {
+                                    });
 
-                                        // Add to recent
-                                        this.amendDashboardRecent(
-                                            dashboardID,
-                                            dashboardTabID,
-                                            this.currentDashboardInfo.value.currentDashboardState
-                                        );
+                                    // Add to recent
+                                    this.amendDashboardRecent(
+                                        dashboardID,
+                                        dashboardTabID,
+                                        this.currentDashboardInfo.value.currentDashboardState
+                                    );
 
-                                        // Set the EditMode according to the D State
-                                        this.editMode.next(
-                                            this.currentDashboardInfo.value
-                                                .currentDashboardState == 'Draft'?  true  :  false
-                                        );
-                                        resolve(true)
-                                        // })
-                                    })
+                                    // Set the EditMode according to the D State
+                                    this.editMode.next(
+                                        this.currentDashboardInfo.value
+                                            .currentDashboardState == 'Draft'?  true  :  false
+                                    );
+                                    resolve(true)
+
+                                })
+                                .catch(err => {
+                                    console.error('Error in     Global-Variables refreshCurrentDashboardInfo', err)
+                                    reject(err.message)
                                 })
 
                         })
@@ -423,7 +416,7 @@ export class GlobalVariableService {
         });
     }
 
-    getCurrentDatasource(DSid) {
+    getCurrentDatasource(datasourceID: number) {
         // Get the .dataFull and .dataFiltered for a given DS, using the DS-Filters that
         // are active.  A DS-Filter set is determined by a Slicer.  If the Slicer is on the same
         // Dashboard, the DS-Filter set is active.  Else, it is passive.  Passive DS-Filters
@@ -444,10 +437,10 @@ export class GlobalVariableService {
             //   2. get DS.dataFull
             let datasourceDataPromise: any = [];
 
-            this.getData('datasourceID=' + DSid)
+            this.getData('datasourceID=' + datasourceID)
                 .then(res => {
                     let currentDatasourceIndex: number = this.currentDatasources
-                        .findIndex(ds => ds.id == DSid);
+                        .findIndex(ds => ds.id == datasourceID);
 
                     if (currentDatasourceIndex >= 0) {
                         this.currentDatasources[currentDatasourceIndex].dataFull = res;
@@ -466,7 +459,7 @@ export class GlobalVariableService {
                     //   4. Run Apply-DS-Filter =
                     //      4.1 Loop on active DS.DS-Filters
                     //      4.2 create DS.dataFiltered
-                    this.applyDSFilter(DSid);
+                    this.applyDSFilter(datasourceID);
 
                     //   5. add ds to currentDS
 
