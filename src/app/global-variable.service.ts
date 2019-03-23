@@ -497,8 +497,23 @@ export class GlobalVariableService {
         });
     }
 
+    applyDSFilter(DSid) {
+        // Apply DS-Filter set to DS.dataFull and update DS.dataFiltered for a given DS
+        // When there are NO DS-Filters, then .dataFull = .dataFiltered
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables applyDSFilter starts',
+                this.concoleLogStyleForStartOfMethod);
+        };
 
+        // TODO - complete this later
+        let currentDatasourceIndex: number = this.currentDatasources
+            .findIndex(ds => ds.id == DSid);
 
+        if (currentDatasourceIndex >= 0) {
+            this.currentDatasources[currentDatasourceIndex].dataFiltered = 
+            this.currentDatasources[currentDatasourceIndex].dataFull;
+        };
+    }
 
 
 
