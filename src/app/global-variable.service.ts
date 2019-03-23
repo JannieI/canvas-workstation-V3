@@ -455,7 +455,7 @@ export class GlobalVariableService {
         return new Promise<boolean>((resolve, reject) => {
 
             //   1. get slicersOnD(Wid): number[]
-            let slicersOnDashboard: number[] = this.currentWidgets
+            let slicersOnDashboardIDs: number[] = this.currentWidgets
                 .filter(w => w.widgetType == 'Slicer')
                 .map(x => x.id);
 
@@ -468,12 +468,24 @@ export class GlobalVariableService {
                         .findIndex(ds => ds.id == DSid);
 
                     if (currentDatasourceIndex >= 0) {
-                        this.currentDatasources[currentDatasourceIndex].dataf
-                    }
+                        this.currentDatasources[currentDatasourceIndex].dataFull = res;
+                    };
+
                     //   3. mark DS.DS-Filters in slicersOnD as active
+                    let dsFilteredPromises: any[] = [];
+                    this.currentDatasources[currentDatasourceIndex].datasourceFilters.forEach(dsf => {
+                        if (slicersOnDashboardIDs.indexOf(dsf.widgetID) >= 0) {
+                            dsf.isActive = true;
+                        } else {
+                            dsf.isActive = false;
+                        };
+                    });
+
                     //   4. Run Apply-DS-Filter =
                     //      4.1 Loop on active DS.DS-Filters
                     //      4.2 create DS.dataFiltered
+                    this.applyDSFilter(DSid);
+
                     //   5. add ds to currentDS
 
                 })
