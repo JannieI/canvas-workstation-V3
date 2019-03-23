@@ -295,13 +295,57 @@ export class GlobalVariableService {
                         return;
                     };
                     console.log('xx res returned', res)
-                    this.dashboards = res.data.dashboards;
-                    this.dashboardTabs  = res.data.dashboardTabs;
-                    this.widgets  = res.data.widgets;
-                    this.widgetCheckpoints  = res.data.widgetCheckpoints;
+                    this.currentDashboards = res.data.dashboards;
+                    this.currentDashboardTabs  = res.data.dashboardTabs;
+                    this.currentWidgets  = res.data.widgets;
+                    this.currentWidgetCheckpoints  = res.data.widgetCheckpoints;
+
+                    // Load D-Template
+                    let hasAccess: boolean = false;
+                    if (this.currentDashboards.length > 0) {
+                        if (this.currentDashboards[0].templateDashboardID != 0
+                            &&
+                            this.currentDashboards[0].templateDashboardID != null) {
+
+                            hasAccess = false;
+                            if (this.dashboardPermissionCheck(
+                                this.currentDashboards[0].templateDashboardID,
+                                'canviewright')) {
+                                    hasAccess = true;
+                            };
+                            if (this.dashboardPermissionCheck(
+                                this.currentDashboards[0].templateDashboardID,
+                                'canviewandcanedit')) {
+                                    hasAccess = true;
+                            };
+
+                            if (hasAccess) {
+
+                                let templateDashboard: Dashboard[] = null;
+
+                                templateDashboard = this.dashboards.filter(
+                                    i => i.id == this.currentDashboards[0].templateDashboardID
+                                );
+
+                                if (templateDashboard == null) {
+                                    alert('Dashboard template id does not exist in Dashboards Array')
+                                } else {
+                                    this.currentDashboards.push(templateDashboard[0]);
+                                    this.templateInUse.next(true);
+                                }
+                            } else {
+                                this.templateInUse.next(false);
+                            };
+                        } else {
+                            this.templateInUse.next(false);
+                        };
+                    };
+
 
                     if (dashboardTabID == -1) {
-                        if (this.dashboardTabs.length > 0) {dashboardTabID = this.dashboardTabs[0].id}
+                        if (this.currentDashboardTabs.length > 0) {
+                            dashboardTabID = this.currentDashboardTabs[0].id
+                        };
                     };
 
                     // Set T-index
@@ -311,46 +355,36 @@ export class GlobalVariableService {
                     // Load Permissions for D
                     this.getResource(
                         'dashboardPermissions',
-                        '?filterObject={"dashboardID":' + dashboardID + '}').then( l => {
+                        '?filterObject={"dashboardID":' + dashboardID + '}')
+                        .then( l => {
 
-                    // Load Checkpoints for D
-                    this.getCurrentWidgetCheckpoints(dashboardID).then( l => {
+                                // Load current DS
+                                this.getCurrentDatasources(dashboardID)
+                                    .then(k => {
 
-                    // Load Datasets
-                    this.getResource('datasets').then(m => {
+                                        // Get info for W
+                                        this.getWidgetsInfo().then(n => {
 
-                        // Load Widgets
-                        this.getCurrentWidgets(dashboardID, dashboardTabID).then(n => {
+                                            // Add to recent
+                                            this.amendDashboardRecent(
+                                                dashboardID,
+                                                dashboardTabID,
+                                                this.currentDashboardInfo.value.currentDashboardState
+                                            );
 
-                            // Load current DS
-                            this.getCurrentDatasources(dashboardID).then(k => {
+                                            // Set the EditMode according to the D State
+                                            this.editMode.next(
+                                                this.currentDashboardInfo.value
+                                                    .currentDashboardState == 'Draft'?  true  :  false
+                                            );
+                                            resolve(true)
+                                            // })
+                                        })
+                                    })
 
-                                // Get info for W
-                                this.getWidgetsInfo().then(n => {
-
-                                    // Add to recent
-                                    this.amendDashboardRecent(
-                                        dashboardID,
-                                        dashboardTabID,
-                                        this.currentDashboardInfo.value.currentDashboardState
-                                    );
-
-                                    // Set the EditMode according to the D State
-                                    this.editMode.next(
-                                        this.currentDashboardInfo.value
-                                            .currentDashboardState == 'Draft'?  true  :  false
-                                    );
-                                    resolve(true)
-                                    // })
-                                })
-                            })
                         })
-                    })
-
-                })
-                })
-                })
-            });
+                }
+            );
         });
     }
 
