@@ -932,7 +932,7 @@ export class Dashboard {
     nrTimesOpened: number;                  // Nr of times this Dashboard has been opened
     nrTimesChanged: number;                 // Nr of times this Dashboard has been edited
     tabs: number[];                         // Array of TabIDs in this Dashboard
-    permissions: string[];
+    permissions: string[];                  // Permissions for current user ??
 
     // Special info
     userCanViewList: number[];              // List of usersIDs that can View a DS

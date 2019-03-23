@@ -285,12 +285,24 @@ export class GlobalVariableService {
         // Load the current Dashboard, and Optional template.  The dependants are stakced
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
-            this.getCurrentDashboard(dashboardID).then( i => {
 
-                // Load the DashboardTabs
-                this.getCurrentDashboardTabs(dashboardID).then(j => {
+            
+            let pathUrl: string = '/canvasDashboardCore?id=' + dashboardID;
+            let finalUrl: string = this.canvasServerURI + pathUrl;
+            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                res  => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+                    console.log('xx res returned', res)
+                    this.dashboards = res.data.dashboards;
+                    this.dashboardTabs  = res.data.dashboardTabs;
+                    this.widgets  = res.data.widgets;
+                    this.widgetCheckpoints  = res.data.widgetCheckpoints;
+
                     if (dashboardTabID == -1) {
-                        if (j.length > 0) {dashboardTabID = j[0].id}
+                        if (this.dashboardTabs.length > 0) {dashboardTabID = this.dashboardTabs[0].id}
                     };
 
                     // Set T-index
@@ -6498,7 +6510,7 @@ export class GlobalVariableService {
             // TODO - 2. add CACHED (replace currentXXX vars)
             // TODO - 3. set this.currentDashboard object values
             //           remember: if given Tid = -1, set 1st one
-            let pathUrl: string = '/canvasCurrentDashboard?id=68&dashboardTabID=175&datasourceIDexclude=1,2';
+            let pathUrl: string = '/canvasDashboardCore?id=68&dashboardTabID=175&datasourceIDexclude=1,2';
             let finalUrl: string = this.canvasServerURI + pathUrl;
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {
