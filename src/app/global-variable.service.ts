@@ -367,40 +367,27 @@ export class GlobalVariableService {
                                 .map(ds => ds.id);
 
                             // For those DS used in currentW and not in currentDS:
-                            //  Run getCurrentDS(DSid) = 
-                            //   1. get slicersForW(Wid): number[]
-                            //   2. get DS.dataFull
-                            //   3. mark DS.DS-Filters in slicersForW as active
-                            //   4. Run Apply-DS-Filter =
-                            //      4.1 Loop on active DS.DS-Filters
-                            //      4.2 create DS.dataFiltered
-                            //   5. add ds to currentDS
-                            
-                            // For each currentW:
-                            //  Run filterW(Wid) = 
-                            //   1. W.dataFiltered = DS.dataFiltered filtered on W-Filters
-
-
-
-
-                            // For those DS used in currentW and not in currentDS:
                             let getCurrentDSPromises: any = [];
                             currentDSinWidgets.forEach(DSid => {
                                 if (currentDSids.indexOf(DSid) < 0) {
 
+                                    // Get the dataFull, and then filter it down to dataFilters
+                                    // using DS-Filters
                                     getCurrentDSPromises.push(this.getCurrentDatasource(DSid));
-                                    //  Run getCurrentDS(DSid) = 
-                                    //   1. get slicersForW(Wid): number[]
-                                    //   2. get DS.dataFull
-                                    //   3. mark DS.DS-Filters in slicersForW as active
-                                    //   4. Run Apply-DS-Filter =
-                                    //      4.1 Loop on active DS.DS-Filters
-                                    //      4.2 create DS.dataFiltered
-                                    //   5. add ds to currentDS
-                                    
-                                    // For each currentW:
-                                    //  Run filterW(Wid) = 
-                                    //   1. W.dataFiltered = DS.dataFiltered filtered on W-Filters
+
+                                    Promise.all(getCurrentDSPromises)
+                                        .then( () => {
+
+                                            // For each currentW:
+                                            //   1. W.dataFiltered = DS.dataFiltered filtered on W-Filters
+                                            this.currentWidgets.forEach(w => {
+                                                this.applyWidgetFilter(w.id);
+                                            });
+                                        })
+                                        .catch(err => {
+                                            console.error('Error in     Global-Variables refreshCurrentDashboardInfo', err)
+                                            reject(err.message)
+                                        })
                                 };
                             });
 
@@ -435,11 +422,6 @@ export class GlobalVariableService {
             );
         });
     }
-
-
-
-
-
 
     getCurrentDatasource(DSid) {
         // Get the .dataFull and .dataFiltered for a given DS, using the DS-Filters that
@@ -490,14 +472,14 @@ export class GlobalVariableService {
 
                 })
                 .catch(err => {
-                    console.error('Error in     Global-Variables saveDraftDashboard', err)
+                    console.error('Error in     Global-Variables getCurrentDatasource', err)
                     reject(err.message)
                 })
 
         });
     }
 
-    applyDSFilter(DSid) {
+    applyDSFilter(datasourceID: number) {
         // Apply DS-Filter set to DS.dataFull and update DS.dataFiltered for a given DS
         // When there are NO DS-Filters, then .dataFull = .dataFiltered
         if (this.sessionDebugging) {
@@ -507,7 +489,7 @@ export class GlobalVariableService {
 
         // TODO - complete this later
         let currentDatasourceIndex: number = this.currentDatasources
-            .findIndex(ds => ds.id == DSid);
+            .findIndex(ds => ds.id == datasourceID);
 
         if (currentDatasourceIndex >= 0) {
             this.currentDatasources[currentDatasourceIndex].dataFiltered = 
@@ -515,15 +497,15 @@ export class GlobalVariableService {
         };
     }
 
-
-
-
-
-
-
-
-
-
+    applyWidgetFilter(widgetID: number) {
+        // Apply W-Filter set to W.dataFull and update W.dataFiltered 
+        // When there are NO W-Filters, then .dataFull = .dataFiltered
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables applyWidgetFilter starts',
+                this.concoleLogStyleForStartOfMethod);
+        };
+    
+    }
 
     actionWebSocket(webSocketMessage: WebSocketMessage) {
         // Handles all the WebSocket messages, depending on the type messageType and Action
