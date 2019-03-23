@@ -304,7 +304,7 @@ export class DataDirectWebComponent implements OnInit {
                 dataFields: this.dataFieldsSelected,
                 dataFieldTypes: [],
                 dataFieldLengths: [],
-                datasourceFilters: null,
+                datasourceFilters: [],
                 datasourceFilterForThisDashboard: false,
                 accessType: '',
                 cacheResultsOnServer: true,
@@ -363,7 +363,10 @@ export class DataDirectWebComponent implements OnInit {
                 transformations: [],
                 dataErrorMessage: '',
                 nrRecordsReturned: 0,
-                sourceLocation: ''
+                sourceLocation: '',
+                dataFull: [],
+                dataFiltered: []
+
             };
 
             let newdDataset: Dataset = {

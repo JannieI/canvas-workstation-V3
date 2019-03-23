@@ -624,10 +624,6 @@ export class Datasource {
 
     // WHAT
 
-	// What: Dashboard-applicable Filters
-    datasourceFilters?: DatasourceFilter[];  // Optional Array of DS-Filters per Dashboard
-    datasourceFilterForThisDashboard: boolean;  // @ RunTime, changes: true if THIS D has filters on THIS DS
-
     // What: MetaData (describes the What)
     dataFields: string[];                   // FieldNames, in order to display
     dataFieldTypes: string[];               // Field Types, same order as dataFields
@@ -645,6 +641,14 @@ export class Datasource {
     dataErrorMessage: string;               // Error returned by Canvas Server
     nrRecordsReturned: number;              // Nr of records returned by Canvas Server
     sourceLocation: string;                 // Source, CanvasCacheDisc, CanvasCacheMemory
+
+
+    // DATA
+	// Data is loaded at @Runtime
+    datasourceFilters: DatasourceFilter[];      // Optional Array of DS-Filters per Dashboard
+    datasourceFilterForThisDashboard: boolean;  // @ RunTime, changes: true if THIS D has filters on THIS DS
+	dataFull: any[];                            // Full array of data, filled @Runtime
+	dataFiltered: any[];                        // Filtered array of data, based on DS-Filter. Filled @Runtime
 
 }
 

@@ -98,7 +98,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 dataFields: [''],
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
-                datasourceFilters: null,
+                datasourceFilters: [],
                 datasourceFilterForThisDashboard: false,
                 accessType: 'Private',
                 createdBy: this.globalVariableService.currentUser.userID,
@@ -157,7 +157,10 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 transformations: [],
                 dataErrorMessage: '',
                 nrRecordsReturned: 0,
-                sourceLocation: ''
+                sourceLocation: '',
+                dataFull: [],
+                dataFiltered: []
+    
             };
             this.selectedField = 'MySQL';
         } else {

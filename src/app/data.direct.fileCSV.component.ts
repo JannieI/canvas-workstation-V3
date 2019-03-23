@@ -403,7 +403,7 @@ export class DataDirectFileCSVComponent implements OnInit {
                 dataFields: this.fields,
                 dataFieldTypes: this.newDataFieldTypes,
                 dataFieldLengths: [],
-                datasourceFilters: null,
+                datasourceFilters: [],
                 datasourceFilterForThisDashboard: false,
                 accessType: 'Private',
                 sourceIsAccessable: false,
@@ -462,7 +462,10 @@ export class DataDirectFileCSVComponent implements OnInit {
                 transformations: [],
                 dataErrorMessage: '',
                 nrRecordsReturned: 0,
-                sourceLocation: ''
+                sourceLocation: '',
+                dataFull: [],
+                dataFiltered: []
+
             };
 
             let newdDataset: Dataset = {

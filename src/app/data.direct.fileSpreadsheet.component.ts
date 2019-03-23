@@ -418,7 +418,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 dataFields: this.fields,
                 dataFieldTypes: [],
                 dataFieldLengths: [],
-                datasourceFilters: null,
+                datasourceFilters: [],
                 datasourceFilterForThisDashboard: false,
                 accessType: '',
                 cacheResultsOnServer: true,
@@ -477,7 +477,10 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 transformations: [],
                 dataErrorMessage: '',
                 nrRecordsReturned: 0,
-                sourceLocation: ''
+                sourceLocation: '',
+                dataFull: [],
+                dataFiltered: []
+
             };
 
             let newdDataset: Dataset = {

@@ -172,7 +172,10 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 transformations: [],
                 dataErrorMessage: '',
                 nrRecordsReturned: 0,
-                sourceLocation: ''
+                sourceLocation: '',
+                dataFull: [],
+                dataFiltered: []
+
 
             };
         } else {
@@ -572,7 +575,10 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             transformations: this.selectedDatasource.transformations,
             dataErrorMessage: this.selectedDatasource.dataErrorMessage,
             nrRecordsReturned: this.selectedDatasource.nrRecordsReturned,
-            sourceLocation: this.selectedDatasource.sourceLocation
+            sourceLocation: this.selectedDatasource.sourceLocation,
+            dataFull: this.selectedDatasource.dataFull,
+            dataFiltered: this.selectedDatasource.dataFiltered
+
 
         };
         let newdSet: Dataset = {

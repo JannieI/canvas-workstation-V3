@@ -105,7 +105,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                 dataFields: [''],
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
-                datasourceFilters: null,
+                datasourceFilters: [],
                 datasourceFilterForThisDashboard: false,
                 accessType: '',
                 cacheResultsOnServer: true,
@@ -157,7 +157,10 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                 transformations: [],
                 dataErrorMessage: '',
                 nrRecordsReturned: 0,
-                sourceLocation: ''
+                sourceLocation: '',
+                dataFull: [],
+                dataFiltered: []
+
 
             };
         };

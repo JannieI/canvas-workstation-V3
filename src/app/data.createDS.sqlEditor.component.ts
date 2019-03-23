@@ -129,7 +129,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 dataFields: [''],
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
-                datasourceFilters: null,
+                datasourceFilters: [],
                 datasourceFilterForThisDashboard: false,
                 accessType: '',
                 createdBy: this.globalVariableService.currentUser.userID,
@@ -188,8 +188,9 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 transformations: [],
                 dataErrorMessage: '',
                 nrRecordsReturned: 0,
-                sourceLocation: ''
-
+                sourceLocation: '',
+                dataFull: [],
+                dataFiltered: []
             };
         } else {
             this.isEditing = true;

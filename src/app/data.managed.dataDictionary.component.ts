@@ -79,7 +79,7 @@ export class DataManagedDataDictionaryComponent implements OnInit {
             dataFields: null,
             dataFieldTypes: null,
             dataFieldLengths: null,
-            datasourceFilters: null,
+            datasourceFilters: [],
             datasourceFilterForThisDashboard: false,
             accessType: '',
             cacheResultsOnServer: true,
@@ -131,7 +131,10 @@ export class DataManagedDataDictionaryComponent implements OnInit {
             transformations: [],
             dataErrorMessage: '',
             nrRecordsReturned: 0,
-            sourceLocation: ''
+            sourceLocation: '',
+            dataFull: [],
+            dataFiltered: []
+
         }
 
         this.globalVariableService.getResource('datasources')
