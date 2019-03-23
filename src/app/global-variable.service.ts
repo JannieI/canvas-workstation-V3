@@ -286,7 +286,8 @@ export class GlobalVariableService {
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
 
-            let pathUrl: string = '/canvasDashboardCore?id=' + dashboardID;
+            let pathUrl: string = '/canvasDashboardCore?id=' + dashboardID 
+                + '&dashboardTabID=' + dashboardTabID;
             let finalUrl: string = this.canvasServerURI + pathUrl;
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
                 res  => {
