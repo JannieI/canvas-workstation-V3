@@ -286,7 +286,6 @@ export class GlobalVariableService {
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
 
-            
             let pathUrl: string = '/canvasDashboardCore?id=' + dashboardID;
             let finalUrl: string = this.canvasServerURI + pathUrl;
             this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
@@ -2253,47 +2252,6 @@ export class GlobalVariableService {
             // Done
             resolve(true);
         });
-    }
-
-    getCurrentDashboardTabs(dashboardID: number): Promise<DashboardTab[]> {
-        // Description: Gets all T for current D
-        // Params:
-        //   dashboardID
-        // Returns: this.currentDashboardTabs array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDashboardTabs starts',
-                this.concoleLogStyleForStartOfMethod,
-                {dashboardID});
-        };
-
-        return new Promise<DashboardTab[]>((resolve, reject) => {
-            this.getResource('dashboardTabs')
-                .then(res => {
-                    res = res.filter(
-                        i => i.dashboardID == dashboardID
-                    );
-                    this.currentDashboardTabs = res;
-                    this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
-                        if (obj1.displayOrder > obj2.displayOrder) {
-                            return 1;
-                        };
-                        if (obj1.displayOrder < obj2.displayOrder) {
-                            return -1;
-                        };
-                        return 0;
-                    });
-
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getCurrentDashboardTabs ends',
-                            this.concoleLogStyleForEndOfMethod,
-                            {dashboardID}, this.currentDashboardTabs)
-                    };
-                    resolve(this.currentDashboardTabs);
-
-            })
-        })
-
     }
 
     getDashboardsRecent(userID: string): Promise<DashboardRecent[]>  {
