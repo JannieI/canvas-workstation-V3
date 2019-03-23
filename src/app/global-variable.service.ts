@@ -378,7 +378,32 @@ export class GlobalVariableService {
                             
                             // For each currentW:
                             //  Run filterW(Wid) = 
-                            //   1. W.dataFiltered = DS.dataFiltered based on W-Filters
+                            //   1. W.dataFiltered = DS.dataFiltered filtered on W-Filters
+
+
+
+
+                            // For those DS used in currentW and not in currentDS:
+                            let getCurrentDSPromises: any = [];
+                            currentDSinWidgets.forEach(DSid => {
+                                if (currentDSids.indexOf(DSid) < 0) {
+
+                                    getCurrentDSPromises.push(this.getCurrentDatasource(DSid));
+                                    //  Run getCurrentDS(DSid) = 
+                                    //   1. get slicersForW(Wid): number[]
+                                    //   2. get DS.dataFull
+                                    //   3. mark DS.DS-Filters in slicersForW as active
+                                    //   4. Run Apply-DS-Filter =
+                                    //      4.1 Loop on active DS.DS-Filters
+                                    //      4.2 create DS.dataFiltered
+                                    //   5. add ds to currentDS
+                                    
+                                    // For each currentW:
+                                    //  Run filterW(Wid) = 
+                                    //   1. W.dataFiltered = DS.dataFiltered filtered on W-Filters
+                                };
+                            });
+
 
 
                             // Load current DS
@@ -410,6 +435,45 @@ export class GlobalVariableService {
             );
         });
     }
+
+
+
+
+
+
+    getCurrentDatasource(DSid) {
+        // Get the .dataFull and .dataFiltered for a given DS, using the DS-Filters that
+        // are active.  A DS-Filter set is determined by a Slicer.  If the Slicer is on the same
+        // Dashboard, the DS-Filter set is active.  Else, it is passive.  Passive DS-Filters
+        // are not applied. 
+        // When there are NO DS-Filters, then .dataFull = .dataFiltered
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDatasource starts',
+                this.concoleLogStyleForStartOfMethod);
+        };
+
+        //  Run getCurrentDS(DSid) = 
+        //   1. get slicersForW(Wid): number[]
+        //   2. get DS.dataFull
+        //   3. mark DS.DS-Filters in slicersForW as active
+        //   4. Run Apply-DS-Filter =
+        //      4.1 Loop on active DS.DS-Filters
+        //      4.2 create DS.dataFiltered
+        //   5. add ds to currentDS
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     actionWebSocket(webSocketMessage: WebSocketMessage) {
         // Handles all the WebSocket messages, depending on the type messageType and Action
