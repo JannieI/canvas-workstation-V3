@@ -3026,7 +3026,7 @@ export class GlobalVariableService {
                 && w.widgetType != 'Slicer') {
                     console.log('xx filterSlicer Related W: ', w.id)
                     w.graphUrl = "";
-                    w.graphData = dataSet.data;
+                    w.dataFiltered = dataSet.data;
 
             };
         });
@@ -4469,7 +4469,7 @@ export class GlobalVariableService {
 
             // Replace the data in the spec - each custom one is different
             if (widget.graphLayers[0].graphMark == 'donutSliders') {
-                let xDataValues: any = widget.graphData.map(x => {
+                let xDataValues: any = widget.dataFiltered.map(x => {
                     let obj: any = {
                         "id": x[widget.graphLayers[0].graphXfield],
                         "field": x[widget.graphLayers[0].graphYfield]
@@ -4482,7 +4482,7 @@ export class GlobalVariableService {
                 return specification;
             };
             if (widget.graphLayers[0].graphMark == 'wordCloud') {
-                let xColumnValues: any = widget.graphData.map(
+                let xColumnValues: any = widget.dataFiltered.map(
                     x => x[widget.graphLayers[0].graphXfield]
                 );
 
@@ -4622,7 +4622,7 @@ export class GlobalVariableService {
         if (widget.graphUrl != ""  &&  widget.graphUrl != null) {
             specification['data'] = {"url": widget.graphUrl};
         } else {
-            specification['data'] = {"values": widget.graphData};
+            specification['data'] = {"values": widget.dataFiltered};
         };
 
         // Selection
@@ -5690,7 +5690,7 @@ export class GlobalVariableService {
             if (actOldWidget != null  &&  actNewWidget != null) {
 
                 for(var key in actNewWidget) {
-                    if (key != 'data'  &&  key != 'graphData') {
+                    if (key != 'data'  &&  key != 'dataFiltered') {
 
                         if(actOldWidget[key] != actNewWidget[key]) {
 

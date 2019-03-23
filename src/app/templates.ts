@@ -458,7 +458,7 @@ export const widgetTemplate: Widget =
         ],
 
         "graphUrl": "",
-        "graphData": "",
+        "dataFiltered": "",
 
         "graphTitleText": "",
         "graphTitleAnchor": "Middle",

@@ -1499,7 +1499,7 @@ export class Widget {
 
     // Data
     graphUrl: string;                       // URL of data
-    graphData: any;                         // Actual data as an Array
+    dataFiltered: any;                      // Actual data as an Array
 
     // Title
     graphTitleText: string;                 // Text to show in Title

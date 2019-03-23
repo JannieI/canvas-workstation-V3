@@ -314,7 +314,7 @@ import { GlobalVariableService }      from './global-variable.service';
         if (this.newWidget) {
             this.localWidget.datasourceID = datasourceID;
             this.localWidget.datasetID = dSetID;
-            this.localWidget.graphData = this.globalVariableService.currentDatasets.filter(
+            this.localWidget.dataFiltered = this.globalVariableService.currentDatasets.filter(
                 d => d.id == dSetID)[0].data;
         };
 

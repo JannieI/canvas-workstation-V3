@@ -923,7 +923,7 @@ export interface dataSchemaInterface {
         // Append if requested
         if (createNewHistory) {
             let newGraphSpec: Widget = {
-                ...this.localWidget, ...{ graphData: [] }
+                ...this.localWidget, ...{ dataFiltered: [] }
             };
             this.graphHistory[layerIndex].widgetSpec.push(
                 JSON.parse(JSON.stringify(newGraphSpec))
@@ -955,7 +955,7 @@ export interface dataSchemaInterface {
         let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer == this.currentGraphLayer);
         let newWidgetSpec: Widget = {
             ...this.graphHistory[layerIndex].widgetSpec[this.graphHistoryPosition],
-             ...{ graphData: this.localWidget.graphData }
+             ...{ dataFiltered: this.localWidget.dataFiltered }
         };
         this.localWidget = JSON.parse(JSON.stringify(newWidgetSpec));
 
@@ -1001,7 +1001,7 @@ export interface dataSchemaInterface {
         // Recreate a new W spec
         let newWidgetSpec: Widget = {
             ...this.graphHistory[layerIndex].widgetSpec[this.graphHistoryPosition],
-             ...{ graphData: this.localWidget.graphData }
+             ...{ dataFiltered: this.localWidget.dataFiltered }
         };
         this.localWidget = JSON.parse(JSON.stringify(newWidgetSpec));
 
@@ -2474,7 +2474,7 @@ export interface dataSchemaInterface {
             this.localWidget.datasourceID = this.selectedRowID;
             this.localWidget.datasetID = this.globalVariableService.
                 currentDatasets[dataSetIndex].id;
-            this.localWidget.graphData = this.globalVariableService
+            this.localWidget.dataFiltered = this.globalVariableService
                 .currentDatasets[dataSetIndex].data;
 
             // Reset
