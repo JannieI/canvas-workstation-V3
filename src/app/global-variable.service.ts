@@ -342,7 +342,6 @@ export class GlobalVariableService {
                         };
                     };
 
-
                     if (dashboardTabID == -1) {
                         if (this.currentDashboardTabs.length > 0) {
                             dashboardTabID = this.currentDashboardTabs[0].id
@@ -359,29 +358,52 @@ export class GlobalVariableService {
                         '?filterObject={"dashboardID":' + dashboardID + '}')
                         .then( l => {
 
-                                // Load current DS
-                                this.getCurrentDatasources(dashboardID)
-                                    .then(k => {
+                            // Get all DS-ids for the currentWs
+                            let currentDSinWidgets: number[] = this.currentWidgets
+                                .map(w => w.datasourceID);
 
-                                        // Get info for W
-                                        this.getWidgetsInfo().then(n => {
+                            // Get all currentDSids
+                            let currentDSids: number[] = this.currentDatasources
+                                .map(ds => ds.id);
 
-                                            // Add to recent
-                                            this.amendDashboardRecent(
-                                                dashboardID,
-                                                dashboardTabID,
-                                                this.currentDashboardInfo.value.currentDashboardState
-                                            );
+                            // For those DS used in currentW and not in currentDS:
+                            //  Run getCurrentDS(DSid) = 
+                            //   1. get slicersForW(Wid): number[]
+                            //   2. get DS.dataFull
+                            //   3. mark DS.DS-Filters in slicersForW as active
+                            //   4. Run Apply-DS-Filter =
+                            //      4.1 Loop on active DS.DS-Filters
+                            //      4.2 create DS.dataFiltered
+                            //   5. add ds to currentDS
+                            
+                            // For each currentW:
+                            //  Run filterW(Wid) = 
+                            //   1. W.dataFiltered = DS.dataFiltered based on W-Filters
 
-                                            // Set the EditMode according to the D State
-                                            this.editMode.next(
-                                                this.currentDashboardInfo.value
-                                                    .currentDashboardState == 'Draft'?  true  :  false
-                                            );
-                                            resolve(true)
-                                            // })
-                                        })
+
+                            // Load current DS
+                            this.getCurrentDatasources(dashboardID)
+                                .then(k => {
+
+                                    // Get info for W
+                                    this.getWidgetsInfo().then(n => {
+
+                                        // Add to recent
+                                        this.amendDashboardRecent(
+                                            dashboardID,
+                                            dashboardTabID,
+                                            this.currentDashboardInfo.value.currentDashboardState
+                                        );
+
+                                        // Set the EditMode according to the D State
+                                        this.editMode.next(
+                                            this.currentDashboardInfo.value
+                                                .currentDashboardState == 'Draft'?  true  :  false
+                                        );
+                                        resolve(true)
+                                        // })
                                     })
+                                })
 
                         })
                 }
