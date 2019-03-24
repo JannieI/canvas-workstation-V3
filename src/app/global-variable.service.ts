@@ -996,8 +996,8 @@ export class GlobalVariableService {
                             .bulkPut(this.dataCachingTable)
                             .then(res => {
                                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                                    console.log('%c    Global-Variables getResource dataCachingTable updated with bulkPut, count @end',
-                                        this.concoleLogStyleForCaching,
+                                    console.log('%c    Global-Variables getResource dataCachingTable updated with bulkPut for resource ',
+                                        this.concoleLogStyleForCaching, resource, ', recordCount = ',
                                         res);
                                 });
                         });
@@ -6256,13 +6256,13 @@ export class GlobalVariableService {
                                 if (foundIndex < 0) {
 
                                     if (this.sessionDebugging) {
-                                        console.warn('Global-Variables verifyCanvasUser: Invalid userid', givenUserID)
+                                        console.warn('Global-Variables verifyCanvasUser: Invalid userid', givenUserID);
                                     };
                                     resolve(false);
                                 } else {
 
                                     if (this.sessionDebugging) {
-                                        console.warn('Global-Variables verifyCanvasUser: Valid userid', givenUserID)
+                                        console.warn('Global-Variables verifyCanvasUser: Valid userid', givenUserID);
                                     };
 
                                     // Set User var
@@ -6316,23 +6316,18 @@ export class GlobalVariableService {
                                     let currentCanvasUserCount: number = 0;
 
                                     // Local App info DB
-                                    console.warn('Global-Variables verifyCanvasUser: @local DB')
-                                    // let dbCanvasAppDatabase = new CanvasAppDatabase
-                                    // dbCanvasAppDatabase.open();
-
                                     this.dbCanvasAppDatabase.table("currentCanvasUser")
                                         .put(localCanvasUser)
                                         .then(res => {
-                                            console.warn('Global-Variables verifyCanvasUser Add/Update currentCanvasUser res', res);
+                                            console.warn('Global-Variables verifyCanvasUser Add/Updated currentCanvasUser to: ', res);
 
                                             // Count
                                             this.dbCanvasAppDatabase.table("currentCanvasUser").count(res => {
-                                                console.warn('Global-Variables verifyCanvasUser currentCanvasUser Count', res);
+                                                console.warn('Global-Variables verifyCanvasUser currentCanvasUsers Count = ', res);
                                                 currentCanvasUserCount = res;
 
                                                 // Return
                                                 if (currentCanvasUserCount > 0) {
-                                                    console.warn('Global-Variables verifyCanvasUser setCanvasServerState');
                                                     return true;
                                                 } else {
                                                     return false;
