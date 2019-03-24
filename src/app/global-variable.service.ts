@@ -261,7 +261,7 @@ export class GlobalVariableService {
      databaseInit() {
         // Initial
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables databaseInit starts',
+            console.log('%c  Global-Variables databaseInit starts',
                 this.concoleLogStyleForStartOfMethod)
         };
 
@@ -278,7 +278,7 @@ export class GlobalVariableService {
         // dashboardTabID = -1 if unknown, so get first T
         // Returns True if all worked, False if something went wrong
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables refreshCurrentDashboardInfo starts',
+            console.log('%c  Global-Variables refreshCurrentDashboardInfo starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID}, {dashboardTabID}, this.dashboards, this.dashboardTabs, this.currentDashboards, this.currentDashboardTabs)
         };
@@ -424,7 +424,7 @@ export class GlobalVariableService {
         // are not applied. 
         // When there are NO DS-Filters, then .dataFull = .dataFiltered
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDatasource starts',
+            console.log('%c  Global-Variables getCurrentDatasource starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -475,7 +475,7 @@ export class GlobalVariableService {
         // - different Slicers are applied with AND (data must be in both to be included after filtering)
         // - filter items in the same Slicer are treated with OR (must be in any filter item to be included after filtering)
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables applyDSFilter starts',
+            console.log('%c  Global-Variables applyDSFilter starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -542,7 +542,7 @@ export class GlobalVariableService {
         // Notes:
         // - assumes that currentDatasources exists, and has .dataFiltered
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables applyWidgetFilter starts',
+            console.log('%c  Global-Variables applyWidgetFilter starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -566,7 +566,7 @@ export class GlobalVariableService {
         // Handles all the WebSocket messages, depending on the type messageType and Action
         // It is async, so returns a Promise<boolean>
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables actionWebSocket starts',
+            console.log('%c  Global-Variables actionWebSocket starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -799,7 +799,7 @@ export class GlobalVariableService {
         // Note: in order to use a resource, it must be defined in the Dexie.ts file.
         //       Also, it may be necessary to delete the whole IndexedDB before adding new tables ...
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getResource starts',
+            console.log('%c  Global-Variables getResource starts',
                 this.concoleLogStyleForStartOfMethod, {resource});
         };
         console.time("      DURATION getResource: " + resource);
@@ -827,7 +827,7 @@ export class GlobalVariableService {
                 localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
                 localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
                 localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
-                    console.log('%c    Global-Variables getResource - In Mem vars for: ',
+                console.log('%c    Global-Variables getResource - inside dataCachingTableIndex for: ',
                     this.concoleLogStyleForCaching,
                     resource, {dataCachingTableIndex}, {localCacheableMemory},
                     {localCacheableDisc}, {localVariableName});
@@ -1026,7 +1026,7 @@ export class GlobalVariableService {
         // Description: Adds a new Resource
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addResource starts',
+            console.log('%c  Global-Variables addResource starts',
                 this.concoleLogStyleForStartOfMethod, {resource}, {data});
         };
         var now = new Date();
@@ -1173,7 +1173,7 @@ export class GlobalVariableService {
         // Description: Saves Resource
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveResource starts',
+            console.log('%c  Global-Variables saveResource starts',
                 this.concoleLogStyleForStartOfMethod, {resource}, {data});
         };
         console.time("      DURATION saveResource " + resource + ' ' + data.id.toString());
@@ -1335,7 +1335,7 @@ export class GlobalVariableService {
         // Description: Deletes a Resources
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteResource starts',
+            console.log('%c  Global-Variables deleteResource starts',
                 this.concoleLogStyleForStartOfMethod, {resource}, {id});
         };
         console.time("      DURATION deleteResource" + resource +  ' ' + id.toString());
@@ -1437,7 +1437,7 @@ export class GlobalVariableService {
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables dashboardCopy starts',
+            console.log('%c  Global-Variables dashboardCopy starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -1507,7 +1507,7 @@ export class GlobalVariableService {
     letDashboard(dashboardID: number = null): Dashboard {
         // Returns the given D from the internal arrays
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables letDashboard starts',
+            console.log('%c  Global-Variables letDashboard starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -1539,7 +1539,7 @@ export class GlobalVariableService {
         // Returns true if successfull
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables discardDashboard starts',
+            console.log('%c  Global-Variables discardDashboard starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -1642,7 +1642,7 @@ export class GlobalVariableService {
         // - the AuditTrails are kept against the Draft
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDraftDashboard starts',
+            console.log('%c  Global-Variables saveDraftDashboard starts',
                 this.concoleLogStyleForStartOfMethod,
                 {deleteSnapshots});
         };
@@ -1847,7 +1847,7 @@ export class GlobalVariableService {
     deleteDashboardInfo(dashboardID: number): Promise<string> {
         // Deletes D with all related Entities
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDashboardInfo starts',
+            console.log('%c  Global-Variables deleteDashboardInfo starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -1937,7 +1937,7 @@ export class GlobalVariableService {
     clearDashboardInfo() {
         // Clears all related Entities of a D
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables clearDashboard starts',
+            console.log('%c  Global-Variables clearDashboard starts',
                 this.concoleLogStyleForEndOfMethod);
         };
 
@@ -1954,7 +1954,7 @@ export class GlobalVariableService {
         // Description: Adds a new Dashboard
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDashboard starts',
+            console.log('%c  Global-Variables addDashboard starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -1989,7 +1989,7 @@ export class GlobalVariableService {
         // Returns: this.currentDashboards array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDashboards starts',
+            console.log('%c  Global-Variables getCurrentDashboards starts',
                 this.concoleLogStyleForStartOfMethod, {dashboardID});
         };
 
@@ -2119,7 +2119,7 @@ export class GlobalVariableService {
 
 
 
-            console.log('%c    Global-Variables addDashboardToCache starts',
+            console.log('%c  Global-Variables addDashboardToCache starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -2169,7 +2169,7 @@ export class GlobalVariableService {
         // Refreshes ALL the local cache in Memory
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables refreshLocalCacheMemory starts',
+            console.log('%c  Global-Variables refreshLocalCacheMemory starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -2286,7 +2286,7 @@ export class GlobalVariableService {
         //   cachedEntityData = data to add, update
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables updateLocalCacheMemory starts',
+            console.log('%c  Global-Variables updateLocalCacheMemory starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -2469,7 +2469,7 @@ export class GlobalVariableService {
         // - DB
         // - this.dashboardsRecent (array in Global Vars)
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardsRecent starts',
+            console.log('%c  Global-Variables getDashboardsRecent starts',
                 this.concoleLogStyleForStartOfMethod, {userID});
         };
 
@@ -2544,7 +2544,7 @@ export class GlobalVariableService {
         // Compares given IDs against the Recent list:
         // - if D not there, call ADD.  Else SAVE
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables amendDashboardRecent starts',
+            console.log('%c  Global-Variables amendDashboardRecent starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID}, {dashboardTabID});
         };
@@ -2640,7 +2640,7 @@ export class GlobalVariableService {
         // - change current D Desc => position remains unchanged
         // - D Rename => position should not be affected
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables touchupDashboardRecent starts',
+            console.log('%c  Global-Variables touchupDashboardRecent starts',
                 this.concoleLogStyleForStartOfMethod
                 , {dashboardID}, {dashboardName});
         };
@@ -2659,7 +2659,7 @@ export class GlobalVariableService {
         // this.currentDatasets.  Then add the data from respective data location.
         // Returns: dataset
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDataset starts',
+            console.log('%c  Global-Variables getCurrentDataset starts',
                 this.concoleLogStyleForStartOfMethod,
                 {datasourceID}, {datasetID});
         };
@@ -2779,7 +2779,7 @@ export class GlobalVariableService {
         // Description: Adds a new Dataset
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDataset starts',
+            console.log('%c  Global-Variables addDataset starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -2835,7 +2835,7 @@ export class GlobalVariableService {
         //   &nrRowsToReturn=2                     Rows to return after ALL else have been done
         // Returns: res.data
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getData starts',
+            console.log('%c  Global-Variables getData starts',
                 this.concoleLogStyleForStartOfMethod, {parameters});
         };
 
@@ -2880,7 +2880,7 @@ export class GlobalVariableService {
         // Description: Adds DATA used in a new Dataset
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addData  starts',
+            console.log('%c  Global-Variables addData  starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -2916,7 +2916,7 @@ export class GlobalVariableService {
         // Description: Saves Data
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveData starts',
+            console.log('%c  Global-Variables saveData starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -2951,7 +2951,7 @@ export class GlobalVariableService {
         // Description: Deletes given Data
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteData starts',
+            console.log('%c  Global-Variables deleteData starts',
                 this.concoleLogStyleForStartOfMethod, {id});
         };
 
@@ -2985,7 +2985,7 @@ export class GlobalVariableService {
         // Note: Objects and arrays are passed by reference. Primitive values like number,
         // string, boolean are passed by value.  Thus, original object (dSet) is modified here.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables filterSlicer starts',
+            console.log('%c  Global-Variables filterSlicer starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dataSet});
         };
@@ -3097,7 +3097,7 @@ export class GlobalVariableService {
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables newDashboardSnapshot starts',
+            console.log('%c  Global-Variables newDashboardSnapshot starts',
                 this.concoleLogStyleForStartOfMethod,
                 {snapshotName}, {snapshotComment}, {snapshotType});
         };
@@ -3138,7 +3138,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         // NB: assume this.currentWidgets exists !!
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDatasources starts',
+            console.log('%c  Global-Variables getCurrentDatasources starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -3228,7 +3228,7 @@ export class GlobalVariableService {
     //     //   If not cached or if dirty, get from File
     //     // NB: assume this.currentWidgets exists !!
     //     if (this.sessionDebugging) {
-    //         console.log('%c    Global-Variables getCurrentDatasources starts',
+    //         console.log('    Global-Variables getCurrentDatasources starts',
     //             this.concoleLogStyleForStartOfMethod,
     //             {dashboardID});
     //     };
@@ -3314,7 +3314,7 @@ export class GlobalVariableService {
     addCurrentDatasource(datasourceID: number){
         // Add DS AND dSet to current-arrays (from DS and dSet arrays) for a given DS-id
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addCurrentDatasource starts',
+            console.log('%c  Global-Variables addCurrentDatasource starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -3383,7 +3383,7 @@ export class GlobalVariableService {
         // Description: Deletes a Datasources
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteDatasource starts',
+            console.log('%c  Global-Variables deleteDatasource starts',
             this.concoleLogStyleForStartOfMethod, {id});
         };
 
@@ -3422,7 +3422,7 @@ export class GlobalVariableService {
         // Returns: this.datasourcePermissions array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDatasourcePermissions starts',
+            console.log('%c  Global-Variables getDatasourcePermissions starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -3465,7 +3465,7 @@ export class GlobalVariableService {
         // Returns: this.canvasSettings object, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getSystemSettings starts',
+            console.log('%c  Global-Variables getSystemSettings starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -3505,7 +3505,7 @@ export class GlobalVariableService {
         // Description: Adds a new PaletteButtonsSelected
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addPaletteButtonsSelected starts',
+            console.log('%c  Global-Variables addPaletteButtonsSelected starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -3540,7 +3540,7 @@ export class GlobalVariableService {
         // Description: Saves PaletteButtonsSelected
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables savePaletteButtonsSelected starts',
+            console.log('%c  Global-Variables savePaletteButtonsSelected starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -3574,7 +3574,7 @@ export class GlobalVariableService {
         // Description: Deletes a PaletteButtonsSelected
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deletePaletteButtonsSelected starts',
+            console.log('%c  Global-Variables deletePaletteButtonsSelected starts',
                 this.concoleLogStyleForStartOfMethod, {id});
         };
 
@@ -3624,7 +3624,7 @@ export class GlobalVariableService {
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getWidgets starts',
+            console.log('%c  Global-Variables getWidgets starts',
                 this.concoleLogStyleForStartOfMethod,
                 this.widgets.length);
         };
@@ -3738,7 +3738,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         // Usage: getWidgets(1, -1)  =>  Returns W for DashboardID = 1
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentWidgets starts',
+            console.log('%c  Global-Variables getCurrentWidgets starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID}, {dashboardTabID});
         };
@@ -3781,7 +3781,7 @@ export class GlobalVariableService {
         // Description: Saves Widget
         // Returns: 'Saved' or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveWidget starts',
+            console.log('%c  Global-Variables saveWidget starts',
                 this.concoleLogStyleForStartOfMethod, {data});
         };
 
@@ -3812,7 +3812,7 @@ export class GlobalVariableService {
     duplicateSingleWidget(originalWidget: Widget) {
         // Duplicate the given Widget
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables duplicateSingleWidget starts',
+            console.log('%c  Global-Variables duplicateSingleWidget starts',
                 this.concoleLogStyleForStartOfMethod, {originalWidget});
         };
 
@@ -3885,7 +3885,7 @@ export class GlobalVariableService {
         // Returns: 'Deleted' or error message
         // NOTE: this permananently deletes a W, from arrays and DB.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables deleteWidget starts',
+            console.log('%c  Global-Variables deleteWidget starts',
                 this.concoleLogStyleForStartOfMethod, {id});
         };
 
@@ -3930,7 +3930,7 @@ export class GlobalVariableService {
         // Returns: this.datasets, currentDataset array
         // NB: this assumes [W] and [datasets] are available !!
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getWidgetsInfo starts',
+            console.log('%c  Global-Variables getWidgetsInfo starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -4007,7 +4007,7 @@ export class GlobalVariableService {
     allWithAsync = (...listOfPromises) => {
         // Resolve all promises in array
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables allWithAsync starts',
+            console.log('%c  Global-Variables allWithAsync starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -4028,7 +4028,7 @@ export class GlobalVariableService {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables updateCanvasMessagesAsRead starts',
+            console.log('%c  Global-Variables updateCanvasMessagesAsRead starts',
                 this.concoleLogStyleForStartOfMethod, {userID});
         };
 
@@ -4063,7 +4063,7 @@ export class GlobalVariableService {
         // Returns: this.currentWidgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentWidgetCheckpoints starts',
+            console.log('%c  Global-Variables getCurrentWidgetCheckpoints starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -4111,7 +4111,7 @@ export class GlobalVariableService {
     clearCurrentUser() {
         // Description: reset the Global currentUser variable
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables clearCurrentUser starts',
+            console.log('%c  Global-Variables clearCurrentUser starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -4162,7 +4162,7 @@ export class GlobalVariableService {
         // NOTE: This does NOT update the DB or any other Variable
         // Returns: 'Setted', else 'Error: userID does not exist in canvasUsers'
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables updateCurrentUserProperties starts',
+            console.log('%c  Global-Variables updateCurrentUserProperties starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -4273,7 +4273,7 @@ export class GlobalVariableService {
     setBaseUrl(pathUrl: string): string {
        // Description: Gets the caching table that drives local caching process
        if (this.sessionDebugging) {
-        console.log('%c      Global-Variables setBaseUrl starts',
+        console.log('%c    Global-Variables setBaseUrl starts',
             this.concoleLogStyleForStartOfUtilFunctions,
             pathUrl);
         };
@@ -4289,7 +4289,7 @@ export class GlobalVariableService {
     getDataCachingTable(): Promise<DataCachingTable[]> {
        // Description: Gets the caching table that drives local caching process
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDataCachingTable starts',
+            console.log('%c  Global-Variables getDataCachingTable starts',
                 this.concoleLogStyleForStartOfMethod,
                 this.dataCachingTable.length);
         };
@@ -4349,7 +4349,7 @@ export class GlobalVariableService {
         // It does assume that we have a currentDashboardInfo object if Previous/Next are
         // parameters.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables refreshCurrentDashboard starts',
+            console.log('%c  Global-Variables refreshCurrentDashboard starts',
                 this.concoleLogStyleForStartOfMethod,
                 {refreshingRoutine}, {dashboardID}, {dashboardTabID}, {tabToShow},
                 {widgetsToRefresh});
@@ -4466,7 +4466,7 @@ export class GlobalVariableService {
     sleep(milliseconds: number) {
         // Sleep for a while
         if (this.sessionDebugging) {
-            console.log('%c      Global-Variables sleep starts',
+            console.log('%c    Global-Variables sleep starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {milliseconds});
         };
@@ -4499,7 +4499,7 @@ export class GlobalVariableService {
         // The specification All the information needed to create
         if (this.sessionDebugging) {
             let widgetID: number = widget.id;
-            console.log('%c    Global-Variables createVegaSpec starts',
+            console.log('%c  Global-Variables createVegaSpec starts',
                 this.concoleLogStyleForStartOfMethod,
                 {widgetID});
         };
@@ -4574,7 +4574,7 @@ export class GlobalVariableService {
         // Creates and returns a specification for Vega-Lite visual grammar
         if (this.sessionDebugging) {
             let widgetID: number = widget.id;
-            console.log('%c    Global-Variables createVegaLiteSpec starts',
+            console.log('%c  Global-Variables createVegaLiteSpec starts',
                 this.concoleLogStyleForStartOfMethod,
                 {widgetID});
         };
@@ -5612,7 +5612,7 @@ export class GlobalVariableService {
      ): number {
         let actID: number = 1;
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables actionUpsert starts',
+            console.log('%c  Global-Variables actionUpsert starts',
                 this.concoleLogStyleForStartOfMethod,
                 {logToDB}, {oldWidget}, {newWidget});
         };
@@ -5786,7 +5786,7 @@ export class GlobalVariableService {
     alignToGripPoint(inputValue: number) {
         // This routine recalcs a value to a gridpoint IF snapping is enabled
         if (this.sessionDebugging) {
-            console.log('%c      Global-Variables alignToGripPoint starts',
+            console.log('%c    Global-Variables alignToGripPoint starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {inputValue});
         };
@@ -5807,7 +5807,7 @@ export class GlobalVariableService {
         ): void {
         // Shows a message in the right area, ie StatusBar
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables showStatusBarMessage starts',
+            console.log('%c  Global-Variables showStatusBarMessage starts',
                 this.concoleLogStyleForStartOfMethod,
                 {statusBarMessage});
         };
@@ -5851,7 +5851,7 @@ export class GlobalVariableService {
         //   It is NOT case sensitive, and only applicable to accessType = 'AccessList'
 
         if (this.sessionDebugging) {
-            console.log('%c      Global-Variables dashboardPermissionCheck starts',
+            console.log('%c    Global-Variables dashboardPermissionCheck starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {dashboardID}, {accessRequired});
         };
@@ -5982,7 +5982,7 @@ export class GlobalVariableService {
         // belongs).
         // Returns: T/F
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables datasourcePermissionsCheck starts',
+            console.log('%c  Global-Variables datasourcePermissionsCheck starts',
                 this.concoleLogStyleForStartOfMethod);
         };
         // Assume no access
@@ -6077,7 +6077,7 @@ export class GlobalVariableService {
     dashboardPermissionList(id: number): string[] {
         // Returns Array of Permissions for the current user to the given D.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables dashboardPermissionList starts',
+            console.log('%c  Global-Variables dashboardPermissionList starts',
                 this.concoleLogStyleForStartOfMethod,
                 {id});
         };
@@ -6178,7 +6178,7 @@ export class GlobalVariableService {
         //   = time (HH:MM:SS)
         //   = dateTime (YYYY/MM/DD HH:MM:SS)
         // if (this.sessionDebugging) {
-            // console.log('%c      Global-Variables formatDate starts',
+            // console.log('      Global-Variables formatDate starts',
             //     this.concoleLogStyleForStartOfUtilFunctions, {date});
         // };
 
@@ -6218,7 +6218,7 @@ export class GlobalVariableService {
         // Checks if userID exists.  If not, return false.
         // If so, set currentUser object and return true
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables verifyCanvasUser starts',
+            console.log('%c  Global-Variables verifyCanvasUser starts',
                 this.concoleLogStyleForStartOfMethod,
                 {givenCanvasServerName}, {givenCanvasServerURI}, {givenCompanyName}, {givenUserID});
         };
@@ -6389,7 +6389,7 @@ export class GlobalVariableService {
         // Registers a user on a given Server & Company (add to Users) if he/she does not
         // already exist
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables registerCanvasUser starts',
+            console.log('%c  Global-Variables registerCanvasUser starts',
                 this.concoleLogStyleForStartOfMethod,
                 {givenCanvasServerName}, {givenCompanyName},
                 {givenUserID}, {givenPassword});
@@ -6445,7 +6445,7 @@ export class GlobalVariableService {
         givenPassword: string): Promise<{ message: string, token: string}> {
         // Logs a user on a given Server & Company
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables loginCanvasServer starts',
+            console.log('%c  Global-Variables loginCanvasServer starts',
                 this.concoleLogStyleForStartOfMethod,
                 {givenCanvasServerName}, {givenCompanyName},
                 {givenUserID}, {givenPassword});
@@ -6502,7 +6502,7 @@ export class GlobalVariableService {
         password: string): Promise<CanvasHttpResponse> {
         // Description: Returns an Array of tables in the given Server and DB
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getListTables starts',
+            console.log('%c  Global-Variables getListTables starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -6551,7 +6551,7 @@ export class GlobalVariableService {
         password: string): Promise<CanvasHttpResponse> {
         // Description: Returns an Array of Fields in the given Server and DB
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getListFields starts',
+            console.log('%c  Global-Variables getListFields starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -6610,7 +6610,7 @@ export class GlobalVariableService {
         // - nrRowsToReturn = Optional number of rows to return, 0 = all
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getExecQuery starts',
+            console.log('%c  Global-Variables getExecQuery starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
@@ -6665,7 +6665,7 @@ export class GlobalVariableService {
         //
         // Clear the CurrentXXX vars and reload with the info read from the DB.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getCurrentDashboardAndTabNEW starts',
+            console.log('%c  Global-Variables getCurrentDashboardAndTabNEW starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardTabID}, {datasourceIDexclude});
         };
@@ -6707,7 +6707,7 @@ export class GlobalVariableService {
     getDashboardSummary(dashboardID: number): Promise<any> {
         // Gets a summary of related Entities for the given Dashboard
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getDashboardSummary starts',
+            console.log('%c  Global-Variables getDashboardSummary starts',
                 this.concoleLogStyleForStartOfMethod,
                 {dashboardID});
         };
@@ -6744,7 +6744,7 @@ export class GlobalVariableService {
         // - data
         // The Server adds the records, with the correct IDs
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables addDatasourceNEW starts',
+            console.log('%c  Global-Variables addDatasourceNEW starts',
                 this.concoleLogStyleForStartOfMethod,
                 datasourceInput.name);
         };
@@ -6818,7 +6818,7 @@ export class GlobalVariableService {
         // - data
         // The Server adds the records, with the correct IDs
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables saveDatasourceNEW starts',
+            console.log('%c  Global-Variables saveDatasourceNEW starts',
                 this.concoleLogStyleForStartOfMethod,
                 datasourceInput.name);
         };
@@ -6909,7 +6909,7 @@ export class GlobalVariableService {
         // Create a new Tributary Session
         // - sampleSize = optional nr of rows to return
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables tributaryCreateSession starts',
+            console.log('%c  Global-Variables tributaryCreateSession starts',
                 this.concoleLogStyleForStartOfMethod,
                 {sampleSize});
         };
@@ -6952,7 +6952,7 @@ export class GlobalVariableService {
         // - inspectURL - url obtained from tributaryCreateSession()
         // - source = specification for Tributary
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables tributaryInspect starts',
+            console.log('%c  Global-Variables tributaryInspect starts',
                 this.concoleLogStyleForStartOfMethod,
                 {inspectURL});
         };
@@ -6993,7 +6993,7 @@ export class GlobalVariableService {
         // - executeURL - url obtained from tributaryCreateSession()
         // - source = specification for Tributary
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables tributaryExecute starts',
+            console.log('%c  Global-Variables tributaryExecute starts',
                 this.concoleLogStyleForStartOfMethod,
                 {executeURL});
         };
@@ -7033,7 +7033,7 @@ export class GlobalVariableService {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getTributaryData starts',
+            console.log('%c  Global-Variables getTributaryData starts',
                 this.concoleLogStyleForStartOfMethod, {source});
         };
 
@@ -7070,7 +7070,7 @@ export class GlobalVariableService {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getTributaryData starts',
+            console.log('%c  Global-Variables getTributaryData starts',
                 this.concoleLogStyleForStartOfMethod, {source});
         };
 
@@ -7112,7 +7112,7 @@ export class GlobalVariableService {
         query: string): TributarySource {
         // Description: constructs a Tributary Source object from the given parameters
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables constructTributarySQLSource starts',
+            console.log('%c  Global-Variables constructTributarySQLSource starts',
                 this.concoleLogStyleForStartOfMethod,
                 {connector}, {drivername}, {username}, {password}, {database}, {host}, {port},
                 {query});
@@ -7143,7 +7143,7 @@ export class GlobalVariableService {
         //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
         // Returns: Amended Date
         if (this.sessionDebugging) {
-            console.log('%c      Global-Variables dateAdd starts',
+            console.log('%c    Global-Variables dateAdd starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {date}, {interval}, {units});
         };
@@ -7191,7 +7191,7 @@ export class GlobalVariableService {
         //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
         // Returns: Amended Date
         if (this.sessionDebugging) {
-            console.log('%c      Global-Variables getTributaryDirectDBSchema starts',
+            console.log('%c    Global-Variables getTributaryDirectDBSchema starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {fromDate}, {toDate}, {interval});
         };
@@ -7228,7 +7228,7 @@ export class GlobalVariableService {
         // keywords like #pagenr, #pages, #date
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            // console.log('%c      Global-Variables calcShapeTextDisplay starts',
+            // console.log('      Global-Variables calcShapeTextDisplay starts',
             //     this.concoleLogStyleForStartOfUtilFunctions, {shapeText});
         };
 
@@ -7253,7 +7253,7 @@ export class GlobalVariableService {
         // Description: calculate the Height of the graph in a Widget
         // Returns: Graph Height, null if impossible to do so
         if (this.sessionDebugging) {
-            console.log('%c      Global-Variables calcGraphHeight starts',
+            console.log('%c    Global-Variables calcGraphHeight starts',
                 this.concoleLogStyleForStartOfUtilFunctions);
         };
 
@@ -7282,7 +7282,7 @@ export class GlobalVariableService {
         // Description: calculate the Width of the graph in a Widget
         // Returns: Graph Width, null if impossible to do so
         if (this.sessionDebugging) {
-            console.log('%c      Global-Variables calcGraphWidth starts',
+            console.log('%c    Global-Variables calcGraphWidth starts',
                 this.concoleLogStyleForStartOfUtilFunctions);
         };
 
