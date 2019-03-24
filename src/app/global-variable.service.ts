@@ -98,7 +98,7 @@ export class GlobalVariableService {
     concoleLogStyleForCaching: string = "color: black; background: transparent; font-size: 10px; font-weight: bold;";
     concoleLogStyleForStartOfMethod: string = "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px; font-weight: bold;";
     concoleLogStyleForEndOfMethod: string = "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px;";
-    concoleLogStyleForStartOfUtilFunctions: string = "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px;";
+    concoleLogStyleForStartOfUtilFunctions: string = "color: black; background: rgba(243, 243, 243, 0.4); font-size: 10px;";
     continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Canvas Server
     headers = new HttpHeaders().set("Content-Type", "application/json");
@@ -559,7 +559,7 @@ export class GlobalVariableService {
         };
 
         // TODO - code in full ~ maybe done in W Ed already ...
-        
+
     }
 
     actionWebSocket(webSocketMessage: WebSocketMessage) {
@@ -4273,7 +4273,7 @@ export class GlobalVariableService {
     setBaseUrl(pathUrl: string): string {
        // Description: Gets the caching table that drives local caching process
        if (this.sessionDebugging) {
-        console.log('%c    Global-Variables setBaseUrl starts',
+        console.log('%c      Global-Variables setBaseUrl starts',
             this.concoleLogStyleForStartOfUtilFunctions,
             pathUrl);
         };
@@ -4466,7 +4466,7 @@ export class GlobalVariableService {
     sleep(milliseconds: number) {
         // Sleep for a while
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables sleep starts',
+            console.log('%c      Global-Variables sleep starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {milliseconds});
         };
@@ -5786,7 +5786,7 @@ export class GlobalVariableService {
     alignToGripPoint(inputValue: number) {
         // This routine recalcs a value to a gridpoint IF snapping is enabled
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables alignToGripPoint starts',
+            console.log('%c      Global-Variables alignToGripPoint starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {inputValue});
         };
@@ -5851,7 +5851,7 @@ export class GlobalVariableService {
         //   It is NOT case sensitive, and only applicable to accessType = 'AccessList'
 
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables dashboardPermissionCheck starts',
+            console.log('%c      Global-Variables dashboardPermissionCheck starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {dashboardID}, {accessRequired});
         };
@@ -6178,7 +6178,7 @@ export class GlobalVariableService {
         //   = time (HH:MM:SS)
         //   = dateTime (YYYY/MM/DD HH:MM:SS)
         // if (this.sessionDebugging) {
-            // console.log('%c    Global-Variables formatDate starts',
+            // console.log('%c      Global-Variables formatDate starts',
             //     this.concoleLogStyleForStartOfUtilFunctions, {date});
         // };
 
@@ -7143,7 +7143,7 @@ export class GlobalVariableService {
         //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
         // Returns: Amended Date
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables dateAdd starts',
+            console.log('%c      Global-Variables dateAdd starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {date}, {interval}, {units});
         };
@@ -7191,7 +7191,7 @@ export class GlobalVariableService {
         //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
         // Returns: Amended Date
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables getTributaryDirectDBSchema starts',
+            console.log('%c      Global-Variables getTributaryDirectDBSchema starts',
                 this.concoleLogStyleForStartOfUtilFunctions,
                 {fromDate}, {toDate}, {interval});
         };
@@ -7228,7 +7228,7 @@ export class GlobalVariableService {
         // keywords like #pagenr, #pages, #date
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
-            // console.log('%c    Global-Variables calcShapeTextDisplay starts',
+            // console.log('%c      Global-Variables calcShapeTextDisplay starts',
             //     this.concoleLogStyleForStartOfUtilFunctions, {shapeText});
         };
 
@@ -7253,7 +7253,7 @@ export class GlobalVariableService {
         // Description: calculate the Height of the graph in a Widget
         // Returns: Graph Height, null if impossible to do so
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables calcGraphHeight starts',
+            console.log('%c      Global-Variables calcGraphHeight starts',
                 this.concoleLogStyleForStartOfUtilFunctions);
         };
 
@@ -7282,7 +7282,7 @@ export class GlobalVariableService {
         // Description: calculate the Width of the graph in a Widget
         // Returns: Graph Width, null if impossible to do so
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables calcGraphWidth starts',
+            console.log('%c      Global-Variables calcGraphWidth starts',
                 this.concoleLogStyleForStartOfUtilFunctions);
         };
 
