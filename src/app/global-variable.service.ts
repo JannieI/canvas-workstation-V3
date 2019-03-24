@@ -472,6 +472,8 @@ export class GlobalVariableService {
         // Notes: 
         // - this assumes that this.currentWidgets is already populated
         // - it applies changes to the given DS
+        // - different Slicers are applied with AND (data must be in both to be included after filtering)
+        // - filter items in the same Slicer are treated with OR (must be in any filter item to be included after filtering)
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables applyDSFilter starts',
                 this.concoleLogStyleForStartOfMethod);
@@ -537,6 +539,8 @@ export class GlobalVariableService {
     applyWidgetFilter(widget: Widget) {
         // Apply W-Filter set to W.dataFull and update W.dataFiltered 
         // When there are NO W-Filters, then .dataFull = .dataFiltered
+        // Notes:
+        // - assumes that currentDatasources exists, and has .dataFiltered
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables applyWidgetFilter starts',
                 this.concoleLogStyleForStartOfMethod);
@@ -544,15 +548,18 @@ export class GlobalVariableService {
 
         let currentDatasourceIndex: number = this.currentDatasources.findIndex(
             ds => ds.id == widget.datasourceID);
-        
-        // TODO - code the full filter later
+        let currentDatasource: Datasource = null;
+
+        // Start with the filtered data in the related DS
         if (currentDatasourceIndex >= 0) {
             widget.dataFiltered = this.currentDatasources[currentDatasourceIndex].dataFiltered;
         } else {
             widget.dataFiltered = [];
+            return;
         };
 
-
+        // TODO - code in full ~ maybe done in W Ed already ...
+        
     }
 
     actionWebSocket(webSocketMessage: WebSocketMessage) {
