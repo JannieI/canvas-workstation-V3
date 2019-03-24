@@ -25,6 +25,7 @@ import { DashboardSnapshot }          from './models';
 import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
 import { DataCachingTable }           from './models';
+import { DatasourceFilter }           from './models';
 import { DatasourceSchedule }         from './models';
 import { DatasourceScheduleLog }      from './models';
 import { Dataset }                    from './models';
@@ -468,7 +469,9 @@ export class GlobalVariableService {
     applyDSFilter(datasourceToFilter: Datasource) {
         // Apply DS-Filter set to DS.dataFull and update DS.dataFiltered for a given DS
         // When there are NO DS-Filters, then .dataFull = .dataFiltered
-        // 
+        // Notes: 
+        // - this assumes that this.currentWidgets is already populated
+        // - it applies changes to the given DS
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables applyDSFilter starts',
                 this.concoleLogStyleForStartOfMethod);
@@ -479,7 +482,7 @@ export class GlobalVariableService {
             .filter(w => w.widgetType == 'Slicer')
             .map(x => x.id);
 
-        //   Mark DS.DS-Filters in Slicers as active
+        // Mark DS.DS-Filters in Slicers as active
         datasourceToFilter.datasourceFilters.forEach(dsf => {
             if (slicersOnDashboardIDs.indexOf(dsf.widgetID) >= 0) {
                 dsf.isActive = true;
@@ -489,13 +492,41 @@ export class GlobalVariableService {
         });
 
         // TODO - complete this later
-        let currentDatasourceIndex: number = this.currentDatasources
-            .findIndex(ds => ds.id == datasourceID);
+        datasourceToFilter.dataFiltered = 
+        datasourceToFilter.dataFull;
 
-        if (currentDatasourceIndex >= 0) {
-            this.currentDatasources[currentDatasourceIndex].dataFiltered = 
-            this.currentDatasources[currentDatasourceIndex].dataFull;
-        };
+        // Create a unique list of Slicer IDs used in the DS-Filter
+        let slicersUsedIDSet: any = new Set(datasourceToFilter.datasourceFilters
+            .map(dsf => dsf.widgetID));
+        let slicersUsedIDs = Array.from(slicersUsedIDSet);
+
+        // Start with the all the data in partialDataFiltered.  Each Slicer will 
+        // reduce partialDataFiltered, which will be the starting point for the 
+        // next Slicer
+        let partialDataFiltered: any[] = datasourceToFilter.dataFull;
+
+        // Loop on the unique Slicers in the DS-Filter
+        slicersUsedIDs.forEach(sID => {
+            let dataFilterSubset: DatasourceFilter[] = datasourceToFilter
+                .datasourceFilters.filter(dsf => dsf.widgetID == sID);
+            
+            // Filter the data on each filter item for this Slicer ID
+            // Accumulate this, which means that they are treated as OR operands:
+            // if data belongs to any one of the Slicer items, it is included
+            let dataForOneSlicerItem: any = [];
+            let allDataForThisSlicer: any = [];
+            dataFilterSubset.forEach(fitem => {
+                // Get dataForOneSlicerItem = partialDataFiltered.filter on
+                //  filterFieldName, filterOperator, filterValue
+                // allDataForThisSlicer = allDataForThisSlicer + dataForOneSlicerItem
+            });
+
+            // Afterwards, reduce the data to filter on to the above data
+            // Thus, different Slicers are treated as AND operands:
+            // data is only included if it belongs to all the Slicers
+            // partialDataFiltered = allDataForThisSlicer
+        })
+
     }
 
     applyWidgetFilter(widget: Widget) {
