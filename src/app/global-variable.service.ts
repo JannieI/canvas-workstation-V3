@@ -429,39 +429,35 @@ export class GlobalVariableService {
 
         return new Promise<boolean>((resolve, reject) => {
 
-            //   1. get slicersOnD(Wid): number[]
+            // Find the DS in the currentDS array, and add if needed
+            let currentDatasourceIndex: number = this.currentDatasources
+                .findIndex(ds => ds.id == datasourceID);
+            let currentDatasource: Datasource = null;
+
+            if (currentDatasourceIndex < 0) {
+                let datasourceIndex: number = this.datasources
+                    .findIndex(ds => ds.id == datasourceID);
+                if (datasourceIndex >= 0) {
+                    currentDatasource = this.datasources[datasourceIndex];
+                    this.currentDatasources.push(currentDatasource)
+                } else {
+                    console.error('Error in     Global-Variables getCurrentDatasource: Datasource does not exists in this.datasources')
+                    reject('Datasource does not exist in datasources array')
+                };
+            };
+
+            // Get IDs of all Slicers On the Dashboard
             let slicersOnDashboardIDs: number[] = this.currentWidgets
                 .filter(w => w.widgetType == 'Slicer')
                 .map(x => x.id);
 
-            //   2. get DS.dataFull
-            let datasourceDataPromise: any = [];
-
+            // Get DS.dataFull
             this.getData('datasourceID=' + datasourceID)
                 .then(res => {
-                    let currentDatasourceIndex: number = this.currentDatasources
-                        .findIndex(ds => ds.id == datasourceID);
+                    currentDatasource.dataFull = res;
 
-                    if (currentDatasourceIndex >= 0) {
-                        this.currentDatasources[currentDatasourceIndex].dataFull = res;
-                    };
-
-                    //   3. mark DS.DS-Filters in slicersOnD as active
-                    let dsFilteredPromises: any[] = [];
-                    this.currentDatasources[currentDatasourceIndex].datasourceFilters.forEach(dsf => {
-                        if (slicersOnDashboardIDs.indexOf(dsf.widgetID) >= 0) {
-                            dsf.isActive = true;
-                        } else {
-                            dsf.isActive = false;
-                        };
-                    });
-
-                    //   4. Run Apply-DS-Filter =
-                    //      4.1 Loop on active DS.DS-Filters
-                    //      4.2 create DS.dataFiltered
-                    this.applyDSFilter(datasourceID);
-
-                    //   5. add ds to currentDS
+                    //  Create DS.DS-Filter using active DS.DS-Filters
+                    this.applyDSFilter(currentDatasource);
 
                 })
                 .catch(err => {
@@ -472,13 +468,22 @@ export class GlobalVariableService {
         });
     }
 
-    applyDSFilter(datasourceID: number) {
+    applyDSFilter(datasource: Datasource) {
         // Apply DS-Filter set to DS.dataFull and update DS.dataFiltered for a given DS
         // When there are NO DS-Filters, then .dataFull = .dataFiltered
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables applyDSFilter starts',
                 this.concoleLogStyleForStartOfMethod);
         };
+
+        //   Mark DS.DS-Filters in Slicers as active
+        currentDatasource.datasourceFilters.forEach(dsf => {
+            if (slicersOnDashboardIDs.indexOf(dsf.widgetID) >= 0) {
+                dsf.isActive = true;
+            } else {
+                dsf.isActive = false;
+            };
+        });
 
         // TODO - complete this later
         let currentDatasourceIndex: number = this.currentDatasources
