@@ -430,9 +430,9 @@ export class GlobalVariableService {
         return new Promise<boolean>((resolve, reject) => {
 
             // Find the DS in the currentDS array, and add if needed
+            let currentDatasource: Datasource = null;
             let currentDatasourceIndex: number = this.currentDatasources
                 .findIndex(ds => ds.id == datasourceID);
-            let currentDatasource: Datasource = null;
 
             if (currentDatasourceIndex < 0) {
                 let datasourceIndex: number = this.datasources
@@ -444,12 +444,9 @@ export class GlobalVariableService {
                     console.error('Error in     Global-Variables getCurrentDatasource: Datasource does not exists in this.datasources')
                     reject('Datasource does not exist in datasources array')
                 };
+            } else {
+                currentDatasource = this.currentDatasources[currentDatasourceIndex];
             };
-
-            // Get IDs of all Slicers On the Dashboard
-            let slicersOnDashboardIDs: number[] = this.currentWidgets
-                .filter(w => w.widgetType == 'Slicer')
-                .map(x => x.id);
 
             // Get DS.dataFull
             this.getData('datasourceID=' + datasourceID)
@@ -468,16 +465,22 @@ export class GlobalVariableService {
         });
     }
 
-    applyDSFilter(datasource: Datasource) {
+    applyDSFilter(datasourceToFilter: Datasource) {
         // Apply DS-Filter set to DS.dataFull and update DS.dataFiltered for a given DS
         // When there are NO DS-Filters, then .dataFull = .dataFiltered
+        // 
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables applyDSFilter starts',
                 this.concoleLogStyleForStartOfMethod);
         };
 
+        // Get IDs of all Slicers On the Dashboard
+        let slicersOnDashboardIDs: number[] = this.currentWidgets
+            .filter(w => w.widgetType == 'Slicer')
+            .map(x => x.id);
+
         //   Mark DS.DS-Filters in Slicers as active
-        currentDatasource.datasourceFilters.forEach(dsf => {
+        datasourceToFilter.datasourceFilters.forEach(dsf => {
             if (slicersOnDashboardIDs.indexOf(dsf.widgetID) >= 0) {
                 dsf.isActive = true;
             } else {
