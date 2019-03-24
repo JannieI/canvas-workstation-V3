@@ -491,9 +491,14 @@ export class GlobalVariableService {
             };
         });
 
-        // TODO - complete this later
-        datasourceToFilter.dataFiltered = 
-        datasourceToFilter.dataFull;
+        // Set dataFiltered = dataFull and return if the filter is empty
+        if (datasourceToFilter.datasourceFilters == null 
+            ||
+            datasourceToFilter.datasourceFilters.length == 0) {
+                datasourceToFilter.dataFiltered = 
+                datasourceToFilter.dataFull;
+                return;
+        };
 
         // Create a unique list of Slicer IDs used in the DS-Filter
         let slicersUsedIDSet: any = new Set(datasourceToFilter.datasourceFilters
@@ -546,6 +551,8 @@ export class GlobalVariableService {
         } else {
             widget.dataFiltered = [];
         };
+
+
     }
 
     actionWebSocket(webSocketMessage: WebSocketMessage) {
