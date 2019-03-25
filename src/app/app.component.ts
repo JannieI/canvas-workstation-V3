@@ -727,6 +727,7 @@ export class AppComponent implements OnInit {
                 // This refreshes the whole D, with W and related info
                 this.currentDashboardInfoSubscription = this.globalVariableService.currentDashboardInfo.subscribe(
                     i => {
+                        console.log('xx currentDashboardInfo.subscribe', i, this.globalVariableService.currentDashboardInfo.value)
                         if (i) {
 
                             this.companyName = this.globalVariableService.canvasSettings.companyName;

@@ -259,7 +259,7 @@ export class GlobalVariableService {
 
     }
 
-     databaseInit() {
+    databaseInit() {
         // Initial
         if (this.sessionDebugging) {
             console.log('%c  Global-Variables databaseInit starts',
@@ -273,7 +273,7 @@ export class GlobalVariableService {
         this.dbDataCachingTable.open();
     }
 
-     refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number):
+    refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number):
         Promise<boolean> {
         // Refreshes all info related to current D
         // dashboardTabID = -1 if unknown, so get first T
@@ -360,10 +360,13 @@ export class GlobalVariableService {
                         '?filterObject={"dashboardID":' + dashboardID + '}')
                         .then( l => {
 
-                            // Get all DS-ids for the currentWs
-                            let currentDSinWidgetIDs: number[] = this.currentWidgets
-                                .filter(w => w.datasourceID != null)
-                                .map(w => w.datasourceID);
+                            // Get all Unique DS-ids for the currentWs
+                            let currentDSinWidgetIDSet: any = new Set(
+                                this.currentWidgets
+                                    .filter(w => w.datasourceID != null)
+                                    .map(w => w.datasourceID)
+                            );
+                            let currentDSinWidgetIDs: number[] = Array.from(currentDSinWidgetIDSet);
 
                             console.log('xx currentDSinWidgetIDs', currentDSinWidgetIDs)
                             // Get all currentDSids
@@ -508,7 +511,7 @@ export class GlobalVariableService {
         // Create a unique list of Slicer IDs used in the DS-Filter
         let slicersUsedIDSet: any = new Set(datasourceToFilter.datasourceFilters
             .map(dsf => dsf.widgetID));
-        let slicersUsedIDs = Array.from(slicersUsedIDSet);
+        let slicersUsedIDs: number[] = Array.from(slicersUsedIDSet);
 
         // Start with the all the data in partialDataFiltered.  Each Slicer will 
         // reduce partialDataFiltered, which will be the starting point for the 
@@ -4363,8 +4366,8 @@ export class GlobalVariableService {
         if (this.sessionDebugging) {
             console.log('%c  Global-Variables refreshCurrentDashboard starts',
                 this.concoleLogStyleForStartOfMethod,
-                {refreshingRoutine}, {dashboardID}, {dashboardTabID}, {tabToShow},
-                {widgetsToRefresh});
+                'called from:', refreshingRoutine, {refreshingRoutine}, {dashboardID}, 
+                {dashboardTabID}, {tabToShow}, {widgetsToRefresh});
         };
 
         // TODO - add Permissions, either here or automatically in DB !!!
@@ -6306,7 +6309,7 @@ export class GlobalVariableService {
                                         };
 
                                         this.refreshCurrentDashboard(
-                                            'statusbar-clickTabDelete',
+                                            'statusbar-verifyCanvasUser',
                                             this.currentUser.preferenceStartupDashboardID,
                                             startTabID,
                                             ''

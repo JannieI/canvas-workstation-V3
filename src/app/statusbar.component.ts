@@ -233,7 +233,6 @@ export class StatusbarComponent {
         this.showTabList = true;
         this.showDashboardDescription = false;
         this.showDashboardTabDescription = false;
-        console.warn('tabs',  this.currentDashboardTabs)
     }
 
     clickMoveTabUp(index: number) {
