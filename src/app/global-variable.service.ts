@@ -372,6 +372,8 @@ export class GlobalVariableService {
                             // Get all currentDSids
                             let currentDSids: number[] = this.currentDatasources
                                 .map(ds => ds.id);
+                            console.log('xx 2')
+                            console.log('xx currentDSids', currentDSids)
 
                             // Get the data for those DS used in currentW and not in currentDS
                             let getCurrentDSPromises: any = [];
@@ -383,10 +385,12 @@ export class GlobalVariableService {
                                     getCurrentDSPromises.push(this.getCurrentDatasource(DSid));
                                 };
                             });
+                            console.log('xx 3')
 
                             // Execute all the getData promises
                             Promise.all(getCurrentDSPromises)
                                 .then( () => {
+                                    console.log('xx Promise.all', this.currentDatasources)
 
                                     // Get data and filter for each currentW
                                     this.currentWidgets.forEach(w => {
@@ -396,19 +400,21 @@ export class GlobalVariableService {
                                         };
 
                                     });
-
+                                    console.log('xx 4')
                                     // Add to recent
                                     this.amendDashboardRecent(
                                         dashboardID,
                                         dashboardTabID,
                                         this.currentDashboardInfo.value.currentDashboardState
                                     );
+                                    console.log('xx 5')
 
                                     // Set the EditMode according to the D State
                                     this.editMode.next(
                                         this.currentDashboardInfo.value
                                             .currentDashboardState == 'Draft'?  true  :  false
                                     );
+                                    console.log('xx 8')
                                     resolve(true)
 
                                 })
@@ -423,7 +429,7 @@ export class GlobalVariableService {
         });
     }
 
-    getCurrentDatasource(datasourceID: number) {
+    getCurrentDatasource(datasourceID: number): Promise<boolean> {
         // Get the .dataFull and .dataFiltered for a given DS, using the DS-Filters that
         // are active.  A DS-Filter set is determined by a Slicer.  If the Slicer is on the same
         // Dashboard, the DS-Filter set is active.  Else, it is passive.  Passive DS-Filters
@@ -462,6 +468,7 @@ export class GlobalVariableService {
 
                     //  Create DS.DS-Filter using active DS.DS-Filters
                     this.applyDSFilter(currentDatasource);
+                    resolve(true);
 
                 })
                 .catch(err => {
