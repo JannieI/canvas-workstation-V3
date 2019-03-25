@@ -159,6 +159,7 @@ export class GlobalVariableService {
     // It hold full sets (all the records) but not necessarily complete (some portions like
     // the data arrays may be missing)
     actions: CanvasAction[] = [];
+    cachingStatus: string = 'NotStarted';   // NotStarted, Pending, InitialDone
     canvasBackgroundcolors: CSScolor[] = [];
     canvasGroups: CanvasGroup[] = [];
     canvasUsers: CanvasUser[] = [];
@@ -2166,12 +2167,17 @@ export class GlobalVariableService {
     }
 
     refreshLocalCache() {
-        // Refreshes ALL the local cache in Memory
+        // Refreshes ALL the local cache in Memory - ASYNC
+        // It sets the cacheDoneStatus to 'InitialDone' once completed
 
         if (this.sessionDebugging) {
             console.log('%c  Global-Variables refreshLocalCacheMemory starts',
                 this.concoleLogStyleForStartOfMethod);
         };
+
+        // Set status
+        this.cachingStatus = 'Pending';
+        let cacheDoneCounter: number = 0;
 
         // Loop on localCachingTable
         for (var initialIndex = 0; initialIndex < this.dataCachingTable.length; initialIndex++) {
@@ -2258,15 +2264,19 @@ export class GlobalVariableService {
                             });
                         };
                         console.timeEnd("      DURATION refreshLocalCacheMemory: " + resource);
-                        // resolve(httpResult.data);
-                        return;
+                        
+                        // Update counter
+                        cacheDoneCounter = cacheDoneCounter + 1;
+                        if (cacheDoneCounter == this.dataCachingTable.length) {
+                            this.cachingStatus == 'InitialDone';
+                            console.log('    Global-Variables refreshLocalCache: ALL cache refreshed');
+                        };
                     },
                     err => {
                         if (this.sessionDebugging) {
                             console.error('Error in     Global-Variables refreshLocalCache', err);
                         };
                         console.timeEnd("      DURATION refreshLocalCache: " + resource);
-                        // reject(err.message)
                     }
                 );
             };

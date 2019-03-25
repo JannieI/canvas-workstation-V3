@@ -856,7 +856,7 @@ export class AppComponent implements OnInit {
                     // Get Users and Groups, async
                     this.globalVariableService.getResource('canvasGroups');
                     console.warn('App ngOnInit: start reading Users and Groups ...');
-                    
+
                     // Set palette position
                     if (this.globalVariableService.currentUser.lastPaletteLeft != null) {
                         this.paletteLeft = this.globalVariableService.currentUser.lastPaletteLeft;
@@ -8341,8 +8341,8 @@ export class AppComponent implements OnInit {
             .where('key').belowOrEqual('dashboards')
             .toArray(res => {
                 this.localDataCachingTable = res;
-                console.warn('xx res', res)
-                console.warn('xx localDataCachingTable', this.localDataCachingTable);
+
+                console.warn('App localDataCachingTable: ', this.localDataCachingTable);
                 if (this.localDataCachingTable.length == 0) {
                     console.warn('xx Adding new here')
                     foundDataCachingTable = false;
