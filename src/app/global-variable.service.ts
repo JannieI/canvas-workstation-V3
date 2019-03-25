@@ -362,8 +362,10 @@ export class GlobalVariableService {
 
                             // Get all DS-ids for the currentWs
                             let currentDSinWidgetIDs: number[] = this.currentWidgets
+                                .filter(w => w.datasourceID != null)
                                 .map(w => w.datasourceID);
 
+                            console.log('xx currentDSinWidgetIDs', currentDSinWidgetIDs)
                             // Get all currentDSids
                             let currentDSids: number[] = this.currentDatasources
                                 .map(ds => ds.id);
@@ -443,8 +445,8 @@ export class GlobalVariableService {
                     currentDatasource = this.datasources[datasourceIndex];
                     this.currentDatasources.push(currentDatasource)
                 } else {
-                    console.error('Error in     Global-Variables getCurrentDatasource: Datasource does not exists in this.datasources')
-                    reject('Datasource does not exist in datasources array')
+                    console.error('Error in     Global-Variables getCurrentDatasource: Datasource does not exists in this.datasources id:', datasourceID)
+                    reject('Datasource does not exist in datasources array for id: ' + datasourceID)
                 };
             } else {
                 currentDatasource = this.currentDatasources[currentDatasourceIndex];
