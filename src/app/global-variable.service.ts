@@ -6349,6 +6349,9 @@ export class GlobalVariableService {
                                     // Load System Settings
                                     this.getSystemSettings()
                                         .then( () => {
+
+                                            this.refreshLocalCache();
+
                                             this.loadVariableOnStartup.next(true);
                                             resolve(true);
                                         })
