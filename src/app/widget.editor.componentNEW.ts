@@ -4179,11 +4179,11 @@ export interface dataSchemaInterface {
         //     this.selectedDSName?  this.selectedDSName  :  'Data'
         // );
 
-        let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-            ds => ds.datasourceID == this.selectedRowID
+        let currentDatasourceIndex: number = this.globalVariableService.currentDatasources.findIndex(
+            ds => ds.id == this.selectedRowID
         );
         this.excelService.exportAsExcelFile(
-            this.globalVariableService.currentDatasets[dataSetIndex].data,
+            this.globalVariableService.currentDatasources[currentDatasourceIndex].dataFiltered,
             this.selectedDSName?  this.selectedDSName  :  'Data'
         );
     }
