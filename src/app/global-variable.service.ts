@@ -429,7 +429,8 @@ export class GlobalVariableService {
         });
     }
 
-    getCurrentDatasource(datasourceID: number): Promise<boolean> {
+    getCurrentDatasource(datasourceID: number): Promise<Datasource> {
+        // Add the datasource to currentDatasources array:
         // Get the .dataFull and .dataFiltered for a given DS, using the DS-Filters that
         // are active.  A DS-Filter set is determined by a Slicer.  If the Slicer is on the same
         // Dashboard, the DS-Filter set is active.  Else, it is passive.  Passive DS-Filters
@@ -440,7 +441,7 @@ export class GlobalVariableService {
                 this.concoleLogStyleForStartOfMethod);
         };
 
-        return new Promise<boolean>((resolve, reject) => {
+        return new Promise<Datasource>((resolve, reject) => {
 
             // Find the DS in the currentDS array, and add if needed
             let currentDatasource: Datasource = null;
@@ -468,7 +469,7 @@ export class GlobalVariableService {
 
                     //  Create DS.DS-Filter using active DS.DS-Filters
                     this.applyDSFilter(currentDatasource);
-                    resolve(true);
+                    resolve(currentDatasource);
 
                 })
                 .catch(err => {

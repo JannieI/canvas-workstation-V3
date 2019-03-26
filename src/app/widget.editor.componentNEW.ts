@@ -2392,20 +2392,41 @@ export interface dataSchemaInterface {
         // this.detailField = dragFieldMessage;
 
         // Determine if data already in Glob Var
-        let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-            ds => ds.datasourceID == datasourceID
+        // let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+        //     ds => ds.datasourceID == datasourceID
+        // );
+        // if (dataSetIndex >= 0) {
+
+        //     // Load local arrays for ngFor - this is required for the Preview
+        //     this.constructDataSchema(arrayIndex);
+
+        //     // Load first few rows into preview
+        //     this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
+        //         .data.slice(0,5);
+
+        //     // Nr rows
+        //     this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
+
+        //     // Switch on the preview after the first row was clicked
+        //     this.showPreview = true;
+
+        //     return;
+        // };
+        let currentDatasourceIndex: number = this.globalVariableService.currentDatasources.findIndex(
+            ds => ds.id == this.selectedRowID
         );
-        if (dataSetIndex >= 0) {
+        if (currentDatasourceIndex >= 0) {
 
             // Load local arrays for ngFor - this is required for the Preview
             this.constructDataSchema(arrayIndex);
 
             // Load first few rows into preview
-            this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
-                .data.slice(0,5);
+            this.currentData = this.globalVariableService.currentDatasources[currentDatasourceIndex]
+                .dataFiltered.slice(0,5);
 
             // Nr rows
-            this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
+            this.nrRows = this.globalVariableService.currentDatasources[currentDatasourceIndex]
+                .dataFiltered.length;
 
             // Switch on the preview after the first row was clicked
             this.showPreview = true;
