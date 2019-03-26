@@ -491,14 +491,26 @@ export interface dataSchemaInterface {
                             this.constructDataSchema(this.selectedRowIndex);
 
                             // Determine if data in Glob Var
-                            let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-                                ds => ds.datasourceID == this.selectedRowID
+                            // let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+                            //     ds => ds.datasourceID == this.selectedRowID
+                            // );
+                            // if (dataSetIndex >= 0) {
+
+                            //     // Load first few rows into preview
+                            //     this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
+                            //         .data.slice(0,5);
+
+                            //     // Switch on the preview after the first row was clicked
+                            //     this.showPreview = true;
+                            // };
+                            let currentDatasourceIndex: number = this.globalVariableService.currentDatasources.findIndex(
+                                ds => ds.id == this.selectedRowID
                             );
-                            if (dataSetIndex >= 0) {
+                            if (currentDatasourceIndex >= 0) {
 
                                 // Load first few rows into preview
-                                this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
-                                    .data.slice(0,5);
+                                this.currentData = this.globalVariableService.currentDatasources[currentDatasourceIndex]
+                                    .dataFiltered.slice(0,5);
 
                                 // Switch on the preview after the first row was clicked
                                 this.showPreview = true;
