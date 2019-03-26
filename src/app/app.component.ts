@@ -10029,64 +10029,62 @@ export class AppComponent implements OnInit {
 
         // Get the W Checkpoints once
         if (this.currentWidgetCheckpoints.length == 0) {
-            this.globalVariableService.getCurrentWidgetCheckpoints(dashboardID).then (ca => {
 
-                // Set the data
-                this.currentWidgetCheckpoints = ca.slice();
+            // Set the data
+            this.currentWidgetCheckpoints = this.globalVariableService.currentWidgetCheckpoints;
 
-                this.currentWidgets.forEach( w=> {
-                    // Toggle showCheckpoints
-                    if (w.dashboardID == dashboardID  &&  w.id == id) {
-                        w.showCheckpoints = !w.showCheckpoints;
+            this.currentWidgets.forEach( w=> {
+                // Toggle showCheckpoints
+                if (w.dashboardID == dashboardID  &&  w.id == id) {
+                    w.showCheckpoints = !w.showCheckpoints;
+                };
+
+                // Set the Checkpoints for this W
+                this.currentWidgetCheckpoints.forEach(wc => {
+                    if (wc.widgetID == w.id
+                        &&
+                        wc.dashboardID == w.dashboardID) {
+                        wc.widgetSpec.showCheckpoints = true;
+                        wc.widgetSpec.checkpointIDs = w.checkpointIDs;
+                        wc.widgetSpec.currentCheckpoint = w.currentCheckpoint;
+                        wc.widgetSpec.lastCheckpoint = w.lastCheckpoint;
+
+                        // TODO - decide if this must stay or go; inherit original or not ??
+                        // wc.widgetSpec.containerBackgroundcolor = w.containerBackgroundcolor
+                        // wc.widgetSpec.containerBackgroundcolorName = w.containerBackgroundcolorName;
+                        // wc.widgetSpec.containerBorder = w.containerBorder
+                        // wc.widgetSpec.containerBorderRadius = w.containerBorderRadius
+                        // wc.widgetSpec.containerBoxshadow = w.containerBoxshadow
+
+                        wc.widgetSpec.containerFontsize = w.containerFontsize
+                        wc.widgetSpec.containerHeight = w.containerHeight
+                        wc.widgetSpec.containerLeft = w.containerLeft
+                        wc.widgetSpec.containerHasTitle = w.containerHasTitle
+                        wc.widgetSpec.containerTop = w.containerTop
+                        wc.widgetSpec.containerWidth = w.containerWidth
+                        wc.widgetSpec.containerZindex = w.containerZindex
                     };
 
-                    // Set the Checkpoints for this W
-                    this.currentWidgetCheckpoints.forEach(wc => {
-                        if (wc.widgetID == w.id
-                            &&
-                            wc.dashboardID == w.dashboardID) {
-                            wc.widgetSpec.showCheckpoints = true;
-                            wc.widgetSpec.checkpointIDs = w.checkpointIDs;
-                            wc.widgetSpec.currentCheckpoint = w.currentCheckpoint;
-                            wc.widgetSpec.lastCheckpoint = w.lastCheckpoint;
+                })
+            });
 
-                            // TODO - decide if this must stay or go; inherit original or not ??
-                            // wc.widgetSpec.containerBackgroundcolor = w.containerBackgroundcolor
-                            // wc.widgetSpec.containerBackgroundcolorName = w.containerBackgroundcolorName;
-                            // wc.widgetSpec.containerBorder = w.containerBorder
-                            // wc.widgetSpec.containerBorderRadius = w.containerBorderRadius
-                            // wc.widgetSpec.containerBoxshadow = w.containerBoxshadow
+            // Show the first Checkpoint
+            // If only one Chkpnt, then we dont show the <> arrows, so one cannot navigiate.
+            if (this.currentWidgets[index].checkpointIDs.length > 0) {
 
-                            wc.widgetSpec.containerFontsize = w.containerFontsize
-                            wc.widgetSpec.containerHeight = w.containerHeight
-                            wc.widgetSpec.containerLeft = w.containerLeft
-                            wc.widgetSpec.containerHasTitle = w.containerHasTitle
-                            wc.widgetSpec.containerTop = w.containerTop
-                            wc.widgetSpec.containerWidth = w.containerWidth
-                            wc.widgetSpec.containerZindex = w.containerZindex
-                        };
+                // Get the W Spec
+                let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc =>
+                    wc.id == this.currentWidgets[index].checkpointIDs[0]
+                );
+                if (newW != undefined) {
+                    if (newW.length > 0) {
+                        let newWspec: Widget = newW[0].widgetSpec;
 
-                    })
-                });
-
-                // Show the first Checkpoint
-                // If only one Chkpnt, then we dont show the <> arrows, so one cannot navigiate.
-                if (this.currentWidgets[index].checkpointIDs.length > 0) {
-
-                    // Get the W Spec
-                    let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc =>
-                        wc.id == this.currentWidgets[index].checkpointIDs[0]
-                    );
-                    if (newW != undefined) {
-                        if (newW.length > 0) {
-                            let newWspec: Widget = newW[0].widgetSpec;
-
-                            // Change it on the UI
-                            this.globalVariableService.changedWidget.next(newWspec);
-                        };
+                        // Change it on the UI
+                        this.globalVariableService.changedWidget.next(newWspec);
                     };
                 };
-            });
+            };
         } else {
             // Toggle showCheckpoints
             this.currentWidgets.forEach( w=> {

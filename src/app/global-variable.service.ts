@@ -1600,24 +1600,22 @@ export class GlobalVariableService {
                             };
                         };
 
-                    console.log('%c    Global-Variables discardDashboard - start resetting cache in Memory & Disc to dirty ...',
-                        this.concoleLogStyleForCaching);
-                    for (var i = 0; i < this.dataCachingTable.length; i++) {
+                        console.log('%c    Global-Variables discardDashboard - start resetting cache in Memory & Disc to dirty ...',
+                            this.concoleLogStyleForCaching);
+                        for (var i = 0; i < this.dataCachingTable.length; i++) {
 
-                        // Update dataCaching in Memory
-                        this.dataCachingTable[i].localExpiryDateTime = new Date();
+                            // Update dataCaching in Memory
+                            this.dataCachingTable[i].localExpiryDateTime = new Date();
 
-                        // Update dataCaching on Disc
-                        this.dbDataCachingTable.table("localDataCachingTable")
-                            .bulkPut(this.dataCachingTable)
-                            .catch(err => {
-                                console.error('Error in     Global-Variables saveDraftDashboard', err)
-                                reject(err.message)
-                            });
+                            // Update dataCaching on Disc
+                            this.dbDataCachingTable.table("localDataCachingTable")
+                                .bulkPut(this.dataCachingTable)
+                                .catch(err => {
+                                    console.error('Error in     Global-Variables saveDraftDashboard', err)
+                                    reject(err.message)
+                                });
 
-                    };
-
-
+                        };
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables discardDashboard ends',
