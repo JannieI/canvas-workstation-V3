@@ -3666,56 +3666,6 @@ export class GlobalVariableService {
         })
     }
 
-    getCurrentWidgetCheckpoints(dashboardID: number): Promise<WidgetCheckpoint[]> {
-        // Description: Gets all Checkpoints for current D
-        // Returns: this.currentWidgetCheckpoints array, unless:
-        //   If not cached or if dirty, get from File
-        if (this.sessionDebugging) {
-            console.log('%c  Global-Variables getCurrentWidgetCheckpoints starts',
-                this.concoleLogStyleForStartOfMethod,
-                {dashboardID});
-        };
-
-        // Refresh from source at start, or if dirty
-        if (this.widgetCheckpoints.length == 0) {
-            return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
-                this.getResource('widgetCheckpoints')
-                    .then(res => {
-                        res = res.filter(
-                            i => i.dashboardID == dashboardID
-                        );
-                        this.currentWidgetCheckpoints = res;
-
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getCurrentWidgetCheckpoints ends',
-                                this.concoleLogStyleForEndOfMethod,
-                                {dashboardID}, {res})
-                        };
-
-                        resolve(this.currentWidgetCheckpoints);
-
-                })
-             })
-        } else {
-            return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
-                let returnData: WidgetCheckpoint[];
-                returnData = this.widgetCheckpoints.filter(
-                    i => i.dashboardID == dashboardID
-                );
-                this.currentWidgetCheckpoints = returnData;
-
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getCurrentWidgetCheckpoints ends',
-                        this.concoleLogStyleForEndOfMethod,
-                        {dashboardID}, {returnData})
-                };
-
-                resolve(this.currentWidgetCheckpoints);
-            });
-        };
-
-    }
-
     clearCurrentUser() {
         // Description: reset the Global currentUser variable
         if (this.sessionDebugging) {
