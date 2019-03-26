@@ -6623,59 +6623,6 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentDashboardAndTabNEW(
-        id: number,
-        dashboardTabID: number,
-        datasourceIDexclude: string = ""): Promise<string> {
-        // Gets the data that is DISPLAYED for the given Dashboard and Tab.  Load:
-        // - Dashboard template
-        // - All Tabs for this D
-        // - All Widgets for the given Tab (not the rest)
-        // - All Datasources used by the above Widgets
-        //   Optionally exclude comma separated list of Datasource IDs in datasourceIDexclude
-        //   as these are already loaded.
-        //
-        // Clear the CurrentXXX vars and reload with the info read from the DB.
-        if (this.sessionDebugging) {
-            console.log('%c  Global-Variables getCurrentDashboardAndTabNEW starts',
-                this.concoleLogStyleForStartOfMethod,
-                {dashboardTabID}, {datasourceIDexclude});
-        };
-        return new Promise<string>((resolve, reject) => {
-
-
-            // TODO - 1. fix HARD Coding !!!
-            // TODO - 2. add CACHED (replace currentXXX vars)
-            // TODO - 3. set this.currentDashboard object values
-            //           remember: if given Tid = -1, set 1st one
-            let pathUrl: string = '/canvasDashboardCore?id=68&dashboardTabID=175&datasourceIDexclude=1,2';
-            let finalUrl: string = this.canvasServerURI + pathUrl;
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // this.datasources = res.data;
-                    // this.isDirtyDatasources = false;
-                    // this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getCurrentDashboardAndTabNEW ends',
-                            this.concoleLogStyleForEndOfMethod,
-                            "Current Dashboard retrieved")
-                    };
-
-                    resolve("success");
-                },
-                err => {
-                    reject(err.message)
-                }
-            );
-        });
-    };
-
     getDashboardSummary(dashboardID: number): Promise<any> {
         // Gets a summary of related Entities for the given Dashboard
         if (this.sessionDebugging) {
