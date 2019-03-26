@@ -1499,7 +1499,8 @@ export class Widget {
 
     // Data
     graphUrl: string;                       // URL of data
-    dataFiltered: any;                      // Actual data as an Array
+    dataFiltered: any;                      // Actual data as an Array ~ 
+    // W-Filter applied to currentDS.dataFiltered 
 
     // Title
     graphTitleText: string;                 // Text to show in Title

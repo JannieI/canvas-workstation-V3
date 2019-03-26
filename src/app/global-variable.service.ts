@@ -550,8 +550,8 @@ export class GlobalVariableService {
     }
 
     applyWidgetFilter(widget: Widget) {
-        // Apply W-Filter set to W.dataFull and update W.dataFiltered 
-        // When there are NO W-Filters, then .dataFull = .dataFiltered
+        // Apply W-Filter to currentDS.dataFiltered and update W.dataFiltered 
+        // When there are NO W-Filters, then W.dataFiltered = DS.dataFiltered
         // Notes:
         // - assumes that currentDatasources exists, and has .dataFiltered
         if (this.sessionDebugging) {
@@ -4230,11 +4230,11 @@ export class GlobalVariableService {
         };
 
 
-
         // Data
         if (widget.graphUrl != ""  &&  widget.graphUrl != null) {
             specification['data'] = {"url": widget.graphUrl};
         } else {
+            this.applyWidgetFilter(widget);
             specification['data'] = {"values": widget.dataFiltered};
         };
 
