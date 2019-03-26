@@ -1600,17 +1600,6 @@ export class GlobalVariableService {
                             };
                         };
 
-                    //     this.dashboardsRecent = this.dashboardsRecent.filter(x => x.dashboardID != draftDashboardID)
-                    //     this.dashboards = this.dashboards.filter(x => x.id != draftDashboardID)
-                    //     this.dashboardTabs = this.dashboardTabs.filter(x => x.dashboardID != draftDashboardID)
-                    //     this.widgets = this.widgets.filter(x => x.dashboardID != draftDashboardID)
-                    //     this.widgetCheckpoints = this.widgetCheckpoints.filter(x => x.dashboardID != draftDashboardID)
-                    //     this.currentDashboards = this.currentDashboards.filter(x => x.id != draftDashboardID)
-                    //     this.currentDashboardTabs = this.currentDashboardTabs.filter(x => x.dashboardID != draftDashboardID)
-                    //     this.currentWidgets = this.currentWidgets.filter(x => x.dashboardID != draftDashboardID)
-                    //     this.currentWidgetCheckpoints = this.currentWidgetCheckpoints.filter(x => x.dashboardID != draftDashboardID)
-                    // console.log('xx this.dashboardTabs', this.dashboardTabs)
-
                     console.log('%c    Global-Variables discardDashboard - start resetting cache in Memory & Disc to dirty ...',
                         this.concoleLogStyleForCaching);
                     for (var i = 0; i < this.dataCachingTable.length; i++) {
