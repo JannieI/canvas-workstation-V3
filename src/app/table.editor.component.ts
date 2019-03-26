@@ -63,10 +63,10 @@ import { GlobalVariableService }      from './global-variable.service';
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
     currentData: any = [];
-    currentDatasources: Datasource[] = null;               // Current DS for the selected W
     dataFieldNames: string[] = [];
     dataFieldLengths: number[] = [];
     dataFieldTypes: string[] = [];
+    datasources: Datasource[] = null;
     draggedField: string = '';
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
@@ -101,30 +101,31 @@ import { GlobalVariableService }      from './global-variable.service';
         // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        if (this.newWidget) {
-            // Get DS to which user has permissions
-            this.currentDatasources = this.globalVariableService.datasources
-                .slice()
-                .filter(ds => 
-                    this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
-                )
-                .sort( (obj1, obj2) => {
-                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                        return 1;
-                    };
-                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                        return -1;
-                    };
-                    return 0;
-                }
-            );
+        // Get DS to which user has permissions
+        this.datasources = this.globalVariableService.datasources
+            .slice()
+            .filter(ds => 
+                this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
+            )
+            .sort( (obj1, obj2) => {
+                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                    return 1;
+                };
+                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                    return -1;
+                };
+                return 0;
+            }
+        );
 
-            // Count the Ws
-            let widgets: Widget[];
-            this.currentDatasources.forEach(ds => {
-                widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
-                ds.nrWidgets = widgets.length;
-            });
+        // Count the Ws
+        let widgets: Widget[];
+        this.datasources.forEach(ds => {
+            widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
+            ds.nrWidgets = widgets.length;
+        });
+    
+        if (this.newWidget) {
 
             // Create new W
             // this.localWidget = this.globalVariableService.widgetTemplate;
@@ -141,43 +142,15 @@ import { GlobalVariableService }      from './global-variable.service';
             // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
-            // TODO - handle properly and close form
-            if (this.localWidget.datasourceID == 0) {
-                alert('No Widget was selected, or could not find it in glob vars')
-            };
-
-            // Get DS
-            this.currentDatasources = this.globalVariableService.currentDatasources
-                .filter(ds => ds.id == this.localWidget.datasourceID)
-                .filter(ds => 
-                    this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
-                )
-                .sort( (obj1, obj2) => {
-                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                        return 1;
-                    };
-                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                        return -1;
-                    };
-                    return 0;
-                }
-            );
-
-            // TODO - handle properly and close form
-            if (this.currentDatasources.length != 1) {
-                alert('Datasource not found in global currentDatasources')
-            };
-
             // Get local vars - easier for ngFor
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
             this.containerHasTitle = this.localWidget.containerHasTitle;
 
-            this.dataFieldNames = this.currentDatasources[0].dataFields;
-            this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
-            this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
+            this.dataFieldNames = this.datasources[0].dataFields;
+            this.dataFieldLengths = this.datasources[0].dataFieldLengths;
+            this.dataFieldTypes = this.datasources[0].dataFieldTypes;
 
             this.showTable = true;
-            // this.clickDSrow(-1, this.localWidget.datasourceID)
         }
 
     }
@@ -274,15 +247,9 @@ import { GlobalVariableService }      from './global-variable.service';
             this.globalVariableService.getCurrentDatasource(datasourceID)
                 .then(res => {
 
-                    // Update local array
-                    this.currentDatasources.push(res);
-                    this.dataFieldNames = res.dataFields;
-                    this.dataFieldLengths = res.dataFieldLengths;
-                    this.dataFieldTypes = res.dataFieldTypes;
-
                     // Load first few rows into preview
                     this.currentData = res.dataFiltered.slice(0,5);
-                    console.log('xx getCurrDS', res, this.currentDatasources, this.currentData)
+                    console.log('xx getCurrDS', res, this.datasources, this.currentData)
 
                     // Add data to new Widget
                     if (this.newWidget) {
@@ -300,6 +267,17 @@ import { GlobalVariableService }      from './global-variable.service';
                     console.error('Error in table.editor reading widgetGraphs: ' + err);
                 });
     
+        };
+
+        // Update local vars
+
+        let datasourceIndex: number = this.datasources.findIndex(
+            ds => ds.id == datasourceID
+        );
+        if (datasourceIndex < 0) {        
+            this.dataFieldNames = this.datasources[datasourceIndex].dataFields;
+            this.dataFieldLengths = this.datasources[datasourceIndex].dataFieldLengths;
+            this.dataFieldTypes = this.datasources[datasourceIndex].dataFieldTypes;
         };
 
     }
