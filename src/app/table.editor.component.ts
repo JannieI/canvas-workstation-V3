@@ -73,6 +73,7 @@ import { GlobalVariableService }      from './global-variable.service';
     dragoverColor: boolean = false;
     errorMessage: string = '';
     filterPivotFields: string = '';
+    hasClicked: boolean = false;
     isBusyRetrievingData: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
@@ -278,9 +279,10 @@ import { GlobalVariableService }      from './global-variable.service';
                     this.dataFieldNames = res.dataFields;
                     this.dataFieldLengths = res.dataFieldLengths;
                     this.dataFieldTypes = res.dataFieldTypes;
-        
+
                     // Load first few rows into preview
                     this.currentData = res.dataFiltered.slice(0,5);
+                    console.log('xx getCurrDS', res, this.currentDatasources, this.currentData)
 
                     // Add data to new Widget
                     if (this.newWidget) {
@@ -289,6 +291,7 @@ import { GlobalVariableService }      from './global-variable.service';
                     };
 
                     // Tell user
+                    this.hasClicked = true;
                     this.errorMessage = 'Data retrieved - click row again to continue';
 
                 })
@@ -297,8 +300,6 @@ import { GlobalVariableService }      from './global-variable.service';
                     console.error('Error in table.editor reading widgetGraphs: ' + err);
                 });
     
-            // Stop Synch execution
-            return;
         };
 
     }
