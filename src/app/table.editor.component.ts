@@ -248,14 +248,9 @@ import { GlobalVariableService }      from './global-variable.service';
                 .then(res => {
         
                     // Update local vars
-                    let datasourceIndex: number = this.datasources.findIndex(
-                        ds => ds.id == datasourceID
-                    );
-                    if (datasourceIndex < 0) {        
-                        this.dataFieldNames = res.dataFields;
-                        this.dataFieldLengths = res.dataFieldLengths;
-                        this.dataFieldTypes = res.dataFieldTypes;
-                    };
+                    this.dataFieldNames = res.dataFields;
+                    this.dataFieldLengths = res.dataFieldLengths;
+                    this.dataFieldTypes = res.dataFieldTypes;
 
                     // Load first few rows into preview
                     this.currentData = res.dataFiltered.slice(0,5);
