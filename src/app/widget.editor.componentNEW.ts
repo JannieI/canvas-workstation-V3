@@ -2407,7 +2407,7 @@ export interface dataSchemaInterface {
 
                 // Load local arrays for ngFor - this is required for the Preview
                 this.constructDataSchema(arrayIndex);
-                console.log('WE this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
+                console.log('xx Widget Editor this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
 
                 // Determine if data obtains in Glob Var
                 dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
@@ -2462,20 +2462,21 @@ export interface dataSchemaInterface {
         if (this.globalVariableService.previousGraphEditDSID != this.selectedRowID) {
 
             // Determine if data obtains in Glob Var
-            let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-                ds => ds.datasourceID == this.selectedRowID
-            );
-            if (dataSetIndex < 0) {
-                this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
-                return;
-            };
+            // let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+            //     ds => ds.datasourceID == this.selectedRowID
+            // );
+            // if (dataSetIndex < 0) {
+            //     this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
+            //     return;
+            // };
 
-            // Fill in data info
+            // Fill filtered data
             this.localWidget.datasourceID = this.selectedRowID;
-            this.localWidget.datasetID = this.globalVariableService.
-                currentDatasets[dataSetIndex].id;
-            this.localWidget.dataFiltered = this.globalVariableService
-                .currentDatasets[dataSetIndex].data;
+            // this.localWidget.datasetID = this.globalVariableService.
+            //     currentDatasets[dataSetIndex].id;
+            // this.localWidget.dataFiltered = this.globalVariableService
+            //     .currentDatasets[dataSetIndex].data;
+            this.globalVariableService.applyWidgetFilter(this.localWidget);
 
             // Reset
             if (this.globalVariableService.previousGraphEditDSID != this.selectedRowID) {
@@ -4164,11 +4165,19 @@ export interface dataSchemaInterface {
     };
 
     exportAsXLSX():void {
-         // Export current Dataset to Excel file
+         // Export current Data to Excel file
          this.globalFunctionService.printToConsole(this.constructor.name,'exportAsXLSX', '@Start');
 
-         // Reset
-         this.errorMessageEditor = '';
+        // Reset
+        this.errorMessageEditor = '';
+
+        // let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+        //     ds => ds.datasourceID == this.selectedRowID
+        // );
+        // this.excelService.exportAsExcelFile(
+        //     this.globalVariableService.currentDatasets[dataSetIndex].data,
+        //     this.selectedDSName?  this.selectedDSName  :  'Data'
+        // );
 
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
             ds => ds.datasourceID == this.selectedRowID
