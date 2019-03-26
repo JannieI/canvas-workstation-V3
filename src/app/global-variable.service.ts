@@ -1959,7 +1959,6 @@ export class GlobalVariableService {
         this.currentDashboardTabs = [];
         this.currentWidgets = [];
         this.currentWidgetCheckpoints = [];
-        this.currentDatasets = [];
 
     }
 
