@@ -73,7 +73,6 @@ import { GlobalVariableService }      from './global-variable.service';
     dragoverColor: boolean = false;
     errorMessage: string = '';
     filterPivotFields: string = '';
-    hasClicked: boolean = false;
     isBusyRetrievingData: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
@@ -212,11 +211,57 @@ import { GlobalVariableService }      from './global-variable.service';
         this.errorMessage = '';
 
         // Determine if data obtains in Glob Var
-        let dSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-            ds => ds.datasourceID == datasourceID
-        );
+        // let dSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+        //     ds => ds.datasourceID == datasourceID
+        // );
 
-        if (dSetIndex < 0) {
+        // if (dSetIndex < 0) {
+
+        //     if (this.isBusyRetrievingData) {
+        //         this.errorMessage = 'Still retrieving the actual data for this DS';
+        //         return;
+        //     };
+
+        //     this.isBusyRetrievingData = true;
+        //     this.errorMessage = 'Getting data ...'
+        //     this.globalVariableService.addCurrentDatasource(datasourceID)
+        //         .then(res => {
+
+        //             // Reset
+        //             this.isBusyRetrievingData = false
+        //             this.currentDatasources = this.globalVariableService.datasources
+        //                 .slice()
+        //                 .filter(ds => 
+        //                     this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
+        //                 )
+        //                 .sort( (obj1, obj2) => {
+        //                     if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+        //                         return 1;
+        //                     };
+        //                     if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+        //                         return -1;
+        //                     };
+        //                     return 0;
+        //                 }
+        //             );
+        
+        //             // Tell user
+        //             this.errorMessage = 'Data retrieved - click row again to continue';
+
+        //         })
+        //         .catch(err => {
+        //             this.errorMessage = err.slice(0, 100);
+        //             console.error('Error in table.editor reading widgetGraphs: ' + err);
+        //         });
+    
+        //     // Stop Synch execution
+        //     return;
+        // };
+
+        let currentDatasourceIndex: number = this.globalVariableService.currentDatasources.findIndex(
+            ds => ds.id == datasourceID
+        );
+        if (currentDatasourceIndex < 0) {
 
             if (this.isBusyRetrievingData) {
                 this.errorMessage = 'Still retrieving the actual data for this DS';
@@ -225,27 +270,24 @@ import { GlobalVariableService }      from './global-variable.service';
 
             this.isBusyRetrievingData = true;
             this.errorMessage = 'Getting data ...'
-            this.globalVariableService.addCurrentDatasource(datasourceID)
+            this.globalVariableService.getCurrentDatasource(datasourceID)
                 .then(res => {
 
-                    // Reset
-                    this.isBusyRetrievingData = false
-                    this.currentDatasources = this.globalVariableService.datasources
-                        .slice()
-                        .filter(ds => 
-                            this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
-                        )
-                        .sort( (obj1, obj2) => {
-                            if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-                                return 1;
-                            };
-                            if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-                                return -1;
-                            };
-                            return 0;
-                        }
-                    );
+                    // Update local array
+                    this.currentDatasources.push(res);
+                    this.dataFieldNames = res.dataFields;
+                    this.dataFieldLengths = res.dataFieldLengths;
+                    this.dataFieldTypes = res.dataFieldTypes;
         
+                    // Load first few rows into preview
+                    this.currentData = res.dataFiltered.slice(0,5);
+
+                    // Add data to new Widget
+                    if (this.newWidget) {
+                        this.localWidget.datasourceID = datasourceID;
+                        this.globalVariableService.applyWidgetFilter(this.localWidget);
+                    };
+
                     // Tell user
                     this.errorMessage = 'Data retrieved - click row again to continue';
 
@@ -257,65 +299,6 @@ import { GlobalVariableService }      from './global-variable.service';
     
             // Stop Synch execution
             return;
-        };
-
-        // Load local arrays for ngFor
-        let dsIndex: number = this.currentDatasources.findIndex(ds => ds.id == datasourceID);
-
-        if (dsIndex >= 0) {
-            this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
-            this.dataFieldLengths = this.currentDatasources[dsIndex].dataFieldLengths;
-            this.dataFieldTypes = this.currentDatasources[dsIndex].dataFieldTypes;
-
-            // Reset
-            this.isBusyRetrievingData = false;
-        } else {
-
-            if (this.isBusyRetrievingData) {
-                this.errorMessage = 'Retrieving the actual data - click row again once done';
-                return;
-            };
-
-            this.isBusyRetrievingData = true;
-            this.globalVariableService.addCurrentDatasource(datasourceID)
-                .then(res => {
-                    this.isBusyRetrievingData = false
-                })
-                .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
-                    console.error('Error in table.editor addCurrentDatasources: ' + err);
-                });
-        };
-
-        // Switch on the preview after the first row was clicked
-        this.hasClicked = true;
-
-        // Get latest dSet for the selected DS
-        let ds: number[]=[];
-        let dSetID: number = 0;
-
-        for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
-            if(this.globalVariableService.currentDatasets[i].datasourceID == datasourceID) {
-                ds.push(this.globalVariableService.currentDatasets[i].id)
-            }
-        };
-        if (ds.length > 0) {
-            dSetID = Math.max(...ds);
-        } else {
-            // Make proper error handling
-            alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
-        };
-
-        // Load first few rows into preview
-        this.currentData = this.globalVariableService.currentDatasets.filter(
-            d => d.id == dSetID)[0].data.slice(0,5);
-
-        // Fill in data info
-        if (this.newWidget) {
-            this.localWidget.datasourceID = datasourceID;
-            this.localWidget.datasetID = dSetID;
-            this.localWidget.dataFiltered = this.globalVariableService.currentDatasets.filter(
-                d => d.id == dSetID)[0].data;
         };
 
     }

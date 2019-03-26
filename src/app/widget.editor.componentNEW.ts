@@ -178,7 +178,6 @@ export interface dataSchemaInterface {
     graphHistoryPosition: number = 0;
     graphLayers: number[] = [];  // Layers to display with *ngFor - see   Note 14   above
     hasCalculationsOrFilters: boolean = false;
-    isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
     isDragoverYField: boolean = false;
     isDragoverSizes: boolean = false;
