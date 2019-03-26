@@ -246,10 +246,22 @@ import { GlobalVariableService }      from './global-variable.service';
             this.errorMessage = 'Getting data ...'
             this.globalVariableService.getCurrentDatasource(datasourceID)
                 .then(res => {
+        
+                    // Update local vars
+                    let datasourceIndex: number = this.datasources.findIndex(
+                        ds => ds.id == datasourceID
+                    );
+                    if (datasourceIndex < 0) {        
+                        this.dataFieldNames = res.dataFields;
+                        this.dataFieldLengths = res.dataFieldLengths;
+                        this.dataFieldTypes = res.dataFieldTypes;
+                    };
 
                     // Load first few rows into preview
                     this.currentData = res.dataFiltered.slice(0,5);
-                    console.log('xx getCurrDS', res, this.datasources, this.currentData)
+                    console.log('xx getCurrDS', res, this.currentData, this.dataFieldNames,
+                    this.dataFieldLengths,
+                    this.dataFieldTypes)
 
                     // Add data to new Widget
                     if (this.newWidget) {
@@ -267,19 +279,18 @@ import { GlobalVariableService }      from './global-variable.service';
                     console.error('Error in table.editor reading widgetGraphs: ' + err);
                 });
     
+        } else {
+
+            // Update local vars
+            let datasourceIndex: number = this.datasources.findIndex(
+                ds => ds.id == datasourceID
+            );
+            if (datasourceIndex < 0) {        
+                this.dataFieldNames = this.datasources[datasourceIndex].dataFields;
+                this.dataFieldLengths = this.datasources[datasourceIndex].dataFieldLengths;
+                this.dataFieldTypes = this.datasources[datasourceIndex].dataFieldTypes;
+            };
         };
-
-        // Update local vars
-
-        let datasourceIndex: number = this.datasources.findIndex(
-            ds => ds.id == datasourceID
-        );
-        if (datasourceIndex < 0) {        
-            this.dataFieldNames = this.datasources[datasourceIndex].dataFields;
-            this.dataFieldLengths = this.datasources[datasourceIndex].dataFieldLengths;
-            this.dataFieldTypes = this.datasources[datasourceIndex].dataFieldTypes;
-        };
-
     }
 
     clickContinue(){
