@@ -3751,54 +3751,6 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentWidgets(dashboardID: number, dashboardTabID: number): Promise<Widget[]> {
-        // Description: Gets all W for current D
-        // Params:
-        //   dashboardID
-        //   dashboardTabID (0 => all Tabs)
-        // Returns: arrays of current W, Sl, Sh, Tbl; unless:
-        //   If not cached or if dirty, get from File
-        // Usage: getWidgets(1, -1)  =>  Returns W for DashboardID = 1
-        if (this.sessionDebugging) {
-            console.log('%c  Global-Variables getCurrentWidgets starts',
-                this.concoleLogStyleForStartOfMethod,
-                {dashboardID}, {dashboardTabID});
-        };
-
-        return new Promise<Widget[]>((resolve, reject) => {
-            this.getWidgets()
-                .then(res => {
-
-                    // Filter the widgets
-                    // TODO - combine with getWidget('..', FILTER)
-                    // ** TABIDS
-                    // this.currentWidgets = res.filter(
-                    //     i => (i.dashboardID == dashboardID)
-                    //             &&
-                    //             (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
-                    // );
-                    this.currentWidgets = res.filter(
-                        i => (i.dashboardID == dashboardID)
-                                &&
-                                (i.dashboardTabID == dashboardTabID)
-                    );
-
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getCurrentWidgets ends',
-                            this.concoleLogStyleForEndOfMethod,
-                            this.currentWidgets)
-                    };
-
-                    resolve(this.currentWidgets);
-                })
-                .catch(err => {
-                    console.error('Error in     Global-Variables getCurrentWidgets', err);
-                    reject(err.message);
-                });
-        });
-
-    }
-
     saveWidget(data: Widget): Promise<string> {
         // Description: Saves Widget
         // Returns: 'Saved' or error message
