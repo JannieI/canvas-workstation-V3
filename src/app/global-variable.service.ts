@@ -436,6 +436,7 @@ export class GlobalVariableService {
         // Dashboard, the DS-Filter set is active.  Else, it is passive.  Passive DS-Filters
         // are not applied. 
         // When there are NO DS-Filters, then .dataFull = .dataFiltered
+        // Returns datasource added to currentDatasources, including data
         if (this.sessionDebugging) {
             console.log('%c  Global-Variables getCurrentDatasource starts',
                 this.concoleLogStyleForStartOfMethod);

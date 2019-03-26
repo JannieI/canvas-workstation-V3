@@ -2435,38 +2435,56 @@ export interface dataSchemaInterface {
         };
 
         // Add DS to current DS (no action if already there)
-        this.globalVariableService.addCurrentDatasource(datasourceID)
-            .then(res => {
+        // this.globalVariableService.addCurrentDatasource(datasourceID)
+        //     .then(res => {
 
+        //         // Load local arrays for ngFor - this is required for the Preview
+        //         this.constructDataSchema(arrayIndex);
+        //         console.log('xx Widget Editor this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
+
+        //         // Determine if data obtains in Glob Var
+        //         dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
+        //             ds => ds.datasourceID == datasourceID
+        //         );
+        //         if (dataSetIndex < 0) {
+        //             this.errorMessage = 'The Data not yet available (click again to retry) ...';
+        //             return;
+        //         };
+
+        //         // Nr rows
+        //         this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
+
+        //         // Load first few rows into preview
+        //         this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
+        //             .data.slice(0,5);
+
+        //         // Switch on the preview after the first row was clicked
+        //         this.showPreview = true;
+
+        //     })
+        //     .catch(err => {
+        //         this.errorMessage = err.slice(0, 100);
+        //         console.error('Error in widget.editor addCurrentDatasource: ' + err);
+        //     });
+        this.globalVariableService.getCurrentDatasource(datasourceID)
+            .then(res => {
                 // Load local arrays for ngFor - this is required for the Preview
                 this.constructDataSchema(arrayIndex);
                 console.log('xx Widget Editor this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
 
-                // Determine if data obtains in Glob Var
-                dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
-                    ds => ds.datasourceID == datasourceID
-                );
-                if (dataSetIndex < 0) {
-                    this.errorMessage = 'The Data not yet available (click again to retry) ...';
-                    return;
-                };
-
                 // Nr rows
-                this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
+                this.nrRows = res.dataFiltered.length;
 
                 // Load first few rows into preview
-                this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
-                    .data.slice(0,5);
+                this.currentData = res.dataFiltered.slice(0,5);
 
                 // Switch on the preview after the first row was clicked
                 this.showPreview = true;
-
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in widget.editor addCurrentDatasource: ' + err);
+                console.error('Error in widget.editor clickDSrow: ' + err);
             });
-
     }
 
     clickDSfilter(index, datasourceID: number) {
