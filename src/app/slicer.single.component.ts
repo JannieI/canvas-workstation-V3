@@ -137,7 +137,6 @@ export class SlicerSingleComponent {
         // Refresh Ws that are related to Sl
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.datasourceID == datasourceID
-                &&  w.datasetID == datasetID
                 && w.widgetType != 'Slicer') {
 
                     this.globalVariableService.changedWidget.next(w);

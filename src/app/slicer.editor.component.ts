@@ -68,7 +68,6 @@ import { GlobalVariableService }      from './global-variable.service';
     oldWidget: Widget = null;                       // W at start
     selectedColor: string = 'Gray';
     selectedDatasourceID: number = -1;
-    selectedDatasetID: number = -1;
     selectedField: string = '';
     selectedFieldType: string = '';
     showContainerslicerAddRest: boolean = false;
@@ -173,7 +172,6 @@ import { GlobalVariableService }      from './global-variable.service';
             // Set the selected items
             this.selectedColor = this.localWidget.slicerColor;
             this.selectedDatasourceID = this.localWidget.datasourceID;
-            this.selectedDatasetID = this.localWidget.datasetID;
             this.selectedField = this.localWidget.slicerFieldName;
             this.slicerColor = this.localWidget.slicerColor;
             this.slicerType = this.localWidget.slicerType,
@@ -254,19 +252,10 @@ import { GlobalVariableService }      from './global-variable.service';
             return;
         }
 
-        // Get ID of latest dSet for the selected DS
-        let dSetIDs: number[] = [];
-        this.globalVariableService.currentDatasets.forEach(ds => {
-            if (ds.datasourceID == this.selectedDatasourceID) {
-                dSetIDs.push(ds.id);
-            };
-        });
-        this.selectedDatasetID = Math.max(...dSetIDs);
-
         // Move into array
         this.dataValues = [];
-        let tempData: any[] = this.globalVariableService.currentDatasets.filter(ds =>
-            ds.id == this.selectedDatasetID)[0].dataRaw //['Origin'];
+        let tempData: any[] = this.globalVariableService.currentDatasources.filter(ds =>
+            ds.id == this.selectedDatasourceID)[0].dataFiltered
 
         // Sort, if so wished
         if (this.slicerSortField != '') {
@@ -451,27 +440,27 @@ import { GlobalVariableService }      from './global-variable.service';
 
         // Must slicer when not All were selected
         // TODO - fix this
-        if (this.localWidget.slicerNumberToShow != 'All') {
-            this.globalVariableService.currentDatasets.forEach(cd => {
-                if (cd.id == this.localWidget.datasetID) {
-                    console.warn('xx len before', cd.data.length)
-                    let temp = this.globalVariableService.filterSlicer(cd);
-                    // console.warn('xx newDataset', newDataset)
-                    console.warn('xx len later', cd.data.length, temp.data.length)
-                };
-            });
+        // if (this.localWidget.slicerNumberToShow != 'All') {
+        //     this.globalVariableService.currentDatasets.forEach(cd => {
+        //         if (cd.id == this.localWidget.datasetID) {
+        //             console.warn('xx len before', cd.data.length)
+        //             let temp = this.globalVariableService.filterSlicer(cd);
+        //             // console.warn('xx newDataset', newDataset)
+        //             console.warn('xx len later', cd.data.length, temp.data.length)
+        //         };
+        //     });
 
-            // Refresh Ws that are related to Sl
-            this.globalVariableService.currentWidgets.forEach(w => {
-                if (w.datasourceID == this.localWidget.datasourceID  
-                    &&  
-                    w.datasetID == this.localWidget.datasetID  
-                    && w.widgetType != 'Slicer') {
-                    console.warn('xx Sl-Edt flt', w.id, w.widgetType, w.containerWidth)
-                    this.globalVariableService.changedWidget.next(w);
-                }
-            });
-        };
+        //     // Refresh Ws that are related to Sl
+        //     this.globalVariableService.currentWidgets.forEach(w => {
+        //         if (w.datasourceID == this.localWidget.datasourceID  
+        //             &&  
+        //             w.datasetID == this.localWidget.datasetID  
+        //             && w.widgetType != 'Slicer') {
+        //             console.warn('xx Sl-Edt flt', w.id, w.widgetType, w.containerWidth)
+        //             this.globalVariableService.changedWidget.next(w);
+        //         }
+        //     });
+        // };
 
         if (this.newWidget) {
 
@@ -491,7 +480,6 @@ import { GlobalVariableService }      from './global-variable.service';
             //     currentDashboardInfo.value.currentDashboardTabID
             // );
             this.localWidget.datasourceID = this.selectedDatasourceID;
-            this.localWidget.datasetID = this.selectedDatasetID;
 
             // this.globalVariableService.widgets.push(this.localWidget);
             // this.globalVariableService.currentWidgets.push(this.localWidget);
