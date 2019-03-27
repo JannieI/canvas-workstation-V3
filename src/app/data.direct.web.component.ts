@@ -386,28 +386,19 @@ export class DataDirectWebComponent implements OnInit {
                 data: this.currentData
             };
 
-            // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData)
-                .then(resData => {
+            // Add DS and Data
+            this.globalVariableService.addDatasource(
+                this.selectedDatasource,
+                newData).then(resData => {
 
-                    newdDataset.url = 'data/' + resData.id.toString();
-                    this.globalVariableService.addResource('datasources', newDatasource).then(resDS => {
-                        newdDataset.datasourceID = resDS.id;
-                        this.globalVariableService.addDataset(newdDataset);
-
-                    })
-                    .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
-                        console.error('Error in Datasource.web adding datasources: ' + err);
-                    });
-    
                     // Indicate to the user
                     this.canSave = false;
-                    this.savedMessage = 'Datasource created';
+                    this.savedMessage = 'Datasource updated';
+
                 })
                 .catch(err => {
                     this.errorMessage = err.slice(0, 100);
-                    console.error('Error in Datasource.web addData: ' + err);
+                    console.error('Error in direct.Web clickSave: ' + err);
                 });
             };
     }

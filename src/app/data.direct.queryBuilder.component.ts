@@ -587,10 +587,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.selectedDatasource,
             newData).then(resData => {
 
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource added';
-
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
