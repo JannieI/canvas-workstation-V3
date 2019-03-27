@@ -408,28 +408,21 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 data: this.fileDataFull
             };
 
-            // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData).then(resData => {
+            // Add DS and Data
+            this.globalVariableService.addDatasource(
+                this.selectedDatasource,
+                newData).then(resData => {
 
-                newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addResource(
-                    'datasources', 
-                    this.selectedDatasource
-                    ).then(resDS => {
-                        newdDataset.datasourceID = resDS.id;
-                        this.globalVariableService.addDataset(newdDataset);
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource added';
 
-                    });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource created';
-            })
-            .catch(err => {
-                this.spinner = false;
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in managed.neo4j addData: ' + err);
-            });
+                })
+                .catch(err => {
+                    this.spinner = false;
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in direct.Neo4j clickAdd: ' + err);
+                });
         };
 
         // Close form and managedSQLEditoropen Transitions if requested
