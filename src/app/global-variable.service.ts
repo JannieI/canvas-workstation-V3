@@ -6154,7 +6154,6 @@ export class GlobalVariableService {
     addDatasourceNEW(datasourceInput: Datasource, clientDataInput: any): Promise<string> {
         // Add a new Datasource, given the following:
         // - datasource
-        // - dataset
         // - data
         // The Server adds the records, with the correct IDs
         if (this.sessionDebugging) {
@@ -6197,7 +6196,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables addDatasourceNEW ends',
                             this.concoleLogStyleForEndOfMethod,
-                            "Datasource and related records saved", this.datasources, this.datasets)
+                            "Datasource and related records saved", this.datasources)
                     };
 
                     resolve("success");
@@ -6210,10 +6209,9 @@ export class GlobalVariableService {
         });
     };
 
-    saveDatasourceNEW(datasourceInput: Datasource, datasetInput: Dataset, clientDataInput: any): Promise<string> {
+    saveDatasourceNEW(datasourceInput: Datasource, clientDataInput: any): Promise<string> {
         // Saves a Datasource, given the following:
         // - datasource
-        // - dataset
         // - data
         // The Server adds the records, with the correct IDs
         if (this.sessionDebugging) {
@@ -6226,7 +6224,6 @@ export class GlobalVariableService {
             // Create Combo body
             let body: any = {
                 "datasourceInput": datasourceInput,
-                "datasetInput": datasetInput,
                 "clientDataInput": clientDataInput
             };
 
@@ -6244,11 +6241,6 @@ export class GlobalVariableService {
                         return;
                     };
 
-                    // Add to global vars
-                    let currentDatasetsAdded: Dataset = JSON.parse(JSON.stringify(datasetInput));
-                    currentDatasetsAdded.dataRaw = clientDataInput.data;
-                    currentDatasetsAdded.data = clientDataInput.data;
-
                     // Update Datasources
                     let datasourceIndex: number = this.datasources.findIndex(
                         ds => ds.id == datasourceInput.id);
@@ -6265,26 +6257,10 @@ export class GlobalVariableService {
                         this.currentDatasources[currentDatasourceIndex] = datasourceInput;
                     };
 
-                    // Update Datasets, without data
-                    let datasetIndex: number = this.datasets.findIndex(
-                        ds => ds.id == datasetInput.id);
-                    if (datasetIndex < 0) {
-                        this.datasets.push(datasetInput);
-                    } else {
-                        this.datasets[datasetIndex] = datasetInput;
-                    };
-
-                    // Update CurrentDatasets, with Data
-                    let currentDatasetIndex: number = this.currentDatasets.findIndex(
-                        ds => ds.id == datasetInput.id);
-                    if (currentDatasetIndex >= 0) {
-                        this.currentDatasets[currentDatasetIndex] = currentDatasetsAdded;
-                    };
-
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables saveDatasourceNEW ends',
                             this.concoleLogStyleForEndOfMethod,
-                            "Datasource and related records saved", this.datasources, this.datasets, this.currentDatasources, this.currentDatasets)
+                            "Datasource and related records saved", this.datasources, this.currentDatasources);
                     };
 
                     resolve("success");
