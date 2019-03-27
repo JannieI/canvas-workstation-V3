@@ -282,7 +282,6 @@ export class AppComponent implements OnInit {
     popupWidgetType: string;
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
-    selectDatasetID: number;
     selectDatasourceID: number;
     selectedDatasource: Datasource;
     selectedDashboard: Dashboard;
@@ -5495,7 +5494,6 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
                 this.selectedWidgetIndex = w.id;
-                this.selectDatasetID = w.datasetID;
                 this.selectDatasourceID = w.datasourceID;
             };
         });
@@ -5806,7 +5804,6 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
                 this.selectedWidgetIndex = w.id;
-                this.selectDatasetID = w.datasetID;
                 this.selectDatasourceID = w.datasourceID;
             };
         });
@@ -6262,7 +6259,6 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
                 this.selectedWidgetIndex = w.id;
-                this.selectDatasetID = w.datasetID;
                 this.selectDatasourceID = w.datasourceID;
             };
         });
