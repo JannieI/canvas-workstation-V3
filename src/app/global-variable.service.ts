@@ -429,6 +429,135 @@ export class GlobalVariableService {
         });
     }
 
+    addDatasource(datasourceInput: Datasource, clientDataInput: any): Promise<string> {
+        // Add a new Datasource, given the following:
+        // - datasource
+        // - data
+        // The Server adds the records, with the correct IDs
+        if (this.sessionDebugging) {
+            console.log('%c  Global-Variables addDatasource starts',
+                this.concoleLogStyleForStartOfMethod,
+                datasourceInput.name);
+        };
+        return new Promise<string>((resolve, reject) => {
+
+            // Create Combo body
+            let body: any = {
+                "datasourceInput": datasourceInput,
+                "clientDataInput": clientDataInput
+            };
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = '/canvasDatasource';
+            let finalUrl: string = this.canvasServerURI + pathUrl;
+
+            this.http.post<CanvasHttpResponse>(finalUrl, body, {headers}).subscribe(
+                res  => {
+
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    // Add to global vars
+                    let datasourceAdded: Datasource = res.data.datasource;
+
+                    if (datasourceAdded != null) {
+                        let datasourceIndex: number = this.datasources.findIndex(ds => ds.id == datasourceAdded.id);
+                        if (datasourceIndex < 0) {
+                            this.datasources.push(datasourceAdded);
+                        };
+                    };
+
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables addDatasourceNEW ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            "Datasource and related records saved", this.datasources)
+                    };
+
+                    resolve("success");
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
+
+        });
+    };
+
+    saveDatasource(datasourceInput: Datasource, clientDataInput: any): Promise<string> {
+        // Saves a Datasource, given the following:
+        // - datasource
+        // - data
+        // The Server adds the records, with the correct IDs
+        if (this.sessionDebugging) {
+            console.log('%c  Global-Variables saveDatasource starts',
+                this.concoleLogStyleForStartOfMethod,
+                datasourceInput.name);
+        };
+        return new Promise<string>((resolve, reject) => {
+
+            // Create Combo body
+            let body: any = {
+                "datasourceInput": datasourceInput,
+                "clientDataInput": clientDataInput
+            };
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = '/canvasDatasource';
+            let finalUrl: string = this.canvasServerURI + pathUrl;
+
+            this.http.put<CanvasHttpResponse>(finalUrl, body, {headers}).subscribe(
+                res  => {
+
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+                        return;
+                    };
+
+                    // Update Datasources
+                    let datasourceIndex: number = this.datasources.findIndex(
+                        ds => ds.id == datasourceInput.id);
+                    if (datasourceIndex < 0) {
+                        this.datasources.push(datasourceInput);
+                    } else {
+                        this.datasources[datasourceIndex] = datasourceInput;
+                    };
+
+                    // Update CurrentDatasources
+                    let currentDatasourceIndex: number = this.currentDatasources.findIndex(
+                        ds => ds.id == datasourceInput.id);
+                    if (currentDatasourceIndex >= 0) {
+                        this.currentDatasources[currentDatasourceIndex] = datasourceInput;
+                    };
+
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables saveDatasourceNEW ends',
+                            this.concoleLogStyleForEndOfMethod,
+                            "Datasource and related records saved", this.datasources, this.currentDatasources);
+                    };
+
+                    resolve("success");
+                },
+                err => {
+                    reject(err.message)
+                }
+            );
+            // } else {
+            //     if (this.sessionDebugging) {
+            //         console.log('%c    Global-Variables getDatasources ends',
+            //             this.concoleLogStyleForEndOfMethod)
+            //     };
+
+            //     resolve("success");
+            // }
+        });
+    };
+    
     getCurrentDatasource(datasourceID: number): Promise<Datasource> {
         // Add the datasource to currentDatasources array:
         // Get the .dataFull and .dataFiltered for a given DS, using the DS-Filters that
@@ -6148,135 +6277,6 @@ export class GlobalVariableService {
                     reject(err.message)
                 }
             );
-        });
-    };
-
-    addDatasource(datasourceInput: Datasource, clientDataInput: any): Promise<string> {
-        // Add a new Datasource, given the following:
-        // - datasource
-        // - data
-        // The Server adds the records, with the correct IDs
-        if (this.sessionDebugging) {
-            console.log('%c  Global-Variables addDatasource starts',
-                this.concoleLogStyleForStartOfMethod,
-                datasourceInput.name);
-        };
-        return new Promise<string>((resolve, reject) => {
-
-            // Create Combo body
-            let body: any = {
-                "datasourceInput": datasourceInput,
-                "clientDataInput": clientDataInput
-            };
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = '/canvasDatasource';
-            let finalUrl: string = this.canvasServerURI + pathUrl;
-
-            this.http.post<CanvasHttpResponse>(finalUrl, body, {headers}).subscribe(
-                res  => {
-
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // Add to global vars
-                    let datasourceAdded: Datasource = res.data.datasource;
-
-                    if (datasourceAdded != null) {
-                        let datasourceIndex: number = this.datasources.findIndex(ds => ds.id == datasourceAdded.id);
-                        if (datasourceIndex < 0) {
-                            this.datasources.push(datasourceAdded);
-                        };
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables addDatasourceNEW ends',
-                            this.concoleLogStyleForEndOfMethod,
-                            "Datasource and related records saved", this.datasources)
-                    };
-
-                    resolve("success");
-                },
-                err => {
-                    reject(err.message)
-                }
-            );
-
-        });
-    };
-
-    saveDatasource(datasourceInput: Datasource, clientDataInput: any): Promise<string> {
-        // Saves a Datasource, given the following:
-        // - datasource
-        // - data
-        // The Server adds the records, with the correct IDs
-        if (this.sessionDebugging) {
-            console.log('%c  Global-Variables saveDatasource starts',
-                this.concoleLogStyleForStartOfMethod,
-                datasourceInput.name);
-        };
-        return new Promise<string>((resolve, reject) => {
-
-            // Create Combo body
-            let body: any = {
-                "datasourceInput": datasourceInput,
-                "clientDataInput": clientDataInput
-            };
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = '/canvasDatasource';
-            let finalUrl: string = this.canvasServerURI + pathUrl;
-
-            this.http.put<CanvasHttpResponse>(finalUrl, body, {headers}).subscribe(
-                res  => {
-
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-                        return;
-                    };
-
-                    // Update Datasources
-                    let datasourceIndex: number = this.datasources.findIndex(
-                        ds => ds.id == datasourceInput.id);
-                    if (datasourceIndex < 0) {
-                        this.datasources.push(datasourceInput);
-                    } else {
-                        this.datasources[datasourceIndex] = datasourceInput;
-                    };
-
-                    // Update CurrentDatasources
-                    let currentDatasourceIndex: number = this.currentDatasources.findIndex(
-                        ds => ds.id == datasourceInput.id);
-                    if (currentDatasourceIndex >= 0) {
-                        this.currentDatasources[currentDatasourceIndex] = datasourceInput;
-                    };
-
-                    if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables saveDatasourceNEW ends',
-                            this.concoleLogStyleForEndOfMethod,
-                            "Datasource and related records saved", this.datasources, this.currentDatasources);
-                    };
-
-                    resolve("success");
-                },
-                err => {
-                    reject(err.message)
-                }
-            );
-            // } else {
-            //     if (this.sessionDebugging) {
-            //         console.log('%c    Global-Variables getDatasources ends',
-            //             this.concoleLogStyleForEndOfMethod)
-            //     };
-
-            //     resolve("success");
-            // }
         });
     };
 
