@@ -419,25 +419,20 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                 data: this.fileDataFull
             };
 
-            // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData)
-                .then(resData => {
-
-                    newdDataset.url = 'data/' + resData.id.toString();
-                    this.globalVariableService.addResource('datasources', this.selectedDatasource).then(resDS => {
-                        newdDataset.datasourceID = resDS.id;
-                        this.globalVariableService.addDataset(newdDataset);
-
-                    });
+            // Add DS and Data
+            this.globalVariableService.addDatasource(
+                this.selectedDatasource,
+                newData).then(resData => {
 
                     // Indicate to the user
                     this.canSave = false;
-                    this.savedMessage = 'Datasource created';
+                    this.savedMessage = 'Datasource added';
+
                 })
                 .catch(err => {
                     this.spinner = false;
                     this.errorMessage = err.slice(0, 100);
-                    console.error('Error in managed.GraphQL adding datasource: ' + err);
+                    console.error('Error in direct.GraphQL clickAdd: ' + err);
                 });
             };
 
