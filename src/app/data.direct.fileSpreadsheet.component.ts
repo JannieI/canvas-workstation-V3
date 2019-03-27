@@ -384,24 +384,19 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 data: this.worksheetDataFull
             };
 
-            // Add Data, then dataset, then DS
-            this.globalVariableService.saveData(updatedData)
-                .then(resData => {
-
-                    updatedDataset.url = 'data/' + dataID;
-                    this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
-                        resDS => {
-                            updatedDataset.datasourceID = this.selectedDatasource.id;
-                            this.globalVariableService.saveResource('datasets', updatedDataset);
-                    });
+            // Add DS and Data
+            this.globalVariableService.addDatasource(
+                this.selectedDatasource,
+                updatedData).then(resData => {
 
                     // Indicate to the user
                     this.canSave = false;
                     this.savedMessage = 'Datasource updated';
+
                 })
                 .catch(err => {
                     this.errorMessage = err.slice(0, 100);
-                    console.error('Error in Datasource.spreadsheet saveResource: ' + err);
+                    console.error('Error in direct.Spreadsheet clickAdd: ' + err);
                 });
     
         } else {
@@ -500,29 +495,22 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 data: this.worksheetDataFull
             };
 
-            // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData)
-                .then(resData => {
-
-                    newdDataset.url = 'data/' + resData.id.toString();
-                    this.globalVariableService.addResource('datasources', newDatasource).then(resDS => {
-                        newdDataset.datasourceID = resDS.id;
-                        this.globalVariableService.addDataset(newdDataset);
-
-                    });
+            // Add DS and Data
+            this.globalVariableService.addDatasource(
+                this.selectedDatasource,
+                newData).then(resData => {
 
                     // Indicate to the user
                     this.canSave = false;
-                    this.savedMessage = 'Datasource created';
+                    this.savedMessage = 'Datasource added';
+
                 })
                 .catch(err => {
                     this.errorMessage = err.slice(0, 100);
-                    console.error('Error in Datasource.spreadsheet addResource: ' + err);
+                    console.error('Error in direct.Spreadsheet clickAdd: ' + err);
                 });
+
         };
-
-
-
 
     }
 }
