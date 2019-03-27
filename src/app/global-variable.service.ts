@@ -2731,55 +2731,6 @@ export class GlobalVariableService {
         });
     }
 
-    addDataset(data: Dataset): Promise<any> {
-        // Description: Adds a new Dataset
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c  Global-Variables addDataset starts',
-                this.concoleLogStyleForStartOfMethod, {data});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            let pathUrl: string = 'datasets';
-            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
-						return;
-                    };
-
-                    // Update Global vars to make sure they remain in sync
-                    let dataset: Dataset = JSON.parse(JSON.stringify(res.data));
-                    this.datasets.push(dataset);
-
-                    // Note: currentDS contains data as well, so this.currentDatasets.push
-                    //       will result in a record with no data.  So, in the Widget
-                    //       Editor for example, the DS will show on the list, but it will
-                    //       be empty (Preview empty, nothing to plot)
-
-                    this.getCurrentDataset(data.datasourceID, dataset.id).then(dataset => {
-
-                        if (this.sessionDebugging) {
-                            console.log('addDataset ADDED', res.data, this.datasets, this.currentDatasets)
-                        };
-
-                        resolve(res.data);
-
-                    });
-                },
-                err => {
-                    console.error('Error in     Global-Variables addDataset', err);
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     getData(parameters: string): Promise<any[]> {
         // Description: Gets Data
         // parameters: list of ways to modify the result, for example:
