@@ -229,7 +229,6 @@ export class GlobalVariableService {
 
     // Session
     dontDisturb = new BehaviorSubject<boolean>(false);   // True means dont disturb display
-    dsIDs: number[] = [];           // Dataset IDs
     sessionDateTimeLoggedin: string = '';
     sessionDebugging: boolean = true;      // True to log multiple messages to Console
     sessionLogging: boolean = false;
@@ -2624,7 +2623,7 @@ export class GlobalVariableService {
                 this.concoleLogStyleForStartOfMethod, {parameters});
         };
 
-        return new Promise<Dataset[]>((resolve, reject) => {
+        return new Promise<any[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
@@ -2662,7 +2661,7 @@ export class GlobalVariableService {
     }
 
     addData(data: any): Promise<any> {
-        // Description: Adds DATA used in a new Dataset
+        // Description: Adds DATA used in a Datasource
         // Returns: Added Data or error message
         if (this.sessionDebugging) {
             console.log('%c  Global-Variables addData  starts',

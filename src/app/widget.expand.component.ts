@@ -26,7 +26,6 @@ export class WidgetExpandComponent implements OnInit {
 
     dataset;
     @Input() selectWidgetIndex: number;
-    @Input() selectDatasetID: number;
     @Input() selectDatasourceID: number;
     @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
 
@@ -62,9 +61,9 @@ export class WidgetExpandComponent implements OnInit {
         // let tempData: any[] = this.globalVariableService.currentDatasets.filter(ds =>
         //     ds.id == this.selectDatasetID)[0].dataRaw //['Origin'];
 
-        this.globalVariableService.currentDatasets.forEach(ds => {
-            if (ds.id == this.selectDatasetID) {
-                this.datagridData = ds.dataRaw;
+        this.globalVariableService.currentDatasources.forEach(ds => {
+            if (ds.id == this.selectDatasourceID) {
+                this.datagridData = ds.dataFiltered;
             };
         })
         this.globalVariableService.currentDatasources.forEach(ds => {
