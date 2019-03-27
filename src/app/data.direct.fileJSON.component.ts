@@ -15,7 +15,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 
 
@@ -296,35 +295,14 @@ export class DataDirectFileJSONComponent implements OnInit {
             this.selectedDatasource.dataFields = this.fields;
             this.selectedDatasource.dataFieldTypes = this.newDataFieldTypes;
 
-            // Save DS to DB
-            let updatedDataset: Dataset = {
-                id: this.selectedDatasource.id,
-                datasourceID: this.selectedDatasource.id,
-                sourceLocation: 'HTTP',
-                url: 'data',
-                folderName: '',
-                fileName: this.loadedFileName,
-                cacheServerStorageID: null,
-                cacheLocalStorageID: null,
-                isLocalDirty: null,
-                data: [],
-                dataRaw: []
-            };
-            let updatedDatasetIndex: number = this.globalVariableService.datasets
-                .findIndex(dset => dset.datasourceID == this.selectedDatasource.id);
-            if (updatedDatasetIndex >= 0) {
-                updatedDataset = this.globalVariableService.datasets[updatedDatasetIndex];
-            };
-
             let updatedData: any = {
                 id: this.selectedDatasource.id,
                 data: this.fileDataFull
             };
 
-            // Add Data, then dataset, then DS
+            // Add DS and Data
             this.globalVariableService.saveDatasource(
                 this.selectedDatasource,
-                updatedDataset,
                 updatedData).then(resData => {
 
                     // Indicate to the user
@@ -413,29 +391,14 @@ export class DataDirectFileJSONComponent implements OnInit {
                 dataFiltered: []
 
             };
-
-            let newdDataset: Dataset = {
-                id: null,
-                datasourceID: null,
-                sourceLocation: 'HTTP',
-                url: 'data',
-                folderName: '',
-                fileName: this.loadedFileName,
-                cacheServerStorageID: null,
-                cacheLocalStorageID: null,
-                isLocalDirty: null,
-                data: [],
-                dataRaw: []
-            };
             let newData: any = {
                 id: null,
                 data: this.fileDataFull
             };
 
-            // Add Data, then dataset, then DS
+            // Add DS and Data
             this.globalVariableService.addDatasource(
                 newDatasource,
-                newdDataset,
                 newData).then(resData => {
 
                     // Indicate to the user
