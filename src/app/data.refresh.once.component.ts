@@ -146,7 +146,7 @@ export class DataRefreshOnceComponent implements OnInit {
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in managed.SQL Datasource.refreshOnce addCurrentDatasource: ' + err);
+                console.error('Error in managed.SQL Datasource.refreshOnce getCurrentDatasource: ' + err);
             });
 
     }
