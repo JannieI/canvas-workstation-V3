@@ -184,7 +184,6 @@ export class GlobalVariableService {
     currentDashboardName = new BehaviorSubject<string>('');
     currentDashboards: Dashboard[] = [];
     currentDashboardTabs: DashboardTab[] = [];
-    currentDatasets: any = [];                          // Used in current D, with data
     currentDatasources: Datasource[] = [];
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
     changedWidget = new BehaviorSubject<Widget>(null);    // W that must be changed
@@ -2654,7 +2653,7 @@ export class GlobalVariableService {
                     resolve(res.data);
                 },
                 err => {
-                    console.error('Error in     Global-Variables deleteDataset', err);
+                    console.error('Error in     Global-Variables getData', err);
                     reject(err.message);
                 }
             );
@@ -2900,7 +2899,6 @@ export class GlobalVariableService {
                 dashboards: this.currentDashboards.slice(),
                 dashboardTabs: this.currentDashboardTabs.slice(),
                 widgets: this.currentWidgets.slice(),
-                datasets: this.currentDatasets.slice(),
                 datasources: this.currentDatasources.slice(),
                 widgetCheckpoints: this.currentWidgetCheckpoints.slice(),
                 editedBy: '',
