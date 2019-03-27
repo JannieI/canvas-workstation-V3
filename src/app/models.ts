@@ -1035,7 +1035,6 @@ export class DashboardSnapshot {
     dashboards: Dashboard[];                // Array of D used (can include a Template)
     dashboardTabs: DashboardTab[];          // Ts of D
     widgets: Widget[];                      // W of D
-    datasets: Dataset[];                    // dSets of D
     datasources: Datasource[];              // DS of D
     widgetCheckpoints: WidgetCheckpoint[];  // Checkpoints of W
 
