@@ -597,20 +597,16 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             data: this.currentData
         };
 
-        // Add Data, then dataset, then DS
-        this.globalVariableService.addData(newData).then(resData => {
-
-            newdSet.url = 'data/' + resData.id.toString();
-            this.globalVariableService.addResource('datasources', newDatasource).then(resDS => {
-                newdSet.datasourceID = resDS.id;
-                this.globalVariableService.addDataset(newdSet);
+        // Add DS and Data
+        this.globalVariableService.addDatasource(
+            this.selectedDatasource,
+            newData).then(resData => {
 
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in managed.QB adding datasources: ' + err);
+                console.error('Error in manged.QueryBuilder clicksave: ' + err);
             });
-        });
 
         // Close form and open Transitions if requested
         if (action == 'Saved') {
