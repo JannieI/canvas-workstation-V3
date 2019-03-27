@@ -6209,13 +6209,13 @@ export class GlobalVariableService {
         });
     };
 
-    saveDatasourceNEW(datasourceInput: Datasource, clientDataInput: any): Promise<string> {
+    saveDatasource(datasourceInput: Datasource, clientDataInput: any): Promise<string> {
         // Saves a Datasource, given the following:
         // - datasource
         // - data
         // The Server adds the records, with the correct IDs
         if (this.sessionDebugging) {
-            console.log('%c  Global-Variables saveDatasourceNEW starts',
+            console.log('%c  Global-Variables saveDatasource starts',
                 this.concoleLogStyleForStartOfMethod,
                 datasourceInput.name);
         };
