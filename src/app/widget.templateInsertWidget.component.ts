@@ -106,7 +106,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                         return 0;
                     });
 
-                    // TODO - this must be done in DB
+                // TODO - this must be done in DB
                 this.widgetStoredTemplates.forEach(wst => {
                     this.globalVariableService.widgets.forEach(w => {
                         if (w.id == wst.widgetID) {
@@ -163,7 +163,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
 
         // Add DS to current DS (no action if already there)
-        this.globalVariableService.addCurrentDatasource(
+        this.globalVariableService.getCurrentDatasource(
             this.localWidget.datasourceID
             ).then(res => {
 
@@ -212,7 +212,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in widgetTemplate.insert addCurrentDatasource: ' + err);
+                console.error('Error in widgetTemplate.insert clickRow: ' + err);
             });
 
     }
@@ -247,7 +247,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
 
         // Add DS to current DS (no action if already there)
-        this.globalVariableService.addCurrentDatasource(
+        this.globalVariableService.getCurrentDatasource(
             this.localWidget.datasourceID).then(res => {
 
             // Update local and global vars

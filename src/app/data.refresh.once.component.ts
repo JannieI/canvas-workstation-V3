@@ -42,16 +42,15 @@ export class DataRefreshOnceComponent implements OnInit {
 
     }
 
+    currentData: any = [];
+    dataFieldNames: string[] = [];
     datasources: Datasource[] = [];
     editing: boolean = false;
     errorMessage: string = '';
-    selectedDatasource: Datasource;
     infoMessage: string;
     isBusyRetrievingData: boolean = false;
-    currentDatasources: Datasource[] = null;               // Current DS for the selected W
+    selectedDatasource: Datasource;
     selectedRowIndex: number = 0;
-    currentData: any = [];
-    dataFieldNames: string[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -69,7 +68,7 @@ export class DataRefreshOnceComponent implements OnInit {
             this.globalVariableService.getResource('widgets')
                 .then(w => {
                     widgets = w;
-                    this.currentDatasources = d
+                    this.datasources = d
                         .sort( (obj1, obj2) => {
                             if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
                                 return 1;
@@ -80,12 +79,12 @@ export class DataRefreshOnceComponent implements OnInit {
                             return 0;
                         });
 
-                    if (this.currentDatasources.length > 0) {
-                        this.dataFieldNames = this.currentDatasources[0].dataFields;
+                    if (this.datasources.length > 0) {
+                        this.dataFieldNames = this.datasources[0].dataFields;
                     };
 
                     // Count the Ws
-                    this.currentDatasources.forEach(ds => {
+                    this.datasources.forEach(ds => {
                         widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
                         ds.nrWidgets = widgets.length;
                     });
@@ -109,7 +108,7 @@ export class DataRefreshOnceComponent implements OnInit {
 
         // Set the row index
         this.selectedRowIndex = index;
-        this.dataFieldNames = this.currentDatasources[index].dataFields;
+        this.dataFieldNames = this.datasources[index].dataFields;
         this.errorMessage = '';
         this.infoMessage = '';
 
@@ -139,132 +138,17 @@ export class DataRefreshOnceComponent implements OnInit {
             return;
         };
 
-        // Determine if data obtains in Glob Var
-        let dSetIndex: number = this.globalVariableService.currentDatasets.filter(
-            dS => dS.datasourceID == datasourceID
-        ).length;
+        // Get
+        this.globalVariableService.getCurrentDatasource(datasourceID)
+            .then(res => {
+                this.dataFieldNames = res.dataFields;
+                this.currentData = res.dataFiltered.slice(0,5);
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in managed.SQL Datasource.refreshOnce addCurrentDatasource: ' + err);
+            });
 
-        if (dSetIndex <= 0) {
-
-            if (this.isBusyRetrievingData) {
-                this.errorMessage = 'Still retrieving the actual data for this DS';
-                return;
-            };
-
-            this.isBusyRetrievingData = true;
-            this.errorMessage = 'Getting data ...'
-            this.globalVariableService.addCurrentDatasource(datasourceID)
-                .then(res => {
-
-                    // Reset
-                    this.isBusyRetrievingData = false
-
-                    let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-                    .findIndex(dS => dS.id == datasourceID
-                    );
-                    if (globalCurrentDSIndex >= 0) {
-                        this.currentDatasources.push(
-                            this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
-                    };
-
-                    let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                        .findIndex(dS => dS.datasourceID == datasourceID
-                    );
-                    if (globalCurrentDsetIndex >= 0) {
-                        this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-                    };
-
-                    // Tell user
-                    this.errorMessage = 'Data retrieved - click row again to continue';
-
-                })
-                .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
-                    console.error('Error in managed.SQL Datasource.refreshOnce addCurrentDatasource: ' + err);
-                });
-        
-            // Stop Sync execution
-            return;
-        };
-
-        // Load local arrays for ngFor
-        let dsIndex: number = this.currentDatasources
-            .findIndex(ds => ds.id == datasourceID);
-
-        if (dsIndex >= 0) {
-            this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
-
-            // Reset
-            this.isBusyRetrievingData = false;
-        } else {
-
-            if (this.isBusyRetrievingData) {
-                this.errorMessage = 'Retrieving the actual data - click row again once done';
-                return;
-            };
-
-            this.isBusyRetrievingData = true;
-            this.globalVariableService.addCurrentDatasource(datasourceID)
-                .then(res => {
-                    this.isBusyRetrievingData = false
-
-                    let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-                    .findIndex(dS => dS.id == datasourceID
-                    );
-                    if (globalCurrentDSIndex >= 0) {
-                        this.currentDatasources.push(
-                            this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
-                    };
-
-                    let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                        .findIndex(dS => dS.datasourceID == datasourceID
-                    );
-                    if (globalCurrentDsetIndex >= 0) {
-                        this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-                    };
-
-                    // Update Refresh info
-                    let today = new Date();
-                    this.currentDatasources[dsIndex].refreshedBy = this.globalVariableService
-                        .currentUser.userID;
-                    this.currentDatasources[dsIndex].refreshedServerOn = today;
-                    this.globalVariableService.saveResource(
-                        'datasources', 
-                        this.currentDatasources[dsIndex]
-                        )
-                        .catch(err => {
-                            this.errorMessage = err.slice(0, 100);
-                            console.error('Error in managed.SQL Datasource.refreshOnce saving datasources: ' + err);
-                        });
-                    })
-                .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
-                    console.error('Error in managed.SQL Datasource.refreshOnce addCurrentDatasource: ' + err);
-                });
-        };
-
-
-        // Get latest dSet for the selected DS
-        let ds: number[]=[];
-        let dSetID: number = 0;
-
-        for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
-            if(this.globalVariableService.currentDatasets[i].datasourceID == datasourceID) {
-                ds.push(this.globalVariableService.currentDatasets[i].id)
-            }
-        };
-        if (ds.length > 0) {
-            dSetID = Math.max(...ds);
-        } else {
-            // Make proper error handling
-            alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
-        };
-
-        // Load first few rows into preview
-        this.currentData = this.globalVariableService.currentDatasets.filter(
-            d => d.id == dSetID)[0].data.slice(0,5);
-
-        this.infoMessage = 'Data Refreshed (preview on the right)';
     }
 
 }
