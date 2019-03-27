@@ -15,15 +15,8 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { Datasource }                 from './models';
-import { Dataset }                    from './models';
-import { DataQualityIssue }           from './models';
 import { Widget }                     from './models';
 
-interface localDatasources extends Datasource
-    {
-        isSelected?: boolean;
-        hasWidget?: boolean;
-    }
 
 @Component({
     selector: 'data-combination-append',
@@ -53,8 +46,7 @@ export class DataCombinationAppendComponent implements OnInit {
     dataFieldLengths: number[] = [];
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
-    dataQualityIssues: DataQualityIssue[];
-    datasources: localDatasources[];
+    datasources: Datasource[];
     errorMessage: string = '';
     fileName: string = '';
     folderName: string = '';
@@ -96,19 +88,6 @@ export class DataCombinationAppendComponent implements OnInit {
         this.globalVariableService.getResource('datasources')
             .then(res => {
                 this.datasources = res;
-
-                this.datasources.forEach(ds => {
-                    if (currentWidgetIDs.indexOf(ds.id) >= 0) {
-                        ds.hasWidget = true;
-                    } else {
-                        ds.hasWidget = false;
-                    };
-                    if (this.currentDSids.indexOf(ds.id) >= 0) {
-                        ds.isSelected = true;
-                    } else {
-                        ds.isSelected = false;
-                    };
-                });
     
                 // Reset
                 this.selectedRowID = -1;
@@ -174,66 +153,16 @@ export class DataCombinationAppendComponent implements OnInit {
 
         // Get the data, if so requested
         if (ev.target.checked) {
-            let localDatasource: Datasource;
-            let localDataset: Dataset;
-            let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-                .findIndex(dS => dS.id == id
-            );
-            let globalDSIndex: number = this.datasources.findIndex(ds =>
-                ds.id == id
-            );
+            // Get data for Dset
+            this.globalVariableService.getData('datasourceID=' + id.toString())
+                .then(res => {
 
-            // DS exists in gv datasources, but not in currentDatasources
-            if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
-                localDatasource = this.datasources[globalDSIndex];
-
-                let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                    .findIndex(dS => dS.id == id
-                );
-                let globalDsetIndex: number = this.globalVariableService.datasets.findIndex(dS =>
-                    dS.datasourceID == id
-                );
-
-                // Add DS and Dset to gv
-                this.globalVariableService.currentDatasources.push(localDatasource);
-
-                // Dset exists in gv datasets, but not in currentDatasets
-                if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
-                    localDataset = this.globalVariableService.datasets[globalDsetIndex];
-
-                    // Get data for Dset
-                    this.globalVariableService.getData('datasourceID=' + localDataset.id.toString())
-                        .then(res => {
-
-                            // Add data to dataset
-                            localDataset.dataRaw = res;
-                            localDataset.data = res;
-
-                            this.globalVariableService.currentDatasets.push(localDataset);
-
-                        })
-                        .catch(err => {
-                            this.errorMessage = err.slice(0, 100);
-                            console.error('Error in dataCombination.append getData: ' + err);
-                        });
-                };
-            };
-        } else {
-            let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-                .findIndex(dS => dS.id == id
-            );
-            if (globalCurrentDSIndex >= 0) {
-                this.globalVariableService.currentDatasources.splice(globalCurrentDSIndex, 1);
-            };
-            let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                .findIndex(dS => dS.datasourceID == id
-            );
-            if (globalCurrentDsetIndex >= 0) {
-                this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-            };
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in dataCombination.append getData: ' + err);
+                });
         };
-
-        // TODO - what about other arrays, ie permisions, pivots, transformations, etc ??
     }
 
     clickClose(action: string) {
