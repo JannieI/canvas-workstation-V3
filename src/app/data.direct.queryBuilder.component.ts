@@ -582,24 +582,19 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             data: this.currentData
         };
 
-        // Add Data, then dataset, then DS
-        this.globalVariableService.addData(newData)
-            .then(resData => {
+        // Add DS and Data
+        this.globalVariableService.addDatasource(
+            this.selectedDatasource,
+            newData).then(resData => {
 
-                newdSet.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addResource('datasources', newDatasource)
-                    .then(resDS => {
-                        newdSet.datasourceID = resDS.id;
-                        this.globalVariableService.addDataset(newdSet);
-                    })
-                    .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
-                        console.error('Error in Datasource.queryBuilder addDataset: ' + err);
-                    });
+                // Indicate to the user
+                this.canSave = false;
+                this.savedMessage = 'Datasource added';
+
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Datasource.queryBuilder reading datasources: ' + err);
+                console.error('Error in direct.QueryBuilder clickSave: ' + err);
             });
 
         // Close form and open Transitions if requested

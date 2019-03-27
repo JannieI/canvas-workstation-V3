@@ -344,24 +344,19 @@ export class DataDirectNoSQLComponent implements OnInit {
                 data: this.fileDataFull
             };
 
-            // Add Data, then dataset, then DS
-            this.globalVariableService.saveData(updatedData)
-                .then(resData => {
-
-                    updatedDataset.url = 'data/' + dataID;
-                    this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
-                        resDS => {
-                            updatedDataset.datasourceID = this.selectedDatasource.id;
-                            this.globalVariableService.saveResource('datasets', updatedDataset);
-                    });
+            // Add DS and Data
+            this.globalVariableService.addDatasource(
+                this.selectedDatasource,
+                updatedData).then(resData => {
 
                     // Indicate to the user
                     this.canSave = false;
                     this.savedMessage = 'Datasource updated';
+
                 })
                 .catch(err => {
                     this.errorMessage = err.slice(0, 100);
-                    console.error('Error in Datasource.noSQL saveData: ' + err);
+                    console.error('Error in direct.noSQL clickAdd: ' + err);
                 });
 
         } else {
@@ -384,29 +379,19 @@ export class DataDirectNoSQLComponent implements OnInit {
                 data: this.fileDataFull
             };
 
-            // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData)
-                .then(resData => {
+            // Add DS and Data
+            this.globalVariableService.addDatasource(
+                this.selectedDatasource,
+                newData).then(resData => {
 
-                    newdDataset.url = 'data/' + resData.id.toString();
-                    this.globalVariableService.addResource('datasources', this.selectedDatasource)
-                        .then(resDS => {
-                            newdDataset.datasourceID = resDS.id;
-                            this.globalVariableService.addDataset(newdDataset);
-
-                        })
-                        .catch(err => {
-                            this.errorMessage = err.slice(0, 100);
-                            console.error('Error in Datasource.noDQL reading datasources: ' + err);
-                        });
-            
                     // Indicate to the user
                     this.canSave = false;
-                    this.savedMessage = 'Datasource created';
+                    this.savedMessage = 'Datasource added';
+
                 })
                 .catch(err => {
                     this.errorMessage = err.slice(0, 100);
-                    console.error('Error in Datasource.noSQL addData: ' + err);
+                    console.error('Error in direct.noSQL clickAdd: ' + err);
                 });
         };
 

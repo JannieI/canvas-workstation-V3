@@ -223,7 +223,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 })
                 .catch(err => {
                     this.errorMessage = err.slice(0, 100);
-                    console.error('Error in direct.Spreadsheet clickSave: ' + err);
+                    console.error('Error in direct.GoogleSheets clickSave: ' + err);
                 });
 
         } else {
@@ -334,7 +334,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 })
                 .catch(err => {
                     this.errorMessage = err.slice(0, 100);
-                    console.error('Error in direct.Spreadsheet clickSave: ' + err);
+                    console.error('Error in direct.GoogleSheets clickSave: ' + err);
                 });
         };
     }
