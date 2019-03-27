@@ -9959,8 +9959,7 @@ export class AppComponent implements OnInit {
         // Get list of selected Sl
         let result: boolean = false;
         this.currentWidgets.forEach(sl => {
-            if (sl.isSelected   &&   sl.widgetType == 'Slicer'  &&
-                sl.datasourceID == datasourceID   &&   sl.datasetID == datasetID
+            if (sl.isSelected   &&   sl.widgetType == 'Slicer'
                 &&  sl.id != id) {
                     result = true;
             };
@@ -10232,7 +10231,6 @@ export class AppComponent implements OnInit {
 
                 // deleteWidget = Object.assign({}, this.currentWidgets[i]);
                 deleteWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
-                datasetID = this.currentWidgets[i].datasetID;
                 // delIDs.push(this.currentWidgets[i].id);
                 this.currentWidgets.splice(i,1);
             };

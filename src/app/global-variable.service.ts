@@ -2779,7 +2779,6 @@ export class GlobalVariableService {
         // two dSets with different values ...
         let relatedSlicers: Widget[] = this.currentWidgets.filter(w =>
             w.datasourceID == dataSet.datasourceID
-            &&  w.datasetID == dataSet.id
             &&  w.widgetType == 'Slicer'
         );
 
@@ -2861,7 +2860,6 @@ export class GlobalVariableService {
         // TODO - cater later for cases for we use graphUrl
         this.currentWidgets.forEach(w => {
             if (w.datasourceID == dataSet.datasourceID
-                &&   w.datasetID == dataSet.id
                 && w.widgetType != 'Slicer') {
                     console.log('xx filterSlicer Related W: ', w.id)
                     w.graphUrl = "";
@@ -3400,6 +3398,31 @@ export class GlobalVariableService {
                             this.concoleLogStyleForEndOfMethod,
                             {id})
                     };
+
+                    // Refilter Graph data if a Slicer was deleted
+                    if (deleteWidget.widgetType == 'Slicer') {
+
+                        // Filter the data in the dSets to which the Sl points.
+                        // In addition, apply all Sl that relates to each one
+                        let newDataset: Dataset;
+                        this.globalVariableService.currentDatasets.forEach(cd => {
+                            if (cd.id == datasetID) {
+
+                                // Filter the Data down based on all Slicers related to it
+                                newDataset = this.globalVariableService.filterSlicer(cd);
+
+                                // Refresh Ws that are based on this Dataset
+                                this.globalVariableService.currentWidgets.forEach(w => {
+                                    if (w.datasourceID == deleteWidget.datasourceID
+                                        &&  w.datasetID == deleteWidget.datasetID
+                                        && w.widgetType != 'Slicer') {
+                                            this.globalVariableService.changedWidget.next(w);
+                                    };
+                                });
+                            };
+                        });
+
+                    }
 
                     resolve('Deleted');
                 })

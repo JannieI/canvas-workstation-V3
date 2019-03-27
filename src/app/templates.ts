@@ -266,7 +266,6 @@ export const widgetTemplate: Widget =
         "dataFieldTypes": null,
         "dataFieldLengths": null,
         "dataschema": null,
-        "datasetID": null,
         "dataParameters": [],
         "reportID": null,
         "reportName": "",
