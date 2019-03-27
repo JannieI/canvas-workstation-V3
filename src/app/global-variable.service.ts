@@ -6151,7 +6151,7 @@ export class GlobalVariableService {
         });
     };
 
-    addDatasourceNEW(datasourceInput: Datasource, datasetInput: Dataset, clientDataInput: any): Promise<string> {
+    addDatasourceNEW(datasourceInput: Datasource, clientDataInput: any): Promise<string> {
         // Add a new Datasource, given the following:
         // - datasource
         // - dataset
@@ -6167,7 +6167,6 @@ export class GlobalVariableService {
             // Create Combo body
             let body: any = {
                 "datasourceInput": datasourceInput,
-                "datasetInput": datasetInput,
                 "clientDataInput": clientDataInput
             };
 
@@ -6187,18 +6186,11 @@ export class GlobalVariableService {
 
                     // Add to global vars
                     let datasourceAdded: Datasource = res.data.datasource;
-                    let datasetsAdded: Dataset = res.data.datasets;
 
                     if (datasourceAdded != null) {
                         let datasourceIndex: number = this.datasources.findIndex(ds => ds.id == datasourceAdded.id);
                         if (datasourceIndex < 0) {
                             this.datasources.push(datasourceAdded);
-                        };
-                    };
-                    if (datasetsAdded != null) {
-                        let datasetIndex: number = this.datasets.findIndex(ds => ds.id == datasetsAdded.id);
-                        if (datasetIndex < 0) {
-                            this.datasets.push(datasetsAdded);
                         };
                     };
 
@@ -6214,14 +6206,7 @@ export class GlobalVariableService {
                     reject(err.message)
                 }
             );
-            // } else {
-            //     if (this.sessionDebugging) {
-            //         console.log('%c    Global-Variables getDatasources ends',
-            //             this.concoleLogStyleForEndOfMethod)
-            //     };
 
-            //     resolve("success");
-            // }
         });
     };
 
