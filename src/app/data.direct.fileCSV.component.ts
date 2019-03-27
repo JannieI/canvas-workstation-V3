@@ -486,7 +486,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addDatasourceNEW(
+            this.globalVariableService.addDatasource(
                 newDatasource,
                 newdDataset,
                 newData).then(resData => {

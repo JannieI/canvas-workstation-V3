@@ -6151,13 +6151,13 @@ export class GlobalVariableService {
         });
     };
 
-    addDatasourceNEW(datasourceInput: Datasource, clientDataInput: any): Promise<string> {
+    addDatasource(datasourceInput: Datasource, clientDataInput: any): Promise<string> {
         // Add a new Datasource, given the following:
         // - datasource
         // - data
         // The Server adds the records, with the correct IDs
         if (this.sessionDebugging) {
-            console.log('%c  Global-Variables addDatasourceNEW starts',
+            console.log('%c  Global-Variables addDatasource starts',
                 this.concoleLogStyleForStartOfMethod,
                 datasourceInput.name);
         };

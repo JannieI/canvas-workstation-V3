@@ -472,7 +472,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addDatasourceNEW(
+            this.globalVariableService.addDatasource(
                 this.selectedDatasource,
                 newdDataset,
                 newData).then(resData => {
