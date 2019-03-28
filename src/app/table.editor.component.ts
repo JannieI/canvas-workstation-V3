@@ -184,54 +184,6 @@ import { GlobalVariableService }      from './global-variable.service';
         this.selectedRowIndex = index;
         this.errorMessage = '';
 
-        // Determine if data obtains in Glob Var
-        // let dSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-        //     ds => ds.datasourceID == datasourceID
-        // );
-
-        // if (dSetIndex < 0) {
-
-        //     if (this.isBusyRetrievingData) {
-        //         this.errorMessage = 'Still retrieving the actual data for this DS';
-        //         return;
-        //     };
-
-        //     this.isBusyRetrievingData = true;
-        //     this.errorMessage = 'Getting data ...'
-        //     this.globalVariableService.addCurrentDatasource(datasourceID)
-        //         .then(res => {
-
-        //             // Reset
-        //             this.isBusyRetrievingData = false
-        //             this.currentDatasources = this.globalVariableService.datasources
-        //                 .slice()
-        //                 .filter(ds => 
-        //                     this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
-        //                 )
-        //                 .sort( (obj1, obj2) => {
-        //                     if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
-        //                         return 1;
-        //                     };
-        //                     if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
-        //                         return -1;
-        //                     };
-        //                     return 0;
-        //                 }
-        //             );
-        
-        //             // Tell user
-        //             this.errorMessage = 'Data retrieved - click row again to continue';
-
-        //         })
-        //         .catch(err => {
-        //             this.errorMessage = err.slice(0, 100);
-        //             console.error('Error in table.editor reading widgetGraphs: ' + err);
-        //         });
-    
-        //     // Stop Synch execution
-        //     return;
-        // };
-
         let currentDatasourceIndex: number = this.globalVariableService.currentDatasources.findIndex(
             ds => ds.id == datasourceID
         );
