@@ -18,7 +18,6 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { DataConnection }             from './models';
 import { DataSchema }                 from './models';
-import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 import { TributaryServerType }        from './models';
 

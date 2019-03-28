@@ -202,20 +202,8 @@ export class DashboardSnapshotsComponent implements OnInit {
             this.globalVariableService.widgets.push(s);
         });
 
-        // Remove global dSets
-        let ids: number[] = [];
-        snap.datasets.forEach(s => {
-            ids.push(s.id);
-        });
-        this.globalVariableService.datasets = this.globalVariableService.datasets.
-            filter(dS => ids.indexOf(dS.id) <0
-        );
-        // Add dSets from snapshot to global
-        snap.datasets.forEach(s => {
-            this.globalVariableService.datasets.push(s);
-        });
-
         // Remove global DS
+        let ids: number[] = [];
         ids = [];
         snap.datasources.forEach(s => {
             ids.push(s.id);
