@@ -174,15 +174,7 @@ export class LandingComponent implements OnInit {
 												.catch(err => {
 													this.errorMessage = 'Error reading Database: ', err;
 												});
-																						
-											// this.globalVariableService.allWithAsync(...promiseArray)
-											// 	.then(resolvedData => {
-
-											// 	// Inform subscribers
-											// 	this.globalVariableService.currentPaletteButtonsSelected.next(
-											// 		this.globalVariableService.currentPaletteButtonsSelected.value
-											// 	);
-											// });
+													
 										});
 									} else {
 										pBsel = pBsel.filter(

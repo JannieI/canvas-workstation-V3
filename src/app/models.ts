@@ -421,21 +421,6 @@ export class DataOwnership {
     datasourceName: string;                 // Name of the linked DS
 }
 
-export class Dataset {
-    _id?: string;                           // Mongo ID (read only)
-    id: number;                             // Unique record ID
-    datasourceID: number;                   // FK to DS to which this belongs
-    sourceLocation: string;                 // Where data lives:  HTTP, File (on Server), Web, Service
-    url: string;                            // URL for http request
-    folderName: string;                     // Optional folder name where data is stored
-    fileName: string;                       // Optional file name where data is stored
-    cacheServerStorageID: string;           // s-id on Server of cached results
-    cacheLocalStorageID: string;            // s-id Locally of cached results
-    isLocalDirty: boolean;                  // True means must get from server (cannot use local)
-    data: any;                              // Filtered data as json
-    dataRaw: any;                           // Unfiltered data as json
-}
-
 export class DataCachingTable {
     _id?: string;                           // Mongo ID (read only)
     key: string;                            // Unique key
