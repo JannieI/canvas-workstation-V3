@@ -69,7 +69,6 @@ export class SlicerSingleComponent {
         index: number,
         id: number,
         datasourceID: number,
-        datasetID: number,
         fieldValue: string,
         ev: any
         ) {
@@ -124,15 +123,6 @@ export class SlicerSingleComponent {
                 sel.isSelected = ev.target.checked;
             }
         })
-
-        // Filter the data in the dSets to which the Sl points.
-        // In addition, apply all Sl that relates to each one
-        // this.globalVariableService.currentDatasets.forEach(cd => {
-        //     if (cd.id == datasetID) {
-
-        //         this.globalVariableService.filterSlicer(cd);
-        //     };
-        // });
 
         // Refresh Ws that are related to Sl
         this.globalVariableService.currentWidgets.forEach(w => {

@@ -264,69 +264,6 @@ export class DataDatasourceOverviewComponent implements OnInit {
         this.errorMessage = '';
     }
 
-    // clickDSCheckbox(index: number, id: number, isSelected: boolean, ev: any){
-    //     // Checked / UnChecked DS
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickDSCheckbox', '@Start');
-
-    //     // Get the data, if so requested
-    //     if (ev.target.checked) {
-    //         let localDatasource: Datasource;
-    //         let localDataset: Dataset;
-    //         let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-    //             .findIndex(dS => dS.id == id
-    //         );
-    //         let globalDSIndex: number = this.globalVariableService.datasources.findIndex(ds =>
-    //             ds.id == id
-    //         );
-
-    //         // DS exists in gv datasources, but not in currentDatasources
-    //         if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
-    //             localDatasource = this.globalVariableService.datasources[globalDSIndex];
-
-    //             let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-    //                 .findIndex(dS => dS.id == id
-    //             );
-    //             let globalDsetIndex: number = this.globalVariableService.datasets.findIndex(dS =>
-    //                 dS.datasourceID == id
-    //             );
-
-    //             // Add DS and Dset to gv
-    //             this.globalVariableService.currentDatasources.push(localDatasource);
-
-    //             // Dset exists in gv datasets, but not in currentDatasets
-    //             if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
-    //                 localDataset = this.globalVariableService.datasets[globalDsetIndex];
-
-    //                 // Get data for Dset
-    //                 this.globalVariableService.getData(localDataset.id).then(res => {
-
-    //                     // Add data to dataset
-    //                     localDataset.dataRaw = res;
-    //                     localDataset.data = res;
-
-    //                     this.globalVariableService.currentDatasets.push(localDataset);
-
-    //                 });
-    //             };
-    //         };
-    //     } else {
-    //         let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-    //             .findIndex(dS => dS.id == id
-    //         );
-    //         if (globalCurrentDSIndex >= 0) {
-    //             this.globalVariableService.currentDatasources.splice(globalCurrentDSIndex, 1);
-    //         };
-    //         let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-    //             .findIndex(dS => dS.datasourceID == id
-    //         );
-    //         if (globalCurrentDsetIndex >= 0) {
-    //             this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-    //         };
-    //     };
-
-    //     // TODO - what about other arrays, ie permisions, pivots, transformations, etc ??
-    // }
-
     ngOnDestroy() {
         // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.

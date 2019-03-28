@@ -18,7 +18,6 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { DataConnection }             from './models';
 import { Datasource }                 from './models';
-import { Dataset }                    from './models';
 import { TributaryServerType }        from './models';
 
 
@@ -334,7 +333,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 data: this.fileDataFull
             };
 
-            // Add Data, then dataset, then DS
+            // Add DS and Data
             this.globalVariableService.saveDatasource(this.selectedDatasource, updatedData)
                 .then(resData => {
 
