@@ -165,14 +165,24 @@ export class LandingComponent implements OnInit {
 												};
 											});
 
-											this.globalVariableService.allWithAsync(...promiseArray)
+											Promise.all(promiseArray)
 												.then(resolvedData => {
+													this.globalVariableService.currentPaletteButtonsSelected.next(
+														this.globalVariableService.currentPaletteButtonsSelected.value
+													);
+												})
+												.catch(err => {
+													this.errorMessage = 'Error reading Database: ', err;
+												});
+																						
+											// this.globalVariableService.allWithAsync(...promiseArray)
+											// 	.then(resolvedData => {
 
-												// Inform subscribers
-												this.globalVariableService.currentPaletteButtonsSelected.next(
-													this.globalVariableService.currentPaletteButtonsSelected.value
-												);
-											});
+											// 	// Inform subscribers
+											// 	this.globalVariableService.currentPaletteButtonsSelected.next(
+											// 		this.globalVariableService.currentPaletteButtonsSelected.value
+											// 	);
+											// });
 										});
 									} else {
 										pBsel = pBsel.filter(
