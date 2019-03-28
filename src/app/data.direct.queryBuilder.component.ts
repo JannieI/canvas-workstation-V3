@@ -19,7 +19,6 @@ import { DataSchema }                 from './models';
 import { Datasource }                 from './models';
 import { DataTable }                  from './models';
 import { DataField }                  from './models';
-import { Dataset }                    from './models';
 import { TributaryServerType }        from './models';
 
 
@@ -487,7 +486,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         let today = new Date();
 
-        // Create new Datasource, dataSet & Data
+        // Create new Datasource & Data
         // TODO - Encrypt password at a later stage
         let newDatasource: Datasource =  {
             id: null,
@@ -563,19 +562,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             dataFull: this.selectedDatasource.dataFull,
             dataFiltered: this.selectedDatasource.dataFiltered
 
-        };
-        let newdSet: Dataset = {
-            id: null,
-            datasourceID: null,
-            sourceLocation: 'HTTP',
-            url: 'data',
-            folderName: '',
-            fileName: '',
-            cacheServerStorageID: null,
-            cacheLocalStorageID: null,
-            isLocalDirty: null,
-            data: this.currentData,
-            dataRaw: this.currentData
         };
         let newData: any = {
             id: null,
