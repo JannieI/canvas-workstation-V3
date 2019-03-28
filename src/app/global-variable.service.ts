@@ -583,15 +583,16 @@ export class GlobalVariableService {
                         return;
                     };
 
-                    // Update NrComments field if a W is linked
-                    // TODO - how do we fix this !!!???
-                    // if (widgetID != null) {
-                    //     this.widgets.forEach(w => {
-                    //         if (w.id == widgetID) {
-                    //             w.nrComments = w.nrComments - 1;
-                    //         };
-                    //     });
-                    // };
+                    // Delete where DS was used in Stored Template
+                    this.getResource('widgetStoredTemplates').then(swt => {
+                        swt.forEach(swt => {
+                            this.widgets.forEach(w => {
+                                if (swt.widgetID == w.id  &&  w.datasourceID == datasourceID) {
+                                    this.deleteResource('widgetStoredTemplates', swt.id);
+                                };
+                            });
+                        });
+                    });
 
                     // Assume worse case that all has to be obtained from HTTP server
                     let isFresh: boolean = false;
