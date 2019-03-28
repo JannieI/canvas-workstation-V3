@@ -556,7 +556,6 @@ export class GlobalVariableService {
         });
     };
     
-
     deleteDatasource(datasourceID: number): Promise<string> {
         // Description: Deletes a Resources
         // Returns: 'Deleted' or error message

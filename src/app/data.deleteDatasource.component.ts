@@ -109,25 +109,6 @@ export class DataDeleteDatasourceComponent implements OnInit {
         this.globalVariableService.deleteDatasource(id).then(res => {
             this.datasources = this.datasources.filter(ds => ds.id != id);
 
-            this.globalVariableService.datasets.forEach(dSet => {
-                if (dSet.datasourceID == id) {
-
-                    let url: string = dSet.url;
-                    let dataID: number = null;
-                    if (url != null  &&  url != '') {
-                        let slashPositon = url.indexOf('/');
-                        if (slashPositon >= 0) {
-                            dataID = +url.substring(slashPositon + 1);
-
-                        };
-                    };
-                    if (dataID != null) {
-                        this.globalVariableService.deleteData(dataID);
-                    };
-                    this.globalVariableService.deleteResource('datasets', dSet.id).then();
-                };
-            });
-
             // Let user know
             let datasourceIndex: number = this.datasources.findIndex(ds => ds.id == id);
             let datasourceName = '';
