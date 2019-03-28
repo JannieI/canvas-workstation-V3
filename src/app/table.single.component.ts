@@ -45,29 +45,15 @@ export class TableSingleComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'constructor', '@Start');
 
     }
+    
     ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit...', '@Start');
 
-        // Get latest dSet for the selected DS
-        let ds: number[]=[];
-        let dSetID: number = 0;
-
-        for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
-            if(this.globalVariableService.currentDatasets[i].datasourceID == this.table.datasourceID) {
-                ds.push(this.globalVariableService.currentDatasets[i].id)
-            }
-        };
-        if (ds.length > 0) {
-            dSetID = Math.max(...ds);
-        } else {
-            // Make proper error handling
-            alert('Error: no dataSet in glob vars for DSid = ' + this.table.datasourceID)
-        };
-
-        // Load rows with a Max
-        this.currentData = this.globalVariableService.currentDatasets.filter(
-            d => d.id == dSetID)[0].data.slice(0, this.globalVariableService.canvasSettings.maxTableLength);
+        // Get data for the selected DS, with a Max
+        this.currentData = this.globalVariableService.currentDatasources
+            .filter(d => d.id == this.table.datasourceID)[0].dataFiltered
+            .slice(0, this.globalVariableService.canvasSettings.maxTableLength);
 
         // Totals
         this.nrRecords = this.currentData.length;
