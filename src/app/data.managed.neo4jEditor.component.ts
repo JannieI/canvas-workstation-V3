@@ -328,81 +328,28 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
             this.selectedDatasource.editor = this.globalVariableService.currentUser.userID;
             this.selectedDatasource.dateEdited = today;
 
-            // Save DS to DB, but create a new dSet and new data records.
-            let ds: number[] = [];
-            let dSetID: number = 1;
-            for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
-                if(this.globalVariableService.datasets[i].datasourceID ==
-                    this.selectedDatasource.id) {
-                    ds.push(this.globalVariableService.datasets[i].id)
-                };
-            };
-            if (ds.length > 0) {
-                dSetID = Math.max(...ds);
-            };
-            let datasetIndex: number = this.globalVariableService.datasets.findIndex(dSet => {
-                if (dSet.id == dSetID) {
-                    return dSet;
-                };
-            });
-            let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
-
-            let dataID: number = -1;
-            let dataIndex: number = updatedDataset.url.indexOf('/');
-            if (dataIndex >= 0) {
-                dataID = +updatedDataset.url.substring(dataIndex + 1);
-            } else {
-                alert('Error in save Web - url has no / character');
-                return;
-            };
+            // Save DS to DB, but create a new data records.
             let updatedData: any = {
-                id: dataID,
+                id: null,
                 data: this.fileDataFull
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.saveData(updatedData).then(resData => {
+            this.globalVariableService.saveDatasource(this.selectedDatasource, updatedData)
+                .then(resData => {
 
-                updatedDataset.url = 'data/' + dataID;
-                this.globalVariableService.saveResource('datasources', this.selectedDatasource).then(
-                    resDS => {
-                        updatedDataset.datasourceID = this.selectedDatasource.id;
-                        this.globalVariableService.saveResource(
-                            'datasets', 
-                            updatedDataset
-                            )
-                            .catch(err => {
-                                this.spinner = false;
-                                this.errorMessage = err.slice(0, 100);
-                                console.error('Error in managed.neo4j saving datasets: ' + err);
-                            });
-            });
-
-                // Indicate to the user
-                this.canSave = false;
-                this.savedMessage = 'Datasource updated';
-            })
-            .catch(err => {
-                this.spinner = false;
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in managed.neo4j saveData: ' + err);
-            });
+                    // Indicate to the user
+                    this.canSave = false;
+                    this.savedMessage = 'Datasource updated';
+                })
+                .catch(err => {
+                    this.spinner = false;
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in managed.neo4j saveDatasource: ' + err);
+                });
 
         } else {
             // Add new one
-            let newdDataset: Dataset = {
-                id: null,
-                datasourceID: null,
-                sourceLocation: 'HTTP',
-                url: 'data',
-                folderName: '',
-                fileName: '',
-                cacheServerStorageID: null,
-                cacheLocalStorageID: null,
-                isLocalDirty: null,
-                data: this.fileDataFull,
-                dataRaw: this.fileDataFull
-            };
             let newData: any = {
                 id: null,
                 data: this.fileDataFull
