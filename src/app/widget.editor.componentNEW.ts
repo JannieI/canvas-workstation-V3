@@ -489,19 +489,6 @@ export interface dataSchemaInterface {
                             // Construct Schema
                             this.constructDataSchema(this.selectedRowIndex);
 
-                            // Determine if data in Glob Var
-                            // let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-                            //     ds => ds.datasourceID == this.selectedRowID
-                            // );
-                            // if (dataSetIndex >= 0) {
-
-                            //     // Load first few rows into preview
-                            //     this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
-                            //         .data.slice(0,5);
-
-                            //     // Switch on the preview after the first row was clicked
-                            //     this.showPreview = true;
-                            // };
                             let currentDatasourceIndex: number = this.globalVariableService.currentDatasources.findIndex(
                                 ds => ds.id == this.selectedRowID
                             );
@@ -2368,49 +2355,6 @@ export interface dataSchemaInterface {
             this.errorMessage = '';
         };
 
-        // // Clear previous selected fields
-        // this.showXDeleteIcon = false;
-        // this.xField = dragFieldMessage;
-
-        // this.showYDeleteIcon = false;
-        // this.yField = dragFieldMessage;
-
-        // this.showColourDeleteIcon = false;
-        // this.colorField = dragFieldMessage;
-
-        // this.showSizeDeleteIcon = false;
-        // this.sizeField = dragFieldMessage;
-
-        // this.showRowDeleteIcon = false;
-        // this.rowField = dragFieldMessage;
-
-        // this.showColumnDeleteIcon = false;
-        // this.columnField = dragFieldMessage;
-
-        // this.showDetailDeleteIcon = false;
-        // this.detailField = dragFieldMessage;
-
-        // Determine if data already in Glob Var
-        // let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-        //     ds => ds.datasourceID == datasourceID
-        // );
-        // if (dataSetIndex >= 0) {
-
-        //     // Load local arrays for ngFor - this is required for the Preview
-        //     this.constructDataSchema(arrayIndex);
-
-        //     // Load first few rows into preview
-        //     this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
-        //         .data.slice(0,5);
-
-        //     // Nr rows
-        //     this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
-
-        //     // Switch on the preview after the first row was clicked
-        //     this.showPreview = true;
-
-        //     return;
-        // };
         let currentDatasourceIndex: number = this.globalVariableService.currentDatasources.findIndex(
             ds => ds.id == this.selectedRowID
         );
@@ -2433,43 +2377,10 @@ export interface dataSchemaInterface {
             return;
         };
 
-        // Add DS to current DS (no action if already there)
-        // this.globalVariableService.addCurrentDatasource(datasourceID)
-        //     .then(res => {
-
-        //         // Load local arrays for ngFor - this is required for the Preview
-        //         this.constructDataSchema(arrayIndex);
-        //         console.log('xx Widget Editor this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
-
-        //         // Determine if data obtains in Glob Var
-        //         dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
-        //             ds => ds.datasourceID == datasourceID
-        //         );
-        //         if (dataSetIndex < 0) {
-        //             this.errorMessage = 'The Data not yet available (click again to retry) ...';
-        //             return;
-        //         };
-
-        //         // Nr rows
-        //         this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
-
-        //         // Load first few rows into preview
-        //         this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
-        //             .data.slice(0,5);
-
-        //         // Switch on the preview after the first row was clicked
-        //         this.showPreview = true;
-
-        //     })
-        //     .catch(err => {
-        //         this.errorMessage = err.slice(0, 100);
-        //         console.error('Error in widget.editor addCurrentDatasource: ' + err);
-        //     });
         this.globalVariableService.getCurrentDatasource(datasourceID)
             .then(res => {
                 // Load local arrays for ngFor - this is required for the Preview
                 this.constructDataSchema(arrayIndex);
-                console.log('xx Widget Editor this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
 
                 // Nr rows
                 this.nrRows = res.dataFiltered.length;
@@ -2511,21 +2422,8 @@ export interface dataSchemaInterface {
         // If a new DS, clear out info for old one
         if (this.globalVariableService.previousGraphEditDSID != this.selectedRowID) {
 
-            // Determine if data obtains in Glob Var
-            // let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-            //     ds => ds.datasourceID == this.selectedRowID
-            // );
-            // if (dataSetIndex < 0) {
-            //     this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
-            //     return;
-            // };
-
             // Fill filtered data
             this.localWidget.datasourceID = this.selectedRowID;
-            // this.localWidget.datasetID = this.globalVariableService.
-            //     currentDatasets[dataSetIndex].id;
-            // this.localWidget.dataFiltered = this.globalVariableService
-            //     .currentDatasets[dataSetIndex].data;
             this.globalVariableService.applyWidgetFilter(this.localWidget);
 
             // Reset
@@ -4220,14 +4118,6 @@ export interface dataSchemaInterface {
 
         // Reset
         this.errorMessageEditor = '';
-
-        // let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-        //     ds => ds.datasourceID == this.selectedRowID
-        // );
-        // this.excelService.exportAsExcelFile(
-        //     this.globalVariableService.currentDatasets[dataSetIndex].data,
-        //     this.selectedDSName?  this.selectedDSName  :  'Data'
-        // );
 
         let currentDatasourceIndex: number = this.globalVariableService.currentDatasources.findIndex(
             ds => ds.id == this.selectedRowID
