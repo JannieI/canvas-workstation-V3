@@ -2978,44 +2978,6 @@ export class GlobalVariableService {
         });
     }
 
-    deleteDatasource(id: number): Promise<string> {
-        // Description: Deletes a Datasources
-        // Returns: 'Deleted' or error message
-        if (this.sessionDebugging) {
-            console.log('%c  Global-Variables deleteDatasource starts',
-            this.concoleLogStyleForStartOfMethod, {id});
-        };
-
-        return new Promise<any>((resolve, reject) => {
-
-            this.deleteResource('datasources', id)
-                .then( () => {
-
-                    // Delete where DS was used in Stored Template
-                    this.getResource('widgetStoredTemplates').then(swt => {
-                        swt.forEach(swt => {
-                            this.widgets.forEach(w => {
-                                if (swt.widgetID == w.id  &&  w.datasourceID == id) {
-                                    this.deleteResource('widgetStoredTemplates', swt.id);
-                                };
-                            });
-                        });
-                    });
-
-                    if (this.sessionDebugging) {
-                        console.log('deleteDatasource DELETED id: ', {id})
-                    };
-
-                    resolve('Deleted');
-                })
-                .catch(err => {
-                    console.error('Error in     Global-Variables deleteDatasources', err)
-                    reject(err.message);
-                })
-
-        });
-    }
-
     getDatasourcePermissions(): Promise<DatasourcePermission[]> {
         // Description: Gets all DS-P
         // Returns: this.datasourcePermissions array, unless:
