@@ -9951,7 +9951,7 @@ export class AppComponent implements OnInit {
 
     }
 
-    showWidgetForSlicer(id: number, datasourceID: number, datasetID: number) {
+    showWidgetForSlicer(id: number, datasourceID: number) {
         // Returns True if a Widget is related to the selected Sl(s)
         // TODO - put back, but this fires ALL the time ...
         // this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
