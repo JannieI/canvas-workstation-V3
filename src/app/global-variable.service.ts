@@ -556,6 +556,108 @@ export class GlobalVariableService {
         });
     };
     
+
+    deleteDatasource(datasourceID: number): Promise<string> {
+        // Description: Deletes a Resources
+        // Returns: 'Deleted' or error message
+        if (this.sessionDebugging) {
+            console.log('%c  Global-Variables deleteDatasource starts',
+                this.concoleLogStyleForStartOfMethod, {id: datasourceID});
+        };
+        console.time("      DURATION deleteDatasource" + datasourceID.toString());
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = '/canvasDatasource';
+            let finalUrl: string = this.canvasServerURI + pathUrl;
+            console.warn('    Global-Variables deleteDatasource finalUrl for:', finalUrl);
+            this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + datasourceID, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        console.timeEnd("      DURATION deleteDatasource" + ' ' + datasourceID.toString());
+                        reject(res.message);
+                        return;
+                    };
+
+                    // Update NrComments field if a W is linked
+                    // TODO - how do we fix this !!!???
+                    // if (widgetID != null) {
+                    //     this.widgets.forEach(w => {
+                    //         if (w.id == widgetID) {
+                    //             w.nrComments = w.nrComments - 1;
+                    //         };
+                    //     });
+                    // };
+
+                    // Assume worse case that all has to be obtained from HTTP server
+                    let isFresh: boolean = false;
+                    let localCacheableMemory: boolean = false;
+                    let localCacheableDisc: boolean = false;
+                    let localVariableName: string = null;
+                    let localCurrentVariableName: string = '';
+                    let localTableName: string = '';
+
+                    // Find DS in localCachingTable
+                    let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
+                        dct.key == 'datasources'
+                    );
+
+                    // If cached, fill local info
+                    if (dataCachingTableIndex >= 0) {
+                        localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
+                        localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].localCurrentVariableName;
+                        localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
+                        localCacheableMemory = this.dataCachingTable[dataCachingTableIndex].localCacheableMemory;
+                        localCacheableDisc = this.dataCachingTable[dataCachingTableIndex].localCacheableDisc;
+
+                        // Fill local Vars
+                        if (localCacheableMemory) {
+
+                            if (localVariableName != null) {
+
+                                // TODO - TEST This !!!!
+                                this[localVariableName] = this[localVariableName].filter(
+                                    com => com.id != datasourceID
+                                );
+                                console.log('%c    Global-Variables deleteDatasource updated cached Memory for ',
+                                    this.concoleLogStyleForCaching,
+                                    'datasources row count:', this[localVariableName].length);
+
+                            };
+                        };
+
+                        // Fix Disc
+                        if (localCacheableDisc) {
+                            // TODO - figure out
+                        };
+
+                    };
+
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables deleteDatasource DELETED id: ',
+                            this.concoleLogStyleForCaching,
+                            {id: datasourceID})
+                    };
+
+                    console.timeEnd("      DURATION deleteDatasource" + datasourceID.toString());
+                    resolve('Deleted');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.error('Error in     Global-Variables deleteDatasource', err);
+                    };
+
+                    console.timeEnd("      DURATION deleteDatasource" + datasourceID.toString());
+                    reject(err.message);
+                }
+            )
+        });
+    }
+
     getCurrentDatasource(datasourceID: number): Promise<Datasource> {
         // Add the datasource to currentDatasources array:
         // Get the .dataFull and .dataFiltered for a given DS, using the DS-Filters that
