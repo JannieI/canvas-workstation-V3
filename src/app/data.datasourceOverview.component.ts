@@ -16,7 +16,6 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { Datasource }                 from './models';
-import { Dataset }                    from './models';
 import { DataQualityIssue }           from './models';
 import { Widget }                     from './models';
 
@@ -163,30 +162,25 @@ export class DataDatasourceOverviewComponent implements OnInit {
         // Reset
         this.errorMessage = '';
 
-        // Get the data, either lives in the dataset, or in a url
-        let selectedDataset: Dataset[] = this.globalVariableService.datasets.filter(dS =>
-            dS.datasourceID == this.selectedRowID
+        // Get the data, either lives in the DS, or in a url
+        let selectedDatasourceIndex: number = this.globalVariableService.currentDatasources
+            .findIndex(dS => dS.id == this.selectedRowID
         );
+        if (selectedDatasourceIndex >= 0) {
+            this.currentData = this.globalVariableService.currentDatasources
+                [this.selectedRowID].dataFiltered            
+        } else {
 
-        // TODO - do better with DB
-        let maxDsetIndex: number = selectedDataset.length - 1;
-        if (selectedDataset.length > 0) {
-
-            if (selectedDataset[maxDsetIndex].dataRaw != null) {
-                this.currentData = selectedDataset[maxDsetIndex].dataRaw;
-            } else {
-
-                this.globalVariableService.getData('datasourceID=' + selectedDataset[maxDsetIndex].id.toString())
-                    .then(dt => {
-                        this.currentData = dt;
-                    })
-                    .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
-                        console.error('Error in Datasource.overview reading datasourceID: ' + err);
-                    });
-            };
+            this.globalVariableService.getData('datasourceID=' + this.selectedRowID.toString())
+                .then(dt => {
+                    this.currentData = dt;
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Datasource.overview reading datasourceID: ' + err);
+                });
         };
-
+        
     }
 
     clickViewProperties(area: string) {

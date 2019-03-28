@@ -24,7 +24,6 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class WidgetExpandComponent implements OnInit {
 
-    dataset;
     @Input() selectWidgetIndex: number;
     @Input() selectDatasourceID: number;
     @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
@@ -57,9 +56,6 @@ export class WidgetExpandComponent implements OnInit {
     ngOnInit() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
-        // let tempData: any[] = this.globalVariableService.currentDatasets.filter(ds =>
-        //     ds.id == this.selectDatasetID)[0].dataRaw //['Origin'];
 
         this.globalVariableService.currentDatasources.forEach(ds => {
             if (ds.id == this.selectDatasourceID) {
