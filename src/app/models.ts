@@ -1538,8 +1538,8 @@ export class Widget {
     slicerFieldName: string;                // Name to filter on
     slicerNumberToShow: string;             // Nr fields (values) to show in Slicer - default = All
     slicerSelection: {isSelected: boolean; fieldValue: string;}[];
-    slicerSortField: string;                // Name of Field to sort Slicer dataset on
-    slicerSortFieldOrder: string;           // Sort order for Slicer dataset, Ascending, Descending
+    slicerSortField: string;                // Name of Field to sort Slicer data on
+    slicerSortFieldOrder: string;           // Sort order for Slicer data, Ascending, Descending
     slicerType: string;                     // Type of Slicer, ie List, Bin
 
     // Shape

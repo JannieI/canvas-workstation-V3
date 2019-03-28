@@ -110,50 +110,52 @@ export class DataTransformationComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getResource('datasourceTransformations').then(dtr => {
-            this.globalVariableService.getResource('transformations').then(tr => {
-                // Set local Vars
-                this.datasourceTransformations = dtr.filter(ftr =>
-                    ftr.datasourceID == this.selectedDatasource.id
-                ).sort( (obj1,obj2) => {
-                    if (obj1.sequence > obj2.sequence) {
-                        return 1;
-                    };
-                    if (obj1.sequence < obj2.sequence) {
-                        return -1;
-                    };
-                    return 0;
-                });
-                this.transformations = tr.slice();
+        this.globalVariableService.getResource('datasourceTransformations')
+            .then(dtr => {
+                this.globalVariableService.getResource('transformations')
+                    .then(tr => {
+                        // Set local Vars
+                        this.datasourceTransformations = dtr.filter(ftr =>
+                            ftr.datasourceID == this.selectedDatasource.id
+                        ).sort( (obj1,obj2) => {
+                            if (obj1.sequence > obj2.sequence) {
+                                return 1;
+                            };
+                            if (obj1.sequence < obj2.sequence) {
+                                return -1;
+                            };
+                            return 0;
+                        });
+                        this.transformations = tr.slice();
 
-                // Set description
-                if (this.transformations.length > 0) {
-                    this.transitionDescription = this.transformations[0].description;
-                };
-
-                // Fill name for display
-                this.datasourceTransformations.forEach(dtr => {
-                    this.transformations.forEach(tr => {
-                        if (dtr.transformationID == tr.id) {
-                            dtr.name = tr.name;
+                        // Set description
+                        if (this.transformations.length > 0) {
+                            this.transitionDescription = this.transformations[0].description;
                         };
-                    });
-                });
 
-                if (this.datasourceTransformations.length > 0) {
-                    this.clickRow(0, this.datasourceTransformations[0].id);
-                };
+                        // Fill name for display
+                        this.datasourceTransformations.forEach(dtr => {
+                            this.transformations.forEach(tr => {
+                                if (dtr.transformationID == tr.id) {
+                                    dtr.name = tr.name;
+                                };
+                            });
+                        });
+
+                        if (this.datasourceTransformations.length > 0) {
+                            this.clickRow(0, this.datasourceTransformations[0].id);
+                        };
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Data.transformation reading transformations: ' + err);
+                    });
+
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.transformation reading transformations: ' + err);
+                console.error('Error in Data.transformation reading datasourceTransformations: ' + err);
             });
-
-        })
-        .catch(err => {
-            this.errorMessage = err.slice(0, 100);
-            console.error('Error in Data.transformation reading datasourceTransformations: ' + err);
-        });
 }
 
 
