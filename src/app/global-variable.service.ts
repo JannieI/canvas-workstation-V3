@@ -3437,26 +3437,6 @@ export class GlobalVariableService {
         });
     }
 
-    allWithAsync = (...listOfPromises) => {
-        // Resolve all promises in array
-        if (this.sessionDebugging) {
-            console.log('%c  Global-Variables allWithAsync starts',
-                this.concoleLogStyleForStartOfMethod);
-        };
-
-        return new Promise(async (resolve, reject) => {
-            let results = []
-            if (listOfPromises.length == 0) {
-                resolve(true);
-            } else {
-                for (let promise of listOfPromises.map(Promise.resolve, Promise)) {
-                    results.push(await promise.then(async resolvedData => await resolvedData, reject))
-                    if (results.length === listOfPromises.length) resolve(results)
-                }
-            };
-        })
-    }
-
     updateCanvasMessagesAsRead(userID: string): Promise<string> {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
