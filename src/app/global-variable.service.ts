@@ -28,7 +28,6 @@ import { DataCachingTable }           from './models';
 import { DatasourceFilter }           from './models';
 import { DatasourceSchedule }         from './models';
 import { DatasourceScheduleLog }      from './models';
-import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 import { DatasourcePermission}        from './models';
 import { GraphCalculation }           from './models';
@@ -170,7 +169,6 @@ export class GlobalVariableService {
     dashboardTags: DashboardTag[] = [];
     datasources: Datasource[] = [];
     dataCachingTable: DataCachingTable[] = [];
-    datasets: any = [];                                 // List of dSets, NO data
     datasourcePermissions: DatasourcePermission[] = [];
     finalFields: any = finalFields;
     hasNewMessage = new BehaviorSubject<boolean>(false);
@@ -2829,7 +2827,7 @@ export class GlobalVariableService {
         });
     }
 
-    filterSlicer(dataSet: Dataset): Dataset {
+    filterSlicer(dataSet: any): any {
         // Filter a given Dataset on .dataRaw by applying all applicable Sl, and put result
         // into .data
         // Note: Objects and arrays are passed by reference. Primitive values like number,
@@ -2840,102 +2838,104 @@ export class GlobalVariableService {
                 {dataSet});
         };
 
-        // Get all Sl for the given dSet
-        // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has
-        // two dSets with different values ...
-        let relatedSlicers: Widget[] = this.currentWidgets.filter(w =>
-            w.datasourceID == dataSet.datasourceID
-            &&  w.widgetType == 'Slicer'
-        );
-
-        // Reset the filtered data
-        dataSet.data = dataSet.dataRaw;
-        console.log('xx filterSlicer data, dataRaw.length', dataSet.data.length, dataSet.dataRaw.length)
-
-        // Loop on related Sl and filter data
-        relatedSlicers.forEach(w => {
-            console.log('Releated Slicers are (id, type): ', w.id, w.slicerType)
-
-            // Type = List
-            if (w.slicerType == 'List') {
-
-                // Build array of selection values
-                let selectedValues: string[] = [];
-                let allSelectedValues: string[] = [];
-
-                w.slicerSelection.forEach(f => {
-                    if (f.isSelected) {
-                        selectedValues.push(f.fieldValue);
-                    };
-                    allSelectedValues.push(f.fieldValue);
-                });
-
-                // Apply selected once, empty means all
-                let tempData: any = [];
-                    dataSet.data.forEach(d => {
-                        if (selectedValues.indexOf(d[w.slicerFieldName]) >= 0) {
-                            tempData.push(d);
-                        };
-                        if ( (w.slicerAddRest  &&  w.slicerAddRestValue)
-                            &&
-                            allSelectedValues.indexOf(d[w.slicerFieldName]) < 0) {
-                                tempData.push(d);
-                        };
-                    });
-
-                    // Replace the filtered data, used by the graph
-                dataSet.data = tempData;
-                console.log('xx filterSlicer End of list data.length', dataSet.data.length)
-
-            };
-
-            // Type = Bins
-            if (w.slicerType == 'Bins') {
-
-                // Build array of selection values
-                let rangeValues: {fromValue: number; toValue:number}[] = [];
-
-                w.slicerBins.forEach(bn => {
-                    if (bn.isSelected) {
-                        rangeValues.push(
-                            {fromValue: bn.fromValue, toValue: bn.toValue}
-                        )
-                    };
-                });
-
-                // Loop on Bins, and add filtered ones
-                let filterBinData: any = [];
-
-                rangeValues.forEach(rv => {
-                    dataSet.data.forEach(d => {
-                        if (+d[w.slicerFieldName] >= rv.fromValue
-                            &&
-                            +d[w.slicerFieldName] <= rv.toValue) {
-                                filterBinData.push(d);
-                        };
-                    });
-                });
-
-                // Replace the filtered data, used by the graph
-                dataSet.data = filterBinData;
-
-            };
-        });
-
-        // Filter data in [W] related to this dSet
-        // TODO - cater later for cases for we use graphUrl
-        this.currentWidgets.forEach(w => {
-            if (w.datasourceID == dataSet.datasourceID
-                && w.widgetType != 'Slicer') {
-                    console.log('xx filterSlicer Related W: ', w.id)
-                    w.graphUrl = "";
-                    w.dataFiltered = dataSet.data;
-
-            };
-        });
-
-        console.warn('xx filterSlicer @ End: currentW, dataSet', this.currentWidgets, dataSet)
         return dataSet;
+
+        // // Get all Sl for the given dSet
+        // // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has
+        // // two dSets with different values ...
+        // let relatedSlicers: Widget[] = this.currentWidgets.filter(w =>
+        //     w.datasourceID == dataSet.datasourceID
+        //     &&  w.widgetType == 'Slicer'
+        // );
+
+        // // Reset the filtered data
+        // dataSet.data = dataSet.dataRaw;
+        // console.log('xx filterSlicer data, dataRaw.length', dataSet.data.length, dataSet.dataRaw.length)
+
+        // // Loop on related Sl and filter data
+        // relatedSlicers.forEach(w => {
+        //     console.log('Releated Slicers are (id, type): ', w.id, w.slicerType)
+
+        //     // Type = List
+        //     if (w.slicerType == 'List') {
+
+        //         // Build array of selection values
+        //         let selectedValues: string[] = [];
+        //         let allSelectedValues: string[] = [];
+
+        //         w.slicerSelection.forEach(f => {
+        //             if (f.isSelected) {
+        //                 selectedValues.push(f.fieldValue);
+        //             };
+        //             allSelectedValues.push(f.fieldValue);
+        //         });
+
+        //         // Apply selected once, empty means all
+        //         let tempData: any = [];
+        //             dataSet.data.forEach(d => {
+        //                 if (selectedValues.indexOf(d[w.slicerFieldName]) >= 0) {
+        //                     tempData.push(d);
+        //                 };
+        //                 if ( (w.slicerAddRest  &&  w.slicerAddRestValue)
+        //                     &&
+        //                     allSelectedValues.indexOf(d[w.slicerFieldName]) < 0) {
+        //                         tempData.push(d);
+        //                 };
+        //             });
+
+        //             // Replace the filtered data, used by the graph
+        //         dataSet.data = tempData;
+        //         console.log('xx filterSlicer End of list data.length', dataSet.data.length)
+
+        //     };
+
+        //     // Type = Bins
+        //     if (w.slicerType == 'Bins') {
+
+        //         // Build array of selection values
+        //         let rangeValues: {fromValue: number; toValue:number}[] = [];
+
+        //         w.slicerBins.forEach(bn => {
+        //             if (bn.isSelected) {
+        //                 rangeValues.push(
+        //                     {fromValue: bn.fromValue, toValue: bn.toValue}
+        //                 )
+        //             };
+        //         });
+
+        //         // Loop on Bins, and add filtered ones
+        //         let filterBinData: any = [];
+
+        //         rangeValues.forEach(rv => {
+        //             dataSet.data.forEach(d => {
+        //                 if (+d[w.slicerFieldName] >= rv.fromValue
+        //                     &&
+        //                     +d[w.slicerFieldName] <= rv.toValue) {
+        //                         filterBinData.push(d);
+        //                 };
+        //             });
+        //         });
+
+        //         // Replace the filtered data, used by the graph
+        //         dataSet.data = filterBinData;
+
+        //     };
+        // });
+
+        // // Filter data in [W] related to this dSet
+        // // TODO - cater later for cases for we use graphUrl
+        // this.currentWidgets.forEach(w => {
+        //     if (w.datasourceID == dataSet.datasourceID
+        //         && w.widgetType != 'Slicer') {
+        //             console.log('xx filterSlicer Related W: ', w.id)
+        //             w.graphUrl = "";
+        //             w.dataFiltered = dataSet.data;
+
+        //     };
+        // });
+
+        // console.warn('xx filterSlicer @ End: currentW, dataSet', this.currentWidgets, dataSet)
+        // return dataSet;
     }
 
     newDashboardSnapshot(
@@ -3426,31 +3426,6 @@ export class GlobalVariableService {
                             this.concoleLogStyleForEndOfMethod,
                             {id})
                     };
-
-                        // Refilter Graph data if a Slicer was deleted
-                        // if (deleteWidget.widgetType == 'Slicer') {
-
-                        //     // Filter the data in the dSets to which the Sl points.
-                        //     // In addition, apply all Sl that relates to each one
-                        //     let newDataset: Dataset;
-                        //     this.globalVariableService.currentDatasets.forEach(cd => {
-                        //         if (cd.id == datasetID) {
-
-                        //             // Filter the Data down based on all Slicers related to it
-                        //             newDataset = this.globalVariableService.filterSlicer(cd);
-
-                        //             // Refresh Ws that are based on this Dataset
-                        //             this.globalVariableService.currentWidgets.forEach(w => {
-                        //                 if (w.datasourceID == deleteWidget.datasourceID
-                        //                     &&  w.datasetID == deleteWidget.datasetID
-                        //                     && w.widgetType != 'Slicer') {
-                        //                         this.globalVariableService.changedWidget.next(w);
-                        //                 };
-                        //             });
-                        //         };
-                        //     });
-
-                        // }
 
                     resolve('Deleted');
                 })
