@@ -10213,8 +10213,6 @@ export class AppComponent implements OnInit {
         // - Optional widgetType, widgetID to Delete
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
 
-        let datasetID: number = -1;
-
         // Delete the local one
         // let delIDs: number[] = [];
         let deleteWidget: Widget;
