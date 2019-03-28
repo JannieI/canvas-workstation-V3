@@ -2660,42 +2660,6 @@ export class GlobalVariableService {
 
     }
 
-    addData(data: any): Promise<any> {
-        // Description: Adds DATA used in a Datasource
-        // Returns: Added Data or error message
-        if (this.sessionDebugging) {
-            console.log('%c  Global-Variables addData  starts',
-                this.concoleLogStyleForStartOfMethod, {data});
-        };
-
-        // TODO - kill all 'data' paths, kill the collection in Mongo and
-        //        do according to the new way
-        let pathUrl: string = 'data';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.post<{id: number, data: any}>(finalUrl, data, {headers})
-            .subscribe(
-                res => {
-
-                    if (this.sessionDebugging) {
-                        console.log('addData ADDED', res.data)
-                    };
-
-                    resolve(res.data);
-                },
-                err => {
-                    console.error('Error in     Global-Variables addData', err);
-                    reject(err.message);
-                }
-            )
-        });
-    }
-
     saveData(data: any): Promise<string> {
         // Description: Saves Data
         // Returns: 'Saved' or error message
@@ -3399,30 +3363,30 @@ export class GlobalVariableService {
                             {id})
                     };
 
-                    // Refilter Graph data if a Slicer was deleted
-                    if (deleteWidget.widgetType == 'Slicer') {
+                        // Refilter Graph data if a Slicer was deleted
+                        // if (deleteWidget.widgetType == 'Slicer') {
 
-                        // Filter the data in the dSets to which the Sl points.
-                        // In addition, apply all Sl that relates to each one
-                        let newDataset: Dataset;
-                        this.globalVariableService.currentDatasets.forEach(cd => {
-                            if (cd.id == datasetID) {
+                        //     // Filter the data in the dSets to which the Sl points.
+                        //     // In addition, apply all Sl that relates to each one
+                        //     let newDataset: Dataset;
+                        //     this.globalVariableService.currentDatasets.forEach(cd => {
+                        //         if (cd.id == datasetID) {
 
-                                // Filter the Data down based on all Slicers related to it
-                                newDataset = this.globalVariableService.filterSlicer(cd);
+                        //             // Filter the Data down based on all Slicers related to it
+                        //             newDataset = this.globalVariableService.filterSlicer(cd);
 
-                                // Refresh Ws that are based on this Dataset
-                                this.globalVariableService.currentWidgets.forEach(w => {
-                                    if (w.datasourceID == deleteWidget.datasourceID
-                                        &&  w.datasetID == deleteWidget.datasetID
-                                        && w.widgetType != 'Slicer') {
-                                            this.globalVariableService.changedWidget.next(w);
-                                    };
-                                });
-                            };
-                        });
+                        //             // Refresh Ws that are based on this Dataset
+                        //             this.globalVariableService.currentWidgets.forEach(w => {
+                        //                 if (w.datasourceID == deleteWidget.datasourceID
+                        //                     &&  w.datasetID == deleteWidget.datasetID
+                        //                     && w.widgetType != 'Slicer') {
+                        //                         this.globalVariableService.changedWidget.next(w);
+                        //                 };
+                        //             });
+                        //         };
+                        //     });
 
-                    }
+                        // }
 
                     resolve('Deleted');
                 })

@@ -1415,10 +1415,6 @@ export class Widget {
 
     // Data related
     datasourceID: number;                   // Specific ID that this W points to.  For a W,
-
-    // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
-    // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
-    // For a W, -1 = latest dataset of the DS-id.  For now, Sl must have a datsetID <> -1
     dataFields: string[];                   // Optional - can copy [fieldNames] into table
     dataFieldTypes: string[];               // Optional - can copy [fieldTypes] into table
     dataFieldLengths: number[];             // Optional - can copy [fieldLengths] into table
