@@ -17,7 +17,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 
 interface webTables {
@@ -233,53 +232,15 @@ export class DataDirectWebComponent implements OnInit {
             this.selectedDatasource.dateEdited = today;
             this.selectedDatasource.dataFields = this.dataFieldsSelected;
 
-            // Save DS to DB, but create a new dSet and new data records.
-            let ds: number[] = [];
-            let dSetID: number = 1;
-            for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
-                if(this.globalVariableService.datasets[i].datasourceID == 
-                    this.selectedDatasource.id) {
-                    ds.push(this.globalVariableService.datasets[i].id)
-                };
-            };
-            if (ds.length > 0) {
-                dSetID = Math.max(...ds);
-            };
-            let datasetIndex: number = this.globalVariableService.datasets.findIndex(dSet => {
-                if (dSet.id == dSetID) {
-                    return dSet;
-                };
-            });
-            let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
-            
-            let dataID: number = -1;
-            let dataIndex: number = updatedDataset.url.indexOf('/');
-            if (dataIndex >= 0) {
-                dataID = +updatedDataset.url.substring(dataIndex + 1);
-            } else {
-                alert('Error in save Web - url has no / character');
-                return;
-            };
+            // Save DS to DB, but create a new data records.
             let updatedData: any = {
-                id: dataID,
+                id: null,
                 data: this.currentData
             };
 
-            // Add Data, then dataset, then DS
-            this.globalVariableService.saveData(updatedData)
+            // Add DS and Data
+            this.globalVariableService.saveDatasource(this.selectedDatasource, updatedData)
                 .then(resData => {
-
-                    updatedDataset.url = 'data/' + dataID;
-                    this.globalVariableService.saveResource('datasources', this.selectedDatasource)
-                        .then(
-                            resDS => {
-                                updatedDataset.datasourceID = this.selectedDatasource.id;
-                                this.globalVariableService.saveResource('datasets', updatedDataset);
-                        })
-                        .catch(err => {
-                            this.errorMessage = err.slice(0, 100);
-                            console.error('Error in Datasource.web saving datasources: ' + err);
-                        });
                     
                     // Indicate to the user
                     this.canSave = false;
@@ -287,7 +248,7 @@ export class DataDirectWebComponent implements OnInit {
                 })
                 .catch(err => {
                     this.errorMessage = err.slice(0, 100);
-                    console.error('Error in Datasource.web saveData: ' + err);
+                    console.error('Error in Datasource.web saveDatasource: ' + err);
                 });
     
         } else {
@@ -366,20 +327,6 @@ export class DataDirectWebComponent implements OnInit {
                 dataFull: [],
                 dataFiltered: []
 
-            };
-
-            let newdDataset: Dataset = {
-                id: null,
-                datasourceID: null,
-                sourceLocation: 'HTTP',
-                url: 'data',
-                folderName: '',
-                fileName: '',
-                cacheServerStorageID: null,
-                cacheLocalStorageID: null,
-                isLocalDirty: null,
-                data: this.currentData,
-                dataRaw: this.currentData
             };
             let newData: any = {
                 id: null,
