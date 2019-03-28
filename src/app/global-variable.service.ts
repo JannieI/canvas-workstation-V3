@@ -488,8 +488,8 @@ export class GlobalVariableService {
     saveDatasource(datasourceInput: Datasource, clientDataInput: any): Promise<string> {
         // Saves a Datasource, given the following:
         // - datasource
-        // - data
-        // The Server adds the records, with the correct IDs
+        // - data (only the data is used, not the IDs)
+        // Note: The Server adds the records, with the correct IDs ~ that of DS
         if (this.sessionDebugging) {
             console.log('%c  Global-Variables saveDatasource starts',
                 this.concoleLogStyleForStartOfMethod,
