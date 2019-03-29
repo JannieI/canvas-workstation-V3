@@ -998,6 +998,13 @@
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
                                 <button type="button"
                                     clrDropdownItem
+                                    (click)="clickMenuWidgetCrossFilter()"
+                                    title="Define a cross filter for selected Widget"
+                                    >
+                                    Cross Filter
+                                </button>
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuWidgetExpand()"
                                     title="Expand Dataset for selected Widget"
                                     >

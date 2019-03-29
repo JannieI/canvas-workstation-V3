@@ -465,7 +465,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         // Initial
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
         // Process for Authentication, Login, tokens between Canvas-Server and Canvas-Client:
 
@@ -1045,13 +1045,13 @@ export class AppComponent implements OnInit {
 
     ngAfterViewInit() {
         // ngAfterViewInit Life Cycle Hook
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'ngAfterViewInit', '@Start');
     }
 
     ngAfterViewChecked() {
         //
         // TODO - switch on later, this fires ALL the time ...
-        // this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
+        // this.globalFunctionService.printToConsole(this.constructor.name, 'ngAfterViewChecked', '@Start');
 
         // if (this.widgetDOM != undefined  &&  (!this.refreshGraphs) ) {
         //     this.refreshGraphs = true;
@@ -1065,7 +1065,7 @@ export class AppComponent implements OnInit {
         // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnDestroy', '@Start');
 
         this.showGridSubscription.unsubscribe();
         this.showPaletteSubscription.unsubscribe();
@@ -1083,7 +1083,7 @@ export class AppComponent implements OnInit {
     // ***********************  HANDLE RETURN AFTER MODAL FORM CLOSES ************************ //
     dashboardPageFirst() {
         // Move to First Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardPageFirst', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'dashboardPageFirst', '@Start');
 
         this.globalVariableService.refreshCurrentDashboard(
             'app-keyEvent',
@@ -1095,7 +1095,7 @@ export class AppComponent implements OnInit {
 
     dashboardPageDown() {
         // Move to next Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardPageDown', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'dashboardPageDown', '@Start');
 
         this.globalVariableService.refreshCurrentDashboard(
             'app-keyEvent',
@@ -1107,7 +1107,7 @@ export class AppComponent implements OnInit {
 
     dashboardPageUp() {
         // Move to previous Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardPageUp', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'dashboardPageUp', '@Start');
 
         this.globalVariableService.refreshCurrentDashboard(
             'app-keyEvent',
@@ -1119,7 +1119,7 @@ export class AppComponent implements OnInit {
 
     dashboardPageLast() {
         // Move to previous Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardPageLast', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'dashboardPageLast', '@Start');
 
         this.globalVariableService.refreshCurrentDashboard(
             'app-keyEvent',
@@ -1139,7 +1139,7 @@ export class AppComponent implements OnInit {
 
     handleCloseModalLanding(action: string) {
         // Close Modal form Landing page
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseModalLanding', '@Start');
 
         this.showModalLanding = false;
         // this.document.body.style.backgroundImage ='../images/BarChart.png';
@@ -1160,7 +1160,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetContainerStylesAdd() {
         // Handle close of ContainerStyles Add form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainerStylesAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetContainerStylesAdd', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1169,7 +1169,7 @@ export class AppComponent implements OnInit {
 
     handleCloseManageColours() {
         // Handle close of Manage Colours form
-        this.globalFunctionService.printToConsole(this.constructor.name,'ManageColours', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'ManageColours', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1178,7 +1178,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetContainerStylesEdit() {
         // Handle close of ContainerStyles Edit form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainerStylesEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetContainerStylesEdit', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1187,7 +1187,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardNew(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardNew', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardNew', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1213,7 +1213,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardOpen(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardOpen', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardOpen', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1231,7 +1231,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardSave(action: string) {
         // Handle close form for Save a D - from Draft -> Complete
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSave', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardSave', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1240,7 +1240,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardSaveAs(action: string) {
         // Handle close form for Save AS a Complete D under a new name
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSaveAs', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardSaveAs', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1249,7 +1249,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardExport(action: string) {
         // Handle close form for Export of D to a text file
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardExport', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardExport', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1258,7 +1258,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardSnapshots(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSnapshots', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardSnapshots', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1267,7 +1267,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardShare(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardShare', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardShare', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1276,7 +1276,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardDiscard(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDiscard', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardDiscard', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1285,7 +1285,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardRename(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardRename', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardRename', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1294,7 +1294,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardDescription(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDescription', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardDescription', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1320,7 +1320,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardTags(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTags', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardTags', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1329,7 +1329,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardTheme(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTheme', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardTheme', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1338,7 +1338,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardTemplate(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTemplate', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardTemplate', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1347,7 +1347,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardSchedule(action: string) {
         // Handle closing of D schedules
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSchedule', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardSchedule', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1356,7 +1356,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardScheduleLog(action: string) {
         // Handle closing of D schedule logs form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardScheduleLog', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardScheduleLog', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1365,7 +1365,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardScheduleEdit(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardScheduleEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardScheduleEdit', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1374,7 +1374,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardDelete(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardDelete', '@Start');
 
         if (action == 'Deleted') {
             this.clearDashboard();
@@ -1393,7 +1393,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardDeleteBulk(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDeleteBulk', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardDeleteBulk', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1402,7 +1402,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardTreeview(action: string){
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTreeview', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardTreeview', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1411,7 +1411,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardSubscribe(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSubscribe', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardSubscribe', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1420,7 +1420,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardUsageStats(action: string) {
         // Handle event when closing usage stats form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardUsageStats', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardUsageStats', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1429,7 +1429,7 @@ export class AppComponent implements OnInit {
 
     handleCloseShapeEdit(changedWidget: Widget) {
         // Handle event when closing Shape Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseShapeEdit', '@Start');
 
         // Add to Action log
         if (changedWidget != null) {
@@ -1458,7 +1458,7 @@ export class AppComponent implements OnInit {
 
     handleCloseShapeDelete(action: string) {
         // Handle form close of Delete one Shape
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseShapeDelete', '@Start');
 
         // Delete if so requested
         if (action == 'Delete') {
@@ -1473,7 +1473,7 @@ export class AppComponent implements OnInit {
 
     handleCloseShapeDeleteAll(action: string) {
         // Handle close form Delete ALL Shapes
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeDeleteAll', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseShapeDeleteAll', '@Start');
 
         // Delete if so requested
         if (action == 'Delete') {
@@ -1497,7 +1497,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetAnnotations(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardAnnotations', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardAnnotations', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1506,7 +1506,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardComments(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardComments', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardComments', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1515,7 +1515,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardDataQuality(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDataQuality', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardDataQuality', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1524,7 +1524,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardPrint(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardPrint', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardPrint', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1533,7 +1533,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataSlicers(changedWidget: Widget) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSlicers', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataSlicers', '@Start');
 
         // Add to Action log
         if (changedWidget != null) {
@@ -1562,7 +1562,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetTitle(changedWidget: Widget) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalWidgetTitle', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseModalWidgetTitle', '@Start');
 
         if (changedWidget != null) {
             this.globalVariableService.changedWidget.next(changedWidget);
@@ -1575,7 +1575,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetEditor(changedWidget: Widget) {    //widgetsToRefresh: number) {
         // Handle closing routine for Widget Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetEditor', '@Start');
 
         // Cancel => changedWidget = null
         if (changedWidget != null) {
@@ -1607,7 +1607,7 @@ export class AppComponent implements OnInit {
     // ** TABIDS
     // handleCloseWidgetTablist(tabIDs: number[]) {
     //     // Handle close of Tablist form
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetTablist', '@Start');
+    //     this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetTablist', '@Start');
 
     //     // Close without change returns null
     //     if (tabIDs != null) {
@@ -1632,14 +1632,14 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetDescription(tabIDs: number[]) {
         // Handle close of Description form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDescription', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetDescription', '@Start');
 
         this.showModalWidgetDescription = false;
     }
 
     handleCloseDataCreateDSSQLEditor(returnDS: Datasource) {
         // Handle close of SQL Editor form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataCreateDSSQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataCreateDSSQLEditor', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1654,7 +1654,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDirectFileCSV(returnDS: Datasource) {
         // Handle close of Direct File CSV file load
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileCSV', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDirectFileCSV', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1669,7 +1669,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDirectFileJSON(returnDS: Datasource) {
         // Handle close of Direct File JSON file load
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileJSON', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDirectFileJSON', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1684,7 +1684,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDirectFileSpreadsheet(returnDS: Datasource) {
         // Handle close of Direct File Spreadsheet load
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileSpreadsheet', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDirectFileSpreadsheet', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1698,7 +1698,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDirectGoogleSheets(returnDS: Datasource) {
         // Handle close of Direct File Spreadsheet load
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectGoogleSheets', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDirectGoogleSheets', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1712,7 +1712,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDirectQueryBuilder(returnDS: Datasource) {
         // Handle Close of Direct SQL Query Builder
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectQueryBuilder', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDirectQueryBuilder', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1728,7 +1728,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDirectSQLEditor(returnDS: Datasource) {
         // Handle close of Direct SQL Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectSQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDirectSQLEditor', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1743,7 +1743,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDirectNoSQL(returnDS: Datasource) {
         // Handle close of Direct NoSQL Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectNoSQL', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDirectNoSQL', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1758,7 +1758,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDirectService(returnDS: Datasource) {
         // Handle close of Direct Service form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectService', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDirectService', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1773,7 +1773,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDirectWeb(returnDS: Datasource) {
         // Handle close of Direct Web form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectWeb', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDirectWeb', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1788,7 +1788,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDirectImport(action: string) {
         // Handle close of Direct Import of DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectImport', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDirectImport', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1798,7 +1798,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDirectExport(action: string) {
         // Handle close of Direct NoSQL Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectExport', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDirectExport', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1808,7 +1808,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataCombinationAppend(action: string) {
         // Handle close of CombinationAppend form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataCombinationAppend', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataCombinationAppend', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1817,7 +1817,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDatasourceOverview(action: string) {
         // Handle close of Datasource Overview
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceOverview', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDatasourceOverview', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1826,7 +1826,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDatasourceUsage(action: string) {
         // Handle close of Datasource Usage
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceUsage', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDatasourceUsage', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1835,7 +1835,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDatasourceSchedule(action: string) {
         // Handle close of Datasource Schedules
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceSchedule', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDatasourceSchedule', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1844,7 +1844,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDatasourceScheduleLog(action: string) {
         // Handle close of Datasource ScheduleLogs
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceScheduleLog', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDatasourceScheduleLog', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1853,7 +1853,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDatasourceScheduleEdit(action: string) {
         // Handle close of Datasource Schedule Edit
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceScheduleEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDatasourceScheduleEdit', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1862,7 +1862,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDatasourceRefreshOnce(action: string) {
         // Handle close of Datasource RefreshOnce
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceRefreshOnce', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDatasourceRefreshOnce', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1871,7 +1871,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDatasourceRefreshRepeat(action: string) {
         // Handle close of Datasource RefreshRepeat
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceRefreshRepeat', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDatasourceRefreshRepeat', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1880,7 +1880,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataManagedConnection(action: string) {
         // Handle Close of SQL Query Builder
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedConnection', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataManagedConnection', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1889,7 +1889,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataManagedQueryBuilder(returnDS: Datasource) {
         // Handle Close of SQL Query Builder
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedQueryBuilder', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataManagedQueryBuilder', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1905,7 +1905,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataManagedSQLEditor(returnDS: Datasource) {
         // Handle Close of SQL Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedSQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataManagedSQLEditor', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1920,7 +1920,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataManagedGraphQLEditor(returnDS: Datasource) {
         // Handle Close of GraphQL Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedGraphQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataManagedGraphQLEditor', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1935,7 +1935,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataManagedNoSQLEditor(returnDS: Datasource) {
         // Handle Close of NoSQL Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedNoSQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataManagedNoSQLEditor', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1950,7 +1950,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataManagedNeo4jEditor(returnDS: Datasource) {
         // Handle Close of Neo4j Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedNeo4jEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataManagedNeo4jEditor', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1965,7 +1965,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataTransformation(action: string) {
         // Handle Close of Overlay Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataTransformation', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataTransformation', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -1974,7 +1974,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataEditDatasource(returnedDatasource: Datasource) {
         // Handle Close of Edit Datasource
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataEditDatasource', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataEditDatasource', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2034,7 +2034,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDatasourceDescription () {
         // Handle Close of Edit Datasource
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceDescription', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDatasourceDescription', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2045,7 +2045,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataManagedDataQuality(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedDataQuality', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataManagedDataQuality', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2054,7 +2054,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataManagedDataOwnership(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedDataOwnership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataManagedDataOwnership', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2063,7 +2063,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataManagedDataDictionary(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManageDataDictionary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataManageDataDictionary', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2072,7 +2072,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataManagedBusGlossary(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedBusGlossary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataManagedBusGlossary', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2081,7 +2081,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataCombination(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataCombination', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataCombination', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2090,7 +2090,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataShare(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataShare', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataShare', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2099,7 +2099,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDictionary(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDictionary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDictionary', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2108,7 +2108,7 @@ export class AppComponent implements OnInit {
 
     handleCloseBusinessGlossary(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseBusinessGlossary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseBusinessGlossary', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2117,7 +2117,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataSummary(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSummary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataSummary', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2126,7 +2126,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataDeleteDatasource(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDeleteDatasource', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDeleteDatasource', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2135,7 +2135,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetStoredTemplateSave(action: string) {
         // Hanlde close of Widget Template Save form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetStoredTemplateSave', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetStoredTemplateSave', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2145,7 +2145,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetStoredTemplateInsertWidget(changedWidget: Widget) {
         // Hanlde close of Widget Template Insert Widget form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetStoredTemplateInsertWidget', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetStoredTemplateInsertWidget', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2160,7 +2160,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetContainer(changedWidget: Widget) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainer', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetContainer', '@Start');
 
         this.globalVariableService.changedWidget.next(changedWidget);
 
@@ -2171,7 +2171,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetCheckpoints(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetCheckpoints', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetCheckpoints', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2180,7 +2180,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetLinks(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetLinks', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetLinks', '@Start');
 
 
         this.menuOptionClickPostAction();
@@ -2190,7 +2190,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetRefresh(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetRefresh', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetRefresh', '@Start');
 
 
         this.menuOptionClickPostAction();
@@ -2200,7 +2200,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetExpand(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetExpand', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetExpand', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2209,7 +2209,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetExport(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetExport', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetExport', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2218,7 +2218,7 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetDelete(action: string) {
         // Handles the response to the Delete Widget form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetDelete', '@Start');
 
         // Delete, if so requested
         if (action == 'delete') {
@@ -2250,7 +2250,7 @@ export class AppComponent implements OnInit {
 
     handleCloseTableEditor(changedWidget: Widget) {    //widgetsToRefresh: number) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseTableEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseTableEditor', '@Start');
 
         // Add to Action log
         if (changedWidget != null) {
@@ -2279,7 +2279,7 @@ export class AppComponent implements OnInit {
 
     handleCloseTableDelete(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseTableDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseTableDelete', '@Start');
 
         // Delete if so requested
         if (action == 'Delete') {
@@ -2310,7 +2310,7 @@ export class AppComponent implements OnInit {
 
     handleCloseSlicerDelete(action: string) {
         // Once deletion confirmation form has closed, delete it if so requested
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseSlicerDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseSlicerDelete', '@Start');
 
         // Delete if so requested
         if (action == 'Delete') {
@@ -2341,7 +2341,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardHelp(action: string) {
         // Close help form for first time D users
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardHelp', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardHelp', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2350,7 +2350,7 @@ export class AppComponent implements OnInit {
 
     handleCloseCollaborateAuditTrail(action: string) {
         // Close AuditTrail form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateAuditTrail', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseCollaborateAuditTrail', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2359,7 +2359,7 @@ export class AppComponent implements OnInit {
 
     handleCloseCollaborateMessages(action: string) {
         // Close Messages form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateMessages', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseCollaborateMessages', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2368,7 +2368,7 @@ export class AppComponent implements OnInit {
 
     handleCloseCollaborateTaskAdd(action: string) {
         // Close Add Task form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateTaskAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseCollaborateTaskAdd', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2377,7 +2377,7 @@ export class AppComponent implements OnInit {
 
     handleCloseCollaborateSystemMessages(action: string) {
         // Close Add Task form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateSystemMessages', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseCollaborateSystemMessages', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2386,7 +2386,7 @@ export class AppComponent implements OnInit {
 
     handleCloseCollaborateActivities(action: string) {
         // Close Activities form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivities', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseCollaborateActivities', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2395,7 +2395,7 @@ export class AppComponent implements OnInit {
 
     handleCloseCollaborateTasks(action: string) {
         // Close Activities form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateTasks', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseCollaborateTasks', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2404,7 +2404,7 @@ export class AppComponent implements OnInit {
 
     handleCloseSendMessageAdd(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseSendMessageAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseSendMessageAdd', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2413,7 +2413,7 @@ export class AppComponent implements OnInit {
 
     handleCloseSendEmailAdd(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseSendEmailAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseSendEmailAdd', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2422,7 +2422,7 @@ export class AppComponent implements OnInit {
 
     handleCloseUserLogin(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserLogin', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseUserLogin', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2437,7 +2437,7 @@ export class AppComponent implements OnInit {
 
     handleCloseUserLogout(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserLogout', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseUserLogout', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2450,7 +2450,7 @@ export class AppComponent implements OnInit {
 
     handleCloseUserPreferences(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserPreferences', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseUserPreferences', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2459,7 +2459,7 @@ export class AppComponent implements OnInit {
 
     handleCloseUserMyPermissions(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserMyPermissions', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseUserMyPermissions', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2468,7 +2468,7 @@ export class AppComponent implements OnInit {
 
     handleCloseUserdMyProfile(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserdMyProfile', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseUserdMyProfile', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2477,7 +2477,7 @@ export class AppComponent implements OnInit {
 
     handleCloseUserPaletteButtonBar(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserPaletteButtonBar', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseUserPaletteButtonBar', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2486,7 +2486,7 @@ export class AppComponent implements OnInit {
 
     handleCloseUsers(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUsers', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseUsers', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2495,7 +2495,7 @@ export class AppComponent implements OnInit {
 
     handleCloseGroups(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseGroup', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseGroup', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2504,7 +2504,7 @@ export class AppComponent implements OnInit {
 
     handleCloseUserSystemSettings(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserSystemSettings', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseUserSystemSettings', '@Start');
 
         this.menuOptionClickPostAction();
 
@@ -2520,7 +2520,7 @@ export class AppComponent implements OnInit {
 
     clickMenuEditMode() {
         // Toggle Edit Mode
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditMode', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuEditMode', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -2631,7 +2631,7 @@ export class AppComponent implements OnInit {
                                         originalDashboardIndex].name + ' '
                                         + this.globalVariableService.formatDate(today);
                                     this.globalVariableService.newDashboardSnapshot(
-                                        snapshotName, 'Starting Edit Mode','StartEditMode'
+                                        snapshotName, 'Starting Edit Mode', 'StartEditMode'
                                     );
                                 };
                                 // Toggle mode
@@ -2666,7 +2666,7 @@ export class AppComponent implements OnInit {
         // - stores undoID = id of DO that was reversed
         // - if multiple, takes DO prior to (prev undoID)
         // - does not store oldW, newW as these are obtained from DO
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditUndo', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuEditUndo', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -2876,7 +2876,7 @@ export class AppComponent implements OnInit {
         // - can only reverse a previous Undo
         // - can only continue this up to a DO (cannot go further)
         // See Undo function for more detail.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditRedo', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuEditRedo', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -2966,7 +2966,7 @@ export class AppComponent implements OnInit {
     clickMenuEditSelectAllNone(size: string) {
         // Selects/Deselects n objects on the D based on size, All, None, Auto
         // Auto will select All if none is selected, None is any is selected
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAllNone', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuEditSelectAllNone', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -3011,7 +3011,7 @@ export class AppComponent implements OnInit {
 
     clickMenuEditContainerStylesAdd() {
         // Show popup to Add new Container Styles
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditContainerStylesAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuEditContainerStylesAdd', '@Start');
 
         // Reset popup menu
         this.showWidgetContextMenu = false;
@@ -3027,7 +3027,7 @@ export class AppComponent implements OnInit {
 
     clickMenuEditManageColours() {
         // Show popup to Manage Colours (back- and foreground) in Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditManageColours', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuEditManageColours', '@Start');
 
         // Reset popup menu
         this.showWidgetContextMenu = false;
@@ -3043,7 +3043,7 @@ export class AppComponent implements OnInit {
 
     clickMenuEditContainerStylesEdit() {
         // Show popup to edit / delete existing Container Styles
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditContainerStylesEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuEditContainerStylesEdit', '@Start');
 
         // Reset popup menu
         this.showWidgetContextMenu = false;
@@ -3065,7 +3065,7 @@ export class AppComponent implements OnInit {
 
     clickDashboardNew() {
         // Create a new D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardNew', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDashboardNew', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanCreateRole
@@ -3092,7 +3092,7 @@ export class AppComponent implements OnInit {
 
     clickRecentDashboard() {
         // Open or Import an existing D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardOpen', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDashboardOpen', '@Start');
 
         this.globalVariableService.getResource('dashboardsRecent')
             .then(res => {
@@ -3111,7 +3111,7 @@ export class AppComponent implements OnInit {
 
     clickDashboardOpen() {
         // Open or Import an existing D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardOpen', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDashboardOpen', '@Start');
 
         // Only for Draft
         if (this.globalVariableService.currentUser.userID == '') {
@@ -3135,7 +3135,7 @@ export class AppComponent implements OnInit {
 
     clickDashboardDiscard() {
         // Discard changes made since the previous Save
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDiscard', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDashboardDiscard', '@Start');
 
         // Only for Draft
         if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState !=
@@ -3185,7 +3185,7 @@ export class AppComponent implements OnInit {
 
     clickDashboardShare() {
         // Share a D - set the Access Type (ie Private) and Access List
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDashboardShare', '@Start');
 
         // TODO - is this correct ??
         // Can only be done for state = Complete
@@ -3232,7 +3232,7 @@ export class AppComponent implements OnInit {
 
     clickDashboardSave() {
         // Save changes, and make them available to others
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSave', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDashboardSave', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanSaveRole
@@ -3287,7 +3287,7 @@ export class AppComponent implements OnInit {
 
     clickDashboardSaveAs() {
         // Save D AS (make a copy)
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSaveAs', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDashboardSaveAs', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanSaveRole
@@ -3330,7 +3330,7 @@ export class AppComponent implements OnInit {
 
     clickDashboardExport() {
         // Export D as text file
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardExport', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDashboardExport', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanSaveRole
@@ -3355,7 +3355,7 @@ export class AppComponent implements OnInit {
 
     clickDashboardSnapshots() {
         // Make a Snapshot of a D and all related info, which can be restored at later stage
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSnapshots', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDashboardSnapshots', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -3377,7 +3377,7 @@ export class AppComponent implements OnInit {
 
     clickDashboardRename() {
         // Bulk rename D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardRename', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDashboardRename', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -3402,7 +3402,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardDetailDescription() {
         // Show the modal form to edit Descriptive detail for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDescription', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardDetailDescription', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -3448,7 +3448,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardDetailFavourite() {
         // Toggle Fav for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailFavourite', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardDetailFavourite', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3495,7 +3495,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardDetailTags() {
         // Manage Tags for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTags', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardDetailTags', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3514,7 +3514,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardDetailComments() {
         // Manage Comments for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailComments', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardDetailComments', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3526,7 +3526,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardDetailDataQuality() {
         // Show the form of Data Quality Issues
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDataQuality', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardDetailDataQuality', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3537,7 +3537,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardDetailTheme() {
         // Manage the Theme for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTheme', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardDetailTheme', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -3560,7 +3560,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardDetailTemplate() {
         // Manage Template for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTemplate', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardDetailTemplate', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -3583,7 +3583,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardSchedule() {
         // Manage Schedules for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardSchedule', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardSchedule', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3594,7 +3594,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardScheduleLog() {
         // Manage Schedule logs for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardScheduleLog', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardScheduleLog', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3605,7 +3605,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardScheduleEdit() {
         // Manage Schedules for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardScheduleEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardScheduleEdit', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3616,7 +3616,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardPrint() {
         // Print the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardPrint', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardPrint', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3627,7 +3627,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardDelete() {
         // Delete the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardDelete', '@Start');
 
         // Not for Draft
         if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState ==
@@ -3679,7 +3679,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardDeleteBulk() {
         // Delete the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDeleteBulk', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardDeleteBulk', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanDeleteRole
@@ -3716,7 +3716,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardTreeview() {
         // Show the current D as a Treeview
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardTreeview', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardTreeview', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3727,7 +3727,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardSubscribe() {
         // Manage Subscription to the current D, ie get notified when it changes
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardSubscribe', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardSubscribe', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3738,7 +3738,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardUsageStats() {
         // Manage Subscription to the current D, ie get notified when it changes
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardUsageStats', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDashboardUsageStats', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3756,7 +3756,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataManagedConnection() {
         // SQL Query Builder, constructed by selecting Table and Fields
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedConnection', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataManagedConnection', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -3781,7 +3781,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataManagedQueryBuilder() {
         // SQL Query Builder, constructed by selecting Table and Fields
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedQueryBuilder', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataManagedQueryBuilder', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -3807,7 +3807,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataManagedSQLEditor() {
         // SQL Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedSQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataManagedSQLEditor', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -3832,7 +3832,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataManagedGraphQLEditor() {
         // GraphQL Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedGraphQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataManagedGraphQLEditor', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -3857,7 +3857,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataManagedNoSQLEditor() {
         // No SQL Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedNoSQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataManagedNoSQLEditor', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -3882,7 +3882,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataManagedNeo4jEditor() {
         // Neo4j Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedNeo4jEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataManagedNeo4jEditor', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -3907,7 +3907,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataTransformation() {
         // Transformations
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataTransformation', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataTransformation', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3921,7 +3921,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataEditDatasource() {
         // Edit DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataEditDatasource', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataEditDatasource', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanEditRole
@@ -3947,7 +3947,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDatasourceDescription() {
         // DS Description
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDatasourceDescription', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDatasourceDescription', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanEditRole
@@ -3973,7 +3973,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDatasourceOverview() {
         // Show an overview of a DS, ie data quality, fields, etc
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceOverview', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDatasourceOverview', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -3984,7 +3984,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataCombinationAppend() {
         // Combine one or more existing DS by appending at end of first one
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinationAppend', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataCombinationAppend', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4009,7 +4009,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDatasourceUsage() {
         // Show an Usage of a DS, ie data quality, fields, etc
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceUsage', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDatasourceUsage', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -4020,7 +4020,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDatasourceScheduleEdit() {
         // Edit Schedule for DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceScheduleEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDatasourceScheduleEdit', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -4031,7 +4031,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDatasourceSchedule() {
         // Show DS Schedules
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceSchedule', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDatasourceSchedule', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -4042,7 +4042,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDatasourceScheduleLog() {
         // Show DS ScheduleLogs
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceScheduleLog', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDatasourceScheduleLog', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -4053,7 +4053,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDatasourceRefreshOnce() {
         // Refresh selected DS Once off
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceRefreshOnce', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDatasourceRefreshOnce', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -4064,7 +4064,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDatasourceRefreshRepeat() {
         // Refresh selected DS Repeat off
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceRefreshRepeat', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDatasourceRefreshRepeat', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -4077,7 +4077,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDirectFileCSV() {
         // Open form to create a DS with data that comes from a CSV file.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileCSV', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDirectFileCSV', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4104,7 +4104,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataCreateSQLEditor() {
         // Open form to create a DS using the SQL Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCreateSQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataCreateSQLEditor', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4131,7 +4131,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDirectFileJSON() {
         // Open form to create a DS with data that comes from a JSON file.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileJSON', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDirectFileJSON', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4158,7 +4158,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDirectFileSpreadsheet() {
         // Open form to create a DS with data that comes from a Spreadsheet.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileSpreadsheet', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDirectFileSpreadsheet', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4185,7 +4185,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDirectGoogleSheets() {
         // Open form to create a DS with data that comes from a Google Sheets Spreadsheet.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectGoogleSheets', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDirectGoogleSheets', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4212,7 +4212,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDirectQueryBuilder() {
         // Open DATA form for a DS that comes from a QueryBuilder.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectQueryBuilder', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDirectQueryBuilder', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4239,7 +4239,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDirectSQLEditor() {
         // Open DATA form for a DS that comes from a SQL using SQL statements.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectSQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDirectSQLEditor', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4266,7 +4266,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDirectNoSQL() {
         // Open DATA form for a DS that comes from a NoSQL.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectNoSQL', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDirectNoSQL', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4293,7 +4293,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDirectService() {
         // Open DATA form for a DS that comes from a Service.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectService', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDirectService', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4320,7 +4320,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDirectWeb() {
         // Open DATA form for a DS that comes from a Web page.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectWeb', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDirectWeb', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4347,7 +4347,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDirectImport() {
         // Import a DS from an external file (json format)
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectImport', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDirectImport', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4368,14 +4368,14 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDirectExport() {
         // Export a DS to an external file (json format)
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectExport', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDirectExport', '@Start');
 
         this.showModalDataDirectExport = true;
     }
 
     clickMenuDataManagedDataQuality(){
         // Manage Data Quality Issues for a DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataQuality', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataManagedDataQuality', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -4387,7 +4387,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataManagedDataDictionary(){
         // Manage Dictionary for a DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataDictionary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataManagedDataDictionary', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -4399,7 +4399,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataManagedDataOwnership(){
         // Manage Ownership for a DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataOwnership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataManagedDataOwnership', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -4411,7 +4411,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataBussGlossary(){
         // Manage Dictionary for a DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataBussGlossary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataBussGlossary', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -4423,7 +4423,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataCombinations(joinType: string){
         // Manage combinations of DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinations', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataCombinations', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanCreateRole
@@ -4450,7 +4450,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataShare() {
         // Manage sharing access to DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataShare', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataShare', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanGrantAccessRole
@@ -4475,7 +4475,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDictionary() {
         // Shows Data Dictionary
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDictionary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDictionary', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -4486,7 +4486,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataDeleteDatasource() {
         // Shows form to Delete Datasources
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDeleteDatasource', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataDeleteDatasource', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.datasourceCanDeleteRole
@@ -4516,7 +4516,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetNew(widgetLayout: WidgetLayout = null) {
         // Open W Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetNew', '@Start');
 
         // Reset
         this.showDashboardContextMenu = false;
@@ -4583,7 +4583,7 @@ export class AppComponent implements OnInit {
         //  widgetID - optional W-ID to open, does not depend on what was selected
         //  widgetIndex - optional [W] index to open, does not depend on what was selected
         //  canSave - if Saving is allowed in W Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetEdit', '@Start');
 
         // Permissions
         if (canSave) {
@@ -4708,7 +4708,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetContainer(widgetType: string, selectedWidgetID: number = null) {
         // Show popup to edit Widget Container properties
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainer', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetContainer', '@Start');
 
         // Reset popup menu
         this.showWidgetContextMenu = false;
@@ -4784,7 +4784,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetCheckpoints(selectedWidgetID: number = null) {
         // Manage Checkpoints for the selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCheckpoints', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetCheckpoints', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -4829,7 +4829,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetAnnotations(selectedWidgetID: number = null) {
         // Manage Annotations for the selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetAnnotations', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetAnnotations', '@Start');
 
         // Check exactly one W selected if no specific ID was given
         if (selectedWidgetID == null) {
@@ -4876,7 +4876,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetComments() {
         // Manage comments for the selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetComments', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetComments', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
             return
@@ -4903,7 +4903,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetDataQuality() {
         // Show the form of Data Quality Issues for selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDataQuality', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetDataQuality', '@Start');
 
         if (!this.checkForOnlyOneWidget('Graph')) {
             return
@@ -4924,7 +4924,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetDataDictionary(widgetIndex: number = null) {
         // Show the form of Data Dictionary for selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDataDictionary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetDataDictionary', '@Start');
 
         if (widgetIndex == null) {
 
@@ -4954,7 +4954,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetBusinessGlossary(widgetIndex: number = null) {
         // Show the form of Data Dictionary for selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetBusinessGlossary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetBusinessGlossary', '@Start');
 
         if (widgetIndex == null) {
 
@@ -4985,7 +4985,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetDataSummary(widgetIndex: number = null) {
         // Show the form of Data Summary for selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDataSummary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetDataSummary', '@Start');
 
         if (widgetIndex == null) {
 
@@ -5015,7 +5015,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetFullScreen(widgetIndex: number = null) {
         // Show the selected W in full screen
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetFullScreen', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetFullScreen', '@Start');
 
         if (widgetIndex == null) {
 
@@ -5122,7 +5122,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetHyperlinks() {
         // Add links to the selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetHyperlinks', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetHyperlinks', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -5171,7 +5171,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetStoredTemplateAdd() {
         // Add the selected W to list of Templates
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetStoredTemplateAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetStoredTemplateAdd', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -5207,7 +5207,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetStoredTemplateInsertWidget() {
         // Insert a W Template into current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetStoredTemplateInsertWidget', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetStoredTemplateInsertWidget', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -5246,7 +5246,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetRefresh() {
         // Refresh the DS for the selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetRefresh', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetRefresh', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -5268,7 +5268,7 @@ export class AppComponent implements OnInit {
 
     clickMenuGraphDuplicate() {
         // Duplicate selected Graph
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphDuplicate', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuGraphDuplicate', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -5303,7 +5303,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetLockUnlock() {
         // Toggle Lock / Unlock for selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLockUnlock', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetLockUnlock', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -5351,7 +5351,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetCopy() {
         // Copy selected Widget to our 'clipboard'
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCopy', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetCopy', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -5396,7 +5396,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetPaste() {
         // Paste Widget previously copied to our 'clipboard'
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetPaste', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetPaste', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -5475,9 +5475,33 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
     }
 
+    clickMenuWidgetCrossFilter() {
+        // Expands the underlying data for the selected W
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetCrossFilter', '@Start');
+
+        if (!this.checkForOnlyOneWidget()) {
+            return;
+        };
+        if (!this.checkForOnlyOneWidget('Graph')) {
+            return;
+        };
+
+        if (!this.menuOptionClickPreAction()) {
+            return;
+        };
+
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectedWidgetIndex = w.id;
+                this.selectDatasourceID = w.datasourceID;
+            };
+        });
+        this.showModalWidgetExpand = true;
+    }
+
     clickMenuWidgetExpand() {
         // Expands the underlying data for the selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExpand', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetExpand', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -5501,7 +5525,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetExport() {
         // Export the selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExport', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetExport', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -5521,7 +5545,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetDelete() {
         // Delete the selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetDelete', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -5602,7 +5626,7 @@ export class AppComponent implements OnInit {
 
     clickMenuTableAdd() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuTableAdd', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -5657,7 +5681,7 @@ export class AppComponent implements OnInit {
 
     clickMenuTableEdit(widgetID: number = null, widgetIndex: number = null, canSave: boolean = true) {
         // Edits the selected Table
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuTableEdit', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -5740,7 +5764,7 @@ export class AppComponent implements OnInit {
 
     clickMenuTableComments() {
         // Manage Comments for selected Table
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableComments', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuTableComments', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -5766,7 +5790,7 @@ export class AppComponent implements OnInit {
 
     clickMenuTableDataQuality() {
         // Show the form of Data Quality Issues for selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDataQuality', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuTableDataQuality', '@Start');
 
         if (!this.checkForOnlyOneWidget('Table')) {
             return;
@@ -5787,7 +5811,7 @@ export class AppComponent implements OnInit {
 
     clickMenuTableExpand() {
         // Expand DS u-sed in table
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExpand', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuTableExpand', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -5811,7 +5835,7 @@ export class AppComponent implements OnInit {
 
     clickMenuTableExport() {
         // Export the selected Table
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExport', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuTableExport', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -5829,7 +5853,7 @@ export class AppComponent implements OnInit {
 
     clickMenuTableDelete() {
         // Delete selected Table
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuTableDelete', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -5913,7 +5937,7 @@ export class AppComponent implements OnInit {
 
     clickMenuSlicerAdd() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuSlicerAdd', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -5979,7 +6003,7 @@ export class AppComponent implements OnInit {
 
     clickMenuSlicerEdit(widgetID: number = null, widgetIndex: number = null, canSave: boolean = true) {
         // Edits the selected Slicer
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuSlicerEdit', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -6062,7 +6086,7 @@ export class AppComponent implements OnInit {
     // ** TABIDS
     // clickMenuWidgetTablist() {
     //     // Open the list of tabs to which the selected W belongs
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetTablist', '@Start');
+    //     this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetTablist', '@Start');
 
     //     // Has to be in editMode
     //     if (!this.editMode) {
@@ -6102,7 +6126,7 @@ export class AppComponent implements OnInit {
         // Open the W Description form
         //  widgetID - optional W-ID to open, does not depend on what was selected
         //  widgetIndex - optional [W] index to open, does not depend on what was selected
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDescription', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetDescription', '@Start');
 
         // Must have access to this D
         if (!this.globalVariableService.dashboardPermissionCheck(
@@ -6143,7 +6167,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetEditTitle() {
         // Edit title for the selected Slicer
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEditTitle', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetEditTitle', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -6195,7 +6219,7 @@ export class AppComponent implements OnInit {
 
     clickMenuSlicerComments() {
         // Manage comments for the selected Slicer
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerComments', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuSlicerComments', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -6221,7 +6245,7 @@ export class AppComponent implements OnInit {
 
     clickMenuSlicerDataQuality() {
         // Show the form of Data Quality Issues for selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDataQuality', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuSlicerDataQuality', '@Start');
 
         if (!this.checkForOnlyOneWidget('Slicer')) {
             return;
@@ -6242,7 +6266,7 @@ export class AppComponent implements OnInit {
 
     clickMenuSlicerExpand() {
         // Expands underlying data for the selected Slicer
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExpand', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuSlicerExpand', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -6266,7 +6290,7 @@ export class AppComponent implements OnInit {
 
     clickMenuSlicerExport() {
         // Exports the selected Slicer
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExport', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuSlicerExport', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -6284,7 +6308,7 @@ export class AppComponent implements OnInit {
 
     clickMenuSlicerDelete() {
         // Delete the selected Slicer
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuSlicerDelete', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -6369,7 +6393,7 @@ export class AppComponent implements OnInit {
 
     clickMenuShapeNew(widgetLayout: WidgetLayout = null) {
         // Add a new Shape
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeNew', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShapeNew', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -6418,7 +6442,7 @@ export class AppComponent implements OnInit {
 
     clickMenuShapeEdit(widgetID: number = null, widgetIndex: number = null, canSave: boolean = true) {
         // Edit selected Shape
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShapeEdit', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -6517,7 +6541,7 @@ export class AppComponent implements OnInit {
 
     clickMenuShapeComments() {
         // Manage comments for the selected Shape
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeComments', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShapeComments', '@Start');
 
 
         if (!this.checkForOnlyOneWidget()) {
@@ -6544,7 +6568,7 @@ export class AppComponent implements OnInit {
 
     clickMenuShapeHyperLinks() {
         // Manage hyperlinks for the selected Shape
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeHyperLinks', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShapeHyperLinks', '@Start');
 
         // Must have access to this D
         if (!this.globalVariableService.dashboardPermissionCheck(
@@ -6583,7 +6607,7 @@ export class AppComponent implements OnInit {
 
     clickMenuShapeEditTitle() {
         // Edit title of selected Shape
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEditTitle', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShapeEditTitle', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -6635,7 +6659,7 @@ export class AppComponent implements OnInit {
 
     clickMenuShapeDelete() {
         // Delete a Shape
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShapeDelete', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -6713,7 +6737,7 @@ export class AppComponent implements OnInit {
 
     clickMenuShapeDeleteAll() {
         // Delete ALL Shapes on the current Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeDeleteAll', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShapeDeleteAll', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -6788,7 +6812,7 @@ export class AppComponent implements OnInit {
 
     clickMenuViewHideMenu() {
         // Hides menu
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewHideMenu', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuViewHideMenu', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -6802,7 +6826,7 @@ export class AppComponent implements OnInit {
 
     clickMenuViewPrintPreview(){
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPrintPreview', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuViewPrintPreview', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -6813,7 +6837,7 @@ export class AppComponent implements OnInit {
 
     clickMenuViewShowPalette() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowPalette', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuViewShowPalette', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -6826,7 +6850,7 @@ export class AppComponent implements OnInit {
 
     clickMenuViewShowGrid() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuViewShowGrid', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -6839,7 +6863,7 @@ export class AppComponent implements OnInit {
 
     clickMenuViewSnapToGrid() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewSnapToGrid', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuViewSnapToGrid', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -6858,7 +6882,7 @@ export class AppComponent implements OnInit {
 
     clickMenuViewZoom(zoomPercentage: number): string {
         // Zoom Ws
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewZoom', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuViewZoom', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -6882,7 +6906,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeBackward() {
         // Decrease z-index of selected Ws
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBackward', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeBackward', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -6938,7 +6962,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeForward() {
         // Increase z-index of selected Ws
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeForward', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeForward', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -6995,7 +7019,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeBack() {
         /// Move selected Ws to the lowest z-index
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBack', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeBack', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -7049,7 +7073,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeFront() {
         // Move selected Ws to the highest z-index
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeFront', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeFront', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -7104,7 +7128,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeAlignLeft() {
         // Align the lefts of the selected widgets
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignLeft', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeAlignLeft', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
             return;
@@ -7161,7 +7185,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeAlignCenter() {
         // Align the centers of the selected widgets
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenter', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeAlignCenter', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
             return;
@@ -7221,7 +7245,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeAlignRight() {
         // Align the Rights of the selected widgets
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignRight', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeAlignRight', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
             return;
@@ -7281,7 +7305,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeAlignTop() {
         // Align the tops of the selected widgets
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignTop', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeAlignTop', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
             return;
@@ -7339,7 +7363,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeAlignMiddle() {
         // Align the Middles of the selected widgets
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignMiddle', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeAlignMiddle', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
             return;
@@ -7399,7 +7423,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeAlignBottom() {
         // Align the Bottoms of the selected widgets
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignBottom', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeAlignBottom', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
             return;
@@ -7459,7 +7483,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeAlignCenterHorisontally() {
         // Center horisontally across page
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterHorisontally', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeAlignCenterHorisontally', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -7514,7 +7538,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeAlignCenterVertically() {
         // Center vertically across page
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterVertically', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeAlignCenterVertically', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -7568,7 +7592,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeGroup() {
         // Groups the selected Widgets into a single group
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeGroup', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeGroup', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
             return;
@@ -7604,7 +7628,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeUnGroup() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeUnGroup', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeUnGroup', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -7631,7 +7655,7 @@ export class AppComponent implements OnInit {
     clickMenuArrangeDistributeHorisontal() {
         // Equally distribute the selected Ws horisontally.
         // Assume the selected Ws are W1 (first), W2, ..., Wn (last)
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeHorisontal', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeDistributeHorisontal', '@Start');
 
         // Get selected, sorted by .left  = [Wi]
         let selectedOnes = [];
@@ -7754,7 +7778,7 @@ export class AppComponent implements OnInit {
     clickMenuArrangeDistributeVertical() {
         // Vertically arrange selected Ws, equally spaced
         // Assume the selected Ws are W1 (first), W2, ..., Wn (last)
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeVertical', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeDistributeVertical', '@Start');
 
         // Get selected, sorted by .top  = [Wi]
         let selectedOnes = [];
@@ -7872,7 +7896,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeSameSize() {
         // Make selected Ws same size, height and width
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeSameSize', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
             return;
@@ -7946,7 +7970,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeSameSizeVertically() {
         // Make selected Ws same Height (vertically)
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeSameSize', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
             return;
@@ -8014,7 +8038,7 @@ export class AppComponent implements OnInit {
 
     clickMenuArrangeSameSizeHorisontally() {
         // Make selected Ws same width (horisontally)
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuArrangeSameSize', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
             return;
@@ -8087,7 +8111,7 @@ export class AppComponent implements OnInit {
 
     clickMenuHelpDemo() {
         // Help: Demo
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuHelpDemo', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuHelpDemo', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8122,7 +8146,7 @@ export class AppComponent implements OnInit {
 
     clickHelpGettingStarted() {
         // Help: Getting Started
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpTutorials', '@Start')
 
         // Get GV values
         let resource: string = 'dashboards';            // Works !
@@ -8163,7 +8187,7 @@ export class AppComponent implements OnInit {
 
     clickHelpGetData() {
         // Help: Get Data
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpTutorials', '@Start')
 
         // Reload Dashboards
         this.dbCanvasAppDatabase.table("localDashboards").count(res => {
@@ -8195,7 +8219,7 @@ export class AppComponent implements OnInit {
 
     clickHelpCreateDashboard() {
         // Help: Create Dashboard
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpTutorials', '@Start')
 
         // Delete a D
         let key: number = 2;
@@ -8220,7 +8244,7 @@ export class AppComponent implements OnInit {
 
     clickHelpCreateWidget() {
         // Help: Create Widget
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpTutorials', '@Start')
 
         // Replace DataCachingTable
 
@@ -8291,7 +8315,7 @@ export class AppComponent implements OnInit {
 
     clickHelpTransformData() {
     // Help: Transform Data
-    this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+    this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpTutorials', '@Start')
 
         // Clear DB
         this.dbDataCachingTable.table("localDataCachingTable").clear()
@@ -8321,7 +8345,7 @@ export class AppComponent implements OnInit {
 
     clickHelpDocumentation() {
         // Help: Documentation
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpTutorials', '@Start')
 
         let foundDataCachingTable: boolean = true;
         // Count
@@ -8377,7 +8401,7 @@ export class AppComponent implements OnInit {
 
     clickHelpTutorials() {
         // Help: Demo
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpTutorials', '@Start')
         // this.globalVariableService.dashboards[0].name
 
         // Set test var
@@ -8522,7 +8546,7 @@ export class AppComponent implements OnInit {
 
     clickMenuCollaborateAuditTrail() {
         // Show list of Canvas AuditTrail
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateAuditTrail', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuCollaborateAuditTrail', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8535,7 +8559,7 @@ export class AppComponent implements OnInit {
 
     clickMenuCollaborateMessages() {
         // Show list of Canvas Messages
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateMessages', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuCollaborateMessages', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8548,7 +8572,7 @@ export class AppComponent implements OnInit {
 
     clickMenuCollaborateTasks() {
         // Show list of Canvas Tasks
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateTasks', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuCollaborateTasks', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8562,7 +8586,7 @@ export class AppComponent implements OnInit {
 
     clickMenuCollaborateTaskAdd() {
         // Add a new Task
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateTaskAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuCollaborateTaskAdd', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8575,7 +8599,7 @@ export class AppComponent implements OnInit {
 
     clickMenuViewDontDisturb() {
         // Toggle Dont Disturb
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewDontDisturb', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuViewDontDisturb', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8590,7 +8614,7 @@ export class AppComponent implements OnInit {
 
     clickMenuViewSystemMessages() {
         // Toggle Dont Disturb
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewSystemMessages', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuViewSystemMessages', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8603,7 +8627,7 @@ export class AppComponent implements OnInit {
 
     clickMenuCollaborateSendMessageAdd() {
         // Send a Canvas Message
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateSendMessage', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuCollaborateSendMessage', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8616,7 +8640,7 @@ export class AppComponent implements OnInit {
 
     clickMenuCollaborateSendEmailAdd() {
         // Send an Email
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateSendEmail', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuCollaborateSendEmail', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8633,7 +8657,7 @@ export class AppComponent implements OnInit {
 
     clickMenuUserLogin() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserLogin', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuUserLogin', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8644,7 +8668,7 @@ export class AppComponent implements OnInit {
 
     clickMenuUserMyProfile() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserMyProfile', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuUserMyProfile', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8663,7 +8687,7 @@ export class AppComponent implements OnInit {
 
     clickMenuUserPreferences() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserPreferences', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuUserPreferences', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8674,7 +8698,7 @@ export class AppComponent implements OnInit {
 
     clickMenuUserMyPermissions() {
         // Show My Permissions form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserMyPermissions', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuUserMyPermissions', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8685,7 +8709,7 @@ export class AppComponent implements OnInit {
 
     clickMenuUserPaletteButtonBar() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserPaletteButtonBar', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuUserPaletteButtonBar', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8696,7 +8720,7 @@ export class AppComponent implements OnInit {
 
     clickMenuUsers() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUsers', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuUsers', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8707,7 +8731,7 @@ export class AppComponent implements OnInit {
 
     clickMenuGroups() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGroups', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuGroups', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8718,7 +8742,7 @@ export class AppComponent implements OnInit {
 
     clickMenuUserSystemSettings() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserSystemSettings', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuUserSystemSettings', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8729,7 +8753,7 @@ export class AppComponent implements OnInit {
 
     clickMenuUserLogout() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserLogout', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuUserLogout', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -8749,7 +8773,7 @@ export class AppComponent implements OnInit {
         canSave: boolean = true,
         widgetType: string = '') {
         // Clicked the Edit option on palette - decide what to do
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuPaletteEdit', '@Start');
 
         // Graph type has been supplied
         if (widgetType == 'Graph') {
@@ -8799,7 +8823,7 @@ export class AppComponent implements OnInit {
 
     clickMenuPaletteExpand() {
         // Clicked the Edit option on palette - decide what to do
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteExpand', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuPaletteExpand', '@Start');
 
         // Decide which way
         if (this.checkForOnlyOneWidget('Graph', true)) {
@@ -8827,7 +8851,7 @@ export class AppComponent implements OnInit {
 
     clickMenuPaletteDelete() {
         // Clicked the Edit option on palette - decide what to do
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuPaletteDelete', '@Start');
 
         // Decide which way
         if (this.checkForOnlyOneWidget('Graph', true)) {
@@ -8858,7 +8882,7 @@ export class AppComponent implements OnInit {
 
     clickMenuPaletteDuplicate() {
         // Clicked the Duplicate option on palette - decide what to do
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteDuplicate', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuPaletteDuplicate', '@Start');
 
         // Decide which way
         if (this.checkForOnlyOneWidget('Graph', true)) {
@@ -8889,7 +8913,7 @@ export class AppComponent implements OnInit {
 
     clickMenuPaletteWidgetTitle(widgetID: number = null) {
         // Edit Title of selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteWidgetTitle', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuPaletteWidgetTitle', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -8950,7 +8974,7 @@ export class AppComponent implements OnInit {
     // ***********************  LAYOUT ACTIONS  ************************ //
     clickMenuWidgetContainerDelete(index: number, widgetLayoutID: number) {
         // Clicked Delete button on Widget Layout object
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetContainerDelete', '@Start');
 
         // Delete from DB and Filter local Array
         this.globalVariableService.deleteResource('widgetLayouts', widgetLayoutID)
@@ -8964,7 +8988,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetContainerAddGraph(index: number, widgetLayoutID: number) {
         // Clicked Add Graph button on Widget Layout object
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerAddGraph', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetContainerAddGraph', '@Start');
 
         // Create Graph, with optional dimensions set
         this.clickMenuWidgetNew(this.widgetLayouts[index]);
@@ -8972,7 +8996,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetContainerAddShape(index: number, widgetLayoutID: number) {
         // Clicked Add Shape button on Widget Layout object
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerAddShape', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetContainerAddShape', '@Start');
 
         // Create Shape, with optional dimensions set
         this.clickMenuShapeNew(this.widgetLayouts[index]);
@@ -8986,7 +9010,7 @@ export class AppComponent implements OnInit {
 
     popupMenuOpen(ev: any, index: number, id: number, widgetLeft: number, widgetTop: number) {
         // Open context / dropdown Menu from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'popupMenuOpen', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'popupMenuOpen', '@Start');
 
         // // Must be first, else default behaviour takes over
         ev.preventDefault();
@@ -9022,7 +9046,7 @@ export class AppComponent implements OnInit {
 
     contextmenuWidgetAnnotations(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Annotations from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetAnnotations', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'contextmenuWidgetAnnotations', '@Start');
 
         // Call the function for THIS W
         this.clickMenuWidgetAnnotations(id);
@@ -9031,7 +9055,7 @@ export class AppComponent implements OnInit {
 
     contextmenuWidgetMessages(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Messages from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetMessages', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'contextmenuWidgetMessages', '@Start');
 
         // Call the function
         this.clickMenuCollaborateMessages();
@@ -9040,7 +9064,7 @@ export class AppComponent implements OnInit {
 
     contextmenuWidgetCheckpoints(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Checkpoints from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetCheckpoints', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'contextmenuWidgetCheckpoints', '@Start');
 
         // Call the function for THIS W
         this.clickMenuWidgetCheckpoints(id);
@@ -9049,7 +9073,7 @@ export class AppComponent implements OnInit {
 
     contextmenuWidgetChanges(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Changes from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetChanges', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'contextmenuWidgetChanges', '@Start');
 
         // Call the function
         this.clickMenuCollaborateAuditTrail();
@@ -9058,7 +9082,7 @@ export class AppComponent implements OnInit {
 
     contextmenuWidgetShare(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Share from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetShare', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'contextmenuWidgetShare', '@Start');
 
         // Call the function
         this.clickDashboardShare();
@@ -9067,7 +9091,7 @@ export class AppComponent implements OnInit {
 
     contextmenuWidgetDataSummary(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Data Summary from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataSummary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'contextmenuWidgetDataSummary', '@Start');
 
         this.clickMenuWidgetDataSummary(index);
 
@@ -9075,7 +9099,7 @@ export class AppComponent implements OnInit {
 
     contextmenuWidgetDataQuality(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Data Quality from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataQuality', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'contextmenuWidgetDataQuality', '@Start');
 
         // Call the function
         // this.clickMenuDashboardDetailDataQuality();
@@ -9097,7 +9121,7 @@ export class AppComponent implements OnInit {
     contextmenuWidgetDataDictionary(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Data Dictionary, of the DS linked to current
         // W, from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataDictionary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'contextmenuWidgetDataDictionary', '@Start');
 
         // Call the function for THIS W
         this.clickMenuWidgetDataDictionary(index);
@@ -9106,7 +9130,7 @@ export class AppComponent implements OnInit {
 
     contextmenuWidgetUsageStats(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Data Summary from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetUsageStats', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'contextmenuWidgetUsageStats', '@Start');
 
         this.clickMenuDashboardUsageStats();
 
@@ -9120,21 +9144,21 @@ export class AppComponent implements OnInit {
 
     actionmenuWidgetEditor(ev: MouseEvent, index: number, id: number) {
         // Opens W Editor, for editing
-        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'actionmenuWidgetEditor', '@Start');
 
         this.clickMenuWidgetEdit(id, index, true);
     }
 
     actionmenuWidgetExplore(ev: MouseEvent, index: number, id: number) {
         // Opens W Editor, for exploring only (cannot save)
-        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetExplore', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'actionmenuWidgetExplore', '@Start');
 
         this.clickMenuWidgetEdit(id, index, false);
     }
 
     actionmenuWidgetFullScreen(ev: MouseEvent, index: number, id: number) {
         // Opens W full screen)
-        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetFullScreen', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'actionmenuWidgetFullScreen', '@Start');
 
         this.clickMenuWidgetFullScreen(index);
 
@@ -9142,7 +9166,7 @@ export class AppComponent implements OnInit {
 
     clickCloseFullScreen() {
         // Opens W full screen)
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCloseFullScreen', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseFullScreen', '@Start');
 
         this.showWidgetFullScreenWidth = 0;
         this.showWidgetFullScreenHeight = 0;
@@ -9245,14 +9269,14 @@ export class AppComponent implements OnInit {
 
     actionmenuWidgetDescription(ev: MouseEvent, index: number, id: number) {
         // Opens W full screen)
-        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetDescription', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'actionmenuWidgetDescription', '@Start');
 
         this.clickMenuWidgetDescription(id, index)
     }
 
     actionmenuWidgetEditTitle(ev: MouseEvent, index: number, id: number) {
         // Register mouse down event when resize starts
-        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetEditTitle', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'actionmenuWidgetEditTitle', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -9282,7 +9306,7 @@ export class AppComponent implements OnInit {
 
     actionmenuWidgetExpand(ev: MouseEvent, index: number, id: number) {
         // Expand the data for this Widget
-        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetExpand', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'actionmenuWidgetExpand', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -9304,7 +9328,7 @@ export class AppComponent implements OnInit {
 
     actionmenuWidgetFlipToTable(id: number) {
         // Change type to Graph for a Table
-        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetFlipToTable', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'actionmenuWidgetFlipToTable', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -9322,7 +9346,7 @@ export class AppComponent implements OnInit {
 
     actionmenuWidgetFlipToGraph(id: number) {
         // Change type to Table for a Graph
-        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetFlipToGraph', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'actionmenuWidgetFlipToGraph', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -9339,7 +9363,7 @@ export class AppComponent implements OnInit {
 
     actionmenuWidgetCopyImage(ev: MouseEvent, index: number, id: number) {
         // Opens W full screen)
-        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetCopyImage', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'actionmenuWidgetCopyImage', '@Start');
 
         // generate a PNG snapshot and then download the image
         this.view.toImageURL('png').then(function(url) {
@@ -9353,7 +9377,7 @@ export class AppComponent implements OnInit {
 
     actionmenuJumpToLinked(dashboardID: number, dashboardTabID: number) {
         // Jumps to the linked Dashboard and Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuJumpToLinked', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'actionmenuJumpToLinked', '@Start');
 
         // Reset popup menu
         this.showWidgetContextMenu = false;
@@ -9391,7 +9415,7 @@ export class AppComponent implements OnInit {
 
     clickPaletteDragStart(ev: MouseEvent) {
         // Register start of Palette drag event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickPaletteDragStart', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickPaletteDragStart', '@Start');
 
         this.startX = ev.x;
         this.startY = ev.y;
@@ -9399,7 +9423,7 @@ export class AppComponent implements OnInit {
 
     clickPaletteDragEnd(ev: MouseEvent) {
         // Move the Palette at the end of the drag event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickPaletteDragEnd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickPaletteDragEnd', '@Start');
 
         // Get final coordinates of cursor after move
         this.endX = ev.x;
@@ -9420,7 +9444,7 @@ export class AppComponent implements OnInit {
 
     showRecentDashboard(index: number) {
         // Open a Recently used D
-        this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'showRecentDashboard', '@Start');
 
         // Set the EditMode as it was previously
         // this.globalVariableService.editMode.next(this.recentDashboards[index].editMode);
@@ -9438,7 +9462,7 @@ export class AppComponent implements OnInit {
 
     clickShowMenu() {
         // Show main menu
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowMenu', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickShowMenu', '@Start');
 
         // Reset vars
         this.showMainMenu = true;
@@ -9446,7 +9470,7 @@ export class AppComponent implements OnInit {
 
     trackWidget(index, row) {
         //
-        // this.globalFunctionService.printToConsole(this.constructor.name,'trackWidget', '@Start');
+        // this.globalFunctionService.printToConsole(this.constructor.name, 'trackWidget', '@Start');
 
         // console.log('trackWidget', row);
         return row ? row.id : undefined;
@@ -9454,7 +9478,7 @@ export class AppComponent implements OnInit {
 
     checkForOnlyOneWidget(widgetType: string = 'All', silent: boolean = false): boolean {
         // Returns true if one and only widget was selected, else false
-        this.globalFunctionService.printToConsole(this.constructor.name,'checkForOnlyOneWidget', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'checkForOnlyOneWidget', '@Start');
 
         // Get nr of W selected
         let nrWidgetsSelected: number = this.currentWidgets.filter(
@@ -9493,7 +9517,7 @@ export class AppComponent implements OnInit {
 
     checkForMultipleWidgets(): boolean {
         // Returns true if >1 widgets were selected, else false
-        this.globalFunctionService.printToConsole(this.constructor.name,'checkForMultipleWidgets', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'checkForMultipleWidgets', '@Start');
 
         if (this.currentWidgets.filter(w => w.isSelected).length < 2) {
             this.showMessage(
@@ -9512,7 +9536,7 @@ export class AppComponent implements OnInit {
 
     clickWidgetContainerDragStart(ev: MouseEvent, index: number) {
         // Register start of W drag event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragStart', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickWidgetContainerDragStart', '@Start');
 
         // Reset popup menu
         this.showWidgetContextMenu = false;
@@ -9538,7 +9562,7 @@ export class AppComponent implements OnInit {
 
     clickWidgetContainerDragEnd(ev: MouseEvent, id: number) {
         // Move the W containter at the end of the drag event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragEnd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickWidgetContainerDragEnd', '@Start');
 
         // Reset popup menu
         this.showWidgetContextMenu = false;
@@ -9586,7 +9610,7 @@ export class AppComponent implements OnInit {
 
     moveWidgets() {
         // Do Actual Move of draggable Ws
-        this.globalFunctionService.printToConsole(this.constructor.name,'moveWidgets', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'moveWidgets', '@Start');
 
         // Reset current and globalVar values
         this.currentWidgets.forEach(w => {
@@ -9687,7 +9711,7 @@ export class AppComponent implements OnInit {
 
     clickWidgetSlicer(ev: MouseEvent, index: number, id: number) {
         // Click Slicer inside W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetSlicerev', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickWidgetSlicerev', '@Start');
 
         // Reset popup menu
         this.showWidgetContextMenu = false;
@@ -9697,7 +9721,7 @@ export class AppComponent implements OnInit {
 
     clickTemplateWidget() {
         // Click Template W object
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateWidget', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickTemplateWidget', '@Start');
 
         // Has to be in editMode
         this.showMessage(
@@ -9712,7 +9736,7 @@ export class AppComponent implements OnInit {
 
     clickWidgetGraph(ev: any, index: number, widgetID: number) {
         // Click Graph in W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetGraph', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickWidgetGraph', '@Start');
 
         console.warn('xxclickWidgetGraph', ev);
 
@@ -9720,7 +9744,7 @@ export class AppComponent implements OnInit {
 
     clickWidget(ev: MouseEvent, index: number, id: number) {
         // Click W object
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickWidget', '@Start');
 
         // Reset popup menu
         this.showWidgetContextMenu = false;
@@ -9760,7 +9784,7 @@ export class AppComponent implements OnInit {
 
     clickBulletJump(linkedTabID: number) {
         // Jump to the linked Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletJump', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickBulletJump', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -9777,7 +9801,7 @@ export class AppComponent implements OnInit {
 
     clickResizeWidgetDown(ev: MouseEvent, index: number) {
         // Register mouse down event when resize starts
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetDown', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickResizeWidgetDown', '@Start');
 
         if (!this.menuOptionClickPreAction()) {
             return;
@@ -9805,7 +9829,7 @@ export class AppComponent implements OnInit {
         //   resizeTop, -Right, -Bottom, -Left - True to move the ... boundary.
         //     Note: 1. both the current and globalVar vars are changed
         //           2. Top and Left involves changing two aspects, ie Left and Width
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetUp', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickResizeWidgetUp', '@Start');
 
         // Check if locked
         if (this.currentWidgets[index].isLocked) {
@@ -9913,7 +9937,7 @@ export class AppComponent implements OnInit {
         timeout: number,
         defaultMessage: string,): void {
         // Shows a message in the right area, ie StatusBar
-        this.globalFunctionService.printToConsole(this.constructor.name,'showMessage', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'showMessage', '@Start');
 
         // Audible clue
         if (this.globalVariableService.currentUser != undefined) {
@@ -9953,7 +9977,7 @@ export class AppComponent implements OnInit {
     showWidgetForSlicer(id: number) {
         // Returns True if a Widget is related to the selected Sl(s)
         // TODO - put back, but this fires ALL the time ...
-        // this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
+        // this.globalFunctionService.printToConsole(this.constructor.name, 'showWidgetForSlicer', '@Start');
 
         // Get list of selected Sl
         let result: boolean = false;
@@ -9973,7 +9997,7 @@ export class AppComponent implements OnInit {
         id: number,
         showCheckpoints) {
         // Toggle to show Checkpoints or not
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleShowCheckpoint', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickToggleShowCheckpoint', '@Start');
 
         // How it works:  when loading a W at RunTime, each W.checkpointIDs[] is set to the
         // IDs of all its previously stored Checkpoints.  It also stores
@@ -10118,7 +10142,7 @@ export class AppComponent implements OnInit {
         currentCheckpoint: number,
         lastCheckpoint: number) {
         // Animates Checkpoints
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAnimateCheckpoint', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickAnimateCheckpoint', '@Start');
 
         // Reset
         currentCheckpoint = 0;
@@ -10174,7 +10198,7 @@ export class AppComponent implements OnInit {
         currentCheckpoint: number,
         lastCheckpoint: number) {
         // Navigate Left or Right to a checkpoint
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickNavCheckpoint', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNavCheckpoint', '@Start');
 
         // Increment or Decrement
         if (direction == 'Right') {
@@ -10210,7 +10234,7 @@ export class AppComponent implements OnInit {
     deleteWidget(widgetType, widgetID: number = null) {
         // Delete the selected W
         // - Optional widgetType, widgetID to Delete
-        this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'deleteWidget', '@Start');
 
         // Delete the local one
         // let delIDs: number[] = [];
@@ -10257,7 +10281,7 @@ export class AppComponent implements OnInit {
 
     menuOptionClickPreAction(): boolean {
         // Actions performed at the START of a menu item click, PRE any other work
-        this.globalFunctionService.printToConsole(this.constructor.name,'menuOptionClickPreAction', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'menuOptionClickPreAction', '@Start');
 
         this.modalFormOpen = true;
         this.showPopupMessage = false;
@@ -10277,7 +10301,7 @@ export class AppComponent implements OnInit {
 
     menuOptionClickPostAction() {
         // Actions performed at the END of a menu item click, POST any other work
-        this.globalFunctionService.printToConsole(this.constructor.name,'menuOptionClickPostAction', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'menuOptionClickPostAction', '@Start');
 
         this.modalFormOpen = false;
         this.showPopupMessage = false;
@@ -10285,7 +10309,7 @@ export class AppComponent implements OnInit {
 
     clickGotIt() {
         // Unshow popup message to help user get into Edit Mode
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickGotIt', '@Start');
 
         this.showPopupMessage = false;
 
@@ -10298,7 +10322,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetDuplicate(widgetType: string) {
         // Duplicate selected Widget
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetDuplicate', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -10348,7 +10372,7 @@ export class AppComponent implements OnInit {
 
     paletteFunctionCall(methodName: string, methodParam) {
         // Call function in Var from Customised portion of Palette
-        this.globalFunctionService.printToConsole(this.constructor.name,'paletteFunctionCall', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'paletteFunctionCall', '@Start');
 
         console.warn('Called ', {methodName}, {methodParam})
         // Call the method with the given params
@@ -10361,7 +10385,7 @@ export class AppComponent implements OnInit {
 
     dragstartPaletteButton(ev) {
         // Start dragging a Palette button onto the D
-        this.globalFunctionService.printToConsole(this.constructor.name,'paletteFunctionCall', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'paletteFunctionCall', '@Start');
 
         ev.dataTransfer.setData("text/plain", ev.target.id);
         console.log("dragstartPaletteButton", ev);
@@ -10369,7 +10393,7 @@ export class AppComponent implements OnInit {
 
     dragendPaletteButton(ev, functionName: string) {
         // Dragged a Palette button onto the D
-        this.globalFunctionService.printToConsole(this.constructor.name,'paletteFunctionCall', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'paletteFunctionCall', '@Start');
 
         ev.dataTransfer.setData("text/plain", ev.target.id);
         console.log("dragendPaletteButton", ev);
@@ -10395,7 +10419,7 @@ export class AppComponent implements OnInit {
 
     dashboardOpenActions() {
         // Actions to perform when a D is opened, Before anything else
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardOpenActions', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'dashboardOpenActions', '@Start');
 
         // Reset stuckCount
         this.stuckCount = 0;
@@ -10434,7 +10458,7 @@ export class AppComponent implements OnInit {
 
     clearDashboard() {
         // Clears all the vars for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clearDashboard', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clearDashboard', '@Start');
 
         this.currentDashboardName = '';
         this.currentDashboardTabIndex = 0;
@@ -10449,7 +10473,7 @@ export class AppComponent implements OnInit {
 
     setPaletteHeightAndWidth() {
         // Sets the Height and Width of the Palette according to the user pref
-        this.globalFunctionService.printToConsole(this.constructor.name,'setPaletteHeightAndWidth', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'setPaletteHeightAndWidth', '@Start');
 
         if (this.globalVariableService.currentUser.preferencePaletteHorisontal){
             // Horisontal
@@ -10466,7 +10490,7 @@ export class AppComponent implements OnInit {
 
     clickPaletteCopyDimensions() {
         // Copy Dimensions of selected Widget (L, T, width, height)
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickPaletteCopyDimensions', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickPaletteCopyDimensions', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -10514,7 +10538,7 @@ export class AppComponent implements OnInit {
 
     clickPalettePasteDimensions() {
         // Paste Dimensions of selected Widget (L, T, width, height)
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickPalettePasteDimensions', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickPalettePasteDimensions', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -10582,7 +10606,7 @@ export class AppComponent implements OnInit {
 
     togglePaletteHorisontal() {
         // Toggles Palette - horisontal / vertical
-        this.globalFunctionService.printToConsole(this.constructor.name,'togglePaletteHorisontal', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'togglePaletteHorisontal', '@Start');
 
         // Toggle horisontal / vertical
         let newAngle: boolean = !this.globalVariableService.preferencePaletteHorisontal.value;
@@ -10602,7 +10626,7 @@ export class AppComponent implements OnInit {
 
     clickDashboard() {
         // Toggles Palette - horisontal / vertical
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboard', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDashboard', '@Start');
 
         // Exit if busy with mouse down and up
         if (this.dashboardStartX != this.dashboardEndX  ||
@@ -10624,7 +10648,7 @@ export class AppComponent implements OnInit {
 
     mousedownDashboard(ev: any) {
         // Toggles Palette - horisontal / vertical
-        this.globalFunctionService.printToConsole(this.constructor.name,'mousedownDashboard', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'mousedownDashboard', '@Start');
 
         // Store X & Y
         this.dashboardStartX = ev.x;
@@ -10642,14 +10666,14 @@ export class AppComponent implements OnInit {
 
     // mousemoveDashboard(ev: any) {
     //     // Toggles Palette - horisontal / vertical
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'mousemoveDashboard', '@Start');
+    //     this.globalFunctionService.printToConsole(this.constructor.name, 'mousemoveDashboard', '@Start');
 
     //     // Store X & Y
     // }
 
     mouseupDashboard(ev: any) {
         // Toggles Palette - horisontal / vertical
-        this.globalFunctionService.printToConsole(this.constructor.name,'mouseupDashboard', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'mouseupDashboard', '@Start');
 
         // Store X & Y
         this.dashboardEndX = ev.x;
