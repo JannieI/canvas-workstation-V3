@@ -43,6 +43,7 @@ export class WidgetCrossFilterComponent implements OnInit {
 
     editing: boolean = false;
     errorMessage: string = '';
+    selectedRowIndex: number = -1;
     sourceField: string = '';
     sourceWidgetFields: string[] = [];
     targetField: string = '';
@@ -74,6 +75,9 @@ export class WidgetCrossFilterComponent implements OnInit {
             targetWidgetField: "Other Widget Field"
         });
         
+        if (this.widgetFilter.length > 0) {
+            this.selectedRowIndex = 0;
+        };
         console.log('xx this.selectedWidget', this.selectedWidget)
         if (this.selectedWidget != null) {
             let datasourceIndex: number = this.globalVariableService.datasources
