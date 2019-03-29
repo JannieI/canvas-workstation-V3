@@ -102,7 +102,7 @@
     .gridTargetField {
         grid-column-start: 11;
         /* autoprefixer: off */
-        grid-column-end: 14;
+        grid-column-end: 15;
         grid-row-start: 3;
         grid-row-end: 4;
         margin-left: 12px;

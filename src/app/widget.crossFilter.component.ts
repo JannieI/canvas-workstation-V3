@@ -80,6 +80,7 @@ export class WidgetCrossFilterComponent implements OnInit {
                 .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
             if (datasourceIndex >= 0) {
                 this.sourceWidgetFields = this.globalVariableService.datasources[datasourceIndex].dataFields;
+                this.targetWidgetFields = this.globalVariableService.datasources[datasourceIndex].dataFields;
                 console.log('xx this.sourceWidgetFields', this.sourceWidgetFields)
             };
         } else {
@@ -104,6 +105,37 @@ export class WidgetCrossFilterComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formWidgetCrossFilterClosed.emit(action);
+    }
+
+    clickCancel() {
+        // Clear the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
+
+        this.sourceField = '';
+        this.targetTitle = '';
+        this.targetField = '';
+    }
+
+    clickAdd() {
+        // Add new filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Validation
+        if (this.sourceField == '') {
+            this.errorMessage = 'Source field is compulsory';
+        };
+        if (this.targetTitle == '') {
+            this.errorMessage = 'Target Widget title is compulsory';
+        };
+        if (this.targetField == '') {
+            this.errorMessage = 'Target field is compulsory';
+        };
+
+        this.widgetFilter.push({ 
+            sourceWidgetFiled: this.sourceField,
+            targetWidgetTitle: this.targetTitle,
+            targetWidgetField: this.errorMessage
+        });
     }
 
 }
