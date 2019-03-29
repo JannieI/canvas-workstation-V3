@@ -5504,6 +5504,7 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
                 this.selectedWidget = w;
+                console.log('xx app ', w)
             };
         });
         this.showModalCrossFilter = true;

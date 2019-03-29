@@ -25,7 +25,7 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class WidgetCrossFilterComponent implements OnInit {
 
-    @Input() selectWidget: Widget;
+    @Input() selectedWidget: Widget;
     @Output() formWidgetCrossFilterClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -54,23 +54,29 @@ export class WidgetCrossFilterComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        let datasourceIndex: number = this.globalVariableService.datasources
-            .findIndex(ds => ds.id == this.selectDatasourceID
-            if (ds.id == this.selectDatasourceID) {
-                this.datagridData = ds.dataFiltered;
+        console.log('xx this.selectedWidget', this.selectedWidget)
+        if (this.selectedWidget != null) {
+            let datasourceIndex: number = this.globalVariableService.datasources
+                .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
+            if (datasourceIndex >= 0) {
+                this.widgetFields = this.globalVariableService.datasources[datasourceIndex].dataFields;
+                console.log('xx this.widgetFields', this.widgetFields)
             };
-        })
-        this.globalVariableService.currentDatasources.forEach(ds => {
-            if (ds.id == this.selectDatasourceID) {
-                // TODO - remove this, currently datalib reads array as string a,b,c
-                let x: string = ds.dataFields.toString();
-                this.datagridColumns = ds.dataFields;
-            }
-        });
+        } else {
+            this.errorMessage = 'An error occured - the selected Widgets is null';
+        };
 
-        // Get length
-        this.currentDatasetLength = this.datagridData.length;
-
+        this.widgets = this.globalVariableService.widgets
+            .sort( (a,b) => {
+                if (a.name < b.name) {
+                    return 1;
+                };
+                if (a.name > b.name) {
+                    return -1;
+                };
+                return 0;
+            })
+        
     }
 
   	clickClose(action: string) {
