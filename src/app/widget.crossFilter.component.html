@@ -40,7 +40,6 @@
                         name="sourceField"
                         title="Source Field"
                         placeholder="Source Field"
-                        [disabled]="!editing"
                         >
                         <option *ngFor="let row of sourceWidgetFields; let i = index;">
                             {{ row }}
@@ -56,7 +55,6 @@
                         name="targetTitle"
                         title="Target Title"
                         placeholder="Target Title"
-                        [disabled]="!editing"
                         >
                         <option *ngFor="let row of widgets; let i = index;">
                             {{ row.name }}
@@ -73,7 +71,6 @@
                         name="targetField"
                         title="Target Field"
                         placeholder="Target Field"
-                        [disabled]="!editing"
                         >
                         <option *ngFor="let row of targetWidgetFields; let i = index;">
                             {{ row }}
@@ -81,7 +78,7 @@
                     </select>
                 </div>
 
-                <div class="gridButtonCancel" *ngIf="editing">
+                <div class="gridButtonCancel">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -90,26 +87,7 @@
                         Cancel
                     </button>
                 </div>
-                <div class="gridButtonAdd" *ngIf="editing">
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        (click)="clickSave()"
-                        >
-                        Save
-                    </button>
-                </div>
-
-                <div class="gridButtonCancel" *ngIf="!editing">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        (click)="clickEdit()"
-                        >
-                        Edit
-                    </button>
-                </div>
-                <div class="gridButtonAdd" *ngIf="!editing">
+                <div class="gridButtonAdd">
                     <button
                         type="button"
                         class="btn btn-primary"
@@ -125,7 +103,6 @@
                             No records ...
                         </clr-dg-placeholder>
                         <clr-dg-column>Delete</clr-dg-column>
-                        <clr-dg-column>Edit</clr-dg-column>
                         <clr-dg-column>Source Field</clr-dg-column>
                         <clr-dg-column>Target Title</clr-dg-column>
                         <clr-dg-column>Target Field</clr-dg-column>
@@ -137,14 +114,6 @@
                             >
                             <clr-dg-cell>
                                 <clr-icon shape="trash"
-                                    class="selectIcon1"
-                                    size="18"
-                                    (dblclick)="clickDelete(i, row.id)"
-                                    >
-                                </clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>
-                                <clr-icon shape="pencil"
                                     class="selectIcon1"
                                     size="18"
                                     (dblclick)="clickDelete(i, row.id)"
