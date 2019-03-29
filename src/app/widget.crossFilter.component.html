@@ -32,11 +32,13 @@
                     {{ errorMessage }}
                 </div>
 
-                <div class="gridFilters" *ngFor="let row of widgetFilter; let i = index;">
-                    {{ row.sourceWidgetFiled }}
-                    {{ row.targetWidgetTitle }}
-                    {{ row.targetWidgetField }}
+                <div class="gridFilters">
+                    <div class="gridFiltersItem" *ngFor="let row of widgetFilter; let i = index;">
+                        {{ row.sourceWidgetFiled }}
+                        {{ row.targetWidgetTitle }}
+                        {{ row.targetWidgetField }}
                 </div>
+            </div>
             </div>
         </div>
     </div>

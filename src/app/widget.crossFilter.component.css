@@ -64,3 +64,11 @@
         text-align: left;
         overflow-y: scroll;
     }
+
+    .gridFiltersItem {
+        background-color: lightgray;
+        border: 1px solid gray;
+        border-radius: 6px;
+        margin: 5px;
+
+    }

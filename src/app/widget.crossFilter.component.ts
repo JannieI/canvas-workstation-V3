@@ -48,7 +48,7 @@ export class WidgetCrossFilterComponent implements OnInit {
         sourceWidgetFiled: string; 
         targetWidgetTitle: string; 
         targetWidgetField: string; 
-    }[];
+    }[] = [];
     widgets: Widget[] = [];
 
     constructor(
