@@ -5476,7 +5476,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetCrossFilter() {
-        // Expands the underlying data for the selected W
+        // Defines cross filters (on other Widgets) for the selected W
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetCrossFilter', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
@@ -5496,7 +5496,7 @@ export class AppComponent implements OnInit {
                 this.selectDatasourceID = w.datasourceID;
             };
         });
-        this.showModalWidgetExpand = true;
+        this.showModalCrossFilter = true;
     }
 
     clickMenuWidgetExpand() {
