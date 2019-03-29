@@ -78,6 +78,7 @@ export class WidgetCrossFilterComponent implements OnInit {
         if (this.widgetFilter.length > 0) {
             this.selectedRowIndex = 0;
         };
+
         console.log('xx this.selectedWidget', this.selectedWidget)
         if (this.selectedWidget != null) {
             let datasourceIndex: number = this.globalVariableService.datasources
@@ -104,11 +105,11 @@ export class WidgetCrossFilterComponent implements OnInit {
         
     }
 
-  	clickClose(action: string) {
-        // Close the form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+    clickRow(index: number, widgetFilterID: number) {
+        // A row was clicked
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
-        this.formWidgetCrossFilterClosed.emit(action);
+        this.selectedRowIndex = index;
     }
 
     clickCancel() {
@@ -138,8 +139,15 @@ export class WidgetCrossFilterComponent implements OnInit {
         this.widgetFilter.push({ 
             sourceWidgetFiled: this.sourceField,
             targetWidgetTitle: this.targetTitle,
-            targetWidgetField: this.errorMessage
+            targetWidgetField: this.targetField
         });
+    }
+
+    clickClose(action: string) {
+        // Close the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+        this.formWidgetCrossFilterClosed.emit(action);
     }
 
 }
