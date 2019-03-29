@@ -24,7 +24,6 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class WidgetExpandComponent implements OnInit {
 
-    @Input() selectWidgetIndex: number;
     @Input() selectDatasourceID: number;
     @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
 
