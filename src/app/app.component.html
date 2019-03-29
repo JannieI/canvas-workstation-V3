@@ -4832,8 +4832,7 @@
 <widget-crossFilter
     class="formPopupDashboard"
     *ngIf="showModalCrossFilter"
-    [selectWidgetIndex]="selectWidgetIndex"
-    [selectDatasourceID]="selectDatasourceID"
+    [selectWidget]="selectWidget"
     (formWidgetCrossFilterClosed)="handleCloseWidgetCrossFilter($event)">Load Cross Filter Definition ...
 </widget-crossFilter>
 

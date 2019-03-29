@@ -11,6 +11,7 @@ import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
 // Our models
+import { Widget }                     from './models';
 
 // Our Services
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -24,7 +25,7 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class WidgetCrossFilterComponent implements OnInit {
 
-    @Input() selectDatasourceID: number;
+    @Input() selectWidget: Widget;
     @Output() formWidgetCrossFilterClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -40,12 +41,9 @@ export class WidgetCrossFilterComponent implements OnInit {
 
     }
 
-    currentDatasetLength: number;
-    datagridColumns: string[];
-    datagridData: any[];
-    datagridPaginationSize: number = 10;
+    widgetFields: string[] = [];
     errorMessage: string = '';
-    records: number = 6;
+    widgets: Widget[] = [];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -53,10 +51,11 @@ export class WidgetCrossFilterComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        //
+        // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.currentDatasources.forEach(ds => {
+        let datasourceIndex: number = this.globalVariableService.datasources
+            .findIndex(ds => ds.id == this.selectDatasourceID
             if (ds.id == this.selectDatasourceID) {
                 this.datagridData = ds.dataFiltered;
             };

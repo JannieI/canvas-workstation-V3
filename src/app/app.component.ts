@@ -5503,8 +5503,7 @@ export class AppComponent implements OnInit {
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
-                this.selectedWidgetIndex = w.id;
-                this.selectDatasourceID = w.datasourceID;
+                this.selectedWidget = w;
             };
         });
         this.showModalCrossFilter = true;
