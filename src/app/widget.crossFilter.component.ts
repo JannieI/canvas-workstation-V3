@@ -41,9 +41,13 @@ export class WidgetCrossFilterComponent implements OnInit {
 
     }
 
-
+    editing: boolean = false;
     errorMessage: string = '';
-    widgetFields: string[] = [];
+    sourceField: string = '';
+    sourceWidgetFields: string[] = [];
+    targetField: string = '';
+    targetTitle: string = '';
+    targetWidgetFields: string[] = [];
     widgetFilter: { 
         sourceWidgetFiled: string; 
         targetWidgetTitle: string; 
@@ -75,8 +79,8 @@ export class WidgetCrossFilterComponent implements OnInit {
             let datasourceIndex: number = this.globalVariableService.datasources
                 .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
             if (datasourceIndex >= 0) {
-                this.widgetFields = this.globalVariableService.datasources[datasourceIndex].dataFields;
-                console.log('xx this.widgetFields', this.widgetFields)
+                this.sourceWidgetFields = this.globalVariableService.datasources[datasourceIndex].dataFields;
+                console.log('xx this.sourceWidgetFields', this.sourceWidgetFields)
             };
         } else {
             this.errorMessage = 'An error occured - the selected Widgets is null';

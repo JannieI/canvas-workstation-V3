@@ -20,7 +20,7 @@
                             </h5>
                             <p style="margin-top: 0; color:gray;">
                                 This form defines the cross filters for the selected Widget.
-                                A cross filter defines how another Widgets is filtered when a
+                                A cross filter defines how another Widgets are filtered when a
                                 cell / item in the selected Widget is clicked.
                                 Click the X or press Escape to close this form.
                             </p>
@@ -32,13 +32,125 @@
                     {{ errorMessage }}
                 </div>
 
-                <div class="gridFilters">
-                    <div class="gridFiltersItem" *ngFor="let row of widgetFilter; let i = index;">
-                        {{ row.sourceWidgetFiled }}
-                        {{ row.targetWidgetTitle }}
-                        {{ row.targetWidgetField }}
+                <div class="gridSourceFieldTitle">
+                    <b>Source:</b>
                 </div>
-            </div>
+                <div class="gridSourceField">
+                    <select [(ngModel)]="sourceField"
+                        name="sourceField"
+                        title="Source Field"
+                        placeholder="Source Field"
+                        [disabled]="!editing"
+                        >
+                        <option *ngFor="let row of sourceWidgetFields; let i = index;">
+                            {{ row }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="gridTargetTitleTitle">
+                    <b>Target Title:</b>
+                </div>
+                <div class="gridTargetTitle">
+                    <input [(ngModel)]="targetTitle"
+                        type="targetTitle"
+                        name="targetTitle"
+                        title="Target Title"
+                        placeholder="Target Title"
+                        [disabled]="!editing  &&  !adding"
+                        >
+                </div>
+
+                <div class="gridTargetFieldTitle">
+                    <b>Target Field:</b>
+                </div>
+                <div class="gridTargetField">
+                    <input [(ngModel)]="targetField"
+                        type="targetField"
+                        name="targetField"
+                        title="Target Field"
+                        placeholder="Target Field"
+                        [disabled]="!editing  &&  !adding"
+                        >
+                </div>
+
+                <div class="gridButtonCancel" *ngIf="editing">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickCancel()"
+                        >
+                        Cancel
+                    </button>
+                </div>
+                <div class="gridButtonAdd" *ngIf="editing">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickSave()"
+                        >
+                        Save
+                    </button>
+                </div>
+
+                <div class="gridButtonCancel" *ngIf="!editing">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickEdit()"
+                        >
+                        Edit
+                    </button>
+                </div>
+                <div class="gridButtonAdd" *ngIf="!editing">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickAdd()"
+                        >
+                        Add
+                    </button>
+                </div>
+
+                <div class="gridFilterTable">
+                    <clr-datagrid>
+                        <clr-dg-placeholder>
+                            No records ...
+                        </clr-dg-placeholder>
+                        <clr-dg-column>Delete</clr-dg-column>
+                        <clr-dg-column>Edit</clr-dg-column>
+                        <clr-dg-column>Source Field</clr-dg-column>
+                        <clr-dg-column>Target Title</clr-dg-column>
+                        <clr-dg-column>Target Field</clr-dg-column>
+                        <clr-dg-row
+                            *ngFor="let row of sourceWidgetFields; let i = index"
+                            [style.background-color]="(i == selectedConnectionRowIndex)? '#123456' : 'white'"
+                            [style.color]="(i == selectedConnectionRowIndex)? 'white' : 'gray'"
+                            (click)="clickRow(i, row.id)"
+                            >
+                            <clr-dg-cell>
+                                <clr-icon shape="trash"
+                                    class="selectIcon1"
+                                    size="18"
+                                    (dblclick)="clickDelete(i, row.id)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>
+                                <clr-icon shape="pencil"
+                                    class="selectIcon1"
+                                    size="18"
+                                    (dblclick)="clickDelete(i, row.id)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>{{ row.sourceWidgetFiled }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.targetWidgetTitle }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.targetWidgetField }}</clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+                </div>
+
             </div>
         </div>
     </div>

@@ -54,21 +54,111 @@
         text-align: left;
     }
 
-    .gridFilters {
+    .gridSourceFieldTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridSourceField {
+        grid-column-start: 2;
+        /* autoprefixer: off */
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridTargetTitleTitle {
+        grid-column-start: 5;
+        /* autoprefixer: off */
+        grid-column-end: 7;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        text-align: left;
+    }
+    .gridTargetTitle {
+        grid-column-start: 6;
+        /* autoprefixer: off */
+        grid-column-end: 10;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-left: 12px;
+        text-align: left;
+    }
+
+    .gridTargetFieldTitle {
+        grid-column-start: 10;
+        /* autoprefixer: off */
+        grid-column-end: 12;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        text-align: left;
+    }
+    .gridTargetField {
+        grid-column-start: 11;
+        /* autoprefixer: off */
+        grid-column-end: 14;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-left: 12px;
+        text-align: left;
+    }
+
+    .gridButtonCancel {
+        grid-column-start: 2;
+        /* autoprefixer: off */
+        grid-column-end: 5;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin-left: 20px;
+        margin-top: 12px;
+        text-align: left;
+    }
+    .gridButtonAdd {
+        grid-column-start: 5;
+        /* autoprefixer: off */
+        grid-column-end: 7;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin-left: 20px;
+        margin-top: 12px;
+        text-align: left;
+    }
+    .gridButtonCancel {
+        grid-column-start: 2;
+        /* autoprefixer: off */
+        grid-column-end: 5;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin-left: 20px;
+        margin-top: 12px;
+        text-align: left;
+    }
+    .gridButtonAdd {
+        grid-column-start: 5;
+        /* autoprefixer: off */
+        grid-column-end: 7;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin-left: 20px;
+        margin-top: 12px;
+        text-align: left;
+    }
+
+    .gridFilterTable {
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 15;
-        grid-row-start: 3;
+        grid-row-start: 6;
         grid-row-end: 22;
         margin-top: 10px;
         text-align: left;
         overflow-y: scroll;
     }
 
-    .gridFiltersItem {
-        background-color: lightgray;
-        border: 1px solid gray;
-        border-radius: 6px;
-        margin: 5px;
 
-    }
