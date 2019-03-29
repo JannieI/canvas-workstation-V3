@@ -306,6 +306,7 @@ export class AppComponent implements OnInit {
     showModalCollaborateTasksNew: boolean = false;
     showModalCollaborateActivities: boolean = false;
     showModalCollaborateTasks: boolean = false;
+    showModalCrossFilter: boolean = false;
     showModalDashboardNew: boolean = false;
     showModalDashboardComments: boolean = false;
     showModalDashboardDataQuality: boolean = false;
@@ -2196,6 +2197,16 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalWidgetRefresh = false;
+    }
+
+    
+    handleCloseWidgetCrossFilter(action: string) {
+        // Handle close of the Cross Filter definition form
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetCrossFilter', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalCrossFilter = false;
     }
 
     handleCloseWidgetExpand(action: string) {
