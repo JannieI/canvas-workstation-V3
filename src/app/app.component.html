@@ -4828,6 +4828,16 @@
 </widget-templateInsertWidget>
 
 
+<!-- Modal: Widget Cross Filter Definition -->
+<widget-crossFilter
+    class="formPopupDashboard"
+    *ngIf="showModalCrossFilter"
+    [selectWidgetIndex]="selectWidgetIndex"
+    [selectDatasourceID]="selectDatasourceID"
+    (formWidgetCrossFilterClosed)="handleCloseWidgetCrossFilter($event)">Load Cross Filter Definition ...
+</widget-crossFilter>
+
+
 <!-- Modal: Widget Expand -->
 <widget-expand
     class="formPopupDashboard"
