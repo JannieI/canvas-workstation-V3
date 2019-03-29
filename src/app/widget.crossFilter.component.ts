@@ -1,5 +1,5 @@
 /*
- * Shows form to expand the datasource on which a Widget is based
+ * Shows form to define cross filters (to other Widgets) for the selected Widget
  */
 
 // Angular
@@ -18,14 +18,14 @@ import { GlobalVariableService }      from './global-variable.service';
 
 
 @Component({
-    selector: 'widget-expand',
-    templateUrl: './widget.expand.component.html',
-    styleUrls: ['./widget.expand.component.css']
+    selector: 'widget-crossFilter',
+    templateUrl: './widget.crossFilter.component.html',
+    styleUrls: ['./widget.crossFilter.component.css']
 })
-export class WidgetExpandComponent implements OnInit {
+export class WidgetCrossFilterComponent implements OnInit {
 
     @Input() selectDatasourceID: number;
-    @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formWidgetCrossFilterClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -78,7 +78,7 @@ export class WidgetExpandComponent implements OnInit {
         // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formWidgetExpandClosed.emit(action);
+        this.formWidgetCrossFilterClosed.emit(action);
     }
 
 }
