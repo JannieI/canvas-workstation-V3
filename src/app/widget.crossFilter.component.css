@@ -54,7 +54,7 @@
         text-align: left;
     }
 
-    .gridDatagrid {
+    .gridFilters {
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 15;
@@ -62,4 +62,5 @@
         grid-row-end: 22;
         margin-top: 10px;
         text-align: left;
+        overflow-y: scroll;
     }

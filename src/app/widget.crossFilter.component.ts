@@ -41,8 +41,14 @@ export class WidgetCrossFilterComponent implements OnInit {
 
     }
 
-    widgetFields: string[] = [];
+
     errorMessage: string = '';
+    widgetFields: string[] = [];
+    widgetFilter: { 
+        sourceWidgetFiled: string; 
+        targetWidgetTitle: string; 
+        targetWidgetField: string; 
+    }[];
     widgets: Widget[] = [];
 
     constructor(
@@ -53,7 +59,17 @@ export class WidgetCrossFilterComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
+        this.widgetFilter.push({ 
+            sourceWidgetFiled: "My Field1",
+            targetWidgetTitle: "That Widget Title 1",
+            targetWidgetField: "That Widget Field"
+        });
+        this.widgetFilter.push({ 
+            sourceWidgetFiled: "My Field1",
+            targetWidgetTitle: "Other Widget Title 2",
+            targetWidgetField: "Other Widget Field"
+        });
+        
         console.log('xx this.selectedWidget', this.selectedWidget)
         if (this.selectedWidget != null) {
             let datasourceIndex: number = this.globalVariableService.datasources
