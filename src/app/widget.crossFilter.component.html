@@ -52,26 +52,33 @@
                     <b>Target Title:</b>
                 </div>
                 <div class="gridTargetTitle">
-                    <input [(ngModel)]="targetTitle"
-                        type="targetTitle"
+                    <select [(ngModel)]="targetTitle"
                         name="targetTitle"
                         title="Target Title"
                         placeholder="Target Title"
-                        [disabled]="!editing  &&  !adding"
+                        [disabled]="!editing"
                         >
-                </div>
+                        <option *ngFor="let row of widgets; let i = index;">
+                            {{ row.name }}
+                        </option>
+                    </select>
+
+                    </div>
 
                 <div class="gridTargetFieldTitle">
                     <b>Target Field:</b>
                 </div>
                 <div class="gridTargetField">
-                    <input [(ngModel)]="targetField"
-                        type="targetField"
+                    <select [(ngModel)]="targetField"
                         name="targetField"
                         title="Target Field"
                         placeholder="Target Field"
-                        [disabled]="!editing  &&  !adding"
+                        [disabled]="!editing"
                         >
+                        <option *ngFor="let row of targetWidgetFields; let i = index;">
+                            {{ row }}
+                        </option>
+                    </select>
                 </div>
 
                 <div class="gridButtonCancel" *ngIf="editing">
