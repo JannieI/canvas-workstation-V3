@@ -1178,7 +1178,7 @@ export class WidgetFilter {
     id: number;                             // Unique ID
     filterType: string;                     // CrossFilter, WidgetFilter, SoftFilter
     sourceWidgetID: number;                 // For CrossFilter, source Widget
-    sourceDatasourceField: number;          // For CrossFilter, source Field
+    sourceDatasourceField: string;          // For CrossFilter, source Field
     sequence: number;                       // Sequence Nr - for LATER user
     filterFieldName: string;                // Name (text) of field
     filterOperator: string;                 // ie Equal, Less Than, etc

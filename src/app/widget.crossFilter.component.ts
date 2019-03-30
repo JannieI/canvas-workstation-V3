@@ -12,6 +12,7 @@ import { Output }                     from '@angular/core';
 
 // Our models
 import { Widget }                     from './models';
+import { WidgetFilter }               from './models';
 
 // Our Services
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -163,18 +164,19 @@ export class WidgetCrossFilterComponent implements OnInit {
             targetWidgetTitle: this.targetTitle,
             targetWidgetField: this.targetField
         });
-        let graphFilter: WidgetFilter = {
-            id: this.filterID,
+
+        let widgetFilter: WidgetFilter = {
+            id: null,
             sequence: 0,        // For LATER use
             filterType: 'WidgetFilter',
-            sourceDatasourceID: null,
-            sourceDatasourceField: null,
-            filterFieldName: this.filterFieldName,
-            filterOperator: this.filterOperator,
-            filterTimeUnit: this.filterTimeUnit,
-            filterValue: this.filterValue,
-            filterValueFrom: this.filterValueFrom,
-            filterValueTo: this.filterValueTo,
+            sourceWidgetID: this.selectedWidget.id,
+            sourceDatasourceField: this.sourceField,
+            filterFieldName: this.targetField,
+            filterOperator: 'Equal',
+            filterTimeUnit: '',
+            filterValue: '',
+            filterValueFrom: '',
+            filterValueTo: '',
             isActive: true
         };
 
