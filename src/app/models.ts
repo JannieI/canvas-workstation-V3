@@ -1510,7 +1510,7 @@ export class Widget {
     graphCalculations: GraphCalculation[];  // Array of calculations
 
     // Transformations: Filter
-    graphFilters: WidgetFilter[];            // Array of filters
+    widgetFilters: WidgetFilter[];          // Array of filters
     sampleNumberRows: number;               // Random rows to sample EACH time, 0 means all rows
 
     // Layers

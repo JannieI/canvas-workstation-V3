@@ -455,7 +455,7 @@ export interface dataSchemaInterface {
                             this.loadLocalVarsFromWidget()
 
                             // Get local vars - easier for ngFor
-                            this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
+                            this.filterNrActive = this.localWidget.widgetFilters.filter(gflt => gflt.isActive).length;
                             this.showWidgetEditorLite = this.globalVariableService.currentUser
                                 .preferenceShowWidgetEditorLite;
 
@@ -558,7 +558,7 @@ export interface dataSchemaInterface {
                             // Indicate calulations and filters present
                             if (this.localWidget.graphCalculations.length > 0
                                 ||
-                                this.localWidget.graphFilters.length > 0) {
+                                this.localWidget.widgetFilters.length > 0) {
                                     this.hasCalculationsOrFilters = true;
                             };
                         }                        
@@ -2434,7 +2434,7 @@ export interface dataSchemaInterface {
                 // Reset
                 this.hasCalculationsOrFilters = false;
                 this.localWidget.graphCalculations = [];
-                this.localWidget.graphFilters = [];
+                this.localWidget.widgetFilters = [];
 
                 // Load local arrays for ngFor
                 this.constructDataSchema(this.selectedRowIndex);
@@ -3192,7 +3192,7 @@ export interface dataSchemaInterface {
         // Reset
         this.filterErrorMessage = '';
 
-        this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
+        this.filterNrActive = this.localWidget.widgetFilters.filter(gflt => gflt.isActive).length;
         this.showFilterAreaProperties = false;
     }
 
@@ -3207,16 +3207,16 @@ export interface dataSchemaInterface {
         this.selectedGraphFilterRowIndex = index;
 
         // Store vars
-        let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
+        let gridFilterIndex: number = this.localWidget.widgetFilters.findIndex(gflt =>
             gflt.id == selectedFilterID);
         if (gridFilterIndex >= 0) {
-            this.filterID = this.localWidget.graphFilters[gridFilterIndex].id;
-            this.filterFieldName = this.localWidget.graphFilters[gridFilterIndex].filterFieldName;
-            this.filterOperator = this.localWidget.graphFilters[gridFilterIndex].filterOperator;
-            this.filterTimeUnit = this.localWidget.graphFilters[gridFilterIndex].filterTimeUnit;
-            this.filterValue = this.localWidget.graphFilters[gridFilterIndex].filterValue;
-            this.filterValueFrom = this.localWidget.graphFilters[gridFilterIndex].filterValueFrom;
-            this.filterValueTo = this.localWidget.graphFilters[gridFilterIndex].filterValueTo;
+            this.filterID = this.localWidget.widgetFilters[gridFilterIndex].id;
+            this.filterFieldName = this.localWidget.widgetFilters[gridFilterIndex].filterFieldName;
+            this.filterOperator = this.localWidget.widgetFilters[gridFilterIndex].filterOperator;
+            this.filterTimeUnit = this.localWidget.widgetFilters[gridFilterIndex].filterTimeUnit;
+            this.filterValue = this.localWidget.widgetFilters[gridFilterIndex].filterValue;
+            this.filterValueFrom = this.localWidget.widgetFilters[gridFilterIndex].filterValueFrom;
+            this.filterValueTo = this.localWidget.widgetFilters[gridFilterIndex].filterValueTo;
 
         } else {
             this.filterID = -1;
@@ -3255,10 +3255,10 @@ export interface dataSchemaInterface {
         // Reset
         this.filterErrorMessage = '';
 
-        let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
+        let gridFilterIndex: number = this.localWidget.widgetFilters.findIndex(gflt =>
             gflt.id == this.filterID);
         if (gridFilterIndex >= 0) {
-            this.localWidget.graphFilters[gridFilterIndex].isActive = false;
+            this.localWidget.widgetFilters[gridFilterIndex].isActive = false;
         };
     }
 
@@ -3269,10 +3269,10 @@ export interface dataSchemaInterface {
         // Reset
         this.filterErrorMessage = '';
 
-        let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
+        let gridFilterIndex: number = this.localWidget.widgetFilters.findIndex(gflt =>
             gflt.id == this.filterID);
         if (gridFilterIndex >= 0) {
-            this.localWidget.graphFilters[gridFilterIndex].isActive = true;
+            this.localWidget.widgetFilters[gridFilterIndex].isActive = true;
         };
     }
 
@@ -3283,10 +3283,10 @@ export interface dataSchemaInterface {
         // Reset
         this.filterErrorMessage = '';
 
-        let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
+        let gridFilterIndex: number = this.localWidget.widgetFilters.findIndex(gflt =>
             gflt.id == this.filterID);
         if (gridFilterIndex >= 0) {
-            this.localWidget.graphFilters.splice(gridFilterIndex, 1);
+            this.localWidget.widgetFilters.splice(gridFilterIndex, 1);
         };
 
         // Reset
@@ -3348,14 +3348,14 @@ export interface dataSchemaInterface {
         };
 
         // Create the filter spec with Max ID
-        if (this.localWidget.graphFilters == null) {
-            this.localWidget.graphFilters = [];
+        if (this.localWidget.widgetFilters == null) {
+            this.localWidget.widgetFilters = [];
             this.filterNrActive = 0;
         };
         if (this.filterID == -1) {
 
             let graphFilterID: number = 0;
-            this.localWidget.graphFilters.forEach(gflt => {
+            this.localWidget.widgetFilters.forEach(gflt => {
                 if(gflt.id > graphFilterID) {
                     graphFilterID = gflt.id;
                 };
@@ -3379,22 +3379,22 @@ export interface dataSchemaInterface {
             };
 
             // Update the localWidget
-            this.localWidget.graphFilters.push(graphFilter);
+            this.localWidget.widgetFilters.push(graphFilter);
         } else {
-            let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
+            let gridFilterIndex: number = this.localWidget.widgetFilters.findIndex(gflt =>
                 gflt.id == this.filterID);
             if (gridFilterIndex >= 0) {
-                this.localWidget.graphFilters[gridFilterIndex].filterFieldName =
+                this.localWidget.widgetFilters[gridFilterIndex].filterFieldName =
                     this.filterFieldName;
-                this.localWidget.graphFilters[gridFilterIndex].filterOperator =
+                this.localWidget.widgetFilters[gridFilterIndex].filterOperator =
                     this.filterOperator;
-                this.localWidget.graphFilters[gridFilterIndex].filterTimeUnit =
+                this.localWidget.widgetFilters[gridFilterIndex].filterTimeUnit =
                     this.filterTimeUnit;
-                this.localWidget.graphFilters[gridFilterIndex].filterValue =
+                this.localWidget.widgetFilters[gridFilterIndex].filterValue =
                     this.filterValue;
-                this.localWidget.graphFilters[gridFilterIndex].filterValueFrom =
+                this.localWidget.widgetFilters[gridFilterIndex].filterValueFrom =
                     this.filterValueFrom;
-                this.localWidget.graphFilters[gridFilterIndex].filterValueTo =
+                this.localWidget.widgetFilters[gridFilterIndex].filterValueTo =
                     this.filterValueTo;
             };
 
@@ -3640,10 +3640,10 @@ export interface dataSchemaInterface {
         };
 
         // Remove if used as Filter
-        this.localWidget.graphFilters = this.localWidget.graphFilters.filter(gf =>
+        this.localWidget.widgetFilters = this.localWidget.widgetFilters.filter(gf =>
             gf.filterFieldName != this.calculatedAs
         );
-        this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
+        this.filterNrActive = this.localWidget.widgetFilters.filter(gflt => gflt.isActive).length;
 
         // Reset
         this.clickCalculatedClear();

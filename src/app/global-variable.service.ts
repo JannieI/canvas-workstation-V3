@@ -4140,10 +4140,10 @@ export class GlobalVariableService {
 
 
         // Filter
-        if (widget.graphFilters == null) {
-            widget.graphFilters = [];
+        if (widget.widgetFilters == null) {
+            widget.widgetFilters = [];
         };
-        let graphFilters = widget.graphFilters.filter(gflt => gflt.isActive).slice();
+        let graphFilters = widget.widgetFilters.filter(gflt => gflt.isActive).slice();
 
         for (var i = 0; i < graphFilters.length; i++) {
 
@@ -4377,7 +4377,7 @@ export class GlobalVariableService {
                 // widget.graphTransformations.push(graphTransformationSpec);
             };
 
-            console.warn('xx createVegaLiteSpec END FILTER widget.graphFilters', widget.graphFilters);
+            console.warn('xx createVegaLiteSpec END FILTER widget.graphFilters', widget.widgetFilters);
 
         }
 
