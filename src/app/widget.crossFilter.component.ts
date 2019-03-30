@@ -113,7 +113,7 @@ export class WidgetCrossFilterComponent implements OnInit {
                         targetWidgetTitle: w.titleText,
                         targetWidgetField: wf.filterFieldName
                     });
-                }]
+                };
         
                 if (this.widgetFilter.length > 0) {
                     this.selectedRowIndex = 0;
@@ -146,6 +146,9 @@ export class WidgetCrossFilterComponent implements OnInit {
             if (datasourceIndex >= 0) {
                 this.targetWidgetFields = this.globalVariableService.currentDatasources
                     [datasourceIndex].dataFields;
+                if (this.targetWidgetFields.length > 0) {
+                    this.targetField = this.targetWidgetFields[0];
+                };
             };
             console.log('xx this.targetWidgetFields', this.targetWidgetFields)
         };
