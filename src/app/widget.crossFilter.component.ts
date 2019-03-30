@@ -190,21 +190,35 @@ export class WidgetCrossFilterComponent implements OnInit {
             targetWidgetField: this.targetField
         });
 
-        let widgetFilter: WidgetFilter = {
-            id: null,
-            sequence: 0,        // For LATER use
-            filterType: 'WidgetFilter',
-            sourceWidgetID: this.selectedWidget.id,
-            sourceDatasourceField: this.sourceField,
-            filterFieldName: this.targetField,
-            filterOperator: 'Equal',
-            filterTimeUnit: '',
-            filterValue: '',
-            filterValueFrom: '',
-            filterValueTo: '',
-            isActive: true
-        };
+        // Update target Widget
+        let widgetIndex: number = this.widgets.findIndex(w => w.titleText == this.targetTitle);
+        console.log('xx widgetIndex', widgetIndex)
+        if (widgetIndex >= 0) {
+            let widgetFilter: WidgetFilter = {
+                id: null,
+                sequence: 0,        // For LATER use
+                filterType: 'WidgetFilter',
+                sourceWidgetID: this.selectedWidget.id,
+                sourceDatasourceField: this.sourceField,
+                filterFieldName: this.targetField,
+                filterOperator: 'Equal',
+                filterTimeUnit: '',
+                filterValue: '',
+                filterValueFrom: '',
+                filterValueTo: '',
+                isActive: true
+            };
+            this.selectedWidget.widgetFilters.push(widgetFilter);
+            console.log('xx this.selectedWidget', this.selectedWidget)
 
+            // Save to DB
+            this.globalVariableService.saveResource('widgets', this.selectedWidget)
+                .then( res => console.log('xx Saved W to DB') )
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in widget.crossFilter saving Widget: ' + err);
+                });
+        };
         // NB - only one Crossfilter per field per Widget from SAME sourceWidgetID
         // Update the localWidget
         // this.localWidget.widgetFilters.push(graphFilter);
@@ -226,7 +240,12 @@ export class WidgetCrossFilterComponent implements OnInit {
             this.globalVariableService.saveResource(
                 'widgets', 
                 this.globalVariableService.currentWidgets[widgetIndex]
-            );
+            )
+            .then( res => console.log('xx Saved W to DB') )
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in widget.crossFilter saving Widget: ' + err);
+            });
         };
     }
 
