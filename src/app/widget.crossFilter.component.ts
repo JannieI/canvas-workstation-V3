@@ -91,6 +91,8 @@ export class WidgetCrossFilterComponent implements OnInit {
                     .value.currentDashboardTabID
                 &&
                 (w.widgetType == 'Graph'  ||  w.widgetType == 'Table')
+                &&
+                (w.id != this.selectedWidget.id)
             )
             .sort( (a,b) => {
                 if (a.name < b.name) {
