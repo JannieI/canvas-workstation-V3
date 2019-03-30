@@ -197,6 +197,10 @@ export class WidgetCrossFilterComponent implements OnInit {
             this.errorMessage = 'This filter already exists';
             return;
         };
+        if (this.selectedTargetWidgetID == this.selectedWidget.id) {
+            this.errorMessage = 'Cannot define a crossfilter on oneself';
+            return;
+        };
 
         this.widgetFilter.push({
             sourceWidgetField: this.sourceField,
