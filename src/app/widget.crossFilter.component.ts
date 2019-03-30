@@ -197,7 +197,7 @@ export class WidgetCrossFilterComponent implements OnInit {
             let widgetFilter: WidgetFilter = {
                 id: null,
                 sequence: 0,        // For LATER use
-                filterType: 'WidgetFilter',
+                filterType: 'CrossFilter',
                 sourceWidgetID: this.selectedWidget.id,
                 sourceDatasourceField: this.sourceField,
                 filterFieldName: this.targetField,
@@ -213,7 +213,7 @@ export class WidgetCrossFilterComponent implements OnInit {
 
             // Save to DB
             this.globalVariableService.saveResource('widgets', this.selectedWidget)
-                .then( res => console.log('xx Saved W to DB') )
+                .then( res => console.log('xx Saved W to DB', res) )
                 .catch(err => {
                     this.errorMessage = err.slice(0, 100);
                     console.error('Error in widget.crossFilter saving Widget: ' + err);
