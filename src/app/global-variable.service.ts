@@ -4139,7 +4139,6 @@ export class GlobalVariableService {
         };
 
 
-
         // Filter
         if (widget.graphFilters == null) {
             widget.graphFilters = [];
@@ -4157,8 +4156,6 @@ export class GlobalVariableService {
             if (filterFieldDataTypeIndex >= 0) {
                 filterFieldDataType = widget.dataschema[filterFieldDataTypeIndex].type;
             };
-
-
 
             if (graphFilters[i].filterOperator == 'Not Equal') {
                 if (filterFieldDataType == 'string'

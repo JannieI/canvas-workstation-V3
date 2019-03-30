@@ -509,27 +509,29 @@ export interface dataSchemaInterface {
                             this.showDatasourceMain = false;
 
                             // Get Widget Graph Specs
-                            this.globalVariableService.getResource('widgetGraphs').then(res => {
-                                this.widgetGraphsFull = res;
-                                this.widgetGraphs = res.filter(
-                                    wg => wg.visualGrammar == this.localWidget.visualGrammar
-                                );
-                                if (this.showWidgetEditorLite) {
-                                    this.widgetGraphs = this.widgetGraphs
-                                        .filter(wgr => this.widgetGraphsLite.indexOf(wgr.mark) >= 0 );
-                                };
+                            this.globalVariableService.getResource('widgetGraphs')
+                                .then(res => {
+                                    this.widgetGraphsFull = res;
+                                    this.widgetGraphs = res.filter(
+                                        wg => wg.visualGrammar == this.localWidget.visualGrammar
+                                    );
+                                    if (this.showWidgetEditorLite) {
+                                        this.widgetGraphs = this.widgetGraphs
+                                            .filter(wgr => this.widgetGraphsLite.indexOf(wgr.mark) >= 0 );
+                                    };
 
-                                // TODO - fix
-                                // Show graph
-                                let graphIndex: number = this.widgetGraphs.findIndex(wgr =>
-                                    wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
-                                );
-                                this.showGraph(this.widgetGraphs[graphIndex].id);
-                            })
-                            .catch(err => {
-                                this.errorMessageHTTP = err.slice(0, 100);
-                                console.error('Error in widget.editor reading widgetGraphs: ' + err);
-                            });
+                                    // TODO - fix
+                                    // Show graph
+                                    let graphIndex: number = this.widgetGraphs.findIndex(wgr =>
+                                        wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
+                                    );
+                                    this.showGraph(this.widgetGraphs[graphIndex].id);
+                                })
+                                .catch(err => {
+                                    console.log('xx err', err)
+                                    this.errorMessageHTTP = err.slice(0, 100);
+                                    console.error('Error in widget.editor reading widgetGraphs: ' + err);
+                                });
 
                             // Switch if Complex graph in Lite mode
                             if (this.localWidget.graphLayerFacet != 'Single'
