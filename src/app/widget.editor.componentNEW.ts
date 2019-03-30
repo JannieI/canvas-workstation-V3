@@ -3366,6 +3366,9 @@ export interface dataSchemaInterface {
             let graphFilter: GraphFilter = {
                 id: this.filterID,
                 sequence: 0,        // For LATER use
+                filterType: 'WidgetFilter',
+                sourceDatasourceID: null,
+                sourceDatasourceField: null,
                 filterFieldName: this.filterFieldName,
                 filterOperator: this.filterOperator,
                 filterTimeUnit: this.filterTimeUnit,
