@@ -200,8 +200,12 @@ export class WidgetCrossFilterComponent implements OnInit {
             .findIndex(w => w.id == targetWidgetID);
         if (widgetIndex >= 0) {
             this.globalVariableService.currentWidgets[widgetIndex].widgetFilters =
-            this.globalVariableService.currentWidgets[widgetIndex].widgetFilters.filter(wf => wf.sourceWidgetID != this.selectedWidget.id);
-            this.globalVariableService.saveResource('widgets', this.globalVariableService.currentWidgets[widgetIndex])
+                this.globalVariableService.currentWidgets[widgetIndex].widgetFilters
+                    .filter(wf => wf.sourceWidgetID != this.selectedWidget.id);
+            this.globalVariableService.saveResource(
+                'widgets', 
+                this.globalVariableService.currentWidgets[widgetIndex]
+            );
         };
     }
 
