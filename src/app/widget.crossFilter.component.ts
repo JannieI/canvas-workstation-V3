@@ -100,6 +100,8 @@ export class WidgetCrossFilterComponent implements OnInit {
                 &&
                 w.dashboardTabID == this.globalVariableService.currentDashboardInfo
                     .value.currentDashboardTabID
+                &&
+                (w.widgetType == 'Graph'  ||  w.widgetType == 'Table')
             )
             .sort( (a,b) => {
                 if (a.name < b.name) {
@@ -118,15 +120,6 @@ export class WidgetCrossFilterComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         this.selectedRowIndex = index;
-    }
-
-    clickCancel() {
-        // Clear the form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
-
-        this.sourceField = '';
-        this.targetTitle = '';
-        this.targetField = '';
     }
 
     clickAdd() {

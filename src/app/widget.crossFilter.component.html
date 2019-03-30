@@ -57,7 +57,7 @@
                         placeholder="Target Title"
                         >
                         <option *ngFor="let row of widgets; let i = index;">
-                            {{ row.name }}
+                            {{ row.titleText }}
                         </option>
                     </select>
 
@@ -82,7 +82,7 @@
                     <button
                         type="button"
                         class="btn btn-secondary"
-                        (click)="clickCancel()"
+                        (click)="clickClose()"
                         >
                         Cancel
                     </button>
