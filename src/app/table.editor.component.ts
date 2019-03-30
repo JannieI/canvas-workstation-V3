@@ -218,7 +218,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
                     // Tell user
                     this.hasClicked = true;
-                    this.errorMessage = 'Data retrieved - click row again to continue';
+                    this.errorMessage = '';
 
                 })
                 .catch(err => {
@@ -232,10 +232,15 @@ import { GlobalVariableService }      from './global-variable.service';
             let datasourceIndex: number = this.datasources.findIndex(
                 ds => ds.id == datasourceID
             );
-            if (datasourceIndex < 0) {        
+            if (datasourceIndex >= 0) {        
                 this.dataFieldNames = this.datasources[datasourceIndex].dataFields;
                 this.dataFieldLengths = this.datasources[datasourceIndex].dataFieldLengths;
                 this.dataFieldTypes = this.datasources[datasourceIndex].dataFieldTypes;
+
+                // Tell user
+                this.hasClicked = true;
+                this.errorMessage = '';
+
             };
         };
     }

@@ -62,9 +62,9 @@ export class WidgetExpandComponent implements OnInit {
             };
         })
         this.globalVariableService.currentDatasources.forEach(ds => {
+
             if (ds.id == this.selectDatasourceID) {
-                // TODO - remove this, currently datalib reads array as string a,b,c
-                let x: string = ds.dataFields.toString();
+                console.log('xx ds', ds)
                 this.datagridColumns = ds.dataFields;
             }
         });
