@@ -92,7 +92,15 @@ export class WidgetCrossFilterComponent implements OnInit {
             this.errorMessage = 'An error occured - the selected Widgets is null';
         };
 
-        this.widgets = this.globalVariableService.widgets
+        // For now, only show Ws on the same Tab
+        this.widgets = this.globalVariableService.currentWidgets
+            .filter(
+                w => w.dashboardID == this.globalVariableService.currentDashboardInfo
+                    .value.currentDashboardID 
+                &&
+                w.dashboardTabID == this.globalVariableService.currentDashboardInfo
+                    .value.currentDashboardTabID
+            )
             .sort( (a,b) => {
                 if (a.name < b.name) {
                     return 1;
