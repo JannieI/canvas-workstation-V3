@@ -45,6 +45,7 @@ export class WidgetCrossFilterComponent implements OnInit {
     editing: boolean = false;
     errorMessage: string = '';
     selectedRowIndex: number = -1;
+    selectedTargetWidgetID: number = -1;
     sourceField: string = '';
     sourceWidgetFields: string[] = [];
     targetField: string = '';
@@ -141,6 +142,10 @@ export class WidgetCrossFilterComponent implements OnInit {
         let widgetIndex: number = this.widgets.findIndex(w => w.titleText == ev.target.value);
         console.log('xx widgetIndex', widgetIndex)
         if (widgetIndex >= 0) {
+
+            // Set TargetID
+            this.selectedTargetWidgetID = this.widgets[widgetIndex].id;
+
             let datasourceIndex: number = this.globalVariableService.currentDatasources
                 .findIndex(ds => ds.id == this.widgets[widgetIndex].datasourceID);
             if (datasourceIndex >= 0) {
@@ -151,6 +156,8 @@ export class WidgetCrossFilterComponent implements OnInit {
                 };
             };
             console.log('xx this.targetWidgetFields', this.targetWidgetFields)
+        } else {
+            this.selectedTargetWidgetID = -1;
         };
     }
 
@@ -161,16 +168,23 @@ export class WidgetCrossFilterComponent implements OnInit {
         // Validation
         if (this.sourceField == '') {
             this.errorMessage = 'Source field is compulsory';
+            return;
         };
         if (this.targetTitle == '') {
             this.errorMessage = 'Target Widget title is compulsory';
+            return;
         };
         if (this.targetField == '') {
             this.errorMessage = 'Target field is compulsory';
+            return;
+        };
+        if (this.selectedTargetWidgetID == -1) {
+            this.errorMessage = 'Target Widget not selected';
+            return;
         };
 
         this.widgetFilter.push({
-            targetWidgetID: this.widgetFilter[this.selectedRowIndex].targetWidgetID,
+            targetWidgetID: this.selectedTargetWidgetID,
             sourceWidgetFiled: this.sourceField,
             targetWidgetTitle: this.targetTitle,
             targetWidgetField: this.targetField
