@@ -53,7 +53,7 @@ export class WidgetCrossFilterComponent implements OnInit {
     targetWidgetFields: string[] = [];
     widgetFilter: {
         targetWidgetID: number;
-        sourceWidgetFiled: string;
+        sourceWidgetField: string;
         targetWidgetTitle: string;
         targetWidgetField: string;
     }[] = [];
@@ -110,7 +110,7 @@ export class WidgetCrossFilterComponent implements OnInit {
 
                     this.widgetFilter.push({
                         targetWidgetID: wf.sourceWidgetID,
-                        sourceWidgetFiled: wf.sourceDatasourceField,
+                        sourceWidgetField: wf.sourceDatasourceField,
                         targetWidgetTitle: w.titleText,
                         targetWidgetField: wf.filterFieldName
                     });
@@ -182,10 +182,23 @@ export class WidgetCrossFilterComponent implements OnInit {
             this.errorMessage = 'Target Widget not selected';
             return;
         };
+        let widgetFilterIndex: number = this.widgetFilter.findIndex(wf =>
+            wf.sourceWidgetField == this.sourceField
+            &&
+            wf.targetWidgetID == this.selectedTargetWidgetID
+            &&
+            wf.targetWidgetTitle == this.targetTitle
+            &&
+            wf.targetWidgetField == this.targetField
+        );
+        if (widgetFilterIndex >= 0) {
+            this.errorMessage = 'This filter already exists';
+            return;
+        };
 
         this.widgetFilter.push({
+            sourceWidgetField: this.sourceField,
             targetWidgetID: this.selectedTargetWidgetID,
-            sourceWidgetFiled: this.sourceField,
             targetWidgetTitle: this.targetTitle,
             targetWidgetField: this.targetField
         });

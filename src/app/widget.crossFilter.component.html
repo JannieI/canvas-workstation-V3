@@ -104,7 +104,7 @@
                             No records ...
                         </clr-dg-placeholder>
                         <clr-dg-column>Delete</clr-dg-column>
-                        <clr-dg-column [clrDgField]='sourceWidgetFiled'>Source Field</clr-dg-column>
+                        <clr-dg-column [clrDgField]='sourceWidgetField'>Source Field</clr-dg-column>
                         <clr-dg-column [clrDgField]='targetWidgetTitle'>Target Title</clr-dg-column>
                         <clr-dg-column [clrDgField]='targetWidgetField'>Target Field</clr-dg-column>
                         <clr-dg-row
@@ -121,7 +121,7 @@
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
-                            <clr-dg-cell>{{ row.sourceWidgetFiled }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.sourceWidgetField }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.targetWidgetTitle }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.targetWidgetField }}</clr-dg-cell>
                         </clr-dg-row>
