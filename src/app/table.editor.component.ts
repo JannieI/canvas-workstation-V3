@@ -210,11 +210,9 @@ import { GlobalVariableService }      from './global-variable.service';
                     this.dataFieldLengths,
                     this.dataFieldTypes)
 
-                    // Add data to new Widget
-                    if (this.newWidget) {
-                        this.localWidget.datasourceID = datasourceID;
-                        this.globalVariableService.applyWidgetFilter(this.localWidget);
-                    };
+                    // Add data to Widget
+                    this.localWidget.datasourceID = datasourceID;
+                    this.globalVariableService.applyWidgetFilter(this.localWidget);
 
                     // Tell user
                     this.hasClicked = true;
@@ -227,6 +225,10 @@ import { GlobalVariableService }      from './global-variable.service';
                 });
     
         } else {
+
+            // Add data to Widget
+            this.localWidget.datasourceID = datasourceID;
+            this.globalVariableService.applyWidgetFilter(this.localWidget);
 
             // Update local vars
             let datasourceIndex: number = this.datasources.findIndex(
