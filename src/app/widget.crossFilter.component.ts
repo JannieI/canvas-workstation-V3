@@ -192,7 +192,7 @@ export class WidgetCrossFilterComponent implements OnInit {
 
         // Update target Widget
         let widgetIndex: number = this.widgets.findIndex(w => w.titleText == this.targetTitle);
-        console.log('xx widgetIndex', widgetIndex)
+
         if (widgetIndex >= 0) {
             let widgetFilter: WidgetFilter = {
                 id: null,
@@ -209,7 +209,6 @@ export class WidgetCrossFilterComponent implements OnInit {
                 isActive: true
             };
             this.selectedWidget.widgetFilters.push(widgetFilter);
-            console.log('xx this.selectedWidget', this.selectedWidget)
 
             // Save to DB
             this.globalVariableService.saveResource('widgets', this.selectedWidget)
