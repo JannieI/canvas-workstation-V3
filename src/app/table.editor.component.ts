@@ -237,6 +237,12 @@ import { GlobalVariableService }      from './global-variable.service';
                 this.dataFieldLengths = this.datasources[datasourceIndex].dataFieldLengths;
                 this.dataFieldTypes = this.datasources[datasourceIndex].dataFieldTypes;
 
+                // Load first few rows into preview
+                this.currentData = this.datasources[datasourceIndex].dataFiltered.slice(0,5);
+                console.log('xx getCurrDS', this.datasources[datasourceIndex], this.currentData, this.dataFieldNames,
+                this.dataFieldLengths,
+                this.dataFieldTypes)
+
                 // Tell user
                 this.hasClicked = true;
                 this.errorMessage = '';
@@ -282,31 +288,9 @@ import { GlobalVariableService }      from './global-variable.service';
 
         // Set width, depending on ColorField change
         if (this.newWidget) {
-            // if (this.localWidget.graphColorField != ''
-            //         &&  this.localWidget.graphColorField != null) {
-            //     this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
-            // } else {
-            //     this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
-            // };
-
-            // TODO - improve this when using a DB!
-            // let newID: number = 1;
-            // let ws: number[]=[];
-            // for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
-            //     ws.push(this.globalVariableService.widgets[i].id)
-            // };
-            // if (ws.length > 0) {
-            //     newID = Math.max(...ws) + 1;
-            // };
-            // this.localWidget.id = newID;
-
-            // ** TABIDS
-            // this.localWidget.dashboardTabIDs.push(this.globalVariableService.
-            //     currentDashboardInfo.value.currentDashboardTabID
-            // );
-
-            // this.globalVariableService.widgets.push(this.localWidget);
-            // this.globalVariableService.currentWidgets.push(this.localWidget);
+            this.localWidget.dataFields = this.dataFieldNames;
+            this.localWidget.dataFieldLengths = this.dataFieldLengths;
+            this.localWidget.dataFieldTypes = this.dataFieldTypes;
 
             this.globalVariableService.addResource('widgets', this.localWidget)
                 .then(res => {
