@@ -15,7 +15,7 @@ import { ViewChild }                  from '@angular/core';
 // Our models
 import { CSScolor }                   from './models';
 import { Datasource }                 from './models';
-import { GraphFilter }                from './models';
+import { WidgetFilter }                from './models';
 import { GraphHistory }               from './models';
 import { GraphCalculation }           from './models';
 import { Widget }                     from './models';
@@ -3363,7 +3363,7 @@ export interface dataSchemaInterface {
             });
             this.filterID = graphFilterID;
 
-            let graphFilter: GraphFilter = {
+            let graphFilter: WidgetFilter = {
                 id: this.filterID,
                 sequence: 0,        // For LATER use
                 filterType: 'WidgetFilter',

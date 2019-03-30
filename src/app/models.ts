@@ -1173,7 +1173,7 @@ export class GraphCalculation {
     calculatedDataType: string;             // Data type of newly calculated field
 }
 
-export class GraphFilter {
+export class WidgetFilter {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID
     filterType: string;                     // CrossFilter, WidgetFilter, SoftFilter
@@ -1510,7 +1510,7 @@ export class Widget {
     graphCalculations: GraphCalculation[];  // Array of calculations
 
     // Transformations: Filter
-    graphFilters: GraphFilter[];            // Array of filters
+    graphFilters: WidgetFilter[];            // Array of filters
     sampleNumberRows: number;               // Random rows to sample EACH time, 0 means all rows
 
     // Layers
