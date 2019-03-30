@@ -292,7 +292,7 @@ export class GlobalVariableService {
                         reject(res.message);
                         return;
                     };
-                    console.log('xx res returned', res)
+
                     this.currentDashboards = res.data.dashboards;
                     this.currentDashboardTabs  = res.data.dashboardTabs;
                     this.currentWidgets  = res.data.widgets;
@@ -364,12 +364,9 @@ export class GlobalVariableService {
                             );
                             let currentDSinWidgetIDs: number[] = Array.from(currentDSinWidgetIDSet);
 
-                            console.log('xx currentDSinWidgetIDs', currentDSinWidgetIDs)
                             // Get all currentDSids
                             let currentDSids: number[] = this.currentDatasources
                                 .map(ds => ds.id);
-                            console.log('xx 2')
-                            console.log('xx currentDSids', currentDSids)
 
                             // Get the data for those DS used in currentW and not in currentDS
                             let getCurrentDSPromises: any = [];
@@ -381,12 +378,10 @@ export class GlobalVariableService {
                                     getCurrentDSPromises.push(this.getCurrentDatasource(DSid));
                                 };
                             });
-                            console.log('xx 3')
 
                             // Execute all the getData promises
                             Promise.all(getCurrentDSPromises)
                                 .then( () => {
-                                    console.log('xx Promise.all', this.currentDatasources)
 
                                     // Get data and filter for each currentW
                                     this.currentWidgets.forEach(w => {
@@ -396,21 +391,20 @@ export class GlobalVariableService {
                                         };
 
                                     });
-                                    console.log('xx 4')
+
                                     // Add to recent
                                     this.amendDashboardRecent(
                                         dashboardID,
                                         dashboardTabID,
                                         this.currentDashboardInfo.value.currentDashboardState
                                     );
-                                    console.log('xx 5')
 
                                     // Set the EditMode according to the D State
                                     this.editMode.next(
                                         this.currentDashboardInfo.value
                                             .currentDashboardState == 'Draft'?  true  :  false
                                     );
-                                    console.log('xx 8')
+
                                     resolve(true)
 
                                 })
