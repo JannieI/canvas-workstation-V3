@@ -54,6 +54,7 @@
                     <select [(ngModel)]="targetTitle"
                         name="targetTitle"
                         title="Target Title"
+                        (change)="changeWidgetTitle($event)"
                         placeholder="Target Title"
                         >
                         <option *ngFor="let row of widgets; let i = index;">

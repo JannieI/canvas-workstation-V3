@@ -122,6 +122,21 @@ export class WidgetCrossFilterComponent implements OnInit {
         this.selectedRowIndex = index;
     }
 
+    changeWidgetTitle(ev: any) {
+        // User selected a Widget Title
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeWidgetTitle', '@Start');
+
+        console.log('xx ev', ev.target.value)
+        
+        // Find the Widget
+        // TODO - add id at later stage to cater for identical titles
+        let widgetIndex: number = this.widgets.findIndex(w => w.titleText == ev.target.value);
+        if (widgetIndex >= 0) {
+            this.targetWidgetFields = this.widgets[widgetIndex].dataFields;
+            console.log('xx this.targetWidgetFields', this.targetWidgetFields)
+        }
+    }
+
     clickAdd() {
         // Add new filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
