@@ -1177,7 +1177,7 @@ export class WidgetFilter {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID
     filterType: string;                     // CrossFilter, WidgetFilter, SoftFilter
-    sourceDatasourceID: number;             // For CrossFilter, source DSid
+    sourceWidgetID: number;                 // For CrossFilter, source Widget
     sourceDatasourceField: number;          // For CrossFilter, source Field
     sequence: number;                       // Sequence Nr - for LATER user
     filterFieldName: string;                // Name (text) of field

@@ -3367,7 +3367,7 @@ export interface dataSchemaInterface {
                 id: this.filterID,
                 sequence: 0,        // For LATER use
                 filterType: 'WidgetFilter',
-                sourceDatasourceID: null,
+                sourceWidgetID: null,
                 sourceDatasourceField: null,
                 filterFieldName: this.filterFieldName,
                 filterOperator: this.filterOperator,

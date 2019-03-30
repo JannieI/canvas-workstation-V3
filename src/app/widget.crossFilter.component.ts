@@ -163,6 +163,34 @@ export class WidgetCrossFilterComponent implements OnInit {
             targetWidgetTitle: this.targetTitle,
             targetWidgetField: this.targetField
         });
+        let graphFilter: WidgetFilter = {
+            id: this.filterID,
+            sequence: 0,        // For LATER use
+            filterType: 'WidgetFilter',
+            sourceDatasourceID: null,
+            sourceDatasourceField: null,
+            filterFieldName: this.filterFieldName,
+            filterOperator: this.filterOperator,
+            filterTimeUnit: this.filterTimeUnit,
+            filterValue: this.filterValue,
+            filterValueFrom: this.filterValueFrom,
+            filterValueTo: this.filterValueTo,
+            isActive: true
+        };
+
+        NB - only one Crossfilter per field per Widget from SAME sourceWidgetID
+        // Update the localWidget
+        // this.localWidget.widgetFilters.push(graphFilter);
+    }
+
+    clickDelete(i, row.id) {
+        // Delete Cross Filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+
+        let widgetIndex: number = this.widgets.findIndex(w => w.titleText == ev.target.value);
+        console.log('xx widgetIndex', widgetIndex)
+        if (widgetIndex >= 0) {
+        };
     }
 
     clickClose(action: string) {
