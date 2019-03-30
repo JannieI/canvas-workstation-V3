@@ -66,22 +66,6 @@ export class WidgetCrossFilterComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        this.widgetFilter.push({
-            targetWidgetID: 280,
-            sourceWidgetFiled: "My Field1",
-            targetWidgetTitle: "That Widget Title 1",
-            targetWidgetField: "That Widget Field"
-        });
-        this.widgetFilter.push({
-            targetWidgetID: 281,
-            sourceWidgetFiled: "My Field1",
-            targetWidgetTitle: "Other Widget Title 2",
-            targetWidgetField: "Other Widget Field"
-        });
-
-        if (this.widgetFilter.length > 0) {
-            this.selectedRowIndex = 0;
-        };
 
         console.log('xx this.selectedWidget', this.selectedWidget)
         if (this.selectedWidget != null) {
@@ -116,7 +100,27 @@ export class WidgetCrossFilterComponent implements OnInit {
                 };
                 return 0;
             })
+            
+        // Array for form
+        this.widgets.forEach(w => {
 
+            w.widgetFilters.forEach(wf => {
+                if (wf.sourceWidgetID == this.selectedWidget.id) {
+
+                    this.widgetFilter.push({
+                        targetWidgetID: wf.sourceWidgetID,
+                        sourceWidgetFiled: wf.sourceDatasourceField,
+                        targetWidgetTitle: w.titleText,
+                        targetWidgetField: wf.filterFieldName
+                    });
+                }]
+        
+                if (this.widgetFilter.length > 0) {
+                    this.selectedRowIndex = 0;
+                };
+            })
+        })
+    
     }
 
     clickRow(index: number, widgetFilterID: number) {
