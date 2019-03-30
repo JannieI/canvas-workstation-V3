@@ -102,18 +102,20 @@ export class WidgetCrossFilterComponent implements OnInit {
                 return 0;
             })
             
-        // Array for form
+        // Array of CrossFilters for form 
         this.widgets.forEach(w => {
 
             w.widgetFilters.forEach(wf => {
                 if (wf.sourceWidgetID == this.selectedWidget.id) {
 
-                    this.widgetFilter.push({
-                        targetWidgetID: wf.sourceWidgetID,
-                        sourceWidgetField: wf.sourceDatasourceField,
-                        targetWidgetTitle: w.titleText,
-                        targetWidgetField: wf.filterFieldName
-                    });
+                    if (wf.filterType == 'CrossFilter') {
+                        this.widgetFilter.push({
+                            targetWidgetID: wf.sourceWidgetID,
+                            sourceWidgetField: wf.sourceDatasourceField,
+                            targetWidgetTitle: w.titleText,
+                            targetWidgetField: wf.filterFieldName
+                        });
+                    };
                 };
         
                 if (this.widgetFilter.length > 0) {
