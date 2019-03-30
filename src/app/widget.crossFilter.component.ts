@@ -51,6 +51,7 @@ export class WidgetCrossFilterComponent implements OnInit {
     targetTitle: string = '';
     targetWidgetFields: string[] = [];
     widgetFilter: {
+        targetWidgetID: number;
         sourceWidgetFiled: string;
         targetWidgetTitle: string;
         targetWidgetField: string;
@@ -66,11 +67,13 @@ export class WidgetCrossFilterComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
         this.widgetFilter.push({
+            targetWidgetID: 280,
             sourceWidgetFiled: "My Field1",
             targetWidgetTitle: "That Widget Title 1",
             targetWidgetField: "That Widget Field"
         });
         this.widgetFilter.push({
+            targetWidgetID: 281,
             sourceWidgetFiled: "My Field1",
             targetWidgetTitle: "Other Widget Title 2",
             targetWidgetField: "Other Widget Field"
@@ -160,6 +163,7 @@ export class WidgetCrossFilterComponent implements OnInit {
         };
 
         this.widgetFilter.push({
+            targetWidgetID: targetWidgetID,
             sourceWidgetFiled: this.sourceField,
             targetWidgetTitle: this.targetTitle,
             targetWidgetField: this.targetField
@@ -180,12 +184,12 @@ export class WidgetCrossFilterComponent implements OnInit {
             isActive: true
         };
 
-        NB - only one Crossfilter per field per Widget from SAME sourceWidgetID
+        // NB - only one Crossfilter per field per Widget from SAME sourceWidgetID
         // Update the localWidget
         // this.localWidget.widgetFilters.push(graphFilter);
     }
 
-    clickDelete(i, row.id) {
+    clickDelete(index: number, targetWidgetID: number) {
         // Delete Cross Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
