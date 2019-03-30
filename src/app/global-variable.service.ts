@@ -4143,81 +4143,81 @@ export class GlobalVariableService {
         if (widget.widgetFilters == null) {
             widget.widgetFilters = [];
         };
-        let graphFilters = widget.widgetFilters.filter(gflt => gflt.isActive).slice();
+        let widgetFilters = widget.widgetFilters.filter(gflt => gflt.isActive).slice();
 
-        for (var i = 0; i < graphFilters.length; i++) {
+        for (var i = 0; i < widgetFilters.length; i++) {
 
             let filterSpec: any = null;
             let filterFieldDataType: string = 'string';
             let filterFieldDataTypeIndex: number = widget.dataschema.findIndex(
-                dat => dat.name == graphFilters[i].filterFieldName
+                dat => dat.name == widgetFilters[i].filterFieldName
             );
 
             if (filterFieldDataTypeIndex >= 0) {
                 filterFieldDataType = widget.dataschema[filterFieldDataTypeIndex].type;
             };
 
-            if (graphFilters[i].filterOperator == 'Not Equal') {
+            if (widgetFilters[i].filterOperator == 'Not Equal') {
                 if (filterFieldDataType == 'string'
                     ||
-                    graphFilters[i].filterTimeUnit.toLowerCase() == 'month') {
+                    widgetFilters[i].filterTimeUnit.toLowerCase() == 'month') {
                     filterSpec =
                         {"filter":
 
-                                "datum." + graphFilters[i].filterFieldName + " != '"
-                                + graphFilters[i].filterValue + "'"
+                                "datum." + widgetFilters[i].filterFieldName + " != '"
+                                + widgetFilters[i].filterValue + "'"
 
                         };
                 } else {
                     filterSpec =
                         {"filter":
 
-                                "datum." + graphFilters[i].filterFieldName + " != "
-                                + +graphFilters[i].filterValue
+                                "datum." + widgetFilters[i].filterFieldName + " != "
+                                + +widgetFilters[i].filterValue
 
                         };
                 };
             };
 
-            if (graphFilters[i].filterOperator == 'Equal') {
+            if (widgetFilters[i].filterOperator == 'Equal') {
                 if (filterFieldDataType == 'string'
                     ||
-                    graphFilters[i].filterTimeUnit.toLowerCase() == 'month') {
+                    widgetFilters[i].filterTimeUnit.toLowerCase() == 'month') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
-                                "equal": graphFilters[i].filterValue
+                                "field": widgetFilters[i].filterFieldName,
+                                "equal": widgetFilters[i].filterValue
                             }
                         };
                 } else {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
-                                "equal": +graphFilters[i].filterValue
+                                "field": widgetFilters[i].filterFieldName,
+                                "equal": +widgetFilters[i].filterValue
                             }
                         };
                 };
             };
 
 
-            if (graphFilters[i].filterOperator == 'Less Than') {
+            if (widgetFilters[i].filterOperator == 'Less Than') {
 
                 if (filterFieldDataType == 'string') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
-                                "lt": graphFilters[i].filterValue
+                                "field": widgetFilters[i].filterFieldName,
+                                "lt": widgetFilters[i].filterValue
                             }
                         };
                 } else {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
-                                "lt": +graphFilters[i].filterValue
+                                "field": widgetFilters[i].filterFieldName,
+                                "lt": +widgetFilters[i].filterValue
                             }
                         };
                 };
@@ -4225,79 +4225,79 @@ export class GlobalVariableService {
             };
 
 
-            if (graphFilters[i].filterOperator == 'Less Than Equal') {
+            if (widgetFilters[i].filterOperator == 'Less Than Equal') {
 
                 if (filterFieldDataType == 'string') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
-                                "lte": graphFilters[i].filterValue
+                                "field": widgetFilters[i].filterFieldName,
+                                "lte": widgetFilters[i].filterValue
                             }
                         };
                 } else {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
-                                "lte": +graphFilters[i].filterValue
+                                "field": widgetFilters[i].filterFieldName,
+                                "lte": +widgetFilters[i].filterValue
                             }
                         };
                 };
             };
 
-            if (graphFilters[i].filterOperator == 'Greater Than') {
+            if (widgetFilters[i].filterOperator == 'Greater Than') {
 
                 if (filterFieldDataType == 'string') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
-                                "gt": graphFilters[i].filterValue
+                                "field": widgetFilters[i].filterFieldName,
+                                "gt": widgetFilters[i].filterValue
                             }
                         };
                 } else {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
-                                "gt": +graphFilters[i].filterValue
+                                "field": widgetFilters[i].filterFieldName,
+                                "gt": +widgetFilters[i].filterValue
                             }
                         };
                 };
             };
 
-            if (graphFilters[i].filterOperator == 'Greater Than Equal') {
+            if (widgetFilters[i].filterOperator == 'Greater Than Equal') {
 
                 if (filterFieldDataType == 'string') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
-                                "gte": graphFilters[i].filterValue
+                                "field": widgetFilters[i].filterFieldName,
+                                "gte": widgetFilters[i].filterValue
                             }
                         };
                 } else {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
-                                "gte": +graphFilters[i].filterValue
+                                "field": widgetFilters[i].filterFieldName,
+                                "gte": +widgetFilters[i].filterValue
                             }
                         };
                 };
             };
 
-            if (graphFilters[i].filterOperator == 'Range') {
+            if (widgetFilters[i].filterOperator == 'Range') {
 
                 if (filterFieldDataType == 'number') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
+                                "field": widgetFilters[i].filterFieldName,
                                 "range": [
-                                    +graphFilters[i].filterValueFrom,
-                                    +graphFilters[i].filterValueTo
+                                    +widgetFilters[i].filterValueFrom,
+                                    +widgetFilters[i].filterValueTo
                                 ]
                             }
                         };
@@ -4306,26 +4306,26 @@ export class GlobalVariableService {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
+                                "field": widgetFilters[i].filterFieldName,
                                 "range": [
-                                    graphFilters[i].filterValueFrom,
-                                    graphFilters[i].filterValueTo
+                                    widgetFilters[i].filterValueFrom,
+                                    widgetFilters[i].filterValueTo
                                 ]
                             }
                         };
                 };
             };
 
-            if (graphFilters[i].filterOperator == 'One Of') {
+            if (widgetFilters[i].filterOperator == 'One Of') {
 
-                let fromTo: string[] = graphFilters[i].filterValue.split(',');
+                let fromTo: string[] = widgetFilters[i].filterValue.split(',');
                 if (fromTo.length > 0) {
                     if (filterFieldDataType == 'number') {
                         let fromToNumber: number[] = fromTo.map(x => +x);
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": graphFilters[i].filterFieldName,
+                                    "field": widgetFilters[i].filterFieldName,
                                     "oneOf": fromToNumber
                                 }
                             };
@@ -4334,7 +4334,7 @@ export class GlobalVariableService {
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": graphFilters[i].filterFieldName,
+                                    "field": widgetFilters[i].filterFieldName,
                                     "oneOf": fromTo
                                 }
                             };
@@ -4342,26 +4342,26 @@ export class GlobalVariableService {
                 };
             };
 
-            if (graphFilters[i].filterOperator == 'Valid') {
+            if (widgetFilters[i].filterOperator == 'Valid') {
 
                 if (filterFieldDataType == 'number') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].filterFieldName,
+                                "field": widgetFilters[i].filterFieldName,
                                 "valid": true
                             }
                         };
                 };
             };
 
-            if (graphFilters[i].filterOperator == 'Selection') {
+            if (widgetFilters[i].filterOperator == 'Selection') {
 
                 filterSpec = [
                     {"filter":
                         {
-                            "field": graphFilters[i].filterValue,
-                            "selection": graphFilters[i].filterValue
+                            "field": widgetFilters[i].filterValue,
+                            "selection": widgetFilters[i].filterValue
                         }
                     }
                 ];
@@ -4369,15 +4369,15 @@ export class GlobalVariableService {
 
             // Add to Vega Spec
             if (filterSpec != null) {
-                if (graphFilters[i].filterTimeUnit != '') {
-                    filterSpec['filter']['timeUnit'] = graphFilters[i].filterTimeUnit.toLowerCase();
+                if (widgetFilters[i].filterTimeUnit != '') {
+                    filterSpec['filter']['timeUnit'] = widgetFilters[i].filterTimeUnit.toLowerCase();
                 };
 
                 specification['transform'].push(filterSpec);
                 // widget.graphTransformations.push(graphTransformationSpec);
             };
 
-            console.warn('xx createVegaLiteSpec END FILTER widget.graphFilters', widget.widgetFilters);
+            console.warn('xx createVegaLiteSpec END FILTER widget.widgetFilters', widget.widgetFilters);
 
         }
 

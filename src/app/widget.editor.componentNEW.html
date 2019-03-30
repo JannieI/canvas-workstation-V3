@@ -142,7 +142,7 @@
                                 <clr-dg-column>Active?</clr-dg-column>
                                 <clr-dg-column>Delete?</clr-dg-column>
 
-                                <clr-dg-row *clrDgItems="let row of localWidget.graphFilters; let i = index"
+                                <clr-dg-row *clrDgItems="let row of localWidget.widgetFilters; let i = index"
                                     [style.background-color]="(i == selectedGraphFilterRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedGraphFilterRowIndex)? 'white' : 'gray'"
                                     (click)="clickGraphFilterRowSelect(i, row.id)"
@@ -4021,7 +4021,7 @@
                                 <clr-dg-column>Active?</clr-dg-column>
                                 <clr-dg-column>Delete?</clr-dg-column>
 
-                                <clr-dg-row *clrDgItems="let row of localWidget.graphFilters; let i = index"
+                                <clr-dg-row *clrDgItems="let row of localWidget.widgetFilters; let i = index"
                                     [style.background-color]="(i == selectedGraphFilterRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedGraphFilterRowIndex)? 'white' : 'gray'"
                                     (click)="clickGraphFilterRowSelect(i, row.id)"
