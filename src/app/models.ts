@@ -1176,6 +1176,9 @@ export class GraphCalculation {
 export class GraphFilter {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID
+    filterType: string;                     // CrossFilter, WidgetFilter, SoftFilter
+    sourceDatasourceID: number;             // For CrossFilter, source DSid
+    sourceDatasourceField: number;          // For CrossFilter, source Field
     sequence: number;                       // Sequence Nr - for LATER user
     filterFieldName: string;                // Name (text) of field
     filterOperator: string;                 // ie Equal, Less Than, etc
