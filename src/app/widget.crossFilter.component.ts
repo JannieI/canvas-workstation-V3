@@ -49,10 +49,10 @@ export class WidgetCrossFilterComponent implements OnInit {
     targetField: string = '';
     targetTitle: string = '';
     targetWidgetFields: string[] = [];
-    widgetFilter: { 
-        sourceWidgetFiled: string; 
-        targetWidgetTitle: string; 
-        targetWidgetField: string; 
+    widgetFilter: {
+        sourceWidgetFiled: string;
+        targetWidgetTitle: string;
+        targetWidgetField: string;
     }[] = [];
     widgets: Widget[] = [];
 
@@ -64,17 +64,17 @@ export class WidgetCrossFilterComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        this.widgetFilter.push({ 
+        this.widgetFilter.push({
             sourceWidgetFiled: "My Field1",
             targetWidgetTitle: "That Widget Title 1",
             targetWidgetField: "That Widget Field"
         });
-        this.widgetFilter.push({ 
+        this.widgetFilter.push({
             sourceWidgetFiled: "My Field1",
             targetWidgetTitle: "Other Widget Title 2",
             targetWidgetField: "Other Widget Field"
         });
-        
+
         if (this.widgetFilter.length > 0) {
             this.selectedRowIndex = 0;
         };
@@ -96,7 +96,7 @@ export class WidgetCrossFilterComponent implements OnInit {
         this.widgets = this.globalVariableService.currentWidgets
             .filter(
                 w => w.dashboardID == this.globalVariableService.currentDashboardInfo
-                    .value.currentDashboardID 
+                    .value.currentDashboardID
                 &&
                 w.dashboardTabID == this.globalVariableService.currentDashboardInfo
                     .value.currentDashboardTabID
@@ -112,7 +112,7 @@ export class WidgetCrossFilterComponent implements OnInit {
                 };
                 return 0;
             })
-        
+
     }
 
     clickRow(index: number, widgetFilterID: number) {
@@ -127,14 +127,20 @@ export class WidgetCrossFilterComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'changeWidgetTitle', '@Start');
 
         console.log('xx ev', ev.target.value)
-        
+
         // Find the Widget
         // TODO - add id at later stage to cater for identical titles
         let widgetIndex: number = this.widgets.findIndex(w => w.titleText == ev.target.value);
+        console.log('xx widgetIndex', widgetIndex)
         if (widgetIndex >= 0) {
-            this.targetWidgetFields = this.widgets[widgetIndex].dataFields;
+            let datasourceIndex: number = this.globalVariableService.currentDatasources
+                .findIndex(ds => ds.id == this.widgets[widgetIndex].datasourceID);
+            if (datasourceIndex >= 0) {
+                this.targetWidgetFields = this.globalVariableService.currentDatasources
+                    [datasourceIndex].dataFields;
+            };
             console.log('xx this.targetWidgetFields', this.targetWidgetFields)
-        }
+        };
     }
 
     clickAdd() {
@@ -152,7 +158,7 @@ export class WidgetCrossFilterComponent implements OnInit {
             this.errorMessage = 'Target field is compulsory';
         };
 
-        this.widgetFilter.push({ 
+        this.widgetFilter.push({
             sourceWidgetFiled: this.sourceField,
             targetWidgetTitle: this.targetTitle,
             targetWidgetField: this.targetField
