@@ -163,7 +163,7 @@ export class WidgetCrossFilterComponent implements OnInit {
         };
 
         this.widgetFilter.push({
-            targetWidgetID: targetWidgetID,
+            targetWidgetID: this.widgetFilter[this.selectedRowIndex].targetWidgetID,
             sourceWidgetFiled: this.sourceField,
             targetWidgetTitle: this.targetTitle,
             targetWidgetField: this.targetField
@@ -193,9 +193,15 @@ export class WidgetCrossFilterComponent implements OnInit {
         // Delete Cross Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
-        let widgetIndex: number = this.widgets.findIndex(w => w.titleText == ev.target.value);
-        console.log('xx widgetIndex', widgetIndex)
+        // Splice local Array
+        this.widgetFilter = this.widgetFilter.splice(index, 1);
+
+        let widgetIndex: number = this.globalVariableService.currentWidgets
+            .findIndex(w => w.id == targetWidgetID);
         if (widgetIndex >= 0) {
+            this.globalVariableService.currentWidgets[widgetIndex].widgetFilters =
+            this.globalVariableService.currentWidgets[widgetIndex].widgetFilters.filter(wf => wf.sourceWidgetID != this.selectedWidget.id);
+            this.globalVariableService.saveResource('widgets', this.globalVariableService.currentWidgets[widgetIndex])
         };
     }
 
