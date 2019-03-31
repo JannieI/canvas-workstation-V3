@@ -11,7 +11,8 @@
         <clr-datagrid class="">
 
             <clr-dg-column *ngFor="let row of dataFieldNames"
-            (click)="clickColumn($event)">  
+                [style.background-color]="calcBackgroundColour(row)"
+                (click)="clickColumn($event)">  
                 {{row}}
             </clr-dg-column>
 

@@ -42,6 +42,7 @@ export class TableSingleComponent {
     nrRecords: number = 0;
     pageSize: number = 10;
     selectedRowIndex: number = -1;
+    widgetFilterColumns: string[] = [];
     widgets: Widget[] = [];
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -112,6 +113,8 @@ export class TableSingleComponent {
                 if (wf.sourceWidgetID == this.table.id) {
 
                     if (wf.filterType == 'CrossFilter') {
+                        this.widgetFilterColumns.push(wf.filterFieldName);
+
                         this.localWidgetFilters.push({
                             sourceWidgetField: wf.sourceDatasourceField,
                             targetWidgetID: wf.sourceWidgetID,
@@ -125,7 +128,8 @@ export class TableSingleComponent {
                     this.selectedRowIndex = 0;
                 };
             })
-        })
+        });
+        console.log('xx this.widgetFilterColumns', this.widgetFilterColumns)
     }
 
     clickTable(ev: any) {
@@ -186,6 +190,17 @@ export class TableSingleComponent {
             });
         });
 
+    }
+
+    calcBackgroundColour(columnName: string): string {
+        // Calc the bg colour, based on in Widget Filter or not
+        this.globalFunctionService.printToConsole(this.constructor.name,'calcBackgroundColour', '@Start');
+
+        if (this.widgetFilterColumns.indexOf(columnName) >= 0) {
+            return 'gray';
+        } else {
+            return 'lightgray';
+        }
     }
 
 }
