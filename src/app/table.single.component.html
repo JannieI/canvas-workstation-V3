@@ -1,6 +1,6 @@
 <div #tableDOM class="table"
     [style.z-index]="100"
-    (click)="clickTable()"
+    (click)="clickTable($event)"
     [style.height.px]="table.containerHeight-12"
     [style.width.px]="table.containerWidth-2"
     >
@@ -14,8 +14,10 @@
                 {{row}}
             </clr-dg-column>
 
-            <clr-dg-row *clrDgItems="let row of currentData">
-                <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
+            <clr-dg-row *clrDgItems="let row of currentData"
+                (click)="clickNrRows($event)">
+                <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index"
+                    (click)="clickCell($event)">
                     {{ row[col] }}
                 </clr-dg-cell>
             </clr-dg-row>
