@@ -149,19 +149,41 @@ export class TableSingleComponent {
         let rowContent: string = ev.srcElement.parentElement.innerText;
         let rowContentArray: string[] = rowContent.split(/\r?\n/).map(x => x.trim());
         let cellPosition: number = rowContentArray.findIndex(x => x == cellContent);
-
         let columnHeader: string = '';
+
         if (cellPosition >= 0  &&  this.dataFieldNames.length > 0) {
             columnHeader = this.dataFieldNames[cellPosition];
         };
 
         console.log('xx cell', cellPosition, columnHeader, ev.srcElement.innerText, rowContent, rowContentArray.indexOf(cellContent), rowContentArray)
 
-        let widgetFilterIndex: number = this.localWidgetFilters.findIndex(wf =>
-            wf.sourceWidgetField == columnHeader
-        );
-        if (widgetFilterIndex >= 0) {
-        };
+        // this.localWidgetFilters.forEach(wf => {
+        //     if (wf.sourceWidgetField == columnHeader) {
+        //         console.log('xx wf', wf)
+        //     };
+        // });
+
+        // If a CrossFilter exists for the select column in the current Widget,
+        // Make the CrossFilter in the target Widget active, and refresh the Widget
+        this.widgets.forEach(w => {
+
+            w.widgetFilters.forEach(wf => {
+                if (wf.sourceWidgetID == this.table.id
+                    &&
+                    wf.sourceDatasourceField == columnHeader
+                    &&
+                    wf.filterType == 'CrossFilter') {
+
+                    console.log('xx wf', wf)
+                };
+        
+                if (this.localWidgetFilters.length > 0) {
+                    this.selectedRowIndex = 0;
+                };
+            })
+        })
+
+
     }
 
 }
