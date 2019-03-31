@@ -4195,7 +4195,6 @@ export class GlobalVariableService {
                 };
             };
 
-
             if (widgetFilters[i].filterOperator == 'Less Than') {
 
                 if (filterFieldDataType == 'string') {
@@ -4217,7 +4216,6 @@ export class GlobalVariableService {
                 };
 
             };
-
 
             if (widgetFilters[i].filterOperator == 'Less Than Equal') {
 

@@ -62,6 +62,16 @@ export class TableSingleComponent {
             .filter(d => d.id == this.table.datasourceID)[0].dataFiltered
             .slice(0, this.globalVariableService.canvasSettings.maxTableLength);
 
+        this.table.widgetFilters.forEach(wf => {
+            if (wf.filterType == 'CrossFilter' 
+                && wf.isActive == true) {
+                    console.log('xx d filter', wf.filterFieldName, wf.filterValue)
+                    this.currentData = this.currentData
+                        .filter(row => row[wf.filterFieldName] == wf.filterValue)
+            };
+
+        });
+
         // Totals
         this.nrRecords = this.currentData.length;
         this.hasTitle = this.table.containerHasTitle;
