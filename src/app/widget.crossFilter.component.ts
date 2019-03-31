@@ -124,7 +124,7 @@ export class WidgetCrossFilterComponent implements OnInit {
                     this.selectedRowIndex = 0;
                 };
             })
-        })
+        });
     
     }
 

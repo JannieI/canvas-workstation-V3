@@ -33,9 +33,16 @@ export class TableSingleComponent {
     dataFieldNames: string[] = [];
     dataFieldLengths: number[] = [];
     hasTitle: boolean;
+    localWidgetFilters: {
+        targetWidgetID: number;
+        sourceWidgetField: string;
+        targetWidgetTitle: string;
+        targetWidgetField: string;
+    }[] = [];
     nrRecords: number = 0;
     pageSize: number = 10;
-
+    selectedRowIndex: number = -1;
+    widgets: Widget[] = [];
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -65,6 +72,51 @@ export class TableSingleComponent {
         this.dataFieldNames = this.currentDatasources[0].dataFields;
         this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
 
+
+        // For now, only show Ws on the same Tab
+        this.widgets = this.globalVariableService.currentWidgets
+            .filter(
+                w => w.dashboardID == this.globalVariableService.currentDashboardInfo
+                    .value.currentDashboardID
+                &&
+                w.dashboardTabID == this.globalVariableService.currentDashboardInfo
+                    .value.currentDashboardTabID
+                &&
+                (w.widgetType == 'Graph'  ||  w.widgetType == 'Table')
+                &&
+                (w.id != this.table.id)
+            )
+            .sort( (a,b) => {
+                if (a.name < b.name) {
+                    return 1;
+                };
+                if (a.name > b.name) {
+                    return -1;
+                };
+                return 0;
+            })
+            
+        // Array of CrossFilters for form 
+        this.widgets.forEach(w => {
+
+            w.widgetFilters.forEach(wf => {
+                if (wf.sourceWidgetID == this.table.id) {
+
+                    if (wf.filterType == 'CrossFilter') {
+                        this.localWidgetFilters.push({
+                            sourceWidgetField: wf.sourceDatasourceField,
+                            targetWidgetID: wf.sourceWidgetID,
+                            targetWidgetTitle: w.titleText,
+                            targetWidgetField: wf.filterFieldName
+                        });
+                    };
+                };
+        
+                if (this.localWidgetFilters.length > 0) {
+                    this.selectedRowIndex = 0;
+                };
+            })
+        })
     }
 
     clickTable(ev: any) {
@@ -86,7 +138,7 @@ export class TableSingleComponent {
         // Handles click event in a Cell
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCell', '@Start');
 
-        console.log('xx cell', ev)
+        console.log('xx cell', ev.srcElement.innerText)
     }
 
 }
