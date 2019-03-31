@@ -72,7 +72,6 @@ export class TableSingleComponent {
         this.dataFieldNames = this.currentDatasources[0].dataFields;
         this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
 
-
         // For now, only show Ws on the same Tab
         this.widgets = this.globalVariableService.currentWidgets
             .filter(
@@ -134,11 +133,35 @@ export class TableSingleComponent {
         console.log('xx Row', ev)
     }
 
+    clickColumn(ev: any, newValue: number) {
+        // Enter changed amount of rows
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickColumn', '@Start');
+
+        this.allowEdit = !this.allowEdit;
+        console.log('xx Col', ev, ev.srcElement, ev.target)
+    }
+
     clickCell(ev: any) {
         // Handles click event in a Cell
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCell', '@Start');
 
-        console.log('xx cell', ev.srcElement.innerText)
+        let cellContent: string = ev.srcElement.innerText;
+        let rowContent: string = ev.srcElement.parentElement.innerText;
+        let rowContentArray: string[] = rowContent.split(/\r?\n/).map(x => x.trim());
+        let cellPosition: number = rowContentArray.findIndex(x => x == cellContent);
+
+        let columnHeader: string = '';
+        if (cellPosition >= 0  &&  this.dataFieldNames.length > 0) {
+            columnHeader = this.dataFieldNames[cellPosition];
+        };
+
+        console.log('xx cell', cellPosition, columnHeader, ev.srcElement.innerText, rowContent, rowContentArray.indexOf(cellContent), rowContentArray)
+
+        let widgetFilterIndex: number = this.localWidgetFilters.findIndex(wf =>
+            wf.sourceWidgetField == columnHeader
+        );
+        if (widgetFilterIndex >= 0) {
+        };
     }
 
 }
