@@ -11,9 +11,8 @@
         <clr-datagrid class="">
 
             <clr-dg-column *ngFor="let row of dataFieldNames"
-                [style.background-color]="calcBackgroundColour(row)"
                 (click)="clickColumn($event)">  
-                {{ row }} {{ calcWfilter(row) }}
+                {{ calcWfilter(row) }}{{ row }} 
             </clr-dg-column>
 
             <clr-dg-row *clrDgItems="let row of currentData"
