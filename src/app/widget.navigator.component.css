@@ -140,8 +140,9 @@
 
         .graphAreaRelationship {
             display: inline-block;
-            margin-left: 32px;
+            margin-left: 6px;
             margin-right: 12px;
+            width: 135px;
         }
 
         .graphAreaShowRoles {

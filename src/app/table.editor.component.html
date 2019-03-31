@@ -94,7 +94,7 @@
 
                 <div class="gridFields" *ngIf="!showDatasourcePopup">
                     <clr-datagrid [(clrDgSelected)]="selectedRow" [clrDgRowSelection]="true">
-                        <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
+                        <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-row *clrDgItems="let row of dataFieldNames" [clrDgItem]="row">
                             <clr-dg-cell
                                 id="fld"

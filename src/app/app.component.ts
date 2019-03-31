@@ -5494,7 +5494,9 @@ export class AppComponent implements OnInit {
             return;
         };
         if (!this.checkForOnlyOneWidget('Graph')) {
-            return;
+            if (!this.checkForOnlyOneWidget('Table')) {
+                return;
+            };
         };
 
         if (!this.menuOptionClickPreAction()) {
