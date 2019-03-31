@@ -157,12 +157,6 @@ export class TableSingleComponent {
 
         console.log('xx cell', cellPosition, columnHeader, ev.srcElement.innerText, rowContent, rowContentArray.indexOf(cellContent), rowContentArray)
 
-        // this.localWidgetFilters.forEach(wf => {
-        //     if (wf.sourceWidgetField == columnHeader) {
-        //         console.log('xx wf', wf)
-        //     };
-        // });
-
         // If a CrossFilter exists for the select column in the current Widget,
         // Make the CrossFilter in the target Widget active, and refresh the Widget
         this.widgets.forEach(w => {
@@ -173,16 +167,13 @@ export class TableSingleComponent {
                     wf.sourceDatasourceField == columnHeader
                     &&
                     wf.filterType == 'CrossFilter') {
-
-                    console.log('xx wf', wf)
+                        wf.isActive = true;
+                        console.log('xx refresh name wf', w.name, wf)
+                        this.globalVariableService.changedWidget.next(w);
                 };
         
-                if (this.localWidgetFilters.length > 0) {
-                    this.selectedRowIndex = 0;
-                };
-            })
-        })
-
+            });
+        });
 
     }
 
