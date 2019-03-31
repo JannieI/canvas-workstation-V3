@@ -144,7 +144,8 @@ dimensions is set in app.html, and cannot be changed here. -->
             >
             <select [(ngModel)]="selectedNodeType"
                 (change)="changeParentNodeType($event)"
-                name="filterTimeUnit"
+                name="selectedNodeType"
+                size="35"
                 >
                 <option *ngFor="let row of dropdownParentNodeTypes">
                     {{ row }}
@@ -170,7 +171,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             >
             <select [(ngModel)]="selectedParentNode"
                 (change)="changeParentNode($event)"
-                name="filterTimeUnit"
+                name="selectedParentNode"
                 >
                 <option *ngFor="let row of dropdownParentNodes">
                     {{ row }}
@@ -199,7 +200,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     <select id="selects_3"
                         [(ngModel)]="filterParentFieldName"
                         (change)="changeParentFilterField($event)"
-                        name="filterFieldName"
+                        name="filterParentFieldName"
                         >
                         <option *ngFor="let row of childFields">
                             {{ row }}
@@ -211,7 +212,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     <select id="selects_3"
                         [(ngModel)]="filterParentOperator"
                         (change)="changeParentFilterOperator($event)"
-                        name="filterOperator"
+                        name="filterParentOperator"
                         >
                         <option>Less Than</option>
                         <option>Less Than Equal</option>
@@ -230,7 +231,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     Value:
                     <input type="text"
                         [(ngModel)]="filterParentValue"
-                        name="filterValue"
+                        name="filterParentValue"
                         placeholder=""
                         title="Enter a value for the filter. "
                         >
@@ -340,7 +341,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             >
             <select [(ngModel)]="selectedRelationship"
                 (change)="changeRelationship($event)"
-                name="filterTimeUnit"
+                name="selectedRelationship"
                 >
                 <option *ngFor="let row of dropdownRelationships">
                     {{ row }}
@@ -369,7 +370,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     <select id="selects_3"
                         [(ngModel)]="filterChildFieldName"
                         (change)="changeChildFilterField($event)"
-                        name="filterFieldName"
+                        name="filterChildFieldName"
                         >
                         <option *ngFor="let row of parentFields">
                             {{ row }}
@@ -381,7 +382,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     <select id="selects_3"
                         [(ngModel)]="filterChildOperator"
                         (change)="changeChildFilterOperator($event)"
-                        name="filterOperator"
+                        name="filterChildOperator"
                         >
                         <option>Less Than</option>
                         <option>Less Than Equal</option>
@@ -400,7 +401,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     Value:
                     <input type="text"
                         [(ngModel)]="filterChildValue"
-                        name="filterValue"
+                        name="filterChildValue"
                         placeholder=""
                         title="Enter a value for the filter. "
                         >
