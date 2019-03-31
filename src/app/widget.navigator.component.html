@@ -145,7 +145,6 @@ dimensions is set in app.html, and cannot be changed here. -->
             <select [(ngModel)]="selectedNodeType"
                 (change)="changeParentNodeType($event)"
                 name="selectedNodeType"
-                size="35"
                 >
                 <option *ngFor="let row of dropdownParentNodeTypes">
                     {{ row }}
