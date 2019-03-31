@@ -13,7 +13,7 @@
             <clr-dg-column *ngFor="let row of dataFieldNames"
                 [style.background-color]="calcBackgroundColour(row)"
                 (click)="clickColumn($event)">  
-                {{row}}
+                {{ row }} {{ calcWfilter(row) }}
             </clr-dg-column>
 
             <clr-dg-row *clrDgItems="let row of currentData"
