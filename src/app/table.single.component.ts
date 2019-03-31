@@ -168,6 +168,7 @@ export class TableSingleComponent {
                     &&
                     wf.filterType == 'CrossFilter') {
                         wf.isActive = true;
+                        wf.filterValue = cellContent;
                         console.log('xx refresh name wf', w.name, wf)
                         this.globalVariableService.changedWidget.next(w);
                 };
