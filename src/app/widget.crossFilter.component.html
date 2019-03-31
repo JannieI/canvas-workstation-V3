@@ -108,7 +108,7 @@
                         <clr-dg-column [clrDgField]='targetWidgetTitle'>Target Title</clr-dg-column>
                         <clr-dg-column [clrDgField]='targetWidgetField'>Target Field</clr-dg-column>
                         <clr-dg-row
-                            *ngFor="let row of widgetFilter; let i = index"
+                            *ngFor="let row of localWidgetFilters; let i = index"
                             [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                             [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                             (click)="clickRow(i, row.id)"

@@ -51,7 +51,7 @@ export class WidgetCrossFilterComponent implements OnInit {
     targetField: string = '';
     targetTitle: string = '';
     targetWidgetFields: string[] = [];
-    widgetFilter: {
+    localWidgetFilters: {
         targetWidgetID: number;
         sourceWidgetField: string;
         targetWidgetTitle: string;
@@ -111,16 +111,16 @@ export class WidgetCrossFilterComponent implements OnInit {
                 if (wf.sourceWidgetID == this.selectedWidget.id) {
 
                     if (wf.filterType == 'CrossFilter') {
-                        this.widgetFilter.push({
-                            targetWidgetID: wf.sourceWidgetID,
+                        this.localWidgetFilters.push({
                             sourceWidgetField: wf.sourceDatasourceField,
+                            targetWidgetID: wf.sourceWidgetID,
                             targetWidgetTitle: w.titleText,
                             targetWidgetField: wf.filterFieldName
                         });
                     };
                 };
         
-                if (this.widgetFilter.length > 0) {
+                if (this.localWidgetFilters.length > 0) {
                     this.selectedRowIndex = 0;
                 };
             })
@@ -186,7 +186,7 @@ export class WidgetCrossFilterComponent implements OnInit {
             this.errorMessage = 'Target Widget not selected';
             return;
         };
-        let widgetFilterIndex: number = this.widgetFilter.findIndex(wf =>
+        let widgetFilterIndex: number = this.localWidgetFilters.findIndex(wf =>
             wf.sourceWidgetField == this.sourceField
             &&
             wf.targetWidgetID == this.selectedTargetWidgetID
@@ -204,7 +204,7 @@ export class WidgetCrossFilterComponent implements OnInit {
             return;
         };
 
-        this.widgetFilter.push({
+        this.localWidgetFilters.push({
             sourceWidgetField: this.sourceField,
             targetWidgetID: this.selectedTargetWidgetID,
             targetWidgetTitle: this.targetTitle,
@@ -215,6 +215,9 @@ export class WidgetCrossFilterComponent implements OnInit {
         let widgetIndex: number = this.widgets.findIndex(w => w.titleText == this.targetTitle);
 
         if (widgetIndex >= 0) {
+
+            // Get the target Widget, and add new WFilter to it
+            let targetWidget: Widget = this.widgets[widgetIndex];
             let widgetFilter: WidgetFilter = {
                 id: null,
                 sequence: 0,        // For LATER use
@@ -227,21 +230,19 @@ export class WidgetCrossFilterComponent implements OnInit {
                 filterValue: '',
                 filterValueFrom: '',
                 filterValueTo: '',
-                isActive: true
+                isActive: false
             };
-            this.selectedWidget.widgetFilters.push(widgetFilter);
+            targetWidget.widgetFilters.push(widgetFilter);
 
             // Save to DB
-            this.globalVariableService.saveResource('widgets', this.selectedWidget)
-                .then( res => console.log('xx Saved W to DB', res) )
+            this.globalVariableService.saveResource('widgets', targetWidget)
+                .then( res => console.log('xx Saved Target W to DB', res) )
                 .catch(err => {
                     this.errorMessage = err.slice(0, 100);
-                    console.error('Error in widget.crossFilter saving Widget: ' + err);
+                    console.error('Error in widget.crossFilter saving Target Widget: ' + err);
                 });
         };
-        // NB - only one Crossfilter per field per Widget from SAME sourceWidgetID
-        // Update the localWidget
-        // this.localWidget.widgetFilters.push(graphFilter);
+
     }
 
     clickDelete(index: number, targetWidgetID: number) {
@@ -249,8 +250,8 @@ export class WidgetCrossFilterComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         // Splice local Array
-        this.widgetFilter = this.widgetFilter.filter(wf => wf.targetWidgetID != targetWidgetID);
-        console.log('xx this.widgetFilter', this.widgetFilter, index, targetWidgetID)
+        this.localWidgetFilters = this.localWidgetFilters.filter(wf => wf.targetWidgetID != targetWidgetID);
+        console.log('xx this.widgetFilter', this.localWidgetFilters, index, targetWidgetID)
         let widgetIndex: number = this.globalVariableService.currentWidgets
             .findIndex(w => w.id == targetWidgetID);
         if (widgetIndex >= 0) {
