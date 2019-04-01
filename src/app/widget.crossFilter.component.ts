@@ -254,15 +254,16 @@ export class WidgetCrossFilterComponent implements OnInit {
 
     }
 
-    clickDelete(index: number, targetWidgetID: number) {
+    clickDelete(index: number, targetWidgetID: number, targetWidgetField: string) {
         // Delete Cross Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
-        console.log('xx this.widgetFilter', this.localWidgetFilters, index, targetWidgetID)
-        if (targetWidgetID) return;
-
         // Splice local Array
-        this.localWidgetFilters = this.localWidgetFilters.filter(wf => wf.targetWidgetID != targetWidgetID);
+        this.localWidgetFilters = this.localWidgetFilters
+            .filter(wf => wf.targetWidgetID != targetWidgetID  
+                    &&  
+                    wf.targetWidgetField != targetWidgetField
+                    );
         
         let widgetIndex: number = this.globalVariableService.currentWidgets
             .findIndex(w => w.id == targetWidgetID);
