@@ -338,6 +338,7 @@ export class AppComponent implements OnInit {
     showModalWidgetStoredTemplateSave: boolean = false
     showModalWidgetStoredTemplateInsertWidget: boolean = false
     showModalDataDictionary: boolean = false;
+    showModalWidgetFilterSummary: boolean = false;
     showModalDataDirectExport: boolean = false;
     showModalDataCreateSQLEditor: boolean = false;
     showModalDataDirectFileCSV: boolean = false;
@@ -2097,7 +2098,7 @@ export class AppComponent implements OnInit {
 
         this.showModalDataShare = false;
     }
-
+    showModalWidgetFilterSummary
     handleCloseDataDictionary(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDictionary', '@Start');
@@ -4932,6 +4933,37 @@ export class AppComponent implements OnInit {
         });
         this.showModalDashboardDataQuality = true;
     }
+
+    clickWidgetFilterSummary(widgetIndex: number = null) {
+        // Show the form for Widget Filter Summary for selected W
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickWidgetFilterSummary', '@Start');
+
+        if (widgetIndex == null) {
+
+            // Can only edit one W at a time, so ignore if multiple selected
+            if (!this.checkForOnlyOneWidget()) {
+                return;
+            };
+            if (!this.checkForOnlyOneWidget('Graph')) {
+                return;
+            };
+
+            this.currentWidgets.forEach(w => {
+                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                    this.selectedWidget = w;
+                };
+            });
+        } else {
+            this.selectedWidget = this.currentWidgets[widgetIndex];
+        };
+
+        if (!this.menuOptionClickPreAction()) {
+            return;
+        };
+
+        this.showModalWidgetFilterSummary = true;
+    }
+
 
     clickMenuWidgetDataDictionary(widgetIndex: number = null) {
         // Show the form of Data Dictionary for selected W
@@ -9131,6 +9163,14 @@ export class AppComponent implements OnInit {
 
     }
 
+    contextmenuWidgetHasFilters(index: number, id: number) {
+        // Open form with filters as the selected Widget has filters
+        this.globalFunctionService.printToConsole(this.constructor.name, 'contextmenuWidgetHasFilters', '@Start');
+
+        // Call the function for THIS W
+        this.clickWidgetFilterSummary(index);
+
+    }
     contextmenuWidgetDataDictionary(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Data Dictionary, of the DS linked to current
         // W, from the Title Bar

@@ -2358,10 +2358,12 @@
                 </b> -->
 
                 <!-- Widget Filters -->
-                <span style="display: inline-block; color: blue;" *ngIf="row.widgetFilters.length != 0">
+                <span *ngIf="row.widgetFilters?.length != 0"
+                    style="display: inline-block; color: blue; margin-left: 12px;"
+                    >
                     <clr-icon shape="filter-grid-circle"
                         class="dqIcon"
-                        (click)="contextmenuWidgetHasFilters($event, i, row.id)"
+                        (click)="contextmenuWidgetHasFilters(i, row.id)"
                         >
                     </clr-icon>
                 </span>
