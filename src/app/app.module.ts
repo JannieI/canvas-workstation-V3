@@ -56,6 +56,7 @@ import { WidgetEditorComponentNEW }      from './widget.editor.componentNEW';
 import { WidgetCheckpointsComponent } from './widget.checkpoints.component';
 import { WidgetLinksComponent }       from './widget.hyperlinks.component';
 import { WidgetCrossFilterComponent }          from './widget.crossFilter.component';
+import { WidgetFilterSummaryComponent }        from './widget.filterSummary.component';
 import { WidgetExpandComponent }      from './widget.expand.component';
 import { WidgetExportComponent }      from './widget.export.component';
 import { WidgetDeleteComponent }      from './widget.delete.component';
@@ -248,6 +249,7 @@ import { StatusbarComponent }         from './statusbar.component';
         WidgetCheckpointsComponent,
         WidgetLinksComponent,
         WidgetCrossFilterComponent,
+        WidgetFilterSummaryComponent,
         WidgetExpandComponent,
         WidgetExportComponent,
         WidgetDeleteComponent,
