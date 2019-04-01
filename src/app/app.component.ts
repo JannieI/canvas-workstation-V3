@@ -2098,7 +2098,17 @@ export class AppComponent implements OnInit {
 
         this.showModalDataShare = false;
     }
-    showModalWidgetFilterSummary
+    
+    handleCloseWidgetFilterSummary(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetFilterSummary', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalWidgetFilterSummary = false;
+    }
+
+
     handleCloseDataDictionary(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataDictionary', '@Start');
