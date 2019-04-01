@@ -263,13 +263,16 @@ export class WidgetCrossFilterComponent implements OnInit {
                     &&  
                     wf.targetWidgetField != targetWidgetField
                     );
-        
+        console.log('xx this.localWidgetFilters', this.localWidgetFilters)
         let widgetIndex: number = this.globalVariableService.currentWidgets
             .findIndex(w => w.id == targetWidgetID);
         if (widgetIndex >= 0) {
             this.globalVariableService.currentWidgets[widgetIndex].widgetFilters =
                 this.globalVariableService.currentWidgets[widgetIndex].widgetFilters
-                    .filter(wf => wf.sourceWidgetID != this.selectedWidget.id);
+                    .filter(wf => wf.sourceWidgetID != this.selectedWidget.id
+                        &&  
+                        wf.filterFieldName != targetWidgetField
+                    );
             this.globalVariableService.saveResource(
                 'widgets', 
                 this.globalVariableService.currentWidgets[widgetIndex]

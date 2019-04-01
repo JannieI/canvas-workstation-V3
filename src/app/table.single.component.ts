@@ -93,12 +93,7 @@ export class TableSingleComponent {
                 dfn = '*' + dfn;
             };
             this.dataFieldNameHeaders.push(dfn);
-            console.log('xx dfn', dfn)
         });
-        console.log('xx this.dataFieldNameHeaders', this.dataFieldNameHeaders)
-
-        
-
         
         this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
 
