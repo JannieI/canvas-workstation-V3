@@ -2100,7 +2100,7 @@ export class AppComponent implements OnInit {
     }
     
     handleCloseWidgetFilterSummary(action: string) {
-        //
+        // Handle close of Widget Filter Summary form
         this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetFilterSummary', '@Start');
 
         this.menuOptionClickPostAction();

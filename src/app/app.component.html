@@ -4802,6 +4802,13 @@
 </data-business-glossary>
 
 
+<!-- Modal: Widget Filter Summary -->
+<data-dictionary
+    *ngIf="showModalWidgetFilterSummary"
+    (formWidgetFilterSummaryClosed)="handleCloseWidgetFilterSummary($event)">Widget Filter Summary ...
+</data-dictionary>
+
+
 <!-- Modal: data Dictionary -->
 <data-dictionary
     *ngIf="showModalDataDictionary"
