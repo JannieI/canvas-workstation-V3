@@ -207,20 +207,7 @@ export class WidgetCrossFilterComponent implements OnInit {
             return;
         };
 
-        let dashboardIndex: number = this.globalVariableService.dashboards
-            .findIndex(d => d.id == this.selectedTargetWidgetID);
-        let dashboardDescription: string = '';
-        if (dashboardIndex >= 0) {
-            dashboardDescription = this.globalVariableService.dashboards[dashboardIndex].description;
-        };
-        
-        this.localWidgetFilters.push({
-            sourceWidgetField: this.sourceField,
-            targetWidgetID: this.selectedTargetWidgetID,
-            targetWidgetTitle: this.targetTitle,
-            targetDescription: dashboardDescription,
-            targetWidgetField: this.targetField
-        });
+        let widgetDescription: string = '';
 
         // Update target Widget
         let widgetIndex: number = this.widgets.findIndex(w => w.titleText == this.targetTitle);
@@ -229,6 +216,7 @@ export class WidgetCrossFilterComponent implements OnInit {
 
             // Get the target Widget, and add new WFilter to it
             let targetWidget: Widget = this.widgets[widgetIndex];
+            widgetDescription = targetWidget.description;
             let widgetFilter: WidgetFilter = {
                 id: null,
                 sequence: 0,        // For LATER use
@@ -253,6 +241,16 @@ export class WidgetCrossFilterComponent implements OnInit {
                     console.error('Error in widget.crossFilter saving Target Widget: ' + err);
                 });
         };
+
+        // Add, after getting the Widget Description
+        this.localWidgetFilters.push({
+            sourceWidgetField: this.sourceField,
+            targetWidgetID: this.selectedTargetWidgetID,
+            targetWidgetTitle: this.targetTitle,
+            targetDescription: widgetDescription,
+            targetWidgetField: this.targetField
+        });
+
 
     }
 
