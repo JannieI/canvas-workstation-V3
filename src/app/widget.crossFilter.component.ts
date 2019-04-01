@@ -55,6 +55,7 @@ export class WidgetCrossFilterComponent implements OnInit {
         targetWidgetID: number;
         sourceWidgetField: string;
         targetWidgetTitle: string;
+        targetDescription: string;
         targetWidgetField: string;
     }[] = [];
     widgets: Widget[] = [];
@@ -111,10 +112,12 @@ export class WidgetCrossFilterComponent implements OnInit {
                 if (wf.sourceWidgetID == this.selectedWidget.id) {
 
                     if (wf.filterType == 'CrossFilter') {
+
                         this.localWidgetFilters.push({
                             sourceWidgetField: wf.sourceDatasourceField,
                             targetWidgetID: wf.sourceWidgetID,
                             targetWidgetTitle: w.titleText,
+                            targetDescription: w.description,
                             targetWidgetField: wf.filterFieldName
                         });
                     };
@@ -208,6 +211,7 @@ export class WidgetCrossFilterComponent implements OnInit {
             sourceWidgetField: this.sourceField,
             targetWidgetID: this.selectedTargetWidgetID,
             targetWidgetTitle: this.targetTitle,
+            targetDescription: '',
             targetWidgetField: this.targetField
         });
 
