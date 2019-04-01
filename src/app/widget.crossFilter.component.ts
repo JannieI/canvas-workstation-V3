@@ -207,11 +207,18 @@ export class WidgetCrossFilterComponent implements OnInit {
             return;
         };
 
+        let dashboardIndex: number = this.globalVariableService.dashboards
+            .findIndex(d => d.id == this.selectedTargetWidgetID);
+        let dashboardDescription: string = '';
+        if (dashboardIndex >= 0) {
+            dashboardDescription = this.globalVariableService.dashboards[dashboardIndex].description;
+        };
+        
         this.localWidgetFilters.push({
             sourceWidgetField: this.sourceField,
             targetWidgetID: this.selectedTargetWidgetID,
             targetWidgetTitle: this.targetTitle,
-            targetDescription: '',
+            targetDescription: dashboardDescription,
             targetWidgetField: this.targetField
         });
 
