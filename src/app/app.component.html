@@ -2356,6 +2356,16 @@
                         [disabled]="true"
                         >
                 </b> -->
+
+                <!-- Widget Filters -->
+                <span style="display: inline-block; color: blue;" *ngIf="row.widgetFilters.length>0">
+                    <clr-icon shape="filter-grid-circle"
+                        class="dqIcon"
+                        (click)="contextmenuWidgetHasFilters($event, i, row.id)"
+                        >
+                    </clr-icon>
+                </span>
+                
                 <!-- Hyperlink -->
                 <span class="widgetJumpLink" *ngIf="row.hyperlinkDashboardID
                      && row.hyperlinkDashboardTabID"

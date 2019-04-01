@@ -10,9 +10,9 @@
         >
         <clr-datagrid class="">
 
-            <clr-dg-column *ngFor="let row of dataFieldNames"
+            <clr-dg-column *ngFor="let row of dataFieldNameHeaders"
                 (click)="clickColumn($event)">  
-                {{ calcWfilter(row) }}{{ row }} 
+                {{ row }} 
             </clr-dg-column>
 
             <clr-dg-row *clrDgItems="let row of currentData"

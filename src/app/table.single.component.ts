@@ -15,6 +15,7 @@ import { GlobalFunctionService }      from './global-function.service';
 // Our Models
 import { Widget }                     from './models'
 import { Datasource }                 from './models';
+import { differ } from 'vega-lite/build/src/util';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class TableSingleComponent {
     currentData: any = [];
     currentDatasources: Datasource[] = null;               // Current DS for the selected W
     dataFieldNames: string[] = [];
+    dataFieldNameHeaders: string[] = [];
     dataFieldLengths: number[] = [];
     hasTitle: boolean;
     localWidgetFilters: {
@@ -81,6 +83,23 @@ export class TableSingleComponent {
         this.currentDatasources = this.globalVariableService.currentDatasources
             .filter(ds => ds.id == this.table.datasourceID)
         this.dataFieldNames = this.currentDatasources[0].dataFields;
+        
+        this.dataFieldNameHeaders = [];
+        this.dataFieldNames.forEach(dfn => {
+            let dfnInwf: number = this.table.widgetFilters
+                .findIndex(wf => wf.filterFieldName == dfn);
+
+            if (dfnInwf >= 0) {
+                dfn = '*' + dfn;
+            };
+            this.dataFieldNameHeaders.push(dfn);
+            console.log('xx dfn', dfn)
+        });
+        console.log('xx this.dataFieldNameHeaders', this.dataFieldNameHeaders)
+
+        
+
+        
         this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
 
         // For now, only show Ws on the same Tab
