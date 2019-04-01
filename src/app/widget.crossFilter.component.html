@@ -106,6 +106,7 @@
                         <clr-dg-column>Delete</clr-dg-column>
                         <clr-dg-column [clrDgField]='sourceWidgetField'>Source Field</clr-dg-column>
                         <clr-dg-column [clrDgField]='targetWidgetTitle'>Target Title</clr-dg-column>
+                        <clr-dg-column [clrDgField]='targetWidgetTitle'>Target Description</clr-dg-column>
                         <clr-dg-column [clrDgField]='targetWidgetField'>Target Field</clr-dg-column>
                         <clr-dg-row
                             *ngFor="let row of localWidgetFilters; let i = index"
@@ -123,6 +124,7 @@
                             </clr-dg-cell>
                             <clr-dg-cell>{{ row.sourceWidgetField }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.targetWidgetTitle }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.targetDescription }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.targetWidgetField }}</clr-dg-cell>
                         </clr-dg-row>
                     </clr-datagrid>
