@@ -223,15 +223,4 @@ export class TableSingleComponent {
         }
     }
 
-    calcWfilter(columnName: string): string {
-        // Return * if given column in a Widget Filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'calcWfilter', '@Start');
-
-        if (this.widgetFilterColumns.indexOf(columnName) >= 0) {
-            return '*';
-        } else {
-            return '';
-        };
-    }
-
 }
