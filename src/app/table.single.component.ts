@@ -211,16 +211,5 @@ export class TableSingleComponent {
 
     }
 
-    // TODO - this was an experiment; remove later if decided not to use
-    calcBackgroundColour(columnName: string): string {
-        // Calc the bg colour, based on in Widget Filter or not
-        this.globalFunctionService.printToConsole(this.constructor.name,'calcBackgroundColour', '@Start');
-
-        if (this.widgetFilterColumns.indexOf(columnName) >= 0) {
-            return 'gray';
-        } else {
-            return 'lightgray';
-        }
-    }
 
 }

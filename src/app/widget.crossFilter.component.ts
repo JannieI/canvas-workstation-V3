@@ -76,7 +76,6 @@ export class WidgetCrossFilterComponent implements OnInit {
             if (datasourceIndex >= 0) {
                 this.sourceWidgetFields = this.globalVariableService.datasources[datasourceIndex].dataFields;
                 this.targetWidgetFields = this.globalVariableService.datasources[datasourceIndex].dataFields;
-                console.log('xx this.sourceWidgetFields', this.sourceWidgetFields)
             };
         } else {
             this.errorMessage = 'An error occured - the selected Widgets is null';
