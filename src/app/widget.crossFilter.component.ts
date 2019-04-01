@@ -115,7 +115,7 @@ export class WidgetCrossFilterComponent implements OnInit {
 
                         this.localWidgetFilters.push({
                             sourceWidgetField: wf.sourceDatasourceField,
-                            targetWidgetID: wf.sourceWidgetID,
+                            targetWidgetID: w.id,
                             targetWidgetTitle: w.titleText,
                             targetDescription: w.description,
                             targetWidgetField: wf.filterFieldName
@@ -258,9 +258,12 @@ export class WidgetCrossFilterComponent implements OnInit {
         // Delete Cross Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
+        console.log('xx this.widgetFilter', this.localWidgetFilters, index, targetWidgetID)
+        if (targetWidgetID) return;
+
         // Splice local Array
         this.localWidgetFilters = this.localWidgetFilters.filter(wf => wf.targetWidgetID != targetWidgetID);
-        console.log('xx this.widgetFilter', this.localWidgetFilters, index, targetWidgetID)
+        
         let widgetIndex: number = this.globalVariableService.currentWidgets
             .findIndex(w => w.id == targetWidgetID);
         if (widgetIndex >= 0) {

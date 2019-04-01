@@ -2358,7 +2358,7 @@
                 </b> -->
 
                 <!-- Widget Filters -->
-                <span style="display: inline-block; color: blue;" *ngIf="row.widgetFilters.length>0">
+                <span style="display: inline-block; color: blue;" *ngIf="row.widgetFilters.length != 0">
                     <clr-icon shape="filter-grid-circle"
                         class="dqIcon"
                         (click)="contextmenuWidgetHasFilters($event, i, row.id)"
