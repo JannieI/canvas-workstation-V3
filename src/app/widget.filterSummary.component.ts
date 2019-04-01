@@ -20,9 +20,9 @@ import { GlobalVariableService }      from './global-variable.service';
 
 
 @Component({
-    selector: 'widget-crossFilter',
-    templateUrl: './widget.crossFilter.component.html',
-    styleUrls: ['./widget.crossFilter.component.css']
+    selector: 'data-widgetFilterSummary',
+    templateUrl: './widget.filterSummary.component.html',
+    styleUrls: ['./widget.filterSummary.component.css']
 })
 export class WidgetFilterSummaryComponent implements OnInit {
 

@@ -4805,6 +4805,7 @@
 <!-- Modal: Widget Filter Summary -->
 <data-widgetFilterSummary
     *ngIf="showModalWidgetFilterSummary"
+    [selectedWidget]="selectedWidget"
     (formWidgetFilterSummaryClosed)="handleCloseWidgetFilterSummary($event)">Widget Filter Summary ...
 </data-widgetFilterSummary>
 
