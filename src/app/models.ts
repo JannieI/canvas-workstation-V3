@@ -305,7 +305,7 @@ export class CanvasUser {
     preferencePlaySound: boolean;                           // T/F - play a sound when showing a message on the StatusBar
     preferenceDebugSession: boolean;                        // T/F - switch on/off console.log, used by Developers & Deguggers
     preferenceAutoSync: boolean;                            // T/F - can auto sync
-    preferenceSnapToGrid: boolean;                          // T/F - snap Widgets to grid 
+    preferenceSnapToGrid: boolean;                          // T/F - snap Widgets to grid
     preferenceShowOpenStartupMessage: boolean;              // T/F - show open startup msg
     preferenceShowOpenDataCombinationMessage: boolean;      // T/F - show msg on open combination form
     preferenceShowViewStartupMessage: boolean;              // T/F - show msg on open view form
@@ -470,7 +470,7 @@ export class DatasourceCombinationSpec {
 
 export class MetaDataField {
     fieldName: string;                      // Name of the field
-    fieldAlias: string;                     // Optional Alias (ie SELECT TNX as Transaction) 
+    fieldAlias: string;                     // Optional Alias (ie SELECT TNX as Transaction)
     fieldType: string;                      // Type: string, number, boolean, Array
     length: number;                         // Maximum length of the field
     average: number;                        // Optional stats: average in Field
@@ -538,7 +538,7 @@ export class Datasource {
     // Where: External Limits
     rowLimitFromSource: number;             // Maximum nr rows to return (ie SQL ... LIMIT n), 0 means all
     timeoutLimitSeconds: number;            // Timeout (ie for Databases) in seconds, 0 means no limit
-     
+
     // Where: External Location for Files
     folder: string;                         // Folder from which the data was loaded: only applicable to files on Server
     fileName: string;                       // Filename from which the data was loaded
@@ -560,7 +560,7 @@ export class Datasource {
     serviceUrl: string;                     // URL of REST service
     serviceParams: string;                    // REST parameters (: Express req object)
     serviceQueryParams: string;                    // REST query parameters (? Express req object)
-    serviceHeaders: string;                    // REST optional headers 
+    serviceHeaders: string;                    // REST optional headers
 
     // Where: Location of Managed Connection, Connection created and managed outside of the DS
     connectionID: number;                   // Connection to DB
@@ -583,11 +583,11 @@ export class Datasource {
     nrWidgets: number;                      // Nr of Ws linked to this DS (at the moment)
 
     // Where: External location on client / external Source
-    sourceIsAccessable: boolean;            // True if Source can be read again.  False for browser uploaded files    
-    
+    sourceIsAccessable: boolean;            // True if Source can be read again.  False for browser uploaded files
+
     // Where: External Parameters (used for the external queries)
     queryParameters: string;                // SQL Paramters, Mongo Parameters
-    
+
     // Where: Internal location on Canvas Server / Caching info
     // Note: for now, clientData is not cached in Server or Workstation Memory
     cacheResultsOnServer: boolean;          // True if results may be cached on server. Each Tr is decided separately
@@ -900,9 +900,9 @@ export class Dashboard {
     isSample: boolean;                      // True if this is a sample
 
     // Overlay looks
-    backgroundColor: string;                // Actual color of X gridline in hex, rgb, etc    
+    backgroundColor: string;                // Actual color of X gridline in hex, rgb, etc
     backgroundColorName: string;            // Name of color for X gridlines
-    backgroundImage: string;                // Image 
+    backgroundImage: string;                // Image
     templateDashboardID: number;            // ID of template Dashboard shown behind this Dashboard
 
     // Creation, update and refresh
@@ -1481,8 +1481,8 @@ export class Widget {
 
     // Data
     graphUrl: string;                       // URL of data
-    dataFiltered: any;                      // Actual data as an Array ~ 
-    // W-Filter applied to currentDS.dataFiltered 
+    dataFiltered: any;                      // Actual data as an Array ~
+    // W-Filter applied to currentDS.dataFiltered
 
     // Title
     graphTitleText: string;                 // Text to show in Title
@@ -1673,7 +1673,7 @@ export class CanvasHttpResponse {
             "serverName": string;           // Name of Server
             "serverType": string;           // Type of Server
         };
-        "database": 
+        "database":
         {
             "databaseName": string;         // Name of Database involved
         },
@@ -1705,8 +1705,8 @@ export class CanvasHttpResponse {
 }
 
 export class NavigatorNetwork {
-    id: number; 
-    name: string; 
+    id: number;
+    name: string;
     description: string;
     userPermissions: string[];
     groupPermissions: string[];
@@ -1714,29 +1714,29 @@ export class NavigatorNetwork {
 }
 
 export class NavigatorParentRelatedChild {
-    id: number; 
+    id: number;
     networkID: number;
-    parentNodeID: number; 
-    parentNodeType: string; 
-    parentNode: string; 
-    relationship: string; 
+    parentNodeID: number;
+    parentNodeType: string;
+    parentNode: string;
+    relationship: string;
     childNodeType: string;
     childNode: string;
     role: string;
 }
 
 export class NavigatorNodeTypeFields {
-    id: number; 
-    nodeType: string; 
-    fields: string[]; 
+    id: number;
+    nodeType: string;
+    fields: string[];
 }
 
 export class NavigatorNodeProperties {
-    id: number; 
-    sourceRecordID: number; 
-    nodeType: string; 
-    node: string; 
-    sector: string; 
+    id: number;
+    sourceRecordID: number;
+    nodeType: string;
+    node: string;
+    sector: string;
     country: string;
     city: string;
     age: number;
@@ -1744,20 +1744,20 @@ export class NavigatorNodeProperties {
 }
 
 export class NavigatorWatchList {
-    id: number; 
-    userID: string; 
-    nodeType: string; 
-    nodes: string[]; 
+    id: number;
+    userID: string;
+    nodeType: string;
+    nodes: string[];
 }
 
 export class NavigatorHistory {
-    id: number; 
+    id: number;
     text: string;
     networkID: number;
-    parentNodeID: number; 
-    parentNodeType: string; 
-    parentNode: string; 
-    relationship: string; 
+    parentNodeID: number;
+    parentNodeType: string;
+    parentNode: string;
+    relationship: string;
     showRoles: boolean;
     parentNodeFiler:
         {

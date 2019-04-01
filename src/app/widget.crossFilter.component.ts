@@ -69,7 +69,6 @@ export class WidgetCrossFilterComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        console.log('xx this.selectedWidget', this.selectedWidget)
         if (this.selectedWidget != null) {
             let datasourceIndex: number = this.globalVariableService.datasources
                 .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
@@ -141,12 +140,10 @@ export class WidgetCrossFilterComponent implements OnInit {
         // User selected a Widget Title
         this.globalFunctionService.printToConsole(this.constructor.name,'changeWidgetTitle', '@Start');
 
-        console.log('xx ev', ev.target.value)
-
         // Find the Widget
         // TODO - add id at later stage to cater for identical titles
         let widgetIndex: number = this.widgets.findIndex(w => w.titleText == ev.target.value);
-        console.log('xx widgetIndex', widgetIndex)
+
         if (widgetIndex >= 0) {
 
             // Set TargetID
@@ -161,7 +158,6 @@ export class WidgetCrossFilterComponent implements OnInit {
                     this.targetField = this.targetWidgetFields[0];
                 };
             };
-            console.log('xx this.targetWidgetFields', this.targetWidgetFields)
         } else {
             this.selectedTargetWidgetID = -1;
         };
@@ -234,7 +230,7 @@ export class WidgetCrossFilterComponent implements OnInit {
 
             // Save to DB
             this.globalVariableService.saveResource('widgets', targetWidget)
-                .then( res => console.log('xx Saved Target W to DB', res) )
+                .then( res => console.log('Saved Target W to DB', res) )
                 .catch(err => {
                     this.errorMessage = err.slice(0, 100);
                     console.error('Error in widget.crossFilter saving Target Widget: ' + err);
@@ -253,31 +249,42 @@ export class WidgetCrossFilterComponent implements OnInit {
 
     }
 
-    clickDelete(index: number, targetWidgetID: number, targetWidgetField: string) {
+    clickDelete(
+        index: number, 
+        sourceWidgetField: string, 
+        targetWidgetID: number, 
+        targetWidgetField: string
+        ) {
         // Delete Cross Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         // Splice local Array
         this.localWidgetFilters = this.localWidgetFilters
-            .filter(wf => wf.targetWidgetID != targetWidgetID  
+            .filter(wf => !(wf.sourceWidgetField == sourceWidgetField
+                    &&
+                    wf.targetWidgetID == targetWidgetID  
                     &&  
-                    wf.targetWidgetField != targetWidgetField
-                    );
-        console.log('xx this.localWidgetFilters', this.localWidgetFilters)
+                    wf.targetWidgetField == targetWidgetField)
+            );
+
         let widgetIndex: number = this.globalVariableService.currentWidgets
             .findIndex(w => w.id == targetWidgetID);
         if (widgetIndex >= 0) {
             this.globalVariableService.currentWidgets[widgetIndex].widgetFilters =
                 this.globalVariableService.currentWidgets[widgetIndex].widgetFilters
                     .filter(wf => wf.sourceWidgetID != this.selectedWidget.id
-                        &&  
-                        wf.filterFieldName != targetWidgetField
+                            && 
+                            wf.sourceDatasourceField != sourceWidgetField
+                            &&
+                            wf.sourceWidgetID != this.selectedWidget.id
+                            &&  
+                            wf.filterFieldName != targetWidgetField
                     );
             this.globalVariableService.saveResource(
                 'widgets', 
                 this.globalVariableService.currentWidgets[widgetIndex]
             )
-            .then( res => console.log('xx Saved W to DB') )
+            .then( res => console.log('Saved W to DB') )
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in widget.crossFilter saving Widget: ' + err);
