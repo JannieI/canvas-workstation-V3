@@ -162,50 +162,6 @@ export class WidgetFilterSummaryComponent implements OnInit {
         };
     }
 
-
-    clickDelete(
-        index: number, 
-        sourceWidgetField: string, 
-        targetWidgetID: number, 
-        targetWidgetField: string
-        ) {
-        // Delete Cross Filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
-
-        // Splice local Array
-        this.localWidgetFilters = this.localWidgetFilters
-            .filter(wf => !(wf.sourceWidgetField == sourceWidgetField
-                    &&
-                    wf.targetWidgetID == targetWidgetID  
-                    &&  
-                    wf.targetWidgetField == targetWidgetField)
-            );
-
-        let widgetIndex: number = this.globalVariableService.currentWidgets
-            .findIndex(w => w.id == targetWidgetID);
-        if (widgetIndex >= 0) {
-            this.globalVariableService.currentWidgets[widgetIndex].widgetFilters =
-                this.globalVariableService.currentWidgets[widgetIndex].widgetFilters
-                    .filter(wf => wf.sourceWidgetID != this.selectedWidget.id
-                            && 
-                            wf.sourceDatasourceField != sourceWidgetField
-                            &&
-                            wf.sourceWidgetID != this.selectedWidget.id
-                            &&  
-                            wf.filterFieldName != targetWidgetField
-                    );
-            this.globalVariableService.saveResource(
-                'widgets', 
-                this.globalVariableService.currentWidgets[widgetIndex]
-            )
-            .then( res => console.log('Saved W to DB') )
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in widget.crossFilter saving Widget: ' + err);
-            });
-        };
-    }
-
     clickClose(action: string) {
         // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
