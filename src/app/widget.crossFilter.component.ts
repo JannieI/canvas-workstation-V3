@@ -233,9 +233,7 @@ export class WidgetCrossFilterComponent implements OnInit {
                 .then( res => {
 
                     // Refresh the target Widget, so that the filter icon in the title is updated
-                    this.globalVariableService.changedWidget.next(
-                        this.globalVariableService.currentWidgets[widgetIndex]
-                    );
+                    this.globalVariableService.changedWidget.next(targetWidget);
 
                 })
                 .catch(err => {

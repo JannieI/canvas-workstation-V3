@@ -1125,21 +1125,34 @@
                             Edit Table
                         </button>
 
-                        <div class="dropdown-divider"></div>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuTableComments()"
-                            title="Comments for selected Table"
-                            >
-                            Comments
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuWidgetContainer('Table')"
-                            title="Change container properties for selected Table"
-                            >
-                            Container
-                        </button>
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Submenu with more options"
+                                >
+                                Details
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuTableComments()"
+                                    title="Comments for selected Table"
+                                    >
+                                    Comments
+                                </button>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuWidgetContainer('Table')"
+                                    title="Change container properties for selected Table"
+                                    >
+                                    Container
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
                         <button type="button"
                             clrDropdownItem
                             (click)="clickMenuTableDataQuality()"
