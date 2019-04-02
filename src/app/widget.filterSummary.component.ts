@@ -42,21 +42,16 @@ export class WidgetFilterSummaryComponent implements OnInit {
 
     }
 
+    datasourceDetails: string = '';
     editing: boolean = false;
     errorMessage: string = '';
     selectedRowIndex: number = -1;
-    selectedTargetWidgetID: number = -1;
-    sourceField: string = '';
-    sourceWidgetFields: string[] = [];
-    targetField: string = '';
-    targetTitle: string = '';
     localWidgetFilters: {
         sourceWidgetTitle: string;
         sourceDescription: string;
         sourceWidgetField: string;
         targetWidgetField: string;
     }[] = [];
-    widgets: Widget[] = [];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -71,57 +66,27 @@ export class WidgetFilterSummaryComponent implements OnInit {
             let datasourceIndex: number = this.globalVariableService.datasources
                 .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
             if (datasourceIndex >= 0) {
-                this.sourceWidgetFields = this.globalVariableService.datasources[datasourceIndex].dataFields;
+                this.datasourceDetails = 
+                    this.globalVariableService.datasources[datasourceIndex].name + ' - ' 
+                    + this.globalVariableService.datasources[datasourceIndex].description;
             };
         } else {
             this.errorMessage = 'An error occured - the selected Widgets is null';
         };
 
-        // For now, only show Ws on the same Tab
-        this.widgets = this.globalVariableService.currentWidgets
-            .filter(
-                w => w.dashboardID == this.globalVariableService.currentDashboardInfo
-                    .value.currentDashboardID
-                &&
-                w.dashboardTabID == this.globalVariableService.currentDashboardInfo
-                    .value.currentDashboardTabID
-                &&
-                (w.widgetType == 'Graph'  ||  w.widgetType == 'Table')
-                &&
-                (w.id != this.selectedWidget.id)
-            )
-            .sort( (a,b) => {
-                if (a.name < b.name) {
-                    return 1;
-                };
-                if (a.name > b.name) {
-                    return -1;
-                };
-                return 0;
-            })
             
         // Array of CrossFilters for form 
-        this.widgets.forEach(w => {
+        this.selectedWidget.widgetFilters.forEach(wf => {
 
-            w.widgetFilters.forEach(wf => {
-                if (wf.sourceWidgetID == this.selectedWidget.id) {
+            if (wf.filterType == 'CrossFilter') {
 
-                    if (wf.filterType == 'CrossFilter') {
-
-                        this.localWidgetFilters.push({
-                            sourceWidgetField: wf.sourceDatasourceField,
-                            targetWidgetID: w.id,
-                            targetWidgetTitle: w.titleText,
-                            targetDescription: w.description,
-                            targetWidgetField: wf.filterFieldName
-                        });
-                    };
-                };
-        
-                if (this.localWidgetFilters.length > 0) {
-                    this.selectedRowIndex = 0;
-                };
-            })
+                this.localWidgetFilters.push({
+                    sourceWidgetTitle: '',
+                    sourceDescription: '',
+                    sourceWidgetField: '',
+                    targetWidgetField: ''
+                });
+            };
         });
     
     }
