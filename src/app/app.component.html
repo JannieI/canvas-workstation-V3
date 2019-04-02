@@ -1153,33 +1153,55 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuTableDataQuality()"
-                            title="Data quality issues for selected Table"
-                            >
-                            Data Quality
-                        </button>
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Submenu with more options"
+                                >
+                                Data Related
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuWidgetCrossFilter()"
+                                    title="Define a cross filter for selected Widget"
+                                    >
+                                    Cross Filter
+                                </button>
+
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuTableDataQuality()"
+                                    title="Data quality issues for selected Table"
+                                    >
+                                    Data Quality
+                                </button>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuTableExpand()"
+                                    title="Expand Dataset for selected Table"
+                                    >
+                                    Expand
+                                </button>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuTableExport()"
+                                    title="Export Dataset for selected Table"
+                                    >
+                                    Export
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+
                         <button type="button"
                             clrDropdownItem
                             (click)="clickMenuPaletteDuplicate()"
                             title="Duplicate selected Table"
                             >
                             Duplicate
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuTableExpand()"
-                            title="Expand Dataset for selected Table"
-                            >
-                            Expand
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuTableExport()"
-                            title="Export Dataset for selected Table"
-                            >
-                            Export
                         </button>
                         <button type="button"
                             clrDropdownItem
