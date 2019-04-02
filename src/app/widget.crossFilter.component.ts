@@ -284,7 +284,13 @@ export class WidgetCrossFilterComponent implements OnInit {
                 'widgets', 
                 this.globalVariableService.currentWidgets[widgetIndex]
             )
-            .then( res => console.log('Saved W to DB') )
+            .then( res => {
+
+                // Refresh the target Widget, so that the filter icon in the title is updated
+                this.globalVariableService.changedWidget.next(
+                    this.globalVariableService.currentWidgets[widgetIndex]
+                );
+            } )
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in widget.crossFilter saving Widget: ' + err);
