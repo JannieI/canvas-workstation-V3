@@ -8,7 +8,7 @@
                 </button>
 
                 <div class="gridTitle">
-                    <b>Cross Filter definitions: </b>
+                    <b>Widget Filter summary: </b>
                     <clr-signpost>
                         <clr-icon shape="info-circle"
                             clrSignpostTrigger>
@@ -32,70 +32,19 @@
                     {{ errorMessage }}
                 </div>
 
-                <div class="gridSourceFieldTitle">
+                <div class="gridDataourceTitle">
                     <b>Source:</b>
                 </div>
-                <div class="gridSourceField">
-                    <select [(ngModel)]="sourceField"
-                        name="sourceField"
-                        title="Source Field"
-                        placeholder="Source Field"
-                        >
-                        <option *ngFor="let row of sourceWidgetFields; let i = index;">
-                            {{ row }}
-                        </option>
-                    </select>
+                <div class="gridDataource">
+                    Data source Name and Description
                 </div>
 
-                <div class="gridTargetTitleTitle">
+                <div class="gridMetaDataTitle">
                     <b>Target Title:</b>
                 </div>
-                <div class="gridTargetTitle">
-                    <select [(ngModel)]="targetTitle"
-                        name="targetTitle"
-                        title="Target Title"
-                        (change)="changeWidgetTitle($event)"
-                        placeholder="Target Title"
-                        >
-                        <option *ngFor="let row of widgets; let i = index;">
-                            {{ row.titleText }}
-                        </option>
-                    </select>
+                <div class="gridMetaData">
+                    Meta Data
 
-                    </div>
-
-                <div class="gridTargetFieldTitle">
-                    <b>Target Field:</b>
-                </div>
-                <div class="gridTargetField">
-                    <select [(ngModel)]="targetField"
-                        name="targetField"
-                        title="Target Field"
-                        placeholder="Target Field"
-                        >
-                        <option *ngFor="let row of targetWidgetFields; let i = index;">
-                            {{ row }}
-                        </option>
-                    </select>
-                </div>
-
-                <div class="gridButtonCancel">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        (click)="clickClose()"
-                        >
-                        Cancel
-                    </button>
-                </div>
-                <div class="gridButtonAdd">
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        (click)="clickAdd()"
-                        >
-                        Add
-                    </button>
                 </div>
 
                 <div class="gridFilterTable">

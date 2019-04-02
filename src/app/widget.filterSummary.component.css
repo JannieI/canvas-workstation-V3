@@ -54,7 +54,7 @@
         text-align: left;
     }
 
-    .gridSourceFieldTitle {
+    .gridDataourceTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 2;
@@ -63,70 +63,31 @@
         margin-left: 20px;
         text-align: left;
     }
-    .gridSourceField {
+    .gridDataource {
         grid-column-start: 2;
         /* autoprefixer: off */
-        grid-column-end: 4;
+        grid-column-end: 14;
         grid-row-start: 3;
         grid-row-end: 4;
         margin-left: 20px;
         text-align: left;
     }
 
-    .gridTargetTitleTitle {
-        grid-column-start: 5;
+    .gridMetaDataTitle {
+        grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 7;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-column-end: 2;
+        grid-row-start: 5;
+        grid-row-end: 6;
         text-align: left;
     }
-    .gridTargetTitle {
-        grid-column-start: 6;
-        /* autoprefixer: off */
-        grid-column-end: 10;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin-left: 12px;
-        text-align: left;
-    }
-
-    .gridTargetFieldTitle {
-        grid-column-start: 10;
-        /* autoprefixer: off */
-        grid-column-end: 12;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        text-align: left;
-    }
-    .gridTargetField {
-        grid-column-start: 11;
+    .gridMetaData {
+        grid-column-start: 2;
         /* autoprefixer: off */
         grid-column-end: 15;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 5;
+        grid-row-end: 6;
         margin-left: 12px;
-        text-align: left;
-    }
-
-    .gridButtonCancel {
-        grid-column-start: 2;
-        /* autoprefixer: off */
-        grid-column-end: 5;
-        grid-row-start: 4;
-        grid-row-end: 5;
-        margin-left: 20px;
-        margin-top: 12px;
-        text-align: left;
-    }
-    .gridButtonAdd {
-        grid-column-start: 5;
-        /* autoprefixer: off */
-        grid-column-end: 7;
-        grid-row-start: 4;
-        grid-row-end: 5;
-        margin-left: 20px;
-        margin-top: 12px;
         text-align: left;
     }
 
