@@ -50,7 +50,6 @@ export class WidgetFilterSummaryComponent implements OnInit {
     sourceWidgetFields: string[] = [];
     targetField: string = '';
     targetTitle: string = '';
-    targetWidgetFields: string[] = [];
     localWidgetFilters: {
         sourceWidgetTitle: string;
         sourceDescription: string;
@@ -73,7 +72,6 @@ export class WidgetFilterSummaryComponent implements OnInit {
                 .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
             if (datasourceIndex >= 0) {
                 this.sourceWidgetFields = this.globalVariableService.datasources[datasourceIndex].dataFields;
-                this.targetWidgetFields = this.globalVariableService.datasources[datasourceIndex].dataFields;
             };
         } else {
             this.errorMessage = 'An error occured - the selected Widgets is null';
@@ -133,33 +131,6 @@ export class WidgetFilterSummaryComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         this.selectedRowIndex = index;
-    }
-
-    changeWidgetTitle(ev: any) {
-        // User selected a Widget Title
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeWidgetTitle', '@Start');
-
-        // Find the Widget
-        // TODO - add id at later stage to cater for identical titles
-        let widgetIndex: number = this.widgets.findIndex(w => w.titleText == ev.target.value);
-
-        if (widgetIndex >= 0) {
-
-            // Set TargetID
-            this.selectedTargetWidgetID = this.widgets[widgetIndex].id;
-
-            let datasourceIndex: number = this.globalVariableService.currentDatasources
-                .findIndex(ds => ds.id == this.widgets[widgetIndex].datasourceID);
-            if (datasourceIndex >= 0) {
-                this.targetWidgetFields = this.globalVariableService.currentDatasources
-                    [datasourceIndex].dataFields;
-                if (this.targetWidgetFields.length > 0) {
-                    this.targetField = this.targetWidgetFields[0];
-                };
-            };
-        } else {
-            this.selectedTargetWidgetID = -1;
-        };
     }
 
     clickClose(action: string) {
