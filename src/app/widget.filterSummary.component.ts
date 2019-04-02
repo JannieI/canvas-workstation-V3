@@ -52,10 +52,9 @@ export class WidgetFilterSummaryComponent implements OnInit {
     targetTitle: string = '';
     targetWidgetFields: string[] = [];
     localWidgetFilters: {
-        targetWidgetID: number;
+        sourceWidgetTitle: string;
+        sourceDescription: string;
         sourceWidgetField: string;
-        targetWidgetTitle: string;
-        targetDescription: string;
         targetWidgetField: string;
     }[] = [];
     widgets: Widget[] = [];
@@ -163,91 +162,6 @@ export class WidgetFilterSummaryComponent implements OnInit {
         };
     }
 
-    clickAdd() {
-        // Add new filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
-
-        // Validation
-        if (this.sourceField == '') {
-            this.errorMessage = 'Source field is compulsory';
-            return;
-        };
-        if (this.targetTitle == '') {
-            this.errorMessage = 'Target Widget title is compulsory';
-            return;
-        };
-        if (this.targetField == '') {
-            this.errorMessage = 'Target field is compulsory';
-            return;
-        };
-        if (this.selectedTargetWidgetID == -1) {
-            this.errorMessage = 'Target Widget not selected';
-            return;
-        };
-        let widgetFilterIndex: number = this.localWidgetFilters.findIndex(wf =>
-            wf.sourceWidgetField == this.sourceField
-            &&
-            wf.targetWidgetID == this.selectedTargetWidgetID
-            &&
-            wf.targetWidgetTitle == this.targetTitle
-            &&
-            wf.targetWidgetField == this.targetField
-        );
-        if (widgetFilterIndex >= 0) {
-            this.errorMessage = 'This filter already exists';
-            return;
-        };
-        if (this.selectedTargetWidgetID == this.selectedWidget.id) {
-            this.errorMessage = 'Cannot define a crossfilter on oneself';
-            return;
-        };
-
-        let widgetDescription: string = '';
-
-        // Update target Widget
-        let widgetIndex: number = this.widgets.findIndex(w => w.titleText == this.targetTitle);
-
-        if (widgetIndex >= 0) {
-
-            // Get the target Widget, and add new WFilter to it
-            let targetWidget: Widget = this.widgets[widgetIndex];
-            widgetDescription = targetWidget.description;
-            let widgetFilter: WidgetFilter = {
-                id: null,
-                sequence: 0,        // For LATER use
-                filterType: 'CrossFilter',
-                sourceWidgetID: this.selectedWidget.id,
-                sourceDatasourceField: this.sourceField,
-                filterFieldName: this.targetField,
-                filterOperator: 'Equal',
-                filterTimeUnit: '',
-                filterValue: '',
-                filterValueFrom: '',
-                filterValueTo: '',
-                isActive: false
-            };
-            targetWidget.widgetFilters.push(widgetFilter);
-
-            // Save to DB
-            this.globalVariableService.saveResource('widgets', targetWidget)
-                .then( res => console.log('Saved Target W to DB', res) )
-                .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
-                    console.error('Error in widget.crossFilter saving Target Widget: ' + err);
-                });
-        };
-
-        // Add, after getting the Widget Description
-        this.localWidgetFilters.push({
-            sourceWidgetField: this.sourceField,
-            targetWidgetID: this.selectedTargetWidgetID,
-            targetWidgetTitle: this.targetTitle,
-            targetDescription: widgetDescription,
-            targetWidgetField: this.targetField
-        });
-
-
-    }
 
     clickDelete(
         index: number, 
