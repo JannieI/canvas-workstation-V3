@@ -6630,4 +6630,257 @@ console.log('xx post filter', results)
         );
     }
 
+
+
+
+
+    sendTransformationQuery(data: object): Promise<object | null> {
+        // Description: Send transformation to the server.
+        // Returns: Data or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables sendTransformationQuery ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",{data});
+        };
+
+        return new Promise<object | null>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let finalUrl: string = this.canvasServerURI + '/data';
+
+            // Omit _id (immutable in Mongo)
+            const copyData = { ...data };
+
+            this.http.put<CanvasHttpResponse>(finalUrl, copyData, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
+
+                    console.log('return message :', res);
+
+                    // // Replace local
+                    // let localIndex: number = this.dashboards.findIndex(d =>
+                    //     d.id == data.id
+                    // );
+                    // if (localIndex >= 0) {
+                    //     this.dashboards[localIndex] = data;
+                    // };
+                    // localIndex = this.currentDashboards.findIndex(d =>
+                    //     d.id == data.id
+                    // );
+                    // if (localIndex >= 0) {
+                    //     this.currentDashboards[localIndex] = data;
+                    // };
+
+                    // if (this.sessionDebugging) {
+                    //     console.log('saveDashboard SAVED', res.data)
+                    // };
+
+                    resolve(res.data);
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDashboard FAILED', {err});
+                    };
+
+                    reject(null);
+                }
+            )
+        });
+    }
+
+    getDatasourceTransformations(): Promise<DatasourceTransformationNEW[]> {
+        // Description: Gets DatasourceTransformations
+        // Returns: this.DatasourceTransformation
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDatasourceTransformations ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        return new Promise<DatasourceTransformationNEW[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.datasourceTransformations.length == 0)  ||  (this.isDirtyDatasourceTransformations) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+
+                let pathUrl: string = 'datasourceTransformations';
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                    res  => {
+                        if(res.statusCode != 'success') {
+                            reject(res.message);
+							return;
+                        };
+
+                        this.datasourceTransformations = res.data;
+                        this.isDirtyDatasourceTransformations = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDatasourceTransformation 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.datasourceTransformations)
+                        };
+
+                        resolve(this.datasourceTransformations);
+                    },
+                    err => {
+                        reject(err.message)
+                    }
+                );
+            } else {
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDatasourceTransformation 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.datasourceTransformations)
+                };
+
+                resolve(this.datasourceTransformations);
+            }
+        });
+
+    }
+
+    addDatasourceTransformation(data: DatasourceTransformationNEW): Promise<any> {
+        // Description: Adds a new DatasourceTransformation
+        // Returns: Added Data or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDatasourceTransformation ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = 'datasourceTransformations';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
+
+                    // Update Global vars to make sure they remain in sync
+                    this.datasourceTransformations.push(JSON.parse(JSON.stringify(res.data)));
+
+                    if (this.sessionDebugging) {
+                        console.log('addDatasourceTransformation ADDED', res.data,
+                            this.datasourceTransformations)
+                    };
+
+                    resolve(res.data);
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error addDatasourceTransformation FAILED', {err});
+                    };
+                    reject(err.message);
+                }
+            )
+        });
+    }
+
+    saveDatasourceTransformation(data: DatasourceTransformationNEW): Promise<string> {
+        // Description: Saves DatasourceTransformation
+        // Returns: 'Saved' or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDatasourceTransformation ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = 'datasourceTransformations';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+
+            // // Omit _id (immutable in Mongo)
+            // const copyData = { ...data };
+            // delete copyData._id;
+
+            this.http.put<CanvasHttpResponse>(finalUrl + '?_id=' + data._id,  data, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
+
+                    // Replace local
+                    let localIndex: number = this.datasourceTransformations.findIndex(d =>
+                        d._id === data._id
+                    );
+                    this.datasourceTransformations[localIndex] = data;
+
+                    if (this.sessionDebugging) {
+                        console.log('saveDatasourceTransformation SAVED', res.data)
+                    };
+
+                    resolve('Saved');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDatasourceTransformation FAILED', {err});
+                    };
+
+                    reject(err);
+                }
+            )
+        });
+    }
+
+    deleteDatasourceTransformation(id: string): Promise<string> {
+        // Description: Deletes a DatasourceTransformations
+        // Returns: 'Deleted' or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDatasourceTransformation ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            let pathUrl: string = 'datasourceTransformations';
+            let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+            this.http.delete<CanvasHttpResponse>(finalUrl + '?_id=' + id, {headers})
+            .subscribe(
+                res => {
+                    if(res.statusCode != 'success') {
+                        reject(res.message);
+						return;
+                    };
+
+                    this.datasourceTransformations = this.datasourceTransformations.filter(
+                        dsp => dsp._id != id
+                    );
+
+                    if (this.sessionDebugging) {
+                        console.log('deleteDatasourceTransformation DELETED id: ', {id})
+                    };
+
+                    resolve('Deleted');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDatasourceTransformation FAILED', {err});
+                    };
+
+                    reject(err.message);
+                }
+            )
+        });
+    }
+
+
 }

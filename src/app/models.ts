@@ -1782,3 +1782,149 @@ export class NavigatorNodeFiler {
     operator: string;
     value: string;
 }
+
+
+export const enum TransformationType {
+    split = 0,
+    join = 1,
+    to_upper = 2,
+    to_lower = 3,
+    to_proper = 4,
+    trim = 5,
+    leave_num = 6,
+    leave_char = 7,
+    weekday = 8,
+    month = 9,
+    day = 10,
+    hour = 11,
+    minute = 12,
+    second = 13,
+    week = 14,
+    day_of_year = 15, 
+    quarter = 16,
+    arithmetic = 17
+}
+
+export const enum TransformationParameterType {
+    fieldName = 0,
+    fieldAlias = 1,
+    delimiter = 2,
+    fieldNames = 3,
+    keepOriginalField = 4,
+    newFieldName = 5,
+    keepOriginalFields = 6,
+    expression = 7
+}
+
+export interface TransformationNEW {
+    _id?: string;                               // Mongo ID (read only)
+    id: number;                                 // Not used at the moment. null throughout.
+    type: TransformationType;                   // Transformation type.
+    displayName: string;                        // What gets shown to the user.
+    description: string;                        // A short description of what data is needed.
+    parameters: TransformationItemParameter[];  // The parameters to the transformation.
+}
+
+export interface DatasourceTransformationNEW {
+    _id?: string;                               // Mongo ID (read only)
+    id: number;                                 // Not used at the moment. null throughout.
+    datasourceID: number;                       // DatasourceID to which this transformation will apply.
+    seq: number;                                // Sequence number. Starting from 1.
+    type: TransformationType;                   // Transformation type.
+    parameterValues: DatasourceTransformationValues[];  // Parameter types and values
+}
+
+// Transformation parameter to be displayed on the menu. *NOT* stored as-is, in the DB.
+// Refer to the documentation in the file 'TransformationFormat.md' for definitions
+export interface TransformationItemParameter {
+    seq: number;                        // Sequence number starting from 1. For ordering of parameters.
+                                        // Could instead use the order in array that these parameters are
+                                        // stored in instead, to save space.    - Ivan (01 April 2019)
+    displayName: string;                // The name of the parameter that will be displayed on the screen.
+    tooltip: string;                    // A string to help the user understand what this field entails.
+    type: TransformationParameterType;  // The type of data that will be held in this field. for
+                                        // validation purposes.
+    defaultValue: string;               // What the value should be when the user starts.
+    value: string                       // The current value that the user places in the input.
+    cannotBeEmpty: boolean;             // Whether the field can be empty when saved.
+}
+
+// DS transformation parameter values that get stored in the DB. Only keep necessities.
+// Refer to the documentation in the file 'TransformationFormat.md' for definitions
+export interface DatasourceTransformationValues {
+    type: TransformationParameterType;  // Transformation type
+    cannotBeEmpty: boolean;             // True if a value needs to be filled in by the user.
+    value: string;                      // The value filled in by the user.
+}
+
+// The format for Transformation Query Connections
+// Refer to the documentation in the file 'TransformationFormat.md' for definitions
+export interface TransformConnection {
+    type: 'csv' | 'db' | 'csv-mongo';
+    fileLoc?: string;                       
+    delimiter?: string;
+    hasHeader?: boolean;
+    fieldNames?: string[];
+    encoding?: string;
+    dbType?: string;
+    server?: string;
+    database?: string;
+    query?: string;
+    id?: number;
+}
+
+// The format for Transformation Query items
+// Refer to the documentation in the file 'TransformationFormat.md' for definitions
+export interface TransformItem {
+    type: string;
+    connOffset?: number;
+    alias?: string;
+    sourceResultOffset?: number;
+    fields?: TransformField[];
+    joinType?: string;
+    filter?: TransformFilter[];
+    aggregateFields?: TransformField[];
+    appendName?: string;
+    aggregate?: string;
+    pivotField?: TransformField;
+    function?: string;
+    fieldName?: string;
+    fieldAlias?: string;
+    delimiter?: string;
+    fieldNames?: string[];
+    keepOriginalField?: boolean;
+    keepOriginalFields?: boolean;
+    newFieldName?: string;
+    expression?: string;
+    resultOffset: number;
+}
+
+// Refer to the documentation in the file 'TransformationFormat.md' for definitions
+export interface TransformField {
+    source: string;
+    alias: string;
+    rename?: string;
+}
+
+// Refer to the documentation in the file 'TransformationFormat.md' for definitions
+export interface TransformFilter {
+    operator: string;
+    operands: TransformOperand[];
+}
+
+// Refer to the documentation in the file 'TransformationFormat.md' for definitions
+export interface TransformOperand {
+    sourceOffset: string;
+    alias: string;
+    value: string;
+}
+
+// Refer to the documentation in the file 'TransformationFormat.md' for definitions
+export interface TransformQuery {
+    version: string;
+    connections: TransformConnection[];
+    transforms: TransformItem[];
+    returnOffset: number[];
+    returnFirst: number;
+    resultOrient: string;
+}

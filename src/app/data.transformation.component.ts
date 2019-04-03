@@ -1,30 +1,30 @@
 /*
- * List of Transformations that forms part of the Datasource definition
+ * For a given datasource, this form lets the user create
  *
  */
 
 // Angular
-import { Component }                  from '@angular/core';
-import { EventEmitter }               from '@angular/core';
-import { HostListener }               from '@angular/core';
-import { Input }                      from '@angular/core';
-import { OnInit }                     from '@angular/core';
-import { Output }                     from '@angular/core';
-import { Router }                     from '@angular/router';
+import { Component }                    from '@angular/core';
+import { EventEmitter }                 from '@angular/core';
+import { HostListener }                 from '@angular/core';
+import { Input }                        from '@angular/core';
+import { OnInit }                       from '@angular/core';
+import { Output }                       from '@angular/core';
+import { Router }                       from '@angular/router';
 
 // Our Functions
-import { GlobalFunctionService } 	  from './global-function.service';
-import { GlobalVariableService }      from './global-variable.service';
+import { GlobalFunctionService } 	    from './global-function.service';
+import { GlobalVariableService }        from './global-variable.service';
 
 // Our Models
-import { DataField }                  from './models';
-import { Datasource }                 from './models';
-import { DatasourceTransformation }   from './models';
-import { Transformation }             from './models';
-
-interface localDatasourceTransformation extends DatasourceTransformation {
-    name?: string;           // Name of the Transformation to display on form
-}
+import { Datasource }                   from './models';
+import { DatasourceTransformationNEW }  from './models';
+import { TransformationNEW }            from './models';
+import { DatasourceTransformationValues } from './models';
+import { TransformationItemParameter }  from './models';
+import { TransformationType }           from './models';
+import { TransformationParameterType }  from './models';
+import { TransformQuery, TransformConnection, TransformItem } from './models';
 
 
 @Component({
@@ -38,67 +38,32 @@ export class DataTransformationComponent implements OnInit {
 
     @Output() formDataTransformationClosed: EventEmitter<string> = new EventEmitter();
 
+    // @TODO: Map sensible keybindings to often-used controls for ease of use.
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
-        console.log(event);
+        //console.log(event);
         event.preventDefault();
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose('Close');
+            this.ngClickClose('Close');
             return;
         };
-
     }
 
-
-    adding: boolean = false;                        // True if adding a new Tr, click Save to complete
-    dataFields: DataField[];
-    datasourceTransformations: localDatasourceTransformation[] = [];
-    editing: boolean = false;                       // True if editing a selected Tr
-    errorMessage: string = '';
-    nrParameters: number = 0;                       // Nr of Parameters for current Tr
-
-    // Parameter info on form
-    parameter1Placeholder: string = '';
-    parameter1Title: string = '';
-    parameter1Value: string = '';
-    parameter1Heading: string = '';
-    parameter1ValueOriginal: string = '';
-    parameter2Placeholder: string = '';
-    parameter2Title: string = '';
-    parameter2Value: string = '';
-    parameter2Heading: string = '';
-    parameter2ValueOriginal: string = '';
-    parameter3Placeholder: string = '';
-    parameter3Title: string = '';
-    parameter3Value: string = '';
-    parameter3Heading: string = '';
-    parameter3ValueOriginal: string = '';
-    parameter4Placeholder: string = '';
-    parameter4Title: string = '';
-    parameter4Value: string = '';
-    parameter4Heading: string = '';
-    parameter4ValueOriginal: string = '';
-    parameter5Placeholder: string = '';
-    parameter5Title: string = '';
-    parameter5Value: string = '';
-    parameter5Heading: string = '';
-    parameter5ValueOriginal: string = '';
-    parameter6Placeholder: string = '';
-    parameter6Title: string = '';
-    parameter6Value: string = '';
-    parameter6Heading: string = '';
-    parameter6ValueOriginal: string = '';
-
-    position: string = 'top-middle';                    // Position of Tr signpost
-    selectedTransformationRowIndex: number = 0;         // Selected Master Tr row
-    selectedDataRowIndex: number = 0;                   // Selected Tr row (for current DS)
-    transitionDescription: string ='';                  // Tr Description
-    transformationName: string = '';                    // Tr Name
-    transformations: Transformation[] = [];             // Array of Master Tr
-
-    // connections ->
+    // Globals used in confunction with Angular directives in the DOM/html templates
+    ngTransformList: TransformationNEW[] = [];          // All possible transformations
+    ngDSTransformList: DatasourceTransformationNEW[] = [];  // All transformations applied to current DS
+    ngCurrentTransform: TransformationNEW = null;       // The currently selected transformation
+    ngCurrentDSTransform: DatasourceTransformationNEW = null;   // The currently selected transform for this DS
+    ngCurrentParameters: TransformationItemParameter[] = [];    // The parameter values and display data
+    ngAdding: boolean = false;                          // True if adding a new Tr, click Save to complete
+    ngEditing: boolean = false;                         // True if editing a selected Tr
+    ngNrParameters: number = 0;                         // Nr of Parameters for current Tr
+    ngPreviewData: object = {};                         // The preview data returned to the user
+    ngAlertErrorMessage: string = '';                   // Error message that gets displayed to the user.
+    ngPosition: string = 'top-middle';                  // The position of the signpost. This should 
+                                                        // get moved into CSS.
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -106,601 +71,917 @@ export class DataTransformationComponent implements OnInit {
         private router: Router,
 	) {}
 
-	ngOnInit() {
+	ngOnInit() { 
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getResource('datasourceTransformations')
-            .then(dtr => {
-                this.globalVariableService.getResource('transformations')
-                    .then(tr => {
-                        // Set local Vars
-                        this.datasourceTransformations = dtr.filter(ftr =>
-                            ftr.datasourceID == this.selectedDatasource.id
-                        ).sort( (obj1,obj2) => {
-                            if (obj1.sequence > obj2.sequence) {
-                                return 1;
-                            };
-                            if (obj1.sequence < obj2.sequence) {
-                                return -1;
-                            };
-                            return 0;
-                        });
-                        this.transformations = tr.slice();
+        Promise.all([
+            this.globalVariableService.getDatasourceTransformations(), 
+            this.globalVariableService.getTransformations()
+        ])
+          .then(values => {
 
-                        // Set description
-                        if (this.transformations.length > 0) {
-                            this.transitionDescription = this.transformations[0].description;
-                        };
+            const dtr: DatasourceTransformationNEW[] = values[0];  // Resolved response from getDatasourceTransformations() Promise.
+            this.ngTransformList = values[1];   // Resolved response from getTransformations() Promise.
 
-                        // Fill name for display
-                        this.datasourceTransformations.forEach(dtr => {
-                            this.transformations.forEach(tr => {
-                                if (dtr.transformationID == tr.id) {
-                                    dtr.name = tr.name;
-                                };
-                            });
-                        });
-
-                        if (this.datasourceTransformations.length > 0) {
-                            this.clickRow(0, this.datasourceTransformations[0].id);
-                        };
-                    })
-                    .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
-                        console.error('Error in Data.transformation reading transformations: ' + err);
-                    });
-
-            })
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.transformation reading datasourceTransformations: ' + err);
-            });
-}
-
-
-    clickSelectedTransformation() {
-        // Click on Transformation
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedTransformation', '@Start');
-
-        // Select the Tr master record
-        this.selectedTransformationRowIndex = this.transformations.findIndex(tr =>
-            tr.name == this.transformationName
-        );
-
-        // Set Description
-        if (this.transformations.length > 0) {
-            this.transitionDescription = this.transformations[
-                this.selectedTransformationRowIndex].description;
-            this.nrParameters = this.transformations[
-                this.selectedTransformationRowIndex].nrParameters;
-        };
-
-        // Fill form
-        this.clickFillParameters(this.selectedTransformationRowIndex, -1);
-    }
-
-    clickRow(index: number, id: number) {
-        // Click on DatasourceTransformation row
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-
-        // Reset Add/Edit
-        if (this.selectedDataRowIndex != index) {
-            this.adding = false;
-            this.editing = false;
-        };
-
-        // Set seletected index - used for highlighting row
-        this.selectedDataRowIndex = index;
-
-        // Select the Tr master record
-        this.selectedTransformationRowIndex = this.transformations.findIndex(tr => tr.id ==
-            this.datasourceTransformations[this.selectedDataRowIndex].transformationID
-        );
-
-        // Set Description
-        if (this.transformations.length > 0) {
-            this.transitionDescription = this.transformations[
-                this.selectedTransformationRowIndex].description;
-            this.nrParameters = this.transformations[
-                this.selectedTransformationRowIndex].nrParameters;
-        };
-
-        // Fill form
-        this.clickFillParameters(this.selectedTransformationRowIndex, this.selectedDataRowIndex);
-    }
-
-    clickFillParameters(transformationRowIndex, dataRowIndex) {
-        // Fill the Paramers, based on what was selected
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFillParameters', '@Start');
-
-        // Reset
-        this.parameter1Placeholder = '';
-        this.parameter1Title = '';
-        this.parameter1Value = '';
-        this.parameter1Heading = '';
-
-        this.parameter2Placeholder = '';
-        this.parameter2Title = '';
-        this.parameter2Value = '';
-        this.parameter2Heading = '';
-
-        this.parameter3Placeholder = '';
-        this.parameter3Title = '';
-        this.parameter3Value = '';
-        this.parameter3Heading = '';
-
-        this.parameter4Placeholder = '';
-        this.parameter4Title = '';
-        this.parameter4Value = '';
-        this.parameter4Heading = '';
-
-        this.parameter5Placeholder = '';
-        this.parameter5Title = '';
-        this.parameter5Value = '';
-        this.parameter5Heading = '';
-
-        this.parameter6Placeholder = '';
-        this.parameter6Title = '';
-        this.parameter6Value = '';
-        this.parameter6Heading = '';
-
-        // Fill the rest, ie field headers, title and placeholders
-        for (var i = 0; i < this.transformations[transformationRowIndex].nrParameters ; i++) {
-            if (i == 0 ) {
-                this.parameter1Heading = this.transformations[transformationRowIndex].parameterHeading[i];
-            };
-            if (i == 1 ) {
-                this.parameter2Heading = this.transformations[transformationRowIndex].parameterHeading[i];
-            };
-            if (i == 2 ) {
-                this.parameter3Heading = this.transformations[transformationRowIndex].parameterHeading[i];
-            };
-            if (i == 3 ) {
-                this.parameter4Heading = this.transformations[transformationRowIndex].parameterHeading[i];
-            };
-            if (i == 4 ) {
-                this.parameter5Heading = this.transformations[transformationRowIndex].parameterHeading[i];
-            };
-            if (i == 5 ) {
-                this.parameter6Heading = this.transformations[transformationRowIndex].parameterHeading[i];
-            };
-        };
-
-        for (var i = 0; i < this.transformations[transformationRowIndex].nrParameters; i++) {
-            if (i == 0 ) {
-                this.parameter1Title = this.transformations[transformationRowIndex].parameterTitle[i];
-            };
-            if (i == 1 ) {
-                this.parameter2Title = this.transformations[transformationRowIndex].parameterTitle[i];
-            };
-            if (i == 2 ) {
-                this.parameter3Title = this.transformations[transformationRowIndex].parameterTitle[i];
-            };
-            if (i == 3 ) {
-                this.parameter4Title = this.transformations[transformationRowIndex].parameterTitle[i];
-            };
-            if (i == 4 ) {
-                this.parameter5Title = this.transformations[transformationRowIndex].parameterTitle[i];
-            };
-            if (i == 5 ) {
-                this.parameter6Title = this.transformations[transformationRowIndex].parameterTitle[i];
-            };
-        };
-
-        for (var i = 0; i < this.transformations[transformationRowIndex].nrParameters; i++) {
-            if (i == 0 ) {
-                this.parameter1Placeholder = this.transformations[transformationRowIndex].parameterPlaceholder[i];
-            };
-            if (i == 1 ) {
-                this.parameter2Placeholder = this.transformations[transformationRowIndex].parameterPlaceholder[i];
-            };
-            if (i == 2 ) {
-                this.parameter3Placeholder = this.transformations[transformationRowIndex].parameterPlaceholder[i];
-            };
-            if (i == 3 ) {
-                this.parameter4Placeholder = this.transformations[transformationRowIndex].parameterPlaceholder[i];
-            };
-            if (i == 4 ) {
-                this.parameter5Placeholder = this.transformations[transformationRowIndex].parameterPlaceholder[i];
-            };
-            if (i == 5 ) {
-                this.parameter6Placeholder = this.transformations[transformationRowIndex].parameterPlaceholder[i];
-            };
-        };
-
-        // Fill values - AFTER the above
-        if (dataRowIndex >= 0) {
-
-            for (var i = 0; i < this.transformations[transformationRowIndex].nrParameters; i++) {
-                if (i == 0 ) {
-                    this.parameter1Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
+            // Only show Datasource Transformations for the current data source.
+            // @Speed: Change this to only return data for the current data source. Will have to make it
+            // play nice with the cache.    - Ivan (22 March 2019)
+            this.ngDSTransformList = dtr.filter(ftr =>
+                ftr.datasourceID == this.selectedDatasource.id
+            ).sort( (obj1,obj2) => {
+                if (obj1.seq > obj2.seq) {
+                    return 1;
                 };
-                if (i == 1 ) {
-                    this.parameter2Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
+                if (obj1.seq < obj2.seq) {
+                    return -1;
                 };
-                if (i == 2 ) {
-                    this.parameter3Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
-                };
-                if (i == 3 ) {
-                    this.parameter4Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
-                };
-                if (i == 4 ) {
-                    this.parameter5Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
-                };
-                if (i == 5 ) {
-                    this.parameter6Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
-                };
-            };
-        };
-
-    }
-
-    clickMoveUp(index: number, id: number) {
-        // Move Transformation Up
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveUp', '@Start');
-
-        // Nothing to do
-        if (index == 0) {
-            return;
-        };
-
-        // Get 2 records
-        let previousSequence: number = this.datasourceTransformations[index - 1].sequence;
-        let selectedSequence: number = this.datasourceTransformations[index].sequence;
-
-        // Swap Sequence, and sort again
-        this.datasourceTransformations[index - 1].sequence = selectedSequence;
-        this.datasourceTransformations[index].sequence = previousSequence;
-
-        // Save to DB
-        this.globalVariableService.saveResource('datasourceTransformations', 
-            this.datasourceTransformations[index - 1])
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.transformation saving transformations: ' + err);
-            });
-        this.globalVariableService.saveResource('datasourceTransformations', 
-            this.datasourceTransformations[index])
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.transformation saving transformations: ' + err);
+                return 0;
             });
 
-        // Resort
-        this.datasourceTransformations = this.datasourceTransformations.sort( (obj1,obj2) => {
-            if (obj1.sequence > obj2.sequence) {
-                return 1;
+            // Select the first datasource transformation, if we have one.
+            if (this.ngDSTransformList.length > 0) {
+                this.ngCurrentDSTransform = this.ngDSTransformList[0];
+                this.ngUpdateParameters();
+                this.ngClickRow(this.ngCurrentDSTransform);
             };
-            if (obj1.sequence < obj2.sequence) {
-                return -1;
-            };
-            return 0;
-        });
 
-        // Highlight same row
-        let currentIndex: number = this.datasourceTransformations.findIndex(dtr =>
-            dtr.id == id
-        );
-        this.clickRow(currentIndex, id);
+            // Bring some data back
+            this.ngClickPreview();
+            
+          })
+          .catch(error => {
+            this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', 'Promise.all error :' + error.message)
+            this.ngAlertErrorMessage = 'Could not initialise the form properly. Please check Canvas Server.'
+          });
     }
 
-    clickMoveDown(index: number, id: number) {
-        // Move Transformation Down
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
+    ngUpdateParameters() {
+        // Create an array which contains the parameter values that need to get bound and displayed
+        // by Angular.
 
-        // Nothing to do
-        if (index == (this.datasourceTransformations.length - 1) )  {
-            return;
-        };
+        // @Refactor: Do we even need this function? Can we not store all the parameter data globally
+        // and simply refer to it as we change the current transformation pointer?  - Ivan (02 Mar 2019)
 
-        // Get 2 records
-        let selectedSequence: number = this.datasourceTransformations[index].sequence;
-        let nextSequence: number = this.datasourceTransformations[index + 1].sequence;
 
-        // Swap Sequence, and sort again
-        this.datasourceTransformations[index + 1].sequence = selectedSequence;
-        this.datasourceTransformations[index].sequence = nextSequence;
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngUpdateParameters', '@Start');
 
-        // Save to DB
-        this.globalVariableService.saveResource('datasourceTransformations', 
-            this.datasourceTransformations[index])
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.transformation saving transformations: ' + err);
-            });
-        this.globalVariableService.saveResource('datasourceTransformations', 
-            this.datasourceTransformations[index + 1])
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.transformation saving transformations: ' + err);
-            });
+        this.ngCurrentParameters = [];
+        if ( this.ngCurrentTransform ) {   
+            // This fills in parameters from the default Transformation spec. Only used when
+            // adding a new transformation.
+            for (let parameter of this.ngCurrentTransform.parameters) {
+                this.ngCurrentParameters.push({
+                    seq:            parameter.seq,
+                    displayName:    parameter.displayName,
+                    tooltip:        parameter.tooltip,
+                    type:           parameter.type,
+                    defaultValue:   parameter.defaultValue,
+                    value:          parameter.defaultValue,
+                    cannotBeEmpty:  parameter.cannotBeEmpty
+                });
+            }
+            this.ngNrParameters = this.ngCurrentTransform.parameters.length;
+        } else if ( this.ngCurrentDSTransform ) {
+            // This fills in parameters from the currently selected Datasource Transformation 
+            // value. Which should already be in the DB.
+            let extraData: TransformationNEW = this.ngTransformList.find(
+                x => x.type === this.ngCurrentDSTransform.type
+            );
+            for (let parameter of this.ngCurrentDSTransform.parameterValues) {
 
-        // Resort
-        this.datasourceTransformations = this.datasourceTransformations.sort( (obj1,obj2) => {
-            if (obj1.sequence > obj2.sequence) {
-                return 1;
-            };
-            if (obj1.sequence < obj2.sequence) {
-                return -1;
-            };
-            return 0;
-        });
-
-        // Highlight same row
-        let currentIndex: number = this.datasourceTransformations.findIndex(dtr =>
-            dtr.id == id
-        );
-        this.clickRow(currentIndex, id);
+                // Get some additional parameter data from the Transformation parameter data
+                let extraParameterData: TransformationItemParameter = extraData.parameters.find(
+                    x => x.type === parameter.type
+                );
+                this.ngCurrentParameters.push({
+                    seq: extraParameterData.seq,
+                    displayName: extraParameterData.displayName,
+                    tooltip: extraParameterData.tooltip,
+                    type: parameter.type,
+                    defaultValue: extraParameterData.defaultValue,
+                    value: parameter.value,
+                    cannotBeEmpty: parameter.cannotBeEmpty
+                });
+            }
+            this.ngNrParameters = this.ngCurrentDSTransform.parameterValues.length;
+        } else {
+            this.ngNrParameters = 0;
+        }
     }
 
-    clickAdd() {
-        // Start Adding a new Transformation
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+    ngClickAdd() {
+        // Let the user add a new Transformation
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngClickAdd', '@Start');
 
-        // Clear Values
-        this.parameter1Value = '';
-        this.parameter2Value = '';
-        this.parameter3Value = '';
-        this.parameter4Value = '';
-        this.parameter5Value = '';
-        this.parameter6Value = '';
+        this.ngNrParameters = 0;
 
         // Auto select first one
-        if (this.transformations.length > 0) {
-            this.transformationName = this.transformations[0].name;
-            this.clickSelectedTransformation();
+        if (this.ngTransformList.length > 0) {
+            this.ngCurrentTransform = this.ngTransformList[0]
+            this.ngUpdateParameters();
         };
 
         // Open form
-        this.adding = true;
+        this.ngAdding = true;
 
     }
 
-    clickEdit(index: number, id: number) {
-        // Edit Transformation
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
-
-        // Remember the originals, in case we want to Cancel
-        this.parameter1ValueOriginal = this.parameter1Value;
-        this.parameter2ValueOriginal = this.parameter2Value;
-        this.parameter3ValueOriginal = this.parameter3Value;
-        this.parameter4ValueOriginal = this.parameter4Value;
-        this.parameter5ValueOriginal = this.parameter5Value;
-        this.parameter6ValueOriginal = this.parameter6Value;
-
-        // Open form for editing
-        this.editing = true;
-
-    }
-
-    clickCancel() {
+    ngClickCancel() {
         // Cancel Editing Transformation parameters
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
-
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngClickCancel', '@Start');
+        
         // Restore form
-
-        // Remember the originals, in case we want to Cancel
-        this.parameter1Value = this.parameter1ValueOriginal;
-        this.parameter2Value = this.parameter2ValueOriginal;
-        this.parameter3Value = this.parameter3ValueOriginal;
-        this.parameter4Value = this.parameter4ValueOriginal;
-        this.parameter5Value = this.parameter5ValueOriginal;
-        this.parameter6Value = this.parameter6ValueOriginal;
+        this.ngAlertErrorMessage = '';
+        this.ngCurrentTransform = null;
+        this.ngUpdateParameters();
 
         // Cancel Editing
-        this.adding = false;
-        this.editing = false;
+        this.ngAdding = false;
+        this.ngEditing = false;
     }
 
-    clickSave() {
+    ngClickSave() {
         // Save Transformation and its parameters
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngClickSave', '@Start');
 
         // Reset
-        this.errorMessage = '';
+        this.ngAlertErrorMessage = '';
 
         // Validate
-        for (var i = 0; i < this.transformations[this.selectedTransformationRowIndex].nrParameters; i++) {
-            if (i == 0) {
-                if (this.parameter1Value == '') {
-                    this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
-                        .parameterHeading[i] + ' is compulsory';
+        for (let parameter of this.ngCurrentParameters) {
+
+            // Check for missing values where there should be a value
+            if (parameter.cannotBeEmpty && ( parameter.value === '' )) {
+                this.ngAlertErrorMessage = parameter.displayName + ' cannot be empty.';
+                return;
+            }
+
+            // Check parameter types more thoroughly.
+            switch (parameter.type) {
+
+              case (TransformationParameterType.delimiter): break;
+
+              case (TransformationParameterType.expression):
+                
+                // @TODO: Add a possible regex check for the format of an expression which
+                // makes sure that we get something of the form 'A=B+C' and that the field
+                // names are validated against the data.        - Ivan (29 Mar 2019)
+
+                // Check that there is an equals sign.
+                if ( parameter.value.search('=') === -1 ) {
+                    this.ngAlertErrorMessage = parameter.displayName + ' must be an equation of the form "A=B+C".'
                     return;
-                };
-                if (this.transformations[this.selectedTransformationRowIndex]
-                    .parameterType[i].toLowerCase() == 'number') {
-                        var reg = /^-?\d+(\.\d+)?$/;
-                    if (!reg.test(this.parameter1Value)) {
-                        this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
-                        .parameterHeading[i] + ' is not numeric!';
-                        return;
-                    };
-                };
-            };
-            if (i == 1) {
-                if (this.parameter2Value == '') {
-                    this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
-                        .parameterHeading[i] + ' is compulsory';
+                }
+                break;
+
+              case (TransformationParameterType.fieldAlias): break;
+              case (TransformationParameterType.fieldName): break;
+              case (TransformationParameterType.fieldNames): break;
+
+              case (TransformationParameterType.keepOriginalField): 
+                if ( ( parameter.value !== 'True' ) && ( parameter.value !== 'False' ) ) {
+                    this.ngAlertErrorMessage = parameter.displayName + ' must be either "True" or "False".';
                     return;
-                };
-                if (this.transformations[this.selectedTransformationRowIndex]
-                    .parameterType[i].toLowerCase() == 'number') {
-                    var reg = /^-?\d+(\.\d+)?$/;
-                    if (!reg.test(this.parameter2Value)) {
-                        this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
-                        .parameterHeading[i] + ' is not numeric!';
-                        return;
-                    };
-                };
-            };
-            if (i == 2) {
-                if (this.parameter3Value == '') {
-                    this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
-                        .parameterHeading[i] + ' is compulsory';
+                }
+                break;
+                
+              case (TransformationParameterType.keepOriginalFields):
+                if ( ( parameter.value !== 'True' ) && ( parameter.value !== 'False' ) ) {
+                    this.ngAlertErrorMessage = parameter.displayName + ' must be either "True" or "False".';
                     return;
-                };
-                if (this.transformations[this.selectedTransformationRowIndex]
-                    .parameterType[i].toLowerCase() == 'number') {
-                    var reg = /^-?\d+(\.\d+)?$/;
-                    if (!reg.test(this.parameter3Value)) {
-                        this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
-                        .parameterHeading[i] + ' is not numeric!';
-                        return;
-                    };
-                };
-            };
-            if (i == 3) {
-                if (this.parameter4Value == '') {
-                    this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
-                        .parameterHeading[i] + ' is compulsory';
-                    return;
-                };
-                if (this.transformations[this.selectedTransformationRowIndex]
-                    .parameterType[i].toLowerCase() == 'number') {
-                    var reg = /^-?\d+(\.\d+)?$/;
-                    if (!reg.test(this.parameter4Value)) {
-                        this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
-                        .parameterHeading[i] + ' is not numeric!';
-                        return;
-                    };
-                };
-            };
-            if (i == 4) {
-                if (this.parameter5Value == '') {
-                    this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
-                        .parameterHeading[i] + ' is compulsory';
-                    return;
-                };
-                if (this.transformations[this.selectedTransformationRowIndex]
-                    .parameterType[i].toLowerCase() == 'number') {
-                    var reg = /^-?\d+(\.\d+)?$/;
-                    if (!reg.test(this.parameter5Value)) {
-                        this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
-                        .parameterHeading[i] + ' is not numeric!';
-                        return;
-                    };
-                };
-            };
-            if (i == 5) {
-                if (this.parameter6Value == '') {
-                    this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
-                        .parameterHeading[i] + ' is compulsory';
-                    return;
-                };
-                if (this.transformations[this.selectedTransformationRowIndex]
-                    .parameterType[i].toLowerCase() == 'number') {
-                    var reg = /^-?\d+(\.\d+)?$/;
-                    if (!reg.test(this.parameter6Value)) {
-                        this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
-                        .parameterHeading[i] + ' is not numeric!';
-                        return;
-                    };
-                };
-            };
-        };
+                }
+                break;              
+
+              case (TransformationParameterType.newFieldName): break;
+              default:
+                console.log('ERROR: No matching parameter type.');
+                return;
+            }
+        }
 
         // Add NEW record
-        if (this.adding) {
+        if ( this.ngAdding ) {
 
             // Create max Sequence
             let newSequence: number = 1;
-            if (this.datasourceTransformations.length > 0) {
-                newSequence = this.datasourceTransformations[
-                    this.datasourceTransformations.length - 1].sequence + 1;
+            if (this.ngDSTransformList.length > 0) {
+                newSequence = this.ngDSTransformList[this.ngDSTransformList.length - 1].seq + 1;
             };
+
+            let newParameters: DatasourceTransformationValues[] = []
+
+            // Store the new parameters into an object that can be embeded.
+            for (let parameter of this.ngCurrentParameters) {
+                newParameters.push({
+                    type: parameter.type,
+                    value: parameter.value,
+                    cannotBeEmpty: parameter.cannotBeEmpty
+                });
+            }
 
             // Create New record
-            let newDatasourceTransition: DatasourceTransformation =
-            {
+            let newDatasourceTransformation: DatasourceTransformationNEW = {
                 id: null,
-                transformationID: this.transformations[this.selectedTransformationRowIndex].id,
+                type: this.ngCurrentTransform.type,
                 datasourceID: this.selectedDatasource.id,
-                sequence: newSequence,
-                parameterValue:
-                [
-                this.parameter1Value, this.parameter2Value, this.parameter3Value,
-                this.parameter4Value, this.parameter5Value, this.parameter6Value
-                ],
-                editedBy: '',
-                editedOn: null,
-                createdBy: '',
-                createdOn: null
+                seq: newSequence,
+                parameterValues: newParameters
             };
 
             // Save to DB
-            this.globalVariableService.addResource('datasourceTransformations', newDatasourceTransition)
-                .then(dtr => {
+            this.globalVariableService.addDatasourceTransformation(newDatasourceTransformation)
+              .then(dtr  => {
+                console.log('Object returned on insert is :', dtr);
 
-                    // Add Tr name to display on form
-                    let localDtr: localDatasourceTransformation = dtr;
-                    localDtr.name = this.transformations[this.selectedTransformationRowIndex].name;
-                    this.datasourceTransformations.push(localDtr);
+                // dtr.ops[0] is the DS Transform object that's returned with an _id from the DB.
+                // We store this in our DSTransformList array.
+                let _id: string = dtr.ops[0]._id;
+                this.ngDSTransformList.push(dtr.ops[0]);
+                this.ngCurrentTransform = null;         // Clear this since we're not adding anymore.  
 
-                    // Refresh previous row
-                    let newID: number = dtr.id;
-                    let newIndex: number = this.datasourceTransformations.findIndex(d =>
-                        d.id == newID);
-                    this.clickRow(newIndex, newID);
+                // Disable
+                this.ngAdding = false;
+                this.ngEditing = false;
 
+                this.ngClickRow(this.ngDSTransformList.find( x => x._id === _id ));
+
+              })
+              .catch(() => {
+                this.ngAlertErrorMessage = 'Could not save data! Please check Canvas Server.';
+              });
+
+        } else if ( this.ngEditing ) {
+            // Save EDITs
+            let newParameters: DatasourceTransformationValues[] = []
+
+            // Get the parameter values from the array which is data-bound to the input boxes.
+            for (let parameter of this.ngCurrentParameters) {
+                newParameters.push({
+                    type: parameter.type,
+                    value: parameter.value,
+                    cannotBeEmpty: parameter.cannotBeEmpty
                 })
-                .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
-                    console.error('Error in Data.transformation adding datasourceTransformations: ' + err);
-                });
-            };
+            }
 
-        // Save EDITs
-        if (this.editing) {
-            // Change the array
-            this.datasourceTransformations[this.selectedDataRowIndex].parameterValue = [
-                this.parameter1Value, this.parameter2Value, this.parameter3Value,
-                this.parameter4Value, this.parameter5Value, this.parameter6Value
-            ];
+            // Create New record
+            let newDatasourceTransformation: DatasourceTransformationNEW = {
+                _id: this.ngCurrentDSTransform._id,
+                id: null,
+                type: this.ngCurrentDSTransform.type,
+                datasourceID: this.selectedDatasource.id,
+                seq: this.ngCurrentDSTransform.seq,
+                parameterValues: newParameters
+            };
 
             // Save to DB
-            this.globalVariableService.saveResource('datasourceTransformations', 
-                this.datasourceTransformations[this.selectedDataRowIndex])
-                .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
-                    console.error('Error in Data.transformation saving transformations: ' + err);
-                });
-            };
+            this.globalVariableService.saveDatasourceTransformation(newDatasourceTransformation)
+              .then(data => {
+                
+                // Update the DSTransformationItem Parameters to match CurrentParameters.
+                const updatedIndex: number = this.ngDSTransformList.indexOf(this.ngCurrentDSTransform)
+                this.ngDSTransformList[updatedIndex].parameterValues = newParameters;
 
-        // Disable
-        this.adding = false;
-        this.editing = false;
+                // Disable
+                this.ngAdding = false;
+                this.ngEditing = false;
+
+                // Update the parameters
+                this.ngClickRow(this.ngDSTransformList.find(
+                    x => x._id === this.ngCurrentDSTransform._id 
+                ));
+              })
+              .catch(err => {
+                this.ngAlertErrorMessage = 'Could not save data! Please check Canvas Server.';
+              });
+        };
     }
 
-    dblclickDelete(index: number, id: number) {
+    ngClickRow(row: DatasourceTransformationNEW) {
+        // Don't do anything if we are busy with the transformation adding/editing.
+        if (this.ngAdding || this. ngEditing) return;
+
+        // Click on DatasourceTransformation row
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngClickRow', '@Start');
+
+        // Set seletected index - used for highlighting row
+        this.ngCurrentDSTransform = row;
+        this.ngUpdateParameters();
+
+        console.log(this.ngCurrentDSTransform);
+    }
+
+    ngClickMoveUp(row: DatasourceTransformationNEW) {
+        // Don't do anything if we are busy with the transformation adding/editing.
+        if (this.ngAdding || this. ngEditing) return;
+
+        // Move Transformation Up
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngClickMoveUp', '@Start');
+
+        // Don't do anything if this is number 1
+        if ( row.seq === 1 ) return;
+
+        let previousRow: DatasourceTransformationNEW = this.ngDSTransformList.find( d => d.seq === row.seq - 1 )
+        
+        if ( !previousRow ) {
+            // @TODO: Error checking. Notify the user that we could not find the previous record.
+        }
+
+        // Adjust the current row up one.
+        row.seq -= 1;
+        previousRow.seq += 1;
+
+        // Update DB with both changes then update local data
+
+        // @Robustness: This should be changed eventually to issue one http call so that there
+        // isn't a risk of one PUT request failing and leaving the DB in an inconsistent state.
+        //                                                              - Ivan (29 Mar 2019)
+        Promise.all([
+            this.globalVariableService.saveDatasourceTransformation(row),
+            this.globalVariableService.saveDatasourceTransformation(previousRow)
+        ])
+          .then(() => {
+
+            // Modify the internal data
+            // First the current record...
+            let index: number = this.ngDSTransformList.indexOf(
+                this.ngDSTransformList.find( x => x._id === row._id ));
+            this.ngDSTransformList[index] = row;
+
+            // ... and then the previous record.
+            index = this.ngDSTransformList.indexOf(
+                this.ngDSTransformList.find( x => x._id === previousRow._id ));
+            this.ngDSTransformList[index] = previousRow;
+
+            this.ngDSTransformList.sort((obj1,obj2) => {
+                if (obj1.seq > obj2.seq) {
+                    return 1;
+                };
+                if (obj1.seq < obj2.seq) {
+                    return -1;
+                };
+                return 0;
+            });
+
+            this.ngCurrentDSTransform = row;
+          })
+          .catch(err => {
+            this.ngAlertErrorMessage = 'Could not save data! Please check Canvas Server.';
+          });
+    }
+
+    ngClickMoveDown(row: DatasourceTransformationNEW) {
+        // Don't do anything if we are busy with the transformation adding/editing.
+        if (this.ngAdding || this. ngEditing) return;
+
+        // Move Transformation Down
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngClickMoveDown', '@Start');
+
+        // Don't do anything if this is the last sequence in the array
+        const lastRow: DatasourceTransformationNEW = this.ngDSTransformList[this.ngDSTransformList.length - 1]
+        if ( row.seq === lastRow.seq) return;
+
+        let nextRow: DatasourceTransformationNEW = this.ngDSTransformList.find( d => d.seq === row.seq + 1 )
+        if ( !nextRow ) {
+            // @TODO: Error checking. Notify the user that we could not find the next element.
+            console.log('error!!!!!');
+        }
+
+        // Adjust the current row up down.
+        row.seq += 1;
+        nextRow.seq -= 1;
+
+        // Update DB with both changes then update local data
+        Promise.all([
+            this.globalVariableService.saveDatasourceTransformation(row),
+            this.globalVariableService.saveDatasourceTransformation(nextRow)
+        ])
+          .then(() => {
+
+            // Modify the internal data
+            // First the current record...
+            let index: number = this.ngDSTransformList.indexOf(
+                this.ngDSTransformList.find( x => x._id === row._id ));
+            this.ngDSTransformList[index] = row;
+
+            // ... and then the previous record.
+            index = this.ngDSTransformList.indexOf(
+                this.ngDSTransformList.find( x => x._id === nextRow._id ));
+            this.ngDSTransformList[index] = nextRow;
+
+            this.ngDSTransformList.sort((obj1,obj2) => {
+                if (obj1.seq > obj2.seq) {
+                    return 1;
+                };
+                if (obj1.seq < obj2.seq) {
+                    return -1;
+                };
+                return 0;
+            });
+
+            this.ngCurrentDSTransform = row;
+          })
+          .catch(err => {
+            this.ngAlertErrorMessage = 'Could not save data! Please check Canvas Server.';
+          });
+    }
+ 
+    ngClickEdit(row: DatasourceTransformationNEW) {
+        // Don't do anything if we are busy with the transformation adding/editing.
+        if (this.ngAdding || this. ngEditing) return;
+
+        // Edit Transformation
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngClickEdit', '@Start');
+
+        // Open form for editing
+        this.ngEditing = true;
+    }
+
+    ngDblclickDelete(row: DatasourceTransformationNEW) {
+        // Don't do anything if we are busy with the transformation adding/editing.
+        if (this.ngAdding || this. ngEditing) return;
+        
         // Delete Transformation
-        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngDblclickDelete', '@Start');
 
-        // Delete from local and DB
-        this.globalVariableService.deleteResource('datasourceTransformations', id).then(res => {
-            this.datasourceTransformations = this.datasourceTransformations.filter(dtr =>
-                dtr.id != id);
+        //Delete from DB first, then update local store.
+        const deletedID: string = this.ngCurrentDSTransform._id;
+        this.globalVariableService.deleteDatasourceTransformation(deletedID)
+          .then(res => {
+            
+            // Find the record in our DS Tansform array and remove it
+            const deletedIndex: number = this.ngDSTransformList.indexOf(this.ngCurrentDSTransform)
+            this.ngDSTransformList.splice(deletedIndex, 1);
 
-            // Refresh previous row
-            let newIndex: number = index > 0? index - 1 : 0;
-            let newID: number = this.datasourceTransformations[newIndex].id;
-            this.clickRow(newIndex, newID);
-        })
-        .catch(err => {
-            this.errorMessage = err.slice(0, 100);
-            console.error('Error in Data.transformation deleting datasourceTransformations: ' + err);
-        });
-
+            // Select the first row
+            if ( this.ngDSTransformList.length > 0 ) {
+                this.ngClickRow(this.ngDSTransformList[0]);
+            } else {
+                this.ngCurrentDSTransform = null;
+                this.ngUpdateParameters();
+            }
+          })
+          .catch(err => {
+            this.ngAlertErrorMessage = 'Could not delete data! Please check Canvas Server.';
+          });
     }
 
-    clickClose(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+    ngClickClose(action: string) {
+        
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngClickClose', '@Start');
 
         this.formDataTransformationClosed.emit(action);
 
     }
 
+    ngGetTransformationDisplayName(type: TransformationType): string {
+        // @Redundancy: This function shouldn't really exist. If the transformation types were normalised
+        // in the DB, then we would simply look up the display name from that table, instead of having that
+        // look up be coded into the application logic.         - Ivan (22 March 2019)
+
+        let displayName: string;
+
+        switch(type) {
+            case TransformationType.split:          displayName = 'Split'; break;
+            case TransformationType.join:           displayName = 'Join'; break;
+            case TransformationType.to_upper:       displayName = 'To Upper'; break;
+            case TransformationType.to_lower:       displayName = 'To Lower'; break;
+            case TransformationType.to_proper:      displayName = 'To Proper'; break;
+            case TransformationType.trim:           displayName = 'Trim'; break;
+            case TransformationType.leave_num:      displayName = 'Only Numbers'; break;
+            case TransformationType.leave_char:     displayName = 'Only Characters'; break;
+            case TransformationType.weekday:        displayName = 'Weekday'; break;
+            case TransformationType.month:          displayName = 'Month'; break;
+            case TransformationType.day:            displayName = 'Day'; break;
+            case TransformationType.hour:           displayName = 'Hour'; break;
+            case TransformationType.minute:         displayName = 'Minute'; break;
+            case TransformationType.second:         displayName = 'Second'; break;
+            case TransformationType.week:           displayName = 'Week'; break;
+            case TransformationType.day_of_year:    displayName = 'Day of the Year'; break;
+            case TransformationType.quarter:        displayName = 'Quarter'; break;
+            case TransformationType.arithmetic:     displayName = 'Arithmetic'; break;
+            default:                                displayName = '';
+        }
+
+        return displayName;
+    }
+
+    isEqual(object1: object | null, object2: object | null): boolean {
+        // Checks whether two objects are equal or not. This function checks nested properties
+        // for differences as well, which native JS functions don't do.
+
+        let value: boolean;
+
+        // Handle the cases where one or both of the objects are empty.
+        if ( (object1 == null) && (object2 == null) ) {
+            return true;
+        } else if ( (object1 == null) || (object2 == null) ) {
+            return false;
+        } else {
+
+            // Look through object1's keys and try find matches in object2.
+            for (let key in object1) {
+                if ( !(key in object2) ) {
+                    return false;
+                } else {
+                    
+                    // Check the values within the keys are equal.
+
+                    // Check the type of the object properties and perform recursion if they're 
+                    // objects, as JS can't implement a proper equality check for objects.
+                    if ( (typeof object1[key] === 'object') && (typeof object2[key] === 'object') ) {
+                        value = this.isEqual(object1[key], object2[key]);
+                        if (value === false) return false;
+                    } else if ( object1[key] !== object2[key] ) {
+                        return false;
+                    }
+                }
+            }
+
+            // Look through object2's keys and try find matches in object1.
+            for (let key in object2) {
+                if ( !(key in object1) ) {
+                    return false;
+                } else {
+                    
+                    // Check the values within the keys are equal.
+
+                    // Check the type of the object properties and perform recursion if they're 
+                    // objects, as JS can't implement a proper equality check for objects.
+                    if ( (typeof object1[key] === 'object') && (typeof object2[key] === 'object') ) {
+                        value = this.isEqual(object1[key], object2[key]);
+                        if (value === false) return false;
+                    } else if ( object1[key] !== object2[key] ) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    ngClickPreview() {
+
+        // Preview Transformation Data
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngClickPreview', '@Start');
+
+        const test: TransformQuery = this.buildTransformationQuery();
+        if (test) {
+            console.log('Transformation query is :', JSON.stringify(test));
+            this.globalVariableService.sendTransformationQuery(test)
+            .then(data => {
+                this.ngPreviewData = data;
+            })
+            .catch(() => {
+                this.ngPreviewData = {};
+                this.ngAlertErrorMessage = 'No preview data was returned. Check Canvas Server';
+            });
+        } else {
+            this.ngAlertErrorMessage = 'Could not create transformation query. No preview available .';
+        }
+    }
+
+    buildTransformationQuery(): TransformQuery | null {
+
+        // Helper function which sets all the necessary parameters for a given transform object.
+        function updateParameters(dataTransform: DatasourceTransformationValues[], transform: object) {
+            for (let parameter of dataTransform) {
+                switch (parameter.type) {
+
+                  case TransformationParameterType.fieldName:
+                    transform['fieldName'] = parameter.value;
+                    break;
+
+                  case TransformationParameterType.fieldAlias:
+                    transform['fieldAlias'] = 'a';
+                    break;
+
+                  case TransformationParameterType.delimiter:
+                    transform['delimiter'] = parameter.value;
+                    break;
+
+                  case TransformationParameterType.fieldNames:
+                    // Due to limitations, multiple field names are stored as a CSV string.
+                    // We need to split it and trim whitespace before it can be passed on.
+                    transform['fieldNames'] = parameter.value.split(',');
+                    for (let i=0; i < transform['fieldNames'].length; i++) {
+                        transform['fieldNames'][i] = transform['fieldNames'][i].trim();
+                    }
+                    break;
+
+                  case TransformationParameterType.keepOriginalField:
+                    transform['keepOriginalField'] = parameter.value;
+                    break;
+
+                  case TransformationParameterType.newFieldName:
+                    transform['newFieldName'] = parameter.value;
+                    break;
+
+                  case TransformationParameterType.keepOriginalFields:
+                    transform['keepOriginalFields'] = parameter.value;
+                    break;
+
+                  case TransformationParameterType.expression:
+                    transform['expression'] = parameter.value;
+                    break;
+
+                  default:
+                    console.log('Unknown parameter type.', parameter);
+                    return null;
+                }
+            }
+        }
+
+        let transformQuery: TransformQuery;
+        let connection: TransformConnection;
+        let transform: TransformItem;
+        let resultOffset: number = 0;
+
+        // Create the skeleton of the transformation query and fill in the components as needed.
+        transformQuery = {
+            version: "0.1.0",
+            connections: [],
+            transforms: [],
+            returnOffset: [],
+            returnFirst: 8,
+            resultOrient: 'split'
+        }
+        
+        // First we add in the necessary connections to the datasources.
+        if ( (this.selectedDatasource.type.toLowerCase() === 'file') &&         
+                (this.selectedDatasource.subType.toLowerCase() === 'csv') ) {
+            connection = {
+                type: 'csv-mongo',
+                id: this.selectedDatasource.id
+            };
+        } else {
+            console.log('Selected datasource is not supported yet.', this.selectedDatasource);
+            return null;
+        }
+        transformQuery['connections'].push(connection);
+
+        // Each transformation step is added here.
+        // Add the fetch instruction as the first one, always.
+        transformQuery['transforms'].push({
+            type: 'fetch',
+            connOffset: 0,
+            alias: 'a',
+            resultOffset: resultOffset
+        });
+
+        // Add each transform that the user selected.
+        for (let dataTransform of this.ngDSTransformList) {
+            switch (dataTransform.type) {
+
+              case TransformationType.split: 
+                transform = {
+                    type: "function",
+                    function: "split",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    delimiter: "",
+                    fieldNames: [],
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }
+                break;
+
+              case TransformationType.join:
+                transform = {
+                    type: "function",
+                    function: "join",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    delimiter: "",
+                    fieldNames: [],
+                    keepOriginalFields: false,
+                    resultOffset: resultOffset + 1
+                }
+                break;
+
+              case TransformationType.to_upper:
+                transform = {
+                    type: "function",
+                    function: "to_upper",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }
+                break;
+
+              case TransformationType.to_lower:
+                transform = {
+                    type: "function",
+                    function: "to_lower",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }
+                break;
+
+              case TransformationType.to_proper:
+                 transform = { 
+                    type: "function",
+                    function: "to_proper",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }              
+                break;
+
+              case TransformationType.trim:
+                transform = {
+                    type: "function",
+                    function: "trim",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }              
+                break;
+
+              case TransformationType.leave_num:
+                transform = {
+                    type: "function",
+                    function: "leave_num",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }              
+                break;
+
+              case TransformationType.leave_char:
+                transform = {
+                    type: "function",
+                    function: "leave_char",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }              
+                break;
+
+              case TransformationType.weekday:
+                transform = {
+                    type: "function",
+                    function: "weekday",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }              
+                break;
+
+              case TransformationType.month:
+                transform = {
+                    type: "function",
+                    function: "month",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }              
+                break;
+
+              case TransformationType.day:
+                transform = {
+                    type: "function",
+                    function: "day",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }              
+                break;
+
+              case TransformationType.hour:
+                transform = {
+                    type: "function",
+                    function: "hour",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }              
+                break;
+
+              case TransformationType.minute:
+                transform = {
+                    type: "function",
+                    function: "minute",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }
+                break;
+
+              case TransformationType.second:
+                transform = {
+                    type: "function",
+                    function: "second",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }              
+                break;
+
+              case TransformationType.week:
+                transform = {
+                    type: "function",
+                    function: "week",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }              
+                break;
+
+              case TransformationType.day_of_year:
+                transform = {
+                    type: "function",
+                    function: "day_of_year",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }
+                break;
+
+              case TransformationType.quarter:
+                transform = {
+                    type: "function",
+                    function: "quarter",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    newFieldName: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }              
+                break;
+
+              case TransformationType.arithmetic:
+                transform = {
+                    type: "function",
+                    function: "arithmetic",
+                    sourceResultOffset: resultOffset,
+                    fieldName: "",
+                    fieldAlias: "",
+                    expression: "",
+                    keepOriginalField: false,
+                    resultOffset: resultOffset + 1
+                }              
+                break;
+
+              default: 
+                console.log('Transform type is not supported yet.', dataTransform);
+                return null;
+            }
+            updateParameters(dataTransform.parameterValues, transform);
+            resultOffset += 1;
+            //console.log('transform object is:', transform);
+            transformQuery['transforms'].push(transform);
+        }
+        transformQuery['returnOffset'] = [ resultOffset ]
+
+        //console.log('Transform query is:', transformQuery);
+        return transformQuery;
+    }
 }
-
-

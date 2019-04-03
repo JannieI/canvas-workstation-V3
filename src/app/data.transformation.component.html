@@ -1,10 +1,10 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content">
-            <form #f="ngForm" role="form" novalidate>
+            <form #f="ngForm" role="form">
 
                 <div class="gridOverall">
-                    <button type="button" class="closeButton" (click)="clickClose('Close')">
+                    <button type="button" class="closeButton" (click)="ngClickClose('Close')">
                         <b>X</b>
                     </button>
                     <div class="gridTitle">
@@ -34,128 +34,109 @@
                         </clr-signpost>
                     </div>
 
-                    <div class="gridTransformationButtonAdd">
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            (click)="clickAdd()"
-                            >
-                            Add
-                        </button>
-                    </div>
-
-                    <div class="select gridTransformationSelect" *ngIf="adding">
-                        <select
-                            [(ngModel)]="transformationName"
-                            name="transformationName"
-                            placeholder="Select a valid Transformation"
-                            (click)="clickSelectedTransformation()"
-                            >
-                            <option *ngFor="let row of transformations">
-                                {{ row.name }}
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="gridTransformationSignpost" *ngIf="adding">
+                    <div class="gridTransformationSignpost" *ngIf="ngAdding">
                         <clr-signpost>
                             <clr-icon shape="info-circle"
                                 clrSignpostTrigger>
                             </clr-icon>
-                                <clr-signpost-content *clrIfOpen [clrPosition]="position">
+                            <clr-signpost-content *clrIfOpen [clrPosition]="ngPosition">
                                 <h4 style="margin-top: 0">Annotation</h4>
                                 <p>
-                                    {{ transitionDescription }}
+                                    {{ ngCurrentTransform.description }}
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
                     </div>
 
-                    <div class="gridParameter1Title">
-                        <b>{{ parameter1Heading }}</b>
+                    <div class="gridParameter1Title" *ngIf="ngNrParameters>=1">
+                        <b>{{ ngCurrentParameters[0].displayName }}</b>
                     </div>
-                    <div class="gridParameter1" *ngIf="nrParameters>=1">
-                        <input [(ngModel)]="parameter1Value"
+                    <div class="gridParameter1" *ngIf="ngNrParameters>=1">
+                        <input [(ngModel)]="ngCurrentParameters[0].value"
                             type="parameter1Value"
                             name="parameter1Value"
-                            [placeholder]="parameter1Placeholder"
-                            [title]="parameter1Title"
-                            [disabled]="!adding  &&  !editing"
+                            [disabled]="!ngAdding  &&  !ngEditing"
                             >
                     </div>
 
-                    <div class="gridParameter2Title">
-                        <b>{{ parameter2Heading }}</b>
+                    <div class="gridParameter2Title" *ngIf="ngNrParameters>=2">
+                        <b>{{ ngCurrentParameters[1].displayName }}</b>
                     </div>
-                    <div class="gridParameter2" *ngIf="nrParameters>=2">
-                        <input [(ngModel)]="parameter2Value"
+                    <div class="gridParameter2" *ngIf="ngNrParameters>=2">
+                        <input [(ngModel)]="ngCurrentParameters[1].value"
                             type="parameter2Value"
                             name="parameter2Value"
-                            [placeholder]="parameter2Placeholder"
-                            [title]="parameter2Title"
-                            [disabled]="!adding  &&  !editing"
-
+                            [disabled]="!ngAdding  &&  !ngEditing"
                             >
                     </div>
 
-                    <div class="gridParameter3Title">
-                        <b>{{ parameter3Heading }}</b>
+                    <div class="gridParameter3Title" *ngIf="ngNrParameters>=3">
+                        <b>{{ ngCurrentParameters[2].displayName }}</b>
                     </div>
-                    <div class="gridParameter3" *ngIf="nrParameters>=3">
-                        <input [(ngModel)]="parameter3Value"
+                    <div class="gridParameter3" *ngIf="ngNrParameters>=3">
+                        <input [(ngModel)]="ngCurrentParameters[2].value"
                             type="parameter3Value"
                             name="parameter3Value"
-                            [placeholder]="parameter3Placeholder"
-                            [title]="parameter3Title"
-                            [disabled]="!adding  &&  !editing"
+                            [disabled]="!ngAdding  &&  !ngEditing"
                             >
                     </div>
 
-                    <div class="gridParameter4Title">
-                        <b>{{ parameter4Heading }}</b>
+                    <div class="gridParameter4Title" *ngIf="ngNrParameters>=4">
+                        <b>{{ ngCurrentParameters[3].displayName }}</b>
                     </div>
-                    <div class="gridParameter4" *ngIf="nrParameters>=4">
-                        <input [(ngModel)]="parameter4Value"
+                    <div class="gridParameter4" *ngIf="ngNrParameters>=4">
+                        <input [(ngModel)]="ngCurrentParameters[3].value"
                             type="parameter4Value"
                             name="parameter4Value"
-                            [placeholder]="parameter4Placeholder"
-                            [title]="parameter4Title"
-                            [disabled]="!adding  &&  !editing"
+                            [disabled]="!ngAdding  &&  !ngEditing"
                             >
                     </div>
 
-                    <div class="gridParameter5Title">
-                        <b>{{ parameter5Heading }}</b>
+                    <div class="gridParameter5Title" *ngIf="ngNrParameters>=5">
+                        <b>{{ ngCurrentParameters[4].displayName }}</b>
                     </div>
-                    <div class="gridParameter5" *ngIf="nrParameters>=5">
-                        <input [(ngModel)]="parameter5Value"
+                    <div class="gridParameter5" *ngIf="ngNrParameters>=5">
+                        <input [(ngModel)]="ngCurrentParameters[4].value"
                             type="parameter51Value"
                             name="parameter5Value"
-                            [placeholder]="parameter5Placeholder"
-                            [title]="parameter5Title"
-                            [disabled]="!adding  &&  !editing"
+                            [disabled]="!ngAdding  &&  !ngEditing"
                             >
                     </div>
 
-                    <div class="gridParameter6Title">
-                        <b>{{ parameter6Heading }}</b>
-                    </div>
-                    <div class="gridParameter6" *ngIf="nrParameters>=6">
-                        <input [(ngModel)]="parameter6Value"
-                            type="parameter6Value"
-                            name="parameter6Value"
-                            [placeholder]="parameter6Placeholder"
-                            [title]="parameter6Title"
-                            [disabled]="!adding  &&  !editing"
+                    <div class="gridTransformationButtonAdd">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            [disabled]="ngAdding || ngEditing"
+                            (click)="ngClickAdd()"
                             >
+                            Add
+                        </button>
+                    </div>
+
+                    <!-- Why does removing "select" from the line below `class="select gridTransformationSelect"` cause the style to change? -->
+                    <div class="select gridTransformationSelect" *ngIf="ngAdding">
+                        <select
+                            clrSelect
+                            [(ngModel)]="ngCurrentTransform"
+                            [ngModelOptions]="{standalone: true}"
+                            (change)="ngUpdateParameters()"
+                            >
+                            <option 
+                                *ngFor="let row of ngTransformList"
+                                [ngValue]="row"
+                                >
+                                {{ row.displayName }}
+                            </option>
+                        </select>
                     </div>
 
                     <div class="gridTransformationButtonCancel">
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            [disabled]="!adding  &&  !editing"
-                            (click)="clickCancel()"
+                            [disabled]="!ngAdding && !ngEditing"
+                            (click)="ngClickCancel()"
                             >
                             Cancel
                         </button>
@@ -165,72 +146,131 @@
                         <button
                             type="button"
                             class="btn btn-primary"
-                            [disabled]="!adding  &&  !editing"
-                            (click)="clickSave()"
+                            [disabled]="!ngAdding && !ngEditing"
+                            (click)="ngClickSave()"
                             >
                             Save
                         </button>
                     </div>
 
-                    <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                    <!-- <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                         {{ errorMessage }}
-                    </div>
+                    </div> -->
 
+                    <!-- @TODO: Find a way to disable this element and all it's enclosed events. -->
                     <div class="gridTransformations">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="left">Transformations</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of ngDSTransformList"
+                                    [style.background-color]="isEqual(row, ngCurrentDSTransform)? '#123456' : 'white'"
+                                    [style.color]="isEqual(row, ngCurrentDSTransform)? 'white' : 'gray'"
+                                    (click)="ngClickRow(row)">
+                                    <td class="left">
+                                        {{ ngGetTransformationDisplayName(row.type) }}
+                                        <!-- Icons show up from right to left, in the list below. -->
+                                        <clr-icon shape="trash"
+                                            class="icon-right"
+                                            size="14"
+                                            (dblclick)="ngDblclickDelete(row)">
+                                        </clr-icon>
+                                        <clr-icon shape="arrow down"
+                                            class="icon-right"
+                                            size="14"
+                                            (click)="ngClickMoveDown(row)">
+                                        </clr-icon>
+                                        <clr-icon shape="arrow"
+                                            class="icon-right"
+                                            size="14"
+                                            (click)="ngClickMoveUp(row)">
+                                        </clr-icon>
+                                        <clr-icon shape="pencil"
+                                            class="icon-right"
+                                            size="14"
+                                            (click)="ngClickEdit(row)">
+                                        </clr-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div class="gridTransformations">
                         <clr-datagrid>
                             <clr-dg-placeholder>
-                                Show Data here ...
+                                No Transformations yet...
                             </clr-dg-placeholder>
 
-                            <clr-dg-column [clrDgField]="'nameDB'">Transformation</clr-dg-column>
+                            <clr-dg-column>Transformation</clr-dg-column>
 
                             <clr-dg-row
-                                *clrDgItems="let row of datasourceTransformations; let i = index"
-                                [style.background-color]="(i == selectedDataRowIndex)? '#123456' : 'white'"
-                                [style.color]="(i == selectedDataRowIndex)? 'white' : 'gray'"
-                                (click)="clickRow(i, row.id)"
+                                *clrDgItems="let row of ngDSTransformList"
+                                [style.background-color]="isEqual(row, ngCurrentDSTransform)? '#123456' : 'white'"
+                                [style.color]="isEqual(row, ngCurrentDSTransform)? 'white' : 'gray'"
+                                (click)="ngClickRow(row)"
                                 >
                                 <clr-dg-cell>
                                     <clr-icon shape="pencil"
                                         size="12"
-                                        (click)="clickEdit()">
+                                        (click)="ngClickEdit(row)">
                                     </clr-icon>
                                     <clr-icon shape="arrow"
                                         size="12"
-                                        (click)="clickMoveUp(i, row.id)">
+                                        (click)="ngClickMoveUp(row)">
                                     </clr-icon>
                                     <clr-icon shape="arrow down"
                                         size="12"
-                                        (click)="clickMoveDown(i, row.id)">
+                                        (click)="ngClickMoveDown(row)">
                                     </clr-icon>
-                                    {{ row.name }}
+                                    {{ ngGetTransformationDisplayName(row.type) }}
                                     <clr-icon shape="trash"
                                         size="12"
-                                        (dblclick)="dblclickDelete(i, row.id)">
+                                        (dblclick)="ngDblclickDelete(row)">
                                     </clr-icon>
                                 </clr-dg-cell>
 
                             </clr-dg-row>
                         </clr-datagrid>
-                    </div>
+                    </div> -->
 
                     <div class="gridResult">
                         <clr-datagrid>
-                            <clr-dg-placeholder>
-                                Show Data here ...
-                            </clr-dg-placeholder>
-
-                            <clr-dg-column [clrDgField]="'nameDB'">name (DB)</clr-dg-column>
-                            <clr-dg-column [clrDgField]="'businessGlossary'">businessGlossary</clr-dg-column>
-
-                            <clr-dg-row
-                                *clrDgItems="let row of dataFields; let i = index"
-                                >
-                                <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
-
+                            <clr-dg-column *ngFor="let col of ngPreviewData['columns']">
+                                {{ col }}
+                            </clr-dg-column>
+                            <clr-dg-row *ngFor="let row of ngPreviewData['data']">
+                                <clr-dg-cell *ngFor="let cell of row">
+                                    {{ cell }}
+                                </clr-dg-cell>
                             </clr-dg-row>
                         </clr-datagrid>
+                    </div>
+
+                    <div class="gridAlertError alert alert-danger"
+                        role="alert"
+                        *ngIf="ngAlertErrorMessage!==''">
+                        <div class="alert-items">
+                            <div class="alert-item static">
+                                <div class="alert-icon-wrapper">
+                                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                                </div>
+                                {{ ngAlertErrorMessage }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gridTransformationButtonPreview">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            [disabled]="ngAdding || ngEditing"
+                            (click)="ngClickPreview()"
+                            >
+                            Preview Data
+                        </button>
                     </div>
 
                 </div>
