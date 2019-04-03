@@ -643,57 +643,57 @@ export const dashboardTabTemplate: DashboardTab =
     createdOn: null
 };
 
-export const transformationsFormat: Transformation[] =
-[
-    {
-        id: 1,
-        category: 'Column-level',
-        name: 'FormatDate',
-        description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.',
-        nrParameters: 6,
-        parameterPlaceholder: ['place1','place2','place3','place4','place5','place6'],
-        parameterTitle: ['tit1','tit2','tit3','tit4','tit5','tit6'],
-        parameterDefaultValue: ['txt1','txt2','txt3','txt4','txt5','txt6'],
-        parameterHeading: ['head1','head2','head3','head4','head5','head6'],
-        parameterType: ['','','','','',''],
-        editedBy: '',
-        editedOn: null,
-        createdBy: '',
-        createdOn: null
-    },
-    {
-        id: 16,
-        category: 'Column-level',
-        name: 'DatePart',
-        description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second',
-        nrParameters: 1,
-        parameterPlaceholder: ['place1'],
-        parameterTitle: ['tit1'],
-        parameterDefaultValue: ['txt1'],
-        parameterHeading: ['head1'],
-        parameterType: ['','','','','',''],
-        editedBy: '',
-        editedOn: null,
-        createdBy: '',
-        createdOn: null
-    },
-    {
-        id: 20,
-        category: 'Column-level',
-        name: 'FormatNumber',
-        description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’',
-        nrParameters: 1,
-        parameterPlaceholder: ['place1'],
-        parameterTitle: ['tit1'],
-        parameterDefaultValue: ['txt1'],
-        parameterHeading: ['head1'],
-        parameterType: ['','','','','',''],
-        editedBy: '',
-        editedOn: null,
-        createdBy: '',
-        createdOn: null
-    }
-];
+// export const transformationsFormat: Transformation[] =
+// [
+//     {
+//         id: 1,
+//         category: 'Column-level',
+//         name: 'FormatDate',
+//         description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.',
+//         nrParameters: 6,
+//         parameterPlaceholder: ['place1','place2','place3','place4','place5','place6'],
+//         parameterTitle: ['tit1','tit2','tit3','tit4','tit5','tit6'],
+//         parameterDefaultValue: ['txt1','txt2','txt3','txt4','txt5','txt6'],
+//         parameterHeading: ['head1','head2','head3','head4','head5','head6'],
+//         parameterType: ['','','','','',''],
+//         editedBy: '',
+//         editedOn: null,
+//         createdBy: '',
+//         createdOn: null
+//     },
+//     {
+//         id: 16,
+//         category: 'Column-level',
+//         name: 'DatePart',
+//         description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second',
+//         nrParameters: 1,
+//         parameterPlaceholder: ['place1'],
+//         parameterTitle: ['tit1'],
+//         parameterDefaultValue: ['txt1'],
+//         parameterHeading: ['head1'],
+//         parameterType: ['','','','','',''],
+//         editedBy: '',
+//         editedOn: null,
+//         createdBy: '',
+//         createdOn: null
+//     },
+//     {
+//         id: 20,
+//         category: 'Column-level',
+//         name: 'FormatNumber',
+//         description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’',
+//         nrParameters: 1,
+//         parameterPlaceholder: ['place1'],
+//         parameterTitle: ['tit1'],
+//         parameterDefaultValue: ['txt1'],
+//         parameterHeading: ['head1'],
+//         parameterType: ['','','','','',''],
+//         editedBy: '',
+//         editedOn: null,
+//         createdBy: '',
+//         createdOn: null
+//     }
+// ];
 
 export const finalFields =
 [

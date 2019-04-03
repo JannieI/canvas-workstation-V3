@@ -74,7 +74,7 @@ import { dashboardTemplate }          from './templates';
 import { dashboardTabTemplate }       from './templates';
 import { finalFields }                from './templates';
 import { serverTypes }                from './templates';
-import { transformationsFormat }      from './templates';
+// import { transformationsFormat }      from './templates';
 import { vlTemplate }                 from './templates';
 import { widgetTemplateInner }        from './templates';
 import { widgetTemplate }             from './templates';
@@ -175,7 +175,7 @@ export class GlobalVariableService {
     hasNewMessage = new BehaviorSubject<boolean>(false);
     lastMessageDateTime: Date = new Date(); // Last time a caching message was received
     statusBarMessageLogs: StatusBarMessageLog[] = [];
-    transformationsFormat: Transformation[] = transformationsFormat;
+    // transformationsFormat: Transformation[] = transformationsFormat;
     widgetCheckpoints: WidgetCheckpoint[] = [];
     widgets: Widget[] = [];
 
