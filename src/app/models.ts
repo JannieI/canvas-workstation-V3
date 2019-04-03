@@ -1784,7 +1784,6 @@ export class NavigatorNodeFiler {
     value: string;
 }
 
-
 export const enum TransformationType {
     split = 0,
     join = 1,
@@ -1817,7 +1816,7 @@ export const enum TransformationParameterType {
     expression = 7
 }
 
-export interface TransformationNEW {
+export interface Transformation {
     _id?: string;                               // Mongo ID (read only)
     id: number;                                 // Not used at the moment. null throughout.
     type: TransformationType;                   // Transformation type.

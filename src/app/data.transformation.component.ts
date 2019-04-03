@@ -19,13 +19,14 @@ import { GlobalVariableService }        from './global-variable.service';
 // Our Models
 import { Datasource }                   from './models';
 import { DatasourceTransformation }     from './models';
-import { TransformationNEW }            from './models';
+import { Transformation }               from './models';
 import { DatasourceTransformationValues }   from './models';
 import { TransformationItemParameter }  from './models';
 import { TransformationType }           from './models';
 import { TransformationParameterType }  from './models';
 import { TransformQuery, TransformConnection, TransformItem } from './models';
 
+// JI - love your comments, very clear !!
 
 @Component({
     selector: 'data-transformation',
@@ -51,10 +52,12 @@ export class DataTransformationComponent implements OnInit {
         };
     }
 
+    // JI - should we use ng (impact on refactoring)  - alphabetic?
+    //    - happy to add // comments to all mine 
     // Globals used in confunction with Angular directives in the DOM/html templates
-    ngTransformList: TransformationNEW[] = [];          // All possible transformations
+    ngTransformList: Transformation[] = [];          // All possible transformations
     ngDSTransformList: DatasourceTransformation[] = [];  // All transformations applied to current DS
-    ngCurrentTransform: TransformationNEW = null;       // The currently selected transformation
+    ngCurrentTransform: Transformation = null;       // The currently selected transformation
     ngCurrentDSTransform: DatasourceTransformation = null;   // The currently selected transform for this DS
     ngCurrentParameters: TransformationItemParameter[] = [];    // The parameter values and display data
     ngAdding: boolean = false;                          // True if adding a new Tr, click Save to complete
@@ -76,14 +79,18 @@ export class DataTransformationComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         Promise.all([
+            // JI - getResource has a filter option in case you want to get all for one DS
+            //    - see your comment below
             this.globalVariableService.getResource('datasourceTransformations'), 
             this.globalVariableService.getResource('transformations')
         ])
           .then(values => {
 
+            // JI - suggest test values.length before using values[0]
             const dtr: DatasourceTransformation[] = values[0];  // Resolved response from getDatasourceTransformations() Promise.
             this.ngTransformList = values[1];   // Resolved response from getTransformations() Promise.
 
+            // JI - getResource has a sort option to perform sorting on server
             // Only show Datasource Transformations for the current data source.
             // @Speed: Change this to only return data for the current data source. Will have to make it
             // play nice with the cache.    - Ivan (22 March 2019)
@@ -111,19 +118,25 @@ export class DataTransformationComponent implements OnInit {
             
           })
           .catch(error => {
+            // JI - I dont use printToConsole for error - maybe I should, what you think?
+            //      The reason is that errors should always show
             this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', 'Promise.all error :' + error.message)
+            // JI - info: I have called all my error message vars errorMessage, unless more than one
             this.ngAlertErrorMessage = 'Could not initialise the form properly. Please check Canvas Server.'
           });
     }
 
+    // JI - I dont use the ng prefix, maybe we should agree a standard
     ngUpdateParameters() {
         // Create an array which contains the parameter values that need to get bound and displayed
         // by Angular.
 
+        // JI - I see some dont have TODO in front - is the key the @ sign when we search?
         // @Refactor: Do we even need this function? Can we not store all the parameter data globally
         // and simply refer to it as we change the current transformation pointer?  - Ivan (02 Mar 2019)
 
-
+        // JI - please use this line with every routine.  It is good for debugging while in
+        //      Dev, and all are switched with one GV (global-variable)
         this.globalFunctionService.printToConsole(this.constructor.name,'ngUpdateParameters', '@Start');
 
         this.ngCurrentParameters = [];
@@ -145,7 +158,7 @@ export class DataTransformationComponent implements OnInit {
         } else if ( this.ngCurrentDSTransform ) {
             // This fills in parameters from the currently selected Datasource Transformation 
             // value. Which should already be in the DB.
-            let extraData: TransformationNEW = this.ngTransformList.find(
+            let extraData: Transformation = this.ngTransformList.find(
                 x => x.type === this.ngCurrentDSTransform.type
             );
             for (let parameter of this.ngCurrentDSTransform.parameterValues) {
@@ -170,6 +183,7 @@ export class DataTransformationComponent implements OnInit {
         }
     }
 
+    // JI - I use clickAdd(), click being the event.  Maybe we should discuss this
     ngClickAdd() {
         // Let the user add a new Transformation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngClickAdd', '@Start');
@@ -209,6 +223,7 @@ export class DataTransformationComponent implements OnInit {
         this.ngAlertErrorMessage = '';
 
         // Validate
+        // JI - I dont use the for-let, but I like it.  Think I should use it more 
         for (let parameter of this.ngCurrentParameters) {
 
             // Check for missing values where there should be a value
@@ -217,6 +232,7 @@ export class DataTransformationComponent implements OnInit {
                 return;
             }
 
+            // JI - I like the switch, I should use it more
             // Check parameter types more thoroughly.
             switch (parameter.type) {
 
@@ -224,6 +240,7 @@ export class DataTransformationComponent implements OnInit {
 
               case (TransformationParameterType.expression):
                 
+              // JI - your todo items are very clear!  I need to improve mine
                 // @TODO: Add a possible regex check for the format of an expression which
                 // makes sure that we get something of the form 'A=B+C' and that the field
                 // names are validated against the data.        - Ivan (29 Mar 2019)
@@ -255,11 +272,13 @@ export class DataTransformationComponent implements OnInit {
 
               case (TransformationParameterType.newFieldName): break;
               default:
+              // JI - how is this displayed on form?
                 console.log('ERROR: No matching parameter type.');
                 return;
             }
         }
 
+        // JI - I dont use spaces in the if: (this.ngAdding)  Happy to live with both
         // Add NEW record
         if ( this.ngAdding ) {
 
@@ -311,6 +330,12 @@ export class DataTransformationComponent implements OnInit {
 
               })
               .catch(() => {
+                  // JI - I have added a .log for each error, and also show the error returned
+                    // .catch(err => {
+                    //     this.errorMessage = err.slice(0, 100);
+                    //     console.error('Error in Datasource.share reading canvasGroups: ' + err);
+                    // });
+
                 this.ngAlertErrorMessage = 'Could not save data! Please check Canvas Server.';
               });
 
@@ -382,8 +407,12 @@ export class DataTransformationComponent implements OnInit {
         if (this.ngAdding || this. ngEditing) return;
 
         // Move Transformation Up
+        // JI - I use this as the first line, but understand your if above
         this.globalFunctionService.printToConsole(this.constructor.name,'ngClickMoveUp', '@Start');
 
+        // JI - I understand that === is not needed below: row.seq cannot be anothing 
+        //      other than a number as TS compiler and VSCode wont allow it.  Maybe check 
+        //      it out
         // Don't do anything if this is number 1
         if ( row.seq === 1 ) return;
 
@@ -490,7 +519,7 @@ export class DataTransformationComponent implements OnInit {
           .catch(err => {
             this.ngAlertErrorMessage = 'Could not save data! Please check Canvas Server.';
           });
-    }
+    }''
  
     ngClickEdit(row: DatasourceTransformation) {
         // Don't do anything if we are busy with the transformation adding/editing.
@@ -547,6 +576,7 @@ export class DataTransformationComponent implements OnInit {
         // in the DB, then we would simply look up the display name from that table, instead of having that
         // look up be coded into the application logic.         - Ivan (22 March 2019)
 
+        // JI - no printToConsole
         let displayName: string;
 
         switch(type) {
@@ -577,6 +607,7 @@ export class DataTransformationComponent implements OnInit {
     isEqual(object1: object | null, object2: object | null): boolean {
         // Checks whether two objects are equal or not. This function checks nested properties
         // for differences as well, which native JS functions don't do.
+        // JI - no printToConsole
 
         let value: boolean;
 
@@ -650,8 +681,13 @@ export class DataTransformationComponent implements OnInit {
         }
     }
 
+    // JI - was thinking: if you think we will reuse this, it should move to GV
     buildTransformationQuery(): TransformQuery | null {
 
+        // JI - no printToConsole
+
+        // JI - was thinking about this: I suggest we take this guy out and make all
+        //      functions flat / one layer.  Easier for refactoring and simpler methinks
         // Helper function which sets all the necessary parameters for a given transform object.
         function updateParameters(dataTransform: DatasourceTransformationValues[], transform: object) {
             for (let parameter of dataTransform) {
@@ -701,11 +737,18 @@ export class DataTransformationComponent implements OnInit {
             }
         }
 
+        // JI - how does it work to have them here?  In VBA I insisted all at top, but
+        //      lately I prefer them defined where I use them.  What you think?
         let transformQuery: TransformQuery;
         let connection: TransformConnection;
         let transform: TransformItem;
         let resultOffset: number = 0;
+        // JI - I am bad with let since I never use const.  I should probably go through
+        //      all my code and change let -> const if var is not changed.  What you think?
 
+        // I use a templates.ts file for stuff like this.  The idea is that it is stored
+        // in one place and the code here is less cluttered (since some can be really 
+        // big).  What you think?
         // Create the skeleton of the transformation query and fill in the components as needed.
         transformQuery = {
             version: "0.1.0",
@@ -738,6 +781,7 @@ export class DataTransformationComponent implements OnInit {
             resultOffset: resultOffset
         });
 
+        // JI - is it possible to read these from the DB?
         // Add each transform that the user selected.
         for (let dataTransform of this.ngDSTransformList) {
             switch (dataTransform.type) {
@@ -987,6 +1031,8 @@ export class DataTransformationComponent implements OnInit {
             //console.log('transform object is:', transform);
             transformQuery['transforms'].push(transform);
         }
+        // JI - the standard is ; after each statement, no exception.  I suggest we do this.
+        //    - see line above and below.
         transformQuery['returnOffset'] = [ resultOffset ]
 
         //console.log('Transform query is:', transformQuery);
