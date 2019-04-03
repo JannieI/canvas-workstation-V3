@@ -189,6 +189,10 @@
             text-align: center;
         }
 
+        .graphNavigatorBar {
+            border: 1px solid black;
+            border-radius: 4px;
+        }
         .graphAreaGraphic {
             font-size: 0.5rem;
             text-align: left;
