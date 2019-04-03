@@ -18,9 +18,9 @@ import { GlobalVariableService }        from './global-variable.service';
 
 // Our Models
 import { Datasource }                   from './models';
-import { DatasourceTransformationNEW }  from './models';
+import { DatasourceTransformation }     from './models';
 import { TransformationNEW }            from './models';
-import { DatasourceTransformationValues } from './models';
+import { DatasourceTransformationValues }   from './models';
 import { TransformationItemParameter }  from './models';
 import { TransformationType }           from './models';
 import { TransformationParameterType }  from './models';
@@ -53,9 +53,9 @@ export class DataTransformationComponent implements OnInit {
 
     // Globals used in confunction with Angular directives in the DOM/html templates
     ngTransformList: TransformationNEW[] = [];          // All possible transformations
-    ngDSTransformList: DatasourceTransformationNEW[] = [];  // All transformations applied to current DS
+    ngDSTransformList: DatasourceTransformation[] = [];  // All transformations applied to current DS
     ngCurrentTransform: TransformationNEW = null;       // The currently selected transformation
-    ngCurrentDSTransform: DatasourceTransformationNEW = null;   // The currently selected transform for this DS
+    ngCurrentDSTransform: DatasourceTransformation = null;   // The currently selected transform for this DS
     ngCurrentParameters: TransformationItemParameter[] = [];    // The parameter values and display data
     ngAdding: boolean = false;                          // True if adding a new Tr, click Save to complete
     ngEditing: boolean = false;                         // True if editing a selected Tr
@@ -76,12 +76,12 @@ export class DataTransformationComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         Promise.all([
-            this.globalVariableService.getDatasourceTransformations(), 
-            this.globalVariableService.getTransformations()
+            this.globalVariableService.getResource('datasourceTransformations'), 
+            this.globalVariableService.getResource('transformations')
         ])
           .then(values => {
 
-            const dtr: DatasourceTransformationNEW[] = values[0];  // Resolved response from getDatasourceTransformations() Promise.
+            const dtr: DatasourceTransformation[] = values[0];  // Resolved response from getDatasourceTransformations() Promise.
             this.ngTransformList = values[1];   // Resolved response from getTransformations() Promise.
 
             // Only show Datasource Transformations for the current data source.
@@ -281,7 +281,7 @@ export class DataTransformationComponent implements OnInit {
             }
 
             // Create New record
-            let newDatasourceTransformation: DatasourceTransformationNEW = {
+            let newDatasourceTransformation: DatasourceTransformation = {
                 id: null,
                 type: this.ngCurrentTransform.type,
                 datasourceID: this.selectedDatasource.id,
@@ -290,7 +290,10 @@ export class DataTransformationComponent implements OnInit {
             };
 
             // Save to DB
-            this.globalVariableService.addDatasourceTransformation(newDatasourceTransformation)
+            this.globalVariableService.addResource(
+                'datasourceTransformations', 
+                newDatasourceTransformation
+                )
               .then(dtr  => {
                 console.log('Object returned on insert is :', dtr);
 
@@ -325,7 +328,7 @@ export class DataTransformationComponent implements OnInit {
             }
 
             // Create New record
-            let newDatasourceTransformation: DatasourceTransformationNEW = {
+            let newDatasourceTransformation: DatasourceTransformation = {
                 _id: this.ngCurrentDSTransform._id,
                 id: null,
                 type: this.ngCurrentDSTransform.type,
@@ -335,7 +338,10 @@ export class DataTransformationComponent implements OnInit {
             };
 
             // Save to DB
-            this.globalVariableService.saveDatasourceTransformation(newDatasourceTransformation)
+            this.globalVariableService.saveResource(
+                'datasourceTransformations',
+                newDatasourceTransformation
+                )
               .then(data => {
                 
                 // Update the DSTransformationItem Parameters to match CurrentParameters.
@@ -357,7 +363,7 @@ export class DataTransformationComponent implements OnInit {
         };
     }
 
-    ngClickRow(row: DatasourceTransformationNEW) {
+    ngClickRow(row: DatasourceTransformation) {
         // Don't do anything if we are busy with the transformation adding/editing.
         if (this.ngAdding || this. ngEditing) return;
 
@@ -371,7 +377,7 @@ export class DataTransformationComponent implements OnInit {
         console.log(this.ngCurrentDSTransform);
     }
 
-    ngClickMoveUp(row: DatasourceTransformationNEW) {
+    ngClickMoveUp(row: DatasourceTransformation) {
         // Don't do anything if we are busy with the transformation adding/editing.
         if (this.ngAdding || this. ngEditing) return;
 
@@ -381,7 +387,7 @@ export class DataTransformationComponent implements OnInit {
         // Don't do anything if this is number 1
         if ( row.seq === 1 ) return;
 
-        let previousRow: DatasourceTransformationNEW = this.ngDSTransformList.find( d => d.seq === row.seq - 1 )
+        let previousRow: DatasourceTransformation = this.ngDSTransformList.find( d => d.seq === row.seq - 1 )
         
         if ( !previousRow ) {
             // @TODO: Error checking. Notify the user that we could not find the previous record.
@@ -397,8 +403,8 @@ export class DataTransformationComponent implements OnInit {
         // isn't a risk of one PUT request failing and leaving the DB in an inconsistent state.
         //                                                              - Ivan (29 Mar 2019)
         Promise.all([
-            this.globalVariableService.saveDatasourceTransformation(row),
-            this.globalVariableService.saveDatasourceTransformation(previousRow)
+            this.globalVariableService.saveResource('datasourceTransformations', row),
+            this.globalVariableService.saveResource('datasourceTransformations', previousRow)
         ])
           .then(() => {
 
@@ -430,7 +436,7 @@ export class DataTransformationComponent implements OnInit {
           });
     }
 
-    ngClickMoveDown(row: DatasourceTransformationNEW) {
+    ngClickMoveDown(row: DatasourceTransformation) {
         // Don't do anything if we are busy with the transformation adding/editing.
         if (this.ngAdding || this. ngEditing) return;
 
@@ -438,10 +444,10 @@ export class DataTransformationComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngClickMoveDown', '@Start');
 
         // Don't do anything if this is the last sequence in the array
-        const lastRow: DatasourceTransformationNEW = this.ngDSTransformList[this.ngDSTransformList.length - 1]
+        const lastRow: DatasourceTransformation = this.ngDSTransformList[this.ngDSTransformList.length - 1]
         if ( row.seq === lastRow.seq) return;
 
-        let nextRow: DatasourceTransformationNEW = this.ngDSTransformList.find( d => d.seq === row.seq + 1 )
+        let nextRow: DatasourceTransformation = this.ngDSTransformList.find( d => d.seq === row.seq + 1 )
         if ( !nextRow ) {
             // @TODO: Error checking. Notify the user that we could not find the next element.
             console.log('error!!!!!');
@@ -453,8 +459,8 @@ export class DataTransformationComponent implements OnInit {
 
         // Update DB with both changes then update local data
         Promise.all([
-            this.globalVariableService.saveDatasourceTransformation(row),
-            this.globalVariableService.saveDatasourceTransformation(nextRow)
+            this.globalVariableService.saveResource('datasourceTransformations', row),
+            this.globalVariableService.saveResource('datasourceTransformations', nextRow)
         ])
           .then(() => {
 
@@ -486,7 +492,7 @@ export class DataTransformationComponent implements OnInit {
           });
     }
  
-    ngClickEdit(row: DatasourceTransformationNEW) {
+    ngClickEdit(row: DatasourceTransformation) {
         // Don't do anything if we are busy with the transformation adding/editing.
         if (this.ngAdding || this. ngEditing) return;
 
@@ -497,7 +503,7 @@ export class DataTransformationComponent implements OnInit {
         this.ngEditing = true;
     }
 
-    ngDblclickDelete(row: DatasourceTransformationNEW) {
+    ngDblclickDelete(row: DatasourceTransformation) {
         // Don't do anything if we are busy with the transformation adding/editing.
         if (this.ngAdding || this. ngEditing) return;
         
@@ -505,8 +511,10 @@ export class DataTransformationComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngDblclickDelete', '@Start');
 
         //Delete from DB first, then update local store.
-        const deletedID: string = this.ngCurrentDSTransform._id;
-        this.globalVariableService.deleteDatasourceTransformation(deletedID)
+        this.globalVariableService.deleteResource(
+            'datasourceTransformations', 
+            this.ngCurrentDSTransform.id
+            )
           .then(res => {
             
             // Find the record in our DS Tansform array and remove it
