@@ -338,7 +338,16 @@ export class PreferencesComponent implements OnInit {
             dt.localCacheableMemory = false;
         });
 
-        console.log('Current dataCachingTable:', this.globalVariableService.dataCachingTable)
+        console.log('dataCachingTable after DISABLE:', this.globalVariableService.dataCachingTable)
+    }
+
+    clickResetLocalCache() {
+        // Resets local cache
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickResetLocalCache', '@Start');
+
+        this.globalVariableService.getDataCachingTable();
+
+        console.log('dataCachingTable after RESET:', this.globalVariableService.dataCachingTable)
     }
 
 
