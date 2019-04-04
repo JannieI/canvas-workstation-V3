@@ -190,12 +190,10 @@
             .graphNavigatorBar {
                 border: 1px solid black;
                 border-radius: 4px;
+                color: gray;
                 margin-bottom: 6px;
                 margin-top: 6px;
                 text-align: left;
-            }
-            .graphNavigatorBarInput {
-                width: 8p;
             }
 
         .graphAreaGraphic {

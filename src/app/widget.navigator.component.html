@@ -443,6 +443,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             <div class="graphNavigatorBar">
                 <span>
                     <clr-icon shape="step-forward down"
+                        size="14"
                         style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
@@ -450,24 +451,17 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </span>
                 <span>
                     <clr-icon shape="play down"
+                        size="14"
                         style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
-                <span class="graphNavigatorBarInput">
-                    1 to
-                    <input type="text"
-                        [(ngModel)]="maxChildrow"
-                        name="maxChildrow"
-                        placeholder="6"
-                        title=""
-                        size="6"
-                        >
-
-                </span>
+                <span>
+                    1 to 9
                 <span>
                     <clr-icon shape="play"
+                        size="14"
                         style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
@@ -475,23 +469,18 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </span>
                 <span>
                     <clr-icon shape="step-forward"
+                        size="14"
                         style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
-                <!-- <span>
-                    <clr-icon shape="filter-grid-circle"
-                        style="cursor: pointer; margin-left: 6px;"
-                        (click)="clickPageRight"
-                        >
-                    </clr-icon>
-                </span> -->
 
+                <!-- Children Filter -->
                 <clr-signpost style="width: 400;">
                     <clr-icon shape="filter-grid-circle"
-                        style="color: blue; margin-top: -4px;"
-                        size="12"
+                        size="14"
+                        style="cursor: pointer; margin-left: 6px;"
                         clrSignpostTrigger
                         >
                     </clr-icon>
@@ -573,7 +562,47 @@ dimensions is set in app.html, and cannot be changed here. -->
                     </clr-signpost-content>
                 </clr-signpost>
         
-
+                <!-- Additional Properties to show -->
+                <clr-signpost style="width: 400;">
+                    <clr-icon shape="ellipsis-horizontal"
+                        size="14"
+                        style="cursor: pointer; margin-left: 6px;"
+                        clrSignpostTrigger
+                        >
+                    </clr-icon>
+                    <clr-signpost-content *clrIfOpen
+                        [clrPosition]="'bottom-middle'">
+                        <h5 style="margin-top: 0; color:gray;">
+                            Additional properties to show per child
+                        </h5>
+                        <p style="margin-top: 0; color:gray; text-align: left;">
+                            Select an optional additional properties to be shown in brackets
+                            at the end of each child.  This will show until
+                            1. it is changed here, or 2. the selection is changed.
+                        </p>
+                        <div class="graphAreaChildFilterFieldTitle">
+                            Property:
+                            <select id="selects_3"
+                                [(ngModel)]="filterChildFieldName"
+                                (change)="changeChildFilterField($event)"
+                                name="filterChildFieldName"
+                                >
+                                <option>
+                                    Surname
+                                </option>
+                                <option>
+                                    Gender
+                                </option>
+                                <option>
+                                    Designation
+                                </option>
+                                <option>
+                                    Race
+                                </option>
+                            </select>
+        
+                    </clr-signpost-content>
+                </clr-signpost>
 
 
 
