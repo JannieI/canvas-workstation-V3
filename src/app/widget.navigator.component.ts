@@ -870,7 +870,7 @@ export class WidgetNavigatorComponent {
         // Dummy stuffies for Demo
         console.log('xx this.selectedView', this.selectedView)
         if (this.selectedView == 'CommonParentView') {
-            this.graphData = this.dummyData;
+            this.graphData = this.graphData; //this.dummyData;
             this.graphTitle = 'Common parents for any Directors of Absa';
         };
 
@@ -886,7 +886,7 @@ export class WidgetNavigatorComponent {
             this.showSpecificGraphLayer,
             0
         );
-
+console.log('xx this.specification', this.graphTitle, this.graphData, this.specification)
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
 
@@ -1299,7 +1299,8 @@ export class WidgetNavigatorComponent {
         };
         if (this.selectedView == 'CommonParentView') {
             this.dummyData = [];
-            this.dummyData.push({ "id": 1,
+            this.dummyData.push({ 
+                "id": 1,
                 "name": 'Common Parent'
             });
             this.dummyData.push({
@@ -1318,12 +1319,12 @@ export class WidgetNavigatorComponent {
                 parent: 1
             });
             this.dummyData.push({
-                id: 10,
+                id: 5,
                 name: 'James Carr (Director)',
                 parent: 2
             });
             this.dummyData.push({
-                id: 11,
+                id: 6,
                 name: 'Helga Bush (Auditor)',
                 parent: 2
             });
