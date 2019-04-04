@@ -190,7 +190,8 @@
             .graphNavigatorBar {
                 border: 1px solid black;
                 border-radius: 4px;
-                margin-bottom: 12px;
+                margin-bottom: 6px;
+                margin-top: 6px;
             }
 
         .graphAreaGraphic {

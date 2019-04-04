@@ -442,17 +442,14 @@ dimensions is set in app.html, and cannot be changed here. -->
         <div class="graphAreaTitle">
             <div class="graphNavigatorBar">
                 <span>
-                    <clr-icon shape="step-forward left" *ngIf="showChildPageRight"
+                    <clr-icon shape="step-forward down" *ngIf="showChildPageRight"
                         style="cursor: pointer; margin-left: 12px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
-                Bar Nav ....
-            </div>
-            <!-- 
                 <span>
-                    <clr-icon shape="play left" *ngIf="showChildPageRight"
+                    <clr-icon shape="play down" *ngIf="showChildPageRight"
                         style="cursor: pointer; margin-left: 12px;"
                         (click)="clickPageRight"
                         >
@@ -489,6 +486,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                         >
                     </clr-icon>
                 </span>
+            </div>
+            <!-- 
                 <span>
                     QuickFilter
                     <select [(ngModel)]="selectedNodeType"
