@@ -1196,6 +1196,18 @@ export class WidgetNavigatorComponent {
         this.showGraph();
     }
 
+    defaultView() {
+        // Show the default view = tree with children
+        this.globalFunctionService.printToConsole(this.constructor.name,'defaultView', '@Start');
+
+        // Refresh the graph
+        this.selectedView == 'DefaultView'
+
+        this.tempCreateDummyData();
+
+        console.log('xx defaultView', this.showRoles);
+        this.showGraph();
+    }
 
     // Temp dummy data for demo
     tempCreateDummyData() {
