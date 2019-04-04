@@ -1187,14 +1187,6 @@ export class WidgetNavigatorComponent {
 
     }
 
-
-
-    clickPageRight() {
-        // Move the visible children right / down
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickPageRight', '@Start');
-
-    }
-
     changeShowRoles() {
         // Move the visible children right / down
         this.globalFunctionService.printToConsole(this.constructor.name,'changeShowRoles', '@Start');
