@@ -345,9 +345,15 @@ export class PreferencesComponent implements OnInit {
         // Resets local cache
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResetLocalCache', '@Start');
 
-        this.globalVariableService.getDataCachingTable();
+        this.globalVariableService.getDataCachingTable()
+            .then( () => {
+                console.log('dataCachingTable after RESET:', this.globalVariableService.dataCachingTable)
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 45);
+                console.error('Error in preferences clickResetLocalCache: ' + err);
+            });
 
-        console.log('dataCachingTable after RESET:', this.globalVariableService.dataCachingTable)
     }
 
 
