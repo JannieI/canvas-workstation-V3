@@ -474,19 +474,109 @@ dimensions is set in app.html, and cannot be changed here. -->
                     </clr-icon>
                 </span>
                 <span>
-                    <clr-icon shape="step-forward right"
+                    <clr-icon shape="step-forward"
                         style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
-                <span>
+                <!-- <span>
                     <clr-icon shape="filter-grid-circle"
                         style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
-                </span>
+                </span> -->
+
+                <clr-signpost style="width: 400;">
+                    <clr-icon shape="filter-grid-circle"
+                        style="color: blue; margin-top: -4px;"
+                        size="12"
+                        clrSignpostTrigger
+                        >
+                    </clr-icon>
+                    <clr-signpost-content *clrIfOpen
+                        [clrPosition]="'bottom-middle'">
+                        <h5 style="margin-top: 0; color:gray;">
+                            Filter on children
+                        </h5>
+                        <p style="margin-top: 0; color:gray; text-align: left;">
+                            The list of children will be filtered.  This filter will stay
+                            active until 1. it is changed here, or 2. the selection is changed.
+                        </p>
+                        <div class="graphAreaChildFilterFieldTitle">
+                            Field:
+                            <select id="selects_3"
+                                [(ngModel)]="filterChildFieldName"
+                                (change)="changeChildFilterField($event)"
+                                name="filterChildFieldName"
+                                >
+                                <option *ngFor="let row of parentFields">
+                                    {{ row }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="graphAreaChildFilterOperatorTitle">
+                            Operator:
+                            <select id="selects_3"
+                                [(ngModel)]="filterChildOperator"
+                                (change)="changeChildFilterOperator($event)"
+                                name="filterChildOperator"
+                                >
+                                <option>Less Than</option>
+                                <option>Less Than Equal</option>
+                                <option>Equal</option>
+                                <option>Not Equal</option>
+                                <option>Greater Than</option>
+                                <option>Greater Than Equal</option>
+                                <option>Range</option>
+                                <option>One Of</option>
+                                <option>Valid</option>
+                                <option>Selection</option>
+                            </select>
+                        </div>
+        
+                        <div class="graphAreaChildFilterValueTitle">
+                            Value:
+                            <input type="text"
+                                [(ngModel)]="filterChildValue"
+                                name="filterChildValue"
+                                placeholder=""
+                                title="Enter a value for the filter. "
+                                >
+                        </div>
+        
+                        <div>
+                            <div class="btn-group btn-link">
+                                <button class="btn" (click)="clickChildFilterClear()">
+                                    Clear
+                                </button>
+                                <button class="btn" (click)="clickChildFilterSave()">
+                                    <span *ngIf="filterID==-1">
+                                        Add
+                                    </span>
+                                    <span *ngIf="filterID!=-1">
+                                        Save
+                                    </span>
+                                </button>
+                            </div>
+        
+                            <button class="btn btn-secondary"
+                                (click)="clickChildFilterClose()">
+                                Close
+                            </button>
+                            <span class="graphAreaChildFilterErrorMessage">
+                                {{ childFilterErrorMessage }}
+                            </span>
+                        </div>
+        
+                    </clr-signpost-content>
+                </clr-signpost>
+        
+
+
+
+
                 <span>
                     <clr-icon shape="filter-grid"
                         style="cursor: pointer; margin-left: 6px;"
