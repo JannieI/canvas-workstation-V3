@@ -445,7 +445,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                 (click)="clickPageLeft"
                 >
             </clr-icon>
-            <div class="graphNavigatorBar">
+            <div class="graphNavigatorBar"></div>
+            <!-- <div class="graphNavigatorBar">
                 <span>
                     <clr-icon shape="step-forward left" *ngIf="showChildPageRight"
                         style="cursor: pointer; margin-left: 12px;"
@@ -550,7 +551,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                         >
                     </clr-icon>
                 </span>
-            </div>
+            </div> -->
             <b>{{ graphTitle }}</b>
             <clr-icon shape="angle right" *ngIf="showChildPageRight"
                 style="cursor: pointer; margin-left: 12px;"

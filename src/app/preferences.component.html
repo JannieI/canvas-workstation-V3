@@ -87,12 +87,22 @@
                     <button
                         type="button"
                         class="btn btn-link"
+                        title="Refresh all local cache from the Server "
                         (click)="clickRefreshLocalCache()"
                         >
                         Refresh Local Cache
                     </button>
                 </div>
-
+                <div class="gridSettingsDisableLocalCache">
+                    <button
+                        type="button"
+                        class="btn btn-link"
+                        title="Disable all local cache; data thus from Server "
+                        (click)="clickDisableLocalCache()"
+                        >
+                        Disable Local Cache
+                    </button>
+                </div>
 
                 <div class="gridMessagesTitle">
                     <b>Show messages:</b>
