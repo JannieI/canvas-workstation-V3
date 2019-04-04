@@ -59,6 +59,7 @@ export class WidgetNavigatorComponent {
     selectedParentNode: string = '';
     selectedParentNodeType: string = '';
     selectedRelationship: string = '';
+    selectedView: string = 'DefaultView';
 
     // Working
     childDataAll: any[] = [];                           // List of all children after filter
@@ -204,7 +205,6 @@ export class WidgetNavigatorComponent {
         // Testing
         this.historyAll = [];
 
-
         // Populate persisted data - TODO via DB
         let newParentRelatedChildren: NavigatorParentRelatedChild =
             {
@@ -218,7 +218,7 @@ export class WidgetNavigatorComponent {
                 childNode: 'Koos',
                 role: 'Executive'
             }
-        this.parentRelatedChildren.push(newParentRelatedChildren)
+        this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
             {
                 id: 2,
@@ -231,7 +231,7 @@ export class WidgetNavigatorComponent {
                 childNode: 'Anna',
                 role: 'Non-Executive'
             }
-        this.parentRelatedChildren.push(newParentRelatedChildren)
+        this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
         {
             id: 3,
@@ -244,7 +244,7 @@ export class WidgetNavigatorComponent {
             childNode: 'Nedbank',
             role: ''
         }
-        this.parentRelatedChildren.push(newParentRelatedChildren)
+        this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
         {
             id: 4,
@@ -257,7 +257,7 @@ export class WidgetNavigatorComponent {
             childNode: 'John',
             role: ''
         }
-        this.parentRelatedChildren.push(newParentRelatedChildren)
+        this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
         {
             id: 5,
@@ -270,7 +270,7 @@ export class WidgetNavigatorComponent {
             childNode: 'PSG',
             role: 'Listed'
         }
-        this.parentRelatedChildren.push(newParentRelatedChildren)
+        this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
         {
             id: 6,
@@ -283,7 +283,7 @@ export class WidgetNavigatorComponent {
             childNode: 'AECI',
             role: 'Non-Listed'
         }
-        this.parentRelatedChildren.push(newParentRelatedChildren)
+        this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
         {
             id: 7,
@@ -296,7 +296,7 @@ export class WidgetNavigatorComponent {
             childNode: 'Chris',
             role: ''
         }
-        this.parentRelatedChildren.push(newParentRelatedChildren)
+        this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
         {
             id: 8,
@@ -309,7 +309,7 @@ export class WidgetNavigatorComponent {
             childNode: 'Anna',
             role: ''
         }
-        this.parentRelatedChildren.push(newParentRelatedChildren)
+        this.parentRelatedChildren.push(newParentRelatedChildren);
 
         let newNodeTypeFields: NavigatorNodeTypeFields =
         {
@@ -317,14 +317,14 @@ export class WidgetNavigatorComponent {
             nodeType: 'Company',
             fields: ['Sector', 'Country', 'City']
         }
-        this.nodeTypeFields.push(newNodeTypeFields)
+        this.nodeTypeFields.push(newNodeTypeFields);
         newNodeTypeFields =
         {
             id: 2,
             nodeType: 'Person',
             fields: ['Age', 'Gender']
         }
-        this.nodeTypeFields.push(newNodeTypeFields)
+        this.nodeTypeFields.push(newNodeTypeFields);
 
         let newNodeProperties: NavigatorNodeProperties = {
             id: 1,
@@ -1196,4 +1196,52 @@ export class WidgetNavigatorComponent {
         this.showGraph();
     }
 
+
+    // Temp dummy data for demo
+    tempCreateDummyData() {
+
+        // Reset
+        if (this.selectedView == 'DefaultView') {
+            // No action
+        };
+        if (this.selectedView == 'Common parent view') {
+            this.parentRelatedChildren = [];
+            let newParentRelatedChildren: NavigatorParentRelatedChild =
+                {
+                    id: 1,
+                    networkID: 1,
+                    parentNodeID: null,
+                    parentNodeType: 'Company',
+                    parentNode: 'Absa',
+                    relationship: 'Directors',
+                    childNodeType: 'Person',
+                    childNode: 'Koos',
+                    role: 'Executive'
+                }
+            this.parentRelatedChildren.push(newParentRelatedChildren)
+            newParentRelatedChildren =
+                {
+                    id: 2,
+                    networkID: 1,
+                    parentNodeID: null,
+                    parentNodeType: 'Company',
+                    parentNode: 'Absa',
+                    relationship: 'Directors',
+                    childNodeType: 'Person',
+                    childNode: 'Anna',
+                    role: 'Non-Executive'
+                }
+            this.parentRelatedChildren.push(newParentRelatedChildren);
+        };
+        if (this.selectedView == 'CommonParentView') {
+        };
+        if (this.selectedView == 'CommonNodeView') {
+        };
+        if (this.selectedView == 'DistanceView') {
+        };
+        if (this.selectedView == 'NodeTypeView') {
+        };
+
+                    
+    }
 }
