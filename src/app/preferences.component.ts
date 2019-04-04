@@ -329,6 +329,18 @@ export class PreferencesComponent implements OnInit {
         this.globalVariableService.refreshLocalCache();
     }
 
+    clickDisableLocalCache() {
+        // Disables local cache
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDisableLocalCache', '@Start');
+
+        this.globalVariableService.dataCachingTable.forEach(dt => {
+            dt.localCacheableDisc = false;
+            dt.localCacheableMemory = false;
+        });
+        console.log('xx dcach', this.globalVariableService.dataCachingTable)
+    }
+
+
     //TODO
     //1. Set global var isFirstTimeDashboard = T/F depending on user input
 
