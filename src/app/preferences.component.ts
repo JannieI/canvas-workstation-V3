@@ -313,7 +313,11 @@ export class PreferencesComponent implements OnInit {
                         }
                     );
                 }
-        );
+            )
+            .catch(err => {
+                this.errorMessage = err.slice(0, 45);
+                console.error('Error in preferences saving canvasUsers: ' + err);
+            });
 
         // Inform Subscribers
         this.globalVariableService.preferencePaletteHorisontal.next(
