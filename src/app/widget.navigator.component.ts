@@ -1224,7 +1224,20 @@ export class WidgetNavigatorComponent {
         this.showGraph();
     }
 
-    clickCommonNodeView()
+    clickCommonNodeView() {
+        // Show the Common Parent view = list of all nodes where any children has the 
+        // same parent as a specified node
+        // Example: which directors of Absa are children of the same node as Jannie Mouton
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCommonNodeView', '@Start');
+
+        // Refresh the graph
+        this.selectedView == 'CommonNodeView'
+
+        this.tempCreateDummyData();
+
+        console.log('xx CommonNodeView', this.showRoles);
+        this.showGraph();
+    }
 
     clickDistanceView() {
         // Show the Distance view = sub tree with all nodes between a given child and
