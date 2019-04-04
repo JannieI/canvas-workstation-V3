@@ -624,7 +624,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     <clr-icon shape="tree-view"
                         style="color: black; cursor: pointer; margin-left: 28px;"
                         title="Default view: tree of children for the selected parent"
-                        (click)="defaultView()"
+                        (click)="clickDefaultView()"
                         >
                     </clr-icon>
                 </span>
@@ -634,7 +634,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     <clr-icon shape="vm"
                         style="cursor: pointer; margin-left: 16px;"
                         title="Common parent view: show all parents to which any 2 or more children belong"
-                        (click)="clickPageRight"
+                        (click)="clickCommonParentView()"
                         >
                     </clr-icon>
                 </span>
@@ -644,7 +644,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     <clr-icon shape="nvme"
                         style="cursor: pointer; margin-left: 16px;"
                         title="Common node view: show all parents to which a child and a specific node belongs"
-                        (click)="clickPageRight"
+                        (click)="clickCommonNodeView()"
                         >
                     </clr-icon>
                 </span>
@@ -654,7 +654,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     <clr-icon shape="organisation"
                         style="cursor: pointer; margin-left: 16px;"
                         title="Distance view: show all nodes between a child and a specific node"
-                        (click)="clickPageRight"
+                        (click)="clickDistanceView()"
                         >
                     </clr-icon>
                 </span>
@@ -664,7 +664,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     <clr-icon shape="share"
                         style="cursor: pointer; margin-left: 16px;"
                         title="Node type view: show the full tree, restricted to a specific node type"
-                        (click)="clickPageRight"
+                        (click)="clickNodeTypeView()"
                         >
                     </clr-icon>
                 </span>

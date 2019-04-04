@@ -1196,9 +1196,28 @@ export class WidgetNavigatorComponent {
         this.showGraph();
     }
 
-    defaultView() {
+    clickDefaultView() {
         // Show the default view = tree with children
-        this.globalFunctionService.printToConsole(this.constructor.name,'defaultView', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDefaultView', '@Start');
+
+        // Refresh the graph
+        this.selectedView == 'DefaultView'
+
+        this.tempCreateDummyData();
+
+        console.log('xx defaultView', this.showRoles);
+        this.showGraph();
+    }
+
+    clickCommonParentView()
+
+    clickCommonNodeView()
+
+    clickDistanceView()
+
+    clickNodeTypeView() {
+        // Show the default view = tree with children
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDefaultView', '@Start');
 
         // Refresh the graph
         this.selectedView == 'DefaultView'
