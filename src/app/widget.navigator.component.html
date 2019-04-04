@@ -443,14 +443,14 @@ dimensions is set in app.html, and cannot be changed here. -->
             <div class="graphNavigatorBar">
                 <span>
                     <clr-icon shape="step-forward down" *ngIf="showChildPageRight"
-                        style="cursor: pointer; margin-left: 12px;"
+                        style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
                 <span>
                     <clr-icon shape="play down" *ngIf="showChildPageRight"
-                        style="cursor: pointer; margin-left: 12px;"
+                        style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
@@ -462,31 +462,32 @@ dimensions is set in app.html, and cannot be changed here. -->
                         name="maxChildrow"
                         placeholder="9"
                         title=""
+                        size="12"
                         >
 
                 </span>
                 <span>
                     <clr-icon shape="play" *ngIf="showChildPageRight"
-                        style="cursor: pointer; margin-left: 12px;"
+                        style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
                 <span>
                     <clr-icon shape="step-forward right" *ngIf="showChildPageRight"
-                        style="cursor: pointer; margin-left: 12px;"
+                        style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
                 <span>
                     <clr-icon shape="filter-grid-circle" *ngIf="showChildPageRight"
-                        style="cursor: pointer; margin-left: 12px;"
+                        style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
-                <span>
+                <!-- <span>
                     QuickFilter
                     <select [(ngModel)]="selectedNodeType"
                         (change)="changeParentNodeType($event)"
@@ -497,8 +498,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                         </option>
 
                     </select>
-                </span>
-                <span>
+                </span> -->
+                <!-- <span>
                     Properties
                     <select [(ngModel)]="selectedNodeType"
                         (change)="changeParentNodeType($event)"
@@ -509,8 +510,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                         </option>
 
                     </select>
-                </span>
-                <span>
+                </span> -->
+                <!-- <span>
                     <clr-icon shape="tree-view" *ngIf="showChildPageRight"
                         style="cursor: pointer; margin-left: 12px;"
                         (click)="clickPageRight"
@@ -544,7 +545,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                         (click)="clickPageRight"
                         >
                     </clr-icon>
-                </span>
+                </span> -->
             </div>
 
             <b>{{ graphTitle }}</b>
