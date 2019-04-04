@@ -459,6 +459,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </span>
                 <span>
                     1 to 9
+                </span>
                 <span>
                     <clr-icon shape="play"
                         size="14"
@@ -561,6 +562,15 @@ dimensions is set in app.html, and cannot be changed here. -->
         
                     </clr-signpost-content>
                 </clr-signpost>
+
+                <!-- Break by additional node level -->
+                <span>
+                    <clr-icon shape="share"
+                        style="cursor: pointer; margin-left: 12px;"
+                        (click)="clickPageRight"
+                        >
+                    </clr-icon>
+                </span>
         
                 <!-- Additional Properties to show -->
                 <clr-signpost style="width: 400;">
@@ -600,38 +610,20 @@ dimensions is set in app.html, and cannot be changed here. -->
                                     Race
                                 </option>
                             </select>
-        
+                        </div>
                     </clr-signpost-content>
                 </clr-signpost>
 
-
-
-                <span>
-                    <clr-icon shape="filter-grid"
-                        style="cursor: pointer; margin-left: 6px;"
-                        (click)="clickPageRight"
-                        >
-                    </clr-icon>
-                </span>
-                <span>
-                    Properties
-                    <!-- <select [(ngModel)]="selectedNodeType"
-                        (change)="changeParentNodeType($event)"
-                        name="selectedNodeType"
-                        >
-                        <option *ngFor="let row of dropdownParentNodeTypes">
-                            Exec/Non-Exec
-                        </option>
-
-                    </select> -->
-                </span>
-                <span>
+                <!-- Default view = tree view -->
+                <span style="border: 1px solid gray;">
                     <clr-icon shape="tree-view"
                         style="cursor: pointer; margin-left: 12px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
+
+                <!-- Commonality between 2 children -->
                 <span>
                     <clr-icon shape="vm"
                         style="cursor: pointer; margin-left: 12px;"
@@ -639,6 +631,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                         >
                     </clr-icon>
                 </span>
+
+                <!-- Commonality between any child and specific node -->
                 <span>
                     <clr-icon shape="nvme"
                         style="cursor: pointer; margin-left: 12px;"
@@ -646,6 +640,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                         >
                     </clr-icon>
                 </span>
+
+                <!-- Distance between a child and specific node -->
                 <span>
                     <clr-icon shape="organisation"
                         style="cursor: pointer; margin-left: 12px;"
@@ -653,6 +649,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                         >
                     </clr-icon>
                 </span>
+
+                <!-- Full tree for a specific child node type -->
                 <span>
                     <clr-icon shape="share"
                         style="cursor: pointer; margin-left: 12px;"
