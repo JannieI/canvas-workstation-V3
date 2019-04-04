@@ -145,6 +145,15 @@
             margin-left: 20px;
             text-align: left;
         }
+        .gridSettingsResetLocalCache {
+            grid-column-start: 11;
+            /* autoprefixer: off */
+            grid-column-end: 14;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            margin-left: 20px;
+            text-align: left;
+        }
 
         .gridSettingsSnapToGridTitle {
             grid-column-start: 1;

@@ -337,7 +337,8 @@ export class PreferencesComponent implements OnInit {
             dt.localCacheableDisc = false;
             dt.localCacheableMemory = false;
         });
-        console.log('xx dcach', this.globalVariableService.dataCachingTable)
+
+        console.log('Current dataCachingTable:', this.globalVariableService.dataCachingTable)
     }
 
 
