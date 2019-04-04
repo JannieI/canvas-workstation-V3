@@ -1213,18 +1213,33 @@ export class WidgetNavigatorComponent {
 
     clickCommonNodeView()
 
-    clickDistanceView()
-
-    clickNodeTypeView() {
-        // Show the default view = tree with children
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDefaultView', '@Start');
+    clickDistanceView() {
+        // Show the Distance view = sub tree with all nodes between a given child and
+        // a specified node
+        // Example: how are directors of Absa related to Markus Jooste
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDistanceView', '@Start');
 
         // Refresh the graph
-        this.selectedView == 'DefaultView'
+        this.selectedView == 'DistanceView'
 
         this.tempCreateDummyData();
 
-        console.log('xx defaultView', this.showRoles);
+        console.log('xx DistanceView', this.showRoles);
+        this.showGraph();
+    }
+
+
+    clickNodeTypeView() {
+        // Show the Node Type View = full tree with all children of a given node type
+        // Example: all beneficiary shareholders of company and subsidiaries
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNodeTypeView', '@Start');
+
+        // Refresh the graph
+        this.selectedView == 'NodeTypeView'
+
+        this.tempCreateDummyData();
+
+        console.log('xx NodeTypeView', this.showRoles);
         this.showGraph();
     }
 
@@ -1235,7 +1250,7 @@ export class WidgetNavigatorComponent {
         if (this.selectedView == 'DefaultView') {
             // No action
         };
-        if (this.selectedView == 'Common parent view') {
+        if (this.selectedView == 'CommonParentView') {
             this.parentRelatedChildren = [];
             let newParentRelatedChildren: NavigatorParentRelatedChild =
                 {
