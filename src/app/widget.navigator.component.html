@@ -442,66 +442,61 @@ dimensions is set in app.html, and cannot be changed here. -->
         <div class="graphAreaTitle">
             <div class="graphNavigatorBar">
                 <span>
-                    <clr-icon shape="step-forward down" *ngIf="showChildPageRight"
+                    <clr-icon shape="step-forward down"
                         style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
                 <span>
-                    <clr-icon shape="play down" *ngIf="showChildPageRight"
+                    <clr-icon shape="play down"
                         style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
-                <span>
+                <span class="graphNavigatorBarInput">
                     1 to
                     <input type="text"
                         [(ngModel)]="maxChildrow"
                         name="maxChildrow"
-                        placeholder="9"
+                        placeholder="6"
                         title=""
-                        size="12"
+                        size="6"
                         >
 
                 </span>
                 <span>
-                    <clr-icon shape="play" *ngIf="showChildPageRight"
+                    <clr-icon shape="play"
                         style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
                 <span>
-                    <clr-icon shape="step-forward right" *ngIf="showChildPageRight"
+                    <clr-icon shape="step-forward right"
                         style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
                 <span>
-                    <clr-icon shape="filter-grid-circle" *ngIf="showChildPageRight"
+                    <clr-icon shape="filter-grid-circle"
                         style="cursor: pointer; margin-left: 6px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
-                <!-- <span>
-                    QuickFilter
-                    <select [(ngModel)]="selectedNodeType"
-                        (change)="changeParentNodeType($event)"
-                        name="selectedNodeType"
+                <span>
+                    <clr-icon shape="filter-grid"
+                        style="cursor: pointer; margin-left: 6px;"
+                        (click)="clickPageRight"
                         >
-                        <option *ngFor="let row of dropdownParentNodeTypes">
-                            Koos
-                        </option>
-
-                    </select>
-                </span> -->
-                <!-- <span>
+                    </clr-icon>
+                </span>
+                <span>
                     Properties
-                    <select [(ngModel)]="selectedNodeType"
+                    <!-- <select [(ngModel)]="selectedNodeType"
                         (change)="changeParentNodeType($event)"
                         name="selectedNodeType"
                         >
@@ -509,43 +504,43 @@ dimensions is set in app.html, and cannot be changed here. -->
                             Exec/Non-Exec
                         </option>
 
-                    </select>
-                </span> -->
-                <!-- <span>
-                    <clr-icon shape="tree-view" *ngIf="showChildPageRight"
+                    </select> -->
+                </span>
+                <span>
+                    <clr-icon shape="tree-view"
                         style="cursor: pointer; margin-left: 12px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
                 <span>
-                    <clr-icon shape="vm" *ngIf="showChildPageRight"
+                    <clr-icon shape="vm"
                         style="cursor: pointer; margin-left: 12px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
                 <span>
-                    <clr-icon shape="nvme" *ngIf="showChildPageRight"
+                    <clr-icon shape="nvme"
                         style="cursor: pointer; margin-left: 12px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
                 <span>
-                    <clr-icon shape="organisation" *ngIf="showChildPageRight"
+                    <clr-icon shape="organisation"
                         style="cursor: pointer; margin-left: 12px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
                 <span>
-                    <clr-icon shape="share" *ngIf="showChildPageRight"
+                    <clr-icon shape="share"
                         style="cursor: pointer; margin-left: 12px;"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
-                </span> -->
+                </span>
             </div>
 
             <b>{{ graphTitle }}</b>

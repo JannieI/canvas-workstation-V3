@@ -194,6 +194,9 @@
                 margin-top: 6px;
                 text-align: left;
             }
+            .graphNavigatorBarInput {
+                width: 8p;
+            }
 
         .graphAreaGraphic {
             font-size: 0.5rem;
