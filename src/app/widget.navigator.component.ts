@@ -1209,7 +1209,20 @@ export class WidgetNavigatorComponent {
         this.showGraph();
     }
 
-    clickCommonParentView()
+    clickCommonParentView() {
+        // Show the Common Node view = list of all nodes where 2 or more children have the 
+        // same parent
+        // Example: which directors of Absa are also direcytors of another company
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCommonParentView', '@Start');
+
+        // Refresh the graph
+        this.selectedView == 'CommonParentView'
+
+        this.tempCreateDummyData();
+
+        console.log('xx CommonParentView', this.showRoles);
+        this.showGraph();
+    }
 
     clickCommonNodeView()
 
@@ -1227,7 +1240,6 @@ export class WidgetNavigatorComponent {
         console.log('xx DistanceView', this.showRoles);
         this.showGraph();
     }
-
 
     clickNodeTypeView() {
         // Show the Node Type View = full tree with all children of a given node type
