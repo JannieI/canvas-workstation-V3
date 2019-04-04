@@ -443,45 +443,50 @@ dimensions is set in app.html, and cannot be changed here. -->
             <div class="graphNavigatorBar">
                 <span>
                     <clr-icon shape="step-forward down"
-                        size="14"
+                        size="13"
                         style="cursor: pointer; margin-left: 6px;"
+                        title="Move to first page of children"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
                 <span>
                     <clr-icon shape="play down"
-                        size="14"
+                        size="13"
                         style="cursor: pointer; margin-left: 6px;"
+                        title="Move back one page of children"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
-                <span>
+                <span style="font-size: 0.5rem;">
                     1 to 9
                 </span>
                 <span>
                     <clr-icon shape="play"
-                        size="14"
+                        size="13"
                         style="cursor: pointer; margin-left: 6px;"
+                        title="Move forward one page of children"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
                 <span>
                     <clr-icon shape="step-forward"
-                        size="14"
+                        size="13"
                         style="cursor: pointer; margin-left: 6px;"
+                        title="Move to the last page of children"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
 
                 <!-- Children Filter -->
-                <clr-signpost style="width: 400;">
+                <clr-signpost style=" margin-left: 22px; width: 400;">
                     <clr-icon shape="filter-grid-circle"
                         size="14"
                         style="cursor: pointer; margin-left: 6px;"
+                        title="Filter the list of children"
                         clrSignpostTrigger
                         >
                     </clr-icon>
@@ -565,18 +570,20 @@ dimensions is set in app.html, and cannot be changed here. -->
 
                 <!-- Break by additional node level -->
                 <span>
-                    <clr-icon shape="share"
-                        style="cursor: pointer; margin-left: 12px;"
+                    <clr-icon shape="usb"
+                        style="cursor: pointer; margin-left: 6px;"
+                        title="Add additional level to graph, based on relationship properties"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
                 </span>
         
                 <!-- Additional Properties to show -->
-                <clr-signpost style="width: 400;">
+                <clr-signpost style=" margin-left: 22px; width: 400;">
                     <clr-icon shape="ellipsis-horizontal"
                         size="14"
                         style="cursor: pointer; margin-left: 6px;"
+                        title="Optional property to show with each child node"
                         clrSignpostTrigger
                         >
                     </clr-icon>
@@ -615,9 +622,10 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </clr-signpost>
 
                 <!-- Default view = tree view -->
-                <span style="border: 1px solid gray;">
+                <span>
                     <clr-icon shape="tree-view"
-                        style="cursor: pointer; margin-left: 12px;"
+                        style="cursor: pointer; margin-left: 22px;"
+                        title="Default view = tree of children"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
@@ -627,6 +635,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon shape="vm"
                         style="cursor: pointer; margin-left: 12px;"
+                        title="Show all parents to which any 2 or more children belongs"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
@@ -636,6 +645,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon shape="nvme"
                         style="cursor: pointer; margin-left: 12px;"
+                        title="Show all parents to which a child and a specific node belongs"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
@@ -645,6 +655,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon shape="organisation"
                         style="cursor: pointer; margin-left: 12px;"
+                        title="Show all nodes between a child and a specific node"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
@@ -654,6 +665,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon shape="share"
                         style="cursor: pointer; margin-left: 12px;"
+                        title="Show the full tree, restricted to a specific node type"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
