@@ -140,7 +140,7 @@ dimensions is set in app.html, and cannot be changed here. -->
         </div>
 
         <div class="select graphAreaParentNodeType"
-            title="Select a node type to filter on"
+            title="Select a node type for which children must be shown"
             >
             <select [(ngModel)]="selectedNodeType"
                 (change)="changeParentNodeType($event)"
@@ -153,20 +153,8 @@ dimensions is set in app.html, and cannot be changed here. -->
             </select>
         </div>
 
-        <div *ngIf="watchList" class="graphAreaWatchList"
-            title="Click to filter the parent nodes on your wathclist"
-            >
-            <clr-icon [style.color]="watchListFiltered?  'blue' :  'gray'"
-                shape="list"
-                size="16"
-                (click)="clickFilterOnWatchList()"
-                >
-            </clr-icon>
-
-        </div>
-
         <div class="select graphAreaParentNode"
-            title="Select a specific node"
+            title="Select a specific node for which children must be shown"
             >
             <select [(ngModel)]="selectedParentNode"
                 (change)="changeParentNode($event)"
@@ -180,8 +168,9 @@ dimensions is set in app.html, and cannot be changed here. -->
 
         <clr-signpost style="width: 400;">
             <clr-icon shape="filter"
-                style="color: blue; margin-top: -4px;"
                 size="12"
+                style="color: blue; margin-top: -4px;"
+                title="Filter the specific parent nodes, to show less"
                 clrSignpostTrigger
                 >
             </clr-icon>
@@ -272,6 +261,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <clr-icon
                     shape="bars"
                     size="14"
+                    title="Drop down menu with more options"
                     >
                 </clr-icon>
             </button>
@@ -336,7 +326,7 @@ dimensions is set in app.html, and cannot be changed here. -->
         <br>
         show all
         <div class="select graphAreaRelationship"
-            title="Select a node type to filter on"
+            title="Select a relationship to filter on"
             >
             <select [(ngModel)]="selectedRelationship"
                 (change)="changeRelationship($event)"
@@ -441,6 +431,7 @@ dimensions is set in app.html, and cannot be changed here. -->
 
         <div class="graphAreaTitle">
             <div class="graphNavigatorBar">
+                <!-- Navigation - nr children shown and jumping -->
                 <span>
                     <clr-icon shape="step-forward down"
                         size="13"
@@ -459,8 +450,15 @@ dimensions is set in app.html, and cannot be changed here. -->
                         >
                     </clr-icon>
                 </span>
-                <span style="font-size: 0.5rem;">
+                <span style="font-size: 0.45rem;"
+                    title="Children visible / shown"
+                    >
                     1 to 9
+                </span>
+                <span style="cursor: pointer; font-size: 0.45rem;"
+                    title="Total number of children; can be changed on the bar menu"
+                    >
+                    / 181
                 </span>
                 <span>
                     <clr-icon shape="play"
@@ -482,7 +480,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </span>
 
                 <!-- Children Filter -->
-                <clr-signpost style=" margin-left: 22px; width: 400;">
+                <clr-signpost style=" margin-left: 28px; width: 400;">
                     <clr-icon shape="filter-grid-circle"
                         size="14"
                         style="cursor: pointer; margin-left: 6px;"
@@ -579,7 +577,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </span>
         
                 <!-- Additional Properties to show -->
-                <clr-signpost style=" margin-left: 22px; width: 400;">
+                <clr-signpost style=" margin-left: 28px; width: 400;">
                     <clr-icon shape="ellipsis-horizontal"
                         size="14"
                         style="cursor: pointer; margin-left: 6px;"
@@ -624,8 +622,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <!-- Default view = tree view -->
                 <span>
                     <clr-icon shape="tree-view"
-                        style="cursor: pointer; margin-left: 22px;"
-                        title="Default view = tree of children"
+                        style="color: black; cursor: pointer; margin-left: 28px;"
+                        title="Default view: tree of children for the selected parent"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
@@ -634,8 +632,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <!-- Commonality between 2 children -->
                 <span>
                     <clr-icon shape="vm"
-                        style="cursor: pointer; margin-left: 12px;"
-                        title="Show all parents to which any 2 or more children belongs"
+                        style="cursor: pointer; margin-left: 16px;"
+                        title="Common parent view: show all parents to which any 2 or more children belong"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
@@ -644,8 +642,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <!-- Commonality between any child and specific node -->
                 <span>
                     <clr-icon shape="nvme"
-                        style="cursor: pointer; margin-left: 12px;"
-                        title="Show all parents to which a child and a specific node belongs"
+                        style="cursor: pointer; margin-left: 16px;"
+                        title="Common node view: show all parents to which a child and a specific node belongs"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
@@ -654,8 +652,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <!-- Distance between a child and specific node -->
                 <span>
                     <clr-icon shape="organisation"
-                        style="cursor: pointer; margin-left: 12px;"
-                        title="Show all nodes between a child and a specific node"
+                        style="cursor: pointer; margin-left: 16px;"
+                        title="Distance view: show all nodes between a child and a specific node"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
@@ -664,8 +662,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <!-- Full tree for a specific child node type -->
                 <span>
                     <clr-icon shape="share"
-                        style="cursor: pointer; margin-left: 12px;"
-                        title="Show the full tree, restricted to a specific node type"
+                        style="cursor: pointer; margin-left: 16px;"
+                        title="Node type view: show the full tree, restricted to a specific node type"
                         (click)="clickPageRight"
                         >
                     </clr-icon>
