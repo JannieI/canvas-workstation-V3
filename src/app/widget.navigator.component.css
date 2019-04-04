@@ -86,7 +86,8 @@
         float: left;
         font-size: 0.5rem;
         height: 100%;
-        margin-left: 8px;
+        margin-left: 4px;
+        margin-right: 4px;
         min-width: 454px;             
         text-align: left;
         overflow: scroll;
@@ -184,15 +185,14 @@
         .graphAreaTitle {
             color: black;
             font-size: 0.58rem;
-            margin-left: 12px;
-            margin-top: 12px;
             text-align: center;
         }
+            .graphNavigatorBar {
+                border: 1px solid black;
+                border-radius: 4px;
+                margin-bottom: 12px;
+            }
 
-        .graphNavigatorBar {
-            border: 1px solid black;
-            border-radius: 4px;
-        }
         .graphAreaGraphic {
             font-size: 0.5rem;
             text-align: left;
