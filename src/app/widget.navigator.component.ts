@@ -1147,11 +1147,11 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    clickMenuGraphTitle() {
-        // Menu option to edit the Title
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphTitle', '@Start');
+    clickMenuGraphProperties() {
+        // Menu option to edit graph properties like title
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphProperties', '@Start');
 
-        this.showVisibleNumberInput = true;
+        this.showGraphProperties = true;
     }
 
     clickMenuGraphNotes(){
