@@ -1213,41 +1213,41 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCommonParentView', '@Start');
 
         // Refresh the graph
-        this.selectedView = 'CommonParentView'
+        this.selectedView = 'CommonParentView';
 
         this.graphData = [];
         this.graphData.push(
             { "id": 1,
-             "name": this.selectedParentNode
+             "name": "CommonParent"
             });
         this.graphData.push({
             id: 2,
-            name: "Companies (11 000)",
+            name: "Absa",
             parent: 1
         });
         this.graphData.push({
             id: 3,
-            name: "Directors",
+            name: "Johnathon (Director)",
             parent: 2
         });
         this.graphData.push({
             id: 4,
-            name: "Shareholders",
+            name: "Martha (Director)",
             parent: 2
         });
         this.graphData.push({
             id: 5,
-            name: "Persons (54 000)",
+            name: "Bidvest",
             parent: 1
         });
         this.graphData.push({
             id: 6,
-            name: "Director-Of",
+            name: "Johnathon (Shareholder)",
             parent: 5
         });
         this.graphData.push({
             id: 7,
-            name: "Manager-Of",
+            name: "Olivia (CFO)",
             parent: 5
         });
 
@@ -1303,36 +1303,36 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.graphData = [];
         this.graphData.push(
             { "id": 1,
-             "name": this.selectedParentNode
+             "name": "CommonNode"
             });
         this.graphData.push({
             id: 2,
-            name: "Companies (11 000)",
+            name: "Steinhoff",
             parent: 1
         });
         this.graphData.push({
             id: 3,
-            name: "Directors",
+            name: "Johnathon (Shareholder)",
             parent: 2
         });
         this.graphData.push({
             id: 4,
-            name: "Shareholders",
+            name: "Mandy (Shareholder)",
             parent: 2
         });
         this.graphData.push({
             id: 5,
-            name: "Persons (54 000)",
+            name: "Aspen",
             parent: 1
         });
         this.graphData.push({
             id: 6,
-            name: "Director-Of",
+            name: "Johnathon (Shareholder)",
             parent: 5
         });
         this.graphData.push({
             id: 7,
-            name: "Manager-Of",
+            name: "Gareth (Director)",
             parent: 5
         });
 
