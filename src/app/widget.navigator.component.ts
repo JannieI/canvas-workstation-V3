@@ -113,6 +113,7 @@ export class WidgetNavigatorComponent {
     specification: any;             // Full spec for Vega, or other grammar
 
     // Popups and forms
+    showGraphHelp: boolean = false;
     showGraphProperties: boolean = false;
 
     watchListFiltered: boolean = false;
@@ -999,7 +1000,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
     }
 
     clickNetworkMinMax() {
-        // Click W object
+        // Resize (min/max) a Network
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkMinMax', '@Start');
 
         this.showNetworkMax = !this.showNetworkMax;
@@ -1009,6 +1010,13 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130)
 
         this.showGraph(0, this.graphWidth)
+    }
+
+    clickNetworkAdd() {
+        // Add a network
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkAdd', '@Start');
+
+        this.showNetworkAdd = true;
     }
 
     dblclickDeleteHistory(index: number, historyID: number) {
@@ -1157,11 +1165,11 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.showGraphProperties = true;
     }
 
-
     clickMenuGraphHelp() {
         // Show popup with help information
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphHelp', '@Start');
 
+        this.showGraphHelp = true;
     }
 
     clickMenuClearHistory() {
