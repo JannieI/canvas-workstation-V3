@@ -40,6 +40,7 @@ export class WidgetNavigatorComponent {
     @Input() selectedWidget: Widget;
 
     // External Input - pre-built
+    dummyData: any[] = [];
     networks: NavigatorNetwork[] = [];
     nodeTypeFields: NavigatorNodeTypeFields[] = [];     // Property Fields per NodeType
     nodeProperties: NavigatorNodeProperties[] = [];     // Properties per node for fields above
@@ -127,7 +128,13 @@ export class WidgetNavigatorComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // The Total width is that of the two panels, plus the svg, plus some scrolling space
+        // let astring: string = '123';
+        // let anumber: number = 123;
+        // if (astring == anumber) {
+        //     console.log('Equal')
+        // };
+
+         // The Total width is that of the two panels, plus the svg, plus some scrolling space
         this.totalNavigatorWidth = this.networkAreaWidth + this.historyAreaWidth + 22
             + (this.graphWidth * 1.2);
         this.graphWidth = this.graphWidthOriginal +
@@ -857,6 +864,21 @@ export class WidgetNavigatorComponent {
             this.graphWidth = 100;
         };
 
+
+
+
+
+        // Dummy stuffies for Demo
+        console.log('xx this.selectedView', this.selectedView)
+        if (this.selectedView == 'CommonParentView') {
+            this.graphData = this.graphData; //this.dummyData;
+            this.graphTitle = 'Common parents for any Directors of Absa';
+        };
+
+
+
+
+
         // Create specification
         this.specification = this.globalVariableService.createVegaSpec(
             this.localWidget,
@@ -865,7 +887,7 @@ export class WidgetNavigatorComponent {
             this.showSpecificGraphLayer,
             0
         );
-
+console.log('xx this.specification', this.graphTitle, this.graphData, this.specification)
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
 
@@ -1193,7 +1215,7 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDefaultView', '@Start');
 
         // Refresh the graph
-        this.selectedView == 'DefaultView'
+        this.selectedView = 'DefaultView'
 
         this.tempCreateDummyData();
 
@@ -1208,11 +1230,11 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCommonParentView', '@Start');
 
         // Refresh the graph
-        this.selectedView == 'CommonParentView'
+        this.selectedView = 'CommonParentView'
 
         this.tempCreateDummyData();
 
-        console.log('xx CommonParentView', this.showRoles);
+        console.log('xx CommonParentView', this.showRoles, this.dummyData);
         this.showGraph();
     }
 
@@ -1223,7 +1245,7 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCommonNodeView', '@Start');
 
         // Refresh the graph
-        this.selectedView == 'CommonNodeView'
+        this.selectedView = 'CommonNodeView'
 
         this.tempCreateDummyData();
 
@@ -1238,7 +1260,7 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDistanceView', '@Start');
 
         // Refresh the graph
-        this.selectedView == 'DistanceView'
+        this.selectedView = 'DistanceView'
 
         this.tempCreateDummyData();
 
@@ -1252,7 +1274,7 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNodeTypeView', '@Start');
 
         // Refresh the graph
-        this.selectedView == 'NodeTypeView'
+        this.selectedView = 'NodeTypeView'
 
         this.tempCreateDummyData();
 
@@ -1268,35 +1290,37 @@ export class WidgetNavigatorComponent {
             // No action
         };
         if (this.selectedView == 'CommonParentView') {
-            this.parentRelatedChildren = [];
-            let newParentRelatedChildren: NavigatorParentRelatedChild =
-                {
-                    id: 1,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Koos',
-                    role: 'Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren)
-            newParentRelatedChildren =
-                {
-                    id: 2,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Anna',
-                    role: 'Non-Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-        };
-        if (this.selectedView == 'CommonParentView') {
+            this.dummyData = [];
+            this.dummyData.push({ 
+                "id": 1,
+                "name": 'Common Parent'
+            });
+            this.dummyData.push({
+                id: 2,
+                name: 'Absa',
+                parent: 1
+            });    
+            this.dummyData.push({
+                id: 3,
+                name: 'Bidvest',
+                parent: 1
+            });
+            this.dummyData.push({
+                id: 4,
+                name: 'Sasol',
+                parent: 1
+            });
+            this.dummyData.push({
+                id: 5,
+                name: 'James Carr (Director)',
+                parent: 2
+            });
+            this.dummyData.push({
+                id: 6,
+                name: 'Helga Bush (Auditor)',
+                parent: 2
+            });
+
         };
         if (this.selectedView == 'CommonNodeView') {
         };
