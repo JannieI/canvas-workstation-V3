@@ -112,6 +112,9 @@ export class WidgetNavigatorComponent {
     showSpecificGraphLayer: boolean = false;
     specification: any;             // Full spec for Vega, or other grammar
 
+    // Popups and forms
+    showGraphProperties: boolean = false;
+
     watchListFiltered: boolean = false;
 
     constructor(
@@ -1154,11 +1157,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.showGraphProperties = true;
     }
 
-    clickMenuGraphNotes(){
-        // Menu option to edit the notes
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphNotes', '@Start');
-
-    }
 
     clickMenuGraphHeight() {
         // Menu option to adjust graph height
