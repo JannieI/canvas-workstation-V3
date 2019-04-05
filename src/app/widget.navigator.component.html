@@ -66,7 +66,14 @@ dimensions is set in app.html, and cannot be changed here. -->
             [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
             [style.color]="row.isSelected? 'black'  :  'darkgray'"
             >
-            <clr-icon (click)="clickNetworkAdd()"
+            <clr-icon (click)="clickNetworkRemove()"
+                style="cursor: pointer;"
+                shape="trash"
+                size="12"
+                (click)="clickNetworkAdd"
+                >
+            </clr-icon>
+            <clr-icon (click)="clickNetworkSummary()"
                 style="cursor: pointer;"
                 shape="snowflake"
                 size="12"

@@ -511,7 +511,7 @@ export class WidgetNavigatorComponent {
             this.clickHistory(0, this.history[0].id);
         } else {
             // Clear the graph
-            this.showSummary(index);
+            this.clickNetworkSummary(index);
         };
 
     }
@@ -904,9 +904,15 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    showSummary(networkIndex: number) {
+    clickNetworkRemove() {
+        // Remove a network
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkRemove', '@Start');
+
+    }
+
+    clickNetworkSummary(networkIndex: number) {
         // Show a summary of the network
-        this.globalFunctionService.printToConsole(this.constructor.name,'showSummary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkSummary', '@Start');
 
         // Set data
         this.graphData = [];
