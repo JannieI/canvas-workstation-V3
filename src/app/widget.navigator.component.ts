@@ -1336,7 +1336,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             parent: 5
         });
 
-        this.graphTitle = 'Common parents for any Directors of Absa';
+        this.graphTitle = 'Common parents for Johnathon... & Directors of Absa';
 
         // Dimension it
         this.graphHeight = 300; //this.localWidget.graphLayers[0].graphSpecification.height;
@@ -1387,44 +1387,54 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.graphData = [];
         this.graphData.push(
             { "id": 1,
-             "name": this.selectedParentNode
+             "name": ""
             });
         this.graphData.push({
             id: 2,
-            name: "Companies (11 000)",
+            name: "Johnathan",
             parent: 1
         });
         this.graphData.push({
             id: 3,
-            name: "Directors",
+            name: "BarlowWorld",
             parent: 2
         });
         this.graphData.push({
             id: 4,
-            name: "Shareholders",
-            parent: 2
+            name: "Meridith (Director)",
+            parent: 3
         });
         this.graphData.push({
             id: 5,
-            name: "Persons (54 000)",
-            parent: 1
+            name: "Meridith (Shareholder)",
+            parent: 3
         });
         this.graphData.push({
             id: 6,
-            name: "Director-Of",
-            parent: 5
+            name: "Mandy",
+            parent: 1
         });
         this.graphData.push({
             id: 7,
-            name: "Manager-Of",
-            parent: 5
+            name: "Bidvest",
+            parent: 6
+        });
+        this.graphData.push({
+            id: 8,
+            name: "Plumblink (Subsidiary)",
+            parent: 7
+        });
+        this.graphData.push({
+            id: 9,
+            name: "Meridith (CEO)",
+            parent: 8
         });
 
-        this.graphTitle = 'Common parents for any Directors of Absa';
+        this.graphTitle = 'Distance: Meridith... to some Directors of Absa';
 
         // Dimension it
         this.graphHeight = 300; //this.localWidget.graphLayers[0].graphSpecification.height;
-        this.graphWidth = 300; //this.localWidget.graphLayers[0].graphSpecification.width;
+        this.graphWidth = 400; //this.localWidget.graphLayers[0].graphSpecification.width;
 
         // Create specification
         this.specification = this.globalVariableService.createVegaSpec(
@@ -1471,40 +1481,45 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.graphData = [];
         this.graphData.push(
             { "id": 1,
-             "name": this.selectedParentNode
+             "name": ""
             });
         this.graphData.push({
             id: 2,
-            name: "Companies (11 000)",
+            name: "Absa",
             parent: 1
         });
         this.graphData.push({
             id: 3,
-            name: "Directors",
+            name: "Glenis (Shareholder",
             parent: 2
         });
         this.graphData.push({
             id: 4,
-            name: "Shareholders",
-            parent: 2
-        });
-        this.graphData.push({
-            id: 5,
-            name: "Persons (54 000)",
+            name: "Nedbank",
             parent: 1
         });
         this.graphData.push({
+            id: 5,
+            name: "Old Mutual",
+            parent: 4
+        });
+        this.graphData.push({
             id: 6,
-            name: "Director-Of",
+            name: "Zaheer",
             parent: 5
         });
         this.graphData.push({
             id: 7,
-            name: "Manager-Of",
+            name: "Capitec",
             parent: 5
         });
+        this.graphData.push({
+            id: 8,
+            name: "Bernard (Shareholder)",
+            parent: 7
+        });
 
-        this.graphTitle = 'Common parents for any Directors of Absa';
+        this.graphTitle = 'Full tree of Absa with Directors';
 
         // Dimension it
         this.graphHeight = 300; //this.localWidget.graphLayers[0].graphSpecification.height;
