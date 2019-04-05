@@ -1232,10 +1232,85 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Refresh the graph
         this.selectedView = 'CommonParentView'
 
-        this.tempCreateDummyData();
+        // this.tempCreateDummyData();
 
-        console.log('xx CommonParentView', this.showRoles, this.dummyData);
-        this.showGraph();
+        // console.log('xx CommonParentView', this.showRoles, this.dummyData);
+        // this.showGraph();
+
+        this.graphData = [];
+        this.graphData.push(
+            { "id": 1,
+             "name": this.selectedParentNode
+            });
+        this.graphData.push({
+            id: 2,
+            name: "Companies (11 000)",
+            parent: 1
+        });
+        this.graphData.push({
+            id: 3,
+            name: "Directors",
+            parent: 2
+        });
+        this.graphData.push({
+            id: 4,
+            name: "Shareholders",
+            parent: 2
+        });
+        this.graphData.push({
+            id: 5,
+            name: "Persons (54 000)",
+            parent: 1
+        });
+        this.graphData.push({
+            id: 6,
+            name: "Director-Of",
+            parent: 5
+        });
+        this.graphData.push({
+            id: 7,
+            name: "Manager-Of",
+            parent: 5
+        });
+
+        this.graphTitle = 'Common parents for any Directors of Absa';
+
+        // Dimension it
+        this.graphHeight = 400; //this.localWidget.graphLayers[0].graphSpecification.height;
+        this.graphWidth = 400; //this.localWidget.graphLayers[0].graphSpecification.width;
+
+        // Create specification
+        this.specification = this.globalVariableService.createVegaSpec(
+            this.localWidget,
+            this.graphHeight,
+            this.graphWidth,
+            this.showSpecificGraphLayer,
+            0
+        );
+
+        // Load the data
+        this.specification['data'][0]['values'] = this.graphData;
+
+        console.log('xx summ', this.graphHeight, this.graphWidth, this.graphData, this.specification)
+        // TODO - decide if we need to update the Widget Data too ?
+        // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
+
+        // Render in DOM
+        let view = new View(parse(this.specification));
+        view.addEventListener('click', function(event, item) {
+            // Needs separate object, else item.datum.text is sometimes undefined.
+            let datumClick: any = item.datum;
+            console.log('CLICK', item, item.datum.text, datumClick.name);
+            this.selectedParentNodeType = 'Person';
+            this.selectedParentNode = 'Koos';
+            this.selectedRelationship = 'Director-Of';
+        });
+        view.renderer('svg')
+            .initialize(this.dragWidget.nativeElement)
+            .hover()
+            .run()
+            .finalize();
+
     }
 
     clickCommonNodeView() {

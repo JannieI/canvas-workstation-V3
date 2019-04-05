@@ -621,7 +621,8 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <!-- Default view = tree view -->
                 <span>
                     <clr-icon shape="tree-view"
-                        style="color: black; cursor: pointer; margin-left: 28px;"
+                        style="cursor: pointer; margin-left: 28px;"
+                        [style.color]="selectedView=='DefaultView'?  'blue'  :  'gray'"
                         title="Default view: tree of children for the selected parent"
                         (click)="clickDefaultView()"
                         >
@@ -632,6 +633,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon shape="vm"
                         style="cursor: pointer; margin-left: 16px;"
+                        [style.color]="selectedView=='CommonParentView'?  'blue'  :  'gray'"
                         title="Common parent view: show all parents to which any 2 or more children belong"
                         (click)="clickCommonParentView()"
                         >
@@ -642,6 +644,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon shape="nvme"
                         style="cursor: pointer; margin-left: 16px;"
+                        [style.color]="selectedView=='CommonNodeView'?  'blue'  :  'gray'"
                         title="Common node view: show all parents to which a child and a specific node belongs"
                         (click)="clickCommonNodeView()"
                         >
@@ -652,6 +655,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon shape="organization"
                         style="cursor: pointer; margin-left: 16px;"
+                        [style.color]="selectedView=='DistanceView'?  'blue'  :  'gray'"
                         title="Distance view: show all nodes between a child and a specific node"
                         (click)="clickDistanceView()"
                         >
@@ -662,6 +666,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon shape="share"
                         style="cursor: pointer; margin-left: 16px;"
+                        [style.color]="selectedView=='NodeTypeView'?  'blue'  :  'gray'"
                         title="Node type view: show the full tree, restricted to a specific node type"
                         (click)="clickNodeTypeView()"
                         >
