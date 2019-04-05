@@ -482,9 +482,9 @@ dimensions is set in app.html, and cannot be changed here. -->
 
 
                 <!-- Commonality between 2 children -->
-                <span style="float: left;">
+                <span>
                     <clr-icon shape="vm"
-                        style="cursor: pointer; margin-left: 16px;"
+                        style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='CommonParentView'?  'blue'  :  'gray'"
                         title="Common parent view: show all parents to which any 2 or more children belong"
                         (click)="clickCommonParentView()"
@@ -493,9 +493,9 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </span>
 
                 <!-- Commonality between any child and specific node -->
-                <span style="float: left;">
+                <span>
                     <clr-icon shape="nvme"
-                        style="cursor: pointer; margin-left: 16px;"
+                        style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='CommonNodeView'?  'blue'  :  'gray'"
                         title="Common node view: show all parents to which a child and a specific node belongs"
                         (click)="clickCommonNodeView()"
@@ -504,9 +504,9 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </span>
 
                 <!-- Distance between a child and specific node -->
-                <span style="float: left;">
+                <span>
                     <clr-icon shape="organization"
-                        style="cursor: pointer; margin-left: 16px;"
+                        style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='DistanceView'?  'blue'  :  'gray'"
                         title="Distance view: show all nodes between a child and a specific node"
                         (click)="clickDistanceView()"
@@ -515,18 +515,18 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </span>
 
                 <!-- Default view = tree view -->
-                <span style="float: left;">
+                <span>
                     <clr-icon shape="tree-view"
-                        style="cursor: pointer; margin-left: 28px;"
+                        style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='DefaultView'?  'blue'  :  'gray'"
                         title="Default view: tree of children for the selected parent"
                         (click)="clickDefaultView()"
                         >
                     </clr-icon>
                 </span>
-                <span style="float: left;">
+                <span>
                     <!-- Children Filter -->
-                    <clr-signpost style=" margin-left: 28px; width: 400;">
+                    <clr-signpost style="margin-left: 8px; width: 400;">
                         <clr-icon shape="filter-grid-circle"
                             size="14"
                             style="cursor: pointer; margin-left: 6px;"
@@ -615,7 +615,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     <!-- Break by additional node level -->
                     <span>
                         <clr-icon shape="usb"
-                            style="cursor: pointer; margin-left: 6px;"
+                            style="cursor: pointer; margin-left: 8px;"
                             title="Add additional level to graph, based on relationship properties"
                             (click)="clickPageRight"
                             >
@@ -623,7 +623,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                     </span>
             
                     <!-- Additional Properties to show -->
-                    <clr-signpost style=" margin-left: 28px; width: 400;">
+                    <clr-signpost style="margin-left: 8px; width: 400;">
                         <clr-icon shape="ellipsis-horizontal"
                             size="14"
                             style="cursor: pointer; margin-left: 6px;"
@@ -666,9 +666,9 @@ dimensions is set in app.html, and cannot be changed here. -->
                     </clr-signpost>
 
                     <!-- Full tree for a specific child node type -->
-                    <span style="float: left;">
+                    <span>
                         <clr-icon shape="share"
-                            style="cursor: pointer; margin-left: 16px;"
+                            style="cursor: pointer; margin-left: 8px;"
                             [style.color]="selectedView=='NodeTypeView'?  'blue'  :  'gray'"
                             title="Node type view: show the full tree, restricted to a specific node type"
                             (click)="clickNodeTypeView()"
