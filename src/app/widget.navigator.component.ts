@@ -1158,15 +1158,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
     }
 
 
-    clickMenuGraphHeight() {
-        // Menu option to adjust graph height
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphHeight', '@Start');
-
-    }
-
-    clickMenuGraphWidth() {
-        // Menu option to adjust graph width
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphWidth', '@Start');
+    clickMenuGraphHelp() {
+        // Show popup with help information
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphHelp', '@Start');
 
     }
 
