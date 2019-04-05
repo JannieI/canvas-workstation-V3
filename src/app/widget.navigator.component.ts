@@ -1519,7 +1519,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             parent: 7
         });
 
-        this.graphTitle = 'Full tree of Absa with Directors';
+        this.graphTitle = 'Beneficiary Shareholders of Top 40 companies';
 
         // Dimension it
         this.graphHeight = 300; //this.localWidget.graphLayers[0].graphSpecification.height;

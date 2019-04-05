@@ -431,206 +431,58 @@ dimensions is set in app.html, and cannot be changed here. -->
             </div>
             <div class="graphNavigatorBar">
                 <!-- Navigation - nr children shown and jumping -->
-                <span>
-                    <clr-icon shape="step-forward down"
-                        size="13"
-                        style="cursor: pointer; margin-left: 6px;"
-                        title="Move to first page of children"
-                        (click)="clickPageRight"
+                <span style="float: right;">
+                    <span>
+                        <clr-icon shape="step-forward down"
+                            size="13"
+                            style="cursor: pointer; margin-left: 6px;"
+                            title="Move to first page of children"
+                            (click)="clickPageRight"
+                            >
+                        </clr-icon>
+                    </span>
+                    <span>
+                        <clr-icon shape="play down"
+                            size="13"
+                            style="cursor: pointer; margin-left: 6px;"
+                            title="Move back one page of children"
+                            (click)="clickPageRight"
+                            >
+                        </clr-icon>
+                    </span>
+                    <span style="font-size: 0.45rem;"
+                        title="Children visible / shown"
                         >
-                    </clr-icon>
-                </span>
-                <span>
-                    <clr-icon shape="play down"
-                        size="13"
-                        style="cursor: pointer; margin-left: 6px;"
-                        title="Move back one page of children"
-                        (click)="clickPageRight"
+                        1 to 9
+                    </span>
+                    <span style="cursor: pointer; font-size: 0.45rem;"
+                        title="Total number of children; can be changed on the bar menu"
                         >
-                    </clr-icon>
-                </span>
-                <span style="font-size: 0.45rem;"
-                    title="Children visible / shown"
-                    >
-                    1 to 9
-                </span>
-                <span style="cursor: pointer; font-size: 0.45rem;"
-                    title="Total number of children; can be changed on the bar menu"
-                    >
-                    / 181
-                </span>
-                <span>
-                    <clr-icon shape="play"
-                        size="13"
-                        style="cursor: pointer; margin-left: 6px;"
-                        title="Move forward one page of children"
-                        (click)="clickPageRight"
-                        >
-                    </clr-icon>
-                </span>
-                <span>
-                    <clr-icon shape="step-forward"
-                        size="13"
-                        style="cursor: pointer; margin-left: 6px;"
-                        title="Move to the last page of children"
-                        (click)="clickPageRight"
-                        >
-                    </clr-icon>
+                        / 181
+                    </span>
+                    <span>
+                        <clr-icon shape="play"
+                            size="13"
+                            style="cursor: pointer; margin-left: 6px;"
+                            title="Move forward one page of children"
+                            (click)="clickPageRight"
+                            >
+                        </clr-icon>
+                    </span>
+                    <span>
+                        <clr-icon shape="step-forward"
+                            size="13"
+                            style="cursor: pointer; margin-left: 6px;"
+                            title="Move to the last page of children"
+                            (click)="clickPageRight"
+                            >
+                        </clr-icon>
+                    </span>
                 </span>
 
-                <!-- Children Filter -->
-                <clr-signpost style=" margin-left: 28px; width: 400;">
-                    <clr-icon shape="filter-grid-circle"
-                        size="14"
-                        style="cursor: pointer; margin-left: 6px;"
-                        title="Filter the list of children"
-                        clrSignpostTrigger
-                        >
-                    </clr-icon>
-                    <clr-signpost-content *clrIfOpen
-                        [clrPosition]="'bottom-middle'">
-                        <h5 style="margin-top: 0; color:gray;">
-                            Filter on children
-                        </h5>
-                        <p style="margin-top: 0; color:gray; text-align: left;">
-                            The list of children will be filtered.  This filter will stay
-                            active until 1. it is changed here, or 2. the selection is changed.
-                        </p>
-                        <div class="graphAreaChildFilterFieldTitle">
-                            Field:
-                            <select id="selects_3"
-                                [(ngModel)]="filterChildFieldName"
-                                (change)="changeChildFilterField($event)"
-                                name="filterChildFieldName"
-                                >
-                                <option *ngFor="let row of parentFields">
-                                    {{ row }}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="graphAreaChildFilterOperatorTitle">
-                            Operator:
-                            <select id="selects_3"
-                                [(ngModel)]="filterChildOperator"
-                                (change)="changeChildFilterOperator($event)"
-                                name="filterChildOperator"
-                                >
-                                <option>Less Than</option>
-                                <option>Less Than Equal</option>
-                                <option>Equal</option>
-                                <option>Not Equal</option>
-                                <option>Greater Than</option>
-                                <option>Greater Than Equal</option>
-                                <option>Range</option>
-                                <option>One Of</option>
-                                <option>Valid</option>
-                                <option>Selection</option>
-                            </select>
-                        </div>
-        
-                        <div class="graphAreaChildFilterValueTitle">
-                            Value:
-                            <input type="text"
-                                [(ngModel)]="filterChildValue"
-                                name="filterChildValue"
-                                placeholder=""
-                                title="Enter a value for the filter. "
-                                >
-                        </div>
-        
-                        <div>
-                            <div class="btn-group btn-link">
-                                <button class="btn" (click)="clickChildFilterClear()">
-                                    Clear
-                                </button>
-                                <button class="btn" (click)="clickChildFilterSave()">
-                                    <span *ngIf="filterID==-1">
-                                        Add
-                                    </span>
-                                    <span *ngIf="filterID!=-1">
-                                        Save
-                                    </span>
-                                </button>
-                            </div>
-        
-                            <button class="btn btn-secondary"
-                                (click)="clickChildFilterClose()">
-                                Close
-                            </button>
-                            <span class="graphAreaChildFilterErrorMessage">
-                                {{ childFilterErrorMessage }}
-                            </span>
-                        </div>
-        
-                    </clr-signpost-content>
-                </clr-signpost>
-
-                <!-- Break by additional node level -->
-                <span>
-                    <clr-icon shape="usb"
-                        style="cursor: pointer; margin-left: 6px;"
-                        title="Add additional level to graph, based on relationship properties"
-                        (click)="clickPageRight"
-                        >
-                    </clr-icon>
-                </span>
-        
-                <!-- Additional Properties to show -->
-                <clr-signpost style=" margin-left: 28px; width: 400;">
-                    <clr-icon shape="ellipsis-horizontal"
-                        size="14"
-                        style="cursor: pointer; margin-left: 6px;"
-                        title="Optional property to show with each child node"
-                        clrSignpostTrigger
-                        >
-                    </clr-icon>
-                    <clr-signpost-content *clrIfOpen
-                        [clrPosition]="'bottom-middle'">
-                        <h5 style="margin-top: 0; color:gray;">
-                            Additional properties to show per child
-                        </h5>
-                        <p style="margin-top: 0; color:gray; text-align: left;">
-                            Select an optional additional properties to be shown in brackets
-                            at the end of each child.  This will show until
-                            1. it is changed here, or 2. the selection is changed.
-                        </p>
-                        <div class="graphAreaChildFilterFieldTitle">
-                            Property:
-                            <select id="selects_3"
-                                [(ngModel)]="filterChildFieldName"
-                                (change)="changeChildFilterField($event)"
-                                name="filterChildFieldName"
-                                >
-                                <option>
-                                    Surname
-                                </option>
-                                <option>
-                                    Gender
-                                </option>
-                                <option>
-                                    Designation
-                                </option>
-                                <option>
-                                    Race
-                                </option>
-                            </select>
-                        </div>
-                    </clr-signpost-content>
-                </clr-signpost>
-
-                <!-- Default view = tree view -->
-                <span>
-                    <clr-icon shape="tree-view"
-                        style="cursor: pointer; margin-left: 28px;"
-                        [style.color]="selectedView=='DefaultView'?  'blue'  :  'gray'"
-                        title="Default view: tree of children for the selected parent"
-                        (click)="clickDefaultView()"
-                        >
-                    </clr-icon>
-                </span>
 
                 <!-- Commonality between 2 children -->
-                <span>
+                <span style="float: left;">
                     <clr-icon shape="vm"
                         style="cursor: pointer; margin-left: 16px;"
                         [style.color]="selectedView=='CommonParentView'?  'blue'  :  'gray'"
@@ -641,7 +493,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </span>
 
                 <!-- Commonality between any child and specific node -->
-                <span>
+                <span style="float: left;">
                     <clr-icon shape="nvme"
                         style="cursor: pointer; margin-left: 16px;"
                         [style.color]="selectedView=='CommonNodeView'?  'blue'  :  'gray'"
@@ -652,7 +504,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </span>
 
                 <!-- Distance between a child and specific node -->
-                <span>
+                <span style="float: left;">
                     <clr-icon shape="organization"
                         style="cursor: pointer; margin-left: 16px;"
                         [style.color]="selectedView=='DistanceView'?  'blue'  :  'gray'"
@@ -662,16 +514,169 @@ dimensions is set in app.html, and cannot be changed here. -->
                     </clr-icon>
                 </span>
 
-                <!-- Full tree for a specific child node type -->
-                <span>
-                    <clr-icon shape="share"
-                        style="cursor: pointer; margin-left: 16px;"
-                        [style.color]="selectedView=='NodeTypeView'?  'blue'  :  'gray'"
-                        title="Node type view: show the full tree, restricted to a specific node type"
-                        (click)="clickNodeTypeView()"
+                <!-- Default view = tree view -->
+                <span style="float: left;">
+                    <clr-icon shape="tree-view"
+                        style="cursor: pointer; margin-left: 28px;"
+                        [style.color]="selectedView=='DefaultView'?  'blue'  :  'gray'"
+                        title="Default view: tree of children for the selected parent"
+                        (click)="clickDefaultView()"
                         >
                     </clr-icon>
                 </span>
+                <span style="float: left;">
+                    <!-- Children Filter -->
+                    <clr-signpost style=" margin-left: 28px; width: 400;">
+                        <clr-icon shape="filter-grid-circle"
+                            size="14"
+                            style="cursor: pointer; margin-left: 6px;"
+                            title="Filter the list of children"
+                            clrSignpostTrigger
+                            >
+                        </clr-icon>
+                        <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Filter on children
+                            </h5>
+                            <p style="margin-top: 0; color:gray; text-align: left;">
+                                The list of children will be filtered.  This filter will stay
+                                active until 1. it is changed here, or 2. the selection is changed.
+                            </p>
+                            <div class="graphAreaChildFilterFieldTitle">
+                                Field:
+                                <select id="selects_3"
+                                    [(ngModel)]="filterChildFieldName"
+                                    (change)="changeChildFilterField($event)"
+                                    name="filterChildFieldName"
+                                    >
+                                    <option *ngFor="let row of parentFields">
+                                        {{ row }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="graphAreaChildFilterOperatorTitle">
+                                Operator:
+                                <select id="selects_3"
+                                    [(ngModel)]="filterChildOperator"
+                                    (change)="changeChildFilterOperator($event)"
+                                    name="filterChildOperator"
+                                    >
+                                    <option>Less Than</option>
+                                    <option>Less Than Equal</option>
+                                    <option>Equal</option>
+                                    <option>Not Equal</option>
+                                    <option>Greater Than</option>
+                                    <option>Greater Than Equal</option>
+                                    <option>Range</option>
+                                    <option>One Of</option>
+                                    <option>Valid</option>
+                                    <option>Selection</option>
+                                </select>
+                            </div>
+            
+                            <div class="graphAreaChildFilterValueTitle">
+                                Value:
+                                <input type="text"
+                                    [(ngModel)]="filterChildValue"
+                                    name="filterChildValue"
+                                    placeholder=""
+                                    title="Enter a value for the filter. "
+                                    >
+                            </div>
+            
+                            <div>
+                                <div class="btn-group btn-link">
+                                    <button class="btn" (click)="clickChildFilterClear()">
+                                        Clear
+                                    </button>
+                                    <button class="btn" (click)="clickChildFilterSave()">
+                                        <span *ngIf="filterID==-1">
+                                            Add
+                                        </span>
+                                        <span *ngIf="filterID!=-1">
+                                            Save
+                                        </span>
+                                    </button>
+                                </div>
+            
+                                <button class="btn btn-secondary"
+                                    (click)="clickChildFilterClose()">
+                                    Close
+                                </button>
+                                <span class="graphAreaChildFilterErrorMessage">
+                                    {{ childFilterErrorMessage }}
+                                </span>
+                            </div>
+            
+                        </clr-signpost-content>
+                    </clr-signpost>
+
+                    <!-- Break by additional node level -->
+                    <span>
+                        <clr-icon shape="usb"
+                            style="cursor: pointer; margin-left: 6px;"
+                            title="Add additional level to graph, based on relationship properties"
+                            (click)="clickPageRight"
+                            >
+                        </clr-icon>
+                    </span>
+            
+                    <!-- Additional Properties to show -->
+                    <clr-signpost style=" margin-left: 28px; width: 400;">
+                        <clr-icon shape="ellipsis-horizontal"
+                            size="14"
+                            style="cursor: pointer; margin-left: 6px;"
+                            title="Optional property to show with each child node"
+                            clrSignpostTrigger
+                            >
+                        </clr-icon>
+                        <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Additional properties to show per child
+                            </h5>
+                            <p style="margin-top: 0; color:gray; text-align: left;">
+                                Select an optional additional properties to be shown in brackets
+                                at the end of each child.  This will show until
+                                1. it is changed here, or 2. the selection is changed.
+                            </p>
+                            <div class="graphAreaChildFilterFieldTitle">
+                                Property:
+                                <select id="selects_3"
+                                    [(ngModel)]="filterChildFieldName"
+                                    (change)="changeChildFilterField($event)"
+                                    name="filterChildFieldName"
+                                    >
+                                    <option>
+                                        Surname
+                                    </option>
+                                    <option>
+                                        Gender
+                                    </option>
+                                    <option>
+                                        Designation
+                                    </option>
+                                    <option>
+                                        Race
+                                    </option>
+                                </select>
+                            </div>
+                        </clr-signpost-content>
+                    </clr-signpost>
+
+                    <!-- Full tree for a specific child node type -->
+                    <span style="float: left;">
+                        <clr-icon shape="share"
+                            style="cursor: pointer; margin-left: 16px;"
+                            [style.color]="selectedView=='NodeTypeView'?  'blue'  :  'gray'"
+                            title="Node type view: show the full tree, restricted to a specific node type"
+                            (click)="clickNodeTypeView()"
+                            >
+                        </clr-icon>
+                    </span>
+                </span>
+
             </div>
 
             <b>{{ graphTitle }}</b>
@@ -682,7 +687,6 @@ dimensions is set in app.html, and cannot be changed here. -->
 
 
         <div class="graphAreaGraphic"
-            [style.width]="graphAreaWidth"
             #dragWidget
             >
         </div>
