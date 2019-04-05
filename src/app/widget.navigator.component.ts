@@ -115,6 +115,7 @@ export class WidgetNavigatorComponent {
     // Popups and forms
     showGraphHelp: boolean = false;
     showGraphProperties: boolean = false;
+    showNetworkAdd: boolean = false;
 
     watchListFiltered: boolean = false;
 
@@ -1026,15 +1027,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.history = this.history.filter(h => h.id != historyID);
         this.historyAll = this.historyAll.filter(h => h.id != historyID);
 
-    }
-
-    clickFilterOnWatchList() {
-        // Filter the parent node dropdown on the watchlist as well.  This action happens
-        // only when clicked - the next navigation does not automatically filter the
-        // this dropdown.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterOnWatchList', '@Start');
-
-        this.watchListFiltered = !this.watchListFiltered;
     }
 
     clickParentFilterClear() {
