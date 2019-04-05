@@ -1203,9 +1203,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Refresh the graph
         this.selectedView = 'DefaultView'
 
-        this.tempCreateDummyData();
-
-        console.log('xx defaultView', this.showRoles);
         this.showGraph();
     }
 
