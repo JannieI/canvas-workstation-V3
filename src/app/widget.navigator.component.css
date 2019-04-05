@@ -187,16 +187,17 @@
             font-size: 0.58rem;
             text-align: center;
         }
-            .graphNavigatorBar {
-                border: 1px solid black;
-                border-radius: 4px;
-                color: gray;
-                margin-bottom: 6px;
-                margin-top: 12px;
-                text-align: left;
-            }
             .errorMessage {
                 color: red;
+            }
+            .graphNavigatorBarDivider {
+                border: 1px solid black;
+                margin-top: 12px;
+            }
+            .graphNavigatorBar {
+                color: gray;
+                margin-bottom: 6px;
+                text-align: left;
             }
 
         .graphAreaGraphic {
