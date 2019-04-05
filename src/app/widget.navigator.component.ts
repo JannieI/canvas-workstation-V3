@@ -876,6 +876,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
+        this.specification['title'] = this.graphTitle;
 
         // TODO - decide if we need to update the Widget Data too ?
         // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
@@ -957,6 +958,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
+        this.specification['title'] = this.graphTitle;
 
         console.log('xx summ', this.graphHeight, this.graphWidth, this.graphData, this.specification)
         // TODO - decide if we need to update the Widget Data too ?
@@ -1268,6 +1270,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
+        this.specification['title'] = this.graphTitle;
 
         console.log('xx summ', this.graphHeight, this.graphWidth, this.graphData, this.specification)
         // TODO - decide if we need to update the Widget Data too ?
@@ -1353,6 +1356,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
+        this.specification['title'] = this.graphTitle;
 
         console.log('xx summ', this.graphHeight, this.graphWidth, this.graphData, this.specification)
         // TODO - decide if we need to update the Widget Data too ?
@@ -1447,6 +1451,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
+        this.specification['title'] = this.graphTitle;
 
         console.log('xx summ', this.graphHeight, this.graphWidth, this.graphData, this.specification)
         // TODO - decide if we need to update the Widget Data too ?
@@ -1536,6 +1541,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
+        this.specification['title'] = this.graphTitle;
 
         console.log('xx summ', this.graphHeight, this.graphWidth, this.graphData, this.specification)
         // TODO - decide if we need to update the Widget Data too ?

@@ -524,7 +524,9 @@ dimensions is set in app.html, and cannot be changed here. -->
                         >
                     </clr-icon>
                 </span>
-                <span>
+
+                <!-- Additional actions for the Default View -->
+                <span *ngIf="selectedView=='DefaultView'">
                     <!-- Children Filter -->
                     <clr-signpost style="margin-left: 8px; width: 400;">
                         <clr-icon shape="filter-grid-circle"
@@ -679,7 +681,10 @@ dimensions is set in app.html, and cannot be changed here. -->
 
             </div>
 
-            <b>{{ graphTitle }}</b>
+            
+            <!-- <div>
+                <b>{{ graphTitle }}</b>
+            </div> -->
         </div>
         <br>
         <div>
