@@ -195,6 +195,9 @@
                 margin-top: 12px;
                 text-align: left;
             }
+            .errorMessage {
+                color: red;
+            }
 
         .graphAreaGraphic {
             font-size: 0.5rem;

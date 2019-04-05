@@ -651,7 +651,7 @@ dimensions is set in app.html, and cannot be changed here. -->
 
                 <!-- Distance between a child and specific node -->
                 <span>
-                    <clr-icon shape="organisation"
+                    <clr-icon shape="organization"
                         style="cursor: pointer; margin-left: 16px;"
                         title="Distance view: show all nodes between a child and a specific node"
                         (click)="clickDistanceView()"
@@ -670,6 +670,9 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </span>
             </div>
 
+            <span class="errorMessage">
+                {{ errorMessage }}
+            </span>
             <b>{{ graphTitle }}</b>
         </div>
         <br>
