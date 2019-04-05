@@ -423,13 +423,10 @@ dimensions is set in app.html, and cannot be changed here. -->
             </clr-signpost-content>
         </clr-signpost>
 
-        <div class="graphAreaShowRoles" *ngIf="relationshipRoles.length > 0">
-            <input type="checkbox" [(ngModel)]="showRoles"
-            (change)="changeShowRoles()">
-        </div>
-
-
         <div class="graphAreaTitle">
+            <div class="errorMessage" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
             <div class="graphNavigatorBar">
                 <!-- Navigation - nr children shown and jumping -->
                 <span>
@@ -670,9 +667,6 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </span>
             </div>
 
-            <span class="errorMessage">
-                {{ errorMessage }}
-            </span>
             <b>{{ graphTitle }}</b>
         </div>
         <br>

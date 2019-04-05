@@ -67,6 +67,7 @@ export class WidgetNavigatorComponent {
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
     childFields: string[] = ['Gender', 'Age'];
     childFilterErrorMessage: string = '';
+    errorMessage: string = '';
     filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
     filterChildFieldName: string = '';
     filterChildOperator: string = '';
@@ -1185,15 +1186,6 @@ export class WidgetNavigatorComponent {
         // Make the filter inactive
         this.globalFunctionService.printToConsole(this.constructor.name,'changeParentFilterOperator', '@Start');
 
-    }
-
-    changeShowRoles() {
-        // Move the visible children right / down
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeShowRoles', '@Start');
-
-        // Refresh the graph
-        console.log('xx showRoles', this.showRoles);
-        this.showGraph();
     }
 
     clickDefaultView() {
