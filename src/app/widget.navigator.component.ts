@@ -854,32 +854,7 @@ export class WidgetNavigatorComponent {
             this.graphData = [];
             this.graphData.push(
                 { "id": 1,
-                "name": "Select a Parent"
-                });
-            this.graphData.push({
-                id: 2,
-                name: "Select from the dropdowns at the top",
-                parent: 1
-            });
-            this.graphData.push({
-                id: 3,
-                name: "Parent Node Type, ie Company",
-                parent: 2
-            });
-            this.graphData.push({
-                id: 4,
-                name: "Specfic Parent Node, ie Absa",
-                parent: 2
-            });
-            this.graphData.push({
-                id: 5,
-                name: "Specfic a Relationship, ie Directors",
-                parent: 2
-            });
-            this.graphData.push({
-                id: 6,
-                name: "Select a graph type, using the icons above",
-                parent: 1
+                "name": "Select a Parent using the dropdowns at the top"
             });
         };
 
