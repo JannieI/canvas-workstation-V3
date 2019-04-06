@@ -88,7 +88,7 @@ dimensions is set in app.html, and cannot be changed here. -->
         </div>
     </div>
 
-    <!-- Graph Properties -->
+    <!-- Graph Notes -->
     <div class="networkAdd" *ngIf="showGraphNotes">
         <h5>Graph Notes</h5>
         <div style="margin: 18px;">
@@ -107,7 +107,28 @@ dimensions is set in app.html, and cannot be changed here. -->
 
         </div>
     </div>
+
+    <!-- Graph Notes -->
+    <div class="networkAdd" *ngIf="showGraphHelp">
+        <h5>Graph Help</h5>
+        <div style="margin: 18px;">
+            This widget is used to navigate a network using tree graphs.
+        </div>
+        <div>
+            <button class="btn btn-link"
+                style="margin-left: 28px;"
+                (click)="showGraphHelp=false">
+                Close
+            </button>
+
+        </div>
+    </div>
     
+        
+
+
+
+
     
     <!-- NETWORKS AREA -->
     <!-- Network minimised     -->
