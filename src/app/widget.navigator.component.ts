@@ -1613,6 +1613,18 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
+    clickAdditionalLevel() {
+        // Add an additional level to the default view, based on a property of the relationship
+        // that has already been defined.
+        // Example: if false, company  -> Directors
+        //          if true,  company  ->  Ex/Non-Exec  ->  Directors
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdditionalLevel', '@Start');
+
+        this.showRoles = !this.showRoles;
+
+        this.showGraph();
+    }
+
     // Temp dummy data for demo
     tempCreateDummyData() {
 
