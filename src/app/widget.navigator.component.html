@@ -34,7 +34,7 @@ dimensions is set in app.html, and cannot be changed here. -->
                 style="cursor: pointer;"
                 shape="plus-circle"
                 size="18"
-                (click)="clickNetworkAdd()"
+                (click)="clickNetworkShow()"
                 >
             </clr-icon>
             <clr-signpost>
@@ -87,7 +87,8 @@ dimensions is set in app.html, and cannot be changed here. -->
     </div>
 
     <!-- Network Add -->
-    <div *ngIf="showNetworkAdd">
+    <div *ngIf="showNetworkAdd"
+        style="z-index: 101;">
         <h4>Add a new network</h4>
         <div>
             <input type="text"
