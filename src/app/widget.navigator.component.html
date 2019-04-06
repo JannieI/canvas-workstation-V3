@@ -48,6 +48,42 @@ dimensions is set in app.html, and cannot be changed here. -->
         </div>
     </div>
 
+    <!-- Graph Properties -->
+    <div class="networkAdd" *ngIf="showGraphProperties">
+        <h5>Graph Properties</h5>
+        <div style="margin: 18px;">
+            New Name:
+            <input type="text"
+                title="Add new name"
+                placeholder="New Name"
+                >
+        </div>
+        <div style="margin: 18px;">
+            Select a Datasource: 
+            <select [(ngModel)]="selectedNetwork"
+                (change)="changeNetworkAdd($event)"
+                name="selectedNodeType"
+                >
+                <option>
+                    Facebook
+                </option>
+                <option>
+                    Family
+                </option>
+    
+            </select>
+        </div>
+
+        <div>
+            <button class="btn btn-link"
+                style="margin-left: 28px;"
+                (click)="showGraphProperties=false">
+                Close
+            </button>
+
+        </div>
+    </div>
+
     
     <!-- NETWORKS AREA -->
     <!-- Network minimised     -->

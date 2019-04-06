@@ -892,10 +892,23 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         view.addEventListener('click', function(event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
-            console.log('CLICK', datumClick.name);
-            this.selectedParentNodeType = 'Person';
-            this.selectedParentNode = 'Koos';
-            this.selectedRelationship = 'Director-Of';
+            let childNodeClicked: string = datumClick.name;
+
+            // this.selectedParentNodeType = this.selectedParentNodeType.bind(this);
+
+            console.log('XX CLICKED showGraph', datumClick.name, childNodeClicked, this.selectedParentNodeType, this.childDataVisible);
+
+            // Find Child in list of visible children
+            let childClicked: number = this.childDataVisible.findIndex(
+                cdv => cdv.childNode == childNodeClicked);
+
+            if (childClicked >= 0) {
+                let childNodeTypeClick: string = this.childDataVisible[childClicked].childNodeType;
+                console.log('xx childClicked', childNodeTypeClick)
+                this.selectedParentNodeType = childNodeTypeClick;
+                this.selectedParentNode = childNodeClicked;
+                this.selectedRelationship = 'All';
+            };
         });
 
         // TODO - experimental: this automatically invokes 2 CLICK events as well ...
@@ -986,7 +999,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         view.addEventListener('click', function(event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
-            console.log('CLICK', item, item.datum.text, datumClick.name);
+            console.log('xx CLICK nwSumm', item, item.datum.text, datumClick.name);
             this.selectedParentNodeType = 'Person';
             this.selectedParentNode = 'Koos';
             this.selectedRelationship = 'Director-Of';
@@ -1308,7 +1321,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         view.addEventListener('click', function(event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
-            console.log('CLICK', item, item.datum.text, datumClick.name);
+            console.log('xx CLICK CommParnt', item, item.datum.text, datumClick.name);
             this.selectedParentNodeType = 'Person';
             this.selectedParentNode = 'Koos';
             this.selectedRelationship = 'Director-Of';
@@ -1394,7 +1407,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         view.addEventListener('click', function(event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
-            console.log('CLICK', item, item.datum.text, datumClick.name);
+            console.log('xx CLICK CommNod', item, item.datum.text, datumClick.name);
             this.selectedParentNodeType = 'Person';
             this.selectedParentNode = 'Koos';
             this.selectedRelationship = 'Director-Of';
@@ -1489,7 +1502,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         view.addEventListener('click', function(event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
-            console.log('CLICK', item, item.datum.text, datumClick.name);
+            console.log('xx CLICK Dist', item, item.datum.text, datumClick.name);
             this.selectedParentNodeType = 'Person';
             this.selectedParentNode = 'Koos';
             this.selectedRelationship = 'Director-Of';
@@ -1579,7 +1592,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         view.addEventListener('click', function(event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
-            console.log('CLICK', item, item.datum.text, datumClick.name);
+            console.log('xx CLICK NodTyp', item, item.datum.text, datumClick.name);
             this.selectedParentNodeType = 'Person';
             this.selectedParentNode = 'Koos';
             this.selectedRelationship = 'Director-Of';
