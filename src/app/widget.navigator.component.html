@@ -7,6 +7,10 @@ dimensions is set in app.html, and cannot be changed here. -->
     >
 
 
+
+
+    <!-- Popup forms -->
+
     <!-- Network Add -->
     <div class="networkAdd" *ngIf="showNetworkAdd">
         <h5>Add a new network</h5>
@@ -84,6 +88,26 @@ dimensions is set in app.html, and cannot be changed here. -->
         </div>
     </div>
 
+    <!-- Graph Properties -->
+    <div class="networkAdd" *ngIf="showGraphNotes">
+        <h5>Graph Notes</h5>
+        <div style="margin: 18px;">
+            Note:
+            <input type="text"
+                title="Add new name"
+                placeholder="New Name"
+                >
+        </div>
+        <div>
+            <button class="btn btn-link"
+                style="margin-left: 28px;"
+                (click)="showGraphNotes=false">
+                Close
+            </button>
+
+        </div>
+    </div>
+    
     
     <!-- NETWORKS AREA -->
     <!-- Network minimised     -->

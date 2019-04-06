@@ -112,6 +112,7 @@ export class WidgetNavigatorComponent {
 
     // Popups and forms
     showGraphHelp: boolean = false;
+    showGraphNotes: boolean = false;
     showGraphProperties: boolean = false;
     showNetworkAdd: boolean = false;
 
