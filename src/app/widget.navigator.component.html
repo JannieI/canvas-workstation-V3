@@ -70,17 +70,17 @@ dimensions is set in app.html, and cannot be changed here. -->
                 style="cursor: pointer;"
                 shape="trash"
                 size="12"
-                (click)="clickNetworkAdd"
+                (click)="clickNetworkRemove()"
                 >
             </clr-icon>
-            <clr-icon (click)="clickNetworkSummary(i)"
+            <clr-icon (click)="clickNetworkSummary(i, row.id)"
                 style="cursor: pointer;"
                 shape="snowflake"
                 size="12"
                 (click)="clickNetworkAdd"
                 >
             </clr-icon>
-            <span (click)="clickNetwork(i, row.id)">
+            <span (click)="clickNetworkSummary(i, row.id)">
                 {{ row.name }}
             </span>
         </div>
@@ -88,13 +88,15 @@ dimensions is set in app.html, and cannot be changed here. -->
 
     <!-- Network Add -->
     <div *ngIf="showNetworkAdd"
-        style="z-index: 101;">
-        <h4>Add a new network</h4>
+        style="border: 1px solid black; z-index: 101;">
+        <h5>Add a new network</h5>
         <div>
             <input type="text"
                 title="Add new name"
                 placeholder="New Name"
                 >
+        </div>
+        <div>
             <select [(ngModel)]="selectedNetwork"
                 (change)="changeNetworkAdd($event)"
                 name="selectedNodeType"
@@ -107,6 +109,9 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </option>
     
             </select>
+        </div>
+
+        <div>
             <button class="btn btn-secondary"
                 (click)="clickAddNetworkClose()">
                 Close
@@ -117,6 +122,7 @@ dimensions is set in app.html, and cannot be changed here. -->
             </button>
 
         </div>
+        <hr>
     </div>
 
 
