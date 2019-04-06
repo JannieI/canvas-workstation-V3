@@ -403,10 +403,18 @@ dimensions is set in app.html, and cannot be changed here. -->
                 <button
                     type="button"
                     clrDropdownItem
+                    (click)="clickMenuGraphNotes()"
+                    title="Show popup to edit notes at bottom of graph"
+                    >
+                    Graph Notes
+                </button>
+                <button
+                    type="button"
+                    clrDropdownItem
                     (click)="clickMenuGraphHelp()"
                     title="Show popup with help information"
                     >
-                    Graph Notes
+                    Help
                 </button>
                 <button
                     type="button"
