@@ -32,7 +32,7 @@
         font-size: 0.5rem;
         height: 100%;
         text-align: left;
-        overflow-y: scroll; 
+        overflow: scroll; 
     }
         .networkAreaTitle {
             font-size: 0.6rem;
