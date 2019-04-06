@@ -1206,6 +1206,13 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.showGraphProperties = true;
     }
 
+    clickMenuGraphNotes() {
+        // Show popup to edit notes at bottom of graph
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphNotes', '@Start');
+
+        this.showGraphNotes = true;
+    }
+
     clickMenuGraphHelp() {
         // Show popup with help information
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphHelp', '@Start');
