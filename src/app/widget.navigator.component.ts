@@ -111,7 +111,6 @@ export class WidgetNavigatorComponent {
     specification: any;             // Full spec for Vega, or other grammar
 
     // Popups and forms
-    showAddNewNetwork: boolean = false;
     showGraphHelp: boolean = false;
     showGraphProperties: boolean = false;
     showNetworkAdd: boolean = false;
@@ -1037,6 +1036,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkAdd', '@Start');
 
         this.showNetworkAdd = true;
+        
     }
 
     dblclickDeleteHistory(index: number, historyID: number) {

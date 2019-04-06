@@ -30,11 +30,11 @@ dimensions is set in app.html, and cannot be changed here. -->
             <b>
                 Networks
             </b>
-            <clr-icon (click)="clickNetworkAdd()"
+            <clr-icon
                 style="cursor: pointer;"
                 shape="plus-circle"
                 size="18"
-                (click)="clickNetworkAdd"
+                (click)="clickNetworkAdd()"
                 >
             </clr-icon>
             <clr-signpost>
@@ -86,8 +86,8 @@ dimensions is set in app.html, and cannot be changed here. -->
         </div>
     </div>
 
-    Network Add
-    <div *ngIf="showAddNewNetwork">
+    <!-- Network Add -->
+    <div *ngIf="showNetworkAdd">
         <h4>Add a new network</h4>
         <div>
             <input type="text"
@@ -106,6 +106,14 @@ dimensions is set in app.html, and cannot be changed here. -->
                 </option>
     
             </select>
+            <button class="btn btn-secondary"
+                (click)="clickAddNetworkClose()">
+                Close
+            </button>
+            <button class="btn btn-secondary"
+                (click)="clickAddNetworkAdd()">
+                Add
+            </button>
 
         </div>
     </div>
