@@ -111,6 +111,7 @@ export class WidgetNavigatorComponent {
     specification: any;             // Full spec for Vega, or other grammar
 
     // Popups and forms
+    showAddNewNetwork: boolean = false;
     showGraphHelp: boolean = false;
     showGraphProperties: boolean = false;
     showNetworkAdd: boolean = false;

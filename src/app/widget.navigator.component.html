@@ -86,6 +86,30 @@ dimensions is set in app.html, and cannot be changed here. -->
         </div>
     </div>
 
+    Network Add
+    <div *ngIf="showAddNewNetwork">
+        <h4>Add a new network</h4>
+        <div>
+            <input type="text"
+                title="Add new name"
+                placeholder="New Name"
+                >
+            <select [(ngModel)]="selectedNetwork"
+                (change)="changeNetworkAdd($event)"
+                name="selectedNodeType"
+                >
+                <option>
+                    Name 1
+                </option>
+                <option>
+                    Name 2
+                </option>
+    
+            </select>
+
+        </div>
+    </div>
+
 
 
 
