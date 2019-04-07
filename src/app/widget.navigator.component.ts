@@ -1232,7 +1232,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Export the current graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuExportGraph', '@Start');
 
-        let fileName: string = 'Nav Network.png'
+        let fileName: string = 'Nav Network'
         let newW: Widget = JSON.parse(JSON.stringify(this.selectedWidget));
         newW.dataFiltered = [];
         var obj = JSON.stringify(newW);  

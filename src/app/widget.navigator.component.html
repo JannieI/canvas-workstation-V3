@@ -722,6 +722,27 @@ dimensions is set in app.html, and cannot be changed here. -->
                                     title="Enter a value for the filter. "
                                     >
                             </div>
+
+                            <div class="graphAreaChildFilterValueTitle">
+                                Show top:
+                                <input type="text"
+                                    [(ngModel)]="filterChildValue"
+                                    name="filterChildValue"
+                                    placeholder=""
+                                    title="Enter a number"
+                                    >
+                            </div>
+                            <div class="graphAreaChildFilterOperatorTitle">
+                                Order by:
+                                <select id="selects_3"
+                                    [(ngModel)]="filterChildOperator"
+                                    (change)="changeChildFilterOperator($event)"
+                                    name="filterChildOperator"
+                                    >
+                                    <option>Revenue</option>
+                                    <option>Sector</option>
+                                </select>
+                            </div>
             
                             <div>
                                 <div class="btn-group btn-link">
