@@ -1232,6 +1232,16 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Export the current graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuExportGraph', '@Start');
 
+        let fileName: string = 'Nav Network.png'
+        let newW: Widget = JSON.parse(JSON.stringify(this.selectedWidget));
+        newW.dataFiltered = [];
+        var obj = JSON.stringify(newW);  
+
+        var a = document.createElement('a');
+        a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(JSON.stringify(obj)));
+        a.setAttribute('download', fileName);
+        a.click()
+
     }
 
     changeParentFilterField() {
