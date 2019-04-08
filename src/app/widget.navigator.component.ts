@@ -322,6 +322,32 @@ export class WidgetNavigatorComponent {
             role: ''
         }
         this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 9,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Martha',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 10,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Gareth',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
 
         let newNodeTypeFields: NavigatorNodeTypeFields =
         {
