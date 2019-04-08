@@ -348,6 +348,71 @@ export class WidgetNavigatorComponent {
                 role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 11,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Bennedict',
+                role: 'Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 12,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Xavier',
+                role: 'Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 13,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Brian',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 14,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Peter',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 15,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Yvonne',
+                role: 'Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
 
         let newNodeTypeFields: NavigatorNodeTypeFields =
         {
