@@ -77,32 +77,32 @@ export interface dataSchemaInterface {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
-        if (event.code == 'KeyS'  &&  (event.ctrlKey)  &&  (event.shiftKey)  ) {
+        if (event.code === 'KeyS'  &&  (event.ctrlKey)  &&  (event.shiftKey)  ) {
             this.showGraph(this.currentGraphID);
             return;
         };
-        if (event.code == 'ArrowLeft'  &&  (event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'ArrowLeft'  &&  (event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickBrowsePreviousGraph();
             return;
         };
-        if (event.code == 'ArrowRight'  &&  (event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'ArrowRight'  &&  (event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickBrowseNextGraph();
             return;
         };
 
 
-        // if (this.currentGraphID >= 0  &&  event.code == 'KeyS'  &&  (event.ctrlKey)
+        // if (this.currentGraphID >= 0  &&  event.code === 'KeyS'  &&  (event.ctrlKey)
         //     &&  (!event.shiftKey)  ) {
         //     this.showGraph(this.currentGraphID);
         //     return;
         // };
 
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -317,7 +317,7 @@ export interface dataSchemaInterface {
                     .then(w => {
                         this.widgets = w;
                         this.localDatasources.forEach(ds => {
-                            widgetsFiltered = this.widgets.filter(w => w.datasourceID == ds.id);
+                            widgetsFiltered = this.widgets.filter(w => w.datasourceID === ds.id);
                             ds.nrWidgets = widgetsFiltered.length;
                         });
 
@@ -347,13 +347,13 @@ export interface dataSchemaInterface {
                             // Count the Ws
                             let widgets: Widget[];
                             this.localDatasources.forEach(ds => {
-                                widgets = this.widgets.filter(w => w.datasourceID == ds.id);
+                                widgets = this.widgets.filter(w => w.datasourceID === ds.id);
                                 ds.nrWidgets = widgets.length;
                             });
 
                             // Populate predefined dimensions, considering layouts
-                            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''
-                                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
+                            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme === ''
+                                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme === null) {
                                 this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme = 'None';
                             };
                             if (this.newWidgetContainerLeft > 0) {
@@ -379,7 +379,7 @@ export interface dataSchemaInterface {
                             if (this.globalVariableService.previousGraphEditDSID != -1) {
 
                                 let datasourceIndex: number = this.localDatasources.findIndex(ds =>
-                                    ds.id == this.globalVariableService.previousGraphEditDSID
+                                    ds.id === this.globalVariableService.previousGraphEditDSID
                                 );
                                 if (datasourceIndex >= 0) {
                                     this.selectedRowID = this.globalVariableService.previousGraphEditDSID;
@@ -401,53 +401,53 @@ export interface dataSchemaInterface {
 
                             // Populate the visible layers, and set Defaults
                             for (let i = 0; i < this.localWidget.graphLayers.length; i++){
-                                // if (this.localWidget.graphLayers[i].graphMarkSize == null
+                                // if (this.localWidget.graphLayers[i].graphMarkSize === null
                                 //     ||
-                                //     this.localWidget.graphLayers[i].graphMarkSize == 0) {
+                                //     this.localWidget.graphLayers[i].graphMarkSize === 0) {
                                 //     this.localWidget.graphLayers[i].graphMarkSize = 20;
                                 // };
 
                                 this.graphLayers.push(i + 1);
                             };
 
-                            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == ''
-                                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
+                            if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme === ''
+                                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme === null) {
                                 this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme = 'None';
                             };
 
                             // TODO - handle properly and close form
-                            if (this.localWidget.datasourceID == 0) {
+                            if (this.localWidget.datasourceID === 0) {
                                 alert('No Widget was selected, or could not find it in glob vars.  In: ngOnInit, ELSE +- line 170 inside WidgetEditor.ts')
                             };
 
                             // Fill in defaults
-                            if (this.localWidget.graphHeight == null) {
+                            if (this.localWidget.graphHeight === null) {
                                 this.localWidget.graphHeight = 240;
                             };
-                            if (this.localWidget.graphLeft == null) {
+                            if (this.localWidget.graphLeft === null) {
                                 this.localWidget.graphLeft = 1;
                             };
-                            if (this.localWidget.graphTop == null) {
+                            if (this.localWidget.graphTop === null) {
                                 this.localWidget.graphTop = 1;
                             };
-                            if (this.localWidget.graphWidth == null) {
+                            if (this.localWidget.graphWidth === null) {
                                 this.localWidget.graphWidth = 240;
                             };
-                            if (this.localWidget.graphDimensionRight == null) {
+                            if (this.localWidget.graphDimensionRight === null) {
                                 this.localWidget.graphDimensionRight = 140;
                             };
-                            if (this.localWidget.graphDimensionLeft == null) {
+                            if (this.localWidget.graphDimensionLeft === null) {
                                 this.localWidget.graphDimensionLeft = 80;
                             };
-                            if (this.localWidget.graphDimensionBottom == null) {
+                            if (this.localWidget.graphDimensionBottom === null) {
                                 this.localWidget.graphDimensionBottom = 70;
                             };
-                            if (this.localWidget.graphLayerFacet == null  ||  this.localWidget.graphLayerFacet == '') {
+                            if (this.localWidget.graphLayerFacet === null  ||  this.localWidget.graphLayerFacet === '') {
                                 this.localWidget.graphLayerFacet = 'Single';
                             };
-                            if (this.localWidget.visualGrammar == ''
+                            if (this.localWidget.visualGrammar === ''
                                 ||
-                                this.localWidget.visualGrammar == null) {
+                                this.localWidget.visualGrammar === null) {
                                 this.localWidget.visualGrammar = 'Vega-Lite';
                             };
 
@@ -471,7 +471,7 @@ export interface dataSchemaInterface {
                                 this.localWidget.graphLayers[this.currentGraphLayer - 1].conditionValue;
 
                             let arrayIndex: number = this.localDatasources.findIndex(
-                                ds => ds.id == this.localWidget.datasourceID
+                                ds => ds.id === this.localWidget.datasourceID
                             );
                             if (arrayIndex < 0) {
                                 alert('Datasource for current Dashboard not found in global currentDatasources')
@@ -490,7 +490,7 @@ export interface dataSchemaInterface {
                             this.constructDataSchema(this.selectedRowIndex);
 
                             let currentDatasourceIndex: number = this.globalVariableService.currentDatasources.findIndex(
-                                ds => ds.id == this.selectedRowID
+                                ds => ds.id === this.selectedRowID
                             );
                             if (currentDatasourceIndex >= 0) {
 
@@ -513,7 +513,7 @@ export interface dataSchemaInterface {
                                 .then(res => {
                                     this.widgetGraphsFull = res;
                                     this.widgetGraphs = res.filter(
-                                        wg => wg.visualGrammar == this.localWidget.visualGrammar
+                                        wg => wg.visualGrammar === this.localWidget.visualGrammar
                                     );
                                     if (this.showWidgetEditorLite) {
                                         this.widgetGraphs = this.widgetGraphs
@@ -523,7 +523,7 @@ export interface dataSchemaInterface {
                                     // TODO - fix
                                     // Show graph
                                     let graphIndex: number = this.widgetGraphs.findIndex(wgr =>
-                                        wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
+                                        wgr.mark === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
                                     );
                                     this.showGraph(this.widgetGraphs[graphIndex].id);
                                 })
@@ -605,25 +605,25 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         // Validation
-        if ( (this.xField == dragFieldMessage  ||  this.xField == null)
+        if ( (this.xField === dragFieldMessage  ||  this.xField === null)
             &&
-            (this.yField == dragFieldMessage  ||  this.yField == null)
+            (this.yField === dragFieldMessage  ||  this.yField === null)
             &&
-            (this.colorField == dragFieldMessage  ||  this.colorField == null)
+            (this.colorField === dragFieldMessage  ||  this.colorField === null)
             &&
-            (this.rowField == dragFieldMessage  ||  this.rowField == null)
+            (this.rowField === dragFieldMessage  ||  this.rowField === null)
             &&
-            (this.columnField == dragFieldMessage  ||  this.columnField == null)
+            (this.columnField === dragFieldMessage  ||  this.columnField === null)
             &&
-            (this.sizeField == dragFieldMessage  ||  this.sizeField == null)
+            (this.sizeField === dragFieldMessage  ||  this.sizeField === null)
             &&
-            (this.x2Field == dragFieldMessage  ||  this.x2Field == null)
+            (this.x2Field === dragFieldMessage  ||  this.x2Field === null)
             &&
-            (this.y2Field == dragFieldMessage  ||  this.y2Field == null)
+            (this.y2Field === dragFieldMessage  ||  this.y2Field === null)
             &&
-            (this.projectionFieldLatitude == dragFieldMessage  ||  this.projectionFieldLatitude == null)
+            (this.projectionFieldLatitude === dragFieldMessage  ||  this.projectionFieldLatitude === null)
             &&
-            (this.projectionFieldLongitude == dragFieldMessage  ||  this.projectionFieldLongitude == null)
+            (this.projectionFieldLongitude === dragFieldMessage  ||  this.projectionFieldLongitude === null)
             ) {
                 this.errorMessageEditor = 'Select at least one field.';
                 return;
@@ -631,9 +631,9 @@ export interface dataSchemaInterface {
         if (this.projectionField != ''
             &&
             (
-                (this.projectionFieldLatitude == dragFieldMessage  ||  this.projectionFieldLatitude == null)
+                (this.projectionFieldLatitude === dragFieldMessage  ||  this.projectionFieldLatitude === null)
                 ||
-                (this.projectionFieldLongitude == dragFieldMessage  ||  this.projectionFieldLongitude == null)
+                (this.projectionFieldLongitude === dragFieldMessage  ||  this.projectionFieldLongitude === null)
                 )
             ) {
                 this.errorMessageEditor = 'Select lat and long with Projection.';
@@ -682,7 +682,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregate = '';
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregateName != '') {
             let aggregationIndex: number = this.aggregations.findIndex(
-                agg => agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregateName);
+                agg => agg.displayName === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregateName);
             if (aggregationIndex >= 0) {
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaggregate = this.aggregations[aggregationIndex]
                     .vegaLiteName;
@@ -691,7 +691,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregate = '';
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregateName != '') {
             let aggregationIndex: number = this.aggregations.findIndex(agg =>
-                agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1]
+                agg.displayName === this.localWidget.graphLayers[this.currentGraphLayer - 1]
                     .graphYaggregateName);
             if (aggregationIndex >= 0) {
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaggregate =
@@ -701,7 +701,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregate = '';
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregateName != '') {
             let aggregationIndex: number = this.aggregations.findIndex(agg =>
-                    agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1]
+                    agg.displayName === this.localWidget.graphLayers[this.currentGraphLayer - 1]
                         .graphColorAggregateName);
             if (aggregationIndex >= 0) {
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorAggregate =
@@ -711,7 +711,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregate = '';
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregateName != '') {
             let aggregationIndex: number = this.aggregations.findIndex(agg =>
-                agg.displayName == this.localWidget.graphLayers[this.currentGraphLayer - 1]
+                agg.displayName === this.localWidget.graphLayers[this.currentGraphLayer - 1]
                     .graphSizeAggregateName);
             if (aggregationIndex >= 0) {
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeAggregate =
@@ -724,7 +724,7 @@ export interface dataSchemaInterface {
 
         // Get the widgetGraph
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
-            wg => wg.id == graphID);
+            wg => wg.id === graphID);
         if (widgetGraphIndex < 0) {
             this.errorMessageEditor = 'Graph type id = ' + graphID + ' does not exist in the DB';
             return;
@@ -773,7 +773,7 @@ export interface dataSchemaInterface {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphY2Field = this.y2Field;
         };
         // Trail not effective if size too large, and default is 20
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark.toLowerCase() == 'trail') {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark.toLowerCase() === 'trail') {
             if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkSize > 2) {
                 // this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkSize = 1;
                 this.errorMessageEditor = 'Use Mark-Size to reduce ...'
@@ -783,83 +783,83 @@ export interface dataSchemaInterface {
         // Validation and Warnings - AFTER default settings
         if (this.sizeField != dragFieldMessage
             &&
-            this.widgetGraphs[widgetGraphIndex]['mark'] == 'rect') {
+            this.widgetGraphs[widgetGraphIndex]['mark'] === 'rect') {
             this.errorMessageEditor = "'size' is incompatible with Rectangle graph.";
         };
 
         // Defaults
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype == ''
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype === ''
             ||
-            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype = 'ordinal';
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype == ''
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype === ''
             ||
-            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype = 'ordinal';
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType == ''
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType === ''
             ||
-            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType = 'ordinal';
         };
 
-        if (this.graphColorAggregateVegaLiteName == null) {this.graphColorAggregateVegaLiteName = ""};
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat == null) {
+        if (this.graphColorAggregateVegaLiteName === null) {this.graphColorAggregateVegaLiteName = ""};
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit = "";
         };
-        if (this.localWidget.graphTitleAnchor == null) {
+        if (this.localWidget.graphTitleAnchor === null) {
             this.localWidget.graphTitleAnchor = "";
         };
-        if (this.localWidget.graphTitleBaseline == null) {
+        if (this.localWidget.graphTitleBaseline === null) {
             this.localWidget.graphTitleBaseline = "";
         };
-        if (this.localWidget.graphTitleOrientation == null) {
+        if (this.localWidget.graphTitleOrientation === null) {
             this.localWidget.graphTitleOrientation = ""
         };
-        // if (this.graphXaggregateVegaLiteName == null) {this.graphXaggregateVegaLiteName = ""}
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat == null) {
+        // if (this.graphXaggregateVegaLiteName === null) {this.graphXaggregateVegaLiteName = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit = "";
         };
-        // if (this.graphYaggregateVegaLiteName == null) {this.graphYaggregateVegaLiteName = ""}
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat == null) {
+        // if (this.graphYaggregateVegaLiteName === null) {this.graphYaggregateVegaLiteName = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle == null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle === null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle = "";
         };
 
         // Define Specification & Type
         this.localWidget.visualGrammarType = this.widgetGraphs[widgetGraphIndex]
             .visualGrammarType.toLowerCase();
-        if (this.localWidget.visualGrammarType == 'custom') {
+        if (this.localWidget.visualGrammarType === 'custom') {
             this.localWidget.graphLayers[0].graphSpecification =
                 this.widgetGraphs[widgetGraphIndex].specification;
         };
 
         // Render graph for Vega-Lite
-        if (this.localWidget.visualGrammar == 'Vega-Lite') {
+        if (this.localWidget.visualGrammar === 'Vega-Lite') {
 
             // Create specification
             this.specification = this.globalVariableService.createVegaLiteSpec(
@@ -888,7 +888,7 @@ export interface dataSchemaInterface {
         };
 
         // Render graph for Vega
-        if (this.localWidget.visualGrammar == 'Vega') {
+        if (this.localWidget.visualGrammar === 'Vega') {
 
             // Create specification
             this.specification = this.globalVariableService.createVegaSpec(
@@ -909,7 +909,7 @@ export interface dataSchemaInterface {
         };
 
         // Append to history
-        let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer == this.currentGraphLayer);
+        let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer === this.currentGraphLayer);
         if (layerIndex < 0) {
             this.graphHistory.push({
                 layer: this.currentGraphLayer,
@@ -946,13 +946,13 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         // Decrease position, if not at beginning
-        if (this.graphHistoryPosition == 0) {
+        if (this.graphHistoryPosition === 0) {
             return;
         };
         this.graphHistoryPosition = this.graphHistoryPosition - 1;
 
         // Recreate a new W spec
-        let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer == this.currentGraphLayer);
+        let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer === this.currentGraphLayer);
         let newWidgetSpec: Widget = {
             ...this.graphHistory[layerIndex].widgetSpec[this.graphHistoryPosition],
              ...{ dataFiltered: this.localWidget.dataFiltered }
@@ -969,7 +969,7 @@ export interface dataSchemaInterface {
         // Get the graphID
         let graphID: number = -1;
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
-            wg => wg.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark);
+            wg => wg.mark === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark);
         if (widgetGraphIndex < 0) {
             this.errorMessageEditor = 'Graph type mark = ' +
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark +
@@ -992,7 +992,7 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         // Increase position, if not at beginning
-        let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer == this.currentGraphLayer);
+        let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer === this.currentGraphLayer);
         if (this.graphHistoryPosition >= (this.graphHistory[layerIndex].widgetSpec.length - 1) ) {
             return;
         };
@@ -1015,7 +1015,7 @@ export interface dataSchemaInterface {
         // Get the graphID
         let graphID: number = -1;
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
-            wg => wg.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark);
+            wg => wg.mark === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark);
         if (widgetGraphIndex < 0) {
             this.errorMessageEditor = 'Graph type mark = ' +
                 this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark +
@@ -1045,9 +1045,9 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         // Validate
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark == ''
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark === ''
             ||
-            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark == null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark === null) {
             this.errorMessage = 'Please select a type of graph';
             return;
         };
@@ -1059,7 +1059,7 @@ export interface dataSchemaInterface {
             if (graphspec != null) {
                 w.graphSpecification = JSON.parse(graphspec.replace("$schema","_schema"));
             };
-            if (this.localWidget.visualGrammar == 'Vega') {
+            if (this.localWidget.visualGrammar === 'Vega') {
                 w.graphSpecification.width = 1200;
                 w.graphSpecification.height = 1200;    
             };
@@ -1074,9 +1074,9 @@ export interface dataSchemaInterface {
             .then(wchk => {
                 let tempChk: WidgetCheckpoint[] = wchk
                     .filter(wc =>
-                        wc.dashboardID == this.localWidget.dashboardID
+                        wc.dashboardID === this.localWidget.dashboardID
                         &&
-                        wc.widgetID == this.localWidget.id
+                        wc.widgetID === this.localWidget.id
                 );
 
                 if (tempChk.length > 0) {
@@ -1385,12 +1385,12 @@ export interface dataSchemaInterface {
 
         let newXField: string = this.xField;
         let newYField: string = this.yField;
-        if (newXField == dragFieldMessage) {
+        if (newXField === dragFieldMessage) {
             this.clickClearYField();
         } else {
             this.dropYField(null, newXField);
         };
-        if (newYField == dragFieldMessage) {
+        if (newYField === dragFieldMessage) {
             this.clickClearXField();
         } else {
             this.dropXField(null, newYField);
@@ -1405,7 +1405,7 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         // Set
-        if (fieldName == '') {
+        if (fieldName === '') {
             fieldName = this.draggedField;
         };
         if (ev != null) {
@@ -1419,7 +1419,7 @@ export interface dataSchemaInterface {
         fieldName = fieldName.substring(0, position != -1 ? position : fieldName.length)
 
         let dataSchemaIndex: number = this.dataSchema.findIndex(
-            dsc => dsc.name == fieldName
+            dsc => dsc.name === fieldName
         );
 
         // Show X icon
@@ -1447,7 +1447,7 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         // Set
-        if (fieldName == '') {
+        if (fieldName === '') {
             fieldName = this.draggedField;
         };
         if (ev != null) {
@@ -1487,7 +1487,7 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         // Set
-        if (fieldName == '') {
+        if (fieldName === '') {
             fieldName = this.draggedField;
         };
         if (ev != null) {
@@ -1530,7 +1530,7 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         // Set
-        if (fieldName == '') {
+        if (fieldName === '') {
             fieldName = this.draggedField;
         };
         if (ev != null) {
@@ -1923,7 +1923,7 @@ export interface dataSchemaInterface {
         this.showFieldColorPropertiesField = false;
         this.showFieldColorPropertiesLegend = false;
 
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField == ''  &&  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField == '') {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorField === ''  &&  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphSizeField === '') {
             this.localWidget.graphDimensionRight = 0;
         };
 
@@ -2064,9 +2064,9 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphProjectionFieldLatitude = '';
 
         // Hide the panel with properties if not fields selected
-        if (this.projectionFieldLatitude == dragFieldMessage
+        if (this.projectionFieldLatitude === dragFieldMessage
             &&
-            this.projectionFieldLongitude == dragFieldMessage) {
+            this.projectionFieldLongitude === dragFieldMessage) {
             this.showFieldProjectionProperties = false;
         };
     }
@@ -2084,9 +2084,9 @@ export interface dataSchemaInterface {
 
 
         // Hide the panel with properties if not fields selected
-        if (this.projectionFieldLatitude == dragFieldMessage
+        if (this.projectionFieldLatitude === dragFieldMessage
             &&
-            this.projectionFieldLongitude == dragFieldMessage) {
+            this.projectionFieldLongitude === dragFieldMessage) {
             this.showFieldProjectionProperties = false;
         };
 
@@ -2341,7 +2341,7 @@ export interface dataSchemaInterface {
 
         // Reset, Highlight selected row
         this.selectedRowIndex = index;
-        let arrayIndex: number = this.localDatasources.findIndex(ds => ds.id == datasourceID);
+        let arrayIndex: number = this.localDatasources.findIndex(ds => ds.id === datasourceID);
         this.selectedRowID = datasourceID;
         this.selectedDSName = this.localDatasources[arrayIndex].name.slice(0,22) +
             (this.localDatasources[arrayIndex].name.length > 22?  '...'  :  '');
@@ -2358,7 +2358,7 @@ export interface dataSchemaInterface {
         };
 
         let currentDatasourceIndex: number = this.globalVariableService.currentDatasources.findIndex(
-            ds => ds.id == this.selectedRowID
+            ds => ds.id === this.selectedRowID
         );
         if (currentDatasourceIndex >= 0) {
 
@@ -2404,7 +2404,7 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSfilter', '@Start');
 
         this.selectedRowIndex = index;
-        let arrayIndex: number = this.localDatasources.findIndex(ds => ds.id == datasourceID);
+        let arrayIndex: number = this.localDatasources.findIndex(ds => ds.id === datasourceID);
         this.selectedRowID = datasourceID;
 
         this.showDSfilterArea = true;
@@ -2488,29 +2488,29 @@ export interface dataSchemaInterface {
         // Returns the default Vega field type depending a given field types
         this.globalFunctionService.printToConsole(this.constructor.name,'defaultGraphTypeField', '@Start');
 
-        if (fieldType == 'string'  ||  fieldType == ''  ||  fieldType == null) {
-            if (typeOrName == 'name') {
+        if (fieldType === 'string'  ||  fieldType === ''  ||  fieldType === null) {
+            if (typeOrName === 'name') {
                 return 'Ordinal';
             } else {
                 return 'ordinal';
             };
         };
-        if (fieldType.toLowerCase() == 'number') {
-            if (typeOrName == 'name') {
+        if (fieldType.toLowerCase() === 'number') {
+            if (typeOrName === 'name') {
                 return 'Quantitative';
             } else {
                 return 'quantitative';
             };
         };
-        if (fieldType.toLowerCase() == 'boolean') {
-            if (typeOrName == 'name') {
+        if (fieldType.toLowerCase() === 'boolean') {
+            if (typeOrName === 'name') {
                 return 'Nominal';
             } else {
                 return 'nominal';
             };
         };
-        if (fieldType.toLowerCase() == 'date') {
-            if (typeOrName == 'name') {
+        if (fieldType.toLowerCase() === 'date') {
+            if (typeOrName === 'name') {
                 return 'Temporal';
             } else {
                 return 'temporal';
@@ -2523,7 +2523,7 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'getFieldType', '@Start');
 
         for (var i = 0; i < this.dataSchema.length; i++) {
-            if (this.dataSchema[i].name == fieldName) {
+            if (this.dataSchema[i].name === fieldName) {
                 return this.dataSchema[i].type;
             }
         };
@@ -2806,7 +2806,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColorName = ev.target.value;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColor = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColorName
+            bg.name === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColorName
         );
         if (localIndex >= 0) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisGridColor = this.backgroundcolors[localIndex].cssCode;
@@ -2823,7 +2823,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColorName = ev.target.value;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColor = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColorName
+            bg.name === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColorName
         );
         if (localIndex >= 0) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXaxisLabelColor = this.backgroundcolors[localIndex].cssCode;
@@ -2840,7 +2840,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColorName = ev.target.value;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColor = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColorName
+            bg.name === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColorName
         );
         if (localIndex >= 0) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisGridColor = this.backgroundcolors[localIndex].cssCode;
@@ -2857,7 +2857,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendLabelColorName = ev.target.value;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendLabelColor = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendLabelColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendLabelColorName
+            bg.name === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendLabelColorName
         );
         if (localIndex >= 0) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendLabelColor = this.backgroundcolors[localIndex].cssCode;
@@ -2874,7 +2874,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColorName = ev.target.value;
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColor = this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColorName
+            bg.name === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColorName
         );
         if (localIndex >= 0) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYaxisLabelColor = this.backgroundcolors[localIndex].cssCode;
@@ -2891,7 +2891,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphBackgroundColorName = ev.target.value;
         this.localWidget.graphBackgroundColor = this.localWidget.graphBackgroundColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphBackgroundColorName
+            bg.name === this.localWidget.graphBackgroundColorName
         );
         if (localIndex >= 0) {
             this.localWidget.graphBackgroundColor = this.backgroundcolors[localIndex].cssCode;
@@ -2908,7 +2908,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphBorderColorName = ev.target.value;
         this.localWidget.graphBorderColor = this.localWidget.graphBorderColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphBorderColorName
+            bg.name === this.localWidget.graphBorderColorName
         );
         if (localIndex >= 0) {
             this.localWidget.graphBorderColor = this.backgroundcolors[localIndex].cssCode;
@@ -2925,7 +2925,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphTitleColorName = ev.target.value;
         this.localWidget.graphTitleColor = this.localWidget.graphTitleColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphTitleColorName
+            bg.name === this.localWidget.graphTitleColorName
         );
         if (localIndex >= 0) {
             this.localWidget.graphTitleColor = this.backgroundcolors[localIndex].cssCode;
@@ -2943,7 +2943,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColour =
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColourName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColourName
+            bg.name === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColourName
         );
         if (localIndex >= 0) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkColour =
@@ -2962,7 +2962,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColor =
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColorName
+            bg.name === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColorName
         );
         if (localIndex >= 0) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMarkPointColor = this.backgroundcolors[localIndex].cssCode;
@@ -3024,7 +3024,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.xField == dragFieldMessage  ||  this.xField == null) {
+        if (this.xField === dragFieldMessage  ||  this.xField === null) {
             return;
         };
 
@@ -3040,7 +3040,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.yField == dragFieldMessage  ||  this.yField == null) {
+        if (this.yField === dragFieldMessage  ||  this.yField === null) {
             return;
         };
 
@@ -3056,7 +3056,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.colorField == dragFieldMessage  ||  this.colorField == null) {
+        if (this.colorField === dragFieldMessage  ||  this.colorField === null) {
             return;
         };
 
@@ -3208,7 +3208,7 @@ export interface dataSchemaInterface {
 
         // Store vars
         let gridFilterIndex: number = this.localWidget.widgetFilters.findIndex(gflt =>
-            gflt.id == selectedFilterID);
+            gflt.id === selectedFilterID);
         if (gridFilterIndex >= 0) {
             this.filterID = this.localWidget.widgetFilters[gridFilterIndex].id;
             this.filterFieldName = this.localWidget.widgetFilters[gridFilterIndex].filterFieldName;
@@ -3256,7 +3256,7 @@ export interface dataSchemaInterface {
         this.filterErrorMessage = '';
 
         let gridFilterIndex: number = this.localWidget.widgetFilters.findIndex(gflt =>
-            gflt.id == this.filterID);
+            gflt.id === this.filterID);
         if (gridFilterIndex >= 0) {
             this.localWidget.widgetFilters[gridFilterIndex].isActive = false;
         };
@@ -3270,7 +3270,7 @@ export interface dataSchemaInterface {
         this.filterErrorMessage = '';
 
         let gridFilterIndex: number = this.localWidget.widgetFilters.findIndex(gflt =>
-            gflt.id == this.filterID);
+            gflt.id === this.filterID);
         if (gridFilterIndex >= 0) {
             this.localWidget.widgetFilters[gridFilterIndex].isActive = true;
         };
@@ -3284,7 +3284,7 @@ export interface dataSchemaInterface {
         this.filterErrorMessage = '';
 
         let gridFilterIndex: number = this.localWidget.widgetFilters.findIndex(gflt =>
-            gflt.id == this.filterID);
+            gflt.id === this.filterID);
         if (gridFilterIndex >= 0) {
             this.localWidget.widgetFilters.splice(gridFilterIndex, 1);
         };
@@ -3304,43 +3304,43 @@ export interface dataSchemaInterface {
         let fieldTypeLower: string = this.getFieldType(this.filterFieldName).toLowerCase();
 
         // Validation
-        if (this.filterFieldName == ''  ||  this.filterFieldName == undefined) {
+        if (this.filterFieldName === ''  ||  this.filterFieldName === undefined) {
             this.filterErrorMessage = 'Filter field is required.';
             return;
         };
-        if (this.filterOperator == ''  ||  this.filterOperator == undefined) {
+        if (this.filterOperator === ''  ||  this.filterOperator === undefined) {
             this.filterErrorMessage = 'Filter Operator is required.';
             return;
         };
         if (this.filterOperator != 'Valid'  &&  this.filterOperator != 'Range') {
-            if (this.filterValue == ''  ||  this.filterValue == undefined) {
+            if (this.filterValue === ''  ||  this.filterValue === undefined) {
                 this.filterErrorMessage = 'Filter Value is required.';
                 return;
             };
         };
-        if (this.filterOperator == 'Range') {
-            if (this.filterValueFrom == ''  ||  this.filterValueFrom == undefined) {
+        if (this.filterOperator === 'Range') {
+            if (this.filterValueFrom === ''  ||  this.filterValueFrom === undefined) {
                 this.filterErrorMessage = 'Filter From Value is required.';
                 return;
             };
-            if (this.filterValueTo == ''  ||  this.filterValueTo == undefined) {
+            if (this.filterValueTo === ''  ||  this.filterValueTo === undefined) {
                 this.filterErrorMessage = 'Filter To Value is required.';
                 return;
             };
         };
-        if (this.filterOperator == 'Range'
+        if (this.filterOperator === 'Range'
             &&
             fieldTypeLower != 'number') {
             this.filterErrorMessage = 'Range only applies to Numbers.';
             return;
         };
-        if (this.filterOperator == 'Valid'
+        if (this.filterOperator === 'Valid'
             &&
             fieldTypeLower != 'number') {
             this.filterErrorMessage = 'Valid only applies to Numbers.';
             return;
         };
-        if (this.filterOperator == 'One Of'
+        if (this.filterOperator === 'One Of'
             &&
             fieldTypeLower != 'string') {
             this.filterErrorMessage = 'One Of only applies to Strings.';
@@ -3348,11 +3348,11 @@ export interface dataSchemaInterface {
         };
 
         // Create the filter spec with Max ID
-        if (this.localWidget.widgetFilters == null) {
+        if (this.localWidget.widgetFilters === null) {
             this.localWidget.widgetFilters = [];
             this.filterNrActive = 0;
         };
-        if (this.filterID == -1) {
+        if (this.filterID === -1) {
 
             let graphFilterID: number = 0;
             this.localWidget.widgetFilters.forEach(gflt => {
@@ -3382,7 +3382,7 @@ export interface dataSchemaInterface {
             this.localWidget.widgetFilters.push(graphFilter);
         } else {
             let gridFilterIndex: number = this.localWidget.widgetFilters.findIndex(gflt =>
-                gflt.id == this.filterID);
+                gflt.id === this.filterID);
             if (gridFilterIndex >= 0) {
                 this.localWidget.widgetFilters[gridFilterIndex].filterFieldName =
                     this.filterFieldName;
@@ -3454,7 +3454,7 @@ export interface dataSchemaInterface {
         this.conditionColourName = ev.target.value;
         this.conditionColour = this.conditionColourName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.conditionColourName
+            bg.name === this.conditionColourName
         );
         if (localIndex >= 0) {
             this.conditionColour = this.backgroundcolors[localIndex].cssCode;
@@ -3493,16 +3493,16 @@ export interface dataSchemaInterface {
         this.conditionErrorMessage = '';
 
         // Validation
-        if (this.conditionFieldName == ''  ||  this.conditionFieldName == undefined) {
+        if (this.conditionFieldName === ''  ||  this.conditionFieldName === undefined) {
             this.conditionErrorMessage = 'Condition field is required.';
             return;
         };
-        if (this.conditionOperator == ''  ||  this.conditionOperator == undefined) {
+        if (this.conditionOperator === ''  ||  this.conditionOperator === undefined) {
             this.conditionErrorMessage = 'Condition Operator is required.';
             return;
         };
         if (this.conditionOperator != 'Valid'  &&  this.conditionOperator != 'Range') {
-            if (this.conditionValue == ''  ||  this.conditionValue == undefined) {
+            if (this.conditionValue === ''  ||  this.conditionValue === undefined) {
                 this.conditionErrorMessage = 'Condition Value is required.';
                 return;
             };
@@ -3571,7 +3571,7 @@ export interface dataSchemaInterface {
 
         // Store vars
         let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
-            gflt.id == selectedCalculatedID);
+            gflt.id === selectedCalculatedID);
         if (gridCalculatedIndex >= 0) {
             this.calculatedID = this.localWidget.graphCalculations[gridCalculatedIndex].id;
             this.calculatedExpression = this.localWidget.graphCalculations
@@ -3598,43 +3598,43 @@ export interface dataSchemaInterface {
         this.calculatedErrorMessage = '';
 
         // Remove from other places
-        if (this.xField == this.calculatedAs) {
+        if (this.xField === this.calculatedAs) {
             this.clickClearXField();
         };
-        if (this.yField == this.calculatedAs) {
+        if (this.yField === this.calculatedAs) {
             this.clickClearYField();
         };
-        if (this.colorField == this.calculatedAs) {
+        if (this.colorField === this.calculatedAs) {
             this.clickClearColourField();
         };
-        if (this.detailField == this.calculatedAs) {
+        if (this.detailField === this.calculatedAs) {
             this.clickClearDetailField;
         };
-        if (this.rowField == this.calculatedAs) {
+        if (this.rowField === this.calculatedAs) {
             this.clickClearRowField();
         };
-        if (this.columnField == this.calculatedAs) {
+        if (this.columnField === this.calculatedAs) {
             this.clickClearColumnField();
         };
-        if (this.x2Field == this.calculatedAs) {
+        if (this.x2Field === this.calculatedAs) {
             this.clickClearX2Field;
         };
-        if (this.y2Field == this.calculatedAs) {
+        if (this.y2Field === this.calculatedAs) {
             this.clickClearY2Field();
         };
 
         // Remove from localWidget
-        if (this.localWidget.graphCalculations == null) {
+        if (this.localWidget.graphCalculations === null) {
             this.localWidget.graphCalculations = [];
         };
         let graphCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gcal =>
-            gcal.id == this.calculatedID);
+            gcal.id === this.calculatedID);
         if (graphCalculatedIndex >= 0) {
             this.localWidget.graphCalculations.splice(graphCalculatedIndex, 1);
         };
 
         // Remove from local var
-        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
+        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name === this.calculatedAs);
         if (schemaIndex >= 0) {
             this.dataSchema.splice(schemaIndex, 1);
         };
@@ -3673,11 +3673,11 @@ export interface dataSchemaInterface {
         this.calculatedErrorMessage = '';
 
         // Validation
-        if (this.calculatedExpression == ''  ||  this.calculatedExpression == undefined) {
+        if (this.calculatedExpression === ''  ||  this.calculatedExpression === undefined) {
             this.calculatedErrorMessage = 'Expression is required.';
             return;
         };
-        if (this.calculatedAs == ''  ||  this.calculatedAs == undefined) {
+        if (this.calculatedAs === ''  ||  this.calculatedAs === undefined) {
             this.calculatedErrorMessage = 'New field name (As) is required.';
             return;
         };
@@ -3688,12 +3688,12 @@ export interface dataSchemaInterface {
 
         let regex: any = /[a-z]/g;;
         let found = this.calculatedAs.toLowerCase().match(regex)
-        if (found == null  ||  found.length != this.calculatedAs.length) {
+        if (found === null  ||  found.length != this.calculatedAs.length) {
             this.calculatedErrorMessage = 'New field name must only consist of letters.';
             return;
         };
 
-        if (this.calculatedDataType == ''  ||  this.calculatedDataType == undefined) {
+        if (this.calculatedDataType === ''  ||  this.calculatedDataType === undefined) {
             this.calculatedErrorMessage = 'Field data type is required.';
             return;
         };
@@ -3705,10 +3705,10 @@ export interface dataSchemaInterface {
         };
 
         // Add Calculated field to Field List
-        if (this.localWidget.graphCalculations == null) {
+        if (this.localWidget.graphCalculations === null) {
             this.localWidget.graphCalculations = [];
         };
-        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
+        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name === this.calculatedAs);
         if (schemaIndex >= 0) {
             this.dataSchema[schemaIndex].type = this.calculatedDataType;
             this.dataSchema[schemaIndex].typeName = this.calculatedDataTypeName;
@@ -3736,7 +3736,7 @@ export interface dataSchemaInterface {
 
         // Add / Update to localWidget
         let transformationIndex: number = this.localWidget.graphCalculations.findIndex(gcal =>
-            gcal.calculatedAs == this.calculatedAs);
+            gcal.calculatedAs === this.calculatedAs);
         if (transformationIndex >= 0) {
             this.localWidget.graphCalculations[transformationIndex].calculatedDataType =
                 this.calculatedDataType;
@@ -3762,7 +3762,7 @@ export interface dataSchemaInterface {
 
         // Deal with Calculatd Fields
         let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
-            gflt.calculatedAs == formCalculatedFieldName);
+            gflt.calculatedAs === formCalculatedFieldName);
         this.selectedGraphCalculatedRowIndex = gridCalculatedIndex;
         if (gridCalculatedIndex >= 0) {
             this.calculatedID = this.localWidget.graphCalculations[gridCalculatedIndex].id;
@@ -3790,7 +3790,7 @@ export interface dataSchemaInterface {
         // Converts calculatedDataType to calculatedDataTypeName
         this.globalFunctionService.printToConsole(this.constructor.name,'convertToCalculatedDataTypeName', '@Start');
 
-        if (calculatedDataType == null  ||  calculatedDataType == '') {
+        if (calculatedDataType === null  ||  calculatedDataType === '') {
             return '';
         };
 
@@ -3807,7 +3807,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (calculatedDataTypeName == null  ||  calculatedDataTypeName == '') {
+        if (calculatedDataTypeName === null  ||  calculatedDataTypeName === '') {
             return '';
         };
 
@@ -4032,7 +4032,7 @@ export interface dataSchemaInterface {
                 // TODO - fix
         // Refresh
         let graphIndex: number = this.widgetGraphs.findIndex(wgr =>
-                wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
+                wgr.mark === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
         );
         if (graphIndex >= 0) {
             this.showGraph(this.widgetGraphs[graphIndex].id);
@@ -4048,7 +4048,7 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         // Validation
-        if (this.localWidget.graphLayers.length == 1) {
+        if (this.localWidget.graphLayers.length === 1) {
             this.errorMessageEditor = 'Cannot delete last layer';
             return;
         };
@@ -4069,7 +4069,7 @@ export interface dataSchemaInterface {
                 // TODO - fix
         // Refresh
         let graphIndex: number = this.widgetGraphs.findIndex(wgr =>
-            wgr.mark == this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
+            wgr.mark === this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark
         );
         if (graphIndex >= 0) {
             this.showGraph(this.widgetGraphs[graphIndex].id);
@@ -4084,7 +4084,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.localWidget.graphLayerFacet == 'Single'  &&  this.graphLayers.length > 0) {
+        if (this.localWidget.graphLayerFacet === 'Single'  &&  this.graphLayers.length > 0) {
 
             this.clickClearRowField();
             this.clickClearColumnField();
@@ -4096,7 +4096,7 @@ export interface dataSchemaInterface {
 
                 // TODO - fix
                 let widgetGraphIndex: number = this.widgetGraphs.findIndex(
-                wg => wg.mark == this.localWidget.graphLayers[0].graphMark
+                wg => wg.mark === this.localWidget.graphLayers[0].graphMark
             );
             if (widgetGraphIndex >= 0) {
                 this.showGraph(this.widgetGraphs[widgetGraphIndex].id);
@@ -4125,7 +4125,7 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         let currentDatasourceIndex: number = this.globalVariableService.currentDatasources.findIndex(
-            ds => ds.id == this.selectedRowID
+            ds => ds.id === this.selectedRowID
         );
         this.excelService.exportAsExcelFile(
             this.globalVariableService.currentDatasources[currentDatasourceIndex].dataFiltered,
