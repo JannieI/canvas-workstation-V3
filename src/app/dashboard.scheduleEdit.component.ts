@@ -34,12 +34,12 @@ export class DashboardScheduleEditComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -77,7 +77,7 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         let dashboardIndex = this.globalVariableService.currentDashboards.findIndex(
-            cd => cd. id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+            cd => cd. id === this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         );
         if (dashboardIndex >= 0) {
             this.dashboardName = this.globalVariableService.currentDashboards[dashboardIndex].name;
@@ -114,7 +114,7 @@ export class DashboardScheduleEditComponent implements OnInit {
 
         // Fill the form
         let dashboardScheduleIndex: number = this.dashboardSchedules
-            .findIndex(sch => sch.id == id);
+            .findIndex(sch => sch.id === id);
         if (dashboardScheduleIndex >= 0) {
             this.selectedDashboardSchedule = JSON.parse(JSON.stringify(
                 this.dashboardSchedules[dashboardScheduleIndex]
@@ -180,7 +180,7 @@ export class DashboardScheduleEditComponent implements OnInit {
 
         // Re Fill the form
         let dashboardScheduleIndex: number = this.dashboardSchedules
-            .findIndex(sch => sch.id == this.selectedDashboardSchedule.id);
+            .findIndex(sch => sch.id === this.selectedDashboardSchedule.id);
         if (dashboardScheduleIndex >= 0) {
             this.selectedDashboardSchedule = JSON.parse(JSON.stringify(
                 this.dashboardSchedules[dashboardScheduleIndex]
@@ -202,21 +202,21 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedDashboardSchedule.repeatFrequency == null
+        if (this.selectedDashboardSchedule.repeatFrequency === null
             ||
-            this.selectedDashboardSchedule.repeatFrequency == '') {
+            this.selectedDashboardSchedule.repeatFrequency === '') {
                 this.errorMessage = 'Select a Frequency';
                 return;
         };
 
-        if (this.selectedDashboardSchedule.repeatsEvery == null
+        if (this.selectedDashboardSchedule.repeatsEvery === null
             ||
-            this.selectedDashboardSchedule.repeatsEvery == 0) {
+            this.selectedDashboardSchedule.repeatsEvery === 0) {
                 this.errorMessage = 'Fill in Every ';
                 return;
         };
 
-        if (this.selectedDashboardSchedule.repeatFrequency == 'Weekly') {
+        if (this.selectedDashboardSchedule.repeatFrequency === 'Weekly') {
             if (!this.selectedDashboardSchedule.weeklyMonday
                 &&
                 !this.selectedDashboardSchedule.weeklyTuesday
@@ -235,16 +235,16 @@ export class DashboardScheduleEditComponent implements OnInit {
             };
         };
 
-        if (this.selectedDashboardSchedule.repeatFrequency == 'Monthly') {
-            if (this.selectedDashboardSchedule.monthlyOn == 0
+        if (this.selectedDashboardSchedule.repeatFrequency === 'Monthly') {
+            if (this.selectedDashboardSchedule.monthlyOn === 0
             ||
-            this.selectedDashboardSchedule.monthlyOn == null) {
+            this.selectedDashboardSchedule.monthlyOn === null) {
                 this.errorMessage = 'Fill in day of month';
                 return;
             };
         };
 
-        if (this.selectedDashboardSchedule.repeatFrequency == 'Yearly') {
+        if (this.selectedDashboardSchedule.repeatFrequency === 'Yearly') {
             if (!this.selectedDashboardSchedule.yearlyJanuary
                 &&
                 !this.selectedDashboardSchedule.yearlyFebruary
@@ -273,28 +273,28 @@ export class DashboardScheduleEditComponent implements OnInit {
             };
         };
 
-        if (this.selectedDashboardSchedule.startsOn == null) {
+        if (this.selectedDashboardSchedule.startsOn === null) {
                 this.errorMessage = 'Enter start date';
                 return;
         };
 
         if (!this.selectedDashboardSchedule.endsNever)
             if (
-                    (this.selectedDashboardSchedule.endsAfter == null
+                    (this.selectedDashboardSchedule.endsAfter === null
                     ||
-                    this.selectedDashboardSchedule.endsAfter == 0)
+                    this.selectedDashboardSchedule.endsAfter === 0)
                 &&
-                    (this.selectedDashboardSchedule.endsOn == null
+                    (this.selectedDashboardSchedule.endsOn === null
                     ||
-                    this.selectedDashboardSchedule.endsOn == null)
+                    this.selectedDashboardSchedule.endsOn === null)
                 ) {
                 this.errorMessage = 'Must end Never, On or After';
                 return;
         };
 
-        if (this.selectedDashboardSchedule.name == null
+        if (this.selectedDashboardSchedule.name === null
             ||
-            this.selectedDashboardSchedule.name == '') {
+            this.selectedDashboardSchedule.name === '') {
                 this.errorMessage = 'Enter a Schedule name';
                 return;
         };
@@ -312,7 +312,7 @@ export class DashboardScheduleEditComponent implements OnInit {
 
             this.globalVariableService.addResource('dashboardSchedules', copyData)
                 .then(res => {
-                    if (this.selectedRow == null) {
+                    if (this.selectedRow === null) {
                         this.selectedRow = 0;
                         this.scheduleID = this.selectedDashboardSchedule.id;
                     };
@@ -328,7 +328,7 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Save the changes
         if (this.editing) {
             let dashboardScheduleIndex: number = this.dashboardSchedules
-                .findIndex(sch => sch.id == this.selectedDashboardSchedule.id);
+                .findIndex(sch => sch.id === this.selectedDashboardSchedule.id);
             if (dashboardScheduleIndex >= 0) {
                 this.dashboardSchedules[dashboardScheduleIndex] =
                     JSON.parse(JSON.stringify(this.selectedDashboardSchedule));
