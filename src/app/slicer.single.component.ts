@@ -79,25 +79,25 @@ export class SlicerSingleComponent {
         this.slicerItemClicked = true;
 
         // Update Sl
-        if (slicerType == 'Bins') {
+        if (slicerType === 'Bins') {
             this.slicer.slicerBins.forEach(sel => {
-                if (sel.name == fieldValue) {
+                if (sel.name === fieldValue) {
                     sel.isSelected = !sel.isSelected;
                 };
             });
         };
-        if (slicerType == 'List') {
+        if (slicerType === 'List') {
             this.slicer.slicerSelection.forEach(sel => {
-                if (sel.fieldValue == fieldValue) {
+                if (sel.fieldValue === fieldValue) {
                     sel.isSelected = !sel.isSelected;
                 };
             });
         };
 
-        if (slicerType == 'TheRest') {
+        if (slicerType === 'TheRest') {
             this.slicer.slicerAddRestValue = ev.target.checked;
             this.globalVariableService.currentWidgets.forEach(w => {
-                if (w.id == id) {
+                if (w.id === id) {
                     w.slicerAddRestValue = ev.target.checked;
                 };
             });
@@ -105,11 +105,11 @@ export class SlicerSingleComponent {
 
         // Adjust the global Sl selection, for next time
         this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.id == id) {
+            if (w.id === id) {
 
                 // Update the selected item
                 w.slicerSelection.forEach(sel => {
-                    if (sel.fieldValue == fieldValue) {
+                    if (sel.fieldValue === fieldValue) {
                         sel.isSelected = ev.target.checked;
                     };
                 });
@@ -119,14 +119,14 @@ export class SlicerSingleComponent {
 
         // Adjust the current Slicer
         this.slicer.slicerSelection.forEach(sel => {
-            if (sel.fieldValue == fieldValue) {
+            if (sel.fieldValue === fieldValue) {
                 sel.isSelected = ev.target.checked;
             }
         })
 
         // Refresh Ws that are related to Sl
         this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.datasourceID == datasourceID
+            if (w.datasourceID === datasourceID
                 && w.widgetType != 'Slicer') {
 
                     this.globalVariableService.changedWidget.next(w);
