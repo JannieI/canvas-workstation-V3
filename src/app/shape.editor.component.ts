@@ -44,12 +44,12 @@ export class ShapeEditComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose();
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -58,7 +58,7 @@ export class ShapeEditComponent implements OnInit {
                if (this.bulletText != '') {
                     this.clickBulletAdd()
                } else {
-                if (this.editLineNr == -1) {
+                if (this.editLineNr === -1) {
                     this.clickSave();
                     return;
                     } else {
@@ -144,76 +144,76 @@ export class ShapeEditComponent implements OnInit {
                     this.colourPickerClosed = false;
                 } else {
 
-                    if (clp.callingRoutine == 'ShapeEditorTextColor') {
+                    if (clp.callingRoutine === 'ShapeEditorTextColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeTextColour = clp.selectedColor;
                         this.localWidget.shapeTextColourName = 'Open Picker ...';
                     };
 
-                    if (clp.callingRoutine == 'ShapeEditorBracketColor') {
+                    if (clp.callingRoutine === 'ShapeEditorBracketColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
                         this.localWidget.shapeStrokeName = 'Open Picker ...';
                     };
 
-                    if (clp.callingRoutine == 'ShapeEditorCircleLineColor') {
+                    if (clp.callingRoutine === 'ShapeEditorCircleLineColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
                         this.localWidget.shapeStrokeName = 'Open Picker ...';
                     };
-                    if (clp.callingRoutine == 'ShapeEditorCircleFillColor') {
+                    if (clp.callingRoutine === 'ShapeEditorCircleFillColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeFill = clp.selectedColor;
                         this.localWidget.shapeFillName = 'Open Picker ...';
                     };
 
-                    if (clp.callingRoutine == 'ShapeEditorEllipseLineColor') {
+                    if (clp.callingRoutine === 'ShapeEditorEllipseLineColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
                         this.localWidget.shapeStrokeName = 'Open Picker ...';
                     };
-                    if (clp.callingRoutine == 'ShapeEditorEllipseFillColor') {
+                    if (clp.callingRoutine === 'ShapeEditorEllipseFillColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeFill = clp.selectedColor;
                         this.localWidget.shapeFillName = 'Open Picker ...';
                     };
 
-                    if (clp.callingRoutine == 'ShapeEditorRectangleLineColor') {
+                    if (clp.callingRoutine === 'ShapeEditorRectangleLineColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
                         this.localWidget.shapeStrokeName = 'Open Picker ...';
                     };
-                    if (clp.callingRoutine == 'ShapeEditorRectangleFillColor') {
+                    if (clp.callingRoutine === 'ShapeEditorRectangleFillColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeFill = clp.selectedColor;
                         this.localWidget.shapeFillName = 'Open Picker ...';
                     };
 
-                    if (clp.callingRoutine == 'ShapeEditorValueLineColor') {
+                    if (clp.callingRoutine === 'ShapeEditorValueLineColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeTextColour = clp.selectedColor;
                         this.localWidget.shapeTextColourName = 'Open Picker ...';
                     };
 
-                    if (clp.callingRoutine == 'ShapeEditorBulletsColor') {
+                    if (clp.callingRoutine === 'ShapeEditorBulletsColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeTextColour = clp.selectedColor;
                         this.localWidget.shapeTextColourName = 'Open Picker ...';
                     };
 
-                    if (clp.callingRoutine == 'ShapeEditorArrowLineColor') {
+                    if (clp.callingRoutine === 'ShapeEditorArrowLineColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
                         this.localWidget.shapeStrokeName = 'Open Picker ...';
                     };
 
-                    if (clp.callingRoutine == 'ShapeEditorArrowFillColor') {
+                    if (clp.callingRoutine === 'ShapeEditorArrowFillColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeFill = clp.selectedColor;
                         this.localWidget.shapeFillName = 'Open Picker ...';
                     };
 
-                    if (clp.callingRoutine == 'ShapeEditorArrowThinColor') {
+                    if (clp.callingRoutine === 'ShapeEditorArrowThinColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
                         this.localWidget.shapeStrokeName = 'Open Picker ...';
@@ -311,34 +311,34 @@ export class ShapeEditComponent implements OnInit {
             this.hasAutoFocusValue = false;
             this.hasAutoFocusBrackets = false;
 
-            if (this.localWidget.widgetSubType == 'Circle') {
+            if (this.localWidget.widgetSubType === 'Circle') {
                 this.hasAutoFocusCircle = true;
             };
-            if (this.localWidget.widgetSubType == 'Ellipse') {
+            if (this.localWidget.widgetSubType === 'Ellipse') {
                 this.hasAutoFocusEllipse = true;
             };
-            if (this.localWidget.widgetSubType == 'Rectangle') {
+            if (this.localWidget.widgetSubType === 'Rectangle') {
                 this.hasAutoFocusRectangle = true;
             };
-            if (this.localWidget.widgetSubType == 'Text') {
+            if (this.localWidget.widgetSubType === 'Text') {
                 this.hasAutoFocusText = true;
             };
-            if (this.localWidget.widgetSubType == 'Arrow') {
+            if (this.localWidget.widgetSubType === 'Arrow') {
                 this.hasAutoFocusArrow = true;
             };
-            if (this.localWidget.widgetSubType == 'ArrowThin') {
+            if (this.localWidget.widgetSubType === 'ArrowThin') {
                 this.hasAutoFocusArrowThin = true;
             };
-            if (this.localWidget.widgetSubType == 'Image') {
+            if (this.localWidget.widgetSubType === 'Image') {
                 this.hasAutoFocusImage = true;
             };
-            if (this.localWidget.widgetSubType == 'Bullets') {
+            if (this.localWidget.widgetSubType === 'Bullets') {
                 this.hasAutoFocusBullets = true;
             };
-            if (this.localWidget.widgetSubType == 'Value') {
+            if (this.localWidget.widgetSubType === 'Value') {
                 this.hasAutoFocusValue = true;
             };
-            if (this.localWidget.widgetSubType == 'Brackets') {
+            if (this.localWidget.widgetSubType === 'Brackets') {
                 this.hasAutoFocusBrackets = true;
             };
 
@@ -387,36 +387,36 @@ export class ShapeEditComponent implements OnInit {
         this.hasAutoFocusValue = false;
         this.hasAutoFocusBrackets = false;
 
-        if (selectedShape == 'Circle') {
+        if (selectedShape === 'Circle') {
             this.hasAutoFocusCircle = true;
         };
-        if (selectedShape == 'Ellipse') {
+        if (selectedShape === 'Ellipse') {
             this.hasAutoFocusEllipse = true;
         };
-        if (selectedShape == 'Rectangle') {
+        if (selectedShape === 'Rectangle') {
             this.hasAutoFocusRectangle = true;
         };
-        if (selectedShape == 'Text') {
+        if (selectedShape === 'Text') {
             this.hasAutoFocusText = true;
         };
-        if (selectedShape == 'Arrow') {
+        if (selectedShape === 'Arrow') {
             this.hasAutoFocusArrow = true;
         };
-        if (selectedShape == 'ArrowThin') {
+        if (selectedShape === 'ArrowThin') {
             this.hasAutoFocusArrowThin = true;
             // Calc initial ThinArrow
             this.changeThinArrowLength();
         };
-        if (selectedShape == 'Image') {
+        if (selectedShape === 'Image') {
             this.hasAutoFocusImage = true;
         };
-        if (selectedShape == 'Bullets') {
+        if (selectedShape === 'Bullets') {
             this.hasAutoFocusBullets = true;
         };
-        if (selectedShape == 'Value') {
+        if (selectedShape === 'Value') {
             this.hasAutoFocusValue = true;
         };
-        if (selectedShape == 'Brackets') {
+        if (selectedShape === 'Brackets') {
             this.hasAutoFocusBrackets = true;
         };
 
@@ -441,39 +441,39 @@ export class ShapeEditComponent implements OnInit {
         this.showValue = false;
         this.showBrackets = false;
 
-        if (shapeType == 'Circle') {
+        if (shapeType === 'Circle') {
             this.showCircle = true;
         };
-        if (shapeType == 'Ellipse') {
+        if (shapeType === 'Ellipse') {
             this.showEllipse = true;
         };
-        if (shapeType == 'Rectangle') {
+        if (shapeType === 'Rectangle') {
             this.showRectangle = true;
         };
 
-        if (shapeType == 'Text') {
+        if (shapeType === 'Text') {
             this.showText = true;
-            if (this.localWidget.shapeText == null) {
+            if (this.localWidget.shapeText === null) {
                 this.localWidget.shapeText = 'Enter text, keywords: #pagenr, #pages, #date';
             };
         };
-        if (shapeType == 'Arrow') {
+        if (shapeType === 'Arrow') {
             this.showArrow = true;
         };
-        if (shapeType == 'ArrowThin') {
+        if (shapeType === 'ArrowThin') {
             this.showArrowThin = true;
         };
-        if (shapeType == 'Image') {
+        if (shapeType === 'Image') {
             this.showImage = true;
         };
-        if (shapeType == 'Bullets') {
+        if (shapeType === 'Bullets') {
             this.showBullets = true;
         };
-        if (shapeType == 'Value') {
+        if (shapeType === 'Value') {
             this.showValue = true;
             this.localWidget.shapeText = 'R234m';
         };
-        if (shapeType == 'Brackets') {
+        if (shapeType === 'Brackets') {
             this.showBrackets = true;
         };
 
@@ -496,15 +496,15 @@ export class ShapeEditComponent implements OnInit {
         this.oldText = text;
 
         // Set the linked dropdown
-        if (this.localWidget.shapeBullet[index].linkedTabID == null) {
+        if (this.localWidget.shapeBullet[index].linkedTabID === null) {
             this.bulletSelectedTab = 'None';
         } else {
             let tID: number = this.localWidget.shapeBullet[index].linkedTabID;
             let gvIndex: number = this.globalVariableService.currentDashboardTabs.findIndex(t =>
-                t.id == tID);
+                t.id === tID);
 
             // If this ID exists, show it with the correct sequence number (index + 1)
-            if (gvIndex == -1) {
+            if (gvIndex === -1) {
                 this.bulletSelectedTab = 'None';
             } else {
 
@@ -535,7 +535,7 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEditSave', '@Start');
 
         // None selected
-        if (this.bulletSelectedTab == 'None') {
+        if (this.bulletSelectedTab === 'None') {
             this.localWidget.shapeBullet[index].linkedTabID = null;
         } else {
             // Get sequence nr = index + 1
@@ -565,8 +565,8 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletAdd', '@Start');
 
         // Remove dummy 'Text' string
-        if (this.localWidget.shapeBullet.length == 1) {
-            if (this.localWidget.shapeBullet[0].text == 'Text ...') {
+        if (this.localWidget.shapeBullet.length === 1) {
+            if (this.localWidget.shapeBullet[0].text === 'Text ...') {
                 this.localWidget.shapeBullet = [];
             };
         };
@@ -602,14 +602,14 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Special settings
-        if (this.localWidget.widgetSubType == 'Circle') {
+        if (this.localWidget.widgetSubType === 'Circle') {
             this.localWidget.containerHeight = this.localWidget.containerWidth;
         };
-        if (this.localWidget.widgetSubType == 'Ellipse') {
+        if (this.localWidget.widgetSubType === 'Ellipse') {
             this.localWidget.containerHeight = 100;
             this.localWidget.containerWidth = this.localWidget.containerHeight * 2;
         };
-        if (this.localWidget.widgetSubType == 'Value') {
+        if (this.localWidget.widgetSubType === 'Value') {
             this.localWidget.containerBorder = '1px solid gray';
             this.localWidget.containerBorderRadius = '5px';
             this.localWidget.containerHeight = 80;
@@ -635,7 +635,7 @@ export class ShapeEditComponent implements OnInit {
             } else {
 
                 // Estimate size of Bullets
-                if (this.localWidget.widgetSubType == 'Bullets') {
+                if (this.localWidget.widgetSubType === 'Bullets') {
                     let maxTextLength: number = 3;
                     let nrLines: number = this.localWidget.shapeBullet.length;
                     this.localWidget.shapeBullet.forEach(sb => {
@@ -656,7 +656,7 @@ export class ShapeEditComponent implements OnInit {
                 };
 
                 // Set calculated start Width and Height for Text
-                if (this.localWidget.widgetSubType == 'Text') {
+                if (this.localWidget.widgetSubType === 'Text') {
                     this.localWidget.containerWidth = this.localWidget.shapeTextDisplay.length
                         * this.localWidget.shapeFontSize / 2;
                     this.localWidget.containerHeight = 8 + +this.localWidget.shapeFontSize;
@@ -764,14 +764,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeStroke = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectBracketLineColorPicker();
         };
 
         this.localWidget.shapeStrokeName = ev.target.value;
         this.localWidget.shapeStroke = this.localWidget.shapeStrokeName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeStrokeName
+            bg.name === this.localWidget.shapeStrokeName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeStroke = this.backgroundcolors[localIndex].cssCode;
@@ -802,14 +802,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeTextColour = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectTextColorPicker();
         };
 
         this.localWidget.shapeTextColourName = ev.target.value;
         this.localWidget.shapeTextColour = this.localWidget.shapeTextColourName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeTextColourName
+            bg.name === this.localWidget.shapeTextColourName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeTextColour = this.backgroundcolors[localIndex].cssCode;
@@ -833,14 +833,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeStroke = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectCircleLineColorPicker(null);
         };
 
         this.localWidget.shapeStrokeName = ev.target.value;
         this.localWidget.shapeStroke = this.localWidget.shapeStrokeName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeStrokeName
+            bg.name === this.localWidget.shapeStrokeName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeStroke = this.backgroundcolors[localIndex].cssCode;
@@ -863,14 +863,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeFill = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectCircleFillColorPicker(null);
         };
 
         this.localWidget.shapeFillName = ev.target.value;
         this.localWidget.shapeFill = this.localWidget.shapeFillName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeFillName
+            bg.name === this.localWidget.shapeFillName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeFill = this.backgroundcolors[localIndex].cssCode;
@@ -893,14 +893,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeStroke = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectEllipseLineColorPicker(null);
         };
 
         this.localWidget.shapeStrokeName = ev.target.value;
         this.localWidget.shapeStroke = this.localWidget.shapeStrokeName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeStrokeName
+            bg.name === this.localWidget.shapeStrokeName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeStroke = this.backgroundcolors[localIndex].cssCode;
@@ -923,14 +923,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeFill = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectEllipseFillColorPicker(null);
         };
 
         this.localWidget.shapeFillName = ev.target.value;
         this.localWidget.shapeFill = this.localWidget.shapeFillName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeFillName
+            bg.name === this.localWidget.shapeFillName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeFill = this.backgroundcolors[localIndex].cssCode;
@@ -953,14 +953,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeStroke = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectRectangleLineColorPicker(null);
         };
 
         this.localWidget.shapeStrokeName = ev.target.value;
         this.localWidget.shapeStroke = this.localWidget.shapeStrokeName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeStrokeName
+            bg.name === this.localWidget.shapeStrokeName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeStroke = this.backgroundcolors[localIndex].cssCode;
@@ -983,14 +983,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeFill = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectRectangleLineColorPicker(null);
         };
 
         this.localWidget.shapeFillName = ev.target.value;
         this.localWidget.shapeFill = this.localWidget.shapeFillName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeFillName
+            bg.name === this.localWidget.shapeFillName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeFill = this.backgroundcolors[localIndex].cssCode;
@@ -1013,14 +1013,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeTextColour = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectValueLineColorPicker(null);
         };
 
         this.localWidget.shapeTextColourName = ev.target.value;
         this.localWidget.shapeTextColour = this.localWidget.shapeTextColourName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeTextColourName
+            bg.name === this.localWidget.shapeTextColourName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeTextColour = this.backgroundcolors[localIndex].cssCode;
@@ -1043,14 +1043,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeTextColour = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectBulletsColorPicker();
         };
 
         this.localWidget.shapeTextColourName = ev.target.value;
         this.localWidget.shapeTextColour = this.localWidget.shapeTextColourName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeTextColourName
+            bg.name === this.localWidget.shapeTextColourName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeTextColour = this.backgroundcolors[localIndex].cssCode;
@@ -1116,14 +1116,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeStroke = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectArrowLineColorPicker(null);
         };
 
         this.localWidget.shapeStrokeName = ev.target.value;
         this.localWidget.shapeStroke = this.localWidget.shapeStrokeName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeStrokeName
+            bg.name === this.localWidget.shapeStrokeName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeStroke = this.backgroundcolors[localIndex].cssCode;
@@ -1146,14 +1146,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeFill = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectArrowFillColorPicker(null);
         };
 
         this.localWidget.shapeFillName = ev.target.value;
         this.localWidget.shapeFill = this.localWidget.shapeFillName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeFillName
+            bg.name === this.localWidget.shapeFillName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeFill = this.backgroundcolors[localIndex].cssCode;
@@ -1176,14 +1176,14 @@ export class ShapeEditComponent implements OnInit {
         // this.localWidget.shapeStroke = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectArrowThinColorPicker(null);
         };
 
         this.localWidget.shapeStrokeName = ev.target.value;
         this.localWidget.shapeStroke = this.localWidget.shapeStrokeName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.shapeStrokeName
+            bg.name === this.localWidget.shapeStrokeName
         );
         if (localIndex >= 0) {
             this.localWidget.shapeStroke = this.backgroundcolors[localIndex].cssCode;
