@@ -43,7 +43,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -109,9 +109,9 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                 // TODO - this must be done in DB
                 this.widgetStoredTemplates.forEach(wst => {
                     this.globalVariableService.widgets.forEach(w => {
-                        if (w.id == wst.widgetID) {
+                        if (w.id === wst.widgetID) {
                             this.globalVariableService.datasources.forEach(ds => {
-                                if (w.datasourceID == ds.id) {
+                                if (w.datasourceID === ds.id) {
                                     wst.datasourceName = ds.name;
                                 };
                             });
@@ -148,7 +148,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         // Create new W
         this.selectedWidgetID = widgetID;
         let widgetIndex: number = this.widgets.findIndex(w =>
-            w.id == widgetID
+            w.id === widgetID
         );
 
         if (widgetIndex < 0) {
@@ -168,7 +168,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             ).then(res => {
 
                 // Render graph for Vega-Lite
-                if (this.localWidget.visualGrammar == 'Vega-Lite') {
+                if (this.localWidget.visualGrammar === 'Vega-Lite') {
 
                     // Create specification
                     this.specification = this.globalVariableService.createVegaLiteSpec(
@@ -190,7 +190,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                 };
 
                 // Render graph for Vega
-                if (this.localWidget.visualGrammar == 'Vega') {
+                if (this.localWidget.visualGrammar === 'Vega') {
 
                     // Create specification
                     this.specification = this.globalVariableService.createVegaSpec(
@@ -224,14 +224,14 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.errorMessage = '';
 
         // Validate
-        if (this.selectedWidgetID == null) {
+        if (this.selectedWidgetID === null) {
             this.errorMessage = 'Select a Widget to add';
             return;
         };
 
         // Create new W
         let widgetIndex: number = this.widgets.findIndex(w =>
-            w.id == this.selectedWidgetID
+            w.id === this.selectedWidgetID
         );
 
         if (widgetIndex < 0) {
