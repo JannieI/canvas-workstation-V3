@@ -35,7 +35,7 @@ export class DataRefreshOnceComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -85,7 +85,7 @@ export class DataRefreshOnceComponent implements OnInit {
 
                     // Count the Ws
                     this.datasources.forEach(ds => {
-                        widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
+                        widgets = this.globalVariableService.widgets.filter(w => w.datasourceID === ds.id);
                         ds.nrWidgets = widgets.length;
                     });
                 })
