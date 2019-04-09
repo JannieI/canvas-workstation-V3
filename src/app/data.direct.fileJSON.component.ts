@@ -36,12 +36,12 @@ export class DataDirectFileJSONComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -135,7 +135,7 @@ export class DataDirectFileJSONComponent implements OnInit {
         var inp: any = document.getElementById("get-files");
 
         // Return if nothing selected
-        if (inp.files.length == 0) {
+        if (inp.files.length === 0) {
             return;
         };
 
@@ -212,15 +212,15 @@ export class DataDirectFileJSONComponent implements OnInit {
         for (var col = 0; col < arr[+this.headerRow + 1].length; col++) {
             let newType: string = 'string';
 
-            if (typeof arr[+this.headerRow + 1][col] == 'number') {
+            if (typeof arr[+this.headerRow + 1][col] === 'number') {
                newType = 'number';
-            } else if (typeof arr[+this.headerRow + 1][col] == 'boolean') {
+            } else if (typeof arr[+this.headerRow + 1][col] === 'boolean') {
                    newType = 'boolean';
-            } else if (arr[+this.headerRow + 1][col] == 'true') {
+            } else if (arr[+this.headerRow + 1][col] === 'true') {
                newType = 'boolean';
-            } else if (arr[+this.headerRow + 1][col] == 'false') {
+            } else if (arr[+this.headerRow + 1][col] === 'false') {
                newType = 'boolean';
-            } else if (arr[+this.headerRow + 1][col] == +arr[+this.headerRow + 1][col]) {
+            } else if (arr[+this.headerRow + 1][col] === +arr[+this.headerRow + 1][col]) {
                newType = 'number';
             } else {
                newType = 'string';
@@ -249,21 +249,21 @@ export class DataDirectFileJSONComponent implements OnInit {
         this.savedMessage = '';
 
         // Validation
-        if (this.newName == '') {
+        if (this.newName === '') {
             this.errorMessage = 'Please enter a Name for the Datasource';
             return;
         };
-        if (this.newDescription == '') {
+        if (this.newDescription === '') {
             this.errorMessage = 'Please enter a Description for the Datasource';
             return;
         };
-        if (this.loadedFileName == ''  ||  this.loadedFileName == null) {
+        if (this.loadedFileName === ''  ||  this.loadedFileName === null) {
             this.errorMessage = 'Please select a file using the Browse button';
             return;
         };
         this.fields.forEach(f => {
             if (f.indexOf(' ') >= 0) {
-                if (this.errorMessage == '') {
+                if (this.errorMessage === '') {
                     this.errorMessage = "Field Name '" + f + "' containts a space.  Please correct and reload.";
                 } else {
                     this.errorMessage = "More than one field Name contain spaces.  Please correct and reload."
@@ -406,7 +406,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                     this.savedMessage = 'Datasource created';
 
                     // Close form and open Transitions if requested
-                    // if (action == 'Saved') {
+                    // if (action === 'Saved') {
                     //     this.formDataDirectSQLEditorClosed.emit(null);
 
                     // } else {
