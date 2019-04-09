@@ -41,7 +41,7 @@ export class MyPermissionsComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -77,14 +77,14 @@ export class MyPermissionsComponent implements OnInit {
                 // TODO - do this better with DB
                 this.dashboardPermissions.forEach(dP => {
                     filteredDashboard = this.globalVariableService.dashboards.filter(d =>
-                        d.id == dP.dashboardID
+                        d.id === dP.dashboardID
                     );
                     if (filteredDashboard.length > 0) {
                         dP.dashboardName = filteredDashboard[0].name;
                     };
 
                     this.groups.forEach(grp => {
-                        if (grp.id == dP.groupID) {
+                        if (grp.id === dP.groupID) {
                             dP.groupName = grp.name;
                         };
                     });
@@ -92,7 +92,7 @@ export class MyPermissionsComponent implements OnInit {
 
                 // Filter for current user
                 this.dashboardPermissions = this.dashboardPermissions.filter(dP =>
-                    (dP.userID == this.globalVariableService.currentUser.userID)
+                    (dP.userID === this.globalVariableService.currentUser.userID)
                     ||
                     (this.globalVariableService.currentUser.groups
                         .map(x => x.toLowerCase())
