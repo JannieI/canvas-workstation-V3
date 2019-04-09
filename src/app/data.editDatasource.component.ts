@@ -23,13 +23,13 @@ interface ClrDatagridStringFilterInterface<T> {
 
 class FilterDatasourceName implements ClrDatagridStringFilterInterface<Datasource> {
     accepts(datasource: Datasource, search: string):boolean {
-        return "" + datasource.name == search
+        return "" + datasource.name === search
             || datasource.name.toLowerCase().indexOf(search) >= 0;
     }
 }
 class FilterDescription implements ClrDatagridStringFilterInterface<Datasource> {
     accepts(dashboard: Datasource, search: string):boolean {
-        return "" + dashboard.description == search
+        return "" + dashboard.description === search
             || dashboard.description.toLowerCase().indexOf(search) >= 0;
     }
 }
@@ -50,12 +50,12 @@ export class DataEditDatasourceComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose();
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -66,8 +66,8 @@ export class DataEditDatasourceComponent implements OnInit {
                };
             return;
         };
-        if (event.code == 'End'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            if (this.datasources.length == 0) {
+        if (event.code === 'End'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+            if (this.datasources.length === 0) {
                 return;
             };
             // Click on the last one
@@ -118,7 +118,7 @@ export class DataEditDatasourceComponent implements OnInit {
                     .then(w => {
                         this.widgets = w;
                         this.datasources.forEach(ds => {
-                            widgetsFiltered = this.widgets.filter(w => w.datasourceID == ds.id);
+                            widgetsFiltered = this.widgets.filter(w => w.datasourceID === ds.id);
                             ds.nrWidgets = widgetsFiltered.length;
                         });
                     })
