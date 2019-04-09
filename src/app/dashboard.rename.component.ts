@@ -31,12 +31,12 @@ export class DashboardRenameComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -149,7 +149,7 @@ export class DashboardRenameComponent implements OnInit {
 
         if (this.filterCreatedBy != ''  &&  this.filterCreatedBy != undefined) {
             this.filteredDashboards = this.filteredDashboards.filter(d =>
-                d.creator.toLowerCase() == this.filterCreatedBy.toLowerCase()
+                d.creator.toLowerCase() === this.filterCreatedBy.toLowerCase()
             );
         };
         if (this.filterDatasource != ''  &&  this.filterDatasource != undefined) {
@@ -225,7 +225,7 @@ export class DashboardRenameComponent implements OnInit {
             // List of D ids from P, where I was grantor
             let pIDs: number[] = [];
             this.globalVariableService.dashboardPermissions.forEach(p => {
-                if (p.grantor.toLowerCase() == this.globalVariableService.
+                if (p.grantor.toLowerCase() === this.globalVariableService.
                     currentUser.userID.toLowerCase()) {
                     pIDs.push(p.dashboardID);
                 };
@@ -240,7 +240,7 @@ export class DashboardRenameComponent implements OnInit {
             // List of D ids from P, granted to me
             let pIDs: number[] = [];
             this.globalVariableService.dashboardPermissions.forEach(p => {
-                if (p.userID.toLowerCase() == this.globalVariableService.
+                if (p.userID.toLowerCase() === this.globalVariableService.
                     currentUser.userID.toLowerCase()) {
                     pIDs.push(p.dashboardID);
                 };
@@ -271,7 +271,7 @@ export class DashboardRenameComponent implements OnInit {
              // List of D ids from P, granted to UserID
              let pIDs: number[] = [];
              this.globalVariableService.dashboardPermissions.forEach(p => {
-                 if (p.userID.toLowerCase() == this.filterSharedToUser.toLowerCase()) {
+                 if (p.userID.toLowerCase() === this.filterSharedToUser.toLowerCase()) {
                      pIDs.push(p.dashboardID);
                  };
              });
@@ -283,7 +283,7 @@ export class DashboardRenameComponent implements OnInit {
         if (this.filteredState != ''  &&  this.filteredState != undefined) {
 
             this.filteredDashboards = this.filteredDashboards.filter(d =>
-                d.state.toLowerCase() == this.filteredState.toLowerCase()
+                d.state.toLowerCase() === this.filteredState.toLowerCase()
             );
         }
 
@@ -335,7 +335,7 @@ export class DashboardRenameComponent implements OnInit {
 
         // Get the index
         for (var i = 0; i < this.filteredDashboards.length; i++) {
-            if (this.filteredDashboards[i].id == id) {
+            if (this.filteredDashboards[i].id === id) {
                 this.selectedDashboardIndex = i;
             };
         };
@@ -382,7 +382,7 @@ export class DashboardRenameComponent implements OnInit {
 
             // Update DB, global vars
             this.globalVariableService.dashboards.forEach(d => {
-                if (d.id == this.selectedDashboardID) {
+                if (d.id === this.selectedDashboardID) {
                     d.name = this.newName;
                     this.globalVariableService.saveResource('dashboards', d);
                 };
@@ -392,7 +392,7 @@ export class DashboardRenameComponent implements OnInit {
             this.globalVariableService.currentDashboardName.next(this.newName);
 
             // this.globalVariableService.currentDashboards.forEach(d => {
-            //     if (d.id == this.selectedDashboardID) {
+            //     if (d.id === this.selectedDashboardID) {
             //         d.name = this.newName;
             //         this.globalVariableService.currentDashboardName.next(this.newName);
             //     };
