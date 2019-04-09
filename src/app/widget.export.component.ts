@@ -36,12 +36,12 @@ export class WidgetExportComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -85,11 +85,11 @@ export class WidgetExportComponent implements OnInit {
         this.errorMessage = '';
 
         // Validate
-        if (this.selectedWidget == null) {
+        if (this.selectedWidget === null) {
             this.errorMessage = "The Widget selected is empty.  Close and try again.";
             return;
         };
-        if (this.fileName == null  ||  this.fileName == '') {
+        if (this.fileName === null  ||  this.fileName === '') {
             this.errorMessage = "The file name is compulsory";
             return;
         };
