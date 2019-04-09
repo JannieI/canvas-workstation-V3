@@ -38,12 +38,12 @@ export class WidgetContainerComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -122,7 +122,7 @@ export class WidgetContainerComponent implements OnInit {
                             if (this.localWidget.containerStyleID != null) {
 
                                 let localStyleIndex: number = this.containerStyles.findIndex(cs =>
-                                    cs.id == this.localWidget.containerStyleID
+                                    cs.id === this.localWidget.containerStyleID
                                 );
                                 if (localStyleIndex != -1) {
                                     this.containerSelectedStyleID = this.containerStyles[localStyleIndex].id;
@@ -166,12 +166,12 @@ export class WidgetContainerComponent implements OnInit {
                             this.colourPickerClosed = false;
                         } else {
 
-                            if (clp.callingRoutine == 'BgColour') {
+                            if (clp.callingRoutine === 'BgColour') {
                                 this.colourPickerClosed = false;
                                 this.localWidget.containerBackgroundcolor = clp.selectedColor;
                                 this.localWidget.containerBackgroundcolorName = 'Open Picker ...';
                             };
-                            if (clp.callingRoutine == 'LineColour') {
+                            if (clp.callingRoutine === 'LineColour') {
                                 this.colourPickerClosed = false;
                                 this.containerBorderColour = clp.selectedColor;
                                 this.containerBorderColourName = 'Open Picker ...';
@@ -219,14 +219,14 @@ export class WidgetContainerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectBgColorPicker(null);
         };
 
         this.localWidget.containerBackgroundcolorName = ev.target.value;
         this.localWidget.containerBackgroundcolor = this.localWidget.containerBackgroundcolorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.containerBackgroundcolorName
+            bg.name === this.localWidget.containerBackgroundcolorName
         );
         if (localIndex >= 0) {
             this.localWidget.containerBackgroundcolor = this.backgroundcolors[localIndex].cssCode;
@@ -247,13 +247,13 @@ export class WidgetContainerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectLineColorPicker(null);
         };
         this.containerBorderColourName = ev.target.value;
         this.containerBorderColour = this.containerBorderColourName;
         let bgIndex: number = this.backgroundcolors.findIndex(
-            bg => bg.name == this.containerBorderColourName);
+            bg => bg.name === this.containerBorderColourName);
         if (bgIndex >= 0) {
             this.containerBorderColour = this.backgroundcolors[bgIndex].cssCode;
         };
@@ -306,7 +306,7 @@ export class WidgetContainerComponent implements OnInit {
         let selectedContainerStyleName: string = ev.target.value;
 
         // None selected
-        if (selectedContainerStyleName == '') {
+        if (selectedContainerStyleName === '') {
 
             this.containerSelectedStyleName = '';
             this.containerSelectedStyleID = -1;
@@ -324,7 +324,7 @@ export class WidgetContainerComponent implements OnInit {
         // Find row and update form
         if (this.containerSelectedStyleID != -1) {
             let localIndex: number = this.containerStyles.findIndex(cs =>
-                cs.id == this.containerSelectedStyleID
+                cs.id === this.containerSelectedStyleID
             );
             if (localIndex != -1) {
                 this.updateForm(localIndex);
@@ -412,7 +412,7 @@ export class WidgetContainerComponent implements OnInit {
         };
 
         // Remove Style IF
-        if (this.containerSelectedStyleName == '') {
+        if (this.containerSelectedStyleName === '') {
             this.localWidget.containerStyleID = null;
         };
 
