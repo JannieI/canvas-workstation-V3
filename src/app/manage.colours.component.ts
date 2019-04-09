@@ -34,7 +34,7 @@ export class ManageColoursComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -129,11 +129,11 @@ export class ManageColoursComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.newColorName == ''  ||  this.newColorName == null  ||  this.newColorName == undefined) {
+        if (this.newColorName === ''  ||  this.newColorName === null  ||  this.newColorName === undefined) {
             this.errorMessage = 'Name is compulsory';
             return;
         };
-        if (this.newColorCode == ''  ||  this.newColorCode == null  ||  this.newColorCode == undefined) {
+        if (this.newColorCode === ''  ||  this.newColorCode === null  ||  this.newColorCode === undefined) {
             this.errorMessage = 'Code is compulsory';
             return;
         };
@@ -144,7 +144,7 @@ export class ManageColoursComponent implements OnInit {
         
         let isFound: boolean = false;
         this.backgroundcolors.forEach(bg => {
-            if (bg.name == this.newColorName) {
+            if (bg.name === this.newColorName) {
                 isFound = true;
             }
         });
@@ -198,7 +198,7 @@ export class ManageColoursComponent implements OnInit {
         };
         let isFound: boolean = false;
         this.backgroundcolors.forEach(bg => {
-            if (bg.name == this.backgroundcolorsDefault[this.availableBgIndex].name) {
+            if (bg.name === this.backgroundcolorsDefault[this.availableBgIndex].name) {
                 isFound = true;
             }
         });
