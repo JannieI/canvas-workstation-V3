@@ -33,12 +33,12 @@ export class LoginComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Cancel');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -73,10 +73,10 @@ export class LoginComponent implements OnInit {
             .map( x => x.serverName);
 
         // Validate
-        if (this.canvasServerList == null) {
+        if (this.canvasServerList === null) {
             this.errorMessage = 'Set Canvas Servers in environment file';
         };
-        if (this.canvasServerList.length == 0) {
+        if (this.canvasServerList.length === 0) {
             this.errorMessage = 'Set Canvas Servers in environment file';
         };
 
@@ -124,13 +124,13 @@ export class LoginComponent implements OnInit {
             this.password
             ).then(res => {
 
-                if (res.substring(0, 5) == 'Error') {
+                if (res.substring(0, 5) === 'Error') {
                     this.errorMessage = res.substring(7);
                 };
-                if (res.substring(0, 6) == 'Failed') {
+                if (res.substring(0, 6) === 'Failed') {
                     this.errorMessage = res.substring(8);
                 };
-                if (res.substring(0, 7) == 'Success') {
+                if (res.substring(0, 7) === 'Success') {
                     this.message = res.substring(9);
                 };
             })
@@ -175,13 +175,13 @@ export class LoginComponent implements OnInit {
             this.password
             ).then(res => {
 
-                if (res.token == null) {
+                if (res.token === null) {
                     this.errorMessage = res.message.substring(7);
                     return;
                 } else {
 
                     let canvasServerURI: string = this.globalVariableService.ENVCanvasServerList.find(
-                        srv => srv.serverName == this.canvasServerName
+                        srv => srv.serverName === this.canvasServerName
                     ).serverHostURI;
 
                     this.globalVariableService.verifyCanvasUser(
