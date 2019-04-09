@@ -227,7 +227,7 @@ export class WidgetNavigatorComponent {
                 parentNode: 'Absa',
                 relationship: 'Directors',
                 childNodeType: 'Person',
-                childNode: 'Koos',
+                childNode: 'Mr Matlare, Peter Bambatha',
                 role: 'Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
@@ -240,8 +240,8 @@ export class WidgetNavigatorComponent {
                 parentNode: 'Absa',
                 relationship: 'Directors',
                 childNodeType: 'Person',
-                childNode: 'Anna',
-                role: 'Non-Executive'
+                childNode: 'Mr Quinn, Jason Patrick',
+                role: 'Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
@@ -331,7 +331,7 @@ export class WidgetNavigatorComponent {
                 parentNode: 'Absa',
                 relationship: 'Directors',
                 childNodeType: 'Person',
-                childNode: 'Martha',
+                childNode: 'Mr van Wyk, Rene',
                 role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
@@ -344,7 +344,7 @@ export class WidgetNavigatorComponent {
                 parentNode: 'Absa',
                 relationship: 'Directors',
                 childNodeType: 'Person',
-                childNode: 'Gareth',
+                childNode: 'Ms Abdool-Samad, Tasneem',
                 role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
@@ -357,8 +357,8 @@ export class WidgetNavigatorComponent {
                 parentNode: 'Absa',
                 relationship: 'Directors',
                 childNodeType: 'Person',
-                childNode: 'Bennedict',
-                role: 'Executive'
+                childNode: 'Mr Beggs, Colin',
+                role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
@@ -370,8 +370,8 @@ export class WidgetNavigatorComponent {
                 parentNode: 'Absa',
                 relationship: 'Directors',
                 childNodeType: 'Person',
-                childNode: 'Xavier',
-                role: 'Executive'
+                childNode: 'Ms Cuba, Yolanda Zoleka',
+                role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
@@ -396,7 +396,7 @@ export class WidgetNavigatorComponent {
                 parentNode: 'Absa',
                 relationship: 'Directors',
                 childNodeType: 'Person',
-                childNode: 'Peter',
+                childNode: 'Mr Darko, Alex Boama',
                 role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
@@ -409,10 +409,76 @@ export class WidgetNavigatorComponent {
                 parentNode: 'Absa',
                 relationship: 'Directors',
                 childNodeType: 'Person',
-                childNode: 'Yvonne',
-                role: 'Executive'
+                childNode: 'Mr Hodge, Daniel',
+                role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 15,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Mr Husain, Mohamed Junaid',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 15,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Ms Lucas-Bull, Wendy Elizabeth',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 15,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Mr Merson, Mark',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 15,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Ms Naidoo, Dhanasagree (Daisy)',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 15,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Mr Okomo-Okello, Francis',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+
 
         let newNodeTypeFields: NavigatorNodeTypeFields =
         {
@@ -684,7 +750,7 @@ export class WidgetNavigatorComponent {
 
         // Add blank at start
         this.dropdownParentNodes = ['All', ...this.dropdownParentNodes];
-        this.dropdownRelationships = ['All', ...this.dropdownRelationships];
+        this.dropdownRelationships = ['','All', ...this.dropdownRelationships];
         this.relationshipRoles = [];
         this.selectedParentNode = this.dropdownParentNodes[0];
         this.selectedRelationship = this.dropdownRelationships[0];
@@ -965,8 +1031,8 @@ export class WidgetNavigatorComponent {
         // Create specification
         this.specification = this.globalVariableService.createVegaSpec(
             this.localWidget,
-            this.graphHeight,
-            this.graphWidth,
+            this.graphHeight + 500,
+            this.graphWidth + 500,
             this.showSpecificGraphLayer,
             0
         );

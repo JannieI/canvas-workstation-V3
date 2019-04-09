@@ -9,14 +9,17 @@
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:4200",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}/canvas-workstation"
         },
         {
             "type": "chrome",
             "request": "attach",
             "name": "Attach to Chrome",
             "port": 9222,
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}/canvas-workstation"
         }
     ]
 }
+
+
+ 
