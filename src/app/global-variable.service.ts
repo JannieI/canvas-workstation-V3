@@ -323,10 +323,10 @@ export class GlobalVariableService {
                                 let templateDashboard: Dashboard[] = null;
 
                                 templateDashboard = this.dashboards.filter(
-                                    i => i.id == this.currentDashboards[0].templateDashboardID
+                                    i => i.id === this.currentDashboards[0].templateDashboardID
                                 );
 
-                                if (templateDashboard == null) {
+                                if (templateDashboard === null) {
                                     console.error('Error in     Global-Variables refreshCurrentDashboardInfo: Dashboard template id does not exist in Dashboards Array')
                                     this.templateInUse.next(false);
                                 } else {
@@ -341,7 +341,7 @@ export class GlobalVariableService {
                         };
                     };
 
-                    if (dashboardTabID == -1) {
+                    if (dashboardTabID === -1) {
                         if (this.currentDashboardTabs.length > 0) {
                             dashboardTabID = this.currentDashboardTabs[0].id
                         };
@@ -349,7 +349,7 @@ export class GlobalVariableService {
 
                     // Set T-index
                     this.currentDashboardInfo.value.currentDashboardTabIndex =
-                        this.currentDashboardTabs.findIndex(t => t.id == dashboardTabID);
+                        this.currentDashboardTabs.findIndex(t => t.id === dashboardTabID);
 
                     // Load Permissions for D
                     this.getResource(
@@ -403,7 +403,7 @@ export class GlobalVariableService {
                                     // Set the EditMode according to the D State
                                     this.editMode.next(
                                         this.currentDashboardInfo.value
-                                            .currentDashboardState == 'Draft'?  true  :  false
+                                            .currentDashboardState === 'Draft'?  true  :  false
                                     );
 
                                     resolve(true)
@@ -456,7 +456,7 @@ export class GlobalVariableService {
                     let datasourceAdded: Datasource = res.data.datasource;
 
                     if (datasourceAdded != null) {
-                        let datasourceIndex: number = this.datasources.findIndex(ds => ds.id == datasourceAdded.id);
+                        let datasourceIndex: number = this.datasources.findIndex(ds => ds.id === datasourceAdded.id);
                         if (datasourceIndex < 0) {
                             this.datasources.push(datasourceAdded);
                         };
@@ -512,7 +512,7 @@ export class GlobalVariableService {
 
                     // Update Datasources
                     let datasourceIndex: number = this.datasources.findIndex(
-                        ds => ds.id == datasourceInput.id);
+                        ds => ds.id === datasourceInput.id);
                     if (datasourceIndex < 0) {
                         this.datasources.push(datasourceInput);
                     } else {
@@ -521,7 +521,7 @@ export class GlobalVariableService {
 
                     // Update CurrentDatasources
                     let currentDatasourceIndex: number = this.currentDatasources.findIndex(
-                        ds => ds.id == datasourceInput.id);
+                        ds => ds.id === datasourceInput.id);
                     if (currentDatasourceIndex >= 0) {
                         this.currentDatasources[currentDatasourceIndex] = datasourceInput;
                     };
@@ -579,7 +579,7 @@ export class GlobalVariableService {
                     this.getResource('widgetStoredTemplates').then(swt => {
                         swt.forEach(swt => {
                             this.widgets.forEach(w => {
-                                if (swt.widgetID == w.id  &&  w.datasourceID == datasourceID) {
+                                if (swt.widgetID === w.id  &&  w.datasourceID === datasourceID) {
                                     this.deleteResource('widgetStoredTemplates', swt.id);
                                 };
                             });
@@ -596,7 +596,7 @@ export class GlobalVariableService {
 
                     // Find DS in localCachingTable
                     let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
-                        dct.key == 'datasources'
+                        dct.key === 'datasources'
                     );
 
                     // If cached, fill local info
@@ -669,11 +669,11 @@ export class GlobalVariableService {
             // Find the DS in the currentDS array, and add if needed
             let currentDatasource: Datasource = null;
             let currentDatasourceIndex: number = this.currentDatasources
-                .findIndex(ds => ds.id == datasourceID);
+                .findIndex(ds => ds.id === datasourceID);
 
             if (currentDatasourceIndex < 0) {
                 let datasourceIndex: number = this.datasources
-                    .findIndex(ds => ds.id == datasourceID);
+                    .findIndex(ds => ds.id === datasourceID);
                 if (datasourceIndex >= 0) {
                     currentDatasource = this.datasources[datasourceIndex];
                     this.currentDatasources.push(currentDatasource)
@@ -718,7 +718,7 @@ export class GlobalVariableService {
 
         // Get IDs of all Slicers On the Dashboard
         let slicersOnDashboardIDs: number[] = this.currentWidgets
-            .filter(w => w.widgetType == 'Slicer')
+            .filter(w => w.widgetType === 'Slicer')
             .map(x => x.id);
 
         // Mark DS.DS-Filters in Slicers as active
@@ -731,9 +731,9 @@ export class GlobalVariableService {
         });
 
         // Set dataFiltered = dataFull and return if the filter is empty
-        if (datasourceToFilter.datasourceFilters == null 
+        if (datasourceToFilter.datasourceFilters === null 
             ||
-            datasourceToFilter.datasourceFilters.length == 0) {
+            datasourceToFilter.datasourceFilters.length === 0) {
                 datasourceToFilter.dataFiltered = 
                 datasourceToFilter.dataFull;
                 return;
@@ -752,7 +752,7 @@ export class GlobalVariableService {
         // Loop on the unique Slicers in the DS-Filter
         slicersUsedIDs.forEach(sID => {
             let dataFilterSubset: DatasourceFilter[] = datasourceToFilter
-                .datasourceFilters.filter(dsf => dsf.widgetID == sID);
+                .datasourceFilters.filter(dsf => dsf.widgetID === sID);
             
             // Filter the data on each filter item for this Slicer ID
             // Accumulate this, which means that they are treated as OR operands:
@@ -784,7 +784,7 @@ export class GlobalVariableService {
         };
 
         let currentDatasourceIndex: number = this.currentDatasources.findIndex(
-            ds => ds.id == widget.datasourceID);
+            ds => ds.id === widget.datasourceID);
         let currentDatasource: Datasource = null;
 
         // Start with the filtered data in the related DS
@@ -808,13 +808,13 @@ export class GlobalVariableService {
         };
 
         // Handle each messageType
-        if (webSocketMessage.messageType == 'canvasData') {
+        if (webSocketMessage.messageType === 'canvasData') {
             // Canvas-related data like dashboards, datasources, widgets, etc
             //   Actions: Individual record action: Add, Update, Delete.  Whole resource: ReplaceAll
 
             // Find object in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
-                dct.key == webSocketMessage.objectName
+                dct.key === webSocketMessage.objectName
             );
 
             // If in CachingTable, update locally
@@ -828,7 +828,7 @@ export class GlobalVariableService {
                 let localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
 
                 // Add an object
-                if (webSocketMessage.action.toLowerCase() == 'add') {
+                if (webSocketMessage.action.toLowerCase() === 'add') {
 
                     // Update Memory
                     if (localCacheableMemory) {
@@ -836,7 +836,7 @@ export class GlobalVariableService {
                         // Update local var
                         if (localVariableName != null) {
                             let localVarIndex: number = this[localVariableName].findIndex(
-                                lv => lv.id == webSocketMessage.objectID);
+                                lv => lv.id === webSocketMessage.objectID);
 
                             if (localVarIndex < 0) {
                                 this[localVariableName].push(webSocketMessage.content);
@@ -867,7 +867,7 @@ export class GlobalVariableService {
                 };
 
                 // Update an object
-                if (webSocketMessage.action.toLowerCase() == 'update') {
+                if (webSocketMessage.action.toLowerCase() === 'update') {
 
                     // Update Memory
                     if (localCacheableMemory) {
@@ -875,7 +875,7 @@ export class GlobalVariableService {
                         // Update local var
                         if (localVariableName != null) {
                             let localVarIndex: number = this[localVariableName].findIndex(
-                                lv => lv.id == webSocketMessage.objectID);
+                                lv => lv.id === webSocketMessage.objectID);
 
                             if (localVarIndex >0) {
                                 this[localVariableName][localVarIndex] = webSocketMessage.content;
@@ -885,7 +885,7 @@ export class GlobalVariableService {
                         // Update Current Var
                         if (localCurrentVariableName != null) {
                             let localCurrentVarIndex: number = this[localCurrentVariableName].findIndex(
-                                lv => lv.id == webSocketMessage.objectID);
+                                lv => lv.id === webSocketMessage.objectID);
 
                             if (localCurrentVarIndex >0) {
                                 this[localCurrentVariableName][localCurrentVarIndex] = webSocketMessage.content;
@@ -913,7 +913,7 @@ export class GlobalVariableService {
                 }
 
                 // Delete an object
-                if (webSocketMessage.action.toLowerCase() == 'delete') {
+                if (webSocketMessage.action.toLowerCase() === 'delete') {
 
                     // Update Memory
                     if (localCacheableMemory) {
@@ -981,9 +981,9 @@ export class GlobalVariableService {
 
             // Warn user
             if(this.currentDashboardInfo.value != null) {
-                if (webSocketMessage.objectName == 'dashboards'
+                if (webSocketMessage.objectName === 'dashboards'
                     &&
-                    webSocketMessage.objectID == this.currentDashboardInfo.value.currentDashboardID) {
+                    webSocketMessage.objectID === this.currentDashboardInfo.value.currentDashboardID) {
                         this.showStatusBarMessage(
                             {
                                 message: 'This Dashboard has been changed',
@@ -1003,18 +1003,18 @@ export class GlobalVariableService {
             //   busy editing (which edits should not be accepted anyways)
         };
 
-        if (webSocketMessage.messageType == 'clientData') {
+        if (webSocketMessage.messageType === 'clientData') {
             // client-related data, ie XIS Trades
             //   Actions: Refresh
         };
 
-        if (webSocketMessage.messageType == 'canvasMessages') {
+        if (webSocketMessage.messageType === 'canvasMessages') {
             // collaboration via Canvas Messages
             //   Actions: NewMessage
             this.hasNewMessage.next(true);
         };
 
-        if (webSocketMessage.messageType == 'canvasSystem') {
+        if (webSocketMessage.messageType === 'canvasSystem') {
             //system generated messages, ie from the server
             //   Actions: undetermined at the moment
         };
@@ -1053,7 +1053,7 @@ export class GlobalVariableService {
 
             // Find DS in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
-                dct.key == resource
+                dct.key === resource
             );
 
             if (dataCachingTableIndex >= 0) {
@@ -1302,7 +1302,7 @@ export class GlobalVariableService {
 
                     // Find DS in localCachingTable
                     let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
-                        dct.key == resource
+                        dct.key === resource
                     );
 
                     // If cached, fill local info
@@ -1319,7 +1319,7 @@ export class GlobalVariableService {
                             if (localVariableName != null) {
 
                                 let localIndex: number = this[localVariableName].findIndex(rec =>
-                                    rec.id == httpResult.data.id
+                                    rec.id === httpResult.data.id
                                 );
 
                                 if (localIndex >= 0) {
@@ -1448,7 +1448,7 @@ export class GlobalVariableService {
 
                     // Find DS in localCachingTable
                     let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
-                        dct.key == resource
+                        dct.key === resource
                     );
 
                     // If cached, fill local info
@@ -1468,7 +1468,7 @@ export class GlobalVariableService {
                                 // Replace local
                                 // TODO - TEST This !!!!
                                 let localIndex: number = this[localVariableName].findIndex(rec =>
-                                    rec.id == data.id
+                                    rec.id === data.id
                                 );
                                 if (localIndex >= 0) {
                                     this[localVariableName][localIndex] = data;
@@ -1488,7 +1488,7 @@ export class GlobalVariableService {
                                 // Replace local
                                 // TODO - TEST This !!!!
                                 let localIndex: number = this[localCurrentVariableName].findIndex(rec =>
-                                    rec.id == data.id
+                                    rec.id === data.id
                                 );
                                 if (localIndex >= 0) {
                                     this[localCurrentVariableName][localIndex] = data;
@@ -1598,7 +1598,7 @@ export class GlobalVariableService {
                     // TODO - how do we fix this !!!???
                     // if (widgetID != null) {
                     //     this.widgets.forEach(w => {
-                    //         if (w.id == widgetID) {
+                    //         if (w.id === widgetID) {
                     //             w.nrComments = w.nrComments - 1;
                     //         };
                     //     });
@@ -1614,7 +1614,7 @@ export class GlobalVariableService {
 
                     // Find DS in localCachingTable
                     let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
-                        dct.key == resource
+                        dct.key === resource
                     );
 
                     // If cached, fill local info
@@ -1696,9 +1696,9 @@ export class GlobalVariableService {
 
                     // TODO - make this DRY
                     // Add / Amend the cache
-                    if (newState == 'Draft') {
+                    if (newState === 'Draft') {
                         let dashboardIndex: number = this.dashboards.findIndex(
-                            d => d.id == originalDashboardID
+                            d => d.id === originalDashboardID
                         );
                         if (dashboardIndex >= 0) {
                             this.dashboards[dashboardIndex].draftID = res.data.dashboard.id;
@@ -1750,12 +1750,12 @@ export class GlobalVariableService {
         };
 
         // Set to current if none provided
-        if (dashboardID == null) {
+        if (dashboardID === null) {
             dashboardID = this.currentDashboardInfo.value.currentDashboardID;
         };
 
         // Get D
-        let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID);
+        let dashboardIndex: number = this.dashboards.findIndex(d => d.id === dashboardID);
         if (dashboardIndex >= 0) {
 
             if (this.sessionDebugging) {
@@ -1813,11 +1813,11 @@ export class GlobalVariableService {
                         // TODO - make this DRY
                         // Add / Amend the cache
                         let draftDashboardIndex: number = this.dashboards.findIndex(
-                            d => d.id == draftDashboardID
+                            d => d.id === draftDashboardID
                         );
                         if (draftDashboardIndex >= 0) {
                             let originalDashboardIndex: number = this.dashboards.findIndex(
-                                d => d.id == this.dashboards[draftDashboardIndex].originalID
+                                d => d.id === this.dashboards[draftDashboardIndex].originalID
                             );
                             if (originalDashboardIndex >= 0) {
                                 this.dashboards[originalDashboardIndex].draftID = null;
@@ -1923,7 +1923,7 @@ export class GlobalVariableService {
 
                         // Update Original D in Memory
                         let dashboardIndex: number = this.dashboards.findIndex(d =>
-                            d.id == originalDashboardID);
+                            d.id === originalDashboardID);
                         if (dashboardIndex >= 0) {
                             this.dashboards[dashboardIndex].draftID = null;
                         };
@@ -2094,31 +2094,31 @@ export class GlobalVariableService {
 
                         // Remove where D used as template
                         this.dashboards.forEach(d => {
-                            if (d.templateDashboardID == dashboardID) {
+                            if (d.templateDashboardID === dashboardID) {
                                 d.templateDashboardID = null;
                             };
                         });
                         this.currentDashboards.forEach(d => {
-                            if (d.templateDashboardID == dashboardID) {
+                            if (d.templateDashboardID === dashboardID) {
                                 d.templateDashboardID = null;
                             };
                         });
 
                         // Remove where D was used for hyperlink
                         this.widgets.forEach(w => {
-                            if (w.hyperlinkDashboardID == dashboardID) {
+                            if (w.hyperlinkDashboardID === dashboardID) {
                                 w.hyperlinkDashboardID = null;
                             };
                         });
                         this.currentWidgets.forEach(w => {
-                            if (w.hyperlinkDashboardID == dashboardID) {
+                            if (w.hyperlinkDashboardID === dashboardID) {
                                 w.hyperlinkDashboardID = null;
                             };
                         });
 
                         // Remove where D was used as fav, startup
                         this.canvasUsers.forEach(u => {
-                            if (u.preferenceStartupDashboardID == dashboardID) {
+                            if (u.preferenceStartupDashboardID === dashboardID) {
                                 u.preferenceStartupDashboardID = null;
                             };
                             u.favouriteDashboards.filter(f => f != dashboardID)
@@ -2249,7 +2249,7 @@ export class GlobalVariableService {
                         // Find the return result - remember this comes back ASYNC,
                         // thus not the same order as the current loop
                         let resultIndex: number = this.dataCachingTable.findIndex(
-                            dct => dct.key == httpResult.resourceOrRoute);
+                            dct => dct.key === httpResult.resourceOrRoute);
                         if (resultIndex >= 0) {
                             // Fill local Vars
                             if (this.dataCachingTable[resultIndex].localCacheableMemory) {
@@ -2306,8 +2306,8 @@ export class GlobalVariableService {
                         
                         // Update counter
                         cacheDoneCounter = cacheDoneCounter + 1;
-                        if (cacheDoneCounter == this.dataCachingTable.length) {
-                            this.cachingStatus == 'InitialDone';
+                        if (cacheDoneCounter === this.dataCachingTable.length) {
+                            this.cachingStatus === 'InitialDone';
                             console.log('    Global-Variables refreshLocalCache: ALL cache refreshed');
                         };
                     },
@@ -2344,7 +2344,7 @@ export class GlobalVariableService {
 
             // Find object in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
-                dct.key == cachedEntityName
+                dct.key === cachedEntityName
             );
 
             // If in CachingTable, update locally
@@ -2358,7 +2358,7 @@ export class GlobalVariableService {
                 let localTableName  = this.dataCachingTable[dataCachingTableIndex].localTableName;
 
                 // Add an object
-                if (cacheAction.toLowerCase() == 'add') {
+                if (cacheAction.toLowerCase() === 'add') {
 
                     // Update Memory
                     if (localCacheableMemory) {
@@ -2366,7 +2366,7 @@ export class GlobalVariableService {
                         // Update local var
                         if (localVariableName != null) {
                             let localVarIndex: number = this[localVariableName].findIndex(
-                                lv => lv.id == cachedEntityID);
+                                lv => lv.id === cachedEntityID);
 
                             if (localVarIndex < 0) {
                                 this[localVariableName].push(cachedEntityData);
@@ -2397,7 +2397,7 @@ export class GlobalVariableService {
                 };
 
                 // Update an object
-                if (cacheAction.toLowerCase() == 'update') {
+                if (cacheAction.toLowerCase() === 'update') {
 
                     // Update Memory
                     if (localCacheableMemory) {
@@ -2405,7 +2405,7 @@ export class GlobalVariableService {
                         // Update local var
                         if (localVariableName != null) {
                             let localVarIndex: number = this[localVariableName].findIndex(
-                                lv => lv.id == cachedEntityID);
+                                lv => lv.id === cachedEntityID);
 
                             if (localVarIndex >0) {
                                 this[localVariableName][localVarIndex] = cachedEntityData;
@@ -2415,7 +2415,7 @@ export class GlobalVariableService {
                         // Update Current Var
                         if (localCurrentVariableName != null) {
                             let localCurrentVarIndex: number = this[localCurrentVariableName].findIndex(
-                                lv => lv.id == cachedEntityID);
+                                lv => lv.id === cachedEntityID);
 
                             if (localCurrentVarIndex >0) {
                                 this[localCurrentVariableName][localCurrentVarIndex] = cachedEntityData;
@@ -2442,7 +2442,7 @@ export class GlobalVariableService {
                 }
 
                 // Delete an object
-                if (cacheAction.toLowerCase() == 'delete') {
+                if (cacheAction.toLowerCase() === 'delete') {
 
                     // Update Memory
                     if (localCacheableMemory) {
@@ -2530,7 +2530,7 @@ export class GlobalVariableService {
 
                     // TODO - http must be sorted => include in Options ...
                     let temp: DashboardRecent[] = res.filter(
-                        i => i.userID == userID
+                        i => i.userID === userID
                     );
 
                     // Add State and Name, at Runtime
@@ -2599,14 +2599,14 @@ export class GlobalVariableService {
         };
 
         let dashboardRecentIndex: number = this.dashboardsRecent.findIndex(dR =>
-            dR.dashboardID == dashboardID
+            dR.dashboardID === dashboardID
         );
         let today = new Date();
 
         // D not in Recent List, so Add
-        if (dashboardRecentIndex == -1) {
+        if (dashboardRecentIndex === -1) {
 
-            let dashboardNameIndex: number = this.dashboards.findIndex(d => d.id == dashboardID);
+            let dashboardNameIndex: number = this.dashboards.findIndex(d => d.id === dashboardID);
             let dashboardName: string = '';
             if (dashboardNameIndex >= 0) {
                 dashboardName = this.dashboards[dashboardNameIndex].name;
@@ -2616,7 +2616,7 @@ export class GlobalVariableService {
                 userID: this.currentUser.userID,
                 dashboardID: dashboardID,
                 dashboardTabID: dashboardTabID,
-                editMode: newState == 'Draft'?  true  :  false,
+                editMode: newState === 'Draft'?  true  :  false,
                 accessed: new Date(this.formatDate(today)),
                 stateAtRunTime: newState,
                 nameAtRunTime: dashboardName
@@ -2647,7 +2647,7 @@ export class GlobalVariableService {
             // Update fields
             recentDashboard.dashboardTabID = dashboardTabID;
             recentDashboard.stateAtRunTime =  newState;
-            recentDashboard.editMode = newState == 'Draft'?  true  :  false;
+            recentDashboard.editMode = newState === 'Draft'?  true  :  false;
             recentDashboard.accessed = new Date(this.formatDate(today));
 
             return new Promise<any>((resolve, reject) => {
@@ -2695,7 +2695,7 @@ export class GlobalVariableService {
         };
 
         let newRecentIndex: number = this.dashboardsRecent
-            .findIndex(dR => dR.dashboardID == dashboardID);
+            .findIndex(dR => dR.dashboardID === dashboardID);
 
         if (newRecentIndex >= 0) {
             this.dashboardsRecent[newRecentIndex].nameAtRunTime = dashboardName;
@@ -2836,11 +2836,11 @@ export class GlobalVariableService {
         return dataSet;
 
         // // Get all Sl for the given dSet
-        // // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has
+        // // TODO: cater (carefully) for case where sl.datasetID === -1, ie what if DS has
         // // two dSets with different values ...
         // let relatedSlicers: Widget[] = this.currentWidgets.filter(w =>
-        //     w.datasourceID == dataSet.datasourceID
-        //     &&  w.widgetType == 'Slicer'
+        //     w.datasourceID === dataSet.datasourceID
+        //     &&  w.widgetType === 'Slicer'
         // );
 
         // // Reset the filtered data
@@ -2852,7 +2852,7 @@ export class GlobalVariableService {
         //     console.log('Releated Slicers are (id, type): ', w.id, w.slicerType)
 
         //     // Type = List
-        //     if (w.slicerType == 'List') {
+        //     if (w.slicerType === 'List') {
 
         //         // Build array of selection values
         //         let selectedValues: string[] = [];
@@ -2885,7 +2885,7 @@ export class GlobalVariableService {
         //     };
 
         //     // Type = Bins
-        //     if (w.slicerType == 'Bins') {
+        //     if (w.slicerType === 'Bins') {
 
         //         // Build array of selection values
         //         let rangeValues: {fromValue: number; toValue:number}[] = [];
@@ -2920,7 +2920,7 @@ export class GlobalVariableService {
         // // Filter data in [W] related to this dSet
         // // TODO - cater later for cases for we use graphUrl
         // this.currentWidgets.forEach(w => {
-        //     if (w.datasourceID == dataSet.datasourceID
+        //     if (w.datasourceID === dataSet.datasourceID
         //         && w.widgetType != 'Slicer') {
         //             console.log('xx filterSlicer Related W: ', w.id)
         //             w.graphUrl = "";
@@ -2989,12 +2989,12 @@ export class GlobalVariableService {
                     // Fill in @RunTime info
                     this.datasourcePermissions.forEach(d => {
                         this.datasources.forEach(ds => {
-                            if (ds.id == d.datasourceID) {
+                            if (ds.id === d.datasourceID) {
                                 d.name = ds.name;
                             };
                         });
                         this.canvasGroups.forEach(grp => {
-                            if (grp.id == d.groupID) {
+                            if (grp.id === d.groupID) {
                                 d.groupName = grp.name;
                             };
                         });
@@ -3036,8 +3036,8 @@ export class GlobalVariableService {
 
                     // Sanitize
                     if (this.canvasSettings.gridSize > 100
-                        || this.canvasSettings.gridSize == null
-                        || this.canvasSettings.gridSize == undefined) {
+                        || this.canvasSettings.gridSize === null
+                        || this.canvasSettings.gridSize === undefined) {
                         this.canvasSettings.gridSize = 100;
                     };
 
@@ -3106,7 +3106,7 @@ export class GlobalVariableService {
 
                     // Replace local
                     let localIndex: number = this.currentPaletteButtonsSelected.value.findIndex(d =>
-                        d.id == data.id
+                        d.id === data.id
                     );
                     this.currentPaletteButtonsSelected.value[localIndex] = data;
 
@@ -3144,7 +3144,7 @@ export class GlobalVariableService {
                     let dID: number = -1;
                     for (var i = 0; i < this.currentPaletteButtonsSelected.value.length; i++) {
 
-                        if (this.currentPaletteButtonsSelected.value[i].id == id) {
+                        if (this.currentPaletteButtonsSelected.value[i].id === id) {
                             dID = i;
                             break;
                         };
@@ -3198,9 +3198,9 @@ export class GlobalVariableService {
                         // TODO - fix when using DB
                         let tempChk: WidgetCheckpoint[] = this.widgetCheckpoints
                             .filter(wc =>
-                                wc.dashboardID == w.dashboardID
+                                wc.dashboardID === w.dashboardID
                                 &&
-                                wc.widgetID == w.id
+                                wc.widgetID === w.id
                         );
 
                         if (tempChk.length > 0) {
@@ -3221,8 +3221,8 @@ export class GlobalVariableService {
                         };
 
                         // Constants in Text and Bullets
-                        if (w.widgetType == 'Shape') {
-                            if (w.widgetSubType == 'Text') {
+                        if (w.widgetType === 'Shape') {
+                            if (w.widgetSubType === 'Text') {
                                 w.shapeTextDisplay =
                                     this.calcShapeTextDisplay(w.shapeText);
                             };
@@ -3244,16 +3244,16 @@ export class GlobalVariableService {
                             w.slicerBins = [];
                             sF.forEach(s => {
                                 i = i + 1;
-                                if (i == 1) {
-                                    oSel = (s == 'true');
+                                if (i === 1) {
+                                    oSel = (s === 'true');
                                 };
-                                if (i == 2) {
+                                if (i === 2) {
                                     oName = s;
                                 };
-                                if (i == 3) {
+                                if (i === 3) {
                                     oFrom = +s;
                                 };
-                                if (i == 4) {
+                                if (i === 4) {
                                     oTo  = +s;
                                     i = 0;
                                     let o: {isSelected: boolean; name: string; fromValue: number; toValue: number} =
@@ -3403,14 +3403,14 @@ export class GlobalVariableService {
 
                     // Delete where W was used in Chkpnt
                     this.widgetCheckpoints.forEach(chk => {
-                        if (chk.widgetID == id) {
+                        if (chk.widgetID === id) {
                             this.deleteResource('widgetCheckpoints', chk.id);
                         };
                     });
 
                     // Delete where W was used in Stored Template
                     this.getResource('widgetStoredTemplates').then(swt => {
-                        swt = swt.filter(w1 => w1.widgetID == id);
+                        swt = swt.filter(w1 => w1.widgetID === id);
                         swt.forEach(w2 => {
                             this.deleteResource('widgetStoredTemplates', w2.id);
                         });
@@ -3525,7 +3525,7 @@ export class GlobalVariableService {
         };
 
         let userid: number = this.currentUser.id;
-        let userIndex: number = this.canvasUsers.findIndex(u => u.id == userid);
+        let userIndex: number = this.canvasUsers.findIndex(u => u.id === userid);
         if (userIndex < 0) {
             this.showStatusBarMessage(
                 {
@@ -3717,7 +3717,7 @@ export class GlobalVariableService {
 
         // Make sure the currT are indeed for the requested D
         let currentDashboardTabs: DashboardTab[];
-        currentDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == dashboardID);
+        currentDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID === dashboardID);
         currentDashboardTabs = currentDashboardTabs.sort( (obj1,obj2) => {
             if (obj1.displayOrder > obj2.displayOrder) {
                 return 1;
@@ -3729,9 +3729,9 @@ export class GlobalVariableService {
         });
 
         // Assume we have all currentD info
-        if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
-            (this.currentDashboardInfo == null) ) {
-            console.error('Error in     Global-Variables refreshCurrentDashboard returned since this.currentDashboardInfo == null')
+        if ( ( (tabToShow === 'Previous')  ||  (tabToShow === 'Next') )  &&
+            (this.currentDashboardInfo === null) ) {
+            console.error('Error in     Global-Variables refreshCurrentDashboard returned since this.currentDashboardInfo === null')
             return 'Error';
         };
 
@@ -3740,37 +3740,37 @@ export class GlobalVariableService {
         let y: number = 0;
 
         if (tabToShow != '') {
-            if (currentDashboardTabs.length == 0) {
-                console.error('Error in     Global-Variables refreshCurrentDashboard returned since currentDashboardTabs.length == 0', dashboardID, this.dashboards, this.dashboardTabs)
+            if (currentDashboardTabs.length === 0) {
+                console.error('Error in     Global-Variables refreshCurrentDashboard returned since currentDashboardTabs.length === 0', dashboardID, this.dashboards, this.dashboardTabs)
                 return 'Error';
             };
-            if (tabToShow == 'First') {
+            if (tabToShow === 'First') {
                 x = 0;
             };
-            if (tabToShow == 'Previous') {
+            if (tabToShow === 'Previous') {
                 x = this.currentDashboardInfo.value.currentDashboardTabIndex - 1;
                 if (x < 0) {
                     x = currentDashboardTabs.length - 1;
                 };
             };
-            if (tabToShow == 'Next') {
+            if (tabToShow === 'Next') {
                 x = this.currentDashboardInfo.value.currentDashboardTabIndex + 1;
                 if (x >= currentDashboardTabs.length) {
                     x = 0;
                 };
             };
-            if (tabToShow == 'Last') {
+            if (tabToShow === 'Last') {
                 x = currentDashboardTabs.length - 1;
             };
             y = currentDashboardTabs[x].id;
         } else {
             y = dashboardTabID;
 
-            if (currentDashboardTabs.length == 0) {
+            if (currentDashboardTabs.length === 0) {
                 x = 0;
             } else {
                 for (var i = 0; i < currentDashboardTabs.length; i++) {
-                    if (currentDashboardTabs[i].id == dashboardTabID) {
+                    if (currentDashboardTabs[i].id === dashboardTabID) {
                         x = i;
                     };
                 };
@@ -3778,7 +3778,7 @@ export class GlobalVariableService {
         };
 
         // Inform subscribers of the change
-        let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID)
+        let dashboardIndex: number = this.dashboards.findIndex(d => d.id === dashboardID)
         let state: string = 'Draft';
         if (dashboardIndex >= 0) {
             state = this.dashboards[dashboardIndex].state;
@@ -3804,7 +3804,7 @@ export class GlobalVariableService {
 
         // Replace into widgets
         let widgetIndex: number = this.widgets.findIndex(w =>
-            w.id == changedWidget.id
+            w.id === changedWidget.id
         );
         if (widgetIndex >= 0) {
             this.widgets[widgetIndex] =
@@ -3813,7 +3813,7 @@ export class GlobalVariableService {
 
         // Replace into currentWidgets
         let currentWidgetIndex: number = this.currentWidgets.findIndex(w =>
-            w.id == changedWidget.id
+            w.id === changedWidget.id
         );
         if (currentWidgetIndex >= 0) {
             this.currentWidgets[currentWidgetIndex] =
@@ -3835,7 +3835,7 @@ export class GlobalVariableService {
             let mod:number = counter%60000;
             // TODO - remove this console.log BUT at moment sleep increments counter * 60000
             console.log({counter}, {mod});
-            if (mod == 0) {
+            if (mod === 0) {
                 console.log ('   Minutes elapsed ', {counter}, {mod} )
             }
             if ((new Date().getTime() - start) > milliseconds){
@@ -3864,15 +3864,15 @@ export class GlobalVariableService {
 
         // Sanitiy Check
         let specification: any = {};
-        if (widget.visualGrammarType == null) {
+        if (widget.visualGrammarType === null) {
             widget.visualGrammarType = 'standard';
         };
-        if (widget.graphLayers == null  ||  widget.graphLayers.length == 0) {
+        if (widget.graphLayers === null  ||  widget.graphLayers.length === 0) {
             return;
         };
 
         // Custom visualGrammarType - return after each one
-        if (widget.visualGrammarType.toLowerCase() == 'custom') {
+        if (widget.visualGrammarType.toLowerCase() === 'custom') {
             specification = widget.graphLayers[0].graphSpecification;
 
             // General
@@ -3881,7 +3881,7 @@ export class GlobalVariableService {
             specification['height'] = height;
 
             // Replace the data in the spec - each custom one is different
-            if (widget.graphLayers[0].graphMark == 'donutSliders') {
+            if (widget.graphLayers[0].graphMark === 'donutSliders') {
                 let xDataValues: any = widget.dataFiltered.map(x => {
                     let obj: any = {
                         "id": x[widget.graphLayers[0].graphXfield],
@@ -3894,7 +3894,7 @@ export class GlobalVariableService {
 
                 return specification;
             };
-            if (widget.graphLayers[0].graphMark == 'wordCloud') {
+            if (widget.graphLayers[0].graphMark === 'wordCloud') {
                 let xColumnValues: any = widget.dataFiltered.map(
                     x => x[widget.graphLayers[0].graphXfield]
                 );
@@ -3905,11 +3905,11 @@ export class GlobalVariableService {
 
                 return specification;
             };
-            if (widget.graphLayers[0].graphMark == 'networkCircle') {
+            if (widget.graphLayers[0].graphMark === 'networkCircle') {
 
                 return specification;
             };
-            if (widget.graphLayers[0].graphMark == 'navigator') {
+            if (widget.graphLayers[0].graphMark === 'navigator') {
 
                 return specification;
             };
@@ -3966,15 +3966,15 @@ export class GlobalVariableService {
         };
 
         // Custom visualGrammarType - RETURN after each one
-        if (widget.visualGrammarType == null) {
+        if (widget.visualGrammarType === null) {
             widget.visualGrammarType = 'standard';
         };
 
-        if (widget.visualGrammarType.toLowerCase() == 'custom') {
+        if (widget.visualGrammarType.toLowerCase() === 'custom') {
             specification = widget.graphLayers[0].graphSpecification;
 
             // Replace the data in the spec - each custom one is different
-            if (widget.graphLayers[0].graphMark == 'waterfall') {
+            if (widget.graphLayers[0].graphMark === 'waterfall') {
                 // let xDataValues: any = widget.graphData.map(x => {
                 //     let obj: any = {
                 //         "id": x[widget.graphLayers[0].graphXfield],
@@ -3987,11 +3987,11 @@ export class GlobalVariableService {
 
                 return specification;
             };
-            if (widget.graphLayers[0].graphMark == 'marginalHistogram') {
+            if (widget.graphLayers[0].graphMark === 'marginalHistogram') {
 
                 return specification;
             };
-            if (widget.graphLayers[0].graphMark == 'geoshape') {
+            if (widget.graphLayers[0].graphMark === 'geoshape') {
 
                 return specification;
             };
@@ -4050,7 +4050,7 @@ export class GlobalVariableService {
 
 
         // Calculated Fields
-        if (widget.graphCalculations == null) {
+        if (widget.graphCalculations === null) {
             widget.graphCalculations = [];
         };
         for (var i = 0; i < widget.graphCalculations.length; i++) {
@@ -4079,7 +4079,7 @@ export class GlobalVariableService {
 
 
             // Cumulation Function
-            if (calcFunction.toLowerCase() == 'sum'  &&  calcFields.length > 0) {
+            if (calcFunction.toLowerCase() === 'sum'  &&  calcFields.length > 0) {
                 specification['transform'].push(
                     {
                         "window": [{
@@ -4091,7 +4091,7 @@ export class GlobalVariableService {
                     }
                 );
 
-            } else if (calcFunction.toLowerCase() == 'cumulate'  &&  calcFields.length > 0) {
+            } else if (calcFunction.toLowerCase() === 'cumulate'  &&  calcFields.length > 0) {
                 specification['transform'].push(
                     {
                         "sort": [{"field": calcFields[0]}],
@@ -4106,7 +4106,7 @@ export class GlobalVariableService {
                     }
                 );
 
-            } else if (calcFunction.toLowerCase() == 'rank'  &&  calcFields.length > 1) {
+            } else if (calcFunction.toLowerCase() === 'rank'  &&  calcFields.length > 1) {
                 specification['transform'].push(
                     {
                         "sort": [
@@ -4135,7 +4135,7 @@ export class GlobalVariableService {
 
 
         // Filter
-        if (widget.widgetFilters == null) {
+        if (widget.widgetFilters === null) {
             widget.widgetFilters = [];
         };
         let widgetFilters = widget.widgetFilters.filter(gflt => gflt.isActive).slice();
@@ -4145,17 +4145,17 @@ export class GlobalVariableService {
             let filterSpec: any = null;
             let filterFieldDataType: string = 'string';
             let filterFieldDataTypeIndex: number = widget.dataschema.findIndex(
-                dat => dat.name == widgetFilters[i].filterFieldName
+                dat => dat.name === widgetFilters[i].filterFieldName
             );
 
             if (filterFieldDataTypeIndex >= 0) {
                 filterFieldDataType = widget.dataschema[filterFieldDataTypeIndex].type;
             };
 
-            if (widgetFilters[i].filterOperator == 'Not Equal') {
-                if (filterFieldDataType == 'string'
+            if (widgetFilters[i].filterOperator === 'Not Equal') {
+                if (filterFieldDataType === 'string'
                     ||
-                    widgetFilters[i].filterTimeUnit.toLowerCase() == 'month') {
+                    widgetFilters[i].filterTimeUnit.toLowerCase() === 'month') {
                     filterSpec =
                         {"filter":
 
@@ -4174,10 +4174,10 @@ export class GlobalVariableService {
                 };
             };
 
-            if (widgetFilters[i].filterOperator == 'Equal') {
-                if (filterFieldDataType == 'string'
+            if (widgetFilters[i].filterOperator === 'Equal') {
+                if (filterFieldDataType === 'string'
                     ||
-                    widgetFilters[i].filterTimeUnit.toLowerCase() == 'month') {
+                    widgetFilters[i].filterTimeUnit.toLowerCase() === 'month') {
                     filterSpec =
                         {"filter":
                             {
@@ -4196,9 +4196,9 @@ export class GlobalVariableService {
                 };
             };
 
-            if (widgetFilters[i].filterOperator == 'Less Than') {
+            if (widgetFilters[i].filterOperator === 'Less Than') {
 
-                if (filterFieldDataType == 'string') {
+                if (filterFieldDataType === 'string') {
                     filterSpec =
                         {"filter":
                             {
@@ -4218,9 +4218,9 @@ export class GlobalVariableService {
 
             };
 
-            if (widgetFilters[i].filterOperator == 'Less Than Equal') {
+            if (widgetFilters[i].filterOperator === 'Less Than Equal') {
 
-                if (filterFieldDataType == 'string') {
+                if (filterFieldDataType === 'string') {
                     filterSpec =
                         {"filter":
                             {
@@ -4239,9 +4239,9 @@ export class GlobalVariableService {
                 };
             };
 
-            if (widgetFilters[i].filterOperator == 'Greater Than') {
+            if (widgetFilters[i].filterOperator === 'Greater Than') {
 
-                if (filterFieldDataType == 'string') {
+                if (filterFieldDataType === 'string') {
                     filterSpec =
                         {"filter":
                             {
@@ -4260,9 +4260,9 @@ export class GlobalVariableService {
                 };
             };
 
-            if (widgetFilters[i].filterOperator == 'Greater Than Equal') {
+            if (widgetFilters[i].filterOperator === 'Greater Than Equal') {
 
-                if (filterFieldDataType == 'string') {
+                if (filterFieldDataType === 'string') {
                     filterSpec =
                         {"filter":
                             {
@@ -4281,9 +4281,9 @@ export class GlobalVariableService {
                 };
             };
 
-            if (widgetFilters[i].filterOperator == 'Range') {
+            if (widgetFilters[i].filterOperator === 'Range') {
 
-                if (filterFieldDataType == 'number') {
+                if (filterFieldDataType === 'number') {
                     filterSpec =
                         {"filter":
                             {
@@ -4309,11 +4309,11 @@ export class GlobalVariableService {
                 };
             };
 
-            if (widgetFilters[i].filterOperator == 'One Of') {
+            if (widgetFilters[i].filterOperator === 'One Of') {
 
                 let fromTo: string[] = widgetFilters[i].filterValue.split(',');
                 if (fromTo.length > 0) {
-                    if (filterFieldDataType == 'number') {
+                    if (filterFieldDataType === 'number') {
                         let fromToNumber: number[] = fromTo.map(x => +x);
                         filterSpec =
                             {"filter":
@@ -4335,9 +4335,9 @@ export class GlobalVariableService {
                 };
             };
 
-            if (widgetFilters[i].filterOperator == 'Valid') {
+            if (widgetFilters[i].filterOperator === 'Valid') {
 
-                if (filterFieldDataType == 'number') {
+                if (filterFieldDataType === 'number') {
                     filterSpec =
                         {"filter":
                             {
@@ -4348,7 +4348,7 @@ export class GlobalVariableService {
                 };
             };
 
-            if (widgetFilters[i].filterOperator == 'Selection') {
+            if (widgetFilters[i].filterOperator === 'Selection') {
 
                 filterSpec = [
                     {"filter":
@@ -4424,29 +4424,29 @@ export class GlobalVariableService {
             specificationInner['mark']['cornerRadius'] = widget.graphLayers[currentGraphLayer].graphMarkCornerRadius;
             specificationInner['mark']['opacity'] = widget.graphLayers[currentGraphLayer].graphMarkOpacity;
             specificationInner['mark']['binSpacing'] = widget.graphLayers[currentGraphLayer].graphMarkBinSpacing;
-            if (widget.graphLayers[currentGraphLayer].graphMarkInterpolate == "Step") {
+            if (widget.graphLayers[currentGraphLayer].graphMarkInterpolate === "Step") {
                 specificationInner['mark']['interpolate'] = "step-after";
             };
 
             let vegaGraphMarkExtent: string = 'stderr';
-            if (widget.graphLayers[currentGraphLayer].graphMarkExtent == 'Confidence Interval') {
+            if (widget.graphLayers[currentGraphLayer].graphMarkExtent === 'Confidence Interval') {
                 vegaGraphMarkExtent = 'ci';
             };
-            if (widget.graphLayers[currentGraphLayer].graphMarkExtent == 'Std Error') {
+            if (widget.graphLayers[currentGraphLayer].graphMarkExtent === 'Std Error') {
                 vegaGraphMarkExtent = 'stderr';
             };
-            if (widget.graphLayers[currentGraphLayer].graphMarkExtent == 'Std Deviation') {
+            if (widget.graphLayers[currentGraphLayer].graphMarkExtent === 'Std Deviation') {
                 vegaGraphMarkExtent = 'stdev';
             };
-            if (widget.graphLayers[currentGraphLayer].graphMarkExtent == 'Q1 and Q3') {
+            if (widget.graphLayers[currentGraphLayer].graphMarkExtent === 'Q1 and Q3') {
                 vegaGraphMarkExtent = 'iqr';
             };
 
             specificationInner['mark']['extent'] = "";
-            if (widget.graphLayers[currentGraphLayer].graphMark == 'errorband') {
+            if (widget.graphLayers[currentGraphLayer].graphMark === 'errorband') {
                 specificationInner['mark']['extent'] = vegaGraphMarkExtent;
             };
-            if (widget.graphLayers[currentGraphLayer].graphMark == 'errorbar') {
+            if (widget.graphLayers[currentGraphLayer].graphMark === 'errorbar') {
                 specificationInner['mark']['extent'] = vegaGraphMarkExtent;
                 specificationInner['mark']['ticks'] = true;
             };
@@ -4460,7 +4460,7 @@ export class GlobalVariableService {
 
 
             // Text Channel
-            if (widget.graphLayers[currentGraphLayer].graphMark == 'text') {
+            if (widget.graphLayers[currentGraphLayer].graphMark === 'text') {
                 if (widget.graphLayers[currentGraphLayer].graphXfield != '') {
                     specificationInner['encoding']['text'] = {
                         "field": widget.graphLayers[currentGraphLayer].graphXfield,
@@ -4488,7 +4488,7 @@ export class GlobalVariableService {
                 };
                 specificationInner['encoding']['x']['format'] = widget.graphLayers[currentGraphLayer].graphXformat.toLowerCase();
                 if (widget.graphLayers[currentGraphLayer].graphXimpute != '') {
-                    if (widget.graphLayers[currentGraphLayer].graphXimpute == 'Value') {
+                    if (widget.graphLayers[currentGraphLayer].graphXimpute === 'Value') {
                         specificationInner['encoding']['x']['impute'] =
                             {"value": widget.graphLayers[currentGraphLayer].graphXimputeValue };
                     } else {
@@ -4550,7 +4550,7 @@ export class GlobalVariableService {
                     &&
                     widget.graphLayers[currentGraphLayer].graphXaxisScaleDomainEnd != null) {
 
-                    if(specificationInner['encoding']['x']['scale'] == "") {
+                    if(specificationInner['encoding']['x']['scale'] === "") {
                         specificationInner['encoding']['x']['scale'] = {
                             "domain":
                             [
@@ -4583,7 +4583,7 @@ export class GlobalVariableService {
                 };
                 specificationInner['encoding']['y']['format'] = widget.graphLayers[currentGraphLayer].graphYformat.toLowerCase();
                 if (widget.graphLayers[currentGraphLayer].graphYimpute != '') {
-                    if (widget.graphLayers[currentGraphLayer].graphYimpute == 'Value') {
+                    if (widget.graphLayers[currentGraphLayer].graphYimpute === 'Value') {
                         specificationInner['encoding']['y']['impute'] =
                             {"value": +widget.graphLayers[currentGraphLayer].graphYimputeValue };
                     } else {
@@ -4645,7 +4645,7 @@ export class GlobalVariableService {
                     &&
                     widget.graphLayers[currentGraphLayer].graphYaxisScaleDomainEnd != null) {
 
-                    if(specificationInner['encoding']['y']['scale'] == "") {
+                    if(specificationInner['encoding']['y']['scale'] === "") {
                         specificationInner['encoding']['y']['scale'] = {
                             "domain":
                             [
@@ -4673,21 +4673,21 @@ export class GlobalVariableService {
             && widget.graphLayers[currentGraphLayer].conditionFieldName != null) {
 
                 let conditionFieldDataTypeIndex: number = widget.dataschema.findIndex(
-                    dat => dat.name == widget.graphLayers[currentGraphLayer].conditionFieldName
+                    dat => dat.name === widget.graphLayers[currentGraphLayer].conditionFieldName
                 );
                 if (conditionFieldDataTypeIndex >= 0) {
                     this.conditionFieldDataType = widget.dataschema[conditionFieldDataTypeIndex].type;
                 };
-                if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Less Than') {
+                if (widget.graphLayers[currentGraphLayer].conditionOperator === 'Less Than') {
                     this.conditionOperator = '<';
                 };
-                if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Less Than Equal') {
+                if (widget.graphLayers[currentGraphLayer].conditionOperator === 'Less Than Equal') {
                     this.conditionOperator = '<=';
                 };
-                if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Greater Than') {
+                if (widget.graphLayers[currentGraphLayer].conditionOperator === 'Greater Than') {
                     this.conditionOperator = '>';
                 };
-                if (widget.graphLayers[currentGraphLayer].conditionOperator == 'Greater Than Equal') {
+                if (widget.graphLayers[currentGraphLayer].conditionOperator === 'Greater Than Equal') {
                     this.conditionOperator = '>=';
                 };
             };
@@ -4719,7 +4719,7 @@ export class GlobalVariableService {
                 if (widget.graphLayers[currentGraphLayer].conditionFieldName != ''
                     && widget.graphLayers[currentGraphLayer].conditionFieldName != null) {
 
-                        if (this.conditionFieldDataType.toLowerCase() == 'string') {
+                        if (this.conditionFieldDataType.toLowerCase() === 'string') {
                             specificationInner['encoding']['color']['condition'] =
                             {
                                 "test": "datum." + widget.graphLayers[currentGraphLayer].conditionFieldName
@@ -4742,7 +4742,7 @@ export class GlobalVariableService {
                 if (widget.graphLayers[currentGraphLayer].graphLegendHide) {
                     specificationInner['encoding']['color']['legend'] = null;
                 } else {
-                    if (widget.graphLayers[currentGraphLayer].graphLegendTitle == null) {
+                    if (widget.graphLayers[currentGraphLayer].graphLegendTitle === null) {
                         widget.graphLayers[currentGraphLayer].graphLegendTitle = '';
                     };
                     specificationInner['encoding']['color']['legend'] =
@@ -4773,7 +4773,7 @@ export class GlobalVariableService {
 
 
                 // if (widget. != '') {
-                //     if (widget. == 'Value') {
+                //     if (widget. === 'Value') {
                 //         specificationInner['encoding']['color']['impute'] =
                 //             {"value":' + widget.Value + '};
                 //     } else {
@@ -4787,7 +4787,7 @@ export class GlobalVariableService {
                 if (widget.graphLayers[currentGraphLayer].conditionFieldName != ''
                     && widget.graphLayers[currentGraphLayer].conditionFieldName != null) {
 
-                        if (this.conditionFieldDataType.toLowerCase() == 'string') {
+                        if (this.conditionFieldDataType.toLowerCase() === 'string') {
                             specificationInner['encoding']['color'] =
                             { "condition":
                             {
@@ -4933,7 +4933,7 @@ export class GlobalVariableService {
         };
 
         // Put spec together from pieces, with or without layers
-        if (specificationInnerArray.length == 1  ||  showSpecificGraphLayer) {
+        if (specificationInnerArray.length === 1  ||  showSpecificGraphLayer) {
             specification = {...specification, ...specificationInnerArray[specificLayerToShow]}
         } else {
             specification = {...specification, [widget.graphLayerFacet.toLowerCase()]: specificationInnerArray}
@@ -4993,7 +4993,7 @@ export class GlobalVariableService {
                     // Add if last snap was not an auto (null returned if no last snapshot)
                     if (lss != null) {
 
-                        if (lss.length == 0  ||  lss[0].comment != snapshotComment) {
+                        if (lss.length === 0  ||  lss[0].comment != snapshotComment) {
                             this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit')
                                 .then(res => {
 
@@ -5016,7 +5016,7 @@ export class GlobalVariableService {
             };
         };
 
-        if (id == null) {
+        if (id === null) {
             // Add / Update an action to the ActionLog.  It returns id of new/updated record
             // It returns -1 if it failed.
             // NB: id = null => Add, else Update
@@ -5036,15 +5036,15 @@ export class GlobalVariableService {
                 id: actID,
                 dashboardID: dashboardID,
                 dashboardTabID: dashboardTabID,
-                widgetID: oldWidget == null? null : oldWidget.id,
+                widgetID: oldWidget === null? null : oldWidget.id,
                 objectType: objectType,
                 actionType: actionType,
                 action: action,
                 description: description,
                 undoID: undoID,
                 redoID: redoID,
-                oldWidget: oldWidget == null? null : JSON.parse(JSON.stringify(oldWidget)),
-                newWidget: newWidget == null? null : JSON.parse(JSON.stringify(newWidget)),
+                oldWidget: oldWidget === null? null : JSON.parse(JSON.stringify(oldWidget)),
+                newWidget: newWidget === null? null : JSON.parse(JSON.stringify(newWidget)),
                 createor: this.currentUser.userID,
                 created: today
             });
@@ -5056,7 +5056,7 @@ export class GlobalVariableService {
 
         } else {
             this.actions.forEach(ac => {
-                if (ac.id == id) {
+                if (ac.id === id) {
                     if (action != null) {ac.action = action};
                     if (description != null) {ac.description = description};
                     if (undoID != null) {ac.undoID = undoID};
@@ -5081,7 +5081,7 @@ export class GlobalVariableService {
             // Get Old and New
             let actOldWidget: Object = null;
             let actNewWidget: Object = null;
-            let ac: CanvasAction = this.actions.filter(ac => ac.id == actID)[0];
+            let ac: CanvasAction = this.actions.filter(ac => ac.id === actID)[0];
             if (ac != null  &&  ac != undefined) {
                 actOldWidget = ac.oldWidget;
                 actNewWidget = ac.newWidget;
@@ -5089,10 +5089,10 @@ export class GlobalVariableService {
 
             // Brief description of diff
             var result: any[] = [];
-            if (actOldWidget == null) {
+            if (actOldWidget === null) {
                 result.push('Whole new Widget added')
             };
-            if (actNewWidget == null) {
+            if (actNewWidget === null) {
                 result.push('Widget deleted')
             };
             if (actOldWidget != null  &&  actNewWidget != null) {
@@ -5187,7 +5187,7 @@ export class GlobalVariableService {
         if (!this.dontDisturb.value) {
 
             // Pop message in right area
-            if (statusBarMessage.uiArea == 'StatusBar') {
+            if (statusBarMessage.uiArea === 'StatusBar') {
                 this.statusBarMessage.next(statusBarMessage);
             };
         };
@@ -5218,64 +5218,64 @@ export class GlobalVariableService {
 
         let dashboard: Dashboard;
         this.dashboards.forEach(d => {
-            if (d.id == dashboardID) {
+            if (d.id === dashboardID) {
                 dashboard = JSON.parse(JSON.stringify(d));
             };
         });
 
         // Make sure we have a D
-        if (dashboard == undefined) {
+        if (dashboard === undefined) {
             return;
         };
 
         // Everyone has access to Public Ds
-        if (dashboard.accessType.toLowerCase() == 'public') {
+        if (dashboard.accessType.toLowerCase() === 'public') {
             hasAccess = true;
         };
 
         // The owner has access to Private ones
-        if (dashboard.accessType.toLowerCase() == 'private'
+        if (dashboard.accessType.toLowerCase() === 'private'
             &&
-            dashboard.creator.toLowerCase() == userID.toLowerCase()) {
+            dashboard.creator.toLowerCase() === userID.toLowerCase()) {
                 hasAccess = true;
         };
-        if (dashboard.accessType.toLowerCase() == 'accesslist') {
+        if (dashboard.accessType.toLowerCase() === 'accesslist') {
 
             this.dashboardPermissions.forEach(dp => {
 
-                if (dp.dashboardID == dashboard.id) {
+                if (dp.dashboardID === dashboard.id) {
 
                     if (dp.userID != null) {
 
-                        if (dp.userID.toLowerCase() == userID.toLowerCase()) {
-                            if (accessRequired == 'canviewright'  &&  dp.canViewRight) {
+                        if (dp.userID.toLowerCase() === userID.toLowerCase()) {
+                            if (accessRequired === 'canviewright'  &&  dp.canViewRight) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'caneditright'  &&  dp.canEditRight) {
+                            if (accessRequired === 'caneditright'  &&  dp.canEditRight) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'candsaveright'  &&  dp.canSaveRight) {
+                            if (accessRequired === 'candsaveright'  &&  dp.canSaveRight) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'candeleteright'  &&  dp.canDeleteRight) {
+                            if (accessRequired === 'candeleteright'  &&  dp.canDeleteRight) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'canadddatasource'  &&  dp.canAddDatasource) {
+                            if (accessRequired === 'canadddatasource'  &&  dp.canAddDatasource) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'cangrantaccess'  &&  dp.canGrantAccess) {
+                            if (accessRequired === 'cangrantaccess'  &&  dp.canGrantAccess) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'canvieworcanedit'  &&  (dp.canViewRight  ||  dp.canEditRight) ) {
+                            if (accessRequired === 'canvieworcanedit'  &&  (dp.canViewRight  ||  dp.canEditRight) ) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'canviewandcanedit'  &&  (dp.canViewRight  &&  dp.canEditRight) ) {
+                            if (accessRequired === 'canviewandcanedit'  &&  (dp.canViewRight  &&  dp.canEditRight) ) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'caneditorcandelete'  &&  (dp.canEditRight  ||  dp.canDeleteRight) ) {
+                            if (accessRequired === 'caneditorcandelete'  &&  (dp.canEditRight  ||  dp.canDeleteRight) ) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'caneditandcandelete'  &&  (dp.canEditRight  &&  dp.canDeleteRight) ) {
+                            if (accessRequired === 'caneditandcandelete'  &&  (dp.canEditRight  &&  dp.canDeleteRight) ) {
                                 hasAccess = true;
                             };
                         };
@@ -5283,34 +5283,34 @@ export class GlobalVariableService {
                     if (dp.groupName != null) {
                         if (this.currentUser.groups.
                             map(x => x.toLowerCase()).indexOf(dp.groupName.toLowerCase()) >= 0) {
-                                if (accessRequired == 'canviewright'  &&  dp.canViewRight) {
+                                if (accessRequired === 'canviewright'  &&  dp.canViewRight) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'caneditright'  &&  dp.canEditRight) {
+                                if (accessRequired === 'caneditright'  &&  dp.canEditRight) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'candsaveright'  &&  dp.canSaveRight) {
+                                if (accessRequired === 'candsaveright'  &&  dp.canSaveRight) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'candeleteright'  &&  dp.canDeleteRight) {
+                                if (accessRequired === 'candeleteright'  &&  dp.canDeleteRight) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'canadddatasource'  &&  dp.canAddDatasource) {
+                                if (accessRequired === 'canadddatasource'  &&  dp.canAddDatasource) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'cangrantaccess'  &&  dp.canGrantAccess) {
+                                if (accessRequired === 'cangrantaccess'  &&  dp.canGrantAccess) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'canvieworcanedit'  &&  (dp.canViewRight  ||  dp.canEditRight) ) {
+                                if (accessRequired === 'canvieworcanedit'  &&  (dp.canViewRight  ||  dp.canEditRight) ) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'canviewandcanedit'  &&  (dp.canViewRight  &&  dp.canEditRight) ) {
+                                if (accessRequired === 'canviewandcanedit'  &&  (dp.canViewRight  &&  dp.canEditRight) ) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'caneditorcandelete'  &&  (dp.canEditRight  ||  dp.canDeleteRight) ) {
+                                if (accessRequired === 'caneditorcandelete'  &&  (dp.canEditRight  ||  dp.canDeleteRight) ) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'caneditandcandelete'  &&  (dp.canEditRight  &&  dp.canDeleteRight) ) {
+                                if (accessRequired === 'caneditandcandelete'  &&  (dp.canEditRight  &&  dp.canDeleteRight) ) {
                                     hasAccess = true;
                                 };
                             };
@@ -5347,48 +5347,48 @@ export class GlobalVariableService {
 
         let datasource: Datasource;
         this.datasources.forEach(ds => {
-            if (ds.id == datasourceID) {
+            if (ds.id === datasourceID) {
                 datasource = JSON.parse(JSON.stringify(ds));
             };
         });
 
         // Make sure we have a D
-        if (datasource == undefined) {
+        if (datasource === undefined) {
             return;
         };
 
-        if (datasource.accessType.toLowerCase() == 'public') {
+        if (datasource.accessType.toLowerCase() === 'public') {
             hasAccess = true;
         };
 
         // The owner has access to Private ones
-        if (datasource.accessType.toLowerCase() == 'private'
+        if (datasource.accessType.toLowerCase() === 'private'
             &&
-            datasource.createdBy.toLowerCase() == userID.toLowerCase()) {
+            datasource.createdBy.toLowerCase() === userID.toLowerCase()) {
                 hasAccess = true;
         };
-        if (datasource.accessType.toLowerCase() == 'accesslist') {
+        if (datasource.accessType.toLowerCase() === 'accesslist') {
 
             this.datasourcePermissions.forEach(dp => {
 
-                if (dp.datasourceID == datasource.id) {
+                if (dp.datasourceID === datasource.id) {
 
                     if (dp.userID != null) {
 
-                        if (dp.userID.toLowerCase() == userID.toLowerCase()) {
-                            if (accessRequired == 'canview'  &&  dp.canView) {
+                        if (dp.userID.toLowerCase() === userID.toLowerCase()) {
+                            if (accessRequired === 'canview'  &&  dp.canView) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'canedit'  &&  dp.canEdit) {
+                            if (accessRequired === 'canedit'  &&  dp.canEdit) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'candelete'  &&  dp.canDelete) {
+                            if (accessRequired === 'candelete'  &&  dp.canDelete) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'canrefresh'  &&  dp.canRefresh) {
+                            if (accessRequired === 'canrefresh'  &&  dp.canRefresh) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'cangrant'  &&  dp.canGrant) {
+                            if (accessRequired === 'cangrant'  &&  dp.canGrant) {
                                 hasAccess = true;
                             };
                         };
@@ -5396,19 +5396,19 @@ export class GlobalVariableService {
                     if (dp.groupName != null) {
                         if (this.currentUser.groups.
                             map(x => x.toLowerCase()).indexOf(dp.groupName.toLowerCase()) >= 0) {
-                                if (accessRequired == 'canview'  &&  dp.canView) {
+                                if (accessRequired === 'canview'  &&  dp.canView) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'canedit'  &&  dp.canEdit) {
+                                if (accessRequired === 'canedit'  &&  dp.canEdit) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'candelete'  &&  dp.canDelete) {
+                                if (accessRequired === 'candelete'  &&  dp.canDelete) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'canrefresh'  &&  dp.canRefresh) {
+                                if (accessRequired === 'canrefresh'  &&  dp.canRefresh) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'cangrant'  &&  dp.canGrant) {
+                                if (accessRequired === 'cangrant'  &&  dp.canGrant) {
                                     hasAccess = true;
                                 };
                             };
@@ -5443,35 +5443,35 @@ export class GlobalVariableService {
 
         let dashboard: Dashboard;
         this.dashboards.forEach(d => {
-            if (d.id == id) {
+            if (d.id === id) {
                 dashboard = JSON.parse(JSON.stringify(d));
             };
         });
 
         // Make sure we have a D
-        if (dashboard == undefined) {
+        if (dashboard === undefined) {
             return accessList;
         };
 
         // Everyone has access to Public Ds
-        if (dashboard.accessType.toLowerCase() == 'public') {
+        if (dashboard.accessType.toLowerCase() === 'public') {
             accessList = ['canviewright' ,'caneditright' ,
             'cansaveright', 'candeleteright', 'canadddatasource', 'cangrantaccess'];
         };
 
         // The owner has access to Private ones
-        if (dashboard.accessType.toLowerCase() == 'private'
+        if (dashboard.accessType.toLowerCase() === 'private'
             &&
-            dashboard.creator.toLowerCase() == userID.toLowerCase()) {
+            dashboard.creator.toLowerCase() === userID.toLowerCase()) {
                 accessList = ['canviewright' ,'caneditright' ,
                 'cansaveright', 'candeleteright', 'canadddatasource', 'cangrantaccess'];
         };
 
-        if (dashboard.accessType.toLowerCase() == 'accesslist') {
+        if (dashboard.accessType.toLowerCase() === 'accesslist') {
             this.dashboardPermissions.forEach(dp => {
-                if (dp.dashboardID == dashboard.id) {
+                if (dp.dashboardID === dashboard.id) {
                     if (dp.userID != null) {
-                        if (dp.userID.toLowerCase() == userID.toLowerCase()) {
+                        if (dp.userID.toLowerCase() === userID.toLowerCase()) {
                             if (dp.canViewRight) {
                                 accessList.push('canviewright');
                             };
@@ -5546,10 +5546,10 @@ export class GlobalVariableService {
         if (month.length < 2) month = '0' + month;
         if (day.length < 2) day = '0' + day;
 
-        if (returnFormat == 'date') {
+        if (returnFormat === 'date') {
             return [year, month, day].join('/');
         };
-        if (returnFormat == 'time') {
+        if (returnFormat === 'time') {
             return hour + ':' + minute + ':' + second;
         };
 
@@ -5580,7 +5580,7 @@ export class GlobalVariableService {
         return new Promise<boolean>((resolve, reject) => {
 
             // Nothing to do
-            if (givenUserID == null  ||  givenUserID == '') {
+            if (givenUserID === null  ||  givenUserID === '') {
                 resolve(false);
             };
 
@@ -5605,7 +5605,7 @@ export class GlobalVariableService {
                         .then( () => {
 
                             this.getResource('canvasUsers').then(usr => {
-                                let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == givenUserID);
+                                let foundIndex: number = this.canvasUsers.findIndex(u => u.userID === givenUserID);
                                 if (foundIndex < 0) {
 
                                     if (this.sessionDebugging) {
@@ -5750,7 +5750,7 @@ export class GlobalVariableService {
 
             // Get the ServerURL
             let serverURLIndex: number = this.ENVCanvasServerList.findIndex(
-                srv => srv.serverName == givenCanvasServerName
+                srv => srv.serverName === givenCanvasServerName
             );
             if (serverURLIndex < 0) {
                 resolve('Error: Server Name not in ENV configuration');
@@ -5766,17 +5766,17 @@ export class GlobalVariableService {
                 }
                 ).subscribe(res => {
 
-                    if (res.statusCode == 'failed') {
+                    if (res.statusCode === 'failed') {
                         console.warn('Error in     Global-Variables registerCanvasUser Failed: ' + res.message, res);
 
                         resolve('Failed: ' + res.message);
                     };
-                    if (res.statusCode == 'success') {
+                    if (res.statusCode === 'success') {
                         console.warn('Success: ' + res.message);
 
                         resolve('Success: ' + res.message);
                     };
-                    if (res.statusCode == 'error') {
+                    if (res.statusCode === 'error') {
                         console.warn('Error: ' + res.message);
 
                         resolve('Error: ' + res.message);
@@ -5806,7 +5806,7 @@ export class GlobalVariableService {
 
             // Get the ServerURL
             let serverURLIndex: number = this.ENVCanvasServerList.findIndex(
-                srv => srv.serverName == givenCanvasServerName
+                srv => srv.serverName === givenCanvasServerName
             );
             if (serverURLIndex < 0) {
                 resolve({ message:'Error: Server Name not in ENV configuration', token: null});
@@ -5821,17 +5821,17 @@ export class GlobalVariableService {
                 }
                 ).subscribe(res => {
 
-                    if (res.statusCode == 'failed') {
+                    if (res.statusCode === 'failed') {
                         console.warn('Error in     Global-Variables loginCanvasUser Failed: ' + res.message);
 
                         resolve({ message:'Failed: ' + res.message, token: null});
                     };
-                    if (res.statusCode == 'success') {
+                    if (res.statusCode === 'success') {
                         console.warn('    Global-Variables loginCanvasUser Success: ' + res.message);
 
                         resolve({ message:'Success: ' + res.message, token: res.token});
                     };
-                    if (res.statusCode == 'error') {
+                    if (res.statusCode === 'error') {
                         console.warn('Error in     Global-Variables loginCanvasUser Error: ' + res.message);
 
                         resolve({ message:'Error: ' + res.message, token: null});
@@ -6327,10 +6327,10 @@ export class GlobalVariableService {
         };
 
         // Cater for missing input
-        if (fromDate == null) {
+        if (fromDate === null) {
             fromDate = new Date();
         };
-        if (toDate == null) {
+        if (toDate === null) {
             toDate = new Date();
         };
         let diffDays: number = toDate.getDate() - fromDate.getDate(); // milliseconds between two dates
@@ -6388,7 +6388,7 @@ export class GlobalVariableService {
         };
 
         // Ignore bad input
-        if (widget == null) {
+        if (widget === null) {
             return null;
         };
 
@@ -6417,7 +6417,7 @@ export class GlobalVariableService {
         };
 
         // Ignore bad input
-        if (widget == null) {
+        if (widget === null) {
             return null;
         };
 
@@ -6468,10 +6468,10 @@ export class GlobalVariableService {
         //   parameters = parameters + '&filterObject= {"dateRefreshed" : null}'
 
         // Return if nothing to do
-        if (inputResults == null) {
+        if (inputResults === null) {
             return [];
         };
-        if (inputResults.length == 0) {
+        if (inputResults.length === 0) {
             return [];
         };
 
@@ -6492,10 +6492,10 @@ export class GlobalVariableService {
             if (par.length > 0) {
 
                 // Strip of indicator chars
-                if (par[0] == '?') {
+                if (par[0] === '?') {
                     par = par.substring(1);
                 };
-                if (par[0] == '&') {
+                if (par[0] === '&') {
                     par = par.substring(1);
                 };
 
@@ -6506,21 +6506,21 @@ export class GlobalVariableService {
                     parKey = parKey.trim();
                     parValue = parValue.trim();
 
-                    if (parKey == 'sortObject') {
+                    if (parKey === 'sortObject') {
                         sortObject = parValue;
                     };
-                    if (parKey == 'fields') {
+                    if (parKey === 'fields') {
                         fieldsObject = parValue;
                     };
-                    if (parKey == 'filterObject') {
+                    if (parKey === 'filterObject') {
                         filterObject = parValue;
                     };
-                    if (parKey == 'aggregationObject') {
+                    if (parKey === 'aggregationObject') {
                         aggregationObject = parValue;
                     };
-                    if (parKey == 'nrRowsToReturn') {
+                    if (parKey === 'nrRowsToReturn') {
                         nrRowsToReturn = +parValue;
-                        if (nrRowsToReturn == null) {
+                        if (nrRowsToReturn === null) {
                             nrRowsToReturn = 0;
                         };
                     };
@@ -6588,7 +6588,7 @@ export class GlobalVariableService {
                 // Get the key-value pair
                 let value = filterObject[key];
                 results = results.filter(r => {
-                    return value == r[key];
+                    return value === r[key];
                 });
             });
         };
@@ -6665,13 +6665,13 @@ console.log('xx post filter', results)
 
                     // // Replace local
                     // let localIndex: number = this.dashboards.findIndex(d =>
-                    //     d.id == data.id
+                    //     d.id === data.id
                     // );
                     // if (localIndex >= 0) {
                     //     this.dashboards[localIndex] = data;
                     // };
                     // localIndex = this.currentDashboards.findIndex(d =>
-                    //     d.id == data.id
+                    //     d.id === data.id
                     // );
                     // if (localIndex >= 0) {
                     //     this.currentDashboards[localIndex] = data;
