@@ -43,7 +43,7 @@ export class CollaborateTasksComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -97,7 +97,7 @@ export class CollaborateTasksComponent implements OnInit {
                             isFound = false;
                             if (tsk.assignedToUserID != ''  &&  tsk.assignedToUserID != null) {
                                 this.userNames.forEach(usn => {
-                                    if (usn.toLowerCase() == tsk.assignedToUserID.toLowerCase()) {
+                                    if (usn.toLowerCase() === tsk.assignedToUserID.toLowerCase()) {
                                         isFound = true;
                                     };
                                 });
@@ -212,12 +212,12 @@ export class CollaborateTasksComponent implements OnInit {
         //        but only after feedback on how to make it more useful
         if (this.selectedUser != '') {
             this.canvasTasks = this.canvasTasks.filter(
-                tsk => tsk.assignedToUserID == this.selectedUser
+                tsk => tsk.assignedToUserID === this.selectedUser
             );
         };
         if (this.selectedStatus != '') {
             this.canvasTasks = this.canvasTasks.filter(
-                tsk => tsk.taskStatus.toLowerCase() == this.selectedStatus.toLowerCase()
+                tsk => tsk.taskStatus.toLowerCase() === this.selectedStatus.toLowerCase()
             );
         };
         if (this.selectedTaskText != '') {
@@ -243,14 +243,14 @@ export class CollaborateTasksComponent implements OnInit {
         let dashboardID: number = null;
         if (dashboardName != '') {
             let dashboardIndex: number = this.dashboards.findIndex(
-                d => d.name == dashboardName
+                d => d.name === dashboardName
                      &&
-                     d.state == dashboardState
+                     d.state === dashboardState
             );
             if (dashboardIndex >= 0) {
                 dashboardID = this.dashboards[dashboardIndex].id;
                 this.canvasTasks = this.canvasTasks.filter(
-                    tsk => tsk.linkedDashboardID == dashboardID
+                    tsk => tsk.linkedDashboardID === dashboardID
                 );
             };
         };
