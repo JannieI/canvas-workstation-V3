@@ -36,12 +36,12 @@ export class DashboardNewComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose();
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -183,7 +183,7 @@ export class DashboardNewComponent implements OnInit {
         var inp: any = document.getElementById("get-files");
 
         // Return if nothing selected
-        if (inp.files.length == 0) {
+        if (inp.files.length === 0) {
             return;
         };
 
@@ -270,15 +270,15 @@ export class DashboardNewComponent implements OnInit {
         // Create a new Dashboard, and close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCreate', '@Start');
 
-        if (this.dashboardCode == '') {
+        if (this.dashboardCode === '') {
             this.errorMessage = 'Code compulsory';
             return;
         };
-        if (this.dashboardName == '') {
+        if (this.dashboardName === '') {
             this.errorMessage = 'Name compulsory';
             return;
         };
-        if (this.dashboardDescription == '') {
+        if (this.dashboardDescription === '') {
             this.errorMessage = 'Description compulsory';
             return;
         };
@@ -348,7 +348,7 @@ export class DashboardNewComponent implements OnInit {
                                     this.globalVariableService.addResource('dashboardLayouts', newDashboardLayout)
                                         .then(res => {
                                             this.widgetLayouts.forEach(wl => {
-                                                if (wl.dashboardLayoutID == dashboardLayoutID) {
+                                                if (wl.dashboardLayoutID === dashboardLayoutID) {
                                                     let newWidgetLayout: WidgetLayout = wl;
                                                     newWidgetLayout._id = null;
                                                     newWidgetLayout.id = null;
