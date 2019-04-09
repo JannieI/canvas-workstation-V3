@@ -111,13 +111,6 @@
             width: 140px;
         }
 
-        .graphAreaWatchList {
-            display: inline-block; 
-            font-size: 0.5rem;
-            margin-left: 12px;
-            text-align: left;
-        }
-
         .graphAreaParentNode {
             display: inline-block; 
             font-size: 0.5rem;
