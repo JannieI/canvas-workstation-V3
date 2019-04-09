@@ -35,7 +35,7 @@ export class DataCombinationComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -104,7 +104,7 @@ export class DataCombinationComponent implements OnInit {
         this.selectedRowIndexLH = index;
 
         let dsIndex: number = -1;
-        dsIndex = this.datasources.findIndex(ds => ds.id == id);
+        dsIndex = this.datasources.findIndex(ds => ds.id === id);
         if (dsIndex != -1) {
             this.selectedDatasource = this.datasources[dsIndex];
             this.dataFieldNames = this.selectedDatasource.dataFields;
@@ -124,7 +124,7 @@ export class DataCombinationComponent implements OnInit {
         this.selectedRowIndexRH = index;
 
         let dsIndex: number = -1;
-        dsIndex = this.datasources.findIndex(ds => ds.id == id);
+        dsIndex = this.datasources.findIndex(ds => ds.id === id);
         if (dsIndex != -1) {
             this.selectedDatasource = this.datasources[dsIndex];
             this.dataFieldNames = this.selectedDatasource.dataFields;
