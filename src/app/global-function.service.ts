@@ -36,7 +36,7 @@ export class GlobalFunctionService {
         }
 
         // Log to DB if loggin switched on GLOBALLY
-        if (this.sessionLogging == true) {
+        if (this.sessionLogging === true) {
           console.log('-- Later on Logging to DB / File: @' + componentName + ' - ' + functionName + ': ' + message);
         }
     }
