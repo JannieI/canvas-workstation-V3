@@ -37,7 +37,7 @@ export class DashboardShareComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -112,7 +112,7 @@ export class DashboardShareComponent implements OnInit {
         this.errorMessage = '';
 
         // Delete permissions records if changed away from Access List
-        if (this.originalAccessType == 'AccessList'  &&  this.accessType != 'AccessList') {
+        if (this.originalAccessType === 'AccessList'  &&  this.accessType != 'AccessList') {
             // Get all the IDs and delete
             let dPIDs: number[] = [];
             this.dashboardPermissions.forEach(dp => {
@@ -151,7 +151,7 @@ export class DashboardShareComponent implements OnInit {
         };
 
         // Validation
-        if (this.userID == ''  &&  this.groupName == '') {
+        if (this.userID === ''  &&  this.groupName === '') {
             this.errorMessage = 'Please fill in either a UserID or a Group Name'
             return;
         };
@@ -163,11 +163,11 @@ export class DashboardShareComponent implements OnInit {
         let isFound: boolean = false;
         this.dashboardPermissions.forEach(dp => {
             if (
-                 (this.userID != ''  &&  dp.userID == this.userID)
+                 (this.userID != ''  &&  dp.userID === this.userID)
                  ||
                  (this.groupName != ''
                     &&
-                    dp.groupName.toLowerCase() == this.groupName.toLowerCase()
+                    dp.groupName.toLowerCase() === this.groupName.toLowerCase()
                  )
                 ) {
                      isFound = true;
@@ -228,7 +228,7 @@ export class DashboardShareComponent implements OnInit {
             .then(res => {
                 let index: number = -1;
                 for(var i = 0; i < this.dashboardPermissions.length; i++) {
-                    if (this.dashboardPermissions[i].id == id) {
+                    if (this.dashboardPermissions[i].id === id) {
                         index = i;
                     };
                 };
@@ -254,7 +254,7 @@ export class DashboardShareComponent implements OnInit {
         // Set group info
         this.groupName = ev.srcElement.value.toString();
         this.groups.forEach(g => {
-            if (g.name.toLowerCase() == this.groupName.toLowerCase()) {
+            if (g.name.toLowerCase() === this.groupName.toLowerCase()) {
                 this.groupID = g.id;
             };
         });
@@ -277,7 +277,7 @@ export class DashboardShareComponent implements OnInit {
         // Toggle access
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
-            if (this.dashboardPermissions[i].id == id) {
+            if (this.dashboardPermissions[i].id === id) {
                 this.dashboardPermissions[i].canViewRight = ! this.dashboardPermissions[i].canViewRight;
                 index = i;
 
@@ -314,7 +314,7 @@ export class DashboardShareComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
-            if (this.dashboardPermissions[i].id == id) {
+            if (this.dashboardPermissions[i].id === id) {
                 this.dashboardPermissions[i].canEditRight = ! this.dashboardPermissions[i].canEditRight;
                 index = i;
 
@@ -352,7 +352,7 @@ export class DashboardShareComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
-            if (this.dashboardPermissions[i].id == id) {
+            if (this.dashboardPermissions[i].id === id) {
                 this.dashboardPermissions[i].canSaveRight = ! this.dashboardPermissions[i].canSaveRight;
                 index = i;
 
@@ -390,7 +390,7 @@ export class DashboardShareComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
-            if (this.dashboardPermissions[i].id == id) {
+            if (this.dashboardPermissions[i].id === id) {
                 this.dashboardPermissions[i].canDeleteRight = ! this.dashboardPermissions[i].canDeleteRight;
                 index = i;
 
@@ -429,7 +429,7 @@ export class DashboardShareComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
-            if (this.dashboardPermissions[i].id == id) {
+            if (this.dashboardPermissions[i].id === id) {
                 this.dashboardPermissions[i].canAddDatasource = ! this.dashboardPermissions[i].canAddDatasource;
                 index = i;
 
@@ -468,7 +468,7 @@ export class DashboardShareComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
-            if (this.dashboardPermissions[i].id == id) {
+            if (this.dashboardPermissions[i].id === id) {
                 this.dashboardPermissions[i].canGrantAccess = ! this.dashboardPermissions[i].canGrantAccess;
                 index = i;
 
