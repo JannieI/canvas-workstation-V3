@@ -37,7 +37,7 @@ export class MyProfileComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -68,7 +68,7 @@ export class MyProfileComponent implements OnInit {
         this.globalVariableService.getResource('dashboardPermissions')
             .then(res => {
                 this.dashboardPermissions = res
-                    .filter(dp => dp.dashboardID == 
+                    .filter(dp => dp.dashboardID === 
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID)
                     .slice();
             })
@@ -106,7 +106,7 @@ export class MyProfileComponent implements OnInit {
 
         //     this.favDashboards.forEach( d => {
 
-        //         if (c == 0) {
+        //         if (c === 0) {
         //             row0.push(d.name);
         //         } else {
         //             row1.push(d.name);
@@ -114,7 +114,7 @@ export class MyProfileComponent implements OnInit {
 
         //         // Increment, mod 2
         //         c = c + 1;
-        //         if (c == 2) {
+        //         if (c === 2) {
         //             c = 0
         //         };
 
