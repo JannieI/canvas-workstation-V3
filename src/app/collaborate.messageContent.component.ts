@@ -37,7 +37,7 @@ export class CollaborateMessageContentComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -128,7 +128,7 @@ export class CollaborateMessageContentComponent implements OnInit {
                     console.error('Error in Collaborate.messageContant canvasUsers: ' + err)
                 });
 
-            if (this.existingMessagge != null  &&  this.messageAction == 'reply') {
+            if (this.existingMessagge != null  &&  this.messageAction === 'reply') {
                 this.selectedUser = this.existingMessagge.sender;
             };
 
@@ -159,16 +159,16 @@ export class CollaborateMessageContentComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSend', '@Start');
 
         // Validation
-        if (this.selectedUser == ''  &&  this.selectedGroup == '') {
+        if (this.selectedUser === ''  &&  this.selectedGroup === '') {
             this.errorMessage = 'User and Group cannot both be empty';
             return;
         };
 
-        if (this.subject == '') {
+        if (this.subject === '') {
             this.errorMessage = 'Subject must be completed';
             return;
         };
-        if (this.body == '') {
+        if (this.body === '') {
             this.errorMessage = 'Body must be completed';
             return;
         };
@@ -209,7 +209,7 @@ export class CollaborateMessageContentComponent implements OnInit {
             for (var i = 0; i < this.users.length; i++) {
                 if (this.users[i].groups.map(x => x.toLowerCase()).indexOf(
                     this.selectedGroup.toLowerCase()) >= 0) {
-                    if (i == 0) {
+                    if (i === 0) {
                         recipients[0].userID = this.users[i].userID;
                     } else {
                         recipients.push({
@@ -245,7 +245,7 @@ export class CollaborateMessageContentComponent implements OnInit {
         }
 
         // Fill in old info if reply/forward 
-        if (this.messageAction == 'reply'  ||  this.messageAction == 'forward') {
+        if (this.messageAction === 'reply'  ||  this.messageAction === 'forward') {
             newMessage.threadID = this.existingMessagge.threadID;
             newMessage.replyToMessageID = this.existingMessagge.id;
         }
