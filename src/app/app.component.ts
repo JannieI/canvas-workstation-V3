@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
         event.preventDefault();
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
 
             if (this.showWidgetFullScreenWidth > 0) {
                 this.clickCloseFullScreen();
@@ -96,56 +96,56 @@ export class AppComponent implements OnInit {
 
 
         // Ignore certain ones
-        if (event.key == 'Tab'  ||  event.key == 'Control') {
+        if (event.key === 'Tab'  ||  event.key === 'Control') {
             return;
         }
 
         // Known ones
-        if (event.code == 'KeyZ'  &&  (event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'KeyZ'  &&  (event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickMenuEditUndo();
             return;
         };
-        if (event.code == 'KeyY'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
+        if (event.code === 'KeyY'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
             this.clickMenuEditRedo();
             return;
         };
-        if (event.code == 'KeyZ'  &&  (event.ctrlKey)  &&  (event.shiftKey) ) {
+        if (event.code === 'KeyZ'  &&  (event.ctrlKey)  &&  (event.shiftKey) ) {
             this.clickMenuEditRedo();
             return;
         };
-        if (event.code == 'KeyC'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
+        if (event.code === 'KeyC'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
             this.clickMenuWidgetCopy();
             return;
         };
-        if (event.code == 'KeyV'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
+        if (event.code === 'KeyV'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
             console.log('xx this.clipboardWidget', this.clipboardWidget)
             if (this.clipboardWidget != null  &&  this.clipboardWidget != undefined) {
                 this.clickMenuWidgetPaste();
                 return;
             };
         };
-        if (event.code == 'Delete'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
+        if (event.code === 'Delete'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
             this.clickMenuPaletteDelete();
             return;
         };
-        if (event.code == 'Home'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
+        if (event.code === 'Home'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
             this.dashboardPageFirst();
             return;
         };
-        if (event.code == 'PageUp'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
+        if (event.code === 'PageUp'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
             this.dashboardPageUp();
             return;
         };
-        if (event.code == 'PageDown'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
+        if (event.code === 'PageDown'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
             this.dashboardPageDown();
             return;
         };
-        if (event.code == 'End'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
+        if (event.code === 'End'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
             this.dashboardPageLast();
             return;
         };
-        if (event.code == 'Backspace'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  &&
-            this.globalVariableService.lastDashboardOpened.wasHyperlink == true
+        if (event.code === 'Backspace'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  &&
+            this.globalVariableService.lastDashboardOpened.wasHyperlink === true
             &&  this.globalVariableService.lastDashboardOpened.lastDashboardID != null
             &&  this.globalVariableService.lastDashboardOpened.lastDashboardTabID != null) {
                 this.globalVariableService.lastDashboardOpened.wasHyperlink = false;
@@ -158,8 +158,8 @@ export class AppComponent implements OnInit {
         }
 
         // Move with Arrow
-        if (event.key == 'ArrowRight'  ||  event.key == 'ArrowDown'  ||
-            event.key == 'ArrowLeft'   ||  event.key == 'ArrowUp') {
+        if (event.key === 'ArrowRight'  ||  event.key === 'ArrowDown'  ||
+            event.key === 'ArrowLeft'   ||  event.key === 'ArrowUp') {
 
             // Has to be in editMode
             if (!this.editMode) {
@@ -702,7 +702,7 @@ export class AppComponent implements OnInit {
 
                         // Delete W if it in our stash
                         for (var i = 0; i < this.currentWidgets.length; i++) {
-                            if (this.currentWidgets[i].id == w.id) {
+                            if (this.currentWidgets[i].id === w.id) {
                                 this.currentWidgets.splice(i, 1);
                             };
                         };
@@ -762,7 +762,7 @@ export class AppComponent implements OnInit {
 
                                         let dashboardIndex: number = this.globalVariableService
                                             .dashboards.findIndex(
-                                                d => d.id == this.globalVariableService.
+                                                d => d.id === this.globalVariableService.
                                                     currentDashboardInfo.value.currentDashboardID
                                             );
 
@@ -770,7 +770,7 @@ export class AppComponent implements OnInit {
                                             this.currentDashboardBackgroundColor = this.globalVariableService.dashboards[dashboardIndex].backgroundColor;
 
                                             let bgIndex: number = this.globalVariableService.canvasBackgroundcolors
-                                                .findIndex(bc => bc.name == this.currentDashboardBackgroundColor);
+                                                .findIndex(bc => bc.name === this.currentDashboardBackgroundColor);
                                             this.currentDashboardBackgroundColorCode = 
                                                 this.currentDashboardBackgroundColorDefault;
                                             if (bgIndex >= 0) {
@@ -783,7 +783,7 @@ export class AppComponent implements OnInit {
                                             if (templateDashboardID != null  &&  templateDashboardID > 0) {
                                                 // Load Template
                                                 this.templateWidgets = this.globalVariableService.widgets.filter(w =>
-                                                    w.dashboardID == templateDashboardID
+                                                    w.dashboardID === templateDashboardID
                                                 );
 
                                             } else {
@@ -796,12 +796,12 @@ export class AppComponent implements OnInit {
 
                                         // Cater for -1, ie First T
                                         if (this.globalVariableService.currentDashboardInfo.value
-                                            .currentDashboardTabIndex == -1) {
+                                            .currentDashboardTabIndex === -1) {
                                                 this.globalVariableService.currentDashboardInfo
                                                     .value.currentDashboardTabIndex = 0
                                         };
                                         if (this.globalVariableService.currentDashboardInfo.value
-                                            .currentDashboardTabID == -1) {
+                                            .currentDashboardTabID === -1) {
                                                 if (this.globalVariableService.
                                                     currentDashboardTabs.length > 0) {
                                                 this.globalVariableService.currentDashboardInfo
@@ -823,10 +823,10 @@ export class AppComponent implements OnInit {
                                             this.currentTabColor = this.globalVariableService.
                                                 currentDashboardTabs[this.currentDashboardTabIndex].color;
                                             };
-                                        if (this.currentTabBackgroundColor == ''  ||  this.currentTabBackgroundColor == null) {
+                                        if (this.currentTabBackgroundColor === ''  ||  this.currentTabBackgroundColor === null) {
                                             this.currentTabBackgroundColor = '#192b35';
                                         };
-                                        if (this.currentTabColor == ''  ||  this.currentTabColor == null) {
+                                        if (this.currentTabColor === ''  ||  this.currentTabColor === null) {
                                             this.currentTabColor = 'white';
                                         };
                                         this.currentDatasources = this.globalVariableService.
@@ -881,7 +881,7 @@ export class AppComponent implements OnInit {
                                 let temp: CanvasAction[] = this.globalVariableService.actions.filter(act =>
                                     act.created > new Date(this.globalVariableService.sessionDateTimeLoggedin)
                                     &&
-                                    act.createor == this.globalVariableService.currentUser.userID
+                                    act.createor === this.globalVariableService.currentUser.userID
                                 );
 
                                 // Only snap if there were activities
@@ -951,8 +951,8 @@ export class AppComponent implements OnInit {
         //      lastLoginDt, token
         //      - if nothing found  -->  proceed to login form
         //      - if lastLoginDt > 24hrs old  -->  login
-        //      - if currentUserID == null or ''  -->  Login
-        //      - if currentCanvasServer == null or ''  -->  Login
+        //      - if currentUserID === null or ''  -->  Login
+        //      - if currentCanvasServer === null or ''  -->  Login
         //      - if expiryDate (on token) is too old   -->  login
         //    - Else, send a Verify token request to the Canvas-Server (ASYNC)
         //      - If server returned error: open Login form
@@ -989,27 +989,27 @@ export class AppComponent implements OnInit {
 
                     // Validate that all fields filled in
                     let localInfoGood: boolean = true;
-                    if (res[0].canvasServerName == null  ||  res[0].canvasServerName == '') {
+                    if (res[0].canvasServerName === null  ||  res[0].canvasServerName === '') {
                         console.warn('App ngOnInit: canvasServerName is bad - ', res[0].canvasServerName);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
-                    if (res[0].canvasServerURI == null  ||  res[0].canvasServerURI == '') {
+                    if (res[0].canvasServerURI === null  ||  res[0].canvasServerURI === '') {
                         console.warn('App ngOnInit: canvasServerURI is bad - ', res[0].canvasServerURI);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
-                    if (res[0].currentCompany == null  ||  res[0].currentCompany == '') {
+                    if (res[0].currentCompany === null  ||  res[0].currentCompany === '') {
                         console.warn('App ngOnInit: currentCompany is bad - ', res[0].currentCompany);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
-                    if (res[0].currentUserID == null  ||  res[0].currentUserID == '') {
+                    if (res[0].currentUserID === null  ||  res[0].currentUserID === '') {
                         console.warn('App ngOnInit: currentUserID is bad - ', res[0].currentUserID);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
-                    if (res[0].currentToken == null  ||  res[0].currentToken == '') {
+                    if (res[0].currentToken === null  ||  res[0].currentToken === '') {
                         console.warn('App ngOnInit: currentToken is bad - ', res[0].currentToken);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
@@ -1146,7 +1146,7 @@ export class AppComponent implements OnInit {
         this.showModalLanding = false;
         // this.document.body.style.backgroundImage ='../images/BarChart.png';
 
-        if (action == 'New') {
+        if (action === 'New') {
             this.showModalDashboardNew = true;
         } else {
             if (this.globalVariableService.openDashboardFormOnStartup) {
@@ -1196,7 +1196,7 @@ export class AppComponent implements OnInit {
         this.showModalDashboardNew = false;
 
         // Show help for first time users
-        if (action == 'Created') {
+        if (action === 'Created') {
             // When creating a D, one can also Edit it
             this.globalVariableService.editMode.next(true);
 
@@ -1206,7 +1206,7 @@ export class AppComponent implements OnInit {
         } else {
             // If chose Add Dashboard on Landing page, and then pressed Esc (nothing new
             // added), then re-show the Landing page
-            if (this.globalVariableService.currentDashboardInfo.value == null) {
+            if (this.globalVariableService.currentDashboardInfo.value === null) {
                 this.showModalLanding = true;
             };
         };
@@ -1223,7 +1223,7 @@ export class AppComponent implements OnInit {
 
         // If chose Add Dashboard on Landing page, and then pressed Esc (nothing new
         // added), then re-show the Landing page
-        if (this.globalVariableService.currentDashboardInfo.value == null) {
+        if (this.globalVariableService.currentDashboardInfo.value === null) {
             this.showModalLanding = true;
         } else {;
 
@@ -1301,12 +1301,12 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         // Refresh any changes to the current D
-        if (action == 'Saved') {
+        if (action === 'Saved') {
             this.currentDashboardName = this.selectedDashboard.name;
             this.currentDashboardBackgroundColor = this.selectedDashboard.backgroundColor;
 
             let bgIndex: number = this.globalVariableService.canvasBackgroundcolors
-                .findIndex(bc => bc.name == this.currentDashboardBackgroundColor);
+                .findIndex(bc => bc.name === this.currentDashboardBackgroundColor);
             this.currentDashboardBackgroundColorCode =
                 this.currentDashboardBackgroundColorDefault;
             if (bgIndex >= 0) {
@@ -1378,7 +1378,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDashboardDelete', '@Start');
 
-        if (action == 'Deleted') {
+        if (action === 'Deleted') {
             this.clearDashboard();
             this.showMessage(
                 'Click Dashboard Add or Open to continue with another dashboard',
@@ -1463,7 +1463,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseShapeDelete', '@Start');
 
         // Delete if so requested
-        if (action == 'Delete') {
+        if (action === 'Delete') {
 
             this.deleteWidget('Shape');
         };
@@ -1478,14 +1478,14 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseShapeDeleteAll', '@Start');
 
         // Delete if so requested
-        if (action == 'Delete') {
+        if (action === 'Delete') {
 
             let deleteWidget: Widget;
 
             for (var i = this.currentWidgets.length - 1; i >= 0 ; i--) {
 
                 // Delete ALL the Shapes
-                if ( this.currentWidgets[i].widgetType == 'Shape') {
+                if ( this.currentWidgets[i].widgetType === 'Shape') {
 
                     this.deleteWidget('Shape', this.currentWidgets[i].id);
                 };
@@ -1992,31 +1992,31 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.continueToTransformations = false;
                 this.showModalDataTransformation = true;
             } else {
-                if (returnedDatasource.createMethod == 'directFileCSV') {
+                if (returnedDatasource.createMethod === 'directFileCSV') {
                     this.showModalDataDirectFileCSV = true;
-                } else if (returnedDatasource.createMethod == 'directFileJSON') {
+                } else if (returnedDatasource.createMethod === 'directFileJSON') {
                     this.showModalDataDirectFileJSON = true;
-                } else if (returnedDatasource.createMethod == 'directFileSpreadsheet') {
+                } else if (returnedDatasource.createMethod === 'directFileSpreadsheet') {
                     this.showModalDataDirectFileSpreadsheet = true;
-                } else if (returnedDatasource.createMethod == 'directGoogleSheets') {
+                } else if (returnedDatasource.createMethod === 'directGoogleSheets') {
                     this.showModalDataDirectGoogleSheets = true;
-                } else if (returnedDatasource.createMethod == 'directQueryBuilder') {
+                } else if (returnedDatasource.createMethod === 'directQueryBuilder') {
                     this.showModalDataDirectQueryBuilder = true;
-                } else if (returnedDatasource.createMethod == 'directSQLEditor') {
+                } else if (returnedDatasource.createMethod === 'directSQLEditor') {
                     this.showModalDataDirectSQLEditor = true
-                } else if (returnedDatasource.createMethod == 'directNoSQL') {
+                } else if (returnedDatasource.createMethod === 'directNoSQL') {
                     this.showModalDataDirectNoSQL = true
-                } else if (returnedDatasource.createMethod == 'directWeb') {
+                } else if (returnedDatasource.createMethod === 'directWeb') {
                     this.showModalDataDirectWeb = true
-                } else if (returnedDatasource.createMethod == 'managedQueryBuilder') {
+                } else if (returnedDatasource.createMethod === 'managedQueryBuilder') {
                     this.showModalDataManagedQueryBuilder = true;
-                } else if (returnedDatasource.createMethod == 'managedSQLEditor') {
+                } else if (returnedDatasource.createMethod === 'managedSQLEditor') {
                     this.showModalDataManagedSQLEditor = true;
-                } else if (returnedDatasource.createMethod == 'managedGraphQLEditor') {
+                } else if (returnedDatasource.createMethod === 'managedGraphQLEditor') {
                     this.showModalDataManagedGraphQLEditor = true;
-                } else if (returnedDatasource.createMethod == 'managedNoSQLEditor') {
+                } else if (returnedDatasource.createMethod === 'managedNoSQLEditor') {
                     this.showModalDataManagedNoSQLEditor = true;
-                } else if (returnedDatasource.createMethod == 'managedNeo4jEditor') {
+                } else if (returnedDatasource.createMethod === 'managedNeo4jEditor') {
                     this.showModalDataManagedNeo4jEditor = true;
                 } else {
                     this.showMessage(
@@ -2243,7 +2243,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetDelete', '@Start');
 
         // Delete, if so requested
-        if (action == 'delete') {
+        if (action === 'delete') {
 
             // Add to Action log
             this.globalVariableService.actionUpsert(
@@ -2304,7 +2304,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseTableDelete', '@Start');
 
         // Delete if so requested
-        if (action == 'Delete') {
+        if (action === 'Delete') {
 
             // Add to Action log
             this.globalVariableService.actionUpsert(
@@ -2335,7 +2335,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseSlicerDelete', '@Start');
 
         // Delete if so requested
-        if (action == 'Delete') {
+        if (action === 'Delete') {
 
             // Add to Action log
             this.globalVariableService.actionUpsert(
@@ -2465,7 +2465,7 @@ export class AppComponent implements OnInit {
 
         this.showModalDashboardLogout = false;
 
-        if (action == 'LoggedOut') {
+        if (action === 'LoggedOut') {
             this.showModalDashboardLogin = true;
         };
     }
@@ -2593,7 +2593,7 @@ export class AppComponent implements OnInit {
 
             // Find the Dasboard
             let draftDashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-                d => d.id == this.globalVariableService.currentDashboardInfo.value
+                d => d.id === this.globalVariableService.currentDashboardInfo.value
                     .currentDashboardID
             );
 
@@ -2615,7 +2615,7 @@ export class AppComponent implements OnInit {
         } else {
 
             let originalDashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-                d => d.id == this.globalVariableService.currentDashboardInfo.value
+                d => d.id === this.globalVariableService.currentDashboardInfo.value
                     .currentDashboardID
             );
 
@@ -2624,7 +2624,7 @@ export class AppComponent implements OnInit {
                 let originalDashboard: Dashboard = this.globalVariableService
                     .dashboards[originalDashboardIndex];
                 console.log('xx originalDashboard', originalDashboard)
-                if (originalDashboard.state == 'Complete') {
+                if (originalDashboard.state === 'Complete') {
                     if (originalDashboard.draftID != null) {
 
                         console.log('xx call refreshDinfo with ', originalDashboard.draftID)
@@ -2713,7 +2713,7 @@ export class AppComponent implements OnInit {
         );
 
         // Can only undo if something has been done before
-        if (ourActions.length == 0) {
+        if (ourActions.length === 0) {
             console.log('Nothing to undo')
             return;
         };
@@ -2731,9 +2731,9 @@ export class AppComponent implements OnInit {
 
         // Get last action
         let filteredActions: CanvasAction[] = [];
-        filteredActions = ourActions.filter(act => act.id == maxActID);
+        filteredActions = ourActions.filter(act => act.id === maxActID);
 
-        if (filteredActions[0].undoID == null) {
+        if (filteredActions[0].undoID === null) {
             // Previous was not an UNDO, so just reverse it
             let widgetID: number = null;
             if (filteredActions[0].newWidget != null) {
@@ -2755,15 +2755,15 @@ export class AppComponent implements OnInit {
                 filteredActions[0].oldWidget
             );
 
-            if (filteredActions[0].objectType == 'Widget') {
-                if (filteredActions[0].oldWidget == null) {
+            if (filteredActions[0].objectType === 'Widget') {
+                if (filteredActions[0].oldWidget === null) {
                     this.deleteWidget(null, filteredActions[0].newWidget.id);
                 } else {
 
                     // TODO - do this better in a DB
                     if (this.currentWidgetCheckpoints.length > 0) {
                         this.currentWidgetCheckpoints.forEach(chk => {
-                            if (chk.widgetID == filteredActions[0].oldWidget.id) {
+                            if (chk.widgetID === filteredActions[0].oldWidget.id) {
                                 chk.parentWidgetIsDeleted = false;
                             };
                         });
@@ -2771,7 +2771,7 @@ export class AppComponent implements OnInit {
 
                     if (this.globalVariableService.currentWidgetCheckpoints.length > 0) {
                         this.globalVariableService.currentWidgetCheckpoints.forEach(chk => {
-                            if (chk.widgetID == filteredActions[0].oldWidget.id) {
+                            if (chk.widgetID === filteredActions[0].oldWidget.id) {
                                 chk.parentWidgetIsDeleted = false;
                             };
                         });
@@ -2779,7 +2779,7 @@ export class AppComponent implements OnInit {
 
                     if (this.globalVariableService.widgetCheckpoints.length > 0) {
                         this.globalVariableService.widgetCheckpoints.forEach(chk => {
-                            if (chk.widgetID == filteredActions[0].oldWidget.id) {
+                            if (chk.widgetID === filteredActions[0].oldWidget.id) {
                                 chk.parentWidgetIsDeleted = false;
                                 this.globalVariableService.saveResource('widgetCheckpoints', chk);
                             };
@@ -2787,7 +2787,7 @@ export class AppComponent implements OnInit {
                     };
 
                     // Add (previous action was a Delete) / Save to DB
-                    if (filteredActions[0].actionType == 'Delete') {
+                    if (filteredActions[0].actionType === 'Delete') {
                         this.globalVariableService.addResource('widgets', filteredActions[0].oldWidget);
 
                     } else {
@@ -2808,7 +2808,7 @@ export class AppComponent implements OnInit {
             let tempActionIDs: number[] = [];
             for (var i = ourActions.length - 1; i >= 0; i--) {
                 if (ourActions[i].id < lastUndoID) {
-                    if (ourActions[i].undoID == null) {
+                    if (ourActions[i].undoID === null) {
                         tempActionIDs.push(ourActions[i].id);
                     } else {
                         break;
@@ -2820,7 +2820,7 @@ export class AppComponent implements OnInit {
             };
 
             // Can only undo if something has been done before
-            if (tempActionIDs.length == 0) {
+            if (tempActionIDs.length === 0) {
                 console.log('Nothing more to undo')
 
                 this.menuOptionClickPostAction();
@@ -2828,10 +2828,10 @@ export class AppComponent implements OnInit {
             };
 
             filteredActions = this.globalVariableService.actions.filter(
-                    act => act.id == undoActID);
+                    act => act.id === undoActID);
 
             // Diff Object Types
-            if (filteredActions[0].objectType == 'Widget') {
+            if (filteredActions[0].objectType === 'Widget') {
 
                 // Add to Actions
                 this.globalVariableService.actionUpsert(
@@ -2841,7 +2841,7 @@ export class AppComponent implements OnInit {
                     filteredActions[0].newWidget.id,
                     'Widget',
                     'Edit',
-                    'Undo ' + filteredActions[0].redoID == null? 'DO' : 'REDO',
+                    'Undo ' + filteredActions[0].redoID === null? 'DO' : 'REDO',
                     'App clickMenuEditUndo',
                     filteredActions[0].id,
                     null,
@@ -2849,28 +2849,28 @@ export class AppComponent implements OnInit {
                     filteredActions[0].oldWidget
                 );
 
-                if (filteredActions[0].oldWidget == null) {
+                if (filteredActions[0].oldWidget === null) {
                     this.deleteWidget(null, filteredActions[0].newWidget.id);
                 } else {
 
                     // TODO - do this better in a DB
                     if (this.currentWidgetCheckpoints.length > 0) {
                         this.currentWidgetCheckpoints.forEach(chk => {
-                            if (chk.widgetID == filteredActions[0].oldWidget.id) {
+                            if (chk.widgetID === filteredActions[0].oldWidget.id) {
                                 chk.parentWidgetIsDeleted = false;
                             };
                         });
                     };
                     if (this.globalVariableService.currentWidgetCheckpoints.length > 0) {
                         this.globalVariableService.currentWidgetCheckpoints.forEach(chk => {
-                            if (chk.widgetID == filteredActions[0].oldWidget.id) {
+                            if (chk.widgetID === filteredActions[0].oldWidget.id) {
                                 chk.parentWidgetIsDeleted = false;
                             };
                         });
                     };
                     if (this.globalVariableService.widgetCheckpoints.length > 0) {
                         this.globalVariableService.widgetCheckpoints.forEach(chk => {
-                            if (chk.widgetID == filteredActions[0].oldWidget.id) {
+                            if (chk.widgetID === filteredActions[0].oldWidget.id) {
                                 chk.parentWidgetIsDeleted = false;
                                 this.globalVariableService.saveResource('widgetCheckpoints', chk);
                             };
@@ -2923,7 +2923,7 @@ export class AppComponent implements OnInit {
         );
 
         // TODO - decide if lates / -1 is best choice here
-        if (ourActions.length == 0) {
+        if (ourActions.length === 0) {
             console.log('Nothing to Redo');
             return;
         };
@@ -2938,7 +2938,7 @@ export class AppComponent implements OnInit {
             if (ourActions[i].redoID != null) {
                 redoIDs.push(ourActions[i].redoID)
             } else {
-                if (ourActions[i].undoID == null) {
+                if (ourActions[i].undoID === null) {
                     // Previous was not an UNDO, so cannot reverse it
                     console.log('Prev NOT an undo, so cannot redo it')
                     break;
@@ -2961,8 +2961,8 @@ export class AppComponent implements OnInit {
                             ourActions[i].oldWidget);
 
                             // Diff Object Types
-                            if (ourActions[i].objectType == 'Widget') {
-                                if (ourActions[i].oldWidget == null) {
+                            if (ourActions[i].objectType === 'Widget') {
+                                if (ourActions[i].oldWidget === null) {
                                     this.deleteWidget('Graph',ourActions[i].newWidget.id);
                                 } else {
 
@@ -3006,20 +3006,20 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        if (size == 'None') {
+        if (size === 'None') {
             this.currentWidgets.forEach(w => {w.isSelected  = false});
             this.globalVariableService.currentWidgets.forEach(w => {
                 w.isSelected  = false
             });
         };
-        if (size == 'All') {
+        if (size === 'All') {
             this.currentWidgets.forEach(w => w.isSelected = true);
             this.globalVariableService.currentWidgets.forEach(w => w.isSelected = true);
         };
-        if (size == 'Auto') {
+        if (size === 'Auto') {
             let selectedWidgets: Widget[] = this.currentWidgets.filter(
                 w => (w.isSelected) );
-            if (selectedWidgets.length == 0) {
+            if (selectedWidgets.length === 0) {
                 this.currentWidgets.forEach(w => w.isSelected = true);
                 this.globalVariableService.currentWidgets.forEach(w => w.isSelected = true);
             } else {
@@ -3136,7 +3136,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickDashboardOpen', '@Start');
 
         // Only for Draft
-        if (this.globalVariableService.currentUser.userID == '') {
+        if (this.globalVariableService.currentUser.userID === '') {
             this.showMessage(
                 'Log in first',
                 'StatusBar',
@@ -3243,7 +3243,7 @@ export class AppComponent implements OnInit {
 
         // Set D
         this.globalVariableService.currentDashboards.forEach(d => {
-            if (d.id == this.globalVariableService.currentDashboardInfo
+            if (d.id === this.globalVariableService.currentDashboardInfo
                 .value.currentDashboardID) {
                 this.selectedDashboard = JSON.parse(JSON.stringify(d));
             };
@@ -3284,7 +3284,7 @@ export class AppComponent implements OnInit {
 
         // Check D state
         let dashboardIndex: number = this.globalVariableService.currentDashboards.findIndex(
-            d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+            d => d.id === this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         );
         if (dashboardIndex >= 0) {
             if (this.globalVariableService.currentDashboards[dashboardIndex].state
@@ -3327,7 +3327,7 @@ export class AppComponent implements OnInit {
 
         // Check D state
         let dashboardIndex: number = this.globalVariableService.currentDashboards.findIndex(
-            d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+            d => d.id === this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         );
         if (dashboardIndex >= 0) {
             if (this.globalVariableService.currentDashboards[dashboardIndex].state
@@ -3459,7 +3459,7 @@ export class AppComponent implements OnInit {
         // Set D
         this.globalVariableService.currentDashboards.forEach(d => {
             console.warn('oi', d, this.globalVariableService.currentDashboardInfo.value.currentDashboardID)
-            if (d.id == this.globalVariableService.currentDashboardInfo
+            if (d.id === this.globalVariableService.currentDashboardInfo
                 .value.currentDashboardID) {
                 this.selectedDashboard = d;
             };
@@ -3483,7 +3483,7 @@ export class AppComponent implements OnInit {
         // Add for current User
         if (!this.showFavouriteDashboard) {
             this.globalVariableService.canvasUsers.forEach( u => {
-                if (u.userID == userID) {
+                if (u.userID === userID) {
                     if (u.favouriteDashboards.indexOf(dashboardID) < 0) {
                         u.favouriteDashboards.push(dashboardID);
                     };
@@ -3492,7 +3492,7 @@ export class AppComponent implements OnInit {
             });
         } else {
             this.globalVariableService.canvasUsers.forEach( u => {
-                if (u.userID == userID) {
+                if (u.userID === userID) {
                     if (u.favouriteDashboards.indexOf(dashboardID) >= 0) {
                         u.favouriteDashboards = u.favouriteDashboards.filter(f =>
                             f != dashboardID
@@ -3508,7 +3508,7 @@ export class AppComponent implements OnInit {
 
         // Toggle global D
         this.globalVariableService.currentDashboards.forEach(d => {
-            if (d.id == this.globalVariableService.currentDashboardInfo
+            if (d.id === this.globalVariableService.currentDashboardInfo
                 .value.currentDashboardID) {
                 // d.is;
             };
@@ -3525,7 +3525,7 @@ export class AppComponent implements OnInit {
 
         // Set D
         this.globalVariableService.currentDashboards.forEach(d => {
-            if (d.id == this.globalVariableService.currentDashboardInfo
+            if (d.id === this.globalVariableService.currentDashboardInfo
                 .value.currentDashboardID) {
                 this.selectedDashboard = d;
             };
@@ -4650,10 +4650,10 @@ export class AppComponent implements OnInit {
         };
 
         // Indicate edit W and open Editor, which will work with selected W
-        if (widgetIndex == null) {
+        if (widgetIndex === null) {
 
 
-            if (widgetID == null) {
+            if (widgetID === null) {
 
                 // Can only edit one W at a time, so ignore if multiple selected
                 if (!this.checkForOnlyOneWidget()) {
@@ -4664,13 +4664,13 @@ export class AppComponent implements OnInit {
                 };
 
                 this.currentWidgets.forEach(w => {
-                    if (w.isSelected  &&  w.widgetType == 'Graph') {
+                    if (w.isSelected  &&  w.widgetType === 'Graph') {
                         this.selectedWidget = w;
                     };
                 });
 
             } else {
-                let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
+                let widgetIndex: number = this.currentWidgets.findIndex(w => w.id === widgetID);
                 if (widgetIndex < 0) {
                     this.showMessage(
                         'Widget does not exist in list',
@@ -4690,7 +4690,7 @@ export class AppComponent implements OnInit {
         };
 
         // Check if Locked - after id is obtained
-        if (this.selectedWidget == null) {
+        if (this.selectedWidget === null) {
             this.showMessage(
                 'No Widget selected',
                 'StatusBar',
@@ -4776,7 +4776,7 @@ export class AppComponent implements OnInit {
         };
 
         // Check exactly one W selected if no specific ID was given
-        if (selectedWidgetID == null) {
+        if (selectedWidgetID === null) {
 
             if (!this.checkForOnlyOneWidget(widgetType)) {
                 return
@@ -4788,15 +4788,15 @@ export class AppComponent implements OnInit {
         };
 
         // this.currentWidgets.forEach(w => {
-        //     if (w.isSelected  &&  w.widgetType == widgetType) {
+        //     if (w.isSelected  &&  w.widgetType === widgetType) {
         //         this.selectedWidget = w;
         //     };
         // });
         // Set the selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  (selectedWidgetID == null)
+            if (w.isSelected  &&  (selectedWidgetID === null)
                 ||
-                (w.id == selectedWidgetID   &&  (selectedWidgetID != null) )
+                (w.id === selectedWidgetID   &&  (selectedWidgetID != null) )
                 ) {
                 this.selectedWidget = w;
             };
@@ -4821,7 +4821,7 @@ export class AppComponent implements OnInit {
         };
 
         // Check exactly one W selected if no specific ID was given
-        if (selectedWidgetID == null) {
+        if (selectedWidgetID === null) {
 
             if (!this.checkForOnlyOneWidget()) {
                 return
@@ -4838,9 +4838,9 @@ export class AppComponent implements OnInit {
 
         // Set the selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  (selectedWidgetID == null)
+            if (w.isSelected  &&  (selectedWidgetID === null)
                 ||
-                (w.id == selectedWidgetID   &&  (selectedWidgetID != null) )
+                (w.id === selectedWidgetID   &&  (selectedWidgetID != null) )
                 ) {
                 this.selectedWidget = w;
             };
@@ -4854,7 +4854,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetAnnotations', '@Start');
 
         // Check exactly one W selected if no specific ID was given
-        if (selectedWidgetID == null) {
+        if (selectedWidgetID === null) {
 
             if (!this.checkForOnlyOneWidget()) {
                 return
@@ -4884,9 +4884,9 @@ export class AppComponent implements OnInit {
 
         // Set the selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  (selectedWidgetID == null)
+            if (w.isSelected  &&  (selectedWidgetID === null)
                ||
-               (w.id == selectedWidgetID   &&  (selectedWidgetID != null) )
+               (w.id === selectedWidgetID   &&  (selectedWidgetID != null) )
                ) {
                 this.selectedWidget = w;
             };
@@ -4948,7 +4948,7 @@ export class AppComponent implements OnInit {
         // Show the form for Widget Filter Summary for selected W
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickWidgetFilterSummary', '@Start');
 
-        if (widgetIndex == null) {
+        if (widgetIndex === null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
@@ -4959,7 +4959,7 @@ export class AppComponent implements OnInit {
             };
 
             this.currentWidgets.forEach(w => {
-                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                if (w.isSelected  &&  w.widgetType === 'Graph') {
                     this.selectedWidget = w;
                 };
             });
@@ -4979,7 +4979,7 @@ export class AppComponent implements OnInit {
         // Show the form of Data Dictionary for selected W
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetDataDictionary', '@Start');
 
-        if (widgetIndex == null) {
+        if (widgetIndex === null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
@@ -4990,7 +4990,7 @@ export class AppComponent implements OnInit {
             };
 
             this.currentWidgets.forEach(w => {
-                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                if (w.isSelected  &&  w.widgetType === 'Graph') {
                     this.selectedWidget = w;
                 };
             });
@@ -5009,7 +5009,7 @@ export class AppComponent implements OnInit {
         // Show the form of Data Dictionary for selected W
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetBusinessGlossary', '@Start');
 
-        if (widgetIndex == null) {
+        if (widgetIndex === null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
@@ -5020,7 +5020,7 @@ export class AppComponent implements OnInit {
             };
 
             this.currentWidgets.forEach(w => {
-                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                if (w.isSelected  &&  w.widgetType === 'Graph') {
                     this.selectedWidget = w;
                 };
             });
@@ -5040,7 +5040,7 @@ export class AppComponent implements OnInit {
         // Show the form of Data Summary for selected W
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetDataSummary', '@Start');
 
-        if (widgetIndex == null) {
+        if (widgetIndex === null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
@@ -5051,7 +5051,7 @@ export class AppComponent implements OnInit {
             };
 
             this.currentWidgets.forEach(w => {
-                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                if (w.isSelected  &&  w.widgetType === 'Graph') {
                     this.selectedWidget = w;
                 };
             });
@@ -5070,7 +5070,7 @@ export class AppComponent implements OnInit {
         // Show the selected W in full screen
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetFullScreen', '@Start');
 
-        if (widgetIndex == null) {
+        if (widgetIndex === null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
@@ -5081,7 +5081,7 @@ export class AppComponent implements OnInit {
             };
 
             this.currentWidgets.forEach(w => {
-                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                if (w.isSelected  &&  w.widgetType === 'Graph') {
                     this.selectedWidget = w;
                 };
             });
@@ -5130,7 +5130,7 @@ export class AppComponent implements OnInit {
 
 
         // Render graph for Vega-Lite
-        if (localWidget.visualGrammar == 'Vega-Lite') {
+        if (localWidget.visualGrammar === 'Vega-Lite') {
 
             // Create specification
             let specification: any = this.globalVariableService.createVegaLiteSpec(
@@ -5152,7 +5152,7 @@ export class AppComponent implements OnInit {
         };
 
         // Render graph for Vega
-        if (localWidget.visualGrammar == 'Vega') {
+        if (localWidget.visualGrammar === 'Vega') {
 
             // Create specification
             let specification: any = this.globalVariableService.createVegaSpec(
@@ -5214,7 +5214,7 @@ export class AppComponent implements OnInit {
         };
 
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Graph') {
+            if (w.isSelected  &&  w.widgetType === 'Graph') {
                 this.selectedWidget = w;
             };
         });
@@ -5249,7 +5249,7 @@ export class AppComponent implements OnInit {
         };
 
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Graph') {
+            if (w.isSelected  &&  w.widgetType === 'Graph') {
                 this.selectedWidget = w;
             };
         });
@@ -5309,7 +5309,7 @@ export class AppComponent implements OnInit {
             return;
         };
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Graph') {
+            if (w.isSelected  &&  w.widgetType === 'Graph') {
                 this.selectedWidget = w;
             };
         });
@@ -5491,7 +5491,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        if (this.clipboardWidget == null  ||  this.clipboardWidget == undefined) {
+        if (this.clipboardWidget === null  ||  this.clipboardWidget === undefined) {
             this.showMessage(
                 'Nothing copied previously',
                 'StatusBar',
@@ -5590,7 +5590,7 @@ export class AppComponent implements OnInit {
             return;
         };
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Graph') {
+            if (w.isSelected  &&  w.widgetType === 'Graph') {
                 this.selectedWidget = w;
             };
         });
@@ -5653,7 +5653,7 @@ export class AppComponent implements OnInit {
             return;
         };
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Graph') {
+            if (w.isSelected  &&  w.widgetType === 'Graph') {
                 this.selectedWidget = w;
             };
         });
@@ -5778,7 +5778,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        if (widgetID == null) {
+        if (widgetID === null) {
             if (!this.checkForOnlyOneWidget()) {
                 return;
             };
@@ -5787,7 +5787,7 @@ export class AppComponent implements OnInit {
             };
 
         } else {
-            let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
+            let widgetIndex: number = this.currentWidgets.findIndex(w => w.id === widgetID);
             if (widgetIndex < 0) {
                 this.showMessage(
                     'Widget does not exist in list',
@@ -5808,7 +5808,7 @@ export class AppComponent implements OnInit {
 
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Table') {
+            if (w.isSelected  &&  w.widgetType === 'Table') {
                 this.selectedWidget = w;
             };
         });
@@ -5964,7 +5964,7 @@ export class AppComponent implements OnInit {
 
         // Set selectedWidget, for action log afterwards
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Table') {
+            if (w.isSelected  &&  w.widgetType === 'Table') {
                 this.selectedWidget = w;
             };
         });
@@ -6035,7 +6035,7 @@ export class AppComponent implements OnInit {
         };
 
         // Must be at least one DS
-        if (this.globalVariableService.currentDatasources.length == 0) {
+        if (this.globalVariableService.currentDatasources.length === 0) {
             this.showMessage(
                 'First link a Datasource (automatically linked when a Widget is added)',
                 'StatusBar',
@@ -6100,7 +6100,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        if (widgetID == null) {
+        if (widgetID === null) {
             if (!this.checkForOnlyOneWidget()) {
                 return;
             };
@@ -6109,7 +6109,7 @@ export class AppComponent implements OnInit {
             };
 
         } else {
-            let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
+            let widgetIndex: number = this.currentWidgets.findIndex(w => w.id === widgetID);
             if (widgetIndex < 0) {
                 this.showMessage(
                     'Widget does not exist in list',
@@ -6130,7 +6130,7 @@ export class AppComponent implements OnInit {
 
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Slicer') {
+            if (w.isSelected  &&  w.widgetType === 'Slicer') {
                 this.selectedWidget = w;
             };
         });
@@ -6198,7 +6198,7 @@ export class AppComponent implements OnInit {
         };
 
         // Indicate edit W and open Editor, which will work with selected W
-        if (widgetIndex == null) {
+        if (widgetIndex === null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
@@ -6209,7 +6209,7 @@ export class AppComponent implements OnInit {
             };
 
             this.currentWidgets.forEach(w => {
-                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                if (w.isSelected  &&  w.widgetType === 'Graph') {
                     this.selectedWidget = w;
                 };
             });
@@ -6419,7 +6419,7 @@ export class AppComponent implements OnInit {
 
         // Set selectedWidget, for action log afterwards
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Slicer') {
+            if (w.isSelected  &&  w.widgetType === 'Slicer') {
                 this.selectedWidget = w;
             };
         });
@@ -6540,7 +6540,7 @@ export class AppComponent implements OnInit {
         };
 
         // Make sure we have only one, then edit it
-        if (widgetID == null) {
+        if (widgetID === null) {
 
             if (!this.checkForOnlyOneWidget()) {
                 return;
@@ -6551,13 +6551,13 @@ export class AppComponent implements OnInit {
 
             this.newWidget = false;
             this.currentWidgets.forEach(w => {
-                if (w.isSelected  &&  w.widgetType == 'Shape') {
+                if (w.isSelected  &&  w.widgetType === 'Shape') {
                     this.selectedWidget = w;
                 };
             });
 
         } else {
-            let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
+            let widgetIndex: number = this.currentWidgets.findIndex(w => w.id === widgetID);
 
             if (widgetIndex < 0) {
                 this.showMessage(
@@ -6652,7 +6652,7 @@ export class AppComponent implements OnInit {
         };
 
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Shape') {
+            if (w.isSelected  &&  w.widgetType === 'Shape') {
                 this.selectedWidget = w;
             };
         });
@@ -6770,7 +6770,7 @@ export class AppComponent implements OnInit {
 
         // Set selectedWidget, for action log afterwards
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Shape') {
+            if (w.isSelected  &&  w.widgetType === 'Shape') {
                 this.selectedWidget = w;
             };
         });
@@ -6840,7 +6840,7 @@ export class AppComponent implements OnInit {
 
         // Set selectedWidget, for action log afterwards
         this.currentWidgets.forEach(w => {
-            if (w.widgetType == 'Shape') {
+            if (w.widgetType === 'Shape') {
 
                 // Check if Locked
                 if (w.isLocked) {
@@ -6943,7 +6943,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        if (zoomPercentage == null  ||  zoomPercentage == undefined) {
+        if (zoomPercentage === null  ||  zoomPercentage === undefined) {
             zoomPercentage = 0.6;
         }
 
@@ -7202,7 +7202,7 @@ export class AppComponent implements OnInit {
                 let oldWidget: Widget = null;
                 let newWidget: Widget = null;
 
-                if (x == -1) {
+                if (x === -1) {
                     x = this.currentWidgets[i].containerLeft;
                 } else {
                     oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
@@ -7260,7 +7260,7 @@ export class AppComponent implements OnInit {
                 let oldWidget: Widget = null;
                 let newWidget: Widget = null;
 
-                if (x == -1) {
+                if (x === -1) {
                     x = this.currentWidgets[i].containerLeft +
                         (this.currentWidgets[i].containerWidth / 2);
                 } else {
@@ -7319,7 +7319,7 @@ export class AppComponent implements OnInit {
                 let oldWidget: Widget = null;
                 let newWidget: Widget = null;
 
-                if (x == -1) {
+                if (x === -1) {
                     x = this.currentWidgets[i].containerLeft +
                         this.currentWidgets[i].containerWidth;
                 } else {
@@ -7379,7 +7379,7 @@ export class AppComponent implements OnInit {
                 let oldWidget: Widget = null;
                 let newWidget: Widget = null;
 
-                if (x == -1) {
+                if (x === -1) {
                     x = this.currentWidgets[i].containerTop;
                 } else {
                     oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
@@ -7437,7 +7437,7 @@ export class AppComponent implements OnInit {
                 let oldWidget: Widget = null;
                 let newWidget: Widget = null;
 
-                if (x == -1) {
+                if (x === -1) {
                     x = this.currentWidgets[i].containerTop +
                         (this.currentWidgets[i].containerHeight / 2);
                 } else {
@@ -7497,7 +7497,7 @@ export class AppComponent implements OnInit {
                 let oldWidget: Widget = null;
                 let newWidget: Widget = null;
 
-                if (x == -1) {
+                if (x === -1) {
                     x = this.currentWidgets[i].containerTop +
                         (this.currentWidgets[i].containerHeight);
                 } else {
@@ -7971,7 +7971,7 @@ export class AppComponent implements OnInit {
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
 
-                if (x == -1) {
+                if (x === -1) {
                     x = this.currentWidgets[i].containerWidth;
                     y = this.currentWidgets[i].containerHeight;
                 } else {
@@ -7988,7 +7988,7 @@ export class AppComponent implements OnInit {
                     this.globalVariableService.calcGraphWidth(this.currentWidgets[i]);
 
                     // Refresh graphs
-                    if (this.currentWidgets[i].widgetType == 'Graph') {
+                    if (this.currentWidgets[i].widgetType === 'Graph') {
                         this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
                     };
                     newWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
@@ -8043,7 +8043,7 @@ export class AppComponent implements OnInit {
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
-                if (y == -1) {
+                if (y === -1) {
                     y = this.currentWidgets[i].containerHeight;
 
                 } else {
@@ -8056,7 +8056,7 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.calcGraphHeight(this.currentWidgets[i]);
 
                     // Refresh graphs
-                    if (this.currentWidgets[i].widgetType == 'Graph') {
+                    if (this.currentWidgets[i].widgetType === 'Graph') {
                         this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
                     };
                     newWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
@@ -8111,7 +8111,7 @@ export class AppComponent implements OnInit {
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
-                if (x == -1) {
+                if (x === -1) {
                     x = this.currentWidgets[i].containerWidth;
 
                 } else {
@@ -8123,7 +8123,7 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.calcGraphWidth(this.currentWidgets[i]);
 
                     // Refresh graphs
-                    if (this.currentWidgets[i].widgetType == 'Graph') {
+                    if (this.currentWidgets[i].widgetType === 'Graph') {
                         this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
                     };
                     newWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
@@ -8190,7 +8190,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
         // db.[table].where(index).above(value).and(filterFunction).count()
         // .and((disc: IDiscountlist) => {
-        //     return disc.MatrixType == matrixType
+        //     return disc.MatrixType === matrixType
 
         this.dbDataCachingTable.table("localDataCachingTable")
             .where('key').equals('dashboards')
@@ -8418,7 +8418,7 @@ export class AppComponent implements OnInit {
                 this.localDataCachingTable = res;
 
                 console.warn('App localDataCachingTable: ', this.localDataCachingTable);
-                if (this.localDataCachingTable.length == 0) {
+                if (this.localDataCachingTable.length === 0) {
                     console.warn('xx Adding new here')
                     foundDataCachingTable = false;
                 }
@@ -8731,7 +8731,7 @@ export class AppComponent implements OnInit {
 
         // Set D
         this.globalVariableService.currentDashboards.forEach(d => {
-            if (d.id == this.globalVariableService.currentDashboardInfo
+            if (d.id === this.globalVariableService.currentDashboardInfo
                 .value.currentDashboardID) {
                 this.selectedDashboard = d;
             };
@@ -8831,23 +8831,23 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuPaletteEdit', '@Start');
 
         // Graph type has been supplied
-        if (widgetType == 'Graph') {
+        if (widgetType === 'Graph') {
             this.clickMenuWidgetEdit(widgetID);
             return;
         };
-        if (widgetType == 'Slicer') {
+        if (widgetType === 'Slicer') {
             this.clickMenuSlicerEdit(widgetID);
             return;
         };
-        if (widgetType == 'Table') {
+        if (widgetType === 'Table') {
             this.clickMenuTableEdit(widgetID);
             return;
         };
-        if (widgetType == 'Shape') {
+        if (widgetType === 'Shape') {
             this.clickMenuShapeEdit(widgetID);
             return;
         };
-        if (widgetType == '') {
+        if (widgetType === '') {
             // Decide which way
             if (this.checkForOnlyOneWidget('Graph', true)) {
                 this.clickMenuWidgetEdit();
@@ -8985,7 +8985,7 @@ export class AppComponent implements OnInit {
         // ID provided
         if (widgetID != null) {
             let selectedWidgetIndex: number = this.currentWidgets.findIndex(w =>
-                w.id == widgetID
+                w.id === widgetID
             );
             if (selectedWidgetIndex < 0) {
                 this.showMessage(
@@ -9071,7 +9071,7 @@ export class AppComponent implements OnInit {
         ev.preventDefault();
 
         // Clicked in main area, outside a Widget
-        if (index == -1) {
+        if (index === -1) {
             this.popupLeft = ev.clientX - 40;
             this.popupTop = ev.clientY - 40;
 
@@ -9165,7 +9165,7 @@ export class AppComponent implements OnInit {
 
         this.selectedDatasourceID = -1;
         this.currentWidgets.forEach(w => {
-            if (w.id == id) {
+            if (w.id === id) {
                 this.selectedDatasourceID = w.datasourceID;
             };
         });
@@ -9288,7 +9288,7 @@ export class AppComponent implements OnInit {
 
         // TODO - this should be done more efficiently, but simply clearing the SVG object
         // Render graph for Vega-Lite
-        if (localWidget.visualGrammar == 'Vega-Lite') {
+        if (localWidget.visualGrammar === 'Vega-Lite') {
 
             // Create specification
             let specification: any = this.globalVariableService.createVegaLiteSpec(
@@ -9310,7 +9310,7 @@ export class AppComponent implements OnInit {
         };
 
         // Render graph for Vega
-        if (localWidget.visualGrammar == 'Vega') {
+        if (localWidget.visualGrammar === 'Vega') {
 
             // Create specification
             let specification: any = this.globalVariableService.createVegaSpec(
@@ -9359,7 +9359,7 @@ export class AppComponent implements OnInit {
 
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
-            if (w.id == id) {
+            if (w.id === id) {
                 this.selectedWidget = w;
             };
         });
@@ -9377,7 +9377,7 @@ export class AppComponent implements OnInit {
 
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
-            if (w.id == id) {
+            if (w.id === id) {
                 w.isSelected = true;
                 this.selectedWidget = w;
             } else {
@@ -9399,7 +9399,7 @@ export class AppComponent implements OnInit {
 
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
-            if (w.id == id) {
+            if (w.id === id) {
                 w.widgetType = 'Table'
             };
         });
@@ -9417,7 +9417,7 @@ export class AppComponent implements OnInit {
 
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
-            if (w.id == id) {
+            if (w.id === id) {
                 w.widgetType = 'Graph'
             };
         });
@@ -9446,12 +9446,12 @@ export class AppComponent implements OnInit {
         this.showWidgetContextMenu = false;
 
         // Exit if no Dashboard to jump to
-        if (dashboardID == null) {
+        if (dashboardID === null) {
             return;
         };
 
         // Tab points to first one, if needed
-        if (dashboardTabID == null) {
+        if (dashboardTabID === null) {
             dashboardTabID = -1;
         };
 
@@ -9461,7 +9461,7 @@ export class AppComponent implements OnInit {
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.globalVariableService.lastDashboardOpened.lastDashboardTabID =
             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
-        if (this.globalVariableService.lastDashboardOpened.lastDashboardTabID == null) {
+        if (this.globalVariableService.lastDashboardOpened.lastDashboardTabID === null) {
             this.globalVariableService.lastDashboardOpened.lastDashboardTabID = -1;
         };
 
@@ -9545,11 +9545,11 @@ export class AppComponent implements OnInit {
 
         // Get nr of W selected
         let nrWidgetsSelected: number = this.currentWidgets.filter(
-            w => (w.isSelected  &&  (w.widgetType == widgetType  ||  widgetType == 'All')
+            w => (w.isSelected  &&  (w.widgetType === widgetType  ||  widgetType === 'All')
                  ) ).length;
 
         // Show messages if silent = false
-        if (nrWidgetsSelected == 0) {
+        if (nrWidgetsSelected === 0) {
             if (!silent) {
                 this.showMessage(
                     widgetType=='All'? 'Nothing selected' : 'No ' + widgetType + ' selected',
@@ -9653,7 +9653,7 @@ export class AppComponent implements OnInit {
         // Create array to loop on
         this.draggableWidgets = [];
         // There is no group
-        if (this.widgetGroup.length == 0) {
+        if (this.widgetGroup.length === 0) {
             this.draggableWidgets = [id];
         } else {
             // Dragged one is part of group, so move group
@@ -9832,13 +9832,13 @@ export class AppComponent implements OnInit {
 
         let isSelected: boolean = !this.currentWidgets[index].isSelected;
         this.currentWidgets.forEach(w => {
-            if ( (w.id == id)  ||  (this.widgetGroup.indexOf(id) >= 0) ) {
+            if ( (w.id === id)  ||  (this.widgetGroup.indexOf(id) >= 0) ) {
                 w.isSelected = isSelected;
             };
         });
 
         this.globalVariableService.currentWidgets.forEach(w => {
-            if ( (w.id == id)  ||  (this.widgetGroup.indexOf(id) >= 0) ) {
+            if ( (w.id === id)  ||  (this.widgetGroup.indexOf(id) >= 0) ) {
                 w.isSelected = isSelected;
             };
         });
@@ -9985,7 +9985,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.saveWidget(this.currentWidgets[index]);
 
         // Refresh graphs
-        if (this.currentWidgets[index].widgetType == 'Graph') {
+        if (this.currentWidgets[index].widgetType === 'Graph') {
 
             this.globalVariableService.changedWidget.next(this.currentWidgets[index]);
         };
@@ -10022,7 +10022,7 @@ export class AppComponent implements OnInit {
         );
 
         // In addition, make sure the user is not stuck
-        if (message == this.globalVariableService.canvasSettings.notInEditModeMsg) {
+        if (message === this.globalVariableService.canvasSettings.notInEditModeMsg) {
             this.stuckCount = this.stuckCount + 1;
         } else {
             // this.stuckCount = 0;
@@ -10045,7 +10045,7 @@ export class AppComponent implements OnInit {
         // Get list of selected Sl
         let result: boolean = false;
         this.currentWidgets.forEach(sl => {
-            if (sl.isSelected   &&   sl.widgetType == 'Slicer'
+            if (sl.isSelected   &&   sl.widgetType === 'Slicer'
                 &&  sl.id != id) {
                     result = true;
             };
@@ -10088,7 +10088,7 @@ export class AppComponent implements OnInit {
         if (showCheckpoints) {
             this.currentWidgetsOriginals.forEach(wo => {
 
-                if (wo.dashboardID == dashboardID  &&  wo.id == id) {
+                if (wo.dashboardID === dashboardID  &&  wo.id === id) {
                     wo.showCheckpoints = false;
                     this.globalVariableService.changedWidget.next(wo);
                 };
@@ -10099,8 +10099,8 @@ export class AppComponent implements OnInit {
         // Remember the original W once
         let isFound: boolean = false;
         this.currentWidgetsOriginals.forEach(wo => {
-            if (wo.dashboardID == dashboardID
-                && wo.id == id) {
+            if (wo.dashboardID === dashboardID
+                && wo.id === id) {
                     isFound = true;
             };
         });
@@ -10109,22 +10109,22 @@ export class AppComponent implements OnInit {
         };
 
         // Get the W Checkpoints once
-        if (this.currentWidgetCheckpoints.length == 0) {
+        if (this.currentWidgetCheckpoints.length === 0) {
 
             // Set the data
             this.currentWidgetCheckpoints = this.globalVariableService.currentWidgetCheckpoints;
 
             this.currentWidgets.forEach( w=> {
                 // Toggle showCheckpoints
-                if (w.dashboardID == dashboardID  &&  w.id == id) {
+                if (w.dashboardID === dashboardID  &&  w.id === id) {
                     w.showCheckpoints = !w.showCheckpoints;
                 };
 
                 // Set the Checkpoints for this W
                 this.currentWidgetCheckpoints.forEach(wc => {
-                    if (wc.widgetID == w.id
+                    if (wc.widgetID === w.id
                         &&
-                        wc.dashboardID == w.dashboardID) {
+                        wc.dashboardID === w.dashboardID) {
                         wc.widgetSpec.showCheckpoints = true;
                         wc.widgetSpec.checkpointIDs = w.checkpointIDs;
                         wc.widgetSpec.currentCheckpoint = w.currentCheckpoint;
@@ -10155,7 +10155,7 @@ export class AppComponent implements OnInit {
 
                 // Get the W Spec
                 let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc =>
-                    wc.id == this.currentWidgets[index].checkpointIDs[0]
+                    wc.id === this.currentWidgets[index].checkpointIDs[0]
                 );
                 if (newW != undefined) {
                     if (newW.length > 0) {
@@ -10169,7 +10169,7 @@ export class AppComponent implements OnInit {
         } else {
             // Toggle showCheckpoints
             this.currentWidgets.forEach( w=> {
-                if (w.dashboardID == dashboardID  &&  w.id == id) {
+                if (w.dashboardID === dashboardID  &&  w.id === id) {
                     w.showCheckpoints = !w.showCheckpoints;
                 };
             });
@@ -10180,7 +10180,7 @@ export class AppComponent implements OnInit {
 
                 // Get the W Spec
                 let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc =>
-                    wc.id == this.currentWidgets[index].checkpointIDs[0]
+                    wc.id === this.currentWidgets[index].checkpointIDs[0]
                 );
                 if (newW != undefined) {
                     if (newW.length > 0) {
@@ -10264,7 +10264,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNavCheckpoint', '@Start');
 
         // Increment or Decrement
-        if (direction == 'Right') {
+        if (direction === 'Right') {
             if (currentCheckpoint < lastCheckpoint) {
                 currentCheckpoint = currentCheckpoint + 1;
             };
@@ -10283,7 +10283,7 @@ export class AppComponent implements OnInit {
 
         // Get the W Spec
         let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc =>
-            wc.id == checkpointIDs[currentCheckpoint]
+            wc.id === checkpointIDs[currentCheckpoint]
         );
         let newWspec: Widget = newW[0].widgetSpec;
         if (newW != undefined) {
@@ -10306,11 +10306,11 @@ export class AppComponent implements OnInit {
         for (var i = 0; i < this.currentWidgets.length; i++) {
 
             // Get given ID, else all selected of the given widgetType
-            if (  (widgetID != null  &&  this.currentWidgets[i].id == widgetID)
+            if (  (widgetID != null  &&  this.currentWidgets[i].id === widgetID)
                    ||
                    (widgetType != null
                     &&  this.currentWidgets[i].isSelected
-                    &&  this.currentWidgets[i].widgetType == widgetType)
+                    &&  this.currentWidgets[i].widgetType === widgetType)
                 ) {
 
                 // deleteWidget = Object.assign({}, this.currentWidgets[i]);
@@ -10350,7 +10350,7 @@ export class AppComponent implements OnInit {
         this.showPopupMessage = false;
 
         // If no user logged in, then must login first
-        if (this.currentUserID == ''  ||  this.currentUserID == null) {
+        if (this.currentUserID === ''  ||  this.currentUserID === null) {
             this.showModalDashboardLogin = true;
             return false;
         };
@@ -10461,7 +10461,7 @@ export class AppComponent implements OnInit {
         ev.dataTransfer.setData("text/plain", ev.target.id);
         console.log("dragendPaletteButton", ev);
 
-        if (functionName == 'clickMenuWidgetNew') {
+        if (functionName === 'clickMenuWidgetNew') {
 
             this.paletteDrag = true;
 
@@ -10616,8 +10616,8 @@ export class AppComponent implements OnInit {
         };
 
         // Nothing to do - not copied before
-        if ((this.widgetDimenstions.width == 0)
-            ||  (this.widgetDimenstions.height == 0) ) {
+        if ((this.widgetDimenstions.width === 0)
+            ||  (this.widgetDimenstions.height === 0) ) {
                 this.showMessage(
                     'No Dimensions copied previously',
                     'StatusBar',
@@ -10647,7 +10647,7 @@ export class AppComponent implements OnInit {
                 w.graphWidth = this.globalVariableService.calcGraphWidth(w);
 
                 // Refresh graphs
-                if (w.widgetType == 'Graph') {
+                if (w.widgetType === 'Graph') {
 
                     this.globalVariableService.changedWidget.next(w);
                 };
@@ -10743,8 +10743,8 @@ export class AppComponent implements OnInit {
         this.dashboardEndY = ev.y;
 
         // Exit if clicked one spot
-        if (this.dashboardStartX == this.dashboardEndX  &&
-            this.dashboardStartY == this.dashboardEndY) {
+        if (this.dashboardStartX === this.dashboardEndX  &&
+            this.dashboardStartY === this.dashboardEndY) {
             return;
         };
 
