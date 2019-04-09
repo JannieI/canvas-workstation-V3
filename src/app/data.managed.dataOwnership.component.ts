@@ -37,7 +37,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -124,7 +124,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
                 // Append RunTime datasourceName
                 this.dataOwnerships.forEach(dow => {
                     this.datasources.forEach(ds => {
-                        if (ds.id == dow.datasourceID) {
+                        if (ds.id === dow.datasourceID) {
                             dow.datasourceName = ds.name;
                         };
                     });
@@ -155,11 +155,11 @@ export class DataManageDataOwnershipComponent implements OnInit {
 
         // Fill the form
         let selectedDatasourceIndex: number = this.dataOwnerships
-            .findIndex(dc => dc.id == id);
+            .findIndex(dc => dc.id === id);
         if (selectedDatasourceIndex >= 0) {
 
             let datasourceIndex: number = this.datasources.findIndex(ds =>
-                ds.id == this.dataOwnerships[selectedDatasourceIndex].datasourceID
+                ds.id === this.dataOwnerships[selectedDatasourceIndex].datasourceID
             );
             this.selectedLinkedDatasource = this.datasources[datasourceIndex]
                 .name + ' (' + this.datasources[datasourceIndex].id + ')';
@@ -213,7 +213,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
 
         // Re Fill the form
         let datasourceIndex: number = this.dataOwnerships
-            .findIndex(sch => sch.id == this.selectedDataOwnership.id);
+            .findIndex(sch => sch.id === this.selectedDataOwnership.id);
         if (datasourceIndex >= 0) {
             // this.selectedDataOwnership = Object.assign({},
             //     this.dataOwnerships[datasourceIndex]
@@ -238,9 +238,9 @@ export class DataManageDataOwnershipComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedDataOwnership.userID == null
+        if (this.selectedDataOwnership.userID === null
             ||
-            this.selectedDataOwnership.userID == '') {
+            this.selectedDataOwnership.userID === '') {
                 this.errorMessage = 'Enter the UserID of the Owner';
                 return;
         };
@@ -255,7 +255,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
 
         // Get RunTime datasourceName
         this.datasources.forEach(ds => {
-            if (ds.id == this.datasourceID) {
+            if (ds.id === this.datasourceID) {
                 this.datasourceName = ds.name;
             };
         });
@@ -268,7 +268,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
             this.selectedDataOwnership.datasourceName = this.datasourceName;
             this.globalVariableService.addResource('dataOwnerships', this.selectedDataOwnership)
                 .then(res => {
-                    if (this.selectedDataOwnershipRowIndex == null) {
+                    if (this.selectedDataOwnershipRowIndex === null) {
                         this.selectedDataOwnershipRowIndex = 0;
                         this.selectedDatasourceID = this.selectedDataOwnership.id;
                     };
@@ -288,7 +288,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
             this.selectedDataOwnership.datasourceID = this.datasourceID;
             this.selectedDataOwnership.datasourceName = this.datasourceName;
             let datasourceIndex: number = this.dataOwnerships
-                .findIndex(sch => sch.id == this.selectedDataOwnership.id);
+                .findIndex(sch => sch.id === this.selectedDataOwnership.id);
             if (datasourceIndex >= 0) {
                 // this.dataOwnerships[datasourceIndex] =
                 //     Object.assign({}, this.selectedDataOwnership);
