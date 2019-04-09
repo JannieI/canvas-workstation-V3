@@ -24,13 +24,13 @@ interface ClrDatagridStringFilterInterface<T> {
 
 class FilterName implements ClrDatagridStringFilterInterface<Dashboard> {
     accepts(dashboard: Dashboard, search: string):boolean {
-        return "" + dashboard.name == search
+        return "" + dashboard.name === search
             || dashboard.name.toLowerCase().indexOf(search) >= 0;
     }
 }
 class FilterDescription implements ClrDatagridStringFilterInterface<Dashboard> {
     accepts(dashboard: Dashboard, search: string):boolean {
-        return "" + dashboard.description == search
+        return "" + dashboard.description === search
             || dashboard.description.toLowerCase().indexOf(search) >= 0;
     }
 }
@@ -49,7 +49,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Closed');
             return;
         };
@@ -75,7 +75,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
             .then (res => {
                 this.dashboards = res
                     .filter(d => d.state != 'Draft')
-                    .filter(d => d.draftID == null)
+                    .filter(d => d.draftID === null)
                     .sort((n1,n2) => {
                         if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
                             return 1;
@@ -114,7 +114,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
         this.errorMessage = '';
 
         // Cant delete CurrentD here -> goto Delete option
-        if (id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID) {
+        if (id === this.globalVariableService.currentDashboardInfo.value.currentDashboardID) {
             this.errorMessage = 'Current Dashboard must be deleted with Dashboard -> Delete option';
             return;
         };
