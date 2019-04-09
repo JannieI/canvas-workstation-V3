@@ -36,12 +36,12 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -132,7 +132,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         this.containerBackgroundcolorName = ev.target.value;
         this.containerBackgroundcolor = this.containerBackgroundcolorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.containerBackgroundcolorName
+            bg.name === this.containerBackgroundcolorName
         );
         if (localIndex >= 0) {
             this.containerBackgroundcolor = this.backgroundcolors[localIndex].cssCode;
@@ -151,7 +151,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         this.containerBorderColourName = ev.target.value;
         this.containerBorderColour = this.containerBorderColourName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.containerBorderColourName
+            bg.name === this.containerBorderColourName
         );
         if (localIndex >= 0) {
             this.containerBorderColour = this.backgroundcolors[localIndex].cssCode;
@@ -246,7 +246,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         this.infoMessage = '';
 
         // Validation
-        if (this.containerStyleName == '') {
+        if (this.containerStyleName === '') {
             this.errorMessage = 'The name is compulsory.';
             return;
         };
