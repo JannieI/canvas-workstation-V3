@@ -35,7 +35,7 @@ export class WidgetFilterSummaryComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -64,7 +64,7 @@ export class WidgetFilterSummaryComponent implements OnInit {
 
         if (this.selectedWidget != null) {
             let datasourceIndex: number = this.globalVariableService.datasources
-                .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
+                .findIndex(ds => ds.id === this.selectedWidget.datasourceID);
             if (datasourceIndex >= 0) {
                 this.datasourceDetails = 
                     this.globalVariableService.datasources[datasourceIndex].name + ' - ' 
@@ -78,7 +78,7 @@ export class WidgetFilterSummaryComponent implements OnInit {
         // Array of CrossFilters for form 
         this.selectedWidget.widgetFilters.forEach(wf => {
 
-            if (wf.filterType == 'CrossFilter') {
+            if (wf.filterType === 'CrossFilter') {
 
                 this.localWidgetFilters.push({
                     sourceWidgetTitle: '',
