@@ -42,7 +42,7 @@ export class DashboardDataQualityComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -67,7 +67,7 @@ export class DashboardDataQualityComponent implements OnInit {
 
         // Display the source, and set the array of DSids
         let dsArray: number[] = [];
-        if (this.selectedDatasourceID == -1) {
+        if (this.selectedDatasourceID === -1) {
             this.headerText = 'the current Dashboard';
             this.globalVariableService.currentDatasources.forEach(ds =>
                 dsArray.push(ds.id)
