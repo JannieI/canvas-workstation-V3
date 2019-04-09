@@ -33,7 +33,7 @@ export class WidgetExpandComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -57,13 +57,13 @@ export class WidgetExpandComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.currentDatasources.forEach(ds => {
-            if (ds.id == this.selectDatasourceID) {
+            if (ds.id === this.selectDatasourceID) {
                 this.datagridData = ds.dataFiltered;
             };
         })
         this.globalVariableService.currentDatasources.forEach(ds => {
 
-            if (ds.id == this.selectDatasourceID) {
+            if (ds.id === this.selectDatasourceID) {
                 console.log('xx ds', ds)
                 this.datagridColumns = ds.dataFields;
             }
