@@ -35,12 +35,12 @@ export class DashboardSubscribeComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -83,13 +83,13 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalVariableService.getResource('dashboardSubscriptions')
             .then(data => {
                 this.dashboardSubscriptions = data.filter(ds => 
-                    ds.userID == this.globalVariableService.currentUser.userID
+                    ds.userID === this.globalVariableService.currentUser.userID
                 );
 
                 // Refresh D Codes
                 this.dashboards.forEach(d => {
                     this.dashboardSubscriptions.forEach(ds => {
-                        if (ds.dashboardID == d.id) {
+                        if (ds.dashboardID === d.id) {
                             ds.dashboardCode = d.code;
                         };
                     });
@@ -125,7 +125,7 @@ export class DashboardSubscribeComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
-            if (this.dashboardSubscriptions[i].id == id) { 
+            if (this.dashboardSubscriptions[i].id === id) { 
                 this.dashboardSubscriptions[i].view = 
                     !this.dashboardSubscriptions[i].view;
                 index = i;
@@ -150,7 +150,7 @@ export class DashboardSubscribeComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
-            if (this.dashboardSubscriptions[i].id == id) { 
+            if (this.dashboardSubscriptions[i].id === id) { 
                 this.dashboardSubscriptions[i].editmode = 
                     !this.dashboardSubscriptions[i].editmode;
                 index = i;
@@ -175,7 +175,7 @@ export class DashboardSubscribeComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
-            if (this.dashboardSubscriptions[i].id == id) { 
+            if (this.dashboardSubscriptions[i].id === id) { 
                 this.dashboardSubscriptions[i].saved = 
                     !this.dashboardSubscriptions[i].saved;
                 index = i;
@@ -200,7 +200,7 @@ export class DashboardSubscribeComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
-            if (this.dashboardSubscriptions[i].id == id) { 
+            if (this.dashboardSubscriptions[i].id === id) { 
                 this.dashboardSubscriptions[i].deleted = 
                     !this.dashboardSubscriptions[i].deleted;
                 index = i;
@@ -225,7 +225,7 @@ export class DashboardSubscribeComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
-            if (this.dashboardSubscriptions[i].id == id) { 
+            if (this.dashboardSubscriptions[i].id === id) { 
                 this.dashboardSubscriptions[i].deleted = 
                     !this.dashboardSubscriptions[i].deleted;
                 index = i;
@@ -233,17 +233,17 @@ export class DashboardSubscribeComponent implements OnInit {
         };
 
         if (index != -1) {
-            if (this.dashboardSubscriptions[index].notify == ''  ||  
-                this.dashboardSubscriptions[index].notify == null) {
+            if (this.dashboardSubscriptions[index].notify === ''  ||  
+                this.dashboardSubscriptions[index].notify === null) {
                     this.dashboardSubscriptions[index].notify = 'Message';
                 } else {
-                if (this.dashboardSubscriptions[index].notify == 'Email') {
+                if (this.dashboardSubscriptions[index].notify === 'Email') {
                     this.dashboardSubscriptions[index].notify = 'Message';
                 } else {
-                    if (this.dashboardSubscriptions[index].notify == 'Message') {
+                    if (this.dashboardSubscriptions[index].notify === 'Message') {
                         this.dashboardSubscriptions[index].notify = 'Both'
                     } else {
-                        if (this.dashboardSubscriptions[index].notify == 'Both') {
+                        if (this.dashboardSubscriptions[index].notify === 'Both') {
                             this.dashboardSubscriptions[index].notify = 'Email'
                         };
                     };
@@ -271,7 +271,7 @@ export class DashboardSubscribeComponent implements OnInit {
         // Changed selection of Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelect', '@Start');
         
-        if (ev == undefined) {
+        if (ev === undefined) {
             return;
         };
 
@@ -284,7 +284,7 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         // Nothing selected
-        if (this.selectedDashboard == null) {
+        if (this.selectedDashboard === null) {
             return;
         };
 
@@ -299,7 +299,7 @@ export class DashboardSubscribeComponent implements OnInit {
 
         let dIndex: number = -1;
         for (var i = 0; i < this.dashboards.length; i++) {
-            if (this.dashboards[i].id == sID) {
+            if (this.dashboards[i].id === sID) {
                 dIndex = i;
                 break;
             };
@@ -333,7 +333,7 @@ export class DashboardSubscribeComponent implements OnInit {
                     // Reduce available list
                     let selID: number = -1;
                     for (var i = 0; i < this.availableDashboards.length; i++) {
-                        if (this.availableDashboards[i] == this.selectedDashboard) {
+                        if (this.availableDashboards[i] === this.selectedDashboard) {
                             selID = i;
                             break;
                         };
@@ -372,13 +372,13 @@ export class DashboardSubscribeComponent implements OnInit {
 
                 let index: number = -1;
                 for(var i = 0; i < this.dashboards.length; i++) {
-                    if (this.dashboards[i].id == id) { 
+                    if (this.dashboards[i].id === id) { 
                         index = i;
                     };
                 };
 
                 // Nothing to do
-                if (index == -1) {
+                if (index === -1) {
                     return;
                 };
         
