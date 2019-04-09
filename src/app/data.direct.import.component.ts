@@ -32,7 +32,7 @@ export class DataDirectImportComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -74,7 +74,7 @@ export class DataDirectImportComponent implements OnInit {
         var inp: any = document.getElementById("get-files");
 
         // Return if nothing selected
-        if (inp.files.length == 0) {
+        if (inp.files.length === 0) {
             return;
         };
 
@@ -149,11 +149,11 @@ export class DataDirectImportComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.datasourceName == '') {
+        if (this.datasourceName === '') {
             this.errorMessage = 'Name of the Datasource is compulsory';
             return;
         };
-        if (this.datasourceDescription == '') {
+        if (this.datasourceDescription === '') {
             this.errorMessage = 'Description of the Datasource is compulsory';
             return;
         };
