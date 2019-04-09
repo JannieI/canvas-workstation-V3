@@ -35,7 +35,7 @@ export class DataRefreshRepeatComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -128,7 +128,7 @@ export class DataRefreshRepeatComponent implements OnInit {
         // Save the changes
         // if (this.editing) {
         //     let datasourceIndex: number = this.datasources
-        //         .findIndex(ds => ds.id == this.selectedDatasource.id);
+        //         .findIndex(ds => ds.id === this.selectedDatasource.id);
         //     if (datasourceIndex >= 0) {
         //         this.datasources[datasourceIndex].dataDictionary = 
         //             this.selectedDatasource.dataDictionary
