@@ -36,7 +36,7 @@ export class DatasourceShareComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -74,14 +74,14 @@ export class DatasourceShareComponent implements OnInit {
         this.globalVariableService.getResource('datasources')
             .then(res => {
                 this.datasources = res
-                    .filter(ds => ds.accessType == 'AccessList')
+                    .filter(ds => ds.accessType === 'AccessList')
                     .slice();
 
                 this.globalVariableService.getDatasourcePermissions().then (dp => {
                     this.datasourcePermissions = dp.slice();
                     this.datasourcePermissions.forEach(tdsp => {
                         tdsp.name = this.datasources.filter(
-                            ds => ds.id == tdsp.datasourceID)[0].name;
+                            ds => ds.id === tdsp.datasourceID)[0].name;
                     });
                     this.datasourcePermissions = this.datasourcePermissions.sort( (obj1, obj2) => {
                         if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
@@ -174,7 +174,7 @@ export class DatasourceShareComponent implements OnInit {
 
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
-            if (this.datasourcePermissions[i].id == id) {
+            if (this.datasourcePermissions[i].id === id) {
                 this.datasourcePermissions[i].canView =
                     !this.datasourcePermissions[i].canView;
                 index = i;
@@ -212,7 +212,7 @@ export class DatasourceShareComponent implements OnInit {
 
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
-            if (this.datasourcePermissions[i].id == id) {
+            if (this.datasourcePermissions[i].id === id) {
                 this.datasourcePermissions[i].canEdit =
                     !this.datasourcePermissions[i].canEdit;
                 index = i;
@@ -250,7 +250,7 @@ export class DatasourceShareComponent implements OnInit {
 
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
-            if (this.datasourcePermissions[i].id == id) {
+            if (this.datasourcePermissions[i].id === id) {
                 this.datasourcePermissions[i].canDelete =
                     !this.datasourcePermissions[i].canDelete;
                 index = i;
@@ -288,7 +288,7 @@ export class DatasourceShareComponent implements OnInit {
 
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
-            if (this.datasourcePermissions[i].id == id) {
+            if (this.datasourcePermissions[i].id === id) {
                 this.datasourcePermissions[i].canRefresh = ! this.datasourcePermissions[i].canRefresh;
                 index = i;
             };
@@ -325,7 +325,7 @@ export class DatasourceShareComponent implements OnInit {
 
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
-            if (this.datasourcePermissions[i].id == id) {
+            if (this.datasourcePermissions[i].id === id) {
                 this.datasourcePermissions[i].canGrant =
                     !this.datasourcePermissions[i].canGrant;
                 index = i;
@@ -367,11 +367,11 @@ export class DatasourceShareComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.selectedDatasource == ''  ||  this.selectedDatasource == null) {
+        if (this.selectedDatasource === ''  ||  this.selectedDatasource === null) {
             this.errorMessage = 'Please select a Datasource';
             return;
         };
-        if (this.selectedUserID == ''  &&  this.selectedGroupName == '') {
+        if (this.selectedUserID === ''  &&  this.selectedGroupName === '') {
             this.errorMessage = 'Select at least a user or a group';
             return;
         };
@@ -380,7 +380,7 @@ export class DatasourceShareComponent implements OnInit {
         let groupID: number = -1;
         if (this.selectedGroupName != '') {
             let groupIndex: number = this.groups.findIndex(
-                grp => grp.name == this.selectedGroupName);
+                grp => grp.name === this.selectedGroupName);
             if (groupIndex < 0) {
                 this.errorMessage = 'Unexpected error - group not found';
                 return;
@@ -390,7 +390,7 @@ export class DatasourceShareComponent implements OnInit {
 
         // Get DS-ID
         let datasourceIndex: number = this.datasources.findIndex(
-            ds => ds.name == this.selectedDatasource);
+            ds => ds.name === this.selectedDatasource);
         if (datasourceIndex < 0) {
             this.errorMessage = 'Unexpected error - Datasource not found';
             return;
