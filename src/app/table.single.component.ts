@@ -62,15 +62,15 @@ export class TableSingleComponent {
 
         // Get data for the selected DS, with a Max
         this.currentData = this.globalVariableService.currentDatasources
-            .filter(d => d.id == this.table.datasourceID)[0].dataFiltered
+            .filter(d => d.id === this.table.datasourceID)[0].dataFiltered
             .slice(0, this.globalVariableService.canvasSettings.maxTableLength);
 
         this.table.widgetFilters.forEach(wf => {
-            if (wf.filterType == 'CrossFilter' 
-                && wf.isActive == true) {
+            if (wf.filterType === 'CrossFilter' 
+                && wf.isActive === true) {
                     console.log('xx d filter', wf.filterFieldName, wf.filterValue)
                     this.currentData = this.currentData
-                        .filter(row => row[wf.filterFieldName] == wf.filterValue)
+                        .filter(row => row[wf.filterFieldName] === wf.filterValue)
             };
 
         });
@@ -81,13 +81,13 @@ export class TableSingleComponent {
 
         // Get DS
         this.currentDatasources = this.globalVariableService.currentDatasources
-            .filter(ds => ds.id == this.table.datasourceID)
+            .filter(ds => ds.id === this.table.datasourceID)
         this.dataFieldNames = this.currentDatasources[0].dataFields;
         
         this.dataFieldNameHeaders = [];
         this.dataFieldNames.forEach(dfn => {
             let dfnInwf: number = this.table.widgetFilters
-                .findIndex(wf => wf.filterFieldName == dfn);
+                .findIndex(wf => wf.filterFieldName === dfn);
 
             if (dfnInwf >= 0) {
                 dfn = '*' + dfn;
@@ -100,13 +100,13 @@ export class TableSingleComponent {
         // For now, only show Ws on the same Tab
         this.widgets = this.globalVariableService.currentWidgets
             .filter(
-                w => w.dashboardID == this.globalVariableService.currentDashboardInfo
+                w => w.dashboardID === this.globalVariableService.currentDashboardInfo
                     .value.currentDashboardID
                 &&
-                w.dashboardTabID == this.globalVariableService.currentDashboardInfo
+                w.dashboardTabID === this.globalVariableService.currentDashboardInfo
                     .value.currentDashboardTabID
                 &&
-                (w.widgetType == 'Graph'  ||  w.widgetType == 'Table')
+                (w.widgetType === 'Graph'  ||  w.widgetType === 'Table')
                 &&
                 (w.id != this.table.id)
             )
@@ -124,9 +124,9 @@ export class TableSingleComponent {
         this.widgets.forEach(w => {
 
             w.widgetFilters.forEach(wf => {
-                if (wf.sourceWidgetID == this.table.id) {
+                if (wf.sourceWidgetID === this.table.id) {
 
-                    if (wf.filterType == 'CrossFilter') {
+                    if (wf.filterType === 'CrossFilter') {
                         this.widgetFilterColumns.push(wf.filterFieldName);
 
                         this.localWidgetFilters.push({
@@ -176,7 +176,7 @@ export class TableSingleComponent {
         let cellContent: string = ev.srcElement.innerText;
         let rowContent: string = ev.srcElement.parentElement.innerText;
         let rowContentArray: string[] = rowContent.split(/\r?\n/).map(x => x.trim());
-        let cellPosition: number = rowContentArray.findIndex(x => x == cellContent);
+        let cellPosition: number = rowContentArray.findIndex(x => x === cellContent);
         let columnHeader: string = '';
 
         if (cellPosition >= 0  &&  this.dataFieldNames.length > 0) {
@@ -190,11 +190,11 @@ export class TableSingleComponent {
         this.widgets.forEach(w => {
 
             w.widgetFilters.forEach(wf => {
-                if (wf.sourceWidgetID == this.table.id
+                if (wf.sourceWidgetID === this.table.id
                     &&
-                    wf.sourceDatasourceField == columnHeader
+                    wf.sourceDatasourceField === columnHeader
                     &&
-                    wf.filterType == 'CrossFilter') {
+                    wf.filterType === 'CrossFilter') {
                         wf.isActive = true;
                         wf.filterValue = cellContent;
                         console.log('xx refresh name wf', w.name, wf)
