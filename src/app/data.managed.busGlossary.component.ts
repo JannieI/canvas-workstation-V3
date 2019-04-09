@@ -34,7 +34,7 @@ export class DataManagedBusGlossaryComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -162,7 +162,7 @@ export class DataManagedBusGlossaryComponent implements OnInit {
 
         // Fill the form
         let selectedDatasourceIndex: number = this.datasources
-            .findIndex(dc => dc.id == id);
+            .findIndex(dc => dc.id === id);
         if (selectedDatasourceIndex >= 0) {
 
             // this.selectedDatasource = Object.assign({},
@@ -194,7 +194,7 @@ export class DataManagedBusGlossaryComponent implements OnInit {
 
         // // Re Fill the form
         // let datasourceIndex: number = this.datasources
-        //     .findIndex(sch => sch.id == this.selectedDatasource.id);
+        //     .findIndex(sch => sch.id === this.selectedDatasource.id);
         // if (datasourceIndex >= 0) {
         //     this.selectedDatasource = Object.assign({},
         //         this.datasources[datasourceIndex]
@@ -214,7 +214,7 @@ export class DataManagedBusGlossaryComponent implements OnInit {
         // Save the changes
         if (this.editing) {
             let datasourceIndex: number = this.datasources
-                .findIndex(ds => ds.id == this.selectedDatasource.id);
+                .findIndex(ds => ds.id === this.selectedDatasource.id);
             if (datasourceIndex >= 0) {
                 this.datasources[datasourceIndex].businessGlossary =
                     this.selectedDatasource.businessGlossary
