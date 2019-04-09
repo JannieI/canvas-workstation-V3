@@ -37,7 +37,7 @@ export class DashboardTreeviewComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -71,14 +71,14 @@ export class DashboardTreeviewComponent implements OnInit {
                 let tabs: DashboardTab[] = [];
                 this.globalVariableService.getResource('dashboardTabs')
                     .then(res => {
-                        tabs = res.filter(t => t.dashboardID == this.globalVariableService.
+                        tabs = res.filter(t => t.dashboardID === this.globalVariableService.
                             currentDashboardInfo.value.currentDashboardID
                         );
 
                         // Get Widgets
                         this.globalVariableService.getResource('widgets')
                             .then(res => {  
-                                this.widgets = res.filter(w => w.dashboardID == this.globalVariableService.
+                                this.widgets = res.filter(w => w.dashboardID === this.globalVariableService.
                                     currentDashboardInfo.value.currentDashboardID
                                 );
 
@@ -102,7 +102,7 @@ export class DashboardTreeviewComponent implements OnInit {
                                             //     w => w.dashboardTabIDs.indexOf(tabs[i].id)>=0
                                             // );
                                             let widgetsTab: Widget[] = this.widgets.filter(
-                                                w => w.dashboardTabID == tabs[i].id
+                                                w => w.dashboardTabID === tabs[i].id
                                             );
 
                                             let dsIDs: number[] = [];
@@ -126,28 +126,28 @@ export class DashboardTreeviewComponent implements OnInit {
                                                 };
 
                                                 // Put W into treeview
-                                                if (w.widgetType == 'Graph') {
+                                                if (w.widgetType === 'Graph') {
                                                     this.objectTree[i].children[0].grandchildren.push({
                                                         icon: "line-chart",
                                                         name: 'Graph (' + w.graphLayers[0].graphYtype + ') ' + w.titleText + ' (' + w.description + ')',
                                                         active: false
                                                     });
                                                 };
-                                                if (w.widgetType == 'Table') {
+                                                if (w.widgetType === 'Table') {
                                                     this.objectTree[i].children[0].grandchildren.push({
                                                         icon: "grid-view",
                                                         name: 'Table ' + w.titleText + ' (' + w.description + ')',
                                                         active: false
                                                     });
                                                 };
-                                                if (w.widgetType == 'Slicer') {
+                                                if (w.widgetType === 'Slicer') {
                                                     this.objectTree[i].children[0].grandchildren.push({
                                                         icon: "slider",
                                                         name: 'Slicer ' + w.titleText + ' (' + w.description + ')',
                                                         active: false
                                                     });
                                                 };
-                                                if (w.widgetType == 'Shape') {
+                                                if (w.widgetType === 'Shape') {
                                                     this.objectTree[i].children[0].grandchildren.push({
                                                         icon: "objects",
                                                         name: 'Shape: ' + w.widgetSubType,
@@ -167,7 +167,7 @@ export class DashboardTreeviewComponent implements OnInit {
                                             if (dsIDs.length > 0) {
                                                 dsIDs.forEach(dsid => {
                                                     let datasourceIndex: number= this.datasources
-                                                        .findIndex(ds => ds.id == dsid);
+                                                        .findIndex(ds => ds.id === dsid);
                                                     if (datasourceIndex >= 0) {
                                                         this.objectTree[i].children[1].grandchildren.push({
                                                             icon: "folder",
@@ -193,7 +193,7 @@ export class DashboardTreeviewComponent implements OnInit {
                                                         .then(res => {
                                                             this.dataQualityIssues = res;
                                                             let dataqualityIndex: number= this.dataQualityIssues
-                                                                .findIndex(dq => dq.datasourceID == dsid);
+                                                                .findIndex(dq => dq.datasourceID === dsid);
                                                             if (dataqualityIndex >= 0) {
                                                                 this.objectTree[i].children[2].grandchildren.push({
                                                                     icon: "folder",
