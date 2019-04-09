@@ -41,7 +41,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose();
             return;
         };
@@ -198,7 +198,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
 
         // Validation
-        if (this.connectionName == null  ||  this.connectionName == '') {
+        if (this.connectionName === null  ||  this.connectionName === '') {
             this.errorMessage = 'Please select a connection';
             return;
         };
@@ -215,7 +215,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
         // Get connection detail
         let connection: DataConnection[] = this.dataConnections.filter(
-            con => con.connectionName == this.connectionName 
+            con => con.connectionName === this.connectionName 
         );
         let serverType: string = '';
         let serverName: string = '';
@@ -230,7 +230,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
         // Get the driver
         let driver: string = this.serverTypes
-            .filter(styp => styp.serverType == serverType)
+            .filter(styp => styp.serverType === serverType)
             .map(styp => styp.driverName)[0];
         
         // Build Spec
@@ -251,7 +251,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         this.globalVariableService.getTributaryInspect(specificationInspect)
             .then(res => {
                 // Show if the user has not clicked another row - this result came back async
-                if ( localSelectedTableRowIndex == this.selectedTableRowIndex) {
+                if ( localSelectedTableRowIndex === this.selectedTableRowIndex) {
                     this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
                 };
                 this.spinner = false;
@@ -292,10 +292,10 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 // Find index Table, which will filter Fields
                 if (this.selectedDatasource.dataTableName != '') {
                     refreshRow = this.dataSchemas.findIndex(
-                        dsch => dsch.tableName == this.selectedDatasource.dataTableName
+                        dsch => dsch.tableName === this.selectedDatasource.dataTableName
                     );
                 } else {
-                    if (this.dataSchemas.length == 0) {
+                    if (this.dataSchemas.length === 0) {
                         refreshRow = -1;
                     };
                 };
@@ -336,7 +336,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
         // Select Fields in the table
         this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
-            if (datsch.tableName == tableName) {
+            if (datsch.tableName === tableName) {
                 return datsch;
             };
         })[0].tableFields;
@@ -366,7 +366,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         this.errorMessage = '';
 
         // No Fields, no data
-        if (this.selectedFields.length == 0) {
+        if (this.selectedFields.length === 0) {
             this.errorMessage = 'Make sure you have selected a Table and some fields.  If these are not showing, click Refresh.';
             return;
         };
@@ -389,7 +389,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
         // Get connection detail
         let connection: DataConnection[] = this.dataConnections.filter(
-            con => con.connectionName == this.connectionName 
+            con => con.connectionName === this.connectionName 
         );
         let serverType: string = '';
         let serverName: string = '';
@@ -404,7 +404,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
         // Get the driver
         let driver: string = this.serverTypes
-            .filter(styp => styp.serverType == serverType)
+            .filter(styp => styp.serverType === serverType)
             .map(styp => styp.driverName)[0];
         
         // Build Spec
@@ -466,7 +466,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             this.errorMessage = 'No Table selected';
             return;
         };
-        if (this.selectedFields.length == 0) {
+        if (this.selectedFields.length === 0) {
             this.showPreview = false;
             this.errorMessage = 'No Fields selected';
             return;
@@ -483,7 +483,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             dataFieldTypes.push(sdf.fieldType)
 
             // TODO - improve later
-            if (sdf.fieldType == 'string') {
+            if (sdf.fieldType === 'string') {
                 dataFieldLengths.push(25);
             } else {
                 dataFieldLengths.push(12);
@@ -491,7 +491,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         });
 
         // Make sure at least one field selected
-        if (dataFields.length == 0) {
+        if (dataFields.length === 0) {
             this.showPreview = false;
             this.helpMessage = '';
             this.errorMessage = 'No fields selected';
@@ -595,7 +595,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             });
 
         // Close form and open Transitions if requested
-        if (action == 'Saved') {
+        if (action === 'Saved') {
             this.formDataManagedQueryBuilderClosed.emit(null);
 
         } else {
