@@ -33,7 +33,7 @@ export class DashboardTemplateComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -73,13 +73,13 @@ export class DashboardTemplateComponent implements OnInit {
                         return 0;
                     });
                 let dashboardIndex: number = this.dashboards.findIndex(d => d.id 
-                    == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
+                    === this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
                 this.currentDashboard = this.dashboards[dashboardIndex];
 
                 // Get Template info
                 if (this.currentDashboard.templateDashboardID != null) {
                     let templateIndex: number = this.dashboards.findIndex(
-                        d => d.id == this.currentDashboard.templateDashboardID);
+                        d => d.id === this.currentDashboard.templateDashboardID);
                     if (templateIndex >=0 ) {
                         this.currentTemplateName = this.dashboards[templateIndex].name;
                     };
@@ -118,7 +118,7 @@ export class DashboardTemplateComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickAdd', '@Start');
         
         let templateIndex: number = this.dashboards.findIndex(
-            d => d.id == dashboardID);
+            d => d.id === dashboardID);
         this.currentTemplateName = this.dashboards[templateIndex].name;
 
         // Change Template ID and save
