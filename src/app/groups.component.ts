@@ -35,7 +35,7 @@ export class GroupsComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -125,7 +125,7 @@ export class GroupsComponent implements OnInit {
         // Show users in the selected Group
         this.groupName = this.canvasGroups[index].name;
         this.canvasGroups.forEach(g => {
-            if (g.id == groupID) {
+            if (g.id === groupID) {
                 this.canvasUsers = this.canvasUsersOriginal.filter(u =>
                     u.groups.map(x => x.toLowerCase()).indexOf(g.name.toLowerCase()) > 0
                 )
@@ -168,11 +168,11 @@ export class GroupsComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.groupName == ''  ||  this.groupName == null) {
+        if (this.groupName === ''  ||  this.groupName === null) {
             this.errorMessage = 'The group name is compulsory';
             return;
         };
-        let groupIndex: number = this.canvasGroups.findIndex(grp => grp.name == this.groupName);
+        let groupIndex: number = this.canvasGroups.findIndex(grp => grp.name === this.groupName);
         if (groupIndex >= 0) {
             this.errorMessage = 'The group name must be unique (it exists already)';
             return;
@@ -207,11 +207,11 @@ export class GroupsComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.groupName == ''  ||  this.groupName == null) {
+        if (this.groupName === ''  ||  this.groupName === null) {
             this.errorMessage = 'The group name is compulsory';
             return;
         };
-        let groupIndex: number = this.canvasGroups.findIndex(grp => grp.name == this.groupName);
+        let groupIndex: number = this.canvasGroups.findIndex(grp => grp.name === this.groupName);
         if (groupIndex >= 0) {
             this.errorMessage = 'The group name must be unique (it exists already)';
             return;
