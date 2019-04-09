@@ -35,7 +35,7 @@ export class WidgetDescriptionComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -57,7 +57,7 @@ export class WidgetDescriptionComponent implements OnInit {
 
         this.globalVariableService.getResource('widgetStoredTemplates')
             .then(wst => {
-                wst = wst.filter(w => w.widgetID == this.selectedWidget.id);
+                wst = wst.filter(w => w.widgetID === this.selectedWidget.id);
                 if (wst != null  &&  wst.length > 0) {
                     this.hasTemplate = true;
                 };
