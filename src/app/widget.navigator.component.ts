@@ -134,7 +134,7 @@ export class WidgetNavigatorComponent {
 
         // let astring: string = '123';
         // let anumber: number = 123;
-        // if (astring == anumber) {
+        // if (astring === anumber) {
         //     console.log('Equal')
         // };
 
@@ -555,7 +555,7 @@ export class WidgetNavigatorComponent {
 
         // Create the ParentNodeType dropdown according to the network
         this.dropdownParentNodeTypes = this.parentRelatedChildren
-            .filter(x => x.networkID == this.selectedNetworkID)
+            .filter(x => x.networkID === this.selectedNetworkID)
             .map(x => x.parentNodeType)
         this.dropdownParentNodeTypes = ['All', ...this.dropdownParentNodeTypes];
 
@@ -576,7 +576,7 @@ export class WidgetNavigatorComponent {
         this.selectedChildFilterID = -1;
 
         this.history = this.historyAll
-            .filter(h => h.networkID == networkID)
+            .filter(h => h.networkID === networkID)
             .sort( (a,b) => {
                 if (a.id < b.id) {
                     return 1;
@@ -589,7 +589,7 @@ export class WidgetNavigatorComponent {
 
         // Reset isSelected field
         this.networks.forEach(n => {
-        if (n.id == networkID) {
+        if (n.id === networkID) {
                 n.isSelected = true;
             } else {
                 n.isSelected = false;
@@ -619,7 +619,7 @@ export class WidgetNavigatorComponent {
         // Set the history id and reset the isSelected field in history
         this.selectedHistoryID = historyID;
         this.history.forEach(h => {
-            if (h.id == historyID) {
+            if (h.id === historyID) {
                 h.isSelected = true;
             } else {
                 h.isSelected = false;
@@ -639,26 +639,26 @@ export class WidgetNavigatorComponent {
 
         // Set selected ParentNodeId
         let parentNodeTypeIndex: number = this.dropdownParentNodeTypes.findIndex(
-            p => p == this.selectedParentNodeType
+            p => p === this.selectedParentNodeType
         );
 
         // Find watchlist for this NodeType
         let watchListIndex: number = this.watchList.findIndex(x =>
-                x.userID == this.globalVariableService.currentUserID
+                x.userID === this.globalVariableService.currentUserID
                 &&
-                x.nodeType == this.selectedParentNodeType
+                x.nodeType === this.selectedParentNodeType
         );
 
         // Set Dropdowns & reset selected
         this.dropdownParentNodes = this.parentRelatedChildren
             .filter(
-                x => x.parentNodeType == this.selectedParentNodeType
+                x => x.parentNodeType === this.selectedParentNodeType
             )
             .slice(0, 100)
             .map(x => x.parentNode);
         this.dropdownRelationships = this.parentRelatedChildren
             .filter(
-                x => x.parentNodeType == this.selectedParentNodeType
+                x => x.parentNodeType === this.selectedParentNodeType
             )
             .slice(0, 100)
             .map(x => x.relationship);
@@ -703,9 +703,9 @@ export class WidgetNavigatorComponent {
         this.relationshipRoles = [];
         this.showRoles = false;
         this.relationshipRoles = this.parentRelatedChildren
-            .filter(x => x.parentNodeType == this.selectedParentNodeType
-                && x.parentNode == this.selectedParentNode
-                && x.relationship == this.selectedRelationship
+            .filter(x => x.parentNodeType === this.selectedParentNodeType
+                && x.parentNode === this.selectedParentNode
+                && x.relationship === this.selectedRelationship
                 && x.role != ''
                 && x.role != null)
             .map(y => {
@@ -739,9 +739,9 @@ export class WidgetNavigatorComponent {
         this.relationshipRoles = [];
         this.showRoles = false;
         this.relationshipRoles = this.parentRelatedChildren
-            .filter(x => x.parentNodeType == this.selectedParentNodeType
-                && x.parentNode == this.selectedParentNode
-                && x.relationship == this.selectedRelationship
+            .filter(x => x.parentNodeType === this.selectedParentNodeType
+                && x.parentNode === this.selectedParentNode
+                && x.relationship === this.selectedRelationship
                 && x.role != ''
                 && x.role != null)
             .map(y => {
@@ -778,14 +778,14 @@ export class WidgetNavigatorComponent {
 
             // Set the data, some unique
             this.childDataAll = this.parentRelatedChildren
-                .filter(x => x.parentNodeType == this.selectedParentNodeType
-                    && x.parentNode == this.selectedParentNode
-                    && x.relationship == this.selectedRelationship)
+                .filter(x => x.parentNodeType === this.selectedParentNodeType
+                    && x.parentNode === this.selectedParentNode
+                    && x.relationship === this.selectedRelationship)
                 .map(y => y.childNode);
             this.relationshipRoles = this.parentRelatedChildren
-                .filter(x => x.parentNodeType == this.selectedParentNodeType
-                    && x.parentNode == this.selectedParentNode
-                    && x.relationship == this.selectedRelationship
+                .filter(x => x.parentNodeType === this.selectedParentNodeType
+                    && x.parentNode === this.selectedParentNode
+                    && x.relationship === this.selectedRelationship
                     && x.role != ''
                     && x.role != null)
                 .map(y => y.role);
@@ -850,10 +850,10 @@ export class WidgetNavigatorComponent {
 
                     // Get list of Children for this role
                     let childrenFilteredRole: string[] = this.parentRelatedChildren
-                        .filter(x => x.parentNodeType == this.selectedParentNodeType
-                            && x.parentNode == this.selectedParentNode
-                            && x.relationship == this.selectedRelationship
-                            && x.role == this.relationshipRoles[roleID])
+                        .filter(x => x.parentNodeType === this.selectedParentNodeType
+                            && x.parentNode === this.selectedParentNode
+                            && x.relationship === this.selectedRelationship
+                            && x.role === this.relationshipRoles[roleID])
                         .map(y => y.childNode);
 
                     // Increment with 1, which was added above
@@ -992,7 +992,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
             // Find Child in list of visible children
             let childClicked: number = this.childDataVisible.findIndex(
-                cdv => cdv.childNode == childNodeClicked);
+                cdv => cdv.childNode === childNodeClicked);
 
             if (childClicked >= 0) {
                 let childNodeTypeClick: string = this.childDataVisible[childClicked].childNodeType;
@@ -1187,7 +1187,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // data structurs allows it
 
         // Validation
-        if (this.filterParentFieldName == '') {
+        if (this.filterParentFieldName === '') {
                 this.parentFilterErrorMessage = 'The field name is compulsory';
                 return;
         };
@@ -1215,7 +1215,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Filter ParentNodes
         // TODO - do other operands than ==
         this.filteredParentNodes = this.nodeProperties
-            .filter(x => x[this.filterParentFieldName] == this.filterParentValue)
+            .filter(x => x[this.filterParentFieldName] === this.filterParentValue)
             .map(y => y.node);
 
         // Make unique
@@ -1238,7 +1238,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // data structurs allows it
 
         // Validation
-        if (this.filterChildFieldName == '') {
+        if (this.filterChildFieldName === '') {
             this.childFilterErrorMessage = 'The field name is compulsory';
             return;
         };
@@ -1266,7 +1266,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Filter ParentNodes
         // TODO - do other operands than ==
         this.filteredChildNodes = this.nodeProperties
-            .filter(x => x[this.filterChildFieldName] == this.filterChildValue)
+            .filter(x => x[this.filterChildFieldName] === this.filterChildValue)
             .map(y => y.node);
 
         // Make unique
@@ -1730,10 +1730,10 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
     tempCreateDummyData() {
 
         // Reset
-        if (this.selectedView == 'DefaultView') {
+        if (this.selectedView === 'DefaultView') {
             // No action
         };
-        if (this.selectedView == 'CommonParentView') {
+        if (this.selectedView === 'CommonParentView') {
             this.dummyData = [];
             this.dummyData.push({ 
                 "id": 1,
@@ -1766,11 +1766,11 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             });
 
         };
-        if (this.selectedView == 'CommonNodeView') {
+        if (this.selectedView === 'CommonNodeView') {
         };
-        if (this.selectedView == 'DistanceView') {
+        if (this.selectedView === 'DistanceView') {
         };
-        if (this.selectedView == 'NodeTypeView') {
+        if (this.selectedView === 'NodeTypeView') {
         };
 
                     
