@@ -33,7 +33,7 @@ export class CollaborateMessagesComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -81,7 +81,7 @@ export class CollaborateMessagesComponent implements OnInit {
         // Toggle Recipient = current UserID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRecipientMe', '@Start');
 
-        if (this.recipient == '') {
+        if (this.recipient === '') {
             this.recipient = this.globalVariableService.currentUser.userID;
         } else {
             this.recipient = '';
@@ -93,7 +93,7 @@ export class CollaborateMessagesComponent implements OnInit {
         // Toggle Last Login value on form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLastLogin', '@Start');
 
-        if (this.sentAfter == '') {
+        if (this.sentAfter === '') {
             this.sentAfter = new Date(this.globalVariableService.currentUser.lastLogin).toDateString();
         } else {
             this.sentAfter = '';
@@ -130,7 +130,7 @@ export class CollaborateMessagesComponent implements OnInit {
                     this.canvasMessages = this.canvasMessages.filter(m => {
                         let isFound: boolean = false;
                         m.recipients.forEach(r => {
-                            if (r.readOn == null) {
+                            if (r.readOn === null) {
                                 isFound = true;
                             };
                         });
@@ -179,16 +179,16 @@ export class CollaborateMessagesComponent implements OnInit {
 
         this.errorMessage = '';
 
-        let messagesFound: CanvasMessage[] = this.canvasMessages.filter(msg => msg.id == id);
+        let messagesFound: CanvasMessage[] = this.canvasMessages.filter(msg => msg.id === id);
 
-        if (messagesFound.length == 0) {
+        if (messagesFound.length === 0) {
             return;
         }
 
         let dashboardID: number = messagesFound[0].dashboardID;
         let dashboardTabID: number = messagesFound[0].dashboardTabID;
 
-        if (dashboardID == null  ||  dashboardTabID == null) {
+        if (dashboardID === null  ||  dashboardTabID === null) {
             return;
         };
 
@@ -207,7 +207,7 @@ export class CollaborateMessagesComponent implements OnInit {
         this.errorMessage = '';
 
         this.messageAction = 'reply'
-        let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id == id);
+        let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id === id);
         if (messageIndex >= 0) {
             this.existingMessagge = this.canvasMessages[messageIndex];
         } else {
@@ -224,7 +224,7 @@ export class CollaborateMessagesComponent implements OnInit {
         this.errorMessage = '';
 
         this.messageAction = 'forward'
-        let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id == id);
+        let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id === id);
         if (messageIndex >= 0) {
             this.existingMessagge = this.canvasMessages[messageIndex];
         } else {
@@ -249,7 +249,7 @@ export class CollaborateMessagesComponent implements OnInit {
 
         this.errorMessage = '';
 
-        let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id == id);
+        let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id === id);
         if (messageIndex >= 0) {
             document.execCommand('copy',false,"Subject: " + this.canvasMessages[messageIndex].subject
                 + "; Body: " + this.canvasMessages[messageIndex].body);
@@ -264,14 +264,14 @@ export class CollaborateMessagesComponent implements OnInit {
         this.errorMessage = '';
 
         let readCount: number = 0;
-        let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id == id);
+        let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id === id);
         if (messageIndex >= 0) {
             this.canvasMessages[messageIndex].recipients.forEach(rec => {
                 if (rec.readOn != null) {
                     readCount = readCount + 1;
                 };
             });
-            if (readCount == 0) {
+            if (readCount === 0) {
                 this.globalVariableService.deleteResource('canvasMessages', id)
                     .then(res => {
                         this.clickFilter(false);
