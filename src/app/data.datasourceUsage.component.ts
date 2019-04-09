@@ -34,7 +34,7 @@ export class DataDatasourceUsageComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -122,7 +122,7 @@ export class DataDatasourceUsageComponent implements OnInit {
                 let dashboardIndex: number;
                 dashboardIDs.forEach(did => {
                     dashboardIndex = this.dashboardsOrignal.findIndex(d =>
-                        d.id == did);
+                        d.id === did);
                     if (dashboardIndex >= 0) {
                         this.dashboards.push(this.dashboardsOrignal[dashboardIndex]);
                     }
