@@ -46,12 +46,12 @@ export class WidgetCheckpointsComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -84,9 +84,9 @@ export class WidgetCheckpointsComponent implements OnInit {
             .then (ca => {
                 // Set the data for the grid
                 this.currentWidgetCheckpoints = ca.filter(wc =>
-                    wc.dashboardID == this.selectedWidget.dashboardID
+                    wc.dashboardID === this.selectedWidget.dashboardID
                     &&
-                    wc.widgetID == this.selectedWidget.id
+                    wc.widgetID === this.selectedWidget.id
                 );
 
                 this.nrCheckpoints = this.currentWidgetCheckpoints.length;
@@ -118,7 +118,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         // Refresh graph
         let idx: number = -1;
         for (var i = 0; i < this.currentWidgetCheckpoints.length; i++) {
-            if (this.currentWidgetCheckpoints[i].id == id) {
+            if (this.currentWidgetCheckpoints[i].id === id) {
                 idx = i;
             };
         };
@@ -186,7 +186,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         let index: number = -1;
         for (var i = 0; i < this.currentWidgetCheckpoints.length; i++) {
-            if (this.currentWidgetCheckpoints[i].id == id) {
+            if (this.currentWidgetCheckpoints[i].id === id) {
                 index = i;
             };
         };
@@ -204,7 +204,7 @@ export class WidgetCheckpointsComponent implements OnInit {
                 this.selectedWidget.showCheckpoints = false;
                 index = -1;
                 for (var i = 0; i < this.selectedWidget.checkpointIDs.length; i++) {
-                    if (this.selectedWidget.checkpointIDs[i] == id) {
+                    if (this.selectedWidget.checkpointIDs[i] === id) {
                         index = i;
                     };
                 };
