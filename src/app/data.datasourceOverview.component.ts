@@ -40,7 +40,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -164,7 +164,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
 
         // Get the data, either lives in the DS, or in a url
         let selectedDatasourceIndex: number = this.globalVariableService.currentDatasources
-            .findIndex(dS => dS.id == this.selectedRowID
+            .findIndex(dS => dS.id === this.selectedRowID
         );
         if (selectedDatasourceIndex >= 0) {
             this.currentData = this.globalVariableService.currentDatasources
@@ -237,7 +237,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
         this.selectedRowIndex = index;
 
         let dsIndex: number = -1;
-        dsIndex = this.datasources.findIndex(ds => ds.id == id);
+        dsIndex = this.datasources.findIndex(ds => ds.id === id);
         if (dsIndex != -1) {
             this.selectedDatasource = this.datasources[dsIndex];
             this.dataFieldNames = this.selectedDatasource.dataFields;
@@ -246,9 +246,9 @@ export class DataDatasourceOverviewComponent implements OnInit {
             this.selectedRowDescription = this.datasources[dsIndex].description;
 
             this.selectedRowNrWidgetsInUse = this.widgets.filter(w =>
-                w.datasourceID == this.datasources[index].id
+                w.datasourceID === this.datasources[index].id
                 &&
-                w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                w.dashboardID === this.globalVariableService.currentDashboardInfo.value.currentDashboardID
             ).length;
 
 
@@ -285,26 +285,26 @@ export class DataDatasourceOverviewComponent implements OnInit {
         this.clickedViewFieldProperties = false;
         this.clickedViewFieldProfile = false;
         this.clickedViewDataQuality = false;
-        if (area == 'gridViewDescription') {
+        if (area === 'gridViewDescription') {
             this.clickedViewDescription = true;
         };
-        if (area == 'gridViewPreview') {
+        if (area === 'gridViewPreview') {
             this.clickedViewPreview = true;
         };
-        if (area == 'gridViewFieldProperties') {
+        if (area === 'gridViewFieldProperties') {
             this.clickedViewFieldProperties = true;
         };
-        if (area == 'gridViewFieldProfile') {
+        if (area === 'gridViewFieldProfile') {
             this.clickedViewFieldProfile = true;
         };
-        if (area == 'gridViewOverview') {
+        if (area === 'gridViewOverview') {
             this.clickedViewOverview = true;
         };
 
-        if (area == 'gridViewFields') {
+        if (area === 'gridViewFields') {
             this.clickedViewFields = true;
         };
-        if (area == 'gridViewDataQuality') {
+        if (area === 'gridViewDataQuality') {
             this.clickedViewDataQuality = true;
         };
 
