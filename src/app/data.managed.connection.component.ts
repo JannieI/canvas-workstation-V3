@@ -32,7 +32,7 @@ export class DataManagedConnectionComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -95,7 +95,7 @@ export class DataManagedConnectionComponent implements OnInit {
 
         // Fill the form
         let connectionIndex: number = this.dataConnections
-            .findIndex(dc => dc.id == id);
+            .findIndex(dc => dc.id === id);
         if (connectionIndex >= 0) {
             // this.selectedConnection = Object.assign({},
             //     this.dataConnections[connectionIndex]
@@ -148,7 +148,7 @@ export class DataManagedConnectionComponent implements OnInit {
 
         // Re Fill the form
         let dataconnectionIndex: number = this.dataConnections
-            .findIndex(sch => sch.id == this.selectedConnection.id);
+            .findIndex(sch => sch.id === this.selectedConnection.id);
         if (dataconnectionIndex >= 0) {
             // this.selectedConnection = Object.assign({},
             //     this.dataConnections[dataconnectionIndex]
@@ -173,9 +173,9 @@ export class DataManagedConnectionComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedConnection.connectionName == null
+        if (this.selectedConnection.connectionName === null
             ||
-            this.selectedConnection.connectionName == '') {
+            this.selectedConnection.connectionName === '') {
                 this.errorMessage = 'Enter a Connection Name';
                 return;
         };
@@ -206,7 +206,7 @@ export class DataManagedConnectionComponent implements OnInit {
         // Save the changes
         if (this.editing) {
             let dataconnectionIndex: number = this.dataConnections
-                .findIndex(sch => sch.id == this.selectedConnection.id);
+                .findIndex(sch => sch.id === this.selectedConnection.id);
             if (dataconnectionIndex >= 0) {
                 // this.dataConnections[dataconnectionIndex] =
                 //     Object.assign({}, this.selectedConnection);
