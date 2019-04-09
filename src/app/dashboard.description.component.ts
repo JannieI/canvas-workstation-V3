@@ -39,12 +39,12 @@ export class DashboardDescriptionComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -127,7 +127,7 @@ export class DashboardDescriptionComponent implements OnInit {
                     // Fill Initial
                     if (this.selectedDashboard.templateDashboardID != null
                         &&
-                        this.selectedDashboard.templateDashboardID == d.id) {
+                        this.selectedDashboard.templateDashboardID === d.id) {
                         this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ') ' + d.state;
                     };
                 });
@@ -147,7 +147,7 @@ export class DashboardDescriptionComponent implements OnInit {
                     this.colourPickerClosed = false;
                 } else {
 
-                    if (clp.callingRoutine == 'BgColour') {
+                    if (clp.callingRoutine === 'BgColour') {
                         this.colourPickerClosed = false;
                         this.dashboardBackgroundColor = clp.selectedColor;
                         this.dashboardBackgroundColorName = 'Open Picker ...';
@@ -240,15 +240,15 @@ export class DashboardDescriptionComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Validation
-        if (this.dashboardName == '') {
+        if (this.dashboardName === '') {
             this.errorMessage = 'Please enter a Name';
             return;
         };
-        if (this.dashboardDescription == '') {
+        if (this.dashboardDescription === '') {
             this.errorMessage = 'Please enter a Description';
             return;
         };
-        if (this.dashboardCode == '') {
+        if (this.dashboardCode === '') {
             this.errorMessage = 'Please enter a Code';
             return;
         };
@@ -333,14 +333,14 @@ export class DashboardDescriptionComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectBgColorPicker(null);
         };
 
         this.dashboardBackgroundColorName = ev.target.value;
         this.dashboardBackgroundColor = this.dashboardBackgroundColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.dashboardBackgroundColorName
+            bg.name === this.dashboardBackgroundColorName
         );
         if (localIndex >= 0) {
             this.dashboardBackgroundColor = this.backgroundcolors[localIndex].cssCode;
