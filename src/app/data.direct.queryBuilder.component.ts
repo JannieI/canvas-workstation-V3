@@ -40,12 +40,12 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -234,7 +234,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.globalVariableService.getTributaryInspect(specificationInspect)
             .then(res => {
                 // Show if the user has not clicked another row - this result came back async
-                if ( localSelectedTableRowIndex == this.selectedTableRowIndex) {
+                if ( localSelectedTableRowIndex === this.selectedTableRowIndex) {
                     this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
                 };
                 this.spinner = false;
@@ -275,10 +275,10 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 // Find index Table, which will filter Fields
                 if (this.selectedDatasource.dataTableName != '') {
                     refreshRow = this.dataSchemas.findIndex(
-                        dsch => dsch.tableName == this.selectedDatasource.dataTableName
+                        dsch => dsch.tableName === this.selectedDatasource.dataTableName
                     );
                 } else {
-                    if (this.dataSchemas.length == 0) {
+                    if (this.dataSchemas.length === 0) {
                         refreshRow = -1;
                     };
                 };
@@ -317,7 +317,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Select Fields in the table
         this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
-            if (datsch.tableName == tableName) {
+            if (datsch.tableName === tableName) {
                 return datsch;
             };
         })[0].tableFields;
@@ -353,7 +353,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.errorMessage = '';
 
         // No Fields, no data
-        if (this.selectedFields.length == 0) {
+        if (this.selectedFields.length === 0) {
             this.errorMessage = 'Make sure you have selected a Table and some fields.  If these are not showing, click Refresh.';
             return;
         };
@@ -364,7 +364,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Get drivers
         let driver: string = this.serverTypes
-            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+            .filter(styp => styp.serverType === this.selectedDatasource.serverType)
             .map(styp => styp.driverName)[0];
 
         // Build SQL string
@@ -452,7 +452,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.errorMessage = 'No Table selected';
             return;
         };
-        if (this.selectedFields.length == 0) {
+        if (this.selectedFields.length === 0) {
             this.showPreview = false;
             this.errorMessage = 'No Fields selected';
             return;
@@ -469,7 +469,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             dataFieldTypes.push(sdf.fieldType)
 
             // TODO - improve later
-            if (sdf.fieldType == 'string') {
+            if (sdf.fieldType === 'string') {
                 dataFieldLengths.push(25);
             } else {
                 dataFieldLengths.push(12);
@@ -477,7 +477,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         });
 
         // Make sure at least one field selected
-        if (dataFields.length == 0) {
+        if (dataFields.length === 0) {
             this.showPreview = false;
             this.helpMessage = '';
             this.errorMessage = 'No fields selected';
@@ -580,7 +580,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             });
 
         // Close form and open Transitions if requested
-        if (action == 'Saved') {
+        if (action === 'Saved') {
             this.formDataDirectQueryBuilderClosed.emit(null);
 
         } else {
