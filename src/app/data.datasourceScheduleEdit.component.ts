@@ -34,12 +34,12 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -132,14 +132,14 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
         // Fill the form
         let datasourceScheduleIndex: number = this.datasourceSchedules
-            .findIndex(sch => sch.id == id);
+            .findIndex(sch => sch.id === id);
         if (datasourceScheduleIndex >= 0) {
             this.selectedDatasourceSchedule = JSON.parse(JSON.stringify(
                 this.datasourceSchedules[datasourceScheduleIndex]
             ));
 
             let datasourceIndex: number = this.datasources.findIndex(
-                ds => ds.id == this.datasourceSchedules[
+                ds => ds.id === this.datasourceSchedules[
                       datasourceScheduleIndex].datasourceID
             );
 
@@ -215,7 +215,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
         // Re Fill the form
         let datasourceScheduleIndex: number = this.datasourceSchedules
-            .findIndex(sch => sch.id == this.selectedDatasourceSchedule.id);
+            .findIndex(sch => sch.id === this.selectedDatasourceSchedule.id);
         if (datasourceScheduleIndex >= 0) {
             this.selectedDatasourceSchedule = JSON.parse(JSON.stringify(
                 this.datasourceSchedules[datasourceScheduleIndex]
@@ -238,28 +238,28 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedDatasource == null
+        if (this.selectedDatasource === null
             ||
-            this.selectedDatasource == '') {
+            this.selectedDatasource === '') {
                 this.errorMessage = 'Select a Datasource';
                 return;
         };
 
-        if (this.selectedDatasourceSchedule.repeatFrequency == null
+        if (this.selectedDatasourceSchedule.repeatFrequency === null
             ||
-            this.selectedDatasourceSchedule.repeatFrequency == '') {
+            this.selectedDatasourceSchedule.repeatFrequency === '') {
                 this.errorMessage = 'Select a Frequency';
                 return;
         };
 
-        if (this.selectedDatasourceSchedule.repeatsEvery == null
+        if (this.selectedDatasourceSchedule.repeatsEvery === null
             ||
-            this.selectedDatasourceSchedule.repeatsEvery == 0) {
+            this.selectedDatasourceSchedule.repeatsEvery === 0) {
                 this.errorMessage = 'Fill in Every ';
                 return;
         };
 
-        if (this.selectedDatasourceSchedule.repeatFrequency == 'Weekly') {
+        if (this.selectedDatasourceSchedule.repeatFrequency === 'Weekly') {
             if (!this.selectedDatasourceSchedule.weeklyMonday
                 &&
                 !this.selectedDatasourceSchedule.weeklyTuesday
@@ -278,16 +278,16 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
             };
         };
 
-        if (this.selectedDatasourceSchedule.repeatFrequency == 'Monthly') {
-            if (this.selectedDatasourceSchedule.monthlyOn == 0
+        if (this.selectedDatasourceSchedule.repeatFrequency === 'Monthly') {
+            if (this.selectedDatasourceSchedule.monthlyOn === 0
             ||
-            this.selectedDatasourceSchedule.monthlyOn == null) {
+            this.selectedDatasourceSchedule.monthlyOn === null) {
                 this.errorMessage = 'Fill in day of month';
                 return;
             };
         };
 
-        if (this.selectedDatasourceSchedule.repeatFrequency == 'Yearly') {
+        if (this.selectedDatasourceSchedule.repeatFrequency === 'Yearly') {
             if (!this.selectedDatasourceSchedule.yearlyJanuary
                 &&
                 !this.selectedDatasourceSchedule.yearlyFebruary
@@ -316,28 +316,28 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
             };
         };
 
-        if (this.selectedDatasourceSchedule.startsOn == null) {
+        if (this.selectedDatasourceSchedule.startsOn === null) {
                 this.errorMessage = 'Enter start date';
                 return;
         };
 
         if (!this.selectedDatasourceSchedule.endsNever)
             if (
-                    (this.selectedDatasourceSchedule.endsAfter == null
+                    (this.selectedDatasourceSchedule.endsAfter === null
                     ||
-                    this.selectedDatasourceSchedule.endsAfter == 0)
+                    this.selectedDatasourceSchedule.endsAfter === 0)
                 &&
-                    (this.selectedDatasourceSchedule.endsOn == null
+                    (this.selectedDatasourceSchedule.endsOn === null
                     ||
-                    this.selectedDatasourceSchedule.endsOn == null)
+                    this.selectedDatasourceSchedule.endsOn === null)
                 ) {
                 this.errorMessage = 'Must end Never, On or After';
                 return;
         };
 
-        if (this.selectedDatasourceSchedule.name == null
+        if (this.selectedDatasourceSchedule.name === null
             ||
-            this.selectedDatasourceSchedule.name == '') {
+            this.selectedDatasourceSchedule.name === '') {
                 this.errorMessage = 'Enter a Schedule name';
                 return;
         };
@@ -357,7 +357,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
             this.globalVariableService.addResource(
                 'datasourceSchedules', this.selectedDatasourceSchedule)
                 .then(res => {
-                        if (this.selectedRow == null) {
+                        if (this.selectedRow === null) {
                             this.selectedRow = 0;
                             this.scheduleID = this.selectedDatasourceSchedule.id;
                         };
@@ -372,7 +372,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Save the changes
         if (this.editing) {
             let datasourceScheduleIndex: number = this.datasourceSchedules
-                .findIndex(sch => sch.id == this.selectedDatasourceSchedule.id);
+                .findIndex(sch => sch.id === this.selectedDatasourceSchedule.id);
             if (datasourceScheduleIndex >= 0) {
                 this.datasourceSchedules[datasourceScheduleIndex] =
                     JSON.parse(JSON.stringify(this.selectedDatasourceSchedule));
