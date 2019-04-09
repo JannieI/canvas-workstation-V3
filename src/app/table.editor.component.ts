@@ -41,12 +41,12 @@ import { GlobalVariableService }      from './global-variable.service';
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -121,7 +121,7 @@ import { GlobalVariableService }      from './global-variable.service';
         // Count the Ws
         let widgets: Widget[];
         this.datasources.forEach(ds => {
-            widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
+            widgets = this.globalVariableService.widgets.filter(w => w.datasourceID === ds.id);
             ds.nrWidgets = widgets.length;
         });
     
@@ -185,7 +185,7 @@ import { GlobalVariableService }      from './global-variable.service';
         this.errorMessage = '';
 
         let currentDatasourceIndex: number = this.globalVariableService.currentDatasources.findIndex(
-            ds => ds.id == datasourceID
+            ds => ds.id === datasourceID
         );
         if (currentDatasourceIndex < 0) {
 
@@ -232,7 +232,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
             // Update local vars
             let datasourceIndex: number = this.datasources.findIndex(
-                ds => ds.id == datasourceID
+                ds => ds.id === datasourceID
             );
             if (datasourceIndex >= 0) {        
                 this.dataFieldNames = this.datasources[datasourceIndex].dataFields;
@@ -272,7 +272,7 @@ import { GlobalVariableService }      from './global-variable.service';
         // Apply changes to Table properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickApplyProperties', '@Start');
 
-        if (action == 'Close') {
+        if (action === 'Close') {
             this.showPropertiesArea = false;
             return;
         };
