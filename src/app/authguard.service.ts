@@ -32,7 +32,7 @@ export class AuthGuard implements OnInit, CanActivate {
 
         let oldRouterPath: string = state.url[0]['path'];
 
-        if (oldRouterPath == 'getdata') {
+        if (oldRouterPath === 'getdata') {
             console.log ('here')
         };
 
@@ -45,10 +45,10 @@ export class AuthGuard implements OnInit, CanActivate {
 
         let oldRouterPath: string = state.url[0]['path'];
 
-        if (oldRouterPath == 'path that needs confirmation') {
+        if (oldRouterPath === 'path that needs confirmation') {
             // return window.confirm('Demo to prevent leaving Canvas.  Do you really want to go to ' + routes['url'] + ' ?');
         }
-        if (oldRouterPath == 'path that needs to set background for') {
+        if (oldRouterPath === 'path that needs to set background for') {
 
             // Set the document / body background color
             // this.document.body.style.backgroundColor =  frontendColorScheme;
