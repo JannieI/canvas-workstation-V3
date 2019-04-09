@@ -37,7 +37,7 @@ export class WidgetLinksComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -208,7 +208,7 @@ export class WidgetLinksComponent implements OnInit {
         this.selectedDashboardID = id;
 
         // Filter its Tabs
-        this.selectedDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == id);
+        this.selectedDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID === id);
 
         // Select topmost Tab
         if (this.dashboardTabs.length > 0) {
@@ -236,14 +236,14 @@ export class WidgetLinksComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'showLink', '@Start');
 
         let tempD: Dashboard[] = this.dashboards.filter(d =>
-            d.id == linkedDashboardID
+            d.id === linkedDashboardID
         );
         if (tempD.length > 0) {
             this.linkedDashboard = tempD[0].name;
 
             if (this.selectedWidget.hyperlinkDashboardTabID != null) {
                 let tempT: DashboardTab[] = this.dashboardTabs.filter(t =>
-                    t.id == selectedTabID
+                    t.id === selectedTabID
                 );
                 if (tempT.length > 0) {
                     this.linkedTab = tempT[0].name;
