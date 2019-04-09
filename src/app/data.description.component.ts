@@ -36,7 +36,7 @@ export class DatasourceDescriptionComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -104,24 +104,24 @@ export class DatasourceDescriptionComponent implements OnInit {
         this.infoMessage = '';
 
         // Validation
-        if (this.selectedDatasource.name == ''  ||  this.selectedDatasource.name == null) {
+        if (this.selectedDatasource.name === ''  ||  this.selectedDatasource.name === null) {
             this.errorMessage = 'Please enter a Name for the Datasource';
             return;
         };
-        if (this.selectedDatasource.description == ''  ||  this.selectedDatasource.description == null) {
+        if (this.selectedDatasource.description === ''  ||  this.selectedDatasource.description === null) {
             this.errorMessage = 'Please enter a Description for the Datasource';
             return;
         };
 
         // Warn that access list was deleted
-        if (this.datasources[this.selectedRowIndex].accessType == 'AccessList'
+        if (this.datasources[this.selectedRowIndex].accessType === 'AccessList'
             &&
             this.selectedDatasource.accessType != 'AccessList') {
 
                 // Delete the old DS Permissions
                 this.globalVariableService.getDatasourcePermissions().then(res => {
                     res.forEach(dP => {
-                        if (dP.datasourceID == this.selectedDatasource.id) {
+                        if (dP.datasourceID === this.selectedDatasource.id) {
                             this.globalVariableService.deleteResource(
                                 'datasourcePermissions',
                                 dP.datasourceID
@@ -138,7 +138,7 @@ export class DatasourceDescriptionComponent implements OnInit {
                 this.infoMessage = 'Datasource Saved';
             
                 let datasourceIndex: number = this.datasources.findIndex(
-                    ds => ds.id == this.selectedDatasource.id);
+                    ds => ds.id === this.selectedDatasource.id);
                 if (datasourceIndex >= 0) {
                     this.datasources[datasourceIndex] = this.selectedDatasource;
                 };
