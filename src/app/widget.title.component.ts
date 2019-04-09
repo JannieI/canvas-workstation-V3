@@ -39,12 +39,12 @@ export class WidgetTitleComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -87,17 +87,17 @@ export class WidgetTitleComponent implements OnInit {
                     this.colourPickerClosed = false;
                 } else {
 
-                    if (clp.callingRoutine == 'BgColour') {
+                    if (clp.callingRoutine === 'BgColour') {
                         this.colourPickerClosed = false;
                         this.localWidget.titleBackgroundColor = clp.selectedColor;
                         this.localWidget.titleBackgroundColorName = 'Open Picker ...';
                     };
-                    if (clp.callingRoutine == 'Colour') {
+                    if (clp.callingRoutine === 'Colour') {
                         this.colourPickerClosed = false;
                         this.localWidget.titleColor = clp.selectedColor;
                         this.localWidget.titleColorName = 'Open Picker ...';
                     };
-                    if (clp.callingRoutine == 'BorderColour') {
+                    if (clp.callingRoutine === 'BorderColour') {
                         this.colourPickerClosed = false;
                         this.lineColor = clp.selectedColor;
                         this.localWidget.titleBorderName = 'Open Picker ...';
@@ -167,14 +167,14 @@ export class WidgetTitleComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleBgColor', '@Start');
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectTitleBgColorPicker(null);
         };
 
         this.localWidget.titleBackgroundColorName = ev.target.value;
         this.localWidget.titleBackgroundColor = this.localWidget.titleBackgroundColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.titleBackgroundColorName
+            bg.name === this.localWidget.titleBackgroundColorName
         );
         if (localIndex >= 0) {
             this.localWidget.titleBackgroundColor = this.backgroundcolors[localIndex].cssCode;
@@ -195,14 +195,14 @@ export class WidgetTitleComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleColor', '@Start');
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectTitleColorPicker(null);
         };
 
         this.localWidget.titleColorName = ev.target.value;
         this.localWidget.titleColor = this.localWidget.titleColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.titleColorName
+            bg.name === this.localWidget.titleColorName
         );
         if (localIndex >= 0) {
             this.localWidget.titleColor = this.backgroundcolors[localIndex].cssCode;
@@ -225,14 +225,14 @@ export class WidgetTitleComponent implements OnInit {
         // this.lineColor = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectBorderColorPicker(null);
         };
 
         this.localWidget.titleBorderName = ev.target.value;
         this.lineColor = this.localWidget.titleBorderName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.localWidget.titleBorderName
+            bg.name === this.localWidget.titleBorderName
         );
         if (localIndex >= 0) {
             this.lineColor = this.backgroundcolors[localIndex].cssCode;
