@@ -33,7 +33,7 @@ export class DataCombinationAppendComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -129,7 +129,7 @@ export class DataCombinationAppendComponent implements OnInit {
         this.selectedRowIndex = index;
 
         let dsIndex: number = -1;
-        dsIndex = this.datasources.findIndex(ds => ds.id == id);
+        dsIndex = this.datasources.findIndex(ds => ds.id === id);
         if (dsIndex != -1) {
             this.selectedDatasource = this.datasources[dsIndex];
             this.dataFieldNames = this.selectedDatasource.dataFields;
@@ -138,9 +138,9 @@ export class DataCombinationAppendComponent implements OnInit {
             this.selectedRowDescription = this.datasources[dsIndex].description;
 
             this.selectedRowNrWidgetsInUse = this.widgets.filter(w =>
-                w.datasourceID == this.datasources[index].id
+                w.datasourceID === this.datasources[index].id
                 &&
-                w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                w.dashboardID === this.globalVariableService.currentDashboardInfo.value.currentDashboardID
             ).length;
 
         };
