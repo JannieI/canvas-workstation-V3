@@ -36,7 +36,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -71,7 +71,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        if (!this.selectedDatasource == null) {
+        if (!this.selectedDatasource === null) {
             this.fileName = this.selectedDatasource.fileName;
         };
 
@@ -98,7 +98,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         var inp: any = document.getElementById("get-files");
 
         // Return if nothing selected
-        if (inp.files.length == 0) {
+        if (inp.files.length === 0) {
             return;
         };
 
@@ -123,7 +123,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         // Set up Tributary specification according to file type
         let specification: any;
         let lastFive: string = this.fileName.slice(-5);
-        if (lastFive.toLowerCase() == '.xlsx') {
+        if (lastFive.toLowerCase() === '.xlsx') {
             specification = {
                 "source": {
                     "inspector": "tributary.inspectors.spreadsheet:XlsxInspector",
@@ -135,7 +135,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         } else {
             let lastFour: string = this.fileName.slice(-4);
         
-            if (lastFour.toLowerCase() == '.xls') {
+            if (lastFour.toLowerCase() === '.xls') {
 
                 specification = {
                     "source": {
@@ -145,7 +145,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                         }
                     }
                 };
-            } else if (lastFour.toLowerCase() == '.ods') {
+            } else if (lastFour.toLowerCase() === '.ods') {
 
                 specification = {
                     "source": {
@@ -231,21 +231,21 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.fileName == ''  ||  this.fileName == null) {
+        if (this.fileName === ''  ||  this.fileName === null) {
             this.errorMessage = 'Please select a file using the Browse button';
             return;
         };
         // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
         // First row = 0
         // headers = single integer to indicate the header, array of strings = use THIS text
-        if (this.headerRow == null  ||  this.headerRow == '') {
+        if (this.headerRow === null  ||  this.headerRow === '') {
             this.headerRow = '0';
         };
 
         // Set up specification according to file type
         let specification: any;
         let lastFive: string = this.fileName.slice(-5);
-        if (lastFive.toLowerCase() == '.xlsx') {
+        if (lastFive.toLowerCase() === '.xlsx') {
             specification = {
                 "source": {
                     "connector": "tributary.connectors.spreadsheet:XlsxConnector",
@@ -260,7 +260,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         } else {
             let lastFour: string = this.fileName.slice(-4);
         
-            if (lastFour.toLowerCase() == '.xls') {
+            if (lastFour.toLowerCase() === '.xls') {
 
                 specification = {
                     "source": {
@@ -273,7 +273,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                         }
                     }
                 };
-            } else if (lastFour.toLowerCase() == '.ods') {
+            } else if (lastFour.toLowerCase() === '.ods') {
 
                 specification = {
                     "source": {
@@ -325,15 +325,15 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
         // Validation
         this.errorMessage = '';
-        if (this.newName == '') {
+        if (this.newName === '') {
             this.errorMessage = 'Please enter a Name for the Datasource';
             return;
         };
-        if (this.newDescription == '') {
+        if (this.newDescription === '') {
             this.errorMessage = 'Please enter a Description for the Datasource';
             return;
         };
-        if (this.fileName == ''  ||  this.fileName == null) {
+        if (this.fileName === ''  ||  this.fileName === null) {
             this.errorMessage = 'Please select a file using the Browse button';
             return;
         };
