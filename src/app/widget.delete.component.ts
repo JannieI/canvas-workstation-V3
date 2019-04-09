@@ -42,12 +42,12 @@ export class WidgetDeleteComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -84,7 +84,7 @@ export class WidgetDeleteComponent implements OnInit {
         this.globalVariableService.getResource('widgetStoredTemplates')
             .then(res => {
                 if (res != null  && res.length > 0) {
-                    res = res.filter(wst => wst.widgetID == localWidget.id)
+                    res = res.filter(wst => wst.widgetID === localWidget.id)
                     this.nrWidgetStoredTemplates = res.length;
                 };
             })
@@ -102,7 +102,7 @@ export class WidgetDeleteComponent implements OnInit {
         localWidget.containerBackgroundcolorName = 'white';
 
         // Render graph for Vega-Lite
-        if (localWidget.visualGrammar == 'Vega-Lite') {
+        if (localWidget.visualGrammar === 'Vega-Lite') {
 
             // Create specification
             this.specification = this.globalVariableService.createVegaLiteSpec(
@@ -124,7 +124,7 @@ export class WidgetDeleteComponent implements OnInit {
         };
 
         // Render graph for Vega
-        if (localWidget.visualGrammar == 'Vega') {
+        if (localWidget.visualGrammar === 'Vega') {
 
             // Create specification
             this.specification = this.globalVariableService.createVegaSpec(
