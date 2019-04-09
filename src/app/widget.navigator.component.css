@@ -145,12 +145,6 @@
             width: 135px;
         }
 
-        .graphAreaShowRoles {
-            display: inline-block;
-            margin-left: 12px;
-            margin-right: 12px;
-            margin-top: 8px;
-        }
 
 
 
@@ -202,7 +196,6 @@
         .graphAreaGraphic {
             font-size: 0.5rem;
             text-align: left;
-            width: 800;
         }
 
         .graphAreaNote {
