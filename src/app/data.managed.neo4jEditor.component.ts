@@ -39,7 +39,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -85,7 +85,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 console.error('Error in managed.neo4j reading dataConnections: ' + err);
             });
 
-        if (this.selectedDatasource == null) {
+        if (this.selectedDatasource === null) {
             let today: Date = new Date();
             this.selectedDatasource = {
                 id: null,
@@ -181,7 +181,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
 
         // Get connection detail
         let connection: DataConnection[] = this.dataConnections.filter(
-            con => con.connectionName == this.connectionName
+            con => con.connectionName === this.connectionName
         );
         let serverType: string = '';
         let serverName: string = '';
@@ -196,7 +196,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
 
         // Get the driver
         let driver: string = this.serverTypes
-            .filter(styp => styp.serverType == serverType)
+            .filter(styp => styp.serverType === serverType)
             .map(styp => styp.driverName)[0];
 
         // Build Spec
@@ -220,7 +220,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
 
                 // Get connection detail
                 let connection: DataConnection[] = this.dataConnections.filter(
-                    con => con.connectionName == this.connectionName
+                    con => con.connectionName === this.connectionName
                 );
                 let serverType: string = '';
                 let serverName: string = '';
@@ -235,7 +235,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
 
                 // Get the driver
                 let driver: string = this.serverTypes
-                    .filter(styp => styp.serverType == serverType)
+                    .filter(styp => styp.serverType === serverType)
                     .map(styp => styp.driverName)[0];
 
                 // Build Spec
@@ -312,11 +312,11 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Validation
-        if (this.selectedDatasource.name == ''  ||  this.selectedDatasource.name == null) {
+        if (this.selectedDatasource.name === ''  ||  this.selectedDatasource.name === null) {
             this.errorMessage = 'The name is compulsory';
             return;
         };
-        if (this.selectedDatasource.description == ''  ||  this.selectedDatasource.description == null) {
+        if (this.selectedDatasource.description === ''  ||  this.selectedDatasource.description === null) {
             this.errorMessage = 'The description is compulsory';
             return;
         };
@@ -372,7 +372,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
         };
 
         // Close form and managedSQLEditoropen Transitions if requested
-        if (action == 'Saved') {
+        if (action === 'Saved') {
             this.formDataManagedNeo4jEditorClosed.emit(null);
 
         } else {
