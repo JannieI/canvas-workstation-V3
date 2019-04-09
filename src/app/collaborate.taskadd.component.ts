@@ -38,12 +38,12 @@ export class CollaborateTaskAddComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -108,7 +108,7 @@ export class CollaborateTaskAddComponent implements OnInit {
                         isFound = false;
                         if (tsk.assignedToUserID != ''  &&  tsk.assignedToUserID != null) {
                             this.userNames.forEach(usn => {
-                                if (usn.toLowerCase() == tsk.assignedToUserID.toLowerCase()) {
+                                if (usn.toLowerCase() === tsk.assignedToUserID.toLowerCase()) {
                                     isFound = true;
                                 };
                             });
@@ -165,17 +165,17 @@ export class CollaborateTaskAddComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Validation
-        if (this.selectedActivityType == null  ||  this.selectedActivityType == '') {
+        if (this.selectedActivityType === null  ||  this.selectedActivityType === '') {
             this.errorMessage = 'Please select Activity Type';
             return;
         };
 
-        if (this.selectedTaskStatus == null  ||  this.selectedTaskStatus == '') {
+        if (this.selectedTaskStatus === null  ||  this.selectedTaskStatus === '') {
             this.errorMessage = 'Please select Activity Status';
             return;
         };
 
-        if (this.selectedTaskText == null  ||  this.selectedTaskText == '') {
+        if (this.selectedTaskText === null  ||  this.selectedTaskText === '') {
             this.errorMessage = 'Please enter a Description';
             return;
         };
@@ -197,9 +197,9 @@ export class CollaborateTaskAddComponent implements OnInit {
         let dashboardID: number = null;
         if (dashboardName != '') {
             let dashboardIndex: number = this.dashboards.findIndex(
-                d => d.name == dashboardName
+                d => d.name === dashboardName
                      &&
-                     d.state == dashboardState
+                     d.state === dashboardState
             );
             if (dashboardIndex >= 0) {
                 dashboardID = this.dashboards[
