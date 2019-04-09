@@ -37,12 +37,12 @@ export class DashboardTabComponent {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -114,12 +114,12 @@ export class DashboardTabComponent {
                     this.colourPickerClosed = false;
                 } else {
 
-                    if (clp.callingRoutine == 'BgColour') {
+                    if (clp.callingRoutine === 'BgColour') {
                         this.colourPickerClosed = false;
                         this.backgroundColor = clp.selectedColor;
                         this.backgroundColorName = 'Open Picker ...';
                     };
-                    if (clp.callingRoutine == 'Colour') {
+                    if (clp.callingRoutine === 'Colour') {
                         this.colourPickerClosed = false;
                         this.color = clp.selectedColor;
                         this.colorName = 'Open Picker ...';
@@ -161,14 +161,14 @@ export class DashboardTabComponent {
         // this.backgroundColor = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectBgColorPicker(null);
         };
 
         this.backgroundColorName = ev.target.value;
         this.backgroundColor = this.backgroundColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.backgroundColorName
+            bg.name === this.backgroundColorName
         );
         if (localIndex >= 0) {
             this.backgroundColor = this.backgroundcolors[localIndex].cssCode;
@@ -192,14 +192,14 @@ export class DashboardTabComponent {
         // this.color = ev.target.value;
 
         // Open Picker if selected
-        if (ev.target.value == 'Open Picker ...') {
+        if (ev.target.value === 'Open Picker ...') {
             this.clickSelectColorPicker(null);
         };
 
         this.colorName = ev.target.value;
         this.color = this.colorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.colorName
+            bg.name === this.colorName
         );
         if (localIndex >= 0) {
             this.color = this.backgroundcolors[localIndex].cssCode;
@@ -230,12 +230,12 @@ export class DashboardTabComponent {
         this.showErrorMessage = false;
         this.errorMessage = '';
 
-        if (this.name == ''  ||  this.name.length > 20) {
+        if (this.name === ''  ||  this.name.length > 20) {
             this.showErrorMessage = true;
             this.errorMessage = 'Please enter a name, and less than 20 char';
         };
 
-        if (this.description == '') {
+        if (this.description === '') {
             this.showErrorMessage = true;
             this.errorMessage = 'Please enter a description';
         };
