@@ -61,7 +61,7 @@ export class LandingComponent implements OnInit {
 				// Sample Dashboards - max n, else the landing page overflows
 				this.sampleDashboards = readD
 					.filter(
-						i => (i.isSample)  && i.state == 'Complete'
+						i => (i.isSample)  && i.state === 'Complete'
 					)
 					.slice(0,5);
 
@@ -133,7 +133,7 @@ export class LandingComponent implements OnInit {
 									});
 			
 									// User has no Buttons selected, which will be the case for new users
-									if (pBsel.length == 0) {
+									if (pBsel.length === 0) {
 										// Load the default ones
 										this.globalVariableService.getResource('paletteButtonBars').then(pb => {
 											let promiseArray = [];
@@ -178,7 +178,7 @@ export class LandingComponent implements OnInit {
 										});
 									} else {
 										pBsel = pBsel.filter(
-											s => s.userID == this.globalVariableService.currentUser.userID
+											s => s.userID === this.globalVariableService.currentUser.userID
 										);
 
 										// Inform subscribers
@@ -235,7 +235,7 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenRecentDashboard', '@Start');
 
 		// Cannot open deleted ones
-		if (this.dashboardsRecent[index].stateAtRunTime == 'Deleted') {
+		if (this.dashboardsRecent[index].stateAtRunTime === 'Deleted') {
 			this.globalVariableService.showStatusBarMessage(
 				{
 					message: 'Cannot open deleted Dashboard',
@@ -267,7 +267,7 @@ export class LandingComponent implements OnInit {
 			i => {
 
 				let index: number = this.dashboardsRecent.findIndex(dR =>
-					dR.id == id
+					dR.id === id
 				);
 				if (index >= 0) {
 					this.dashboardsRecent.splice(index, 1);
