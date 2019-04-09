@@ -36,12 +36,12 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose();
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -128,11 +128,11 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         //             this.colourPickerClosed = false;
         //         } else {
 
-        //             if (clp.callingRoutine == 'BgColour') {
+        //             if (clp.callingRoutine === 'BgColour') {
         //                 this.colourPickerClosed = false;
         //                 this.containerBackgroundcolor = clp.selectedColor;
         //             };
-        //             if (clp.callingRoutine == 'LineColour') {
+        //             if (clp.callingRoutine === 'LineColour') {
         //                 this.colourPickerClosed = false;
         //                 this.containerBorderColour = clp.selectedColor;
 
@@ -187,7 +187,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Find row and update form
         if (this.containerSelectedStyleID != -1) {
             let localIndex: number = this.containerStyles.findIndex(cs =>
-                cs.id == this.containerSelectedStyleID
+                cs.id === this.containerSelectedStyleID
             );
             if (localIndex != -1) {
                 this.updateForm(localIndex);
@@ -271,7 +271,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.containerBackgroundcolorName = ev.target.value;
         this.containerBackgroundcolor = this.containerBackgroundcolorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.containerBackgroundcolorName
+            bg.name === this.containerBackgroundcolorName
         );
         if (localIndex >= 0) {
             this.containerBackgroundcolor = this.backgroundcolors[localIndex].cssCode;
@@ -303,7 +303,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.containerBorderColourName = ev.target.value;
         this.containerBorderColour = this.containerBorderColourName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.containerBorderColourName
+            bg.name === this.containerBorderColourName
         );
         if (localIndex >= 0) {
             this.containerBorderColour = this.backgroundcolors[localIndex].cssCode;
@@ -398,7 +398,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.infoMessage = '';
 
         // Validate
-        if (this.containerSelectedStyleID == -1) {
+        if (this.containerSelectedStyleID === -1) {
             this.errorMessage = 'Invalid selection.';
             return;
         };
@@ -433,7 +433,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             .then(res => {
                 // Update local Array
                 let localIndex: number = this.containerStyles.findIndex(cs =>
-                    cs.id == this.containerSelectedStyleID
+                    cs.id === this.containerSelectedStyleID
                 );
                 this.containerStyles[localIndex] = newContainerStyle;
             })
@@ -464,11 +464,11 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.infoMessage = '';
 
         // Validate
-        if (this.containerSelectedStyleID == -1) {
+        if (this.containerSelectedStyleID === -1) {
             this.errorMessage = 'Invalid selection.';
             return;
         };
-        if (this.containerStyles.length == 1) {
+        if (this.containerStyles.length === 1) {
             this.errorMessage = 'Cannot delete the last one.';
             return;
         };
@@ -480,7 +480,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                 this.containerSelectedStyleID.toString() + '}'
             ).then(filteredWidgets => {
             // let filteredWidgets: Widget[] = this.globalVariableService.widgets.filter(w => 
-            //     w.containerStyleID == this.containerSelectedStyleID
+            //     w.containerStyleID === this.containerSelectedStyleID
             // );
             if (filteredWidgets.length > 0) {
                 this.errorMessage = 'No Delete - linked to ' + filteredWidgets.length.toString() + ' widget(s)';
