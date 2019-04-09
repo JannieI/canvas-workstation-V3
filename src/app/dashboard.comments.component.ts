@@ -35,12 +35,12 @@ export class DashboardCommentsComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -72,7 +72,7 @@ export class DashboardCommentsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Set header
-        if (this.selectedWidgetID == -1) {
+        if (this.selectedWidgetID === -1) {
             this.headerText = 'this Dashboard';
         } else {
             this.headerText = 'the selected Widget';
@@ -83,10 +83,10 @@ export class DashboardCommentsComponent implements OnInit {
             .then (ca => {
                 console.log('COMM ca', ca)
                 this.canvasComments = ca.filter( c =>
-                    (c.dashboardID == this.globalVariableService.currentDashboardInfo
+                    (c.dashboardID === this.globalVariableService.currentDashboardInfo
                             .value.currentDashboardID
                     &&
-                    (c.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) )
+                    (c.widgetID === this.selectedWidgetID  ||  this.selectedWidgetID === -1) )
                 );
                 this.indexLastRecord = this.canvasComments.length - 1;
             })
@@ -142,7 +142,7 @@ export class DashboardCommentsComponent implements OnInit {
         this.message = '';
 
         // Validation
-        if (this.commentText == '') {
+        if (this.commentText === '') {
             this.errorMessage = 'Comment cannot be blank';
             return;
         };
@@ -172,7 +172,7 @@ export class DashboardCommentsComponent implements OnInit {
         this.message = '';
 
         // Validation
-        if (this.commentText == '') {
+        if (this.commentText === '') {
             this.errorMessage = 'Comment cannot be blank';
             return;
         };
