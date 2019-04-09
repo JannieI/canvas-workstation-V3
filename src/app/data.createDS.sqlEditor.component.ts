@@ -39,25 +39,25 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose();
             return;
         };
 
 
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
             (!event.shiftKey)
            ) {
 
-            if (this.step == 'Where') {
+            if (this.step === 'Where') {
                 this.clickNextToWhat();
                 return;
             } else {
-                if (this.step == 'What') {
+                if (this.step === 'What') {
                     // this.clickCalculatedApply();
                     return;
                 };
@@ -112,7 +112,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 this.whereErrorMessage = err;
             });
 
-        if (this.selectedDatasource == null) {
+        if (this.selectedDatasource === null) {
             this.isEditing = false;
             let today: Date = new Date();
 
@@ -202,7 +202,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         let dataConnectionIndex: number =  this.dataConnections.findIndex(
-            dc => dc.id == connectionID
+            dc => dc.id === connectionID
         );
         if (dataConnectionIndex < 0) {
             return;
@@ -229,10 +229,10 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
         // Get drivers
         let driver: string = this.serverTypes
-            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+            .filter(styp => styp.serverType === this.selectedDatasource.serverType)
             .map(styp => styp.driverName)[0];
         let inpector: string = this.serverTypes
-            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+            .filter(styp => styp.serverType === this.selectedDatasource.serverType)
             .map(styp => styp.inspector)[0];
 
         // Create a Tributary Session
@@ -331,10 +331,10 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
         // Get drivers
         let driver: string = this.serverTypes
-            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+            .filter(styp => styp.serverType === this.selectedDatasource.serverType)
             .map(styp => styp.driverName)[0];
         let connector: string = this.serverTypes
-            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+            .filter(styp => styp.serverType === this.selectedDatasource.serverType)
             .map(styp => styp.connector)[0];
 
         // Set up specification for Connector
@@ -396,7 +396,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
 
         this.fieldsInTable = [];
         let selectedDataSchema: DataSchema[] = this.dataSchemas.filter(
-            dsch => dsch.tableName == ev.target.value
+            dsch => dsch.tableName === ev.target.value
         );
 
         if (selectedDataSchema.length > 0) {
@@ -457,11 +457,11 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Validation
-        if (this.selectedDatasource.name == ''  ||  this.selectedDatasource.name == null) {
+        if (this.selectedDatasource.name === ''  ||  this.selectedDatasource.name === null) {
             this.whereErrorMessage = 'The name is compulsory';
             return;
         };
-        if (this.selectedDatasource.description == ''  ||  this.selectedDatasource.description == null) {
+        if (this.selectedDatasource.description === ''  ||  this.selectedDatasource.description === null) {
             this.whereErrorMessage = 'The description is compulsory';
             return;
         };
@@ -522,7 +522,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         this.step = 'How';
         
         // Close form and open Transitions if requested
-        if (action == 'Saved') {
+        if (action === 'Saved') {
             this.formDataCreateDSSQLEditorClosed.emit(null);
 
         } else {
