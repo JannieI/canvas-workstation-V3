@@ -37,12 +37,12 @@ import { GlobalVariableService }      from './global-variable.service';
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -139,14 +139,14 @@ import { GlobalVariableService }      from './global-variable.service';
 
             // Get fields in this DS
             this.currentDatasources.forEach(ds => {
-                if (ds.id == this.localWidget.datasourceID) {
+                if (ds.id === this.localWidget.datasourceID) {
                     this.dataFields = ds.dataFields;
                 };
             });
 
             // Get field Typess in this DS
             this.currentDatasources.forEach(ds => {
-                if (ds.id == this.localWidget.datasourceID) {
+                if (ds.id === this.localWidget.datasourceID) {
                     this.dataFieldTypes = ds.dataFieldTypes;
                 };
             });
@@ -178,7 +178,7 @@ import { GlobalVariableService }      from './global-variable.service';
             this.slicerNumberToShow = this.localWidget.slicerNumberToShow;
             this.slicerSortField = this.localWidget.slicerSortField;
             this.slicerSortFieldOrder = this.localWidget.slicerSortFieldOrder;
-            if (this.slicerType == 'List') {
+            if (this.slicerType === 'List') {
                 this.showContainerslicerAddRest = true;
                 this.showMultipleBins = false;
             } else {
@@ -227,14 +227,14 @@ import { GlobalVariableService }      from './global-variable.service';
         this.selectedFieldType = this.dataFieldTypes[index];
 
         // Show type(s) of Slicer based on data type
-        if (this.selectedFieldType == 'number') {
+        if (this.selectedFieldType === 'number') {
             this.showMultipleBins = true;
 
         } else {
             this.slicerType = 'List';
             this.showMultipleBins = false;
         };
-        if (this.slicerType == 'List') {
+        if (this.slicerType === 'List') {
             this.showContainerslicerAddRest = true;
         } else {
             this.showContainerslicerAddRest = false
@@ -248,28 +248,28 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalFunctionService.printToConsole(this.constructor.name,'changeValues', '@Start');
 
         // Do we have a field
-        if (this.selectedField == '') {
+        if (this.selectedField === '') {
             return;
         }
 
         // Move into array
         this.dataValues = [];
         let tempData: any[] = this.globalVariableService.currentDatasources.filter(ds =>
-            ds.id == this.selectedDatasourceID)[0].dataFiltered
+            ds.id === this.selectedDatasourceID)[0].dataFiltered
 
         // Sort, if so wished
         if (this.slicerSortField != '') {
             if (this.slicerSortField != '') {
                 tempData.sort( (obj1,obj2) => {
                     if (obj1[this.slicerSortField] > obj2[this.slicerSortField]) {
-                        if (this.slicerSortFieldOrder == 'Ascending') {
+                        if (this.slicerSortFieldOrder === 'Ascending') {
                             return 1;
                         } else {
                             return -1;
                         };
                     };
                     if (obj1[this.slicerSortField] < obj2[this.slicerSortField]) {
-                        if (this.slicerSortFieldOrder == 'Ascending') {
+                        if (this.slicerSortFieldOrder === 'Ascending') {
                             return -1;
                         } else {
                             return 1;
@@ -284,7 +284,7 @@ import { GlobalVariableService }      from './global-variable.service';
         // TODO - this could surely be done better
         let fieldValues: number[] = [];
         tempData.forEach(t => {
-            if (this.dataValues.findIndex(dt => dt.fieldValue == t[this.selectedField]) < 0) {
+            if (this.dataValues.findIndex(dt => dt.fieldValue === t[this.selectedField]) < 0) {
                 this.dataValues.push({
                     isSelected: true,
                     fieldValue: t[this.selectedField]
@@ -306,7 +306,7 @@ import { GlobalVariableService }      from './global-variable.service';
         
             let maxValueBinLarge: number = Math.max(...fieldValues);
             let minValueBinSmall: number = Math.round( (Math.min(...fieldValues) - 0.01) * 100) / 100;
-            if (maxValueBinLarge == minValueBinSmall) {
+            if (maxValueBinLarge === minValueBinSmall) {
                 maxValueBinLarge = minValueBinSmall + 1;
             };
             let gap: number = (maxValueBinLarge - minValueBinSmall) / 3;
@@ -343,7 +343,7 @@ import { GlobalVariableService }      from './global-variable.service';
         // Clicked a Bin, now ....
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDataBins', '@Start');
 
-        if (this.slicerType == 'List') {
+        if (this.slicerType === 'List') {
             this.showContainerslicerAddRest = true;
         } else {
             this.showContainerslicerAddRest = false
@@ -442,7 +442,7 @@ import { GlobalVariableService }      from './global-variable.service';
         // TODO - fix this
         // if (this.localWidget.slicerNumberToShow != 'All') {
         //     this.globalVariableService.currentDatasets.forEach(cd => {
-        //         if (cd.id == this.localWidget.datasetID) {
+        //         if (cd.id === this.localWidget.datasetID) {
         //             console.warn('xx len before', cd.data.length)
         //             let temp = this.globalVariableService.filterSlicer(cd);
         //             // console.warn('xx newDataset', newDataset)
@@ -452,9 +452,9 @@ import { GlobalVariableService }      from './global-variable.service';
 
         //     // Refresh Ws that are related to Sl
         //     this.globalVariableService.currentWidgets.forEach(w => {
-        //         if (w.datasourceID == this.localWidget.datasourceID  
+        //         if (w.datasourceID === this.localWidget.datasourceID  
         //             &&  
-        //             w.datasetID == this.localWidget.datasetID  
+        //             w.datasetID === this.localWidget.datasetID  
         //             && w.widgetType != 'Slicer') {
         //             console.warn('xx Sl-Edt flt', w.id, w.widgetType, w.containerWidth)
         //             this.globalVariableService.changedWidget.next(w);
