@@ -33,7 +33,7 @@ export class DashboardExportComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -71,7 +71,7 @@ export class DashboardExportComponent implements OnInit {
         this.errorMessage = '';
 
         // Validate
-        if (this.fileName == null  ||  this.fileName == '') {
+        if (this.fileName === null  ||  this.fileName === '') {
             this.errorMessage = "The file name is compulsory";
             return;
         };
@@ -82,7 +82,7 @@ export class DashboardExportComponent implements OnInit {
             return;
         };
         let dashboardIndex: number = this.dashboards.findIndex(d =>
-            d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
+            d.id === this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
         let newD: Dashboard = this.dashboards[dashboardIndex];
         var obj = JSON.stringify(newD);
         this.saveText(JSON.stringify(obj), this.fileName);
