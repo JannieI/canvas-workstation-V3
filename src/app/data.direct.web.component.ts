@@ -54,7 +54,7 @@ export class DataDirectWebComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -125,7 +125,7 @@ export class DataDirectWebComponent implements OnInit {
 
                 // Add Table Names where missing
                 for (var i = 0; i < this.tables.length; i++) {
-                    if (this.tables[i].name == null) {
+                    if (this.tables[i].name === null) {
                         this.tables[i].name = 'Table ' + i;
                     };
                 };
@@ -210,11 +210,11 @@ export class DataDirectWebComponent implements OnInit {
 
         // Validation
         this.errorMessage = '';
-        if (this.newName == '') {
+        if (this.newName === '') {
             this.errorMessage = 'Please enter a Name for the new Datasource';
             return;
         };
-        if (this.newDescription == '') {
+        if (this.newDescription === '') {
             this.errorMessage = 'Please enter a Description for the new Datasource';
             return;
         };
