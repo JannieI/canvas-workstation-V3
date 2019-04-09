@@ -38,12 +38,12 @@ export class ShapeDeleteComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose();
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -69,7 +69,7 @@ export class ShapeDeleteComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        if (this.selectedWidget.widgetSubType == 'Text') {
+        if (this.selectedWidget.widgetSubType === 'Text') {
             this.widgetText = this.selectedWidget.shapeText;
         };
     }
