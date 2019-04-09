@@ -589,12 +589,12 @@ dimensions is set in app.html, and cannot be changed here. -->
                     <span style="font-size: 0.45rem;"
                         title="Children visible / shown"
                         >
-                        1 to 9
+                        1 to {{ visibleNumberChildren }}
                     </span>
                     <span style="cursor: pointer; font-size: 0.45rem;"
                         title="Total number of children; can be changed on the bar menu"
                         >
-                        / 181
+                        / {{ childDataVisible.length }}
                     </span>
                     <span>
                         <clr-icon shape="play"

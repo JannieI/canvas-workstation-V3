@@ -383,7 +383,7 @@ export class WidgetNavigatorComponent {
                 parentNode: 'Absa',
                 relationship: 'Directors',
                 childNodeType: 'Person',
-                childNode: 'Brian',
+                childNode: 'Mr Okomo-Okello, Francis',
                 role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
@@ -415,7 +415,7 @@ export class WidgetNavigatorComponent {
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
             {
-                id: 15,
+                id: 16,
                 networkID: 1,
                 parentNodeID: null,
                 parentNodeType: 'Company',
@@ -428,20 +428,20 @@ export class WidgetNavigatorComponent {
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
             {
-                id: 15,
+                id: 17,
                 networkID: 1,
                 parentNodeID: null,
                 parentNodeType: 'Company',
                 parentNode: 'Absa',
                 relationship: 'Directors',
                 childNodeType: 'Person',
-                childNode: 'Ms Lucas-Bull, Wendy Elizabeth',
+                childNode: 'Ms Lucas-Bull, Wendy ',  // Elizabeth
                 role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
             {
-                id: 15,
+                id: 18,
                 networkID: 1,
                 parentNodeID: null,
                 parentNodeType: 'Company',
@@ -454,27 +454,14 @@ export class WidgetNavigatorComponent {
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
             {
-                id: 15,
+                id: 19,
                 networkID: 1,
                 parentNodeID: null,
                 parentNodeType: 'Company',
                 parentNode: 'Absa',
                 relationship: 'Directors',
                 childNodeType: 'Person',
-                childNode: 'Ms Naidoo, Dhanasagree (Daisy)',
-                role: 'Non-Executive'
-            }
-        this.parentRelatedChildren.push(newParentRelatedChildren);
-        newParentRelatedChildren =
-            {
-                id: 15,
-                networkID: 1,
-                parentNodeID: null,
-                parentNodeType: 'Company',
-                parentNode: 'Absa',
-                relationship: 'Directors',
-                childNodeType: 'Person',
-                childNode: 'Mr Okomo-Okello, Francis',
+                childNode: 'Ms Naidoo, Dhanasagree',  //  (Daisy)
                 role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
@@ -750,7 +737,7 @@ export class WidgetNavigatorComponent {
 
         // Add blank at start
         this.dropdownParentNodes = ['All', ...this.dropdownParentNodes];
-        this.dropdownRelationships = ['','All', ...this.dropdownRelationships];
+        this.dropdownRelationships = ['All', ...this.dropdownRelationships];
         this.relationshipRoles = [];
         this.selectedParentNode = this.dropdownParentNodes[0];
         this.selectedRelationship = this.dropdownRelationships[0];
@@ -875,7 +862,7 @@ export class WidgetNavigatorComponent {
             };
 
             // Reduce visible list
-            this.childDataVisible = this.childDataAll.slice(0, ( this.visibleNumberChildren - 1) );
+            this.childDataVisible = this.childDataAll.slice(0, this.visibleNumberChildren);
 
             // Format the graphData
             this.graphData = [];
@@ -1031,8 +1018,8 @@ export class WidgetNavigatorComponent {
         // Create specification
         this.specification = this.globalVariableService.createVegaSpec(
             this.localWidget,
-            this.graphHeight + 500,
-            this.graphWidth + 500,
+            this.graphHeight,
+            this.graphWidth,
             this.showSpecificGraphLayer,
             0
         );
