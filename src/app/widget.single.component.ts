@@ -83,7 +83,7 @@ export class WidgetSingleComponent {
         };
 
         // Render graph for Vega-Lite
-        if (this.widget.visualGrammar == 'Vega-Lite') {
+        if (this.widget.visualGrammar === 'Vega-Lite') {
 
             // Create specification
             this.specification = this.globalVariableService.createVegaLiteSpec(
@@ -105,7 +105,7 @@ export class WidgetSingleComponent {
         };
 
         // Render graph for Vega
-        if (this.widget.visualGrammar == 'Vega') {
+        if (this.widget.visualGrammar === 'Vega') {
 
             // Create specification
             this.specification = this.globalVariableService.createVegaSpec(
@@ -136,7 +136,7 @@ export class WidgetSingleComponent {
         // // TODO - fix index..
         // this.currentWidgets[index].isSelected = !this.currentWidgets[index].isSelected;
         // this.globalVariableService.currentWidgets.forEach(w => {
-        //     if (w.id == id) {
+        //     if (w.id === id) {
         //         w.isSelected = this.currentWidgets[index].isSelected;
         //     };
         // });
