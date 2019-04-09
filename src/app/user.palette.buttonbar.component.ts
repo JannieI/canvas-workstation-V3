@@ -35,7 +35,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -72,7 +72,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
             // Loop on selected ones in Available, and remove them
             for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
                 this.paletteButtonsSelected.forEach(pbs => {
-                    if (this.paletteButtons[i].id == pbs.paletteButtonBarID) {
+                    if (this.paletteButtons[i].id === pbs.paletteButtonBarID) {
 
                         this.paletteButtons.splice(i, 1)
                     };
@@ -239,7 +239,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveUp', '@Start');
 
         // Stop if only 1 in Array, or first one is selected (as it cannot move down any further)
-        if (this.paletteButtonsSelected.length == 1) {
+        if (this.paletteButtonsSelected.length === 1) {
             return;
         };
         if (this.paletteButtonsSelected[0].isSelected) {
@@ -289,7 +289,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         for (var i = 0; i < changedIDs.length; i++) {
             paletteIndex = this.paletteButtonsSelected.findIndex(
-                ps => ps.id == changedIDs[i] );
+                ps => ps.id === changedIDs[i] );
             if (paletteIndex >= 0) {
                 this.globalVariableService.savePaletteButtonsSelected(
                     this.paletteButtonsSelected[paletteIndex]
@@ -318,7 +318,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
 
         // Stop if only 1 in Array, or last one is selected (as it cannot move down any further)
-        if (this.paletteButtonsSelected.length == 1) {
+        if (this.paletteButtonsSelected.length === 1) {
             return;
         };
         if (this.paletteButtonsSelected[this.paletteButtonsSelected.length - 1].isSelected) {
@@ -368,7 +368,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         for (var i = 0; i < changedIDs.length; i++) {
             paletteIndex = this.paletteButtonsSelected.findIndex(
-                ps => ps.id == changedIDs[i] );
+                ps => ps.id === changedIDs[i] );
             if (paletteIndex >= 0) {
                 this.globalVariableService.savePaletteButtonsSelected(
                     this.paletteButtonsSelected[paletteIndex]
@@ -449,7 +449,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
     //     currentIDs.forEach(opb => {
     //         if (originalIDs.indexOf(opb) < 0) {
     //             let currentIndex: number = this.paletteButtonsSelected.findIndex(
-    //                 b => b.id == opb
+    //                 b => b.id === opb
     //             );
     //             this.globalVariableService.addPaletteButtonsSelected(
     //                 this.paletteButtonsSelected[currentIndex]
