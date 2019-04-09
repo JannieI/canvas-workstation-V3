@@ -46,7 +46,7 @@ export class DataTransformationComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.ngClickClose('Close');
             return;
         };
@@ -95,7 +95,7 @@ export class DataTransformationComponent implements OnInit {
             // @Speed: Change this to only return data for the current data source. Will have to make it
             // play nice with the cache.    - Ivan (22 March 2019)
             this.ngDSTransformList = dtr.filter(ftr =>
-                ftr.datasourceID == this.selectedDatasource.id
+                ftr.datasourceID === this.selectedDatasource.id
             ).sort( (obj1,obj2) => {
                 if (obj1.seq > obj2.seq) {
                     return 1;
@@ -612,9 +612,9 @@ export class DataTransformationComponent implements OnInit {
         let value: boolean;
 
         // Handle the cases where one or both of the objects are empty.
-        if ( (object1 == null) && (object2 == null) ) {
+        if ( (object1 === null) && (object2 === null) ) {
             return true;
-        } else if ( (object1 == null) || (object2 == null) ) {
+        } else if ( (object1 === null) || (object2 === null) ) {
             return false;
         } else {
 
