@@ -37,12 +37,12 @@ export class WidgetTemplateSaveComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -73,7 +73,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
         this.globalVariableService.getResource('widgetStoredTemplates')
             .then(res => {
                 this.widgetStoredTemplates = res.filter(wst => 
-                    wst.widgetID == this.selectedWidget.id
+                    wst.widgetID === this.selectedWidget.id
                 );
                  
                 if (this.widgetStoredTemplates.length > 0) {
@@ -103,11 +103,11 @@ export class WidgetTemplateSaveComponent implements OnInit {
 
         // Validation
         this.errorMessage = '';
-        if (this.widgetStoreTemplateName == '') {
+        if (this.widgetStoreTemplateName === '') {
             this.errorMessage = 'The name is compulsory.'
             return;
         };
-        if (this.widgetStoreTemplateDescription == '') {
+        if (this.widgetStoreTemplateDescription === '') {
             this.errorMessage = 'The description is compulsory.'
             return;
         };
