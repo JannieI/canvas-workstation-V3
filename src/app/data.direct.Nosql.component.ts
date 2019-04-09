@@ -37,7 +37,7 @@ export class DataDirectNoSQLComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -80,7 +80,7 @@ export class DataDirectNoSQLComponent implements OnInit {
             }
         ];
 
-        if (this.selectedDatasource == null) {
+        if (this.selectedDatasource === null) {
             let today: Date = new Date();
             this.selectedDatasource = {
                 id: null,
@@ -176,7 +176,7 @@ export class DataDirectNoSQLComponent implements OnInit {
 
         // Get drivers
         let driver: string = this.serverTypes
-            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+            .filter(styp => styp.serverType === this.selectedDatasource.serverType)
             .map(styp => styp.driverName)[0];
 
         // TODO - At moment, Mongo does not have an Inspector
@@ -296,11 +296,11 @@ export class DataDirectNoSQLComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Validation
-        if (this.selectedDatasource.name == ''  ||  this.selectedDatasource.name == null) {
+        if (this.selectedDatasource.name === ''  ||  this.selectedDatasource.name === null) {
             this.errorMessage = 'The name is compulsory';
             return;
         };
-        if (this.selectedDatasource.description == ''  ||  this.selectedDatasource.description == null) {
+        if (this.selectedDatasource.description === ''  ||  this.selectedDatasource.description === null) {
             this.errorMessage = 'The description is compulsory';
             return;
         };
@@ -356,7 +356,7 @@ export class DataDirectNoSQLComponent implements OnInit {
         };
 
         // Close form and open Transitions if requested
-        if (action == 'Saved') {
+        if (action === 'Saved') {
             this.formDataDirectNoSQLEditorClosed.emit(null);
 
         } else {
