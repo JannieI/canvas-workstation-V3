@@ -36,7 +36,7 @@ export class UsersComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -115,7 +115,7 @@ export class UsersComponent implements OnInit {
         this.userFirstName = this.users[index].firstName;
 
         this.users.forEach(u => {
-            if (u.userID == userID) {
+            if (u.userID === userID) {
                 this.groups = u.groups;
             };
         });
@@ -124,11 +124,11 @@ export class UsersComponent implements OnInit {
         this.globalVariableService.getResource('dashboards').then(d => {
             this.dashboards = d;
             this.dashboardPermissions = this.globalVariableService.dashboardPermissions
-                .filter(dp => dp.userID == userID);
+                .filter(dp => dp.userID === userID);
 
             this.dashboardPermissions.forEach(dp => {
                 this.dashboards.forEach(d => {
-                    if (d.id == dp.dashboardID) {
+                    if (d.id === dp.dashboardID) {
                         dp.dashboardName = d.name;
                     };
                 });
@@ -156,7 +156,7 @@ export class UsersComponent implements OnInit {
         // Toggle access
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
-            if (this.dashboardPermissions[i].id == id) {
+            if (this.dashboardPermissions[i].id === id) {
                 this.dashboardPermissions[i].canViewRight = ! this.dashboardPermissions[i].canViewRight;
                 index = i;
 
@@ -191,7 +191,7 @@ export class UsersComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
-            if (this.dashboardPermissions[i].id == id) {
+            if (this.dashboardPermissions[i].id === id) {
                 this.dashboardPermissions[i].canEditRight = ! this.dashboardPermissions[i].canEditRight;
                 index = i;
 
@@ -226,7 +226,7 @@ export class UsersComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
-            if (this.dashboardPermissions[i].id == id) {
+            if (this.dashboardPermissions[i].id === id) {
                 this.dashboardPermissions[i].canSaveRight = ! this.dashboardPermissions[i].canSaveRight;
                 index = i;
 
@@ -261,7 +261,7 @@ export class UsersComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
-            if (this.dashboardPermissions[i].id == id) {
+            if (this.dashboardPermissions[i].id === id) {
                 this.dashboardPermissions[i].canDeleteRight = ! this.dashboardPermissions[i].canDeleteRight;
                 index = i;
 
@@ -297,7 +297,7 @@ export class UsersComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
-            if (this.dashboardPermissions[i].id == id) {
+            if (this.dashboardPermissions[i].id === id) {
                 this.dashboardPermissions[i].canAddDatasource = ! this.dashboardPermissions[i].canAddDatasource;
                 index = i;
 
@@ -333,7 +333,7 @@ export class UsersComponent implements OnInit {
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
-            if (this.dashboardPermissions[i].id == id) {
+            if (this.dashboardPermissions[i].id === id) {
                 this.dashboardPermissions[i].canGrantAccess = ! this.dashboardPermissions[i].canGrantAccess;
                 index = i;
 
@@ -389,18 +389,18 @@ export class UsersComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.userID == ''  ||  this.userID == null) {
+        if (this.userID === ''  ||  this.userID === null) {
             this.errorMessage = 'The user name is compulsory';
             return;
         };
-        if (this.userFirstName == ''  ||  this.userFirstName == null) {
+        if (this.userFirstName === ''  ||  this.userFirstName === null) {
             this.errorMessage = 'The user First Name is compulsory';
             return;
         };
 
         // Cannot change to an existing userID
         if (this.users[this.selectedRow].userID != this.userID) {
-            let groupIndex: number = this.users.findIndex(usr => usr.userID == this.userID);
+            let groupIndex: number = this.users.findIndex(usr => usr.userID === this.userID);
             if (groupIndex >= 0) {
                 this.errorMessage = 'The userID must be unique (' + this.userID + ' exists already)';
                 return;
@@ -432,15 +432,15 @@ export class UsersComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.userID == ''  ||  this.userID == null) {
+        if (this.userID === ''  ||  this.userID === null) {
             this.errorMessage = 'The user name is compulsory';
             return;
         };
-        if (this.userFirstName == ''  ||  this.userFirstName == null) {
+        if (this.userFirstName === ''  ||  this.userFirstName === null) {
             this.errorMessage = 'The user First Name is compulsory';
             return;
         };
-        let groupIndex: number = this.users.findIndex(usr => usr.userID == this.userID);
+        let groupIndex: number = this.users.findIndex(usr => usr.userID === this.userID);
         if (groupIndex >= 0) {
             this.errorMessage = 'The userID must be unique (it exists already)';
             return;
