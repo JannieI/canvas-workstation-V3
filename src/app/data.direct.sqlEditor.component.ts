@@ -36,12 +36,12 @@ export class DataDirectSQLEditorComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if ( 
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&  
             (!event.ctrlKey)  
             &&  
@@ -83,7 +83,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         // Set base info
         this.serverTypes = this.globalVariableService.serverTypes.slice();
 
-        if (this.selectedDatasource == null) {
+        if (this.selectedDatasource === null) {
             let today: Date = new Date();
             this.selectedDatasource = {
                 id: null,
@@ -374,11 +374,11 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Validation
-        if (this.selectedDatasource.name == ''  ||  this.selectedDatasource.name == null) {
+        if (this.selectedDatasource.name === ''  ||  this.selectedDatasource.name === null) {
             this.errorMessage = 'The name is compulsory';
             return;
         };
-        if (this.selectedDatasource.description == ''  ||  this.selectedDatasource.description == null) {
+        if (this.selectedDatasource.description === ''  ||  this.selectedDatasource.description === null) {
             this.errorMessage = 'The description is compulsory';
             return;
         };
@@ -435,7 +435,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.savedMessage = 'Datasource created';
 
                 // Close form and open Transitions if requested
-                // if (action == 'Saved') {
+                // if (action === 'Saved') {
                 //     this.formDataDirectSQLEditorClosed.emit(null);
 
                 // } else {
