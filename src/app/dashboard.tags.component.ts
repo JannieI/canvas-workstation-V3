@@ -37,7 +37,7 @@ export class DashboardTagsComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -65,7 +65,7 @@ export class DashboardTagsComponent implements OnInit {
 
                 // Get selected, before any manipulation done to dt
                 this.selectedDashboardTags = dt.filter(f =>
-                    f.dashboardID == this.selectedDashboard.id
+                    f.dashboardID === this.selectedDashboard.id
                 )
 
                 // Get a unique list of tags
@@ -121,12 +121,12 @@ export class DashboardTagsComponent implements OnInit {
         this.errorMessage = '';
 
         // Nothing to do
-        if (this.newTag == ''  ||  this.newTag == null  ||  this.newTag == undefined) {
+        if (this.newTag === ''  ||  this.newTag === null  ||  this.newTag === undefined) {
             return;
         };
         let isFound: boolean = false;
         this.selectedDashboardTags.forEach(dt => {
-            if (dt.tag == this.newTag) {
+            if (dt.tag === this.newTag) {
                 isFound = true;
             }
         });
@@ -168,7 +168,7 @@ export class DashboardTagsComponent implements OnInit {
         };
         let isFound: boolean = false;
         this.selectedDashboardTags.forEach(dt => {
-            if (dt.tag == this.availableDashboardTags[this.availableTagIndex].tag) {
+            if (dt.tag === this.availableDashboardTags[this.availableTagIndex].tag) {
                 isFound = true;
             }
         });
