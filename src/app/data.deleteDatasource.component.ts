@@ -33,7 +33,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -75,7 +75,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
                     .then(w => {
                         this.widgets = w;
                         this.datasources.forEach(ds => {
-                            widgetsFiltered = this.widgets.filter(w => w.datasourceID == ds.id);
+                            widgetsFiltered = this.widgets.filter(w => w.datasourceID === ds.id);
                             ds.nrWidgets = widgetsFiltered.length;
                         });
                     })
@@ -110,7 +110,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
             this.datasources = this.datasources.filter(ds => ds.id != id);
 
             // Let user know
-            let datasourceIndex: number = this.datasources.findIndex(ds => ds.id == id);
+            let datasourceIndex: number = this.datasources.findIndex(ds => ds.id === id);
             let datasourceName = '';
             if (datasourceIndex >= 0) {
                 datasourceName = this.datasources[datasourceIndex].name;
