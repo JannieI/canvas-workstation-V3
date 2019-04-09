@@ -35,12 +35,12 @@ export class PreferencesComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
         if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
             &&
             (!event.ctrlKey)
             &&
@@ -132,14 +132,14 @@ export class PreferencesComponent implements OnInit {
                     // Fill Initial Template
                     if (this.preferenceDefaultTemplateID != null
                         &&
-                        this.preferenceDefaultTemplateID == d.id) {
+                        this.preferenceDefaultTemplateID === d.id) {
                         this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ')';
                     };
 
                     // Fill Initial Startup D
                     if (this.preferenceStartupDashboardID != null
                         &&
-                        this.preferenceStartupDashboardID == d.id) {
+                        this.preferenceStartupDashboardID === d.id) {
                         this.selectedStartupDashboard = d.name + ' (' + d.id.toString() + ')';
                     };
 
@@ -153,18 +153,18 @@ export class PreferencesComponent implements OnInit {
                             // Fill TabList
                             if (this.preferenceStartupDashboardID != null 
                                 &&
-                                this.preferenceStartupDashboardID == t.dashboardID) {
+                                this.preferenceStartupDashboardID === t.dashboardID) {
                                     this.dashboardTabList.push(t.name + ' (' + t.id.toString() + ')');
                             };
 
                             // Fill Initial Startup T
                             if (this.preferenceStartupDashboardID != null 
                                 &&
-                                this.preferenceStartupDashboardID == t.dashboardID
+                                this.preferenceStartupDashboardID === t.dashboardID
                                 &&
                                 this.preferenceStartupDashboardTabID != null
                                 &&
-                                this.preferenceStartupDashboardTabID == t.id) {
+                                this.preferenceStartupDashboardTabID === t.id) {
                                 this.selectedStartupDashboardTab = t.name + ' (' + t.id.toString() + ')';
                             };
                         });
@@ -221,7 +221,7 @@ export class PreferencesComponent implements OnInit {
                 // Fill TabList
                 if (this.preferenceStartupDashboardID != null 
                     &&
-                    this.preferenceStartupDashboardID == t.dashboardID) {
+                    this.preferenceStartupDashboardID === t.dashboardID) {
                         this.dashboardTabList.push(t.name + ' (' + t.id.toString() + ')');
                 };
 
