@@ -35,7 +35,7 @@ export class DataManageDataQualityComponent implements OnInit {
         event.preventDefault();
 
         // Known ones
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
         };
@@ -118,11 +118,11 @@ export class DataManageDataQualityComponent implements OnInit {
 
         // Fill the form
         let selectedDatasourceIndex: number = this.dataQualityIssues
-            .findIndex(dc => dc.id == id);
+            .findIndex(dc => dc.id === id);
         if (selectedDatasourceIndex >= 0) {
 
             let datasourceIndex: number = this.datasources.findIndex(ds =>
-                ds.id == this.dataQualityIssues[selectedDatasourceIndex].datasourceID
+                ds.id === this.dataQualityIssues[selectedDatasourceIndex].datasourceID
             );
             this.selectedLinkedDatasource = 'Unknown';
             if (datasourceIndex >= 0) {
@@ -177,7 +177,7 @@ export class DataManageDataQualityComponent implements OnInit {
 
         // Re Fill the form
         let datasourceIndex: number = this.dataQualityIssues
-            .findIndex(sch => sch.id == this.selectedDataQualityIssue.id);
+            .findIndex(sch => sch.id === this.selectedDataQualityIssue.id);
         if (datasourceIndex >= 0) {
             // this.selectedDataQualityIssue = Object.assign({},
             //     this.dataQualityIssues[datasourceIndex]
@@ -202,9 +202,9 @@ export class DataManageDataQualityComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedDataQualityIssue.name == null
+        if (this.selectedDataQualityIssue.name === null
             ||
-            this.selectedDataQualityIssue.name == '') {
+            this.selectedDataQualityIssue.name === '') {
                 this.errorMessage = 'Enter a Name to identify the issue';
                 return;
         };
@@ -225,7 +225,7 @@ export class DataManageDataQualityComponent implements OnInit {
             this.selectedDataQualityIssue.datasourceID = this.datasourceID;
             this.globalVariableService.addResource('dataQualityIssues', this.selectedDataQualityIssue)
                 .then(res => {
-                    if (this.selectedDataQualityIssueRowIndex == null) {
+                    if (this.selectedDataQualityIssueRowIndex === null) {
                         this.selectedDataQualityIssueRowIndex = 0;
                         this.selectedDatasourceID = this.selectedDataQualityIssue.id;
                     };
@@ -244,7 +244,7 @@ export class DataManageDataQualityComponent implements OnInit {
         // Save the changes
         if (this.editing) {
             let datasourceIndex: number = this.dataQualityIssues
-                .findIndex(sch => sch.id == this.selectedDataQualityIssue.id);
+                .findIndex(sch => sch.id === this.selectedDataQualityIssue.id);
             if (datasourceIndex >= 0) {
                 // this.dataQualityIssues[datasourceIndex] =
                 //     Object.assign({}, this.selectedDataQualityIssue);
