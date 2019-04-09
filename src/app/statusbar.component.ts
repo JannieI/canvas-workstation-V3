@@ -81,7 +81,7 @@ export class StatusbarComponent {
 
         // Nr of Ws in group
         this.widgetGroupSubscription = this.globalVariableService.widgetGroup.subscribe(wg => {
-            if (wg.length == 0) {
+            if (wg.length === 0) {
                 this.widgetGroupText = '';
             } else {
                 this.widgetGroupText = 'Group: ' + wg.length.toString();
@@ -135,10 +135,10 @@ export class StatusbarComponent {
                 if (i != null) {
                     this.statusBarMessageText = i.message;
                     this.statusBarMessageColour = 'rgb(197, 194, 194)';
-                    if (i.classfication == 'Warning') {
+                    if (i.classfication === 'Warning') {
                         this.statusBarMessageColour = 'yellow';
                     }
-                    if (i.classfication == 'Error') {
+                    if (i.classfication === 'Error') {
                         this.statusBarMessageColour = 'orange';
                     }
 
@@ -240,7 +240,7 @@ export class StatusbarComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTabUp', '@Start');
 
         // Nothing to do if only One Tab
-        if (this.currentDashboardTabs.length == 1) {
+        if (this.currentDashboardTabs.length === 1) {
             return;
         };
 
@@ -289,7 +289,7 @@ export class StatusbarComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTabDown', '@Start');
 
         // Nothing to do if only One Tab
-        if (this.currentDashboardTabs.length == 1) {
+        if (this.currentDashboardTabs.length === 1) {
             return;
         };
 
@@ -490,7 +490,7 @@ export class StatusbarComponent {
         };
 
         // Cannot delete only Tab
-        if (this.globalVariableService.currentDashboardTabs.length == 1) {
+        if (this.globalVariableService.currentDashboardTabs.length === 1) {
             this.globalVariableService.showStatusBarMessage(
                 {
                     message: 'Cannot delete the only Tab in Dashboard',
@@ -511,7 +511,7 @@ export class StatusbarComponent {
             if(w.hyperlinkDashboardTabID ==
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID) {
                     widgetCount = widgetCount + 1;
-                    if (firstDashboardID == null) {
+                    if (firstDashboardID === null) {
                         firstDashboardID = w.dashboardID;
                     };
                 };
@@ -520,7 +520,7 @@ export class StatusbarComponent {
         if (firstDashboardID != null) {
             let widgetString: string = widgetCount==1? ' widget ' : ' widgets'
             let dashboardIndex: number = this.globalVariableService.dashboards
-                .findIndex(d => d.id == firstDashboardID);
+                .findIndex(d => d.id === firstDashboardID);
             if (dashboardIndex != -1) {
                 this.globalVariableService.showStatusBarMessage(
                     {
@@ -540,10 +540,10 @@ export class StatusbarComponent {
         // Can only delete Tab if it has no W on it
         let nrWperT: number = 0;
         nrWperT = this.globalVariableService.widgets.filter(w => {
-            if (w.dashboardID == this.globalVariableService.currentDashboardInfo.value.
+            if (w.dashboardID === this.globalVariableService.currentDashboardInfo.value.
                 currentDashboardID
                 &&
-                w.dashboardTabID == this.globalVariableService.currentDashboardInfo.
+                w.dashboardTabID === this.globalVariableService.currentDashboardInfo.
                 value.currentDashboardTabID) {
                     return w;
                 };
@@ -611,7 +611,7 @@ export class StatusbarComponent {
 
                 // Duplicate the Widgets
                 this.globalVariableService.currentWidgets.forEach(w => {
-                    if (w.dashboardTabID == this.globalVariableService
+                    if (w.dashboardTabID === this.globalVariableService
                         .currentDashboardInfo.value.currentDashboardTabID) {
 
                         // Create Deep copy with necessary info
