@@ -1018,8 +1018,8 @@ export class WidgetNavigatorComponent {
         // Create specification
         this.specification = this.globalVariableService.createVegaSpec(
             this.localWidget,
-            this.graphHeight,
-            this.graphWidth,
+            this.graphHeight + 280,
+            this.graphWidth + 280,
             this.showSpecificGraphLayer,
             0
         );
@@ -1702,12 +1702,12 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         });
         this.graphData.push({
             id: 4,
-            name: "Nedbank",
+            name: "Old Mutual",
             parent: 1
         });
         this.graphData.push({
             id: 5,
-            name: "Old Mutual",
+            name: "Nedbank",
             parent: 4
         });
         this.graphData.push({

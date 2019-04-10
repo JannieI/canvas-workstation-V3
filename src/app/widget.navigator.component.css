@@ -1,7 +1,7 @@
 
 /* TOTAL NAVIGATOR */
 .totalNavigator {
-    overflow: hidden;
+    overflow: scroll;
 }
 
     .gridErrorMessage {
@@ -195,24 +195,26 @@
             }
 
 
-            .graphAreaGraphicContainer {
+        .graphAreaGraphicContainer {
             border: 2px solid red;
+            margin: 0px;
+            padding: 0px;
+            overflow: scroll;
 
+        }
+
+            .graphAreaGraphic {
+                border: 2px solid green;
+                font-size: 0.5rem;
+                text-align: left;
             }
 
-
-        .graphAreaGraphic {
-            border: 2px solid green;
-            font-size: 0.5rem;
-            text-align: left;
-        }
-
-        .graphAreaNote {
-            background-color: transparent;
-            border: 1px solid lightgray;
-            border-radius: 6px; 
-            font-size: 0.5rem;
-            text-align: left;
-            z-index: 10;
-        }
+            .graphAreaNote {
+                background-color: transparent;
+                border: 1px solid lightgray;
+                border-radius: 6px; 
+                font-size: 0.5rem;
+                text-align: left;
+                z-index: 10;
+            }
 
