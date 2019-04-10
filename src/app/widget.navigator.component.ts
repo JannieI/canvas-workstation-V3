@@ -332,7 +332,7 @@ export class WidgetNavigatorComponent {
                 relationship: 'Directors',
                 childNodeType: 'Person',
                 childNode: 'Mr van Wyk, Rene',
-                role: 'Non-Executive'
+                role: 'Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
@@ -435,7 +435,7 @@ export class WidgetNavigatorComponent {
                 parentNode: 'Absa',
                 relationship: 'Directors',
                 childNodeType: 'Person',
-                childNode: 'Ms Lucas-Bull, Wendy ',  // Elizabeth
+                childNode: 'Ms Lucas-Bull, Wendy Elizabeth',  // Elizabeth
                 role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
@@ -1683,7 +1683,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNodeTypeView', '@Start');
 
         // Refresh the graph
-        this.selectedView = 'NodeTypeView'
+        // this.selectedView = 'NodeTypeView'
 
         this.graphData = [];
         this.graphData.push(

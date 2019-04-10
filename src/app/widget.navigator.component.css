@@ -87,17 +87,18 @@
             border-radius: 4px;
         }
 
+
+
+
     /* MIN-WIDTH to show wide enough when no graph */
     .graphArea {
+        border: 2px solid blue;
         float: left;
         font-size: 0.5rem;
         height: 100%;
         margin-left: 4px;
         margin-right: 4px;
-        min-width: 454px;             
         text-align: left;
-        overflow: scroll;
-        top: 0;
     }
 
         .graphAreaText1{
@@ -193,7 +194,15 @@
                 text-align: left;
             }
 
+
+            .graphAreaGraphicContainer {
+            border: 2px solid red;
+
+            }
+
+
         .graphAreaGraphic {
+            border: 2px solid green;
             font-size: 0.5rem;
             text-align: left;
         }
