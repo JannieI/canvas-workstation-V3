@@ -251,10 +251,6 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             this.localWidget.datasourceID).then(res => {
 
             // Update local and global vars
-            // ** TABIDS
-            // this.localWidget.dashboardTabIDs.push(this.globalVariableService.
-            //     currentDashboardInfo.value.currentDashboardTabID);
-
             this.globalVariableService.addResource('widgets', this.localWidget)
                 .then(addedWidget => {
                     this.localWidget.id = addedWidget.id;

@@ -664,11 +664,6 @@ export class ShapeEditComponent implements OnInit {
 
             };
 
-            // ** TABIDS
-            // this.localWidget.dashboardTabIDs.push(
-            //     this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
-            // );
-
             this.globalVariableService.addResource('widgets', this.localWidget)
                 .then(res => {
 

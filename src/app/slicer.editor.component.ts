@@ -474,11 +474,6 @@ import { GlobalVariableService }      from './global-variable.service';
             //     newID = Math.max(...ws) + 1;
             // };
             // this.localWidget.id = newID;
-
-            // ** TABIDS
-            // this.localWidget.dashboardTabIDs.push(this.globalVariableService.
-            //     currentDashboardInfo.value.currentDashboardTabID
-            // );
             this.localWidget.datasourceID = this.selectedDatasourceID;
 
             // this.globalVariableService.widgets.push(this.localWidget);

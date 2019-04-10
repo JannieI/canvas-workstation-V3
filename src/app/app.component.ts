@@ -400,7 +400,6 @@ export class AppComponent implements OnInit {
     showModalWidgetExport: boolean = false;
     showModalWidgetHyperlinks: boolean = false;
     showModalWidgetRefresh: boolean = false;
-    // showModalWidgetTablist: boolean = false;   ** TABIDS
     showModalUserSystemSettings: boolean = false;
     showPalette: boolean = true;
     showPaletteSubscription: Subscription;          // Observable
@@ -706,14 +705,6 @@ export class AppComponent implements OnInit {
                                 this.currentWidgets.splice(i, 1);
                             };
                         };
-
-                        // Add the given one, if [TabID] has current TabID
-                        // ** TABIDS
-                        // if (newW.dashboardTabIDs.indexOf(
-                        //     this.globalVariableService.currentDashboardInfo.value.
-                        //     currentDashboardTabID) >= 0) {
-                        //     this.currentWidgets.push(newW);
-                        // };
                         if (newW.dashboardTabID ==
                             this.globalVariableService.currentDashboardInfo.value.
                             currentDashboardTabID) {
@@ -1605,32 +1596,6 @@ export class AppComponent implements OnInit {
         console.warn('xx app W', this.selectedWidget, changedWidget, this.currentWidgets)
         this.showModalWidgetEditor = false;
     }
-
-    // ** TABIDS
-    // handleCloseWidgetTablist(tabIDs: number[]) {
-    //     // Handle close of Tablist form
-    //     this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetTablist', '@Start');
-
-    //     // Close without change returns null
-    //     if (tabIDs != null) {
-
-    //         // Work on selected W
-    //         this.currentWidgets.forEach(w => {
-    //             if (w.isSelected) {
-
-    //                 // Update local, and global Ws
-    //                 w.dashboardTabIDs = tabIDs;
-    //                 this.globalVariableService.widgetReplace(w);
-    //                 this.globalVariableService.changedWidget.next(w);
-    //             }
-    //         });
-
-    //     };
-
-    //     this.menuOptionClickPostAction();
-
-    //     this.showModalWidgetTablist = false;
-    // }
 
     handleCloseWidgetDescription(tabIDs: number[]) {
         // Handle close of Description form
@@ -6137,42 +6102,6 @@ export class AppComponent implements OnInit {
 
         this.showModalSlicerEditor = true;
     }
-
-    // ** TABIDS
-    // clickMenuWidgetTablist() {
-    //     // Open the list of tabs to which the selected W belongs
-    //     this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetTablist', '@Start');
-
-    //     // Has to be in editMode
-    //     if (!this.editMode) {
-    //         this.showMessage(
-    //             this.globalVariableService.canvasSettings.notInEditModeMsg,
-    //             'StatusBar',
-    //             'Warning',
-    //             3000,
-    //             ''
-    //         );
-    //         return;
-    //     };
-
-    //     if (!this.checkForOnlyOneWidget()) {
-    //         return;
-    //     };
-
-    //     if (!this.menuOptionClickPreAction()) {
-    //         return;
-    //     };
-
-    //     // Send list of current Tabs it belongs to
-    //     this.currentWidgets.forEach(w => {
-    //         if (w.isSelected) {
-    //             this.currentWidgetDashboardTabIDs = w.dashboardTabIDs;
-    //         }
-    //     });
-
-    //     this.showModalWidgetTablist = true;
-
-    // }
 
     clickMenuWidgetDescription(
         widgetID: number = null,

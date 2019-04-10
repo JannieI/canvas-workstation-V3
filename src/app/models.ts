@@ -1369,8 +1369,6 @@ export class Widget {
     // Where W lives
     dashboardID: number;                    // FK to DashboardID to which widget belongs
     dashboardTabID: number;                 // FKs to Tabs where the widget lives
-    // ** TABIDS
-    // dashboardTabIDs: number[];              // FKs to Tabs where the widget lives
 
     // Locking
     isLocked: boolean;                      // True if this W is temporary locked

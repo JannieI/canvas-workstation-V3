@@ -547,11 +547,6 @@ export class StatusbarComponent {
                 value.currentDashboardTabID) {
                     return w;
                 };
-                // ** TABIDS
-                // w.dashboardTabIDs.indexOf(this.globalVariableService.currentDashboardInfo.
-                //     value.currentDashboardTabID) >= 0) {
-                //     return w;
-                // };
         }).length;
         if (nrWperT > 0) {
             this.globalVariableService.showStatusBarMessage(
