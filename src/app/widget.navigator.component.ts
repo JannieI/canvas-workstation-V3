@@ -1016,10 +1016,11 @@ export class WidgetNavigatorComponent {
         };
 
         // Create specification
+        // @Demo
         this.specification = this.globalVariableService.createVegaSpec(
             this.localWidget,
-            this.graphHeight + 280,
-            this.graphWidth + 280,
+            this.graphHeight - 20,  // 280
+            this.graphWidth - 20,  // 280
             this.showSpecificGraphLayer,
             0
         );

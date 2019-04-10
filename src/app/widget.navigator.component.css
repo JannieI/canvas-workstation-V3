@@ -92,7 +92,6 @@
 
     /* MIN-WIDTH to show wide enough when no graph */
     .graphArea {
-        border: 2px solid blue;
         float: left;
         font-size: 0.5rem;
         height: 100%;
@@ -196,15 +195,12 @@
 
 
         .graphAreaGraphicContainer {
-            border: 2px solid red;
             margin: 0px;
             padding: 0px;
-            overflow: scroll;
 
         }
 
             .graphAreaGraphic {
-                border: 2px solid green;
                 font-size: 0.5rem;
                 text-align: left;
             }
