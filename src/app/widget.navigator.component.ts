@@ -1187,7 +1187,19 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             };
         };
         let parentNodes: string[] = networkGraph.filter(row => row[i] == '1').map(x => x[0])
-        console.log('xx Companies', parentNodes) 
+        console.log('xx Companies in row', i, parentNodes) 
+
+
+        // Find Top 40 'Companies'
+        for (var i = 0; i < networkGraph[1].length; i++) {
+            if (networkGraph[2][i] == 'Company'  &&  networkGraph[3][i] == 'Top 40') {
+                console.log('xx Company Prop in Row 1, col i', i)
+                break;
+            };
+        };
+        let parentNodesTop40: string[] = networkGraph.filter(row => row[i] == '1').map(x => x[0])
+        console.log('xx Top 40 Companies in Row', i, parentNodesTop40) 
+
 
         // Children for C
         for (var r = 9; r < networkGraph.length; r++) {
