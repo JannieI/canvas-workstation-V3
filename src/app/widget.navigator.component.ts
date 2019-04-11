@@ -1178,6 +1178,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         console.log('xx Row 5', networkGraph.filter(row => row[1] == 'Company') )
         console.log('xx networkGraph Cell [9,0] = A', networkGraph[9][0])
 
+
         // Find the Col Nr for 'Companies' Properties
         for (var i = 0; i < networkGraph[1].length; i++) {
             if (networkGraph[1][i] == 'Company') {
@@ -1189,7 +1190,19 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         console.log('xx Companies', parentNodes) 
 
 
-        // Filter on Companies
+        // Children for C
+        let parentNodeFiltered: Array<string[]> = networkGraph.filter(x => x[0] == 'C');
+        console.log('xx parentNodeFiltered C', parentNodeFiltered)
+        for (var r = 0; r < parentNodeFiltered.length; r++) {
+            for (var c = 10; c < parentNodeFiltered[0].length; c++) {
+                if (parentNodeFiltered[r][c + r] == '1') {
+                    console.log('xx C Child in Row r, col c', r, c)
+                    console.log('xx C Child = ', networkGraph[0][c])
+
+                };
+            };
+        };
+
         
     }
 
