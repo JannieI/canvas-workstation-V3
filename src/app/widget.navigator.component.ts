@@ -1189,19 +1189,29 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         let parentNodes: string[] = networkGraph.filter(row => row[i] == '1').map(x => x[0])
         console.log('xx Companies', parentNodes) 
 
-
         // Children for C
-        let parentNodeFiltered: Array<string[]> = networkGraph.filter(x => x[0] == 'C');
-        console.log('xx parentNodeFiltered C', parentNodeFiltered)
-        for (var r = 0; r < parentNodeFiltered.length; r++) {
-            for (var c = 10; c < parentNodeFiltered[0].length; c++) {
-                if (parentNodeFiltered[r][c + r] == '1') {
+        for (var r = 9; r < networkGraph.length; r++) {
+            for (var c = r + 1; c < networkGraph[0].length; c++) {
+                if (networkGraph[r][0] === 'C'  &&  networkGraph[r][c] == '1') {
                     console.log('xx C Child in Row r, col c', r, c)
                     console.log('xx C Child = ', networkGraph[0][c])
 
                 };
             };
         };
+
+        // Children for C
+        // let parentNodeFiltered: Array<string[]> = networkGraph.filter(x => x[0] == 'C');
+        // console.log('xx parentNodeFiltered C', parentNodeFiltered)
+        // for (var r = 0; r < parentNodeFiltered.length; r++) {
+        //     for (var c = 10; c < parentNodeFiltered[0].length; c++) {
+        //         if (parentNodeFiltered[r][c + r] == '1') {
+        //             console.log('xx C Child in Row r, col c', r, c)
+        //             console.log('xx C Child = ', networkGraph[0][c])
+
+        //         };
+        //     };
+        // };
 
         
     }
