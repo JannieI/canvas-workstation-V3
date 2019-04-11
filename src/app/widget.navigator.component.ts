@@ -1212,19 +1212,29 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             };
         };
 
-        // Children for C
-        // let parentNodeFiltered: Array<string[]> = networkGraph.filter(x => x[0] == 'C');
-        // console.log('xx parentNodeFiltered C', parentNodeFiltered)
-        // for (var r = 0; r < parentNodeFiltered.length; r++) {
-        //     for (var c = 10; c < parentNodeFiltered[0].length; c++) {
-        //         if (parentNodeFiltered[r][c + r] == '1') {
-        //             console.log('xx C Child in Row r, col c', r, c)
-        //             console.log('xx C Child = ', networkGraph[0][c])
 
-        //         };
-        //     };
-        // };
+        // Parents for x: [9, 9] is the first cell with relationship data
+        for (var r = 9; r < networkGraph.length; r++) {
+            for (var c = 0; c < r - 9; c++) {
+                if (networkGraph[r][0] === 'x'  &&  networkGraph[r][c + 9] == '1') {
+                    console.log('xx x Parent in Row r, col c', r, c + 9)
+                    console.log('xx x Parent = ', networkGraph[0][c + 9])
 
+                };
+            };
+        };
+
+
+        // Same Parent A
+        for (var r = 9; r < networkGraph.length; r++) {
+            for (var c = 0; c < r - 9; c++) {
+                if (networkGraph[0][c + 9] === 'A'  &&  networkGraph[r][c + 9] == '1') {
+                    console.log('xx Has A as Parent in Row r, col c', r, c + 9)
+                    console.log('xx Has A as Parent = ', networkGraph[r][0])
+
+                };
+            };
+        };
         
     }
 
