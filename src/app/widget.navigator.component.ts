@@ -1156,31 +1156,41 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             .run()
             .finalize();
 
-        let networkGraph: Array<string | number> = [];
+        let networkGraph: Array<string[]> = [];
 
-        for (var i = 0; i < 12; i++) {
+        // Build the Array for the network - Nodes, properties, proximity / relationships
+        networkGraph.push(Array("",  "",        "",        "",       "",        "",       "",         "",       "",       "A", "B", "C", "D", "x", "y", "z"));
+        networkGraph.push(Array("",  "",        "",        "",       "Company", "Person", "",         "",       "",       "",  "",  "",  "",  "",  "",  "" ));
+        networkGraph.push(Array("",  "",        "",        "",       "",        "",        "Company", "Person", "Person", "",  "",  "",  "",  "",  "",  "" ));
+        networkGraph.push(Array("",  "",        "",        "",       "",        "",        "Top 40",  "Male",   "Female", "",  "",  "",  "",  "",  "",  "" ));
+        networkGraph.push(Array("",  "Company", "",        "",       "",        "",        "",        "",       "",       "1", "1", "1", "1", "",  "",  "" ));
+        networkGraph.push(Array("",  "Person",  "",        "",       "",        "",        "",        "",       "",       "",  "",  "",  "",  "1", "1", "1"));
+        networkGraph.push(Array("",  "",        "Company", "Top 40", "",        "",        "",        "",       "",       "1", "",  "1", "",  "",  "",  "" ));
+        networkGraph.push(Array("",  "",        "Person",  "Male",   "",        "",        "",        "",       "",       "",  "",  "",  "",  "1", "1", "" ));
+        networkGraph.push(Array("",  "",        "Person",  "Female", "",        "",        "",        "",       "",       "",  "",  "",  "",  "",  "",  "1"));
+        networkGraph.push(Array("A", "",        "",        "",       "1",       "",        "1",       "",       "",       "",  "",  "1", "",  "1", "",  "" ));
+        networkGraph.push(Array("B", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "",  "",  "",  "1", "1"));
+        networkGraph.push(Array("C", "",        "",        "",       "1",       "",        "1",       "",       "",       "1", "",  "",  "1", "",  "",  "1"));
+        networkGraph.push(Array("D", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "1", "",  "1", "1", "" ));
+        networkGraph.push(Array("x", "",        "",        "",       "",        "1",       "",        "1",      "",       "1", "",  "",  "1", "",  "",  "" ));
+        networkGraph.push(Array("y", "",        "",        "",       "",        "1",       "",        "1",      "",       "",  "1", "",  "1", "",  "",  "" ));
+        networkGraph.push(Array("z", "",        "",        "",       "",        "1",       "",        "",       "1",      "",  "1", "1", "",  "",  "",  "" ));
+        console.log('xx Row 5', networkGraph.filter(row => row[1] == 'Company') )
+        console.log('xx networkGraph Cell [9,0] = A', networkGraph[9][0])
 
+        // Find the Col Nr for 'Companies' Properties
+        for (var i = 0; i < networkGraph[1].length; i++) {
+            if (networkGraph[1][i] == 'Company') {
+                console.log('xx Company Prop in Row 1, col i', i)
+                break;
+            };
         };
+        let parentNodes: string[] = networkGraph.filter(row => row[i] == '1').map(x => x[0])
+        console.log('xx Companies', parentNodes) 
 
-        networkGraph.push("",  "",        "",        "",       "",        "",       "",         "",       "",       "A", "B", "C", "D", "x", "y", "z");
-        networkGraph.push("",  "",        "",        "",       "Company", "Person", "",         "",       "",       "",  "",  "",  "",  "",  "",  "" );
-        networkGraph.push("",  "",        "",        "",       "",        "",        "Company", "Person", "Person", "",  "",  "",  "",  "",  "",  "" );
-        networkGraph.push("",  "",        "",        "",       "",        "",        "Top 40",  "Male",   "Female", "",  "",  "",  "",  "",  "",  "" );
-        networkGraph.push("",  "Company", "",        "",       "",        "",        "",        "",       "",       "1", "1", "1", "1", "",  "",  "" );
-        networkGraph.push("",  "Person",  "",        "",       "",        "",        "",        "",       "",       "",  "",  "",  "",  "1", "1", "1");
-        networkGraph.push("",  "",        "Company", "Top 40", "",        "",        "",        "",       "",       "1", "",  "1", "",  "",  "",  "" );
-        networkGraph.push("",  "",        "Person",  "Male",   "",        "",        "",        "",       "",       "",  "",  "",  "",  "1", "1", "" );
-        networkGraph.push("",  "",        "Person",  "Female", "",        "",        "",        "",       "",       "",  "",  "",  "",  "",  "",  "1");
-        networkGraph.push("A", "",        "",        "",       "1",       "",        "1",       "",       "",       "",  "",  "1", "",  "1", "",  "" );
-        networkGraph.push("B", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "",  "",  "",  "1", "1");
-        networkGraph.push("C", "",        "",        "",       "1",       "",        "1",       "",       "",       "1", "",  "",  "1", "",  "",  "1");
-        networkGraph.push("D", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "1", "",  "1", "1", "" );
-        networkGraph.push("x", "",        "",        "",       "",        "1",       "",        "1",      "",       "1", "",  "",  "1", "",  "",  "" );
-        networkGraph.push("y", "",        "",        "",       "",        "1",       "",        "1",      "",       "",  "1", "",  "1", "",  "",  "" );
-        networkGraph.push("z", "",        "",        "",       "",        "1",       "",        "",       "1",      "",  "1", "1", "",  "",  "",  "" );
 
-        console.log('xx networkGraph', networkGraph, networkGraph[9][0])
-
+        // Filter on Companies
+        
     }
 
     clickHistoryMinMax() {
