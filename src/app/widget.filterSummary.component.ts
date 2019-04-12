@@ -105,6 +105,11 @@ export class WidgetFilterSummaryComponent implements OnInit {
         this.formWidgetFilterSummaryClosed.emit(action);
     }
 
-    
+    clickDelete(index: number, sourceWidgetField: string, targetWidgetField: string) {
+        // Delete
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+        // TODO - to be completed
+    }
 
 }
