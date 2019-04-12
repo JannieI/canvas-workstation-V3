@@ -78,6 +78,7 @@ export class WidgetNavigatorComponent {
     filterParentFieldName: string = '';
     filterParentOperator: string = '';
     filterParentValue: string = '';
+    firstAdjacencyCellRowNr: number = -1;
     graphData: any[] = [];                              // childDataAll formatted for Vega
     history: NavigatorHistory[] = [];                   // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
@@ -1209,6 +1210,11 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
 
+        // Calc start of adjacency grid
+        this.firstAdjacencyCellRowNr = this.navFirstAdjacencyCellRowNr();
+        console.log('xx firstAdjacencyCellRowNr', this.firstAdjacencyCellRowNr)
+
+        
         // Children for C
         for (var r = 9; r < this.networkGraph.length; r++) {
             for (var c = r + 1; c < this.networkGraph[0].length; c++) {
