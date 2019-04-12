@@ -1220,16 +1220,16 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Parents for x: [9, 9] is the first cell with relationship data
         console.log('xx Parents for x', this.navParentsForChildNode('x'))
-        let parentsForX: string[] = [];
-        for (var r = 9; r < this.networkGraph.length; r++) {
-            for (var c = 0; c < r - 9; c++) {
-                if (this.networkGraph[r][0] === 'x'  &&  this.networkGraph[r][c + 9] == '1') {
-                    console.log('xx x Parent in Row r, col c', r, c + 9)
-                    console.log('xx x Parent = ', this.networkGraph[0][c + 9])
-                    parentsForX.push();
-                };
-            };
-        };
+        // let parentsForX: string[] = [];
+        // for (var r = 9; r < this.networkGraph.length; r++) {
+        //     for (var c = 0; c < r - 9; c++) {
+        //         if (this.networkGraph[r][0] === 'x'  &&  this.networkGraph[r][c + 9] == '1') {
+        //             console.log('xx x Parent in Row r, col c', r, c + 9)
+        //             console.log('xx x Parent = ', this.networkGraph[0][c + 9])
+        //             parentsForX.push();
+        //         };
+        //     };
+        // };
 
 
         // Same Parent as x

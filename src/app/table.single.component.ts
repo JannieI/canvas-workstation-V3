@@ -15,7 +15,6 @@ import { GlobalFunctionService }      from './global-function.service';
 // Our Models
 import { Widget }                     from './models'
 import { Datasource }                 from './models';
-import { differ } from 'vega-lite/build/src/util';
 
 
 @Component({

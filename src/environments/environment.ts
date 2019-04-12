@@ -34,5 +34,5 @@ export const environment = {
 	ENVCanvasDatabaseLocalUrlS5: "http://localhost:3006",
 
 	// Address of Web Socket Server
-	ENVCanvasWebSocketServerUrl: "https://localhost:8000"
+	ENVCanvasWebSocketServerUrl: "https://localhost:3000"
 };

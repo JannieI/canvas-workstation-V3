@@ -15,17 +15,22 @@ import { Injectable }                 from '@angular/core';
 import * as io                        from 'socket.io-client';
 import { Observable }                 from 'rxjs';
 import * as Rx                        from 'rxjs';
-import { environment }                from '../environments/environment';
+
+// Our Functions
+import { GlobalVariableService }      from './global-variable.service';
 
 @Injectable()
 export class WebsocketService {
 
-    canvasWebSocketServerUrl: string = environment.ENVCanvasWebSocketServerUrl;
+    canvasWebSocketServerUrl: string = this.globalVariableService.canvasServerURI ;
 
     // Our socket connection
     private socket;
 
-    constructor() { }
+    constructor(
+        private globalVariableService: GlobalVariableService,
+
+    ) { }
 
     connect(): Rx.Subject<MessageEvent> {
         // If you aren't familiar with environment variables then

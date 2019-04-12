@@ -111,7 +111,6 @@ export class ShapeEditComponent implements OnInit {
     points: string = "0,10     10,0    10,5   20,5   20,15   10,15   10,20    0, 10"
 
 
-
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
