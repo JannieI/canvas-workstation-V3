@@ -100,7 +100,7 @@ export class GlobalVariableService {
     concoleLogStyleForEndOfMethod: string = "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px;";
     concoleLogStyleForStartOfUtilFunctions: string = "color: black; background: rgba(243, 243, 243, 0.4); font-size: 10px;";
     continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
-    getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Canvas Server
+    getSource: string = 'Test';     // Where to read/write: File, Test, Canvas Server
     headers = new HttpHeaders().set("Content-Type", "application/json");
 
     selectedWidgetIDs: number[] = [];
@@ -128,11 +128,6 @@ export class GlobalVariableService {
         serverHostURI: string
     }[] = environment.ENVCanvasServerList;
     ENVStartupCanvasServerName: string = environment.ENVStartupCanvasServerName;
-    ENVCanvasDatabaseLocalUrlS1: string = environment.ENVCanvasDatabaseLocalUrlS1;
-    ENVCanvasDatabaseLocalUrlS2: string = environment.ENVCanvasDatabaseLocalUrlS2;
-    ENVCanvasDatabaseLocalUrlS3: string = environment.ENVCanvasDatabaseLocalUrlS3;
-    ENVCanvasDatabaseLocalUrlS4: string = environment.ENVCanvasDatabaseLocalUrlS4;
-    ENVCanvasDatabaseLocalUrlS5: string = environment.ENVCanvasDatabaseLocalUrlS5;
 
 
     // User
