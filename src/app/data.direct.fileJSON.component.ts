@@ -62,6 +62,7 @@ export class DataDirectFileJSONComponent implements OnInit {
     fileData: any = [];
     fileDataFull: any = [];
     // files: string[] = [];
+    fileName: string = '';
     headerRow: string = '0';
     loadedFile: any;
     loadedFileName: string = '';
