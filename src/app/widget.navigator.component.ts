@@ -1290,6 +1290,44 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         return nodeTypeProperties;
     }
 
+    navPropertyColumnNumber(property: string): number {
+        // Return column number of a given property
+        this.globalFunctionService.printToConsole(this.constructor.name,'navPropertyColumnNumber', '@Start');
+
+        let columnNumber: number = -1;
+
+        // Determine the column number in Array where the given property heading lives
+        for (var i = 0; i < this.networkGraph[1].length; i++) {
+            if (this.networkGraph[1][i] == 'Company') {
+                columnNumber = i;
+                break;
+            };
+        };
+        
+        // Return
+        return columnNumber; 
+
+    }
+
+    // navPropertiesPerNodeType(nodeType: string): string[] {
+    //     // Return array of Nodes (names) per given Node Type
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'navNodesPerNodeType', '@Start');
+
+    //     // Filter correct Col
+    //     let nodeTypeProperties: string[] = this.networkGraph
+    //         .filter(x => x[2] == nodeType)
+    //         .map(y => y[3]);
+
+    //     // Make sure a unique, non-null list
+    //     nodeTypeProperties = Array.from(new Set(nodeTypeProperties));
+    //     if (nodeTypeProperties == null) {
+    //         nodeTypeProperties = [];
+    //     };
+
+    //     // Return
+    //     return nodeTypeProperties;
+    // }
+
     clickHistoryMinMax() {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHistoryMinMax', '@Start');
