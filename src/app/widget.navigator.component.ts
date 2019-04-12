@@ -1194,12 +1194,12 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         
         // Find the Col Nr for 'Company' in Property List
         console.log('xx Col Nr for Company in Property List:', 
-            this.navPropertyColumnNumber(nodeTypes[0])) 
+            this.navNodeTypeColumnNumber(nodeTypes[0])) 
 
         
         // Show Nodes for Node Type 'Company'
-        console.log('xx Col Nr for Companies in Property List:', 
-            this.navPropertyColumnNumber(nodeTypes[0])) 
+        console.log('xxhow Nodes for Node Type Company',
+            this.navNodesPerNodeType(nodeTypes[0])) 
 
 
         // Find Top 40 'Companies'
@@ -1290,9 +1290,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         return nodeTypeProperties;
     }
 
-    navPropertyColumnNumber(property: string): number {
+    navNodeTypeColumnNumber(property: string): number {
         // Return column number of a given property
-        this.globalFunctionService.printToConsole(this.constructor.name,'navPropertyColumnNumber', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'navNodeTypeColumnNumber', '@Start');
 
         let columnNumber: number = -1;
 
@@ -1309,24 +1309,27 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    // navPropertiesPerNodeType(nodeType: string): string[] {
-    //     // Return array of Nodes (names) per given Node Type
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'navNodesPerNodeType', '@Start');
+    navNodesPerNodeType(nodeType: string): string[] {
+        // Return array of Nodes (names) per given Node Type
+        this.globalFunctionService.printToConsole(this.constructor.name,'navNodesPerNodeType', '@Start');
 
-    //     // Filter correct Col
-    //     let nodeTypeProperties: string[] = this.networkGraph
-    //         .filter(x => x[2] == nodeType)
-    //         .map(y => y[3]);
+        // Get column number
+        let nodeTypeColumnNumber: number = this.navNodeTypeColumnNumber(nodeType);
 
-    //     // Make sure a unique, non-null list
-    //     nodeTypeProperties = Array.from(new Set(nodeTypeProperties));
-    //     if (nodeTypeProperties == null) {
-    //         nodeTypeProperties = [];
-    //     };
+        // Filter correct Col
+        let nodes: string[] = this.networkGraph
+            .filter(x => x[nodeTypeColumnNumber] == '1')
+            .map(y => y[0]);
 
-    //     // Return
-    //     return nodeTypeProperties;
-    // }
+        // Make sure a unique, non-null list
+        nodes = Array.from(new Set(nodes));
+        if (nodes == null) {
+            nodes = [];
+        };
+
+        // Return
+        return nodes;
+    }
 
     clickHistoryMinMax() {
         // Click W object
