@@ -1209,12 +1209,11 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             this.navNodesFilteredPerProperty(nodeTypes[0], nodeProperty[0]))
 
 
-
         // Calc start of adjacency grid
         this.firstAdjacencyCellRowNr = this.navFirstAdjacencyCellRowNr();
         console.log('xx firstAdjacencyCellRowNr', this.firstAdjacencyCellRowNr)
 
-        
+
         // Children for C
         for (var r = 9; r < this.networkGraph.length; r++) {
             for (var c = r + 1; c < this.networkGraph[0].length; c++) {
@@ -1263,7 +1262,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             .filter(x => x[1] != '')
             .map(y => y[1]);
 
-        // Make sure a unique, non-null list
+        // Make sure it is unique, non-null list
         nodeTypes = Array.from(new Set(nodeTypes));
         if (nodeTypes == null) {
             nodeTypes = [];
@@ -1282,7 +1281,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             .filter(x => x[2] == nodeType)
             .map(y => y[3]);
 
-        // Make sure a unique, non-null list
+        // Make sure it is unique, non-null list
         nodeTypeProperties = Array.from(new Set(nodeTypeProperties));
         if (nodeTypeProperties == null) {
             nodeTypeProperties = [];
@@ -1323,7 +1322,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             .filter(x => x[nodeTypeColumnNumber] == '1')
             .map(y => y[0]);
 
-        // Make sure a unique, non-null list
+        // Make sure it is unique, non-null list
         nodes = Array.from(new Set(nodes));
         if (nodes == null) {
             nodes = [];
@@ -1353,7 +1352,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
                 .filter(row => row[propertyColumnNumber] == '1')
                 .map(x => x[0])
 
-            // Make sure a unique, non-null list
+            // Make sure it is unique, non-null list
             nodesPerProperty = Array.from(new Set(nodesPerProperty));
             if (nodesPerProperty == null) {
                 nodesPerProperty = [];
@@ -1371,6 +1370,34 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         let firstAdjacencyCellRowNr: number = this.networkGraph[0].findIndex(x => x != '');
         return firstAdjacencyCellRowNr;
+    }
+
+        
+    navChildrenForParentNode(node: string): string[] {
+        // Return an array of Children nodes (names) for a given parent node 
+        this.globalFunctionService.printToConsole(this.constructor.name,'navChildrenForParentNode', '@Start');
+
+        let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
+        let childrenNodes: string [] = [];
+
+           // Children for C
+           for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
+                for (var c = r + 1; c < this.networkGraph[0].length; c++) {
+                    if (this.networkGraph[r][0] === node  &&  this.networkGraph[r][c] == '1') {
+                        childrenNodes.push(this.networkGraph[0][c]);
+                    };
+                };
+            };
+
+            // Make sure it is unique, non-null list
+            childrenNodes = Array.from(new Set(childrenNodes));
+            if (childrenNodes == null) {
+                childrenNodes = [];
+            };
+
+            // Return
+            return childrenNodes;
+
     }
 
     clickHistoryMinMax() {
