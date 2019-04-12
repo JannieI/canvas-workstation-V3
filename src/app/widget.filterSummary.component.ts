@@ -91,7 +91,7 @@ export class WidgetFilterSummaryComponent implements OnInit {
     
     }
 
-    clickRow(index: number, widgetFilterID: number) {
+    clickRow(index: number) {
         // A row was clicked
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
@@ -104,5 +104,7 @@ export class WidgetFilterSummaryComponent implements OnInit {
 
         this.formWidgetFilterSummaryClosed.emit(action);
     }
+
+    
 
 }
