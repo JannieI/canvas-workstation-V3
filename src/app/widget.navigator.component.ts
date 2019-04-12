@@ -1183,23 +1183,23 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
         // Show all node types
-        console.log('xx Node Types navNodesTypes', this.navNodeTypes())
+        let nodeTypes: string[] = this.navNodeTypes();
+        console.log('xx Node Types navNodesTypes', nodeTypes)
 
 
-        // Show all node types
+        // Show all nodes for Person Node type
         console.log('xxProperties per Node Type navPropertiesPerNodeType for ', 
-            this.navNodeTypes()[1], this.navPropertiesPerNodeType(this.navNodeTypes()[1]))
+            nodeTypes[1], this.navPropertiesPerNodeType(nodeTypes[1]))
 
         
-        // Find the Col Nr for 'Companies' Properties =& List
-        for (var i = 0; i < this.networkGraph[1].length; i++) {
-            if (this.networkGraph[1][i] == 'Company') {
-                console.log('xx Company Prop lives in Row 1, col i', i)
-                break;
-            };
-        };
-        let parentNodes: string[] = this.networkGraph.filter(row => row[i] == '1').map(x => x[0])
-        console.log('xx Companies:', parentNodes) 
+        // Find the Col Nr for 'Company' in Property List
+        console.log('xx Col Nr for Company in Property List:', 
+            this.navPropertyColumnNumber(nodeTypes[0])) 
+
+        
+        // Show Nodes for Node Type 'Company'
+        console.log('xx Col Nr for Companies in Property List:', 
+            this.navPropertyColumnNumber(nodeTypes[0])) 
 
 
         // Find Top 40 'Companies'
@@ -1298,7 +1298,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Determine the column number in Array where the given property heading lives
         for (var i = 0; i < this.networkGraph[1].length; i++) {
-            if (this.networkGraph[1][i] == 'Company') {
+            if (this.networkGraph[1][i] === property) {
                 columnNumber = i;
                 break;
             };
