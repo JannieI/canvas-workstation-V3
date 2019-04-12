@@ -1185,6 +1185,12 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Show all node types
         console.log('xx Node Types navNodesTypes', this.navNodeTypes())
 
+
+        // Show all node types
+        console.log('xxProperties per Node Type navPropertiesPerNodeType for ', 
+            this.navNodeTypes()[1], this.navPropertiesPerNodeType(this.navNodeTypes()[1]))
+
+        
         // Find the Col Nr for 'Companies' Properties =& List
         for (var i = 0; i < this.networkGraph[1].length; i++) {
             if (this.networkGraph[1][i] == 'Company') {
