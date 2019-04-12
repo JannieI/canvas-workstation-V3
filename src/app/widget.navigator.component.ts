@@ -58,6 +58,7 @@ export class WidgetNavigatorComponent {
     selectedHistoryID: number = -1;
     selectedNetworkID: number = -1;
     selectedNetwork: string = '';
+    selectedNodeType: string = '';
     selectedParentFilterID: number = -1;
     selectedParentNode: string = '';
     selectedParentNodeType: string = '';
