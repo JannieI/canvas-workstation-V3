@@ -113,7 +113,7 @@ export class WidgetNavigatorComponent {
     localWidget: Widget;                            // W to modify, copied from selected
     showSpecificGraphLayer: boolean = false;
     specification: any;             // Full spec for Vega, or other grammar
-    filterID
+    
     // Popups and forms
     showGraphHelp: boolean = false;
     showGraphNotes: boolean = false;
@@ -2111,4 +2111,23 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageRight', '@Start');
 
     }
+
+    changeChildFilterOperator(ev: any) {
+        // Change Child filter operator
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeChildFilterOperator', '@Start');
+
+    }
+
+    clickNetworkAdd() {
+        // Add Newtork
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkAdd', '@Start');
+
+    }
+
+    changeChildFilterField() {
+        // Change Child Filter Field
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeChildFilterField', '@Start');
+
+    }
+
 }
