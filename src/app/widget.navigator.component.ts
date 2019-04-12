@@ -57,6 +57,7 @@ export class WidgetNavigatorComponent {
     selectedChildFilterID: number = -1;
     selectedHistoryID: number = -1;
     selectedNetworkID: number = -1;
+    selectedNetwork: string = '';
     selectedParentFilterID: number = -1;
     selectedParentNode: string = '';
     selectedParentNodeType: string = '';
@@ -74,6 +75,7 @@ export class WidgetNavigatorComponent {
     filterChildFieldName: string = '';
     filterChildOperator: string = '';
     filterChildValue: string = '';
+    filterID: number = -1;
     filteredParentNodes: string[] = [];                 // List of Node, after filtered on NodeProperties
     filterParentFieldName: string = '';
     filterParentOperator: string = '';
@@ -111,7 +113,7 @@ export class WidgetNavigatorComponent {
     localWidget: Widget;                            // W to modify, copied from selected
     showSpecificGraphLayer: boolean = false;
     specification: any;             // Full spec for Vega, or other grammar
-
+    filterID
     // Popups and forms
     showGraphHelp: boolean = false;
     showGraphNotes: boolean = false;
@@ -126,13 +128,13 @@ export class WidgetNavigatorComponent {
 
     ) {
         // Initialise
-        this.globalFunctionService.printToConsole(this.constructor.name,'constructor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'constructor', '@Start');
 
     }
 
     ngOnInit() {
         // Initialise
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
         // let astring: string = '123';
         // let anumber: number = 123;
@@ -587,7 +589,7 @@ export class WidgetNavigatorComponent {
                 id: 1,
                 userID: 'JannieI',
                 nodeType: 'Company',
-                nodes: ['Absa','PSG']
+                nodes: ['Absa', 'PSG']
             };
         this.watchList.push(watchListNew);
 
@@ -624,9 +626,14 @@ export class WidgetNavigatorComponent {
 
     }
 
+    changeNetworkAdd(ev: any) {
+        // Clicked a network
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeNetworkAdd', '@Start');
+    }
+
     clickNetwork(index: number, networkID: number) {
         // Clicked a network
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetwork', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetwork', '@Start');
 
         // Remember the ID of the selected Network
         this.selectedNetworkID = networkID;
@@ -686,7 +693,7 @@ export class WidgetNavigatorComponent {
 
     clickHistory(index: number, historyID: number) {
         // Click a point in history, and show that graph
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickHistory', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHistory', '@Start');
 
         // Set the history id, selected fields
         this.selectedParentNodeType = this.history[index].parentNodeType;
@@ -710,7 +717,7 @@ export class WidgetNavigatorComponent {
 
     changeParentNodeType(ev: any) {
         // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeParentNodeType', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentNodeType', '@Start');
 
         // Set selected Nod
         this.selectedParentNodeType = ev.target.value;
@@ -773,7 +780,7 @@ export class WidgetNavigatorComponent {
 
     changeParentNode(ev: any) {
         // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeParentNode', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentNode', '@Start');
 
         this.selectedParentNode = ev.target.value;
 
@@ -809,7 +816,7 @@ export class WidgetNavigatorComponent {
 
     changeRelationship(ev: any) {
         // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeRelationship', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeRelationship', '@Start');
 
         this.selectedRelationship = ev.target.value;
 
@@ -846,7 +853,7 @@ export class WidgetNavigatorComponent {
 
     showGraph(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Re-create the Vega spec, and show the graph
-        this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'showGraph', '@Start');
 
         this.graphTitle = '';
         // Build data and graph if all parent & relationship fields selected
@@ -1102,7 +1109,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     clickNetworkSummary(networkIndex: number) {
         // Show a summary of the network
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkSummary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkSummary', '@Start');
 
         // Set data
         this.graphData = [];
@@ -1248,7 +1255,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     navNodeTypes(): string[] {
         // Return array of Node Types
-        this.globalFunctionService.printToConsole(this.constructor.name,'navNodeTypes', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navNodeTypes', '@Start');
 
         // Filter correct Col
         let nodeTypes: string[] = this.networkGraph
@@ -1267,7 +1274,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     navPropertiesPerNodeType(nodeType: string): string[] {
         // Return array of Properties per given Node Type
-        this.globalFunctionService.printToConsole(this.constructor.name,'navPropertiesPerNodeType', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navPropertiesPerNodeType', '@Start');
 
         // Filter correct Col
         let nodeTypeProperties: string[] = this.networkGraph
@@ -1286,7 +1293,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     navNodeTypeColumnNumber(property: string): number {
         // Return column number of a given property
-        this.globalFunctionService.printToConsole(this.constructor.name,'navNodeTypeColumnNumber', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navNodeTypeColumnNumber', '@Start');
 
         let columnNumber: number = -1;
 
@@ -1305,7 +1312,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     navNodesPerNodeType(nodeType: string): string[] {
         // Return array of Nodes (names) per given Node Type
-        this.globalFunctionService.printToConsole(this.constructor.name,'navNodesPerNodeType', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navNodesPerNodeType', '@Start');
 
         // Get column number
         let nodeTypeColumnNumber: number = this.navNodeTypeColumnNumber(nodeType);
@@ -1327,7 +1334,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     navNodesFilteredPerProperty(nodeType: string, property: string): string[] {
         // Return array of Nodes (names) filtered on a given Node Type & Property
-        this.globalFunctionService.printToConsole(this.constructor.name,'navNodesFilteredPerProperty', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navNodesFilteredPerProperty', '@Start');
 
         // Find column number
         let propertyColumnNumber: number = -1;
@@ -1359,7 +1366,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
     
     navFirstAdjacencyCellRowNr(): number {
         // Return the row nr of the first cell (= col nr) with adjacency data 
-        this.globalFunctionService.printToConsole(this.constructor.name,'navFirstAdjacencyCellRowNr', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navFirstAdjacencyCellRowNr', '@Start');
 
         let firstAdjacencyCellRowNr: number = this.networkGraph[0].findIndex(x => x != '');
         return firstAdjacencyCellRowNr;
@@ -1368,7 +1375,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         
     navChildrenForParentNode(node: string): string[] {
         // Return an array of Children nodes (names) for a given parent node 
-        this.globalFunctionService.printToConsole(this.constructor.name,'navChildrenForParentNode', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navChildrenForParentNode', '@Start');
 
         let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
         let childrenNodes: string [] = [];
@@ -1395,7 +1402,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     navParentsForChildNode(node: string): string[] {
         // Return an array of Parent nodes (names) for a given child node 
-        this.globalFunctionService.printToConsole(this.constructor.name,'navParentsForChildNode', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navParentsForChildNode', '@Start');
 
         let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
         let parentNodes: string [] = [];
@@ -1424,7 +1431,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     clickHistoryMinMax() {
         // Click W object
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickHistoryMinMax', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHistoryMinMax', '@Start');
 
         this.showHistoryMax = !this.showHistoryMax;
 
@@ -1437,7 +1444,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     clickNetworkMinMax() {
         // Resize (min/max) a Network
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkMinMax', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkMinMax', '@Start');
 
         this.showNetworkMax = !this.showNetworkMax;
 
@@ -1450,7 +1457,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     clickNetworkShow() {
         // Open popup to Add a network
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkShow', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkShow', '@Start');
 
         this.showNetworkAdd = true;
         
@@ -1458,7 +1465,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
     
     clickAddNetworkAdd() {
         // Add a network and close the popup
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAddNetworkAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickAddNetworkAdd', '@Start');
 
         this.showNetworkAdd = false;
         
@@ -1466,13 +1473,13 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     clickNetworkRemove() {
         // Remove a network
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickNetworkRemove', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkRemove', '@Start');
 
     }
 
     clickAddNetworkClose() {
         // Close AddNetwork without adding
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAddNetworkClose', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickAddNetworkClose', '@Start');
 
         this.showNetworkAdd = false;
         
@@ -1480,7 +1487,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     dblclickDeleteHistory(index: number, historyID: number) {
         // Delete selected history row.  If current, move to first
-        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDeleteHistory', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'dblclickDeleteHistory', '@Start');
 
         this.history = this.history.filter(h => h.id != historyID);
         this.historyAll = this.historyAll.filter(h => h.id != historyID);
@@ -1489,7 +1496,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     clickParentFilterClear() {
         // Clear the Parent Filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClear', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickFilterClear', '@Start');
 
         // Clear all
         this.parentNodeFilter = [];
@@ -1499,7 +1506,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     clickParentFilterSave() {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickParentFilterSave', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterSave', '@Start');
 
         // TODO - for now, only one filter by choice.  In future, consider more than one as
         // data structurs allows it
@@ -1544,13 +1551,13 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     clickParentFilterClose() {
         // Close Parent Filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickParentFilterClose', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClose', '@Start');
 
     }
 
     clickChildFilterSave() {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickChildFilterSave', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterSave', '@Start');
 
         // TODO - for now, only one filter by choice.  In future, consider more than one as
         // data structurs allows it
@@ -1595,7 +1602,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     clickChildFilterClear() {
         // Close Parent Filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickChildFilterClear', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClear', '@Start');
 
         // Clear all
         this.childNodeFilter = [];
@@ -1604,34 +1611,34 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     clickChildFilterClose() {
         // Close Parent Filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickChildFilterClose', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClose', '@Start');
 
     }
 
     clickMenuGraphProperties() {
         // Menu option to edit graph properties like title
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphProperties', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuGraphProperties', '@Start');
 
         this.showGraphProperties = true;
     }
 
     clickMenuGraphNotes() {
         // Show popup to edit notes at bottom of graph
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphNotes', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuGraphNotes', '@Start');
 
         this.showGraphNotes = true;
     }
 
     clickMenuGraphHelp() {
         // Show popup with help information
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphHelp', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuGraphHelp', '@Start');
 
         this.showGraphHelp = true;
     }
 
     clickMenuClearHistory() {
         // Clear history for the current Network
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuClearHistory', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuClearHistory', '@Start');
 
         this.history = this.history.filter(h => h.networkID != this.selectedNetworkID);
         this.historyAll = this.historyAll.filter(h => h.networkID != this.selectedNetworkID);
@@ -1639,7 +1646,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     clickMenuExportGraph() {
         // Export the current graph
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuExportGraph', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuExportGraph', '@Start');
 
         let fileName: string = 'Nav Network'
         let newW: Widget = JSON.parse(JSON.stringify(this.selectedWidget));
@@ -1647,7 +1654,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         var obj = JSON.stringify(newW);  
 
         var a = document.createElement('a');
-        a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(JSON.stringify(obj)));
+        a.setAttribute('href', 'data:text/plain;charset=utf-u, '+encodeURIComponent(JSON.stringify(obj)));
         a.setAttribute('download', fileName);
         a.click()
 
@@ -1655,19 +1662,19 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     changeParentFilterField() {
         // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeParentFilterField', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentFilterField', '@Start');
 
     }
 
     changeParentFilterOperator() {
         // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeParentFilterOperator', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentFilterOperator', '@Start');
 
     }
 
     clickDefaultView() {
         // Show the default view = tree with children
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDefaultView', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDefaultView', '@Start');
 
         // Refresh the graph
         this.selectedView = 'DefaultView'
@@ -1679,7 +1686,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Show the Common Node view = list of all nodes where 2 or more children have the 
         // same parent
         // Example: which directors of Absa are also direcytors of another company
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCommonParentView', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonParentView', '@Start');
 
         // Refresh the graph
         this.selectedView = 'CommonParentView';
@@ -1765,7 +1772,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Show the Common Parent view = list of all nodes where any children has the 
         // same parent as a specified node
         // Example: which directors of Absa are children of the same node as Jannie Mouton
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCommonNodeView', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonNodeView', '@Start');
 
         // Refresh the graph
         this.selectedView = 'CommonNodeView'
@@ -1850,7 +1857,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Show the Distance view = sub tree with all nodes between a given child and
         // a specified node
         // Example: how are directors of Absa related to Markus Jooste
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDistanceView', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDistanceView', '@Start');
 
         // Refresh the graph
         this.selectedView = 'DistanceView'
@@ -1945,7 +1952,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
     clickNodeTypeView() {
         // Show the Node Type View = full tree with all children of a given node type
         // Example: all beneficiary shareholders of company and subsidiaries
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickNodeTypeView', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNodeTypeView', '@Start');
 
         // Refresh the graph
         // this.selectedView = 'NodeTypeView'
@@ -2037,7 +2044,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // that has already been defined.
         // Example: if false, company  -> Directors
         //          if true,  company  ->  Ex/Non-Exec  ->  Directors
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdditionalLevel', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickAdditionalLevel', '@Start');
 
         this.showRoles = !this.showRoles;
 
@@ -2092,5 +2099,16 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         };
 
                     
+    }
+
+    clickPageLeft() {
+        // Move to the previous page of children
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageLeft', '@Start');
+    }
+
+    clickPageRight() {
+        // Move to the next page of children
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageRight', '@Start');
+
     }
 }
