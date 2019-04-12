@@ -1203,14 +1203,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
         // Find Top 40 'Companies'
-        // for (var i = 0; i < this.networkGraph[1].length; i++) {
-        //     if (this.networkGraph[2][i] == 'Company'  &&  this.networkGraph[3][i] == 'Top 40') {
-        //         console.log('xx Company Prop in Row 1, col i', i)
-        //         break;
-        //     };
-        // };
-        // let parentNodesTop40: string[] = this.networkGraph.filter(row => row[i] == '1').map(x => x[0])
-        // console.log('xx Top 40 Companies:', parentNodesTop40) 
         let nodeProperty: string[] = this.navPropertiesPerNodeType(nodeTypes[0]);
         console.log('xx node filtered on :', nodeTypes[0], nodeProperty[0], 
             this.navNodesFilteredPerProperty(nodeTypes[0], nodeProperty[0]))
@@ -1367,6 +1359,14 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         };
     }
     
+    navFirstAdjacencyCellRowNr(): number {
+        // Return the row nr of the first cell (= col nr) with adjacency data 
+        this.globalFunctionService.printToConsole(this.constructor.name,'navFirstAdjacencyCellRowNr', '@Start');
+
+        let firstAdjacencyCellRowNr: number = this.networkGraph[0].findIndex(x => x != '');
+        return firstAdjacencyCellRowNr;
+    }
+
     clickHistoryMinMax() {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHistoryMinMax', '@Start');
