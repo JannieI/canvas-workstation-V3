@@ -1215,15 +1215,16 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
         // Children for C
-        for (var r = 9; r < this.networkGraph.length; r++) {
-            for (var c = r + 1; c < this.networkGraph[0].length; c++) {
-                if (this.networkGraph[r][0] === 'C'  &&  this.networkGraph[r][c] == '1') {
-                    console.log('xx C Child in Row r, col c', r, c)
-                    console.log('xx C Child = ', this.networkGraph[0][c])
+        console.log('xx Children for Parent C', this.navChildrenForParentNode('C'))
+        // for (var r = 9; r < this.networkGraph.length; r++) {
+        //     for (var c = r + 1; c < this.networkGraph[0].length; c++) {
+        //         if (this.networkGraph[r][0] === 'C'  &&  this.networkGraph[r][c] == '1') {
+        //             console.log('xx C Child in Row r, col c', r, c)
+        //             console.log('xx C Child = ', this.networkGraph[0][c])
 
-                };
-            };
-        };
+        //         };
+        //     };
+        // };
 
 
         // Parents for x: [9, 9] is the first cell with relationship data
@@ -1380,23 +1381,23 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
         let childrenNodes: string [] = [];
 
-           // Children for C
-           for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
-                for (var c = r + 1; c < this.networkGraph[0].length; c++) {
-                    if (this.networkGraph[r][0] === node  &&  this.networkGraph[r][c] == '1') {
-                        childrenNodes.push(this.networkGraph[0][c]);
-                    };
+        // Find Children for this parent
+        for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
+            for (var c = r + 1; c < this.networkGraph[0].length; c++) {
+                if (this.networkGraph[r][0] === node  &&  this.networkGraph[r][c] == '1') {
+                    childrenNodes.push(this.networkGraph[0][c]);
                 };
             };
+        };
 
-            // Make sure it is unique, non-null list
-            childrenNodes = Array.from(new Set(childrenNodes));
-            if (childrenNodes == null) {
-                childrenNodes = [];
-            };
+        // Make sure it is unique, non-null list
+        childrenNodes = Array.from(new Set(childrenNodes));
+        if (childrenNodes == null) {
+            childrenNodes = [];
+        };
 
-            // Return
-            return childrenNodes;
+        // Return
+        return childrenNodes;
 
     }
 
