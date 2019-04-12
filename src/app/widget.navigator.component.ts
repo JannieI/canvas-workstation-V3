@@ -1183,7 +1183,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
         // Show all node types
-        console.log('xx Node Types navNodesTypes', this.navNodesTypes())
+        console.log('xx Node Types navNodesTypes', this.navNodeTypes())
 
         // Find the Col Nr for 'Companies' Properties =& List
         for (var i = 0; i < this.networkGraph[1].length; i++) {
@@ -1246,9 +1246,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         
     }
 
-    navNodesTypes(): string[] {
+    navNodeTypes(): string[] {
         // Return array of Node Types
-        this.globalFunctionService.printToConsole(this.constructor.name,'navNodesSet', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'navNodeTypes', '@Start');
 
         // Filter correct Col
         let nodeTypes: string[] = this.networkGraph
@@ -1263,6 +1263,25 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Return
         return nodeTypes;
+    }
+
+    navPropertiesPerNodeType(nodeType: string): string[] {
+        // Return array of Properties per given Node Type
+        this.globalFunctionService.printToConsole(this.constructor.name,'navPropertiesPerNodeType', '@Start');
+
+        // Filter correct Col
+        let nodeTypeProperties: string[] = this.networkGraph
+            .filter(x => x[2] == nodeType)
+            .map(y => y[3]);
+
+        // Make sure a unique, non-null list
+        nodeTypeProperties = Array.from(new Set(nodeTypeProperties));
+        if (nodeTypeProperties == null) {
+            nodeTypeProperties = [];
+        };
+
+        // Return
+        return nodeTypeProperties;
     }
 
     clickHistoryMinMax() {
