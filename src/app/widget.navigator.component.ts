@@ -590,14 +590,6 @@ export class WidgetNavigatorComponent {
             };
         this.watchList.push(watchListNew);
 
-        // Deep copy Local W
-        this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-
-        // Select the first network
-        if (this.networks.length > 0) {
-            this.clickNetwork(0, this.networks[0].id);
-        };
-
 
         // Build the Array for the network - Nodes, properties, proximity / relationships
         this.networkGraph.push(Array("",  "",        "",        "",       "",        "",       "",         "",       "",       "A", "B", "C", "D", "x", "y", "z"));
@@ -618,6 +610,17 @@ export class WidgetNavigatorComponent {
         this.networkGraph.push(Array("z", "",        "",        "",       "",        "1",       "",        "",       "1",      "",  "1", "1", "",  "",  "",  "" ));
         console.log('xx Row 5', this.networkGraph.filter(row => row[1] == 'Company') )
         console.log('xx networkGraph Cell [9,0] = A', this.networkGraph[9][0])
+
+
+        // Deep copy Local W
+        this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+        // Select the first network
+        if (this.networks.length > 0) {
+            this.clickNetwork(0, this.networks[0].id);
+        };
+
+
     }
 
     clickNetwork(index: number, networkID: number) {
@@ -1179,6 +1182,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
 
+        // Show all node types
+        console.log('xx Node Types navNodesTypes', this.navNodesTypes())
+
         // Find the Col Nr for 'Companies' Properties =& List
         for (var i = 0; i < this.networkGraph[1].length; i++) {
             if (this.networkGraph[1][i] == 'Company') {
@@ -1244,10 +1250,13 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Return array of Node Types
         this.globalFunctionService.printToConsole(this.constructor.name,'navNodesSet', '@Start');
 
+        // Filter correct Col
         let nodeTypes: string[] = this.networkGraph
             .filter(x => x[1] != '')
-            .map(y => y[0]);
+            .map(y => y[1]);
 
+        // Make sure a unique, non-null list
+        nodeTypes = Array.from(new Set(nodeTypes));
         if (nodeTypes == null) {
             nodeTypes = [];
         };
