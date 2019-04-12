@@ -61,17 +61,17 @@
 
                 <div class="gridTable">
                     <clr-datagrid>
-                        <clr-dg-column [clrDgField]='id'>Id</clr-dg-column>
-                        <clr-dg-column [clrDgField]='name'>Name</clr-dg-column>
-                        <clr-dg-column [clrDgField]='datasourceID'>DatasourceID</clr-dg-column>
-                        <clr-dg-column [clrDgField]='status'>Status</clr-dg-column>
-                        <clr-dg-column [clrDgField]='type'>Type</clr-dg-column>
-                        <clr-dg-column [clrDgField]='description'>Description</clr-dg-column>
-                        <clr-dg-column [clrDgField]='nrIssues'>NrIssues</clr-dg-column>
-                        <clr-dg-column [clrDgField]='loggedBy'>LoggedBy</clr-dg-column>
-                        <clr-dg-column [clrDgField]='loggedOn'>LoggedOn ID</clr-dg-column>
-                        <clr-dg-column [clrDgField]='solvedBy'>SolvedBy</clr-dg-column>
-                        <clr-dg-column [clrDgField]='solvedOn'>SolvedOn</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'id'">Id</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'datasourceID'">DatasourceID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'status'">Status</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'type'">Type</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'nrIssues'">NrIssues</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'loggedBy'">LoggedBy</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'loggedOn'">LoggedOn ID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'solvedBy'">SolvedBy</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'solvedOn'">SolvedOn</clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of dataQualityIssues;
                             let i = index"

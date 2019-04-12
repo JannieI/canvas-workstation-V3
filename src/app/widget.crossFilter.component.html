@@ -104,10 +104,10 @@
                             No records ...
                         </clr-dg-placeholder>
                         <clr-dg-column>Delete</clr-dg-column>
-                        <clr-dg-column [clrDgField]='sourceWidgetField'>Source Field</clr-dg-column>
-                        <clr-dg-column [clrDgField]='targetWidgetTitle'>Target Title</clr-dg-column>
-                        <clr-dg-column [clrDgField]='targetWidgetTitle'>Target Description</clr-dg-column>
-                        <clr-dg-column [clrDgField]='targetWidgetField'>Target Field</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'sourceWidgetField'">Source Field</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'targetWidgetTitle'">Target Title</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'targetWidgetTitle'">Target Description</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'targetWidgetField'">Target Field</clr-dg-column>
                         <clr-dg-row
                             *ngFor="let row of localWidgetFilters; let i = index"
                             [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
