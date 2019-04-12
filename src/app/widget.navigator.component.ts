@@ -1188,7 +1188,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
         // Show all nodes for Person Node type
-        console.log('xxProperties per Node Type navPropertiesPerNodeType for ', 
+        console.log('xx Properties per Node Type navPropertiesPerNodeType for ', 
             nodeTypes[1], this.navPropertiesPerNodeType(nodeTypes[1]))
 
         
@@ -1197,8 +1197,8 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             this.navNodeTypeColumnNumber(nodeTypes[0])) 
 
         
-        // Show Nodes for Node Type 'Company'
-        console.log('xxhow Nodes for Node Type Company',
+        // Show Nodes for NodeType 'Company'
+        console.log('xx Show Nodes for NodeType Company',
             this.navNodesPerNodeType(nodeTypes[0])) 
 
 
@@ -1331,6 +1331,16 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         return nodes;
     }
 
+            // Find Top 40 'Companies'
+            for (var i = 0; i < this.networkGraph[1].length; i++) {
+                if (this.networkGraph[2][i] == 'Company'  &&  this.networkGraph[3][i] == 'Top 40') {
+                    console.log('xx Company Prop in Row 1, col i', i)
+                    break;
+                };
+            };
+            let parentNodesTop40: string[] = this.networkGraph.filter(row => row[i] == '1').map(x => x[0])
+            console.log('xx Top 40 Companies:', parentNodesTop40) 
+    
     clickHistoryMinMax() {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHistoryMinMax', '@Start');
