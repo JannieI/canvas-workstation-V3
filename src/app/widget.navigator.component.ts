@@ -1179,15 +1179,15 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         console.log('xx networkGraph Cell [9,0] = A', networkGraph[9][0])
 
 
-        // Find the Col Nr for 'Companies' Properties
+        // Find the Col Nr for 'Companies' Properties =& List
         for (var i = 0; i < networkGraph[1].length; i++) {
             if (networkGraph[1][i] == 'Company') {
-                console.log('xx Company Prop in Row 1, col i', i)
+                console.log('xx Company Prop lives in Row 1, col i', i)
                 break;
             };
         };
         let parentNodes: string[] = networkGraph.filter(row => row[i] == '1').map(x => x[0])
-        console.log('xx Companies in row', i, parentNodes) 
+        console.log('xx Companies:', parentNodes) 
 
 
         // Find Top 40 'Companies'
@@ -1198,7 +1198,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             };
         };
         let parentNodesTop40: string[] = networkGraph.filter(row => row[i] == '1').map(x => x[0])
-        console.log('xx Top 40 Companies in Row', i, parentNodesTop40) 
+        console.log('xx Top 40 Companies:', parentNodesTop40) 
 
 
         // Children for C
