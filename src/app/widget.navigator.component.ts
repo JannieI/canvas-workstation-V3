@@ -1216,18 +1216,10 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Children for C
         console.log('xx Children for Parent C', this.navChildrenForParentNode('C'))
-        // for (var r = 9; r < this.networkGraph.length; r++) {
-        //     for (var c = r + 1; c < this.networkGraph[0].length; c++) {
-        //         if (this.networkGraph[r][0] === 'C'  &&  this.networkGraph[r][c] == '1') {
-        //             console.log('xx C Child in Row r, col c', r, c)
-        //             console.log('xx C Child = ', this.networkGraph[0][c])
-
-        //         };
-        //     };
-        // };
 
 
         // Parents for x: [9, 9] is the first cell with relationship data
+        console.log('xx Parents for x', this.navParentsForChildNode('x'))
         let parentsForX: string[] = [];
         for (var r = 9; r < this.networkGraph.length; r++) {
             for (var c = 0; c < r - 9; c++) {
@@ -1398,6 +1390,35 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Return
         return childrenNodes;
+
+    }
+
+    navParentsForChildNode(node: string): string[] {
+        // Return an array of Parent nodes (names) for a given child node 
+        this.globalFunctionService.printToConsole(this.constructor.name,'navParentsForChildNode', '@Start');
+
+        let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
+        let parentNodes: string [] = [];
+
+        // Find Parents for this child
+        for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
+            for (var c = 0; c < r - firstAdjacencyCellRowNr; c++) {
+                if (this.networkGraph[r][0] === node  
+                    &&  
+                    this.networkGraph[r][c + firstAdjacencyCellRowNr] == '1') {
+                    parentNodes.push(this.networkGraph[0][c + firstAdjacencyCellRowNr]);
+                };
+            };
+        };
+
+        // Make sure it is unique, non-null list
+        parentNodes = Array.from(new Set(parentNodes));
+        if (parentNodes == null) {
+            parentNodes = [];
+        };
+
+        // Return
+        return parentNodes;
 
     }
 
