@@ -123,6 +123,14 @@ export class WidgetNavigatorComponent {
 
     watchListFiltered: boolean = false;
 
+
+    navNodeIsDone: string[] = [];
+    navNodesToDo: string[] = [];
+    navMaxRecursion: number = 10;
+    navRecursionCounter: number = 0;
+
+
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -1228,16 +1236,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Parents for x: [9, 9] is the first cell with relationship data
         console.log('xx Parents for x', this.navParentsForChildNode('x'))
-        // let parentsForX: string[] = [];
-        // for (var r = 9; r < this.networkGraph.length; r++) {
-        //     for (var c = 0; c < r - 9; c++) {
-        //         if (this.networkGraph[r][0] === 'x'  &&  this.networkGraph[r][c + 9] == '1') {
-        //             console.log('xx x Parent in Row r, col c', r, c + 9)
-        //             console.log('xx x Parent = ', this.networkGraph[0][c + 9])
-        //             parentsForX.push();
-        //         };
-        //     };
-        // };
 
 
         // Same Parent as x
@@ -1251,7 +1249,17 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
                 };
             };
         };
-        
+
+        // Distance from y to z
+        this.navNodeIsDone = [];
+        this.navNodesToDo = ['y'];
+        this.navRecursionCounter = 0;
+
+        let navTargetNode: string = 'z';
+        for (var i = 0; i < this.navNodesToDo.length; i++) {
+            this.navProcess(this.navNodesToDo[i], navTargetNode)
+        };
+
     }
 
     navNodeTypes(): string[] {
@@ -1428,6 +1436,35 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Return
         return parentNodes;
 
+    }
+
+    navProcess(navStartNode: string, navTargetNode: string) {
+        // Recursive process to get Distance between start node and end node
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navProcess', '@Start');
+
+        console.log('xx navProcess navStartNode navTargetNode', navStartNode, navTargetNode)
+
+        // Safety check
+        this.navRecursionCounter = this.navRecursionCounter + 1;
+        if (this.navRecursionCounter > this.navMaxRecursion) {
+            console.log('xx navMaxRecursion EXCEEDED')
+            return;
+        }
+        // Node is already done
+        if (this.navNodeIsDone.indexOf(navTargetNode) >= 0) {
+            return;
+        };
+
+        // Remember this Node has been done
+        this.navNodeIsDone.push(navTargetNode);
+
+
+        let relatedNodes: string[] = this.navChildrenForParentNode(navTargetNode);
+
+        for (var i = 0; i < relatedNodes.length; i++) {
+            this.navProcess(navStartNode, relatedNodes[i])
+        }
+        
     }
 
     clickHistoryMinMax() {
