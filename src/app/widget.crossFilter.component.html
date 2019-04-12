@@ -112,7 +112,7 @@
                             *ngFor="let row of localWidgetFilters; let i = index"
                             [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                             [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                            (click)="clickRow(i, row.id)"
+                            (click)="clickRow(i)"
                             >
                             <clr-dg-cell>
                                 <clr-icon shape="trash"
