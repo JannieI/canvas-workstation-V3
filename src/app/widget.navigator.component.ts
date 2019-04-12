@@ -1180,33 +1180,33 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
         // Find the Col Nr for 'Companies' Properties =& List
-        for (var i = 0; i < networkGraph[1].length; i++) {
-            if (networkGraph[1][i] == 'Company') {
+        for (var i = 0; i < this.networkGraph[1].length; i++) {
+            if (this.networkGraph[1][i] == 'Company') {
                 console.log('xx Company Prop lives in Row 1, col i', i)
                 break;
             };
         };
-        let parentNodes: string[] = networkGraph.filter(row => row[i] == '1').map(x => x[0])
+        let parentNodes: string[] = this.networkGraph.filter(row => row[i] == '1').map(x => x[0])
         console.log('xx Companies:', parentNodes) 
 
 
         // Find Top 40 'Companies'
-        for (var i = 0; i < networkGraph[1].length; i++) {
-            if (networkGraph[2][i] == 'Company'  &&  networkGraph[3][i] == 'Top 40') {
+        for (var i = 0; i < this.networkGraph[1].length; i++) {
+            if (this.networkGraph[2][i] == 'Company'  &&  this.networkGraph[3][i] == 'Top 40') {
                 console.log('xx Company Prop in Row 1, col i', i)
                 break;
             };
         };
-        let parentNodesTop40: string[] = networkGraph.filter(row => row[i] == '1').map(x => x[0])
+        let parentNodesTop40: string[] = this.networkGraph.filter(row => row[i] == '1').map(x => x[0])
         console.log('xx Top 40 Companies:', parentNodesTop40) 
 
 
         // Children for C
-        for (var r = 9; r < networkGraph.length; r++) {
-            for (var c = r + 1; c < networkGraph[0].length; c++) {
-                if (networkGraph[r][0] === 'C'  &&  networkGraph[r][c] == '1') {
+        for (var r = 9; r < this.networkGraph.length; r++) {
+            for (var c = r + 1; c < this.networkGraph[0].length; c++) {
+                if (this.networkGraph[r][0] === 'C'  &&  this.networkGraph[r][c] == '1') {
                     console.log('xx C Child in Row r, col c', r, c)
-                    console.log('xx C Child = ', networkGraph[0][c])
+                    console.log('xx C Child = ', this.networkGraph[0][c])
 
                 };
             };
@@ -1215,11 +1215,11 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Parents for x: [9, 9] is the first cell with relationship data
         let parentsForX: string[] = [];
-        for (var r = 9; r < networkGraph.length; r++) {
+        for (var r = 9; r < this.networkGraph.length; r++) {
             for (var c = 0; c < r - 9; c++) {
-                if (networkGraph[r][0] === 'x'  &&  networkGraph[r][c + 9] == '1') {
+                if (this.networkGraph[r][0] === 'x'  &&  this.networkGraph[r][c + 9] == '1') {
                     console.log('xx x Parent in Row r, col c', r, c + 9)
-                    console.log('xx x Parent = ', networkGraph[0][c + 9])
+                    console.log('xx x Parent = ', this.networkGraph[0][c + 9])
                     parentsForX.push();
                 };
             };
@@ -1228,11 +1228,11 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Same Parent as x
         let targetNode: string = 'x';
-        for (var r = 9; r < networkGraph.length; r++) {
+        for (var r = 9; r < this.networkGraph.length; r++) {
             for (var c = 0; c < r - 9; c++) {
-                if (networkGraph[0][c + 9] === 'A'  &&  networkGraph[r][c + 9] == '1') {
+                if (this.networkGraph[0][c + 9] === 'A'  &&  this.networkGraph[r][c + 9] == '1') {
                     console.log('xx Has A as Parent in Row r, col c', r, c + 9)
-                    console.log('xx Has A as Parent = ', networkGraph[r][0])
+                    console.log('xx Has A as Parent = ', this.networkGraph[r][0])
 
                 };
             };
@@ -1244,7 +1244,16 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Return array of Node Types
         this.globalFunctionService.printToConsole(this.constructor.name,'navNodesSet', '@Start');
 
-        let nodeTypes: string[] = this.networkGraph[
+        let nodeTypes: string[] = this.networkGraph
+            .filter(x => x[1] != '')
+            .map(y => y[0]);
+
+        if (nodeTypes == null) {
+            nodeTypes = [];
+        };
+
+        // Return
+        return nodeTypes;
     }
 
     clickHistoryMinMax() {
