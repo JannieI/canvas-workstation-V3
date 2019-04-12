@@ -1331,15 +1331,37 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         return nodes;
     }
 
-            // Find Top 40 'Companies'
-            for (var i = 0; i < this.networkGraph[1].length; i++) {
-                if (this.networkGraph[2][i] == 'Company'  &&  this.networkGraph[3][i] == 'Top 40') {
-                    console.log('xx Company Prop in Row 1, col i', i)
-                    break;
-                };
+    navNodesFilteredPerProperty(nodeType: string, property: string): string[] {
+        // Return array of Nodes (names) filtered on a given Node Type & Property
+        this.globalFunctionService.printToConsole(this.constructor.name,'navNodesFilteredPerProperty', '@Start');
+
+        // Find column number
+        let propertyColumnNumber: number = -1;
+        for (var i = 0; i < this.networkGraph[1].length; i++) {
+            if (this.networkGraph[2][i] == nodeType  &&  this.networkGraph[3][i] == property) {
+                propertyColumnNumber = i;
+                break;
             };
-            let parentNodesTop40: string[] = this.networkGraph.filter(row => row[i] == '1').map(x => x[0])
-            console.log('xx Top 40 Companies:', parentNodesTop40) 
+        };
+
+        if (propertyColumnNumber == -1) {
+            return [];
+        } else {
+            let nodesPerProperty: string[] = this.networkGraph
+                .filter(row => row[propertyColumnNumber] == '1')
+                .map(x => x[0])
+
+            // Make sure a unique, non-null list
+            nodesPerProperty = Array.from(new Set(nodesPerProperty));
+            if (nodesPerProperty == null) {
+                nodesPerProperty = [];
+            };
+
+            // Return
+            return nodesPerProperty;
+
+        };
+    }
     
     clickHistoryMinMax() {
         // Click W object
