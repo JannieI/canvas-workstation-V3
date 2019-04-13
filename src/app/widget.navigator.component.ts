@@ -615,12 +615,12 @@ export class WidgetNavigatorComponent {
         this.networkGraph.push(Array("",  "",        "Person",  "Male",   "",        "",        "",        "",       "",       "",  "",  "",  "",  "1", "1", "" ));
         this.networkGraph.push(Array("",  "",        "Person",  "Female", "",        "",        "",        "",       "",       "",  "",  "",  "",  "",  "",  "1"));
         this.networkGraph.push(Array("A", "",        "",        "",       "1",       "",        "1",       "",       "",       "",  "",  "1", "",  "1", "",  "" ));
-        this.networkGraph.push(Array("B", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "",  "",  "",  "1", "1"));
+        this.networkGraph.push(Array("B", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "",  "",  "",  "2", "2"));
         this.networkGraph.push(Array("C", "",        "",        "",       "1",       "",        "1",       "",       "",       "1", "",  "",  "1", "",  "",  "1"));
         this.networkGraph.push(Array("D", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "1", "",  "1", "1", "" ));
         this.networkGraph.push(Array("x", "",        "",        "",       "",        "1",       "",        "1",      "",       "1", "",  "",  "1", "",  "",  "" ));
-        this.networkGraph.push(Array("y", "",        "",        "",       "",        "1",       "",        "1",      "",       "",  "1", "",  "1", "",  "",  "" ));
-        this.networkGraph.push(Array("z", "",        "",        "",       "",        "1",       "",        "",       "1",      "",  "1", "1", "",  "",  "",  "" ));
+        this.networkGraph.push(Array("y", "",        "",        "",       "",        "1",       "",        "1",      "",       "",  "2", "",  "1", "",  "",  "" ));
+        this.networkGraph.push(Array("z", "",        "",        "",       "",        "1",       "",        "",       "1",      "",  "2", "1", "",  "",  "",  "" ));
         console.log('xx Row 5', this.networkGraph.filter(row => row[1] == 'Company') )
         console.log('xx networkGraph Cell [9,0] = A', this.networkGraph[9][0])
 
@@ -1261,15 +1261,11 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         let navTargetNode: string = 'z';
         for (var i = 0; i < this.navNodesToDo.length; i++) {
 
-            let relatedNodes: string[] = this.navRelatedNodes(this.navNodesToDo[i], 'all');
+            console.log('xx START AT NODE ', this.navNodesToDo[i])
+            console.log('xx ************* ')
 
-            for (var j = 0; j < relatedNodes.length; j++) {
-                console.log('xx START AT NODE ', relatedNodes[j])
-                console.log('xx ************* ')
-
-                this.navNodeIsDone = [];
-                this.navProcess(relatedNodes[j], navTargetNode);
-            };
+            this.navNodeIsDone = [];
+            this.navSingleRoute(this.navNodesToDo[i], null, '2', this.navNodeIsDone);
         };
 
     }
@@ -1446,7 +1442,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             for (var c = firstAdjacencyCellRowNr; c < this.networkGraph.length; c++) {
                 if (this.networkGraph[r][0] === startNode  
                     &&  
-                    this.networkGraph[r][c] == '1') {
+                    this.networkGraph[r][c] === relationship) {
                     relatedNodes.push(this.networkGraph[0][c]);
                 };
             };
@@ -1491,17 +1487,25 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
     }
 
         
-    navSingleRoute(navStartNode: string, parentNode: string, path: string[]) {
+    navSingleRoute(navStartNode: string, parentNode: string, relationship: string, path: string[]) {
         // Recursive process to get a single route for a start Node
         this.globalFunctionService.printToConsole(this.constructor.name, 'navSingleRoute', '@Start');
 
-        console.log('xx navSingleRoute START node-parent-path', navStartNode, parentNode, path)
+        console.log('xx navSingleRoute START node-parent-path', this.navRecursionCounter, navStartNode, parentNode, path)
+
+        // Safety check
+        this.navRecursionCounter = this.navRecursionCounter + 1;
+        if (this.navRecursionCounter > this.navMaxRecursion) {
+            console.log('xx navSingleRoute navMaxRecursion EXCEEDED')
+            return;
+        };
 
         // Add to path
         path.push(navStartNode);
 
         // Get children of start Node
-        let childrenOfStartNode: string[] = this.navRelatedNodes(navStartNode, 'all');
+        let childrenOfStartNode: string[] = this.navRelatedNodes(navStartNode, relationship);
+        console.log('xx navSingleRoute childrenOfStartNode', childrenOfStartNode)
 
         // Create new path, minus navStartNode and parentNode
         let newChildrendOfStartNode: string [] = [];
@@ -1510,7 +1514,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
                 newChildrendOfStartNode.push(child)
             };
         });
-        console.log('xx navSingleRoute pathNew', newChildrendOfStartNode);
+        console.log('xx navSingleRoute newChildrendOfStartNode', newChildrendOfStartNode);
 
         // Single, unique route if pathNew is empty
         if (newChildrendOfStartNode.length == 0) {
@@ -1520,7 +1524,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Call recursively
         newChildrendOfStartNode.forEach(child =>  {
-            this.navSingleRoute(child, navStartNode, path);
+            this.navSingleRoute(child, navStartNode, relationship, path);
         });
     }
     
