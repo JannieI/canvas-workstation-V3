@@ -126,6 +126,7 @@ export class WidgetNavigatorComponent {
 
     navNodeIsDone: string[] = [];
     navNodesToDo: string[] = [];
+    singleRoutesArray: Array<string[]> = [];
     navMaxRecursion: number = 100;
     navRecursionCounter: number = 0;
 
@@ -1259,15 +1260,17 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.navRecursionCounter = 0;
 
         let navTargetNode: string = 'z';
+        this.singleRoutesArray = [];
         for (var i = 0; i < this.navNodesToDo.length; i++) {
 
             console.log('xx START AT NODE ', this.navNodesToDo[i])
             console.log('xx ************* ')
 
             this.navNodeIsDone = [];
-            this.navSingleRoute(this.navNodesToDo[i], null, '2', this.navNodeIsDone);
+            this.navSingleRoute(this.navNodesToDo[i], null, '1', this.navNodeIsDone);
         };
 
+        // 
     }
 
     navNodeTypes(): string[] {
@@ -1510,7 +1513,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Create new path, minus navStartNode and parentNode
         let newChildrendOfStartNode: string [] = [];
         childrenOfStartNode.forEach(child => {
-            if (child != navStartNode  &&  child != parentNode) {
+            if (child != navStartNode  &&  child != parentNode  &&  path.indexOf(child) < 0) {
                 newChildrendOfStartNode.push(child)
             };
         });
@@ -1518,6 +1521,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Single, unique route if pathNew is empty
         if (newChildrendOfStartNode.length == 0) {
+            this.singleRoutesArray.push(path);
             console.log('xx navSingleRoute ROUTE path', path);
             return;
         };
