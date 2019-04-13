@@ -1304,7 +1304,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             return 0;
         });
 
-        })
         // Return
         return nodeTypeProperties;
     }
@@ -1444,6 +1443,36 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Return
         return parentNodes;
+
+    }
+
+    navRelatedNodes(startNode: string, relationship: string): string[] {
+        // Return all Nodes with specified relationships to startNode
+        // relationships = 'all' for any relationship
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navRelatedNodes', '@Start');
+
+        let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
+        let relatedNodes: string [] = [];
+
+        // Find related Nodes
+        for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
+            for (var c = firstAdjacencyCellRowNr; c < this.networkGraph.length; c++) {
+                if (this.networkGraph[r][0] === startNode  
+                    &&  
+                    this.networkGraph[r][c] == '1') {
+                    relatedNodes.push(this.networkGraph[0][c + firstAdjacencyCellRowNr]);
+                };
+            };
+        };
+
+        // Make sure it is unique, non-null list
+        relatedNodes = Array.from(new Set(relatedNodes));
+        if (relatedNodes == null) {
+            relatedNodes = [];
+        };
+
+        // Return
+        return relatedNodes;
 
     }
 
