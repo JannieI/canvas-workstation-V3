@@ -1453,7 +1453,8 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
         let relatedNodes: string [] = [];
-
+        console.log('xx navRelatedNodes @start startNode', startNode)
+        
         // Find related Nodes
         for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
             for (var c = firstAdjacencyCellRowNr; c < this.networkGraph.length; c++) {
@@ -1467,10 +1468,11 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Make sure it is unique, non-null list
         relatedNodes = Array.from(new Set(relatedNodes));
-        if (relatedNodes == null) {
+        if (relatedNodes == null  ||  relatedNodes == undefined) {
             relatedNodes = [];
         };
 
+        console.log('xx navRelatedNodes @end relatedNodes', relatedNodes)
         // Return
         return relatedNodes;
 
