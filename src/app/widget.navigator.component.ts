@@ -1253,10 +1253,10 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Distance from y to z
         this.navNodeIsDone = [];
-        this.navNodesToDo = ['A'];
+        this.navNodesToDo = ['y'];
         this.navRecursionCounter = 0;
 
-        let navTargetNode: string = 'B';
+        let navTargetNode: string = 'z';
         for (var i = 0; i < this.navNodesToDo.length; i++) {
             this.navProcess(this.navNodesToDo[i], navTargetNode)
         };
@@ -1488,22 +1488,25 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             console.log('xx navMaxRecursion EXCEEDED')
             return;
         };
+        console.log('xx navProcess this.navRecursionCounter', this.navRecursionCounter)
 
         // Node is already done
-        if (this.navNodeIsDone.indexOf(navTargetNode) >= 0) {
+        if (this.navNodeIsDone.indexOf(navStartNode) >= 0) {
+            console.log('xx navProcess navStartNode previously done', navStartNode)
             return;
         };
 
         // Remember this Node has been done
-        this.navNodeIsDone.push(navTargetNode);
-        console.log('xx navProcess this.navNodeIsDone:', this.navNodeIsDone)
+        this.navNodeIsDone.push(navStartNode);
+        console.log('xx navProcess ADDED TO navNodeIsDone:', this.navNodeIsDone)
 
-        let relatedNodes: string[] = this.navChildrenForParentNode(navTargetNode);
-        console.log('xx in navProcess - got related for ', navTargetNode, relatedNodes)
+        let relatedNodes: string[] = this.navRelatedNodes(navStartNode, 'all');
+        console.log('xx in navProcess - got related for ', navStartNode, relatedNodes)
+
         for (var i = 0; i < relatedNodes.length; i++) {
             console.log('xx navProcess call recursively for ', relatedNodes[i])
-            this.navProcess(navStartNode, relatedNodes[i])
-        }
+            this.navProcess(relatedNodes[i], navTargetNode)
+        };
         
     }
 
