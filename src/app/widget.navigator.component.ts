@@ -1273,10 +1273,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             .map(y => y[1]);
 
         // Make sure it is unique, non-null list
-        nodeTypes = Array.from(new Set(nodeTypes));
-        if (nodeTypes == null) {
-            nodeTypes = [];
-        };
+        nodeTypes = this.navUniqifySortNodes(nodeTypes);
 
         // Return
         return nodeTypes;
@@ -1292,17 +1289,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             .map(y => y[3]);
 
         // Make sure it is unique, non-null list
-        nodeTypeProperties = Array.from(new Set(nodeTypeProperties));
-        if (nodeTypeProperties == null) {
-            nodeTypeProperties = [];
-        };
-
-        // Sort
-        nodeTypeProperties.sort( (a,b) => {
-            if (a > b) return 1;
-            if (a < b) return -1;
-            return 0;
-        });
+        nodeTypeProperties = this.navUniqifySortNodes(nodeTypeProperties, true, true);
 
         // Return
         return nodeTypeProperties;
@@ -1340,10 +1327,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             .map(y => y[0]);
 
         // Make sure it is unique, non-null list
-        nodes = Array.from(new Set(nodes));
-        if (nodes == null) {
-            nodes = [];
-        };
+        nodes = this.navUniqifySortNodes(nodes);
 
         // Return
         return nodes;
@@ -1370,10 +1354,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
                 .map(x => x[0])
 
             // Make sure it is unique, non-null list
-            nodesPerProperty = Array.from(new Set(nodesPerProperty));
-            if (nodesPerProperty == null) {
-                nodesPerProperty = [];
-            };
+            nodesPerProperty = this.navUniqifySortNodes(nodesPerProperty);
 
             // Return
             return nodesPerProperty;
@@ -1407,10 +1388,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         };
 
         // Make sure it is unique, non-null list
-        childrenNodes = Array.from(new Set(childrenNodes));
-        if (childrenNodes == null) {
-            childrenNodes = [];
-        };
+        childrenNodes = this.navUniqifySortNodes(childrenNodes);
 
         // Return
         return childrenNodes;
@@ -1436,10 +1414,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         };
 
         // Make sure it is unique, non-null list
-        parentNodes = Array.from(new Set(parentNodes));
-        if (parentNodes == null) {
-            parentNodes = [];
-        };
+        parentNodes = this.navUniqifySortNodes(parentNodes);
 
         // Return
         return parentNodes;
@@ -1467,10 +1442,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         };
 
         // Make sure it is unique, non-null list
-        relatedNodes = Array.from(new Set(relatedNodes));
-        if (relatedNodes == null  ||  relatedNodes == undefined) {
-            relatedNodes = [];
-        };
+        relatedNodes = this.navUniqifySortNodes(relatedNodes);
 
         console.log('xx navRelatedNodes @end relatedNodes', relatedNodes)
         // Return
@@ -1478,7 +1450,11 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    navUniqifySortNodes(inputNodes: string[], uniqify: boolean, sort: boolean): string[] {
+    navUniqifySortNodes(
+        inputNodes: string[], 
+        uniqify: boolean = true, 
+        sort: boolean = false
+        ): string[] {
         // Make given array of nodes unique and sort, if so requested
         this.globalFunctionService.printToConsole(this.constructor.name, 'navUniqifySortNodes', '@Start');
 
