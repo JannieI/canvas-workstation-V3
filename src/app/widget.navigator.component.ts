@@ -130,6 +130,7 @@ export class WidgetNavigatorComponent {
     navMaxRecursion: number = 100;
     navRecursionCounter: number = 0;
     navVisitedNodes: string[] = [];
+    navSinglePaths: Array<string[]> = [];
 
 
 
@@ -1271,7 +1272,8 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             this.navSingleRoute(this.navNodesToDo[i], null, '1', this.navNodeIsDone);
         };
 
-        // 
+        // End result
+        console.log('xx END RESULT this.navSinglePaths', this.navSinglePaths)
     }
 
     navNodeTypes(): string[] {
@@ -1530,6 +1532,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         if (newChildrendOfStartNode.length == 0) {
             this.singleRoutesArray.push(path);
             console.log('xx navSingleRoute ROUTE path', path);
+            this.navSinglePaths.push(path);
             path = [];
             return;
         };
