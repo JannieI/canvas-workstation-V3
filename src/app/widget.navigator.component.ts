@@ -129,6 +129,7 @@ export class WidgetNavigatorComponent {
     singleRoutesArray: Array<string[]> = [];
     navMaxRecursion: number = 100;
     navRecursionCounter: number = 0;
+    navVisitedNodes: string[] = [];
 
 
 
@@ -1503,6 +1504,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Add to path
         path.push(navStartNode);
+        this.navVisitedNodes.push(navStartNode);
 
         // Get children of start Node
         let childrenOfStartNode: string[] = this.navRelatedNodes(navStartNode, relationship);
@@ -1511,7 +1513,14 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Create new path, minus navStartNode and parentNode
         let newChildrendOfStartNode: string [] = [];
         childrenOfStartNode.forEach(child => {
-            if (child != navStartNode  &&  child != parentNode  &&  path.indexOf(child) < 0) {
+            if (child != navStartNode  
+                &&  
+                child != parentNode  
+                &&  
+                path.indexOf(child) < 0  
+                &&  
+                this.navVisitedNodes.indexOf(child) < 0
+                ) {
                 newChildrendOfStartNode.push(child)
             };
         });
