@@ -1478,6 +1478,32 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
+    navUniqifySortNodes(inputNodes: string[], uniqify: boolean, sort: boolean): string[] {
+        // Make given array of nodes unique and sort, if so requested
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navUniqifySortNodes', '@Start');
+
+        // Make sure it is a non-null list
+        if (inputNodes == null  ||  inputNodes == undefined) {
+            inputNodes = [];
+        };
+
+        // Make sure it is unique, non-null list
+        if (uniqify) {
+            inputNodes = Array.from(new Set(inputNodes));
+        };
+
+        // Sort
+        inputNodes.sort( (a,b) => {
+            if (a > b) return 1;
+            if (a < b) return -1;
+            return 0;
+        });
+
+        // Return
+        return inputNodes;
+
+    }
+    
     navProcess(navStartNode: string, navTargetNode: string) {
         // Recursive process to get Distance between start node and end node
         this.globalFunctionService.printToConsole(this.constructor.name, 'navProcess', '@Start');
