@@ -1374,7 +1374,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
     
     navFirstAdjacencyCellRowNr(): number {
         // Return the row nr of the first cell (= col nr) with adjacency data 
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navFirstAdjacencyCellRowNr', '@Start');
+        // this.globalFunctionService.printToConsole(this.constructor.name, 'navFirstAdjacencyCellRowNr', '@Start');
 
         let firstAdjacencyCellRowNr: number = this.networkGraph[0].findIndex(x => x != '');
         return firstAdjacencyCellRowNr;
@@ -1434,11 +1434,10 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
     navRelatedNodes(startNode: string, relationship: string): string[] {
         // Return all Nodes with specified relationships to startNode
         // relationships = 'all' for any relationship
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navRelatedNodes', '@Start');
+        // this.globalFunctionService.printToConsole(this.constructor.name, 'navRelatedNodes', '@Start');
 
         let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
         let relatedNodes: string [] = [];
-        console.log('xx navRelatedNodes @start startNode', startNode)
         
         // Find related Nodes
         for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
@@ -1465,7 +1464,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         sort: boolean = false
         ): string[] {
         // Make given array of nodes unique and sort, if so requested
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navUniqifySortNodes', '@Start');
+        // this.globalFunctionService.printToConsole(this.constructor.name, 'navUniqifySortNodes', '@Start');
 
         // Make sure it is a non-null list
         if (inputNodes == null  ||  inputNodes == undefined) {
@@ -1488,7 +1487,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         return inputNodes;
 
     }
-
         
     navSingleRoute(navStartNode: string, parentNode: string, relationship: string, path: string[]) {
         // Recursive process to get a single route for a start Node
@@ -1523,12 +1521,16 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         if (newChildrendOfStartNode.length == 0) {
             this.singleRoutesArray.push(path);
             console.log('xx navSingleRoute ROUTE path', path);
+            path = [];
             return;
         };
 
-        // Call recursively
+        // Call recursively with new path
         newChildrendOfStartNode.forEach(child =>  {
-            this.navSingleRoute(child, navStartNode, relationship, path);
+            let newPath: string[] = [];
+            path.forEach(c => newPath.push(c));
+            console.log('xx newPath', newPath);
+            this.navSingleRoute(child, navStartNode, relationship, newPath);
         });
     }
     
