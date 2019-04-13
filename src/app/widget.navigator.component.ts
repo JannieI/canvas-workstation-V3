@@ -126,7 +126,7 @@ export class WidgetNavigatorComponent {
 
     navNodeIsDone: string[] = [];
     navNodesToDo: string[] = [];
-    navMaxRecursion: number = 10;
+    navMaxRecursion: number = 100;
     navRecursionCounter: number = 0;
 
 
@@ -1240,16 +1240,18 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
         // Same Parent as x
-        let targetNode: string = 'x';
-        for (var r = 9; r < this.networkGraph.length; r++) {
-            for (var c = 0; c < r - 9; c++) {
-                if (this.networkGraph[0][c + 9] === 'A'  &&  this.networkGraph[r][c + 9] == '1') {
-                    console.log('xx Has A as Parent in Row r, col c', r, c + 9)
-                    console.log('xx Has A as Parent = ', this.networkGraph[r][0])
+        // let targetNode: string = 'x';
+        // for (var r = 9; r < this.networkGraph.length; r++) {
+        //     for (var c = 0; c < r - 9; c++) {
+        //         if (this.networkGraph[0][c + 9] === 'A'  &&  this.networkGraph[r][c + 9] == '1') {
+        //             console.log('xx Has A as Parent in Row r, col c', r, c + 9)
+        //             console.log('xx Has A as Parent = ', this.networkGraph[r][0])
 
-                };
-            };
-        };
+        //         };
+        //     };
+        // };
+        console.log('xx ------------------------------------------------')
+        console.log('xx ')
 
         // Distance from y to z
         this.navNodeIsDone = [];
@@ -1258,7 +1260,16 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         let navTargetNode: string = 'z';
         for (var i = 0; i < this.navNodesToDo.length; i++) {
-            this.navProcess(this.navNodesToDo[i], navTargetNode)
+
+            let relatedNodes: string[] = this.navRelatedNodes(this.navNodesToDo[i], 'all');
+
+            for (var j = 0; j < relatedNodes.length; j++) {
+                console.log('xx START AT NODE ', relatedNodes[j])
+                console.log('xx ************* ')
+
+                this.navNodeIsDone = [];
+                this.navProcess(relatedNodes[j], navTargetNode);
+            };
         };
 
     }
@@ -1302,9 +1313,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         let columnNumber: number = -1;
 
         // Determine the column number in Array where the given property heading lives
-        for (var i = 0; i < this.networkGraph[1].length; i++) {
-            if (this.networkGraph[1][i] === property) {
-                columnNumber = i;
+        for (var j = 0; j < this.networkGraph[1].length; j++) {
+            if (this.networkGraph[1][j] === property) {
+                columnNumber = j;
                 break;
             };
         };
@@ -1339,9 +1350,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Find column number
         let propertyColumnNumber: number = -1;
-        for (var i = 0; i < this.networkGraph[1].length; i++) {
-            if (this.networkGraph[2][i] == nodeType  &&  this.networkGraph[3][i] == property) {
-                propertyColumnNumber = i;
+        for (var j = 0; j < this.networkGraph[1].length; j++) {
+            if (this.networkGraph[2][j] == nodeType  &&  this.networkGraph[3][j] == property) {
+                propertyColumnNumber = j;
                 break;
             };
         };
@@ -1436,7 +1447,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
                 if (this.networkGraph[r][0] === startNode  
                     &&  
                     this.networkGraph[r][c] == '1') {
-                    relatedNodes.push(this.networkGraph[0][c + firstAdjacencyCellRowNr]);
+                    relatedNodes.push(this.networkGraph[0][c]);
                 };
             };
         };
@@ -1444,7 +1455,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Make sure it is unique, non-null list
         relatedNodes = this.navUniqifySortNodes(relatedNodes);
 
-        console.log('xx navRelatedNodes @end relatedNodes', relatedNodes)
         // Return
         return relatedNodes;
 
@@ -1479,12 +1489,46 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         return inputNodes;
 
     }
+
+        
+    navSingleRoute(navStartNode: string, parentNode: string, path: string[]) {
+        // Recursive process to get a single route for a start Node
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navSingleRoute', '@Start');
+
+        console.log('xx navSingleRoute START node-parent-path', navStartNode, parentNode, path)
+
+        // Add to path
+        path.push(navStartNode);
+
+        // Get children of start Node
+        let childrenOfStartNode: string[] = this.navRelatedNodes(navStartNode, 'all');
+
+        // Create new path, minus navStartNode and parentNode
+        let newChildrendOfStartNode: string [] = [];
+        childrenOfStartNode.forEach(child => {
+            if (child != navStartNode  &&  child != parentNode) {
+                newChildrendOfStartNode.push(child)
+            };
+        });
+        console.log('xx navSingleRoute pathNew', newChildrendOfStartNode);
+
+        // Single, unique route if pathNew is empty
+        if (newChildrendOfStartNode.length == 0) {
+            console.log('xx navSingleRoute ROUTE path', path);
+            return;
+        };
+
+        // Call recursively
+        newChildrendOfStartNode.forEach(child =>  {
+            this.navSingleRoute(child, navStartNode, path);
+        });
+    }
     
     navProcess(navStartNode: string, navTargetNode: string) {
         // Recursive process to get Distance between start node and end node
         this.globalFunctionService.printToConsole(this.constructor.name, 'navProcess', '@Start');
 
-        console.log('xx navProcess navStartNode navTargetNode', navStartNode, navTargetNode)
+        console.log('xx START navProcess navStartNode navTargetNode', navStartNode, navTargetNode)
 
         // Safety check
         this.navRecursionCounter = this.navRecursionCounter + 1;
@@ -1502,14 +1546,13 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Remember this Node has been done
         this.navNodeIsDone.push(navStartNode);
-        console.log('xx navProcess ADDED TO navNodeIsDone:', this.navNodeIsDone)
 
         let relatedNodes: string[] = this.navRelatedNodes(navStartNode, 'all');
         console.log('xx in navProcess - got related for ', navStartNode, relatedNodes)
 
-        for (var i = 0; i < relatedNodes.length; i++) {
-            console.log('xx navProcess call recursively for ', relatedNodes[i])
-            this.navProcess(relatedNodes[i], navTargetNode)
+        for (var j = 0; j < relatedNodes.length; j++) {
+            console.log('xx navProcess call recursively for ', relatedNodes[j])
+            this.navProcess(relatedNodes[j], navTargetNode)
         };
         
     }
