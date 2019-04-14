@@ -1459,11 +1459,11 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
                     let strictTest: boolean = true;
                     if (strictNode != null) {
                         let grandChildren: string[] = 
-                            this.navRelatedNodes(this.networkGraph[0][c], relationship);
+                            this.navRelatedNodes(this.networkGraph[0][c], relationship, strictNode);
                         if (grandChildren.indexOf(strictNode) < 0) {
                             strictTest = false;
                         };
-                    }
+                    };
 
                     if (strictTest) {
                         relatedNodes.push(this.networkGraph[0][c]);
@@ -1528,7 +1528,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.navVisitedNodes.push(navStartNode);
 
         // Get children of start Node
-        let childrenOfStartNode: string[] = this.navRelatedNodes(navStartNode, relationship);
+        let childrenOfStartNode: string[] = this.navRelatedNodes(navStartNode, relationship, parentNode);
         console.log('xx navSingleRoute childrenOfStartNode', childrenOfStartNode)
 
         // Create new path, minus navStartNode and parentNode
