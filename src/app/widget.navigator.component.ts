@@ -1589,39 +1589,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             this.navSingleRoute(child, navStartNode, relationship, newPath);
         });
     }
-    
-    navProcess(navStartNode: string, navTargetNode: string) {
-        // Recursive process to get Distance between start node and end node
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navProcess', '@Start');
-
-        console.log('xx START navProcess navStartNode navTargetNode', navStartNode, navTargetNode)
-
-        // Safety check
-        this.navRecursionCounter = this.navRecursionCounter + 1;
-        if (this.navRecursionCounter > this.navMaxRecursion) {
-            console.log('xx navMaxRecursion EXCEEDED')
-            return;
-        };
-        console.log('xx navProcess this.navRecursionCounter', this.navRecursionCounter)
-
-        // Node is already done
-        if (this.navNodeIsDone.indexOf(navStartNode) >= 0) {
-            console.log('xx navProcess navStartNode previously done', navStartNode)
-            return;
-        };
-
-        // Remember this Node has been done
-        this.navNodeIsDone.push(navStartNode);
-
-        let relatedNodes: string[] = this.navRelatedNodes(navStartNode, 'all');
-        console.log('xx in navProcess - got related for ', navStartNode, relatedNodes)
-
-        for (var j = 0; j < relatedNodes.length; j++) {
-            console.log('xx navProcess call recursively for ', relatedNodes[j])
-            this.navProcess(relatedNodes[j], navTargetNode)
-        };
-        
-    }
 
     clickHistoryMinMax() {
         // Click W object
