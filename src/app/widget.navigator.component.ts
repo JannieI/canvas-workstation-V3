@@ -1473,33 +1473,29 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
         let nextNodesInPath: string [] = [];
-        
-        // Find related Nodes
-        for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
-            for (var c = firstAdjacencyCellRowNr; c < this.networkGraph.length; c++) {
-                if (this.networkGraph[r][0] === startNode  
-                    &&  
-                    this.networkGraph[r][c] === relationship) {
+        let relatedNodes: string [] = this.navRelatedNodes(startNode, relationship);
 
-                    // The strictness test means that the grand children (related nodes of 
-                    // related node) must contain a value.  Typically used to make sure
-                    // it only returns true children of the same path (and not jump to 
-                    // another unrelated path)
-                    let strictTest: boolean = true;
-                    if (strictNode != null) {
-                        let grandChildren: string[] = 
-                            this.navRelatedNodes(this.networkGraph[0][c], relationship, strictNode);
-                        if (grandChildren.indexOf(strictNode) < 0) {
-                            strictTest = false;
-                        };
-                    };
+        relatedNodes.forEach(n => {
+            let grandChildren: string [] = this.navRelatedNodes(startNode, relationship);
+            
 
-                    if (strictTest) {
-                        nextNodesInPath.push(this.networkGraph[0][c]);
-                    };
+            // The strictness test means that the grand children (related nodes of 
+            // related node) must contain a given node.  Typically used to make sure
+            // it only returns true children of the same path (and not jump to 
+            // another unrelated path)
+            let strictTest: boolean = true;
+            if (strictNode != null) {
+                let grandChildren: string[] = this.navRelatedNodes(n, relationship);
+                if (grandChildren.indexOf(strictNode) < 0) {
+                    strictTest = false;
                 };
             };
-        };
+
+            if (strictTest) {
+                nextNodesInPath.push(n);
+            };
+        })
+                
 
         // Make sure it is a unique, non-null list
         nextNodesInPath = this.navUniqifySortNodes(nextNodesInPath);
@@ -1557,7 +1553,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.navVisitedNodes.push(navStartNode);
 
         // Get children of start Node
-        let childrenOfStartNode: string[] = this.navRelatedNodes(navStartNode, relationship, parentNode);
+        let childrenOfStartNode: string[] = this.navRelatedNodes(navStartNode, relationship);
         console.log('xx navSingleRoute childrenOfStartNode', childrenOfStartNode)
 
         // Create new path, minus navStartNode and parentNode
