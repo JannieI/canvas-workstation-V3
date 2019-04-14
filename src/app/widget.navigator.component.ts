@@ -1429,9 +1429,17 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Find related Nodes
         for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
             for (var c = firstAdjacencyCellRowNr; c < this.networkGraph.length; c++) {
-                if (this.networkGraph[r][0] === startNode  
-                    &&  
-                    this.networkGraph[r][c] === relationship) {
+                if (
+                        this.networkGraph[r][0] === startNode  
+                        &&  
+                        (
+                            (relationship != 'all'  &&  this.networkGraph[r][c] === relationship)
+                            ||
+                            (relationship == 'all'  &&  this.networkGraph[r][c].trim() != "")
+                        )
+                        &&
+                        (this.networkGraph[0][c] != undefined)   
+                    ) {
                     relatedNodes.push(this.networkGraph[0][c]);
                 };
             };
