@@ -1437,13 +1437,42 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    navRelatedNodes(startNode: string, relationship: string, strictNode: string = null): string[] {
-        // Return all Nodes with specified relationships to startNode
+    navRelatedNodes(startNode: string, relationship: string): string[] {
+        // Return ALL Nodes with specified relationships to startNode.  This is useful when
+        // a node is linked to more than one Parent, but cannot be used to traverse a branch
+        // of a tree (since a child may occur under the parent, but also in other unrelated
+        // places).
         // relationships = 'all' for any relationship
-        // this.globalFunctionService.printToConsole(this.constructor.name, 'navRelatedNodes', '@Start');
+        // this.globalFunctionService.printToConsole(this.constructor.name, 'navRelatedNodesAll', '@Start');
 
         let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
         let relatedNodes: string [] = [];
+        
+        // Find related Nodes
+        for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
+            for (var c = firstAdjacencyCellRowNr; c < this.networkGraph.length; c++) {
+                if (this.networkGraph[r][0] === startNode  
+                    &&  
+                    this.networkGraph[r][c] === relationship) {
+                    relatedNodes.push(this.networkGraph[0][c]);
+                };
+            };
+        };
+
+        // Make sure it is a unique, non-null list
+        relatedNodes = this.navUniqifySortNodes(relatedNodes);
+
+        // Return
+        return relatedNodes;
+
+    }
+
+    navNextNodesInPath(startNode: string, relationship: string, strictNode: string = null): string[] {
+        // Return next Nodes in path with specified relationships to startNode
+        // this.globalFunctionService.printToConsole(this.constructor.name, 'navNextNodesInPath', '@Start');
+
+        let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
+        let nextNodesInPath: string [] = [];
         
         // Find related Nodes
         for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
@@ -1466,17 +1495,17 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
                     };
 
                     if (strictTest) {
-                        relatedNodes.push(this.networkGraph[0][c]);
+                        nextNodesInPath.push(this.networkGraph[0][c]);
                     };
                 };
             };
         };
 
         // Make sure it is a unique, non-null list
-        relatedNodes = this.navUniqifySortNodes(relatedNodes);
+        nextNodesInPath = this.navUniqifySortNodes(nextNodesInPath);
 
         // Return
-        return relatedNodes;
+        return nextNodesInPath;
 
     }
 
