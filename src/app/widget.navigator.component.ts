@@ -1493,8 +1493,8 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         path.push(navStartNode);
         this.navVisitedNodes.push(navStartNode);
 
-        // Get children of start Node
-        let childrenOfStartNode: string[] = this.navRelatedNodes(navStartNode, relationship);
+        // Get children of start Node in the SAME path
+        let childrenOfStartNode: string[] = this.navNextNodesInPath(navStartNode, relationship);
         console.log('xx navSingleRoute childrenOfStartNode', childrenOfStartNode)
 
         // Create new path, minus navStartNode and parentNode
