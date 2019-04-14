@@ -1378,32 +1378,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         return firstAdjacencyCellRowNr;
     }
 
-        
-    navChildrenForParentNode(node: string): string[] {
-        // Return an array of Children nodes (names) for a given parent node 
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navChildrenForParentNode', '@Start');
-
-        let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
-        let childrenNodes: string [] = [];
-
-        // Find Children for this parent
-        for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
-            for (var c = r + 1; c < this.networkGraph[0].length; c++) {
-                if (this.networkGraph[r][0] === node  &&  this.networkGraph[r][c] == '1') {
-                    childrenNodes.push(this.networkGraph[0][c]);
-                };
-            };
-        };
-
-        // Make sure it is unique, non-null list
-        childrenNodes = this.navUniqifySortNodes(childrenNodes);
-
-        // Return
-        return childrenNodes;
-
-    }
-
-
     navRelatedNodes(startNode: string, relationship: string): string[] {
         // Return ALL Nodes with specified relationships to startNode.  This is useful when
         // a node is linked to more than one Parent, but cannot be used to traverse a branch
