@@ -621,7 +621,10 @@ export class WidgetNavigatorComponent {
         this.networkGraph.push(Array("B", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "",  "",  "",  "2", "2"));
         this.networkGraph.push(Array("C", "",        "",        "",       "1",       "",        "1",       "",       "",       "1", "",  "",  "1", "",  "",  "1"));
         this.networkGraph.push(Array("D", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "1", "",  "1", "1", "" ));
-        this.networkGraph.push(Array("x", "",        "",        "",       "",        "1",       "",        "1",      "",       "1", "",  "",  "1", "",  "",  "" ));
+
+        this.networkGraph.push(Array("x", "",        "",        "",       "",        "1",       "",        "1",      "",       "", "",  "",  "1", "",  "",  "" ));
+        this.networkGraph.push(Array("x", "",        "",        "",       "",        "1",       "",        "1",      "",       "1", "",  "",  "", "",  "",  "" ));
+
         this.networkGraph.push(Array("y", "",        "",        "",       "",        "1",       "",        "1",      "",       "",  "2", "",  "1", "",  "",  "" ));
         this.networkGraph.push(Array("z", "",        "",        "",       "",        "1",       "",        "",       "1",      "",  "2", "1", "",  "",  "",  "" ));
         console.log('xx Row 5', this.networkGraph.filter(row => row[1] == 'Company') )
@@ -1434,7 +1437,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    navRelatedNodes(startNode: string, relationship: string): string[] {
+    navRelatedNodes(startNode: string, relationship: string, strictNode: string = null): string[] {
         // Return all Nodes with specified relationships to startNode
         // relationships = 'all' for any relationship
         // this.globalFunctionService.printToConsole(this.constructor.name, 'navRelatedNodes', '@Start');
@@ -1448,12 +1451,28 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
                 if (this.networkGraph[r][0] === startNode  
                     &&  
                     this.networkGraph[r][c] === relationship) {
-                    relatedNodes.push(this.networkGraph[0][c]);
+
+                    // The strictness test means that the grand children (related nodes of 
+                    // related node) must contain a value.  Typically used to make sure
+                    // it only returns true children of the same path (and not jump to 
+                    // another unrelated path)
+                    let strictTest: boolean = true;
+                    if (strictNode != null) {
+                        let grandChildren: string[] = 
+                            this.navRelatedNodes(this.networkGraph[0][c], relationship);
+                        if (grandChildren.indexOf(strictNode) < 0) {
+                            strictTest = false;
+                        };
+                    }
+
+                    if (strictTest) {
+                        relatedNodes.push(this.networkGraph[0][c]);
+                    };
                 };
             };
         };
 
-        // Make sure it is unique, non-null list
+        // Make sure it is a unique, non-null list
         relatedNodes = this.navUniqifySortNodes(relatedNodes);
 
         // Return
