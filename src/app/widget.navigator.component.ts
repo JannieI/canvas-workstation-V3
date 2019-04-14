@@ -1237,14 +1237,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         console.log('xx firstAdjacencyCellRowNr', this.firstAdjacencyCellRowNr)
 
 
-        // Children for C
-        console.log('xx Children for Parent C', this.navChildrenForParentNode('C'))
-
-
-        // Parents for x: [9, 9] is the first cell with relationship data
-        console.log('xx Parents for x', this.navParentsForChildNode('x'))
-
-
         // Same Parent as x
         // let targetNode: string = 'x';
         // for (var r = 9; r < this.networkGraph.length; r++) {
@@ -1411,31 +1403,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    navParentsForChildNode(node: string): string[] {
-        // Return an array of Parent nodes (names) for a given child node 
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navParentsForChildNode', '@Start');
-
-        let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
-        let parentNodes: string [] = [];
-
-        // Find Parents for this child
-        for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
-            for (var c = 0; c < r - firstAdjacencyCellRowNr; c++) {
-                if (this.networkGraph[r][0] === node  
-                    &&  
-                    this.networkGraph[r][c + firstAdjacencyCellRowNr] == '1') {
-                    parentNodes.push(this.networkGraph[0][c + firstAdjacencyCellRowNr]);
-                };
-            };
-        };
-
-        // Make sure it is unique, non-null list
-        parentNodes = this.navUniqifySortNodes(parentNodes);
-
-        // Return
-        return parentNodes;
-
-    }
 
     navRelatedNodes(startNode: string, relationship: string): string[] {
         // Return ALL Nodes with specified relationships to startNode.  This is useful when
