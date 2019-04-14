@@ -1270,7 +1270,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             let relatedNodes: string [] = this.navRelatedNodes(this.navNodesToDo[i], '2');
             console.log('xx onInit relatedNodes', this.navNodesToDo[i], relatedNodes)
             relatedNodes.forEach(rn => {
-                this.navSingleRoute(rn, this.navNodesToDo[i], '1', this.navNodeIsDone);
+                this.navSingleRoute(rn, this.navNodesToDo[i], '2', this.navNodeIsDone);
             });
         };
 
@@ -1419,14 +1419,12 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Return next Nodes in path with specified relationships to startNode
         // this.globalFunctionService.printToConsole(this.constructor.name, 'navNextNodesInPath', '@Start');
 
-        let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
         let nextNodesInPath: string [] = [];
         let relatedNodes: string [] = this.navRelatedNodes(startNode, relationship);
 
         relatedNodes.forEach(n => {
             let grandChildren: string [] = this.navRelatedNodes(startNode, relationship);
             
-
             // The strictness test means that the grand children (related nodes of 
             // related node) must contain a given node.  Typically used to make sure
             // it only returns true children of the same path (and not jump to 
@@ -1444,6 +1442,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             };
         })
                 
+        console.log('xx nextNodesInPath', nextNodesInPath)
 
         // Make sure it is a unique, non-null list
         nextNodesInPath = this.navUniqifySortNodes(nextNodesInPath);
