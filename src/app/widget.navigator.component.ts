@@ -1267,23 +1267,41 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             let nodeRelationships: string[] = this.navNodeRelationships(this.navNodesToDo[i]);
             console.log('xx nodeRelationships', nodeRelationships);
 
-            // Travers relationships
-            nodeRelationships.forEach(r => {
+            // Travers relationships - used when we have SPECIFIC relatiionships all the way
+            // for a tree - Works
+            // nodeRelationships.forEach(r => {
 
-                // Reset path with just the start node
-                this.navNodeIsDone = [this.navNodesToDo[i]];
+            //     // Reset path with just the start node
+            //     this.navNodeIsDone = [this.navNodesToDo[i]];
 
-                // Reset full path 
-                this.navVisitedNodes = [];
+            //     // Reset full path 
+            //     this.navVisitedNodes = [];
 
-                // Get all the starting points of this Node.  Then travers the single route
-                let relatedNodes: string [] = this.navRelatedNodes(this.navNodesToDo[i], r);
-                console.log('xx onInit relatedNodes', this.navNodesToDo[i], relatedNodes)
+            //     // Get all the starting points of this Node.  Then travers the single route
+            //     let relatedNodes: string [] = this.navRelatedNodes(this.navNodesToDo[i], r);
+            //     console.log('xx onInit relatedNodes', this.navNodesToDo[i], relatedNodes)
             
-                relatedNodes.forEach(rn => {
-                    this.navSingleRoute(rn, this.navNodesToDo[i], r, this.navNodeIsDone);
-                });
-            })
+            //     relatedNodes.forEach(rn => {
+            //         this.navSingleRoute(rn, this.navNodesToDo[i], r, this.navNodeIsDone);
+            //     });
+            // });
+
+            // Find relationships and determine single routes for each starting point
+
+            // Reset path with just the start node
+            this.navNodeIsDone = [this.navNodesToDo[i]];
+
+            // Reset full path 
+            this.navVisitedNodes = [];
+
+            // Get all the starting points of this Node.  Then travers the single route
+            let relatedNodes: string [] = this.navRelatedNodes(this.navNodesToDo[i], 'all');
+            console.log('xx onInit relatedNodes', this.navNodesToDo[i], relatedNodes)
+        
+            relatedNodes.forEach(rn => {
+                this.navSingleRoute(rn, this.navNodesToDo[i], 'all', this.navNodeIsDone);
+            });
+
         };
 
         // End result
@@ -1437,6 +1455,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Find related Nodes
         for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
             for (var c = firstAdjacencyCellRowNr; c < this.networkGraph.length; c++) {
+
                 if (this.networkGraph[r][0] === startNode  
                     &&  
                     this.networkGraph[r][c] != ''
