@@ -1439,7 +1439,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             for (var c = firstAdjacencyCellRowNr; c < this.networkGraph.length; c++) {
                 if (this.networkGraph[r][0] === startNode  
                     &&  
-                    this.networkGraph[r][c] != '') {
+                    this.networkGraph[r][c] != ''
+                    &&  
+                    this.networkGraph[r][c] != undefined) {
                     relationships.push(this.networkGraph[r][c]);
                 };
             };
@@ -1508,6 +1510,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             inputNodes = Array.from(new Set(inputNodes));
         };
 
+        // No undefined
+        inputNodes.filter(n => n != undefined);
+        
         // Sort
         inputNodes.sort( (a,b) => {
             if (a > b) return 1;
