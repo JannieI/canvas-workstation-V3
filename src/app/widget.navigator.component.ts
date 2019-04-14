@@ -1263,8 +1263,15 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             console.log('xx START AT NODE ', this.navNodesToDo[i])
             console.log('xx ************* ')
 
-            this.navNodeIsDone = [];
-            this.navSingleRoute(this.navNodesToDo[i], null, '1', this.navNodeIsDone);
+            // Reset path with just the start node
+            this.navNodeIsDone = [this.navNodesToDo[i]];
+
+            // Get all the starting points of this Node.  Then travers the single route
+            let relatedNodes: string [] = this.navRelatedNodes(this.navNodesToDo[i], '2');
+            console.log('xx onInit relatedNodes', this.navNodesToDo[i], relatedNodes)
+            relatedNodes.forEach(rn => {
+                this.navSingleRoute(rn, this.navNodesToDo[i], '1', this.navNodeIsDone);
+            });
         };
 
         // End result
