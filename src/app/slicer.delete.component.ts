@@ -29,7 +29,6 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class SlicerDeleteComponent implements OnInit {
 
-    @Input() currentSlicerSpec: any;
     @Output() formSlicerDeleteClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
