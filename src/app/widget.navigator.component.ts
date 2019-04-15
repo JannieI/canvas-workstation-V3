@@ -1739,15 +1739,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         });
     }
 
-    clickNetworkMinMax() {
-        // Resize (min/max) a Network
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkMinMax', '@Start');
-
-        // Refresh graph
-
-        this.showGraph(0, this.graphWidth)
-    }
-
     clickNetworkShow() {
         // Open popup to Add a network
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkShow', '@Start');
