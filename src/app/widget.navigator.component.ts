@@ -2420,6 +2420,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Move to the next page of children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageRight', '@Start');
 
+        this.nav2WalkInPath(null, "y", "rel", 0, [])
     }
 
     changeChildFilterOperator(ev: any) {
