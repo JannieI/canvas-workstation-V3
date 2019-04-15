@@ -114,7 +114,7 @@ export class WidgetNavigatorComponent {
     // Form layout and elements
     graphNote: string = 'Optional Additional information';
     graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
-    showHistory: boolean = true;
+    showHistory: boolean = false;
     showNetwork: boolean = false;
     showRoles: boolean = false;
     showVisibleNumberInput: boolean = false;
