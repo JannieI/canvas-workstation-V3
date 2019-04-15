@@ -43,6 +43,17 @@ export class WidgetNavigatorComponent {
     dummyData: any[] = [];
     networks: NavigatorNetwork[] = [];
     networkGraph: Array<string[]> = [];
+    networkGraph2: {
+        id: number;
+        networkID: number;
+        treeID: number;
+        nodeID: number;     // Parent node
+        nodeName: string;
+        relationship: string;
+        relatedNodeID: number;  // Related node, parent belongs to this
+        relatedNodeName: string;
+        relationshipProperty: string;
+    }[] = [];
     nodeTypeFields: NavigatorNodeTypeFields[] = [];     // Property Fields per NodeType
     nodeProperties: NavigatorNodeProperties[] = [];     // Properties per node for fields above
     parentRelatedChildren: NavigatorParentRelatedChild[] = [];  // Parents and related children
@@ -626,6 +637,220 @@ export class WidgetNavigatorComponent {
         this.networkGraph.push(Array("z", "",        "",        "",       "",        "1",       "",        "",       "1",      "",  "2", "1", "",  "",  "",  "" ));
         console.log('xx Row 5', this.networkGraph.filter(row => row[1] == 'Company') )
         console.log('xx networkGraph Cell [9,0] = A', this.networkGraph[9][0])
+
+        // Build the Array for the network - Nodes, properties, proximity / relationships
+        this.networkGraph2 = [];
+        this.networkGraph2.push(
+            {
+                id: 1,
+                networkID: 1,
+                treeID: 2,
+                nodeID: 2,
+                nodeName: "B",
+                relationship: "Director",
+                relatedNodeID: 6,
+                relatedNodeName: "y",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 2,
+                networkID: 1,
+                treeID: 2,
+                nodeID: 2,
+                nodeName: "B",
+                relationship: "Director",
+                relatedNodeID: 7,
+                relatedNodeName: "z",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 3,
+                networkID: 1,
+                treeID: 2,
+                nodeID: 6,
+                nodeName: "y",
+                relationship: "Director",
+                relatedNodeID: 2,
+                relatedNodeName: "B",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 4,
+                networkID: 1,
+                treeID: 2,
+                nodeID: 7,
+                nodeName: "z",
+                relationship: "Director",
+                relatedNodeID: 2,
+                relatedNodeName: "B",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 5,
+                networkID: 1,
+                treeID: 1,
+                nodeID: 5,
+                nodeName: "x",
+                relationship: "Director",
+                relatedNodeID: 4,
+                relatedNodeName: "D",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 6,
+                networkID: 1,
+                treeID: 1,
+                nodeID: 4,
+                nodeName: "D",
+                relationship: "Director",
+                relatedNodeID: 5,
+                relatedNodeName: "x",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 7,
+                networkID: 1,
+                treeID: 1,
+                nodeID: 6,
+                nodeName: "y",
+                relationship: "Director",
+                relatedNodeID: 4,
+                relatedNodeName: "D",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 8,
+                networkID: 1,
+                treeID: 1,
+                nodeID: 4,
+                nodeName: "D",
+                relationship: "Director",
+                relatedNodeID: 6,
+                relatedNodeName: "y",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 9,
+                networkID: 1,
+                treeID: 1,
+                nodeID: 4,
+                nodeName: "D",
+                relationship: "Subsidiary",
+                relatedNodeID: 3,
+                relatedNodeName: "C",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 10,
+                networkID: 1,
+                treeID: 1,
+                nodeID: 3,
+                nodeName: "C",
+                relationship: "Subsidiary",
+                relatedNodeID: 4,
+                relatedNodeName: "D",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 11,
+                networkID: 1,
+                treeID: 1,
+                nodeID: 3,
+                nodeName: "C",
+                relationship: "Director",
+                relatedNodeID: 7,
+                relatedNodeName: "z",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 12,
+                networkID: 1,
+                treeID: 1,
+                nodeID: 7,
+                nodeName: "z",
+                relationship: "Director",
+                relatedNodeID: 3,
+                relatedNodeName: "C",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 13,
+                networkID: 1,
+                treeID: 1,
+                nodeID: 1,
+                nodeName: "A",
+                relationship: "Subsidiary",
+                relatedNodeID: 3,
+                relatedNodeName: "C",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 14,
+                networkID: 1,
+                treeID: 1,
+                nodeID: 3,
+                nodeName: "C",
+                relationship: "Subsidiary",
+                relatedNodeID: 1,
+                relatedNodeName: "A",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 15,
+                networkID: 1,
+                treeID: 1,
+                nodeID: 5,
+                nodeName: "x",
+                relationship: "Director",
+                relatedNodeID: 1,
+                relatedNodeName: "A",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 16,
+                networkID: 1,
+                treeID: 1,
+                nodeID: 1,
+                nodeName: "A",
+                relationship: "Director",
+                relatedNodeID: 5,
+                relatedNodeName: "x",
+                relationshipProperty: ""
+            }
+        );
+
+
+
 
 
         // Deep copy Local W
