@@ -115,7 +115,7 @@ export class WidgetNavigatorComponent {
     graphNote: string = 'Optional Additional information';
     graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
     showHistoryMax: boolean = true;
-    showNetwork: boolean = true;
+    showNetwork: boolean = false;
     showRoles: boolean = false;
     showVisibleNumberInput: boolean = false;
 
