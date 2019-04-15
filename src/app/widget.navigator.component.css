@@ -87,17 +87,8 @@
             border-radius: 4px;
         }
 
-
-
-
-    /* MIN-WIDTH to show wide enough when no graph */
-    .graphArea {
-        float: left;
-        font-size: 0.5rem;
-        height: 100%;
-        margin-left: 4px;
-        margin-right: 4px;
-        text-align: left;
+    .graphHeaderContainer {
+        color: red;
     }
 
         .graphAreaText1{
@@ -147,7 +138,15 @@
 
 
 
-
+    .graphArea {
+        float: left;
+        font-size: 0.5rem;
+        height: 100%;
+        margin-left: 4px;
+        margin-right: 4px;
+        text-align: left;
+    }
+    
 
         /* ?? */
         .graphAreaChildNode {

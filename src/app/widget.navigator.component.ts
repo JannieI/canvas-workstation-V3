@@ -24,10 +24,8 @@ import { NavigatorWatchList }         from './models'
 import { Widget }                     from './models'
 
 // Functions, 3rd Party
-import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
-import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -117,7 +115,7 @@ export class WidgetNavigatorComponent {
     graphNote: string = 'Optional Additional information';
     graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
     showHistoryMax: boolean = true;
-    showNetworkMax: boolean = true;
+    showNetwork: boolean = true;
     showRoles: boolean = false;
     showVisibleNumberInput: boolean = false;
 
@@ -168,8 +166,6 @@ export class WidgetNavigatorComponent {
          // The Total width is that of the two panels, plus the svg, plus some scrolling space
         this.totalNavigatorWidth = this.networkAreaWidth + this.historyAreaWidth + 22
             + (this.graphWidth * 1.2);
-        this.graphWidth = this.graphWidthOriginal +
-            (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130);
 
         // Populate networks - TODO make from DB
         let networksNew: NavigatorNetwork = {id: 1, name: "WOWEB", description: "WOWEB", userPermissions: null, groupPermissions: null, isSelected: true};
@@ -1750,8 +1746,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.showHistoryMax = !this.showHistoryMax;
 
         // Refresh graph - take margin into account
-        this.graphWidth = this.graphWidthOriginal +
-            (this.showHistoryMax?  0  : 138) +  (this.showNetworkMax?  0  :  130);
 
         this.showGraph(0, this.graphWidth)
     }
@@ -1760,11 +1754,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Resize (min/max) a Network
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkMinMax', '@Start');
 
-        this.showNetworkMax = !this.showNetworkMax;
-
         // Refresh graph
-        this.graphWidth = this.graphWidthOriginal +
-            (this.showHistoryMax?  0  : 130) +  (this.showNetworkMax?  0  :  130)
 
         this.showGraph(0, this.graphWidth)
     }
