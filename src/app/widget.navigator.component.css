@@ -89,6 +89,11 @@
 
     .graphHeaderContainer {
         color: red;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 42;
+        grid-row-start: 1;
+        grid-row-end: 5;
     }
 
         .graphAreaText1{
@@ -141,6 +146,11 @@
     .graphArea {
         float: left;
         font-size: 0.5rem;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 42;
+        grid-row-start: 5;
+        grid-row-end: 26;
         height: 100%;
         margin-left: 4px;
         margin-right: 4px;
