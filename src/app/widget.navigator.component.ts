@@ -1739,16 +1739,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         });
     }
 
-    clickHistoryMinMax() {
-        // Click W object
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHistoryMinMax', '@Start');
-
-
-        // Refresh graph - take margin into account
-
-        this.showGraph(0, this.graphWidth)
-    }
-
     clickNetworkMinMax() {
         // Resize (min/max) a Network
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkMinMax', '@Start');
