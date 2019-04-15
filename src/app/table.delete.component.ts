@@ -29,7 +29,6 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class TableDeleteComponent implements OnInit {
 
-    @Input() currentTableSpec: any;
     @Output() formTableDeleteClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
