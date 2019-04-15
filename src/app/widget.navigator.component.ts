@@ -114,7 +114,7 @@ export class WidgetNavigatorComponent {
     // Form layout and elements
     graphNote: string = 'Optional Additional information';
     graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
-    showHistoryMax: boolean = true;
+    showHistory: boolean = true;
     showNetwork: boolean = false;
     showRoles: boolean = false;
     showVisibleNumberInput: boolean = false;
@@ -1743,7 +1743,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickHistoryMinMax', '@Start');
 
-        this.showHistoryMax = !this.showHistoryMax;
 
         // Refresh graph - take margin into account
 
@@ -2414,6 +2413,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Move to the next page of children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageRight', '@Start');
 
+        this.showNetwork = !this.showNetwork;
         this.nav2WalkInPath(null, "y", "rel", 0, [])
     }
 

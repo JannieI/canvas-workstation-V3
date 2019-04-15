@@ -199,21 +199,6 @@ dimensions is set in app.html, and cannot be changed here. -->
 
 
     <!-- HISTORY AREA -->
-    <!-- History minimised     -->
-    <div class="historyAreaVertical" *ngIf="!showHistoryMax">
-        <div>
-            <clr-icon (click)="clickHistoryMinMax()"
-                shape="circle-arrow right"
-                size="14"
-                style="color: blue;"
-                >
-            </clr-icon>
-        </div>
-        <div class="historyAreaVericaltext">
-            <b>Navigated</b>
-        </div>
-    </div>
-    <!-- History maximised     -->
     <div class="historyArea" *ngIf="!showHistoryMax"
         [style.width.px]="historyAreaWidth"
         >
@@ -236,12 +221,6 @@ dimensions is set in app.html, and cannot be changed here. -->
                     </p>
                 </clr-signpost-content>
             </clr-signpost>
-            <clr-icon (click)="clickHistoryMinMax()"
-                shape="circle-arrow left"
-                size="14"
-                style="color: blue; float: right; margin-top: 4px; margin-right: 10px;"
-                >
-            </clr-icon>
         </div>
         <div class="historyAreaBlock" *ngFor="let row of history; let i = index"
             [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
