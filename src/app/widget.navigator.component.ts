@@ -1396,13 +1396,24 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         parent: string, 
         nodeName: string, 
         relationship: string, 
+        iterationCount: number,
         path: string[]
         ) {
         // Walk to next node in path for given info (parent, node, ect)
         this.globalFunctionService.printToConsole(this.constructor.name, 'nav2WalkInPath', '@Start');
 
+        // Stop if Cyclical
+        if (path.indexOf(nodeName) >= 0) {
+            path.push(nodeName + '*');
+            console.log('xx nav2WalkInPath @END path', path);
+            return;
+        };
+
         // Add this node to path
         path.push(nodeName);
+
+        // Increment
+        iterationCount = iterationCount + 1;
 
         // Get next nodes in path, Left and Right, excluding the Parent
         let nextInPath: string[] = [];
@@ -1416,8 +1427,17 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Combine
         nextInPath = leftInPath.concat(rightInPath);
 
+        // Log
+        console.log('xx nav2WalkInPath reladed of Parent', parent, nextInPath)
+
+        if (nextInPath.length == 0) {
+            console.log('xx nav2WalkInPath @END path', path)
+        };
+
         // Call recursively
-        nextInPath.forEach(child => this.nav2WalkInPath(nodeName, child, relationship, path))
+        nextInPath.forEach(child => 
+            this.nav2WalkInPath(nodeName, child, relationship, iterationCount, path)
+        );
     }
 
     navNodeTypes(): string[] {
