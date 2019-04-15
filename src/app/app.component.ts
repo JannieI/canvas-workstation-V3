@@ -8130,7 +8130,7 @@ export class AppComponent implements OnInit {
 
     clickHelpGettingStarted() {
         // Help: Getting Started
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpTutorials', '@Start')
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpGettingStarted', '@Start')
 
         // Get GV values
         let resource: string = 'dashboards';            // Works !
@@ -8171,7 +8171,7 @@ export class AppComponent implements OnInit {
 
     clickHelpGetData() {
         // Help: Get Data
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpTutorials', '@Start')
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpGetData', '@Start')
 
         // Reload Dashboards
         this.dbCanvasAppDatabase.table("localDashboards").count(res => {
@@ -8329,7 +8329,7 @@ export class AppComponent implements OnInit {
 
     clickHelpDocumentation() {
         // Help: Documentation
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpTutorials', '@Start')
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHelpDocumentation', '@Start')
 
         let foundDataCachingTable: boolean = true;
         // Count

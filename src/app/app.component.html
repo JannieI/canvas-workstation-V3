@@ -1383,13 +1383,6 @@
                             >
                             Paste (Ctrl-V)
                         </button>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuWidgetTablist()"
-                            title="Manage Tabs to which selected Shape belongs"
-                            >
-                            Tablist
-                        </button>
 
                         <div class="dropdown-divider"></div>
                         <button type="button"
@@ -1761,7 +1754,7 @@
                         <div class="dropdown-divider"></div>
                         <button type="button"
                             clrDropdownItem
-                            (click)="clickSave()"
+                            (click)="clickHelpDocumentation()"
                             title="How and where to get support"
                             >
                             Support
@@ -3147,7 +3140,7 @@
                         >
                         {{ bullet.text }}
                         <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
-                            (click)="clickBulletDelete(i, row)">
+                            (click)="clickBulletJump(bullet.linkedTabID)">
                         </clr-icon>
                     </li>
                 </ol>
@@ -3163,7 +3156,7 @@
                     [style.font-weight]="'bold'"
                     [style.font-family]="row.shapeFontFamily"
                     [style.color]="row.shapeStroke"
-                    [style.text-align]="center"
+                    [style.text-align]="'center'"
                     [style.margin.px]="4"
                     >
                     {{ row.shapeText }}
@@ -4142,7 +4135,7 @@
                     [style.font-weight]="'bold'"
                     [style.font-family]="row.shapeFontFamily"
                     [style.color]="row.shapeStroke"
-                    [style.text-align]="center"
+                    [style.text-align]="'center'"
                     [style.margin.px]="4"
                     >
                     {{ row.shapeText }}
