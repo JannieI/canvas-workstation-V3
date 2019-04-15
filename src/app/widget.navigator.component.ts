@@ -46,13 +46,13 @@ export class WidgetNavigatorComponent {
     networkGraph2: {
         id: number;
         networkID: number;
-        treeID: number;
-        nodeID: number;     // Parent node
-        nodeName: string;
-        relationship: string;
-        relatedNodeID: number;  // Related node, parent belongs to this
-        relatedNodeName: string;
-        relationshipProperty: string;
+        leftNodeID: number;
+        leftNodeName: string;               // Left node, ie Lea (monther)
+        relationshipLeftToRight: string;    // Mother
+        relationshipRightToLeft: string;    // Daughter
+        rightNodeID: number;                // Right node, ie Jessie (daughter)
+        rightNodeName: string;
+        relationshipProperty: string;       // Adopted
     }[] = [];
     nodeTypeFields: NavigatorNodeTypeFields[] = [];     // Property Fields per NodeType
     nodeProperties: NavigatorNodeProperties[] = [];     // Properties per node for fields above
@@ -644,12 +644,12 @@ export class WidgetNavigatorComponent {
             {
                 id: 1,
                 networkID: 1,
-                treeID: 2,
-                nodeID: 2,
-                nodeName: "B",
-                relationship: "Director",
-                relatedNodeID: 6,
-                relatedNodeName: "y",
+                leftNodeID: 1,
+                leftNodeName: "A",
+                relationshipLeftToRight: "Subsidiary",
+                relationshipRightToLeft: "Owned By",
+                rightNodeID: 3,
+                rightNodeName: "C",
                 relationshipProperty: ""
             }
         );
@@ -657,25 +657,25 @@ export class WidgetNavigatorComponent {
             {
                 id: 2,
                 networkID: 1,
-                treeID: 2,
-                nodeID: 2,
-                nodeName: "B",
-                relationship: "Director",
-                relatedNodeID: 7,
-                relatedNodeName: "z",
-                relationshipProperty: ""
+                leftNodeID: 1,
+                leftNodeName: "A",
+                relationshipLeftToRight: "Director",
+                relationshipRightToLeft: "Director Of",
+                rightNodeID: 5,
+                rightNodeName: "x",
+                relationshipProperty: "Executive"
             }
         );
         this.networkGraph2.push(
             {
                 id: 3,
                 networkID: 1,
-                treeID: 2,
-                nodeID: 6,
-                nodeName: "y",
-                relationship: "Director",
-                relatedNodeID: 2,
-                relatedNodeName: "B",
+                leftNodeID: 3,
+                leftNodeName: "C",
+                relationshipLeftToRight: "Director",
+                relationshipRightToLeft: "Director Of",
+                rightNodeID: 7,
+                rightNodeName: "z",
                 relationshipProperty: ""
             }
         );
@@ -683,12 +683,12 @@ export class WidgetNavigatorComponent {
             {
                 id: 4,
                 networkID: 1,
-                treeID: 2,
-                nodeID: 7,
-                nodeName: "z",
-                relationship: "Director",
-                relatedNodeID: 2,
-                relatedNodeName: "B",
+                leftNodeID: 3,
+                leftNodeName: "C",
+                relationshipLeftToRight: "Subsidiary",
+                relationshipRightToLeft: "Owned By",
+                rightNodeID: 4,
+                rightNodeName: "D",
                 relationshipProperty: ""
             }
         );
@@ -696,12 +696,12 @@ export class WidgetNavigatorComponent {
             {
                 id: 5,
                 networkID: 1,
-                treeID: 1,
-                nodeID: 5,
-                nodeName: "x",
-                relationship: "Director",
-                relatedNodeID: 4,
-                relatedNodeName: "D",
+                leftNodeID: 4,
+                leftNodeName: "D",
+                relationshipLeftToRight: "Director",
+                relationshipRightToLeft: "Director Of",
+                rightNodeID: 5,
+                rightNodeName: "x",
                 relationshipProperty: ""
             }
         );
@@ -709,147 +709,15 @@ export class WidgetNavigatorComponent {
             {
                 id: 6,
                 networkID: 1,
-                treeID: 1,
-                nodeID: 4,
-                nodeName: "D",
-                relationship: "Director",
-                relatedNodeID: 5,
-                relatedNodeName: "x",
+                leftNodeID: 4,
+                leftNodeName: "D",
+                relationshipLeftToRight: "Director",
+                relationshipRightToLeft: "Director Of",
+                rightNodeID: 6,
+                rightNodeName: "y",
                 relationshipProperty: ""
             }
         );
-        this.networkGraph2.push(
-            {
-                id: 7,
-                networkID: 1,
-                treeID: 1,
-                nodeID: 6,
-                nodeName: "y",
-                relationship: "Director",
-                relatedNodeID: 4,
-                relatedNodeName: "D",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 8,
-                networkID: 1,
-                treeID: 1,
-                nodeID: 4,
-                nodeName: "D",
-                relationship: "Director",
-                relatedNodeID: 6,
-                relatedNodeName: "y",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 9,
-                networkID: 1,
-                treeID: 1,
-                nodeID: 4,
-                nodeName: "D",
-                relationship: "Subsidiary",
-                relatedNodeID: 3,
-                relatedNodeName: "C",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 10,
-                networkID: 1,
-                treeID: 1,
-                nodeID: 3,
-                nodeName: "C",
-                relationship: "Subsidiary",
-                relatedNodeID: 4,
-                relatedNodeName: "D",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 11,
-                networkID: 1,
-                treeID: 1,
-                nodeID: 3,
-                nodeName: "C",
-                relationship: "Director",
-                relatedNodeID: 7,
-                relatedNodeName: "z",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 12,
-                networkID: 1,
-                treeID: 1,
-                nodeID: 7,
-                nodeName: "z",
-                relationship: "Director",
-                relatedNodeID: 3,
-                relatedNodeName: "C",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 13,
-                networkID: 1,
-                treeID: 1,
-                nodeID: 1,
-                nodeName: "A",
-                relationship: "Subsidiary",
-                relatedNodeID: 3,
-                relatedNodeName: "C",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 14,
-                networkID: 1,
-                treeID: 1,
-                nodeID: 3,
-                nodeName: "C",
-                relationship: "Subsidiary",
-                relatedNodeID: 1,
-                relatedNodeName: "A",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 15,
-                networkID: 1,
-                treeID: 1,
-                nodeID: 5,
-                nodeName: "x",
-                relationship: "Director",
-                relatedNodeID: 1,
-                relatedNodeName: "A",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 16,
-                networkID: 1,
-                treeID: 1,
-                nodeID: 1,
-                nodeName: "A",
-                relationship: "Director",
-                relatedNodeID: 5,
-                relatedNodeName: "x",
-                relationshipProperty: ""
-            }
-        );
-
-
 
 
 
@@ -1458,19 +1326,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.firstAdjacencyCellRowNr = this.navFirstAdjacencyCellRowNr();
         console.log('xx firstAdjacencyCellRowNr', this.firstAdjacencyCellRowNr)
 
-
-        // Same Parent as x
-        // let targetNode: string = 'x';
-        // for (var r = 9; r < this.networkGraph.length; r++) {
-        //     for (var c = 0; c < r - 9; c++) {
-        //         if (this.networkGraph[0][c + 9] === 'A'  &&  this.networkGraph[r][c + 9] == '1') {
-        //             console.log('xx Has A as Parent in Row r, col c', r, c + 9)
-        //             console.log('xx Has A as Parent = ', this.networkGraph[r][0])
-
-        //         };
-        //     };
-        // };
-        console.log('xx ------------------------------------------------')
+        console.log('xx ------------------------------------------------ 1 ')
         console.log('xx ')
 
         // Distance from y to z
@@ -1527,7 +1383,34 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         };
 
         // End result
-        console.log('xx END RESULT this.navSinglePaths', this.navSinglePaths)
+        console.log('xx END RESULT 1 this.navSinglePaths', this.navSinglePaths)
+
+
+        console.log('xx ------------------------------------------------ 2 ')
+        console.log('xx ')
+
+
+    }
+
+    nav2WalkInPath(
+        parent: string, 
+        nodeName: string, 
+        treeID: number, 
+        relationship: string, 
+        path: string[]
+        ) {
+        // Walk to next node in path for given info (parent, node, ect)
+        this.globalFunctionService.printToConsole(this.constructor.name, 'nav2WalkInPath', '@Start');
+
+        // Add this node to path
+        path.push(nodeName);
+
+        // Get next nodes in path
+        let nextInPath: string[] = this.networkGraph2
+            .filter(nw => nw.nodeName === nodeName  &&  nw.nodeName != parent)
+            .map(nw => nw.nodeName);
+
+        // nextInPath.forEach(n => this.nav2WalkInPath(nodeName, n))
     }
 
     navNodeTypes(): string[] {
