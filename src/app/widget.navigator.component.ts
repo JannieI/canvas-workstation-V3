@@ -1395,7 +1395,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
     nav2WalkInPath(
         parent: string, 
         nodeName: string, 
-        treeID: number, 
         relationship: string, 
         path: string[]
         ) {
@@ -1416,7 +1415,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Combine
         nextInPath = leftInPath.concat(rightInPath);
-        // nextInPath.forEach(n => this.nav2WalkInPath(nodeName, n))
+
+        // Call recursively
+        nextInPath.forEach(child => this.nav2WalkInPath(nodeName, child, relationship, path))
     }
 
     navNodeTypes(): string[] {
