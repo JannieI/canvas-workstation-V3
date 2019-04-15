@@ -420,6 +420,7 @@ export class AppComponent implements OnInit {
     subscriptionSnapshot: Subscription;             // Observable
     subscriptionAnimation: Subscription;            // Observable
     stuckCount: number = 0;                         // Give help if stuck for too long
+    templateInUse: boolean = false;
     templateInUseSubscription: Subscription;
     templateWidgets: Widget[] = [];                 // Array of W in the Template D
     view: View;                                     // Vega
