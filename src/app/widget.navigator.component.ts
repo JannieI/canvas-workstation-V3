@@ -700,8 +700,8 @@ export class WidgetNavigatorComponent {
                 leftNodeName: "D",
                 relationshipLeftToRight: "Director",
                 relationshipRightToLeft: "Director Of",
-                rightNodeID: 5,
-                rightNodeName: "x",
+                rightNodeID: 8,
+                rightNodeName: "a",
                 relationshipProperty: ""
             }
         );
@@ -1405,7 +1405,8 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Stop if Cyclical
         if (path.indexOf(nodeName) >= 0) {
             path.push(nodeName + '*');
-            console.log('xx nav2WalkInPath @END path', path);
+            console.log('xx nav2WalkInPath @END path', iterationCount, path);
+            path = [];
             return;
         };
 
@@ -1428,16 +1429,19 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         nextInPath = leftInPath.concat(rightInPath);
 
         // Log
-        console.log('xx nav2WalkInPath reladed of Parent', parent, nextInPath)
+        console.log('xx nav2WalkInPath related nodeName', nodeName, ' (from ', parent, ')', nextInPath, 'path:', path)
 
         if (nextInPath.length == 0) {
-            console.log('xx nav2WalkInPath @END path', path)
+            console.log('xx nav2WalkInPath @END path', iterationCount, path)
+            path = [];
         };
 
-        // Call recursively
-        nextInPath.forEach(child => 
-            this.nav2WalkInPath(nodeName, child, relationship, iterationCount, path)
-        );
+        // Call recursively, starting a new path
+        nextInPath.forEach(child => {
+                let newPath: string[] = [];
+                path.forEach(c => newPath.push(c));
+                this.nav2WalkInPath(nodeName, child, relationship, iterationCount, newPath)
+        });
     }
 
     navNodeTypes(): string[] {
