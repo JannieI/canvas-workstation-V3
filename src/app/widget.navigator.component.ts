@@ -1405,11 +1405,17 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Add this node to path
         path.push(nodeName);
 
-        // Get next nodes in path
-        let nextInPath: string[] = this.networkGraph2
-            .filter(nw => nw.nodeName === nodeName  &&  nw.nodeName != parent)
-            .map(nw => nw.nodeName);
+        // Get next nodes in path, Left and Right, excluding the Parent
+        let nextInPath: string[] = [];
+        let leftInPath: string[] = this.networkGraph2
+            .filter(nw => nw.leftNodeName === nodeName  &&  nw.rightNodeName != parent)
+            .map(nw => nw.rightNodeName);
+        let rightInPath: string[] = this.networkGraph2
+            .filter(nw => nw.rightNodeName === nodeName  &&  nw.leftNodeName != parent)
+            .map(nw => nw.leftNodeName);
 
+        // Combine
+        nextInPath = leftInPath.concat(rightInPath);
         // nextInPath.forEach(n => this.nav2WalkInPath(nodeName, n))
     }
 
