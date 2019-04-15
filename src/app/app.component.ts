@@ -420,6 +420,7 @@ export class AppComponent implements OnInit {
     subscriptionSnapshot: Subscription;             // Observable
     subscriptionAnimation: Subscription;            // Observable
     stuckCount: number = 0;                         // Give help if stuck for too long
+    templateInUseSubscription: Subscription;
     templateWidgets: Widget[] = [];                 // Array of W in the Template D
     view: View;                                     // Vega
     widgetDimenstions: {
@@ -665,11 +666,19 @@ export class AppComponent implements OnInit {
                     this.dontDisturb = ddb
                 );
 
+                // Template used
+                this.globalVariableService
+
                 // Snap to grid
                 this.snapToGrid = this.globalVariableService.currentUser.preferenceSnapToGrid;
 
                 // Current user
                 this.currentUserID = this.globalVariableService.currentUser.userID;
+
+                // Template used
+                this.templateInUseSubscription = this.globalVariableService.templateInUse.subscribe(
+                    i => this.templateInUse = i
+                );
 
                 // Palette and Grid info
                 this.showPaletteSubscription = this.globalVariableService.showPalette.subscribe(
@@ -1060,13 +1069,14 @@ export class AppComponent implements OnInit {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnDestroy', '@Start');
 
-        this.showGridSubscription.unsubscribe();
-        this.showPaletteSubscription.unsubscribe();
-        this.editModeSubscription.unsubscribe();
         this.changedWidgetSubscription.unsubscribe();
         this.currentDashboardInfoSubscription.unsubscribe();
-        this.subscriptionSnapshot.unsubscribe();
+        this.editModeSubscription.unsubscribe();
+        this.showGridSubscription.unsubscribe();
+        this.showPaletteSubscription.unsubscribe();
         this.subscriptionAnimation.unsubscribe();
+        this.subscriptionSnapshot.unsubscribe();
+        this.templateInUseSubscription.unsubscribe();
     }
 
 
