@@ -5598,7 +5598,7 @@ export class GlobalVariableService {
                         .then( () => {
 
                             this.getResource('canvasUsers').then(usr => {
-                                let foundIndex: number = this.canvasUsers.findIndex(u => u.userID === givenUserID);
+                                let foundIndex: number = usr.findIndex(u => u.userID === givenUserID);
                                 if (foundIndex < 0) {
 
                                     if (this.sessionDebugging) {
@@ -5612,7 +5612,7 @@ export class GlobalVariableService {
                                     };
 
                                     // Set User var
-                                    this.currentUser = this.canvasUsers[foundIndex];
+                                    this.currentUser = usr[foundIndex];
 
                                     // Set GVs
                                     this.sessionDebugging = this.currentUser.preferenceDebugSession;
