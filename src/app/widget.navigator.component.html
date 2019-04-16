@@ -1,11 +1,9 @@
 <!-- Total Navigator container, which allows scolling inside it.  The external Widget container
 dimensions are set in app.html, and cannot be changed here. -->
 <div class="totalNavigator"
-    [style.height.px]="selectedWidget.containerHeight"
-    [style.width.px]="selectedWidget.containerWidth"
+    [style.height.px]="selectedWidget.containerHeight - 30"
+    [style.width.px]="selectedWidget.containerWidth - 20"
     >
-
-    {{ selectedWidget.containerWidth }}
 
 
 
@@ -237,7 +235,7 @@ dimensions are set in app.html, and cannot be changed here. -->
     <!-- GRAPH Area -->
     <div class="graphHeaderContainer">
         <div class="graphAreaText1">
-            For
+            For Node
         </div>
 
         <div class="select graphAreaParentNodeType"
@@ -805,7 +803,9 @@ dimensions are set in app.html, and cannot be changed here. -->
     </div>
 
 
-    <div class="graphArea">
+    <div class="graphArea"
+        [style.overflow]="'scroll'"
+        >
         <div class="graphAreaGraphicContainer">
 
             <div class="graphAreaGraphic"

@@ -3,7 +3,7 @@
 .totalNavigator {
     display: grid;
     grid-template-columns: repeat(40, 1fr);
-    grid-template-rows: repeat(26, 0.8rem);
+    grid-template-rows: repeat(26, 1fr);
     overflow: hidden;
 }
     .closeButton {
@@ -93,6 +93,7 @@
 
         .graphAreaText1{
             display: inline-block; 
+            margin-left: 20px;
         }
         .graphAreaParentNodeType {
             display: inline-block; 
@@ -156,7 +157,6 @@
         margin-left: 4px;
         margin-right: 4px;
         text-align: left;
-        overflow: scroll;
     }
     
 
