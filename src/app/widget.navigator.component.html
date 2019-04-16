@@ -234,11 +234,11 @@ dimensions are set in app.html, and cannot be changed here. -->
 
     <!-- GRAPH Area -->
     <div class="graphHeaderContainer">
-        <div class="graphAreaText1">
+        <div class="graphHeaderText">
             For Node
         </div>
 
-        <div class="select graphAreaParentNodeType"
+        <div class="select graphHeaderParentNodeType"
             title="Select a node type for which children must be shown"
             >
             <select [(ngModel)]="selectedNodeType"
@@ -252,7 +252,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             </select>
         </div>
 
-        <div class="select graphAreaParentNode"
+        <div class="select graphHeaderParentNode"
             title="Select a specific node for which children must be shown"
             >
             <select [(ngModel)]="selectedParentNode"
@@ -282,7 +282,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                     The dropdown will be reduced by the filter(s) below.  This filter will stay
                     active until 1. it is changed here, or 2. the node type is changed.
                 </p>
-                <div class="graphAreaParentFilterFieldTitle">
+                <div class="graphHeaderParentFilterFieldTitle">
                     Field:
                     <select id="selects_3"
                         [(ngModel)]="filterParentFieldName"
@@ -294,7 +294,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                         </option>
                     </select>
                 </div>
-                <div class="graphAreaParentFilterOperatorTitle">
+                <div class="graphHeaderParentFilterOperatorTitle">
                     Operator:
                     <select id="selects_3"
                         [(ngModel)]="filterParentOperator"
@@ -314,7 +314,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                     </select>
                 </div>
 
-                <div class="graphAreaParentFilterValueTitle">
+                <div class="graphHeaderParentFilterValueTitle">
                     Value:
                     <input type="text"
                         [(ngModel)]="filterParentValue"
@@ -343,7 +343,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                         (click)="clickParentFilterClose()">
                         Close
                     </button>
-                    <span class="graphAreaParentFilterErrorMessage">
+                    <span class="graphHeaderParentFilterErrorMessage">
                         {{ parentFilterErrorMessage }}
                     </span>
                 </div>
@@ -351,7 +351,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             </clr-signpost-content>
         </clr-signpost>
 
-        <clr-dropdown class="graphAreaMenuText">
+        <clr-dropdown class="graphHeaderMenuText">
             <button
                 type="button"
                 class="btn btn-link btn-sm"
@@ -412,10 +412,10 @@ dimensions are set in app.html, and cannot be changed here. -->
         </clr-dropdown>
 
         <br>
-        <div class="graphAreaText1">
+        <div class="graphHeaderText">
             Show Relationship(s)
         </div>
-        <div class="select graphAreaRelationship"
+        <div class="select graphHeaderRelationship"
             title="Select a relationship to filter on"
             >
             <select [(ngModel)]="selectedRelationship"
@@ -515,7 +515,7 @@ dimensions are set in app.html, and cannot be changed here. -->
         </clr-signpost>
 
         <div class="graphAreaTitle">
-            <div class="errorMessage" *ngIf="errorMessage">
+            <div class="errorMessage">
                 {{ errorMessage }}
             </div>
             <div class="graphNavigatorBarDivider">

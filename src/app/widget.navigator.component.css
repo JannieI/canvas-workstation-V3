@@ -83,7 +83,6 @@
         }
 
     .graphHeaderContainer {
-        color: red;
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 42;
@@ -91,12 +90,12 @@
         grid-row-end: 5;
     }
 
-        .graphAreaText1{
+        .graphHeaderText{
             display: inline-block; 
             margin-left: 20px;
             margin-right: 12px;
         }
-        .graphAreaParentNodeType {
+        .graphHeaderParentNodeType {
             display: inline-block; 
             font-size: 0.5rem;
             margin-left: 12px;
@@ -104,34 +103,34 @@
             width: 140px;
         }
 
-        .graphAreaParentNode {
+        .graphHeaderParentNode {
             display: inline-block; 
             font-size: 0.5rem;
             margin-left: 12px;
             text-align: left;
             width: 140px;
         }
-            .graphAreaParentFilterFieldTitle {
+            .graphHeaderParentFilterFieldTitle {
                 text-align: left;
             }
-            .graphAreaParentFilterOperatorTitle {
+            .graphHeaderParentFilterOperatorTitle {
                 text-align: left;
             }
-            .graphAreaParentFilterValueTitle {
+            .graphHeaderParentFilterValueTitle {
                 text-align: left;
             }
-            .graphAreaParentFilterErrorMessage {
+            .graphHeaderParentFilterErrorMessage {
                 color: red;
                 text-align: left;
             }
         
-        .graphAreaMenuText {
+        .graphHeaderMenuText {
             color: blue; 
             float: right; 
             margin-right: 4px;
         }
 
-        .graphAreaRelationship {
+        .graphHeaderRelationship {
             display: inline-block;
             margin-left: 6px;
             margin-right: 12px;
@@ -142,48 +141,6 @@
             font-size: 0.6rem;
             text-align: left;
         }
-
-        
-
-
-    .graphArea {
-        float: left;
-        font-size: 0.5rem;
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 42;
-        grid-row-start: 5;
-        grid-row-end: 26;
-        height: 100%;
-        margin-left: 4px;
-        margin-right: 4px;
-        text-align: left;
-    }
-    
-
-        /* ?? */
-        .graphAreaChildNode {
-            display: inline-block; 
-            font-size: 0.5rem;
-            margin-left: 12px;
-            text-align: left;
-        }
-            .graphAreaChildFilterFieldTitle {
-                text-align: left;
-            }
-            .graphAreaChildFilterOperatorTitle {
-                text-align: left;
-            }
-            .graphAreaChildFilterValueTitle {
-                text-align: left;
-            }
-            .graphAreaChildFilterErrorMessage {
-                color: red;
-                text-align: left;
-            }
-
-
-
 
 
 
@@ -205,6 +162,35 @@
                 text-align: left;
             }
 
+            .graphAreaChildFilterFieldTitle {
+                text-align: left;
+            }
+            .graphAreaChildFilterOperatorTitle {
+                text-align: left;
+            }
+            .graphAreaChildFilterValueTitle {
+                text-align: left;
+            }
+            .graphAreaChildFilterErrorMessage {
+                color: red;
+                text-align: left;
+            }
+
+
+
+    .graphArea {
+        float: left;
+        font-size: 0.5rem;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 42;
+        grid-row-start: 5;
+        grid-row-end: 26;
+        height: 100%;
+        margin-left: 4px;
+        margin-right: 4px;
+        text-align: left;
+    }
 
         .graphAreaGraphicContainer {
             margin: 0px;
