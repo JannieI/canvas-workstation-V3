@@ -88,6 +88,7 @@
         grid-column-end: 42;
         grid-row-start: 1;
         grid-row-end: 5;
+        overflow: hidden;
     }
 
         .graphHeaderText{
@@ -195,11 +196,12 @@
         .graphAreaGraphicContainer {
             margin: 0px;
             padding: 0px;
-
+            text-align: center;
         }
 
             .graphAreaGraphic {
                 font-size: 0.5rem;
+                margin-top: 24px;
                 text-align: left;
             }
 
