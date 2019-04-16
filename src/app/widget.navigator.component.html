@@ -1,11 +1,11 @@
 <!-- Total Navigator container, which allows scolling inside it.  The external Widget container
-dimensions is set in app.html, and cannot be changed here. -->
-<!-- [style.width.px]="totalNavigatorWidth" -->
+dimensions are set in app.html, and cannot be changed here. -->
 <div class="totalNavigator"
-    [style.height.px]="selectedWidget.containerHeight-30"
-    [style.width.px]="totalNavigatorWidth"
+    [style.height.px]="selectedWidget.containerHeight"
+    [style.width.px]="selectedWidget.containerWidth"
     >
 
+    {{ selectedWidget.containerWidth }}
 
 
 
