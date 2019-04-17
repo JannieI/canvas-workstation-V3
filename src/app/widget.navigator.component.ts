@@ -1372,6 +1372,14 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.showNetwork = true;
 
     }
+    
+    clickCloseNetworks() {
+        // Close network popup
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseNetworks', '@Start');
+
+        this.showNetwork = false;
+
+    }
 
     nav2WalkInPath(
         parent: string, 
