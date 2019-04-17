@@ -86,6 +86,7 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
 
         if (this.selectedDatasource === null) {
             let today: Date = new Date();
+            // TODO - use DS template
             this.selectedDatasource = {
                 id: null,
                 type: 'Server',

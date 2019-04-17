@@ -116,6 +116,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             this.isEditing = false;
             let today: Date = new Date();
 
+            // TODO - use DS template
             this.selectedDatasource = {
                 id: null,
                 type: 'Server',

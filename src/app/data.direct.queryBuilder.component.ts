@@ -97,6 +97,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         if (!this.editingDS) {
         this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
 
+            // TODO - use DS template
             this.selectedDatasource = {
                 id: 0,
                 type: '',

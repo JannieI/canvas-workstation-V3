@@ -3,10 +3,13 @@
 import { CanvasSettings }             from './models';
 import { Dashboard }                  from './models';
 import { DashboardTab }               from './models';
+import { Datasource }                 from './models';
 import { Transformation }             from './models';
 import { TributaryServerType }        from './models';
 import { Widget }                     from './models';
 import * as dl                        from 'datalib';
+
+let today: Date = new Date();
 
 export const vlTemplate: dl.spec.TopLevelExtendedSpec =
     {
@@ -88,150 +91,225 @@ export const vlTemplate: dl.spec.TopLevelExtendedSpec =
             }
     };
 
+export const datasourceTemplate: Datasource =
+    {
+        id: null,
+        type: 'Server',
+        subType: '',
+        typeVersion: '',
+        name: '',
+        username: '',
+        password: '',
+        description: '',
+        createdBy: this.globalVariableService.currentUser.userID,
+        createdOn: today,
+        createMethod: '',
+        editor: '',
+        dateEdited: null,
+        refreshedBy: '',
+        refreshedServerOn: null,
+        dataFields: [''],
+        dataFieldTypes: [''],
+        dataFieldLengths: [0],
+        datasourceFilters: [],
+        accessType: '',
+        cacheResultsOnServer: true,
+        serverExpiryDateTime: null,
+        unRefreshable: true,
+        cacheResultsLocal: false,
+        oldnessMaxPeriodInterval: '',
+        oldnessMaxPeriodUnits: 0,
+        oldnessRelatedDate: '',
+        oldnessRelatedTime: '',
+        refreshedLocalOn: null,
+        folder: '',
+        fileName: '',
+        excelWorksheet: '',
+        transposeOnLoad: false,
+        startLineNr: 0,
+        csvSeparationCharacter: '',
+        csvQuotCharacter: '',
+        webUrl: '',
+        webTableIndex: '',
+        connectionID: 0,
+        dataTableID: 0,
+        nrWidgets: 0,
+        databaseName: '',
+        port: '',
+        serverType: '',
+        serverName: '',
+        dataTableName: '',
+        dataSQLStatement: '',
+        dataNoSQLStatement: '',
+        dataNeo4jStatement: '',
+        dataGraphQLStatement: '',
+        businessGlossary: '',
+        dataDictionary: '',
+        datasourceCombinationSpec: null,
+        rowLimitFromSource: 0,
+        timeoutLimitSeconds: 0,
+        endLineNr: 0,
+        startColumnNr: 1,
+        endColumnNr: 0,
+        encoding: '',
+        serviceUrl: '',
+        serviceParams: '',
+        serviceQueryParams: '',
+        serviceHeaders: '',
+        sourceIsAccessable: true,
+        queryParameters: '',
+        metaDataFields: [],
+        transformations: [],
+        dataErrorMessage: '',
+        nrRecordsReturned: 0,
+        sourceLocation: '',
+        dataFull: [],
+        dataFiltered: []
+    };
 
-    
-export const widgetTemplateInner: any = {
+export const widgetTemplateInner: any = 
+    {
 
-    // Mark
-    "graphMark": "",
-    "graphMarkOrient": "",
-    "graphMarkLine": false,
-    "graphMarkPoint": false,
-    "graphMarkPointColorName": "",
-    "graphMarkPointColor": "",
-    "graphMarkColourName": "",
-    "graphMarkColour": "",
-    "graphMarkCornerRadius": 0,
-    "graphMarkExtent": "",
-    "graphMarkOpacity": 1,
-    "graphMarkBinSpacing": 0,
-    "graphMarkSize": "",
-    "graphMarkInterpolate": "",
+        // Mark
+        "graphMark": "",
+        "graphMarkOrient": "",
+        "graphMarkLine": false,
+        "graphMarkPoint": false,
+        "graphMarkPointColorName": "",
+        "graphMarkPointColor": "",
+        "graphMarkColourName": "",
+        "graphMarkColour": "",
+        "graphMarkCornerRadius": 0,
+        "graphMarkExtent": "",
+        "graphMarkOpacity": 1,
+        "graphMarkBinSpacing": 0,
+        "graphMarkSize": "",
+        "graphMarkInterpolate": "",
 
-    // X
-    "graphXfield": "",
-    "graphXaggregateName": "",
-    "graphXaggregate": "",
-    "graphXtimeUnit": "",
-    "graphXbin": false,
-    "graphXMaxBins": 0,
-    "graphXformat": "",
-    "graphXimpute": "",
-    "graphXimputeValue": "",
-    "graphXstack": "",
-    "graphXsort": "",
-    "graphXtype": "",
-    "graphXtypeName": "",
+        // X
+        "graphXfield": "",
+        "graphXaggregateName": "",
+        "graphXaggregate": "",
+        "graphXtimeUnit": "",
+        "graphXbin": false,
+        "graphXMaxBins": 0,
+        "graphXformat": "",
+        "graphXimpute": "",
+        "graphXimputeValue": "",
+        "graphXstack": "",
+        "graphXsort": "",
+        "graphXtype": "",
+        "graphXtypeName": "",
 
-    // Y
-    "graphYfield": "",
-    "graphYaggregateName": "",
-    "graphYaggregate": "",
-    "graphYbin": false,
-    "graphYMaxBins": 0,
-    "graphYformat": "",
-    "graphYimpute": "",
-    "graphYimputeValue": 0,
-    "graphYstack": "",
-    "graphYsort": "",
-    "graphYtimeUnit": "",
-    "graphYtype": "",
-    "graphYtypeName": "",
+        // Y
+        "graphYfield": "",
+        "graphYaggregateName": "",
+        "graphYaggregate": "",
+        "graphYbin": false,
+        "graphYMaxBins": 0,
+        "graphYformat": "",
+        "graphYimpute": "",
+        "graphYimputeValue": 0,
+        "graphYstack": "",
+        "graphYsort": "",
+        "graphYtimeUnit": "",
+        "graphYtype": "",
+        "graphYtypeName": "",
 
-    // Color
-    "graphColorField": "",
-    "graphColorAggregateName": "",
-    "graphColorAggregate": "",
-    "graphColorBin": false,
-    "graphColorMaxBins": 0,
-    "graphColorFormat": "",
-    "graphColorImpute": "",
-    "graphColorImputeValue": "",
-    "graphColorScheme": "blues",
-    "graphColorSort": "",
-    "graphColorStack": "",
-    "graphColorType": "",
-    "graphColorTypeName": "",
-    "graphColorTimeUnit": "",
+        // Color
+        "graphColorField": "",
+        "graphColorAggregateName": "",
+        "graphColorAggregate": "",
+        "graphColorBin": false,
+        "graphColorMaxBins": 0,
+        "graphColorFormat": "",
+        "graphColorImpute": "",
+        "graphColorImputeValue": "",
+        "graphColorScheme": "blues",
+        "graphColorSort": "",
+        "graphColorStack": "",
+        "graphColorType": "",
+        "graphColorTypeName": "",
+        "graphColorTimeUnit": "",
 
-    // X Axis
-    "graphXaxisFormat": "",
-    "graphXaxisGrid": true,
-    "graphXaxisGridColorName": "",
-    "graphXaxisGridColor": "",
-    "graphXaxisLabels": true,
-    "graphXaxisLabelAngle": 0,
-    "graphXaxisLabelColorName": "",
-    "graphXaxisLabelsLength": 0,
-    "graphXaxisLabelColor": "",
-    "graphXaxisTitle": "",
-    "graphXaxisTitleCheckbox": true,
-    "graphXaxisScaleType": "",
+        // X Axis
+        "graphXaxisFormat": "",
+        "graphXaxisGrid": true,
+        "graphXaxisGridColorName": "",
+        "graphXaxisGridColor": "",
+        "graphXaxisLabels": true,
+        "graphXaxisLabelAngle": 0,
+        "graphXaxisLabelColorName": "",
+        "graphXaxisLabelsLength": 0,
+        "graphXaxisLabelColor": "",
+        "graphXaxisTitle": "",
+        "graphXaxisTitleCheckbox": true,
+        "graphXaxisScaleType": "",
 
-    // Y Axis
-    "graphYaxisFormat": "",
-    "graphYaxisGrid": true,
-    "graphYaxisGridColorName": "",
-    "graphYaxisGridColor": "",
-    "graphYaxisLabels": true,
-    "graphYaxisLabelAngle": 0,
-    "graphYaxisLabelColorName": "",
-    "graphYaxisLabelColor": "",
-    "graphYaxisScaleType": "",
-    "graphYaxisTitle": "",
-    "graphYaxisTitleCheckbox": true,
+        // Y Axis
+        "graphYaxisFormat": "",
+        "graphYaxisGrid": true,
+        "graphYaxisGridColorName": "",
+        "graphYaxisGridColor": "",
+        "graphYaxisLabels": true,
+        "graphYaxisLabelAngle": 0,
+        "graphYaxisLabelColorName": "",
+        "graphYaxisLabelColor": "",
+        "graphYaxisScaleType": "",
+        "graphYaxisTitle": "",
+        "graphYaxisTitleCheckbox": true,
 
-    // Legend
-    "graphLegendAxisScaleType": "",
-    "graphLegendHide": false,
-    "graphLegendTitleCheckbox": true,
-    "graphLegendTitle": "",
-    "graphLegendFormat": "",
-    "graphLegendLabels": true,
-    "graphLegendLabelColorName": "",
-    "graphLegendLabelColor": "",
+        // Legend
+        "graphLegendAxisScaleType": "",
+        "graphLegendHide": false,
+        "graphLegendTitleCheckbox": true,
+        "graphLegendTitle": "",
+        "graphLegendFormat": "",
+        "graphLegendLabels": true,
+        "graphLegendLabelColorName": "",
+        "graphLegendLabelColor": "",
 
-    // Size
-    "graphSizeField": "",
-    "graphSizeType": "",
-    "graphSizeTypeName": "",
-    "graphSizeAggregateName": "",
-    "graphSizeAggregate": "",
-    "graphSizeBin": false,
-    "graphSizeMaxBins": 0,
+        // Size
+        "graphSizeField": "",
+        "graphSizeType": "",
+        "graphSizeTypeName": "",
+        "graphSizeAggregateName": "",
+        "graphSizeAggregate": "",
+        "graphSizeBin": false,
+        "graphSizeMaxBins": 0,
 
-    // Row
-    "graphRowField": "",
-    "graphRowType": "",
-    "graphRowTypeName": "",
+        // Row
+        "graphRowField": "",
+        "graphRowType": "",
+        "graphRowTypeName": "",
 
-    // Column
-    "graphColumnField": "",
-    "graphColumnType": "",
-    "graphColumnTypeName": "",
+        // Column
+        "graphColumnField": "",
+        "graphColumnType": "",
+        "graphColumnTypeName": "",
 
-    // Detail
-    "graphDetailField": "",
-    "graphDetailType": "",
-    "graphDetailTypeName": "",
+        // Detail
+        "graphDetailField": "",
+        "graphDetailType": "",
+        "graphDetailTypeName": "",
 
-    // X2
-    "graphX2Field": "",
-    "graphX2Type": "",
-    "graphX2TypeName": "",
-    "graphX2AggregateName": "",
+        // X2
+        "graphX2Field": "",
+        "graphX2Type": "",
+        "graphX2TypeName": "",
+        "graphX2AggregateName": "",
 
-    // Y2
-    "graphY2Field": "",
-    "graphY2Type": "",
-    "graphY2TypeName": "",
-    "graphY2AggregateName": "",
+        // Y2
+        "graphY2Field": "",
+        "graphY2Type": "",
+        "graphY2TypeName": "",
+        "graphY2AggregateName": "",
 
-    // Projection
-    "graphProjectionType": "",
-    "graphProjectionFieldLatitude": "",
-    "graphProjectionFieldLongitude": ""
-}; 
+        // Projection
+        "graphProjectionType": "",
+        "graphProjectionFieldLatitude": "",
+        "graphProjectionFieldLongitude": ""
+    }; 
 
 export const widgetTemplate: Widget =
     {
