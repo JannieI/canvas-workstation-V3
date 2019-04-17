@@ -93,13 +93,6 @@ dimensions are set in app.html, and cannot be changed here. -->
             <b>
                 Networks
             </b>
-            <clr-icon
-                style="cursor: pointer;"
-                shape="plus-circle"
-                size="18"
-                (click)="clickNetworkShow()"
-                >
-            </clr-icon>
             <clr-signpost>
                 <clr-icon shape="info-circle" style="margin-top: -4px;"
                     clrSignpostTrigger>
@@ -110,14 +103,16 @@ dimensions are set in app.html, and cannot be changed here. -->
                         Help
                     </h5>
                     <p style="margin-top: 0; color:gray; text-align: left;">
-                        A network is a pre-defined web of relationships.  For example,
+                        A network is a pre-defined web of nodes and relationships.  For example,
                         it can be the relationships between companies, subsidaries,
                         directors (executive and non-executive), shareholders, etc.
+                        A company can create more than one network for their data.
                     </p>
                 </clr-signpost-content>
             </clr-signpost>
         </div>
 
+        Select a network by clicking it.
         <div class="networkAreaBlock" *ngFor="let row of networks; let i = index"
             [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
             [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"

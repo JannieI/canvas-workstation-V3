@@ -1744,12 +1744,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         
     }
 
-    clickNetworkRemove() {
-        // Remove a network
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkRemove', '@Start');
-
-    }
-
     clickAddNetworkClose() {
         // Close AddNetwork without adding
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickAddNetworkClose', '@Start');
