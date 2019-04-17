@@ -24,6 +24,9 @@ import { NavigatorParentRelatedChild }      from './models'
 import { NavigatorWatchList }         from './models'
 import { Widget }                     from './models'
 
+// Templates
+import { datasourceTemplate }         from './templates';
+
 // Functions, 3rd Party
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
@@ -127,6 +130,7 @@ export class WidgetNavigatorComponent {
     watchListFiltered: boolean = false;
 
 
+    datasourceTemplate = datasourceTemplate;
     navNodeIsDone: string[] = [];
     navNodesToDo: string[] = [];
     singleRoutesArray: Array<string[]> = [];
@@ -158,29 +162,21 @@ export class WidgetNavigatorComponent {
         // };
 
         // Populate networks - TODO make from DB
-        let networksNew: NavigatorNetwork = {id: 1, name: "WOWEB", description: "WOWEB", userPermissions: null, groupPermissions: null, isSelected: true};
+        let networksNew: Datasource = this.datasourceTemplate;
+        networksNew.id = 1;
+        networksNew.name = "Company-Directors";
+        networksNew.description = "Companies, Subsidiaries, Directors";
         this.networks.push(networksNew);
-        networksNew = {id: 2, name: "Facebook", description: "Facebook", userPermissions: null, groupPermissions: null, isSelected: false}
+ 
+        networksNew.id = 2;
+        networksNew.name = "Industry-Company";
+        networksNew.description = "Industry-Company-Subsidiary";
+        
         this.networks.push(networksNew);
-        networksNew = {id: 3, name: "Family", description: "Family", userPermissions: null, groupPermissions: null, isSelected: false}
-        this.networks.push(networksNew);
-        networksNew = {id: 4, name: "Industries", description: "Industries", userPermissions: null, groupPermissions: null, isSelected: false}
-        this.networks.push(networksNew);
-        networksNew = {id: 5, name: "Companies", description: "Companies", userPermissions: null, groupPermissions: null, isSelected: false}
-        this.networks.push(networksNew);
-        networksNew = {id: 6, name: "Contacts", description: "Contacts", userPermissions: null, groupPermissions: null, isSelected: false}
-        this.networks.push(networksNew);
-        networksNew = {id: 7, name: "Friends", description: "Friends", userPermissions: null, groupPermissions: null, isSelected: false}
-        this.networks.push(networksNew);
-        networksNew = {id: 8, name: "Shopping", description: "Shopping", userPermissions: null, groupPermissions: null, isSelected: false}
-        this.networks.push(networksNew);
-        networksNew = {id: 9, name: "Restaurants", description: "Restaurants", userPermissions: null, groupPermissions: null, isSelected: false}
-        this.networks.push(networksNew);
-        networksNew = {id: 10, name: "UN structure", description: "UN structure", userPermissions: null, groupPermissions: null, isSelected: false}
-        this.networks.push(networksNew);
-        networksNew = {id: 11, name: "Government structure", description: "Government structure", userPermissions: null, groupPermissions: null, isSelected: false}
-        this.networks.push(networksNew);
-
+        networksNew.id = 3;
+        networksNew.name = "Company-Contacts";
+        networksNew.description = "Company-KeyContacts";
+        
         let historyNew: NavigatorHistory =
             {
                 id: 1,
