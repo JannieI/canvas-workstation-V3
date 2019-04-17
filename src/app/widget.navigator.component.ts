@@ -109,7 +109,7 @@ export class WidgetNavigatorComponent {
     graphWidth: number = 400;         // TODO - fill this into Spec
 
     // Form layout and elements
-    graphNote: string = 'Optional Additional information';
+    graphNotes: string = 'Optional Additional information';
     graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
     showHistory: boolean = false;
     showNetwork: boolean = false;

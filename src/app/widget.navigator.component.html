@@ -50,7 +50,8 @@ dimensions are set in app.html, and cannot be changed here. -->
         <h5>Graph Notes</h5>
         <div style="margin: 18px;">
             Note:
-            <input type="text"
+            <input [(ngModel)]="graphNotes"
+                type="text"
                 title="Add new name"
                 placeholder="New Name"
                 >
@@ -790,7 +791,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             </div>
 
             <div class="graphAreaNote">
-                {{ graphNote }}
+                {{ graphNotes }}
             </div>
         </div>
     </div>
