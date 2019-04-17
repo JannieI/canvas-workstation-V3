@@ -792,7 +792,7 @@ export class WidgetNavigatorComponent {
         // Show the graph
         this.showGraph(0, 0, false)
     }
-
+    
     changeParentNodeType(ev: any) {
         // Make the filter inactive
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentNodeType', '@Start');
@@ -1907,6 +1907,13 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuGraphNotes', '@Start');
 
         this.showGraphNotes = true;
+    }
+
+    clickCloseGraphNotes() {
+        // Close popup to edit notes at bottom of graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseGraphNotes', '@Start');
+
+        this.showGraphNotes = false;
     }
 
     clickMenuGraphHelp() {

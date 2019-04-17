@@ -46,7 +46,7 @@ dimensions are set in app.html, and cannot be changed here. -->
     </div>
 
     <!-- Graph Notes -->
-    <div class="networkAdd" *ngIf="showGraphNotes">
+    <div class="graphNotesUpdate" *ngIf="showGraphNotes">
         <h5>Graph Notes</h5>
         <div style="margin: 18px;">
             Note:
@@ -56,11 +56,11 @@ dimensions are set in app.html, and cannot be changed here. -->
                 >
         </div>
         <div>
-            <button class="btn btn-link"
-                style="margin-left: 28px;"
-                (click)="showGraphNotes=false">
-                Close
-            </button>
+            <div class="networkAreaClose"
+                (click)="clickCloseGraphNotes()"
+                >
+                <b>X</b>
+            </div>
 
         </div>
     </div>
