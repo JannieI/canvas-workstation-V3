@@ -101,7 +101,7 @@ export const datasourceTemplate: Datasource =
         username: '',
         password: '',
         description: '',
-        createdBy: this.globalVariableService.currentUser.userID,
+        createdBy: '',
         createdOn: today,
         createMethod: '',
         editor: '',

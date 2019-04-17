@@ -35,15 +35,18 @@
         margin-left: 4px;
         margin-top: 4px;
         text-align: left;
-        overflow-y: scroll; 
         z-index: 102;
     }
         .networkAreaTitle {
             font-size: 0.6rem;
             text-align: left;
         }
+        .networkAreaClose {
+            float: right;
+        }
         .networkAreaBlock {
             border-radius: 4px;
+            overflow-y: scroll; 
         }
 
     .networkAdd {
