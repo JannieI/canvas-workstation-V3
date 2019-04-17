@@ -764,6 +764,9 @@ export class WidgetNavigatorComponent {
             this.clickNetworkSummary(index);
         };
 
+        // Close Navigated popup
+        this.showHistory = false;
+
     }
 
     clickHistory(index: number, historyID: number) {
