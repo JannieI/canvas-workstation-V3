@@ -1388,6 +1388,14 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
+    clickSelectNetwork() {
+        // Select a new network
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickSelectNetwork', '@Start');
+
+        this.showNetwork = true;
+
+    }
+    
     nav2WalkInPath(
         parent: string, 
         nodeName: string, 
