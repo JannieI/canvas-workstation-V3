@@ -1735,14 +1735,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             this.navSingleRoute(child, navStartNode, relationship, newPath);
         });
     }
-
-    clickNetworkShow() {
-        // Open popup to Add a network
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkShow', '@Start');
-
-        this.showNetworkAdd = true;
-        
-    }
     
     clickAddNetworkAdd() {
         // Add a network and close the popup
