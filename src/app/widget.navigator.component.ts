@@ -1387,6 +1387,14 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
+    clickCloseHistory() {
+        // Close Navigated History popup
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseHistory', '@Start');
+
+        this.showHistory = false;
+
+    }
+
     nav2WalkInPath(
         parent: string, 
         nodeName: string, 
