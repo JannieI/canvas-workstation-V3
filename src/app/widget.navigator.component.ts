@@ -162,16 +162,18 @@ export class WidgetNavigatorComponent {
         // };
 
         // Populate networks - TODO make from DB
-        let networksNew: Datasource = this.datasourceTemplate;
+        let networksNew: Datasource = JSON.parse(JSON.stringify(this.datasourceTemplate));
         networksNew.id = 1;
         networksNew.name = "Company-Directors";
         networksNew.description = "Companies, Subsidiaries, Directors";
         this.networks.push(networksNew);
  
+        networksNew: Datasource = JSON.parse(JSON.stringify(this.datasourceTemplate));
         networksNew.id = 2;
         networksNew.name = "Industry-Company";
         networksNew.description = "Industry-Company-Subsidiary";
         
+        networksNew: Datasource = JSON.parse(JSON.stringify(this.datasourceTemplate));
         this.networks.push(networksNew);
         networksNew.id = 3;
         networksNew.name = "Company-Contacts";
@@ -1362,6 +1364,8 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         console.log('xx ------------------------------------------------ 2 ')
         console.log('xx ')
 
+        // Close network popup
+        this.showNetwork = false;
 
     }
 
@@ -1372,7 +1376,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.showNetwork = true;
 
     }
-    
+
     clickCloseNetworks() {
         // Close network popup
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseNetworks', '@Start');

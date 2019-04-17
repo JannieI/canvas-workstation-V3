@@ -123,7 +123,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             [style.color]="row.id==selectedNetworkID? 'black'  :  'darkgray'"
             >
                 <div
-                    (click)="clickNetworkSummary(i, row.id)"
+                    (click)="clickNetwork(i, row.id)"
                     >
                     {{ row.name }}
                     {{ row.description}}
