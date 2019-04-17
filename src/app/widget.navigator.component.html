@@ -156,7 +156,15 @@ dimensions are set in app.html, and cannot be changed here. -->
                     </p>
                 </clr-signpost-content>
             </clr-signpost>
+            <div class="historyAreaClose"
+                (click)="clickCloseHistory()"
+                >
+                <b>X</b>
+            </div>
         </div>
+
+        Select a previously shown graph by clicking it.  Double click the trash icon to 
+        delete an item from the Navigated list.
         <div class="historyAreaBlock" *ngFor="let row of history; let i = index"
             [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
             [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"

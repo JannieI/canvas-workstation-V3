@@ -68,6 +68,9 @@
             margin-left: 8px;
             text-align: left;
         }
+        .historyAreaClose {
+            float: right;
+        }
         .historyAreaBlock {
             border-radius: 4px;
         }
