@@ -14,6 +14,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
+import { Datasource }                 from './models'
 import { NavigatorHistory }           from './models'
 import { NavigatorNetwork }           from './models'
 import { NavigatorNodeFiler }         from './models'
@@ -39,7 +40,7 @@ export class WidgetNavigatorComponent {
 
     // External Input - pre-built
     dummyData: any[] = [];
-    networks: NavigatorNetwork[] = [];
+    networks: Datasource[] = [];
     networkGraph: Array<string[]> = [];
     networkGraph2: {
         id: number;

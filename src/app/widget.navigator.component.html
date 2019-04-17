@@ -112,26 +112,13 @@ dimensions are set in app.html, and cannot be changed here. -->
             </clr-signpost>
         </div>
 
-        Select a network by clicking it.
+        Select the name of a network to graph by clicking it.  A summary of the network will be
+        shown, after which you can select specific nodes and relationships to browse.
         <div class="networkAreaBlock" *ngFor="let row of networks; let i = index"
             [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
             [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
             [style.color]="row.isSelected? 'black'  :  'darkgray'"
             >
-            <clr-icon (click)="clickNetworkRemove()"
-                style="cursor: pointer;"
-                shape="trash"
-                size="12"
-                (click)="clickNetworkRemove()"
-                >
-            </clr-icon>
-            <clr-icon (click)="clickNetworkSummary(i, row.id)"
-                style="cursor: pointer;"
-                shape="snowflake"
-                size="12"
-                (click)="clickNetworkAdd()"
-                >
-            </clr-icon>
             <span (click)="clickNetworkSummary(i, row.id)">
                 {{ row.name }}
             </span>

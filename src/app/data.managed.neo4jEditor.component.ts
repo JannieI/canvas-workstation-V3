@@ -160,8 +160,6 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 sourceLocation: '',
                 dataFull: [],
                 dataFiltered: []
-
-
             };
         };
 
