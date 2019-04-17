@@ -10,7 +10,7 @@ dimensions are set in app.html, and cannot be changed here. -->
     <!-- Popup forms -->
 
     <!-- Graph Properties -->
-    <div class="networkAdd" *ngIf="showGraphProperties">
+    <div class="graphProperties" *ngIf="showGraphProperties">
         <h5>Graph Properties</h5>
         <div style="margin: 18px;">
             New Name:
@@ -88,9 +88,7 @@ dimensions are set in app.html, and cannot be changed here. -->
 
     
     <!-- NETWORKS AREA -->
-    <div class="networkArea" *ngIf="showNetwork"
-        [style.width.px]="networkAreaWidth"
-        >
+    <div class="networkArea" *ngIf="showNetwork">
         <div class="networkAreaTitle">
             <b>
                 Networks
@@ -150,9 +148,7 @@ dimensions are set in app.html, and cannot be changed here. -->
 
 
     <!-- HISTORY AREA -->
-    <div class="historyArea" *ngIf="showHistory"
-        [style.width.px]="historyAreaWidth"
-        >
+    <div class="historyArea" *ngIf="showHistory">
         <div class="historyAreaTitle">
             <b>
                 Navigated

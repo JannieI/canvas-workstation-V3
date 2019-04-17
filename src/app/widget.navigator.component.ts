@@ -100,16 +100,9 @@ export class WidgetNavigatorComponent {
     relationshipRoles: string[] = [];
     visibleNumberChildren: number = 12;
 
-    // Form dimensions
-    graphAreaWidth: number = 900;
+    // Graph dimensions
     graphHeight: number = 400;        // TODO - fill this into Spec
-    graphHeightOriginal: number = 400;        // TODO - fill this into Spec
     graphWidth: number = 400;         // TODO - fill this into Spec
-    graphWidthOriginal: number = 400;         // TODO - fill this into Spec
-    historyAreaWidth: number = 170;
-    navigatorWidth: number = 1360;
-    networkAreaWidth: number = 170;
-    totalNavigatorWidth: number = 1000;
 
     // Form layout and elements
     graphNote: string = 'Optional Additional information';
@@ -162,10 +155,6 @@ export class WidgetNavigatorComponent {
         // if (astring === anumber) {
         //     console.log('Equal')
         // };
-
-         // The Total width is that of the two panels, plus the svg, plus some scrolling space
-        this.totalNavigatorWidth = this.networkAreaWidth + this.historyAreaWidth + 22
-            + (this.graphWidth * 1.2);
 
         // Populate networks - TODO make from DB
         let networksNew: NavigatorNetwork = {id: 1, name: "WOWEB", description: "WOWEB", userPermissions: null, groupPermissions: null, isSelected: true};
@@ -1395,7 +1384,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.showNetwork = true;
 
     }
-    
+
     nav2WalkInPath(
         parent: string, 
         nodeName: string, 
