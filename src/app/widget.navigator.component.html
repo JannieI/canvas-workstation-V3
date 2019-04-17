@@ -121,10 +121,13 @@ dimensions are set in app.html, and cannot be changed here. -->
             [style.background-color]="row.id==selectedNetworkID? 'white'  :  'rgb(235, 232, 232)'"
             [style.border]="row.id==selectedNetworkID? '2px solid black'  :  '1px solid gray'"
             [style.color]="row.id==selectedNetworkID? 'black'  :  'darkgray'"
-            (click)="clickNetworkSummary(i, row.id)"
             >
-                {{ row.name }}
-                {{ row.description}}
+                <div
+                    (click)="clickNetworkSummary(i, row.id)"
+                    >
+                    {{ row.name }}
+                    {{ row.description}}
+                </div>
         </div>
     </div>
 
