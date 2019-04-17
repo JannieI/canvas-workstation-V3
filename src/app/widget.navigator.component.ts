@@ -155,12 +155,6 @@ export class WidgetNavigatorComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
-        // let astring: string = '123';
-        // let anumber: number = 123;
-        // if (astring === anumber) {
-        //     console.log('Equal')
-        // };
-
         // Populate networks - TODO make from DB
         let networksNew: Datasource = JSON.parse(JSON.stringify(this.datasourceTemplate));
         networksNew.id = 1;
@@ -168,12 +162,12 @@ export class WidgetNavigatorComponent {
         networksNew.description = "Companies, Subsidiaries, Directors";
         this.networks.push(networksNew);
  
-        networksNew: Datasource = JSON.parse(JSON.stringify(this.datasourceTemplate));
+        networksNew = JSON.parse(JSON.stringify(this.datasourceTemplate));
         networksNew.id = 2;
         networksNew.name = "Industry-Company";
         networksNew.description = "Industry-Company-Subsidiary";
         
-        networksNew: Datasource = JSON.parse(JSON.stringify(this.datasourceTemplate));
+        networksNew = JSON.parse(JSON.stringify(this.datasourceTemplate));
         this.networks.push(networksNew);
         networksNew.id = 3;
         networksNew.name = "Company-Contacts";
@@ -1382,6 +1376,14 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseNetworks', '@Start');
 
         this.showNetwork = false;
+
+    }
+
+    clickShowHistory() {
+        // Open Navigated History popup
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickShowHistory', '@Start');
+
+        this.showHistory = true;
 
     }
 
