@@ -168,6 +168,81 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickMenuShowNetworks() {
+        // Clicked Menu to open form on which to select a new network
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowNetworks', '@Start');
+
+        this.showNetwork = true;
+    }
+
+    clickMenuShowHistory() {
+        // Click the menu to open Navigated History popup
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowHistory', '@Start');
+
+        this.showHistory = true;
+    }
+
+    clickMenuShowGraphProperties() {
+        // Clicked Menu to open popup to edit graph properties like title
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphProperties', '@Start');
+
+        this.showGraphProperties = true;
+    }
+
+    clickMenuShowGraphNotes() {
+        // Clicked the Menu to show popup to edit notes at bottom of graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphNotes', '@Start');
+
+        this.showGraphNotes = true;
+    }
+
+    clickMenuShowGraphHelp() {
+        // Clicked Menu to show popup with help information
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphHelp', '@Start');
+
+        this.showGraphHelp = true;
+    }
+
+    clickMenuClearHistory() {
+        // Clear history for the current Network
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuClearHistory', '@Start');
+
+        this.history = this.history.filter(h => h.networkID != this.selectedNetworkID);
+        this.historyAll = this.historyAll.filter(h => h.networkID != this.selectedNetworkID);
+    }
+
+    clickMenuExportGraph() {
+        // Export the current graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuExportGraph', '@Start');
+
+        let fileName: string = 'Nav Network'
+        let newW: Widget = JSON.parse(JSON.stringify(this.selectedWidget));
+        newW.dataFiltered = [];
+        var obj = JSON.stringify(newW);  
+
+        var a = document.createElement('a');
+        a.setAttribute('href', 'data:text/plain;charset=utf-u, '+encodeURIComponent(JSON.stringify(obj)));
+        a.setAttribute('download', fileName);
+        a.click()
+
+    }
+
+    clickCloseNetworksPopup() {
+        // Close network popup
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseNetworksPopup', '@Start');
+
+        this.showNetwork = false;
+
+    }
+
+    clickCloseHistory() {
+        // Close Navigated History popup
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseHistory', '@Start');
+
+        this.showHistory = false;
+
+    }
+
     clickNetwork(index: number, networkID: number) {
         // Clicked a network
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetwork', '@Start');
@@ -822,42 +897,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    clickMenuShowNetworks() {
-        // Clicked Menu to open form on which to select a new network
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowNetworks', '@Start');
-
-        this.showNetwork = true;
-    }
-
-    clickMenuShowHistory() {
-        // Click the menu to open Navigated History popup
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowHistory', '@Start');
-
-        this.showHistory = true;
-    }
-
-    clickMenuShowGraphProperties() {
-        // Clicked Menu to open popup to edit graph properties like title
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphProperties', '@Start');
-
-        this.showGraphProperties = true;
-    }
-
-    clickCloseNetworks() {
-        // Close network popup
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseNetworks', '@Start');
-
-        this.showNetwork = false;
-
-    }
-
-    clickCloseHistory() {
-        // Close Navigated History popup
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseHistory', '@Start');
-
-        this.showHistory = false;
-
-    }
 
     nav2WalkInPath(
         parent: string, 
@@ -1348,13 +1387,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    clickMenuGraphNotes() {
-        // Show popup to edit notes at bottom of graph
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuGraphNotes', '@Start');
-
-        this.showGraphNotes = true;
-    }
-
     clickCloseGraphNotes() {
         // Close popup to edit notes at bottom of graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseGraphNotes', '@Start');
@@ -1367,38 +1399,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseHelp', '@Start');
 
         this.showGraphHelp = false;
-    }
-
-
-    clickMenuGraphHelp() {
-        // Show popup with help information
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuGraphHelp', '@Start');
-
-        this.showGraphHelp = true;
-    }
-
-    clickMenuClearHistory() {
-        // Clear history for the current Network
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuClearHistory', '@Start');
-
-        this.history = this.history.filter(h => h.networkID != this.selectedNetworkID);
-        this.historyAll = this.historyAll.filter(h => h.networkID != this.selectedNetworkID);
-    }
-
-    clickMenuExportGraph() {
-        // Export the current graph
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuExportGraph', '@Start');
-
-        let fileName: string = 'Nav Network'
-        let newW: Widget = JSON.parse(JSON.stringify(this.selectedWidget));
-        newW.dataFiltered = [];
-        var obj = JSON.stringify(newW);  
-
-        var a = document.createElement('a');
-        a.setAttribute('href', 'data:text/plain;charset=utf-u, '+encodeURIComponent(JSON.stringify(obj)));
-        a.setAttribute('download', fileName);
-        a.click()
-
     }
 
     changeParentFilterField() {
