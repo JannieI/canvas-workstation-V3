@@ -1270,14 +1270,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         });
     }
 
-    clickAddNetworkClose() {
-        // Close AddNetwork without adding
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickAddNetworkClose', '@Start');
-
-        this.showNetworkAdd = false;
-        
-    }
-
     dblclickDeleteHistory(index: number, historyID: number) {
         // Delete selected history row.  If current, move to first
         this.globalFunctionService.printToConsole(this.constructor.name, 'dblclickDeleteHistory', '@Start');
