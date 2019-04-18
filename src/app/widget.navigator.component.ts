@@ -55,17 +55,7 @@ export class WidgetNavigatorComponent {
     dummyData: any[] = [];
     networks: Datasource[] = [];
     networkGraph: Array<string[]> = [];
-    networkGraph2: {
-        id: number;
-        networkID: number;
-        leftNodeID: number;
-        leftNodeName: string;               // Left node, ie Lea (monther)
-        relationshipLeftToRight: string;    // Mother
-        relationshipRightToLeft: string;    // Daughter
-        rightNodeID: number;                // Right node, ie Jessie (daughter)
-        rightNodeName: string;
-        relationshipProperty: string;       // Adopted
-    }[] = [];
+    networkGraph2: NavigatorNetwork[] = [];
     nodeTypeFields: NavigatorNodeTypeFields[] = [];     // Property Fields per NodeType
     nodeProperties: NavigatorNodeProperties[] = [];     // Properties per node for fields above
     parentRelatedChildren: NavigatorParentRelatedChild[] = [];  // Parents and related children
@@ -583,87 +573,88 @@ export class WidgetNavigatorComponent {
         console.log('xx Row 5', this.networkGraph.filter(row => row[1] == 'Company') )
         console.log('xx networkGraph Cell [9,0] = A', this.networkGraph[9][0])
 
-        // Build the Array for the network - Nodes, properties, proximity / relationships
-        this.networkGraph2 = [];
-        this.networkGraph2.push(
-            {
-                id: 1,
-                networkID: 1,
-                leftNodeID: 1,
-                leftNodeName: "A",
-                relationshipLeftToRight: "Subsidiary",
-                relationshipRightToLeft: "Owned By",
-                rightNodeID: 3,
-                rightNodeName: "C",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 2,
-                networkID: 1,
-                leftNodeID: 1,
-                leftNodeName: "A",
-                relationshipLeftToRight: "Director",
-                relationshipRightToLeft: "Director Of",
-                rightNodeID: 5,
-                rightNodeName: "x",
-                relationshipProperty: "Executive"
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 3,
-                networkID: 1,
-                leftNodeID: 3,
-                leftNodeName: "C",
-                relationshipLeftToRight: "Director",
-                relationshipRightToLeft: "Director Of",
-                rightNodeID: 7,
-                rightNodeName: "z",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 4,
-                networkID: 1,
-                leftNodeID: 3,
-                leftNodeName: "C",
-                relationshipLeftToRight: "Subsidiary",
-                relationshipRightToLeft: "Owned By",
-                rightNodeID: 4,
-                rightNodeName: "D",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 5,
-                networkID: 1,
-                leftNodeID: 4,
-                leftNodeName: "D",
-                relationshipLeftToRight: "Director",
-                relationshipRightToLeft: "Director Of",
-                rightNodeID: 8,
-                rightNodeName: "a",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 6,
-                networkID: 1,
-                leftNodeID: 4,
-                leftNodeName: "D",
-                relationshipLeftToRight: "Director",
-                relationshipRightToLeft: "Director Of",
-                rightNodeID: 6,
-                rightNodeName: "y",
-                relationshipProperty: ""
-            }
-        );
-
+        if (dummyData === '') {
+            // Build the Array for the network - Nodes, properties, proximity / relationships
+            this.networkGraph2 = [];
+            this.networkGraph2.push(
+                {
+                    id: 1,
+                    networkID: 1,
+                    leftNodeID: 1,
+                    leftNodeName: "A",
+                    relationshipLeftToRight: "Subsidiary",
+                    relationshipRightToLeft: "Owned By",
+                    rightNodeID: 3,
+                    rightNodeName: "C",
+                    relationshipProperty: ""
+                }
+            );
+            this.networkGraph2.push(
+                {
+                    id: 2,
+                    networkID: 1,
+                    leftNodeID: 1,
+                    leftNodeName: "A",
+                    relationshipLeftToRight: "Director",
+                    relationshipRightToLeft: "Director Of",
+                    rightNodeID: 5,
+                    rightNodeName: "x",
+                    relationshipProperty: "Executive"
+                }
+            );
+            this.networkGraph2.push(
+                {
+                    id: 3,
+                    networkID: 1,
+                    leftNodeID: 3,
+                    leftNodeName: "C",
+                    relationshipLeftToRight: "Director",
+                    relationshipRightToLeft: "Director Of",
+                    rightNodeID: 7,
+                    rightNodeName: "z",
+                    relationshipProperty: ""
+                }
+            );
+            this.networkGraph2.push(
+                {
+                    id: 4,
+                    networkID: 1,
+                    leftNodeID: 3,
+                    leftNodeName: "C",
+                    relationshipLeftToRight: "Subsidiary",
+                    relationshipRightToLeft: "Owned By",
+                    rightNodeID: 4,
+                    rightNodeName: "D",
+                    relationshipProperty: ""
+                }
+            );
+            this.networkGraph2.push(
+                {
+                    id: 5,
+                    networkID: 1,
+                    leftNodeID: 4,
+                    leftNodeName: "D",
+                    relationshipLeftToRight: "Director",
+                    relationshipRightToLeft: "Director Of",
+                    rightNodeID: 8,
+                    rightNodeName: "a",
+                    relationshipProperty: ""
+                }
+            );
+            this.networkGraph2.push(
+                {
+                    id: 6,
+                    networkID: 1,
+                    leftNodeID: 4,
+                    leftNodeName: "D",
+                    relationshipLeftToRight: "Director",
+                    relationshipRightToLeft: "Director Of",
+                    rightNodeID: 6,
+                    rightNodeName: "y",
+                    relationshipProperty: ""
+                }
+            );
+        };
 
 
         // Deep copy Local W
@@ -1156,17 +1147,36 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Show a summary of the network
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkSummary', '@Start');
 
+        // Find unique Nodes
+        let leftNodes: string[] = this.networkGraph2.map(x => x.leftNodeName);
+        let rightNodes: string[] = this.networkGraph2.map(x => x.rightNodeName);
+        let uniqueNodes: string[] = leftNodes.concat(rightNodes);
+        uniqueNodes = Array.from(new Set(uniqueNodes));
+
+        // Count relationships ... LATER
+        let uniqueNodesWithCount: {nodeName: string; nodeCount: number}[] = [];
+        for (var i = 0; i < uniqueNodes.length; i++) {
+
+        }
         // Set data
-        this.graphData = [];
-        this.graphData.push(
-            { "id": 1,
-             "name": this.selectedParentNode
+        if (uniqueNodes.length > 0) {
+            this.graphData = [];
+            this.graphData.push(
+                { "id": 1,
+                 "name": uniqueNodes[0]
+                });
+    
+        }
+
+        // Note: from 1
+        for (var i = 1; i < uniqueNodes.length; i++) {
+
+            this.graphData.push({
+                id: i + 1,
+                name: uniqueNodes[i],
+                parent: 1
             });
-        this.graphData.push({
-            id: 2,
-            name: "Companies (11 000)",
-            parent: 1
-        });
+        };
         this.graphData.push({
             id: 3,
             name: "Directors",
