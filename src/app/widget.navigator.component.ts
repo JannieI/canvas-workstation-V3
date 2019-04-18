@@ -1810,12 +1810,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    clickNetworkAdd() {
-        // Add Newtork
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkAdd', '@Start');
-
-    }
-
     changeChildFilterField() {
         // Change Child Filter Field
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeChildFilterField', '@Start');
