@@ -1704,12 +1704,15 @@ export class CanvasHttpResponse {
 }
 
 export class NavigatorNetwork {
-    id: number;
-    name: string;
-    description: string;
-    userPermissions: string[];
-    groupPermissions: string[];
-    isSelected: boolean;
+        id: number;                         // Unique record ID
+        networkID: number;                  // FK to Network
+        leftNodeID: number;                 // FK of left Node to Node Property table
+        leftNodeName: string;               // Name of left Node
+        relationshipLeftToRight: string;    // ie Director (Left = Absa, Right = Koos)
+        relationshipRightToLeft: string;    // ie Director-Of (Right = Koos, Left = Absa)
+        rightNodeID: number;                // FK of right Node to Node Property table
+        rightNodeName: string;              // Name of right Node
+        relationshipProperty: string;       // Property of the relationship, ie Executive / Non-Executive
 }
 
 export class NavigatorParentRelatedChild {
