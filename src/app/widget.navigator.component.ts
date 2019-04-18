@@ -182,13 +182,6 @@ export class WidgetNavigatorComponent {
         this.showHistory = true;
     }
 
-    clickMenuShowGraphProperties() {
-        // Clicked Menu to open popup to edit graph properties like title
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphProperties', '@Start');
-
-        this.showGraphProperties = true;
-    }
-
     clickMenuShowGraphNotes() {
         // Clicked the Menu to show popup to edit notes at bottom of graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphNotes', '@Start');
@@ -235,12 +228,19 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickCloseHistory() {
+    clickCloseHistoryPopup() {
         // Close Navigated History popup
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseHistory', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseHistoryPopup', '@Start');
 
         this.showHistory = false;
 
+    }
+
+    clickCloseGraphPropertiesPopup() {
+        // Close popup for graph properties
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseGraphPropertiesPopup', '@Start');
+
+        this.showGraphProperties = true;
     }
 
     clickNetwork(index: number, networkID: number) {
