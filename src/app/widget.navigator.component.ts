@@ -1164,14 +1164,15 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         let rightNodeTypes: string[] = this.networkGraph2.map(x => x.rightNodeType);
         let uniqueNodeTypes: string[] = leftNodeTypes.concat(rightNodeTypes);
         uniqueNodeTypes = Array.from(new Set(uniqueNodeTypes));
-        console.log('xx uniqueNodeTypes', leftNodeTypes, rightNodeTypes, uniqueNodeTypes)
+        
         // Count relationships
         let nodeCount: number = -1;
         let uniqueNodesWithCount: {nodeType: string; nodeCount: number}[] = [];
         for (var i = 0; i < uniqueNodeTypes.length; i++) {
-            nodeCount = this.networkGraph2.filter(x => x.leftNodeName == uniqueNodeTypes[i]).length;
+            nodeCount = this.networkGraph2.filter(x => x.leftNodeType == uniqueNodeTypes[i]).length;
+            console.log('xx nodeCount', nodeCount)
             nodeCount = nodeCount + this.networkGraph2
-                .filter(x => x.rightNodeName == uniqueNodeTypes[i]).length;
+                .filter(x => x.rightNodeType == uniqueNodeTypes[i]).length;
             uniqueNodesWithCount.push(
                 {
                     nodeType: uniqueNodeTypes[i],
@@ -1190,7 +1191,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
             this.graphData.push(
                 {
-                    id: i + 1,
+                    id: i + 2,
                     name: uniqueNodesWithCount[i].nodeType  + ' ('
                     + uniqueNodesWithCount[i].nodeCount.toString() + ')',
                     parent: 1
