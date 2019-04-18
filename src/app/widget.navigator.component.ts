@@ -581,10 +581,12 @@ export class WidgetNavigatorComponent {
                     id: 1,
                     networkID: 1,
                     leftNodeID: 1,
+                    leftNodeType: "Company",
                     leftNodeName: "A",
                     relationshipLeftToRight: "Subsidiary",
                     relationshipRightToLeft: "Owned By",
                     rightNodeID: 3,
+                    rightNodeType: "Company",
                     rightNodeName: "C",
                     relationshipProperty: ""
                 }
@@ -594,10 +596,12 @@ export class WidgetNavigatorComponent {
                     id: 2,
                     networkID: 1,
                     leftNodeID: 1,
+                    leftNodeType: "Company",
                     leftNodeName: "A",
                     relationshipLeftToRight: "Director",
                     relationshipRightToLeft: "Director Of",
                     rightNodeID: 5,
+                    rightNodeType: "Person",
                     rightNodeName: "x",
                     relationshipProperty: "Executive"
                 }
@@ -607,10 +611,12 @@ export class WidgetNavigatorComponent {
                     id: 3,
                     networkID: 1,
                     leftNodeID: 3,
+                    leftNodeType: "Company",
                     leftNodeName: "C",
                     relationshipLeftToRight: "Director",
                     relationshipRightToLeft: "Director Of",
                     rightNodeID: 7,
+                    rightNodeType: "Person",
                     rightNodeName: "z",
                     relationshipProperty: ""
                 }
@@ -620,10 +626,12 @@ export class WidgetNavigatorComponent {
                     id: 4,
                     networkID: 1,
                     leftNodeID: 3,
+                    leftNodeType: "Company",
                     leftNodeName: "C",
                     relationshipLeftToRight: "Subsidiary",
                     relationshipRightToLeft: "Owned By",
                     rightNodeID: 4,
+                    rightNodeType: "Company",
                     rightNodeName: "D",
                     relationshipProperty: ""
                 }
@@ -633,10 +641,12 @@ export class WidgetNavigatorComponent {
                     id: 5,
                     networkID: 1,
                     leftNodeID: 4,
+                    leftNodeType: "Company",
                     leftNodeName: "D",
                     relationshipLeftToRight: "Director",
                     relationshipRightToLeft: "Director Of",
                     rightNodeID: 8,
+                    rightNodeType: "Person",
                     rightNodeName: "a",
                     relationshipProperty: ""
                 }
@@ -646,10 +656,12 @@ export class WidgetNavigatorComponent {
                     id: 6,
                     networkID: 1,
                     leftNodeID: 4,
+                    leftNodeType: "Company",
                     leftNodeName: "D",
                     relationshipLeftToRight: "Director",
                     relationshipRightToLeft: "Director Of",
                     rightNodeID: 6,
+                    rightNodeType: "Person",
                     rightNodeName: "y",
                     relationshipProperty: ""
                 }
@@ -1168,23 +1180,18 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         };
         console.log('xx uniqueNodesWithCount', uniqueNodesWithCount)
         // Set data
-        if (uniqueNodesWithCount.length > 0) {
-            this.graphData = [];
-            this.graphData.push(
-                { 
-                    "id": 1,
-                    "name": uniqueNodesWithCount[0].nodeType + ' ('
-                        + uniqueNodesWithCount[0].nodeCount.toString() + ')'
-                });
-        };
-
-        // Note: Start from 1
-        for (var i = 1; i < uniqueNodeTypes.length; i++) {
+        this.graphData = [];
+        this.graphData.push(
+            { 
+                "id": 1,
+                "name": "Summary"
+            });
+        for (var i = 0; i < uniqueNodeTypes.length; i++) {
 
             this.graphData.push(
                 {
                     id: i + 1,
-                    name: uniqueNodesWithCount[i].nodeName  + ' ('
+                    name: uniqueNodesWithCount[i].nodeType  + ' ('
                     + uniqueNodesWithCount[i].nodeCount.toString() + ')',
                     parent: 1
                 }
