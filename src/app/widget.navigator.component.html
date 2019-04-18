@@ -6,184 +6,7 @@ dimensions are set in app.html, and cannot be changed here. -->
     >
 
 
-
-    <!-- Popup forms -->
-
-    <!-- Graph Properties -->
-    <div class="graphProperties" *ngIf="showGraphProperties">
-        <h5>Graph Properties</h5>
-        <div style="margin: 18px;">
-            New Name:
-            <input type="text"
-                title="Add new name"
-                placeholder="New Name"
-                >
-        </div>
-
-        <div>
-            <button class="btn btn-link"
-                style="margin-left: 28px;"
-                (click)="showGraphProperties=false">
-                Close
-            </button>
-
-        </div>
-    </div>
-
-    <!-- Graph Notes -->
-    <div class="graphNotesUpdate" *ngIf="showGraphNotes">
-        <h5>Graph Notes</h5>
-        <div style="margin: 18px;">
-            Note:
-            <input [(ngModel)]="graphNotes"
-                type="text"
-                title="Add new name"
-                placeholder="New Name"
-                >
-        </div>
-        <div class="networkAreaClose"
-            (click)="clickCloseGraphNotes()"
-            >
-            <b>X</b>
-        </div>
-
-    </div>
-
-    <!-- Graph Help -->
-    <div class="helpForm" *ngIf="showGraphHelp">
-        <div class="helpFormHeader">
-            <span>
-                Graph Help
-            </span>
-            <span class="helpFormClose"
-                (click)="clickCloseHelp()"
-                >
-                <b>X</b>
-            </span>
-        </div>
-        <div class="helpFormText">
-            <div style="margin: 18px;">
-                This widget is used to navigate a network using tree graphs.
-                <br>
-                Select the starting node(s) at the top: click the dropdown to select the node 
-                type, and then a specific node (or 'All').  For example, select Companies as 
-                the node type, and Absa as the specific node.  It is possible to filter the list
-                of nodes in the dropdown by clicking the filter next to it, to say only show the
-                listed companies.
-                <br>
-                Select the relationship(s) to show, for example Directors.  The relationships can 
-                be filtered on properties by click the filter icon next to it, to show for example
-                only Executive Directors.
-            </div>
-        </div>
-
-    </div>
-    
-
-
-    
-    <!-- NETWORKS AREA -->
-    <div class="networkArea" *ngIf="showNetwork">
-        <div class="networkAreaTitle">
-            <b>Networks</b>
-            <clr-signpost>
-                <clr-icon shape="info-circle" style="margin-top: -4px;"
-                    clrSignpostTrigger>
-                </clr-icon>
-                <clr-signpost-content *clrIfOpen
-                    [clrPosition]="'bottom-middle'">
-                    <h5 style="margin-top: 0; color:gray;">
-                        Help
-                    </h5>
-                    <p style="margin-top: 0; color:gray; text-align: left;">
-                        A network is a pre-defined web of nodes and relationships.  For example,
-                        it can be the relationships between companies, subsidaries,
-                        directors (executive and non-executive), shareholders, etc.
-                        A company can create more than one network for their data.
-                    </p>
-                </clr-signpost-content>
-            </clr-signpost>
-            <div class="networkAreaClose"
-                (click)="clickCloseNetworks()"
-                >
-                <b>X</b>
-            </div>
-        </div>
-
-        Select the name of a network to graph by clicking it.  A summary of the network will be
-        shown, after which you can select specific nodes and relationships to browse.
-        <div class="networkAreaBlock" *ngFor="let row of networks; let i = index"
-            [style.background-color]="row.id==selectedNetworkID? 'white'  :  'rgb(235, 232, 232)'"
-            [style.border]="row.id==selectedNetworkID? '2px solid black'  :  '1px solid gray'"
-            [style.color]="row.id==selectedNetworkID? 'black'  :  'darkgray'"
-            >
-                <div
-                    (click)="clickNetwork(i, row.id)"
-                    >
-                    {{ row.name }}
-                    {{ row.description}}
-                </div>
-        </div>
-    </div>
-
-
-
-
-
-    <!-- HISTORY AREA -->
-    <div class="historyArea" *ngIf="showHistory">
-        <div class="historyAreaTitle">
-            <b>
-                Navigated
-            </b>
-            <clr-signpost>
-                <clr-icon shape="info-circle" style="margin-top: -4px;"
-                    clrSignpostTrigger>
-                </clr-icon>
-                <clr-signpost-content *clrIfOpen
-                    [clrPosition]="'bottom-middle'">
-                    <h5 style="margin-top: 0; color:gray;">
-                        Help
-                    </h5>
-                    <p style="margin-top: 0; color:gray; text-align: left;">
-                        A new History row is added with each exploration.  Click on a previous
-                        history record to revisit its graph.
-                    </p>
-                </clr-signpost-content>
-            </clr-signpost>
-            <div class="historyAreaClose"
-                (click)="clickCloseHistory()"
-                >
-                <b>X</b>
-            </div>
-        </div>
-
-        Select a previously shown graph by clicking it.  Double click the trash icon to 
-        delete an item from the Navigated list.
-
-        <div *ngIf="history?.length == 0">
-            <br>
-            No previous history to show
-        </div>
-        <div class="historyAreaBlock" *ngFor="let row of history; let i = index"
-            [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
-            [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
-            [style.color]="row.isSelected? 'black'  :  'darkgray'"
-            (click)="clickHistory(i, row.id)"
-            >
-            <clr-icon (dblclick)="dblclickDeleteHistory(i, row.id)"
-                shape="trash"
-                size="12"
-                >
-            </clr-icon>
-            {{ row.text }}
-        </div>
-    </div>
-
-
-
-
-    <!-- GRAPH Area Header -->
+    <!-- GRAPH AREA HEADER -->
     <div class="graphHeaderContainer">
         <div class="graphHeaderText">
             For Node
@@ -321,7 +144,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <button
                     type="button"
                     clrDropdownItem
-                    (click)="clickSelectNetwork()"
+                    (click)="clickMenuShowNetworks()"
                     title="Select a new Network to browse"
                     >
                     Select Network
@@ -329,7 +152,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <button
                     type="button"
                     clrDropdownItem
-                    (click)="clickShowHistory()"
+                    (click)="clickMenuShowHistory()"
                     title="Show previously navigated networks"
                     >
                     Previously Navigated
@@ -337,7 +160,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <button
                     type="button"
                     clrDropdownItem
-                    (click)="clickMenuGraphProperties()"
+                    (click)="clickMenuShowGraphProperties()"
                     title="Edit properties like the title, notes, etc"
                     >
                     Graph Properties
@@ -773,7 +596,7 @@ dimensions are set in app.html, and cannot be changed here. -->
 
 
 
-    <!-- GRAPH Area -->
+    <!-- GRAPH AREA -->
     <div class="graphArea"
         [style.overflow]="'scroll'"
         >
@@ -789,4 +612,173 @@ dimensions are set in app.html, and cannot be changed here. -->
             </div>
         </div>
     </div>
+
+
+
+    <!-- POPUP FORMS -->
+
+    <!-- Show list of Networks -->
+    <div class="networkArea" *ngIf="showNetwork">
+        <div class="networkAreaTitle">
+            <b>Networks</b>
+            <clr-signpost>
+                <clr-icon shape="info-circle" style="margin-top: -4px;"
+                    clrSignpostTrigger>
+                </clr-icon>
+                <clr-signpost-content *clrIfOpen
+                    [clrPosition]="'bottom-middle'">
+                    <h5 style="margin-top: 0; color:gray;">
+                        Help
+                    </h5>
+                    <p style="margin-top: 0; color:gray; text-align: left;">
+                        A network is a pre-defined web of nodes and relationships.  For example,
+                        it can be the relationships between companies, subsidaries,
+                        directors (executive and non-executive), shareholders, etc.
+                        A company can create more than one network for their data.
+                    </p>
+                </clr-signpost-content>
+            </clr-signpost>
+            <div class="networkAreaClose"
+                (click)="clickCloseNetworks()"
+                >
+                <b>X</b>
+            </div>
+        </div>
+
+        Select the name of a network to graph by clicking it.  A summary of the network will be
+        shown, after which you can select specific nodes and relationships to browse.
+        <div class="networkAreaBlock" *ngFor="let row of networks; let i = index"
+            [style.background-color]="row.id==selectedNetworkID? 'white'  :  'rgb(235, 232, 232)'"
+            [style.border]="row.id==selectedNetworkID? '2px solid black'  :  '1px solid gray'"
+            [style.color]="row.id==selectedNetworkID? 'black'  :  'darkgray'"
+            >
+                <div
+                    (click)="clickNetwork(i, row.id)"
+                    >
+                    {{ row.name }}
+                    {{ row.description}}
+                </div>
+        </div>
+    </div>
+
+    <!-- Show list of History / Navigated -->
+    <div class="historyArea" *ngIf="showHistory">
+        <div class="historyAreaTitle">
+            <b>
+                Navigated
+            </b>
+            <clr-signpost>
+                <clr-icon shape="info-circle" style="margin-top: -4px;"
+                    clrSignpostTrigger>
+                </clr-icon>
+                <clr-signpost-content *clrIfOpen
+                    [clrPosition]="'bottom-middle'">
+                    <h5 style="margin-top: 0; color:gray;">
+                        Help
+                    </h5>
+                    <p style="margin-top: 0; color:gray; text-align: left;">
+                        A new History row is added with each exploration.  Click on a previous
+                        history record to revisit its graph.
+                    </p>
+                </clr-signpost-content>
+            </clr-signpost>
+            <div class="historyAreaClose"
+                (click)="clickCloseHistory()"
+                >
+                <b>X</b>
+            </div>
+        </div>
+
+        Select a previously shown graph by clicking it.  Double click the trash icon to 
+        delete an item from the Navigated list.
+
+        <div *ngIf="history?.length == 0">
+            <br>
+            No previous history to show
+        </div>
+        <div class="historyAreaBlock" *ngFor="let row of history; let i = index"
+            [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
+            [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
+            [style.color]="row.isSelected? 'black'  :  'darkgray'"
+            (click)="clickHistory(i, row.id)"
+            >
+            <clr-icon (dblclick)="dblclickDeleteHistory(i, row.id)"
+                shape="trash"
+                size="12"
+                >
+            </clr-icon>
+            {{ row.text }}
+        </div>
+    </div>
+
+    <!-- Graph Properties -->
+    <div class="graphProperties" *ngIf="showGraphProperties">
+        <h5>Graph Properties</h5>
+        <div style="margin: 18px;">
+            New Name:
+            <input type="text"
+                title="Add new name"
+                placeholder="New Name"
+                >
+        </div>
+
+        <div>
+            <button class="btn btn-link"
+                style="margin-left: 28px;"
+                (click)="showGraphProperties=false">
+                Close
+            </button>
+
+        </div>
+    </div>
+
+    <!-- Graph Notes -->
+    <div class="graphNotesUpdate" *ngIf="showGraphNotes">
+        <h5>Graph Notes</h5>
+        <div style="margin: 18px;">
+            Note:
+            <input [(ngModel)]="graphNotes"
+                type="text"
+                title="Add new name"
+                placeholder="New Name"
+                >
+        </div>
+        <div class="networkAreaClose"
+            (click)="clickCloseGraphNotes()"
+            >
+            <b>X</b>
+        </div>
+
+    </div>
+
+    <!-- Graph Help -->
+    <div class="helpForm" *ngIf="showGraphHelp">
+        <div class="helpFormHeader">
+            <span>
+                Graph Help
+            </span>
+            <span class="helpFormClose"
+                (click)="clickCloseHelp()"
+                >
+                <b>X</b>
+            </span>
+        </div>
+        <div class="helpFormText">
+            <div style="margin: 18px;">
+                This widget is used to navigate a network using tree graphs.
+                <br>
+                Select the starting node(s) at the top: click the dropdown to select the node 
+                type, and then a specific node (or 'All').  For example, select Companies as 
+                the node type, and Absa as the specific node.  It is possible to filter the list
+                of nodes in the dropdown by clicking the filter next to it, to say only show the
+                listed companies.
+                <br>
+                Select the relationship(s) to show, for example Directors.  The relationships can 
+                be filtered on properties by click the filter icon next to it, to show for example
+                only Executive Directors.
+            </div>
+        </div>
+
+    </div>
+    
 </div>

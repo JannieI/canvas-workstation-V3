@@ -822,12 +822,25 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    clickSelectNetwork() {
-        // Select a new network
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickSelectNetwork', '@Start');
+    clickMenuShowNetworks() {
+        // Clicked Menu to open form on which to select a new network
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowNetworks', '@Start');
 
         this.showNetwork = true;
+    }
 
+    clickMenuShowHistory() {
+        // Click the menu to open Navigated History popup
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowHistory', '@Start');
+
+        this.showHistory = true;
+    }
+
+    clickMenuShowGraphProperties() {
+        // Clicked Menu to open popup to edit graph properties like title
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphProperties', '@Start');
+
+        this.showGraphProperties = true;
     }
 
     clickCloseNetworks() {
@@ -835,14 +848,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseNetworks', '@Start');
 
         this.showNetwork = false;
-
-    }
-
-    clickShowHistory() {
-        // Open Navigated History popup
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickShowHistory', '@Start');
-
-        this.showHistory = true;
 
     }
 
@@ -1343,13 +1348,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    clickMenuGraphProperties() {
-        // Menu option to edit graph properties like title
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuGraphProperties', '@Start');
-
-        this.showGraphProperties = true;
-    }
-
     clickMenuGraphNotes() {
         // Show popup to edit notes at bottom of graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuGraphNotes', '@Start');
@@ -1824,6 +1822,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeChildFilterField', '@Start');
 
     }
+
 
 
     // Temp dummy data for demo - must be done via DB
