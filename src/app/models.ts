@@ -1707,11 +1707,13 @@ export class NavigatorNetwork {
         id: number;                         // Unique record ID
         networkID: number;                  // FK to Network
         leftNodeID: number;                 // FK of left Node to Node Property table
-        leftNodeName: string;               // Name of left Node
+        leftNodeType: string;               // Type of left Node, ie Company
+        leftNodeName: string;               // Name of left Node, ie Absa
         relationshipLeftToRight: string;    // ie Director (Left = Absa, Right = Koos)
         relationshipRightToLeft: string;    // ie Director-Of (Right = Koos, Left = Absa)
         rightNodeID: number;                // FK of right Node to Node Property table
-        rightNodeName: string;              // Name of right Node
+        rightNodeType: string;              // Type of right Node, ie Person
+        rightNodeName: string;              // Name of right Node, ie Koos
         relationshipProperty: string;       // Property of the relationship, ie Executive / Non-Executive
 }
 

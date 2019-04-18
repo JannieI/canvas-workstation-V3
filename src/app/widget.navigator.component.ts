@@ -1152,7 +1152,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         let rightNodes: string[] = this.networkGraph2.map(x => x.rightNodeName);
         let uniqueNodes: string[] = leftNodes.concat(rightNodes);
         uniqueNodes = Array.from(new Set(uniqueNodes));
-
+        console.log('xx uniqueNodes', leftNodes, rightNodes, uniqueNodes)
         // Count relationships ... LATER
         let nodeCount: number = -1;
         let uniqueNodesWithCount: {nodeName: string; nodeCount: number}[] = [];
@@ -1160,20 +1160,21 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             nodeCount = this.networkGraph2.filter(x => x.leftNodeName == uniqueNodes[i]).length;
             nodeCount = nodeCount + this.networkGraph2
                 .filter(x => x.rightNodeName == uniqueNodes[i]).length;
-                uniqueNodesWithCount.push(
-                    {
-                        nodeName: uniqueNodes[i],
-                        nodeCount: nodeCount
-                    });
+            uniqueNodesWithCount.push(
+                {
+                    nodeName: uniqueNodes[i],
+                    nodeCount: nodeCount
+                });
         };
+        console.log('xx uniqueNodesWithCount', uniqueNodesWithCount)
         // Set data
         if (uniqueNodesWithCount.length > 0) {
             this.graphData = [];
             this.graphData.push(
                 { 
                     "id": 1,
-                    "name": uniqueNodesWithCount[0].nodeName 
-                        + uniqueNodesWithCount[0].nodeCount.toString()
+                    "name": uniqueNodesWithCount[0].nodeName + ' ('
+                        + uniqueNodesWithCount[0].nodeCount.toString() + ')'
                 });
         };
 
@@ -1183,8 +1184,8 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             this.graphData.push(
                 {
                     id: i + 1,
-                    name: uniqueNodesWithCount[0].nodeName 
-                    + uniqueNodesWithCount[0].nodeCount.toString(),
+                    name: uniqueNodesWithCount[i].nodeName  + ' ('
+                    + uniqueNodesWithCount[i].nodeCount.toString() + ')',
                     parent: 1
                 }
             );
