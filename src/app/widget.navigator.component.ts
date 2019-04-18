@@ -155,519 +155,8 @@ export class WidgetNavigatorComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
-        // Populate networks - TODO make from DB
-        let networksNew: Datasource = JSON.parse(JSON.stringify(this.datasourceTemplate));
-        networksNew.id = 1;
-        networksNew.name = "Company-Directors";
-        networksNew.description = "Companies, Subsidiaries, Directors";
-        this.networks.push(networksNew);
- 
-        networksNew = JSON.parse(JSON.stringify(this.datasourceTemplate));
-        networksNew.id = 2;
-        networksNew.name = "Industry-Company";
-        networksNew.description = "Industry-Company-Subsidiary";
-        
-        networksNew = JSON.parse(JSON.stringify(this.datasourceTemplate));
-        this.networks.push(networksNew);
-        networksNew.id = 3;
-        networksNew.name = "Company-Contacts";
-        networksNew.description = "Company-KeyContacts";
-        
-
-        // Testing
-        this.historyAll = [];
-
         // Populate persisted data - TODO via DB
-        let dummyData: string = '';
-        if (dummyData === '') {
-            let newParentRelatedChildren: NavigatorParentRelatedChild =
-                {
-                    id: 1,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Mr Matlare, Peter Bambatha',
-                    role: 'Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-                {
-                    id: 2,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Mr Quinn, Jason Patrick',
-                    role: 'Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-            {
-                id: 3,
-                networkID: 1,
-                parentNodeID: null,
-                parentNodeType: 'Company',
-                parentNode: 'Absa',
-                relationship: 'Shareholders',
-                childNodeType: 'Company',
-                childNode: 'Nedbank',
-                role: ''
-            }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-            {
-                id: 4,
-                networkID: 1,
-                parentNodeID: null,
-                parentNodeType: 'Company',
-                parentNode: 'Absa',
-                relationship: 'Shareholders',
-                childNodeType: 'Person',
-                childNode: 'John',
-                role: ''
-            }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-            {
-                id: 5,
-                networkID: 1,
-                parentNodeID: null,
-                parentNodeType: 'Person',
-                parentNode: 'Koos',
-                relationship: 'Director-Of',
-                childNodeType: 'Company',
-                childNode: 'PSG',
-                role: 'Listed'
-            }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-            {
-                id: 6,
-                networkID: 1,
-                parentNodeID: null,
-                parentNodeType: 'Person',
-                parentNode: 'Koos',
-                relationship: 'Director-Of',
-                childNodeType: 'Company',
-                childNode: 'AECI',
-                role: 'Non-Listed'
-            }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-            {
-                id: 7,
-                networkID: 1,
-                parentNodeID: null,
-                parentNodeType: 'Person',
-                parentNode: 'Koos',
-                relationship: 'Manager-Of',
-                childNodeType: 'Person',
-                childNode: 'Chris',
-                role: ''
-            }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-            {
-                id: 8,
-                networkID: 1,
-                parentNodeID: null,
-                parentNodeType: 'Person',
-                parentNode: 'Koos',
-                relationship: 'Manager-Of',
-                childNodeType: 'Person',
-                childNode: 'Anna',
-                role: ''
-            }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-                {
-                    id: 9,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Mr van Wyk, Rene',
-                    role: 'Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-                {
-                    id: 10,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Ms Abdool-Samad, Tasneem',
-                    role: 'Non-Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-                {
-                    id: 11,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Mr Beggs, Colin',
-                    role: 'Non-Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-                {
-                    id: 12,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Ms Cuba, Yolanda Zoleka',
-                    role: 'Non-Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-                {
-                    id: 13,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Mr Okomo-Okello, Francis',
-                    role: 'Non-Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-                {
-                    id: 14,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Mr Darko, Alex Boama',
-                    role: 'Non-Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-                {
-                    id: 15,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Mr Hodge, Daniel',
-                    role: 'Non-Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-                {
-                    id: 16,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Mr Husain, Mohamed Junaid',
-                    role: 'Non-Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-                {
-                    id: 17,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Ms Lucas-Bull, Wendy Elizabeth',  // Elizabeth
-                    role: 'Non-Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-                {
-                    id: 18,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Mr Merson, Mark',
-                    role: 'Non-Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-            newParentRelatedChildren =
-                {
-                    id: 19,
-                    networkID: 1,
-                    parentNodeID: null,
-                    parentNodeType: 'Company',
-                    parentNode: 'Absa',
-                    relationship: 'Directors',
-                    childNodeType: 'Person',
-                    childNode: 'Ms Naidoo, Dhanasagree',  //  (Daisy)
-                    role: 'Non-Executive'
-                }
-            this.parentRelatedChildren.push(newParentRelatedChildren);
-
-            let newNodeTypeFields: NavigatorNodeTypeFields =
-            {
-                id: 1,
-                nodeType: 'Company',
-                fields: ['Sector', 'Country', 'City']
-            }
-            this.nodeTypeFields.push(newNodeTypeFields);
-            newNodeTypeFields =
-            {
-                id: 2,
-                nodeType: 'Person',
-                fields: ['Age', 'Gender']
-            }
-            this.nodeTypeFields.push(newNodeTypeFields);
-
-            let newNodeProperties: NavigatorNodeProperties = {
-                id: 1,
-                sourceRecordID: 1,
-                nodeType: 'Company',
-                node: 'Absa',
-                sector: 'Bank',
-                country: 'South Africa',
-                city: 'Cape Town',
-                age: null,
-                gender: null
-            }
-            this.nodeProperties.push(newNodeProperties);
-            newNodeProperties = {
-                id: 2,
-                sourceRecordID: 2,
-                nodeType: 'Company',
-                node: 'Bidvest',
-                sector: 'Industrial',
-                country: 'South Africa',
-                city: 'Durban',
-                age: null,
-                gender: null
-            }
-            this.nodeProperties.push(newNodeProperties);
-            newNodeProperties = {
-                id: 3,
-                sourceRecordID: 3,
-                nodeType: 'Company',
-                node: 'AECI',
-                sector: 'Industrial',
-                country: 'Botswana',
-                city: 'Gabarone',
-                age: null,
-                gender: null
-            }
-            this.nodeProperties.push(newNodeProperties);
-            newNodeProperties = {
-                id: 4,
-                sourceRecordID: 12,
-                nodeType: 'Company',
-                node: 'Nedbank',
-                sector: 'Bank',
-                country: 'South Africa',
-                city: 'Durban',
-                age: null,
-                gender: null
-            }
-            this.nodeProperties.push(newNodeProperties);
-            newNodeProperties = {
-                id: 5,
-                sourceRecordID: 510,
-                nodeType: 'Company',
-                node: 'PSG',
-                sector: 'Financial',
-                country: 'South Africa',
-                city: 'Johannesburg',
-                age: null,
-                gender: null
-            }
-            this.nodeProperties.push(newNodeProperties);
-            newNodeProperties = {
-                id: 6,
-                sourceRecordID: 2,
-                nodeType: 'Person',
-                node: 'Koos',
-                sector: null,
-                country: null,
-                city: null,
-                age: 59,
-                gender: 'Male'
-            }
-            this.nodeProperties.push(newNodeProperties);
-            newNodeProperties = {
-                id: 7,
-                sourceRecordID: 2,
-                nodeType: 'Person',
-                node: 'Anna',
-                sector: null,
-                country: null,
-                city: null,
-                age: 44,
-                gender: 'Female'
-            }
-            this.nodeProperties.push(newNodeProperties);
-            newNodeProperties = {
-                id: 8,
-                sourceRecordID: 2,
-                nodeType: 'Person',
-                node: 'Chris',
-                sector: null,
-                country: null,
-                city: null,
-                age: 37,
-                gender: 'Male'
-            }
-            this.nodeProperties.push(newNodeProperties);
-
-            // Populate the watchList - TODO via DB
-            let watchListNew: NavigatorWatchList =
-                {
-                    id: 1,
-                    userID: 'JannieI',
-                    nodeType: 'Company',
-                    nodes: ['Absa', 'PSG']
-                };
-            this.watchList.push(watchListNew);
-        }
-
-
-        // Build the Array for the network - Nodes, properties, proximity / relationships
-        this.networkGraph = [];
-        this.networkGraph.push(Array("",  "",        "",        "",       "",        "",       "",         "",       "",       "A", "B", "C", "D", "x", "y", "z"));
-        this.networkGraph.push(Array("",  "",        "",        "",       "Company", "Person", "",         "",       "",       "",  "",  "",  "",  "",  "",  "" ));
-        this.networkGraph.push(Array("",  "",        "",        "",       "",        "",        "Company", "Person", "Person", "",  "",  "",  "",  "",  "",  "" ));
-        this.networkGraph.push(Array("",  "",        "",        "",       "",        "",        "Top 40",  "Male",   "Female", "",  "",  "",  "",  "",  "",  "" ));
-        this.networkGraph.push(Array("",  "Company", "",        "",       "",        "",        "",        "",       "",       "1", "1", "1", "1", "",  "",  "" ));
-        this.networkGraph.push(Array("",  "Person",  "",        "",       "",        "",        "",        "",       "",       "",  "",  "",  "",  "1", "1", "1"));
-        this.networkGraph.push(Array("",  "",        "Company", "Top 40", "",        "",        "",        "",       "",       "1", "",  "1", "",  "",  "",  "" ));
-        this.networkGraph.push(Array("",  "",        "Person",  "Male",   "",        "",        "",        "",       "",       "",  "",  "",  "",  "1", "1", "" ));
-        this.networkGraph.push(Array("",  "",        "Person",  "Female", "",        "",        "",        "",       "",       "",  "",  "",  "",  "",  "",  "1"));
-        this.networkGraph.push(Array("A", "",        "",        "",       "1",       "",        "1",       "",       "",       "",  "",  "1", "",  "1", "",  "" ));
-        this.networkGraph.push(Array("B", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "",  "",  "",  "2", "2"));
-        this.networkGraph.push(Array("C", "",        "",        "",       "1",       "",        "1",       "",       "",       "1", "",  "",  "1", "",  "",  "1"));
-        this.networkGraph.push(Array("D", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "1", "",  "1", "1", "" ));
-        this.networkGraph.push(Array("x", "",        "",        "",       "",        "1",       "",        "1",      "",       "1", "",  "",  "1", "",  "",  "" ));
-        this.networkGraph.push(Array("y", "",        "",        "",       "",        "1",       "",        "1",      "",       "",  "2", "",  "1", "",  "",  "" ));
-        this.networkGraph.push(Array("z", "",        "",        "",       "",        "1",       "",        "",       "1",      "",  "2", "1", "",  "",  "",  "" ));
-        console.log('xx Row 5', this.networkGraph.filter(row => row[1] == 'Company') )
-        console.log('xx networkGraph Cell [9,0] = A', this.networkGraph[9][0])
-
-        if (dummyData === '') {
-            // Build the Array for the network - Nodes, properties, proximity / relationships
-            this.networkGraph2 = [];
-            this.networkGraph2.push(
-                {
-                    id: 1,
-                    networkID: 1,
-                    leftNodeID: 1,
-                    leftNodeType: "Company",
-                    leftNodeName: "A",
-                    relationshipLeftToRight: "Subsidiary",
-                    relationshipRightToLeft: "Owned By",
-                    rightNodeID: 3,
-                    rightNodeType: "Company",
-                    rightNodeName: "C",
-                    relationshipProperty: ""
-                }
-            );
-            this.networkGraph2.push(
-                {
-                    id: 2,
-                    networkID: 1,
-                    leftNodeID: 1,
-                    leftNodeType: "Company",
-                    leftNodeName: "A",
-                    relationshipLeftToRight: "Director",
-                    relationshipRightToLeft: "Director Of",
-                    rightNodeID: 5,
-                    rightNodeType: "Person",
-                    rightNodeName: "x",
-                    relationshipProperty: "Executive"
-                }
-            );
-            this.networkGraph2.push(
-                {
-                    id: 3,
-                    networkID: 1,
-                    leftNodeID: 3,
-                    leftNodeType: "Company",
-                    leftNodeName: "C",
-                    relationshipLeftToRight: "Director",
-                    relationshipRightToLeft: "Director Of",
-                    rightNodeID: 7,
-                    rightNodeType: "Person",
-                    rightNodeName: "z",
-                    relationshipProperty: ""
-                }
-            );
-            this.networkGraph2.push(
-                {
-                    id: 4,
-                    networkID: 1,
-                    leftNodeID: 3,
-                    leftNodeType: "Company",
-                    leftNodeName: "C",
-                    relationshipLeftToRight: "Subsidiary",
-                    relationshipRightToLeft: "Owned By",
-                    rightNodeID: 4,
-                    rightNodeType: "Company",
-                    rightNodeName: "D",
-                    relationshipProperty: ""
-                }
-            );
-            this.networkGraph2.push(
-                {
-                    id: 5,
-                    networkID: 1,
-                    leftNodeID: 4,
-                    leftNodeType: "Company",
-                    leftNodeName: "D",
-                    relationshipLeftToRight: "Director",
-                    relationshipRightToLeft: "Director Of",
-                    rightNodeID: 8,
-                    rightNodeType: "Person",
-                    rightNodeName: "a",
-                    relationshipProperty: ""
-                }
-            );
-            this.networkGraph2.push(
-                {
-                    id: 6,
-                    networkID: 1,
-                    leftNodeID: 4,
-                    leftNodeType: "Company",
-                    leftNodeName: "D",
-                    relationshipLeftToRight: "Director",
-                    relationshipRightToLeft: "Director Of",
-                    rightNodeID: 6,
-                    rightNodeType: "Person",
-                    rightNodeName: "y",
-                    relationshipProperty: ""
-                }
-            );
-        };
-
+        this.tempCreateDummyData();
 
         // Deep copy Local W
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
@@ -677,12 +166,6 @@ export class WidgetNavigatorComponent {
             this.clickNetwork(0, this.networks[0].id);
         };
 
-
-    }
-
-    changeNetworkAdd(ev: any) {
-        // Clicked a network
-        this.globalFunctionService.printToConsole(this.constructor.name, 'changeNetworkAdd', '@Start');
     }
 
     clickNetwork(index: number, networkID: number) {
@@ -2319,56 +1802,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.showGraph();
     }
 
-    // Temp dummy data for demo
-    tempCreateDummyData() {
-
-        // Reset
-        if (this.selectedView === 'DefaultView') {
-            // No action
-        };
-        if (this.selectedView === 'CommonParentView') {
-            this.dummyData = [];
-            this.dummyData.push({ 
-                "id": 1,
-                "name": 'Common Parent'
-            });
-            this.dummyData.push({
-                id: 2,
-                name: 'Absa',
-                parent: 1
-            });    
-            this.dummyData.push({
-                id: 3,
-                name: 'Bidvest',
-                parent: 1
-            });
-            this.dummyData.push({
-                id: 4,
-                name: 'Sasol',
-                parent: 1
-            });
-            this.dummyData.push({
-                id: 5,
-                name: 'James Carr (Director)',
-                parent: 2
-            });
-            this.dummyData.push({
-                id: 6,
-                name: 'Helga Bush (Auditor)',
-                parent: 2
-            });
-
-        };
-        if (this.selectedView === 'CommonNodeView') {
-        };
-        if (this.selectedView === 'DistanceView') {
-        };
-        if (this.selectedView === 'NodeTypeView') {
-        };
-
-                    
-    }
-
     clickPageLeft() {
         // Move to the previous page of children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageLeft', '@Start');
@@ -2399,5 +1832,513 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeChildFilterField', '@Start');
 
     }
+
+
+    // Temp dummy data for demo - must be done via DB
+    tempCreateDummyData() {
+
+        // Populate networks - TODO make from DB
+        let networksNew: Datasource = JSON.parse(JSON.stringify(this.datasourceTemplate));
+        networksNew.id = 1;
+        networksNew.name = "Company-Directors";
+        networksNew.description = "Companies, Subsidiaries, Directors";
+        this.networks.push(networksNew);
+ 
+        networksNew = JSON.parse(JSON.stringify(this.datasourceTemplate));
+        networksNew.id = 2;
+        networksNew.name = "Industry-Company";
+        networksNew.description = "Industry-Company-Subsidiary";
+        
+        networksNew = JSON.parse(JSON.stringify(this.datasourceTemplate));
+        this.networks.push(networksNew);
+        networksNew.id = 3;
+        networksNew.name = "Company-Contacts";
+        networksNew.description = "Company-KeyContacts";
+
+        let newParentRelatedChildren: NavigatorParentRelatedChild =
+            {
+                id: 1,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Mr Matlare, Peter Bambatha',
+                role: 'Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 2,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Mr Quinn, Jason Patrick',
+                role: 'Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+        {
+            id: 3,
+            networkID: 1,
+            parentNodeID: null,
+            parentNodeType: 'Company',
+            parentNode: 'Absa',
+            relationship: 'Shareholders',
+            childNodeType: 'Company',
+            childNode: 'Nedbank',
+            role: ''
+        }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+        {
+            id: 4,
+            networkID: 1,
+            parentNodeID: null,
+            parentNodeType: 'Company',
+            parentNode: 'Absa',
+            relationship: 'Shareholders',
+            childNodeType: 'Person',
+            childNode: 'John',
+            role: ''
+        }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+        {
+            id: 5,
+            networkID: 1,
+            parentNodeID: null,
+            parentNodeType: 'Person',
+            parentNode: 'Koos',
+            relationship: 'Director-Of',
+            childNodeType: 'Company',
+            childNode: 'PSG',
+            role: 'Listed'
+        }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+        {
+            id: 6,
+            networkID: 1,
+            parentNodeID: null,
+            parentNodeType: 'Person',
+            parentNode: 'Koos',
+            relationship: 'Director-Of',
+            childNodeType: 'Company',
+            childNode: 'AECI',
+            role: 'Non-Listed'
+        }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+        {
+            id: 7,
+            networkID: 1,
+            parentNodeID: null,
+            parentNodeType: 'Person',
+            parentNode: 'Koos',
+            relationship: 'Manager-Of',
+            childNodeType: 'Person',
+            childNode: 'Chris',
+            role: ''
+        }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+        {
+            id: 8,
+            networkID: 1,
+            parentNodeID: null,
+            parentNodeType: 'Person',
+            parentNode: 'Koos',
+            relationship: 'Manager-Of',
+            childNodeType: 'Person',
+            childNode: 'Anna',
+            role: ''
+        }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 9,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Mr van Wyk, Rene',
+                role: 'Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 10,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Ms Abdool-Samad, Tasneem',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 11,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Mr Beggs, Colin',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 12,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Ms Cuba, Yolanda Zoleka',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 13,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Mr Okomo-Okello, Francis',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 14,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Mr Darko, Alex Boama',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 15,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Mr Hodge, Daniel',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 16,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Mr Husain, Mohamed Junaid',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 17,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Ms Lucas-Bull, Wendy Elizabeth',  // Elizabeth
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 18,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Mr Merson, Mark',
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+        newParentRelatedChildren =
+            {
+                id: 19,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Directors',
+                childNodeType: 'Person',
+                childNode: 'Ms Naidoo, Dhanasagree',  //  (Daisy)
+                role: 'Non-Executive'
+            }
+        this.parentRelatedChildren.push(newParentRelatedChildren);
+
+        let newNodeTypeFields: NavigatorNodeTypeFields =
+        {
+            id: 1,
+            nodeType: 'Company',
+            fields: ['Sector', 'Country', 'City']
+        }
+        this.nodeTypeFields.push(newNodeTypeFields);
+        newNodeTypeFields =
+        {
+            id: 2,
+            nodeType: 'Person',
+            fields: ['Age', 'Gender']
+        }
+        this.nodeTypeFields.push(newNodeTypeFields);
+
+        let newNodeProperties: NavigatorNodeProperties = {
+            id: 1,
+            sourceRecordID: 1,
+            nodeType: 'Company',
+            node: 'Absa',
+            sector: 'Bank',
+            country: 'South Africa',
+            city: 'Cape Town',
+            age: null,
+            gender: null
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 2,
+            sourceRecordID: 2,
+            nodeType: 'Company',
+            node: 'Bidvest',
+            sector: 'Industrial',
+            country: 'South Africa',
+            city: 'Durban',
+            age: null,
+            gender: null
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 3,
+            sourceRecordID: 3,
+            nodeType: 'Company',
+            node: 'AECI',
+            sector: 'Industrial',
+            country: 'Botswana',
+            city: 'Gabarone',
+            age: null,
+            gender: null
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 4,
+            sourceRecordID: 12,
+            nodeType: 'Company',
+            node: 'Nedbank',
+            sector: 'Bank',
+            country: 'South Africa',
+            city: 'Durban',
+            age: null,
+            gender: null
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 5,
+            sourceRecordID: 510,
+            nodeType: 'Company',
+            node: 'PSG',
+            sector: 'Financial',
+            country: 'South Africa',
+            city: 'Johannesburg',
+            age: null,
+            gender: null
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 6,
+            sourceRecordID: 2,
+            nodeType: 'Person',
+            node: 'Koos',
+            sector: null,
+            country: null,
+            city: null,
+            age: 59,
+            gender: 'Male'
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 7,
+            sourceRecordID: 2,
+            nodeType: 'Person',
+            node: 'Anna',
+            sector: null,
+            country: null,
+            city: null,
+            age: 44,
+            gender: 'Female'
+        }
+        this.nodeProperties.push(newNodeProperties);
+        newNodeProperties = {
+            id: 8,
+            sourceRecordID: 2,
+            nodeType: 'Person',
+            node: 'Chris',
+            sector: null,
+            country: null,
+            city: null,
+            age: 37,
+            gender: 'Male'
+        }
+        this.nodeProperties.push(newNodeProperties);
+
+        // Populate the watchList - TODO via DB
+        let watchListNew: NavigatorWatchList =
+            {
+                id: 1,
+                userID: 'JannieI',
+                nodeType: 'Company',
+                nodes: ['Absa', 'PSG']
+            };
+        this.watchList.push(watchListNew);
+
+        
+        // Build the Array for the network - Nodes, properties, proximity / relationships
+        this.networkGraph = [];
+        this.networkGraph.push(Array("",  "",        "",        "",       "",        "",       "",         "",       "",       "A", "B", "C", "D", "x", "y", "z"));
+        this.networkGraph.push(Array("",  "",        "",        "",       "Company", "Person", "",         "",       "",       "",  "",  "",  "",  "",  "",  "" ));
+        this.networkGraph.push(Array("",  "",        "",        "",       "",        "",        "Company", "Person", "Person", "",  "",  "",  "",  "",  "",  "" ));
+        this.networkGraph.push(Array("",  "",        "",        "",       "",        "",        "Top 40",  "Male",   "Female", "",  "",  "",  "",  "",  "",  "" ));
+        this.networkGraph.push(Array("",  "Company", "",        "",       "",        "",        "",        "",       "",       "1", "1", "1", "1", "",  "",  "" ));
+        this.networkGraph.push(Array("",  "Person",  "",        "",       "",        "",        "",        "",       "",       "",  "",  "",  "",  "1", "1", "1"));
+        this.networkGraph.push(Array("",  "",        "Company", "Top 40", "",        "",        "",        "",       "",       "1", "",  "1", "",  "",  "",  "" ));
+        this.networkGraph.push(Array("",  "",        "Person",  "Male",   "",        "",        "",        "",       "",       "",  "",  "",  "",  "1", "1", "" ));
+        this.networkGraph.push(Array("",  "",        "Person",  "Female", "",        "",        "",        "",       "",       "",  "",  "",  "",  "",  "",  "1"));
+        this.networkGraph.push(Array("A", "",        "",        "",       "1",       "",        "1",       "",       "",       "",  "",  "1", "",  "1", "",  "" ));
+        this.networkGraph.push(Array("B", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "",  "",  "",  "2", "2"));
+        this.networkGraph.push(Array("C", "",        "",        "",       "1",       "",        "1",       "",       "",       "1", "",  "",  "1", "",  "",  "1"));
+        this.networkGraph.push(Array("D", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "1", "",  "1", "1", "" ));
+        this.networkGraph.push(Array("x", "",        "",        "",       "",        "1",       "",        "1",      "",       "1", "",  "",  "1", "",  "",  "" ));
+        this.networkGraph.push(Array("y", "",        "",        "",       "",        "1",       "",        "1",      "",       "",  "2", "",  "1", "",  "",  "" ));
+        this.networkGraph.push(Array("z", "",        "",        "",       "",        "1",       "",        "",       "1",      "",  "2", "1", "",  "",  "",  "" ));
+        console.log('xx Row 5', this.networkGraph.filter(row => row[1] == 'Company') )
+        console.log('xx networkGraph Cell [9,0] = A', this.networkGraph[9][0])
+
+        // Build the Array for the network - Nodes, properties, proximity / relationships
+        this.networkGraph2 = [];
+        this.networkGraph2.push(
+            {
+                id: 1,
+                networkID: 1,
+                leftNodeID: 1,
+                leftNodeType: "Company",
+                leftNodeName: "A",
+                relationshipLeftToRight: "Subsidiary",
+                relationshipRightToLeft: "Owned By",
+                rightNodeID: 3,
+                rightNodeType: "Company",
+                rightNodeName: "C",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 2,
+                networkID: 1,
+                leftNodeID: 1,
+                leftNodeType: "Company",
+                leftNodeName: "A",
+                relationshipLeftToRight: "Director",
+                relationshipRightToLeft: "Director Of",
+                rightNodeID: 5,
+                rightNodeType: "Person",
+                rightNodeName: "x",
+                relationshipProperty: "Executive"
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 3,
+                networkID: 1,
+                leftNodeID: 3,
+                leftNodeType: "Company",
+                leftNodeName: "C",
+                relationshipLeftToRight: "Director",
+                relationshipRightToLeft: "Director Of",
+                rightNodeID: 7,
+                rightNodeType: "Person",
+                rightNodeName: "z",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 4,
+                networkID: 1,
+                leftNodeID: 3,
+                leftNodeType: "Company",
+                leftNodeName: "C",
+                relationshipLeftToRight: "Subsidiary",
+                relationshipRightToLeft: "Owned By",
+                rightNodeID: 4,
+                rightNodeType: "Company",
+                rightNodeName: "D",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 5,
+                networkID: 1,
+                leftNodeID: 4,
+                leftNodeType: "Company",
+                leftNodeName: "D",
+                relationshipLeftToRight: "Director",
+                relationshipRightToLeft: "Director Of",
+                rightNodeID: 8,
+                rightNodeType: "Person",
+                rightNodeName: "a",
+                relationshipProperty: ""
+            }
+        );
+        this.networkGraph2.push(
+            {
+                id: 6,
+                networkID: 1,
+                leftNodeID: 4,
+                leftNodeType: "Company",
+                leftNodeName: "D",
+                relationshipLeftToRight: "Director",
+                relationshipRightToLeft: "Director Of",
+                rightNodeID: 6,
+                rightNodeType: "Person",
+                rightNodeName: "y",
+                relationshipProperty: ""
+            }
+        );
+    };
 
 }

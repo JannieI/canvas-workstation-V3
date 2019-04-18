@@ -128,6 +128,37 @@
         z-index: 102;
     }
 
+    .helpForm {
+        /* display: inline-block; */
+        background-color: beige;
+        border: 1px solid black;
+        border-radius: 6px;
+        font-size: 0.5rem;
+        grid-column-start: 2;
+        /* autoprefixer: off */
+        grid-column-end: 40;
+        grid-row-start: 2;
+        grid-row-end: 24;
+        height: 100%;
+        margin-left: 4px;
+        margin-top: 4px;
+        text-align: left;
+        overflow: hidden;
+        z-index: 102;
+    }
+        .helpFormHeader {
+            font-size: 0.75rem;
+            text-align: center;
+        }
+        .helpFormClose {
+            float: right;
+            font-size: 0.5rem;
+            margin-right: 12px;
+        }
+        .helpFormText {
+            overflow-y: scroll;
+        }
+
 
     .graphHeaderContainer {
         grid-column-start: 1;
