@@ -56,14 +56,12 @@ dimensions are set in app.html, and cannot be changed here. -->
                 placeholder="New Name"
                 >
         </div>
-        <div>
-            <div class="networkAreaClose"
-                (click)="clickCloseGraphNotes()"
-                >
-                <b>X</b>
-            </div>
-
+        <div class="networkAreaClose"
+            (click)="clickCloseGraphNotes()"
+            >
+            <b>X</b>
         </div>
+
     </div>
 
     <!-- Graph Help -->
@@ -72,14 +70,24 @@ dimensions are set in app.html, and cannot be changed here. -->
         <div style="margin: 18px;">
             This widget is used to navigate a network using tree graphs.
         </div>
-        <div>
-            <button class="btn btn-link"
-                style="margin-left: 28px;"
-                (click)="showGraphHelp=false">
-                Close
-            </button>
-
+        <div style="margin: 18px;">
+            Select the starting node(s) at the top: click the dropdown to select the node 
+            type, and then a specific node (or 'All').  For example, select Companies as 
+            the node type, and Absa as the specific node.  It is possible to filter the list
+            of nodes in the dropdown by clicking the filter next to it, to say only show the
+            listed companies.
         </div>
+        <div style="margin: 18px;">
+            Select the relationship(s) to show, for example Directors.  The relationships can 
+            be filtered on properties by click the filter icon next to it, to show for example
+            only Executive Directors.
+        </div>
+        <div class="networkAreaClose"
+            (click)="clickCloseHelp()"
+            >
+            <b>X</b>
+        </div>
+
     </div>
     
         

@@ -1889,6 +1889,8 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.showGraphNotes = false;
     }
 
+
+
     clickMenuGraphHelp() {
         // Show popup with help information
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuGraphHelp', '@Start');
