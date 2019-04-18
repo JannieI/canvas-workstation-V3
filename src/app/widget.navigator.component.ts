@@ -1148,21 +1148,21 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkSummary', '@Start');
 
         // Find unique Nodes
-        let leftNodes: string[] = this.networkGraph2.map(x => x.leftNodeName);
-        let rightNodes: string[] = this.networkGraph2.map(x => x.rightNodeName);
-        let uniqueNodes: string[] = leftNodes.concat(rightNodes);
-        uniqueNodes = Array.from(new Set(uniqueNodes));
-        console.log('xx uniqueNodes', leftNodes, rightNodes, uniqueNodes)
-        // Count relationships ... LATER
+        let leftNodeTypes: string[] = this.networkGraph2.map(x => x.leftNodeType);
+        let rightNodeTypes: string[] = this.networkGraph2.map(x => x.rightNodeType);
+        let uniqueNodeTypes: string[] = leftNodeTypes.concat(rightNodeTypes);
+        uniqueNodeTypes = Array.from(new Set(uniqueNodeTypes));
+        console.log('xx uniqueNodeTypes', leftNodeTypes, rightNodeTypes, uniqueNodeTypes)
+        // Count relationships
         let nodeCount: number = -1;
-        let uniqueNodesWithCount: {nodeName: string; nodeCount: number}[] = [];
-        for (var i = 0; i < uniqueNodes.length; i++) {
-            nodeCount = this.networkGraph2.filter(x => x.leftNodeName == uniqueNodes[i]).length;
+        let uniqueNodesWithCount: {nodeType: string; nodeCount: number}[] = [];
+        for (var i = 0; i < uniqueNodeTypes.length; i++) {
+            nodeCount = this.networkGraph2.filter(x => x.leftNodeName == uniqueNodeTypes[i]).length;
             nodeCount = nodeCount + this.networkGraph2
-                .filter(x => x.rightNodeName == uniqueNodes[i]).length;
+                .filter(x => x.rightNodeName == uniqueNodeTypes[i]).length;
             uniqueNodesWithCount.push(
                 {
-                    nodeName: uniqueNodes[i],
+                    nodeType: uniqueNodeTypes[i],
                     nodeCount: nodeCount
                 });
         };
@@ -1173,13 +1173,13 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             this.graphData.push(
                 { 
                     "id": 1,
-                    "name": uniqueNodesWithCount[0].nodeName + ' ('
+                    "name": uniqueNodesWithCount[0].nodeType + ' ('
                         + uniqueNodesWithCount[0].nodeCount.toString() + ')'
                 });
         };
 
         // Note: Start from 1
-        for (var i = 1; i < uniqueNodes.length; i++) {
+        for (var i = 1; i < uniqueNodeTypes.length; i++) {
 
             this.graphData.push(
                 {
