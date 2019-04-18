@@ -182,6 +182,13 @@ export class WidgetNavigatorComponent {
         this.showHistory = true;
     }
 
+    clickMenuShowGraphProperties() {
+        // Clicked Menu to open popup to edit graph properties like title
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphProperties', '@Start');
+
+        this.showGraphProperties = true;
+    }
+
     clickMenuShowGraphNotes() {
         // Clicked the Menu to show popup to edit notes at bottom of graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphNotes', '@Start');
@@ -241,6 +248,20 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseGraphPropertiesPopup', '@Start');
 
         this.showGraphProperties = true;
+    }
+
+    clickCloseGraphNotesPopup() {
+        // Close popup to edit notes at bottom of graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseGraphNotesPopup', '@Start');
+
+        this.showGraphNotes = false;
+    }
+
+    clickCloseHelpPopup() {
+        // Close popup to edit notes at bottom of graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseHelpPopup', '@Start');
+
+        this.showGraphHelp = false;
     }
 
     clickNetwork(index: number, networkID: number) {
@@ -1385,20 +1406,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Close Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClose', '@Start');
 
-    }
-
-    clickCloseGraphNotes() {
-        // Close popup to edit notes at bottom of graph
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseGraphNotes', '@Start');
-
-        this.showGraphNotes = false;
-    }
-
-    clickCloseHelp() {
-        // Close popup to edit notes at bottom of graph
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseHelp', '@Start');
-
-        this.showGraphHelp = false;
     }
 
     changeParentFilterField() {
