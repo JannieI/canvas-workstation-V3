@@ -1204,14 +1204,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             this.navSingleRoute(child, navStartNode, relationship, newPath);
         });
     }
-    
-    clickAddNetworkAdd() {
-        // Add a network and close the popup
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickAddNetworkAdd', '@Start');
-
-        this.showNetworkAdd = false;
-        
-    }
 
     clickAddNetworkClose() {
         // Close AddNetwork without adding

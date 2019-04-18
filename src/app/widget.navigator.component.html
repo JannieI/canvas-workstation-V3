@@ -19,21 +19,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                 placeholder="New Name"
                 >
         </div>
-        <div style="margin: 18px;">
-            Select a Datasource: 
-            <select [(ngModel)]="selectedNetwork"
-                (change)="changeNetworkAdd($event)"
-                name="selectedNodeType"
-                >
-                <option>
-                    Facebook
-                </option>
-                <option>
-                    Family
-                </option>
-    
-            </select>
-        </div>
 
         <div>
             <button class="btn btn-link"
