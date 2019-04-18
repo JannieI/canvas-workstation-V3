@@ -1154,54 +1154,41 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         uniqueNodes = Array.from(new Set(uniqueNodes));
 
         // Count relationships ... LATER
+        let nodeCount: number = -1;
         let uniqueNodesWithCount: {nodeName: string; nodeCount: number}[] = [];
         for (var i = 0; i < uniqueNodes.length; i++) {
-
-        }
+            nodeCount = this.networkGraph2.filter(x => x.leftNodeName == uniqueNodes[i]).length;
+            nodeCount = nodeCount + this.networkGraph2
+                .filter(x => x.rightNodeName == uniqueNodes[i]).length;
+                uniqueNodesWithCount.push(
+                    {
+                        nodeName: uniqueNodes[i],
+                        nodeCount: nodeCount
+                    });
+        };
         // Set data
-        if (uniqueNodes.length > 0) {
+        if (uniqueNodesWithCount.length > 0) {
             this.graphData = [];
             this.graphData.push(
-                { "id": 1,
-                 "name": uniqueNodes[0]
+                { 
+                    "id": 1,
+                    "name": uniqueNodesWithCount[0].nodeName 
+                        + uniqueNodesWithCount[0].nodeCount.toString()
                 });
-    
-        }
+        };
 
-        // Note: from 1
+        // Note: Start from 1
         for (var i = 1; i < uniqueNodes.length; i++) {
 
-            this.graphData.push({
-                id: i + 1,
-                name: uniqueNodes[i],
-                parent: 1
-            });
+            this.graphData.push(
+                {
+                    id: i + 1,
+                    name: uniqueNodesWithCount[0].nodeName 
+                    + uniqueNodesWithCount[0].nodeCount.toString(),
+                    parent: 1
+                }
+            );
         };
-        this.graphData.push({
-            id: 3,
-            name: "Directors",
-            parent: 2
-        });
-        this.graphData.push({
-            id: 4,
-            name: "Shareholders",
-            parent: 2
-        });
-        this.graphData.push({
-            id: 5,
-            name: "Persons (54 000)",
-            parent: 1
-        });
-        this.graphData.push({
-            id: 6,
-            name: "Director-Of",
-            parent: 5
-        });
-        this.graphData.push({
-            id: 7,
-            name: "Manager-Of",
-            parent: 5
-        });
 
         this.graphTitle = 'Summary of ' + this.networks[networkIndex].name
             + ' network';
