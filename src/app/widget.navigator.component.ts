@@ -1889,6 +1889,12 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.showGraphNotes = false;
     }
 
+    clickCloseHelp() {
+        // Close popup to edit notes at bottom of graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseHelp', '@Start');
+
+        this.showGraphHelp = false;
+    }
 
 
     clickMenuGraphHelp() {
