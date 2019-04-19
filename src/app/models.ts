@@ -11,7 +11,6 @@ export class CanvasSettings {
     widgetsMinZindex: number;               // Widgets Min Zindex
     widgetsMaxZindex: number;               // Widgets Max Zindex
     gridSize: number;                       // Size of the Grid
-    // snapToGrid: boolean;                    // Snap to grid (T/F)
     printDefault: string;                   // Deflt: Local HP
     printSize: string;                      // Deflt Page Size: A4
     printLayout: string;                    // Deflt Layout: Single page, B and W
@@ -116,7 +115,7 @@ export class PaletteButtonsSelected {
     menuText: string;                       // Text that appears on menu
     shape: string;                          // Clarity shape of icon
     size: number;                           // Size of icon
-    class: string;
+    class: string;                          // For LATER use
     backgroundColor: string;                // Bg Colour of button
     accesskey: string;                      // Shortcut key
     sortOrder: number;                      // Nr (used for sorting)
@@ -276,31 +275,31 @@ export class CanvasUser {
     colorScheme: string;                    // Color scheme for Canvas - for later use
     gridSize: number;                       // Size of Grid on Dashboard in px
     environment: string;                    // Live, Test-Environment-Name
-    profilePicture: string;
+    profilePicture: string;                 // Profile pic
     queryRuntimeWarning: number;            // Minutes: Warn user if a report is known to run longer
     snapToGrid: boolean;                    // True: snap Widgets to the grid points on Dashboard
     favouriteDashboards: number[];          // IDs of D that are fav of this user
     isFirstTimeUser: boolean;               // True if not created a D
     isAdministrator: boolean;               // Role can add/delete users to the group,
         // and assign roles).  Must be at least one administrator role at all times.
-    dashboardCanCreateRole: boolean;            // Role can create Dashboards
-    dashboardCanViewRole: boolean;              // Role can view Dashboards
-    dashboardCanEditRole: boolean;              // Role can change / edit Dashboards
-    dashboardCanSaveRole : boolean;             // Role can save changes to a Dashboards
-    dashboardCanDeleteRole: boolean;            // Role can delete a Dashboard
-    dashboardCanGrantAccessRole: boolean;       // Role can change access to a Dashboard
-    dashboardCanAddDatasourceRole: boolean;     // Role can change add DS to a Dashboard
-    datasourceCanCreateRole: boolean;           // Role can create Datasource
-    datasourceCanViewRole: boolean;             // Role can view Datasource
-    datasourceCanEditRole: boolean;             // Role can change / edit Datasource
-    datasourceCanDeleteRole: boolean;           // Role can delete a Datasource
-    datasourceCanGrantAccessRole: boolean;      // Role can change access to a Datasource
-    canManageGroupRole: boolean;                // Role can add/delete users to Group
-    lastPaletteLeft: number;                    // Last value saved
-    lastPaletteTop: number;                     // Last value saved
-    lastAppShowPopupMessageGotIt: boolean;      // Last value saved
-    cleanCacheOnLogin: boolean;                 // True to clean cache at login
-    cleanCacheOnLogout: boolean;                // True to clean cache at logout
+    dashboardCanCreateRole: boolean;        // Role can create Dashboards
+    dashboardCanViewRole: boolean;          // Role can view Dashboards
+    dashboardCanEditRole: boolean;          // Role can change / edit Dashboards
+    dashboardCanSaveRole : boolean;         // Role can save changes to a Dashboards
+    dashboardCanDeleteRole: boolean;        // Role can delete a Dashboard
+    dashboardCanGrantAccessRole: boolean;   // Role can change access to a Dashboard
+    dashboardCanAddDatasourceRole: boolean; // Role can change add DS to a Dashboard
+    datasourceCanCreateRole: boolean;       // Role can create Datasource
+    datasourceCanViewRole: boolean;         // Role can view Datasource
+    datasourceCanEditRole: boolean;         // Role can change / edit Datasource
+    datasourceCanDeleteRole: boolean;       // Role can delete a Datasource
+    datasourceCanGrantAccessRole: boolean;  // Role can change access to a Datasource
+    canManageGroupRole: boolean;            // Role can add/delete users to Group
+    lastPaletteLeft: number;                // Last value saved
+    lastPaletteTop: number;                 // Last value saved
+    lastAppShowPopupMessageGotIt: boolean;  // Last value saved
+    cleanCacheOnLogin: boolean;             // True to clean cache at login
+    cleanCacheOnLogout: boolean;            // True to clean cache at logout
     preferencePaletteHorisontal: boolean;                   // T/F - Palette Horisontal (else Vertial)
     preferencePlaySound: boolean;                           // T/F - play a sound when showing a message on the StatusBar
     preferenceDebugSession: boolean;                        // T/F - switch on/off console.log, used by Developers & Deguggers
@@ -518,7 +517,7 @@ export class Datasource {
     datasourceCombinationSpec: DatasourceCombinationSpec;   // If this DS is a combination of 2 others
 
     // Where: sub-datasources, currently used by Networks (to point to relationship & properties)
-    subDatasources: number[];              // Array of related sub DS ids, used for networks
+    subDatasources: number[];               // Array of related sub DS ids, used for networks
 
     // Where: External Limits
     rowLimitFromSource: number;             // Maximum nr rows to return (ie SQL ... LIMIT n), 0 means all
@@ -543,9 +542,9 @@ export class Datasource {
 
     // Where: External location of services
     serviceUrl: string;                     // URL of REST service
-    serviceParams: string;                    // REST parameters (: Express req object)
-    serviceQueryParams: string;                    // REST query parameters (? Express req object)
-    serviceHeaders: string;                    // REST optional headers
+    serviceParams: string;                  // REST parameters (: Express req object)
+    serviceQueryParams: string;             // REST query parameters (? Express req object)
+    serviceHeaders: string;                 // REST optional headers
 
     // Where: Location of Managed Connection, Connection created and managed outside of the DS
     connectionID: number;                   // Connection to DB
@@ -615,10 +614,10 @@ export class Datasource {
 
     // DATA
 	// Data is loaded at @Runtime
-    datasourceFilters: DatasourceFilter[];      // Optional Array of DS-Filters per Dashboard
-	dataFull: any[];                            // Full array of data, filled @Runtime
-	dataFiltered: any[];                        // Filtered array of data, based on DS-Filter. Filled @Runtime
-
+    datasourceFilters: DatasourceFilter[];  // Optional Array of DS-Filters per Dashboard
+	dataFull: any[];                        // Full array of data, filled @Runtime
+	dataFiltered: any[];                    // Filtered array of data, based on DS-Filter. Filled @Runtime
+    isNetworkShape: boolean;                // True if the data is shaped correctly for Navigator
 }
 
 export class DatasourceHistory {

@@ -31,6 +31,7 @@ import { datasourceTemplate }         from './templates';
 // Functions, 3rd Party
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
+import { NgNoValidate } from '@angular/forms/src/directives/ng_no_validate_directive';
 
 
 @Component({
@@ -62,7 +63,8 @@ export class WidgetNavigatorComponent {
     // The folowing shapes are temporary, and only used in this routine (not stored in the DB):
     //  - NavigatorHistory
     //  - NavigatorNodeFiler
-    
+
+    ngNetworks: Datasource[] = [];
     networks: Datasource[] = [];
     networkGraph: Array<string[]> = [];
     networkGraph2: NavigatorNetwork[] = [];
@@ -165,6 +167,19 @@ export class WidgetNavigatorComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
+        // Read from DB
+        this.globalVariableService.getResource('datasources', 'filterObject={"isNetworkShape": true}')
+            .then(res => {
+                this.ngNetworks = res;
+                console.log('xx this.ngNetworks', this.ngNetworks)
+                console.log('xx currentDS', this.globalVariableService.currentDatasources)
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Navigator.OnInit reading datasources: ' + err);
+            });
+
+        this.ngNetworks 
         // Populate persisted data - TODO via DB
         this.tempCreateDummyData();
 

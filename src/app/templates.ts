@@ -146,6 +146,7 @@ export const datasourceTemplate: Datasource =
         businessGlossary: '',
         dataDictionary: '',
         datasourceCombinationSpec: null,
+        isNetworkShape: false,
         subDatasources: [],
         rowLimitFromSource: 0,
         timeoutLimitSeconds: 0,
