@@ -377,7 +377,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
         } else {
             // Add new one
-            let newDatasource: datasourceTemplate;
+            let newDatasource: Datasource = datasourceTemplate;
             newDatasource.type = 'File';
             newDatasource.subType = 'xlsx';
             newDatasource.name = this.newName;

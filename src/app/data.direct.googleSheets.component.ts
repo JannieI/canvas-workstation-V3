@@ -19,6 +19,9 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Datasource }                 from './models';
 
+// Templates
+import { datasourceTemplate }         from './templates';
+
 
 @Component({
     selector: 'data-direct-googlesheets',
@@ -200,81 +203,22 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
 
         } else {
             // Add new one
-            let newDatasource: Datasource = {
-                id: null,
-                type: 'GoogleSheets',
-                subType: '',
-                typeVersion:  '',
-                name: this.newName,
-                username: '',
-                password: '',
-                description: this.newDescription,
-                dataFields: this.dataFieldsSelected,
-                dataFieldTypes: [],
-                dataFieldLengths: [],
-                datasourceFilters: [],
-                accessType: '',
-                cacheResultsOnServer: this.newCacheResults,
-                serverExpiryDateTime: null,
-                unRefreshable: true,
-                cacheResultsLocal: false,
-                oldnessMaxPeriodInterval: '',
-                oldnessMaxPeriodUnits: 0,
-                oldnessRelatedDate: '',
-                oldnessRelatedTime: '',
-                refreshedLocalOn: null,
-                createMethod: 'directGoogleSheets',
-                createdBy: this.globalVariableService.currentUser.userID,
-                createdOn: today,
-                editor: '',
-                dateEdited: null,
-                refreshedBy: '',
-                refreshedServerOn: null,
-                folder: '',
-                fileName: '',
-                excelWorksheet: '',
-                transposeOnLoad: false,
-                startLineNr: 0,
-                csvSeparationCharacter: '',
-                csvQuotCharacter: '',
-                webUrl: this.url,
-                webTableIndex: this.selectedTableRowIndex.toString(),
-                connectionID: null,
-                dataTableID: null,
-                businessGlossary: 'Obtained from ' + this.url + this.selectedTableRowIndex,
-                dataDictionary: '',
-                databaseName: '',
-                port: '',
-                serverType: '',
-                serverName: '',
-                dataTableName: '',
-                dataSQLStatement: '',
-                dataNoSQLStatement: '',
-                dataNeo4jStatement: '',
-                dataGraphQLStatement: '',
-                nrWidgets: null,
-                datasourceCombinationSpec: null,
-                rowLimitFromSource: 0,
-                timeoutLimitSeconds: 0,
-                endLineNr: 0,
-                startColumnNr: 1,
-                endColumnNr: 0,
-                encoding: 'Ascii',
-                serviceUrl: '',
-                serviceParams: '',
-                serviceQueryParams: '',
-                serviceHeaders: '',
-                sourceIsAccessable: true,
-                queryParameters: '',
-                metaDataFields: [],
-                transformations: [],
-                dataErrorMessage: '',
-                nrRecordsReturned: 0,
-                sourceLocation: '',
-                dataFull: [],
-                dataFiltered: []
-
-            };
+            let newDatasource: Datasource = datasourceTemplate;
+            newDatasource.type = 'GoogleSheets';
+            newDatasource.name = this.newName;
+            newDatasource.description = this.newDescription;
+            newDatasource.dataFields = this.dataFieldsSelected;
+            newDatasource.cacheResultsOnServer = this.newCacheResults;
+            newDatasource.unRefreshable = true;
+            newDatasource.cacheResultsLocal = false;
+            newDatasource.createMethod = 'directGoogleSheets';
+            newDatasource.createdBy = this.globalVariableService.currentUser.userID;
+            newDatasource.createdOn = today;
+            newDatasource.webUrl = this.url;
+            newDatasource.webTableIndex = this.selectedTableRowIndex.toString();
+            newDatasource.businessGlossary = 'Obtained from ' + this.url + this.selectedTableRowIndex;
+            newDatasource.encoding = 'Ascii';
+                
             let newData: any = {
                 id: null,
                 data: this.currentData
