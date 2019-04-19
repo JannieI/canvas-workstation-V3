@@ -395,9 +395,9 @@ export class GlobalVariableService {
                                 .catch(err => {
                                     console.error('Error in     Global-Variables refreshCurrentDashboardInfo', err)
                                     if (err != null) {
-                                        reject(err.message)
+                                        reject(err.message);
                                     } else {
-                                        reject(err)
+                                        reject(err);
                                     };
                                 })
 

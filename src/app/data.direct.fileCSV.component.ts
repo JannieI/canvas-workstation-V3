@@ -373,18 +373,18 @@ export class DataDirectFileCSVComponent implements OnInit {
         } else {
             // Add new one
             let newDatasource: Datasource = datasourceTemplate;
-            this.selectedDatasource.type = 'File';
-            this.selectedDatasource.subType = 'csv';
-            this.selectedDatasource.name = this.newName;
-            this.selectedDatasource.description = this.newDescription;
-            this.selectedDatasource.dataFields = this.fields;
-            this.selectedDatasource.dataFieldTypes = this.newDataFieldTypes;
-            this.selectedDatasource.serverExpiryDateTime = this.globalVariableService.dateAdd(today, 'day', 2);
-            this.selectedDatasource.createdBy = this.globalVariableService.currentUser.userID;
-            this.selectedDatasource.createdOn = today;
-            this.selectedDatasource.fileName = this.loadedFileName;
-            this.selectedDatasource.businessGlossary = 'Obtained from CSV File' + this.loadedFileName ;
-            this.selectedDatasource.encoding = 'Ascii';
+            newDatasource.type = 'File';
+            newDatasource.subType = 'csv';
+            newDatasource.name = this.newName;
+            newDatasource.description = this.newDescription;
+            newDatasource.dataFields = this.fields;
+            newDatasource.dataFieldTypes = this.newDataFieldTypes;
+            newDatasource.serverExpiryDateTime = this.globalVariableService.dateAdd(today, 'day', 2);
+            newDatasource.createdBy = this.globalVariableService.currentUser.userID;
+            newDatasource.createdOn = today;
+            newDatasource.fileName = this.loadedFileName;
+            newDatasource.businessGlossary = 'Obtained from CSV File' + this.loadedFileName ;
+            newDatasource.encoding = 'Ascii';
                 
             let newData: any = {
                 id: null,
