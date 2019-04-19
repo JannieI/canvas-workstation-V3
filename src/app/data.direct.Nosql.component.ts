@@ -18,6 +18,9 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Datasource }                 from './models';
 import { TributaryServerType }        from './models';
 
+// Templates
+import { datasourceTemplate }         from './templates';
+
 
 @Component({
     selector: 'data-direct-Nosql', 
@@ -83,9 +86,10 @@ export class DataDirectNoSQLComponent implements OnInit {
         if (this.selectedDatasource === null) {
             let today: Date = new Date();
             // TODO - use DS template
-            this.selectedDatasource = {
+            this.selectedDatasource = datasourceTemplate;
+
                 id: null,
-                type: 'Server',
+                this.selectedDatasource.type: 'Server',
                 subType: '',
                 typeVersion: '',
                 name: '',
