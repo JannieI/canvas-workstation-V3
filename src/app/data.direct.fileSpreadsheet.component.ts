@@ -17,6 +17,9 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { Datasource }                 from './models';
 
+// Templates
+import { datasourceTemplate }         from './templates';
+
 
 @Component({
     selector: 'data-direct-fileSpreadsheet',
@@ -119,7 +122,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         console.warn('  Begin inspectFile for ', loadedFile)
 
         this.loadedFile = loadedFile;
-        
+
         // Set up Tributary specification according to file type
         let specification: any;
         let lastFive: string = this.fileName.slice(-5);
@@ -134,7 +137,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             };
         } else {
             let lastFour: string = this.fileName.slice(-4);
-        
+
             if (lastFour.toLowerCase() === '.xls') {
 
                 specification = {
@@ -259,7 +262,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             };
         } else {
             let lastFour: string = this.fileName.slice(-4);
-        
+
             if (lastFour.toLowerCase() === '.xls') {
 
                 specification = {
@@ -371,84 +374,24 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                     this.errorMessage = err.slice(0, 100);
                     console.error('Error in direct.Spreadsheet clickAdd: ' + err);
                 });
-    
+
         } else {
             // Add new one
-            let newDatasource: Datasource = {
-                id: null,
-                type: 'File',
-                subType: 'xlsx',
-                typeVersion:  '',
-                name: this.newName,
-                username: '',
-                password: '',
-                description: this.newDescription,
-                dataFields: this.fields,
-                dataFieldTypes: [],
-                dataFieldLengths: [],
-                datasourceFilters: [],
-                accessType: '',
-                cacheResultsOnServer: true,
-                serverExpiryDateTime: null,
-                unRefreshable: true,
-                cacheResultsLocal: false,
-                oldnessMaxPeriodInterval: '',
-                oldnessMaxPeriodUnits: 0,
-                oldnessRelatedDate: '',
-                oldnessRelatedTime: '',
-                refreshedLocalOn: null,
-                createMethod: 'directFileSpreadsheet',
-                createdBy: this.globalVariableService.currentUser.userID,
-                createdOn: today,
-                editor: '',
-                dateEdited: null,
-                refreshedBy: '',
-                refreshedServerOn: null,
-                folder: '',
-                fileName: '',
-                excelWorksheet: '',
-                transposeOnLoad: false,
-                startLineNr: 0,
-                csvSeparationCharacter: '',
-                csvQuotCharacter: '',
-                webUrl: '',
-                webTableIndex: '',
-                connectionID: null,
-                dataTableID: null,
-                businessGlossary: 'Obtained from Spreadsheet' + this.fileName ,
-                dataDictionary: '',
-                databaseName: '',
-                port: '',
-                serverType: '',
-                serverName: '',
-                dataTableName: '',
-                dataSQLStatement: '',
-                dataNoSQLStatement: '',
-                dataNeo4jStatement: '',
-                dataGraphQLStatement: '',
-                nrWidgets: null,
-                datasourceCombinationSpec: null,
-                rowLimitFromSource: 0,
-                timeoutLimitSeconds: 0,
-                endLineNr: 0,
-                startColumnNr: 1,
-                endColumnNr: 0,
-                encoding: 'Ascii',
-                serviceUrl: '',
-                serviceParams: '',
-                serviceQueryParams: '',
-                serviceHeaders: '',
-                sourceIsAccessable: true,
-                queryParameters: '',
-                metaDataFields: [],
-                transformations: [],
-                dataErrorMessage: '',
-                nrRecordsReturned: 0,
-                sourceLocation: '',
-                dataFull: [],
-                dataFiltered: []
+            let newDatasource: datasourceTemplate;
+            newDatasource.type = 'File';
+            newDatasource.subType = 'xlsx';
+            newDatasource.name = this.newName;
+            newDatasource.description = this.newDescription;
+            newDatasource.dataFields = this.fields;
+            newDatasource.cacheResultsOnServer = true;
+            newDatasource.unRefreshable = true;
+            newDatasource.cacheResultsLocal = false;
+            newDatasource.createMethod = 'directFileSpreadsheet';
+            newDatasource.createdBy = this.globalVariableService.currentUser.userID;
+            newDatasource.createdOn = today;
+            newDatasource.businessGlossary = 'Obtained from Spreadsheet' + this.fileName;
+            newDatasource.encoding = 'Ascii';
 
-            };
             let newData: any = {
                 id: null,
                 data: this.worksheetDataFull
