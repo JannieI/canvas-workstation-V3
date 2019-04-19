@@ -372,14 +372,6 @@ export class WebSocketMessage {
         // This is used to check for messages that were received out of sequence
 }
 
-// Data
-export class Combination {
-    _id?: string;                           // Mongo ID (read only)
-    combinationID: number;
-    dashboardID: number;
-    type: string;                           // ie Union
-}
-
 export class DataQualityIssue {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID
