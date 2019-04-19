@@ -53,13 +53,16 @@ export class WidgetNavigatorComponent {
 
     // Note about the structure of the data:
     // The data for the Networks are stored locally in the this.networks variable, and
-    // in a DS in the Database, lets call it DSn.  Each DS can be the combination of
-    // multiple sub Datasources via the datasourceCombinationSpec property (= C).
-    // The C.lefthandDatasourceID holds the data for the relationships, say DSrel.
-    // C.righthandDatasourceID holds the data for the Node properties, say DSpr.
-    // In this case the C.joinType is a hack as it is not used ...
-    // The shape of the data for 
-    //
+    // in a DS in the Database, lets call it DSn.  DSn has a property subDatasources[],
+    // subDS.  These point to the rest of the DSs used in a network:
+    //  - DSn = network name, description, access, etc
+    //  - subDS[0] = id of the DS that keeps the relationships, say DSrel.
+    //  - subDS[1] = id of the DS that keeps the Node properties, say DSpr.
+    // 
+    // The folowing shapes are temporary, and only used in this routine (not stored in the DB):
+    //  - NavigatorHistory
+    //  - NavigatorNodeFiler
+    
     networks: Datasource[] = [];
     networkGraph: Array<string[]> = [];
     networkGraph2: NavigatorNetwork[] = [];

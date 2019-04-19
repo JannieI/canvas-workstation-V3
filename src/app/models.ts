@@ -518,8 +518,8 @@ export class Datasource {
     datasourceCombinationSpec: DatasourceCombinationSpec;   // If this DS is a combination of 2 others
 
     // Where: sub-datasources, currently used by Networks (to point to relationship & properties)
-    subDatasources: Datasource[];           // Array of related sub DS
-    
+    subDatasources: number[];              // Array of related sub DS ids, used for networks
+
     // Where: External Limits
     rowLimitFromSource: number;             // Maximum nr rows to return (ie SQL ... LIMIT n), 0 means all
     timeoutLimitSeconds: number;            // Timeout (ie for Databases) in seconds, 0 means no limit
