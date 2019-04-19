@@ -373,6 +373,7 @@ export class DataDirectFileCSVComponent implements OnInit {
         } else {
             // Add new one
             let newDatasource: Datasource = datasourceTemplate;
+            console.log('xx newDatasource', newDatasource)
             newDatasource.type = 'File';
             newDatasource.subType = 'csv';
             newDatasource.name = this.newName;
