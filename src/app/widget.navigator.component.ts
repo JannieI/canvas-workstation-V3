@@ -51,7 +51,15 @@ export class WidgetNavigatorComponent {
         };
     };
 
-    // External Input - pre-built
+    // Note about the structure of the data:
+    // The data for the Networks are stored locally in the this.networks variable, and
+    // in a DS in the Database, lets call it DSn.  Each DS can be the combination of
+    // multiple sub Datasources via the datasourceCombinationSpec property (= C).
+    // The C.lefthandDatasourceID holds the data for the relationships, say DSrel.
+    // C.righthandDatasourceID holds the data for the Node properties, say DSpr.
+    // In this case the C.joinType is a hack as it is not used ...
+    // The shape of the data for 
+    //
     networks: Datasource[] = [];
     networkGraph: Array<string[]> = [];
     networkGraph2: NavigatorNetwork[] = [];

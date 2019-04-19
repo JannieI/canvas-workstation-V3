@@ -18,6 +18,9 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Datasource }                 from './models';
 
+// Templates
+import { datasourceTemplate }         from './templates';
+
 @Component({
     selector: 'data-managed-busGlossary',
     templateUrl: './data.managed.busGlossary.component.html',
@@ -58,83 +61,8 @@ export class DataManagedBusGlossaryComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Reset, else async too late and form load fails
-        this.selectedDatasource =
-        {
-            id: null,
-            type: '',
-            subType: '',
-            typeVersion: '',
-            name: '',
-            username: '',
-            password: '',
-            description: '',
-            createdBy: '',
-            createdOn: null,
-            createMethod: '',
-            editor: '',
-            dateEdited: null,
-            refreshedBy: '',
-            refreshedServerOn: null,
-            dataFields: null,
-            dataFieldTypes: null,
-            dataFieldLengths: null,
-            datasourceFilters: [],
-            accessType: '',
-            cacheResultsOnServer: true,
-            serverExpiryDateTime: null,
-            unRefreshable: true,
-            cacheResultsLocal: false,
-            oldnessMaxPeriodInterval: '',
-            oldnessMaxPeriodUnits: 0,
-            oldnessRelatedDate: '',
-            oldnessRelatedTime: '',
-            refreshedLocalOn: null,
-            folder: '',
-            fileName: '',
-            excelWorksheet: '',
-            transposeOnLoad: false,
-            startLineNr: null,
-            csvSeparationCharacter: '',
-            csvQuotCharacter: '',
-            webUrl: '',
-            webTableIndex: '',
-            connectionID: null,
-            dataTableID: null,
-            businessGlossary: '',
-            databaseName: '',
-            port: '',
-            serverType: '',
-            serverName: '',
-            dataTableName: '',
-            dataSQLStatement: '',
-            dataNoSQLStatement: '',
-            dataNeo4jStatement: '',
-            dataGraphQLStatement: '',
-            nrWidgets: null,
-            dataDictionary: '',
-            datasourceCombinationSpec: null,
-            rowLimitFromSource: 0,
-            timeoutLimitSeconds: 0,
-            endLineNr: 0,
-            startColumnNr: 1,
-            endColumnNr: 0,
-            encoding: 'Ascii',
-            serviceUrl: '',
-            serviceParams: '',
-            serviceQueryParams: '',
-            serviceHeaders: '',
-            sourceIsAccessable: true,
-            queryParameters: '',
-            metaDataFields: [],
-            transformations: [],
-            dataErrorMessage: '',
-            nrRecordsReturned: 0,
-            sourceLocation: '',
-            dataFull: [],
-            dataFiltered: []
-
-        }
-
+        this.selectedDatasource = datasourceTemplate;
+        
         this.globalVariableService.getResource('datasources').then(dc => {
             // Fill local Var
             this.datasources = dc.slice();
