@@ -24,24 +24,16 @@ import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
 import { DataCachingTable }           from './models';
 import { DatasourceFilter }           from './models';
-import { DatasourceSchedule }         from './models';
-import { DatasourceScheduleLog }      from './models';
-import { DatasourceTransformation }   from './models';
 import { Datasource }                 from './models';
 import { DatasourcePermission}        from './models';
-import { GraphCalculation }           from './models';
-import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 import { StatusBarMessage }           from './models';
 import { StatusBarMessageLog }        from './models';
-import { Transformation }             from './models';
 import { TributaryServerType }        from './models';
 import { TributarySource }            from './models';
 import { WebSocketMessage }           from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
-import { WidgetLayout }               from './models';
-import { WidgetGraph }                from './models';
 
 // Dexie
 import Dexie                          from 'dexie';
@@ -64,7 +56,6 @@ import * as dl                        from 'datalib';
 
 // Environment
 import { environment }                from '../environments/environment';
-import { message }                    from 'vega-lite/build/src/log';
 
 // Templates
 import { canvasSettings }             from './templates';
@@ -72,7 +63,6 @@ import { dashboardTemplate }          from './templates';
 import { dashboardTabTemplate }       from './templates';
 import { finalFields }                from './templates';
 import { serverTypes }                from './templates';
-// import { transformationsFormat }      from './templates';
 import { vlTemplate }                 from './templates';
 import { widgetTemplateInner }        from './templates';
 import { widgetTemplate }             from './templates';
