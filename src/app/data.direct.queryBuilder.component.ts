@@ -482,6 +482,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             businessGlossary: this.selectedDatasource.businessGlossary,
             dataDictionary: this.selectedDatasource.dataDictionary,
             datasourceCombinationSpec: this.selectedDatasource.datasourceCombinationSpec,
+            subDatasources: this.selectedDatasource.subDatasources,
             rowLimitFromSource: this.selectedDatasource.rowLimitFromSource,
             timeoutLimitSeconds: this.selectedDatasource.timeoutLimitSeconds,
             endLineNr: this.selectedDatasource.endLineNr,
