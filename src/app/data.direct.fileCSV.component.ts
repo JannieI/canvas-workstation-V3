@@ -17,6 +17,9 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { Datasource }                 from './models';
 
+// Templates
+import { datasourceTemplate }         from './templates';
+
 
 @Component({
     selector: 'data-direct-fileCSV',
@@ -369,81 +372,20 @@ export class DataDirectFileCSVComponent implements OnInit {
                 });
         } else {
             // Add new one
-            let newDatasource: Datasource = {
-                id: null,
-                type: 'File',
-                subType: 'csv',
-                typeVersion:  '',
-                name: this.newName,
-                username: '',
-                password: '',
-                description: this.newDescription,
-                dataFields: this.fields,
-                dataFieldTypes: this.newDataFieldTypes,
-                dataFieldLengths: [],
-                datasourceFilters: [],
-                accessType: 'Private',
-                sourceIsAccessable: false,
-                cacheResultsOnServer: true,
-                serverExpiryDateTime: this.globalVariableService.dateAdd(today, 'day', 2),
-                unRefreshable: true,
-                cacheResultsLocal: false,
-                oldnessMaxPeriodInterval: '',
-                oldnessMaxPeriodUnits: 0,
-                oldnessRelatedDate: '',
-                oldnessRelatedTime: '',
-                refreshedLocalOn: null,
-                createMethod: 'directFileCSV',
-                createdBy: this.globalVariableService.currentUser.userID,
-                createdOn: today,
-                editor: '',
-                dateEdited: null,
-                refreshedBy: '',
-                refreshedServerOn: null,
-                folder: '',
-                fileName: this.loadedFileName,
-                excelWorksheet: '',
-                transposeOnLoad: false,
-                startLineNr: 0,
-                csvSeparationCharacter: '',
-                csvQuotCharacter: '',
-                webUrl: '',
-                webTableIndex: '',
-                connectionID: null,
-                dataTableID: null,
-                businessGlossary: 'Obtained from CSV File' + this.loadedFileName ,
-                dataDictionary: '',
-                databaseName: '',
-                port: '',
-                serverType: '',
-                serverName: '',
-                dataTableName: '',
-                dataSQLStatement: '',
-                dataNoSQLStatement: '',
-                dataNeo4jStatement: '',
-                dataGraphQLStatement: '',
-                nrWidgets: null,
-                datasourceCombinationSpec: null,
-                rowLimitFromSource: 0,
-                timeoutLimitSeconds: 0,
-                endLineNr: 0,
-                startColumnNr: 1,
-                endColumnNr: 0,
-                encoding: 'Ascii',
-                serviceUrl: '',
-                serviceParams: '',
-                serviceQueryParams: '',
-                serviceHeaders: '',
-                queryParameters: '',
-                metaDataFields: [],
-                transformations: [],
-                dataErrorMessage: '',
-                nrRecordsReturned: 0,
-                sourceLocation: '',
-                dataFull: [],
-                dataFiltered: []
-
-            };
+            let newDatasource: Datasource = datasourceTemplate;
+            this.selectedDatasource.type = 'File';
+            this.selectedDatasource.subType = 'csv';
+            this.selectedDatasource.name = this.newName;
+            this.selectedDatasource.description = this.newDescription;
+            this.selectedDatasource.dataFields = this.fields;
+            this.selectedDatasource.dataFieldTypes = this.newDataFieldTypes;
+            this.selectedDatasource.serverExpiryDateTime = this.globalVariableService.dateAdd(today, 'day', 2);
+            this.selectedDatasource.createdBy = this.globalVariableService.currentUser.userID;
+            this.selectedDatasource.createdOn = today;
+            this.selectedDatasource.fileName = this.loadedFileName;
+            this.selectedDatasource.businessGlossary = 'Obtained from CSV File' + this.loadedFileName ;
+            this.selectedDatasource.encoding = 'Ascii';
+                
             let newData: any = {
                 id: null,
                 data: this.fileDataFull
