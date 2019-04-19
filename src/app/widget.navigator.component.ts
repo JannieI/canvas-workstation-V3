@@ -167,6 +167,18 @@ export class WidgetNavigatorComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
+        // Read DS for all Networks from DB
+        this.globalVariableService.getResource('datasources', 'filterObject={"isNetworkShape": true}')
+            .then(res => {
+                this.ngNetworks = res;
+                console.log('xx this.ngNetworks', this.ngNetworks)
+                console.log('xx currentDS', this.globalVariableService.currentDatasources)
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Navigator.OnInit reading datasources: ' + err);
+            });
+
         // Read the DS for this W from GV
         let currentDSIndex: number = this.globalVariableService.currentDatasources
             .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
@@ -192,7 +204,7 @@ export class WidgetNavigatorComponent {
                     });
         
                 let propertyDSid: number = this.globalVariableService.currentDatasources
-                    [currentDSIndex].subDatasources[0];
+                    [currentDSIndex].subDatasources[1];
                 this.globalVariableService.getData(
                     'datasourceID=' + propertyDSid.toString()
                     )
@@ -208,18 +220,6 @@ export class WidgetNavigatorComponent {
             };
         };
 
-        this.globalVariableService.getResource('datasources', 'filterObject={"isNetworkShape": true}')
-            .then(res => {
-                this.ngNetworks = res;
-                console.log('xx this.ngNetworks', this.ngNetworks)
-                console.log('xx currentDS', this.globalVariableService.currentDatasources)
-            })
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Navigator.OnInit reading datasources: ' + err);
-            });
-
-        this.ngNetworks 
         // Populate persisted data - TODO via DB
         this.tempCreateDummyData();
 
