@@ -380,16 +380,6 @@ export class Combination {
     type: string;                           // ie Union
 }
 
-export class CombinationDetail {
-    _id?: string;                           // Mongo ID (read only)
-    combinationDetailID: number;
-    combinationID: number;
-    lhDatasourceID: number;
-    lhFieldName: string;
-    rhDatasourceID: number;
-    rhFieldName: string;
-}
-
 export class DataQualityIssue {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique record ID

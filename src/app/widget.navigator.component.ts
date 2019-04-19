@@ -52,7 +52,6 @@ export class WidgetNavigatorComponent {
     };
 
     // External Input - pre-built
-    dummyData: any[] = [];
     networks: Datasource[] = [];
     networkGraph: Array<string[]> = [];
     networkGraph2: NavigatorNetwork[] = [];

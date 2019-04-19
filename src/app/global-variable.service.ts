@@ -15,7 +15,6 @@ import { CanvasHttpResponse }         from './models';
 import { CanvasSettings }             from './models';
 import { CanvasUser}                  from './models';
 import { Combination }                from './models';
-import { CombinationDetail }          from './models';
 import { CSScolor }                   from './models';
 import { CurrentDashboardInfo }       from './models';
 import { Dashboard }                  from './models';
