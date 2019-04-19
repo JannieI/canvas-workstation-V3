@@ -19,6 +19,9 @@ import { DataConnection }             from './models';
 import { Datasource }                 from './models';
 import { TributaryServerType }        from './models';
 
+// Templates
+import { datasourceTemplate }         from './templates';
+
 
 @Component({
     selector: 'data-managedNoSqlEditor',
@@ -86,82 +89,22 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
         if (this.selectedDatasource === null) {
             let today: Date = new Date();
             // TODO - use DS template
-            this.selectedDatasource = {
-                id: null,
-                type: 'Server',
-                subType: '',
-                typeVersion: '',
-                name: '',
-                username: 'ftfhgfzh',
-                password: 'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl',
-                description: '',
-                createdBy: this.globalVariableService.currentUser.userID,
-                createdOn: today,
-                createMethod: 'managedNoSQLEditor',
-                editor: '',
-                dateEdited: null,
-                refreshedBy: '',
-                refreshedServerOn: null,
-                dataFields: [''],
-                dataFieldTypes: [''],
-                dataFieldLengths: [0],
-                datasourceFilters: [],
-                accessType: '',
-                cacheResultsOnServer: true,
-                serverExpiryDateTime: null,
-                unRefreshable: true,
-                cacheResultsLocal: false,
-                oldnessMaxPeriodInterval: '',
-                oldnessMaxPeriodUnits: 0,
-                oldnessRelatedDate: '',
-                oldnessRelatedTime: '',
-                refreshedLocalOn: null,
-                folder: '',
-                fileName: '',
-                excelWorksheet: '',
-                transposeOnLoad: false,
-                startLineNr: 0,
-                csvSeparationCharacter: '',
-                csvQuotCharacter: '',
-                webUrl: '',
-                webTableIndex: '',
-                connectionID: 0,
-                dataTableID: 0,
-                nrWidgets: 0,
-                databaseName: 'ftfhgfzh',
-                port: '5432',
-                serverType: 'PostgresSQL',
-                serverName: 'pellefant.db.elephantsql.com',
-                dataTableName: 'ftfhgfzh',
-                dataSQLStatement: '',
-                dataNoSQLStatement: 'db.inventory.find( { status: { $in: [ "A", "D" ] } } )',
-                dataNeo4jStatement: '',
-                dataGraphQLStatement: '',
-                businessGlossary: 'Obtained using SQL Editor',
-                dataDictionary: '',
-                datasourceCombinationSpec: null,
-                rowLimitFromSource: 0,
-                timeoutLimitSeconds: 0,
-                endLineNr: 0,
-                startColumnNr: 1,
-                endColumnNr: 0,
-                encoding: 'Ascii',
-                serviceUrl: '',
-                serviceParams: '',
-                serviceQueryParams: '',
-                serviceHeaders: '',
-                sourceIsAccessable: true,
-                queryParameters: '',
-                metaDataFields: [],
-                transformations: [],
-                dataErrorMessage: '',
-                nrRecordsReturned: 0,
-                sourceLocation: '',
-                dataFull: [],
-                dataFiltered: []
-
-
-            };
+            this.selectedDatasource = datasourceTemplate;
+            this.selectedDatasource.type = 'Server';
+            this.selectedDatasource.username = 'ftfhgfzh';
+            this.selectedDatasource.password = 'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl';
+            this.selectedDatasource.createdBy = this.globalVariableService.currentUser.userID;
+            this.selectedDatasource.createdOn = today;
+            this.selectedDatasource.createMethod = 'managedNoSQLEditor';
+            this.selectedDatasource.databaseName = 'ftfhgfzh';
+            this.selectedDatasource.port = '5432';
+            this.selectedDatasource.serverType = 'PostgresSQL';
+            this.selectedDatasource.serverName = 'pellefant.db.elephantsql.com';
+            this.selectedDatasource.dataTableName = 'ftfhgfzh';
+            this.selectedDatasource.dataSQLStatement = '';
+            this.selectedDatasource.dataNoSQLStatement = 'db.inventory.find( { status: { $in: [ "A", "D" ] } } )';
+            this.selectedDatasource.businessGlossary = 'Obtained using SQL Editor';
+                
         };
 
     }
