@@ -42,6 +42,7 @@
             text-align: left;
         }
         .networkAreaClose {
+            cursor: pointer;
             float: right;
             margin-right: 12px;
         }
@@ -72,6 +73,7 @@
             text-align: left;
         }
         .historyAreaClose {
+            cursor: pointer;
             float: right;
             margin-right: 12px;
         }
@@ -151,6 +153,7 @@
             text-align: center;
         }
         .helpFormClose {
+            cursor: pointer;
             float: right;
             font-size: 0.5rem;
             margin-right: 12px;
