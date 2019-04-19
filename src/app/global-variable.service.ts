@@ -424,7 +424,7 @@ export class GlobalVariableService {
                 "datasourceInput": datasourceInput,
                 "clientDataInput": clientDataInput
             };
-
+            console.log('xx body', body)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 

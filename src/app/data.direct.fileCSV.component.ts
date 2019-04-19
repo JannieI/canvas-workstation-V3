@@ -386,6 +386,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             newDatasource.fileName = this.loadedFileName;
             newDatasource.businessGlossary = 'Obtained from CSV File' + this.loadedFileName ;
             newDatasource.encoding = 'Ascii';
+            newDatasource.createMethod = 'directFileCSV';
                 
             let newData: any = {
                 id: null,
