@@ -21,6 +21,9 @@ import { DataSchema }                 from './models';
 import { Datasource }                 from './models';
 import { TributaryServerType }        from './models';
 
+// Templates
+import { datasourceTemplate }         from './templates';
+
 @Component({
     selector: 'data-createDS-sqlEditor',
     templateUrl: './data.createDS.sqlEditor.component.html',
@@ -117,80 +120,20 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
             let today: Date = new Date();
 
             // TODO - use DS template
-            this.selectedDatasource = {
-                id: null,
-                type: 'Server',
-                subType: '',
-                typeVersion: '',
-                name: '',
-                username: 'postgres',     //'ftfhgfzh',
-                password: 'postgres',     //'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl',
-                description: '',
-                dataFields: [''],
-                dataFieldTypes: [''],
-                dataFieldLengths: [0],
-                datasourceFilters: [],
-                accessType: '',
-                createdBy: this.globalVariableService.currentUser.userID,
-                createdOn: today,
-                createMethod: 'directSQLEditor',
-                editor: '',
-                dateEdited: null,
-                refreshedBy: '',
-                refreshedServerOn: null,
-                cacheResultsOnServer: true,
-                serverExpiryDateTime: null,
-                unRefreshable: true,
-                cacheResultsLocal: false,
-                oldnessMaxPeriodInterval: '',
-                oldnessMaxPeriodUnits: 0,
-                oldnessRelatedDate: '',
-                oldnessRelatedTime: '',
-                refreshedLocalOn: null,
-                folder: '',
-                fileName: '',
-                excelWorksheet: '',
-                transposeOnLoad: false,
-                startLineNr: 0,
-                csvSeparationCharacter: '',
-                csvQuotCharacter: '',
-                webUrl: '',
-                webTableIndex: '',
-                connectionID: 0,
-                dataTableID: 0,
-                nrWidgets: 0,
-                databaseName: 'data',       //'ftfhgfzh',
-                port: '5000',               //'5432',
-                serverType: 'PostgresSQL',
-                serverName: 'postgres',     //'pellefant.db.elephantsql.com',
-                dataTableName: 'ftfhgfzh',
-                dataSQLStatement:  'SELECT \"SalePrice", \"FullBath\", \"HalfBath\", \"TotRmsAbvGrd\", \"LotArea\" FROM \"kaggle_house_prices\"',  //'SELECT "InvoiceDate", "BillingCity"  FROM invoices',
-                dataNoSQLStatement: '',
-                dataNeo4jStatement: '',
-                dataGraphQLStatement: '',
-                businessGlossary: 'Obtained using SQL Editor',
-                dataDictionary: '',
-                datasourceCombinationSpec: null,
-                rowLimitFromSource: 0,
-                timeoutLimitSeconds: 0,
-                endLineNr: 0,
-                startColumnNr: 1,
-                endColumnNr: 0,
-                encoding: 'Ascii',
-                serviceUrl: '',
-                serviceParams: '',
-                serviceQueryParams: '',
-                serviceHeaders: '',
-                sourceIsAccessable: true,
-                queryParameters: '',
-                metaDataFields: [],
-                transformations: [],
-                dataErrorMessage: '',
-                nrRecordsReturned: 0,
-                sourceLocation: '',
-                dataFull: [],
-                dataFiltered: []
-            };
+            this.selectedDatasource = datasourceTemplate;
+            this.selectedDatasource.type = 'Server';
+            this.selectedDatasource.username = 'postgres';     //'ftfhgfzh',
+            this.selectedDatasource.password = 'postgres';     //'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl'
+            this.selectedDatasource.createdBy = this.globalVariableService.currentUser.userID;
+            this.selectedDatasource.createdOn = today;            this.selectedDatasource.createMethod = 'directSQLEditor';
+            this.selectedDatasource.databaseName = 'data';       //'ftfhgfzh',
+            this.selectedDatasource.port = '5000';               //'5432',
+            this.selectedDatasource.serverType = 'PostgresSQL';
+            this.selectedDatasource.serverName = 'postgres';     //'pellefant.db.elephantsql.com',
+            this.selectedDatasource.dataTableName = 'ftfhgfzh';
+            this.selectedDatasource.dataSQLStatement =  'SELECT ;"SalePrice", \"FullBath\", \"HalfBath\", \"TotRmsAbvGrd\", \"LotArea\" FROM \"kaggle_house_prices\"',  //'SELECT "InvoiceDate", "BillingCity"  FROM invoices',
+            this.selectedDatasource.businessGlossary = 'Obtained ;sing SQL Editor',
+            this.selectedDatasource.encoding = 'Ascii';
         } else {
             this.isEditing = true;
             this.clickNextToWhat();
