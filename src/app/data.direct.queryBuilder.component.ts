@@ -21,6 +21,9 @@ import { DataTable }                  from './models';
 import { DataField }                  from './models';
 import { TributaryServerType }        from './models';
 
+// Templates
+import { datasourceTemplate }         from './templates';
+
 
 @Component({
     selector: 'data-directQueryBuilder',
@@ -98,82 +101,18 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
 
             // TODO - use DS template
-            this.selectedDatasource = {
-                id: 0,
-                type: '',
-                subType: '',
-                typeVersion: '',
-                name: 'New DS',
-                username: 'ftfhgfzh',
-                password: 'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl',
-                description: 'Post Trade Data Vault',
-                createdBy: '',
-                createdOn:null,
-                createMethod: 'directQueryBuilder',
-                editor: '',
-                dateEdited: null,
-                refreshedBy: '',
-                refreshedServerOn: null,
-                dataFields: [''],
-                dataFieldTypes: [''],
-                dataFieldLengths: [0],
-                datasourceFilters: [],
-                accessType: '',
-                cacheResultsOnServer: true,
-                serverExpiryDateTime: null,
-                unRefreshable: true,
-                cacheResultsLocal: false,
-                oldnessMaxPeriodInterval: '',
-                oldnessMaxPeriodUnits: 0,
-                oldnessRelatedDate: '',
-                oldnessRelatedTime: '',
-                refreshedLocalOn: null,
-                folder: '',
-                fileName: '',
-                excelWorksheet: '',
-                transposeOnLoad: false,
-                startLineNr: 0,
-                csvSeparationCharacter: '',
-                csvQuotCharacter: '',
-                webUrl: '',
-                webTableIndex: '',
-                connectionID: 0,
-                dataTableID: 0,
-                nrWidgets: 0,
-                databaseName: 'ftfhgfzh',
-                port: '5432',
-                serverType: 'PostgresSQL',
-                serverName: 'pellefant.db.elephantsql.com',
-                dataTableName: '',
-                dataSQLStatement: '',
-                dataNoSQLStatement: '',
-                dataNeo4jStatement: '',
-                dataGraphQLStatement: '',
-                businessGlossary: '',
-                dataDictionary: '',
-                datasourceCombinationSpec: null,
-                rowLimitFromSource: 0,
-                timeoutLimitSeconds: 0,
-                endLineNr: 0,
-                startColumnNr: 1,
-                endColumnNr: 0,
-                encoding: 'Ascii',
-                serviceUrl: '',
-                serviceParams: '',
-                serviceQueryParams: '',
-                serviceHeaders: '',
-                sourceIsAccessable: true,
-                queryParameters: '',
-                metaDataFields: [],
-                transformations: [],
-                dataErrorMessage: '',
-                nrRecordsReturned: 0,
-                sourceLocation: '',
-                dataFull: [],
-                dataFiltered: []
-
-            
-            };
+            this.selectedDatasource = datasourceTemplate;
+            this.selectedDatasource.name = 'New DS';
+            this.selectedDatasource.username = 'ftfhgfzh';
+            this.selectedDatasource.password = 'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl';
+            this.selectedDatasource.description = 'Post Trade Data Vault';
+            this.selectedDatasource.createMethod = 'directQueryBuilder';
+            this.selectedDatasource.databaseName = 'ftfhgfzh';
+            this.selectedDatasource.port = '5432';
+            this.selectedDatasource.serverType = 'PostgresSQL';
+            this.selectedDatasource.serverName = 'pellefant.db.elephantsql.com';
+            this.selectedDatasource.encoding = 'Ascii';
+                
         } else {
 
             this.helpMessage = 'Amend the above info if needed, then click Refresh and select the Table & Fields.  Else, click Preview to see a portion of the data.';
