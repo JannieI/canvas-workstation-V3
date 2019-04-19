@@ -88,81 +88,16 @@ export class DataDirectNoSQLComponent implements OnInit {
             // TODO - use DS template
             this.selectedDatasource = datasourceTemplate;
 
-                id: null,
-                this.selectedDatasource.type: 'Server',
-                subType: '',
-                typeVersion: '',
-                name: '',
-                username: 'mongodb',
-                password: 'pass',
-                description: '',
-                createdBy: this.globalVariableService.currentUser.userID,
-                createdOn: today,
-                createMethod: 'directNoSQL',
-                editor: '',
-                dateEdited: null,
-                refreshedBy: '',
-                refreshedServerOn: null,
-                dataFields: [''],
-                dataFieldTypes: [''],
-                dataFieldLengths: [0],
-                datasourceFilters: [],
-                accessType: '',
-                cacheResultsOnServer: true,
-                serverExpiryDateTime: null,
-                unRefreshable: true,
-                cacheResultsLocal: false,
-                oldnessMaxPeriodInterval: '',
-                oldnessMaxPeriodUnits: 0,
-                oldnessRelatedDate: '',
-                oldnessRelatedTime: '',
-                refreshedLocalOn: null,
-                folder: '',
-                fileName: '',
-                excelWorksheet: '',
-                transposeOnLoad: false,
-                startLineNr: 0,
-                csvSeparationCharacter: '',
-                csvQuotCharacter: '',
-                webUrl: '',
-                webTableIndex: '',
-                connectionID: 0,
-                dataTableID: 0,
-                nrWidgets: 0,
-                databaseName: 'data',
-                port: '27017',
-                serverType: 'Mongo',
-                serverName: 'mongodb',
-                dataTableName: '',
-                dataSQLStatement: '',
-                dataNoSQLStatement: 'db.bios.find( { _id: 5 } )',
-                dataNeo4jStatement: '',
-                dataGraphQLStatement: '',
-                businessGlossary: 'Obtained using NoSQL Editor',
-                dataDictionary: '',
-                datasourceCombinationSpec: null,
-                rowLimitFromSource: 0,
-                timeoutLimitSeconds: 0,
-                endLineNr: 0,
-                startColumnNr: 1,
-                endColumnNr: 0,
-                encoding: 'Ascii',
-                serviceUrl: '',
-                serviceParams: '',
-                serviceQueryParams: '',
-                serviceHeaders: '',
-                sourceIsAccessable: true,
-                queryParameters: '',
-                metaDataFields: [],
-                transformations: [],
-                dataErrorMessage: '',
-                nrRecordsReturned: 0,
-                sourceLocation: '',
-                dataFull: [],
-                dataFiltered: []
-
-
-            };
+            this.selectedDatasource.type = 'Server';
+            this.selectedDatasource.createdBy = this.globalVariableService.currentUser.userID;
+            this.selectedDatasource.createMethod = 'directNoSQL';
+            this.selectedDatasource.databaseName = 'data';
+            this.selectedDatasource.port = '27017';
+            this.selectedDatasource.serverType = 'Mongo';
+            this.selectedDatasource.serverName = 'mongodb';
+            this.selectedDatasource.dataNoSQLStatement = 'db.bios.find( { _id: 5 } )';
+            this.selectedDatasource.businessGlossary = 'Obtained using NoSQL Editor';
+            this.selectedDatasource.encoding = 'Ascii';
         };
 
     }
