@@ -167,7 +167,47 @@ export class WidgetNavigatorComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
-        // Read from DB
+        // Read the DS for this W from GV
+        let currentDSIndex: number = this.globalVariableService.currentDatasources
+            .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
+        if (currentDSIndex >= 0) {
+            if (this.globalVariableService.currentDatasources[currentDSIndex]
+                .subDatasources.length != 2) {
+                    // TODO - make friendly
+                    console.log('ERROR ...')
+                } else {
+
+                let relationshipDSid: number = this.globalVariableService.currentDatasources
+                    [currentDSIndex].subDatasources[0];
+                this.globalVariableService.getData(
+                    'datasourceID=' + relationshipDSid.toString()
+                    )
+                    .then(res => {
+                        // this.ngNetworks = res;
+                        console.log('xx clientData relationshipDSid' + relationshipDSid.toString(), res)
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Navigator.OnInit reading clientData: ' + err);
+                    });
+        
+                let propertyDSid: number = this.globalVariableService.currentDatasources
+                    [currentDSIndex].subDatasources[0];
+                this.globalVariableService.getData(
+                    'datasourceID=' + propertyDSid.toString()
+                    )
+                    .then(res => {
+                        // this.ngNetworks = res;
+                        console.log('xx clientData propertyDSid' + propertyDSid.toString(), res)
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Navigator.OnInit reading clientData: ' + err);
+                    });
+                    
+            };
+        };
+
         this.globalVariableService.getResource('datasources', 'filterObject={"isNetworkShape": true}')
             .then(res => {
                 this.ngNetworks = res;
