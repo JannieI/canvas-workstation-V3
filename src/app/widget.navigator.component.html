@@ -647,7 +647,7 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         Select the name of a network to graph by clicking it.  A summary of the network will be
         shown, after which you can select specific nodes and relationships to browse.
-        <div class="networkAreaBlock" *ngFor="let row of networks; let i = index"
+        <div class="networkAreaBlock" *ngFor="let row of ngNetworks; let i = index"
             [style.background-color]="row.id==selectedNetworkID? 'white'  :  'rgb(235, 232, 232)'"
             [style.border]="row.id==selectedNetworkID? '2px solid black'  :  '1px solid gray'"
             [style.color]="row.id==selectedNetworkID? 'black'  :  'darkgray'"

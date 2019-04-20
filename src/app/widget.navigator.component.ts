@@ -69,7 +69,6 @@ export class WidgetNavigatorComponent {
     ngRelationshiops: NavigatorRelationship[] = [];
     ngProperties: NavigatorProperties[] = [];
 
-    networks: Datasource[] = [];
     networkGraph: Array<string[]> = [];
     networkGraph2: NavigatorRelationship[] = [];
     nodeTypeFields: NavigatorNodeTypeFieldsOLD[] = [];     // Property Fields per NodeType
@@ -182,7 +181,7 @@ export class WidgetNavigatorComponent {
                 console.error('Error in Navigator.OnInit reading datasources: ' + err);
             });
 
-        // Read the DS for this W from GV
+        // Read the Data for this W from GV
         let currentDSIndex: number = this.globalVariableService.currentDatasources
             .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
         if (currentDSIndex >= 0) {
@@ -230,8 +229,8 @@ export class WidgetNavigatorComponent {
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
         // Select the first network
-        if (this.networks.length > 0) {
-            this.clickNetwork(0, this.networks[0].id);
+        if (this.ngNetworks.length > 0) {
+            this.clickNetwork(0, this.ngNetworks[0].id);
         };
 
     }
@@ -846,7 +845,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             );
         };
 
-        this.graphTitle = 'Summary of ' + this.networks[networkIndex].name
+        this.graphTitle = 'Summary of ' + this.ngNetworks[networkIndex].name
             + ' network';
 
         // Dimension it
@@ -1890,22 +1889,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
     tempCreateDummyData() {
 
         // Populate networks - TODO make from DB
-        let networksNew: Datasource = JSON.parse(JSON.stringify(this.datasourceTemplate));
-        networksNew.id = 1;
-        networksNew.name = "Company-Directors";
-        networksNew.description = "Companies, Subsidiaries, Directors";
-        this.networks.push(networksNew);
- 
-        networksNew = JSON.parse(JSON.stringify(this.datasourceTemplate));
-        networksNew.id = 2;
-        networksNew.name = "Industry-Company";
-        networksNew.description = "Industry-Company-Subsidiary";
-        
-        networksNew = JSON.parse(JSON.stringify(this.datasourceTemplate));
-        this.networks.push(networksNew);
-        networksNew.id = 3;
-        networksNew.name = "Company-Contacts";
-        networksNew.description = "Company-KeyContacts";
 
         let newParentRelatedChildren: NavigatorParentRelatedChildOLD =
             {
