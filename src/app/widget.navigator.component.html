@@ -19,7 +19,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 (change)="changeParentNodeType($event)"
                 name="selectedNodeType"
                 >
-                <option *ngFor="let row of dropdownParentNodeTypes">
+                <option *ngFor="let row of ngDropdownParentNodeTypes">
                     {{ row }}
                 </option>
 
@@ -33,7 +33,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 (change)="changeParentNode($event)"
                 name="selectedParentNode"
                 >
-                <option *ngFor="let row of dropdownParentNodes">
+                <option *ngFor="let row of ngDropdownParentNodes">
                     {{ row }}
                 </option>
             </select>
@@ -212,7 +212,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 (change)="changeRelationship($event)"
                 name="selectedRelationship"
                 >
-                <option *ngFor="let row of dropdownRelationships">
+                <option *ngFor="let row of ngDropdownRelationships">
                     {{ row }}
                 </option>
             </select>

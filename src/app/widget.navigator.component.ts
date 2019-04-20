@@ -29,7 +29,6 @@ import { Widget }                     from './models'
 // Functions, 3rd Party
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
-import { NgNoValidate } from '@angular/forms/src/directives/ng_no_validate_directive';
 
 
 @Component({
@@ -63,8 +62,23 @@ export class WidgetNavigatorComponent {
     //  - NavigatorNodeFiler
 
     ngNetworks: Datasource[] = [];
-    ngRelationshiops: NavigatorRelationship[] = [];
-    ngProperties: NavigatorProperties[] = [];
+    networkRelationships: NavigatorRelationship[] = [];
+    networkProperties: NavigatorProperties[] = [];
+    ngDropdownParentNodes: string[] = [];
+    ngDropdownParentNodeTypes: string[] = [];
+    ngDropdownRelationships: string[] = [];
+
+
+    // Selected - value selected in a dropdown
+    selectedChildFilterID: number = -1;
+    selectedHistoryID: number = -1;
+    selectedNetworkID: number = -1;
+    selectedNodeType: string = '';
+    selectedParentFilterID: number = -1;
+    selectedParentNode: string = '';
+    selectedParentNodeType: string = '';
+    selectedRelationship: string = '';
+    selectedView: string = 'DefaultView';
 
     networkGraph: Array<string[]> = [];
     networkGraph2: NavigatorRelationship[] = [];
@@ -72,23 +86,6 @@ export class WidgetNavigatorComponent {
     nodeProperties: NavigatorNodePropertiesOLD[] = [];     // Properties per node for fields above
     parentRelatedChildren: NavigatorParentRelatedChildOLD[] = [];  // Parents and related children
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
-
-    // Dropdowns & filters - fills the dropdowns in the Graph Area
-    dropdownParentNodes: string[] = [];
-    dropdownParentNodeTypes: string[] = [];
-    dropdownRelationships: string[] = [];
-
-    // Selected - value selected in a dropdown
-    selectedChildFilterID: number = -1;
-    selectedHistoryID: number = -1;
-    selectedNetworkID: number = -1;
-    selectedNetwork: string = '';
-    selectedNodeType: string = '';
-    selectedParentFilterID: number = -1;
-    selectedParentNode: string = '';
-    selectedParentNodeType: string = '';
-    selectedRelationship: string = '';
-    selectedView: string = 'DefaultView';
 
     // Working
     childDataAll: any[] = [];                           // List of all children after filter
@@ -166,68 +163,42 @@ export class WidgetNavigatorComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
+        // Deep copy Local W
+        this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+
+        // Populate persisted data - TODO via DB
+        this.tempCreateDummyData();
+
+
+
         // Read DS for all Networks from DB
         this.globalVariableService.getResource('datasources', 'filterObject={"isNetworkShape": true}')
             .then(res => {
                 this.ngNetworks = res;
-                console.log('xx this.ngNetworks', this.ngNetworks)
+                console.log('xx this.ngNetworks', this.ngNetworks);
+
+                // Find DS for selected W inside Networks
+                let networkIndex: number = this.ngNetworks.findIndex(
+                    nw => nw.id == this.localWidget.datasourceID);
+
+                // Select the first network
+                if (this.ngNetworks.length > 0) {
+                    if (networkIndex >= 0) {
+                        this.selectedNetworkID = this.ngNetworks[networkIndex].id;
+                        console.log('xx found', networkIndex, this.selectedNetworkID)
+                        this.clickNetwork(networkIndex, this.selectedNetworkID);
+                    } else {
+                        this.clickNetwork(0, this.ngNetworks[0].id);
+                    };
+                };            
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in Navigator.OnInit reading datasources: ' + err);
             });
 
-        // Read the Data for this W from GV
-        let currentDSIndex: number = this.globalVariableService.currentDatasources
-            .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
-        if (currentDSIndex >= 0) {
-            if (this.globalVariableService.currentDatasources[currentDSIndex]
-                .subDatasources.length != 2) {
-                    // TODO - make friendly
-                    console.log('ERROR ...')
-            } else {
 
-                let relationshipDSid: number = this.globalVariableService.currentDatasources
-                    [currentDSIndex].subDatasources[0];
-                this.globalVariableService.getData(
-                    'datasourceID=' + relationshipDSid.toString()
-                    )
-                    .then(res => {
-                        this.ngRelationshiops = res;
-                        console.log('xx clientData relationshipDSid' + relationshipDSid.toString(), this.ngRelationshiops)
-                    })
-                    .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
-                        console.error('Error in Navigator.OnInit reading clientData: ' + err);
-                    });
-        
-                let propertyDSid: number = this.globalVariableService.currentDatasources
-                    [currentDSIndex].subDatasources[1];
-                this.globalVariableService.getData(
-                    'datasourceID=' + propertyDSid.toString()
-                    )
-                    .then(res => {
-                        this.ngProperties = res;
-                        console.log('xx clientData propertyDSid' + propertyDSid.toString(), this.ngProperties)
-                    })
-                    .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
-                        console.error('Error in Navigator.OnInit reading clientData: ' + err);
-                    });
-                
-            };
-        };
-
-        // Populate persisted data - TODO via DB
-        this.tempCreateDummyData();
-
-        // Deep copy Local W
-        this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-
-        // Select the first network
-        if (this.ngNetworks.length > 0) {
-            this.clickNetwork(0, this.ngNetworks[0].id);
-        };
 
     }
 
@@ -333,20 +304,72 @@ export class WidgetNavigatorComponent {
 
         // Remember the ID of the selected Network
         this.selectedNetworkID = networkID;
+        // Fill Combos
+        ngDropdownParentNodes
+ngDropdownParentNodeTypes
+ngDropdownRelationships
+
+
+
+
+        // Read the Data for this W from GV
+        let currentDSIndex: number = this.globalVariableService.currentDatasources
+            .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
+        if (currentDSIndex >= 0) {
+            if (this.globalVariableService.currentDatasources[currentDSIndex]
+                .subDatasources.length != 2) {
+                    // TODO - make friendly
+                    console.log('ERROR ...')
+            } else {
+
+                let relationshipDSid: number = this.globalVariableService.currentDatasources
+                    [currentDSIndex].subDatasources[0];
+                this.globalVariableService.getData(
+                    'datasourceID=' + relationshipDSid.toString()
+                    )
+                    .then(res => {
+                        this.networkRelationships = res;
+                        console.log('xx clientData relationshipDSid' + relationshipDSid.toString(), this.networkRelationships)
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Navigator.OnInit reading clientData: ' + err);
+                    });
+        
+                let propertyDSid: number = this.globalVariableService.currentDatasources
+                    [currentDSIndex].subDatasources[1];
+                this.globalVariableService.getData(
+                    'datasourceID=' + propertyDSid.toString()
+                    )
+                    .then(res => {
+                        this.networkProperties = res;
+                        console.log('xx clientData propertyDSid' + propertyDSid.toString(), this.networkProperties)
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Navigator.OnInit reading clientData: ' + err);
+                    });
+                
+            };
+        };
+
+
+
+
 
         // Create the ParentNodeType dropdown according to the network
-        this.dropdownParentNodeTypes = this.parentRelatedChildren
+        this.ngDropdownParentNodeTypes = this.networkRelationships
             .filter(x => x.networkID === this.selectedNetworkID)
             .map(x => x.parentNodeType)
-        this.dropdownParentNodeTypes = ['All', ...this.dropdownParentNodeTypes];
+        this.ngDropdownParentNodeTypes = ['All', ...this.ngDropdownParentNodeTypes];
 
         // Make unique
-        let parentNodeTypesSet = new Set(this.dropdownParentNodeTypes);
-        this.dropdownParentNodeTypes = Array.from(parentNodeTypesSet);
+        let parentNodeTypesSet = new Set(this.ngDropdownParentNodeTypes);
+        this.ngDropdownParentNodeTypes = Array.from(parentNodeTypesSet);
 
         // Clear the rest & reset pointers
-        this.dropdownParentNodes = [];
-        this.dropdownRelationships = [];
+        this.ngDropdownParentNodes = [];
+        this.ngDropdownRelationships = [];
         this.parentNodeFilter = [];
         this.childNodeFilter = [];
 
@@ -413,7 +436,7 @@ export class WidgetNavigatorComponent {
         this.selectedParentNodeType = ev.target.value;
 
         // Set selected ParentNodeId
-        let parentNodeTypeIndex: number = this.dropdownParentNodeTypes.findIndex(
+        let parentNodeTypeIndex: number = this.ngDropdownParentNodeTypes.findIndex(
             p => p === this.selectedParentNodeType
         );
 
@@ -425,13 +448,13 @@ export class WidgetNavigatorComponent {
         );
 
         // Set Dropdowns & reset selected
-        this.dropdownParentNodes = this.parentRelatedChildren
+        this.ngDropdownParentNodes = this.parentRelatedChildren
             .filter(
                 x => x.parentNodeType === this.selectedParentNodeType
             )
             .slice(0, 100)
             .map(x => x.parentNode);
-        this.dropdownRelationships = this.parentRelatedChildren
+        this.ngDropdownRelationships = this.parentRelatedChildren
             .filter(
                 x => x.parentNodeType === this.selectedParentNodeType
             )
@@ -440,29 +463,29 @@ export class WidgetNavigatorComponent {
 
         // Filter the Parent Nodes on parentFilter and watchlist
         if (watchListIndex >= 0) {
-            this.dropdownParentNodes = this.dropdownParentNodes.filter(
+            this.ngDropdownParentNodes = this.ngDropdownParentNodes.filter(
                 x => this.watchList[watchListIndex].nodes.indexOf(x) >= 0
             )
         }
         if (this.filteredParentNodes.length > 0) {
-            this.dropdownParentNodes = this.dropdownParentNodes.filter(
+            this.ngDropdownParentNodes = this.ngDropdownParentNodes.filter(
                 x => this.filteredParentNodes.indexOf(x) >= 0
             );
         };
 
         // Make unique
-        let dropdownParentNodeSet = new Set(this.dropdownParentNodes);
-        this.dropdownParentNodes = Array.from(dropdownParentNodeSet);
+        let dropdownParentNodeSet = new Set(this.ngDropdownParentNodes);
+        this.ngDropdownParentNodes = Array.from(dropdownParentNodeSet);
 
-        let dropdownRelationshipSet = new Set(this.dropdownRelationships);
-        this.dropdownRelationships = Array.from(dropdownRelationshipSet);
+        let dropdownRelationshipSet = new Set(this.ngDropdownRelationships);
+        this.ngDropdownRelationships = Array.from(dropdownRelationshipSet);
 
         // Add blank at start
-        this.dropdownParentNodes = ['All', ...this.dropdownParentNodes];
-        this.dropdownRelationships = ['All', ...this.dropdownRelationships];
+        this.ngDropdownParentNodes = ['All', ...this.ngDropdownParentNodes];
+        this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
         this.relationshipRoles = [];
-        this.selectedParentNode = this.dropdownParentNodes[0];
-        this.selectedRelationship = this.dropdownRelationships[0];
+        this.selectedParentNode = this.ngDropdownParentNodes[0];
+        this.selectedRelationship = this.ngDropdownRelationships[0];
         this.childNodeFilter = [];
         this.selectedChildFilterID = -1;
 
