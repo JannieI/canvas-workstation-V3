@@ -26,9 +26,6 @@ import { NavigatorParentRelatedChildOLD }       from './models'
 import { NavigatorWatchList }         from './models'
 import { Widget }                     from './models'
 
-// Templates
-import { datasourceTemplate }         from './templates';
-
 // Functions, 3rd Party
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
@@ -145,7 +142,6 @@ export class WidgetNavigatorComponent {
     watchListFiltered: boolean = false;
 
 
-    datasourceTemplate = datasourceTemplate;
     navNodeIsDone: string[] = [];
     navNodesToDo: string[] = [];
     singleRoutesArray: Array<string[]> = [];
