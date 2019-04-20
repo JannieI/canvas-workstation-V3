@@ -432,7 +432,7 @@ export class WidgetNavigatorComponent {
         };
 
         // Fill Relationships combo: + 'All', unique, sorted
-        this.ngDropdownRelationships = this.distinctRelationships();
+        this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
         this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
 
         this.relationshipRoles = [];
@@ -1010,6 +1010,20 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
                 path.forEach(c => newPath.push(c));
                 this.nav2WalkInPath(nodeName, child, relationship, iterationCount, newPath)
         });
+    }
+
+    distinctNodeTypes(): string[] {
+        // Return distinct array of Nodes Type for the current Network
+        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctNodeTypes', '@Start');
+
+        // Find unique Nodes
+        let leftNodeTypes: string[] = this.networkRelationships.map(x => x.leftNodeType);
+        let rightNodeTypes: string[] = this.networkRelationships.map(x => x.rightNodeType);
+        let uniqueNodeTypes: string[] = leftNodeTypes.concat(rightNodeTypes);
+        uniqueNodeTypes =this.navUniqifySortNodes(uniqueNodeTypes);
+
+        // Return
+        return uniqueNodeTypes;
     }
 
     distinctRelationships(selectedParentNodeType: string): string[] {
