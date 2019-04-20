@@ -305,13 +305,13 @@ export class WidgetNavigatorComponent {
         this.selectedNetworkID = networkID;
 
         // Read the Data for this W from the DB
-        if (index >= 0) {
-            if (this.ngNetworks[index].subDatasources.length != 2) {
+        if (this.selectedNetworkID >= 0) {
+            if (this.ngNetworks[this.selectedNetworkID].subDatasources.length != 2) {
                 // TODO - make friendly
                 console.log('ERROR ...')
             } else {
                 
-                this.selectedNetworkRelationshipID = this.ngNetworks[index].subDatasources[0];
+                this.selectedNetworkRelationshipID = this.ngNetworks[this.selectedNetworkID].subDatasources[0];
                 this.globalVariableService.getData(
                     'datasourceID=' + this.selectedNetworkRelationshipID.toString()
                     )
@@ -500,21 +500,6 @@ export class WidgetNavigatorComponent {
         this.checkShowGraph();
     }
 
-    checkShowGraph() {
-        // Check if all selected; then show graph
-        this.globalFunctionService.printToConsole(this.constructor.name, 'checkShowGraph', '@Start');
-
-
-        // Show the graph when all fields selected
-        if (this.selectedParentNodeType != ''
-            &&
-            this.selectedParentNode != ''
-            &&
-            this.selectedRelationship != '') {
-            this.showGraph();
-        };
-    }
-
     changeRelationship(ev: any) {
         // Make the filter inactive
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeRelationship', '@Start');
@@ -544,6 +529,21 @@ export class WidgetNavigatorComponent {
         // Show graph if all 3 selected
         this.checkShowGraph();
 
+    }
+
+    checkShowGraph() {
+        // Check if all selected; then show graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'checkShowGraph', '@Start');
+
+
+        // Show the graph when all fields selected
+        if (this.selectedParentNodeType != ''
+            &&
+            this.selectedParentNode != ''
+            &&
+            this.selectedRelationship != '') {
+            this.showGraph();
+        };
     }
 
     showGraph(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
@@ -807,8 +807,8 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkSummary', '@Start');
 
         // Find unique Nodes
-        let leftNodeTypes: string[] = this.networkGraph2.map(x => x.leftNodeType);
-        let rightNodeTypes: string[] = this.networkGraph2.map(x => x.rightNodeType);
+        let leftNodeTypes: string[] = this.networkRelationships.map(x => x.leftNodeType);
+        let rightNodeTypes: string[] = this.networkRelationships.map(x => x.rightNodeType);
         let uniqueNodeTypes: string[] = leftNodeTypes.concat(rightNodeTypes);
         uniqueNodeTypes = Array.from(new Set(uniqueNodeTypes));
         
@@ -816,9 +816,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         let nodeCount: number = -1;
         let uniqueNodesWithCount: {nodeType: string; nodeCount: number}[] = [];
         for (var i = 0; i < uniqueNodeTypes.length; i++) {
-            nodeCount = this.networkGraph2.filter(x => x.leftNodeType == uniqueNodeTypes[i]).length;
+            nodeCount = this.networkRelationships.filter(x => x.leftNodeType == uniqueNodeTypes[i]).length;
             console.log('xx nodeCount', nodeCount)
-            nodeCount = nodeCount + this.networkGraph2
+            nodeCount = nodeCount + this.networkRelationships
                 .filter(x => x.rightNodeType == uniqueNodeTypes[i]).length;
             uniqueNodesWithCount.push(
                 {
