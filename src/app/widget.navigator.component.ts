@@ -150,7 +150,6 @@ export class WidgetNavigatorComponent {
     navSinglePaths: Array<string[]> = [];
 
 
-
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -178,7 +177,6 @@ export class WidgetNavigatorComponent {
         this.globalVariableService.getResource('datasources', 'filterObject={"isNetworkShape": true}')
             .then(res => {
                 this.ngNetworks = res;
-                console.log('xx this.ngNetworks', this.ngNetworks);
 
                 // Find DS for selected W inside Networks
                 let networkIndex: number = this.ngNetworks.findIndex(
@@ -188,7 +186,6 @@ export class WidgetNavigatorComponent {
                 if (this.ngNetworks.length > 0) {
                     if (networkIndex >= 0) {
                         this.selectedNetworkID = this.ngNetworks[networkIndex].id;
-                        console.log('xx found', networkIndex, this.selectedNetworkID)
                         this.clickNetwork(networkIndex, this.selectedNetworkID);
                     } else {
                         this.clickNetwork(0, this.ngNetworks[0].id);
@@ -322,10 +319,8 @@ export class WidgetNavigatorComponent {
                         this.networkRelationships = res;
 
                         // Fill ParentNode type combo: + 'All', unique, sorted
-                        let leftNodeTypes: string[] = this.ngDropdownParentNodeTypes = this.networkRelationships
-                            .map(nr => nr.leftNodeType);
-                        let rightNodeTypes: string[] = this.ngDropdownParentNodeTypes = this.networkRelationships
-                            .map(nr => nr.rightNodeType);
+                        let leftNodeTypes: string[] = this.networkRelationships.map(nr => nr.leftNodeType);
+                        let rightNodeTypes: string[] = this.networkRelationships.map(nr => nr.rightNodeType);
                         this.ngDropdownParentNodeTypes = Array.from(
                             new Set(leftNodeTypes.concat(rightNodeTypes))
                         );
@@ -337,9 +332,6 @@ export class WidgetNavigatorComponent {
                                 if (a < b) return -1;
                                 return 0;
                             });
-                        console.log('xx clientData this.selectedNetworkRelationshipID' 
-                            + this.selectedNetworkRelationshipID.toString(), this.networkRelationships
-                            ,leftNodeTypes, rightNodeTypes, this.ngDropdownParentNodeTypes)
             
                         this.selectedNetworkPropertiesID = this.ngNetworks[index].subDatasources[1];
                         this.globalVariableService.getData(
@@ -349,9 +341,9 @@ export class WidgetNavigatorComponent {
                                 this.networkProperties = res;
 
                                 // Fill ParentNode type combo: + 'All', unique, sorted
-                                let leftRelationships: string[] = this.ngDropdownParentNodeTypes = this.networkRelationships
+                                let leftRelationships: string[] = this.networkRelationships
                                     .map(nr => nr.relationshipLeftToRight);
-                                let rightRelationships: string[] = this.ngDropdownParentNodeTypes = this.networkRelationships
+                                let rightRelationships: string[] = this.networkRelationships
                                     .map(nr => nr.relationshipRightToLeft);
                                 this.ngDropdownRelationships = Array.from(
                                     new Set(leftRelationships.concat(rightRelationships))
@@ -365,11 +357,8 @@ export class WidgetNavigatorComponent {
                                         return 0;
                                     });
 
-                                console.log('xx clientData this.selectedNetworkPropertiesID' + this.selectedNetworkPropertiesID.toString(), 
-                                    leftRelationships, rightRelationships, this.ngDropdownRelationships, this.networkProperties)
-
-
                                 // Clear the rest & reset pointers
+                                this.ngDropdownParentNodes = [];
                                 this.parentNodeFilter = [];
                                 this.childNodeFilter = [];
 
@@ -415,7 +404,6 @@ export class WidgetNavigatorComponent {
             };
         };
 
-
     }
 
     clickHistory(index: number, historyID: number) {
@@ -449,38 +437,22 @@ export class WidgetNavigatorComponent {
         // Set selected Nod
         this.selectedParentNodeType = ev.target.value;
 
-        // Set selected ParentNodeId
-        let parentNodeTypeIndex: number = this.ngDropdownParentNodeTypes.findIndex(
-            p => p === this.selectedParentNodeType
+        // Fill ParentNodes combo: + '', All', unique, sorted
+        let leftNodeTypes: string[] = this.networkRelationships.map(nr => nr.leftNodeName);
+        let rightNodeTypes: string[] = this.networkRelationships.map(nr => nr.rightNodeName);
+        this.ngDropdownParentNodes = Array.from(
+            new Set(leftNodeTypes.concat(rightNodeTypes))
         );
 
-        // Find watchlist for this NodeType
-        let watchListIndex: number = this.watchList.findIndex(x =>
-                x.userID === this.globalVariableService.currentUserID
-                &&
-                x.nodeType === this.selectedParentNodeType
-        );
+        this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        this.ngDropdownParentNodes = this.ngDropdownParentNodes
+            .sort( (a,b) => {
+                if (a > b) return 1;
+                if (a < b) return -1;
+                return 0;
+            });
 
-        // Set Dropdowns & reset selected
-        this.ngDropdownParentNodes = this.parentRelatedChildren
-            .filter(
-                x => x.parentNodeType === this.selectedParentNodeType
-            )
-            .slice(0, 100)
-            .map(x => x.parentNode);
-        this.ngDropdownRelationships = this.parentRelatedChildren
-            .filter(
-                x => x.parentNodeType === this.selectedParentNodeType
-            )
-            .slice(0, 100)
-            .map(x => x.relationship);
 
-        // Filter the Parent Nodes on parentFilter and watchlist
-        if (watchListIndex >= 0) {
-            this.ngDropdownParentNodes = this.ngDropdownParentNodes.filter(
-                x => this.watchList[watchListIndex].nodes.indexOf(x) >= 0
-            )
-        }
         if (this.filteredParentNodes.length > 0) {
             this.ngDropdownParentNodes = this.ngDropdownParentNodes.filter(
                 x => this.filteredParentNodes.indexOf(x) >= 0
