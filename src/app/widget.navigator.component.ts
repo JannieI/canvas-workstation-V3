@@ -321,9 +321,25 @@ export class WidgetNavigatorComponent {
                     .then(res => {
                         this.networkRelationships = res;
 
-                        // Fill ParentNode type combo
-                        this.
-                        console.log('xx clientData this.selectedNetworkRelationshipID' + this.selectedNetworkRelationshipID.toString(), this.networkRelationships)
+                        // Fill ParentNode type combo: + 'All', unique, sorted
+                        let leftNodeTypes: string[] = this.ngDropdownParentNodeTypes = this.networkRelationships
+                            .map(nr => nr.leftNodeType);
+                        let rightNodeTypes: string[] = this.ngDropdownParentNodeTypes = this.networkRelationships
+                            .map(nr => nr.rightNodeType);
+                        this.ngDropdownParentNodeTypes = Array.from(
+                            new Set(leftNodeTypes.concat(rightNodeTypes))
+                        );
+
+                        this.ngDropdownParentNodeTypes = ['All', ...this.ngDropdownParentNodeTypes];
+                        this.ngDropdownParentNodeTypes = this.ngDropdownParentNodeTypes
+                            .sort( (a,b) => {
+                                if (a > b) return 1;
+                                if (a < b) return -1;
+                                return 0;
+                            });
+                        console.log('xx clientData this.selectedNetworkRelationshipID' 
+                            + this.selectedNetworkRelationshipID.toString(), this.networkRelationships
+                            ,leftNodeTypes, rightNodeTypes, this.ngDropdownParentNodeTypes)
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);
@@ -336,6 +352,7 @@ export class WidgetNavigatorComponent {
                     )
                     .then(res => {
                         this.networkProperties = res;
+                        // ngDropdownRelationships
                         console.log('xx clientData this.selectedNetworkPropertiesID' + this.selectedNetworkPropertiesID.toString(), this.networkProperties)
                     })
                     .catch(err => {
@@ -350,15 +367,6 @@ export class WidgetNavigatorComponent {
 
 
 
-        // Create the ParentNodeType dropdown according to the network
-        this.ngDropdownParentNodeTypes = this.networkRelationships
-            .filter(x => x.networkID === this.selectedNetworkID)
-            .map(x => x.parentNodeType)
-        this.ngDropdownParentNodeTypes = ['All', ...this.ngDropdownParentNodeTypes];
-
-        // Make unique
-        let parentNodeTypesSet = new Set(this.ngDropdownParentNodeTypes);
-        this.ngDropdownParentNodeTypes = Array.from(parentNodeTypesSet);
 
         // Clear the rest & reset pointers
         this.ngDropdownParentNodes = [];
