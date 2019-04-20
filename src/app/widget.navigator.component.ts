@@ -1053,35 +1053,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
 
-    navNodeRelationships(startNode: string): string[] {
-        // Return a unique list of different relationships that a given Node has
-        // this.globalFunctionService.printToConsole(this.constructor.name, 'navNodeRelationships', '@Start');
-
-        let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
-        let relationships: string [] = [];
-        
-        // Find related Nodes
-        for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
-            for (var c = firstAdjacencyCellRowNr; c < this.networkGraph.length; c++) {
-
-                if (this.networkGraph[r][0] === startNode  
-                    &&  
-                    this.networkGraph[r][c] != ''
-                    &&  
-                    this.networkGraph[r][c] != undefined) {
-                    relationships.push(this.networkGraph[r][c]);
-                };
-            };
-        };
-
-        // Make sure it is a unique, non-null list
-        relationships = this.navUniqifySortNodes(relationships);
-
-        // Return
-        return relationships;
-
-    }
-
     navNextNodesInPath(startNode: string, relationship: string, strictNode: string = null): string[] {
         // Return next Nodes in path with specified relationships to startNode
         // this.globalFunctionService.printToConsole(this.constructor.name, 'navNextNodesInPath', '@Start');
