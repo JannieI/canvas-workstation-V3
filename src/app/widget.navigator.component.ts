@@ -82,7 +82,6 @@ export class WidgetNavigatorComponent {
     selectedRelationship: string = '';
     selectedView: string = 'DefaultView';
 
-    networkGraph: Array<string[]> = [];
     networkGraph2: NavigatorRelationship[] = [];
     nodeTypeFields: NavigatorNodeTypeFieldsOLD[] = [];     // Property Fields per NodeType
     nodeProperties: NavigatorNodePropertiesOLD[] = [];     // Properties per node for fields above
@@ -2053,27 +2052,6 @@ export class WidgetNavigatorComponent {
         };
         this.watchList.push(watchListNew);
 
-
-        // Build the Array for the network - Nodes, properties, proximity / relationships
-        this.networkGraph = [];
-        this.networkGraph.push(Array("", "", "", "", "", "", "", "", "", "A", "B", "C", "D", "x", "y", "z"));
-        this.networkGraph.push(Array("", "", "", "", "Company", "Person", "", "", "", "", "", "", "", "", "", ""));
-        this.networkGraph.push(Array("", "", "", "", "", "", "Company", "Person", "Person", "", "", "", "", "", "", ""));
-        this.networkGraph.push(Array("", "", "", "", "", "", "Top 40", "Male", "Female", "", "", "", "", "", "", ""));
-        this.networkGraph.push(Array("", "Company", "", "", "", "", "", "", "", "1", "1", "1", "1", "", "", ""));
-        this.networkGraph.push(Array("", "Person", "", "", "", "", "", "", "", "", "", "", "", "1", "1", "1"));
-        this.networkGraph.push(Array("", "", "Company", "Top 40", "", "", "", "", "", "1", "", "1", "", "", "", ""));
-        this.networkGraph.push(Array("", "", "Person", "Male", "", "", "", "", "", "", "", "", "", "1", "1", ""));
-        this.networkGraph.push(Array("", "", "Person", "Female", "", "", "", "", "", "", "", "", "", "", "", "1"));
-        this.networkGraph.push(Array("A", "", "", "", "1", "", "1", "", "", "", "", "1", "", "1", "", ""));
-        this.networkGraph.push(Array("B", "", "", "", "1", "", "", "", "", "", "", "", "", "", "2", "2"));
-        this.networkGraph.push(Array("C", "", "", "", "1", "", "1", "", "", "1", "", "", "1", "", "", "1"));
-        this.networkGraph.push(Array("D", "", "", "", "1", "", "", "", "", "", "", "1", "", "1", "1", ""));
-        this.networkGraph.push(Array("x", "", "", "", "", "1", "", "1", "", "1", "", "", "1", "", "", ""));
-        this.networkGraph.push(Array("y", "", "", "", "", "1", "", "1", "", "", "2", "", "1", "", "", ""));
-        this.networkGraph.push(Array("z", "", "", "", "", "1", "", "", "1", "", "2", "1", "", "", "", ""));
-        console.log('xx Row 5', this.networkGraph.filter(row => row[1] == 'Company'))
-        console.log('xx networkGraph Cell [9,0] = A', this.networkGraph[9][0])
 
         // Build the Array for the network - Nodes, properties, proximity / relationships
         this.networkGraph2 = [];
