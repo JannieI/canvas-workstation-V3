@@ -1034,22 +1034,6 @@ export class WidgetNavigatorComponent {
 
 
 
-    navPropertiesPerNodeType(nodeType: string): string[] {
-        // Return distinct sorted array of Properties per given Node Type
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navPropertiesPerNodeType', '@Start');
-
-        // Filter correct Col
-        let nodeTypeProperties: string[] = this.networkGraph
-            .filter(x => x[2] == nodeType)
-            .map(y => y[3]);
-
-        // Make sure it is unique, non-null list
-        nodeTypeProperties = this.navUniqifySortNodes(nodeTypeProperties, true, true);
-
-        // Return
-        return nodeTypeProperties;
-    }
-
 
 
 
