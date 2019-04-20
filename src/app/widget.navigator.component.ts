@@ -780,10 +780,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkSummary', '@Start');
 
         // Find unique Nodes
-        let leftNodeTypes: string[] = this.networkRelationships.map(x => x.leftNodeType);
-        let rightNodeTypes: string[] = this.networkRelationships.map(x => x.rightNodeType);
-        let uniqueNodeTypes: string[] = leftNodeTypes.concat(rightNodeTypes);
-        uniqueNodeTypes = Array.from(new Set(uniqueNodeTypes));
+        let uniqueNodeTypes: string[] = this.distinctNodeTypes();
         
         // Count relationships
         let nodeCount: number = -1;
