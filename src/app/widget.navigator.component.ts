@@ -1039,14 +1039,18 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         });
     }
 
-    navNodeTypes(): string[] {
-        // Return distinct array of Node Types
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navNodeTypes', '@Start');
+    distinctNodeTypes(): string[] {
+        // Return distinct array of Node Types for the current Network
+        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctNodeTypes', '@Start');
 
         // Filter correct Col
-        let nodeTypes: string[] = this.networkGraph
-            .filter(x => x[1] != '')
-            .map(y => y[1]);
+        let leftNodeTypes: string[] = this.networkRelationships
+            .filter(nr => nr.leftNodeType == this.selectedParentNodeType)
+            .map(nr => nr.leftNodeName);
+        let rightNodeTypes: string[] = this.networkRelationships
+            .filter(nr => nr.rightNodeType == this.selectedParentNodeType)
+            .map(nr => nr.rightNodeName);
+        let nodeTypes = Array.from(new Set(leftNodeTypes.concat(rightNodeTypes)));
 
         // Make sure it is unique, non-null list
         nodeTypes = this.navUniqifySortNodes(nodeTypes);
