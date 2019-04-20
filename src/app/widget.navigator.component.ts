@@ -863,10 +863,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         console.log('xx Node Types navNodesTypes', nodeTypes)
 
 
-        // Show all nodes for Person Node type
-        console.log('xx Properties per Node Type navPropertiesPerNodeType for ', 
-            nodeTypes[1], this.navPropertiesPerNodeType(nodeTypes[1]))
-
         
         // Find the Col Nr for 'Company' in Property List
         console.log('xx Col Nr for Company in Property List:', 
@@ -1096,24 +1092,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         return nodeTypeProperties;
     }
 
-    navNodeTypeColumnNumber(property: string): number {
-        // Return column number of a given property
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navNodeTypeColumnNumber', '@Start');
-
-        let columnNumber: number = -1;
-
-        // Determine the column number in Array where the given property heading lives
-        for (var j = 0; j < this.networkGraph[1].length; j++) {
-            if (this.networkGraph[1][j] === property) {
-                columnNumber = j;
-                break;
-            };
-        };
-        
-        // Return
-        return columnNumber; 
-
-    }
 
 
     navNodesFilteredPerProperty(nodeType: string, property: string): string[] {
