@@ -1094,13 +1094,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
 
-    navFirstAdjacencyCellRowNr(): number {
-        // Return the row nr of the first cell (= col nr) with adjacency data 
-        // this.globalFunctionService.printToConsole(this.constructor.name, 'navFirstAdjacencyCellRowNr', '@Start');
 
-        let firstAdjacencyCellRowNr: number = this.networkGraph[0].findIndex(x => x != '');
-        return firstAdjacencyCellRowNr;
-    }
 
     navRelatedNodes(startNode: string, relationship: string): string[] {
         // Return ALL Nodes with specified relationships to startNode.  This is useful when
