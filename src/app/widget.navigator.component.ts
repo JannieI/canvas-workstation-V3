@@ -1094,35 +1094,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
 
-    navNodesFilteredPerProperty(nodeType: string, property: string): string[] {
-        // Return array of Nodes (names) filtered on a given Node Type & Property
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navNodesFilteredPerProperty', '@Start');
-
-        // Find column number
-        let propertyColumnNumber: number = -1;
-        for (var j = 0; j < this.networkGraph[1].length; j++) {
-            if (this.networkGraph[2][j] == nodeType  &&  this.networkGraph[3][j] == property) {
-                propertyColumnNumber = j;
-                break;
-            };
-        };
-
-        if (propertyColumnNumber == -1) {
-            return [];
-        } else {
-            let nodesPerProperty: string[] = this.networkGraph
-                .filter(row => row[propertyColumnNumber] == '1')
-                .map(x => x[0])
-
-            // Make sure it is unique, non-null list
-            nodesPerProperty = this.navUniqifySortNodes(nodesPerProperty);
-
-            // Return
-            return nodesPerProperty;
-
-        };
-    }
-    
     navFirstAdjacencyCellRowNr(): number {
         // Return the row nr of the first cell (= col nr) with adjacency data 
         // this.globalFunctionService.printToConsole(this.constructor.name, 'navFirstAdjacencyCellRowNr', '@Start');
