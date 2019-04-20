@@ -352,8 +352,26 @@ export class WidgetNavigatorComponent {
                     )
                     .then(res => {
                         this.networkProperties = res;
-                        // ngDropdownRelationships
-                        console.log('xx clientData this.selectedNetworkPropertiesID' + this.selectedNetworkPropertiesID.toString(), this.networkProperties)
+
+                        // Fill ParentNode type combo: + 'All', unique, sorted
+                        let leftRelationships: string[] = this.ngDropdownParentNodeTypes = this.networkRelationships
+                            .map(nr => nr.relationshipLeftToRight);
+                        let rightRelationships: string[] = this.ngDropdownParentNodeTypes = this.networkRelationships
+                            .map(nr => nr.relationshipRightToLeft);
+                        this.ngDropdownRelationships = Array.from(
+                            new Set(leftRelationships.concat(rightRelationships))
+                        );
+
+                        this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
+                        this.ngDropdownRelationships = this.ngDropdownRelationships
+                            .sort( (a,b) => {
+                                if (a > b) return 1;
+                                if (a < b) return -1;
+                                return 0;
+                            });
+
+                        console.log('xx clientData this.selectedNetworkPropertiesID' + this.selectedNetworkPropertiesID.toString(), 
+                            leftRelationships, rightRelationships, this.ngDropdownRelationships, this.networkProperties)
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);
