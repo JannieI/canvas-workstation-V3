@@ -17,11 +17,12 @@ import { GlobalFunctionService }      from './global-function.service';
 // Our Models
 import { Datasource }                 from './models'
 import { NavigatorHistory }           from './models'
-import { NavigatorRelationship }           from './models'
+import { NavigatorRelationship }      from './models'
+import { NavigatorProperties }        from './models'
 import { NavigatorNodeFiler }         from './models'
-import { NavigatorNodePropertiesOLD }    from './models'
-import { NavigatorNodeTypeFieldsOLD }    from './models'
-import { NavigatorParentRelatedChildOLD }      from './models'
+import { NavigatorNodePropertiesOLD }           from './models'
+import { NavigatorNodeTypeFieldsOLD }           from './models'
+import { NavigatorParentRelatedChildOLD }       from './models'
 import { NavigatorWatchList }         from './models'
 import { Widget }                     from './models'
 
@@ -66,7 +67,7 @@ export class WidgetNavigatorComponent {
 
     ngNetworks: Datasource[] = [];
     ngRelationshiops: NavigatorRelationship[] = [];
-
+    ngProperties: NavigatorProperties[] = [];
 
     networks: Datasource[] = [];
     networkGraph: Array<string[]> = [];
@@ -175,7 +176,6 @@ export class WidgetNavigatorComponent {
             .then(res => {
                 this.ngNetworks = res;
                 console.log('xx this.ngNetworks', this.ngNetworks)
-                console.log('xx currentDS', this.globalVariableService.currentDatasources)
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -190,7 +190,7 @@ export class WidgetNavigatorComponent {
                 .subDatasources.length != 2) {
                     // TODO - make friendly
                     console.log('ERROR ...')
-                } else {
+            } else {
 
                 let relationshipDSid: number = this.globalVariableService.currentDatasources
                     [currentDSIndex].subDatasources[0];
@@ -198,8 +198,8 @@ export class WidgetNavigatorComponent {
                     'datasourceID=' + relationshipDSid.toString()
                     )
                     .then(res => {
-                        // this.ngNetworks = res;
-                        console.log('xx clientData relationshipDSid' + relationshipDSid.toString(), res)
+                        this.ngRelationshiops = res;
+                        console.log('xx clientData relationshipDSid' + relationshipDSid.toString(), this.ngRelationshiops)
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);
@@ -212,14 +212,14 @@ export class WidgetNavigatorComponent {
                     'datasourceID=' + propertyDSid.toString()
                     )
                     .then(res => {
-                        // this.ngNetworks = res;
-                        console.log('xx clientData propertyDSid' + propertyDSid.toString(), res)
+                        this.ngProperties = res;
+                        console.log('xx clientData propertyDSid' + propertyDSid.toString(), this.ngProperties)
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);
                         console.error('Error in Navigator.OnInit reading clientData: ' + err);
                     });
-                    
+                
             };
         };
 
