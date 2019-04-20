@@ -1687,7 +1687,7 @@ export class CanvasHttpResponse {
     "token"?: string;                       // Token, only provided by Login
 }
 
-export class NavigatorNetwork {
+export class NavigatorRelationship {
         id: number;                         // Unique record ID
         networkID: number;                  // FK to Network
         leftNodeID: number;                 // FK of left Node to Node Property table
@@ -1701,7 +1701,15 @@ export class NavigatorNetwork {
         relationshipProperty: string;       // Property of the relationship, ie Executive / Non-Executive
 }
 
-export class NavigatorParentRelatedChild {
+export class NavigatorProperties {
+    nodeType: string;                       // Type of Node, ie Company
+    nodeID: number;                         // ID of Node, ie 1
+    nodeName: string;                       // Node Name, ie Absa
+    propertyKey: string;                    // Property key, ie Sector
+    propertyValue: string;                  // Property Value, ie Bank
+}
+
+export class NavigatorParentRelatedChildOLD {
     id: number;
     networkID: number;
     parentNodeID: number;
@@ -1713,13 +1721,13 @@ export class NavigatorParentRelatedChild {
     role: string;
 }
 
-export class NavigatorNodeTypeFields {
+export class NavigatorNodeTypeFieldsOLD {
     id: number;
     nodeType: string;
     fields: string[];
 }
 
-export class NavigatorNodeProperties {
+export class NavigatorNodePropertiesOLD {
     id: number;
     sourceRecordID: number;
     nodeType: string;

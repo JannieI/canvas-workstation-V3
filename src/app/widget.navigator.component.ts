@@ -17,11 +17,11 @@ import { GlobalFunctionService }      from './global-function.service';
 // Our Models
 import { Datasource }                 from './models'
 import { NavigatorHistory }           from './models'
-import { NavigatorNetwork }           from './models'
+import { NavigatorRelationship }           from './models'
 import { NavigatorNodeFiler }         from './models'
-import { NavigatorNodeProperties }    from './models'
-import { NavigatorNodeTypeFields }    from './models'
-import { NavigatorParentRelatedChild }      from './models'
+import { NavigatorNodePropertiesOLD }    from './models'
+import { NavigatorNodeTypeFieldsOLD }    from './models'
+import { NavigatorParentRelatedChildOLD }      from './models'
 import { NavigatorWatchList }         from './models'
 import { Widget }                     from './models'
 
@@ -65,12 +65,15 @@ export class WidgetNavigatorComponent {
     //  - NavigatorNodeFiler
 
     ngNetworks: Datasource[] = [];
+    ngRelationshiops: NavigatorRelationship[] = [];
+
+
     networks: Datasource[] = [];
     networkGraph: Array<string[]> = [];
-    networkGraph2: NavigatorNetwork[] = [];
-    nodeTypeFields: NavigatorNodeTypeFields[] = [];     // Property Fields per NodeType
-    nodeProperties: NavigatorNodeProperties[] = [];     // Properties per node for fields above
-    parentRelatedChildren: NavigatorParentRelatedChild[] = [];  // Parents and related children
+    networkGraph2: NavigatorRelationship[] = [];
+    nodeTypeFields: NavigatorNodeTypeFieldsOLD[] = [];     // Property Fields per NodeType
+    nodeProperties: NavigatorNodePropertiesOLD[] = [];     // Properties per node for fields above
+    parentRelatedChildren: NavigatorParentRelatedChildOLD[] = [];  // Parents and related children
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
 
     // Dropdowns & filters - fills the dropdowns in the Graph Area
@@ -1904,7 +1907,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         networksNew.name = "Company-Contacts";
         networksNew.description = "Company-KeyContacts";
 
-        let newParentRelatedChildren: NavigatorParentRelatedChild =
+        let newParentRelatedChildren: NavigatorParentRelatedChildOLD =
             {
                 id: 1,
                 networkID: 1,
@@ -2152,7 +2155,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
 
-        let newNodeTypeFields: NavigatorNodeTypeFields =
+        let newNodeTypeFields: NavigatorNodeTypeFieldsOLD =
         {
             id: 1,
             nodeType: 'Company',
@@ -2167,7 +2170,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         }
         this.nodeTypeFields.push(newNodeTypeFields);
 
-        let newNodeProperties: NavigatorNodeProperties = {
+        let newNodeProperties: NavigatorNodePropertiesOLD = {
             id: 1,
             sourceRecordID: 1,
             nodeType: 'Company',
