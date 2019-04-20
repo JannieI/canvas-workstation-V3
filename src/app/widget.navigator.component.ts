@@ -1053,43 +1053,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
 
-    navNextNodesInPath(startNode: string, relationship: string, strictNode: string = null): string[] {
-        // Return next Nodes in path with specified relationships to startNode
-        // this.globalFunctionService.printToConsole(this.constructor.name, 'navNextNodesInPath', '@Start');
-
-        let nextNodesInPath: string [] = [];
-        let relatedNodes: string [] = this.navRelatedNodes(startNode, relationship);
-
-        relatedNodes.forEach(n => {
-            let grandChildren: string [] = this.navRelatedNodes(startNode, relationship);
-            
-            // The strictness test means that the grand children (related nodes of 
-            // related node) must contain a given node.  Typically used to make sure
-            // it only returns true children of the same path (and not jump to 
-            // another unrelated path)
-            let strictTest: boolean = true;
-            if (strictNode != null) {
-                let grandChildren: string[] = this.navRelatedNodes(n, relationship);
-                if (grandChildren.indexOf(strictNode) < 0) {
-                    strictTest = false;
-                };
-            };
-
-            if (strictTest) {
-                nextNodesInPath.push(n);
-            };
-        })
-                
-        console.log('xx nextNodesInPath', nextNodesInPath)
-
-        // Make sure it is a unique, non-null list
-        nextNodesInPath = this.navUniqifySortNodes(nextNodesInPath);
-
-        // Return
-        return nextNodesInPath;
-
-    }
-
     navUniqifySortNodes(
         inputNodes: string[], 
         uniqify: boolean = true, 
