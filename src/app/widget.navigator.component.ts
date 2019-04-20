@@ -858,32 +858,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
 
-        // Show all node types
-        let nodeTypes: string[] = this.navNodeTypes();
-        console.log('xx Node Types navNodesTypes', nodeTypes)
-
-
-        
-        // Find the Col Nr for 'Company' in Property List
-        console.log('xx Col Nr for Company in Property List:', 
-            this.navNodeTypeColumnNumber(nodeTypes[0])) 
-
-        
-        // Show Nodes for NodeType 'Company'
-        console.log('xx Show Nodes for NodeType Company',
-            this.navNodesPerNodeType(nodeTypes[0])) 
-
-
-        // Find Top 40 'Companies'
-        let nodeProperty: string[] = this.navPropertiesPerNodeType(nodeTypes[0]);
-        console.log('xx node filtered on :', nodeTypes[0], nodeProperty[0], 
-            this.navNodesFilteredPerProperty(nodeTypes[0], nodeProperty[0]))
-
-
-        // Calc start of adjacency grid
-        this.firstAdjacencyCellRowNr = this.navFirstAdjacencyCellRowNr();
-        console.log('xx firstAdjacencyCellRowNr', this.firstAdjacencyCellRowNr)
-
         console.log('xx ------------------------------------------------ 1 ')
         console.log('xx ')
 
@@ -1057,24 +1031,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         return nodesPerNodeType;
     }
 
-    navNodesPerNodeType(nodeType: string): string[] {
-        // Return array of Nodes (names) per given Node Type
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navNodesPerNodeType', '@Start');
 
-        // Get column number
-        let nodeTypeColumnNumber: number = this.navNodeTypeColumnNumber(nodeType);
-
-        // Filter correct Col
-        let nodes: string[] = this.networkGraph
-            .filter(x => x[nodeTypeColumnNumber] == '1')
-            .map(y => y[0]);
-
-        // Make sure it is unique, non-null list
-        nodes = this.navUniqifySortNodes(nodes);
-
-        // Return
-        return nodes;
-    }
 
     navPropertiesPerNodeType(nodeType: string): string[] {
         // Return distinct sorted array of Properties per given Node Type
