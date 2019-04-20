@@ -1053,44 +1053,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
 
-    navRelatedNodes(startNode: string, relationship: string): string[] {
-        // Return ALL Nodes with specified relationships to startNode.  This is useful when
-        // a node is linked to more than one Parent, but cannot be used to traverse a branch
-        // of a tree (since a child may occur under the parent, but also in other unrelated
-        // places).
-        // relationships = 'all' for any relationship
-        // this.globalFunctionService.printToConsole(this.constructor.name, 'navRelatedNodesAll', '@Start');
-
-        let firstAdjacencyCellRowNr: number = this.navFirstAdjacencyCellRowNr();
-        let relatedNodes: string [] = [];
-        
-        // Find related Nodes
-        for (var r = firstAdjacencyCellRowNr; r < this.networkGraph.length; r++) {
-            for (var c = firstAdjacencyCellRowNr; c < this.networkGraph.length; c++) {
-                if (
-                        this.networkGraph[r][0] === startNode  
-                        &&  
-                        (
-                            (relationship != 'all'  &&  this.networkGraph[r][c] === relationship)
-                            ||
-                            (relationship == 'all'  &&  this.networkGraph[r][c].trim() != "")
-                        )
-                        &&
-                        (this.networkGraph[0][c] != undefined)   
-                    ) {
-                    relatedNodes.push(this.networkGraph[0][c]);
-                };
-            };
-        };
-
-        // Make sure it is a unique, non-null list
-        relatedNodes = this.navUniqifySortNodes(relatedNodes);
-
-        // Return
-        return relatedNodes;
-
-    }
-
     navNodeRelationships(startNode: string): string[] {
         // Return a unique list of different relationships that a given Node has
         // this.globalFunctionService.printToConsole(this.constructor.name, 'navNodeRelationships', '@Start');
