@@ -858,64 +858,64 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
 
-        console.log('xx ------------------------------------------------ 1 ')
-        console.log('xx ')
+        // console.log('xx ------------------------------------------------ 1 ')
+        // console.log('xx ')
 
-        // Distance from y to z
-        this.navNodeIsDone = [];
-        this.navNodesToDo = ['y'];
-        this.navRecursionCounter = 0;
+        // // Distance from y to z
+        // this.navNodeIsDone = [];
+        // this.navNodesToDo = ['y'];
+        // this.navRecursionCounter = 0;
 
-        let navTargetNode: string = 'z';
-        this.singleRoutesArray = [];
-        for (var i = 0; i < this.navNodesToDo.length; i++) {
+        // let navTargetNode: string = 'z';
+        // this.singleRoutesArray = [];
+        // for (var i = 0; i < this.navNodesToDo.length; i++) {
 
-            console.log('xx START AT NODE ', this.navNodesToDo[i])
-            console.log('xx ************* ')
+        //     console.log('xx START AT NODE ', this.navNodesToDo[i])
+        //     console.log('xx ************* ')
 
-            // Get the relationships for this node
-            let nodeRelationships: string[] = this.navNodeRelationships(this.navNodesToDo[i]);
-            console.log('xx nodeRelationships', nodeRelationships);
+        //     // Get the relationships for this node
+        //     let nodeRelationships: string[] = this.navNodeRelationships(this.navNodesToDo[i]);
+        //     console.log('xx nodeRelationships', nodeRelationships);
 
-            // Travers relationships - used when we have SPECIFIC relatiionships all the way
-            // for a tree - Works
-            nodeRelationships.forEach(r => {
+        //     // Travers relationships - used when we have SPECIFIC relatiionships all the way
+        //     // for a tree - Works
+        //     nodeRelationships.forEach(r => {
 
-                // Reset path with just the start node
-                this.navNodeIsDone = [this.navNodesToDo[i]];
+        //         // Reset path with just the start node
+        //         this.navNodeIsDone = [this.navNodesToDo[i]];
 
-                // Reset full path 
-                this.navVisitedNodes = [];
+        //         // Reset full path 
+        //         this.navVisitedNodes = [];
 
-                // Get all the starting points of this Node.  Then travers the single route
-                let relatedNodes: string [] = this.navRelatedNodes(this.navNodesToDo[i], r);
-                console.log('xx onInit relatedNodes', this.navNodesToDo[i], relatedNodes)
+        //         // Get all the starting points of this Node.  Then travers the single route
+        //         let relatedNodes: string [] = this.navRelatedNodes(this.navNodesToDo[i], r);
+        //         console.log('xx onInit relatedNodes', this.navNodesToDo[i], relatedNodes)
             
-                relatedNodes.forEach(rn => {
-                    this.navSingleRoute(rn, this.navNodesToDo[i], r, this.navNodeIsDone);
-                });
-            });
+        //         relatedNodes.forEach(rn => {
+        //             this.navSingleRoute(rn, this.navNodesToDo[i], r, this.navNodeIsDone);
+        //         });
+        //     });
 
-            // Find relationships and determine single routes for each starting point
+        //     // Find relationships and determine single routes for each starting point
 
-            // // Reset path with just the start node
-            // this.navNodeIsDone = [this.navNodesToDo[i]];
+        //     // // Reset path with just the start node
+        //     // this.navNodeIsDone = [this.navNodesToDo[i]];
 
-            // // Reset full path 
-            // this.navVisitedNodes = [];
+        //     // // Reset full path 
+        //     // this.navVisitedNodes = [];
 
-            // // Get all the starting points of this Node.  Then travers the single route
-            // let relatedNodes: string [] = this.navRelatedNodes(this.navNodesToDo[i], 'all');
-            // console.log('xx onInit relatedNodes', this.navNodesToDo[i], relatedNodes)
+        //     // // Get all the starting points of this Node.  Then travers the single route
+        //     // let relatedNodes: string [] = this.navRelatedNodes(this.navNodesToDo[i], 'all');
+        //     // console.log('xx onInit relatedNodes', this.navNodesToDo[i], relatedNodes)
         
-            // relatedNodes.forEach(rn => {
-            //     this.navSingleRoute(rn, this.navNodesToDo[i], 'all', this.navNodeIsDone);
-            // });
+        //     // relatedNodes.forEach(rn => {
+        //     //     this.navSingleRoute(rn, this.navNodesToDo[i], 'all', this.navNodeIsDone);
+        //     // });
 
-        };
+        // };
 
         // End result
-        console.log('xx END RESULT 1 this.navSinglePaths', this.navSinglePaths)
+        // console.log('xx END RESULT 1 this.navSinglePaths', this.navSinglePaths)
 
 
         console.log('xx ------------------------------------------------ 2 ')
@@ -1086,60 +1086,60 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
         
-    navSingleRoute(navStartNode: string, parentNode: string, relationship: string, path: string[]) {
-        // Recursive process to get a single route for a start Node
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navSingleRoute', '@Start');
+    // navSingleRoute(navStartNode: string, parentNode: string, relationship: string, path: string[]) {
+    //     // Recursive process to get a single route for a start Node
+    //     this.globalFunctionService.printToConsole(this.constructor.name, 'navSingleRoute', '@Start');
 
-        console.log('xx navSingleRoute START node-parent-path', this.navRecursionCounter, navStartNode, parentNode, path)
+    //     console.log('xx navSingleRoute START node-parent-path', this.navRecursionCounter, navStartNode, parentNode, path)
 
-        // Safety check
-        this.navRecursionCounter = this.navRecursionCounter + 1;
-        if (this.navRecursionCounter > this.navMaxRecursion) {
-            console.log('xx navSingleRoute navMaxRecursion EXCEEDED')
-            return;
-        };
+    //     // Safety check
+    //     this.navRecursionCounter = this.navRecursionCounter + 1;
+    //     if (this.navRecursionCounter > this.navMaxRecursion) {
+    //         console.log('xx navSingleRoute navMaxRecursion EXCEEDED')
+    //         return;
+    //     };
 
-        // Add to path
-        path.push(navStartNode);
-        this.navVisitedNodes.push(navStartNode);
+    //     // Add to path
+    //     path.push(navStartNode);
+    //     this.navVisitedNodes.push(navStartNode);
 
-        // Get children of start Node in the SAME path
-        let childrenOfStartNode: string[] = this.navNextNodesInPath(navStartNode, relationship);
-        console.log('xx navSingleRoute childrenOfStartNode', childrenOfStartNode)
+    //     // Get children of start Node in the SAME path
+    //     let childrenOfStartNode: string[] = this.navNextNodesInPath(navStartNode, relationship);
+    //     console.log('xx navSingleRoute childrenOfStartNode', childrenOfStartNode)
 
-        // Create new path, minus navStartNode and parentNode
-        let newChildrendOfStartNode: string [] = [];
-        childrenOfStartNode.forEach(child => {
-            if (child != navStartNode  
-                &&  
-                child != parentNode  
-                &&  
-                path.indexOf(child) < 0  
-                &&  
-                this.navVisitedNodes.indexOf(child) < 0
-                ) {
-                newChildrendOfStartNode.push(child)
-            };
-        });
-        console.log('xx navSingleRoute newChildrendOfStartNode', newChildrendOfStartNode);
+    //     // Create new path, minus navStartNode and parentNode
+    //     let newChildrendOfStartNode: string [] = [];
+    //     childrenOfStartNode.forEach(child => {
+    //         if (child != navStartNode  
+    //             &&  
+    //             child != parentNode  
+    //             &&  
+    //             path.indexOf(child) < 0  
+    //             &&  
+    //             this.navVisitedNodes.indexOf(child) < 0
+    //             ) {
+    //             newChildrendOfStartNode.push(child)
+    //         };
+    //     });
+    //     console.log('xx navSingleRoute newChildrendOfStartNode', newChildrendOfStartNode);
 
-        // Single, unique route if pathNew is empty
-        if (newChildrendOfStartNode.length == 0) {
-            this.singleRoutesArray.push(path);
-            console.log('xx navSingleRoute ROUTE path', path);
-            this.navSinglePaths.push(path);
-            path = [];
-            return;
-        };
+    //     // Single, unique route if pathNew is empty
+    //     if (newChildrendOfStartNode.length == 0) {
+    //         this.singleRoutesArray.push(path);
+    //         console.log('xx navSingleRoute ROUTE path', path);
+    //         this.navSinglePaths.push(path);
+    //         path = [];
+    //         return;
+    //     };
 
-        // Call recursively with new path
-        newChildrendOfStartNode.forEach(child =>  {
-            let newPath: string[] = [];
-            path.forEach(c => newPath.push(c));
-            console.log('xx newPath', newPath);
-            this.navSingleRoute(child, navStartNode, relationship, newPath);
-        });
-    }
+    //     // Call recursively with new path
+    //     newChildrendOfStartNode.forEach(child =>  {
+    //         let newPath: string[] = [];
+    //         path.forEach(c => newPath.push(c));
+    //         console.log('xx newPath', newPath);
+    //         this.navSingleRoute(child, navStartNode, relationship, newPath);
+    //     });
+    // }
 
     dblclickDeleteHistory(index: number, historyID: number) {
         // Delete selected history row.  If current, move to first
