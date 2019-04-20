@@ -3,32 +3,32 @@
  */
 
 // From Angular
-import { Component }                  from '@angular/core';
-import { ElementRef }                 from '@angular/core';
-import { HostListener }               from '@angular/core';
-import { Input }                      from '@angular/core';
-import { OnInit }                     from '@angular/core';
-import { ViewChild }                  from '@angular/core';
+import { Component } from '@angular/core';
+import { ElementRef } from '@angular/core';
+import { HostListener } from '@angular/core';
+import { Input } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { ViewChild } from '@angular/core';
 
 // Our Services
-import { GlobalVariableService }      from './global-variable.service';
-import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService } from './global-variable.service';
+import { GlobalFunctionService } from './global-function.service';
 
 // Our Models
-import { Datasource }                 from './models'
-import { NavigatorHistory }           from './models'
-import { NavigatorRelationship }      from './models'
-import { NavigatorProperties }        from './models'
-import { NavigatorNodeFiler }         from './models'
-import { NavigatorNodePropertiesOLD }           from './models'
-import { NavigatorNodeTypeFieldsOLD }           from './models'
-import { NavigatorParentRelatedChildOLD }       from './models'
-import { NavigatorWatchList }         from './models'
-import { Widget }                     from './models'
+import { Datasource } from './models'
+import { NavigatorHistory } from './models'
+import { NavigatorRelationship } from './models'
+import { NavigatorProperties } from './models'
+import { NavigatorNodeFiler } from './models'
+import { NavigatorNodePropertiesOLD } from './models'
+import { NavigatorNodeTypeFieldsOLD } from './models'
+import { NavigatorParentRelatedChildOLD } from './models'
+import { NavigatorWatchList } from './models'
+import { Widget } from './models'
 
 // Functions, 3rd Party
-import { parse }                      from 'vega';
-import { View }                       from 'vega';
+import { parse } from 'vega';
+import { View } from 'vega';
 
 
 @Component({
@@ -37,15 +37,15 @@ import { View }                       from 'vega';
     styleUrls: ['./widget.navigator.component.css']
 })
 export class WidgetNavigatorComponent {
-    @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
+    @ViewChild('dragWidget', { read: ElementRef }) dragWidget: ElementRef;  //Vega graph
     @Input() selectedWidget: Widget;
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
         event.preventDefault();
-        if (event.key === 'ArrowRight'  ||  event.key === 'ArrowDown'  ||
-            event.key === 'ArrowLeft'   ||  event.key === 'ArrowUp') {
-                return false;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown' ||
+            event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+            return false;
         };
     };
 
@@ -131,7 +131,7 @@ export class WidgetNavigatorComponent {
     localWidget: Widget;                            // W to modify, copied from selected
     showSpecificGraphLayer: boolean = false;
     specification: any;             // Full spec for Vega, or other grammar
-    
+
     // Popups and forms
     showGraphHelp: boolean = false;
     showGraphNotes: boolean = false;
@@ -177,7 +177,7 @@ export class WidgetNavigatorComponent {
         this.globalVariableService.getResource('datasources', 'filterObject={"isNetworkShape": true}')
             .then(res => {
                 this.ngNetworks = res;
-
+                console.log('xx this.ngNetworks', this.ngNetworks)
                 // Find DS for selected W inside Networks
                 let networkIndex: number = this.ngNetworks.findIndex(
                     nw => nw.id == this.localWidget.datasourceID);
@@ -190,7 +190,7 @@ export class WidgetNavigatorComponent {
                     } else {
                         this.clickNetwork(0, this.ngNetworks[0].id);
                     };
-                };            
+                };
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -251,10 +251,10 @@ export class WidgetNavigatorComponent {
         let fileName: string = 'Nav Network'
         let newW: Widget = JSON.parse(JSON.stringify(this.selectedWidget));
         newW.dataFiltered = [];
-        var obj = JSON.stringify(newW);  
+        var obj = JSON.stringify(newW);
 
         var a = document.createElement('a');
-        a.setAttribute('href', 'data:text/plain;charset=utf-u, '+encodeURIComponent(JSON.stringify(obj)));
+        a.setAttribute('href', 'data:text/plain;charset=utf-u, ' + encodeURIComponent(JSON.stringify(obj)));
         a.setAttribute('download', fileName);
         a.click()
 
@@ -303,21 +303,22 @@ export class WidgetNavigatorComponent {
 
         // Remember the ID of the selected Network
         this.selectedNetworkID = networkID;
-
+        
         // Read the Data for this W from the DB
         if (this.selectedNetworkID >= 0) {
-            if (this.ngNetworks[this.selectedNetworkID].subDatasources.length != 2) {
+            
+            if (this.ngNetworks[index].subDatasources.length != 2) {
                 // TODO - make friendly
                 console.log('ERROR ...')
             } else {
                 
-                this.selectedNetworkRelationshipID = this.ngNetworks[this.selectedNetworkID].subDatasources[0];
+                this.selectedNetworkRelationshipID = this.ngNetworks[index].subDatasources[0];
                 this.globalVariableService.getData(
                     'datasourceID=' + this.selectedNetworkRelationshipID.toString()
-                    )
+                )
                     .then(res => {
                         this.networkRelationships = res;
-
+                        
                         // Fill ParentNode type combo: + 'All', unique, sorted
                         let leftNodeTypes: string[] = this.networkRelationships.map(nr => nr.leftNodeType);
                         let rightNodeTypes: string[] = this.networkRelationships.map(nr => nr.rightNodeType);
@@ -326,17 +327,17 @@ export class WidgetNavigatorComponent {
                         );
 
                         this.ngDropdownParentNodeTypes = this.ngDropdownParentNodeTypes
-                            .sort( (a,b) => {
+                            .sort((a, b) => {
                                 if (a > b) return 1;
                                 if (a < b) return -1;
                                 return 0;
                             });
                         this.ngDropdownParentNodeTypes = ['All', ...this.ngDropdownParentNodeTypes];
-            
+
                         this.selectedNetworkPropertiesID = this.ngNetworks[index].subDatasources[1];
                         this.globalVariableService.getData(
                             'datasourceID=' + this.selectedNetworkPropertiesID.toString()
-                            )
+                        )
                             .then(res => {
                                 this.networkProperties = res;
 
@@ -354,7 +355,7 @@ export class WidgetNavigatorComponent {
 
                                 this.history = this.historyAll
                                     .filter(h => h.networkID === networkID)
-                                    .sort( (a,b) => {
+                                    .sort((a, b) => {
                                         if (a.id < b.id) {
                                             return 1;
                                         };
@@ -384,7 +385,7 @@ export class WidgetNavigatorComponent {
                         this.errorMessage = err.slice(0, 100);
                         console.error('Error in Navigator.OnInit reading clientData: ' + err);
                     });
-                
+
             };
         };
 
@@ -413,7 +414,7 @@ export class WidgetNavigatorComponent {
         // Show the graph
         this.showGraph(0, 0, false)
     }
-    
+
     changeParentNodeType(ev: any) {
         // Make the filter inactive
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentNodeType', '@Start');
@@ -459,7 +460,7 @@ export class WidgetNavigatorComponent {
                 && x.role != ''
                 && x.role != null)
             .map(y => {
-                if (y.role != '') { return y.role};
+                if (y.role != '') { return y.role };
             });
 
         // Make unique
@@ -489,9 +490,9 @@ export class WidgetNavigatorComponent {
                 && x.role != ''
                 && x.role != null)
             .map(y => {
-                if (y.role != '') { return y.role};
+                if (y.role != '') { return y.role };
             });
-    
+
         // Make unique
         let relationshipRolesSet = new Set(this.relationshipRoles);
         this.relationshipRoles = Array.from(relationshipRolesSet);
@@ -554,8 +555,8 @@ export class WidgetNavigatorComponent {
             };
 
             // Set title, etc
-            this.graphTitle = this.showRoles?  '*'  :  '';
-            this.graphTitle = this.graphTitle + this.selectedRelationship + ' for ' 
+            this.graphTitle = this.showRoles ? '*' : '';
+            this.graphTitle = this.graphTitle + this.selectedRelationship + ' for '
                 + this.selectedParentNode;
             if (this.filterChildFieldName != '') {
                 this.graphTitle = this.graphTitle + ', filtered on ' + this.filterChildFieldName;
@@ -570,9 +571,10 @@ export class WidgetNavigatorComponent {
 
                 // Parent
                 this.graphData.push(
-                { "id": 1,
-                "name": this.selectedParentNode
-                });
+                    {
+                        "id": 1,
+                        "name": this.selectedParentNode
+                    });
 
                 // Children
                 for (var i = 0; i < this.childDataVisible.length; i++) {
@@ -586,8 +588,9 @@ export class WidgetNavigatorComponent {
 
                 // Parent
                 this.graphData.push(
-                    { "id": 1,
-                    "name": this.selectedParentNode
+                    {
+                        "id": 1,
+                        "name": this.selectedParentNode
                     });
 
                 // Offset
@@ -596,9 +599,10 @@ export class WidgetNavigatorComponent {
                 for (var roleID = 0; roleID < this.relationshipRoles.length; roleID++) {
                     let parentRoleID = offset;
                     this.graphData.push(
-                        { "id": parentRoleID,
-                        "name": this.relationshipRoles[roleID],
-                        parent: 1
+                        {
+                            "id": parentRoleID,
+                            "name": this.relationshipRoles[roleID],
+                            parent: 1
                         });
 
                     // Get list of Children for this role
@@ -613,9 +617,10 @@ export class WidgetNavigatorComponent {
                     offset = offset + 1;
                     for (var childID = 0; childID < childrenFilteredRole.length; childID++) {
                         this.graphData.push(
-                            { "id": childID + offset,
-                            "name": childrenFilteredRole[childID],
-                            parent: parentRoleID
+                            {
+                                "id": childID + offset,
+                                "name": childrenFilteredRole[childID],
+                                parent: parentRoleID
                             });
                     };
                     offset = offset + childrenFilteredRole.length;
@@ -625,7 +630,7 @@ export class WidgetNavigatorComponent {
             // Add to History
             // TODO - keep ParentNodeID of selected for here
             // TODO - cater for more than 1 Filter; Parent and Child
-            if (addToHistory 
+            if (addToHistory
                 && this.selectedParentNodeType != ''
                 && this.selectedParentNode != ''
                 && this.selectedRelationship != '') {
@@ -652,31 +657,31 @@ export class WidgetNavigatorComponent {
                 this.history.forEach(x => x.isSelected = false);
                 this.selectedHistoryID = this.history.length;
                 let historyNew: NavigatorHistory =
+                {
+                    id: this.history.length,
+                    text: this.graphTitle,
+                    networkID: this.selectedNetworkID,
+                    parentNodeID: null,
+                    parentNodeType: this.selectedParentNodeType,
+                    parentNode: this.selectedParentNode,
+                    relationship: this.selectedRelationship,
+                    showRoles: this.showRoles,
+                    parentNodeFiler:
                     {
-                        id: this.history.length,
-                        text: this.graphTitle,
-                        networkID: this.selectedNetworkID,
-                        parentNodeID: null,
-                        parentNodeType: this.selectedParentNodeType,
-                        parentNode: this.selectedParentNode,
-                        relationship: this.selectedRelationship,
-                        showRoles: this.showRoles,
-                        parentNodeFiler:
-                            {
-                                id: 0,
-                                field: parentFilterFieldName,
-                                operator: parentFilterOperator,
-                                value: parentFilterValue
-                            },
-                        childNodeFiler:
-                            {
-                                id: 0,
-                                field: childFilterFieldName,
-                                operator: childFilterOperator,
-                                value: childFilterValue
-                            },
-                        isSelected: true
-                    };
+                        id: 0,
+                        field: parentFilterFieldName,
+                        operator: parentFilterOperator,
+                        value: parentFilterValue
+                    },
+                    childNodeFiler:
+                    {
+                        id: 0,
+                        field: childFilterFieldName,
+                        operator: childFilterOperator,
+                        value: childFilterValue
+                    },
+                    isSelected: true
+                };
                 this.history = [historyNew, ...this.history];
                 this.historyAll = [historyNew, ...this.historyAll];
             };
@@ -698,9 +703,10 @@ export class WidgetNavigatorComponent {
             // Set data
             this.graphData = [];
             this.graphData.push(
-                { "id": 1,
-                "name": "Select a Parent using the dropdowns at the top"
-            });
+                {
+                    "id": 1,
+                    "name": "Select a Parent using the dropdowns at the top"
+                });
         };
 
         // Set H & W
@@ -724,8 +730,8 @@ export class WidgetNavigatorComponent {
             this.showSpecificGraphLayer,
             0
         );
-console.log('xx this.specification', this.graphTitle, this.graphData, this.specification)
-        
+        console.log('xx this.specification', this.graphTitle, this.graphData, this.specification)
+
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
         this.specification['title'] = this.graphTitle;
@@ -735,7 +741,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Render in DOM
         let view = new View(parse(this.specification));
-        view.addEventListener('click', function(event, item) {
+        view.addEventListener('click', function (event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             let childNodeClicked: string = datumClick.name;
@@ -758,7 +764,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         });
 
         // TODO - experimental: this automatically invokes 2 CLICK events as well ...
-        view.addEventListener('dblclick', function(event, item) {
+        view.addEventListener('dblclick', function (event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             console.log('DBLCLICK', item, item.datum.text, datumClick.name);
@@ -781,10 +787,10 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Find unique Nodes
         let uniqueNodeTypes: string[] = this.distinctNodeTypes();
-        
+
         // Count relationships
         let nodeCount: number = -1;
-        let uniqueNodesWithCount: {nodeType: string; nodeCount: number}[] = [];
+        let uniqueNodesWithCount: { nodeType: string; nodeCount: number }[] = [];
         for (var i = 0; i < uniqueNodeTypes.length; i++) {
             nodeCount = this.networkRelationships.filter(x => x.leftNodeType == uniqueNodeTypes[i]).length;
             console.log('xx nodeCount', nodeCount)
@@ -800,7 +806,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Set data
         this.graphData = [];
         this.graphData.push(
-            { 
+            {
                 "id": 1,
                 "name": "Summary"
             });
@@ -809,8 +815,8 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             this.graphData.push(
                 {
                     id: i + 2,
-                    name: uniqueNodesWithCount[i].nodeType  + ' ('
-                    + uniqueNodesWithCount[i].nodeCount.toString() + ')',
+                    name: uniqueNodesWithCount[i].nodeType + ' ('
+                        + uniqueNodesWithCount[i].nodeCount.toString() + ')',
                     parent: 1
                 }
             );
@@ -842,7 +848,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Render in DOM
         let view = new View(parse(this.specification));
-        view.addEventListener('click', function(event, item) {
+        view.addEventListener('click', function (event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             console.log('xx CLICK nwSumm', item, item.datum.text, datumClick.name);
@@ -890,7 +896,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         //         // Get all the starting points of this Node.  Then travers the single route
         //         let relatedNodes: string [] = this.navRelatedNodes(this.navNodesToDo[i], r);
         //         console.log('xx onInit relatedNodes', this.navNodesToDo[i], relatedNodes)
-            
+
         //         relatedNodes.forEach(rn => {
         //             this.navSingleRoute(rn, this.navNodesToDo[i], r, this.navNodeIsDone);
         //         });
@@ -907,7 +913,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         //     // // Get all the starting points of this Node.  Then travers the single route
         //     // let relatedNodes: string [] = this.navRelatedNodes(this.navNodesToDo[i], 'all');
         //     // console.log('xx onInit relatedNodes', this.navNodesToDo[i], relatedNodes)
-        
+
         //     // relatedNodes.forEach(rn => {
         //     //     this.navSingleRoute(rn, this.navNodesToDo[i], 'all', this.navNodeIsDone);
         //     // });
@@ -928,12 +934,12 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
     nav2WalkInPath(
-        parent: string, 
-        nodeName: string, 
-        relationship: string, 
+        parent: string,
+        nodeName: string,
+        relationship: string,
         iterationCount: number,
         path: string[]
-        ) {
+    ) {
         // Walk to next node in path for given info (parent, node, ect)
         this.globalFunctionService.printToConsole(this.constructor.name, 'nav2WalkInPath', '@Start');
 
@@ -954,10 +960,10 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Get next nodes in path, Left and Right, excluding the Parent
         let nextInPath: string[] = [];
         let leftInPath: string[] = this.networkGraph2
-            .filter(nw => nw.leftNodeName === nodeName  &&  nw.rightNodeName != parent)
+            .filter(nw => nw.leftNodeName === nodeName && nw.rightNodeName != parent)
             .map(nw => nw.rightNodeName);
         let rightInPath: string[] = this.networkGraph2
-            .filter(nw => nw.rightNodeName === nodeName  &&  nw.leftNodeName != parent)
+            .filter(nw => nw.rightNodeName === nodeName && nw.leftNodeName != parent)
             .map(nw => nw.leftNodeName);
 
         // Combine
@@ -973,9 +979,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Call recursively, starting a new path
         nextInPath.forEach(child => {
-                let newPath: string[] = [];
-                path.forEach(c => newPath.push(c));
-                this.nav2WalkInPath(nodeName, child, relationship, iterationCount, newPath)
+            let newPath: string[] = [];
+            path.forEach(c => newPath.push(c));
+            this.nav2WalkInPath(nodeName, child, relationship, iterationCount, newPath)
         });
     }
 
@@ -987,7 +993,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         let leftNodeTypes: string[] = this.networkRelationships.map(x => x.leftNodeType);
         let rightNodeTypes: string[] = this.networkRelationships.map(x => x.rightNodeType);
         let uniqueNodeTypes: string[] = leftNodeTypes.concat(rightNodeTypes);
-        uniqueNodeTypes =this.navUniqifySortNodes(uniqueNodeTypes);
+        uniqueNodeTypes = this.navUniqifySortNodes(uniqueNodeTypes);
 
         // Return
         return uniqueNodeTypes;
@@ -1054,15 +1060,15 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
 
     navUniqifySortNodes(
-        inputNodes: string[], 
-        uniqify: boolean = true, 
+        inputNodes: string[],
+        uniqify: boolean = true,
         sort: boolean = false
-        ): string[] {
+    ): string[] {
         // Make given array of nodes unique and sort, if so requested
         // this.globalFunctionService.printToConsole(this.constructor.name, 'navUniqifySortNodes', '@Start');
 
         // Make sure it is a non-null list
-        if (inputNodes == null  ||  inputNodes == undefined) {
+        if (inputNodes == null || inputNodes == undefined) {
             inputNodes = [];
         };
 
@@ -1073,9 +1079,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // No undefined
         inputNodes.filter(n => n != undefined);
-        
+
         // Sort
-        inputNodes.sort( (a,b) => {
+        inputNodes.sort((a, b) => {
             if (a > b) return 1;
             if (a < b) return -1;
             return 0;
@@ -1085,7 +1091,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         return inputNodes;
 
     }
-        
+
     // navSingleRoute(navStartNode: string, parentNode: string, relationship: string, path: string[]) {
     //     // Recursive process to get a single route for a start Node
     //     this.globalFunctionService.printToConsole(this.constructor.name, 'navSingleRoute', '@Start');
@@ -1169,8 +1175,8 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Validation
         if (this.filterParentFieldName === '') {
-                this.parentFilterErrorMessage = 'The field name is compulsory';
-                return;
+            this.parentFilterErrorMessage = 'The field name is compulsory';
+            return;
         };
         if (this.filterParentOperator) {
             this.parentFilterErrorMessage = 'The operator is compulsory';
@@ -1304,8 +1310,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         this.graphData = [];
         this.graphData.push(
-            { "id": 1,
-             "name": "CommonParent"
+            {
+                "id": 1,
+                "name": "CommonParent"
             });
         this.graphData.push({
             id: 2,
@@ -1363,7 +1370,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Render in DOM
         let view = new View(parse(this.specification));
-        view.addEventListener('click', function(event, item) {
+        view.addEventListener('click', function (event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             console.log('xx CLICK CommParnt', item, item.datum.text, datumClick.name);
@@ -1390,8 +1397,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         this.graphData = [];
         this.graphData.push(
-            { "id": 1,
-             "name": "CommonNode"
+            {
+                "id": 1,
+                "name": "CommonNode"
             });
         this.graphData.push({
             id: 2,
@@ -1449,7 +1457,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Render in DOM
         let view = new View(parse(this.specification));
-        view.addEventListener('click', function(event, item) {
+        view.addEventListener('click', function (event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             console.log('xx CLICK CommNod', item, item.datum.text, datumClick.name);
@@ -1475,8 +1483,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         this.graphData = [];
         this.graphData.push(
-            { "id": 1,
-             "name": ""
+            {
+                "id": 1,
+                "name": ""
             });
         this.graphData.push({
             id: 2,
@@ -1544,7 +1553,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Render in DOM
         let view = new View(parse(this.specification));
-        view.addEventListener('click', function(event, item) {
+        view.addEventListener('click', function (event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             console.log('xx CLICK Dist', item, item.datum.text, datumClick.name);
@@ -1570,8 +1579,9 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         this.graphData = [];
         this.graphData.push(
-            { "id": 1,
-             "name": ""
+            {
+                "id": 1,
+                "name": ""
             });
         this.graphData.push({
             id: 2,
@@ -1634,7 +1644,7 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Render in DOM
         let view = new View(parse(this.specification));
-        view.addEventListener('click', function(event, item) {
+        view.addEventListener('click', function (event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             console.log('xx CLICK NodTyp', item, item.datum.text, datumClick.name);
@@ -1695,17 +1705,17 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         // Populate networks - TODO make from DB
 
         let newParentRelatedChildren: NavigatorParentRelatedChildOLD =
-            {
-                id: 1,
-                networkID: 1,
-                parentNodeID: null,
-                parentNodeType: 'Company',
-                parentNode: 'Absa',
-                relationship: 'Directors',
-                childNodeType: 'Person',
-                childNode: 'Mr Matlare, Peter Bambatha',
-                role: 'Executive'
-            }
+        {
+            id: 1,
+            networkID: 1,
+            parentNodeID: null,
+            parentNodeType: 'Company',
+            parentNode: 'Absa',
+            relationship: 'Directors',
+            childNodeType: 'Person',
+            childNode: 'Mr Matlare, Peter Bambatha',
+            role: 'Executive'
+        }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
             {
@@ -1721,82 +1731,82 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
-        {
-            id: 3,
-            networkID: 1,
-            parentNodeID: null,
-            parentNodeType: 'Company',
-            parentNode: 'Absa',
-            relationship: 'Shareholders',
-            childNodeType: 'Company',
-            childNode: 'Nedbank',
-            role: ''
-        }
+            {
+                id: 3,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Shareholders',
+                childNodeType: 'Company',
+                childNode: 'Nedbank',
+                role: ''
+            }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
-        {
-            id: 4,
-            networkID: 1,
-            parentNodeID: null,
-            parentNodeType: 'Company',
-            parentNode: 'Absa',
-            relationship: 'Shareholders',
-            childNodeType: 'Person',
-            childNode: 'John',
-            role: ''
-        }
+            {
+                id: 4,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Company',
+                parentNode: 'Absa',
+                relationship: 'Shareholders',
+                childNodeType: 'Person',
+                childNode: 'John',
+                role: ''
+            }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
-        {
-            id: 5,
-            networkID: 1,
-            parentNodeID: null,
-            parentNodeType: 'Person',
-            parentNode: 'Koos',
-            relationship: 'Director-Of',
-            childNodeType: 'Company',
-            childNode: 'PSG',
-            role: 'Listed'
-        }
+            {
+                id: 5,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Person',
+                parentNode: 'Koos',
+                relationship: 'Director-Of',
+                childNodeType: 'Company',
+                childNode: 'PSG',
+                role: 'Listed'
+            }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
-        {
-            id: 6,
-            networkID: 1,
-            parentNodeID: null,
-            parentNodeType: 'Person',
-            parentNode: 'Koos',
-            relationship: 'Director-Of',
-            childNodeType: 'Company',
-            childNode: 'AECI',
-            role: 'Non-Listed'
-        }
+            {
+                id: 6,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Person',
+                parentNode: 'Koos',
+                relationship: 'Director-Of',
+                childNodeType: 'Company',
+                childNode: 'AECI',
+                role: 'Non-Listed'
+            }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
-        {
-            id: 7,
-            networkID: 1,
-            parentNodeID: null,
-            parentNodeType: 'Person',
-            parentNode: 'Koos',
-            relationship: 'Manager-Of',
-            childNodeType: 'Person',
-            childNode: 'Chris',
-            role: ''
-        }
+            {
+                id: 7,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Person',
+                parentNode: 'Koos',
+                relationship: 'Manager-Of',
+                childNodeType: 'Person',
+                childNode: 'Chris',
+                role: ''
+            }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
-        {
-            id: 8,
-            networkID: 1,
-            parentNodeID: null,
-            parentNodeType: 'Person',
-            parentNode: 'Koos',
-            relationship: 'Manager-Of',
-            childNodeType: 'Person',
-            childNode: 'Anna',
-            role: ''
-        }
+            {
+                id: 8,
+                networkID: 1,
+                parentNodeID: null,
+                parentNodeType: 'Person',
+                parentNode: 'Koos',
+                relationship: 'Manager-Of',
+                childNodeType: 'Person',
+                childNode: 'Anna',
+                role: ''
+            }
         this.parentRelatedChildren.push(newParentRelatedChildren);
         newParentRelatedChildren =
             {
@@ -1950,11 +1960,11 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         }
         this.nodeTypeFields.push(newNodeTypeFields);
         newNodeTypeFields =
-        {
-            id: 2,
-            nodeType: 'Person',
-            fields: ['Age', 'Gender']
-        }
+            {
+                id: 2,
+                nodeType: 'Person',
+                fields: ['Age', 'Gender']
+            }
         this.nodeTypeFields.push(newNodeTypeFields);
 
         let newNodeProperties: NavigatorNodePropertiesOLD = {
@@ -2056,34 +2066,34 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
         // Populate the watchList - TODO via DB
         let watchListNew: NavigatorWatchList =
-            {
-                id: 1,
-                userID: 'JannieI',
-                nodeType: 'Company',
-                nodes: ['Absa', 'PSG']
-            };
+        {
+            id: 1,
+            userID: 'JannieI',
+            nodeType: 'Company',
+            nodes: ['Absa', 'PSG']
+        };
         this.watchList.push(watchListNew);
 
-        
+
         // Build the Array for the network - Nodes, properties, proximity / relationships
         this.networkGraph = [];
-        this.networkGraph.push(Array("",  "",        "",        "",       "",        "",       "",         "",       "",       "A", "B", "C", "D", "x", "y", "z"));
-        this.networkGraph.push(Array("",  "",        "",        "",       "Company", "Person", "",         "",       "",       "",  "",  "",  "",  "",  "",  "" ));
-        this.networkGraph.push(Array("",  "",        "",        "",       "",        "",        "Company", "Person", "Person", "",  "",  "",  "",  "",  "",  "" ));
-        this.networkGraph.push(Array("",  "",        "",        "",       "",        "",        "Top 40",  "Male",   "Female", "",  "",  "",  "",  "",  "",  "" ));
-        this.networkGraph.push(Array("",  "Company", "",        "",       "",        "",        "",        "",       "",       "1", "1", "1", "1", "",  "",  "" ));
-        this.networkGraph.push(Array("",  "Person",  "",        "",       "",        "",        "",        "",       "",       "",  "",  "",  "",  "1", "1", "1"));
-        this.networkGraph.push(Array("",  "",        "Company", "Top 40", "",        "",        "",        "",       "",       "1", "",  "1", "",  "",  "",  "" ));
-        this.networkGraph.push(Array("",  "",        "Person",  "Male",   "",        "",        "",        "",       "",       "",  "",  "",  "",  "1", "1", "" ));
-        this.networkGraph.push(Array("",  "",        "Person",  "Female", "",        "",        "",        "",       "",       "",  "",  "",  "",  "",  "",  "1"));
-        this.networkGraph.push(Array("A", "",        "",        "",       "1",       "",        "1",       "",       "",       "",  "",  "1", "",  "1", "",  "" ));
-        this.networkGraph.push(Array("B", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "",  "",  "",  "2", "2"));
-        this.networkGraph.push(Array("C", "",        "",        "",       "1",       "",        "1",       "",       "",       "1", "",  "",  "1", "",  "",  "1"));
-        this.networkGraph.push(Array("D", "",        "",        "",       "1",       "",        "",        "",       "",       "",  "",  "1", "",  "1", "1", "" ));
-        this.networkGraph.push(Array("x", "",        "",        "",       "",        "1",       "",        "1",      "",       "1", "",  "",  "1", "",  "",  "" ));
-        this.networkGraph.push(Array("y", "",        "",        "",       "",        "1",       "",        "1",      "",       "",  "2", "",  "1", "",  "",  "" ));
-        this.networkGraph.push(Array("z", "",        "",        "",       "",        "1",       "",        "",       "1",      "",  "2", "1", "",  "",  "",  "" ));
-        console.log('xx Row 5', this.networkGraph.filter(row => row[1] == 'Company') )
+        this.networkGraph.push(Array("", "", "", "", "", "", "", "", "", "A", "B", "C", "D", "x", "y", "z"));
+        this.networkGraph.push(Array("", "", "", "", "Company", "Person", "", "", "", "", "", "", "", "", "", ""));
+        this.networkGraph.push(Array("", "", "", "", "", "", "Company", "Person", "Person", "", "", "", "", "", "", ""));
+        this.networkGraph.push(Array("", "", "", "", "", "", "Top 40", "Male", "Female", "", "", "", "", "", "", ""));
+        this.networkGraph.push(Array("", "Company", "", "", "", "", "", "", "", "1", "1", "1", "1", "", "", ""));
+        this.networkGraph.push(Array("", "Person", "", "", "", "", "", "", "", "", "", "", "", "1", "1", "1"));
+        this.networkGraph.push(Array("", "", "Company", "Top 40", "", "", "", "", "", "1", "", "1", "", "", "", ""));
+        this.networkGraph.push(Array("", "", "Person", "Male", "", "", "", "", "", "", "", "", "", "1", "1", ""));
+        this.networkGraph.push(Array("", "", "Person", "Female", "", "", "", "", "", "", "", "", "", "", "", "1"));
+        this.networkGraph.push(Array("A", "", "", "", "1", "", "1", "", "", "", "", "1", "", "1", "", ""));
+        this.networkGraph.push(Array("B", "", "", "", "1", "", "", "", "", "", "", "", "", "", "2", "2"));
+        this.networkGraph.push(Array("C", "", "", "", "1", "", "1", "", "", "1", "", "", "1", "", "", "1"));
+        this.networkGraph.push(Array("D", "", "", "", "1", "", "", "", "", "", "", "1", "", "1", "1", ""));
+        this.networkGraph.push(Array("x", "", "", "", "", "1", "", "1", "", "1", "", "", "1", "", "", ""));
+        this.networkGraph.push(Array("y", "", "", "", "", "1", "", "1", "", "", "2", "", "1", "", "", ""));
+        this.networkGraph.push(Array("z", "", "", "", "", "1", "", "", "1", "", "2", "1", "", "", "", ""));
+        console.log('xx Row 5', this.networkGraph.filter(row => row[1] == 'Company'))
         console.log('xx networkGraph Cell [9,0] = A', this.networkGraph[9][0])
 
         // Build the Array for the network - Nodes, properties, proximity / relationships
