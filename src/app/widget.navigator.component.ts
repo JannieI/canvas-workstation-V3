@@ -68,11 +68,13 @@ export class WidgetNavigatorComponent {
     ngDropdownParentNodeTypes: string[] = [];
     ngDropdownRelationships: string[] = [];
 
+    selectedNetworkID: number = -1;
+    selectedNetworkRelationshipID: number = -1;
+    selectedNetworkPropertiesID: number = -1;
 
     // Selected - value selected in a dropdown
     selectedChildFilterID: number = -1;
     selectedHistoryID: number = -1;
-    selectedNetworkID: number = -1;
     selectedNodeType: string = '';
     selectedParentFilterID: number = -1;
     selectedParentNode: string = '';
@@ -182,7 +184,7 @@ export class WidgetNavigatorComponent {
                 let networkIndex: number = this.ngNetworks.findIndex(
                     nw => nw.id == this.localWidget.datasourceID);
 
-                // Select the first network
+                // Select the network for the current W, else the first one
                 if (this.ngNetworks.length > 0) {
                     if (networkIndex >= 0) {
                         this.selectedNetworkID = this.ngNetworks[networkIndex].id;
@@ -299,51 +301,42 @@ export class WidgetNavigatorComponent {
     }
 
     clickNetwork(index: number, networkID: number) {
-        // Clicked a network
+        // Clicked a network (or called from ngOnInit)
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetwork', '@Start');
 
         // Remember the ID of the selected Network
         this.selectedNetworkID = networkID;
-        // Fill Combos
-        ngDropdownParentNodes
-ngDropdownParentNodeTypes
-ngDropdownRelationships
 
-
-
-
-        // Read the Data for this W from GV
-        let currentDSIndex: number = this.globalVariableService.currentDatasources
-            .findIndex(ds => ds.id == this.selectedWidget.datasourceID);
-        if (currentDSIndex >= 0) {
-            if (this.globalVariableService.currentDatasources[currentDSIndex]
-                .subDatasources.length != 2) {
+        // Read the Data for this W from the DB
+        if (index >= 0) {
+            if (this.ngNetworks[index].subDatasources.length != 2) {
                     // TODO - make friendly
                     console.log('ERROR ...')
             } else {
-
-                let relationshipDSid: number = this.globalVariableService.currentDatasources
-                    [currentDSIndex].subDatasources[0];
+                
+                this.selectedNetworkRelationshipID = this.ngNetworks[index].subDatasources[0];
                 this.globalVariableService.getData(
-                    'datasourceID=' + relationshipDSid.toString()
+                    'datasourceID=' + this.selectedNetworkRelationshipID.toString()
                     )
                     .then(res => {
                         this.networkRelationships = res;
-                        console.log('xx clientData relationshipDSid' + relationshipDSid.toString(), this.networkRelationships)
+
+                        // Fill ParentNode type combo
+                        this.
+                        console.log('xx clientData this.selectedNetworkRelationshipID' + this.selectedNetworkRelationshipID.toString(), this.networkRelationships)
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);
                         console.error('Error in Navigator.OnInit reading clientData: ' + err);
                     });
         
-                let propertyDSid: number = this.globalVariableService.currentDatasources
-                    [currentDSIndex].subDatasources[1];
+                this.selectedNetworkPropertiesID = this.ngNetworks[index].subDatasources[1];
                 this.globalVariableService.getData(
-                    'datasourceID=' + propertyDSid.toString()
+                    'datasourceID=' + this.selectedNetworkPropertiesID.toString()
                     )
                     .then(res => {
                         this.networkProperties = res;
-                        console.log('xx clientData propertyDSid' + propertyDSid.toString(), this.networkProperties)
+                        console.log('xx clientData this.selectedNetworkPropertiesID' + this.selectedNetworkPropertiesID.toString(), this.networkProperties)
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);
