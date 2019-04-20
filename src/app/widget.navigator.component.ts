@@ -136,18 +136,13 @@ export class WidgetNavigatorComponent {
     showGraphHelp: boolean = false;
     showGraphNotes: boolean = false;
     showGraphProperties: boolean = false;
-    showNetworkAdd: boolean = false;
 
     watchListFiltered: boolean = false;
 
 
-    navNodeIsDone: string[] = [];
-    navNodesToDo: string[] = [];
-    singleRoutesArray: Array<string[]> = [];
     navMaxRecursion: number = 100;
     navRecursionCounter: number = 0;
     navVisitedNodes: string[] = [];
-    navSinglePaths: Array<string[]> = [];
 
 
     constructor(
