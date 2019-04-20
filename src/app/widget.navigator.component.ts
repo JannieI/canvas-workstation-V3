@@ -310,8 +310,8 @@ export class WidgetNavigatorComponent {
         // Read the Data for this W from the DB
         if (index >= 0) {
             if (this.ngNetworks[index].subDatasources.length != 2) {
-                    // TODO - make friendly
-                    console.log('ERROR ...')
+                // TODO - make friendly
+                console.log('ERROR ...')
             } else {
                 
                 this.selectedNetworkRelationshipID = this.ngNetworks[index].subDatasources[0];
@@ -340,38 +340,72 @@ export class WidgetNavigatorComponent {
                         console.log('xx clientData this.selectedNetworkRelationshipID' 
                             + this.selectedNetworkRelationshipID.toString(), this.networkRelationships
                             ,leftNodeTypes, rightNodeTypes, this.ngDropdownParentNodeTypes)
-                    })
-                    .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
-                        console.error('Error in Navigator.OnInit reading clientData: ' + err);
-                    });
-        
-                this.selectedNetworkPropertiesID = this.ngNetworks[index].subDatasources[1];
-                this.globalVariableService.getData(
-                    'datasourceID=' + this.selectedNetworkPropertiesID.toString()
-                    )
-                    .then(res => {
-                        this.networkProperties = res;
+            
+                        this.selectedNetworkPropertiesID = this.ngNetworks[index].subDatasources[1];
+                        this.globalVariableService.getData(
+                            'datasourceID=' + this.selectedNetworkPropertiesID.toString()
+                            )
+                            .then(res => {
+                                this.networkProperties = res;
 
-                        // Fill ParentNode type combo: + 'All', unique, sorted
-                        let leftRelationships: string[] = this.ngDropdownParentNodeTypes = this.networkRelationships
-                            .map(nr => nr.relationshipLeftToRight);
-                        let rightRelationships: string[] = this.ngDropdownParentNodeTypes = this.networkRelationships
-                            .map(nr => nr.relationshipRightToLeft);
-                        this.ngDropdownRelationships = Array.from(
-                            new Set(leftRelationships.concat(rightRelationships))
-                        );
+                                // Fill ParentNode type combo: + 'All', unique, sorted
+                                let leftRelationships: string[] = this.ngDropdownParentNodeTypes = this.networkRelationships
+                                    .map(nr => nr.relationshipLeftToRight);
+                                let rightRelationships: string[] = this.ngDropdownParentNodeTypes = this.networkRelationships
+                                    .map(nr => nr.relationshipRightToLeft);
+                                this.ngDropdownRelationships = Array.from(
+                                    new Set(leftRelationships.concat(rightRelationships))
+                                );
 
-                        this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
-                        this.ngDropdownRelationships = this.ngDropdownRelationships
-                            .sort( (a,b) => {
-                                if (a > b) return 1;
-                                if (a < b) return -1;
-                                return 0;
+                                this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
+                                this.ngDropdownRelationships = this.ngDropdownRelationships
+                                    .sort( (a,b) => {
+                                        if (a > b) return 1;
+                                        if (a < b) return -1;
+                                        return 0;
+                                    });
+
+                                console.log('xx clientData this.selectedNetworkPropertiesID' + this.selectedNetworkPropertiesID.toString(), 
+                                    leftRelationships, rightRelationships, this.ngDropdownRelationships, this.networkProperties)
+
+
+                                // Clear the rest & reset pointers
+                                this.parentNodeFilter = [];
+                                this.childNodeFilter = [];
+
+                                this.selectedParentNodeType = '';
+                                this.selectedParentNode = '';
+                                this.selectedRelationship = '';
+                                this.selectedParentFilterID = -1;
+                                this.selectedChildFilterID = -1;
+
+                                this.history = this.historyAll
+                                    .filter(h => h.networkID === networkID)
+                                    .sort( (a,b) => {
+                                        if (a.id < b.id) {
+                                            return 1;
+                                        };
+                                        if (a.id > b.id) {
+                                            return -1;
+                                        };
+                                        return 0;
+                                    });
+
+                                // Click the first row
+                                if (this.history.length > 0) {
+                                    this.clickHistory(0, this.history[0].id);
+                                } else {
+                                    // Clear the graph
+                                    this.clickNetworkSummary(index);
+                                };
+
+                                // Close Navigated popup
+                                this.showHistory = false;
+                            })
+                            .catch(err => {
+                                this.errorMessage = err.slice(0, 100);
+                                console.error('Error in Navigator.OnInit reading clientData: ' + err);
                             });
-
-                        console.log('xx clientData this.selectedNetworkPropertiesID' + this.selectedNetworkPropertiesID.toString(), 
-                            leftRelationships, rightRelationships, this.ngDropdownRelationships, this.networkProperties)
                     })
                     .catch(err => {
                         this.errorMessage = err.slice(0, 100);
@@ -381,45 +415,6 @@ export class WidgetNavigatorComponent {
             };
         };
 
-
-
-
-
-
-        // Clear the rest & reset pointers
-        this.ngDropdownParentNodes = [];
-        this.ngDropdownRelationships = [];
-        this.parentNodeFilter = [];
-        this.childNodeFilter = [];
-
-        this.selectedParentNodeType = '';
-        this.selectedParentNode = '';
-        this.selectedRelationship = '';
-        this.selectedParentFilterID = -1;
-        this.selectedChildFilterID = -1;
-
-        this.history = this.historyAll
-            .filter(h => h.networkID === networkID)
-            .sort( (a,b) => {
-                if (a.id < b.id) {
-                    return 1;
-                };
-                if (a.id > b.id) {
-                    return -1;
-                };
-                return 0;
-            });
-
-        // Click the first row
-        if (this.history.length > 0) {
-            this.clickHistory(0, this.history[0].id);
-        } else {
-            // Clear the graph
-            this.clickNetworkSummary(index);
-        };
-
-        // Close Navigated popup
-        this.showHistory = false;
 
     }
 
