@@ -340,25 +340,9 @@ export class WidgetNavigatorComponent {
                             .then(res => {
                                 this.networkProperties = res;
 
-                                // Fill ParentNode type combo: + 'All', unique, sorted
-                                let leftRelationships: string[] = this.networkRelationships
-                                    .map(nr => nr.relationshipLeftToRight);
-                                let rightRelationships: string[] = this.networkRelationships
-                                    .map(nr => nr.relationshipRightToLeft);
-                                this.ngDropdownRelationships = Array.from(
-                                    new Set(leftRelationships.concat(rightRelationships))
-                                );
-
-                                this.ngDropdownRelationships = this.ngDropdownRelationships
-                                    .sort( (a,b) => {
-                                        if (a > b) return 1;
-                                        if (a < b) return -1;
-                                        return 0;
-                                    });
-                                this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
-
                                 // Clear the rest & reset pointers
                                 this.ngDropdownParentNodes = [];
+                                this.ngDropdownRelationships = [];
                                 this.parentNodeFilter = [];
                                 this.childNodeFilter = [];
 
@@ -446,6 +430,10 @@ export class WidgetNavigatorComponent {
                 x => this.filteredParentNodes.indexOf(x) >= 0
             );
         };
+
+        // Fill Relationships combo: + 'All', unique, sorted
+        this.ngDropdownRelationships = this.distinctRelationships();
+        this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
 
         this.relationshipRoles = [];
         this.selectedParentNode = '';
@@ -1024,22 +1012,22 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         });
     }
 
-    distinctNodeTypes(selectedParentNodeType: string): string[] {
-        // Return distinct array of Node Types for the current Network
-        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctNodeTypes', '@Start');
+    distinctRelationships(selectedParentNodeType: string): string[] {
+        // Return distinct array of Relationships per Node Type for the current Network
+        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctRelationships', '@Start');
 
         // Fill ParentNode type combo: + 'All', unique, sorted
         let leftRelationships: string[] = this.networkRelationships
             .map(nr => nr.relationshipLeftToRight);
         let rightRelationships: string[] = this.networkRelationships
             .map(nr => nr.relationshipRightToLeft);
-        let nodeTypes: string[] = Array.from(new Set(leftRelationships.concat(rightRelationships)));
+        let nodeRelationships: string[] = Array.from(new Set(leftRelationships.concat(rightRelationships)));
 
         // Make sure it is unique, non-null list
-        nodeTypes = this.navUniqifySortNodes(nodeTypes);
+        nodeRelationships = this.navUniqifySortNodes(nodeRelationships);
 
         // Return
-        return nodeTypes;
+        return nodeRelationships;
     }
 
     distinctNodesPerNodeType(selectedParentNodeType: string): string[] {
