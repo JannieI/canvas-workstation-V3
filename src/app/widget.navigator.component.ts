@@ -463,8 +463,8 @@ export class WidgetNavigatorComponent {
         };
 
         this.relationshipRoles = [];
-        this.selectedParentNode = this.ngDropdownParentNodes[0];
-        this.selectedRelationship = this.ngDropdownRelationships[0];
+        this.selectedParentNode = '';
+        this.selectedRelationship = '';
         this.childNodeFilter = [];
         this.selectedChildFilterID = -1;
 
@@ -495,6 +495,15 @@ export class WidgetNavigatorComponent {
 
         // Clear child filter
         this.clickChildFilterClear();
+
+        // Show graph if all 3 selected
+        this.checkShowGraph();
+    }
+
+    checkShowGraph() {
+        // Check if all selected; then show graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'checkShowGraph', '@Start');
+
 
         // Show the graph when all fields selected
         if (this.selectedParentNodeType != ''
@@ -532,14 +541,8 @@ export class WidgetNavigatorComponent {
         // Clear child filter
         this.clickChildFilterClear();
 
-        // Show the graph when all fields selected
-        if (this.selectedParentNodeType != ''
-            &&
-            this.selectedParentNode != ''
-            &&
-            this.selectedRelationship != '') {
-            this.showGraph();
-        };
+        // Show graph if all 3 selected
+        this.checkShowGraph();
 
     }
 
