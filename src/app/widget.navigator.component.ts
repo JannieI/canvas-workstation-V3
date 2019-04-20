@@ -438,22 +438,7 @@ export class WidgetNavigatorComponent {
         this.selectedParentNodeType = ev.target.value;
 
         // Fill ParentNodes combo: + '', All', unique, sorted
-        let leftNodeTypes: string[] = this.networkRelationships
-            .filter(nr => nr.leftNodeType == this.selectedParentNodeType)
-            .map(nr => nr.leftNodeName);
-        let rightNodeTypes: string[] = this.networkRelationships
-            .filter(nr => nr.rightNodeType == this.selectedParentNodeType)
-            .map(nr => nr.rightNodeName);
-        this.ngDropdownParentNodes = Array.from(
-            new Set(leftNodeTypes.concat(rightNodeTypes))
-        );
-
-        this.ngDropdownParentNodes = this.ngDropdownParentNodes
-            .sort( (a,b) => {
-                if (a > b) return 1;
-                if (a < b) return -1;
-                return 0;
-            });
+        this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
 
         if (this.filteredParentNodes.length > 0) {
@@ -1039,24 +1024,52 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
         });
     }
 
-    distinctNodeTypes(): string[] {
-        // Return distinct array of Node Types for the current Network
-        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctNodeTypes', '@Start');
+
+                                // Fill ParentNode type combo: + 'All', unique, sorted
+                                let leftRelationships: string[] = this.networkRelationships
+                                    .map(nr => nr.relationshipLeftToRight);
+                                let rightRelationships: string[] = this.networkRelationships
+                                    .map(nr => nr.relationshipRightToLeft);
+                                this.ngDropdownRelationships = Array.from(
+                                    new Set(leftRelationships.concat(rightRelationships))
+
+    distinctNodesPerNodeType(selectedParentNodeType: string): string[] {
+        // Return distinct array of Nodes per Node Type for the current Network
+        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctNodesPerNodeType', '@Start');
 
         // Filter correct Col
         let leftNodeTypes: string[] = this.networkRelationships
-            .filter(nr => nr.leftNodeType == this.selectedParentNodeType)
+            .filter(nr => nr.leftNodeType == selectedParentNodeType)
             .map(nr => nr.leftNodeName);
         let rightNodeTypes: string[] = this.networkRelationships
-            .filter(nr => nr.rightNodeType == this.selectedParentNodeType)
+            .filter(nr => nr.rightNodeType == selectedParentNodeType)
             .map(nr => nr.rightNodeName);
-        let nodeTypes = Array.from(new Set(leftNodeTypes.concat(rightNodeTypes)));
+        let nodesPerNodeType = Array.from(new Set(leftNodeTypes.concat(rightNodeTypes)));
 
         // Make sure it is unique, non-null list
-        nodeTypes = this.navUniqifySortNodes(nodeTypes);
+        nodesPerNodeType = this.navUniqifySortNodes(nodesPerNodeType);
 
         // Return
-        return nodeTypes;
+        return nodesPerNodeType;
+    }
+
+    navNodesPerNodeType(nodeType: string): string[] {
+        // Return array of Nodes (names) per given Node Type
+        this.globalFunctionService.printToConsole(this.constructor.name, 'navNodesPerNodeType', '@Start');
+
+        // Get column number
+        let nodeTypeColumnNumber: number = this.navNodeTypeColumnNumber(nodeType);
+
+        // Filter correct Col
+        let nodes: string[] = this.networkGraph
+            .filter(x => x[nodeTypeColumnNumber] == '1')
+            .map(y => y[0]);
+
+        // Make sure it is unique, non-null list
+        nodes = this.navUniqifySortNodes(nodes);
+
+        // Return
+        return nodes;
     }
 
     navPropertiesPerNodeType(nodeType: string): string[] {
@@ -1094,24 +1107,6 @@ console.log('xx this.specification', this.graphTitle, this.graphData, this.speci
 
     }
 
-    navNodesPerNodeType(nodeType: string): string[] {
-        // Return array of Nodes (names) per given Node Type
-        this.globalFunctionService.printToConsole(this.constructor.name, 'navNodesPerNodeType', '@Start');
-
-        // Get column number
-        let nodeTypeColumnNumber: number = this.navNodeTypeColumnNumber(nodeType);
-
-        // Filter correct Col
-        let nodes: string[] = this.networkGraph
-            .filter(x => x[nodeTypeColumnNumber] == '1')
-            .map(y => y[0]);
-
-        // Make sure it is unique, non-null list
-        nodes = this.navUniqifySortNodes(nodes);
-
-        // Return
-        return nodes;
-    }
 
     navNodesFilteredPerProperty(nodeType: string, property: string): string[] {
         // Return array of Nodes (names) filtered on a given Node Type & Property
