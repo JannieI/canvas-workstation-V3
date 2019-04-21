@@ -1220,6 +1220,7 @@ export class WidgetNavigatorComponent {
         this.ngRelationshipFilterSelectedFieldName = '';
         this.ngRelationshipFilterSelectedOperator = '';
         this.ngRelationshipFilterSelectedValue = '';
+        this.relationshipsFilteredList = [];
     }
 
     clickRelationshipFilterSave() {
@@ -1271,6 +1272,7 @@ export class WidgetNavigatorComponent {
         this.ngChildNodeFilterSelectedValue = '';
         this.ngChildFilterShowTop = '';
         this.ngChildFilterSortFieldName = '';
+        this.childNodesFilteredList = [];
     }
 
     clickChildFilterSave() {
