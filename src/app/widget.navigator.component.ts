@@ -455,9 +455,7 @@ export class WidgetNavigatorComponent {
             .map(np => np.propertyKey);
         this.ngParentNodeFilterDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterDropdown);
 
-
-
-        // TODO - ...
+        // Clear Relationship roles
         this.relationshipRoles = [];
 
     }
@@ -467,23 +465,6 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentNode', '@Start');
 
         this.selectedParentNode = ev.target.value;
-
-        // Determine relationship roles
-        this.relationshipRoles = [];
-        this.showRoles = false;
-        this.relationshipRoles = this.parentRelatedChildren
-            .filter(x => x.parentNodeType === this.selectedParentNodeType
-                && x.parentNode === this.selectedParentNode
-                && x.relationship === this.selectedRelationship
-                && x.role != ''
-                && x.role != null)
-            .map(y => {
-                if (y.role != '') { return y.role };
-            });
-
-        // Make unique
-        let relationshipRolesSet = new Set(this.relationshipRoles);
-        this.relationshipRoles = Array.from(relationshipRolesSet);
     
         // Clear child filter
         this.clickChildFilterClear();
@@ -501,19 +482,18 @@ export class WidgetNavigatorComponent {
         // Determine relationship roles
         this.relationshipRoles = [];
         this.showRoles = false;
-        this.relationshipRoles = this.parentRelatedChildren
-            .filter(x => x.parentNodeType === this.selectedParentNodeType
-                && x.parentNode === this.selectedParentNode
-                && x.relationship === this.selectedRelationship
-                && x.role != ''
-                && x.role != null)
-            .map(y => {
-                if (y.role != '') { return y.role };
-            });
 
-        // Make unique
-        let relationshipRolesSet = new Set(this.relationshipRoles);
-        this.relationshipRoles = Array.from(relationshipRolesSet);
+        // Filter on Relationship
+        let leftRelationships: string[] = this.networkRelationships
+            .filter(nr => nr.relationshipLeftToRight === this.selectedRelationship)
+            .map(nr => nr.relationshipProperty);
+        let rightRelationships: string[] = this.networkRelationships
+            .filter(nr => nr.relationshipRightToLeft === this.selectedRelationship)
+            .map(nr => nr.relationshipProperty);
+        let nodeRelationships: string[] = leftRelationships.concat(rightRelationships);
+
+        // Make unique & Sort
+        this.relationshipRoles = this.navUniqifySortNodes(nodeRelationships);
 
         // Clear child filter
         this.clickChildFilterClear();
@@ -1016,8 +996,9 @@ export class WidgetNavigatorComponent {
         return uniqueNodeTypes;
     }
 
-    distinctRelationships(selectedParentNodeType: string): string[] {
+    distinctRelationships(selectedParentNodeType: string = null): string[] {
         // Return distinct array of Relationships per Node Type for the current Network
+        // Filtering is Optional
         this.globalFunctionService.printToConsole(this.constructor.name, 'distinctRelationships', '@Start');
 
         // Fill ParentNode type combo: + 'All', unique, sorted
@@ -1026,6 +1007,11 @@ export class WidgetNavigatorComponent {
         let rightRelationships: string[] = this.networkRelationships
             .map(nr => nr.relationshipRightToLeft);
         let nodeRelationships: string[] = Array.from(new Set(leftRelationships.concat(rightRelationships)));
+
+        // Filter if requested
+        if (selectedParentNodeType != null) {
+            nodeRelationships = nodeRelationships.filter(nr => nr === selectedParentNodeType);
+        };
 
         // Make sure it is unique, non-null list
         nodeRelationships = this.navUniqifySortNodes(nodeRelationships);
