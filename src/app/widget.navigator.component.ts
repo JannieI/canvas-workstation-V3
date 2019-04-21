@@ -1191,10 +1191,7 @@ export class WidgetNavigatorComponent {
             return;
         };
 
-        // Clear all
-        this.clickParentFilterClear();
-
-        // Filter ParentNodes
+        // Create Filtered List of ParentNodes
         // TODO - do other operands than ==
         this.parentNodesFilteredList = this.networkProperties
             .filter(np => np.propertyKey === this.ngParentNodeFilterSelectedFieldName 
@@ -1204,6 +1201,11 @@ export class WidgetNavigatorComponent {
 
         // Make unique
         this.parentNodesFilteredList = Array.from(new Set(this.parentNodesFilteredList));
+
+        // Filter Parent Nodes
+        this.ngParentNodeFilterDropdown = this.ngParentNodeFilterDropdown
+            .filter(pn => this.parentNodesFilteredList.indexOf(pn) >= 0
+        );
 
     }
 
