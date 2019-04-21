@@ -1070,11 +1070,25 @@ export class WidgetNavigatorComponent {
         return nodesPerNodeType;
     }
 
+    distinctRelationshipRoles(selectedRelationship: string): string[] {
+        // Return distinct array of Nodes per Relationship Roles for a given Relationship
+        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctRelationshipRoles', '@Start');
 
+        // Filter on Relationship
+        let leftRelationships: string[] = this.networkRelationships
+            .filter(nr => nr.relationshipLeftToRight === selectedRelationship)
+            .map(nr => nr.relationshipProperty);
+        let rightRelationships: string[] = this.networkRelationships
+            .filter(nr => nr.relationshipRightToLeft === selectedRelationship)
+            .map(nr => nr.relationshipProperty);
+        let nodeRelationships: string[] = leftRelationships.concat(rightRelationships);
 
+        // Make unique & Sort
+        nodeRelationships = this.navUniqifySortNodes(nodeRelationships);
 
-
-
+        // Return
+        return nodeRelationships;
+    }
 
     navUniqifySortNodes(
         inputNodes: string[],
