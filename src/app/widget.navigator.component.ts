@@ -1169,15 +1169,6 @@ export class WidgetNavigatorComponent {
     //     });
     // }
 
-    clickParentFilterClear() {
-        // Clear the Parent Filter
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickFilterClear', '@Start');
-
-        // Clear all
-        this.parentNodeFilter = [];
-        this.parentNodesFilteredList = [];
-
-    }
 
     clickParentFilterSave() {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
@@ -1267,11 +1258,20 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickParentFilterClear() {
+        // Clear the Parent Filter
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickFilterClear', '@Start');
+
+        this.ngParentNodeFilterDropdown = [];
+        this.ngParentNodeFilterSelectedFieldName = '';
+        this.ngParentNodeFilterSelectedOperator = '';
+        this.ngParentNodeFilterSelectedValue = '';
+    }
+
     clickChildFilterClear() {
-        // Close Parent Filter
+        // Clear Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClear', '@Start');
 
-        // Clear all
         this.ngChildFilterDropdown = [];
         this.ngChildFilterSelectedFieldName = '';
         this.ngChildFilterSelectedOperator = '';
