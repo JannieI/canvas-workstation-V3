@@ -1167,6 +1167,18 @@ export class WidgetNavigatorComponent {
     // }
 
 
+    changeParentFilterField() {
+        // Make the filter inactive
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentFilterField', '@Start');
+
+    }
+
+    changeParentFilterOperator() {
+        // Make the filter inactive
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentFilterOperator', '@Start');
+
+    }
+
     clickParentFilterClear() {
         // Clear the Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClear', '@Start');
@@ -1225,6 +1237,13 @@ export class WidgetNavigatorComponent {
         this.ngRelationshipFilterSelectedValue = '';
     }
 
+
+    changeChildFilterField() {
+        // Change Child Filter Field
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeChildFilterField', '@Start');
+
+    }
+
     clickChildFilterClear() {
         // Clear Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClear', '@Start');
@@ -1279,18 +1298,6 @@ export class WidgetNavigatorComponent {
         // Make unique
         let filteredChildNodeSet = new Set(this.filteredChildNodes);
         this.filteredChildNodes = Array.from(filteredChildNodeSet);
-
-    }
-
-    changeParentFilterField() {
-        // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentFilterField', '@Start');
-
-    }
-
-    changeParentFilterOperator() {
-        // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentFilterOperator', '@Start');
 
     }
 
@@ -1688,18 +1695,6 @@ export class WidgetNavigatorComponent {
 
         this.showNetwork = !this.showNetwork;
         this.nav2WalkInPath(null, "y", "rel", 0, [])
-    }
-
-    changeChildFilterOperator(ev: any) {
-        // Change Child filter operator
-        this.globalFunctionService.printToConsole(this.constructor.name, 'changeChildFilterOperator', '@Start');
-
-    }
-
-    changeChildFilterField() {
-        // Change Child Filter Field
-        this.globalFunctionService.printToConsole(this.constructor.name, 'changeChildFilterField', '@Start');
-
     }
 
 

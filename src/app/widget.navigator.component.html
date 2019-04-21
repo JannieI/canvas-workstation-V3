@@ -242,7 +242,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                     Operator:
                     <select id="selects_3"
                         [(ngModel)]="ngRelationshipFilterSelectedOperator"
-                        (change)="changeChildFilterOperator($event)"
                         name="ngRelationshipFilterSelectedOperator"
                         >
                         <option>Less Than</option>
@@ -282,11 +281,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                             </span>
                         </button>
                     </div>
-
-                    <button class="btn btn-secondary"
-                        (click)="clickChildFilterClose()">
-                        Close
-                    </button>
                     <span class="graphAreaChildFilterErrorMessage">
                         {{ childFilterErrorMessage }}
                     </span>
@@ -454,7 +448,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                                 Operator:
                                 <select id="selects_3"
                                     [(ngModel)]="ngChildFilterSelectedOperator"
-                                    (change)="changeChildFilterOperator($event)"
                                     name="ngChildFilterSelectedOperator"
                                     >
                                     <option>Less Than</option>
@@ -493,7 +486,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                                 Order by:
                                 <select id="selects_3"
                                     [(ngModel)]="ngChildFilterSortFieldName"
-                                    (change)="changeChildFilterOperator($event)"
                                     name="ngChildFilterSortFieldName"
                                     >
                                     <option>Revenue</option>
