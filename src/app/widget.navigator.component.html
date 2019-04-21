@@ -238,11 +238,11 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <div class="graphAreaChildFilterFieldTitle">
                     Field:
                     <select id="selects_3"
-                        [(ngModel)]="filterChildFieldName"
+                        [(ngModel)]="ngRelationshipFilterSelectedFieldName"
                         (change)="changeChildFilterField($event)"
-                        name="filterChildFieldName"
+                        name="ngRelationshipFilterSelectedFieldName"
                         >
-                        <option *ngFor="let row of parentFields">
+                        <option *ngFor="let row of ngRelationshipFilterDropdown">
                             {{ row }}
                         </option>
                     </select>
@@ -250,9 +250,9 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <div class="graphAreaChildFilterOperatorTitle">
                     Operator:
                     <select id="selects_3"
-                        [(ngModel)]="filterChildOperator"
+                        [(ngModel)]="ngRelationshipFilterSelectedOperator"
                         (change)="changeChildFilterOperator($event)"
-                        name="filterChildOperator"
+                        name="ngRelationshipFilterSelectedOperator"
                         >
                         <option>Less Than</option>
                         <option>Less Than Equal</option>
@@ -270,8 +270,8 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <div class="graphAreaChildFilterValueTitle">
                     Value:
                     <input type="text"
-                        [(ngModel)]="filterChildValue"
-                        name="filterChildValue"
+                        [(ngModel)]="ngRelationshipFilterSelectedValue"
+                        name="ngRelationshipFilterSelectedValue"
                         placeholder=""
                         title="Enter a value for the filter. "
                         >

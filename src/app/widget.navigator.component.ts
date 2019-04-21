@@ -95,6 +95,16 @@ export class WidgetNavigatorComponent {
     ngParentNodeFilterSelectedOperator: string = '';
     ngParentNodeFilterSelectedValue: string = '';
 
+    ngRelationshipFilterDropdown: string[] = [];
+    ngRelationshipFilterSelectedFieldName: string = '';
+    ngRelationshipFilterSelectedOperator: string = '';
+    ngRelationshipFilterSelectedValue: string = '';
+
+    ngChildFilterDropdown: string[] = [];
+    ngChildFilterSelectedFieldName: string = '';
+    ngChildFilterSelectedOperator: string = '';
+    ngChildFilterSelectedValue: string = '';
+
     // Working
     childDataAll: any[] = [];                           // List of all children after filter
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
