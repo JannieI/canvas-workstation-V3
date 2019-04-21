@@ -1175,6 +1175,7 @@ export class WidgetNavigatorComponent {
         this.ngParentNodeFilterSelectedFieldName = '';
         this.ngParentNodeFilterSelectedOperator = '';
         this.ngParentNodeFilterSelectedValue = '';
+        this.parentNodesFilteredList = [];
     }
 
     clickParentFilterSave() {
