@@ -712,23 +712,38 @@ dimensions are set in app.html, and cannot be changed here. -->
     </div>
 
     <!-- Graph Properties -->
-    <div class="graphProperties" *ngIf="showGraphProperties">
-        <h5>Graph Properties</h5>
-        <div style="margin: 18px;">
+    <div class="propertyArea" *ngIf="showGraphProperties">
+        <div class="propertyAreaTitle">
+            <b>
+                Graph Properties
+            </b>
+            <clr-signpost>
+                <clr-icon shape="info-circle" style="margin-top: -4px;"
+                    clrSignpostTrigger>
+                </clr-icon>
+                <clr-signpost-content *clrIfOpen
+                    [clrPosition]="'bottom-middle'">
+                    <h5 style="margin-top: 0; color:gray;">
+                        Help
+                    </h5>
+                    <p style="margin-top: 0; color:gray; text-align: left;">
+                        The properties of the graph can be managed here.
+                    </p>
+                </clr-signpost-content>
+            </clr-signpost>
+            <div class="propertyAreaClose"
+                (click)="clickClosepropertyPopup()"
+                >
+                <b>X</b>
+            </div>
+        </div>
+
+        <div class="propertyAreaBlock">
             New Name:
             <input type="text"
                 title="Add new name"
                 placeholder="New Name"
                 >
-        </div>
-
-        <div>
-            <button class="btn btn-link"
-                style="margin-left: 28px;"
-                (click)="clickCloseGraphPropertiesPopup()">
-                Close
-            </button>
-
         </div>
     </div>
 

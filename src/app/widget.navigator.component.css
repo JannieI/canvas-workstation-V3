@@ -82,19 +82,7 @@
             overflow-y: scroll; 
         }
 
-    .networkAdd {
-        border: 1px solid black; 
-        grid-column-start: 12;
-        /* autoprefixer: off */
-        grid-column-end: 32;
-        grid-row-start: 1;
-        grid-row-end: 8;
-        margin: 0px 24px 12px 12px; 
-        padding: 12px;
-        z-index: 101;
-    }
-
-    .graphProperties {
+    .propertyArea {
         /* display: inline-block; */
         background-color: beige;
         border: 1px solid black;
@@ -111,6 +99,20 @@
         text-align: left;
         z-index: 102;
     }
+        .propertyAreaTitle {
+            font-size: 0.6rem;
+            margin-left: 12px;
+            text-align: left;
+        }
+        .propertyAreaClose {
+            cursor: pointer;
+            float: right;
+            margin-right: 12px;
+        }
+        .propertyAreaBlock {
+            border-radius: 4px;
+            overflow-y: scroll; 
+        }
 
     .graphNotesUpdate {
         /* display: inline-block; */

@@ -58,6 +58,8 @@ export class WidgetNavigatorComponent {
     // The folowing shapes are temporary, and only used in this routine (not stored in the DB):
     //  - NavigatorHistory
     //  - NavigatorNodeFiler
+    errorMessage: string = '';                          // Error on form
+    graphData: any[] = [];                              // childDataAll formatted for Vega
 
     ngNetworks: Datasource[] = [];
     networkRelationships: NavigatorRelationship[] = []; // Data with Node-Relationship-Node DSrel
@@ -90,7 +92,6 @@ export class WidgetNavigatorComponent {
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
     childFields: string[] = ['Gender', 'Age'];
     childFilterErrorMessage: string = '';
-    errorMessage: string = '';
     filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
     filterChildFieldName: string = '';
     filterChildOperator: string = '';
@@ -101,7 +102,6 @@ export class WidgetNavigatorComponent {
     filterParentOperator: string = '';
     filterParentValue: string = '';
     firstAdjacencyCellRowNr: number = -1;
-    graphData: any[] = [];                              // childDataAll formatted for Vega
     history: NavigatorHistory[] = [];                   // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
     parentFields: string[] = ['Sector', 'Country', 'City'];
