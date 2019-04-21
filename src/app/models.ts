@@ -1770,6 +1770,7 @@ export class NavigatorHistory {
             value: string;
         };
     isSelected: boolean;
+    view: string;
 }
 
 export class NavigatorNodeFiler {

@@ -335,18 +335,7 @@ export class WidgetNavigatorComponent {
                         this.networkRelationships = res;
                         
                         // Fill ParentNode type Dropdown
-                        let leftNodeTypes: string[] = this.networkRelationships.map(nr => nr.leftNodeType);
-                        let rightNodeTypes: string[] = this.networkRelationships.map(nr => nr.rightNodeType);
-                        this.ngDropdownParentNodeTypes = Array.from(
-                            new Set(leftNodeTypes.concat(rightNodeTypes))
-                        );
-
-                        this.ngDropdownParentNodeTypes = this.ngDropdownParentNodeTypes
-                            .sort((a, b) => {
-                                if (a > b) return 1;
-                                if (a < b) return -1;
-                                return 0;
-                            });
+                        this.ngDropdownParentNodeTypes = this.distinctNodeTypes();
                         this.ngDropdownParentNodeTypes = ['All', ...this.ngDropdownParentNodeTypes];
 
                         this.selectedNetworkPropertiesID = this.ngNetworks[index].subDatasources[1];
@@ -388,6 +377,7 @@ export class WidgetNavigatorComponent {
                                     this.clickHistory(0, this.ngHistory[0].id);
                                 } else {
                                     // Clear the graph
+                                    this.selectedView = 'SummaryView';
                                     this.clickNetworkSummary();
                                 };
 
@@ -418,6 +408,7 @@ export class WidgetNavigatorComponent {
         this.selectedParentNode = this.ngHistory[index].parentNode;
         this.selectedRelationship = this.ngHistory[index].relationship;
         this.showRoles = this.ngHistory[index].showRoles;
+        this.selectedView = this.ngHistory[index].view;
 
         // Set the history id and reset the isSelected field in history
         this.selectedHistoryID = historyID;
