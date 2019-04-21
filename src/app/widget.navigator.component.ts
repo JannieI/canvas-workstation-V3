@@ -1167,6 +1167,16 @@ export class WidgetNavigatorComponent {
     // }
 
 
+    clickParentFilterClear() {
+        // Clear the Parent Filter
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClear', '@Start');
+
+        this.ngParentNodeFilterDropdown = [];
+        this.ngParentNodeFilterSelectedFieldName = '';
+        this.ngParentNodeFilterSelectedOperator = '';
+        this.ngParentNodeFilterSelectedValue = '';
+    }
+
     clickParentFilterSave() {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterSave', '@Start');
@@ -1201,12 +1211,6 @@ export class WidgetNavigatorComponent {
 
         // Make unique
         this.parentNodesFilteredList = Array.from(new Set(this.parentNodesFilteredList));
-
-    }
-
-    clickParentFilterClose() {
-        // Close Parent Filter
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClose', '@Start');
 
     }
 
@@ -1253,16 +1257,6 @@ export class WidgetNavigatorComponent {
         let filteredChildNodeSet = new Set(this.filteredChildNodes);
         this.filteredChildNodes = Array.from(filteredChildNodeSet);
 
-    }
-
-    clickParentFilterClear() {
-        // Clear the Parent Filter
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClear', '@Start');
-
-        this.ngParentNodeFilterDropdown = [];
-        this.ngParentNodeFilterSelectedFieldName = '';
-        this.ngParentNodeFilterSelectedOperator = '';
-        this.ngParentNodeFilterSelectedValue = '';
     }
 
     clickRelationshipFilterClear() {
