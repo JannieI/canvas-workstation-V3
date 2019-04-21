@@ -370,10 +370,10 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <!-- Network Summary -->
                 <span>
                     <clr-icon
-                        shape="organization"
+                        shape="router"
                         style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
-                        [style.color]="selectedView=='DistanceView'?  'blue'  :  'gray'"
-                        title="Distance view: show all nodes between a child and a specific node"
+                        [style.color]="selectedView=='SummaryView'?  'blue'  :  'gray'"
+                        title="Summary view: overview of Nodes in a network"
                         (click)="clickNetworkSummary()"
                         >
                     </clr-icon>

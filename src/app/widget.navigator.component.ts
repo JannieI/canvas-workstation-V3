@@ -355,6 +355,9 @@ export class WidgetNavigatorComponent {
                             .then(res => {
                                 this.networkProperties = res;
 
+                                // Disable Views
+                                this.isViewsDisabled = true;
+                                
                                 // Clear the rest & reset pointers
                                 this.ngDropdownParentNodes = [];
                                 this.ngDropdownRelationships = [];
