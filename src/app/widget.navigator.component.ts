@@ -90,22 +90,22 @@ export class WidgetNavigatorComponent {
     parentRelatedChildren: NavigatorParentRelatedChildOLD[] = [];  // Parents and related children
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
 
-    ngParentNodeFilterDropdown: string[] = [];
-    ngParentNodeFilterSelectedFieldName: string = '';
-    ngParentNodeFilterSelectedOperator: string = '';
-    ngParentNodeFilterSelectedValue: string = '';
+    ngParentNodeFilterDropdown: string[] = [];          // Dropdown: Parent Nodes Filter
+    ngParentNodeFilterSelectedFieldName: string = '';   // Parent Node Filter
+    ngParentNodeFilterSelectedOperator: string = '';    // Parent Node Filter
+    ngParentNodeFilterSelectedValue: string = '';       // Parent Node Filter
 
-    ngRelationshipFilterDropdown: string[] = [];
-    ngRelationshipFilterSelectedFieldName: string = '';
-    ngRelationshipFilterSelectedOperator: string = '';
-    ngRelationshipFilterSelectedValue: string = '';
+    ngRelationshipFilterDropdown: string[] = [];        // Dropdown: Relationships Filter
+    ngRelationshipFilterSelectedFieldName: string = ''; // Relationship Filter
+    ngRelationshipFilterSelectedOperator: string = '';  // Relationship Filter
+    ngRelationshipFilterSelectedValue: string = '';     // Relationship Filter
 
-    ngChildFilterDropdown: string[] = [];
-    ngChildFilterSelectedFieldName: string = '';
-    ngChildFilterSelectedOperator: string = '';
-    ngChildFilterSelectedValue: string = '';
-    ngChildFilterShowTop: string = '';
-    ngChildFilterSortFieldName: string = '';
+    ngChildFilterDropdown: string[] = [];               // Dropdown: Child Nodes Filter
+    ngChildFilterSelectedFieldName: string = '';        // Child Node Filter
+    ngChildFilterSelectedOperator: string = '';         // Child Node Filter
+    ngChildFilterSelectedValue: string = '';            // Child Node Filter
+    ngChildFilterShowTop: string = '';                  // Show top n Child Nodes
+    ngChildFilterSortFieldName: string = '';            // Sort Child Nodes
 
     // Working
     childDataAll: any[] = [];                           // List of all children after filter
@@ -442,21 +442,43 @@ export class WidgetNavigatorComponent {
         this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
 
-        if (this.filteredParentNodes.length > 0) {
-            this.ngDropdownParentNodes = this.ngDropdownParentNodes.filter(
-                x => this.filteredParentNodes.indexOf(x) >= 0
-            );
-        };
+        // Clear all Filters
+        this.ngParentNodeFilterDropdown = [];
+        this.ngParentNodeFilterSelectedFieldName = '';
+        this.ngParentNodeFilterSelectedOperator = '';
+        this.ngParentNodeFilterSelectedValue = '';
+        this.ngRelationshipFilterDropdown = [];
+        this.ngRelationshipFilterSelectedFieldName = '';
+        this.ngRelationshipFilterSelectedOperator = '';
+        this.ngRelationshipFilterSelectedValue = '';
+        this.ngChildFilterDropdown = [];
+        this.ngChildFilterSelectedFieldName = '';
+        this.ngChildFilterSelectedOperator = '';
+        this.ngChildFilterSelectedValue = '';
+        this.ngChildFilterShowTop = '';
+        this.ngChildFilterSortFieldName = '';
 
-        // Fill Relationships combo: + 'All', unique, sorted
-        this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
-        this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
+        // Set Parent Node Filter properties
+        this.ngParentNodeFilterDropdown = this.networkProperties
+            .filter(np => np.nodeType == this.selectedParentNodeType)
+            .map(np => np.propertyKey);
+        console.log('xx this.ngParentNodeFilterDropdown', this.ngParentNodeFilterDropdown)
+        this.ngParentNodeFilterDropdown = Array.from(new Set(this.ngParentNodeFilterDropdown));
+        console.log('xx this.ngParentNodeFilterDropdown', this.ngParentNodeFilterDropdown)
 
+        // // Filter parent Nodes IF a filter active
+        // if (this.filteredParentNodes.length > 0) {
+        //     this.ngDropdownParentNodes = this.ngDropdownParentNodes.filter(
+        //         x => this.filteredParentNodes.indexOf(x) >= 0
+        //     );
+        // };
+
+        // // Fill Relationships combo: + 'All', unique, sorted
+        // this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
+        // this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
+
+        // TODO - ...
         this.relationshipRoles = [];
-        this.selectedParentNode = '';
-        this.selectedRelationship = '';
-        this.childNodeFilter = [];
-        this.selectedChildFilterID = -1;
 
     }
 
