@@ -451,31 +451,30 @@ export class WidgetNavigatorComponent {
         this.ngRelationshipFilterSelectedFieldName = '';
         this.ngRelationshipFilterSelectedOperator = '';
         this.ngRelationshipFilterSelectedValue = '';
-        this.ngChildFilterDropdown = [];
-        this.ngChildFilterSelectedFieldName = '';
-        this.ngChildFilterSelectedOperator = '';
-        this.ngChildFilterSelectedValue = '';
-        this.ngChildFilterShowTop = '';
-        this.ngChildFilterSortFieldName = '';
 
-        // Set Parent Node Filter properties
+        this.clickChildFilterClear();
+
+        // Set Parent Node Filter properties: + 'All', unique, sorted
         this.ngParentNodeFilterDropdown = this.networkProperties
-            .filter(np => np.nodeType == this.selectedParentNodeType)
+            .filter(np => np.nodeType == this.selectedParentNodeType  &&  np.nodeType != '')
             .map(np => np.propertyKey);
-        console.log('xx this.ngParentNodeFilterDropdown', this.ngParentNodeFilterDropdown)
         this.ngParentNodeFilterDropdown = Array.from(new Set(this.ngParentNodeFilterDropdown));
-        console.log('xx this.ngParentNodeFilterDropdown', this.ngParentNodeFilterDropdown)
 
-        // // Filter parent Nodes IF a filter active
-        // if (this.filteredParentNodes.length > 0) {
-        //     this.ngDropdownParentNodes = this.ngDropdownParentNodes.filter(
-        //         x => this.filteredParentNodes.indexOf(x) >= 0
-        //     );
-        // };
+        // TODO - fix for Other Than Equal Operator
+        // Filter parent Nodes IF a filter active
+        if (this.ngParentNodeFilterSelectedFieldName != ''  
+            &&  
+            this.ngParentNodeFilterSelectedOperator != '') {
+            this.ngDropdownParentNodes = this.ngDropdownParentNodes.filter(
+                x => this.ngParentNodeFilterSelectedValue == x
+            );
+        };
+        this.ngDropdownParentNodes = this.distinctNodeTypes();
+        this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownRelationships];
 
-        // // Fill Relationships combo: + 'All', unique, sorted
-        // this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
-        // this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
+        // Fill Relationships combo: + 'All', unique, sorted
+        this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
+        this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
 
         // TODO - ...
         this.relationshipRoles = [];
@@ -504,7 +503,7 @@ export class WidgetNavigatorComponent {
         // Make unique
         let relationshipRolesSet = new Set(this.relationshipRoles);
         this.relationshipRoles = Array.from(relationshipRolesSet);
-
+    
         // Clear child filter
         this.clickChildFilterClear();
 
@@ -1279,8 +1278,12 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClear', '@Start');
 
         // Clear all
-        this.childNodeFilter = [];
-        this.filteredChildNodes = [];
+        this.ngChildFilterDropdown = [];
+        this.ngChildFilterSelectedFieldName = '';
+        this.ngChildFilterSelectedOperator = '';
+        this.ngChildFilterSelectedValue = '';
+        this.ngChildFilterShowTop = '';
+        this.ngChildFilterSortFieldName = '';
     }
 
     clickChildFilterClose() {
