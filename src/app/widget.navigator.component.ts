@@ -492,22 +492,10 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeRelationship', '@Start');
 
         this.selectedRelationship = ev.target.value;
-
-        // Determine relationship roles
-        this.relationshipRoles = [];
+        
+        // Get Relationship Roles
+        this.relationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
         this.showRoles = false;
-
-        // Filter on Relationship
-        let leftRelationships: string[] = this.networkRelationships
-            .filter(nr => nr.relationshipLeftToRight === this.selectedRelationship)
-            .map(nr => nr.relationshipProperty);
-        let rightRelationships: string[] = this.networkRelationships
-            .filter(nr => nr.relationshipRightToLeft === this.selectedRelationship)
-            .map(nr => nr.relationshipProperty);
-        let nodeRelationships: string[] = leftRelationships.concat(rightRelationships);
-
-        // Make unique & Sort
-        this.relationshipRoles = this.navUniqifySortNodes(nodeRelationships);
 
         // Clear child filter
         this.clickChildFilterClear();
