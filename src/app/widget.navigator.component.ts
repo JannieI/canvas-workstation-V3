@@ -333,7 +333,7 @@ export class WidgetNavigatorComponent {
                     .then(res => {
                         this.networkRelationships = res;
                         
-                        // Fill ParentNode type combo: + 'All', unique, sorted
+                        // Fill ParentNode type Dropdown
                         let leftNodeTypes: string[] = this.networkRelationships.map(nr => nr.leftNodeType);
                         let rightNodeTypes: string[] = this.networkRelationships.map(nr => nr.rightNodeType);
                         this.ngDropdownParentNodeTypes = Array.from(
@@ -357,7 +357,7 @@ export class WidgetNavigatorComponent {
 
                                 // Disable Views
                                 this.isViewsDisabled = true;
-                                
+
                                 // Clear the rest & reset pointers
                                 this.ngDropdownParentNodes = [];
                                 this.ngDropdownRelationships = [];
@@ -439,27 +439,27 @@ export class WidgetNavigatorComponent {
         // Set selected Nod
         this.selectedParentNodeType = ev.target.value;
 
-        // Fill ParentNodes combo: + '', All', unique, sorted
+        // Fill ParentNodes Dropdown
         this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
 
-        // Fill Relationships combo: + 'All', unique, sorted
+        // Fill Relationships Dropdown
         this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
         this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
+
+        // Clear Relationship roles
+        this.relationshipRoles = [];
         
         // Clear all Filters
         this.clickParentFilterClear();
         this.clickRelationshipFilterClear();
         this.clickChildFilterClear();
 
-        // Set Parent Node Property Filter properties: + 'All', unique, sorted
+        // Set Parent Node Property Filter properties
         this.ngParentNodeFilterDropdown = this.networkProperties
-            .filter(np => np.nodeType == this.selectedParentNodeType  &&  np.nodeType != '')
+            .filter(np => np.nodeType == this.selectedParentNodeType  &&  np.propertyKey != '')
             .map(np => np.propertyKey);
         this.ngParentNodeFilterDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterDropdown);
-
-        // Clear Relationship roles
-        this.relationshipRoles = [];
 
     }
 
@@ -1010,7 +1010,7 @@ export class WidgetNavigatorComponent {
         // Filtering is Optional
         this.globalFunctionService.printToConsole(this.constructor.name, 'distinctRelationships', '@Start');
 
-        // Fill ParentNode type combo: + 'All', unique, sorted
+        // Fill ParentNode type Dropdown
         let leftRelationships: string[] = this.networkRelationships
             .map(nr => nr.relationshipLeftToRight);
         let rightRelationships: string[] = this.networkRelationships
