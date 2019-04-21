@@ -265,7 +265,24 @@ export class WidgetNavigatorComponent {
         this.showHistory = false;
 
     }
+    dblclickDeleteHistory(index: number, historyID: number) {
+        // Delete selected history row.  If current, move to first
+        this.globalFunctionService.printToConsole(this.constructor.name, 'dblclickDeleteHistory', '@Start');
 
+        this.history = this.history.filter(h => h.id != historyID);
+        this.historyAll = this.historyAll.filter(h => h.id != historyID);
+
+    }
+
+    clickClosepropertyPopup(index: number, historyID: number) {
+        // Delete selected history row.  If current, move to first
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickClosepropertyPopup', '@Start');
+
+        this.history = this.history.filter(h => h.id != historyID);
+        this.historyAll = this.historyAll.filter(h => h.id != historyID);
+
+    }
+    
     clickCloseGraphPropertiesPopup() {
         // Close popup for graph properties
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseGraphPropertiesPopup', '@Start');
@@ -1119,15 +1136,6 @@ export class WidgetNavigatorComponent {
     //         this.navSingleRoute(child, navStartNode, relationship, newPath);
     //     });
     // }
-
-    dblclickDeleteHistory(index: number, historyID: number) {
-        // Delete selected history row.  If current, move to first
-        this.globalFunctionService.printToConsole(this.constructor.name, 'dblclickDeleteHistory', '@Start');
-
-        this.history = this.history.filter(h => h.id != historyID);
-        this.historyAll = this.historyAll.filter(h => h.id != historyID);
-
-    }
 
     clickParentFilterClear() {
         // Clear the Parent Filter
