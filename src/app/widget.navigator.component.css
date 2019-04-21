@@ -147,7 +147,7 @@
         margin-left: 4px;
         margin-top: 4px;
         text-align: left;
-        overflow: hidden;
+        overflow-y: scroll;
         z-index: 102;
     }
         .helpFormHeader {
@@ -161,7 +161,7 @@
             margin-right: 12px;
         }
         .helpFormText {
-            overflow-y: scroll;
+            font-size: 0.5rem;
         }
 
 

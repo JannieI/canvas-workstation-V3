@@ -265,6 +265,7 @@ export class WidgetNavigatorComponent {
         this.showHistory = false;
 
     }
+
     dblclickDeleteHistory(index: number, historyID: number) {
         // Delete selected history row.  If current, move to first
         this.globalFunctionService.printToConsole(this.constructor.name, 'dblclickDeleteHistory', '@Start');
@@ -278,7 +279,7 @@ export class WidgetNavigatorComponent {
         // Delete selected history row.  If current, move to first
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickClosepropertyPopup', '@Start');
 
-        this.showHistory = false;
+        this.showGraphProperties = false;
 
     }
 
