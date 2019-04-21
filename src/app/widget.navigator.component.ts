@@ -278,16 +278,8 @@ export class WidgetNavigatorComponent {
         // Delete selected history row.  If current, move to first
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickClosepropertyPopup', '@Start');
 
-        this.history = this.history.filter(h => h.id != historyID);
-        this.historyAll = this.historyAll.filter(h => h.id != historyID);
+        this.showHistory = false;
 
-    }
-    
-    clickCloseGraphPropertiesPopup() {
-        // Close popup for graph properties
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseGraphPropertiesPopup', '@Start');
-
-        this.showGraphProperties = true;
     }
 
     clickCloseGraphNotesPopup() {
