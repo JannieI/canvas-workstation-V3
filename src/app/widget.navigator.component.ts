@@ -62,24 +62,24 @@ export class WidgetNavigatorComponent {
     //  - NavigatorNodeFiler
 
     ngNetworks: Datasource[] = [];
-    networkRelationships: NavigatorRelationship[] = [];
-    networkProperties: NavigatorProperties[] = [];
-    ngDropdownParentNodes: string[] = [];
-    ngDropdownParentNodeTypes: string[] = [];
-    ngDropdownRelationships: string[] = [];
+    networkRelationships: NavigatorRelationship[] = []; // Data with Node-Relationship-Node DSrel
+    networkProperties: NavigatorProperties[] = [];      // Data with Node-PropertyKeyValye DSprop
+    ngDropdownParentNodeTypes: string[] = [];           // Dropdown: Parent Node Types
+    ngDropdownParentNodes: string[] = [];               // Dropdown: Parent Nodes
+    ngDropdownRelationships: string[] = [];             // Dropdown: Relationships
 
-    selectedNetworkID: number = -1;
-    selectedNetworkRelationshipID: number = -1;
-    selectedNetworkPropertiesID: number = -1;
+    selectedNetworkID: number = -1;                     // Select NW ID
+    selectedNetworkRelationshipID: number = -1;         // DSid for DSrel
+    selectedNetworkPropertiesID: number = -1;           // DSid for DSprop
 
     // Selected - value selected in a dropdown
+    selectedParentNodeType: string = '';                // Dropdown: selected Parent Node Type 
+    selectedParentNode: string = '';                    // Dropdown: selected Parent Node
+    selectedRelationship: string = '';                  // Dropdown: selected Relationship
+
     selectedChildFilterID: number = -1;
     selectedHistoryID: number = -1;
-    selectedNodeType: string = '';
     selectedParentFilterID: number = -1;
-    selectedParentNode: string = '';
-    selectedParentNodeType: string = '';
-    selectedRelationship: string = '';
     selectedView: string = 'DefaultView';
 
     networkGraph2: NavigatorRelationship[] = [];
