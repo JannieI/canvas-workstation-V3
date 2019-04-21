@@ -104,6 +104,8 @@ export class WidgetNavigatorComponent {
     ngChildFilterSelectedFieldName: string = '';
     ngChildFilterSelectedOperator: string = '';
     ngChildFilterSelectedValue: string = '';
+    ngChildFilterShowTop: string = '';
+    ngChildFilterSortFieldName: string = '';
 
     // Working
     childDataAll: any[] = [];                           // List of all children after filter
