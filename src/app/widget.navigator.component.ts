@@ -816,8 +816,7 @@ export class WidgetNavigatorComponent {
             );
         };
 
-        this.graphTitle = 'Summary of ' + this.ngNetworks[networkIndex].name
-            + ' network';
+        this.graphTitle = 'Summary of ' + this.ngNetworks[networkIndex].name;
 
         // Dimension it
         this.graphHeight = 400; //this.localWidget.graphLayers[0].graphSpecification.height;
