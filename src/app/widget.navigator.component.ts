@@ -510,6 +510,42 @@ export class WidgetNavigatorComponent {
             this.selectedParentNode != ''
             &&
             this.selectedRelationship != '') {
+
+            // Build the data for the Graph based on the selection and graph type
+            switch(this.selectedView) { 
+                case 'SummaryView': { 
+                    this.createGraphDataSummaryView(); 
+                    break; 
+                } 
+                case 'DefaultView': { 
+                    this.createGraphDefaultView; 
+                    break; 
+                } 
+                case 'CommonParentView': { 
+                    this.createGraphCommonParentView;
+                    break; 
+                 } 
+                 case 'CommonNodeView': { 
+                    this.createGraphCommonNodeView;
+                    break; 
+                 } 
+                 case 'DistanceView': { 
+                    this.createGraphDistanceView;
+                    break; 
+                 } 
+                 case 'NodeTypeView': { 
+                    this.createGraphNodeTypeView;
+                    break; 
+                 } 
+
+                 default: { 
+                   // Unknown
+                   console.log('Error - unknown selectedView value:', this.selectedView);
+                   break; 
+                } 
+             }; 
+
+            // Show the graph
             this.showGraph();
         };
     }
