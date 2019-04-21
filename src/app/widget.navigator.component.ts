@@ -671,7 +671,8 @@ export class WidgetNavigatorComponent {
                         operator: childFilterOperator,
                         value: childFilterValue
                     },
-                    isSelected: true
+                    isSelected: true,
+                    view: this.selectedView
                 };
                 this.ngHistory = [historyNew, ...this.ngHistory];
                 this.historyAll = [historyNew, ...this.historyAll];
