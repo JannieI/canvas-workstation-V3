@@ -50,20 +50,20 @@ dimensions are set in app.html, and cannot be changed here. -->
             <clr-signpost-content *clrIfOpen
                 [clrPosition]="'bottom-middle'">
                 <h5 style="margin-top: 0; color:gray;">
-                    Filter on node type <b>Company</b>
+                    Filter on node type <b>{{ selectedParentNodeType }}</b>
                 </h5>
                 <p style="margin-top: 0; color:gray; text-align: left;">
                     The dropdown will be reduced by the filter(s) below.  This filter will stay
-                    active until 1. it is changed here, or 2. the node type is changed.
+                    active until it is changed here, or another node type is selected in the dropdown.
                 </p>
                 <div class="graphHeaderParentFilterFieldTitle">
                     Field:
                     <select id="selects_3"
-                        [(ngModel)]="filterParentFieldName"
+                        [(ngModel)]="ngParentNodeFilterSelectedFieldName"
                         (change)="changeParentFilterField($event)"
-                        name="filterParentFieldName"
+                        name="ngParentFilterFieldName"
                         >
-                        <option *ngFor="let row of childFields">
+                        <option *ngFor="let row of ngParentNodeFilterDropdown">
                             {{ row }}
                         </option>
                     </select>
@@ -71,9 +71,9 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <div class="graphHeaderParentFilterOperatorTitle">
                     Operator:
                     <select id="selects_3"
-                        [(ngModel)]="filterParentOperator"
+                        [(ngModel)]="ngParentNodeFilterSelectedOperator"
                         (change)="changeParentFilterOperator($event)"
-                        name="filterParentOperator"
+                        name="ngParentNodeFilterSelectedOperator"
                         >
                         <option>Less Than</option>
                         <option>Less Than Equal</option>
@@ -91,8 +91,8 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <div class="graphHeaderParentFilterValueTitle">
                     Value:
                     <input type="text"
-                        [(ngModel)]="filterParentValue"
-                        name="filterParentValue"
+                        [(ngModel)]="ngParentNodeFilterSelectedValue"
+                        name="ngParentNodeFilterSelectedValue"
                         placeholder=""
                         title="Enter a value for the filter. "
                         >

@@ -75,6 +75,8 @@ export class WidgetNavigatorComponent {
     selectedNetworkRelationshipID: number = -1;         // DSid for DSrel
     selectedNetworkPropertiesID: number = -1;           // DSid for DSprop
     selectedHistoryID: number = -1;
+    selectedView: string = 'DefaultView';               // Selected View Name
+    isViewsDisabled: boolean = false;                   // True if all views are disabled
 
     // Selected - value selected in a dropdown
     selectedParentNodeType: string = '';                // Dropdown: selected Parent Node Type 
@@ -83,11 +85,15 @@ export class WidgetNavigatorComponent {
 
     selectedChildFilterID: number = -1;
     selectedParentFilterID: number = -1;
-    selectedView: string = 'DefaultView';
 
     networkGraph2: NavigatorRelationship[] = [];
     parentRelatedChildren: NavigatorParentRelatedChildOLD[] = [];  // Parents and related children
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
+
+    ngParentNodeFilterDropdown: string[] = [];
+    ngParentNodeFilterSelectedFieldName: string = '';
+    ngParentNodeFilterSelectedOperator: string = '';
+    ngParentNodeFilterSelectedValue: string = '';
 
     // Working
     childDataAll: any[] = [];                           // List of all children after filter
@@ -101,9 +107,6 @@ export class WidgetNavigatorComponent {
     filterChildValue: string = '';
     filterID: number = -1;
     filteredParentNodes: string[] = [];                 // List of Node, after filtered on NodeProperties
-    filterParentFieldName: string = '';
-    filterParentOperator: string = '';
-    filterParentValue: string = '';
     firstAdjacencyCellRowNr: number = -1;
     parentFields: string[] = ['Sector', 'Country', 'City'];
     parentFilterErrorMessage: string = '';
@@ -1149,15 +1152,15 @@ export class WidgetNavigatorComponent {
         // data structurs allows it
 
         // Validation
-        if (this.filterParentFieldName === '') {
+        if (this.ngParentNodeFilterSelectedFieldName === '') {
             this.parentFilterErrorMessage = 'The field name is compulsory';
             return;
         };
-        if (this.filterParentOperator) {
+        if (this.ngParentNodeFilterSelectedOperator) {
             this.parentFilterErrorMessage = 'The operator is compulsory';
             return;
         };
-        if (this.filterParentValue) {
+        if (this.ngParentNodeFilterSelectedValue) {
             this.parentFilterErrorMessage = 'The value is compulsory';
             return;
         };
@@ -1169,9 +1172,9 @@ export class WidgetNavigatorComponent {
         this.parentNodeFilter.push(
             {
                 id: 1,
-                field: this.filterParentFieldName,
-                operator: this.filterParentOperator,
-                value: this.filterParentValue
+                field: this.ngParentNodeFilterSelectedFieldName,
+                operator: this.ngParentNodeFilterSelectedOperator,
+                value: this.ngParentNodeFilterSelectedValue
             });
 
         // Filter ParentNodes
