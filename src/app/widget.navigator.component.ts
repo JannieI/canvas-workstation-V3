@@ -61,7 +61,10 @@ export class WidgetNavigatorComponent {
     errorMessage: string = '';                          // Error on form
     graphData: any[] = [];                              // childDataAll formatted for Vega
 
-    ngNetworks: Datasource[] = [];
+    ngNetworks: Datasource[] = [];                      // All Networks (DS with isNetwork = True)
+    ngHistory: NavigatorHistory[] = [];                   // History for current network
+    historyAll: NavigatorHistory[] = [];                // All history for All networks
+
     networkRelationships: NavigatorRelationship[] = []; // Data with Node-Relationship-Node DSrel
     networkProperties: NavigatorProperties[] = [];      // Data with Node-PropertyKeyValye DSprop
     ngDropdownParentNodeTypes: string[] = [];           // Dropdown: Parent Node Types
@@ -71,6 +74,7 @@ export class WidgetNavigatorComponent {
     selectedNetworkID: number = -1;                     // Select NW ID
     selectedNetworkRelationshipID: number = -1;         // DSid for DSrel
     selectedNetworkPropertiesID: number = -1;           // DSid for DSprop
+    selectedHistoryID: number = -1;
 
     // Selected - value selected in a dropdown
     selectedParentNodeType: string = '';                // Dropdown: selected Parent Node Type 
@@ -78,7 +82,6 @@ export class WidgetNavigatorComponent {
     selectedRelationship: string = '';                  // Dropdown: selected Relationship
 
     selectedChildFilterID: number = -1;
-    selectedHistoryID: number = -1;
     selectedParentFilterID: number = -1;
     selectedView: string = 'DefaultView';
 
@@ -102,8 +105,6 @@ export class WidgetNavigatorComponent {
     filterParentOperator: string = '';
     filterParentValue: string = '';
     firstAdjacencyCellRowNr: number = -1;
-    history: NavigatorHistory[] = [];                   // History for current network
-    historyAll: NavigatorHistory[] = [];                // All history for All networks
     parentFields: string[] = ['Sector', 'Country', 'City'];
     parentFilterErrorMessage: string = '';
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
@@ -230,7 +231,7 @@ export class WidgetNavigatorComponent {
         // Clear history for the current Network
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuClearHistory', '@Start');
 
-        this.history = this.history.filter(h => h.networkID != this.selectedNetworkID);
+        this.ngHistory = this.ngHistory.filter(h => h.networkID != this.selectedNetworkID);
         this.historyAll = this.historyAll.filter(h => h.networkID != this.selectedNetworkID);
     }
 
@@ -270,7 +271,7 @@ export class WidgetNavigatorComponent {
         // Delete selected history row.  If current, move to first
         this.globalFunctionService.printToConsole(this.constructor.name, 'dblclickDeleteHistory', '@Start');
 
-        this.history = this.history.filter(h => h.id != historyID);
+        this.ngHistory = this.ngHistory.filter(h => h.id != historyID);
         this.historyAll = this.historyAll.filter(h => h.id != historyID);
 
     }
@@ -353,7 +354,7 @@ export class WidgetNavigatorComponent {
                                 this.selectedParentFilterID = -1;
                                 this.selectedChildFilterID = -1;
 
-                                this.history = this.historyAll
+                                this.ngHistory = this.historyAll
                                     .filter(h => h.networkID === networkID)
                                     .sort((a, b) => {
                                         if (a.id < b.id) {
@@ -366,8 +367,8 @@ export class WidgetNavigatorComponent {
                                     });
 
                                 // Click the first row
-                                if (this.history.length > 0) {
-                                    this.clickHistory(0, this.history[0].id);
+                                if (this.ngHistory.length > 0) {
+                                    this.clickHistory(0, this.ngHistory[0].id);
                                 } else {
                                     // Clear the graph
                                     this.clickNetworkSummary(index);
@@ -396,14 +397,14 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickHistory', '@Start');
 
         // Set the history id, selected fields
-        this.selectedParentNodeType = this.history[index].parentNodeType;
-        this.selectedParentNode = this.history[index].parentNode;
-        this.selectedRelationship = this.history[index].relationship;
-        this.showRoles = this.history[index].showRoles;
+        this.selectedParentNodeType = this.ngHistory[index].parentNodeType;
+        this.selectedParentNode = this.ngHistory[index].parentNode;
+        this.selectedRelationship = this.ngHistory[index].relationship;
+        this.showRoles = this.ngHistory[index].showRoles;
 
         // Set the history id and reset the isSelected field in history
         this.selectedHistoryID = historyID;
-        this.history.forEach(h => {
+        this.ngHistory.forEach(h => {
             if (h.id === historyID) {
                 h.isSelected = true;
             } else {
@@ -654,11 +655,11 @@ export class WidgetNavigatorComponent {
                 };
 
                 // Deselect all history, and add a new one at the top
-                this.history.forEach(x => x.isSelected = false);
-                this.selectedHistoryID = this.history.length;
+                this.ngHistory.forEach(x => x.isSelected = false);
+                this.selectedHistoryID = this.ngHistory.length;
                 let historyNew: NavigatorHistory =
                 {
-                    id: this.history.length,
+                    id: this.ngHistory.length,
                     text: this.graphTitle,
                     networkID: this.selectedNetworkID,
                     parentNodeID: null,
@@ -682,7 +683,7 @@ export class WidgetNavigatorComponent {
                     },
                     isSelected: true
                 };
-                this.history = [historyNew, ...this.history];
+                this.ngHistory = [historyNew, ...this.ngHistory];
                 this.historyAll = [historyNew, ...this.historyAll];
             };
 
