@@ -441,15 +441,8 @@ export class WidgetNavigatorComponent {
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
 
         // Clear all Filters
-        this.ngParentNodeFilterDropdown = [];
-        this.ngParentNodeFilterSelectedFieldName = '';
-        this.ngParentNodeFilterSelectedOperator = '';
-        this.ngParentNodeFilterSelectedValue = '';
-        this.ngRelationshipFilterDropdown = [];
-        this.ngRelationshipFilterSelectedFieldName = '';
-        this.ngRelationshipFilterSelectedOperator = '';
-        this.ngRelationshipFilterSelectedValue = '';
 
+        this.clickParentFilterClear();
         this.clickChildFilterClear();
 
         // Set Parent Node Filter properties: + 'All', unique, sorted
@@ -1260,12 +1253,22 @@ export class WidgetNavigatorComponent {
 
     clickParentFilterClear() {
         // Clear the Parent Filter
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickFilterClear', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClear', '@Start');
 
         this.ngParentNodeFilterDropdown = [];
         this.ngParentNodeFilterSelectedFieldName = '';
         this.ngParentNodeFilterSelectedOperator = '';
         this.ngParentNodeFilterSelectedValue = '';
+    }
+
+    clickRelationshipFilterClear() {
+        // Clear the Relationship Filter
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickRelationshipFilterClear', '@Start');
+
+        this.ngRelationshipFilterDropdown = [];
+        this.ngRelationshipFilterSelectedFieldName = '';
+        this.ngRelationshipFilterSelectedOperator = '';
+        this.ngRelationshipFilterSelectedValue = '';
     }
 
     clickChildFilterClear() {
