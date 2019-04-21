@@ -28,6 +28,7 @@ import { Widget } from './models'
 import { parse } from 'vega';
 import { View } from 'vega';
 
+const MORE_TO_FILTER: string = 'Filter for more ...';
 
 @Component({
     selector: 'widget-navigator',
@@ -436,7 +437,7 @@ export class WidgetNavigatorComponent {
         // Make the filter inactive
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentNodeType', '@Start');
 
-        // Set selected Nod
+        // Set selected Nodes
         this.selectedParentNodeType = ev.target.value;
 
         // Fill ParentNodes Dropdown
@@ -446,6 +447,11 @@ export class WidgetNavigatorComponent {
         // Fill Relationships Dropdown
         this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
         this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
+
+        // Reduce size of Dropdown
+        if (this.ngDropdownRelationships.length > 20) {
+            this.ngDropdownRelationships = [...this.ngDropdownRelationships.slice(0, 20), MORE_TO_FILTER]
+        };
 
         // Clear Relationship roles
         this.relationshipRoles = [];
@@ -469,6 +475,11 @@ export class WidgetNavigatorComponent {
 
         this.selectedParentNode = ev.target.value;
     
+        // More clicked
+        if (this.selectedParentNode === MORE_TO_FILTER) {
+            return;
+        };
+
         // Clear child filter
         this.clickChildFilterClear();
 
