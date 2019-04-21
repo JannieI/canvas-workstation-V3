@@ -1237,13 +1237,6 @@ export class WidgetNavigatorComponent {
         this.ngRelationshipFilterSelectedValue = '';
     }
 
-
-    changeChildFilterField() {
-        // Change Child Filter Field
-        this.globalFunctionService.printToConsole(this.constructor.name, 'changeChildFilterField', '@Start');
-
-    }
-
     clickChildFilterClear() {
         // Clear Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClear', '@Start');

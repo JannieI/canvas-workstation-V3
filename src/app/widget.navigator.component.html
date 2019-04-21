@@ -230,7 +230,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                     Field:
                     <select id="selects_3"
                         [(ngModel)]="ngRelationshipFilterSelectedFieldName"
-                        (change)="changeChildFilterField($event)"
                         name="ngRelationshipFilterSelectedFieldName"
                         >
                         <option *ngFor="let row of ngRelationshipFilterDropdown">
@@ -436,7 +435,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                                 Field:
                                 <select id="selects_3"
                                     [(ngModel)]="ngChildFilterSelectedFieldName"
-                                    (change)="changeChildFilterField($event)"
                                     name="ngChildFilterSelectedFieldName"
                                     >
                                     <option *ngFor="let row of ngChildFilterDropdown">
@@ -548,7 +546,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                                 Property:
                                 <select id="selects_3"
                                     [(ngModel)]="filterChildFieldName"
-                                    (change)="changeChildFilterField($event)"
                                     name="filterChildFieldName"
                                     >
                                     <option>
