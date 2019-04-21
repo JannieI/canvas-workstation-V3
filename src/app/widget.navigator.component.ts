@@ -1064,7 +1064,7 @@ export class WidgetNavigatorComponent {
             &&  
             this.ngParentNodeFilterSelectedOperator != '') {
             nodesPerNodeType = nodesPerNodeType.filter(
-                x => this.ngParentNodeFilterSelectedValue == x
+                x => this.parentNodesFilteredList.indexOf(x) >= 0
             );
         };
 
