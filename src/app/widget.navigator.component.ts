@@ -1215,6 +1215,28 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickRelationshipFilterClear() {
+        // Clear the Relationship Filter
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickRelationshipFilterClear', '@Start');
+
+        this.ngRelationshipFilterDropdown = [];
+        this.ngRelationshipFilterSelectedFieldName = '';
+        this.ngRelationshipFilterSelectedOperator = '';
+        this.ngRelationshipFilterSelectedValue = '';
+    }
+
+    clickChildFilterClear() {
+        // Clear Parent Filter
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClear', '@Start');
+
+        this.ngChildFilterDropdown = [];
+        this.ngChildFilterSelectedFieldName = '';
+        this.ngChildFilterSelectedOperator = '';
+        this.ngChildFilterSelectedValue = '';
+        this.ngChildFilterShowTop = '';
+        this.ngChildFilterSortFieldName = '';
+    }
+
     clickChildFilterSave() {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterSave', '@Start');
@@ -1257,34 +1279,6 @@ export class WidgetNavigatorComponent {
         // Make unique
         let filteredChildNodeSet = new Set(this.filteredChildNodes);
         this.filteredChildNodes = Array.from(filteredChildNodeSet);
-
-    }
-
-    clickRelationshipFilterClear() {
-        // Clear the Relationship Filter
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickRelationshipFilterClear', '@Start');
-
-        this.ngRelationshipFilterDropdown = [];
-        this.ngRelationshipFilterSelectedFieldName = '';
-        this.ngRelationshipFilterSelectedOperator = '';
-        this.ngRelationshipFilterSelectedValue = '';
-    }
-
-    clickChildFilterClear() {
-        // Clear Parent Filter
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClear', '@Start');
-
-        this.ngChildFilterDropdown = [];
-        this.ngChildFilterSelectedFieldName = '';
-        this.ngChildFilterSelectedOperator = '';
-        this.ngChildFilterSelectedValue = '';
-        this.ngChildFilterShowTop = '';
-        this.ngChildFilterSortFieldName = '';
-    }
-
-    clickChildFilterClose() {
-        // Close Parent Filter
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClose', '@Start');
 
     }
 
