@@ -1159,13 +1159,6 @@ export class WidgetNavigatorComponent {
     // }
 
 
-
-    changeParentFilterOperator() {
-        // Make the filter inactive
-        this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentFilterOperator', '@Start');
-
-    }
-
     clickParentFilterClear() {
         // Clear the Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClear', '@Start');
