@@ -20,7 +20,6 @@ import { NavigatorHistory } from './models'
 import { NavigatorRelationship } from './models'
 import { NavigatorProperties } from './models'
 import { NavigatorNodeFiler } from './models'
-import { NavigatorNodePropertiesOLD } from './models'
 import { NavigatorParentRelatedChildOLD } from './models'
 import { NavigatorWatchList } from './models'
 import { Widget } from './models'
@@ -82,7 +81,6 @@ export class WidgetNavigatorComponent {
     selectedView: string = 'DefaultView';
 
     networkGraph2: NavigatorRelationship[] = [];
-    nodeProperties: NavigatorNodePropertiesOLD[] = [];     // Properties per node for fields above
     parentRelatedChildren: NavigatorParentRelatedChildOLD[] = [];  // Parents and related children
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
 
@@ -1176,9 +1174,9 @@ export class WidgetNavigatorComponent {
 
         // Filter ParentNodes
         // TODO - do other operands than ==
-        this.filteredParentNodes = this.nodeProperties
-            .filter(x => x[this.filterParentFieldName] === this.filterParentValue)
-            .map(y => y.node);
+        // this.filteredParentNodes = this.nodeProperties
+        //     .filter(x => x[this.filterParentFieldName] === this.filterParentValue)
+        //     .map(y => y.node);
 
         // Make unique
         let filteredParentNodeSet = new Set(this.filteredParentNodes);
@@ -1227,9 +1225,9 @@ export class WidgetNavigatorComponent {
 
         // Filter ParentNodes
         // TODO - do other operands than ==
-        this.filteredChildNodes = this.nodeProperties
-            .filter(x => x[this.filterChildFieldName] === this.filterChildValue)
-            .map(y => y.node);
+        // this.filteredChildNodes = this.nodeProperties
+        //     .filter(x => x[this.filterChildFieldName] === this.filterChildValue)
+        //     .map(y => y.node);
 
         // Make unique
         let filteredChildNodeSet = new Set(this.filteredChildNodes);
@@ -1926,103 +1924,6 @@ export class WidgetNavigatorComponent {
                 role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
-
-        let newNodeProperties: NavigatorNodePropertiesOLD = {
-            id: 1,
-            sourceRecordID: 1,
-            nodeType: 'Company',
-            node: 'Absa',
-            sector: 'Bank',
-            country: 'South Africa',
-            city: 'Cape Town',
-            age: null,
-            gender: null
-        }
-        this.nodeProperties.push(newNodeProperties);
-        newNodeProperties = {
-            id: 2,
-            sourceRecordID: 2,
-            nodeType: 'Company',
-            node: 'Bidvest',
-            sector: 'Industrial',
-            country: 'South Africa',
-            city: 'Durban',
-            age: null,
-            gender: null
-        }
-        this.nodeProperties.push(newNodeProperties);
-        newNodeProperties = {
-            id: 3,
-            sourceRecordID: 3,
-            nodeType: 'Company',
-            node: 'AECI',
-            sector: 'Industrial',
-            country: 'Botswana',
-            city: 'Gabarone',
-            age: null,
-            gender: null
-        }
-        this.nodeProperties.push(newNodeProperties);
-        newNodeProperties = {
-            id: 4,
-            sourceRecordID: 12,
-            nodeType: 'Company',
-            node: 'Nedbank',
-            sector: 'Bank',
-            country: 'South Africa',
-            city: 'Durban',
-            age: null,
-            gender: null
-        }
-        this.nodeProperties.push(newNodeProperties);
-        newNodeProperties = {
-            id: 5,
-            sourceRecordID: 510,
-            nodeType: 'Company',
-            node: 'PSG',
-            sector: 'Financial',
-            country: 'South Africa',
-            city: 'Johannesburg',
-            age: null,
-            gender: null
-        }
-        this.nodeProperties.push(newNodeProperties);
-        newNodeProperties = {
-            id: 6,
-            sourceRecordID: 2,
-            nodeType: 'Person',
-            node: 'Koos',
-            sector: null,
-            country: null,
-            city: null,
-            age: 59,
-            gender: 'Male'
-        }
-        this.nodeProperties.push(newNodeProperties);
-        newNodeProperties = {
-            id: 7,
-            sourceRecordID: 2,
-            nodeType: 'Person',
-            node: 'Anna',
-            sector: null,
-            country: null,
-            city: null,
-            age: 44,
-            gender: 'Female'
-        }
-        this.nodeProperties.push(newNodeProperties);
-        newNodeProperties = {
-            id: 8,
-            sourceRecordID: 2,
-            nodeType: 'Person',
-            node: 'Chris',
-            sector: null,
-            country: null,
-            city: null,
-            age: 37,
-            gender: 'Male'
-        }
-        this.nodeProperties.push(newNodeProperties);
 
         // Populate the watchList - TODO via DB
         let watchListNew: NavigatorWatchList =
