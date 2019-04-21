@@ -95,6 +95,52 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
     whatErrorMessage: string = 'Error Testing What';
     whereErrorMessage: string = '';
 
+    // TODO - code these ...
+    nrParameters: number = 0;
+    transitionDescription: number = 0;
+    position: number = 0;
+    adding: boolean = false;
+    transformationName: string = ''
+    transformations: any[] = [];
+    selectedDataRowIndex: number = -1;
+    datasourceTransformations: any[] = [];
+    dataFields: any[] = [];
+
+    howParameter1Title: string = '';
+    parameter1Heading: string = '';
+    parameter1Value: string = '';
+    parameter1Placeholder: string = '';
+    parameter1Title: string = '';
+
+    howParameter2Title: string = '';
+    parameter2Heading: string = '';
+    parameter2Value: string = '';
+    parameter2Placeholder: string = '';
+    parameter2Title: string = '';
+
+    howParameter3Title: string = '';
+    parameter3Heading: string = '';
+    parameter3Value: string = '';
+    parameter3Placeholder: string = '';
+    parameter3Title: string = '';
+
+    howParameter4Title: string = '';
+    parameter4Heading: string = '';
+    parameter4Value: string = '';
+    parameter4Placeholder: string = '';
+    parameter4Title: string = '';
+
+    howParameter5Title: string = '';
+    parameter5Heading: string = '';
+    parameter5Value: string = '';
+    parameter5Placeholder: string = '';
+    parameter5Title: string = '';
+
+    howParameter6Title: string = '';
+    parameter6Heading: string = '';
+    parameter6Value: string = '';
+    parameter6Placeholder: string = '';
+    parameter6Title: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -140,6 +186,22 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         };
 
     }
+
+    // TODO - fix these
+    clickAdd() {}
+    clickDelete() {}
+    clickCancel() {}
+    clickAddUpdateTransformation() {}
+    clickSelectedTransformation() {}
+    clickTemplateDashboard(ev: any) {}
+    clickEdit() {}
+    clickSave() {}
+    clickMoveUp() {}
+    clickMoveDown() {}
+    dblclickDelete() {}
+
+
+
 
     clickRow(index: number, connectionID: number) {
         // Fill in detail for the selected Connection Row

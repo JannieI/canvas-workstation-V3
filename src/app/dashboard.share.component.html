@@ -94,7 +94,7 @@
                 <div class="gridTable" *ngIf="accessType == 'AccessList'">
                     <clr-datagrid>
                         <clr-dg-column
-                        [style.text-align]="center">Remove</clr-dg-column>
+                        [style.text-align]="'center'">Remove</clr-dg-column>
                         <clr-dg-column [clrDgField]="'userID'">User ID (single)</clr-dg-column>
                         <clr-dg-column [clrDgField]="'name'">Group Name (applies to all its members)</clr-dg-column>
                         <clr-dg-column [clrDgField]="'canViewRight'" class="checkCell">View</clr-dg-column>
