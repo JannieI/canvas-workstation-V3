@@ -367,6 +367,18 @@ dimensions are set in app.html, and cannot be changed here. -->
                 </span>
 
 
+                <!-- Network Summary -->
+                <span>
+                    <clr-icon
+                        shape="organization"
+                        style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
+                        [style.color]="selectedView=='DistanceView'?  'blue'  :  'gray'"
+                        title="Distance view: show all nodes between a child and a specific node"
+                        (click)="clickNetworkSummary()"
+                        >
+                    </clr-icon>
+                </span>
+
                 <!-- Commonality between 2 children -->
                 <span>
                     <clr-icon *ngIf="isViewsDisabled"

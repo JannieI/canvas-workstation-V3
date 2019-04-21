@@ -384,7 +384,7 @@ export class WidgetNavigatorComponent {
                                     this.clickHistory(0, this.ngHistory[0].id);
                                 } else {
                                     // Clear the graph
-                                    this.clickNetworkSummary(index);
+                                    this.clickNetworkSummary();
                                 };
 
                                 // Close Navigated popup
@@ -779,9 +779,15 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickNetworkSummary(networkIndex: number) {
-        // Show a summary of the network
+    clickNetworkSummary() {
+        // Show a summary of the current Network
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkSummary', '@Start');
+        let networkIndex: number = this.ngNetworks.findIndex(nw => nw.id == this.selectedNetworkID);
+        
+        // No network selected
+        if (networkIndex < 0) {
+            return;
+        };
 
         // Find unique Nodes
         let uniqueNodeTypes: string[] = this.distinctNodeTypes();
