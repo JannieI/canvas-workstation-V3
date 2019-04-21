@@ -21,7 +21,6 @@ import { NavigatorRelationship } from './models'
 import { NavigatorProperties } from './models'
 import { NavigatorNodeFiler } from './models'
 import { NavigatorNodePropertiesOLD } from './models'
-import { NavigatorNodeTypeFieldsOLD } from './models'
 import { NavigatorParentRelatedChildOLD } from './models'
 import { NavigatorWatchList } from './models'
 import { Widget } from './models'
@@ -83,7 +82,6 @@ export class WidgetNavigatorComponent {
     selectedView: string = 'DefaultView';
 
     networkGraph2: NavigatorRelationship[] = [];
-    nodeTypeFields: NavigatorNodeTypeFieldsOLD[] = [];     // Property Fields per NodeType
     nodeProperties: NavigatorNodePropertiesOLD[] = [];     // Properties per node for fields above
     parentRelatedChildren: NavigatorParentRelatedChildOLD[] = [];  // Parents and related children
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
@@ -1928,21 +1926,6 @@ export class WidgetNavigatorComponent {
                 role: 'Non-Executive'
             }
         this.parentRelatedChildren.push(newParentRelatedChildren);
-
-        let newNodeTypeFields: NavigatorNodeTypeFieldsOLD =
-        {
-            id: 1,
-            nodeType: 'Company',
-            fields: ['Sector', 'Country', 'City']
-        }
-        this.nodeTypeFields.push(newNodeTypeFields);
-        newNodeTypeFields =
-            {
-                id: 2,
-                nodeType: 'Person',
-                fields: ['Age', 'Gender']
-            }
-        this.nodeTypeFields.push(newNodeTypeFields);
 
         let newNodeProperties: NavigatorNodePropertiesOLD = {
             id: 1,
