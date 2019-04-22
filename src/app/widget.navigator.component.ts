@@ -1449,6 +1449,22 @@ export class WidgetNavigatorComponent {
         return nodeRelationships;
     }
 
+    distinctProperties(selectedParentNodeType: string = null): string[] {
+        // Return distinct array of Properties per Node Type for the current Network
+        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctProperties', '@Start');
+
+        // Fill ParentNode type Dropdown
+        let nodeProperties: string[] = this.networkProperties
+            .filter(np => np.nodeType === selectedParentNodeType  &&  np.propertyKey != '') 
+            .map(np => np.propertyKey);
+
+        // Make sure it is unique, non-null list
+        nodeProperties = this.navUniqifySortNodes(nodeProperties);
+
+        // Return
+        return nodeProperties;
+    }
+
     navUniqifySortNodes(
         inputNodes: string[],
         uniqify: boolean = true,
