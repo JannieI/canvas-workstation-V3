@@ -20,7 +20,6 @@ import { NavigatorHistory } from './models'
 import { NavigatorRelationship } from './models'
 import { NavigatorProperties } from './models'
 import { NavigatorNodeFiler } from './models'
-import { NavigatorParentRelatedChildOLD } from './models'
 import { NavigatorWatchList } from './models'
 import { Widget } from './models'
 
@@ -570,7 +569,7 @@ export class WidgetNavigatorComponent {
 
             // Set the data, some unique
             this.childDataAll = this.distinctChildrenNodes();
-            this.relationshipRoles = this.distinctRelationships(this.selectedParentNodeType);
+            this.relationshipRoles = this.distinctRelationshipRoles(this.selectedParentNodeType);
 
             // Set title, etc
             this.graphTitle = this.showRoles ? '*' : '';
@@ -603,7 +602,7 @@ export class WidgetNavigatorComponent {
                     });
                 };
             } else {
-                console.log('xx 6')
+                console.log('xx 6', this.childDataAll, this.relationshipRoles)
                 // Parent
                 this.graphData.push(
                     {
@@ -2083,7 +2082,7 @@ export class WidgetNavigatorComponent {
 
         this.showRoles = !this.showRoles;
 
-        this.showGraph();
+        this.checkShowGraph();
     }
 
     clickPageLeft() {
