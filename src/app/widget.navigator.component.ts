@@ -571,23 +571,9 @@ export class WidgetNavigatorComponent {
             && this.selectedRelationship != '') {
 console.log('xx 1')
             // Set the data, some unique
-            this.childDataAll = this.parentRelatedChildren
-                .filter(x => x.parentNodeType === this.selectedParentNodeType
-                    && x.parentNode === this.selectedParentNode
-                    && x.relationship === this.selectedRelationship)
-                .map(y => y.childNode);
-            this.relationshipRoles = this.parentRelatedChildren
-                .filter(x => x.parentNodeType === this.selectedParentNodeType
-                    && x.parentNode === this.selectedParentNode
-                    && x.relationship === this.selectedRelationship
-                    && x.role != ''
-                    && x.role != null)
-                .map(y => y.role);
+            this.childDataAll = this.distinctChildrenNodes();
+            this.relationshipRoles = this.distinctRelationships(this.selectedParentNodeType);
                 console.log('xx 2', this.childDataAll, this.relationshipRoles)
-
-            // Make unique
-            let relationshipRolesSet = new Set(this.relationshipRoles);
-            this.relationshipRoles = Array.from(relationshipRolesSet);
 
             // Filter If a Child filter is active
             if (this.filteredChildNodes.length > 0) {
