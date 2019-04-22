@@ -315,6 +315,18 @@ export class WidgetNavigatorComponent {
         this.showGraphHelp = false;
     }
 
+    clickAdditionalPropertyClear() {
+        // Clear Properties from Nodes, shown in brackets
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickAdditionalPropertyClear', '@Start');
+
+    }
+
+    clickAdditionalPropertyShow() {
+        // Show selected Property in brackets with Nodes
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickAdditionalPropertyShow', '@Start');
+
+    }
+
     clickNetwork(index: number, networkID: number) {
         // Clicked a network (or called from ngOnInit)
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetwork', '@Start');
@@ -445,7 +457,7 @@ export class WidgetNavigatorComponent {
         
         this.ngNodeProperties = this.distinctNodeProperties(this.selectedParentNodeType);
         this.ngNodeProperties = ['', ...this.ngNodeProperties];
-        
+
         // Fill Relationships Dropdown
         this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
         this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
