@@ -1709,18 +1709,6 @@ export class NavigatorProperties {
     propertyValue: string;                  // Property Value, ie Bank
 }
 
-export class NavigatorParentRelatedChildOLD {
-    id: number;
-    networkID: number;
-    parentNodeID: number;
-    parentNodeType: string;
-    parentNode: string;
-    relationship: string;
-    childNodeType: string;
-    childNode: string;
-    role: string;
-}
-
 export class NavigatorNodeTypeFieldsOLD {
     id: number;
     nodeType: string;
