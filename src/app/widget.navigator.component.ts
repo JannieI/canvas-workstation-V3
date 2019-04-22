@@ -568,11 +568,10 @@ export class WidgetNavigatorComponent {
         if (this.selectedParentNodeType != ''
             && this.selectedParentNode != ''
             && this.selectedRelationship != '') {
-console.log('xx 1')
+
             // Set the data, some unique
             this.childDataAll = this.distinctChildrenNodes();
             this.relationshipRoles = this.distinctRelationships(this.selectedParentNodeType);
-                console.log('xx 2', this.childDataAll, this.relationshipRoles)
 
             // Set title, etc
             this.graphTitle = this.showRoles ? '*' : '';
@@ -584,12 +583,11 @@ console.log('xx 1')
 
             // Reduce visible list
             this.childDataVisible = this.childDataAll.slice(0, this.visibleNumberChildren);
-            console.log('xx 4', this.childDataVisible)
 
             // Format the graphData
             this.graphData = [];
             if (!this.showRoles) {
-                console.log('xx 5')
+
                 // Parent
                 this.graphData.push(
                     {
@@ -605,7 +603,6 @@ console.log('xx 1')
                         parent: 1
                     });
                 };
-                console.log('xx 5.5', this.graphData)
             } else {
                 console.log('xx 6')
                 // Parent
@@ -628,13 +625,21 @@ console.log('xx 1')
                         });
 
                     // Get list of Children for this role
-                    let childrenFilteredRole: string[] = this.parentRelatedChildren
-                        .filter(x => x.parentNodeType === this.selectedParentNodeType
-                            && x.parentNode === this.selectedParentNode
-                            && x.relationship === this.selectedRelationship
-                            && x.role === this.relationshipRoles[roleID])
-                        .map(y => y.childNode);
-
+                    let leftChildrenFilteredRole: string[] = this.networkRelationships
+                        .filter(nr => nr.leftNodeType === this.selectedParentNodeType
+                            && nr.leftNodeName === this.selectedParentNode
+                            && nr.relationshipLeftToRight === this.selectedRelationship
+                            && nr.relationshipProperty === this.relationshipRoles[roleID])
+                        .map(y => y.rightNodeName);
+                    let rightChildrenFilteredRole: string[] = this.networkRelationships
+                        .filter(nr => nr.rightNodeType === this.selectedParentNodeType
+                            && nr.rightNodeName === this.selectedParentNode
+                            && nr.relationshipRightToLeft === this.selectedRelationship
+                            && nr.relationshipProperty === this.relationshipRoles[roleID])
+                        .map(y => y.rightNodeName);
+                    let childrenFilteredRole: string[] = leftChildrenFilteredRole
+                        .concat(rightChildrenFilteredRole); 
+                        
                     // Increment with 1, which was added above
                     offset = offset + 1;
                     for (var childID = 0; childID < childrenFilteredRole.length; childID++) {
