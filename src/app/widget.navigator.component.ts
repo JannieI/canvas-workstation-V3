@@ -75,7 +75,8 @@ export class WidgetNavigatorComponent {
     selectedNetworkID: number = -1;                     // Select NW ID
     selectedNetworkRelationshipID: number = -1;         // DSid for DSrel
     selectedNetworkPropertiesID: number = -1;           // DSid for DSprop
-    selectedHistoryID: number = -1;
+    selectedHistoryID: number = -1;                     // History ID
+    selectedAdditonalProperty: string = '';             // Property to shown with Nodes in graph
     selectedView: string = 'DefaultView';               // Selected View Name
     isViewsDisabled: boolean = false;                   // True if all views are disabled
 
@@ -136,7 +137,8 @@ export class WidgetNavigatorComponent {
     graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
     showHistory: boolean = false;
     showNetwork: boolean = false;
-    showRoles: boolean = false;
+    showRoles: boolean = false;             // True to add level to graph with Relationship Roles
+    showProperty: boolean = false;          // True to show selected Property with Nodes in graph
     showVisibleNumberInput: boolean = false;
 
     // Widget and Graph (Vega)
@@ -319,6 +321,9 @@ export class WidgetNavigatorComponent {
         // Clear Properties from Nodes, shown in brackets
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickAdditionalPropertyClear', '@Start');
 
+        this.selectedAdditonalProperty = '';
+
+        this.checkShowGraph();
     }
 
     clickAdditionalPropertyShow() {
