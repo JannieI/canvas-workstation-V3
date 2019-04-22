@@ -374,7 +374,11 @@ export class WidgetNavigatorComponent {
 
                                 // Disable Views
                                 this.isViewsDisabled = true;
-
+        
+                                // Dropdown
+                                this.ngNodeProperties = this.distinctNodeProperties();
+                                this.ngNodeProperties = ['', ...this.ngNodeProperties];
+                        
                                 // Clear the rest & reset pointers
                                 this.ngDropdownParentNodes = [];
                                 this.ngDropdownRelationships = [];
@@ -461,9 +465,6 @@ export class WidgetNavigatorComponent {
         // Fill Dropdowns
         this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
-        
-        this.ngNodeProperties = this.distinctNodeProperties(this.selectedParentNodeType);
-        this.ngNodeProperties = ['', ...this.ngNodeProperties];
 
         // Fill Relationships Dropdown
         this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
