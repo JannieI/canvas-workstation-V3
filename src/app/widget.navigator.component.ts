@@ -569,7 +569,7 @@ export class WidgetNavigatorComponent {
 
             // Set the data, some unique
             this.childDataAll = this.distinctChildrenNodes();
-            this.relationshipRoles = this.distinctRelationshipRoles(this.selectedParentNodeType);
+            this.relationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
 
             // Set title, etc
             this.graphTitle = this.showRoles ? '*' : '';
