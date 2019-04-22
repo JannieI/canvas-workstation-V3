@@ -511,51 +511,53 @@ export class WidgetNavigatorComponent {
         // Check if all selected; then show graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'checkShowGraph', '@Start');
 
+        // Network view is always available
+        if (this.selectedView === 'SummaryView') {
+            this.createGraphDataSummaryView();
+        } else {       
 
-        // Show the graph when all fields selected
-        if (this.selectedParentNodeType != ''
-            &&
-            this.selectedParentNode != ''
-            &&
-            this.selectedRelationship != '') {
+            // Show the graph when all fields selected
+            if (this.selectedParentNodeType != ''
+                &&
+                this.selectedParentNode != ''
+                &&
+                this.selectedRelationship != '') {
 
-            // Build the data for the Graph based on the selection and graph type
-            switch (this.selectedView) {
-                case 'SummaryView': {
-                    this.createGraphDataSummaryView();
-                    break;
-                }
-                case 'DefaultView': {
-                    this.createGraphDefaultView();
-                    break;
-                }
-                case 'CommonParentView': {
-                    this.createGraphCommonParentView();
-                    break;
-                }
-                case 'CommonNodeView': {
-                    this.createGraphCommonNodeView();
-                    break;
-                }
-                case 'DistanceView': {
-                    this.createGraphDistanceView();
-                    break;
-                }
-                case 'NodeTypeView': {
-                    this.createGraphNodeTypeView();
-                    break;
-                }
+                // Build the data for the Graph based on the selection and graph type
+                switch (this.selectedView) {
+                    case 'DefaultView': {
+                        this.createGraphDefaultView();
+                        break;
+                    }
+                    case 'CommonParentView': {
+                        this.createGraphCommonParentView();
+                        break;
+                    }
+                    case 'CommonNodeView': {
+                        this.createGraphCommonNodeView();
+                        break;
+                    }
+                    case 'DistanceView': {
+                        this.createGraphDistanceView();
+                        break;
+                    }
+                    case 'NodeTypeView': {
+                        this.createGraphNodeTypeView();
+                        break;
+                    }
 
-                default: {
-                    // Unknown
-                    console.log('Error - unknown selectedView value:', this.selectedView);
-                    break;
-                }
+                    default: {
+                        // Unknown
+                        console.log('Error - unknown selectedView value:', this.selectedView);
+                        break;
+                    }
+                };
             };
-
-            // Show the graph
-            this.showGraph();
         };
+
+        // Show the graph
+        this.showGraph();
+
     }
 
     createGraphDefaultView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
