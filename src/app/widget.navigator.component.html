@@ -547,17 +547,8 @@ dimensions are set in app.html, and cannot be changed here. -->
                                     [(ngModel)]="filterChildFieldName"
                                     name="filterChildFieldName"
                                     >
-                                    <option>
-                                        Surname
-                                    </option>
-                                    <option>
-                                        Gender
-                                    </option>
-                                    <option>
-                                        Designation
-                                    </option>
-                                    <option>
-                                        Race
+                                    <option *ngFor="let row of ngNodeProperties; let i = index;">
+                                        {{ ngNodeProperties }}
                                     </option>
                                 </select>
                             </div>

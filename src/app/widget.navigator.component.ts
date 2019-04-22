@@ -70,6 +70,7 @@ export class WidgetNavigatorComponent {
     ngDropdownParentNodeTypes: string[] = [];           // Dropdown: Parent Node Types
     ngDropdownParentNodes: string[] = [];               // Dropdown: Parent Nodes
     ngDropdownRelationships: string[] = [];             // Dropdown: Relationships
+    ngNodeProperties: string[] = [];                    // Dropdown: Properties per Parent Node Type
 
     selectedNetworkID: number = -1;                     // Select NW ID
     selectedNetworkRelationshipID: number = -1;         // DSid for DSrel
@@ -438,9 +439,10 @@ export class WidgetNavigatorComponent {
         // Set selected Nodes
         this.selectedParentNodeType = ev.target.value;
 
-        // Fill ParentNodes Dropdown
+        // Fill Dropdowns
         this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        this.ngNodeProperties = this.distinctNodeProperties(this.selectedParentNode);
 
         // Fill Relationships Dropdown
         this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
@@ -1449,7 +1451,7 @@ export class WidgetNavigatorComponent {
         return nodeRelationships;
     }
 
-    distinctProperties(selectedParentNodeType: string = null): string[] {
+    distinctNodeProperties(selectedParentNodeType: string = null): string[] {
         // Return distinct array of Properties per Node Type for the current Network
         this.globalFunctionService.printToConsole(this.constructor.name, 'distinctProperties', '@Start');
 
