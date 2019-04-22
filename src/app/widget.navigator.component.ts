@@ -562,14 +562,14 @@ export class WidgetNavigatorComponent {
 
     createGraphDefaultView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
-        this.globalFunctionService.printToConsole(this.constructor.name, 'showGraph', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphDefaultView', '@Start');
 
         this.graphTitle = '';
         // Build data and graph if all parent & relationship fields selected
         if (this.selectedParentNodeType != ''
             && this.selectedParentNode != ''
             && this.selectedRelationship != '') {
-
+console.log('xx 1')
             // Set the data, some unique
             this.childDataAll = this.parentRelatedChildren
                 .filter(x => x.parentNodeType === this.selectedParentNodeType
@@ -583,6 +583,7 @@ export class WidgetNavigatorComponent {
                     && x.role != ''
                     && x.role != null)
                 .map(y => y.role);
+                console.log('xx 2', this.childDataAll, this.relationshipRoles)
 
             // Make unique
             let relationshipRolesSet = new Set(this.relationshipRoles);
@@ -593,6 +594,7 @@ export class WidgetNavigatorComponent {
                 this.childDataAll = this.childDataAll
                     .filter(z => this.filteredChildNodes.indexOf(z) >= 0);
             };
+            console.log('xx 3', this.childDataAll, this.relationshipRoles)
 
             // Set title, etc
             this.graphTitle = this.showRoles ? '*' : '';
@@ -604,11 +606,12 @@ export class WidgetNavigatorComponent {
 
             // Reduce visible list
             this.childDataVisible = this.childDataAll.slice(0, this.visibleNumberChildren);
+            console.log('xx 4', this.childDataVisible)
 
             // Format the graphData
             this.graphData = [];
             if (!this.showRoles) {
-
+                console.log('xx 5')
                 // Parent
                 this.graphData.push(
                     {
@@ -624,8 +627,9 @@ export class WidgetNavigatorComponent {
                         parent: 1
                     });
                 };
+                console.log('xx 5.5', this.graphData)
             } else {
-
+                console.log('xx 6')
                 // Parent
                 this.graphData.push(
                     {
@@ -665,6 +669,7 @@ export class WidgetNavigatorComponent {
                     };
                     offset = offset + childrenFilteredRole.length;
                 };
+                console.log('xx 6.5', this.graphData)
             };
 
             // Add to History
@@ -692,7 +697,7 @@ export class WidgetNavigatorComponent {
                     childFilterValue = this.childNodeFilter[0].value;
 
                 };
-
+                console.log('xx 7')
                 // Deselect all history, and add a new one at the top
                 this.ngHistory.forEach(x => x.isSelected = false);
                 this.selectedHistoryID = this.ngHistory.length;
@@ -725,6 +730,7 @@ export class WidgetNavigatorComponent {
                 };
                 this.ngHistory = [historyNew, ...this.ngHistory];
                 this.historyAll = [historyNew, ...this.historyAll];
+                console.log('xx 8', this.ngHistory)
             };
 
             // Set H & W
@@ -740,7 +746,7 @@ export class WidgetNavigatorComponent {
             };
         } else {
             this.graphTitle = '';
-
+            console.log('xx 9')
             // Set data
             this.graphData = [];
             this.graphData.push(
@@ -1664,7 +1670,7 @@ export class WidgetNavigatorComponent {
         // Refresh the graph
         this.selectedView = 'DefaultView'
 
-        this.showGraph();
+        this.checkShowGraph();
     }
 
     clickCommonParentView() {
