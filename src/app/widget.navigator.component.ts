@@ -442,13 +442,14 @@ export class WidgetNavigatorComponent {
         // Fill Dropdowns
         this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
-        this.ngNodeProperties = this.distinctNodeProperties(this.selectedParentNode);
-
+        
+        this.ngNodeProperties = this.distinctNodeProperties(this.selectedParentNodeType);
+        this.ngNodeProperties = ['', ...this.ngNodeProperties];
+        
         // Fill Relationships Dropdown
         this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
-        console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
         this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
-        console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
+
         // Reduce size of Dropdown
         if (this.ngDropdownRelationships.length > 20) {
             this.ngDropdownRelationships = [...this.ngDropdownRelationships.slice(0, 20), MORE_TO_FILTER]
@@ -1453,7 +1454,7 @@ export class WidgetNavigatorComponent {
 
     distinctNodeProperties(selectedParentNodeType: string = null): string[] {
         // Return distinct array of Properties per Node Type for the current Network
-        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctProperties', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctNodeProperties', '@Start');
 
         // Fill ParentNode type Dropdown
         let nodeProperties: string[] = this.networkProperties
