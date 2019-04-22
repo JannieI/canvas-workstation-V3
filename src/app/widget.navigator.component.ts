@@ -387,8 +387,7 @@ export class WidgetNavigatorComponent {
                                 } else {
                                     // Clear the graph
                                     this.selectedView = 'SummaryView';
-                                    this.checkShowGraph();
-                                    // this.clickNetworkSummary();
+                                    this.clickNetworkSummaryView();
                                 };
 
                                 // Close Navigated popup
@@ -1091,6 +1090,9 @@ console.log('xx 1')
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkSummary', '@Start');
         let networkIndex: number = this.ngNetworks.findIndex(nw => nw.id == this.selectedNetworkID);
 
+        // Set view
+        this.selectedView = 'SummaryView';
+
         // No network selected
         if (networkIndex < 0) {
             return;
@@ -1411,13 +1413,11 @@ console.log('xx 1')
             .map(nr => nr.leftNodeName);
         
         let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
-console.log('xx childs', leftChildren, rightChildren, nodeChildren)
 
-            // Filter If a Child filter is active
-            if (this.filteredChildNodes.length > 0) {
-                    nodeChildren = nodeChildren.filter(c => this.filteredChildNodes.indexOf(c) >= 0);
-            };
-            console.log('xx F childs', nodeChildren)
+        // Filter if a Child filter is active
+        if (this.filteredChildNodes.length > 0) {
+                nodeChildren = nodeChildren.filter(c => this.filteredChildNodes.indexOf(c) >= 0);
+        };
 
         // Make sure it is unique, non-null list
         nodeChildren = this.navUniqifySortNodes(nodeChildren);
@@ -1684,6 +1684,18 @@ console.log('xx childs', leftChildren, rightChildren, nodeChildren)
         this.ngChildNodeFilterDropdown = this.ngChildNodeFilterDropdown
             .filter(pn => this.childNodesFilteredList.indexOf(pn) >= 0
             );
+
+    }
+
+    clickNetworkSummaryView() {
+        // Show a summary of the current Network
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkSummaryView', '@Start');
+        let networkIndex: number = this.ngNetworks.findIndex(nw => nw.id == this.selectedNetworkID);
+
+        // Set view
+        this.selectedView = 'SummaryView';
+
+        this.checkShowGraph();
 
     }
 
