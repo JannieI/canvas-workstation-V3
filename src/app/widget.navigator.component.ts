@@ -448,7 +448,7 @@ export class WidgetNavigatorComponent {
         // Fill Relationships Dropdown
         this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
         this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
-
+console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
         // Reduce size of Dropdown
         if (this.ngDropdownRelationships.length > 20) {
             this.ngDropdownRelationships = [...this.ngDropdownRelationships.slice(0, 20), MORE_TO_FILTER]
@@ -1332,8 +1332,9 @@ export class WidgetNavigatorComponent {
         let rightRelationships: string[] = this.networkRelationships
             .map(nr => nr.relationshipRightToLeft);
         let nodeRelationships: string[] = Array.from(new Set(leftRelationships.concat(rightRelationships)));
-
-        // Filter if requested
+console.log(leftRelationships, rightRelationships, nodeRelationships)
+        // Filter
+        nodeRelationships = nodeRelationships.filter(nr => nr != '');
         if (selectedParentNodeType != null) {
             nodeRelationships = nodeRelationships.filter(nr => nr === selectedParentNodeType);
         };
