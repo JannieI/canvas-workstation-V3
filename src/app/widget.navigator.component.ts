@@ -575,13 +575,6 @@ console.log('xx 1')
             this.relationshipRoles = this.distinctRelationships(this.selectedParentNodeType);
                 console.log('xx 2', this.childDataAll, this.relationshipRoles)
 
-            // Filter If a Child filter is active
-            if (this.filteredChildNodes.length > 0) {
-                this.childDataAll = this.childDataAll
-                    .filter(z => this.filteredChildNodes.indexOf(z) >= 0);
-            };
-            console.log('xx 3', this.childDataAll, this.relationshipRoles)
-
             // Set title, etc
             this.graphTitle = this.showRoles ? '*' : '';
             this.graphTitle = this.graphTitle + this.selectedRelationship + ' for '
@@ -1419,6 +1412,13 @@ console.log('xx 1')
         
         let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
 console.log('xx childs', leftChildren, rightChildren, nodeChildren)
+
+            // Filter If a Child filter is active
+            if (this.filteredChildNodes.length > 0) {
+                    nodeChildren = nodeChildren.filter(c => this.filteredChildNodes.indexOf(c) >= 0);
+            };
+            console.log('xx F childs', nodeChildren)
+
         // Make sure it is unique, non-null list
         nodeChildren = this.navUniqifySortNodes(nodeChildren);
 
