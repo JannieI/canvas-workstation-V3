@@ -319,6 +319,11 @@ export class WidgetNavigatorComponent {
         // Clicked a network (or called from ngOnInit)
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetwork', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.parentFilterErrorMessage = '';
+        this.childFilterErrorMessage = '';
+
         // Remember the ID of the selected Network
         this.selectedNetworkID = networkID;
         
@@ -550,8 +555,8 @@ export class WidgetNavigatorComponent {
         };
     }
 
-    createGraphDataSummaryView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
-        // Re-create the Vega spec, and show the graph
+    createGraphDefaultView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
+        // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'showGraph', '@Start');
 
         this.graphTitle = '';
@@ -753,11 +758,82 @@ export class WidgetNavigatorComponent {
         };
     }
 
-    createGraphDefaultView() {}
-    createGraphCommonParentView() {}
-    createGraphCommonNodeView() {}
-    createGraphDistanceView() {}
-    createGraphNodeTypeView() {}
+    createGraphDataSummaryView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
+        // Create the data for the view
+        this.globalFunctionService.printToConsole(this.constructor.name, 'showGraph', '@Start');
+        
+        let networkIndex: number = this.ngNetworks.findIndex(nw => nw.id == this.selectedNetworkID);
+        
+        // No network selected
+        if (networkIndex < 0) {
+            return;
+        };
+
+        // Find unique Nodes
+        let uniqueNodeTypes: string[] = this.distinctNodeTypes();
+
+        // Count relationships
+        let nodeCount: number = -1;
+        let uniqueNodesWithCount: { nodeType: string; nodeCount: number }[] = [];
+        for (var i = 0; i < uniqueNodeTypes.length; i++) {
+            nodeCount = this.networkRelationships.filter(x => x.leftNodeType == uniqueNodeTypes[i]).length;
+            console.log('xx nodeCount', nodeCount)
+            nodeCount = nodeCount + this.networkRelationships
+                .filter(x => x.rightNodeType == uniqueNodeTypes[i]).length;
+            uniqueNodesWithCount.push(
+                {
+                    nodeType: uniqueNodeTypes[i],
+                    nodeCount: nodeCount
+                });
+        };
+        console.log('xx uniqueNodesWithCount', uniqueNodesWithCount)
+        // Set data
+        this.graphData = [];
+        this.graphData.push(
+            {
+                "id": 1,
+                "name": "Summary"
+            });
+        for (var i = 0; i < uniqueNodeTypes.length; i++) {
+
+            this.graphData.push(
+                {
+                    id: i + 2,
+                    name: uniqueNodesWithCount[i].nodeType + ' ('
+                        + uniqueNodesWithCount[i].nodeCount.toString() + ')',
+                    parent: 1
+                }
+            );
+        };
+
+        this.graphTitle = 'Summary of ' + this.ngNetworks[networkIndex].name;
+
+        // Dimension it
+        this.graphHeight = 400; //this.localWidget.graphLayers[0].graphSpecification.height;
+        this.graphWidth = 400; //this.localWidget.graphLayers[0].graphSpecification.width;
+
+    }
+
+    createGraphCommonParentView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
+        // Create the data for the view
+        this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphCommonParentView', '@Start');
+    }
+
+    createGraphCommonNodeView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
+        // Create the data for the view
+        this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphCommonNodeView', '@Start');
+    }
+
+    createGraphDistanceView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
+        // Create the data for the view
+        this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphDistanceView', '@Start');
+    }
+
+    createGraphNodeTypeView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
+        // Create the data for the view
+        this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphNodeTypeView', '@Start');
+    
+    }
 
     showGraph(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Re-create the Vega spec, and show the graph
