@@ -194,6 +194,7 @@ export class WidgetNavigatorComponent {
                 if (this.ngNetworks.length > 0) {
                     if (networkIndex >= 0) {
                         this.selectedNetworkID = this.ngNetworks[networkIndex].id;
+                        
                         this.clickNetwork(networkIndex, this.selectedNetworkID);
                     } else {
                         this.clickNetwork(0, this.ngNetworks[0].id);
@@ -386,7 +387,8 @@ export class WidgetNavigatorComponent {
                                 } else {
                                     // Clear the graph
                                     this.selectedView = 'SummaryView';
-                                    this.clickNetworkSummary();
+                                    this.checkShowGraph();
+                                    // this.clickNetworkSummary();
                                 };
 
                                 // Close Navigated popup
@@ -760,7 +762,7 @@ export class WidgetNavigatorComponent {
 
     createGraphDataSummaryView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
-        this.globalFunctionService.printToConsole(this.constructor.name, 'showGraph', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphDataSummaryView', '@Start');
         
         let networkIndex: number = this.ngNetworks.findIndex(nw => nw.id == this.selectedNetworkID);
         
