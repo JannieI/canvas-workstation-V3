@@ -1494,7 +1494,7 @@ export class WidgetNavigatorComponent {
 
         // Make sure it is unique, non-null list
         nodeProperties = this.navUniqifySortNodes(nodeProperties);
-
+        console.log('xx nodeProperties', nodeProperties)
         // Return
         return nodeProperties;
     }
@@ -1505,6 +1505,7 @@ export class WidgetNavigatorComponent {
 
         let returnNodeName: string = nodeName;
         if (this.selectedAdditonalProperty != '') {
+            console.log('xx hier')
             let nodePropertyIndex: number = this.networkProperties
                 .findIndex(np => np.nodeName == nodeName
                            &&
@@ -1516,7 +1517,7 @@ export class WidgetNavigatorComponent {
                     + this.networkProperties[nodePropertyIndex].propertyValue + ')';
             };
         };
-
+        console.log('xx returnNodeName', this.networkProperties, this.selectedAdditonalProperty, nodeName, returnNodeName)
         // Return
         return returnNodeName;
     }
