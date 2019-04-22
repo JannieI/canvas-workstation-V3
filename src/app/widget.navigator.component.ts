@@ -330,6 +330,8 @@ export class WidgetNavigatorComponent {
         // Show selected Property in brackets with Nodes
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickAdditionalPropertyShow', '@Start');
 
+        this.checkShowGraph();
+
     }
 
     clickNetwork(index: number, networkID: number) {
