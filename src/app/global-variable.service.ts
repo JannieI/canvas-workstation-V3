@@ -2704,7 +2704,6 @@ export class GlobalVariableService {
             console.log('%c  Global-Variables getData starts',
                 this.concoleLogStyleForStartOfMethod, {parameters});
         };
-        console.time("      DURATION getResource: " + parameters);
 
         return new Promise<any[]>((resolve, reject) => {
 
@@ -2714,6 +2713,7 @@ export class GlobalVariableService {
             if (parameters.substring(0, 1) != '?') {
                 parameters = '?' + parameters;
             };
+            console.time("      DURATION getData: " + parameters);
 
             // let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + id.toString()
             let finalUrl: string = this.canvasServerURI + '/clientdata' + parameters;
@@ -2731,13 +2731,13 @@ export class GlobalVariableService {
                             this.concoleLogStyleForEndOfMethod,
                             {res})
                     };
-                    console.timeEnd("      DURATION getResource: " + parameters);
-
+                    
+                    console.timeEnd("      DURATION getData: " + parameters);
                     resolve(res.data);
                 },
                 err => {
                     console.error('Error in     Global-Variables getData', err);
-                    console.timeEnd("      DURATION getResource: " + parameters);
+                    console.timeEnd("      DURATION getData: " + parameters);
                     reject(err.message);
                 }
             );
