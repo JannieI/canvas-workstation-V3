@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: repeat(40, 1fr);
     grid-template-rows: repeat(26, 1fr);
-    margin-top: 0px;
+    margin-top: -10px;
     overflow: hidden;
 }
     .closeButton {
