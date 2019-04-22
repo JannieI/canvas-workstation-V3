@@ -1330,6 +1330,36 @@ console.log('xx 1')
         return uniqueNodeTypes;
     }
 
+    distinctNodesPerNodeType(selectedParentNodeType: string): string[] {
+        // Return distinct array of Nodes per Node Type for the current Network
+        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctNodesPerNodeType', '@Start');
+
+        // Filter correct Col
+        let leftNodeTypes: string[] = this.networkRelationships
+            .filter(nr => nr.leftNodeType == selectedParentNodeType)
+            .map(nr => nr.leftNodeName);
+        let rightNodeTypes: string[] = this.networkRelationships
+            .filter(nr => nr.rightNodeType == selectedParentNodeType)
+            .map(nr => nr.rightNodeName);
+        let nodesPerNodeType = Array.from(new Set(leftNodeTypes.concat(rightNodeTypes)));
+
+        // TODO - fix for Other Than Equal Operator
+        // Filter parent Nodes IF a filter active
+        if (this.ngParentNodeFilterSelectedFieldName != ''
+            &&
+            this.ngParentNodeFilterSelectedOperator != '') {
+            nodesPerNodeType = nodesPerNodeType.filter(
+                x => this.parentNodesFilteredList.indexOf(x) >= 0
+            );
+        };
+
+        // Make sure it is unique, non-null list
+        nodesPerNodeType = this.navUniqifySortNodes(nodesPerNodeType);
+
+        // Return
+        return nodesPerNodeType;
+    }
+
     distinctRelationships(selectedParentNodeType: string = null): string[] {
         // Return distinct array of Relationships per Node Type for the current Network
         // Filtering is Optional
@@ -1372,34 +1402,42 @@ console.log('xx 1')
         return nodeRelationships;
     }
 
-    distinctNodesPerNodeType(selectedParentNodeType: string): string[] {
-        // Return distinct array of Nodes per Node Type for the current Network
-        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctNodesPerNodeType', '@Start');
+    distinctChildrenNodes(): string[] {
+        // Return distinct array of Children for the selected Info
+        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctChildrenNodes', '@Start');
 
-        // Filter correct Col
-        let leftNodeTypes: string[] = this.networkRelationships
-            .filter(nr => nr.leftNodeType == selectedParentNodeType)
-            .map(nr => nr.leftNodeName);
-        let rightNodeTypes: string[] = this.networkRelationships
-            .filter(nr => nr.rightNodeType == selectedParentNodeType)
+        // Fill ParentNode type Dropdown
+        let leftChildren: string[] = this.networkRelationships
+            .filter(nr => (
+                            nr.leftNodeType === this.selectedParentNodeType
+                            && 
+                            nr.leftNodeName === this.selectedParentNode
+                            && 
+                            nr.relationshipLeftToRight === this.selectedRelationship 
+                           )
+            )
+            .filter(nr => nr.rightNodeName != '')
             .map(nr => nr.rightNodeName);
-        let nodesPerNodeType = Array.from(new Set(leftNodeTypes.concat(rightNodeTypes)));
-
-        // TODO - fix for Other Than Equal Operator
-        // Filter parent Nodes IF a filter active
-        if (this.ngParentNodeFilterSelectedFieldName != ''
-            &&
-            this.ngParentNodeFilterSelectedOperator != '') {
-            nodesPerNodeType = nodesPerNodeType.filter(
-                x => this.parentNodesFilteredList.indexOf(x) >= 0
-            );
-        };
-
+        
+        let rightChildren: string[] = this.networkRelationships
+            .filter(nr => ( 
+                            nr.rightNodeType === this.selectedParentNodeType
+                            && 
+                            nr.rightNodeName === this.selectedParentNode
+                            && 
+                            nr.relationshipRightToLeft === this.selectedRelationship 
+                            )
+            )
+            .filter(nr => nr.leftNodeName != '')
+            .map(nr => nr.leftNodeName);
+        
+        let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
+console.log('xx childs', leftChildren, rightChildren, nodeChildren)
         // Make sure it is unique, non-null list
-        nodesPerNodeType = this.navUniqifySortNodes(nodesPerNodeType);
+        nodeChildren = this.navUniqifySortNodes(nodeChildren);
 
         // Return
-        return nodesPerNodeType;
+        return nodeChildren;
     }
 
     distinctRelationshipRoles(selectedRelationship: string): string[] {
