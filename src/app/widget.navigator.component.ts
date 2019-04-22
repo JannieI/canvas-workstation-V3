@@ -626,6 +626,8 @@ export class WidgetNavigatorComponent {
             } else {
                 console.log('xx 6', this.childDataAll, this.relationshipRoles)
                 // Parent
+                let nodeName: string = this.selectedParentNode;
+                selectedAdditonalProperty
                 this.graphData.push(
                     {
                         "id": 1,
@@ -1485,6 +1487,28 @@ export class WidgetNavigatorComponent {
 
         // Return
         return nodeProperties;
+    }
+
+    constructNodeName(nodeName: string): string {
+        // Return constructed Node Name to show in the graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'constructNodeName', '@Start');
+
+        let returnNodeName: string = nodeName;
+        if (this.selectedAdditonalProperty != '') {
+            let nodePropertyIndex: number = this.networkProperties
+                .findIndex(np => np.nodeName == nodeName  
+                           &&  
+                           np.propertyKey == this.selectedAdditonalProperty
+                );
+            
+            if (nodePropertyIndex >= 0) {
+                returnNodeName = returnNodeName + ' (' 
+                    + this.networkProperties[nodePropertyIndex].propertyValue + ')';
+            };
+        };
+
+        // Return
+        return returnNodeName;
     }
 
     navUniqifySortNodes(
