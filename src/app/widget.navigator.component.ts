@@ -612,26 +612,24 @@ export class WidgetNavigatorComponent {
                 this.graphData.push(
                     {
                         "id": 1,
-                        "name": this.selectedParentNode
+                        "name": this.constructNodeName(this.selectedParentNode)
                     });
 
                 // Children
                 for (var i = 0; i < this.childDataVisible.length; i++) {
                     this.graphData.push({
                         id: i + 2,
-                        name: this.childDataVisible[i],
+                        name: this.constructNodeName(this.childDataVisible[i]),
                         parent: 1
                     });
                 };
             } else {
                 console.log('xx 6', this.childDataAll, this.relationshipRoles)
                 // Parent
-                let nodeName: string = this.selectedParentNode;
-                selectedAdditonalProperty
                 this.graphData.push(
                     {
                         "id": 1,
-                        "name": this.selectedParentNode
+                        "name": this.constructNodeName(this.selectedParentNode)
                     });
 
                 // Offset
@@ -668,7 +666,7 @@ export class WidgetNavigatorComponent {
                         this.graphData.push(
                             {
                                 "id": childID + offset,
-                                "name": childrenFilteredRole[childID],
+                                "name": this.constructNodeName(childrenFilteredRole[childID]),
                                 parent: parentRoleID
                             });
                     };
