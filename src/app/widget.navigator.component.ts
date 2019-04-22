@@ -54,7 +54,7 @@ export class WidgetNavigatorComponent {
     //  - DSn = network name, description, access, etc
     //  - subDS[0] = id of the DS that keeps the relationships, say DSrel.
     //  - subDS[1] = id of the DS that keeps the Node properties, say DSpr.
-    // 
+    //
     // The folowing shapes are temporary, and only used in this routine (not stored in the DB):
     //  - NavigatorHistory
     //  - NavigatorNodeFiler
@@ -81,7 +81,7 @@ export class WidgetNavigatorComponent {
     isViewsDisabled: boolean = false;                   // True if all views are disabled
 
     // Selected - value selected in a dropdown
-    selectedParentNodeType: string = '';                // Dropdown: selected Parent Node Type 
+    selectedParentNodeType: string = '';                // Dropdown: selected Parent Node Type
     selectedParentNode: string = '';                    // Dropdown: selected Parent Node
     selectedRelationship: string = '';                  // Dropdown: selected Relationship
 
@@ -374,11 +374,11 @@ export class WidgetNavigatorComponent {
 
                                 // Disable Views
                                 this.isViewsDisabled = true;
-        
+
                                 // Dropdown
                                 this.ngNodeProperties = this.distinctNodeProperties();
                                 this.ngNodeProperties = ['', ...this.ngNodeProperties];
-                        
+
                                 // Clear the rest & reset pointers
                                 this.ngDropdownParentNodes = [];
                                 this.ngDropdownRelationships = [];
@@ -534,7 +534,7 @@ export class WidgetNavigatorComponent {
         // Network view is always available
         if (this.selectedView === 'SummaryView') {
             this.createGraphDataSummaryView();
-        } else {       
+        } else {
 
             // Show the graph when all fields selected
             if (this.selectedParentNodeType != ''
@@ -659,8 +659,8 @@ export class WidgetNavigatorComponent {
                             && nr.relationshipProperty === this.relationshipRoles[roleID])
                         .map(y => y.rightNodeName);
                     let childrenFilteredRole: string[] = leftChildrenFilteredRole
-                        .concat(rightChildrenFilteredRole); 
-                        
+                        .concat(rightChildrenFilteredRole);
+
                     // Increment with 1, which was added above
                     offset = offset + 1;
                     for (var childID = 0; childID < childrenFilteredRole.length; childID++) {
@@ -1228,7 +1228,7 @@ export class WidgetNavigatorComponent {
         //         // Reset path with just the start node
         //         this.navNodeIsDone = [this.navNodesToDo[i]];
 
-        //         // Reset full path 
+        //         // Reset full path
         //         this.navVisitedNodes = [];
 
         //         // Get all the starting points of this Node.  Then travers the single route
@@ -1245,7 +1245,7 @@ export class WidgetNavigatorComponent {
         //     // // Reset path with just the start node
         //     // this.navNodeIsDone = [this.navNodesToDo[i]];
 
-        //     // // Reset full path 
+        //     // // Reset full path
         //     // this.navVisitedNodes = [];
 
         //     // // Get all the starting points of this Node.  Then travers the single route
@@ -1374,32 +1374,32 @@ export class WidgetNavigatorComponent {
 
         // Fill ParentNode type Dropdown
         let leftRelationships: string[] = this.networkRelationships
-            .filter(nr => ( 
+            .filter(nr => (
                             (
-                                nr.leftNodeType === selectedParentNodeType  
+                                nr.leftNodeType === selectedParentNodeType
                                 &&  selectedParentNodeType != null
-                            ) 
-                            ||  
+                            )
+                            ||
                             selectedParentNodeType == null
                            )
             )
             .filter(nr => nr.relationshipLeftToRight != '')
             .map(nr => nr.relationshipLeftToRight);
-        
+
         let rightRelationships: string[] = this.networkRelationships
-            .filter(nr => ( 
+            .filter(nr => (
                             (
-                                nr.rightNodeType === selectedParentNodeType  
-                                &&  
+                                nr.rightNodeType === selectedParentNodeType
+                                &&
                                 selectedParentNodeType != null
-                            ) 
-                            ||  
+                            )
+                            ||
                             selectedParentNodeType == null
                            )
             )
             .filter(nr => nr.relationshipRightToLeft != '')
             .map(nr => nr.relationshipRightToLeft);
-        
+
         let nodeRelationships: string[] = Array.from(new Set(leftRelationships.concat(rightRelationships)));
 
         // Make sure it is unique, non-null list
@@ -1417,27 +1417,27 @@ export class WidgetNavigatorComponent {
         let leftChildren: string[] = this.networkRelationships
             .filter(nr => (
                             nr.leftNodeType === this.selectedParentNodeType
-                            && 
+                            &&
                             nr.leftNodeName === this.selectedParentNode
-                            && 
-                            nr.relationshipLeftToRight === this.selectedRelationship 
+                            &&
+                            nr.relationshipLeftToRight === this.selectedRelationship
                            )
             )
             .filter(nr => nr.rightNodeName != '')
             .map(nr => nr.rightNodeName);
-        
+
         let rightChildren: string[] = this.networkRelationships
-            .filter(nr => ( 
+            .filter(nr => (
                             nr.rightNodeType === this.selectedParentNodeType
-                            && 
+                            &&
                             nr.rightNodeName === this.selectedParentNode
-                            && 
-                            nr.relationshipRightToLeft === this.selectedRelationship 
+                            &&
+                            nr.relationshipRightToLeft === this.selectedRelationship
                             )
             )
             .filter(nr => nr.leftNodeName != '')
             .map(nr => nr.leftNodeName);
-        
+
         let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
 
         // Filter if a Child filter is active
@@ -1478,7 +1478,18 @@ export class WidgetNavigatorComponent {
 
         // Fill ParentNode type Dropdown
         let nodeProperties: string[] = this.networkProperties
-            .filter(np => np.nodeType === selectedParentNodeType  &&  np.propertyKey != '') 
+            .filter(np => (
+                    (
+                        selectedParentNodeType == null
+                        ||
+                        (
+                            selectedParentNodeType != null
+                            &&
+                            np.nodeType === selectedParentNodeType
+                        )
+                    )
+                    &&  np.propertyKey != ''
+            ))
             .map(np => np.propertyKey);
 
         // Make sure it is unique, non-null list
@@ -1495,13 +1506,13 @@ export class WidgetNavigatorComponent {
         let returnNodeName: string = nodeName;
         if (this.selectedAdditonalProperty != '') {
             let nodePropertyIndex: number = this.networkProperties
-                .findIndex(np => np.nodeName == nodeName  
-                           &&  
+                .findIndex(np => np.nodeName == nodeName
+                           &&
                            np.propertyKey == this.selectedAdditonalProperty
                 );
-            
+
             if (nodePropertyIndex >= 0) {
-                returnNodeName = returnNodeName + ' (' 
+                returnNodeName = returnNodeName + ' ('
                     + this.networkProperties[nodePropertyIndex].propertyValue + ')';
             };
         };
@@ -1567,12 +1578,12 @@ export class WidgetNavigatorComponent {
     //     // Create new path, minus navStartNode and parentNode
     //     let newChildrendOfStartNode: string [] = [];
     //     childrenOfStartNode.forEach(child => {
-    //         if (child != navStartNode  
-    //             &&  
-    //             child != parentNode  
-    //             &&  
-    //             path.indexOf(child) < 0  
-    //             &&  
+    //         if (child != navStartNode
+    //             &&
+    //             child != parentNode
+    //             &&
+    //             path.indexOf(child) < 0
+    //             &&
     //             this.navVisitedNodes.indexOf(child) < 0
     //             ) {
     //             newChildrendOfStartNode.push(child)
@@ -1774,7 +1785,7 @@ export class WidgetNavigatorComponent {
     }
 
     clickCommonParentView() {
-        // Show the Common Node view = list of all nodes where 2 or more children have the 
+        // Show the Common Node view = list of all nodes where 2 or more children have the
         // same parent
         // Example: which directors of Absa are also direcytors of another company
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonParentView', '@Start');
@@ -1861,7 +1872,7 @@ export class WidgetNavigatorComponent {
     }
 
     clickCommonNodeView() {
-        // Show the Common Parent view = list of all nodes where any children has the 
+        // Show the Common Parent view = list of all nodes where any children has the
         // same parent as a specified node
         // Example: which directors of Absa are children of the same node as Jannie Mouton
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonNodeView', '@Start');
