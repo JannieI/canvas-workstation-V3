@@ -60,7 +60,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                     Field:
                     <select id="selects_3"
                         [(ngModel)]="ngParentNodeFilterSelectedFieldName"
-                        (change)="changeParentFilterField($event)"
                         name="ngParentFilterFieldName"
                         >
                         <option *ngFor="let row of ngParentNodeFilterDropdown">
@@ -72,7 +71,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                     Operator:
                     <select id="selects_3"
                         [(ngModel)]="ngParentNodeFilterSelectedOperator"
-                        (change)="changeParentFilterOperator($event)"
                         name="ngParentNodeFilterSelectedOperator"
                         >
                         <option>Less Than</option>
@@ -434,10 +432,10 @@ dimensions are set in app.html, and cannot be changed here. -->
                             <div class="graphAreaChildFilterFieldTitle">
                                 Field:
                                 <select id="selects_3"
-                                    [(ngModel)]="ngChildFilterSelectedFieldName"
-                                    name="ngChildFilterSelectedFieldName"
+                                    [(ngModel)]="ngChildNodeFilterSelectedFieldName"
+                                    name="ngChildNodeFilterSelectedFieldName"
                                     >
-                                    <option *ngFor="let row of ngChildFilterDropdown">
+                                    <option *ngFor="let row of ngChildNodeFilterDropdown">
                                         {{ row }}
                                     </option>
                                 </select>
@@ -445,8 +443,8 @@ dimensions are set in app.html, and cannot be changed here. -->
                             <div class="graphAreaChildFilterOperatorTitle">
                                 Operator:
                                 <select id="selects_3"
-                                    [(ngModel)]="ngChildFilterSelectedOperator"
-                                    name="ngChildFilterSelectedOperator"
+                                    [(ngModel)]="ngChildNodeFilterSelectedOperator"
+                                    name="ngChildNodeFilterSelectedOperator"
                                     >
                                     <option>Less Than</option>
                                     <option>Less Than Equal</option>
@@ -464,8 +462,8 @@ dimensions are set in app.html, and cannot be changed here. -->
                             <div class="graphAreaChildFilterValueTitle">
                                 Value:
                                 <input type="text"
-                                    [(ngModel)]="ngChildFilterSelectedValue"
-                                    name="ngChildFilterSelectedValue"
+                                    [(ngModel)]="ngChildNodeFilterSelectedValue"
+                                    name="ngChildNodeFilterSelectedValue"
                                     placeholder=""
                                     title="Enter a value for the filter. "
                                     >
