@@ -224,7 +224,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
         this.errorMessage = '';
 
         // Validate
-        if (this.selectedWidgetID === null) {
+        if (this.selectedWidgetID == null) {
             this.errorMessage = 'Select a Widget to add';
             return;
         };

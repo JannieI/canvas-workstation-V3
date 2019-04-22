@@ -367,7 +367,7 @@ export class DatasourceShareComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.selectedDatasource === ''  ||  this.selectedDatasource === null) {
+        if (this.selectedDatasource === ''  ||  this.selectedDatasource == null) {
             this.errorMessage = 'Please select a Datasource';
             return;
         };

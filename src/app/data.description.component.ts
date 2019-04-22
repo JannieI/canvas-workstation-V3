@@ -104,11 +104,11 @@ export class DatasourceDescriptionComponent implements OnInit {
         this.infoMessage = '';
 
         // Validation
-        if (this.selectedDatasource.name === ''  ||  this.selectedDatasource.name === null) {
+        if (this.selectedDatasource.name === ''  ||  this.selectedDatasource.name == null) {
             this.errorMessage = 'Please enter a Name for the Datasource';
             return;
         };
-        if (this.selectedDatasource.description === ''  ||  this.selectedDatasource.description === null) {
+        if (this.selectedDatasource.description === ''  ||  this.selectedDatasource.description == null) {
             this.errorMessage = 'Please enter a Description for the Datasource';
             return;
         };

@@ -824,10 +824,10 @@ export class AppComponent implements OnInit {
                                             this.currentTabColor = this.globalVariableService.
                                                 currentDashboardTabs[this.currentDashboardTabIndex].color;
                                             };
-                                        if (this.currentTabBackgroundColor === ''  ||  this.currentTabBackgroundColor === null) {
+                                        if (this.currentTabBackgroundColor === ''  ||  this.currentTabBackgroundColor == null) {
                                             this.currentTabBackgroundColor = '#192b35';
                                         };
-                                        if (this.currentTabColor === ''  ||  this.currentTabColor === null) {
+                                        if (this.currentTabColor === ''  ||  this.currentTabColor == null) {
                                             this.currentTabColor = 'white';
                                         };
                                         this.currentDatasources = this.globalVariableService.
@@ -952,8 +952,8 @@ export class AppComponent implements OnInit {
         //      lastLoginDt, token
         //      - if nothing found  -->  proceed to login form
         //      - if lastLoginDt > 24hrs old  -->  login
-        //      - if currentUserID === null or ''  -->  Login
-        //      - if currentCanvasServer === null or ''  -->  Login
+        //      - if currentUserID == null or ''  -->  Login
+        //      - if currentCanvasServer == null or ''  -->  Login
         //      - if expiryDate (on token) is too old   -->  login
         //    - Else, send a Verify token request to the Canvas-Server (ASYNC)
         //      - If server returned error: open Login form
@@ -990,27 +990,27 @@ export class AppComponent implements OnInit {
 
                     // Validate that all fields filled in
                     let localInfoGood: boolean = true;
-                    if (res[0].canvasServerName === null  ||  res[0].canvasServerName === '') {
+                    if (res[0].canvasServerName == null  ||  res[0].canvasServerName === '') {
                         console.warn('App ngOnInit: canvasServerName is bad - ', res[0].canvasServerName);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
-                    if (res[0].canvasServerURI === null  ||  res[0].canvasServerURI === '') {
+                    if (res[0].canvasServerURI == null  ||  res[0].canvasServerURI === '') {
                         console.warn('App ngOnInit: canvasServerURI is bad - ', res[0].canvasServerURI);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
-                    if (res[0].currentCompany === null  ||  res[0].currentCompany === '') {
+                    if (res[0].currentCompany == null  ||  res[0].currentCompany === '') {
                         console.warn('App ngOnInit: currentCompany is bad - ', res[0].currentCompany);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
-                    if (res[0].currentUserID === null  ||  res[0].currentUserID === '') {
+                    if (res[0].currentUserID == null  ||  res[0].currentUserID === '') {
                         console.warn('App ngOnInit: currentUserID is bad - ', res[0].currentUserID);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
                     };
-                    if (res[0].currentToken === null  ||  res[0].currentToken === '') {
+                    if (res[0].currentToken == null  ||  res[0].currentToken === '') {
                         console.warn('App ngOnInit: currentToken is bad - ', res[0].currentToken);
                         localInfoGood = false;
                         this.showModalDashboardLogin = true;
@@ -1208,7 +1208,7 @@ export class AppComponent implements OnInit {
         } else {
             // If chose Add Dashboard on Landing page, and then pressed Esc (nothing new
             // added), then re-show the Landing page
-            if (this.globalVariableService.currentDashboardInfo.value === null) {
+            if (this.globalVariableService.currentDashboardInfo.value == null) {
                 this.showModalLanding = true;
             };
         };
@@ -1225,7 +1225,7 @@ export class AppComponent implements OnInit {
 
         // If chose Add Dashboard on Landing page, and then pressed Esc (nothing new
         // added), then re-show the Landing page
-        if (this.globalVariableService.currentDashboardInfo.value === null) {
+        if (this.globalVariableService.currentDashboardInfo.value == null) {
             this.showModalLanding = true;
         } else {;
 
@@ -2709,7 +2709,7 @@ export class AppComponent implements OnInit {
         let filteredActions: CanvasAction[] = [];
         filteredActions = ourActions.filter(act => act.id === maxActID);
 
-        if (filteredActions[0].undoID === null) {
+        if (filteredActions[0].undoID == null) {
             // Previous was not an UNDO, so just reverse it
             let widgetID: number = null;
             if (filteredActions[0].newWidget != null) {
@@ -2732,7 +2732,7 @@ export class AppComponent implements OnInit {
             );
 
             if (filteredActions[0].objectType === 'Widget') {
-                if (filteredActions[0].oldWidget === null) {
+                if (filteredActions[0].oldWidget == null) {
                     this.deleteWidget(null, filteredActions[0].newWidget.id);
                 } else {
 
@@ -2784,7 +2784,7 @@ export class AppComponent implements OnInit {
             let tempActionIDs: number[] = [];
             for (var i = ourActions.length - 1; i >= 0; i--) {
                 if (ourActions[i].id < lastUndoID) {
-                    if (ourActions[i].undoID === null) {
+                    if (ourActions[i].undoID == null) {
                         tempActionIDs.push(ourActions[i].id);
                     } else {
                         break;
@@ -2817,7 +2817,7 @@ export class AppComponent implements OnInit {
                     filteredActions[0].newWidget.id,
                     'Widget',
                     'Edit',
-                    'Undo ' + filteredActions[0].redoID === null? 'DO' : 'REDO',
+                    'Undo ' + filteredActions[0].redoID == null? 'DO' : 'REDO',
                     'App clickMenuEditUndo',
                     filteredActions[0].id,
                     null,
@@ -2825,7 +2825,7 @@ export class AppComponent implements OnInit {
                     filteredActions[0].oldWidget
                 );
 
-                if (filteredActions[0].oldWidget === null) {
+                if (filteredActions[0].oldWidget == null) {
                     this.deleteWidget(null, filteredActions[0].newWidget.id);
                 } else {
 
@@ -2914,7 +2914,7 @@ export class AppComponent implements OnInit {
             if (ourActions[i].redoID != null) {
                 redoIDs.push(ourActions[i].redoID)
             } else {
-                if (ourActions[i].undoID === null) {
+                if (ourActions[i].undoID == null) {
                     // Previous was not an UNDO, so cannot reverse it
                     console.log('Prev NOT an undo, so cannot redo it')
                     break;
@@ -2938,7 +2938,7 @@ export class AppComponent implements OnInit {
 
                             // Diff Object Types
                             if (ourActions[i].objectType === 'Widget') {
-                                if (ourActions[i].oldWidget === null) {
+                                if (ourActions[i].oldWidget == null) {
                                     this.deleteWidget('Graph',ourActions[i].newWidget.id);
                                 } else {
 
@@ -4626,10 +4626,10 @@ export class AppComponent implements OnInit {
         };
 
         // Indicate edit W and open Editor, which will work with selected W
-        if (widgetIndex === null) {
+        if (widgetIndex == null) {
 
 
-            if (widgetID === null) {
+            if (widgetID == null) {
 
                 // Can only edit one W at a time, so ignore if multiple selected
                 if (!this.checkForOnlyOneWidget()) {
@@ -4666,7 +4666,7 @@ export class AppComponent implements OnInit {
         };
 
         // Check if Locked - after id is obtained
-        if (this.selectedWidget === null) {
+        if (this.selectedWidget == null) {
             this.showMessage(
                 'No Widget selected',
                 'StatusBar',
@@ -4752,7 +4752,7 @@ export class AppComponent implements OnInit {
         };
 
         // Check exactly one W selected if no specific ID was given
-        if (selectedWidgetID === null) {
+        if (selectedWidgetID == null) {
 
             if (!this.checkForOnlyOneWidget(widgetType)) {
                 return
@@ -4770,7 +4770,7 @@ export class AppComponent implements OnInit {
         // });
         // Set the selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  (selectedWidgetID === null)
+            if (w.isSelected  &&  (selectedWidgetID == null)
                 ||
                 (w.id === selectedWidgetID   &&  (selectedWidgetID != null) )
                 ) {
@@ -4797,7 +4797,7 @@ export class AppComponent implements OnInit {
         };
 
         // Check exactly one W selected if no specific ID was given
-        if (selectedWidgetID === null) {
+        if (selectedWidgetID == null) {
 
             if (!this.checkForOnlyOneWidget()) {
                 return
@@ -4814,7 +4814,7 @@ export class AppComponent implements OnInit {
 
         // Set the selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  (selectedWidgetID === null)
+            if (w.isSelected  &&  (selectedWidgetID == null)
                 ||
                 (w.id === selectedWidgetID   &&  (selectedWidgetID != null) )
                 ) {
@@ -4830,7 +4830,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetAnnotations', '@Start');
 
         // Check exactly one W selected if no specific ID was given
-        if (selectedWidgetID === null) {
+        if (selectedWidgetID == null) {
 
             if (!this.checkForOnlyOneWidget()) {
                 return
@@ -4860,7 +4860,7 @@ export class AppComponent implements OnInit {
 
         // Set the selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  (selectedWidgetID === null)
+            if (w.isSelected  &&  (selectedWidgetID == null)
                ||
                (w.id === selectedWidgetID   &&  (selectedWidgetID != null) )
                ) {
@@ -4924,7 +4924,7 @@ export class AppComponent implements OnInit {
         // Show the form for Widget Filter Summary for selected W
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickWidgetFilterSummary', '@Start');
 
-        if (widgetIndex === null) {
+        if (widgetIndex == null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
@@ -4955,7 +4955,7 @@ export class AppComponent implements OnInit {
         // Show the form of Data Dictionary for selected W
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetDataDictionary', '@Start');
 
-        if (widgetIndex === null) {
+        if (widgetIndex == null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
@@ -4985,7 +4985,7 @@ export class AppComponent implements OnInit {
         // Show the form of Data Dictionary for selected W
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetBusinessGlossary', '@Start');
 
-        if (widgetIndex === null) {
+        if (widgetIndex == null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
@@ -5016,7 +5016,7 @@ export class AppComponent implements OnInit {
         // Show the form of Data Summary for selected W
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetDataSummary', '@Start');
 
-        if (widgetIndex === null) {
+        if (widgetIndex == null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
@@ -5046,7 +5046,7 @@ export class AppComponent implements OnInit {
         // Show the selected W in full screen
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetFullScreen', '@Start');
 
-        if (widgetIndex === null) {
+        if (widgetIndex == null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
@@ -5467,7 +5467,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        if (this.clipboardWidget === null  ||  this.clipboardWidget === undefined) {
+        if (this.clipboardWidget == null  ||  this.clipboardWidget === undefined) {
             this.showMessage(
                 'Nothing copied previously',
                 'StatusBar',
@@ -5754,7 +5754,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        if (widgetID === null) {
+        if (widgetID == null) {
             if (!this.checkForOnlyOneWidget()) {
                 return;
             };
@@ -6076,7 +6076,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        if (widgetID === null) {
+        if (widgetID == null) {
             if (!this.checkForOnlyOneWidget()) {
                 return;
             };
@@ -6138,7 +6138,7 @@ export class AppComponent implements OnInit {
         };
 
         // Indicate edit W and open Editor, which will work with selected W
-        if (widgetIndex === null) {
+        if (widgetIndex == null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
@@ -6480,7 +6480,7 @@ export class AppComponent implements OnInit {
         };
 
         // Make sure we have only one, then edit it
-        if (widgetID === null) {
+        if (widgetID == null) {
 
             if (!this.checkForOnlyOneWidget()) {
                 return;
@@ -6883,7 +6883,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        if (zoomPercentage === null  ||  zoomPercentage === undefined) {
+        if (zoomPercentage == null  ||  zoomPercentage === undefined) {
             zoomPercentage = 0.6;
         }
 
@@ -9386,12 +9386,12 @@ export class AppComponent implements OnInit {
         this.showWidgetContextMenu = false;
 
         // Exit if no Dashboard to jump to
-        if (dashboardID === null) {
+        if (dashboardID == null) {
             return;
         };
 
         // Tab points to first one, if needed
-        if (dashboardTabID === null) {
+        if (dashboardTabID == null) {
             dashboardTabID = -1;
         };
 
@@ -9401,7 +9401,7 @@ export class AppComponent implements OnInit {
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.globalVariableService.lastDashboardOpened.lastDashboardTabID =
             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
-        if (this.globalVariableService.lastDashboardOpened.lastDashboardTabID === null) {
+        if (this.globalVariableService.lastDashboardOpened.lastDashboardTabID == null) {
             this.globalVariableService.lastDashboardOpened.lastDashboardTabID = -1;
         };
 
@@ -10290,7 +10290,7 @@ export class AppComponent implements OnInit {
         this.showPopupMessage = false;
 
         // If no user logged in, then must login first
-        if (this.currentUserID === ''  ||  this.currentUserID === null) {
+        if (this.currentUserID === ''  ||  this.currentUserID == null) {
             this.showModalDashboardLogin = true;
             return false;
         };

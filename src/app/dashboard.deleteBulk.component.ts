@@ -75,7 +75,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
             .then (res => {
                 this.dashboards = res
                     .filter(d => d.state != 'Draft')
-                    .filter(d => d.draftID === null)
+                    .filter(d => d.draftID == null)
                     .sort((n1,n2) => {
                         if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
                             return 1;

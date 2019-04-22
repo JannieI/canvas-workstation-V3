@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
             .map( x => x.serverName);
 
         // Validate
-        if (this.canvasServerList === null) {
+        if (this.canvasServerList == null) {
             this.errorMessage = 'Set Canvas Servers in environment file';
         };
         if (this.canvasServerList.length === 0) {
@@ -175,7 +175,7 @@ export class LoginComponent implements OnInit {
             this.password
             ).then(res => {
 
-                if (res.token === null) {
+                if (res.token == null) {
                     this.errorMessage = res.message.substring(7);
                     return;
                 } else {

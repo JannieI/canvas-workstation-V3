@@ -165,17 +165,17 @@ export class CollaborateTaskAddComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Validation
-        if (this.selectedActivityType === null  ||  this.selectedActivityType === '') {
+        if (this.selectedActivityType == null  ||  this.selectedActivityType === '') {
             this.errorMessage = 'Please select Activity Type';
             return;
         };
 
-        if (this.selectedTaskStatus === null  ||  this.selectedTaskStatus === '') {
+        if (this.selectedTaskStatus == null  ||  this.selectedTaskStatus === '') {
             this.errorMessage = 'Please select Activity Status';
             return;
         };
 
-        if (this.selectedTaskText === null  ||  this.selectedTaskText === '') {
+        if (this.selectedTaskText == null  ||  this.selectedTaskText === '') {
             this.errorMessage = 'Please enter a Description';
             return;
         };

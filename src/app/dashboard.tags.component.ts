@@ -121,7 +121,7 @@ export class DashboardTagsComponent implements OnInit {
         this.errorMessage = '';
 
         // Nothing to do
-        if (this.newTag === ''  ||  this.newTag === null  ||  this.newTag === undefined) {
+        if (this.newTag === ''  ||  this.newTag == null  ||  this.newTag === undefined) {
             return;
         };
         let isFound: boolean = false;

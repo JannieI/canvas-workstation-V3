@@ -130,7 +130,7 @@ export class CollaborateMessagesComponent implements OnInit {
                     this.canvasMessages = this.canvasMessages.filter(m => {
                         let isFound: boolean = false;
                         m.recipients.forEach(r => {
-                            if (r.readOn === null) {
+                            if (r.readOn == null) {
                                 isFound = true;
                             };
                         });
@@ -188,7 +188,7 @@ export class CollaborateMessagesComponent implements OnInit {
         let dashboardID: number = messagesFound[0].dashboardID;
         let dashboardTabID: number = messagesFound[0].dashboardTabID;
 
-        if (dashboardID === null  ||  dashboardTabID === null) {
+        if (dashboardID == null  ||  dashboardTabID == null) {
             return;
         };
 

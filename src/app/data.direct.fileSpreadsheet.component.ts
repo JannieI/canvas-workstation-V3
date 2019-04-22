@@ -74,7 +74,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        if (!this.selectedDatasource === null) {
+        if (!this.selectedDatasource == null) {
             this.fileName = this.selectedDatasource.fileName;
         };
 
@@ -234,14 +234,14 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.fileName === ''  ||  this.fileName === null) {
+        if (this.fileName === ''  ||  this.fileName == null) {
             this.errorMessage = 'Please select a file using the Browse button';
             return;
         };
         // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
         // First row = 0
         // headers = single integer to indicate the header, array of strings = use THIS text
-        if (this.headerRow === null  ||  this.headerRow === '') {
+        if (this.headerRow == null  ||  this.headerRow === '') {
             this.headerRow = '0';
         };
 
@@ -336,7 +336,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             this.errorMessage = 'Please enter a Description for the Datasource';
             return;
         };
-        if (this.fileName === ''  ||  this.fileName === null) {
+        if (this.fileName === ''  ||  this.fileName == null) {
             this.errorMessage = 'Please select a file using the Browse button';
             return;
         };

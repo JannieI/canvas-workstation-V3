@@ -202,7 +202,7 @@ export class DataManageDataQualityComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedDataQualityIssue.name === null
+        if (this.selectedDataQualityIssue.name == null
             ||
             this.selectedDataQualityIssue.name === '') {
                 this.errorMessage = 'Enter a Name to identify the issue';
@@ -225,7 +225,7 @@ export class DataManageDataQualityComponent implements OnInit {
             this.selectedDataQualityIssue.datasourceID = this.datasourceID;
             this.globalVariableService.addResource('dataQualityIssues', this.selectedDataQualityIssue)
                 .then(res => {
-                    if (this.selectedDataQualityIssueRowIndex === null) {
+                    if (this.selectedDataQualityIssueRowIndex == null) {
                         this.selectedDataQualityIssueRowIndex = 0;
                         this.selectedDatasourceID = this.selectedDataQualityIssue.id;
                     };

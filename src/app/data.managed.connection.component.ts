@@ -173,7 +173,7 @@ export class DataManagedConnectionComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedConnection.connectionName === null
+        if (this.selectedConnection.connectionName == null
             ||
             this.selectedConnection.connectionName === '') {
                 this.errorMessage = 'Enter a Connection Name';

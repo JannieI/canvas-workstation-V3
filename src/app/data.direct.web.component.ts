@@ -128,7 +128,7 @@ export class DataDirectWebComponent implements OnInit {
 
                 // Add Table Names where missing
                 for (var i = 0; i < this.tables.length; i++) {
-                    if (this.tables[i].name === null) {
+                    if (this.tables[i].name == null) {
                         this.tables[i].name = 'Table ' + i;
                     };
                 };

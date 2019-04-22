@@ -234,7 +234,7 @@ export class DashboardSubscribeComponent implements OnInit {
 
         if (index != -1) {
             if (this.dashboardSubscriptions[index].notify === ''  ||  
-                this.dashboardSubscriptions[index].notify === null) {
+                this.dashboardSubscriptions[index].notify == null) {
                     this.dashboardSubscriptions[index].notify = 'Message';
                 } else {
                 if (this.dashboardSubscriptions[index].notify === 'Email') {
@@ -284,7 +284,7 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         // Nothing selected
-        if (this.selectedDashboard === null) {
+        if (this.selectedDashboard == null) {
             return;
         };
 

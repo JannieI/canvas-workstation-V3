@@ -261,7 +261,7 @@ export class DataDirectFileJSONComponent implements OnInit {
             this.errorMessage = 'Please enter a Description for the Datasource';
             return;
         };
-        if (this.loadedFileName === ''  ||  this.loadedFileName === null) {
+        if (this.loadedFileName === ''  ||  this.loadedFileName == null) {
             this.errorMessage = 'Please select a file using the Browse button';
             return;
         };

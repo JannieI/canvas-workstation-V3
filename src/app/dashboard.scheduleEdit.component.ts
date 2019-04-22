@@ -202,14 +202,14 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedDashboardSchedule.repeatFrequency === null
+        if (this.selectedDashboardSchedule.repeatFrequency == null
             ||
             this.selectedDashboardSchedule.repeatFrequency === '') {
                 this.errorMessage = 'Select a Frequency';
                 return;
         };
 
-        if (this.selectedDashboardSchedule.repeatsEvery === null
+        if (this.selectedDashboardSchedule.repeatsEvery == null
             ||
             this.selectedDashboardSchedule.repeatsEvery === 0) {
                 this.errorMessage = 'Fill in Every ';
@@ -238,7 +238,7 @@ export class DashboardScheduleEditComponent implements OnInit {
         if (this.selectedDashboardSchedule.repeatFrequency === 'Monthly') {
             if (this.selectedDashboardSchedule.monthlyOn === 0
             ||
-            this.selectedDashboardSchedule.monthlyOn === null) {
+            this.selectedDashboardSchedule.monthlyOn == null) {
                 this.errorMessage = 'Fill in day of month';
                 return;
             };
@@ -273,26 +273,26 @@ export class DashboardScheduleEditComponent implements OnInit {
             };
         };
 
-        if (this.selectedDashboardSchedule.startsOn === null) {
+        if (this.selectedDashboardSchedule.startsOn == null) {
                 this.errorMessage = 'Enter start date';
                 return;
         };
 
         if (!this.selectedDashboardSchedule.endsNever)
             if (
-                    (this.selectedDashboardSchedule.endsAfter === null
+                    (this.selectedDashboardSchedule.endsAfter == null
                     ||
                     this.selectedDashboardSchedule.endsAfter === 0)
                 &&
-                    (this.selectedDashboardSchedule.endsOn === null
+                    (this.selectedDashboardSchedule.endsOn == null
                     ||
-                    this.selectedDashboardSchedule.endsOn === null)
+                    this.selectedDashboardSchedule.endsOn == null)
                 ) {
                 this.errorMessage = 'Must end Never, On or After';
                 return;
         };
 
-        if (this.selectedDashboardSchedule.name === null
+        if (this.selectedDashboardSchedule.name == null
             ||
             this.selectedDashboardSchedule.name === '') {
                 this.errorMessage = 'Enter a Schedule name';
@@ -312,7 +312,7 @@ export class DashboardScheduleEditComponent implements OnInit {
 
             this.globalVariableService.addResource('dashboardSchedules', copyData)
                 .then(res => {
-                    if (this.selectedRow === null) {
+                    if (this.selectedRow == null) {
                         this.selectedRow = 0;
                         this.scheduleID = this.selectedDashboardSchedule.id;
                     };

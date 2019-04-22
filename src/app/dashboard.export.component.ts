@@ -71,7 +71,7 @@ export class DashboardExportComponent implements OnInit {
         this.errorMessage = '';
 
         // Validate
-        if (this.fileName === null  ||  this.fileName === '') {
+        if (this.fileName == null  ||  this.fileName === '') {
             this.errorMessage = "The file name is compulsory";
             return;
         };

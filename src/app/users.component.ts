@@ -389,11 +389,11 @@ export class UsersComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.userID === ''  ||  this.userID === null) {
+        if (this.userID === ''  ||  this.userID == null) {
             this.errorMessage = 'The user name is compulsory';
             return;
         };
-        if (this.userFirstName === ''  ||  this.userFirstName === null) {
+        if (this.userFirstName === ''  ||  this.userFirstName == null) {
             this.errorMessage = 'The user First Name is compulsory';
             return;
         };
@@ -432,11 +432,11 @@ export class UsersComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.userID === ''  ||  this.userID === null) {
+        if (this.userID === ''  ||  this.userID == null) {
             this.errorMessage = 'The user name is compulsory';
             return;
         };
-        if (this.userFirstName === ''  ||  this.userFirstName === null) {
+        if (this.userFirstName === ''  ||  this.userFirstName == null) {
             this.errorMessage = 'The user First Name is compulsory';
             return;
         };

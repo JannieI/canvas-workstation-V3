@@ -134,7 +134,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
 
         // Validation
-        if (this.connectionName === null  ||  this.connectionName === '') {
+        if (this.connectionName == null  ||  this.connectionName === '') {
             this.errorMessage = 'Please select a connection';
             return;
         };

@@ -238,7 +238,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedDataOwnership.userID === null
+        if (this.selectedDataOwnership.userID == null
             ||
             this.selectedDataOwnership.userID === '') {
                 this.errorMessage = 'Enter the UserID of the Owner';
@@ -268,7 +268,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
             this.selectedDataOwnership.datasourceName = this.datasourceName;
             this.globalVariableService.addResource('dataOwnerships', this.selectedDataOwnership)
                 .then(res => {
-                    if (this.selectedDataOwnershipRowIndex === null) {
+                    if (this.selectedDataOwnershipRowIndex == null) {
                         this.selectedDataOwnershipRowIndex = 0;
                         this.selectedDatasourceID = this.selectedDataOwnership.id;
                     };

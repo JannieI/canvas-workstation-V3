@@ -353,7 +353,7 @@ export interface dataSchemaInterface {
 
                             // Populate predefined dimensions, considering layouts
                             if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme === ''
-                                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme === null) {
+                                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
                                 this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme = 'None';
                             };
                             if (this.newWidgetContainerLeft > 0) {
@@ -401,7 +401,7 @@ export interface dataSchemaInterface {
 
                             // Populate the visible layers, and set Defaults
                             for (let i = 0; i < this.localWidget.graphLayers.length; i++){
-                                // if (this.localWidget.graphLayers[i].graphMarkSize === null
+                                // if (this.localWidget.graphLayers[i].graphMarkSize == null
                                 //     ||
                                 //     this.localWidget.graphLayers[i].graphMarkSize === 0) {
                                 //     this.localWidget.graphLayers[i].graphMarkSize = 20;
@@ -411,7 +411,7 @@ export interface dataSchemaInterface {
                             };
 
                             if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme === ''
-                                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme === null) {
+                                ||  this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme == null) {
                                 this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorScheme = 'None';
                             };
 
@@ -421,33 +421,33 @@ export interface dataSchemaInterface {
                             };
 
                             // Fill in defaults
-                            if (this.localWidget.graphHeight === null) {
+                            if (this.localWidget.graphHeight == null) {
                                 this.localWidget.graphHeight = 240;
                             };
-                            if (this.localWidget.graphLeft === null) {
+                            if (this.localWidget.graphLeft == null) {
                                 this.localWidget.graphLeft = 1;
                             };
-                            if (this.localWidget.graphTop === null) {
+                            if (this.localWidget.graphTop == null) {
                                 this.localWidget.graphTop = 1;
                             };
-                            if (this.localWidget.graphWidth === null) {
+                            if (this.localWidget.graphWidth == null) {
                                 this.localWidget.graphWidth = 240;
                             };
-                            if (this.localWidget.graphDimensionRight === null) {
+                            if (this.localWidget.graphDimensionRight == null) {
                                 this.localWidget.graphDimensionRight = 140;
                             };
-                            if (this.localWidget.graphDimensionLeft === null) {
+                            if (this.localWidget.graphDimensionLeft == null) {
                                 this.localWidget.graphDimensionLeft = 80;
                             };
-                            if (this.localWidget.graphDimensionBottom === null) {
+                            if (this.localWidget.graphDimensionBottom == null) {
                                 this.localWidget.graphDimensionBottom = 70;
                             };
-                            if (this.localWidget.graphLayerFacet === null  ||  this.localWidget.graphLayerFacet === '') {
+                            if (this.localWidget.graphLayerFacet == null  ||  this.localWidget.graphLayerFacet === '') {
                                 this.localWidget.graphLayerFacet = 'Single';
                             };
                             if (this.localWidget.visualGrammar === ''
                                 ||
-                                this.localWidget.visualGrammar === null) {
+                                this.localWidget.visualGrammar == null) {
                                 this.localWidget.visualGrammar = 'Vega-Lite';
                             };
 
@@ -605,25 +605,25 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         // Validation
-        if ( (this.xField === dragFieldMessage  ||  this.xField === null)
+        if ( (this.xField === dragFieldMessage  ||  this.xField == null)
             &&
-            (this.yField === dragFieldMessage  ||  this.yField === null)
+            (this.yField === dragFieldMessage  ||  this.yField == null)
             &&
-            (this.colorField === dragFieldMessage  ||  this.colorField === null)
+            (this.colorField === dragFieldMessage  ||  this.colorField == null)
             &&
-            (this.rowField === dragFieldMessage  ||  this.rowField === null)
+            (this.rowField === dragFieldMessage  ||  this.rowField == null)
             &&
-            (this.columnField === dragFieldMessage  ||  this.columnField === null)
+            (this.columnField === dragFieldMessage  ||  this.columnField == null)
             &&
-            (this.sizeField === dragFieldMessage  ||  this.sizeField === null)
+            (this.sizeField === dragFieldMessage  ||  this.sizeField == null)
             &&
-            (this.x2Field === dragFieldMessage  ||  this.x2Field === null)
+            (this.x2Field === dragFieldMessage  ||  this.x2Field == null)
             &&
-            (this.y2Field === dragFieldMessage  ||  this.y2Field === null)
+            (this.y2Field === dragFieldMessage  ||  this.y2Field == null)
             &&
-            (this.projectionFieldLatitude === dragFieldMessage  ||  this.projectionFieldLatitude === null)
+            (this.projectionFieldLatitude === dragFieldMessage  ||  this.projectionFieldLatitude == null)
             &&
-            (this.projectionFieldLongitude === dragFieldMessage  ||  this.projectionFieldLongitude === null)
+            (this.projectionFieldLongitude === dragFieldMessage  ||  this.projectionFieldLongitude == null)
             ) {
                 this.errorMessageEditor = 'Select at least one field.';
                 return;
@@ -631,9 +631,9 @@ export interface dataSchemaInterface {
         if (this.projectionField != ''
             &&
             (
-                (this.projectionFieldLatitude === dragFieldMessage  ||  this.projectionFieldLatitude === null)
+                (this.projectionFieldLatitude === dragFieldMessage  ||  this.projectionFieldLatitude == null)
                 ||
-                (this.projectionFieldLongitude === dragFieldMessage  ||  this.projectionFieldLongitude === null)
+                (this.projectionFieldLongitude === dragFieldMessage  ||  this.projectionFieldLongitude == null)
                 )
             ) {
                 this.errorMessageEditor = 'Select lat and long with Projection.';
@@ -790,63 +790,63 @@ export interface dataSchemaInterface {
         // Defaults
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype === ''
             ||
-            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype === null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtype = 'ordinal';
         };
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype === ''
             ||
-            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype === null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtype = 'ordinal';
         };
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType === ''
             ||
-            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType === null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorType = 'ordinal';
         };
 
-        if (this.graphColorAggregateVegaLiteName === null) {this.graphColorAggregateVegaLiteName = ""};
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat === null) {
+        if (this.graphColorAggregateVegaLiteName == null) {this.graphColorAggregateVegaLiteName = ""};
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorFormat = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort === null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorSort = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack === null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorStack = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit === null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphColorTimeUnit = "";
         };
-        if (this.localWidget.graphTitleAnchor === null) {
+        if (this.localWidget.graphTitleAnchor == null) {
             this.localWidget.graphTitleAnchor = "";
         };
-        if (this.localWidget.graphTitleBaseline === null) {
+        if (this.localWidget.graphTitleBaseline == null) {
             this.localWidget.graphTitleBaseline = "";
         };
-        if (this.localWidget.graphTitleOrientation === null) {
+        if (this.localWidget.graphTitleOrientation == null) {
             this.localWidget.graphTitleOrientation = ""
         };
-        // if (this.graphXaggregateVegaLiteName === null) {this.graphXaggregateVegaLiteName = ""}
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat === null) {
+        // if (this.graphXaggregateVegaLiteName == null) {this.graphXaggregateVegaLiteName = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXformat = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort === null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXsort = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit === null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphXtimeUnit = "";
         };
-        // if (this.graphYaggregateVegaLiteName === null) {this.graphYaggregateVegaLiteName = ""}
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat === null) {
+        // if (this.graphYaggregateVegaLiteName == null) {this.graphYaggregateVegaLiteName = ""}
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYformat = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort === null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYsort = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit === null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphYtimeUnit = "";
         };
-        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle === null) {
+        if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle == null) {
             this.localWidget.graphLayers[this.currentGraphLayer - 1].graphLegendTitle = "";
         };
 
@@ -1047,7 +1047,7 @@ export interface dataSchemaInterface {
         // Validate
         if (this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark === ''
             ||
-            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark === null) {
+            this.localWidget.graphLayers[this.currentGraphLayer - 1].graphMark == null) {
             this.errorMessage = 'Please select a type of graph';
             return;
         };
@@ -2484,7 +2484,7 @@ export interface dataSchemaInterface {
         // Returns the default Vega field type depending a given field types
         this.globalFunctionService.printToConsole(this.constructor.name,'defaultGraphTypeField', '@Start');
 
-        if (fieldType === 'string'  ||  fieldType === ''  ||  fieldType === null) {
+        if (fieldType === 'string'  ||  fieldType === ''  ||  fieldType == null) {
             if (typeOrName === 'name') {
                 return 'Ordinal';
             } else {
@@ -3020,7 +3020,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.xField === dragFieldMessage  ||  this.xField === null) {
+        if (this.xField === dragFieldMessage  ||  this.xField == null) {
             return;
         };
 
@@ -3036,7 +3036,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.yField === dragFieldMessage  ||  this.yField === null) {
+        if (this.yField === dragFieldMessage  ||  this.yField == null) {
             return;
         };
 
@@ -3052,7 +3052,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (this.colorField === dragFieldMessage  ||  this.colorField === null) {
+        if (this.colorField === dragFieldMessage  ||  this.colorField == null) {
             return;
         };
 
@@ -3344,7 +3344,7 @@ export interface dataSchemaInterface {
         };
 
         // Create the filter spec with Max ID
-        if (this.localWidget.widgetFilters === null) {
+        if (this.localWidget.widgetFilters == null) {
             this.localWidget.widgetFilters = [];
             this.filterNrActive = 0;
         };
@@ -3620,7 +3620,7 @@ export interface dataSchemaInterface {
         };
 
         // Remove from localWidget
-        if (this.localWidget.graphCalculations === null) {
+        if (this.localWidget.graphCalculations == null) {
             this.localWidget.graphCalculations = [];
         };
         let graphCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gcal =>
@@ -3684,7 +3684,7 @@ export interface dataSchemaInterface {
 
         let regex: any = /[a-z]/g;;
         let found = this.calculatedAs.toLowerCase().match(regex)
-        if (found === null  ||  found.length != this.calculatedAs.length) {
+        if (found == null  ||  found.length != this.calculatedAs.length) {
             this.calculatedErrorMessage = 'New field name must only consist of letters.';
             return;
         };
@@ -3701,7 +3701,7 @@ export interface dataSchemaInterface {
         };
 
         // Add Calculated field to Field List
-        if (this.localWidget.graphCalculations === null) {
+        if (this.localWidget.graphCalculations == null) {
             this.localWidget.graphCalculations = [];
         };
         let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name === this.calculatedAs);
@@ -3786,7 +3786,7 @@ export interface dataSchemaInterface {
         // Converts calculatedDataType to calculatedDataTypeName
         this.globalFunctionService.printToConsole(this.constructor.name,'convertToCalculatedDataTypeName', '@Start');
 
-        if (calculatedDataType === null  ||  calculatedDataType === '') {
+        if (calculatedDataType == null  ||  calculatedDataType === '') {
             return '';
         };
 
@@ -3803,7 +3803,7 @@ export interface dataSchemaInterface {
         // Reset
         this.errorMessageEditor = '';
 
-        if (calculatedDataTypeName === null  ||  calculatedDataTypeName === '') {
+        if (calculatedDataTypeName == null  ||  calculatedDataTypeName === '') {
             return '';
         };
 

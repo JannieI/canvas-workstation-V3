@@ -452,7 +452,7 @@ export class ShapeEditComponent implements OnInit {
 
         if (shapeType === 'Text') {
             this.showText = true;
-            if (this.localWidget.shapeText === null) {
+            if (this.localWidget.shapeText == null) {
                 this.localWidget.shapeText = 'Enter text, keywords: #pagenr, #pages, #date';
             };
         };
@@ -495,7 +495,7 @@ export class ShapeEditComponent implements OnInit {
         this.oldText = text;
 
         // Set the linked dropdown
-        if (this.localWidget.shapeBullet[index].linkedTabID === null) {
+        if (this.localWidget.shapeBullet[index].linkedTabID == null) {
             this.bulletSelectedTab = 'None';
         } else {
             let tID: number = this.localWidget.shapeBullet[index].linkedTabID;

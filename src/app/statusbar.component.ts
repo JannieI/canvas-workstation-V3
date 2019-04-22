@@ -511,7 +511,7 @@ export class StatusbarComponent {
             if(w.hyperlinkDashboardTabID ==
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID) {
                     widgetCount = widgetCount + 1;
-                    if (firstDashboardID === null) {
+                    if (firstDashboardID == null) {
                         firstDashboardID = w.dashboardID;
                     };
                 };

@@ -238,21 +238,21 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedDatasource === null
+        if (this.selectedDatasource == null
             ||
             this.selectedDatasource === '') {
                 this.errorMessage = 'Select a Datasource';
                 return;
         };
 
-        if (this.selectedDatasourceSchedule.repeatFrequency === null
+        if (this.selectedDatasourceSchedule.repeatFrequency == null
             ||
             this.selectedDatasourceSchedule.repeatFrequency === '') {
                 this.errorMessage = 'Select a Frequency';
                 return;
         };
 
-        if (this.selectedDatasourceSchedule.repeatsEvery === null
+        if (this.selectedDatasourceSchedule.repeatsEvery == null
             ||
             this.selectedDatasourceSchedule.repeatsEvery === 0) {
                 this.errorMessage = 'Fill in Every ';
@@ -281,7 +281,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         if (this.selectedDatasourceSchedule.repeatFrequency === 'Monthly') {
             if (this.selectedDatasourceSchedule.monthlyOn === 0
             ||
-            this.selectedDatasourceSchedule.monthlyOn === null) {
+            this.selectedDatasourceSchedule.monthlyOn == null) {
                 this.errorMessage = 'Fill in day of month';
                 return;
             };
@@ -316,26 +316,26 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
             };
         };
 
-        if (this.selectedDatasourceSchedule.startsOn === null) {
+        if (this.selectedDatasourceSchedule.startsOn == null) {
                 this.errorMessage = 'Enter start date';
                 return;
         };
 
         if (!this.selectedDatasourceSchedule.endsNever)
             if (
-                    (this.selectedDatasourceSchedule.endsAfter === null
+                    (this.selectedDatasourceSchedule.endsAfter == null
                     ||
                     this.selectedDatasourceSchedule.endsAfter === 0)
                 &&
-                    (this.selectedDatasourceSchedule.endsOn === null
+                    (this.selectedDatasourceSchedule.endsOn == null
                     ||
-                    this.selectedDatasourceSchedule.endsOn === null)
+                    this.selectedDatasourceSchedule.endsOn == null)
                 ) {
                 this.errorMessage = 'Must end Never, On or After';
                 return;
         };
 
-        if (this.selectedDatasourceSchedule.name === null
+        if (this.selectedDatasourceSchedule.name == null
             ||
             this.selectedDatasourceSchedule.name === '') {
                 this.errorMessage = 'Enter a Schedule name';
@@ -357,7 +357,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
             this.globalVariableService.addResource(
                 'datasourceSchedules', this.selectedDatasourceSchedule)
                 .then(res => {
-                        if (this.selectedRow === null) {
+                        if (this.selectedRow == null) {
                             this.selectedRow = 0;
                             this.scheduleID = this.selectedDatasourceSchedule.id;
                         };

@@ -93,11 +93,11 @@ export class DataDirectExportComponent implements OnInit {
         this.errorMessage = '';
 
         // Validate
-        if (this.selectedDatasource === null) {
+        if (this.selectedDatasource == null) {
             this.errorMessage = "First select a Datasource by clicking on it, then try again.";
             return;
         };
-        if (this.fileName === null  ||  this.fileName === '') {
+        if (this.fileName == null  ||  this.fileName === '') {
             this.errorMessage = "The file name is compulsory";
             return;
         };

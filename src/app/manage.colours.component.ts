@@ -129,11 +129,11 @@ export class ManageColoursComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.newColorName === ''  ||  this.newColorName === null  ||  this.newColorName === undefined) {
+        if (this.newColorName === ''  ||  this.newColorName == null  ||  this.newColorName === undefined) {
             this.errorMessage = 'Name is compulsory';
             return;
         };
-        if (this.newColorCode === ''  ||  this.newColorCode === null  ||  this.newColorCode === undefined) {
+        if (this.newColorCode === ''  ||  this.newColorCode == null  ||  this.newColorCode === undefined) {
             this.errorMessage = 'Code is compulsory';
             return;
         };

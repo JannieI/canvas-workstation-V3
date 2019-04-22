@@ -168,7 +168,7 @@ export class GroupsComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.groupName === ''  ||  this.groupName === null) {
+        if (this.groupName === ''  ||  this.groupName == null) {
             this.errorMessage = 'The group name is compulsory';
             return;
         };
@@ -207,7 +207,7 @@ export class GroupsComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.groupName === ''  ||  this.groupName === null) {
+        if (this.groupName === ''  ||  this.groupName == null) {
             this.errorMessage = 'The group name is compulsory';
             return;
         };

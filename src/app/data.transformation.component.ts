@@ -612,9 +612,9 @@ export class DataTransformationComponent implements OnInit {
         let value: boolean;
 
         // Handle the cases where one or both of the objects are empty.
-        if ( (object1 === null) && (object2 === null) ) {
+        if ( (object1 == null) && (object2 == null) ) {
             return true;
-        } else if ( (object1 === null) || (object2 === null) ) {
+        } else if ( (object1 == null) || (object2 == null) ) {
             return false;
         } else {
 

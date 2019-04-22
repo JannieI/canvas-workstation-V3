@@ -309,7 +309,7 @@ export class GlobalVariableService {
                                     i => i.id === this.currentDashboards[0].templateDashboardID
                                 );
 
-                                if (templateDashboard === null) {
+                                if (templateDashboard == null) {
                                     console.error('Error in     Global-Variables refreshCurrentDashboardInfo: Dashboard template id does not exist in Dashboards Array')
                                     this.templateInUse.next(false);
                                 } else {
@@ -718,7 +718,7 @@ export class GlobalVariableService {
         });
 
         // Set dataFiltered = dataFull and return if the filter is empty
-        if (datasourceToFilter.datasourceFilters === null 
+        if (datasourceToFilter.datasourceFilters == null 
             ||
             datasourceToFilter.datasourceFilters.length === 0) {
                 datasourceToFilter.dataFiltered = 
@@ -1737,7 +1737,7 @@ export class GlobalVariableService {
         };
 
         // Set to current if none provided
-        if (dashboardID === null) {
+        if (dashboardID == null) {
             dashboardID = this.currentDashboardInfo.value.currentDashboardID;
         };
 
@@ -3026,7 +3026,7 @@ export class GlobalVariableService {
 
                     // Sanitize
                     if (this.canvasSettings.gridSize > 100
-                        || this.canvasSettings.gridSize === null
+                        || this.canvasSettings.gridSize == null
                         || this.canvasSettings.gridSize === undefined) {
                         this.canvasSettings.gridSize = 100;
                     };
@@ -3718,8 +3718,8 @@ export class GlobalVariableService {
 
         // Assume we have all currentD info
         if ( ( (tabToShow === 'Previous')  ||  (tabToShow === 'Next') )  &&
-            (this.currentDashboardInfo === null) ) {
-            console.error('Error in     Global-Variables refreshCurrentDashboard returned since this.currentDashboardInfo === null')
+            (this.currentDashboardInfo == null) ) {
+            console.error('Error in     Global-Variables refreshCurrentDashboard returned since this.currentDashboardInfo == null')
             return 'Error';
         };
 
@@ -3852,10 +3852,10 @@ export class GlobalVariableService {
 
         // Sanitiy Check
         let specification: any = {};
-        if (widget.visualGrammarType === null) {
+        if (widget.visualGrammarType == null) {
             widget.visualGrammarType = 'standard';
         };
-        if (widget.graphLayers === null  ||  widget.graphLayers.length === 0) {
+        if (widget.graphLayers == null  ||  widget.graphLayers.length === 0) {
             return;
         };
 
@@ -3954,7 +3954,7 @@ export class GlobalVariableService {
         };
 
         // Custom visualGrammarType - RETURN after each one
-        if (widget.visualGrammarType === null) {
+        if (widget.visualGrammarType == null) {
             widget.visualGrammarType = 'standard';
         };
 
@@ -4038,7 +4038,7 @@ export class GlobalVariableService {
 
 
         // Calculated Fields
-        if (widget.graphCalculations === null) {
+        if (widget.graphCalculations == null) {
             widget.graphCalculations = [];
         };
         for (var i = 0; i < widget.graphCalculations.length; i++) {
@@ -4123,7 +4123,7 @@ export class GlobalVariableService {
 
 
         // Filter
-        if (widget.widgetFilters === null) {
+        if (widget.widgetFilters == null) {
             widget.widgetFilters = [];
         };
         let widgetFilters = widget.widgetFilters.filter(gflt => gflt.isActive).slice();
@@ -4730,7 +4730,7 @@ export class GlobalVariableService {
                 if (widget.graphLayers[currentGraphLayer].graphLegendHide) {
                     specificationInner['encoding']['color']['legend'] = null;
                 } else {
-                    if (widget.graphLayers[currentGraphLayer].graphLegendTitle === null) {
+                    if (widget.graphLayers[currentGraphLayer].graphLegendTitle == null) {
                         widget.graphLayers[currentGraphLayer].graphLegendTitle = '';
                     };
                     specificationInner['encoding']['color']['legend'] =
@@ -5004,7 +5004,7 @@ export class GlobalVariableService {
             };
         };
 
-        if (id === null) {
+        if (id == null) {
             // Add / Update an action to the ActionLog.  It returns id of new/updated record
             // It returns -1 if it failed.
             // NB: id = null => Add, else Update
@@ -5024,15 +5024,15 @@ export class GlobalVariableService {
                 id: actID,
                 dashboardID: dashboardID,
                 dashboardTabID: dashboardTabID,
-                widgetID: oldWidget === null? null : oldWidget.id,
+                widgetID: oldWidget == null? null : oldWidget.id,
                 objectType: objectType,
                 actionType: actionType,
                 action: action,
                 description: description,
                 undoID: undoID,
                 redoID: redoID,
-                oldWidget: oldWidget === null? null : JSON.parse(JSON.stringify(oldWidget)),
-                newWidget: newWidget === null? null : JSON.parse(JSON.stringify(newWidget)),
+                oldWidget: oldWidget == null? null : JSON.parse(JSON.stringify(oldWidget)),
+                newWidget: newWidget == null? null : JSON.parse(JSON.stringify(newWidget)),
                 createor: this.currentUser.userID,
                 created: today
             });
@@ -5077,10 +5077,10 @@ export class GlobalVariableService {
 
             // Brief description of diff
             var result: any[] = [];
-            if (actOldWidget === null) {
+            if (actOldWidget == null) {
                 result.push('Whole new Widget added')
             };
-            if (actNewWidget === null) {
+            if (actNewWidget == null) {
                 result.push('Widget deleted')
             };
             if (actOldWidget != null  &&  actNewWidget != null) {
@@ -5568,7 +5568,7 @@ export class GlobalVariableService {
         return new Promise<boolean>((resolve, reject) => {
 
             // Nothing to do
-            if (givenUserID === null  ||  givenUserID === '') {
+            if (givenUserID == null  ||  givenUserID === '') {
                 resolve(false);
             };
 
@@ -6315,10 +6315,10 @@ export class GlobalVariableService {
         };
 
         // Cater for missing input
-        if (fromDate === null) {
+        if (fromDate == null) {
             fromDate = new Date();
         };
-        if (toDate === null) {
+        if (toDate == null) {
             toDate = new Date();
         };
         let diffDays: number = toDate.getDate() - fromDate.getDate(); // milliseconds between two dates
@@ -6376,7 +6376,7 @@ export class GlobalVariableService {
         };
 
         // Ignore bad input
-        if (widget === null) {
+        if (widget == null) {
             return null;
         };
 
@@ -6405,7 +6405,7 @@ export class GlobalVariableService {
         };
 
         // Ignore bad input
-        if (widget === null) {
+        if (widget == null) {
             return null;
         };
 
@@ -6456,7 +6456,7 @@ export class GlobalVariableService {
         //   parameters = parameters + '&filterObject= {"dateRefreshed" : null}'
 
         // Return if nothing to do
-        if (inputResults === null) {
+        if (inputResults == null) {
             return [];
         };
         if (inputResults.length === 0) {
@@ -6508,7 +6508,7 @@ export class GlobalVariableService {
                     };
                     if (parKey === 'nrRowsToReturn') {
                         nrRowsToReturn = +parValue;
-                        if (nrRowsToReturn === null) {
+                        if (nrRowsToReturn == null) {
                             nrRowsToReturn = 0;
                         };
                     };

@@ -161,7 +161,7 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
                 this.whereErrorMessage = err;
             });
 
-        if (this.selectedDatasource === null) {
+        if (this.selectedDatasource == null) {
             this.isEditing = false;
             let today: Date = new Date();
 
@@ -463,11 +463,11 @@ export class DataCreateDSSQLEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Validation
-        if (this.selectedDatasource.name === ''  ||  this.selectedDatasource.name === null) {
+        if (this.selectedDatasource.name === ''  ||  this.selectedDatasource.name == null) {
             this.whereErrorMessage = 'The name is compulsory';
             return;
         };
-        if (this.selectedDatasource.description === ''  ||  this.selectedDatasource.description === null) {
+        if (this.selectedDatasource.description === ''  ||  this.selectedDatasource.description == null) {
             this.whereErrorMessage = 'The description is compulsory';
             return;
         };
