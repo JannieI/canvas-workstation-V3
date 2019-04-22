@@ -194,7 +194,7 @@ export class WidgetNavigatorComponent {
                 if (this.ngNetworks.length > 0) {
                     if (networkIndex >= 0) {
                         this.selectedNetworkID = this.ngNetworks[networkIndex].id;
-                        
+
                         this.clickNetwork(networkIndex, this.selectedNetworkID);
                     } else {
                         this.clickNetwork(0, this.ngNetworks[0].id);
@@ -327,22 +327,22 @@ export class WidgetNavigatorComponent {
 
         // Remember the ID of the selected Network
         this.selectedNetworkID = networkID;
-        
+
         // Read the Data for this W from the DB
         if (this.selectedNetworkID >= 0) {
-            
+
             if (this.ngNetworks[index].subDatasources.length != 2) {
                 // TODO - make friendly
                 console.log('ERROR ...')
             } else {
-                
+
                 this.selectedNetworkRelationshipID = this.ngNetworks[index].subDatasources[0];
                 this.globalVariableService.getData(
                     'datasourceID=' + this.selectedNetworkRelationshipID.toString()
                 )
                     .then(res => {
                         this.networkRelationships = res;
-                        
+
                         // Fill ParentNode type Dropdown
                         this.ngDropdownParentNodeTypes = this.distinctNodeTypes();
                         this.ngDropdownParentNodeTypes = ['All', ...this.ngDropdownParentNodeTypes];
@@ -447,8 +447,9 @@ export class WidgetNavigatorComponent {
 
         // Fill Relationships Dropdown
         this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
+        console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
         this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
-console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
+        console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
         // Reduce size of Dropdown
         if (this.ngDropdownRelationships.length > 20) {
             this.ngDropdownRelationships = [...this.ngDropdownRelationships.slice(0, 20), MORE_TO_FILTER]
@@ -456,7 +457,7 @@ console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
 
         // Clear Relationship roles
         this.relationshipRoles = [];
-        
+
         // Clear all Filters
         this.clickParentFilterClear();
         this.clickRelationshipFilterClear();
@@ -464,7 +465,7 @@ console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
 
         // Set Parent Node Property Filter properties
         this.ngParentNodeFilterDropdown = this.networkProperties
-            .filter(np => np.nodeType == this.selectedParentNodeType  &&  np.propertyKey != '')
+            .filter(np => np.nodeType == this.selectedParentNodeType && np.propertyKey != '')
             .map(np => np.propertyKey);
         this.ngParentNodeFilterDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterDropdown);
 
@@ -475,7 +476,7 @@ console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentNode', '@Start');
 
         this.selectedParentNode = ev.target.value;
-    
+
         // More clicked
         if (this.selectedParentNode === MORE_TO_FILTER) {
             return;
@@ -493,7 +494,7 @@ console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeRelationship', '@Start');
 
         this.selectedRelationship = ev.target.value;
-        
+
         // Get Relationship Roles
         this.relationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
         this.showRoles = false;
@@ -519,38 +520,38 @@ console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
             this.selectedRelationship != '') {
 
             // Build the data for the Graph based on the selection and graph type
-            switch(this.selectedView) { 
-                case 'SummaryView': { 
-                    this.createGraphDataSummaryView(); 
-                    break; 
-                } 
-                case 'DefaultView': { 
-                    this.createGraphDefaultView(); 
-                    break; 
-                } 
-                case 'CommonParentView': { 
+            switch (this.selectedView) {
+                case 'SummaryView': {
+                    this.createGraphDataSummaryView();
+                    break;
+                }
+                case 'DefaultView': {
+                    this.createGraphDefaultView();
+                    break;
+                }
+                case 'CommonParentView': {
                     this.createGraphCommonParentView();
-                    break; 
-                 } 
-                 case 'CommonNodeView': { 
+                    break;
+                }
+                case 'CommonNodeView': {
                     this.createGraphCommonNodeView();
-                    break; 
-                 } 
-                 case 'DistanceView': { 
+                    break;
+                }
+                case 'DistanceView': {
                     this.createGraphDistanceView();
-                    break; 
-                 } 
-                 case 'NodeTypeView': { 
+                    break;
+                }
+                case 'NodeTypeView': {
                     this.createGraphNodeTypeView();
-                    break; 
-                 } 
+                    break;
+                }
 
-                 default: { 
-                   // Unknown
-                   console.log('Error - unknown selectedView value:', this.selectedView);
-                   break; 
-                } 
-             }; 
+                default: {
+                    // Unknown
+                    console.log('Error - unknown selectedView value:', this.selectedView);
+                    break;
+                }
+            };
 
             // Show the graph
             this.showGraph();
@@ -763,9 +764,9 @@ console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
     createGraphDataSummaryView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphDataSummaryView', '@Start');
-        
+
         let networkIndex: number = this.ngNetworks.findIndex(nw => nw.id == this.selectedNetworkID);
-        
+
         // No network selected
         if (networkIndex < 0) {
             return;
@@ -834,7 +835,7 @@ console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
     createGraphNodeTypeView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphNodeTypeView', '@Start');
-    
+
     }
 
     showGraph(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
@@ -1102,7 +1103,7 @@ console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
         // Show a summary of the current Network
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetworkSummary', '@Start');
         let networkIndex: number = this.ngNetworks.findIndex(nw => nw.id == this.selectedNetworkID);
-        
+
         // No network selected
         if (networkIndex < 0) {
             return;
@@ -1328,16 +1329,33 @@ console.log('xx this.ngDropdownRelationships', this.ngDropdownRelationships)
 
         // Fill ParentNode type Dropdown
         let leftRelationships: string[] = this.networkRelationships
+            .filter(nr => ( 
+                            (
+                                nr.leftNodeType === selectedParentNodeType  
+                                &&  selectedParentNodeType != null
+                            ) 
+                            ||  
+                            selectedParentNodeType == null
+                           )
+            )
+            .filter(nr => nr.relationshipLeftToRight != '')
             .map(nr => nr.relationshipLeftToRight);
+        
         let rightRelationships: string[] = this.networkRelationships
+            .filter(nr => ( 
+                            (
+                                nr.rightNodeType === selectedParentNodeType  
+                                &&  
+                                selectedParentNodeType != null
+                            ) 
+                            ||  
+                            selectedParentNodeType == null
+                           )
+            )
+            .filter(nr => nr.relationshipRightToLeft != '')
             .map(nr => nr.relationshipRightToLeft);
+        
         let nodeRelationships: string[] = Array.from(new Set(leftRelationships.concat(rightRelationships)));
-console.log(leftRelationships, rightRelationships, nodeRelationships)
-        // Filter
-        nodeRelationships = nodeRelationships.filter(nr => nr != '');
-        if (selectedParentNodeType != null) {
-            nodeRelationships = nodeRelationships.filter(nr => nr === selectedParentNodeType);
-        };
 
         // Make sure it is unique, non-null list
         nodeRelationships = this.navUniqifySortNodes(nodeRelationships);
@@ -1361,8 +1379,8 @@ console.log(leftRelationships, rightRelationships, nodeRelationships)
 
         // TODO - fix for Other Than Equal Operator
         // Filter parent Nodes IF a filter active
-        if (this.ngParentNodeFilterSelectedFieldName != ''  
-            &&  
+        if (this.ngParentNodeFilterSelectedFieldName != ''
+            &&
             this.ngParentNodeFilterSelectedOperator != '') {
             nodesPerNodeType = nodesPerNodeType.filter(
                 x => this.parentNodesFilteredList.indexOf(x) >= 0
@@ -1520,9 +1538,9 @@ console.log(leftRelationships, rightRelationships, nodeRelationships)
         // Create Filtered List of ParentNodes
         // TODO - do other operator than ==
         this.parentNodesFilteredList = this.networkProperties
-            .filter(np => np.propertyKey === this.ngParentNodeFilterSelectedFieldName 
-                    &&
-                    np.propertyValue === this.ngParentNodeFilterSelectedValue)
+            .filter(np => np.propertyKey === this.ngParentNodeFilterSelectedFieldName
+                &&
+                np.propertyValue === this.ngParentNodeFilterSelectedValue)
             .map(np => np.nodeName);
 
         // Make unique
@@ -1531,7 +1549,7 @@ console.log(leftRelationships, rightRelationships, nodeRelationships)
         // Filter Parent Nodes
         this.ngParentNodeFilterDropdown = this.ngParentNodeFilterDropdown
             .filter(pn => this.parentNodesFilteredList.indexOf(pn) >= 0
-        );
+            );
 
     }
 
@@ -1570,9 +1588,9 @@ console.log(leftRelationships, rightRelationships, nodeRelationships)
         // Create Filtered List of ParentNodes
         // TODO - do other operator than ==
         this.relationshipsFilteredList = this.networkProperties
-            .filter(np => np.propertyKey === this.ngRelationshipFilterSelectedFieldName 
-                    &&
-                    np.propertyValue === this.ngRelationshipFilterSelectedValue)
+            .filter(np => np.propertyKey === this.ngRelationshipFilterSelectedFieldName
+                &&
+                np.propertyValue === this.ngRelationshipFilterSelectedValue)
             .map(np => np.nodeName);
 
         // Make unique
@@ -1581,7 +1599,7 @@ console.log(leftRelationships, rightRelationships, nodeRelationships)
         // Filter Parent Nodes
         this.ngRelationshipFilterDropdown = this.ngRelationshipFilterDropdown
             .filter(pn => this.relationshipsFilteredList.indexOf(pn) >= 0
-        );
+            );
 
     }
 
@@ -1622,9 +1640,9 @@ console.log(leftRelationships, rightRelationships, nodeRelationships)
         // Create Filtered List of Child Nodes
         // TODO - do other operator than ==
         this.childNodesFilteredList = this.networkProperties
-            .filter(np => np.propertyKey === this.ngChildNodeFilterSelectedFieldName 
-                    &&
-                    np.propertyValue === this.ngChildNodeFilterSelectedValue)
+            .filter(np => np.propertyKey === this.ngChildNodeFilterSelectedFieldName
+                &&
+                np.propertyValue === this.ngChildNodeFilterSelectedValue)
             .map(np => np.nodeName);
 
         // Make unique
@@ -1633,7 +1651,7 @@ console.log(leftRelationships, rightRelationships, nodeRelationships)
         // Filter Child Nodes
         this.ngChildNodeFilterDropdown = this.ngChildNodeFilterDropdown
             .filter(pn => this.childNodesFilteredList.indexOf(pn) >= 0
-        );
+            );
 
     }
 
