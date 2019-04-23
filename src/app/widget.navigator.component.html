@@ -218,67 +218,33 @@ dimensions are set in app.html, and cannot be changed here. -->
             <clr-signpost-content *clrIfOpen
                 [clrPosition]="'bottom-middle'">
                 <h5 style="margin-top: 0; color:gray;">
-                    Filter on relationship for Companies / Company Absa
+                    Filter on relationship for {{ selectedRelationship }}
                 </h5>
                 <p style="margin-top: 0; color:gray; text-align: left;">
-                    The relationships to show for the selected parent(s) can be filtered.  
+                    Filter the relationships based on the roles used for it.  
                     This filter will stay active until 1. it is changed here, or 2. the 
                     selected parent node type is changed is changed.
                 </p>
 
-
                 <div class="graphAreaChildFilterFieldTitle">
                     Relationship Role:
                     <select id="selects_3"
-                        [(ngModel)]="ngRelationshipFilterSelectedFieldName"
-                        name="ngRelationshipFilterSelectedFieldName"
+                        [(ngModel)]="ngSelectedRelationshipFilterRole"
+                        name="ngSelectedRelationshipFilterRole"
                         >
                         <option *ngFor="let row of ngRelationshipRoles">
                             {{ row }}
                         </option>
                     </select>
                 </div>
-                <div class="graphAreaChildFilterOperatorTitle">
-                    Operator:
-                    <select id="selects_3"
-                        [(ngModel)]="ngRelationshipFilterSelectedOperator"
-                        name="ngRelationshipFilterSelectedOperator"
-                        >
-                        <option>Less Than</option>
-                        <option>Less Than Equal</option>
-                        <option>Equal</option>
-                        <option>Not Equal</option>
-                        <option>Greater Than</option>
-                        <option>Greater Than Equal</option>
-                        <option>Range</option>
-                        <option>One Of</option>
-                        <option>Valid</option>
-                        <option>Selection</option>
-                    </select>
-                </div>
-
-                <div class="graphAreaChildFilterValueTitle">
-                    Value:
-                    <input type="text"
-                        [(ngModel)]="ngRelationshipFilterSelectedValue"
-                        name="ngRelationshipFilterSelectedValue"
-                        placeholder=""
-                        title="Enter a value for the filter. "
-                        >
-                </div>
 
                 <div>
                     <div class="btn-group btn-link">
-                        <button class="btn" (click)="clickChildFilterClear()">
+                        <button class="btn" (click)="clickRelationshipFilterClear()">
                             Clear
                         </button>
-                        <button class="btn" (click)="clickChildFilterSave()">
-                            <span *ngIf="filterID==-1">
-                                Add
-                            </span>
-                            <span *ngIf="filterID!=-1">
-                                Save
-                            </span>
+                        <button class="btn" (click)="clickRelationshipFilterSave()">
+                            Save
                         </button>
                     </div>
                     <span class="graphAreaChildFilterErrorMessage">

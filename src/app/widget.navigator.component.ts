@@ -84,7 +84,6 @@ export class WidgetNavigatorComponent {
     selectedParentNodeType: string = '';                // Dropdown: selected Parent Node Type
     selectedParentNode: string = '';                    // Dropdown: selected Parent Node
     selectedRelationship: string = '';                  // Dropdown: selected Relationship
-
     selectedChildFilterID: number = -1;
     selectedParentFilterID: number = -1;
 
@@ -97,8 +96,7 @@ export class WidgetNavigatorComponent {
     ngParentNodeFilterSelectedValue: string = '';       // Parent Node Filter
     parentNodesFilteredList: string[] = [];             // List of Nodes, after filtered on NodeProperties
 
-    ngRelationshipFilterSelectedFieldName: string = ''; // Relationship Filter
-    ngRelationshipFilterSelectedValue: string = '';     // Relationship Filter
+    ngSelectedRelationshipFilterRole: string = '';              // Relationship Role Filter
     relationshipsFilteredList: string[] = [];           // List of Relationships, after filtered on NodeProperties
 
     ngChildNodeFilterDropdown: string[] = [];           // Dropdown: Child Nodes Filter
@@ -1487,8 +1485,7 @@ export class WidgetNavigatorComponent {
         // Clear the Relationship Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickRelationshipFilterClear', '@Start');
 
-        this.ngRelationshipFilterSelectedFieldName = '';
-        this.ngRelationshipFilterSelectedValue = '';
+        this.ngSelectedRelationshipFilterRole = '';
         this.relationshipsFilteredList = [];
     }
 
@@ -1500,23 +1497,28 @@ export class WidgetNavigatorComponent {
         // data structurs allows it
 
         // Validation
-        if (this.ngRelationshipFilterSelectedFieldName === '') {
+        if (this.ngSelectedRelationshipFilterRole === '') {
             this.relationshipFilterErrorMessage = 'The field name is compulsory';
-            return;
-        };
-        if (this.ngRelationshipFilterSelectedValue) {
-            this.relationshipFilterErrorMessage = 'The value is compulsory';
             return;
         };
 
         // Create Filtered List of ParentNodes
         // TODO - do other operator than ==
-        this.relationshipsFilteredList = this.networkProperties
-            .filter(np => np.propertyKey === this.ngRelationshipFilterSelectedFieldName
-                &&
-                np.propertyValue === this.ngRelationshipFilterSelectedValue)
-            .map(np => np.nodeName);
-
+        let lefRelationshipsFilteredList = this.networkRelationships
+            .filter(nr => nr.relationshipLeftToRight === this.selectedRelationship
+                          &&
+                          nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
+            )
+            .map(nr => nr.relationshipLeftToRight);
+        let rightRelationshipsFilteredList = this.networkRelationships
+            .filter(nr => nr.relationshipRightToLeft === this.selectedRelationship
+                          &&
+                          nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
+            )
+            .map(nr => nr.relationshipRightToLeft);
+        this.relationshipsFilteredList = lefRelationshipsFilteredList
+            .concat(rightRelationshipsFilteredList);
+            
         // Make unique
         this.relationshipsFilteredList = Array.from(new Set(this.relationshipsFilteredList));
 
