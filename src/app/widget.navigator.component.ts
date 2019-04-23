@@ -1235,12 +1235,12 @@ export class WidgetNavigatorComponent {
                             nr.relationshipLeftToRight === this.selectedRelationship
                             &&
                             (
-                                this.selectedRelationship === ''
+                                this.ngSelectedRelationshipFilterRole === ''
                                 ||
                                 (
-                                    this.selectedRelationship != ''
+                                    this.ngSelectedRelationshipFilterRole != ''
                                     &&
-                                    nr.relationshipProperty === this.selectedRelationship
+                                    nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
                                 )
                             )
                            )
@@ -1265,12 +1265,12 @@ export class WidgetNavigatorComponent {
                             nr.relationshipRightToLeft === this.selectedRelationship
                             &&
                             (
-                                this.selectedRelationship === ''
+                                this.ngSelectedRelationshipFilterRole === ''
                                 ||
                                 (
-                                    this.selectedRelationship != ''
+                                    this.ngSelectedRelationshipFilterRole != ''
                                     &&
-                                    nr.relationshipProperty === this.selectedRelationship
+                                    nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
                                 )
                             )
                            )
