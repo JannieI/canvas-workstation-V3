@@ -117,14 +117,13 @@ export class WidgetNavigatorComponent {
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
     childFilterErrorMessage: string = '';
     filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
-    filterChildFieldName: string = '';
     filterChildOperator: string = '';
     filterChildValue: string = '';
     filterID: number = -1;
     firstAdjacencyCellRowNr: number = -1;
     parentFilterErrorMessage: string = '';
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
-    relationshipRoles: string[] = [];
+    ngRelationshipRoles: string[] = [];
     relationshipFilterErrorMessage: string = '';
     visibleNumberChildren: number = 12;
 
@@ -482,7 +481,7 @@ export class WidgetNavigatorComponent {
         };
 
         // Clear Relationship roles
-        this.relationshipRoles = [];
+        this.ngRelationshipRoles = [];
 
         // Clear all Filters
         this.clickParentFilterClear();
@@ -522,7 +521,7 @@ export class WidgetNavigatorComponent {
         this.selectedRelationship = ev.target.value;
 
         // Get Relationship Roles
-        this.relationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
+        this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
         this.showRoles = false;
 
         // Clear child filter
@@ -598,14 +597,14 @@ export class WidgetNavigatorComponent {
 
             // Set the data, some unique
             this.childDataAll = this.distinctChildrenNodes();
-            this.relationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
+            this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
 
             // Set title, etc
             this.graphTitle = this.showRoles ? '*' : '';
             this.graphTitle = this.graphTitle + this.selectedRelationship + ' for '
                 + this.selectedParentNode;
-            if (this.filterChildFieldName != '') {
-                this.graphTitle = this.graphTitle + ', filtered on ' + this.filterChildFieldName;
+            if (this.ngChildNodeFilterSelectedFieldName != '') {
+                this.graphTitle = this.graphTitle + ', filtered on ' + this.ngChildNodeFilterSelectedFieldName;
             };
 
             // Reduce visible list
@@ -631,7 +630,7 @@ export class WidgetNavigatorComponent {
                     });
                 };
             } else {
-                console.log('xx 6', this.childDataAll, this.relationshipRoles)
+                console.log('xx 6', this.childDataAll, this.ngRelationshipRoles)
                 // Parent
                 this.graphData.push(
                     {
@@ -642,12 +641,12 @@ export class WidgetNavigatorComponent {
                 // Offset
                 let offset: number = 2;
 
-                for (var roleID = 0; roleID < this.relationshipRoles.length; roleID++) {
+                for (var roleID = 0; roleID < this.ngRelationshipRoles.length; roleID++) {
                     let parentRoleID = offset;
                     this.graphData.push(
                         {
                             "id": parentRoleID,
-                            "name": this.relationshipRoles[roleID],
+                            "name": this.ngRelationshipRoles[roleID],
                             parent: 1
                         });
 
@@ -656,13 +655,13 @@ export class WidgetNavigatorComponent {
                         .filter(nr => nr.leftNodeType === this.selectedParentNodeType
                             && nr.leftNodeName === this.selectedParentNode
                             && nr.relationshipLeftToRight === this.selectedRelationship
-                            && nr.relationshipProperty === this.relationshipRoles[roleID])
+                            && nr.relationshipProperty === this.ngRelationshipRoles[roleID])
                         .map(y => y.rightNodeName);
                     let rightChildrenFilteredRole: string[] = this.networkRelationships
                         .filter(nr => nr.rightNodeType === this.selectedParentNodeType
                             && nr.rightNodeName === this.selectedParentNode
                             && nr.relationshipRightToLeft === this.selectedRelationship
-                            && nr.relationshipProperty === this.relationshipRoles[roleID])
+                            && nr.relationshipProperty === this.ngRelationshipRoles[roleID])
                         .map(y => y.rightNodeName);
                     let childrenFilteredRole: string[] = leftChildrenFilteredRole
                         .concat(rightChildrenFilteredRole);
@@ -881,21 +880,23 @@ export class WidgetNavigatorComponent {
 
         // Render in DOM
         let view = new View(parse(this.specification));
+
+        // JS trick to reference outside scope from inside that callback
         var that = this;
         view.addEventListener('click', function (event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             let childNodeClicked: string = datumClick.name;
-
+            console.log('XX CLICKED ')
             // this.selectedParentNodeType = this.selectedParentNodeType.bind(this);
 
             // Find Child in list of visible children
-            let childClickedIndex: number = this.childDataVisible.findIndex(
+            let childClickedIndex: number = that.childDataVisible.findIndex(
                 cdv => cdv.childNode === childNodeClicked);
-            console.log('XX CLICKED showGraph', childClickedIndex, datumClick.name, childNodeClicked, this.selectedParentNodeType, this.childDataVisible);
+            console.log('XX CLICKED showGraph', childClickedIndex, datumClick.name, childNodeClicked, that.selectedParentNodeType, that.childDataVisible);
 
             if (childClickedIndex >= 0) {
-                let childNodeTypeClick: string = this.childDataVisible[childClickedIndex].childNodeType;
+                let childNodeTypeClick: string = that.childDataVisible[childClickedIndex].childNodeType;
                 console.log('xx childClicked', childNodeTypeClick)
                 that.selectedParentNodeType = childNodeTypeClick;
                 that.selectedParentNode = childNodeClicked;
