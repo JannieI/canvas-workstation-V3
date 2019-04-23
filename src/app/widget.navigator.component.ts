@@ -894,8 +894,13 @@ export class WidgetNavigatorComponent {
                 that.selectedParentNodeType = childNodeClicked;
                 that.selectedParentNode = '';
                 that.selectedRelationship =  '';
+                let ev: any = {
+                    target: {
+                        value: childNodeClicked
+                    }
+                };
 
-                that.changeParentNodeType(childNodeClicked);
+                that.changeParentNodeType(ev);
             } else {
                 // Find Child in list of visible children
                 let childClickedIndex: number = that.networkProperties.findIndex(
