@@ -1343,10 +1343,16 @@ export class WidgetNavigatorComponent {
 
         // Filter correct Col
         let leftNodeTypes: string[] = this.networkRelationships
-            .filter(nr => nr.leftNodeType == selectedParentNodeType)
+            .filter(nr => (nr.leftNodeType == selectedParentNodeType)
+                           ||
+                           selectedParentNodeType === 'All'
+                   )
             .map(nr => nr.leftNodeName);
         let rightNodeTypes: string[] = this.networkRelationships
-            .filter(nr => nr.rightNodeType == selectedParentNodeType)
+            .filter(nr => (nr.rightNodeType == selectedParentNodeType)
+                           ||
+                           selectedParentNodeType === 'All'
+                   )
             .map(nr => nr.rightNodeName);
         let nodesPerNodeType = Array.from(new Set(leftNodeTypes.concat(rightNodeTypes)));
 
@@ -1505,7 +1511,7 @@ export class WidgetNavigatorComponent {
 
         let returnNodeName: string = nodeName;
         if (this.selectedAdditonalProperty != '') {
-            console.log('xx hier')
+
             let nodePropertyIndex: number = this.networkProperties
                 .findIndex(np => np.nodeName == nodeName
                            &&
@@ -1517,7 +1523,7 @@ export class WidgetNavigatorComponent {
                     + this.networkProperties[nodePropertyIndex].propertyValue + ')';
             };
         };
-        console.log('xx returnNodeName', this.networkProperties, this.selectedAdditonalProperty, nodeName, returnNodeName)
+
         // Return
         return returnNodeName;
     }
