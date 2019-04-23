@@ -131,7 +131,7 @@ export class WidgetNavigatorComponent {
     // Graph dimensions
     graphHeight: number = 400;          // TODO - fill this into Spec
     graphWidth: number = 400;           // TODO - fill this into Spec
-    graphLevels: number = 1;            // Nr of levels in the graph (1 level = Parent-Relationship-Child)
+    graphLevels: number = 2;            // Nr of levels in the graph (1 level = Parent-Relationship-Child)
     graphLevelsMax: number = 10;        // Max Nr of levels allowed per graph
 
     // Form layout and elements
@@ -888,20 +888,18 @@ export class WidgetNavigatorComponent {
             let childNodeClicked: string = datumClick.name;
 
             // this.selectedParentNodeType = this.selectedParentNodeType.bind(this);
-            that.visibleNumberChildren = 99;
-            console.log('xx that.visibleNumberChildren', that.visibleNumberChildren)
-            console.log('XX CLICKED showGraph', datumClick.name, childNodeClicked, this.selectedParentNodeType, this.childDataVisible);
 
             // Find Child in list of visible children
-            let childClicked: number = this.childDataVisible.findIndex(
+            let childClickedIndex: number = this.childDataVisible.findIndex(
                 cdv => cdv.childNode === childNodeClicked);
+            console.log('XX CLICKED showGraph', childClickedIndex, datumClick.name, childNodeClicked, this.selectedParentNodeType, this.childDataVisible);
 
-            if (childClicked >= 0) {
-                let childNodeTypeClick: string = this.childDataVisible[childClicked].childNodeType;
+            if (childClickedIndex >= 0) {
+                let childNodeTypeClick: string = this.childDataVisible[childClickedIndex].childNodeType;
                 console.log('xx childClicked', childNodeTypeClick)
-                this.selectedParentNodeType = childNodeTypeClick;
-                this.selectedParentNode = childNodeClicked;
-                this.selectedRelationship = 'All';
+                that.selectedParentNodeType = childNodeTypeClick;
+                that.selectedParentNode = childNodeClicked;
+                that.selectedRelationship = 'All';
             };
         });
 
