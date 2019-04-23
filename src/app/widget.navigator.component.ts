@@ -883,26 +883,29 @@ export class WidgetNavigatorComponent {
 
             // TODO - is it safe to use a ( ?
             if (childNodeClicked.indexOf('(') >= 0) {
-                childNodeClicked = childNodeClicked.slice(childNodeClicked.indexOf('(') - 1);
+                childNodeClicked = childNodeClicked.slice(0, childNodeClicked.indexOf('(') - 1);
             };
-            
+
             console.log('XX CLICKED ', childNodeClicked)
             // this.selectedParentNodeType = this.selectedParentNodeType.bind(this);
 
             // Network Summary -> Fill Node Type
             if (this.selectedView = 'SummaryView') {
-                that.selectedParentNodeType = 'childNodeClicked';
+                that.selectedParentNodeType = childNodeClicked;
                 that.selectedParentNode = '';
                 that.selectedRelationship =  '';
+
+                that.changeParentNodeType(childNodeClicked);
             } else {
                 // Find Child in list of visible children
-                let childClickedIndex: number = that.childDataVisible.findIndex(
-                    cdv => cdv.childNode === childNodeClicked);
+                let childClickedIndex: number = that.networkProperties.findIndex(
+                    np => np.nodeName === childNodeClicked);
                 // console.log('XX CLICKED showGraph', childClickedIndex, datumClick.name, childNodeClicked, that.selectedParentNodeType, that.childDataVisible);
 
                 if (childClickedIndex >= 0) {
-                    let childNodeTypeClick: string = that.childDataVisible[childClickedIndex].childNodeType;
-                    console.log('xx childClicked', childNodeTypeClick)
+                    let childNodeTypeClick: string = that.networkProperties[childClickedIndex]
+                        .nodeType;
+                    console.log('xx childClicked', childNodeTypeClick, childNodeClicked)
                     that.selectedParentNodeType = childNodeTypeClick;
                     that.selectedParentNode = childNodeClicked;
                     that.selectedRelationship = '';
