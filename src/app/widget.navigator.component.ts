@@ -943,6 +943,12 @@ export class WidgetNavigatorComponent {
 
             };
         });
+        view.addEventListener('mouseover', function (event, item) {
+            // Needs separate object, else item.datum.text is sometimes undefined.
+            console.log('xx MOUSEover !!')
+            let datumClick: any = item.datum;
+            let childNodeClicked: string = datumClick.name;
+        });
 
         view.renderer('svg')
             .initialize(this.dragWidget.nativeElement)
