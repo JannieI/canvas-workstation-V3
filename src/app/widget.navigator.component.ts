@@ -363,7 +363,7 @@ export class WidgetNavigatorComponent {
 
                         // Fill ParentNode type Dropdown
                         this.ngDropdownParentNodeTypes = this.distinctNodeTypes();
-                        this.ngDropdownParentNodeTypes = ['All', ...this.ngDropdownParentNodeTypes];
+                        this.ngDropdownParentNodeTypes = ['', ...this.ngDropdownParentNodeTypes];
 
                         this.selectedNetworkPropertiesID = this.ngNetworks[index].subDatasources[1];
                         this.globalVariableService.getData(
@@ -462,6 +462,7 @@ export class WidgetNavigatorComponent {
         // Set selected Nodes
         this.selectedParentNodeType = ev.target.value;
 
+        
         // Fill Dropdowns
         this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
@@ -1343,16 +1344,10 @@ export class WidgetNavigatorComponent {
 
         // Filter correct Col
         let leftNodeTypes: string[] = this.networkRelationships
-            .filter(nr => (nr.leftNodeType == selectedParentNodeType)
-                           ||
-                           selectedParentNodeType === 'All'
-                   )
+            .filter(nr => nr.leftNodeType == selectedParentNodeType)
             .map(nr => nr.leftNodeName);
         let rightNodeTypes: string[] = this.networkRelationships
-            .filter(nr => (nr.rightNodeType == selectedParentNodeType)
-                           ||
-                           selectedParentNodeType === 'All'
-                   )
+            .filter(nr => nr.rightNodeType == selectedParentNodeType)
             .map(nr => nr.rightNodeName);
         let nodesPerNodeType = Array.from(new Set(leftNodeTypes.concat(rightNodeTypes)));
 
