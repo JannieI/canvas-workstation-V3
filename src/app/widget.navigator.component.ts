@@ -97,7 +97,6 @@ export class WidgetNavigatorComponent {
     ngParentNodeFilterSelectedValue: string = '';       // Parent Node Filter
     parentNodesFilteredList: string[] = [];             // List of Nodes, after filtered on NodeProperties
 
-    ngRelationshipFilterDropdown: string[] = [];        // Dropdown: Relationships Filter
     ngRelationshipFilterSelectedFieldName: string = ''; // Relationship Filter
     ngRelationshipFilterSelectedOperator: string = '';  // Relationship Filter
     ngRelationshipFilterSelectedValue: string = '';     // Relationship Filter
@@ -1489,7 +1488,6 @@ export class WidgetNavigatorComponent {
         // Clear the Relationship Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickRelationshipFilterClear', '@Start');
 
-        this.ngRelationshipFilterDropdown = [];
         this.ngRelationshipFilterSelectedFieldName = '';
         this.ngRelationshipFilterSelectedOperator = '';
         this.ngRelationshipFilterSelectedValue = '';
@@ -1527,11 +1525,6 @@ export class WidgetNavigatorComponent {
 
         // Make unique
         this.relationshipsFilteredList = Array.from(new Set(this.relationshipsFilteredList));
-
-        // Filter Parent Nodes
-        this.ngRelationshipFilterDropdown = this.ngRelationshipFilterDropdown
-            .filter(pn => this.relationshipsFilteredList.indexOf(pn) >= 0
-            );
 
     }
 

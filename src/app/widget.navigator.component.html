@@ -43,7 +43,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             <clr-icon shape="filter"
                 size="12"
                 style="color: blue; margin-top: -4px;"
-                title="Filter the specific parent nodes, to show less"
+                title="Filter the specific parent nodes to show less in the dropdown"
                 clrSignpostTrigger
                 >
             </clr-icon>
@@ -210,6 +210,7 @@ dimensions are set in app.html, and cannot be changed here. -->
         <clr-signpost style="width: 400;">
             <clr-icon shape="filter"
                 style="color: blue; margin-top: -4px;"
+                title="Filter the relationships to show less in the dropdown"
                 size="12"
                 clrSignpostTrigger
                 >
@@ -224,8 +225,10 @@ dimensions are set in app.html, and cannot be changed here. -->
                     This filter will stay active until 1. it is changed here, or 2. the 
                     selected parent node type is changed is changed.
                 </p>
+
+
                 <div class="graphAreaChildFilterFieldTitle">
-                    Field:
+                    Relationship Role:
                     <select id="selects_3"
                         [(ngModel)]="ngRelationshipFilterSelectedFieldName"
                         name="ngRelationshipFilterSelectedFieldName"
