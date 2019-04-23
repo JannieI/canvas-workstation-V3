@@ -207,7 +207,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             </select>
         </div>
 
-        <clr-signpost style="width: 400;">
+        <clr-signpost style="width: 400;" *ngIf="selectedRelationship">
             <clr-icon shape="filter"
                 style="color: blue; margin-top: -4px;"
                 title="Filter the relationships to show less in the dropdown"

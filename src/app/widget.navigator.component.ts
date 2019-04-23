@@ -96,7 +96,7 @@ export class WidgetNavigatorComponent {
     ngParentNodeFilterSelectedValue: string = '';       // Parent Node Filter
     parentNodesFilteredList: string[] = [];             // List of Nodes, after filtered on NodeProperties
 
-    ngSelectedRelationshipFilterRole: string = '';              // Relationship Role Filter
+    ngSelectedRelationshipFilterRole: string = '';      // Relationship Role Filter
     relationshipsFilteredList: string[] = [];           // List of Relationships, after filtered on NodeProperties
 
     ngChildNodeFilterDropdown: string[] = [];           // Dropdown: Child Nodes Filter
@@ -1233,6 +1233,16 @@ export class WidgetNavigatorComponent {
                             )
                             &&
                             nr.relationshipLeftToRight === this.selectedRelationship
+                            &&
+                            (
+                                this.selectedRelationship === ''
+                                ||
+                                (
+                                    this.selectedRelationship != ''
+                                    &&
+                                    nr.relationshipProperty === this.selectedRelationship
+                                )
+                            )
                            )
             )
             .filter(nr => nr.rightNodeName != '')
@@ -1253,7 +1263,17 @@ export class WidgetNavigatorComponent {
                             )
                             &&
                             nr.relationshipRightToLeft === this.selectedRelationship
+                            &&
+                            (
+                                this.selectedRelationship === ''
+                                ||
+                                (
+                                    this.selectedRelationship != ''
+                                    &&
+                                    nr.relationshipProperty === this.selectedRelationship
+                                )
                             )
+                           )
             )
             .filter(nr => nr.leftNodeName != '')
             .map(nr => nr.leftNodeName);
@@ -1518,7 +1538,7 @@ export class WidgetNavigatorComponent {
             .map(nr => nr.relationshipRightToLeft);
         this.relationshipsFilteredList = lefRelationshipsFilteredList
             .concat(rightRelationshipsFilteredList);
-            
+
         // Make unique
         this.relationshipsFilteredList = Array.from(new Set(this.relationshipsFilteredList));
 
