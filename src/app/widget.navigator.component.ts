@@ -890,7 +890,8 @@ export class WidgetNavigatorComponent {
             // this.selectedParentNodeType = this.selectedParentNodeType.bind(this);
 
             // Network Summary -> Fill Node Type
-            if (that.selectedView = 'SummaryView') {
+            if (that.selectedView === 'SummaryView') {
+                console.log('xx summ View')
                 that.selectedParentNodeType = childNodeClicked;
                 that.selectedParentNode = '';
                 that.selectedRelationship =  '';
@@ -925,6 +926,19 @@ export class WidgetNavigatorComponent {
                     that.selectedParentNodeType = childClickedNodeType;
                     that.selectedParentNode = childNodeClicked;
                     that.selectedRelationship = '';
+                    let evNT: any = {
+                        target: {
+                            value: childClickedNodeType
+                        }
+                    };
+                    that.changeParentNodeType(evNT);
+
+                    let evN: any = {
+                        target: {
+                            value: childNodeClicked
+                        }
+                    };
+                    that.changeParentNode(evN);
                 };
 
             };
