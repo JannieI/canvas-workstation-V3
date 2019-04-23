@@ -116,7 +116,6 @@ export class WidgetNavigatorComponent {
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
     childFilterErrorMessage: string = '';
-    filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
     filterID: number = -1;
     firstAdjacencyCellRowNr: number = -1;
     parentFilterErrorMessage: string = '';
@@ -1266,8 +1265,8 @@ export class WidgetNavigatorComponent {
         let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
 
         // Filter if a Child filter is active
-        if (this.filteredChildNodes.length > 0) {
-                nodeChildren = nodeChildren.filter(c => this.filteredChildNodes.indexOf(c) >= 0);
+        if (this.childNodesFilteredList.length > 0) {
+                nodeChildren = nodeChildren.filter(c => this.childNodesFilteredList.indexOf(c) >= 0);
         };
 
         // Make sure it is unique, non-null list
