@@ -841,7 +841,7 @@ export class WidgetNavigatorComponent {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphDistanceView', '@Start');
         this.nav2WalkInPath(null, "y", "rel", 0, [])
-    
+
     }
 
     createGraphNodeTypeView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
@@ -880,20 +880,34 @@ export class WidgetNavigatorComponent {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             let childNodeClicked: string = datumClick.name;
-            console.log('XX CLICKED ')
+
+            // TODO - is it safe to use a ( ?
+            if (childNodeClicked.indexOf('(') >= 0) {
+                childNodeClicked = childNodeClicked.slice(childNodeClicked.indexOf('(') - 1);
+            };
+            
+            console.log('XX CLICKED ', childNodeClicked)
             // this.selectedParentNodeType = this.selectedParentNodeType.bind(this);
 
-            // Find Child in list of visible children
-            let childClickedIndex: number = that.childDataVisible.findIndex(
-                cdv => cdv.childNode === childNodeClicked);
-            console.log('XX CLICKED showGraph', childClickedIndex, datumClick.name, childNodeClicked, that.selectedParentNodeType, that.childDataVisible);
+            // Network Summary -> Fill Node Type
+            if (this.selectedView = 'SummaryView') {
+                that.selectedParentNodeType = 'childNodeClicked';
+                that.selectedParentNode = '';
+                that.selectedRelationship =  '';
+            } else {
+                // Find Child in list of visible children
+                let childClickedIndex: number = that.childDataVisible.findIndex(
+                    cdv => cdv.childNode === childNodeClicked);
+                // console.log('XX CLICKED showGraph', childClickedIndex, datumClick.name, childNodeClicked, that.selectedParentNodeType, that.childDataVisible);
 
-            if (childClickedIndex >= 0) {
-                let childNodeTypeClick: string = that.childDataVisible[childClickedIndex].childNodeType;
-                console.log('xx childClicked', childNodeTypeClick)
-                that.selectedParentNodeType = childNodeTypeClick;
-                that.selectedParentNode = childNodeClicked;
-                that.selectedRelationship = 'All';
+                if (childClickedIndex >= 0) {
+                    let childNodeTypeClick: string = that.childDataVisible[childClickedIndex].childNodeType;
+                    console.log('xx childClicked', childNodeTypeClick)
+                    that.selectedParentNodeType = childNodeTypeClick;
+                    that.selectedParentNode = childNodeClicked;
+                    that.selectedRelationship = '';
+                };
+
             };
         });
 
