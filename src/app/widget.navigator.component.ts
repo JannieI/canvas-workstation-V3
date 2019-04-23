@@ -132,6 +132,7 @@ export class WidgetNavigatorComponent {
     graphHeight: number = 400;          // TODO - fill this into Spec
     graphWidth: number = 400;           // TODO - fill this into Spec
     graphLevels: number = 1;            // Nr of levels in the graph (1 level = Parent-Relationship-Child)
+    graphLevelsMax: number = 10;        // Max Nr of levels allowed per graph
 
     // Form layout and elements
     graphNotes: string = 'Optional Additional information';
@@ -880,13 +881,15 @@ export class WidgetNavigatorComponent {
 
         // Render in DOM
         let view = new View(parse(this.specification));
+        var that = this;
         view.addEventListener('click', function (event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             let childNodeClicked: string = datumClick.name;
 
             // this.selectedParentNodeType = this.selectedParentNodeType.bind(this);
-
+            that.visibleNumberChildren = 99;
+            console.log('xx that.visibleNumberChildren', that.visibleNumberChildren)
             console.log('XX CLICKED showGraph', datumClick.name, childNodeClicked, this.selectedParentNodeType, this.childDataVisible);
 
             // Find Child in list of visible children

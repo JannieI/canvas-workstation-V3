@@ -292,10 +292,10 @@ dimensions are set in app.html, and cannot be changed here. -->
             </div>
             <div class="graphNavigatorBarDivider">
             </div>
-            <div class="graphNavigatorBar" *ngIf="graphLevels>1">
+            <div class="graphNavigatorBar">
                     
                 <!-- Navigation - nr children shown and jumping -->
-                <span style="float: right;">
+                <span style="float: right;" *ngIf="graphLevels>1">
                     <span>
                         <clr-icon *ngIf="isViewsDisabled"
                             shape="step-forward down"
