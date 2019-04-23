@@ -129,8 +129,9 @@ export class WidgetNavigatorComponent {
     visibleNumberChildren: number = 12;
 
     // Graph dimensions
-    graphHeight: number = 400;        // TODO - fill this into Spec
-    graphWidth: number = 400;         // TODO - fill this into Spec
+    graphHeight: number = 400;          // TODO - fill this into Spec
+    graphWidth: number = 400;           // TODO - fill this into Spec
+    graphLevels: number = 1;            // Nr of levels in the graph (1 level = Parent-Relationship-Child)
 
     // Form layout and elements
     graphNotes: string = 'Optional Additional information';
@@ -846,8 +847,6 @@ export class WidgetNavigatorComponent {
     createGraphDistanceView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphDistanceView', '@Start');
-
-        // TODO - with real data
         this.nav2WalkInPath(null, "y", "rel", 0, [])
     
     }

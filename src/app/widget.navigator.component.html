@@ -292,7 +292,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             </div>
             <div class="graphNavigatorBarDivider">
             </div>
-            <div class="graphNavigatorBar">
+            <div class="graphNavigatorBar" *ngIf="graphLevels>1">
                     
                 <!-- Navigation - nr children shown and jumping -->
                 <span style="float: right;">
@@ -324,7 +324,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                     <span style="cursor: pointer; font-size: 0.45rem;"
                         title="Total number of children; can be changed on the bar menu"
                         >
-                        / {{ childDataAll.length }}
+                        from {{ childDataAll.length }}
                     </span>
                     <span>
                         <clr-icon *ngIf="isViewsDisabled"
