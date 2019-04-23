@@ -903,15 +903,26 @@ export class WidgetNavigatorComponent {
                 that.changeParentNodeType(ev);
             } else {
                 // Find Child in list of visible children
-                let childClickedIndex: number = that.networkProperties.findIndex(
-                    np => np.nodeName === childNodeClicked);
-                // console.log('XX CLICKED showGraph', childClickedIndex, datumClick.name, childNodeClicked, that.selectedParentNodeType, that.childDataVisible);
-
+                let childClickedNodeType: string = '';
+                let childClickedIndex: number = that.networkRelationships.findIndex(
+                    nr => nr.leftNodeName === childNodeClicked
+                );
                 if (childClickedIndex >= 0) {
-                    let childNodeTypeClick: string = that.networkProperties[childClickedIndex]
-                        .nodeType;
-                    console.log('xx childClicked', childNodeTypeClick, childNodeClicked)
-                    that.selectedParentNodeType = childNodeTypeClick;
+                    childClickedNodeType = that.networkRelationships[childClickedIndex]
+                        .leftNodeType;
+                } else {
+                    childClickedIndex = that.networkRelationships.findIndex(
+                        nr => nr.rightNodeName === childNodeClicked
+                    );
+                    if (childClickedIndex >= 0) {
+                        childClickedNodeType = that.networkRelationships[childClickedIndex]
+                            .rightNodeType;
+                    };
+                };
+                console.log('xx childClicked', childClickedNodeType, childNodeClicked)
+
+                if (childClickedNodeType != '') {
+                    that.selectedParentNodeType = childClickedNodeType;
                     that.selectedParentNode = childNodeClicked;
                     that.selectedRelationship = '';
                 };
