@@ -462,7 +462,10 @@ export class WidgetNavigatorComponent {
         // Set selected Nodes
         this.selectedParentNodeType = ev.target.value;
 
-        
+        if (this.selectedParentNodeType === '') {
+            return;
+        };
+
         // Fill Dropdowns
         this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
@@ -1419,7 +1422,15 @@ export class WidgetNavigatorComponent {
             .filter(nr => (
                             nr.leftNodeType === this.selectedParentNodeType
                             &&
-                            nr.leftNodeName === this.selectedParentNode
+                            (
+                                this.selectedParentNode == 'All'
+                                ||
+                                (
+                                    this.selectedParentNode != 'All'
+                                    &&
+                                    nr.leftNodeName === this.selectedParentNode
+                                )
+                            )
                             &&
                             nr.relationshipLeftToRight === this.selectedRelationship
                            )
@@ -1431,7 +1442,15 @@ export class WidgetNavigatorComponent {
             .filter(nr => (
                             nr.rightNodeType === this.selectedParentNodeType
                             &&
-                            nr.rightNodeName === this.selectedParentNode
+                            (
+                                this.selectedParentNode == 'All'
+                                ||
+                                (
+                                    this.selectedParentNode != 'All'
+                                    &&
+                                    nr.rightNodeName === this.selectedParentNode
+                                )
+                            )
                             &&
                             nr.relationshipRightToLeft === this.selectedRelationship
                             )
