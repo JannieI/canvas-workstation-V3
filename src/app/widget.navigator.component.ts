@@ -117,7 +117,6 @@ export class WidgetNavigatorComponent {
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
     childFilterErrorMessage: string = '';
     filteredChildNodes: string[] = [];                  // List of Node, after filtered on NodeProperties
-    filterChildOperator: string = '';
     filterChildValue: string = '';
     filterID: number = -1;
     firstAdjacencyCellRowNr: number = -1;
