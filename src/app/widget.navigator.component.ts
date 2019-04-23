@@ -98,7 +98,6 @@ export class WidgetNavigatorComponent {
     parentNodesFilteredList: string[] = [];             // List of Nodes, after filtered on NodeProperties
 
     ngRelationshipFilterSelectedFieldName: string = ''; // Relationship Filter
-    ngRelationshipFilterSelectedOperator: string = '';  // Relationship Filter
     ngRelationshipFilterSelectedValue: string = '';     // Relationship Filter
     relationshipsFilteredList: string[] = [];           // List of Relationships, after filtered on NodeProperties
 
@@ -1489,7 +1488,6 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickRelationshipFilterClear', '@Start');
 
         this.ngRelationshipFilterSelectedFieldName = '';
-        this.ngRelationshipFilterSelectedOperator = '';
         this.ngRelationshipFilterSelectedValue = '';
         this.relationshipsFilteredList = [];
     }
@@ -1504,10 +1502,6 @@ export class WidgetNavigatorComponent {
         // Validation
         if (this.ngRelationshipFilterSelectedFieldName === '') {
             this.relationshipFilterErrorMessage = 'The field name is compulsory';
-            return;
-        };
-        if (this.ngRelationshipFilterSelectedOperator) {
-            this.relationshipFilterErrorMessage = 'The operator is compulsory';
             return;
         };
         if (this.ngRelationshipFilterSelectedValue) {

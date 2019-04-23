@@ -248,12 +248,6 @@
             .graphAreaChildFilterFieldTitle {
                 text-align: left;
             }
-            .graphAreaChildFilterOperatorTitle {
-                text-align: left;
-            }
-            .graphAreaChildFilterValueTitle {
-                text-align: left;
-            }
             .graphAreaChildFilterErrorMessage {
                 color: red;
                 text-align: left;
