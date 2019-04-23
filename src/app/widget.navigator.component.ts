@@ -886,11 +886,11 @@ export class WidgetNavigatorComponent {
                 childNodeClicked = childNodeClicked.slice(0, childNodeClicked.indexOf('(') - 1);
             };
 
-            console.log('XX CLICKED ', childNodeClicked)
+            console.log('XX CLICKED ', childNodeClicked, that.selectedView)
             // this.selectedParentNodeType = this.selectedParentNodeType.bind(this);
 
             // Network Summary -> Fill Node Type
-            if (this.selectedView = 'SummaryView') {
+            if (that.selectedView = 'SummaryView') {
                 that.selectedParentNodeType = childNodeClicked;
                 that.selectedParentNode = '';
                 that.selectedRelationship =  '';
@@ -928,16 +928,6 @@ export class WidgetNavigatorComponent {
                 };
 
             };
-        });
-
-        // TODO - experimental: this automatically invokes 2 CLICK events as well ...
-        view.addEventListener('dblclick', function (event, item) {
-            // Needs separate object, else item.datum.text is sometimes undefined.
-            let datumClick: any = item.datum;
-            console.log('DBLCLICK', item, item.datum.text, datumClick.name);
-            this.selectedParentNodeType = 'Person';
-            this.selectedParentNode = 'Koos';
-            this.selectedRelationship = 'Director-Of';
         });
 
         view.renderer('svg')
