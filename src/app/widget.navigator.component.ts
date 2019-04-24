@@ -969,103 +969,151 @@ export class WidgetNavigatorComponent {
         parentNodeName: string, 
         relationships: string[], 
         isBreakOnRelationship: boolean = false, 
-        isBreakOnRole: boolean = false
+        isBreakOnRole: boolean = false,
+        startID: number = 1
         ) {
         // Creates the graphData for a Unit: parent - relationship(s) - children (1 level deep)
         // This can be called multiple times from calling routines
         // Input:
-        //  parentNodeName - single parent NodeName
+        //  parentNodeName - SINGLE parent NodeName
         //  relationships - array of relationships, can be 1, some or 'All'
         //  isBreakOnRelationship - add a level per relationship, ie Absa - directors - children
         //     Absa - shareholders - children, etc
         //  isBreakOnRole - break EACH relationship on roles (if there are any), ie
         //     Absa - Executive - children, Absa Non-Executive - children (if relationship = Director)
-
+        //  startID - id in graphData where parent starts (the rest of the rest has this as their parent)
         this.globalFunctionService.printToConsole(this.constructor.name, 'constructGraphDataForUnit', '@Start');
     
-
-        // Set the data, some unique
-        this.childDataAll = this.distinctChildrenNodes(
-            this.selectedParentNodeType, 
-            this.selectedParentNode, 
-            [this.selectedRelationship],
-            this.ngSelectedRelationshipFilterRole
-        );
-        this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
-
-        // Reduce visible list
-        this.childDataVisible = this.childDataAll.slice(0, this.visibleNumberChildren);
-
-        // Format the graphData
+        // Reset the data which will now be created
         this.graphData = [];
-        if (!this.showRoles) {
 
-            // Parent
-            this.graphData.push(
-                {
-                    "id": 1,
-                    "name": this.constructNodeName(this.selectedParentNode)
-                });
+        // Add Parent
+        this.graphData.push(
+            {
+                "id": startID,
+                "name": this.constructNodeName(this.selectedParentNode)
+            });
+        
+TODO - distinctChildrenNodes Remove selectedParentNodeType ?
+TODO - distinctChildrenNodes Make electedRelationshipFilterRole ~ 'All', not '' if not filtered
 
-            // Children
-            for (var i = 0; i < this.childDataVisible.length; i++) {
+// There are 4 scenarios, each one creating a different amount of sub-levels
+        // parent - children
+        if (!isBreakOnRelationship  &&  !isBreakOnRole) {
+            this.childDataAll = this.distinctChildrenNodes(
+                '...', 
+                parentNodeName, 
+                [this.selectedRelationship],
+                'All'
+            );
+
+            // Get visible children
+            this.childDataVisible = this.childDataAll.splice(0, this.visibleNumberChildren)
+
+            // Add Children
+            let childCnt: number = 0;
+            this.childDataVisible.forEach(child => {
+
+                // Increment
+                childCnt = childCnt + 1;
+
+                // Add
                 this.graphData.push({
-                    id: i + 2,
-                    name: this.constructNodeName(this.childDataVisible[i]),
-                    parent: 1
+                    id: startID + childCnt,
+                    name: this.constructNodeName(child),
+                    parent: startID
                 });
-            };
-        } else {
-            console.log('xx 6', this.childDataAll, this.ngRelationshipRoles)
-            // Parent
-            this.graphData.push(
-                {
-                    "id": 1,
-                    "name": this.constructNodeName(this.selectedParentNode)
-                });
-
-            // Offset
-            let offset: number = 2;
-
-            for (var roleID = 0; roleID < this.ngRelationshipRoles.length; roleID++) {
-                let parentRoleID = offset;
-                this.graphData.push(
-                    {
-                        "id": parentRoleID,
-                        "name": this.ngRelationshipRoles[roleID],
-                        parent: 1
-                    });
-
-                // Get list of Children for this role
-                let leftChildrenFilteredRole: string[] = this.networkRelationships
-                    .filter(nr => nr.leftNodeType === this.selectedParentNodeType
-                        && nr.leftNodeName === this.selectedParentNode
-                        && nr.relationshipLeftToRight === this.selectedRelationship
-                        && nr.relationshipProperty === this.ngRelationshipRoles[roleID])
-                    .map(y => y.rightNodeName);
-                let rightChildrenFilteredRole: string[] = this.networkRelationships
-                    .filter(nr => nr.rightNodeType === this.selectedParentNodeType
-                        && nr.rightNodeName === this.selectedParentNode
-                        && nr.relationshipRightToLeft === this.selectedRelationship
-                        && nr.relationshipProperty === this.ngRelationshipRoles[roleID])
-                    .map(y => y.rightNodeName);
-                let childrenFilteredRole: string[] = leftChildrenFilteredRole
-                    .concat(rightChildrenFilteredRole);
-
-                // Increment with 1, which was added above
-                offset = offset + 1;
-                for (var childID = 0; childID < childrenFilteredRole.length; childID++) {
-                    this.graphData.push(
-                        {
-                            "id": childID + offset,
-                            "name": this.constructNodeName(childrenFilteredRole[childID]),
-                            parent: parentRoleID
-                        });
-                };
-                offset = offset + childrenFilteredRole.length;
-            };
-            console.log('xx 6.5', this.graphData)
+            });
+            
         };
+
+        // parent - roles - children
+        if (!isBreakOnRelationship  &&  isBreakOnRole) {
+            let relationshipRoles: string[] = this.distinctRelationshipRoles(this.selectedRelationship);
+            
+            // Reduce amount shown
+            relationshipRoles = relationshipRoles.splice(0, this.visibleNumberChildren);
+
+            let roleCnt: number = 0;
+
+            relationshipRoles.forEach(role => {
+
+                // Increment
+                roleCnt = roleCnt + 1;
+
+                // Add Role
+                this.graphData.push({
+                    id: startID + roleCnt,
+                    name: this.constructNodeName(role),
+                    parent: startID
+                });
+
+                // Get children for parent - role
+                this.childDataAll = this.distinctChildrenNodes(
+                    '...', 
+                    parentNodeName, 
+                    relationships,
+                    role
+                );
+
+                // Get visible children
+                this.childDataVisible = this.childDataAll.splice(0, this.visibleNumberChildren)
+
+                // Add Children
+                let childCnt: number = 0;
+
+                this.childDataVisible.forEach(child => {
+
+                    // Increment
+                    childCnt = childCnt + 1;
+
+                    // Add
+                    this.graphData.push({
+                        id: startID + roleCnt + childCnt,
+                        name: this.constructNodeName(child),
+                        parent: startID + roleCnt
+                    });
+                });
+            })
+    
+        };
+
+TODO - make distinctRelationships on optional nodeName as well,
+
+        // parent - relationship - children
+        if (isBreakOnRelationship  &&  !isBreakOnRole) {
+            let relationships: string[] = this.distinctRelationships(parentNodeName)
+
+            relationships.forEach(rel => {
+                this.childDataAll = this.distinctChildrenNodes(
+                    '...', 
+                    parentNodeName, 
+                    [rel],
+                    'All'
+                );
+            })
+    
+        };
+
+        // parent - relationship - roles - children
+        if (isBreakOnRelationship  &&  isBreakOnRole) {
+            let relationships: string[] = this.distinctRelationships(parentNodeName)
+            let relationshipRoles: string[] = this.distinctRelationshipRoles(this.selectedRelationship);
+            relationships.forEach(rel => {
+
+                relationshipRoles.forEach(role => {
+                    this.childDataAll = this.distinctChildrenNodes(
+                        '...', 
+                        parentNodeName, 
+                        [rel],
+                        role
+                    );
+                })
+            })    
+        };
+
+
+
 
        
     }
