@@ -590,7 +590,7 @@ export class WidgetNavigatorComponent {
             && this.selectedRelationship != '') {
 
             // Set the data, some unique
-            this.childDataAll = this.distinctChildrenNodes();
+            this.childDataAll = this.distinctChildrenNodes(this.selectedParentNodeType);
             this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
 
             // Set title, etc
@@ -982,7 +982,7 @@ export class WidgetNavigatorComponent {
     
 
         // Set the data, some unique
-        this.childDataAll = this.distinctChildrenNodes();
+        this.childDataAll = this.distinctChildrenNodes(this.selectedParentNodeType);
         this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
 
         // Set title, etc
@@ -1280,14 +1280,14 @@ export class WidgetNavigatorComponent {
         return nodeRelationships;
     }
 
-    distinctChildrenNodes(): string[] {
+    distinctChildrenNodes(selectedParentNodeType: string): string[] {
         // Return distinct array of Children for the selected Info
         this.globalFunctionService.printToConsole(this.constructor.name, 'distinctChildrenNodes', '@Start');
 
         // Fill ParentNode type Dropdown
         let leftChildren: string[] = this.networkRelationships
             .filter(nr => (
-                            nr.leftNodeType === this.selectedParentNodeType
+                            nr.leftNodeType === selectedParentNodeType
                             &&
                             (
                                 this.selectedParentNode == 'All'
@@ -1317,7 +1317,7 @@ export class WidgetNavigatorComponent {
 
         let rightChildren: string[] = this.networkRelationships
             .filter(nr => (
-                            nr.rightNodeType === this.selectedParentNodeType
+                            nr.rightNodeType === selectedParentNodeType
                             &&
                             (
                                 this.selectedParentNode == 'All'
