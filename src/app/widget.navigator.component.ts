@@ -1228,7 +1228,14 @@ export class WidgetNavigatorComponent {
                               nr.leftNodeName === selectedParentNode
                           )
             )
-            .filter(nr => nr.relationshipLeftToRight === this.selectedRelationship)
+            .filter(nr => ( 
+                            selectRelationships.length == 1
+                            &&
+                            selectRelationships[0] == 'All'
+                          )
+                          ||
+                          selectRelationships.indexOf(nr.relationshipLeftToRight) >= 0
+            )
             .filter(nr => selectedRelationshipFilterRole === ''
                           ||
                           (
@@ -1250,7 +1257,14 @@ export class WidgetNavigatorComponent {
                               nr.rightNodeName === selectedParentNode
                           )
             )
-            .filter(nr => nr.relationshipRightToLeft === this.selectedRelationship)
+            .filter(nr => ( 
+                            selectRelationships.length == 1
+                            &&
+                            selectRelationships[0] == 'All'
+                          )
+                          ||
+                          selectRelationships.indexOf(nr.relationshipRightToLeft) >= 0
+            )
             .filter(nr => selectedRelationshipFilterRole === ''
                           ||
                           (
