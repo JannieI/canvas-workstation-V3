@@ -591,7 +591,9 @@ export class WidgetNavigatorComponent {
 
             // Set the data, some unique
             this.childDataAll = this.distinctChildrenNodes(
-                this.selectedParentNodeType, this.selectedParentNode
+                this.selectedParentNodeType, 
+                this.selectedParentNode, 
+                this.ngSelectedRelationshipFilterRole
             );
             this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
 
@@ -983,7 +985,9 @@ export class WidgetNavigatorComponent {
 
         // Set the data, some unique
         this.childDataAll = this.distinctChildrenNodes(
-            this.selectedParentNodeType, this.selectedParentNode
+            this.selectedParentNodeType, 
+            this.selectedParentNode, 
+            this.ngSelectedRelationshipFilterRole
         );
         this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
 
@@ -1204,7 +1208,8 @@ export class WidgetNavigatorComponent {
 
     distinctChildrenNodes(
         selectedParentNodeType: string, 
-        selectedParentNode: string
+        selectedParentNode: string,
+        selectedRelationshipFilterRole: string
         ): string[] {
         // Return distinct array of Children for the selected Info
         this.globalFunctionService.printToConsole(this.constructor.name, 'distinctChildrenNodes', '@Start');
@@ -1221,12 +1226,12 @@ export class WidgetNavigatorComponent {
                           )
             )
             .filter(nr => nr.relationshipLeftToRight === this.selectedRelationship)
-            .filter(nr => this.ngSelectedRelationshipFilterRole === ''
+            .filter(nr => selectedRelationshipFilterRole === ''
                           ||
                           (
-                              this.ngSelectedRelationshipFilterRole != ''
+                              selectedRelationshipFilterRole != ''
                               &&
-                              nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
+                              nr.relationshipProperty === selectedRelationshipFilterRole
                           )
                 )
             .filter(nr => nr.rightNodeName != '')
@@ -1243,12 +1248,12 @@ export class WidgetNavigatorComponent {
                           )
             )
             .filter(nr => nr.relationshipRightToLeft === this.selectedRelationship)
-            .filter(nr => this.ngSelectedRelationshipFilterRole === ''
+            .filter(nr => selectedRelationshipFilterRole === ''
                           ||
                           (
-                              this.ngSelectedRelationshipFilterRole != ''
+                              selectedRelationshipFilterRole != ''
                               &&
-                              nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
+                              nr.relationshipProperty === selectedRelationshipFilterRole
                           )
             )
             .filter(nr => nr.leftNodeName != '')
