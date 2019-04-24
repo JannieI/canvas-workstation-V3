@@ -114,7 +114,7 @@
             overflow-y: scroll; 
         }
 
-    .graphNotesUpdate {
+    .graphNotesArea {
         /* display: inline-block; */
         background-color: beige;
         border: 1px solid black;
@@ -131,6 +131,20 @@
         text-align: left;
         z-index: 102;
     }
+        .graphNotesAreaTitle {
+            font-size: 0.6rem;
+            margin-left: 12px;
+            text-align: left;
+        }
+        .graphNotesAreaClose {
+            cursor: pointer;
+            float: right;
+            margin-right: 12px;
+        }
+        .graphNotesAreaBlock {
+            border-radius: 4px;
+            overflow-y: scroll; 
+        }
 
     .helpForm {
         /* display: inline-block; */
@@ -241,7 +255,8 @@
             }
             .graphNavigatorBar {
                 color: gray;
-                margin-bottom: 6px;
+                margin-bottom: 0px;
+                margin-top: 6px;
                 text-align: left;
             }
 

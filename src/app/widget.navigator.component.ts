@@ -26,6 +26,7 @@ import { Widget } from './models'
 // Functions, 3rd Party
 import { parse } from 'vega';
 import { View } from 'vega';
+import vegaTooltip from 'vega-tooltip';
 
 const MORE_TO_FILTER: string = 'Filter for more ...';
 
@@ -945,17 +946,20 @@ export class WidgetNavigatorComponent {
         });
         view.addEventListener('mouseover', function (event, item) {
             // Needs separate object, else item.datum.text is sometimes undefined.
-            console.log('xx MOUSEover !!')
             let datumClick: any = item.datum;
-            let childNodeClicked: string = datumClick.name;
+            let childNodeOvered: string = datumClick.name;
+            console.log('xx MOUSEover !!', childNodeOvered)
         });
 
+        
+        
         view.renderer('svg')
             .initialize(this.dragWidget.nativeElement)
             .hover()
             .run()
             .finalize();
 
+        vegaTooltip(view);
     }
 
     nav2WalkInPath(

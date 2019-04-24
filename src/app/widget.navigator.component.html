@@ -711,9 +711,33 @@ dimensions are set in app.html, and cannot be changed here. -->
     </div>
 
     <!-- Graph Notes -->
-    <div class="graphNotesUpdate" *ngIf="showGraphNotes">
-        <h5>Graph Notes</h5>
-        <div style="margin: 18px;">
+    <div class="graphNotesArea" *ngIf="showGraphNotes">
+        <div class="graphNotesAreaTitle">
+            <b>
+                Graph Notes
+            </b>
+            <clr-signpost>
+                <clr-icon shape="info-circle" style="margin-top: -4px;"
+                    clrSignpostTrigger>
+                </clr-icon>
+                <clr-signpost-content *clrIfOpen
+                    [clrPosition]="'bottom-middle'">
+                    <h5 style="margin-top: 0; color:gray;">
+                        Help
+                    </h5>
+                    <p style="margin-top: 0; color:gray; text-align: left;">
+                        Additonal notes can be added to the end of the graph.
+                    </p>
+                </clr-signpost-content>
+            </clr-signpost>
+    
+            <div class="graphNotesAreaClose"
+                (click)="clickCloseGraphNotesPopup()"
+                >
+                <b>X</b>
+            </div>
+        </div>
+        <div class="graphNotesAreaBlock">
             Note:
             <input [(ngModel)]="graphNotes"
                 type="text"
@@ -721,12 +745,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                 placeholder="New Name"
                 >
         </div>
-        <div class="networkAreaClose"
-            (click)="clickCloseGraphNotesPopup()"
-            >
-            <b>X</b>
-        </div>
-
     </div>
 
     <!-- Graph Help -->
