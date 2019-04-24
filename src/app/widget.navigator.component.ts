@@ -952,8 +952,6 @@ export class WidgetNavigatorComponent {
             let childNodeOvered: string = datumClick.name;
             console.log('xx MOUSEover !!', childNodeOvered)
         });
-
-        
         
         view.renderer('svg')
             .initialize(this.dragWidget.nativeElement)
@@ -988,14 +986,6 @@ export class WidgetNavigatorComponent {
             this.selectedParentNodeType, this.selectedParentNode
         );
         this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
-
-        // Set title, etc
-        this.graphTitle = this.showRoles ? '*' : '';
-        this.graphTitle = this.graphTitle + this.selectedRelationship + ' for '
-            + this.selectedParentNode;
-        if (this.ngChildNodeFilterSelectedFieldName != '') {
-            this.graphTitle = this.graphTitle + ', filtered on ' + this.ngChildNodeFilterSelectedFieldName;
-        };
 
         // Reduce visible list
         this.childDataVisible = this.childDataAll.slice(0, this.visibleNumberChildren);
@@ -1071,78 +1061,6 @@ export class WidgetNavigatorComponent {
             console.log('xx 6.5', this.graphData)
         };
 
-        // Add to History
-        // TODO - keep ParentNodeID of selected for here
-        // TODO - cater for more than 1 Filter; Parent and Child
-        if (addToHistory
-            && this.selectedParentNodeType != ''
-            && this.selectedParentNode != ''
-            && this.selectedRelationship != '') {
-            let parentFilterFieldName: string = '';
-            let parentFilterOperator: string = '';
-            let parentFilterValue: string = '';
-            let childFilterFieldName: string = '';
-            let childFilterOperator: string = '';
-            let childFilterValue: string = '';
-            if (this.parentNodeFilter.length > 0) {
-                parentFilterFieldName = this.parentNodeFilter[0].field;
-                parentFilterOperator = this.parentNodeFilter[0].operator;
-                parentFilterValue = this.parentNodeFilter[0].value;
-
-            };
-            if (this.childNodeFilter.length > 0) {
-                childFilterFieldName = this.childNodeFilter[0].field;
-                childFilterOperator = this.childNodeFilter[0].operator;
-                childFilterValue = this.childNodeFilter[0].value;
-
-            };
-            console.log('xx 7')
-            // Deselect all history, and add a new one at the top
-            this.ngHistory.forEach(x => x.isSelected = false);
-            this.selectedHistoryID = this.ngHistory.length;
-            let historyNew: NavigatorHistory =
-            {
-                id: this.ngHistory.length,
-                text: this.graphTitle,
-                networkID: this.selectedNetworkID,
-                parentNodeID: null,
-                parentNodeType: this.selectedParentNodeType,
-                parentNode: this.selectedParentNode,
-                relationship: this.selectedRelationship,
-                showRoles: this.showRoles,
-                parentNodeFiler:
-                {
-                    id: 0,
-                    field: parentFilterFieldName,
-                    operator: parentFilterOperator,
-                    value: parentFilterValue
-                },
-                childNodeFiler:
-                {
-                    id: 0,
-                    field: childFilterFieldName,
-                    operator: childFilterOperator,
-                    value: childFilterValue
-                },
-                isSelected: true,
-                view: this.selectedView
-            };
-            this.ngHistory = [historyNew, ...this.ngHistory];
-            this.historyAll = [historyNew, ...this.historyAll];
-            console.log('xx 8', this.ngHistory)
-        };
-
-        // Set H & W
-        if (inputHeight != 0) {
-            this.graphHeight = inputHeight;
-        } else {
-            if (this.localWidget.graphLayers.length > 0) {
-                this.graphHeight = this.localWidget.graphLayers[0].graphSpecification.height;
-            };
-        };
-        if (this.graphHeight < 100) {
-            this.graphHeight = 100;
-        };
        
     }
 
