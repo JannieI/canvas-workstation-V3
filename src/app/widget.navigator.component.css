@@ -114,6 +114,9 @@
             float: right;
             margin-right: 12px;
         }
+        .propertyAreaText {
+            margin: 18px;
+        }
         .propertyAreaBlock {
             border-radius: 4px;
             margin: 18px;
