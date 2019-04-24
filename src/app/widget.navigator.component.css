@@ -149,6 +149,9 @@
             float: right;
             margin-right: 12px;
         }
+        .graphNotesAreaText {
+            margin: 18px;
+        }
         .graphNotesAreaBlock {
             border-radius: 4px;
             margin: 18px;
