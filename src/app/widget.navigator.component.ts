@@ -593,6 +593,7 @@ export class WidgetNavigatorComponent {
             this.childDataAll = this.distinctChildrenNodes(
                 this.selectedParentNodeType, 
                 this.selectedParentNode, 
+                [this.selectedRelationship],
                 this.ngSelectedRelationshipFilterRole
             );
             this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
@@ -987,6 +988,7 @@ export class WidgetNavigatorComponent {
         this.childDataAll = this.distinctChildrenNodes(
             this.selectedParentNodeType, 
             this.selectedParentNode, 
+            [this.selectedRelationship],
             this.ngSelectedRelationshipFilterRole
         );
         this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
@@ -1209,6 +1211,7 @@ export class WidgetNavigatorComponent {
     distinctChildrenNodes(
         selectedParentNodeType: string, 
         selectedParentNode: string,
+        selectRelationships: string[],
         selectedRelationshipFilterRole: string
         ): string[] {
         // Return distinct array of Children for the selected Info
