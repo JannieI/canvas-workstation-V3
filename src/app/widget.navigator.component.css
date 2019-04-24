@@ -79,6 +79,9 @@
             float: right;
             margin-right: 12px;
         }
+        .historyAreaText {
+            margin: 18px;
+        }
         .historyAreaBlock {
             border-radius: 4px;
             margin: 18px;
