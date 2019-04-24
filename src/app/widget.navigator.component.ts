@@ -1211,61 +1211,45 @@ export class WidgetNavigatorComponent {
 
         // Fill ParentNode type Dropdown
         let leftChildren: string[] = this.networkRelationships
-            .filter(nr => (
-                            nr.leftNodeType === selectedParentNodeType
-                            &&
-                            (
-                                selectedParentNode == 'All'
-                                ||
-                                (
-                                    selectedParentNode != 'All'
-                                    &&
-                                    nr.leftNodeName === selectedParentNode
-                                )
-                            )
-                            &&
-                            nr.relationshipLeftToRight === this.selectedRelationship
-                            &&
-                            (
-                                this.ngSelectedRelationshipFilterRole === ''
-                                ||
-                                (
-                                    this.ngSelectedRelationshipFilterRole != ''
-                                    &&
-                                    nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
-                                )
-                            )
-                           )
+            .filter(nr => nr.leftNodeType === selectedParentNodeType)
+            .filter(nr => selectedParentNode == 'All'
+                          ||
+                          (
+                              selectedParentNode != 'All'
+                              &&
+                              nr.leftNodeName === selectedParentNode
+                          )
             )
+            .filter(nr => nr.relationshipLeftToRight === this.selectedRelationship)
+            .filter(nr => this.ngSelectedRelationshipFilterRole === ''
+                          ||
+                          (
+                              this.ngSelectedRelationshipFilterRole != ''
+                              &&
+                              nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
+                          )
+                )
             .filter(nr => nr.rightNodeName != '')
             .map(nr => nr.rightNodeName);
 
         let rightChildren: string[] = this.networkRelationships
-            .filter(nr => (
-                            nr.rightNodeType === selectedParentNodeType
-                            &&
-                            (
-                                selectedParentNode == 'All'
-                                ||
-                                (
-                                    this.selectedParentNode != 'All'
-                                    &&
-                                    nr.rightNodeName === selectedParentNode
-                                )
-                            )
-                            &&
-                            nr.relationshipRightToLeft === this.selectedRelationship
-                            &&
-                            (
-                                this.ngSelectedRelationshipFilterRole === ''
-                                ||
-                                (
-                                    this.ngSelectedRelationshipFilterRole != ''
-                                    &&
-                                    nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
-                                )
-                            )
-                           )
+            .filter(nr => nr.rightNodeType === selectedParentNodeType)
+            .filter(nr => selectedParentNode == 'All'
+                          ||
+                          (
+                              this.selectedParentNode != 'All'
+                              &&
+                              nr.rightNodeName === selectedParentNode
+                          )
+            )
+            .filter(nr => nr.relationshipRightToLeft === this.selectedRelationship)
+            .filter(nr => this.ngSelectedRelationshipFilterRole === ''
+                          ||
+                          (
+                              this.ngSelectedRelationshipFilterRole != ''
+                              &&
+                              nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
+                          )
             )
             .filter(nr => nr.leftNodeName != '')
             .map(nr => nr.leftNodeName);
@@ -1283,6 +1267,101 @@ export class WidgetNavigatorComponent {
         // Return
         return nodeChildren;
     }
+
+
+
+
+
+
+
+
+
+
+    // distinctChildrenNodes(
+    //     selectedParentNodeType: string, 
+    //     selectedParentNode: string
+    //     ): string[] {
+    //     // Return distinct array of Children for the selected Info
+    //     this.globalFunctionService.printToConsole(this.constructor.name, 'distinctChildrenNodes', '@Start');
+
+    //     // Fill ParentNode type Dropdown
+    //     let leftChildren: string[] = this.networkRelationships
+    //         .filter(nr => (
+    //                         nr.leftNodeType === selectedParentNodeType
+    //                         &&
+    //                         (
+    //                             selectedParentNode == 'All'
+    //                             ||
+    //                             (
+    //                                 selectedParentNode != 'All'
+    //                                 &&
+    //                                 nr.leftNodeName === selectedParentNode
+    //                             )
+    //                         )
+    //                         &&
+    //                         nr.relationshipLeftToRight === this.selectedRelationship
+    //                         &&
+    //                         (
+    //                             this.ngSelectedRelationshipFilterRole === ''
+    //                             ||
+    //                             (
+    //                                 this.ngSelectedRelationshipFilterRole != ''
+    //                                 &&
+    //                                 nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
+    //                             )
+    //                         )
+    //                        )
+    //         )
+    //         .filter(nr => nr.rightNodeName != '')
+    //         .map(nr => nr.rightNodeName);
+
+    //     let rightChildren: string[] = this.networkRelationships
+    //         .filter(nr => (
+    //                         nr.rightNodeType === selectedParentNodeType
+    //                         &&
+    //                         (
+    //                             selectedParentNode == 'All'
+    //                             ||
+    //                             (
+    //                                 this.selectedParentNode != 'All'
+    //                                 &&
+    //                                 nr.rightNodeName === selectedParentNode
+    //                             )
+    //                         )
+    //                         &&
+    //                         nr.relationshipRightToLeft === this.selectedRelationship
+    //                         &&
+    //                         (
+    //                             this.ngSelectedRelationshipFilterRole === ''
+    //                             ||
+    //                             (
+    //                                 this.ngSelectedRelationshipFilterRole != ''
+    //                                 &&
+    //                                 nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
+    //                             )
+    //                         )
+    //                        )
+    //         )
+    //         .filter(nr => nr.leftNodeName != '')
+    //         .map(nr => nr.leftNodeName);
+
+    //     let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
+
+    //     // Filter if a Child filter is active
+    //     if (this.childNodesFilteredList.length > 0) {
+    //             nodeChildren = nodeChildren.filter(c => this.childNodesFilteredList.indexOf(c) >= 0);
+    //     };
+
+    //     // Make sure it is unique, non-null list
+    //     nodeChildren = this.navUniqifySortNodes(nodeChildren);
+
+    //     // Return
+    //     return nodeChildren;
+    // }
+
+
+
+
 
     distinctRelationshipRoles(selectedRelationship: string): string[] {
         // Return distinct array of Nodes per Relationship Roles for a given Relationship
