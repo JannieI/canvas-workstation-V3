@@ -45,6 +45,9 @@
             float: right;
             margin-right: 12px;
         }
+        .networkAreaText {
+            margin: 18px;
+        }
         .networkAreaBlock {
             border-radius: 4px;
             margin: 18px;
