@@ -31,14 +31,13 @@
         grid-row-start: 2;
         grid-row-end: 24;
         height: 100%;
-        margin-left: 4px;
-        margin-top: 4px;
+        margin: 18px;
         text-align: left;
         z-index: 102;
     }
         .networkAreaTitle {
             font-size: 0.6rem;
-            margin-left: 12px;
+            margin: 18px;
             text-align: left;
         }
         .networkAreaClose {
@@ -63,14 +62,13 @@
         grid-row-start: 2;
         grid-row-end: 24;
         height: 100%;
-        margin-left: 4px;
-        margin-top: 4px;
+        margin: 18px;
         text-align: left;
         z-index: 102;
     }
         .historyAreaTitle {
             font-size: 0.6rem;
-            margin-left: 12px;
+            margin: 18px;
             text-align: left;
         }
         .historyAreaClose {
@@ -96,14 +94,13 @@
         grid-row-start: 2;
         grid-row-end: 24;
         height: 100%;
-        margin-left: 4px;
-        margin-top: 4px;
+        margin: 18px;
         text-align: left;
         z-index: 102;
     }
         .propertyAreaTitle {
             font-size: 0.6rem;
-            margin-left: 12px;
+            margin: 18px;
             text-align: left;
         }
         .propertyAreaClose {
@@ -129,14 +126,13 @@
         grid-row-start: 2;
         grid-row-end: 24;
         height: 100%;
-        margin-left: 4px;
-        margin-top: 4px;
+        margin: 18px;
         text-align: left;
         z-index: 102;
     }
         .graphNotesAreaTitle {
             font-size: 0.6rem;
-            margin-left: 12px;
+            margin: 18px;
             text-align: left;
         }
         .graphNotesAreaClose {
@@ -162,14 +158,14 @@
         grid-row-start: 2;
         grid-row-end: 24;
         height: 100%;
-        margin-left: 4px;
-        margin-top: 4px;
+        margin: 18px;
         text-align: left;
         overflow-y: scroll;
         z-index: 102;
     }
         .helpFormHeader {
             font-size: 0.75rem;
+            margin: 18px;
             text-align: center;
         }
         .helpFormClose {
@@ -180,6 +176,7 @@
         }
         .helpFormText {
             font-size: 0.5rem;
+            margin: 18px;
         }
 
     .graphHeaderContainer {
