@@ -48,6 +48,7 @@
         }
         .networkAreaBlock {
             border-radius: 4px;
+            margin: 18px;
             overflow-y: scroll; 
         }
 
@@ -79,6 +80,7 @@
         }
         .historyAreaBlock {
             border-radius: 4px;
+            margin: 18px;
             overflow-y: scroll; 
         }
 
@@ -111,6 +113,7 @@
         }
         .propertyAreaBlock {
             border-radius: 4px;
+            margin: 18px;
             overflow-y: scroll; 
         }
 
@@ -143,6 +146,7 @@
         }
         .graphNotesAreaBlock {
             border-radius: 4px;
+            margin: 18px;
             overflow-y: scroll; 
         }
 
