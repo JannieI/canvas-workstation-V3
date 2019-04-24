@@ -590,7 +590,9 @@ export class WidgetNavigatorComponent {
             && this.selectedRelationship != '') {
 
             // Set the data, some unique
-            this.childDataAll = this.distinctChildrenNodes(this.selectedParentNodeType);
+            this.childDataAll = this.distinctChildrenNodes(
+                this.selectedParentNodeType, this.selectedParentNode
+            );
             this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
 
             // Set title, etc
@@ -982,7 +984,9 @@ export class WidgetNavigatorComponent {
     
 
         // Set the data, some unique
-        this.childDataAll = this.distinctChildrenNodes(this.selectedParentNodeType);
+        this.childDataAll = this.distinctChildrenNodes(
+            this.selectedParentNodeType, this.selectedParentNode
+        );
         this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
 
         // Set title, etc
@@ -1280,7 +1284,10 @@ export class WidgetNavigatorComponent {
         return nodeRelationships;
     }
 
-    distinctChildrenNodes(selectedParentNodeType: string): string[] {
+    distinctChildrenNodes(
+        selectedParentNodeType: string, 
+        selectedParentNode: string
+        ): string[] {
         // Return distinct array of Children for the selected Info
         this.globalFunctionService.printToConsole(this.constructor.name, 'distinctChildrenNodes', '@Start');
 
@@ -1290,12 +1297,12 @@ export class WidgetNavigatorComponent {
                             nr.leftNodeType === selectedParentNodeType
                             &&
                             (
-                                this.selectedParentNode == 'All'
+                                selectedParentNode == 'All'
                                 ||
                                 (
-                                    this.selectedParentNode != 'All'
+                                    selectedParentNode != 'All'
                                     &&
-                                    nr.leftNodeName === this.selectedParentNode
+                                    nr.leftNodeName === selectedParentNode
                                 )
                             )
                             &&
@@ -1320,12 +1327,12 @@ export class WidgetNavigatorComponent {
                             nr.rightNodeType === selectedParentNodeType
                             &&
                             (
-                                this.selectedParentNode == 'All'
+                                selectedParentNode == 'All'
                                 ||
                                 (
                                     this.selectedParentNode != 'All'
                                     &&
-                                    nr.rightNodeName === this.selectedParentNode
+                                    nr.rightNodeName === selectedParentNode
                                 )
                             )
                             &&
