@@ -991,26 +991,26 @@ export class WidgetNavigatorComponent {
         localGraphData.push(
             {
                 "id": startID,
-                "name": this.constructNodeName(this.selectedParentNode)
+                "name": this.constructNodeName(parentNodeName)
             });
         
         // There are 4 scenarios, each one creating a different amount of sub-levels
         
         // 1. parent - children
         if (!isBreakOnRelationship  &&  !isBreakOnRole) {
-            this.childDataAll = this.distinctChildrenNodes(
+            let localChildDataAll = this.distinctChildrenNodes(
                 'All',
                 parentNodeName, 
-                [this.selectedRelationship],
+                relationships,
                 'All'
             );
 
             // Get visible children
-            this.childDataVisible = this.childDataAll.splice(0, this.visibleNumberChildren)
+            let localChildDataVisible = localChildDataAll.splice(0, this.visibleNumberChildren)
 
             // Add Children
             let childCnt: number = 0;
-            this.childDataVisible.forEach(child => {
+            localChildDataVisible.forEach(child => {
 
                 // Increment
                 childCnt = childCnt + 1;
@@ -1043,14 +1043,14 @@ export class WidgetNavigatorComponent {
                 roleCnt = roleCnt + 1;
 
                 // Add Role
-                this.graphData.push({
+                localGraphData.push({
                     id: startID + roleCnt,
                     name: this.constructNodeName(role),
                     parent: startID
                 });
 
                 // Get children for parent - role
-                this.childDataAll = this.distinctChildrenNodes(
+                let localChildDataAll = this.distinctChildrenNodes(
                     '...', 
                     parentNodeName, 
                     relationships,
@@ -1058,18 +1058,18 @@ export class WidgetNavigatorComponent {
                 );
 
                 // Get visible children
-                this.childDataVisible = this.childDataAll.splice(0, this.visibleNumberChildren)
+                let localChildDataVisible = localChildDataAll.splice(0, this.visibleNumberChildren)
 
                 // Add Children
                 let childCnt: number = 0;
 
-                this.childDataVisible.forEach(child => {
+                localChildDataVisible.forEach(child => {
 
                     // Increment
                     childCnt = childCnt + 1;
 
                     // Add
-                    this.graphData.push({
+                    localGraphData.push({
                         id: startID + roleCnt + childCnt,
                         name: this.constructNodeName(child),
                         parent: startID + roleCnt
@@ -1087,7 +1087,7 @@ export class WidgetNavigatorComponent {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
 
             relationships.forEach(rel => {
-                this.childDataAll = this.distinctChildrenNodes(
+                let localChildDataAll = this.distinctChildrenNodes(
                     'All', 
                     parentNodeName, 
                     [rel],
@@ -1104,7 +1104,7 @@ export class WidgetNavigatorComponent {
             relationships.forEach(rel => {
 
                 relationshipRoles.forEach(role => {
-                    this.childDataAll = this.distinctChildrenNodes(
+                    let localChildDataAll = this.distinctChildrenNodes(
                         '...', 
                         parentNodeName, 
                         [rel],
