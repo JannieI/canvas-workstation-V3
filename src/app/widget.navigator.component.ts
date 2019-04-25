@@ -2321,7 +2321,12 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageRight', '@Start');
 
     }
-    clickPageLast
+    
+    clickPageLast() {
+        // Move to the Last page of children
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageLast', '@Start');
+
+    }
 
 
     // Temp dummy data for demo - must be done via DB
