@@ -597,6 +597,7 @@ export class WidgetNavigatorComponent {
                 this.graphTitle = this.graphTitle + ', filtered on ' + this.ngChildNodeFilterSelectedFieldName;
             };
 
+            console.log('xx this.ngSelectedRelationshipFilterRole', this.ngSelectedRelationshipFilterRole)
             // Set the data, some unique
             this.childDataAll = this.distinctChildrenNodes(
                 this.selectedParentNodeType, 
@@ -617,7 +618,7 @@ export class WidgetNavigatorComponent {
                     this.selectedParentNode,
                     [this.selectedRelationship],
                     false,
-                    false
+                    this.showRoles?  true  :  false
                 );
                 console.log('xx this.graphData', this.graphData)
             } else {
@@ -1048,7 +1049,8 @@ export class WidgetNavigatorComponent {
             // Reduce amount shown
             relationshipRoles = relationshipRoles.splice(0, this.visibleNumberChildren);
 
-            let roleCnt: number = 0;
+            let roleCnt: number = 0;            // Counter on role
+            let childCnt: number = 0;           // Counter on children, spans roles
 
             relationshipRoles.forEach(role => {
 
@@ -1057,14 +1059,14 @@ export class WidgetNavigatorComponent {
 
                 // Add Role
                 localGraphData.push({
-                    id: startID + roleCnt,
+                    id: startID + roleCnt + childCnt,
                     name: this.constructNodeName(role),
                     parent: startID
                 });
 
                 // Get children for parent - role
                 let localChildDataAll = this.distinctChildrenNodes(
-                    '...', 
+                    'All', 
                     parentNodeName, 
                     relationships,
                     role
@@ -1074,8 +1076,6 @@ export class WidgetNavigatorComponent {
                 let localChildDataVisible = localChildDataAll.splice(0, this.visibleNumberChildren)
 
                 // Add Children
-                let childCnt: number = 0;
-
                 localChildDataVisible.forEach(child => {
 
                     // Increment
@@ -1493,7 +1493,8 @@ export class WidgetNavigatorComponent {
             .filter(nr => nr.relationshipRightToLeft === selectedRelationship)
             .map(nr => nr.relationshipProperty);
         let nodeRelationships: string[] = leftRelationships.concat(rightRelationships);
-
+        nodeRelationships = nodeRelationships.filter(nr => nr != '');
+        
         // Make unique & Sort
         nodeRelationships = this.navUniqifySortNodes(nodeRelationships);
 
