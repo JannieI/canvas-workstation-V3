@@ -1104,7 +1104,7 @@ export class WidgetNavigatorComponent {
             // Reduce amount shown
             relationships = relationships.splice(0, this.visibleNumberChildren);
 
-            let relationshipCounter: number = 0;            // Counter on role
+            let relationshipCounter: number = 0;            // Counter on relationship
             let childCounter: number = 0;           // Counter on children, spans roles
 
             relationships.forEach(relationship => {
@@ -1112,7 +1112,7 @@ export class WidgetNavigatorComponent {
                 // Increment
                 relationshipCounter = relationshipCounter + 1;
 
-                // Add Role
+                // Add Relationship
                 let relationshipID: number = startID + relationshipCounter + childCounter;
                 localGraphData.push({
                     id: relationshipID,
@@ -1158,7 +1158,8 @@ export class WidgetNavigatorComponent {
             // Reduce amount shown
             relationships = relationships.splice(0, this.visibleNumberChildren);
 
-            let relationshipCounter: number = 0;            // Counter on role
+            let relationshipCounter: number = 0;    // Counter on relationship
+            let roleCounter: number = 0;            // Counter on role
             let childCounter: number = 0;           // Counter on children, spans roles
 
             relationships.forEach(relationship => {
@@ -1166,48 +1167,109 @@ export class WidgetNavigatorComponent {
                 // Increment
                 relationshipCounter = relationshipCounter + 1;
 
-                // Add Role
-                let relationshipID: number = startID + relationshipCounter + childCounter;
+                // Add Relationship
+                let relationshipID: number = startID + relationshipCounter + roleCounter + childCounter;
                 localGraphData.push({
                     id: relationshipID,
                     name: this.constructNodeName(relationship),
                     parent: startID
                 });
 
-                // Get children for parent - role
-                let localChildDataAll = this.distinctChildrenNodes(
-                    'All', 
-                    parentNodeName, 
-                    [relationship],
-                    'All'
-                );
+                // // Get children for parent - role
+                // let localChildDataAll = this.distinctChildrenNodes(
+                //     'All', 
+                //     parentNodeName, 
+                //     [relationship],
+                //     'All'
+                // );
 
-                // Get visible children
-                let localChildDataVisible = localChildDataAll.splice(0, this.visibleNumberChildren)
+                // // Get visible children
+                // let localChildDataVisible = localChildDataAll.splice(0, this.visibleNumberChildren)
 
-                // Add Children
-                localChildDataVisible.forEach(child => {
+                // // Add Children
+                // localChildDataVisible.forEach(child => {
 
+                //     // Increment
+                //     childCounter = childCounter + 1;
+
+                //     // Add
+                //     localGraphData.push({
+                //         id: startID + relationshipCounter + childCounter,
+                //         name: this.constructNodeName(child),
+                //         parent: relationshipID
+                //     });
+                // });
+
+
+
+
+
+                let relationshipRoles: string[] = this.distinctRelationshipRoles(relationship);
+            
+                // Reduce amount shown
+                relationshipRoles = relationshipRoles.splice(0, this.visibleNumberChildren);
+        
+                relationshipRoles.forEach(role => {
+    
                     // Increment
-                    childCounter = childCounter + 1;
-
-                    // Add
+                    roleCounter = roleCounter + 1;
+    
+                    // Add Role
+                    let roleID: number = startID + relationshipCounter + roleCounter + childCounter;
                     localGraphData.push({
-                        id: startID + relationshipCounter + childCounter,
-                        name: this.constructNodeName(child),
+                        id: roleID,
+                        name: this.constructNodeName(role),
                         parent: relationshipID
                     });
-                });
-            })
     
-            // Return
-            return localGraphData;
+                    // Get children for parent - role
+                    let localChildDataAll = this.distinctChildrenNodes(
+                        'All', 
+                        parentNodeName, 
+                        [relationship],
+                        role
+                    );
+    
+                    // Get visible children
+                    let localChildDataVisible = localChildDataAll.splice(0, this.visibleNumberChildren)
+    
+                    // Add Children
+                    localChildDataVisible.forEach(child => {
+    
+                        // Increment
+                        childCounter = childCounter + 1;
+    
+                        // Add
+                        localGraphData.push({
+                            id: startID + relationshipCounter + roleCounter + childCounter,
+                            name: this.constructNodeName(child),
+                            parent: roleID
+                        });
+                    });
+                });
+        
+                // Return
+                return localGraphData;
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+            // })
+    
+            // // Return
+            // return localGraphData;
         };
-
-
-
-
-       
+  
     }
 
     nav2WalkInPath(
