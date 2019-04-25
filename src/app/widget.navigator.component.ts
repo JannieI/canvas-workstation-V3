@@ -589,6 +589,14 @@ export class WidgetNavigatorComponent {
             && this.selectedParentNode != ''
             && this.selectedRelationship != '') {
 
+            // Set title, etc
+            this.graphTitle = this.showRoles ? '*' : '';
+            this.graphTitle = this.graphTitle + this.selectedRelationship + ' for '
+                + this.selectedParentNode;
+            if (this.ngChildNodeFilterSelectedFieldName != '') {
+                this.graphTitle = this.graphTitle + ', filtered on ' + this.ngChildNodeFilterSelectedFieldName;
+            };
+
             // Set the data, some unique
             this.childDataAll = this.distinctChildrenNodes(
                 this.selectedParentNodeType, 
@@ -598,86 +606,91 @@ export class WidgetNavigatorComponent {
             );
             this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
 
-            // Set title, etc
-            this.graphTitle = this.showRoles ? '*' : '';
-            this.graphTitle = this.graphTitle + this.selectedRelationship + ' for '
-                + this.selectedParentNode;
-            if (this.ngChildNodeFilterSelectedFieldName != '') {
-                this.graphTitle = this.graphTitle + ', filtered on ' + this.ngChildNodeFilterSelectedFieldName;
-            };
-
             // Reduce visible list
             this.childDataVisible = this.childDataAll.slice(0, this.visibleNumberChildren);
 
             // Format the graphData
-            this.graphData = [];
-            if (!this.showRoles) {
-
-                // Parent
-                this.graphData.push(
-                    {
-                        "id": 1,
-                        "name": this.constructNodeName(this.selectedParentNode)
-                    });
-
-                // Children
-                for (var i = 0; i < this.childDataVisible.length; i++) {
-                    this.graphData.push({
-                        id: i + 2,
-                        name: this.constructNodeName(this.childDataVisible[i]),
-                        parent: 1
-                    });
-                };
+            let test: boolean;
+            test = true;
+            if (test) {
+                this.graphData = this.constructGraphDataForUnit(
+                    this.selectedParentNode,
+                    [this.selectedRelationship],
+                    false,
+                    false
+                );
+                console.log('xx this.graphData', this.graphData)
             } else {
-                console.log('xx 6', this.childDataAll, this.ngRelationshipRoles)
-                // Parent
-                this.graphData.push(
-                    {
-                        "id": 1,
-                        "name": this.constructNodeName(this.selectedParentNode)
-                    });
 
-                // Offset
-                let offset: number = 2;
+                this.graphData = [];
+                if (!this.showRoles) {
 
-                for (var roleID = 0; roleID < this.ngRelationshipRoles.length; roleID++) {
-                    let parentRoleID = offset;
+                    // Parent
                     this.graphData.push(
                         {
-                            "id": parentRoleID,
-                            "name": this.ngRelationshipRoles[roleID],
-                            parent: 1
+                            "id": 1,
+                            "name": this.constructNodeName(this.selectedParentNode)
                         });
 
-                    // Get list of Children for this role
-                    let leftChildrenFilteredRole: string[] = this.networkRelationships
-                        .filter(nr => nr.leftNodeType === this.selectedParentNodeType
-                            && nr.leftNodeName === this.selectedParentNode
-                            && nr.relationshipLeftToRight === this.selectedRelationship
-                            && nr.relationshipProperty === this.ngRelationshipRoles[roleID])
-                        .map(y => y.rightNodeName);
-                    let rightChildrenFilteredRole: string[] = this.networkRelationships
-                        .filter(nr => nr.rightNodeType === this.selectedParentNodeType
-                            && nr.rightNodeName === this.selectedParentNode
-                            && nr.relationshipRightToLeft === this.selectedRelationship
-                            && nr.relationshipProperty === this.ngRelationshipRoles[roleID])
-                        .map(y => y.rightNodeName);
-                    let childrenFilteredRole: string[] = leftChildrenFilteredRole
-                        .concat(rightChildrenFilteredRole);
+                    // Children
+                    for (var i = 0; i < this.childDataVisible.length; i++) {
+                        this.graphData.push({
+                            id: i + 2,
+                            name: this.constructNodeName(this.childDataVisible[i]),
+                            parent: 1
+                        });
+                    };
+                } else {
+                    console.log('xx 6', this.childDataAll, this.ngRelationshipRoles)
+                    // Parent
+                    this.graphData.push(
+                        {
+                            "id": 1,
+                            "name": this.constructNodeName(this.selectedParentNode)
+                        });
 
-                    // Increment with 1, which was added above
-                    offset = offset + 1;
-                    for (var childID = 0; childID < childrenFilteredRole.length; childID++) {
+                    // Offset
+                    let offset: number = 2;
+
+                    for (var roleID = 0; roleID < this.ngRelationshipRoles.length; roleID++) {
+                        let parentRoleID = offset;
                         this.graphData.push(
                             {
-                                "id": childID + offset,
-                                "name": this.constructNodeName(childrenFilteredRole[childID]),
-                                parent: parentRoleID
+                                "id": parentRoleID,
+                                "name": this.ngRelationshipRoles[roleID],
+                                parent: 1
                             });
+
+                        // Get list of Children for this role
+                        let leftChildrenFilteredRole: string[] = this.networkRelationships
+                            .filter(nr => nr.leftNodeType === this.selectedParentNodeType
+                                && nr.leftNodeName === this.selectedParentNode
+                                && nr.relationshipLeftToRight === this.selectedRelationship
+                                && nr.relationshipProperty === this.ngRelationshipRoles[roleID])
+                            .map(y => y.rightNodeName);
+                        let rightChildrenFilteredRole: string[] = this.networkRelationships
+                            .filter(nr => nr.rightNodeType === this.selectedParentNodeType
+                                && nr.rightNodeName === this.selectedParentNode
+                                && nr.relationshipRightToLeft === this.selectedRelationship
+                                && nr.relationshipProperty === this.ngRelationshipRoles[roleID])
+                            .map(y => y.rightNodeName);
+                        let childrenFilteredRole: string[] = leftChildrenFilteredRole
+                            .concat(rightChildrenFilteredRole);
+
+                        // Increment with 1, which was added above
+                        offset = offset + 1;
+                        for (var childID = 0; childID < childrenFilteredRole.length; childID++) {
+                            this.graphData.push(
+                                {
+                                    "id": childID + offset,
+                                    "name": this.constructNodeName(childrenFilteredRole[childID]),
+                                    parent: parentRoleID
+                                });
+                        };
+                        offset = offset + childrenFilteredRole.length;
                     };
-                    offset = offset + childrenFilteredRole.length;
+                    console.log('xx 6.5', this.graphData)
                 };
-                console.log('xx 6.5', this.graphData)
             };
 
             // Add to History
@@ -1100,7 +1113,7 @@ export class WidgetNavigatorComponent {
         // 4. parent - relationship - roles - children
         if (isBreakOnRelationship  &&  isBreakOnRole) {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
-            let relationshipRoles: string[] = this.distinctRelationshipRoles(this.selectedRelationship);
+            let relationshipRoles: string[] = this.distinctRelationshipRoles('1 rel');
             relationships.forEach(rel => {
 
                 relationshipRoles.forEach(role => {
