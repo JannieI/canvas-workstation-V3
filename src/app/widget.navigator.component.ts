@@ -1154,18 +1154,54 @@ export class WidgetNavigatorComponent {
         // 4. parent - relationship - roles - children
         if (isAddLevelForRelationship  &&  isAddLevelForOnRole) {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
-            let relationshipRoles: string[] = this.distinctRelationshipRoles('1 rel');
-            relationships.forEach(rel => {
+            
+            // Reduce amount shown
+            relationships = relationships.splice(0, this.visibleNumberChildren);
 
-                relationshipRoles.forEach(role => {
-                    let localChildDataAll = this.distinctChildrenNodes(
-                        '...', 
-                        parentNodeName, 
-                        [rel],
-                        role
-                    );
-                })
-            })    
+            let relationshipCounter: number = 0;            // Counter on role
+            let childCounter: number = 0;           // Counter on children, spans roles
+
+            relationships.forEach(relationship => {
+
+                // Increment
+                relationshipCounter = relationshipCounter + 1;
+
+                // Add Role
+                let relationshipID: number = startID + relationshipCounter + childCounter;
+                localGraphData.push({
+                    id: relationshipID,
+                    name: this.constructNodeName(relationship),
+                    parent: startID
+                });
+
+                // Get children for parent - role
+                let localChildDataAll = this.distinctChildrenNodes(
+                    'All', 
+                    parentNodeName, 
+                    [relationship],
+                    'All'
+                );
+
+                // Get visible children
+                let localChildDataVisible = localChildDataAll.splice(0, this.visibleNumberChildren)
+
+                // Add Children
+                localChildDataVisible.forEach(child => {
+
+                    // Increment
+                    childCounter = childCounter + 1;
+
+                    // Add
+                    localGraphData.push({
+                        id: startID + relationshipCounter + childCounter,
+                        name: this.constructNodeName(child),
+                        parent: relationshipID
+                    });
+                });
+            })
+    
+            // Return
+            return localGraphData;
         };
 
 
