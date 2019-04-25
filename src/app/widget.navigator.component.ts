@@ -2336,6 +2336,8 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageFirst', '@Start');
         
         this.visibleNumberChildrenStart = 0;
+
+        this.checkShowGraph();
     }
 
     clickPageLeft() {
