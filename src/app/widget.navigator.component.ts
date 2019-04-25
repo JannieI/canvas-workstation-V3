@@ -994,14 +994,12 @@ export class WidgetNavigatorComponent {
                 "name": this.constructNodeName(this.selectedParentNode)
             });
         
-TODO - distinctChildrenNodes Remove selectedParentNodeType ?
-TODO - distinctChildrenNodes Make electedRelationshipFilterRole ~ 'All', not '' if not filtered
-
-// There are 4 scenarios, each one creating a different amount of sub-levels
-        // parent - children
+        // There are 4 scenarios, each one creating a different amount of sub-levels
+        
+        // 1. parent - children
         if (!isBreakOnRelationship  &&  !isBreakOnRole) {
             this.childDataAll = this.distinctChildrenNodes(
-                '...', 
+                'All',
                 parentNodeName, 
                 [this.selectedRelationship],
                 'All'
@@ -1024,10 +1022,13 @@ TODO - distinctChildrenNodes Make electedRelationshipFilterRole ~ 'All', not '' 
                     parent: startID
                 });
             });
+
+            // Return
+            return localGraphData;
             
         };
 
-        // parent - roles - children
+        // 2. parent - roles - children
         if (!isBreakOnRelationship  &&  isBreakOnRole) {
             let relationshipRoles: string[] = this.distinctRelationshipRoles(this.selectedRelationship);
             
@@ -1076,17 +1077,20 @@ TODO - distinctChildrenNodes Make electedRelationshipFilterRole ~ 'All', not '' 
                 });
             })
     
+            // Return
+            return localGraphData;
+
         };
 
 TODO - make distinctRelationships on optional nodeName as well,
 
-        // parent - relationship - children
+        // 3. parent - relationship - children
         if (isBreakOnRelationship  &&  !isBreakOnRole) {
             let relationships: string[] = this.distinctRelationships(parentNodeName)
 
             relationships.forEach(rel => {
                 this.childDataAll = this.distinctChildrenNodes(
-                    '...', 
+                    'All', 
                     parentNodeName, 
                     [rel],
                     'All'
@@ -1095,7 +1099,7 @@ TODO - make distinctRelationships on optional nodeName as well,
     
         };
 
-        // parent - relationship - roles - children
+        // 4. parent - relationship - roles - children
         if (isBreakOnRelationship  &&  isBreakOnRole) {
             let relationships: string[] = this.distinctRelationships(parentNodeName)
             let relationshipRoles: string[] = this.distinctRelationshipRoles(this.selectedRelationship);
@@ -1214,7 +1218,10 @@ TODO - make distinctRelationships on optional nodeName as well,
         return nodesPerNodeType;
     }
 
-    distinctRelationships(selectedParentNodeType: string = null): string[] {
+    distinctRelationships(
+        selectedParentNodeType: string = null,
+        selectedParentNodeName: string = 'All',
+        ): string[] {
         // Return distinct array of Relationships per Node Type for the current Network
         // Filtering is Optional
         this.globalFunctionService.printToConsole(this.constructor.name, 'distinctRelationships', '@Start');
@@ -1230,6 +1237,14 @@ TODO - make distinctRelationships on optional nodeName as well,
                             selectedParentNodeType == null
                            )
             )
+            .filter(nr => selectedParentNodeName == 'All'
+                          ||
+                          (
+                              selectedParentNodeName != 'All'
+                              &&
+                              nr.leftNodeName === selectedParentNodeName
+                          )
+            )
             .filter(nr => nr.relationshipLeftToRight != '')
             .map(nr => nr.relationshipLeftToRight);
 
@@ -1243,6 +1258,14 @@ TODO - make distinctRelationships on optional nodeName as well,
                             ||
                             selectedParentNodeType == null
                            )
+            )
+            .filter(nr => selectedParentNodeName == 'All'
+                          ||
+                          (
+                              selectedParentNodeName != 'All'
+                              &&
+                              nr.leftNodeName === selectedParentNodeName
+                          )
             )
             .filter(nr => nr.relationshipRightToLeft != '')
             .map(nr => nr.relationshipRightToLeft);
@@ -1258,7 +1281,7 @@ TODO - make distinctRelationships on optional nodeName as well,
 
     distinctChildrenNodes(
         selectedParentNodeType: string, 
-        selectedParentNode: string,
+        selectedParentNodeName: string,
         selectRelationships: string[],
         selectedRelationshipFilterRole: string
         ): string[] {
@@ -1275,12 +1298,12 @@ TODO - make distinctRelationships on optional nodeName as well,
                                 nr.leftNodeType === selectedParentNodeType)
                            )
             )
-            .filter(nr => selectedParentNode == 'All'
+            .filter(nr => selectedParentNodeName == 'All'
                           ||
                           (
-                              selectedParentNode != 'All'
+                              selectedParentNodeName != 'All'
                               &&
-                              nr.leftNodeName === selectedParentNode
+                              nr.leftNodeName === selectedParentNodeName
                           )
             )
             .filter(nr => ( 
@@ -1311,12 +1334,12 @@ TODO - make distinctRelationships on optional nodeName as well,
                                 nr.rightNodeType === selectedParentNodeType)
                            )
             )
-            .filter(nr => selectedParentNode === 'All'
+            .filter(nr => selectedParentNodeName === 'All'
                           ||
                           (
                               this.selectedParentNode != 'All'
                               &&
-                              nr.rightNodeName === selectedParentNode
+                              nr.rightNodeName === selectedParentNodeName
                           )
             )
             .filter(nr => ( 
