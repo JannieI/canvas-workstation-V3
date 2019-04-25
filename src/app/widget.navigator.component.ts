@@ -2306,6 +2306,11 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         this.checkShowGraph();
     }
 
+    clickPageFirst() {
+        // Move to the First page of children
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageFirst', '@Start');
+    }
+
     clickPageLeft() {
         // Move to the previous page of children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageLeft', '@Start');
@@ -2316,7 +2321,7 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageRight', '@Start');
 
     }
-
+    clickPageLast
 
 
     // Temp dummy data for demo - must be done via DB
