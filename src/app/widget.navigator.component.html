@@ -490,7 +490,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                         >
                         Relationship
                     </span>
-                    <span
+                    <span *ngIf="this.ngRelationshipRoles?.length>0"
                         style="cursor: pointer; font-size: 0.45rem; margin-left: 8px;"
                         [style.color]="showAdditionalLevelForRoles?  'black'  :  'gray'"
                         [style.font-weight]="showAdditionalLevelForRoles? 'bold' : 'normal'"
