@@ -2359,6 +2359,8 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
 
         this.visibleNumberChildrenStart = Math.min(
             this.visibleNumberChildrenStart + this.visibleNumberChildrenShown, maxStart);
+
+        this.checkShowGraph();
     }
 
     clickPageLast() {
