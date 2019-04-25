@@ -1058,8 +1058,9 @@ export class WidgetNavigatorComponent {
                 roleCnt = roleCnt + 1;
 
                 // Add Role
+                let roleID: number = startID + roleCnt + childCnt;
                 localGraphData.push({
-                    id: startID + roleCnt + childCnt,
+                    id: roleID,
                     name: this.constructNodeName(role),
                     parent: startID
                 });
@@ -1085,7 +1086,7 @@ export class WidgetNavigatorComponent {
                     localGraphData.push({
                         id: startID + roleCnt + childCnt,
                         name: this.constructNodeName(child),
-                        parent: startID + roleCnt
+                        parent: roleID
                     });
                 });
             })
@@ -1494,7 +1495,7 @@ export class WidgetNavigatorComponent {
             .map(nr => nr.relationshipProperty);
         let nodeRelationships: string[] = leftRelationships.concat(rightRelationships);
         nodeRelationships = nodeRelationships.filter(nr => nr != '');
-        
+
         // Make unique & Sort
         nodeRelationships = this.navUniqifySortNodes(nodeRelationships);
 
