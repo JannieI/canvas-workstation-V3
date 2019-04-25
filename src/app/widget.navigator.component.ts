@@ -971,7 +971,7 @@ export class WidgetNavigatorComponent {
         isBreakOnRelationship: boolean = false, 
         isBreakOnRole: boolean = false,
         startID: number = 1
-        ) {
+        ): any[] {
         // Creates the graphData for a Unit: parent - relationship(s) - children (1 level deep)
         // This can be called multiple times from calling routines
         // Input:
@@ -985,10 +985,10 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'constructGraphDataForUnit', '@Start');
     
         // Reset the data which will now be created
-        this.graphData = [];
+        let localGraphData = [];
 
         // Add Parent
-        this.graphData.push(
+        localGraphData.push(
             {
                 "id": startID,
                 "name": this.constructNodeName(this.selectedParentNode)
@@ -1018,7 +1018,7 @@ TODO - distinctChildrenNodes Make electedRelationshipFilterRole ~ 'All', not '' 
                 childCnt = childCnt + 1;
 
                 // Add
-                this.graphData.push({
+                localGraphData.push({
                     id: startID + childCnt,
                     name: this.constructNodeName(child),
                     parent: startID
@@ -1267,7 +1267,14 @@ TODO - make distinctRelationships on optional nodeName as well,
 
         // Fill ParentNode type Dropdown
         let leftChildren: string[] = this.networkRelationships
-            .filter(nr => nr.leftNodeType === selectedParentNodeType)
+            .filter(nr => (selectedParentNodeType === 'All'
+                           ||
+                           (
+                                selectedParentNodeType != 'All'
+                                &&
+                                nr.leftNodeType === selectedParentNodeType)
+                           )
+            )
             .filter(nr => selectedParentNode == 'All'
                           ||
                           (
@@ -1284,10 +1291,10 @@ TODO - make distinctRelationships on optional nodeName as well,
                           ||
                           selectRelationships.indexOf(nr.relationshipLeftToRight) >= 0
             )
-            .filter(nr => selectedRelationshipFilterRole === ''
+            .filter(nr => selectedRelationshipFilterRole === 'All'
                           ||
                           (
-                              selectedRelationshipFilterRole != ''
+                              selectedRelationshipFilterRole != 'All'
                               &&
                               nr.relationshipProperty === selectedRelationshipFilterRole
                           )
@@ -1296,8 +1303,15 @@ TODO - make distinctRelationships on optional nodeName as well,
             .map(nr => nr.rightNodeName);
 
         let rightChildren: string[] = this.networkRelationships
-            .filter(nr => nr.rightNodeType === selectedParentNodeType)
-            .filter(nr => selectedParentNode == 'All'
+            .filter(nr => (selectedParentNodeType === 'All'
+                           ||
+                           (
+                                selectedParentNodeType != 'All'
+                                &&
+                                nr.rightNodeType === selectedParentNodeType)
+                           )
+            )
+            .filter(nr => selectedParentNode === 'All'
                           ||
                           (
                               this.selectedParentNode != 'All'
@@ -1306,17 +1320,17 @@ TODO - make distinctRelationships on optional nodeName as well,
                           )
             )
             .filter(nr => ( 
-                            selectRelationships.length == 1
+                            selectRelationships.length === 1
                             &&
-                            selectRelationships[0] == 'All'
+                            selectRelationships[0] === 'All'
                           )
                           ||
                           selectRelationships.indexOf(nr.relationshipRightToLeft) >= 0
             )
-            .filter(nr => selectedRelationshipFilterRole === ''
+            .filter(nr => selectedRelationshipFilterRole === 'All'
                           ||
                           (
-                              selectedRelationshipFilterRole != ''
+                              selectedRelationshipFilterRole != 'All'
                               &&
                               nr.relationshipProperty === selectedRelationshipFilterRole
                           )
