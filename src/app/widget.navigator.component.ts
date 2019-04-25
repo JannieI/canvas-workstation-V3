@@ -1219,7 +1219,7 @@ TODO - make distinctRelationships on optional nodeName as well,
     }
 
     distinctRelationships(
-        selectedParentNodeType: string = null,
+        selectedParentNodeType: string = 'All',
         selectedParentNodeName: string = 'All',
         ): string[] {
         // Return distinct array of Relationships per Node Type for the current Network
@@ -1231,10 +1231,10 @@ TODO - make distinctRelationships on optional nodeName as well,
             .filter(nr => (
                             (
                                 nr.leftNodeType === selectedParentNodeType
-                                &&  selectedParentNodeType != null
+                                &&  selectedParentNodeType != 'All'
                             )
                             ||
-                            selectedParentNodeType == null
+                            selectedParentNodeType == 'All'
                            )
             )
             .filter(nr => selectedParentNodeName == 'All'
@@ -1253,10 +1253,10 @@ TODO - make distinctRelationships on optional nodeName as well,
                             (
                                 nr.rightNodeType === selectedParentNodeType
                                 &&
-                                selectedParentNodeType != null
+                                selectedParentNodeType != 'All'
                             )
                             ||
-                            selectedParentNodeType == null
+                            selectedParentNodeType == 'All'
                            )
             )
             .filter(nr => selectedParentNodeName == 'All'
