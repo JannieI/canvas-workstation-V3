@@ -132,7 +132,8 @@ export class WidgetNavigatorComponent {
     graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
     showHistory: boolean = false;
     showNetwork: boolean = false;
-    showRoles: boolean = false;             // True to add level to graph with Relationship Roles
+    showAdditionalLevelForRelationships: boolean = false;     // True to add level to graph with all Relationships
+    showAdditionalLevelForRoles: boolean = false;             // True to add level to graph with Relationship Roles
     showProperty: boolean = false;          // True to show selected Property with Nodes in graph
     showVisibleNumberInput: boolean = false;
 
@@ -433,7 +434,7 @@ export class WidgetNavigatorComponent {
         this.selectedParentNodeType = this.ngHistory[index].parentNodeType;
         this.selectedParentNode = this.ngHistory[index].parentNode;
         this.selectedRelationship = this.ngHistory[index].relationship;
-        this.showRoles = this.ngHistory[index].showRoles;
+        this.showAdditionalLevelForRoles = this.ngHistory[index].showRoles;
         this.selectedView = this.ngHistory[index].view;
 
         // Set the history id and reset the isSelected field in history
@@ -516,7 +517,7 @@ export class WidgetNavigatorComponent {
 
         // Get Relationship Roles
         this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
-        this.showRoles = false;
+        this.showAdditionalLevelForRoles = false;
 
         // Clear child filter
         this.clickChildFilterClear();
@@ -590,7 +591,7 @@ export class WidgetNavigatorComponent {
             && this.selectedRelationship != '') {
 
             // Set title, etc
-            this.graphTitle = this.showRoles ? '*' : '';
+            this.graphTitle = this.showAdditionalLevelForRoles ? '*' : '';
             this.graphTitle = this.graphTitle + this.selectedRelationship + ' for '
                 + this.selectedParentNode;
             if (this.ngChildNodeFilterSelectedFieldName != '') {
@@ -618,13 +619,13 @@ export class WidgetNavigatorComponent {
                     this.selectedParentNode,
                     [this.selectedRelationship],
                     false,
-                    this.showRoles?  true  :  false
+                    this.showAdditionalLevelForRoles?  true  :  false
                 );
                 console.log('xx this.graphData', this.graphData)
             } else {
 
                 this.graphData = [];
-                if (!this.showRoles) {
+                if (!this.showAdditionalLevelForRoles) {
 
                     // Parent
                     this.graphData.push(
@@ -732,7 +733,7 @@ export class WidgetNavigatorComponent {
                     parentNodeType: this.selectedParentNodeType,
                     parentNode: this.selectedParentNode,
                     relationship: this.selectedRelationship,
-                    showRoles: this.showRoles,
+                    showRoles: this.showAdditionalLevelForRoles,
                     parentNodeFiler:
                     {
                         id: 0,
@@ -982,8 +983,8 @@ export class WidgetNavigatorComponent {
     constructGraphDataForUnit(
         parentNodeName: string, 
         relationships: string[], 
-        isBreakOnRelationship: boolean = false, 
-        isBreakOnRole: boolean = false,
+        isAddLevelForRelationship: boolean = false, 
+        isAddLevelForOnRole: boolean = false,
         startID: number = 1
         ): any[] {
         // Creates the graphData for a Unit: parent - relationship(s) - children (1 level deep)
@@ -1011,7 +1012,7 @@ export class WidgetNavigatorComponent {
         // There are 4 scenarios, each one creating a different amount of sub-levels
         
         // 1. parent - children
-        if (!isBreakOnRelationship  &&  !isBreakOnRole) {
+        if (!isAddLevelForRelationship  &&  !isAddLevelForOnRole) {
             let localChildDataAll = this.distinctChildrenNodes(
                 'All',
                 parentNodeName, 
@@ -1043,7 +1044,7 @@ export class WidgetNavigatorComponent {
         };
 
         // 2. parent - roles - children
-        if (!isBreakOnRelationship  &&  isBreakOnRole) {
+        if (!isAddLevelForRelationship  &&  isAddLevelForOnRole) {
             let relationshipRoles: string[] = this.distinctRelationshipRoles(this.selectedRelationship);
             
             // Reduce amount shown
@@ -1097,7 +1098,7 @@ export class WidgetNavigatorComponent {
         };
 
         // 3. parent - relationship - children
-        if (isBreakOnRelationship  &&  !isBreakOnRole) {
+        if (isAddLevelForRelationship  &&  !isAddLevelForOnRole) {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
             
             // Reduce amount shown
@@ -1151,7 +1152,7 @@ export class WidgetNavigatorComponent {
         };
 
         // 4. parent - relationship - roles - children
-        if (isBreakOnRelationship  &&  isBreakOnRole) {
+        if (isAddLevelForRelationship  &&  isAddLevelForOnRole) {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
             let relationshipRoles: string[] = this.distinctRelationshipRoles('1 rel');
             relationships.forEach(rel => {
@@ -2216,11 +2217,11 @@ export class WidgetNavigatorComponent {
         //                             -> Subsidiaries  ->  ...
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickAdditionalLevelRelationship', '@Start');
 
-        this.showRoles = !this.showRoles;
+        this.showAdditionalLevelForRelationships = !this.showAdditionalLevelForRelationships;
 
         this.checkShowGraph();
     }
-    
+
     clickAdditionalLevelRole() {
         // Add an additional level to the default view, based on a property of the relationship
         // that has already been defined.
@@ -2228,7 +2229,7 @@ export class WidgetNavigatorComponent {
         //          if true,  company  ->  Ex/Non-Exec  ->  Directors
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickAdditionalLevelRole', '@Start');
 
-        this.showRoles = !this.showRoles;
+        this.showAdditionalLevelForRoles = !this.showAdditionalLevelForRoles;
 
         this.checkShowGraph();
     }
