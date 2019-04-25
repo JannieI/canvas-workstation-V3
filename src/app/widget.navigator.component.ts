@@ -110,6 +110,7 @@ export class WidgetNavigatorComponent {
 
     // Working
     childDataAll: any[] = [];                           // List of all children after filter
+    childDataAllLength: number = -1;
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
     childFilterErrorMessage: string = '';
@@ -606,6 +607,8 @@ export class WidgetNavigatorComponent {
                 [this.selectedRelationship],
                 this.ngSelectedRelationshipFilterRole
             );
+            this.childDataAllLength = this.childDataAll.length;
+
             this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
 
             // Reduce visible list
@@ -615,14 +618,13 @@ export class WidgetNavigatorComponent {
             let test: boolean;
             test = true;
             if (test) {
-                this.graphData = [];
                 this.graphData = this.constructGraphDataForUnit(
                     this.selectedParentNode,
                     [this.selectedRelationship],
                     this.showAdditionalLevelForRelationships?  true  :  false,
                     this.showAdditionalLevelForRoles?  true  :  false
                 );
-                console.log('xx this.graphData', this.graphData)
+                this.childDataAllLength = this.graphData.length;
             } else {
 
                 this.graphData = [];
