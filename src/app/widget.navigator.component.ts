@@ -615,6 +615,7 @@ export class WidgetNavigatorComponent {
             let test: boolean;
             test = true;
             if (test) {
+                this.graphData = [];
                 this.graphData = this.constructGraphDataForUnit(
                     this.selectedParentNode,
                     [this.selectedRelationship],
@@ -1001,6 +1002,7 @@ export class WidgetNavigatorComponent {
     
         // Reset the data which will now be created
         let localGraphData = [];
+        console.log('xx localGraphData 0', JSON.parse(JSON.stringify(localGraphData)))
 
         // Add Parent
         localGraphData.push(
@@ -1008,6 +1010,7 @@ export class WidgetNavigatorComponent {
                 "id": startID,
                 "name": this.constructNodeName(parentNodeName)
             });
+            console.log('xx localGraphData 0', JSON.parse(JSON.stringify(localGraphData)))
         
         // There are 4 scenarios, each one creating a different amount of sub-levels
         
@@ -1161,6 +1164,7 @@ export class WidgetNavigatorComponent {
             let relationshipCounter: number = 0;    // Counter on relationship
             let roleCounter: number = 0;            // Counter on role
             let childCounter: number = 0;           // Counter on children, spans roles
+            console.log('xx localGraphData 0', JSON.parse(JSON.stringify(localGraphData)))
 
             relationships.forEach(relationship => {
 
@@ -1174,36 +1178,7 @@ export class WidgetNavigatorComponent {
                     name: this.constructNodeName(relationship),
                     parent: startID
                 });
-
-                // // Get children for parent - role
-                // let localChildDataAll = this.distinctChildrenNodes(
-                //     'All', 
-                //     parentNodeName, 
-                //     [relationship],
-                //     'All'
-                // );
-
-                // // Get visible children
-                // let localChildDataVisible = localChildDataAll.splice(0, this.visibleNumberChildren)
-
-                // // Add Children
-                // localChildDataVisible.forEach(child => {
-
-                //     // Increment
-                //     childCounter = childCounter + 1;
-
-                //     // Add
-                //     localGraphData.push({
-                //         id: startID + relationshipCounter + childCounter,
-                //         name: this.constructNodeName(child),
-                //         parent: relationshipID
-                //     });
-                // });
-
-
-
-
-
+console.log('xx localGraphData 1', JSON.parse(JSON.stringify(localGraphData)))
                 let relationshipRoles: string[] = this.distinctRelationshipRoles(relationship);
             
                 // Reduce amount shown
@@ -1221,6 +1196,7 @@ export class WidgetNavigatorComponent {
                         name: this.constructNodeName(role),
                         parent: relationshipID
                     });
+console.log('xx localGraphData 2', JSON.parse(JSON.stringify(localGraphData)))
     
                     // Get children for parent - role
                     let localChildDataAll = this.distinctChildrenNodes(
@@ -1245,29 +1221,18 @@ export class WidgetNavigatorComponent {
                             name: this.constructNodeName(child),
                             parent: roleID
                         });
+                        console.log('xx localGraphData 3', JSON.parse(JSON.stringify(localGraphData)))
                     });
                 });
+console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData)))
         
-                // Return
-                return localGraphData;
+                // // Return
+                // return localGraphData;
 
             });
 
-
-
-
-
-
-
-
-
-
-
-
-            // })
-    
-            // // Return
-            // return localGraphData;
+            // Return
+            return localGraphData;
         };
   
     }
