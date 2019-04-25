@@ -2355,7 +2355,7 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageRight', '@Start');
 
         let maxStart: number = Math.max(
-            this.graphData.length - this.visibleNumberChildrenShown, 0);
+            this.graphDataLength - this.visibleNumberChildrenShown, 0);
 
         this.visibleNumberChildrenStart = Math.min(
             this.visibleNumberChildrenStart + this.visibleNumberChildrenShown, maxStart);
@@ -2368,7 +2368,7 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageLast', '@Start');
 
         this.visibleNumberChildrenStart = Math.max(
-            this.graphData.length - this.visibleNumberChildrenShown, 0);
+            this.graphDataLength - this.visibleNumberChildrenShown, 0);
 
         this.checkShowGraph();
     }
