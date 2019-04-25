@@ -135,7 +135,6 @@ export class WidgetNavigatorComponent {
     showAdditionalLevelForRelationships: boolean = false;     // True to add level to graph with all Relationships
     showAdditionalLevelForRoles: boolean = false;             // True to add level to graph with Relationship Roles
     showProperty: boolean = false;          // True to show selected Property with Nodes in graph
-    showVisibleNumberInput: boolean = false;
 
     // Widget and Graph (Vega)
     localWidget: Widget;                            // W to modify, copied from selected
