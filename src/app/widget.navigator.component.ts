@@ -618,7 +618,7 @@ export class WidgetNavigatorComponent {
                 this.graphData = this.constructGraphDataForUnit(
                     this.selectedParentNode,
                     [this.selectedRelationship],
-                    false,
+                    this.showAdditionalLevelForRelationships?  true  :  false,
                     this.showAdditionalLevelForRoles?  true  :  false
                 );
                 console.log('xx this.graphData', this.graphData)
@@ -1316,7 +1316,7 @@ export class WidgetNavigatorComponent {
                           (
                               selectedParentNodeName != 'All'
                               &&
-                              nr.leftNodeName === selectedParentNodeName
+                              nr.rightNodeName === selectedParentNodeName
                           )
             )
             .filter(nr => nr.relationshipRightToLeft != '')
