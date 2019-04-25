@@ -2209,6 +2209,18 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickAdditionalLevelRelationship() {
+        // Add an additional level to the default view, based on diffrent relationships
+        // Example: if false, company  -> ...
+        //          if true,  company  -> Directors  ->  ...
+        //                             -> Subsidiaries  ->  ...
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickAdditionalLevelRelationship', '@Start');
+
+        this.showRoles = !this.showRoles;
+
+        this.checkShowGraph();
+    }
+    
     clickAdditionalLevelRole() {
         // Add an additional level to the default view, based on a property of the relationship
         // that has already been defined.
