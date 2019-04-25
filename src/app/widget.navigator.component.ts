@@ -1026,7 +1026,7 @@ export class WidgetNavigatorComponent {
             );
 
             // Set length
-            this.graphDataLength = 1 + localChildDataAll.length;
+            this.graphDataLength = localChildDataAll.length;
 
             // Get visible children
             let localChildDataVisible = localChildDataAll.splice(
@@ -1057,7 +1057,7 @@ export class WidgetNavigatorComponent {
             let relationshipRoles: string[] = this.distinctRelationshipRoles(this.selectedRelationship);
             
             // Set length
-            this.graphDataLength = 1 + relationshipRoles.length;
+            this.graphDataLength = relationshipRoles.length;
 
             // Reduce amount shown
             relationshipRoles = relationshipRoles.splice(
@@ -1119,7 +1119,7 @@ export class WidgetNavigatorComponent {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
             
             // Set length
-            this.graphDataLength = 1 + relationships.length;
+            this.graphDataLength = relationships.length;
 
             // Reduce amount shown
             relationships = relationships.splice(
@@ -1181,7 +1181,7 @@ export class WidgetNavigatorComponent {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
             
             // Set length
-            this.graphDataLength = 1 + relationships.length;
+            this.graphDataLength = relationships.length;
 
             // Reduce amount shown
             relationships = relationships.splice(
