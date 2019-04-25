@@ -466,7 +466,7 @@ export class WidgetNavigatorComponent {
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
 
         // Fill Relationships Dropdown
-        this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType);
+        this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType, 'All');
         this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
 
         // Reduce size of Dropdown
@@ -1082,11 +1082,9 @@ export class WidgetNavigatorComponent {
 
         };
 
-TODO - make distinctRelationships on optional nodeName as well,
-
         // 3. parent - relationship - children
         if (isBreakOnRelationship  &&  !isBreakOnRole) {
-            let relationships: string[] = this.distinctRelationships(parentNodeName)
+            let relationships: string[] = this.distinctRelationships('All', parentNodeName)
 
             relationships.forEach(rel => {
                 this.childDataAll = this.distinctChildrenNodes(
@@ -1101,7 +1099,7 @@ TODO - make distinctRelationships on optional nodeName as well,
 
         // 4. parent - relationship - roles - children
         if (isBreakOnRelationship  &&  isBreakOnRole) {
-            let relationships: string[] = this.distinctRelationships(parentNodeName)
+            let relationships: string[] = this.distinctRelationships('All', parentNodeName)
             let relationshipRoles: string[] = this.distinctRelationshipRoles(this.selectedRelationship);
             relationships.forEach(rel => {
 
