@@ -2309,23 +2309,28 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
     clickPageFirst() {
         // Move to the First page of children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageFirst', '@Start');
+        
+        this.visibleNumberChildrenStart = 0;
     }
 
     clickPageLeft() {
         // Move to the previous page of children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageLeft', '@Start');
+
+        this.visibleNumberChildrenStart = Math.max(
+            this.visibleNumberChildrenStart - this.visibleNumberChildrenShown , 0);
     }
 
     clickPageRight() {
         // Move to the next page of children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageRight', '@Start');
-
+        this.visibleNumberChildrenStart
     }
-    
+
     clickPageLast() {
         // Move to the Last page of children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageLast', '@Start');
-
+        this.visibleNumberChildrenStart
     }
 
 
