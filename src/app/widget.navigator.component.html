@@ -482,21 +482,22 @@ dimensions are set in app.html, and cannot be changed here. -->
 
                     <!-- Break by additional node level -->
                     <span
-                        style="cursor: pointer; margin-left: 8px;"
+                        style="cursor: pointer; font-size: 0.45rem; margin-left: 8px;"
                         [style.color]="showAdditionalLevelForRelationships?  'black'  :  'gray'"
+                        [style.font-weight]="showAdditionalLevelForRelationships? 'bold' : 'normal'"
                         title="Add additional level to graph, based on relationship"
                         (click)="clickAdditionalLevelRelationship()"
                         >
-                        Rel
+                        Relationship
                     </span>
-                    <span>
-                        <clr-icon shape="usb"
-                            style="cursor: pointer; margin-left: 8px;"
-                            [style.color]="showAdditionalLevelForRoles?  'black'  :  'gray'"
-                            title="Add additional level to graph, based on relationship properties"
-                            (click)="clickAdditionalLevelRole()"
-                            >
-                        </clr-icon>
+                    <span
+                        style="cursor: pointer; font-size: 0.45rem; margin-left: 8px;"
+                        [style.color]="showAdditionalLevelForRoles?  'black'  :  'gray'"
+                        [style.font-weight]="showAdditionalLevelForRoles? 'bold' : 'normal'"
+                        title="Add additional level to graph, based on relationship roles / property"
+                        (click)="clickAdditionalLevelRole()"
+                        >
+                        Role
                     </span>
             
                     <!-- Additional Properties to show -->
