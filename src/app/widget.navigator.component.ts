@@ -61,6 +61,7 @@ export class WidgetNavigatorComponent {
     //  - NavigatorNodeFiler
     errorMessage: string = '';                          // Error on form
     graphData: any[] = [];                              // childDataAll formatted for Vega
+    graphDataLength: number = 0;
 
     ngNetworks: Datasource[] = [];                      // All Networks (DS with isNetwork = True)
     ngHistory: NavigatorHistory[] = [];                   // History for current network
@@ -1024,6 +1025,9 @@ export class WidgetNavigatorComponent {
                 'All'
             );
 
+            // Set length
+            this.graphDataLength = 1 + localChildDataAll.length;
+
             // Get visible children
             let localChildDataVisible = localChildDataAll.splice(
                 this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
@@ -1052,6 +1056,9 @@ export class WidgetNavigatorComponent {
         if (!isAddLevelForRelationship  &&  isAddLevelForOnRole) {
             let relationshipRoles: string[] = this.distinctRelationshipRoles(this.selectedRelationship);
             
+            // Set length
+            this.graphDataLength = 1 + relationshipRoles.length;
+
             // Reduce amount shown
             relationshipRoles = relationshipRoles.splice(
                 this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
@@ -1079,6 +1086,9 @@ export class WidgetNavigatorComponent {
                     relationships,
                     role
                 );
+
+                // Set length
+                this.graphDataLength = this.graphDataLength + localChildDataAll.length;
 
                 // Get visible children
                 let localChildDataVisible = localChildDataAll.splice(
@@ -1108,6 +1118,9 @@ export class WidgetNavigatorComponent {
         if (isAddLevelForRelationship  &&  !isAddLevelForOnRole) {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
             
+            // Set length
+            this.graphDataLength = 1 + relationships.length;
+
             // Reduce amount shown
             relationships = relationships.splice(
                 this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
@@ -1135,6 +1148,9 @@ export class WidgetNavigatorComponent {
                     [relationship],
                     'All'
                 );
+
+                // Set length
+                this.graphDataLength = this.graphDataLength + localChildDataAll.length;
 
                 // Get visible children
                 let localChildDataVisible = localChildDataAll.splice(
@@ -1164,6 +1180,9 @@ export class WidgetNavigatorComponent {
         if (isAddLevelForRelationship  &&  isAddLevelForOnRole) {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
             
+            // Set length
+            this.graphDataLength = 1 + relationships.length;
+
             // Reduce amount shown
             relationships = relationships.splice(
                 this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
@@ -1188,6 +1207,9 @@ export class WidgetNavigatorComponent {
 console.log('xx localGraphData 1', JSON.parse(JSON.stringify(localGraphData)))
                 let relationshipRoles: string[] = this.distinctRelationshipRoles(relationship);
             
+                // Set length
+                this.graphDataLength = this.graphDataLength + relationshipRoles.length;
+
                 // Reduce amount shown
                 relationshipRoles = relationshipRoles.splice(
                     this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
@@ -1214,6 +1236,9 @@ console.log('xx localGraphData 2', JSON.parse(JSON.stringify(localGraphData)))
                         role
                     );
     
+                    // Set length
+                    this.graphDataLength = this.graphDataLength + localChildDataAll.length;
+
                     // Get visible children
                     let localChildDataVisible = localChildDataAll.splice(
                         this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
@@ -2318,7 +2343,7 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageLeft', '@Start');
 
         this.visibleNumberChildrenStart = Math.max(
-            this.visibleNumberChildrenStart - this.visibleNumberChildrenShown , 0);
+            this.visibleNumberChildrenStart - this.visibleNumberChildrenShown, 0);
     }
 
     clickPageRight() {
@@ -2326,10 +2351,10 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageRight', '@Start');
 
         let maxStart: number = Math.max(
-            this.graphData.length - this.visibleNumberChildrenShown , 0);
+            this.graphData.length - this.visibleNumberChildrenShown, 0);
 
         this.visibleNumberChildrenStart = Math.min(
-            this.visibleNumberChildrenStart + this.visibleNumberChildrenShown , maxStart);
+            this.visibleNumberChildrenStart + this.visibleNumberChildrenShown, maxStart);
     }
 
     clickPageLast() {
@@ -2337,7 +2362,7 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageLast', '@Start');
 
         this.visibleNumberChildrenStart = Math.max(
-            this.graphData.length - this.visibleNumberChildrenShown , 0);
+            this.graphData.length - this.visibleNumberChildrenShown, 0);
     }
 
 
