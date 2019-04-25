@@ -2324,13 +2324,20 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
     clickPageRight() {
         // Move to the next page of children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageRight', '@Start');
-        this.visibleNumberChildrenStart
+
+        let maxStart: number = Math.max(
+            this.graphData.length - this.visibleNumberChildrenShown , 0);
+
+        this.visibleNumberChildrenStart = Math.min(
+            this.visibleNumberChildrenStart + this.visibleNumberChildrenShown , maxStart);
     }
 
     clickPageLast() {
         // Move to the Last page of children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageLast', '@Start');
-        this.visibleNumberChildrenStart
+
+        this.visibleNumberChildrenStart = Math.max(
+            this.graphData.length - this.visibleNumberChildrenShown , 0);
     }
 
 
