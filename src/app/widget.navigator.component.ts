@@ -119,7 +119,8 @@ export class WidgetNavigatorComponent {
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
     ngRelationshipRoles: string[] = [];
     relationshipFilterErrorMessage: string = '';
-    visibleNumberChildren: number = 12;
+    visibleNumberChildrenShown: number = 12;
+    visibleNumberChildrenStart: number = 0;
 
     // Graph dimensions
     graphHeight: number = 400;          // TODO - fill this into Spec
@@ -609,7 +610,9 @@ export class WidgetNavigatorComponent {
             this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
 
             // Reduce visible list
-            this.childDataVisible = this.childDataAll.slice(0, this.visibleNumberChildren);
+            this.childDataVisible = this.childDataAll.slice(
+                this.visibleNumberChildrenStart, this.visibleNumberChildrenShown
+            );
 
             // Format the graphData
             let test: boolean;
@@ -1022,7 +1025,8 @@ export class WidgetNavigatorComponent {
             );
 
             // Get visible children
-            let localChildDataVisible = localChildDataAll.splice(0, this.visibleNumberChildren)
+            let localChildDataVisible = localChildDataAll.splice(
+                this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
 
             // Add Children
             let childCnt: number = 0;
@@ -1049,7 +1053,8 @@ export class WidgetNavigatorComponent {
             let relationshipRoles: string[] = this.distinctRelationshipRoles(this.selectedRelationship);
             
             // Reduce amount shown
-            relationshipRoles = relationshipRoles.splice(0, this.visibleNumberChildren);
+            relationshipRoles = relationshipRoles.splice(
+                this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
 
             let roleCounter: number = 0;            // Counter on role
             let childCounter: number = 0;           // Counter on children, spans roles
@@ -1076,7 +1081,8 @@ export class WidgetNavigatorComponent {
                 );
 
                 // Get visible children
-                let localChildDataVisible = localChildDataAll.splice(0, this.visibleNumberChildren)
+                let localChildDataVisible = localChildDataAll.splice(
+                    this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
 
                 // Add Children
                 localChildDataVisible.forEach(child => {
@@ -1103,7 +1109,8 @@ export class WidgetNavigatorComponent {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
             
             // Reduce amount shown
-            relationships = relationships.splice(0, this.visibleNumberChildren);
+            relationships = relationships.splice(
+                this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
 
             let relationshipCounter: number = 0;            // Counter on relationship
             let childCounter: number = 0;           // Counter on children, spans roles
@@ -1130,7 +1137,8 @@ export class WidgetNavigatorComponent {
                 );
 
                 // Get visible children
-                let localChildDataVisible = localChildDataAll.splice(0, this.visibleNumberChildren)
+                let localChildDataVisible = localChildDataAll.splice(
+                    this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
 
                 // Add Children
                 localChildDataVisible.forEach(child => {
@@ -1157,7 +1165,8 @@ export class WidgetNavigatorComponent {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
             
             // Reduce amount shown
-            relationships = relationships.splice(0, this.visibleNumberChildren);
+            relationships = relationships.splice(
+                this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
 
             let relationshipCounter: number = 0;    // Counter on relationship
             let roleCounter: number = 0;            // Counter on role
@@ -1180,7 +1189,8 @@ console.log('xx localGraphData 1', JSON.parse(JSON.stringify(localGraphData)))
                 let relationshipRoles: string[] = this.distinctRelationshipRoles(relationship);
             
                 // Reduce amount shown
-                relationshipRoles = relationshipRoles.splice(0, this.visibleNumberChildren);
+                relationshipRoles = relationshipRoles.splice(
+                    this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
         
                 relationshipRoles.forEach(role => {
     
@@ -1205,7 +1215,8 @@ console.log('xx localGraphData 2', JSON.parse(JSON.stringify(localGraphData)))
                     );
     
                     // Get visible children
-                    let localChildDataVisible = localChildDataAll.splice(0, this.visibleNumberChildren)
+                    let localChildDataVisible = localChildDataAll.splice(
+                        this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
     
                     // Add Children
                     localChildDataVisible.forEach(child => {

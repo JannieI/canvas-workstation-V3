@@ -288,7 +288,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                     <span style="font-size: 0.45rem;"
                         title="Children visible / shown"
                         >
-                        1 to {{ visibleNumberChildren }}
+                        {{ visibleNumberChildrenStart + 1 }} to {{ visibleNumberChildrenShown }}
                     </span>
                     <span style="cursor: pointer; font-size: 0.45rem;"
                         title="Total number of children; can be changed on the bar menu"
@@ -727,7 +727,7 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div>
         <div class="propertyAreaBlock">
             Max Nr Children:
-            <input [(ngModel)]="visibleNumberChildren" 
+            <input [(ngModel)]="visibleNumberChildrenShown" 
                 type="text"
                 title="Max Number of children to show"
                 placeholder="Max nr children"
