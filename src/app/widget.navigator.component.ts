@@ -2369,6 +2369,8 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
 
         this.visibleNumberChildrenStart = Math.max(
             this.graphData.length - this.visibleNumberChildrenShown, 0);
+
+        this.checkShowGraph();
     }
 
 
