@@ -1797,13 +1797,95 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         // List all ParentNode - relationship - Child relationships for the the array
         inputNodes.forEach(nd => {
             nodeRelsPerNode = nodeRelsPerNode.concat(this.parentRelationshipPerNode(nd));
-
         });
 
-        // Create a distinct list with 2 or more ParentNodes
-        nodeRelsPerNode.forEach(nd => {
+        // Create a distinct list of ParentNodes
+        let parentNodesUnique: string[] = [];
+        parentNodesUnique = nodeRelsPerNode.map(nr => nr.parentNodeName);
+        parentNodesUnique = this.navUniqifySortNodes(parentNodesUnique);
 
-        })
+        // Array of parentNodes + count with 2 or more occurances
+        let parentsCount: { parentNode: string; count: number}[] = [];
+        let counter: number = 0;
+        parentNodesUnique.forEach(pu => {
+            counter = nodeRelsPerNode.filter(nr => nr.parentNodeName === pu).length;
+            if (counter > 1) {
+                parentsCount.push({ parentNode: pu, count: counter });
+            };
+        });
+
+        // Sort on counter
+        parentsCount = parentsCount.sort( (a,b) => {
+            if (a.count > b.count) {
+                return 1;
+            };
+            if (a.count < b.count) {
+                return -1;
+            };
+                return 0;
+        });
+        
+        // Build the graph Data
+        let localGraphData: any[] = [];
+
+        localGraphData.push({
+            id: 1,
+            name: 'Common Parents'
+        });
+
+        parentsCount.forEach(pc => {
+
+            // Get unique list of relationships
+            let localRelationships: string[] = nodeRelsPerNode
+                .filter(nr => nr.parentNodeName === pc.parentNode)
+                .map(nr => nr.relatinsionship);
+            localRelationships = this.navUniqifySortNodes(localRelationships);
+
+            // Loop on relationships and add Children
+            localRelationships.forEach(localRel => {
+
+                // Distrinct children for this parent and relationship
+                let localChildren: string[] = nodeRelsPerNode
+                    .filter(nr => nr.parentNodeName === pc.parentNode
+                            &&
+                            nr.relatinsionship === localRel)
+                    .map(nr => nr.nodeName);
+                localChildren = this.navUniqifySortNodes(localChildren);
+
+                // Add each child
+                for (var i = 0; i < localChildren.length; i++) {
+                    localGraphData.push({
+                        id: i + 2,
+                        name: localRel,
+                        parent: localChildren[i]
+                    });
+
+                };
+                
+            });
+        });
+
+        // Set length
+        this.graphDataLength = localGraphData.length;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Return
         return nodes;
