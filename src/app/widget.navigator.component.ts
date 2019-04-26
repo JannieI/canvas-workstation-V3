@@ -585,7 +585,6 @@ export class WidgetNavigatorComponent {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphDefaultView', '@Start');
 
-        this.graphTitle = '';
         // Build data and graph if all parent & relationship fields selected
         if (this.selectedParentNodeType != ''
             && this.selectedParentNode != ''
@@ -601,19 +600,19 @@ export class WidgetNavigatorComponent {
 
             console.log('xx this.ngSelectedRelationshipFilterRole', this.ngSelectedRelationshipFilterRole)
             // Set the data, some unique
-            this.childDataAll = this.distinctChildrenNodes(
-                this.selectedParentNodeType, 
-                this.selectedParentNode, 
-                [this.selectedRelationship],
-                this.ngSelectedRelationshipFilterRole
-            );
+            // this.childDataAll = this.distinctChildrenNodes(
+            //     this.selectedParentNodeType, 
+            //     this.selectedParentNode, 
+            //     [this.selectedRelationship],
+            //     this.ngSelectedRelationshipFilterRole
+            // );
 
-            this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
+            // this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
 
-            // Reduce visible list
-            this.childDataVisible = this.childDataAll.slice(
-                this.visibleNumberChildrenStart, this.visibleNumberChildrenShown
-            );
+            // // Reduce visible list
+            // this.childDataVisible = this.childDataAll.slice(
+            //     this.visibleNumberChildrenStart, this.visibleNumberChildrenShown
+            // );
 
             // Format the graphData
             this.graphData = this.constructGraphDataForUnit(
