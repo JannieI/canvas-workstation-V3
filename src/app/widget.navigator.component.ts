@@ -60,7 +60,7 @@ export class WidgetNavigatorComponent {
     //  - NavigatorHistory
     //  - NavigatorNodeFiler
     errorMessage: string = '';                          // Error on form
-    graphData: any[] = [];                              // childDataAll formatted for Vega
+    graphData: any[] = [];                              // data formatted for Vega
     graphDataLength: number = 0;
 
     ngNetworks: Datasource[] = [];                      // All Networks (DS with isNetwork = True)
@@ -110,7 +110,7 @@ export class WidgetNavigatorComponent {
     childNodesFilteredList: string[] = [];              // List of Nodes, after filtered on NodeProperties
 
     // Working
-    childDataAll: any[] = [];                           // List of all children after filter
+    childDataAll: any[] = [];                           // List of ALL children after filter (ie all levels)
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
     childFilterErrorMessage: string = '';
@@ -616,87 +616,12 @@ export class WidgetNavigatorComponent {
             );
 
             // Format the graphData
-            let test: boolean;
-            test = true;
-            if (test) {
-                this.graphData = this.constructGraphDataForUnit(
-                    this.selectedParentNode,
-                    [this.selectedRelationship],
-                    this.showAdditionalLevelForRelationships?  true  :  false,
-                    this.showAdditionalLevelForRoles?  true  :  false
-                );
-            } else {
-
-                this.graphData = [];
-                if (!this.showAdditionalLevelForRoles) {
-
-                    // Parent
-                    this.graphData.push(
-                        {
-                            "id": 1,
-                            "name": this.constructNodeName(this.selectedParentNode)
-                        });
-
-                    // Children
-                    for (var i = 0; i < this.childDataVisible.length; i++) {
-                        this.graphData.push({
-                            id: i + 2,
-                            name: this.constructNodeName(this.childDataVisible[i]),
-                            parent: 1
-                        });
-                    };
-                } else {
-                    console.log('xx 6', this.childDataAll, this.ngRelationshipRoles)
-                    // Parent
-                    this.graphData.push(
-                        {
-                            "id": 1,
-                            "name": this.constructNodeName(this.selectedParentNode)
-                        });
-
-                    // Offset
-                    let offset: number = 2;
-
-                    for (var roleID = 0; roleID < this.ngRelationshipRoles.length; roleID++) {
-                        let parentRoleID = offset;
-                        this.graphData.push(
-                            {
-                                "id": parentRoleID,
-                                "name": this.ngRelationshipRoles[roleID],
-                                parent: 1
-                            });
-
-                        // Get list of Children for this role
-                        let leftChildrenFilteredRole: string[] = this.networkRelationships
-                            .filter(nr => nr.leftNodeType === this.selectedParentNodeType
-                                && nr.leftNodeName === this.selectedParentNode
-                                && nr.relationshipLeftToRight === this.selectedRelationship
-                                && nr.relationshipProperty === this.ngRelationshipRoles[roleID])
-                            .map(y => y.rightNodeName);
-                        let rightChildrenFilteredRole: string[] = this.networkRelationships
-                            .filter(nr => nr.rightNodeType === this.selectedParentNodeType
-                                && nr.rightNodeName === this.selectedParentNode
-                                && nr.relationshipRightToLeft === this.selectedRelationship
-                                && nr.relationshipProperty === this.ngRelationshipRoles[roleID])
-                            .map(y => y.rightNodeName);
-                        let childrenFilteredRole: string[] = leftChildrenFilteredRole
-                            .concat(rightChildrenFilteredRole);
-
-                        // Increment with 1, which was added above
-                        offset = offset + 1;
-                        for (var childID = 0; childID < childrenFilteredRole.length; childID++) {
-                            this.graphData.push(
-                                {
-                                    "id": childID + offset,
-                                    "name": this.constructNodeName(childrenFilteredRole[childID]),
-                                    parent: parentRoleID
-                                });
-                        };
-                        offset = offset + childrenFilteredRole.length;
-                    };
-                    console.log('xx 6.5', this.graphData)
-                };
-            };
+            this.graphData = this.constructGraphDataForUnit(
+                this.selectedParentNode,
+                [this.selectedRelationship],
+                this.showAdditionalLevelForRelationships?  true  :  false,
+                this.showAdditionalLevelForRoles?  true  :  false
+            );
 
             // Add to History
             // TODO - keep ParentNodeID of selected for here
@@ -855,6 +780,11 @@ export class WidgetNavigatorComponent {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphCommonParentView', '@Start');
         
+        // Reset
+        this.graphData = [];
+
+        console.log('xx this.childDataAll', this.childDataAll)
+
         if (this.childDataAll.length > 0) {
 
             this.graphData = this.constructGraphDataForCommonParents(this.childDataAll);
@@ -873,7 +803,9 @@ export class WidgetNavigatorComponent {
                 this.graphWidth = 100;
             };
 
-        }
+        };
+        console.log('xx this.graphData', this.graphData)
+
     }
 
     createGraphCommonNodeView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
