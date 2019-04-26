@@ -598,22 +598,6 @@ export class WidgetNavigatorComponent {
                 this.graphTitle = this.graphTitle + ', filtered on ' + this.ngChildNodeFilterSelectedFieldName;
             };
 
-            console.log('xx this.ngSelectedRelationshipFilterRole', this.ngSelectedRelationshipFilterRole)
-            // Set the data, some unique
-            // this.childDataAll = this.distinctChildrenNodes(
-            //     this.selectedParentNodeType, 
-            //     this.selectedParentNode, 
-            //     [this.selectedRelationship],
-            //     this.ngSelectedRelationshipFilterRole
-            // );
-
-            // this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
-
-            // // Reduce visible list
-            // this.childDataVisible = this.childDataAll.slice(
-            //     this.visibleNumberChildrenStart, this.visibleNumberChildrenShown
-            // );
-
             // Format the graphData
             this.graphData = this.constructGraphDataForUnit(
                 this.selectedParentNode,
@@ -953,6 +937,9 @@ export class WidgetNavigatorComponent {
         //  startID - id in graphData where parent starts (the rest of the rest has this as their parent)
         this.globalFunctionService.printToConsole(this.constructor.name, 'constructGraphDataForUnit', '@Start');
     
+        // Reset list of ALL children
+        this.childDataAll = [];
+
         // Reset the data which will now be created
         let localGraphData = [];
         console.log('xx localGraphData 0', JSON.parse(JSON.stringify(localGraphData)))
@@ -982,6 +969,9 @@ export class WidgetNavigatorComponent {
             // Get visible children
             let localChildDataVisible = localChildDataAll.splice(
                 this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
+
+            // Append to list of ALL children currently displayed
+            this.childDataAll = this.childDataAll.concat(localChildDataVisible);
 
             // Add Children
             let childCnt: number = 0;
@@ -1045,6 +1035,9 @@ export class WidgetNavigatorComponent {
                 let localChildDataVisible = localChildDataAll.splice(
                     this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
 
+                // Append to list of ALL children currently displayed
+                this.childDataAll = this.childDataAll.concat(localChildDataVisible);
+
                 // Add Children
                 localChildDataVisible.forEach(child => {
 
@@ -1106,6 +1099,9 @@ export class WidgetNavigatorComponent {
                 // Get visible children
                 let localChildDataVisible = localChildDataAll.splice(
                     this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
+
+                // Append to list of ALL children currently displayed
+                this.childDataAll = this.childDataAll.concat(localChildDataVisible);
 
                 // Add Children
                 localChildDataVisible.forEach(child => {
@@ -1192,6 +1188,9 @@ export class WidgetNavigatorComponent {
                     let localChildDataVisible = localChildDataAll.splice(
                         this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
     
+                    // Append to list of ALL children currently displayed
+                    this.childDataAll = this.childDataAll.concat(localChildDataVisible);
+
                     // Add Children
                     localChildDataVisible.forEach(child => {
     
