@@ -1723,6 +1723,25 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
 
     }
 
+    parentsPerNode(nodeName: string): string[] {
+        // Return list of unique parent Nodes for a given node
+        this.globalFunctionService.printToConsole(this.constructor.name, 'parentsPerNode', '@Start');
+    
+        let leftParentNodes: string[] = this.networkRelationships
+            .filter(nr => nr.rightNodeName === nodeName)
+            .map(nr => nr.leftNodeName);
+        let rightParentNodes: string[] = this.networkRelationships
+            .filter(nr => nr.leftNodeName === nodeName)
+            .map(nr => nr.rightNodeName);
+        let parentNodes: string[] = leftParentNodes.concat(rightParentNodes);
+
+        parentNodes = this.navUniqifySortNodes(parentNodes);
+
+        // Return
+        return parentNodes;
+        
+    }
+
     // navSingleRoute(navStartNode: string, parentNode: string, relationship: string, path: string[]) {
     //     // Recursive process to get a single route for a start Node
     //     this.globalFunctionService.printToConsole(this.constructor.name, 'navSingleRoute', '@Start');
