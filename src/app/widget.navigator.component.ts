@@ -1742,42 +1742,48 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         
     }
 
-    nodeRelationshipPerNode(inputNodeName: string): 
+    parentRelationshipPerNode(inputNodeName: string): 
         {parentNodeName: string; relatinsionship: string; nodeName: string}[] 
         {
         // Return list of unique ParentNode - Relationship - inputNodeName for a given node
-        this.globalFunctionService.printToConsole(this.constructor.name, 'nodeRelationshipPerNode', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'parentRelationshipPerNode', '@Start');
     
-        let leftNodes: NavigatorRelationship[] = this.networkRelationships
-            .filter(nr => nr.leftNodeName === inputNodeName)
-        let rightNodes: NavigatorRelationship[] = this.networkRelationships
-            .filter(nr => nr.rightNodeName === inputNodeName)
-        
-        let parentNodes: {parentNodeName: string; relatinsionship: string; nodeName: string}[] = [];
+        let parentRelationshipNodes: {parentNodeName: string; relatinsionship: string; nodeName: string}[] = [];
 
-        leftNodes.forEach(ln => parentNodes.push(
+        let leftNodes: NavigatorRelationship[] = this.networkRelationships
+            .filter(nr => nr.leftNodeName === inputNodeName
+                    &&
+                    nr.relationshipLeftToRight != '')       
+
+        leftNodes.forEach(ln => parentRelationshipNodes.push(
             {
                 parentNodeName: ln.rightNodeName,
-                relatinsionship: ln.relationshipRightToLeft, 
+                relatinsionship: ln.relationshipLeftToRight, 
                 nodeName: ln.leftNodeName
             })
         );
-        rightNodes.forEach(ln => parentNodes.push(
+
+        let rightNodes: NavigatorRelationship[] = this.networkRelationships
+            .filter(nr => nr.rightNodeName === inputNodeName
+                    &&
+                    nr.relationshipRightToLeft != '')       
+
+        rightNodes.forEach(ln => parentRelationshipNodes.push(
             {
                 parentNodeName: ln.leftNodeName,
-                relatinsionship: ln.relationshipLeftToRight, 
+                relatinsionship: ln.relationshipRightToLeft, 
                 nodeName: ln.rightNodeName
             })
         );
 
         // Return
-        return parentNodes;
+        return parentRelationshipNodes;
         
     }
 
-
     commonParentsForArrayOfNodeNames(inputNodes: string[]): string[] {
-        // Return list of unique ParentNode - Relationship - inputNodeName for a given node
+        // Return list of unique ParentNode - Relationship - inputNodeName for a given 
+        // array of nodeNames
         this.globalFunctionService.printToConsole(this.constructor.name, 'commonParentsForArrayOfNodeNames', '@Starts');
 
         let nodes: string[] = [];
@@ -1790,7 +1796,7 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
 
         // List all ParentNode - relationship - Child relationships for the the array
         inputNodes.forEach(nd => {
-            nodeRelsPerNode = nodeRelsPerNode.concat(this.nodeRelationshipPerNode(nd));
+            nodeRelsPerNode = nodeRelsPerNode.concat(this.parentRelationshipPerNode(nd));
 
         });
 
