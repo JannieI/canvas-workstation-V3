@@ -854,6 +854,26 @@ export class WidgetNavigatorComponent {
     createGraphCommonParentView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphCommonParentView', '@Start');
+        
+        if (this.childDataAll.length > 0) {
+
+            this.graphData = this.constructGraphDataForCommonParents(this.childDataAll);
+
+            // TODO
+            // 1. add to History
+            // 2. Set H & W
+            if (inputWidth != 0) {
+                this.graphWidth = inputWidth;
+            } else {
+                if (this.localWidget.graphLayers.length > 0) {
+                    this.graphWidth = this.localWidget.graphLayers[0].graphSpecification.width;
+                };
+            };
+            if (this.graphWidth < 100) {
+                this.graphWidth = 100;
+            };
+
+        }
     }
 
     createGraphCommonNodeView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
@@ -1264,7 +1284,6 @@ export class WidgetNavigatorComponent {
         };
   
     }
-
 
     constructGraphDataForCommonParents(inputNodes: string[]): any[] {
         // Construct the graph Data of common parents for a given array of Nodes
