@@ -1723,15 +1723,15 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
 
     }
 
-    parentsPerNode(nodeName: string): string[] {
+    parentsPerNode(inputNodeName: string): string[] {
         // Return list of unique parent Nodes for a given node
         this.globalFunctionService.printToConsole(this.constructor.name, 'parentsPerNode', '@Start');
     
         let leftParentNodes: string[] = this.networkRelationships
-            .filter(nr => nr.rightNodeName === nodeName)
+            .filter(nr => nr.rightNodeName === inputNodeName)
             .map(nr => nr.leftNodeName);
         let rightParentNodes: string[] = this.networkRelationships
-            .filter(nr => nr.leftNodeName === nodeName)
+            .filter(nr => nr.leftNodeName === inputNodeName)
             .map(nr => nr.rightNodeName);
         let parentNodes: string[] = leftParentNodes.concat(rightParentNodes);
 
@@ -1775,13 +1775,40 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         
     }
 
-    // navSingleRoute(navStartNode: string, parentNode: string, relationship: string, path: string[]) {
-    //     // Recursive process to get a single route for a start Node
-    //     this.globalFunctionService.printToConsole(this.constructor.name, 'navSingleRoute', '@Start');
+
+    commonParentsForArrayOfNodeNames(inputNodes: string[]): string[] {
+        // Return list of unique ParentNode - Relationship - inputNodeName for a given node
+        this.globalFunctionService.printToConsole(this.constructor.name, 'commonParentsForArrayOfNodeNames', '@Starts');
+
+        let nodes: string[] = [];
+
+        let nodeRelsPerNode: {
+            parentNodeName: string; 
+            relatinsionship: string; 
+            nodeName: string
+        }[] = [];
+
+        // List all ParentNode - relationship - Child relationships for the the array
+        inputNodes.forEach(nd => {
+            nodeRelsPerNode = nodeRelsPerNode.concat(this.nodeRelationshipPerNode(nd));
+
+        });
+
+        // Create a distinct list with 2 or more ParentNodes
+        nodeRelsPerNode.forEach(nd => {
+
+        })
+
+        // Return
+        return nodes;
+    }
+
+    //[]a//     this.globalFunctionService.printToConsole(this.constructor.name, 'navSingleRoute', '@Start');
 
     //     console.log('xx navSingleRoute START node-parent-path', this.navRecursionCounter, navStartNode, parentNode, path)
 
-    //     // Safety check
+    //     // Safety }
+
     //     this.navRecursionCounter = this.navRecursionCounter + 1;
     //     if (this.navRecursionCounter > this.navMaxRecursion) {
     //         console.log('xx navSingleRoute navMaxRecursion EXCEEDED')
