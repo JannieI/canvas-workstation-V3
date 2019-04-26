@@ -1219,8 +1219,6 @@ export class WidgetNavigatorComponent {
         // Construct the graph Data of common parents for a given array of Nodes
         this.globalFunctionService.printToConsole(this.constructor.name, 'constructGraphDataForCommonParents', '@Starts');
 
-        let nodes: string[] = [];
-
         let nodeRelsPerNode: {
             parentNodeName: string; 
             relatinsionship: string; 
@@ -1268,7 +1266,19 @@ export class WidgetNavigatorComponent {
         });
 
         // Loop on unique duplicate parents
+        let parentsCounter: number = 0;
+
         parentsCount.forEach(pc => {
+
+            // Increment
+            parentsCounter = 1 + parentsCounter;
+
+            // Add parent
+            localGraphData.push({
+                id: 1 + parentsCounter,
+                name: this.constructNodeName(pc.parentNode),
+                parent: 1
+            });
 
             // Get unique list of relationships
             let localRelationships: string[] = nodeRelsPerNode
@@ -1286,11 +1296,11 @@ export class WidgetNavigatorComponent {
                 relationshipCounter = relationshipCounter + 1;
 
                 // Add Relationship
-                let relationshipID: number = 1 + relationshipCounter + childCounter;
+                let relationshipID: number = 1 + parentsCounter + relationshipCounter + childCounter;
                 localGraphData.push({
                     id: relationshipID,
                     name: this.constructNodeName(relationship),
-                    parent: 1
+                    parent: parentsCounter
                 });
 
                 // Distrinct children for this parent and relationship
@@ -1309,7 +1319,7 @@ export class WidgetNavigatorComponent {
 
                     // Add
                     localGraphData.push({
-                        id: 1 + relationshipCounter + childCounter,
+                        id: 1 + parentsCounter + relationshipCounter + childCounter,
                         name: this.constructNodeName(child),
                         parent: relationshipID
                     });
