@@ -1266,16 +1266,19 @@ export class WidgetNavigatorComponent {
         });
 
         // Loop on unique duplicate parents
-        let parentsCounter: number = 0;
+        let parentsCounter: number = 0;             // Counter on parents
+        let relationshipCounter: number = 0;        // Counter on relationship
+        let childCounter: number = 0;               // Counter on children, spans roles
 
         parentsCount.forEach(pc => {
 
             // Increment
             parentsCounter = 1 + parentsCounter;
+            let parentID: number = 1 + parentsCounter + relationshipCounter + childCounter;
 
             // Add parent
             localGraphData.push({
-                id: 1 + parentsCounter,
+                id: parentID,
                 name: this.constructNodeName(pc.parentNode),
                 parent: 1
             });
@@ -1286,9 +1289,6 @@ export class WidgetNavigatorComponent {
                 .map(nr => nr.relatinsionship);
             localRelationships = this.navUniqifySortNodes(localRelationships);
 
-            let relationshipCounter: number = 0;            // Counter on relationship
-            let childCounter: number = 0;           // Counter on children, spans roles
-
             // Loop on relationships and add Children
             localRelationships.forEach(relationship => {
 
@@ -1297,10 +1297,11 @@ export class WidgetNavigatorComponent {
 
                 // Add Relationship
                 let relationshipID: number = 1 + parentsCounter + relationshipCounter + childCounter;
+                
                 localGraphData.push({
                     id: relationshipID,
                     name: this.constructNodeName(relationship),
-                    parent: parentsCounter
+                    parent: parentID
                 });
 
                 // Distrinct children for this parent and relationship
