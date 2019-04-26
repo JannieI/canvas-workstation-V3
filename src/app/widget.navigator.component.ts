@@ -1742,6 +1742,36 @@ console.log('xx localGraphData Finale', JSON.parse(JSON.stringify(localGraphData
         
     }
 
+    nodeRelationshipPerNode(inputNodeName: string): 
+        {parentNodeName: string; relatinsionship: string; nodeName: string}[] 
+        {
+        // Return list of unique ParentNode - Relationship - Node for a given node
+        this.globalFunctionService.printToConsole(this.constructor.name, 'nodeRelationshipPerNode', '@Start');
+    
+        let leftNodes: NavigatorRelationship[] = this.networkRelationships
+            .filter(nr => nr.leftNodeName === inputNodeName)
+        let rightNodes: NavigatorRelationship[] = this.networkRelationships
+            .filter(nr => nr.rightNodeName === inputNodeName)
+        
+        let parentNodes: {parentNodeName: string; relatinsionship: string; nodeName: string}[] = [];
+
+        leftNodes.forEach(ln => parentNodes.push({
+            parentNodeName: ln.rightNodeName,
+            relatinsionship: ln.relationshipRightToLeft, 
+            nodeName: ln.leftNodeName
+        })
+        );
+        leftNodes.forEach(ln => parentNodes.push({
+            parentNodeName: ln.leftNodeName,
+            relatinsionship: ln.relationshipLeftToRight, 
+            nodeName: ln.rightNodeName
+        }))
+
+        // Return
+        return parentNodes;
+        
+    }
+
     // navSingleRoute(navStartNode: string, parentNode: string, relationship: string, path: string[]) {
     //     // Recursive process to get a single route for a start Node
     //     this.globalFunctionService.printToConsole(this.constructor.name, 'navSingleRoute', '@Start');
