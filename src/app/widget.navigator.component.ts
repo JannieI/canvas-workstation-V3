@@ -90,7 +90,6 @@ export class WidgetNavigatorComponent {
     selectedParentFilterID: number = -1;
 
     startupNavigatorSelectParentNodeType: string = '';  // Startup value of the Parent Node Type
-
     startupNavigatorSelectParentNodeName: string = '';  // Startup value of the Parent Node Name
     startupNavigatorSelectRelationship: string = '';    // Startup value of the Relationship
     startupNavigatorSelectView: string = '';            // Startup value of the View
@@ -423,9 +422,9 @@ export class WidgetNavigatorComponent {
                                         this.clickDefaultView();
                                     };
                                     console.log('xx this.selectedView', this.selectedView )
-                            
+
                                 };
-        
+
 
                                 this.ngHistory = this.historyAll
                                     .filter(h => h.networkID === networkID)
@@ -801,7 +800,7 @@ export class WidgetNavigatorComponent {
     createGraphCommonParentView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphCommonParentView', '@Start');
-        
+
         // Reset
         this.graphData = [];
 
@@ -833,7 +832,7 @@ export class WidgetNavigatorComponent {
     createGraphCommonNodeView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphCommonNodeView', '@Start');
-        
+
         // Reset
         this.graphData = [];
 
@@ -979,7 +978,7 @@ export class WidgetNavigatorComponent {
             let childNodeOvered: string = datumClick.name;
             console.log('xx MOUSEover !!', childNodeOvered)
         });
-        
+
         view.renderer('svg')
             .initialize(this.dragWidget.nativeElement)
             .hover()
@@ -990,9 +989,9 @@ export class WidgetNavigatorComponent {
     }
 
     constructGraphDataForUnit(
-        parentNodeName: string, 
-        relationships: string[], 
-        isAddLevelForRelationship: boolean = false, 
+        parentNodeName: string,
+        relationships: string[],
+        isAddLevelForRelationship: boolean = false,
         isAddLevelForOnRole: boolean = false,
         startID: number = 1
         ): any[] {
@@ -1007,7 +1006,7 @@ export class WidgetNavigatorComponent {
         //     Absa - Executive - children, Absa Non-Executive - children (if relationship = Director)
         //  startID - id in graphData where parent starts (the rest of the rest has this as their parent)
         this.globalFunctionService.printToConsole(this.constructor.name, 'constructGraphDataForUnit', '@Start');
-    
+
         // Reset list of ALL children
         this.childDataAll = [];
 
@@ -1022,14 +1021,14 @@ export class WidgetNavigatorComponent {
                 "name": this.constructNodeName(parentNodeName)
             });
             console.log('xx localGraphData 0', JSON.parse(JSON.stringify(localGraphData)))
-        
+
         // There are 4 scenarios, each one creating a different amount of sub-levels
-        
+
         // 1. parent - children
         if (!isAddLevelForRelationship  &&  !isAddLevelForOnRole) {
             let localChildDataAll = this.distinctChildrenNodes(
                 'All',
-                parentNodeName, 
+                parentNodeName,
                 relationships,
                 'All'
             );
@@ -1061,13 +1060,13 @@ export class WidgetNavigatorComponent {
 
             // Return
             return localGraphData;
-            
+
         };
 
         // 2. parent - roles - children
         if (!isAddLevelForRelationship  &&  isAddLevelForOnRole) {
             let relationshipRoles: string[] = this.distinctRelationshipRoles(this.selectedRelationship);
-            
+
             // Set length
             this.graphDataLength = relationshipRoles.length;
 
@@ -1093,8 +1092,8 @@ export class WidgetNavigatorComponent {
 
                 // Get children for parent - role
                 let localChildDataAll = this.distinctChildrenNodes(
-                    'All', 
-                    parentNodeName, 
+                    'All',
+                    parentNodeName,
                     relationships,
                     role
                 );
@@ -1123,7 +1122,7 @@ export class WidgetNavigatorComponent {
                     });
                 });
             })
-    
+
             // Return
             return localGraphData;
 
@@ -1132,7 +1131,7 @@ export class WidgetNavigatorComponent {
         // 3. parent - relationship - children
         if (isAddLevelForRelationship  &&  !isAddLevelForOnRole) {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
-            
+
             // Set length
             this.graphDataLength = relationships.length;
 
@@ -1158,8 +1157,8 @@ export class WidgetNavigatorComponent {
 
                 // Get children for parent - role
                 let localChildDataAll = this.distinctChildrenNodes(
-                    'All', 
-                    parentNodeName, 
+                    'All',
+                    parentNodeName,
                     [relationship],
                     'All'
                 );
@@ -1188,16 +1187,16 @@ export class WidgetNavigatorComponent {
                     });
                 });
             })
-    
+
             // Return
             return localGraphData;
-    
+
         };
 
         // 4. parent - relationship - roles - children
         if (isAddLevelForRelationship  &&  isAddLevelForOnRole) {
             let relationships: string[] = this.distinctRelationships('All', parentNodeName)
-            
+
             // Set length
             this.graphDataLength = relationships.length;
 
@@ -1223,19 +1222,19 @@ export class WidgetNavigatorComponent {
                 });
 
                 let relationshipRoles: string[] = this.distinctRelationshipRoles(relationship);
-            
+
                 // Set length
                 this.graphDataLength = this.graphDataLength + relationshipRoles.length;
 
                 // Reduce amount shown
                 relationshipRoles = relationshipRoles.splice(
                     this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
-        
+
                 relationshipRoles.forEach(role => {
-    
+
                     // Increment
                     roleCounter = roleCounter + 1;
-    
+
                     // Add Role
                     let roleID: number = startID + relationshipCounter + roleCounter + childCounter;
                     localGraphData.push({
@@ -1243,31 +1242,31 @@ export class WidgetNavigatorComponent {
                         name: this.constructNodeName(role),
                         parent: relationshipID
                     });
-    
+
                     // Get children for parent - role
                     let localChildDataAll = this.distinctChildrenNodes(
-                        'All', 
-                        parentNodeName, 
+                        'All',
+                        parentNodeName,
                         [relationship],
                         role
                     );
-    
+
                     // Set length
                     this.graphDataLength = this.graphDataLength + localChildDataAll.length;
 
                     // Get visible children
                     let localChildDataVisible = localChildDataAll.splice(
                         this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
-    
+
                     // Append to list of ALL children currently displayed
                     this.childDataAll = this.childDataAll.concat(localChildDataVisible);
 
                     // Add Children
                     localChildDataVisible.forEach(child => {
-    
+
                         // Increment
                         childCounter = childCounter + 1;
-    
+
                         // Add
                         localGraphData.push({
                             id: startID + relationshipCounter + roleCounter + childCounter,
@@ -1283,7 +1282,7 @@ export class WidgetNavigatorComponent {
             // Return
             return localGraphData;
         };
-  
+
     }
 
     constructGraphDataForCommonParents(inputNodes: string[]): any[] {
@@ -1292,8 +1291,8 @@ export class WidgetNavigatorComponent {
 
         // parentRelationshipPerNode = parentRelationshipPerNode.concat(this.parentRelationshipPerNode(nd));
         let parentRelationshipPerNode: {
-            parentNodeName: string; 
-            relatinsionship: string; 
+            parentNodeName: string;
+            relatinsionship: string;
             nodeName: string
         }[] = [];
 
@@ -1375,7 +1374,7 @@ export class WidgetNavigatorComponent {
 
                 // Add Relationship
                 let relationshipID: number = 1 + parentNodeCounter + relationshipCounter + childCounter;
-                
+
                 localGraphData.push({
                     id: relationshipID,
                     name: this.constructNodeName(relationship),
@@ -1404,7 +1403,7 @@ export class WidgetNavigatorComponent {
                     });
 
                 });
-                
+
             });
         });
 
@@ -1422,8 +1421,8 @@ export class WidgetNavigatorComponent {
 
         // parentRelationshipPerNode = parentRelationshipPerNode.concat(this.parentRelationshipPerNode(nd));
         let childrenRelationshipPerParent: {
-            parentNodeName: string; 
-            relatinsionship: string; 
+            parentNodeName: string;
+            relatinsionship: string;
             nodeName: string
         }[] = [];
 
@@ -1507,7 +1506,7 @@ export class WidgetNavigatorComponent {
 
                 // Add Relationship
                 let relationshipID: number = 1 + parentNodeCounter + relationshipCounter + childCounter;
-                
+
                 localGraphData.push({
                     id: relationshipID,
                     name: this.constructNodeName(relationship),
@@ -1536,7 +1535,7 @@ export class WidgetNavigatorComponent {
                     });
 
                 });
-                
+
             });
         });
 
@@ -1552,18 +1551,34 @@ export class WidgetNavigatorComponent {
         nodeName: string,
         relationship: string,
         iterationCount: number,
-        path: string[]
+        path: string[],
+        targetNodeName: string = 'Mr Beggs, Colin'
     ) {
         // Walk to next node in path for given info (parent, node, etc)
         this.globalFunctionService.printToConsole(this.constructor.name, 'nav2WalkInPath', '@Start');
 
+        // Stop if target reached
+        if (nodeName === targetNodeName) {
+            console.log('xx nav2WalkInPath @END path REACHED TARGET', iterationCount, path);
+
+            for (var i = 0; i < path.length; i++) {
+                if (path[i].indexOf(targetNodeName) >= 0) {
+                    this.routesPerNode.push(path);
+                    break;
+                };
+            };
+
+            path = [];
+            return;
+        };
+
         // Stop if Cyclical
         if (path.indexOf(nodeName) >= 0) {
             path.push(nodeName + '*');
-            console.log('xx nav2WalkInPath @END path', iterationCount, path);
-            
+            console.log('xx nav2WalkInPath @END path CYCLCLE', iterationCount, path);
+
             for (var i = 0; i < path.length; i++) {
-                if (path[i].indexOf('Mr Beggs, Colin') >= 0) {
+                if (path[i].indexOf(targetNodeName) >= 0) {
                     this.routesPerNode.push(path);
                     break;
                 };
@@ -1595,10 +1610,10 @@ export class WidgetNavigatorComponent {
         console.log('xx nav2WalkInPath related nodeName', nodeName, ' (from ', parent, ')', nextInPath, 'path:', path)
 
         if (nextInPath.length == 0) {
-            console.log('xx nav2WalkInPath @END path', iterationCount, path);
-           
+            console.log('xx nav2WalkInPath @END path NORMAL', iterationCount, path);
+
             for (var i = 0; i < path.length; i++) {
-                if (path[i].indexOf('Mr Beggs, Colin') >= 0) {
+                if (path[i].indexOf(targetNodeName) >= 0) {
                     this.routesPerNode.push(path);
                     break;
                 };
@@ -1738,7 +1753,7 @@ export class WidgetNavigatorComponent {
                               nr.leftNodeName === selectedChildNodeName
                           )
             )
-            .filter(nr => ( 
+            .filter(nr => (
                             selectRelationships.length == 1
                             &&
                             selectRelationships[0] == 'All'
@@ -1766,7 +1781,7 @@ export class WidgetNavigatorComponent {
                               nr.rightNodeName === selectedChildNodeName
                           )
             )
-            .filter(nr => ( 
+            .filter(nr => (
                             selectRelationships.length === 1
                             &&
                             selectRelationships[0] === 'All'
@@ -1800,7 +1815,7 @@ export class WidgetNavigatorComponent {
     }
 
     distinctChildrenNodes(
-        selectedParentNodeType: string, 
+        selectedParentNodeType: string,
         selectedParentNodeName: string,
         selectRelationships: string[],
         selectedRelationshipFilterRole: string
@@ -1826,7 +1841,7 @@ export class WidgetNavigatorComponent {
                               nr.leftNodeName === selectedParentNodeName
                           )
             )
-            .filter(nr => ( 
+            .filter(nr => (
                             selectRelationships.length == 1
                             &&
                             selectRelationships[0] == 'All'
@@ -1862,7 +1877,7 @@ export class WidgetNavigatorComponent {
                               nr.rightNodeName === selectedParentNodeName
                           )
             )
-            .filter(nr => ( 
+            .filter(nr => (
                             selectRelationships.length === 1
                             &&
                             selectRelationships[0] === 'All'
@@ -2002,7 +2017,7 @@ export class WidgetNavigatorComponent {
     parentsPerNode(inputNodeName: string): string[] {
         // Return list of unique parent Nodes for a given node
         this.globalFunctionService.printToConsole(this.constructor.name, 'parentsPerNode', '@Start');
-    
+
         let leftParentNodes: string[] = this.networkRelationships
             .filter(nr => nr.rightNodeName === inputNodeName)
             .map(nr => nr.leftNodeName);
@@ -2015,26 +2030,26 @@ export class WidgetNavigatorComponent {
 
         // Return
         return parentNodes;
-        
+
     }
 
-    parentRelationshipPerNode(inputNodeName: string): 
-        {parentNodeName: string; relatinsionship: string; nodeName: string}[] 
+    parentRelationshipPerNode(inputNodeName: string):
+        {parentNodeName: string; relatinsionship: string; nodeName: string}[]
         {
         // Return list of unique ParentNode - Relationship - inputNodeName for a given node
         this.globalFunctionService.printToConsole(this.constructor.name, 'parentRelationshipPerNode', '@Start');
-    
+
         let parentRelationshipNodes: {parentNodeName: string; relatinsionship: string; nodeName: string}[] = [];
 
         let leftNodes: NavigatorRelationship[] = this.networkRelationships
             .filter(nr => nr.leftNodeName === inputNodeName
                     &&
-                    nr.relationshipLeftToRight != '')       
+                    nr.relationshipLeftToRight != '')
 
         leftNodes.forEach(ln => parentRelationshipNodes.push(
             {
                 parentNodeName: ln.rightNodeName,
-                relatinsionship: ln.relationshipLeftToRight, 
+                relatinsionship: ln.relationshipLeftToRight,
                 nodeName: ln.leftNodeName
             })
         );
@@ -2042,19 +2057,19 @@ export class WidgetNavigatorComponent {
         let rightNodes: NavigatorRelationship[] = this.networkRelationships
             .filter(nr => nr.rightNodeName === inputNodeName
                     &&
-                    nr.relationshipRightToLeft != '')       
+                    nr.relationshipRightToLeft != '')
 
         rightNodes.forEach(ln => parentRelationshipNodes.push(
             {
                 parentNodeName: ln.leftNodeName,
-                relatinsionship: ln.relationshipRightToLeft, 
+                relatinsionship: ln.relationshipRightToLeft,
                 nodeName: ln.rightNodeName
             })
         );
 
         // Return
         return parentRelationshipNodes;
-        
+
     }
 
     //[]a//     this.globalFunctionService.printToConsole(this.constructor.name, 'navSingleRoute', '@Start');
@@ -2673,7 +2688,7 @@ export class WidgetNavigatorComponent {
     clickPageFirst() {
         // Move to the First page of children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageFirst', '@Start');
-        
+
         this.visibleNumberChildrenStart = 0;
 
         this.checkShowGraph();
