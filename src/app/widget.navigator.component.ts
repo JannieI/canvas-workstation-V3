@@ -794,6 +794,34 @@ export class WidgetNavigatorComponent {
     createGraphCommonNodeView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphCommonNodeView', '@Start');
+        
+        // Reset
+        this.graphData = [];
+
+        console.log('xx this.childDataAll', this.childDataAll)
+
+        if (this.childDataAll.length > 0) {
+
+            this.graphData = this.constructGraphDataForCommonNode(
+                'Mr van Wyk, Rene', this.childDataAll);
+
+            // TODO
+            // 1. add to History
+            // 2. Set H & W
+            if (inputWidth != 0) {
+                this.graphWidth = inputWidth;
+            } else {
+                if (this.localWidget.graphLayers.length > 0) {
+                    this.graphWidth = this.localWidget.graphLayers[0].graphSpecification.width;
+                };
+            };
+            if (this.graphWidth < 100) {
+                this.graphWidth = 100;
+            };
+
+        };
+        console.log('xx this.graphData', this.graphData)
+
     }
 
     createGraphDistanceView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
