@@ -90,6 +90,7 @@ export class WidgetNavigatorComponent {
     selectedParentFilterID: number = -1;
 
     startupNavigatorSelectParentNodeType: string = '';  // Startup value of the Parent Node Type
+
     startupNavigatorSelectParentNodeName: string = '';  // Startup value of the Parent Node Name
     startupNavigatorSelectRelationship: string = '';    // Startup value of the Relationship
     startupNavigatorSelectView: string = '';            // Startup value of the View
@@ -125,6 +126,7 @@ export class WidgetNavigatorComponent {
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
     ngRelationshipRoles: string[] = [];
     relationshipFilterErrorMessage: string = '';
+    routesPerNode: any[] = [];                          // Array of routes with one starting point
     visibleNumberChildrenShown: number = 12;
     visibleNumberChildrenStart: number = 0;
 
@@ -866,7 +868,10 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphDistanceView', '@Start');
         // this.nav2WalkInPath(null, "y", "rel", 0, [])
         this.nav2WalkInPath(null, 'Mr van Wyk, Rene', "Director Of", 0, [])
-        
+        console.log('xx @END of createGraphDistanceView', this.routesPerNode)
+
+        this.graphData = this.routesPerNode;
+
     }
 
     createGraphNodeTypeView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
@@ -1549,13 +1554,21 @@ export class WidgetNavigatorComponent {
         iterationCount: number,
         path: string[]
     ) {
-        // Walk to next node in path for given info (parent, node, ect)
+        // Walk to next node in path for given info (parent, node, etc)
         this.globalFunctionService.printToConsole(this.constructor.name, 'nav2WalkInPath', '@Start');
 
         // Stop if Cyclical
         if (path.indexOf(nodeName) >= 0) {
             path.push(nodeName + '*');
             console.log('xx nav2WalkInPath @END path', iterationCount, path);
+            
+            for (var i = 0; i < path.length; i++) {
+                if (path[i].indexOf('Mr Beggs, Colin') >= 0) {
+                    this.routesPerNode.push(path);
+                    break;
+                };
+            };
+
             path = [];
             return;
         };
@@ -1568,10 +1581,10 @@ export class WidgetNavigatorComponent {
 
         // Get next nodes in path, Left and Right, excluding the Parent
         let nextInPath: string[] = [];
-        let leftInPath: string[] = this.networkGraph2
+        let leftInPath: string[] = this.networkRelationships
             .filter(nw => nw.leftNodeName === nodeName && nw.rightNodeName != parent)
             .map(nw => nw.rightNodeName);
-        let rightInPath: string[] = this.networkGraph2
+        let rightInPath: string[] = this.networkRelationships
             .filter(nw => nw.rightNodeName === nodeName && nw.leftNodeName != parent)
             .map(nw => nw.leftNodeName);
 
@@ -1582,7 +1595,15 @@ export class WidgetNavigatorComponent {
         console.log('xx nav2WalkInPath related nodeName', nodeName, ' (from ', parent, ')', nextInPath, 'path:', path)
 
         if (nextInPath.length == 0) {
-            console.log('xx nav2WalkInPath @END path', iterationCount, path)
+            console.log('xx nav2WalkInPath @END path', iterationCount, path);
+           
+            for (var i = 0; i < path.length; i++) {
+                if (path[i].indexOf('Mr Beggs, Colin') >= 0) {
+                    this.routesPerNode.push(path);
+                    break;
+                };
+            };
+
             path = [];
         };
 
@@ -2444,91 +2465,93 @@ export class WidgetNavigatorComponent {
         // Refresh the graph
         this.selectedView = 'DistanceView'
 
-        this.graphData = [];
-        this.graphData.push(
-            {
-                "id": 1,
-                "name": ""
-            });
-        this.graphData.push({
-            id: 2,
-            name: "Johnathan",
-            parent: 1
-        });
-        this.graphData.push({
-            id: 3,
-            name: "BarlowWorld",
-            parent: 2
-        });
-        this.graphData.push({
-            id: 4,
-            name: "Meridith (Director)",
-            parent: 3
-        });
-        this.graphData.push({
-            id: 5,
-            name: "Meridith (Shareholder)",
-            parent: 3
-        });
-        this.graphData.push({
-            id: 6,
-            name: "Mandy",
-            parent: 1
-        });
-        this.graphData.push({
-            id: 7,
-            name: "Bidvest",
-            parent: 6
-        });
-        this.graphData.push({
-            id: 8,
-            name: "Plumblink (Subsidiary)",
-            parent: 7
-        });
-        this.graphData.push({
-            id: 9,
-            name: "Meridith (CEO)",
-            parent: 8
-        });
+        this.checkShowGraph();
 
-        this.graphTitle = 'Distance: Meridith... to some Directors of Absa';
+        // this.graphData = [];
+        // this.graphData.push(
+        //     {
+        //         "id": 1,
+        //         "name": ""
+        //     });
+        // this.graphData.push({
+        //     id: 2,
+        //     name: "Johnathan",
+        //     parent: 1
+        // });
+        // this.graphData.push({
+        //     id: 3,
+        //     name: "BarlowWorld",
+        //     parent: 2
+        // });
+        // this.graphData.push({
+        //     id: 4,
+        //     name: "Meridith (Director)",
+        //     parent: 3
+        // });
+        // this.graphData.push({
+        //     id: 5,
+        //     name: "Meridith (Shareholder)",
+        //     parent: 3
+        // });
+        // this.graphData.push({
+        //     id: 6,
+        //     name: "Mandy",
+        //     parent: 1
+        // });
+        // this.graphData.push({
+        //     id: 7,
+        //     name: "Bidvest",
+        //     parent: 6
+        // });
+        // this.graphData.push({
+        //     id: 8,
+        //     name: "Plumblink (Subsidiary)",
+        //     parent: 7
+        // });
+        // this.graphData.push({
+        //     id: 9,
+        //     name: "Meridith (CEO)",
+        //     parent: 8
+        // });
 
-        // Dimension it
-        this.graphHeight = 300; //this.localWidget.graphLayers[0].graphSpecification.height;
-        this.graphWidth = 400; //this.localWidget.graphLayers[0].graphSpecification.width;
+        // this.graphTitle = 'Distance: Meridith... to some Directors of Absa';
 
-        // Create specification
-        this.specification = this.globalVariableService.createVegaSpec(
-            this.localWidget,
-            this.graphHeight,
-            this.graphWidth,
-            this.showSpecificGraphLayer,
-            0
-        );
+        // // Dimension it
+        // this.graphHeight = 300; //this.localWidget.graphLayers[0].graphSpecification.height;
+        // this.graphWidth = 400; //this.localWidget.graphLayers[0].graphSpecification.width;
 
-        // Load the data
-        this.specification['data'][0]['values'] = this.graphData;
-        this.specification['title'] = this.graphTitle;
+        // // Create specification
+        // this.specification = this.globalVariableService.createVegaSpec(
+        //     this.localWidget,
+        //     this.graphHeight,
+        //     this.graphWidth,
+        //     this.showSpecificGraphLayer,
+        //     0
+        // );
 
-        console.log('xx summ', this.graphHeight, this.graphWidth, this.graphData, this.specification)
-        // TODO - decide if we need to update the Widget Data too ?
-        // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
+        // // Load the data
+        // this.specification['data'][0]['values'] = this.graphData;
+        // this.specification['title'] = this.graphTitle;
 
-        // Render in DOM
-        let view = new View(parse(this.specification));
-        view.addEventListener('click', function (event, item) {
-            // Needs separate object, else item.datum.text is sometimes undefined.
-            let datumClick: any = item.datum;
-            console.log('xx CLICK Dist', item, item.datum.text, datumClick.name);
-            this.selectedParentNodeType = 'Person';
-            this.selectedParentNode = 'Koos';
-            this.selectedRelationship = 'Director-Of';
-        });
-        view.renderer('svg')
-            .initialize(this.dragWidget.nativeElement)
-            .hover()
-            .run()
-            .finalize();
+        // console.log('xx summ', this.graphHeight, this.graphWidth, this.graphData, this.specification)
+        // // TODO - decide if we need to update the Widget Data too ?
+        // // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
+
+        // // Render in DOM
+        // let view = new View(parse(this.specification));
+        // view.addEventListener('click', function (event, item) {
+        //     // Needs separate object, else item.datum.text is sometimes undefined.
+        //     let datumClick: any = item.datum;
+        //     console.log('xx CLICK Dist', item, item.datum.text, datumClick.name);
+        //     this.selectedParentNodeType = 'Person';
+        //     this.selectedParentNode = 'Koos';
+        //     this.selectedRelationship = 'Director-Of';
+        // });
+        // view.renderer('svg')
+        //     .initialize(this.dragWidget.nativeElement)
+        //     .hover()
+        //     .run()
+        //     .finalize();
 
     }
 
@@ -2703,7 +2726,6 @@ export class WidgetNavigatorComponent {
             nodes: ['Absa', 'PSG']
         };
         this.watchList.push(watchListNew);
-
 
         // Build the Array for the network - Nodes, properties, proximity / relationships
         this.networkGraph2 = [];
