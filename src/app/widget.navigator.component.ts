@@ -875,15 +875,16 @@ export class WidgetNavigatorComponent {
             name: 'Distance'
         });
 
-        for (var i = 0; i < this.routesPerNode.length; i++) {
+        this.routesPerNode.forEach(route => {
             // Add to parent
-            this.graphData.push({
-                id: i + 2,
-                name: this.constructNodeName(this.routesPerNode[i]),
-                parent: i + 1
-            });
-
-        };
+            for (var i = 0; i < route.length; i++) {
+                this.graphData.push({
+                    id: i + 2,
+                    name: this.constructNodeName(route[i]),
+                    parent: i + 1
+                });
+            };
+        });
 
     }
 
