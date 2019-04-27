@@ -177,8 +177,21 @@ export class WidgetNavigatorComponent {
         // Populate persisted data - TODO via DB
         this.tempCreateDummyData();
 
-
-
+        // Load startup values
+        if (this.localWidget.navigatorSelectParentNodeType != '') {
+            this.selectedParentNodeType = this.localWidget.navigatorSelectParentNodeType;
+            this.changeParentNodeType(this.selectedParentNodeType);
+        };
+        if (this.localWidget.navigatorSelectParentNodeName != '') {
+            this.selectedParentNode = this.localWidget.navigatorSelectParentNodeName;
+        };
+        if (this.localWidget.navigatorSelectRelationship != '') {
+            this.selectedRelationship = this.localWidget.navigatorSelectRelationship;
+        };
+        if (this.localWidget.navigatorSelectView != '') {
+            this.selectedView = this.localWidget.navigatorSelectView;
+        };
+        console.log('xx this.selectedView', this.selectedView )
         // Read DS for all Networks from DB
         this.globalVariableService.getResource('datasources', 'filterObject={"isNetworkShape": true}')
             .then(res => {

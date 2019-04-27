@@ -1565,6 +1565,12 @@ export class Widget {
     shapeTextColourName: string;            // Name - CSS (ie black) or Custome Name (Our company blue)
     shapeValue: string;                     // Value to display
 
+    // Navigator
+    navigatorSelectParentNodeType?: string;  // Last Parent Node Type selected
+    navigatorSelectParentNodeName?: string;  // Last Parent Node Name selected
+    navigatorSelectRelationship?: string;    // Last Relationship selected
+    navigatorSelectView?: string;            // Last View used
+
     // Created, updated and refreshed
     refreshMode: string;                    // For later use: Manual, OnOpen, Repeatedly
     refreshFrequency: number;               // For later use: Nr of seconds if RefreshMode = Repeatedly
