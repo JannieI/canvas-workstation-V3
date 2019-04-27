@@ -1378,7 +1378,7 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'constructGraphDataForCommonNode', '@Starts');
 
         // parentRelationshipPerNode = parentRelationshipPerNode.concat(this.parentRelationshipPerNode(nd));
-        let parentRelationshipPerNode: {
+        let childrenRelationshipPerParent: {
             parentNodeName: string; 
             relatinsionship: string; 
             nodeName: string
@@ -1390,23 +1390,23 @@ export class WidgetNavigatorComponent {
 
         // List all ParentNode - relationship - Child relationships for unique Parents
         parentNodesUnique.forEach(par => {
-            parentRelationshipPerNode = parentRelationshipPerNode
+            childrenRelationshipPerParent = childrenRelationshipPerParent
                 .concat(this.parentRelationshipPerNode(par));
         });
-        console.log('xx parentRelationshipPerNode', parentRelationshipPerNode)
+        console.log('xx parentRelationshipPerNode', childrenRelationshipPerParent)
 
         // Array of parentNodes with targetNode & at least one inputNodes element
-        parentRelationshipPerNode = parentRelationshipPerNode
-            .filter(nr => (inputNodes.indexOf(nr.nodeName) >= 0)
+        childrenRelationshipPerParent = childrenRelationshipPerParent
+            .filter(nr => (inputNodes.indexOf(nr.parentNodeName) >= 0)
                            ||
-                           nr.nodeName === targetNode);
-        console.log('xx parentRelationshipPerNode FILTERED', parentRelationshipPerNode)
+                           nr.parentNodeName === targetNode);
+        console.log('xx parentRelationshipPerNode FILTERED', childrenRelationshipPerParent)
 
         // Get >1 element
         let parentsCount: { parentNode: string; count: number}[] = [];
         let counter: number = 0;
         parentNodesUnique.forEach(pu => {
-            counter = parentRelationshipPerNode.filter(nr => nr.parentNodeName === pu).length;
+            counter = childrenRelationshipPerParent.filter(nr => nr.nodeName === pu).length;
             if (counter > 1) {
                 parentsCount.push({ parentNode: pu, count: counter });
             };
@@ -1453,7 +1453,7 @@ export class WidgetNavigatorComponent {
             });
 
             // Get unique list of relationships
-            let localRelationships: string[] = parentRelationshipPerNode
+            let localRelationships: string[] = childrenRelationshipPerParent
                 .filter(nr => nr.parentNodeName === pc.parentNode)
                 .map(nr => nr.relatinsionship);
             localRelationships = this.navUniqifySortNodes(localRelationships);
@@ -1474,7 +1474,7 @@ export class WidgetNavigatorComponent {
                 });
 
                 // Distrinct children for this parent and relationship
-                let localChildren: string[] = parentRelationshipPerNode
+                let localChildren: string[] = childrenRelationshipPerParent
                     .filter(nr => nr.parentNodeName === pc.parentNode
                             &&
                             nr.relatinsionship === relationship)
