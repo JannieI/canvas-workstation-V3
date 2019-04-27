@@ -1356,24 +1356,25 @@ export class WidgetNavigatorComponent {
             nodeName: string
         }[] = [];
 
-        // List all ParentNode - relationship - Child relationships for the array
-        inputNodes.forEach(nd => {
+        // Get unique parents for targetNode
+        let parentNodesUnique: string[] = this.distinctParentNodes(targetNode, ['All'], 'All');
+        console.log('xx  uniqueParents', parentNodesUnique)
+
+        // List all ParentNode - relationship - Child relationships for unique Parents
+        parentNodesUnique.forEach(par => {
             parentRelationshipPerNode = parentRelationshipPerNode
-                .concat(this.parentRelationshipPerNode(nd));
+                .concat(this.parentRelationshipPerNode(par));
         });
-        console.log('xx  1 inputNodes', inputNodes, parentRelationshipPerNode)
+        console.log('xx parentRelationshipPerNode', parentRelationshipPerNode)
 
-        // Loop on children: if anyone is in inputNode array, add it
-        // parentRelationshipPerNode = parentRelationshipPerNode
-        //     .filter(pr => inputNodes.indexOf(pr.nodeName) >= 0);
+        // Array of parentNodes with targetNode & at least one inputNodes element
+        parentRelationshipPerNode = parentRelationshipPerNode
+            .filter(nr => (inputNodes.indexOf(nr.nodeName) >= 0)
+                           ||
+                           nr.nodeName === targetNode);
+        console.log('xx parentRelationshipPerNode FILTERED', parentRelationshipPerNode)
 
-        console.log('xx filtered', parentRelationshipPerNode)
-        // Create a distinct list of ParentNodes
-        let parentNodesUnique: string[] = [];
-        parentNodesUnique = parentRelationshipPerNode.map(nr => nr.parentNodeName);
-        parentNodesUnique = this.navUniqifySortNodes(parentNodesUnique);
-        console.log('xx parentNodesUnique', parentNodesUnique)
-        // Array of parentNodes + count with 2 or more occurances
+        // Get >1 element
         let parentsCount: { parentNode: string; count: number}[] = [];
         let counter: number = 0;
         parentNodesUnique.forEach(pu => {
@@ -1394,6 +1395,9 @@ export class WidgetNavigatorComponent {
                 return 0;
         });
         console.log('xx parentsCount', parentsCount)
+
+
+
         // Build the graph Data
         let localGraphData: any[] = [];
 
