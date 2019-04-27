@@ -94,7 +94,6 @@ export class WidgetNavigatorComponent {
     startupNavigatorSelectRelationship: string = '';    // Startup value of the Relationship
     startupNavigatorSelectView: string = '';            // Startup value of the View
 
-    networkGraph2: NavigatorRelationship[] = [];
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
 
     ngParentNodeFilterDropdown: string[] = [];          // Dropdown: Parent Nodes Filter
@@ -643,7 +642,8 @@ export class WidgetNavigatorComponent {
             // Set title, etc
             this.graphTitle = this.showAdditionalLevelForRoles ? '*' : '';
             this.graphTitle = this.graphTitle + 
-                this.selectedRelationship=='All'?  'All relationships'  :  this.selectedRelationship;
+                this.selectedRelationship=='All'?  'All relationships'  
+                :  this.selectedRelationship + '(s)';
             this.graphTitle = this.graphTitle + ' for '
                 + this.selectedParentNode;
             if (this.ngChildNodeFilterSelectedFieldName != '') {
@@ -2780,98 +2780,6 @@ export class WidgetNavigatorComponent {
         };
         this.watchList.push(watchListNew);
 
-        // Build the Array for the network - Nodes, properties, proximity / relationships
-        this.networkGraph2 = [];
-        this.networkGraph2.push(
-            {
-                id: 1,
-                networkID: 1,
-                leftNodeID: 1,
-                leftNodeType: "Company",
-                leftNodeName: "A",
-                relationshipLeftToRight: "Subsidiary",
-                relationshipRightToLeft: "Owned By",
-                rightNodeID: 3,
-                rightNodeType: "Company",
-                rightNodeName: "C",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 2,
-                networkID: 1,
-                leftNodeID: 1,
-                leftNodeType: "Company",
-                leftNodeName: "A",
-                relationshipLeftToRight: "Director",
-                relationshipRightToLeft: "Director Of",
-                rightNodeID: 5,
-                rightNodeType: "Person",
-                rightNodeName: "x",
-                relationshipProperty: "Executive"
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 3,
-                networkID: 1,
-                leftNodeID: 3,
-                leftNodeType: "Company",
-                leftNodeName: "C",
-                relationshipLeftToRight: "Director",
-                relationshipRightToLeft: "Director Of",
-                rightNodeID: 7,
-                rightNodeType: "Person",
-                rightNodeName: "z",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 4,
-                networkID: 1,
-                leftNodeID: 3,
-                leftNodeType: "Company",
-                leftNodeName: "C",
-                relationshipLeftToRight: "Subsidiary",
-                relationshipRightToLeft: "Owned By",
-                rightNodeID: 4,
-                rightNodeType: "Company",
-                rightNodeName: "D",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 5,
-                networkID: 1,
-                leftNodeID: 4,
-                leftNodeType: "Company",
-                leftNodeName: "D",
-                relationshipLeftToRight: "Director",
-                relationshipRightToLeft: "Director Of",
-                rightNodeID: 8,
-                rightNodeType: "Person",
-                rightNodeName: "a",
-                relationshipProperty: ""
-            }
-        );
-        this.networkGraph2.push(
-            {
-                id: 6,
-                networkID: 1,
-                leftNodeID: 4,
-                leftNodeType: "Company",
-                leftNodeName: "D",
-                relationshipLeftToRight: "Director",
-                relationshipRightToLeft: "Director Of",
-                rightNodeID: 6,
-                rightNodeType: "Person",
-                rightNodeName: "y",
-                relationshipProperty: ""
-            }
-        );
     };
 
 }
