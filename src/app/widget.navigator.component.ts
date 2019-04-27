@@ -2320,81 +2320,83 @@ export class WidgetNavigatorComponent {
         // Refresh the graph
         this.selectedView = 'CommonNodeView'
 
-        this.graphData = [];
-        this.graphData.push(
-            {
-                "id": 1,
-                "name": "CommonNode"
-            });
-        this.graphData.push({
-            id: 2,
-            name: "Steinhoff",
-            parent: 1
-        });
-        this.graphData.push({
-            id: 3,
-            name: "Johnathon (Shareholder)",
-            parent: 2
-        });
-        this.graphData.push({
-            id: 4,
-            name: "Mandy (Shareholder)",
-            parent: 2
-        });
-        this.graphData.push({
-            id: 5,
-            name: "Aspen",
-            parent: 1
-        });
-        this.graphData.push({
-            id: 6,
-            name: "Johnathon (Shareholder)",
-            parent: 5
-        });
-        this.graphData.push({
-            id: 7,
-            name: "Gareth (Director)",
-            parent: 5
-        });
+        this.checkShowGraph();
 
-        this.graphTitle = 'Common parents for Johnathon... & Directors of Absa';
+        // this.graphData = [];
+        // this.graphData.push(
+        //     {
+        //         "id": 1,
+        //         "name": "CommonNode"
+        //     });
+        // this.graphData.push({
+        //     id: 2,
+        //     name: "Steinhoff",
+        //     parent: 1
+        // });
+        // this.graphData.push({
+        //     id: 3,
+        //     name: "Johnathon (Shareholder)",
+        //     parent: 2
+        // });
+        // this.graphData.push({
+        //     id: 4,
+        //     name: "Mandy (Shareholder)",
+        //     parent: 2
+        // });
+        // this.graphData.push({
+        //     id: 5,
+        //     name: "Aspen",
+        //     parent: 1
+        // });
+        // this.graphData.push({
+        //     id: 6,
+        //     name: "Johnathon (Shareholder)",
+        //     parent: 5
+        // });
+        // this.graphData.push({
+        //     id: 7,
+        //     name: "Gareth (Director)",
+        //     parent: 5
+        // });
 
-        // Dimension it
-        this.graphHeight = 300; //this.localWidget.graphLayers[0].graphSpecification.height;
-        this.graphWidth = 300; //this.localWidget.graphLayers[0].graphSpecification.width;
+        // this.graphTitle = 'Common parents for Johnathon... & Directors of Absa';
 
-        // Create specification
-        this.specification = this.globalVariableService.createVegaSpec(
-            this.localWidget,
-            this.graphHeight,
-            this.graphWidth,
-            this.showSpecificGraphLayer,
-            0
-        );
+        // // Dimension it
+        // this.graphHeight = 300; //this.localWidget.graphLayers[0].graphSpecification.height;
+        // this.graphWidth = 300; //this.localWidget.graphLayers[0].graphSpecification.width;
 
-        // Load the data
-        this.specification['data'][0]['values'] = this.graphData;
-        this.specification['title'] = this.graphTitle;
+        // // Create specification
+        // this.specification = this.globalVariableService.createVegaSpec(
+        //     this.localWidget,
+        //     this.graphHeight,
+        //     this.graphWidth,
+        //     this.showSpecificGraphLayer,
+        //     0
+        // );
 
-        console.log('xx summ', this.graphHeight, this.graphWidth, this.graphData, this.specification)
-        // TODO - decide if we need to update the Widget Data too ?
-        // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
+        // // Load the data
+        // this.specification['data'][0]['values'] = this.graphData;
+        // this.specification['title'] = this.graphTitle;
 
-        // Render in DOM
-        let view = new View(parse(this.specification));
-        view.addEventListener('click', function (event, item) {
-            // Needs separate object, else item.datum.text is sometimes undefined.
-            let datumClick: any = item.datum;
-            console.log('xx CLICK CommNod', item, item.datum.text, datumClick.name);
-            this.selectedParentNodeType = 'Person';
-            this.selectedParentNode = 'Koos';
-            this.selectedRelationship = 'Director-Of';
-        });
-        view.renderer('svg')
-            .initialize(this.dragWidget.nativeElement)
-            .hover()
-            .run()
-            .finalize();
+        // console.log('xx summ', this.graphHeight, this.graphWidth, this.graphData, this.specification)
+        // // TODO - decide if we need to update the Widget Data too ?
+        // // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
+
+        // // Render in DOM
+        // let view = new View(parse(this.specification));
+        // view.addEventListener('click', function (event, item) {
+        //     // Needs separate object, else item.datum.text is sometimes undefined.
+        //     let datumClick: any = item.datum;
+        //     console.log('xx CLICK CommNod', item, item.datum.text, datumClick.name);
+        //     this.selectedParentNodeType = 'Person';
+        //     this.selectedParentNode = 'Koos';
+        //     this.selectedRelationship = 'Director-Of';
+        // });
+        // view.renderer('svg')
+        //     .initialize(this.dragWidget.nativeElement)
+        //     .hover()
+        //     .run()
+        //     .finalize();
     }
 
     clickDistanceView() {
