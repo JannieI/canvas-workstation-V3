@@ -1561,12 +1561,9 @@ export class WidgetNavigatorComponent {
         if (nodeName === targetNodeName) {
             console.log('xx nav2WalkInPath @END path REACHED TARGET', iterationCount, path);
 
-            for (var i = 0; i < path.length; i++) {
-                if (path[i].indexOf(targetNodeName) >= 0) {
-                    this.routesPerNode.push(path);
-                    break;
-                };
-            };
+            // Add last Node, push to routes and stop recursion
+            path.push(nodeName);
+            this.routesPerNode.push(path);
 
             path = [];
             return;
