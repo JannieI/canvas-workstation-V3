@@ -1234,8 +1234,8 @@ export class WidgetNavigatorComponent {
         console.log('xx  1 inputNodes', inputNodes, parentRelationshipPerNode)
 
         // Loop on children: if anyone is in inputNode array, add it
-        parentRelationshipPerNode = parentRelationshipPerNode
-            .filter(pr => inputNodes.indexOf(pr.nodeName) >= 0);
+        // parentRelationshipPerNode = parentRelationshipPerNode
+        //     .filter(pr => inputNodes.indexOf(pr.nodeName) >= 0);
 
         console.log('xx filtered', parentRelationshipPerNode)
         // Create a distinct list of ParentNodes
