@@ -180,7 +180,7 @@ export class WidgetNavigatorComponent {
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
         // Load startup values
-        this.startupnavigatorSelectParentNodeType = this.localWidget.navigatorSelectParentNodeType;
+        this.startupNavigatorSelectParentNodeType = this.localWidget.navigatorSelectParentNodeType;
         this.startupNavigatorSelectParentNodeName = this.localWidget.navigatorSelectParentNodeName;
         this.startupNavigatorSelectRelationship = this.localWidget.navigatorSelectRelationship;
         this.startupNavigatorSelectView = this.localWidget.navigatorSelectView;
@@ -398,9 +398,9 @@ export class WidgetNavigatorComponent {
                                 this.selectedChildFilterID = -1;
 
                                 // On startup
-                                if (this.startupnavigatorSelectParentNodeType != '') {
+                                if (this.startupNavigatorSelectParentNodeType != '') {
                                     this.selectedParentNodeType = this.localWidget.navigatorSelectParentNodeType;
-                                    this.startupnavigatorSelectParentNodeType = '';
+                                    this.startupNavigatorSelectParentNodeType = '';
                                     let ev: any = {
                                         target: {
                                             value: this.selectedParentNodeType
@@ -875,15 +875,27 @@ export class WidgetNavigatorComponent {
             name: 'Distance'
         });
 
+        let nodeCount: number = 0;
+        let nodeID: number = 0;
+        let nodeParentID: number = 0;
+
         this.routesPerNode.forEach(route => {
             // Add to parent
             for (var i = 0; i < route.length; i++) {
+                nodeID = nodeCount + i + 2;
+                if (i == 0) {
+                    nodeParentID = 1;
+                } else {
+                    nodeParentID = nodeID - 1;
+                };
+
                 this.graphData.push({
-                    id: i + 2,
+                    id: nodeID,
                     name: this.constructNodeName(route[i]),
-                    parent: i + 1
+                    parent: nodeParentID
                 });
             };
+            nodeCount = route.length;
         });
 
     }
