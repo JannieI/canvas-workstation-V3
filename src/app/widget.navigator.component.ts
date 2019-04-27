@@ -570,6 +570,18 @@ export class WidgetNavigatorComponent {
         // Check if all selected; then show graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'checkShowGraph', '@Start');
 
+        // Switch view from network if last field filled in 
+        if (this.selectedView === 'SummaryView' 
+            &&
+            this.selectedParentNodeType != ''
+            &&
+            this.selectedParentNode != ''
+            &&
+            this.selectedRelationship != '') {
+            
+            this.selectedView = 'DefaultView';
+        };
+
         // Network view is always available
         if (this.selectedView === 'SummaryView') {
             this.createGraphDataSummaryView();
