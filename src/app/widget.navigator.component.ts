@@ -1640,7 +1640,7 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'distinctParentNodes', '@Start');
 
         // Fill ParentNode type Dropdown
-        let leftChildren: string[] = this.networkRelationships
+        let leftParents: string[] = this.networkRelationships
             .filter(nr => selectedChildNodeName == 'All'
                           ||
                           (
@@ -1668,7 +1668,7 @@ export class WidgetNavigatorComponent {
             .filter(nr => nr.rightNodeName != '')
             .map(nr => nr.rightNodeName);
 
-        let rightChildren: string[] = this.networkRelationships
+        let rightParents: string[] = this.networkRelationships
             .filter(nr => selectedChildNodeName === 'All'
                           ||
                           (
@@ -1696,18 +1696,18 @@ export class WidgetNavigatorComponent {
             .filter(nr => nr.leftNodeName != '')
             .map(nr => nr.leftNodeName);
 
-        let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
+        let nodeParents: string[] = Array.from(new Set(leftParents.concat(rightParents)));
 
         // Filter if a Child filter is active
         if (this.childNodesFilteredList.length > 0) {
-                nodeChildren = nodeChildren.filter(c => this.childNodesFilteredList.indexOf(c) >= 0);
+                nodeParents = nodeParents.filter(c => this.childNodesFilteredList.indexOf(c) >= 0);
         };
 
         // Make sure it is unique, non-null list
-        nodeChildren = this.navUniqifySortNodes(nodeChildren);
+        nodeParents = this.navUniqifySortNodes(nodeParents);
 
         // Return
-        return nodeChildren;
+        return nodeParents;
     }
 
     distinctChildrenNodes(
