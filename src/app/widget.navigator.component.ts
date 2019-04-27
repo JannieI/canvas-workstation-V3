@@ -642,7 +642,9 @@ export class WidgetNavigatorComponent {
 
             // Set title, etc
             this.graphTitle = this.showAdditionalLevelForRoles ? '*' : '';
-            this.graphTitle = this.graphTitle + this.selectedRelationship + ' for '
+            this.graphTitle = this.graphTitle + 
+                this.selectedRelationship=='All'?  'All relationships'  :  this.selectedRelationship;
+            this.graphTitle = this.graphTitle + ' for '
                 + this.selectedParentNode;
             if (this.ngChildNodeFilterSelectedFieldName != '') {
                 this.graphTitle = this.graphTitle + ', filtered on ' + this.ngChildNodeFilterSelectedFieldName;
