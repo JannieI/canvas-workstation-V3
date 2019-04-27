@@ -864,8 +864,9 @@ export class WidgetNavigatorComponent {
     createGraphDistanceView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphDistanceView', '@Start');
-        this.nav2WalkInPath(null, "y", "rel", 0, [])
-
+        // this.nav2WalkInPath(null, "y", "rel", 0, [])
+        this.nav2WalkInPath(null, 'Mr van Wyk, Rene', "Director Of", 0, [])
+        
     }
 
     createGraphNodeTypeView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
