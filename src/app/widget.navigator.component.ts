@@ -869,7 +869,21 @@ export class WidgetNavigatorComponent {
         this.nav2WalkInPath(null, 'Mr van Wyk, Rene', "Director Of", 0, [])
         console.log('xx @END of createGraphDistanceView', this.routesPerNode)
 
-        this.graphData = this.routesPerNode;
+        this.graphData = [];
+        this.graphData.push({
+            id: 1,
+            name: 'Distance'
+        });
+
+        for (var i = 0; i < this.routesPerNode.length; i++) {
+            // Add to parent
+            this.graphData.push({
+                id: i + 2,
+                name: this.constructNodeName(this.routesPerNode[i]),
+                parent: i + 1
+            });
+
+        };
 
     }
 
