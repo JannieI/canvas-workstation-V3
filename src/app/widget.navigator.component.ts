@@ -1228,14 +1228,16 @@ export class WidgetNavigatorComponent {
 
         // List all ParentNode - relationship - Child relationships for the array
         inputNodes.forEach(nd => {
-            parentRelationshipPerNode = this.parentRelationshipPerNode(nd);
+            parentRelationshipPerNode = parentRelationshipPerNode
+                .concat(this.parentRelationshipPerNode(nd));
         });
+        console.log('xx  1 inputNodes', inputNodes, parentRelationshipPerNode)
 
         // Loop on children: if anyone is in inputNode array, add it
         parentRelationshipPerNode = parentRelationshipPerNode
             .filter(pr => inputNodes.indexOf(pr.nodeName) >= 0);
 
-        console.log('xx inputNodes', inputNodes, parentRelationshipPerNode)
+        console.log('xx filtered', parentRelationshipPerNode)
         // Create a distinct list of ParentNodes
         let parentNodesUnique: string[] = [];
         parentNodesUnique = parentRelationshipPerNode.map(nr => nr.parentNodeName);
