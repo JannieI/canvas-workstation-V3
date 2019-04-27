@@ -1424,14 +1424,12 @@ export class WidgetNavigatorComponent {
         });
         console.log('xx parentsCount', parentsCount)
 
-
-
         // Build the graph Data
         let localGraphData: any[] = [];
 
         localGraphData.push({
             id: 1,
-            name: 'Common Parents'
+            name: 'Common Node'
         });
 
         // Loop on unique duplicate parents
@@ -1454,7 +1452,7 @@ export class WidgetNavigatorComponent {
 
             // Get unique list of relationships
             let localRelationships: string[] = childrenRelationshipPerParent
-                .filter(nr => nr.parentNodeName === pc.parentNode)
+                .filter(nr => nr.nodeName === pc.parentNode)
                 .map(nr => nr.relatinsionship);
             localRelationships = this.navUniqifySortNodes(localRelationships);
 
@@ -1475,10 +1473,10 @@ export class WidgetNavigatorComponent {
 
                 // Distrinct children for this parent and relationship
                 let localChildren: string[] = childrenRelationshipPerParent
-                    .filter(nr => nr.parentNodeName === pc.parentNode
+                    .filter(nr => nr.nodeName === pc.parentNode
                             &&
                             nr.relatinsionship === relationship)
-                    .map(nr => nr.nodeName);
+                    .map(nr => nr.parentNodeName);
                 localChildren = this.navUniqifySortNodes(localChildren);
 
                 // Add each child
