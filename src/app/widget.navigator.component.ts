@@ -1344,6 +1344,136 @@ export class WidgetNavigatorComponent {
         return localGraphData;
     }
 
+    constructGraphDataForCommonNode(targetNode: string, inputNodes: string[]): any[] {
+        // Construct the graph Data where a given array of Nodes has common parent with a target Node
+        // Example: where do directors of Absa have a common parent with Person xyz
+        this.globalFunctionService.printToConsole(this.constructor.name, 'constructGraphDataForCommonNode', '@Starts');
+
+        // parentRelationshipPerNode = parentRelationshipPerNode.concat(this.parentRelationshipPerNode(nd));
+        let parentRelationshipPerNode: {
+            parentNodeName: string; 
+            relatinsionship: string; 
+            nodeName: string
+        }[] = [];
+
+        // List all ParentNode - relationship - Child relationships for the array
+        inputNodes.forEach(nd => {
+            parentRelationshipPerNode = parentRelationshipPerNode
+                .concat(this.parentRelationshipPerNode(nd));
+        });
+        console.log('xx  1 inputNodes', inputNodes, parentRelationshipPerNode)
+
+        // Loop on children: if anyone is in inputNode array, add it
+        // parentRelationshipPerNode = parentRelationshipPerNode
+        //     .filter(pr => inputNodes.indexOf(pr.nodeName) >= 0);
+
+        console.log('xx filtered', parentRelationshipPerNode)
+        // Create a distinct list of ParentNodes
+        let parentNodesUnique: string[] = [];
+        parentNodesUnique = parentRelationshipPerNode.map(nr => nr.parentNodeName);
+        parentNodesUnique = this.navUniqifySortNodes(parentNodesUnique);
+        console.log('xx parentNodesUnique', parentNodesUnique)
+        // Array of parentNodes + count with 2 or more occurances
+        let parentsCount: { parentNode: string; count: number}[] = [];
+        let counter: number = 0;
+        parentNodesUnique.forEach(pu => {
+            counter = parentRelationshipPerNode.filter(nr => nr.parentNodeName === pu).length;
+            if (counter > 1) {
+                parentsCount.push({ parentNode: pu, count: counter });
+            };
+        });
+
+        // Sort on counter
+        parentsCount = parentsCount.sort( (a,b) => {
+            if (a.count > b.count) {
+                return 1;
+            };
+            if (a.count < b.count) {
+                return -1;
+            };
+                return 0;
+        });
+        console.log('xx parentsCount', parentsCount)
+        // Build the graph Data
+        let localGraphData: any[] = [];
+
+        localGraphData.push({
+            id: 1,
+            name: 'Common Parents'
+        });
+
+        // Loop on unique duplicate parents
+        let parentNodeCounter: number = 0;             // Counter on parents
+        let relationshipCounter: number = 0;        // Counter on relationship
+        let childCounter: number = 0;               // Counter on children, spans roles
+
+        parentsCount.forEach(pc => {
+
+            // Increment
+            parentNodeCounter = 1 + parentNodeCounter;
+            let parentNodeID: number = 1 + parentNodeCounter + relationshipCounter + childCounter;
+
+            // Add parent
+            localGraphData.push({
+                id: parentNodeID,
+                name: this.constructNodeName(pc.parentNode),
+                parent: 1
+            });
+
+            // Get unique list of relationships
+            let localRelationships: string[] = parentRelationshipPerNode
+                .filter(nr => nr.parentNodeName === pc.parentNode)
+                .map(nr => nr.relatinsionship);
+            localRelationships = this.navUniqifySortNodes(localRelationships);
+
+            // Loop on relationships and add Children
+            localRelationships.forEach(relationship => {
+
+                // Increment
+                relationshipCounter = relationshipCounter + 1;
+
+                // Add Relationship
+                let relationshipID: number = 1 + parentNodeCounter + relationshipCounter + childCounter;
+                
+                localGraphData.push({
+                    id: relationshipID,
+                    name: this.constructNodeName(relationship),
+                    parent: parentNodeID
+                });
+
+                // Distrinct children for this parent and relationship
+                let localChildren: string[] = parentRelationshipPerNode
+                    .filter(nr => nr.parentNodeName === pc.parentNode
+                            &&
+                            nr.relatinsionship === relationship)
+                    .map(nr => nr.nodeName);
+                localChildren = this.navUniqifySortNodes(localChildren);
+
+                // Add each child
+                localChildren.forEach(child => {
+
+                    // Increment
+                    childCounter = childCounter + 1;
+
+                    // Add
+                    localGraphData.push({
+                        id: 1 + parentNodeCounter + relationshipCounter + childCounter,
+                        name: this.constructNodeName(child),
+                        parent: relationshipID
+                    });
+
+                });
+                
+            });
+        });
+
+        // Set length
+        this.graphDataLength = localGraphData.length;
+
+        // Return
+        return localGraphData;
+    }
+
     nav2WalkInPath(
         parent: string,
         nodeName: string,
