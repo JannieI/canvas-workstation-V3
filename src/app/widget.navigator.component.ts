@@ -89,6 +89,11 @@ export class WidgetNavigatorComponent {
     selectedChildFilterID: number = -1;
     selectedParentFilterID: number = -1;
 
+    startupNavigatorSelectParentNodeType: string = '';  // Startup value of the Parent Node Type
+    startupNavigatorSelectParentNodeName: string = '';  // Startup value of the Parent Node Name
+    startupNavigatorSelectRelationship: string = '';    // Startup value of the Relationship
+    startupNavigatorSelectView: string = '';            // Startup value of the View
+
     networkGraph2: NavigatorRelationship[] = [];
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
 
@@ -173,25 +178,15 @@ export class WidgetNavigatorComponent {
         // Deep copy Local W
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
+        // Load startup values
+        this.startupnavigatorSelectParentNodeType = this.localWidget.navigatorSelectParentNodeType;
+        this.startupNavigatorSelectParentNodeName = this.localWidget.navigatorSelectParentNodeName;
+        this.startupNavigatorSelectRelationship = this.localWidget.navigatorSelectRelationship;
+        this.startupNavigatorSelectView = this.localWidget.navigatorSelectView;
 
         // Populate persisted data - TODO via DB
         this.tempCreateDummyData();
 
-        // Load startup values
-        if (this.localWidget.navigatorSelectParentNodeType != '') {
-            this.selectedParentNodeType = this.localWidget.navigatorSelectParentNodeType;
-            this.changeParentNodeType(this.selectedParentNodeType);
-        };
-        if (this.localWidget.navigatorSelectParentNodeName != '') {
-            this.selectedParentNode = this.localWidget.navigatorSelectParentNodeName;
-        };
-        if (this.localWidget.navigatorSelectRelationship != '') {
-            this.selectedRelationship = this.localWidget.navigatorSelectRelationship;
-        };
-        if (this.localWidget.navigatorSelectView != '') {
-            this.selectedView = this.localWidget.navigatorSelectView;
-        };
-        console.log('xx this.selectedView', this.selectedView )
         // Read DS for all Networks from DB
         this.globalVariableService.getResource('datasources', 'filterObject={"isNetworkShape": true}')
             .then(res => {
@@ -400,6 +395,35 @@ export class WidgetNavigatorComponent {
                                 this.selectedRelationship = '';
                                 this.selectedParentFilterID = -1;
                                 this.selectedChildFilterID = -1;
+
+                                // On startup
+                                if (this.startupnavigatorSelectParentNodeType != '') {
+                                    this.selectedParentNodeType = this.localWidget.navigatorSelectParentNodeType;
+                                    this.startupnavigatorSelectParentNodeType = '';
+                                    let ev: any = {
+                                        target: {
+                                            value: this.selectedParentNodeType
+                                        }
+                                    };
+                                    this.changeParentNodeType(ev);
+
+                                    if (this.startupNavigatorSelectParentNodeName != '') {
+                                        this.selectedParentNode = this.startupNavigatorSelectParentNodeName;
+                                        this.startupNavigatorSelectParentNodeName = '';
+                                    };
+                                    if (this.startupNavigatorSelectRelationship != '') {
+                                        this.selectedRelationship = this.startupNavigatorSelectRelationship;
+                                        this.startupNavigatorSelectRelationship = '';
+                                    };
+                                    if (this.startupNavigatorSelectView != '') {
+                                        this.selectedView = this.startupNavigatorSelectView;
+                                        this.startupNavigatorSelectView = '';
+                                        this.clickDefaultView();
+                                    };
+                                    console.log('xx this.selectedView', this.selectedView )
+                            
+                                };
+        
 
                                 this.ngHistory = this.historyAll
                                     .filter(h => h.networkID === networkID)
