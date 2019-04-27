@@ -1631,6 +1631,85 @@ export class WidgetNavigatorComponent {
         return nodeRelationships;
     }
 
+    distinctParentNodes(
+        selectedChildNodeName: string,
+        selectRelationships: string[],
+        selectedRelationshipFilterRole: string
+        ): string[] {
+        // Return distinct array of Parent Nodes for the selected Info
+        this.globalFunctionService.printToConsole(this.constructor.name, 'distinctParentNodes', '@Start');
+
+        // Fill ParentNode type Dropdown
+        let leftChildren: string[] = this.networkRelationships
+            .filter(nr => selectedChildNodeName == 'All'
+                          ||
+                          (
+                              selectedChildNodeName != 'All'
+                              &&
+                              nr.leftNodeName === selectedChildNodeName
+                          )
+            )
+            .filter(nr => ( 
+                            selectRelationships.length == 1
+                            &&
+                            selectRelationships[0] == 'All'
+                          )
+                          ||
+                          selectRelationships.indexOf(nr.relationshipLeftToRight) >= 0
+            )
+            .filter(nr => selectedRelationshipFilterRole === 'All'
+                          ||
+                          (
+                              selectedRelationshipFilterRole != 'All'
+                              &&
+                              nr.relationshipProperty === selectedRelationshipFilterRole
+                          )
+                )
+            .filter(nr => nr.rightNodeName != '')
+            .map(nr => nr.rightNodeName);
+
+        let rightChildren: string[] = this.networkRelationships
+            .filter(nr => selectedChildNodeName === 'All'
+                          ||
+                          (
+                              selectedChildNodeName != 'All'
+                              &&
+                              nr.rightNodeName === selectedChildNodeName
+                          )
+            )
+            .filter(nr => ( 
+                            selectRelationships.length === 1
+                            &&
+                            selectRelationships[0] === 'All'
+                          )
+                          ||
+                          selectRelationships.indexOf(nr.relationshipRightToLeft) >= 0
+            )
+            .filter(nr => selectedRelationshipFilterRole === 'All'
+                          ||
+                          (
+                              selectedRelationshipFilterRole != 'All'
+                              &&
+                              nr.relationshipProperty === selectedRelationshipFilterRole
+                          )
+            )
+            .filter(nr => nr.leftNodeName != '')
+            .map(nr => nr.leftNodeName);
+
+        let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
+
+        // Filter if a Child filter is active
+        if (this.childNodesFilteredList.length > 0) {
+                nodeChildren = nodeChildren.filter(c => this.childNodesFilteredList.indexOf(c) >= 0);
+        };
+
+        // Make sure it is unique, non-null list
+        nodeChildren = this.navUniqifySortNodes(nodeChildren);
+
+        // Return
+        return nodeChildren;
+    }
+
     distinctChildrenNodes(
         selectedParentNodeType: string, 
         selectedParentNodeName: string,
@@ -1689,7 +1768,7 @@ export class WidgetNavigatorComponent {
             .filter(nr => selectedParentNodeName === 'All'
                           ||
                           (
-                              this.selectedParentNode != 'All'
+                              selectedParentNodeName != 'All'
                               &&
                               nr.rightNodeName === selectedParentNodeName
                           )
@@ -1726,101 +1805,6 @@ export class WidgetNavigatorComponent {
         // Return
         return nodeChildren;
     }
-
-
-
-
-
-
-
-
-
-
-    // distinctChildrenNodes(
-    //     selectedParentNodeType: string, 
-    //     selectedParentNode: string
-    //     ): string[] {
-    //     // Return distinct array of Children for the selected Info
-    //     this.globalFunctionService.printToConsole(this.constructor.name, 'distinctChildrenNodes', '@Start');
-
-    //     // Fill ParentNode type Dropdown
-    //     let leftChildren: string[] = this.networkRelationships
-    //         .filter(nr => (
-    //                         nr.leftNodeType === selectedParentNodeType
-    //                         &&
-    //                         (
-    //                             selectedParentNode == 'All'
-    //                             ||
-    //                             (
-    //                                 selectedParentNode != 'All'
-    //                                 &&
-    //                                 nr.leftNodeName === selectedParentNode
-    //                             )
-    //                         )
-    //                         &&
-    //                         nr.relationshipLeftToRight === this.selectedRelationship
-    //                         &&
-    //                         (
-    //                             this.ngSelectedRelationshipFilterRole === ''
-    //                             ||
-    //                             (
-    //                                 this.ngSelectedRelationshipFilterRole != ''
-    //                                 &&
-    //                                 nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
-    //                             )
-    //                         )
-    //                        )
-    //         )
-    //         .filter(nr => nr.rightNodeName != '')
-    //         .map(nr => nr.rightNodeName);
-
-    //     let rightChildren: string[] = this.networkRelationships
-    //         .filter(nr => (
-    //                         nr.rightNodeType === selectedParentNodeType
-    //                         &&
-    //                         (
-    //                             selectedParentNode == 'All'
-    //                             ||
-    //                             (
-    //                                 this.selectedParentNode != 'All'
-    //                                 &&
-    //                                 nr.rightNodeName === selectedParentNode
-    //                             )
-    //                         )
-    //                         &&
-    //                         nr.relationshipRightToLeft === this.selectedRelationship
-    //                         &&
-    //                         (
-    //                             this.ngSelectedRelationshipFilterRole === ''
-    //                             ||
-    //                             (
-    //                                 this.ngSelectedRelationshipFilterRole != ''
-    //                                 &&
-    //                                 nr.relationshipProperty === this.ngSelectedRelationshipFilterRole
-    //                             )
-    //                         )
-    //                        )
-    //         )
-    //         .filter(nr => nr.leftNodeName != '')
-    //         .map(nr => nr.leftNodeName);
-
-    //     let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
-
-    //     // Filter if a Child filter is active
-    //     if (this.childNodesFilteredList.length > 0) {
-    //             nodeChildren = nodeChildren.filter(c => this.childNodesFilteredList.indexOf(c) >= 0);
-    //     };
-
-    //     // Make sure it is unique, non-null list
-    //     nodeChildren = this.navUniqifySortNodes(nodeChildren);
-
-    //     // Return
-    //     return nodeChildren;
-    // }
-
-
-
-
 
     distinctRelationshipRoles(selectedRelationship: string): string[] {
         // Return distinct array of Nodes per Relationship Roles for a given Relationship
