@@ -976,6 +976,11 @@ export class WidgetNavigatorComponent {
             nodeCount = route.length;
         });
 
+        // Set info
+        this.graphTitle = 'Distance view';
+        this.graphDataLength = this.routesPerNode.length;
+        this.calcGraphDataDimensions(this.routesPerNode.length);
+
     }
 
     createGraphCustomView() {
