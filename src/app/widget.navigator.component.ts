@@ -244,7 +244,7 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphProperties', '@Start');
 
         // Show current values
-        this.visibleNumberChildrenShownInput = this.visibleNumberChildrenShown;
+        // this.visibleNumberChildrenShownInput = this.visibleNumberChildrenShown;
 
         this.showGraphProperties = true;
     }
@@ -859,6 +859,7 @@ export class WidgetNavigatorComponent {
         // Set info
         this.graphTitle = 'Summary of ' + this.ngNetworks[networkIndex].name;
         this.graphDataLength = 2;
+        this.visibleNumberChildrenShownInput = Math.max(this.visibleNumberChildrenShown, this.graphDataLength);
 
         // Dimension it
         this.graphHeight = 400; //this.localWidget.graphLayers[0].graphSpecification.height;
@@ -1210,7 +1211,7 @@ export class WidgetNavigatorComponent {
 
             // Get visible children
             let localChildDataVisible = localChildDataAll.splice(
-                this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
+                this.visibleNumberChildrenStart, this.visibleNumberChildrenShownInput)
 
             // Append to list of ALL children currently displayed
             this.childDataAll = this.childDataAll.concat(localChildDataVisible);
@@ -1244,7 +1245,7 @@ export class WidgetNavigatorComponent {
 
             // Reduce amount shown
             relationshipRoles = relationshipRoles.splice(
-                this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
+                this.visibleNumberChildrenStart, this.visibleNumberChildrenShownInput);
 
             let roleCounter: number = 0;            // Counter on role
             let childCounter: number = 0;           // Counter on children, spans roles
@@ -1275,7 +1276,7 @@ export class WidgetNavigatorComponent {
 
                 // Get visible children
                 let localChildDataVisible = localChildDataAll.splice(
-                    this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
+                    this.visibleNumberChildrenStart, this.visibleNumberChildrenShownInput)
 
                 // Append to list of ALL children currently displayed
                 this.childDataAll = this.childDataAll.concat(localChildDataVisible);
@@ -1309,7 +1310,7 @@ export class WidgetNavigatorComponent {
 
             // Reduce amount shown
             relationships = relationships.splice(
-                this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
+                this.visibleNumberChildrenStart, this.visibleNumberChildrenShownInput);
 
             let relationshipCounter: number = 0;            // Counter on relationship
             let childCounter: number = 0;           // Counter on children, spans roles
@@ -1340,7 +1341,7 @@ export class WidgetNavigatorComponent {
 
                 // Get visible children
                 let localChildDataVisible = localChildDataAll.splice(
-                    this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
+                    this.visibleNumberChildrenStart, this.visibleNumberChildrenShownInput)
 
                 // Append to list of ALL children currently displayed
                 this.childDataAll = this.childDataAll.concat(localChildDataVisible);
@@ -1374,7 +1375,7 @@ export class WidgetNavigatorComponent {
 
             // Reduce amount shown
             relationships = relationships.splice(
-                this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
+                this.visibleNumberChildrenStart, this.visibleNumberChildrenShownInput);
 
             let relationshipCounter: number = 0;    // Counter on relationship
             let roleCounter: number = 0;            // Counter on role
@@ -1400,7 +1401,7 @@ export class WidgetNavigatorComponent {
 
                 // Reduce amount shown
                 relationshipRoles = relationshipRoles.splice(
-                    this.visibleNumberChildrenStart, this.visibleNumberChildrenShown);
+                    this.visibleNumberChildrenStart, this.visibleNumberChildrenShownInput);
 
                 relationshipRoles.forEach(role => {
 
@@ -1428,7 +1429,7 @@ export class WidgetNavigatorComponent {
 
                     // Get visible children
                     let localChildDataVisible = localChildDataAll.splice(
-                        this.visibleNumberChildrenStart, this.visibleNumberChildrenShown)
+                        this.visibleNumberChildrenStart, this.visibleNumberChildrenShownInput)
 
                     // Append to list of ALL children currently displayed
                     this.childDataAll = this.childDataAll.concat(localChildDataVisible);
@@ -2674,6 +2675,14 @@ export class WidgetNavigatorComponent {
         this.checkShowGraph();
     }
 
+    calcGraphDataDimensions(inputGraphDataLength: number) {
+        // Calc dimensions of the graph Data
+        this.globalFunctionService.printToConsole(this.constructor.name, 'constructGraphDataDimensions', '@Start');
+
+        this.graphDataLength = inputGraphDataLength;
+        this.visibleNumberChildrenShownInput = Math.max(this.visibleNumberChildrenShown, inputGraphDataLength);
+
+    }
 
     // Temp dummy data for demo - must be done via DB
     tempCreateDummyData() {
