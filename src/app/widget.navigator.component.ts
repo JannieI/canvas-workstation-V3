@@ -125,6 +125,7 @@ export class WidgetNavigatorComponent {
     ngRelationshipRoles: string[] = [];
     relationshipFilterErrorMessage: string = '';
     routesPerNode: any[] = [];                          // Array of routes with one starting point
+    visibleNumberChildrenShownInput: number = 12;
     visibleNumberChildrenShown: number = 12;
     visibleNumberChildrenStart: number = 0;
 
@@ -320,6 +321,7 @@ export class WidgetNavigatorComponent {
         //  Save changes and then Close Graph Property popup
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickGraphPropertiesSave', '@Start');
 
+        this.visibleNumberChildrenShown = this.visibleNumberChildrenShownInput;
         this.showGraphProperties = false;
 
     }
