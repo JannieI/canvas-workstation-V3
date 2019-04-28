@@ -601,6 +601,52 @@ dimensions are set in app.html, and cannot be changed here. -->
 
     <!-- POPUP FORMS -->
 
+    <!-- Show list of Custom View -->
+    <div class="customViewArea" *ngIf="showNetwork">
+        <div class="customViewAreaTitle">
+            <b>Networks</b>
+            <clr-signpost>
+                <clr-icon shape="info-circle" style="margin-top: -4px;"
+                    clrSignpostTrigger>
+                </clr-icon>
+                <clr-signpost-content *clrIfOpen
+                    [clrPosition]="'bottom-middle'">
+                    <h5 style="margin-top: 0; color:gray;">
+                        Help
+                    </h5>
+                    <p style="margin-top: 0; color:gray; text-align: left;">
+                        A network is a pre-defined web of nodes and relationships.  For example,
+                        it can be the relationships between companies, subsidaries,
+                        directors (executive and non-executive), shareholders, etc.
+                        A company can create more than one network for their data.
+                    </p>
+                </clr-signpost-content>
+            </clr-signpost>
+            <div class="customViewAreaClose"
+                (click)="clickCloseNetworksPopup()"
+                >
+                <b>X</b>
+            </div>
+        </div>
+
+        <div class="customViewAreaText">
+            Select the name of a network to graph by clicking it.  A summary of the network will be
+            shown, after which you can select specific nodes and relationships to browse.
+        </div>
+        <div class="customViewAreaBlock" *ngFor="let row of ngNetworks; let i = index"
+            [style.background-color]="row.id==selectedNetworkID? 'white'  :  'rgb(235, 232, 232)'"
+            [style.border]="row.id==selectedNetworkID? '2px solid black'  :  '1px solid gray'"
+            [style.color]="row.id==selectedNetworkID? 'black'  :  'darkgray'"
+            >
+                <div
+                    (click)="clickNetwork(i, row.id)"
+                    >
+                    {{ row.name }}
+                    {{ row.description}}
+                </div>
+        </div>
+    </div>
+
     <!-- Show list of Networks -->
     <div class="networkArea" *ngIf="showNetwork">
         <div class="networkAreaTitle">
