@@ -263,9 +263,9 @@ export class WidgetNavigatorComponent {
         this.showGraphHelp = true;
     }
 
-    clickMenuClearHistory() {
+    clickClearHistory() {
         // Clear history for the current Network
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuClearHistory', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickClearHistory', '@Start');
 
         this.ngHistory = this.ngHistory.filter(h => h.networkID != this.selectedNetworkID);
         this.historyAll = this.historyAll.filter(h => h.networkID != this.selectedNetworkID);

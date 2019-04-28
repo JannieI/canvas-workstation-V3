@@ -173,14 +173,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <button
                     type="button"
                     clrDropdownItem
-                    (click)="clickMenuClearHistory()"
-                    title="Clear history for current Network"
-                    >
-                    Clear History
-                </button>
-                <button
-                    type="button"
-                    clrDropdownItem
                     (click)="clickMenuExportGraph()"
                     title="Export the current Graph"
                     >
@@ -719,7 +711,12 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         <div class="historyAreaText">
             Select a previously shown graph by clicking it.  Double click the trash icon to
-            delete an item from the Navigated list.
+            delete an item from the Navigated list.  Click 
+            <button class="btn" (click)="clickClearHistory()">
+                Clear
+            </button>
+            to clear the list below.
+
         </div>
 
         <div *ngIf="ngHistory?.length == 0">
