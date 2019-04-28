@@ -221,8 +221,8 @@ dimensions are set in app.html, and cannot be changed here. -->
                     Filter on relationship for {{ selectedRelationship }}
                 </h5>
                 <p style="margin-top: 0; color:gray; text-align: left;">
-                    Filter the relationships based on the roles used for it.  
-                    This filter will stay active until 1. it is changed here, or 2. the 
+                    Filter the relationships based on the roles used for it.
+                    This filter will stay active until 1. it is changed here, or 2. the
                     selected parent node type is changed is changed.
                 </p>
 
@@ -262,7 +262,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             <div class="graphNavigatorBarDivider">
             </div>
             <div class="graphNavigatorBar">
-                    
+
                 <!-- Navigation - nr children shown and jumping -->
                 <span style="float: right;" *ngIf="graphLevels>1">
                     <span>
@@ -369,7 +369,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <!-- Default view = tree view -->
                 <span>
                     <clr-icon *ngIf="isViewsDisabled"
-                        shape="tree-view" 
+                        shape="tree-view"
                         style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='DefaultView'?  'blue'  :  'gray'"
                         title="Default view: tree of children for the selected parent"
@@ -427,7 +427,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                                     <option>Selection</option>
                                 </select>
                             </div>
-            
+
                             <div class="graphAreaChildFilterValueTitle">
                                 Value:
                                 <input type="text"
@@ -457,7 +457,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                                     <option>Sector</option>
                                 </select>
                             </div>
-            
+
                             <div>
                                 <div class="btn-group btn-link">
                                     <button class="btn" (click)="clickChildFilterClear()">
@@ -476,7 +476,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                                     {{ childFilterErrorMessage }}
                                 </span>
                             </div>
-            
+
                         </clr-signpost-content>
                     </clr-signpost>
 
@@ -499,7 +499,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                         >
                         Role
                     </span>
-            
+
                     <!-- Additional Properties to show -->
                     <clr-signpost style="margin-left: 8px; width: 400;">
                         <clr-icon shape="ellipsis-horizontal"
@@ -537,7 +537,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                                 <button class="btn" (click)="clickAdditionalPropertyShow()">
                                     Show
                                 </button>
-                
+
                             </div>
                         </clr-signpost-content>
                     </clr-signpost>
@@ -556,7 +556,7 @@ dimensions are set in app.html, and cannot be changed here. -->
 
             </div>
 
-            
+
             <!-- <div>
                 <b>{{ graphTitle }}</b>
             </div> -->
@@ -664,8 +664,8 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div>
 
         <div class="historyAreaText">
-            Select a previously shown graph by clicking it.  Double click the trash icon to 
-            delete an item from the Navigated list.    
+            Select a previously shown graph by clicking it.  Double click the trash icon to
+            delete an item from the Navigated list.
         </div>
 
         <div *ngIf="ngHistory?.length == 0">
@@ -708,14 +708,14 @@ dimensions are set in app.html, and cannot be changed here. -->
                 </clr-signpost-content>
             </clr-signpost>
             <div class="propertyAreaClose"
-                (click)="clickClosepropertyPopup()"
+                (click)="clickCloseGraphPropertiesPopup()"
                 >
                 <b>X</b>
             </div>
         </div>
 
         <div class="propertyAreaText">
-            Amend the default properties of the graph.    
+            Amend the default properties of the graph.
         </div>
 
         <div class="propertyAreaBlock">
@@ -727,11 +727,19 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div>
         <div class="propertyAreaBlock">
             Max Nr Children:
-            <input [(ngModel)]="visibleNumberChildrenShown" 
+            <input [(ngModel)]="visibleNumberChildrenShown"
                 type="text"
                 title="Max Number of children to show"
                 placeholder="Max nr children"
                 >
+        </div>
+        <div class="btn-group btn-link">
+            <button class="btn" (click)="clickGraphPropertiesCancel()">
+                Cancel
+            </button>
+            <button class="btn" (click)="clickGraphPropertiesSave()">
+                Save
+            </button>
         </div>
 
     </div>
@@ -756,7 +764,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                     </p>
                 </clr-signpost-content>
             </clr-signpost>
-    
+
             <div class="graphNotesAreaClose"
                 (click)="clickCloseGraphNotesPopup()"
                 >
@@ -766,8 +774,8 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         <div class="graphNotesAreaText">
             Additional notes will be appended at the end of the graph.  Notes that these notes
-            Will not export with the image, and merely serve as descriptive information for 
-            other users.    
+            Will not export with the image, and merely serve as descriptive information for
+            other users.
         </div>
 
         <div class="graphNotesAreaBlock">
@@ -796,19 +804,19 @@ dimensions are set in app.html, and cannot be changed here. -->
             This widget is used to navigate a network using tree graphs.
             <br>
             <br>
-            Select the starting node(s) at the top: click the dropdown to select the node 
-            type, and then a specific node (or 'All').  For example, select Companies as 
+            Select the starting node(s) at the top: click the dropdown to select the node
+            type, and then a specific node (or 'All').  For example, select Companies as
             the node type, and Absa as the specific node.  It is possible to filter the list
             of nodes in the dropdown by clicking the filter next to it, to say only show the
             listed companies.
             <br>
             <br>
-            Select the relationship(s) to show, for example Directors.  The relationships can 
+            Select the relationship(s) to show, for example Directors.  The relationships can
             be filtered on properties by click the filter icon next to it, to show for example
             only Executive Directors.
 
         </div>
 
     </div>
-    
+
 </div>

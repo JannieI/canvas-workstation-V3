@@ -159,7 +159,7 @@ export class WidgetNavigatorComponent {
     navMaxRecursion: number = 100;
     navRecursionCounter: number = 0;
     navVisitedNodes: string[] = [];
-
+    openState: boolean = false;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -300,14 +300,23 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickClosepropertyPopup(index: number, historyID: number) {
+    clickCloseGraphPropertiesPopup(index: number, historyID: number) {
         // Delete selected history row.  If current, move to first
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickClosepropertyPopup', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseGraphPropertiesPopup', '@Start');
+
+        this.showGraphProperties = false;
+
+    }
+    
+    clickGraphPropertiesCancel(){
+        // Delete selected history row.  If current, move to first
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickGraphPropertiesCancel', '@Start');
 
         this.showGraphProperties = false;
 
     }
 
+    clickGraphPropertiesSave
     clickCloseGraphNotesPopup() {
         // Close popup to edit notes at bottom of graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseGraphNotesPopup', '@Start');
@@ -2768,7 +2777,6 @@ export class WidgetNavigatorComponent {
 
     // Temp dummy data for demo - must be done via DB
     tempCreateDummyData() {
-
 
         // Populate the watchList - TODO via DB
         let watchListNew: NavigatorWatchList =
