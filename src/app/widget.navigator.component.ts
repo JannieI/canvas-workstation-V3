@@ -526,7 +526,7 @@ export class WidgetNavigatorComponent {
         });
 
         // Show the graph
-        this.showGraph(0, 0, false)
+        this.checkShowGraph();
     }
 
     clickShowCustomView(index: number, customViewID: number) {
@@ -694,7 +694,12 @@ export class WidgetNavigatorComponent {
             && this.selectedRelationship != '') {
 
             // Set title, etc
-            this.graphTitle = this.showAdditionalLevelForRoles ? '*' : '';
+            if (this.showAdditionalLevelForRoles  ||  this.showAdditionalLevelForRelationships) {
+                this.graphTitle = '';
+            } else {
+                this.graphTitle = '*';
+            };
+                ? '*' : '';
             this.graphTitle = this.graphTitle +
                 this.selectedRelationship=='All'?  'All relationships'
                 :  this.selectedRelationship + '(s)';
