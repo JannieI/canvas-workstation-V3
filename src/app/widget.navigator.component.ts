@@ -532,6 +532,7 @@ export class WidgetNavigatorComponent {
         // Show selected Custom View
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickShowCustomView', '@Start');
 
+        this.selectedCustomViewID = customViewID;
         this.checkShowGraph();
     }
 
@@ -968,6 +969,76 @@ export class WidgetNavigatorComponent {
         // Create the data for the Custom view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphCustomView', '@Start');
 
+        // Find record in list
+        let customeViewIndex: number = this.ngCustomViews
+            .findIndex(cv => cv.id == this.selectedCustomViewID);
+
+        if (this.selectedCustomViewID == -1  
+            ||  
+            this.selectedCustomViewID == null
+            ||
+            customeViewIndex == -1) {
+            this.graphTitle = 'Unknown Custom View ID'
+            return;
+        };
+        
+        // Setup
+        let customViewName: string = this.ngCustomViews[customeViewIndex].name;
+        this.graphData = [];
+
+        if (this.selectedCustomViewID = 1) {
+
+            // Set title and list of parents
+            this.graphTitle = customViewName;
+            let distinctParents: string[] = this.distinctParentNodes(
+                'Mr van Wyk, Rene',
+                ['All'],
+                'All'
+                );
+            console.log('xx distinctParents', distinctParents)
+
+            // Construct graph data
+            this.graphData = [];
+            this.graphData.push({
+                id: 1,
+                name: 'Common Parents'
+            });
+    
+            let nodeCount: number = 0;
+    
+            distinctParents.forEach(par => {
+
+                // Add to parent
+                nodeCount = nodeCount + 1;
+                this.graphData.push({
+                    id: nodeCount + 1,
+                    name: this.constructNodeName(par),
+                    parent: 1
+                });
+            });
+    
+
+        };
+        if (this.selectedCustomViewID = 2) {
+            this.graphTitle = customViewName;
+
+        };
+        if (this.selectedCustomViewID = 3) {
+            this.graphTitle = customViewName;
+
+        };
+        if (this.selectedCustomViewID = 4) {
+            this.graphTitle = customViewName;
+
+        };
+        if (this.selectedCustomViewID = 5) {
+            this.graphTitle = customViewName;
+
+        };
+        if (this.selectedCustomViewID = 6) {
+            this.graphTitle = customViewName;
+
+        };
     }
 
     createGraphNodeTypeView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
@@ -2617,36 +2688,40 @@ export class WidgetNavigatorComponent {
         );
         this.ngCustomViews.push(
             {
-            id: 2,
-            name: 'CFO articles-auditors',
-            description: 'Show companies where the CFO has appointed the Auditors where he articled'
-        };
+                id: 2,
+                name: 'Pair-wise search',
+                description: 'Show all companies where person A is CEO and person B is CFO of subsidiary'
+            }
+        );
         this.ngCustomViews.push(
             {
-            id: 2,
-            name: 'Group Common Parents',
-            description: 'Show common parents for a group of nodes (filtered by properties)'
-        };
+                id: 3,
+                name: 'CFO articles-auditors',
+                description: 'Show companies where the CFO has appointed the Auditors where he articled'
+            }
+        );
         this.ngCustomViews.push(
             {
-            id: 2,
-            name: 'Distance < n',
-            description: 'Show all nodes that are less than n nodes away from the current children'
-        };
+                id: 4,
+                name: 'Group Common Parents',
+                description: 'Show common parents for a group of nodes (filtered by properties)'
+            }
+        );
         this.ngCustomViews.push(
             {
-            id: 2,
-            name: 'CFO no AuditCom',
-            description: 'Show all companies with a CFO/FM but no Audit Committee'
-        };
+                id: 5,
+                name: 'Distance < n',
+                description: 'Show all nodes that are less than n nodes away from the current children'
+            }
+        );
         this.ngCustomViews.push(
             {
-            id: 2,
-            name: 'Pair-wise search',
-            description: 'Show all companies where person A is CEO and person B is CFO of subsidiary'
-        }
-    );
-};
+                id: 6,
+                name: 'CFO no AuditCom',
+                description: 'Show all companies with a CFO/FM but no Audit Committee'
+            }
+        );
+    }
 
 }
 
