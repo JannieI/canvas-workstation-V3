@@ -695,11 +695,11 @@ export class WidgetNavigatorComponent {
 
             // Set title, etc
             if (this.showAdditionalLevelForRoles  ||  this.showAdditionalLevelForRelationships) {
-                this.graphTitle = '';
-            } else {
                 this.graphTitle = '*';
+            } else {
+                this.graphTitle = '';
             };
-                ? '*' : '';
+
             this.graphTitle = this.graphTitle +
                 this.selectedRelationship=='All'?  'All relationships'
                 :  this.selectedRelationship + '(s)';
