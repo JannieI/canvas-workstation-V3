@@ -512,6 +512,7 @@ export class WidgetNavigatorComponent {
         this.selectedParentNode = this.ngHistory[index].parentNode;
         this.selectedRelationship = this.ngHistory[index].relationship;
         this.showAdditionalLevelForRoles = this.ngHistory[index].showRoles;
+        this.showAdditionalLevelForRelationships = this.ngHistory[index].showRelationships;
         this.selectedView = this.ngHistory[index].view;
 
         // Set the history id and reset the isSelected field in history
@@ -750,6 +751,7 @@ export class WidgetNavigatorComponent {
                     parentNode: this.selectedParentNode,
                     relationship: this.selectedRelationship,
                     showRoles: this.showAdditionalLevelForRoles,
+                    showRelationships: this.showAdditionalLevelForRelationships,
                     parentNodeFiler:
                     {
                         id: 0,
