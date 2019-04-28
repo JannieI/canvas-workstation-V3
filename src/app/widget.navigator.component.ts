@@ -63,6 +63,7 @@ export class WidgetNavigatorComponent {
     graphData: any[] = [];                              // data formatted for Vega
     graphDataLength: number = 0;
 
+    ngCustomViews: {}
     ngNetworks: Datasource[] = [];                      // All Networks (DS with isNetwork = True)
     ngHistory: NavigatorHistory[] = [];                   // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
@@ -74,6 +75,7 @@ export class WidgetNavigatorComponent {
     ngDropdownRelationships: string[] = [];             // Dropdown: Relationships
     ngNodeProperties: string[] = [];                    // Dropdown: Properties per Parent Node Type
 
+    selectedCustomViewID: number = -1;                  // Select Custom View ID
     selectedNetworkID: number = -1;                     // Select NW ID
     selectedNetworkRelationshipID: number = -1;         // DSid for DSrel
     selectedNetworkPropertiesID: number = -1;           // DSid for DSprop
