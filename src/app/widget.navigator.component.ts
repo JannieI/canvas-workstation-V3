@@ -2677,11 +2677,10 @@ export class WidgetNavigatorComponent {
     }
 
     calcGraphDataDimensions(inputGraphDataLength: number) {
-        // Calc dimensions of the graph Data
-        this.globalFunctionService.printToConsole(this.constructor.name, 'constructGraphDataDimensions', '@Start');
+        // Calc dimensions of the graph Data to display on the form
+        this.globalFunctionService.printToConsole(this.constructor.name, 'calcGraphDataDimensions', '@Start');
 
-        this.graphDataLength = inputGraphDataLength;
-        this.visibleNumberChildrenShownInput = Math.max(this.visibleNumberChildrenShown, inputGraphDataLength);
+        this.visibleNumberChildrenShown = Math.min(this.visibleNumberChildrenShownInput, inputGraphDataLength);
 
     }
 
