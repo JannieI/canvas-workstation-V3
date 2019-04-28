@@ -941,6 +941,12 @@ export class WidgetNavigatorComponent {
 
     }
 
+    createGraphCustomView() {
+        // Create the data for the Custom view
+        this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphCustomView', '@Start');
+
+    }
+
     createGraphNodeTypeView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphNodeTypeView', '@Start');
