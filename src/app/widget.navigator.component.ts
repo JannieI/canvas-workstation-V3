@@ -63,9 +63,14 @@ export class WidgetNavigatorComponent {
     graphData: any[] = [];                              // data formatted for Vega
     graphDataLength: number = 0;
 
-    ngCustomViews: {}
+    ngCustomViews:
+        {
+            id: number;
+            name: string;
+            description: string;
+        }[] = [];                                              // Custom Views
     ngNetworks: Datasource[] = [];                      // All Networks (DS with isNetwork = True)
-    ngHistory: NavigatorHistory[] = [];                   // History for current network
+    ngHistory: NavigatorHistory[] = [];                 // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
 
     networkRelationships: NavigatorRelationship[] = []; // Data with Node-Relationship-Node DSrel
@@ -610,15 +615,15 @@ export class WidgetNavigatorComponent {
         // Check if all selected; then show graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'checkShowGraph', '@Start');
 
-        // Switch view from network if last field filled in 
-        if (this.selectedView === 'SummaryView' 
+        // Switch view from network if last field filled in
+        if (this.selectedView === 'SummaryView'
             &&
             this.selectedParentNodeType != ''
             &&
             this.selectedParentNode != ''
             &&
             this.selectedRelationship != '') {
-            
+
             this.selectedView = 'DefaultView';
         };
 
@@ -686,8 +691,8 @@ export class WidgetNavigatorComponent {
 
             // Set title, etc
             this.graphTitle = this.showAdditionalLevelForRoles ? '*' : '';
-            this.graphTitle = this.graphTitle + 
-                this.selectedRelationship=='All'?  'All relationships'  
+            this.graphTitle = this.graphTitle +
+                this.selectedRelationship=='All'?  'All relationships'
                 :  this.selectedRelationship + '(s)';
             this.graphTitle = this.graphTitle + ' for '
                 + this.selectedParentNode;
@@ -2419,11 +2424,11 @@ export class WidgetNavigatorComponent {
         this.selectedView = 'DistanceView'
 
         this.checkShowGraph();
-        
+
     }
 
     clickCustomView() {
-        // Show the selected Custom view 
+        // Show the selected Custom view
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCustomView', '@Start');
 
         // Open the popup
@@ -2603,7 +2608,45 @@ export class WidgetNavigatorComponent {
         };
         this.watchList.push(watchListNew);
 
-    };
+        this.ngCustomViews.push(
+            {
+                id: 1,
+                name: 'Rene v Wyk',
+                description: 'Parent nodes for Rene v Wyk'
+            }
+        );
+        this.ngCustomViews.push(
+            {
+            id: 2,
+            name: 'CFO articles-auditors',
+            description: 'Show companies where the CFO has appointed the Auditors where he articled'
+        };
+        this.ngCustomViews.push(
+            {
+            id: 2,
+            name: 'Group Common Parents',
+            description: 'Show common parents for a group of nodes (filtered by properties)'
+        };
+        this.ngCustomViews.push(
+            {
+            id: 2,
+            name: 'Distance < n',
+            description: 'Show all nodes that are less than n nodes away from the current children'
+        };
+        this.ngCustomViews.push(
+            {
+            id: 2,
+            name: 'CFO no AuditCom',
+            description: 'Show all companies with a CFO/FM but no Audit Committee'
+        };
+        this.ngCustomViews.push(
+            {
+            id: 2,
+            name: 'Pair-wise search',
+            description: 'Show all companies where person A is CEO and person B is CFO of subsidiary'
+        }
+    );
+};
 
 }
 
