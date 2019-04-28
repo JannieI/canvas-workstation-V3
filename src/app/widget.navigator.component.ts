@@ -534,6 +534,8 @@ export class WidgetNavigatorComponent {
 
         this.selectedCustomViewID = customViewID;
         this.checkShowGraph();
+
+        this.showCustomView = false;
     }
 
     changeParentNodeType(ev: any) {
