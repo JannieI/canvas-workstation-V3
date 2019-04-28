@@ -1715,19 +1715,6 @@ export class NavigatorProperties {
     propertyValue: string;                  // Property Value, ie Bank
 }
 
-
-export class NavigatorNodePropertiesOLD {
-    id: number;
-    sourceRecordID: number;
-    nodeType: string;
-    node: string;
-    sector: string;
-    country: string;
-    city: string;
-    age: number;
-    gender: string;
-}
-
 export class NavigatorWatchList {
     id: number;
     userID: string;
