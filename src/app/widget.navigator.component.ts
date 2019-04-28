@@ -139,7 +139,8 @@ export class WidgetNavigatorComponent {
     graphNotes: string = 'Optional Additional information';
     graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
     showHistory: boolean = false;
-    showNetwork: boolean = false;
+    showNetwork: boolean = false;       // Show Network popup
+    showCustomView: boolean = false;    // Show Custom View popup
     showAdditionalLevelForRelationships: boolean = false;     // True to add level to graph with all Relationships
     showAdditionalLevelForRoles: boolean = false;             // True to add level to graph with Relationship Roles
     showProperty: boolean = false;          // True to show selected Property with Nodes in graph
@@ -510,6 +511,13 @@ export class WidgetNavigatorComponent {
 
         // Show the graph
         this.showGraph(0, 0, false)
+    }
+
+    clickShowCustomView(index: number, customViewID: number) {
+        // Show selected Custom View
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickShowCustomView', '@Start');
+
+        this.checkShowGraph();
     }
 
     changeParentNodeType(ev: any) {
@@ -2408,10 +2416,9 @@ export class WidgetNavigatorComponent {
         // Show the selected Custom view 
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCustomView', '@Start');
 
-        // Refresh the graph
+        // Open the popup
         this.selectedView = 'CustomView'
-
-        this.checkShowGraph();
+        this.showCustomView = true;
 
     }
 
