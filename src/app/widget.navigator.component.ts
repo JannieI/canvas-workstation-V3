@@ -307,16 +307,23 @@ export class WidgetNavigatorComponent {
         this.showGraphProperties = false;
 
     }
-    
+
     clickGraphPropertiesCancel(){
-        // Delete selected history row.  If current, move to first
+        // Close Graph Property popup without saving changes
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickGraphPropertiesCancel', '@Start');
 
         this.showGraphProperties = false;
 
     }
 
-    clickGraphPropertiesSave
+    clickGraphPropertiesSave(){
+        //  Save changes and then Close Graph Property popup
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickGraphPropertiesSave', '@Start');
+
+        this.showGraphProperties = false;
+
+    }
+
     clickCloseGraphNotesPopup() {
         // Close popup to edit notes at bottom of graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseGraphNotesPopup', '@Start');
