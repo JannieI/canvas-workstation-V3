@@ -858,8 +858,7 @@ export class WidgetNavigatorComponent {
 
         // Set info
         this.graphTitle = 'Summary of ' + this.ngNetworks[networkIndex].name;
-        // this.graphDataLength = 2;
-        // this.visibleNumberChildrenShownInput = Math.max(this.visibleNumberChildrenShown, this.graphDataLength);
+        this.graphDataLength = 2;
         this.calcGraphDataDimensions(2);
 
         // Dimension it
@@ -894,6 +893,11 @@ export class WidgetNavigatorComponent {
             if (this.graphWidth < 100) {
                 this.graphWidth = 100;
             };
+        
+            // Set info
+            this.graphTitle = 'Common parent view';
+            this.graphDataLength = this.graphData.length;
+            this.calcGraphDataDimensions(this.graphData.length);
 
         };
         console.log('xx this.graphData', this.graphData)
