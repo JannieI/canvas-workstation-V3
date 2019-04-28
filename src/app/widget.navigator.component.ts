@@ -282,6 +282,14 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickCloseCustomViewPopup() {
+        // Close CustomView popup
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseCustomViewPopup', '@Start');
+
+        this.showCustomView = false;
+
+    }
+
     clickCloseNetworksPopup() {
         // Close network popup
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseNetworksPopup', '@Start');
