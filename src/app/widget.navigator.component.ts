@@ -161,7 +161,6 @@ export class WidgetNavigatorComponent {
     showGraphHelp: boolean = false;
     showGraphNotes: boolean = false;
     showGraphProperties: boolean = false;
-    showChildProperties: boolean = false;
 
     watchListFiltered: boolean = false;
 
@@ -375,7 +374,6 @@ export class WidgetNavigatorComponent {
         // Show selected Property in brackets with Nodes
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickAdditionalPropertyShow', '@Start');
 
-        this.showChildProperties = false;
         this.checkShowGraph();
 
     }
@@ -2448,6 +2446,11 @@ export class WidgetNavigatorComponent {
 
         // Set view
         this.selectedView = 'SummaryView';
+
+        // Reset the selections
+        this.selectedParentNodeType = '';
+        this.selectedParentNode = '';
+        this.selectedRelationship = '';
 
         this.checkShowGraph();
 
