@@ -634,6 +634,7 @@ export class WidgetNavigatorComponent {
                         this.createGraphDistanceView();
                         break;
                     }
+                    CustomView
                     case 'NodeTypeView': {
                         this.createGraphNodeTypeView();
                         break;
@@ -2628,6 +2629,17 @@ export class WidgetNavigatorComponent {
         //     .hover()
         //     .run()
         //     .finalize();
+
+    }
+
+    clickCustomView() {
+        // Show the selected Custom view 
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCustomView', '@Start');
+
+        // Refresh the graph
+        this.selectedView = 'CustomView'
+
+        this.checkShowGraph();
 
     }
 
