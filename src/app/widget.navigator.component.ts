@@ -900,7 +900,6 @@ export class WidgetNavigatorComponent {
             this.calcGraphDataDimensions(this.graphData.length);
 
         };
-        console.log('xx this.graphData', this.graphData)
 
     }
 
@@ -932,8 +931,12 @@ export class WidgetNavigatorComponent {
                 this.graphWidth = 100;
             };
 
+            // Set info
+            this.graphTitle = 'Common Node view';
+            this.graphDataLength = this.graphData.length;
+            this.calcGraphDataDimensions(this.graphData.length);
+
         };
-        console.log('xx this.graphData', this.graphData)
 
     }
 
