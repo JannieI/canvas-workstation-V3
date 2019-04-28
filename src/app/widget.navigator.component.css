@@ -124,8 +124,12 @@
         }
         .historyAreaBlock {
             border-radius: 4px;
-            margin: 18px;
+            margin: 4px;
             overflow-y: scroll; 
+        }
+        .historyAreaBlockSmall {
+            border-radius: 4px;
+            margin: 4px;
         }
 
     .propertyArea {
