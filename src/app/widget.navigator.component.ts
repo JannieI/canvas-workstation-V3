@@ -235,6 +235,9 @@ export class WidgetNavigatorComponent {
         // Clicked Menu to open popup to edit graph properties like title
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphProperties', '@Start');
 
+        // Show current values
+        this.visibleNumberChildrenShownInput = this.visibleNumberChildrenShown;
+
         this.showGraphProperties = true;
     }
 
@@ -324,6 +327,8 @@ export class WidgetNavigatorComponent {
         this.visibleNumberChildrenShown = this.visibleNumberChildrenShownInput;
         this.showGraphProperties = false;
 
+        // Refresh graph
+        this.checkShowGraph()
     }
 
     clickCloseGraphNotesPopup() {
