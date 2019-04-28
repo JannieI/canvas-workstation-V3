@@ -1715,11 +1715,6 @@ export class NavigatorProperties {
     propertyValue: string;                  // Property Value, ie Bank
 }
 
-export class NavigatorNodeTypeFieldsOLD {
-    id: number;
-    nodeType: string;
-    fields: string[];
-}
 
 export class NavigatorNodePropertiesOLD {
     id: number;
