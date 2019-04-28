@@ -1731,6 +1731,7 @@ export class NavigatorHistory {
     parentNode: string;
     relationship: string;
     showRoles: boolean;
+    showRelationships: boolean;
     parentNodeFiler:
         {
             id: number;

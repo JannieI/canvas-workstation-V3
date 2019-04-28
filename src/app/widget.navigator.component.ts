@@ -769,7 +769,8 @@ export class WidgetNavigatorComponent {
                 };
                 this.ngHistory = [historyNew, ...this.ngHistory];
                 this.historyAll = [historyNew, ...this.historyAll];
-                console.log('xx 8', this.ngHistory)
+                console.log('xx 8', this.ngHistory, this.showAdditionalLevelForRelationships,
+                this.showAdditionalLevelForRoles)
             };
 
             // Set H & W
