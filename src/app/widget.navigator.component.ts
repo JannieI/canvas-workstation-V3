@@ -1035,6 +1035,11 @@ export class WidgetNavigatorComponent {
                 });
             });
     
+            // Set info
+            this.graphTitle = 'Distance view';
+            this.graphDataLength = this.graphData.length;
+            this.calcGraphDataDimensions(this.graphData.length);
+
 
         };
         if (this.selectedCustomViewID = 2) {
