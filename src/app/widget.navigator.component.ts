@@ -585,6 +585,9 @@ export class WidgetNavigatorComponent {
             .map(np => np.propertyKey);
         this.ngParentNodeFilterDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterDropdown);
 
+        // Reset
+        this.visibleNumberChildrenStart = 0;
+
     }
 
     changeParentNode(ev: any) {
