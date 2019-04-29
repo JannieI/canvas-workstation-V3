@@ -247,6 +247,12 @@ dimensions are set in app.html, and cannot be changed here. -->
             </clr-signpost-content>
         </clr-signpost>
 
+        <span *ngIf="ngHistory?.length > 1"
+            style="float: right;"
+            >
+            Back
+        </span>
+
         <div class="graphAreaTitle">
             <div class="errorMessage">
                 {{ errorMessage }}
@@ -713,7 +719,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             Select a previously shown graph by clicking it.  Double click the trash icon to
             delete an item from the Navigated list.  Click 
             <button class="btn btn-link" 
-                style="margin-top: -3px;"
+                style="margin-top: 2px;"
                 (click)="clickClearHistory()"
                 >
                 Clear
