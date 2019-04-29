@@ -728,9 +728,9 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div>
         <div class="historyAreaBlock">
             <div class="historyAreaBlockSmall" *ngFor="let row of ngHistory; let i = index"
-                [style.background-color]="selectedHistoryID==i? 'white'  :  'rgb(235, 232, 232)'"
-                [style.border]="selectedHistoryID==i? '2px solid black'  :  '1px solid gray'"
-                [style.color]="selectedHistoryID==i? 'black'  :  'darkgray'"
+                [style.background-color]="selectedHistoryID==row.id? 'white'  :  'rgb(235, 232, 232)'"
+                [style.border]="selectedHistoryID==row.id? '2px solid black'  :  '1px solid gray'"
+                [style.color]="selectedHistoryID==row.id? 'black'  :  'darkgray'"
                 (click)="clickSelectHistory(i, row.id)"
                 >
                 <clr-icon (dblclick)="dblclickDeleteHistory(i, row.id)"

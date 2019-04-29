@@ -221,8 +221,6 @@ export class WidgetNavigatorComponent {
                 console.error('Error in Navigator.OnInit reading datasources: ' + err);
             });
 
-
-
     }
 
     clickMenuShowNetworks() {
@@ -236,7 +234,6 @@ export class WidgetNavigatorComponent {
         // Click the menu to open Navigated History popup
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowHistory', '@Start');
 
-        this.selectedHistoryID = 0;
         this.showHistory = true;
     }
 
@@ -320,7 +317,11 @@ export class WidgetNavigatorComponent {
         this.historyAll = this.historyAll.filter(h => h.id != historyID);
 
         // Reset to first one
-        this.selectedHistoryID = 0;
+        this.selectedHistoryID = -1;
+
+        if (this.ngHistory.length > 0) {
+            this.selectedHistoryID = this.ngHistory[0].id
+        };
 
     }
 
