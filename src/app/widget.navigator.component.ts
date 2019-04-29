@@ -127,6 +127,7 @@ export class WidgetNavigatorComponent {
     childFilterErrorMessage: string = '';
     filterID: number = -1;
     firstAdjacencyCellRowNr: number = -1;
+    historyBackIndex: number = 0;                       // Note: this initial value is important
     parentFilterErrorMessage: string = '';
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
     ngRelationshipRoles: string[] = [];
@@ -520,9 +521,13 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickHistoryBack', '@Start');
 
         if (this.ngHistory.length > 1) {
-            this.selectedHistoryID = this.ngHistory[1].id;
+            this.historyBackIndex = this.historyBackIndex + 1;
+            if (this.historyBackIndex > this.ngHistory.length) {
+                this.historyBackIndex = 0;
+            };
+            this.selectedHistoryID = this.ngHistory[this.historyBackIndex].id;
             this.clickHistory(1, this.selectedHistoryID);
-        }
+        };
         
     }
 
