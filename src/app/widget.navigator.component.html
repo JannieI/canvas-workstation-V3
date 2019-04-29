@@ -728,14 +728,22 @@ dimensions are set in app.html, and cannot be changed here. -->
                 [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
                 [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
                 [style.color]="row.isSelected? 'black'  :  'darkgray'"
-                (click)="clickHistory(i, row.id)"
                 >
                 <clr-icon (dblclick)="dblclickDeleteHistory(i, row.id)"
                     shape="trash"
                     size="12"
                     >
                 </clr-icon>
-                {{ row.text }}
+                <span
+                    (click)="clickSelectHistory(i, row.id)"
+                    >
+                    {{ row.text }}
+                </span>
+                <clr-icon (click)="clickHistory(i, row.id)"
+                    shape="trash"
+                    size="12"
+                    >
+                </clr-icon>
             </div>
         </div>
     </div>
