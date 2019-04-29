@@ -247,8 +247,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             </clr-signpost-content>
         </clr-signpost>
 
-        <span *ngIf="ngHistory?.length > 1"
-            style="right: 0px;"
+        <span class="graphAreaBackButton" *ngIf="ngHistory?.length > 1"
             (click)="clickHistoryBack()"
             >
             Back

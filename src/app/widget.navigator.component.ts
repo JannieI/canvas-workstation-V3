@@ -527,7 +527,6 @@ export class WidgetNavigatorComponent {
             };
             this.selectedHistoryID = this.ngHistory[this.historyBackIndex].id;
 
-            console.log('xx clickHistoryBack historyBackIndex selectedHistoryID this.ngHistory.length', this.historyBackIndex, this.selectedHistoryID, this.ngHistory.length, this.ngHistory)
             this.clickHistory(this.historyBackIndex, this.selectedHistoryID);
         };
         

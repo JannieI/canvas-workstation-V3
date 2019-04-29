@@ -297,7 +297,11 @@
         }
 
 
-
+        .graphAreaBackButton {
+            cursor: pointer; 
+            float: right; 
+            margin-left: 36px;
+        }
         .graphAreaTitle {
             color: black;
             font-size: 0.58rem;
