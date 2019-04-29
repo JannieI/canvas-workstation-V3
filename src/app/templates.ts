@@ -648,6 +648,7 @@ export const widgetTemplate: Widget =
         "navigatorSelectParentNodeType": "",
         "navigatorSelectParentNodeName": "",
         "navigatorSelectRelationship": "",
+        "navigatorSelectView": "",
         "refreshMode": "",
         "refreshFrequency": 1,
         "widgetRefreshedOn": "",

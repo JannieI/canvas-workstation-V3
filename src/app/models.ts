@@ -1566,10 +1566,10 @@ export class Widget {
     shapeValue: string;                     // Value to display
 
     // Navigator
-    navigatorSelectParentNodeType?: string;  // Last Parent Node Type selected
-    navigatorSelectParentNodeName?: string;  // Last Parent Node Name selected
-    navigatorSelectRelationship?: string;    // Last Relationship selected
-    navigatorSelectView?: string;            // Last View used
+    navigatorSelectParentNodeType: string;  // Last Parent Node Type selected
+    navigatorSelectParentNodeName: string;  // Last Parent Node Name selected
+    navigatorSelectRelationship: string;    // Last Relationship selected
+    navigatorSelectView: string;            // Last View used
 
     // Created, updated and refreshed
     refreshMode: string;                    // For later use: Manual, OnOpen, Repeatedly
