@@ -2492,6 +2492,14 @@ export class WidgetNavigatorComponent {
         // Refresh the graph
         this.selectedView = 'DefaultView'
 
+        // Save W 
+        // TODO - only save 3 fields via a PUT
+        this.globalVariableService.saveResource('widgets', this.localWidget)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Navigator.OnInit saving widgets: ' + err);
+            });
+
         this.checkShowGraph();
     }
 
