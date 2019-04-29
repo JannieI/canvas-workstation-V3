@@ -627,6 +627,9 @@ export class WidgetNavigatorComponent {
         // Show graph if all 3 selected
         this.checkShowGraph();
 
+        // Reset
+        this.visibleNumberChildrenStart = 0;
+
     }
 
     checkShowGraph(addToHistory: boolean = true) {
