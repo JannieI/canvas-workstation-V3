@@ -503,6 +503,13 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickSelectHistory(index: number, historyID: number) {
+        // Highlight slected row in istory
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickSelectHistory', '@Start');
+
+        this.selectedHistoryID = historyID;
+    }
+
     clickHistory(index: number, historyID: number) {
         // Click a point in history, and show that graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickHistory', '@Start');
