@@ -4,7 +4,8 @@
     display: grid;
     grid-template-columns: repeat(40, 1fr);
     grid-template-rows: repeat(26, 1fr);
-    margin-top: -10px;
+    margin-bottom: 24px;
+    margin-top: -20px;
     overflow: hidden;
 }
     .closeButton {
@@ -104,14 +105,14 @@
         grid-column-end: 40;
         grid-row-start: 2;
         grid-row-end: 24;
-        height: 100%;
-        margin: 18px;
+        margin: 12px;
         text-align: left;
+        overflow: hidden;
         z-index: 102;
     }
         .historyAreaTitle {
             font-size: 0.6rem;
-            margin: 18px;
+            margin: 12px;
             text-align: left;
         }
         .historyAreaClose {
@@ -120,7 +121,7 @@
             margin-right: 12px;
         }
         .historyAreaText {
-            margin: 18px;
+            margin: 12px;
         }
         .historyAreaBlock {
             border-radius: 4px;
