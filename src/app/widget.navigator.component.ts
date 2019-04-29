@@ -515,6 +515,17 @@ export class WidgetNavigatorComponent {
         this.selectedHistoryID = historyID;
     }
 
+    clickHistoryBack() {
+        // Go back to previous history
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickHistoryBack', '@Start');
+
+        if (this.ngHistory.length > 1) {
+            this.selectedHistoryID = this.ngHistory[1].id;
+            this.clickHistory(1, this.selectedHistoryID);
+        }
+        
+    }
+
     clickHistory(index: number, historyID: number) {
         // Click a point in history, and show that graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickHistory', '@Start');
