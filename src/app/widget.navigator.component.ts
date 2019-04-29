@@ -512,7 +512,7 @@ export class WidgetNavigatorComponent {
         // Highlight slected row in istory
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickSelectHistory', '@Start');
 
-        this.selectedHistoryID = index;
+        this.selectedHistoryID = historyID;
     }
 
     clickHistory(index: number, historyID: number) {
