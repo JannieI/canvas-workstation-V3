@@ -604,6 +604,9 @@ export class WidgetNavigatorComponent {
         // Clear child filter
         this.clickChildFilterClear();
 
+        // Reset
+        this.visibleNumberChildrenStart = 0;
+
         // Show graph if all 3 selected
         this.checkShowGraph();
     }
