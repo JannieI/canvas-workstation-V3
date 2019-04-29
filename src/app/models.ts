@@ -1746,7 +1746,6 @@ export class NavigatorHistory {
             operator: string;
             value: string;
         };
-    isSelected: boolean;
     view: string;
 }
 

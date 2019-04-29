@@ -524,13 +524,6 @@ export class WidgetNavigatorComponent {
 
         // Set the history id and reset the isSelected field in history
         this.selectedHistoryID = historyID;
-        this.ngHistory.forEach(h => {
-            if (h.id === historyID) {
-                h.isSelected = true;
-            } else {
-                h.isSelected = false;
-            };
-        });
 
         // Show the graph
         this.checkShowGraph();
@@ -778,7 +771,6 @@ export class WidgetNavigatorComponent {
                         operator: childFilterOperator,
                         value: childFilterValue
                     },
-                    isSelected: true,
                     view: this.selectedView
                 };
                 this.ngHistory = [historyNew, ...this.ngHistory];
