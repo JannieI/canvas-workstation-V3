@@ -522,7 +522,7 @@ export class WidgetNavigatorComponent {
         this.showAdditionalLevelForRelationships = this.ngHistory[index].showRelationships;
         this.selectedView = this.ngHistory[index].view;
 
-        // Set the history id and reset the isSelected field in history
+        // Set the selected history ID
         this.selectedHistoryID = historyID;
 
         // Show the graph
@@ -743,8 +743,7 @@ export class WidgetNavigatorComponent {
 
                 };
                 console.log('xx 7')
-                // Deselect all history, and add a new one at the top
-                this.ngHistory.forEach(x => x.isSelected = false);
+                // Add history
                 this.selectedHistoryID = this.ngHistory.length;
                 let historyNew: NavigatorHistory =
                 {
