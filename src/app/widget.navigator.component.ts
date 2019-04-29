@@ -626,7 +626,10 @@ export class WidgetNavigatorComponent {
     checkShowGraph(addToHistory: boolean = true) {
         // Check if all selected; then show graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'checkShowGraph', '@Start');
-      
+
+        // Reset
+        this.visibleNumberChildrenStart = 0;
+        
         // Switch view from network if last field filled in
         if (this.selectedView === 'SummaryView'
             &&
