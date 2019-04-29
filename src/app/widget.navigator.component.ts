@@ -522,10 +522,12 @@ export class WidgetNavigatorComponent {
 
         if (this.ngHistory.length > 1) {
             this.historyBackIndex = this.historyBackIndex + 1;
-            if (this.historyBackIndex > this.ngHistory.length) {
+            if (this.historyBackIndex >= this.ngHistory.length) {
                 this.historyBackIndex = 0;
             };
             this.selectedHistoryID = this.ngHistory[this.historyBackIndex].id;
+
+            console.log('xx clickHistoryBack historyBackIndex selectedHistoryID this.ngHistory.length', this.historyBackIndex, this.selectedHistoryID, this.ngHistory.length)
             this.clickHistory(1, this.selectedHistoryID);
         };
         
@@ -720,7 +722,7 @@ export class WidgetNavigatorComponent {
     createGraphDefaultView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphDefaultView', '@Start');
-
+        console.log('xx createGraphDefaultView ', addToHistory)
         // Build data and graph if all parent & relationship fields selected
         if (this.selectedParentNodeType != ''
             && this.selectedParentNode != ''
