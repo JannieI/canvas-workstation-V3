@@ -755,7 +755,7 @@ export class WidgetNavigatorComponent {
                 this.selectedHistoryID = this.ngHistory.length;
                 let historyNew: NavigatorHistory =
                 {
-                    id: this.ngHistory.length,
+                    id: this.selectedHistoryID,
                     text: this.graphTitle,
                     networkID: this.selectedNetworkID,
                     parentNodeID: null,
