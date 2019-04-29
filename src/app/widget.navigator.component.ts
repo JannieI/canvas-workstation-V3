@@ -236,6 +236,7 @@ export class WidgetNavigatorComponent {
         // Click the menu to open Navigated History popup
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowHistory', '@Start');
 
+        this.selectedHistoryID = 0;
         this.showHistory = true;
     }
 
