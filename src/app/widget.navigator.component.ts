@@ -319,6 +319,9 @@ export class WidgetNavigatorComponent {
         this.ngHistory = this.ngHistory.filter(h => h.id != historyID);
         this.historyAll = this.historyAll.filter(h => h.id != historyID);
 
+        // Reset to first one
+        this.selectedHistoryID = 0;
+
     }
 
     clickCloseGraphPropertiesPopup(index: number, historyID: number) {
@@ -508,7 +511,7 @@ export class WidgetNavigatorComponent {
         // Highlight slected row in istory
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickSelectHistory', '@Start');
 
-        this.selectedHistoryID = historyID;
+        this.selectedHistoryID = index;
     }
 
     clickHistory(index: number, historyID: number) {
@@ -526,8 +529,11 @@ export class WidgetNavigatorComponent {
         // Set the selected history ID
         this.selectedHistoryID = historyID;
 
+        // Close Hisotory popup in case it is open
+        this.showHistory = false;
+
         // Show the graph
-        this.checkShowGraph();
+        this.checkShowGraph(false);
     }
 
     clickShowCustomView(index: number, customViewID: number) {
@@ -616,7 +622,7 @@ export class WidgetNavigatorComponent {
 
     }
 
-    checkShowGraph() {
+    checkShowGraph(addToHistory: boolean = true) {
         // Check if all selected; then show graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'checkShowGraph', '@Start');
 
@@ -647,7 +653,7 @@ export class WidgetNavigatorComponent {
                 // Build the data for the Graph based on the selection and graph type
                 switch (this.selectedView) {
                     case 'DefaultView': {
-                        this.createGraphDefaultView();
+                        this.createGraphDefaultView(0, 0, addToHistory);
                         break;
                     }
                     case 'CommonParentView': {

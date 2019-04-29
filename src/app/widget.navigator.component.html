@@ -712,7 +712,10 @@ dimensions are set in app.html, and cannot be changed here. -->
         <div class="historyAreaText">
             Select a previously shown graph by clicking it.  Double click the trash icon to
             delete an item from the Navigated list.  Click 
-            <button class="btn btn-link" (click)="clickClearHistory()">
+            <button class="btn btn-link" 
+                style="margin-top: -3px;"
+                (click)="clickClearHistory()"
+                >
                 Clear
             </button>
             to delete all items from the list below.
@@ -728,6 +731,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 [style.background-color]="selectedHistoryID==i? 'white'  :  'rgb(235, 232, 232)'"
                 [style.border]="selectedHistoryID==i? '2px solid black'  :  '1px solid gray'"
                 [style.color]="selectedHistoryID==i? 'black'  :  'darkgray'"
+                (click)="clickSelectHistory(i, row.id)"
                 >
                 <clr-icon (dblclick)="dblclickDeleteHistory(i, row.id)"
                     shape="trash"
