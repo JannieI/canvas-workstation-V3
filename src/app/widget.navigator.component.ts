@@ -162,6 +162,7 @@ export class WidgetNavigatorComponent {
     showGraphHelp: boolean = false;
     showGraphNotes: boolean = false;
     showGraphProperties: boolean = false;
+    showNavBarExplore: boolean = true;
 
     watchListFiltered: boolean = false;
 
@@ -641,7 +642,7 @@ export class WidgetNavigatorComponent {
             this.ngRelationshipRoles = this.distinctRelationshipRoles(
                 this.selectedParentNode, this.selectedRelationship);
         };
-        
+
         // Show graph if all 3 selected
         this.checkShowGraph();
     }

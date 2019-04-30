@@ -261,8 +261,9 @@ dimensions are set in app.html, and cannot be changed here. -->
             </div>
 
             <div class="graphNavigatorBarExplore" *ngIf="showNavBarExplore">
-                <button class="btn btn-link" (click)="clickShowSolutions()"
+                <button class="btn btn-link"
                     style="float: left; margin-left: 4px; margin-top: -3px;"
+                    (click)="showNavBarExplore=!showNavBarExplore"
                     >
                     Solutions
                 </button>
@@ -579,8 +580,9 @@ dimensions are set in app.html, and cannot be changed here. -->
             </div>
 
             <div class="graphNavigatorBarSolution" *ngIf="!showNavBarExplore">
-                <button class="btn btn-link" (click)="clickShowSolutions()"
+                <button class="btn btn-link"
                     style="float: left; margin-left: 4px; margin-top: -3px;"
+                    (click)="showNavBarExplore=!showNavBarExplore"
                     >
                     Explore
                 </button>
