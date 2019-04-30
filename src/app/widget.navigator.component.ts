@@ -634,23 +634,27 @@ export class WidgetNavigatorComponent {
 
         this.selectedRelationship = ev.target.value;
 
-        // Get Relationship Roles
-        if (this.selectedRelationship === 'All') {
-            this.ngRelationshipRoles = [];
-        } else {
-            this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
-        };
-
+        // Reset
+        this.visibleNumberChildrenStart = 0;
+        this.ngRelationshipRoles = [];
         this.showAdditionalLevelForRoles = false;
 
         // Clear child filter
         this.clickChildFilterClear();
 
+        // Get Relationship Roles
+        if (this.selectedRelationship != 'All' 
+            && 
+            this.selectedRelationship != ''
+            && 
+            this.selectedParentNode != '' 
+            ) {
+            this.ngRelationshipRoles = this.distinctRelationshipRoles(
+                this.selectedParentNode, this.selectedRelationship);
+        };
+
         // Show graph if all 3 selected
         this.checkShowGraph();
-
-        // Reset
-        this.visibleNumberChildrenStart = 0;
 
     }
 
