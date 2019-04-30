@@ -459,6 +459,7 @@ export class WidgetNavigatorComponent {
                                     if (this.startupNavigatorSelectRelationship != '') {
                                         this.selectedRelationship = this.startupNavigatorSelectRelationship;
                                         this.startupNavigatorSelectRelationship = '';
+                                        this.changeRelationship(this.selectedRelationship);
                                     };
                                     if (this.startupNavigatorSelectView != '') {
                                         this.selectedView = this.startupNavigatorSelectView;
