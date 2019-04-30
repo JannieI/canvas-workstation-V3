@@ -314,7 +314,13 @@
                 border: 1px solid black;
                 margin-top: 12px;
             }
-            .graphNavigatorBar {
+            .graphNavigatorBarExplore {
+                color: gray;
+                margin-bottom: 0px;
+                margin-top: 6px;
+                text-align: left;
+            }
+            .graphNavigatorBarSolution {
                 color: gray;
                 margin-bottom: 0px;
                 margin-top: 6px;
