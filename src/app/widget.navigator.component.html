@@ -263,12 +263,24 @@ dimensions are set in app.html, and cannot be changed here. -->
             <div class="graphNavigatorBarExplore" *ngIf="showNavBarExplore">
                 <button class="btn btn-link"
                     style="float: left; margin-left: 4px; margin-top: -3px;"
-                    title="Click to explore a network"
+                    title="Click to show specific solutions for the current network"
                     (click)="showNavBarExplore=!showNavBarExplore"
                     >
                     Solutions
                 </button>
 
+                <!-- Network Summary -->
+                <span>
+                    <clr-icon
+                        shape="router"
+                        size="20"
+                        style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
+                        [style.color]="selectedView=='SummaryView'?  'blue'  :  'gray'"
+                        title="Summary view: overview of Nodes in a network"
+                        (click)="clickNetworkSummaryView()"
+                        >
+                    </clr-icon>
+                </span>
                 
                 <!-- Navigation - nr children shown and jumping -->
                 <span style="float: right;" *ngIf="graphLevels>1">
@@ -518,24 +530,11 @@ dimensions are set in app.html, and cannot be changed here. -->
             <div class="graphNavigatorBarSolution" *ngIf="!showNavBarExplore">
                 <button class="btn btn-link"
                     style="float: left; margin-left: 4px; margin-top: -3px;"
-                    title="Click to show specific solutions"
+                    title="Click to explore a network"
                     (click)="showNavBarExplore=!showNavBarExplore"
                     >
                     Explore
                 </button>
-
-                <!-- Network Summary -->
-                <span>
-                    <clr-icon
-                        shape="router"
-                        size="20"
-                        style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
-                        [style.color]="selectedView=='SummaryView'?  'blue'  :  'gray'"
-                        title="Summary view: overview of Nodes in a network"
-                        (click)="clickNetworkSummaryView()"
-                        >
-                    </clr-icon>
-                </span>
 
                 <!-- Commonality between 2 children -->
                 <span>
