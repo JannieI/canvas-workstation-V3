@@ -263,6 +263,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             <div class="graphNavigatorBarExplore" *ngIf="showNavBarExplore">
                 <button class="btn btn-link"
                     style="float: left; margin-left: 4px; margin-top: -3px;"
+                    title="Click to explore a network"
                     (click)="showNavBarExplore=!showNavBarExplore"
                     >
                     Solutions
@@ -321,71 +322,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                             >
                         </clr-icon>
                     </span>
-                </span>
-
-                <!-- Network Summary -->
-                <span>
-                    <clr-icon
-                        shape="router"
-                        size="20"
-                        style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
-                        [style.color]="selectedView=='SummaryView'?  'blue'  :  'gray'"
-                        title="Summary view: overview of Nodes in a network"
-                        (click)="clickNetworkSummaryView()"
-                        >
-                    </clr-icon>
-                </span>
-
-                <!-- Commonality between 2 children -->
-                <span>
-                    <clr-icon *ngIf="isViewsDisabled"
-                        shape="vm"
-                        size="20"
-                        style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
-                        [style.color]="selectedView=='CommonParentView'?  'blue'  :  'gray'"
-                        title="Common parent view: show all parents to which any 2 or more children belong"
-                        (click)="clickCommonParentView()"
-                        >
-                    </clr-icon>
-                </span>
-
-                <!-- Commonality between any child and specific node -->
-                <span>
-                    <clr-icon *ngIf="isViewsDisabled"
-                        shape="nvme"
-                        size="20"
-                        style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
-                        [style.color]="selectedView=='CommonNodeView'?  'blue'  :  'gray'"
-                        title="Common node view: show all parents to which a child and a specific node belongs"
-                        (click)="clickCommonNodeView()"
-                        >
-                    </clr-icon>
-                </span>
-
-                <!-- Distance between a child and specific node -->
-                <span>
-                    <clr-icon *ngIf="isViewsDisabled"
-                        shape="organization"
-                        size="20"
-                        style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
-                        [style.color]="selectedView=='DistanceView'?  'blue'  :  'gray'"
-                        title="Distance view: show all nodes between a child and a specific node"
-                        (click)="clickDistanceView()"
-                        >
-                    </clr-icon>
-                </span>
-
-                <!-- Open form for Custom Views -->
-                <span>
-                    <clr-icon *ngIf="isViewsDisabled"
-                        shape="add-text"
-                        size="20"
-                        style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
-                        [style.color]="selectedView=='CustomView'?  'blue'  :  'gray'"
-                        title="Custom view: select a custom view from a popup form"
-                        (click)="clickCustomView()"
-                        >
-                    </clr-icon>
                 </span>
 
                 <!-- Default view = tree view -->
@@ -582,6 +518,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             <div class="graphNavigatorBarSolution" *ngIf="!showNavBarExplore">
                 <button class="btn btn-link"
                     style="float: left; margin-left: 4px; margin-top: -3px;"
+                    title="Click to show specific solutions"
                     (click)="showNavBarExplore=!showNavBarExplore"
                     >
                     Explore
