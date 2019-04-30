@@ -459,8 +459,15 @@ export class WidgetNavigatorComponent {
                                     if (this.startupNavigatorSelectRelationship != '') {
                                         this.selectedRelationship = this.startupNavigatorSelectRelationship;
                                         this.startupNavigatorSelectRelationship = '';
-                                        this.changeRelationship(this.selectedRelationship);
-                                    };
+                                        if (this.selectedRelationship != 'All' 
+                                            && 
+                                            this.selectedRelationship != ''
+                                            && 
+                                            this.selectedParentNode != '' 
+                                            ) {
+                                            this.ngRelationshipRoles = this.distinctRelationshipRoles(
+                                                this.selectedParentNode, this.selectedRelationship);
+                                        };                                    };
                                     if (this.startupNavigatorSelectView != '') {
                                         this.selectedView = this.startupNavigatorSelectView;
                                         this.startupNavigatorSelectView = '';
