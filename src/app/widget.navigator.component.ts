@@ -459,15 +459,16 @@ export class WidgetNavigatorComponent {
                                     if (this.startupNavigatorSelectRelationship != '') {
                                         this.selectedRelationship = this.startupNavigatorSelectRelationship;
                                         this.startupNavigatorSelectRelationship = '';
-                                        if (this.selectedRelationship != 'All' 
-                                            && 
+                                        if (this.selectedRelationship != 'All'
+                                            &&
                                             this.selectedRelationship != ''
-                                            && 
-                                            this.selectedParentNode != '' 
+                                            &&
+                                            this.selectedParentNode != ''
                                             ) {
                                             this.ngRelationshipRoles = this.distinctRelationshipRoles(
                                                 this.selectedParentNode, this.selectedRelationship);
-                                        };                                    };
+                                        };
+                                    };
                                     if (this.startupNavigatorSelectView != '') {
                                         this.selectedView = this.startupNavigatorSelectView;
                                         this.startupNavigatorSelectView = '';
@@ -537,7 +538,7 @@ export class WidgetNavigatorComponent {
 
             this.clickHistory(this.historyBackIndex, this.selectedHistoryID);
         };
-        
+
     }
 
     clickHistory(index: number, historyID: number) {
@@ -631,7 +632,16 @@ export class WidgetNavigatorComponent {
 
         // Reset
         this.visibleNumberChildrenStart = 0;
-
+        if (this.selectedRelationship != 'All'
+            &&
+            this.selectedRelationship != ''
+            &&
+            this.selectedParentNode != ''
+            ) {
+            this.ngRelationshipRoles = this.distinctRelationshipRoles(
+                this.selectedParentNode, this.selectedRelationship);
+        };
+        
         // Show graph if all 3 selected
         this.checkShowGraph();
     }
@@ -651,11 +661,11 @@ export class WidgetNavigatorComponent {
         this.clickChildFilterClear();
 
         // Get Relationship Roles
-        if (this.selectedRelationship != 'All' 
-            && 
+        if (this.selectedRelationship != 'All'
+            &&
             this.selectedRelationship != ''
-            && 
-            this.selectedParentNode != '' 
+            &&
+            this.selectedParentNode != ''
             ) {
             this.ngRelationshipRoles = this.distinctRelationshipRoles(
                 this.selectedParentNode, this.selectedRelationship);
@@ -669,7 +679,7 @@ export class WidgetNavigatorComponent {
     checkShowGraph(addToHistory: boolean = true) {
         // Check if all selected; then show graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'checkShowGraph', '@Start');
-   
+
         // Switch view from network if last field filled in
         if (this.selectedView === 'SummaryView'
             &&
@@ -950,7 +960,7 @@ export class WidgetNavigatorComponent {
             if (this.graphWidth < 100) {
                 this.graphWidth = 100;
             };
-        
+
             // Set info
             this.graphTitle = 'Common parent view';
             this.graphDataLength = this.graphData.length;
@@ -1048,15 +1058,15 @@ export class WidgetNavigatorComponent {
         let customeViewIndex: number = this.ngCustomViews
             .findIndex(cv => cv.id == this.selectedCustomViewID);
 
-        if (this.selectedCustomViewID == -1  
-            ||  
+        if (this.selectedCustomViewID == -1
+            ||
             this.selectedCustomViewID == null
             ||
             customeViewIndex == -1) {
             this.graphTitle = 'Unknown Custom View ID'
             return;
         };
-        
+
         // Setup
         let customViewName: string = this.ngCustomViews[customeViewIndex].name;
         this.graphData = [];
@@ -1078,9 +1088,9 @@ export class WidgetNavigatorComponent {
                 id: 1,
                 name: 'Common Parents'
             });
-    
+
             let nodeCount: number = 0;
-    
+
             distinctParents.forEach(par => {
 
                 // Add to parent
@@ -1091,7 +1101,7 @@ export class WidgetNavigatorComponent {
                     parent: 1
                 });
             });
-    
+
             // Set info
             this.graphTitle = 'Distance view';
             this.graphDataLength = this.graphData.length;
@@ -2158,7 +2168,7 @@ export class WidgetNavigatorComponent {
     }
 
     distinctRelationshipRoles(selectedParentNode: string, selectedRelationship: string): string[] {
-        // Return distinct array of Nodes per Relationship Roles for a given Parent Node 
+        // Return distinct array of Nodes per Relationship Roles for a given Parent Node
         // and Relationship
         this.globalFunctionService.printToConsole(this.constructor.name, 'distinctRelationshipRoles', '@Start');
 
@@ -2529,7 +2539,7 @@ export class WidgetNavigatorComponent {
 
         // Reset
         this.visibleNumberChildrenStart = 0;
-     
+
         // Set view
         this.selectedView = 'SummaryView';
 
@@ -2549,7 +2559,7 @@ export class WidgetNavigatorComponent {
         // Refresh the graph
         this.selectedView = 'DefaultView'
 
-        // Save W 
+        // Save W
         // TODO - only save 3 fields via a PUT
         this.globalVariableService.saveResource('widgets', this.localWidget)
             .catch(err => {
