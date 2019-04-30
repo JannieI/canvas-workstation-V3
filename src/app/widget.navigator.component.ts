@@ -1462,7 +1462,8 @@ export class WidgetNavigatorComponent {
                     parent: startID
                 });
 
-                let relationshipRoles: string[] = this.distinctRelationshipRoles(relationship);
+                let relationshipRoles: string[] = this.distinctRelationshipRoles
+                    (parentNodeName, relationship);
 
                 // Set length
                 this.graphDataLength = this.graphDataLength + relationshipRoles.length;
