@@ -635,7 +635,12 @@ export class WidgetNavigatorComponent {
         this.selectedRelationship = ev.target.value;
 
         // Get Relationship Roles
-        this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
+        if (this.selectedRelationship === 'All') {
+            this.ngRelationshipRoles = [];
+        } else {
+            this.ngRelationshipRoles = this.distinctRelationshipRoles(this.selectedRelationship);
+        };
+
         this.showAdditionalLevelForRoles = false;
 
         // Clear child filter
