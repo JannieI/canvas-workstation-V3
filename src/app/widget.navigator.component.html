@@ -320,6 +320,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon
                         shape="router"
+                        size="22"
                         style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='SummaryView'?  'blue'  :  'gray'"
                         title="Summary view: overview of Nodes in a network"
@@ -332,6 +333,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon *ngIf="isViewsDisabled"
                         shape="vm"
+                        size="22"
                         style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='CommonParentView'?  'blue'  :  'gray'"
                         title="Common parent view: show all parents to which any 2 or more children belong"
@@ -344,6 +346,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon *ngIf="isViewsDisabled"
                         shape="nvme"
+                        size="22"
                         style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='CommonNodeView'?  'blue'  :  'gray'"
                         title="Common node view: show all parents to which a child and a specific node belongs"
@@ -356,6 +359,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon *ngIf="isViewsDisabled"
                         shape="organization"
+                        size="22"
                         style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='DistanceView'?  'blue'  :  'gray'"
                         title="Distance view: show all nodes between a child and a specific node"
@@ -368,6 +372,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon *ngIf="isViewsDisabled"
                         shape="add-text"
+                        size="22"
                         style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='CustomView'?  'blue'  :  'gray'"
                         title="Custom view: select a custom view from a popup form"
@@ -380,6 +385,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <span>
                     <clr-icon *ngIf="isViewsDisabled"
                         shape="tree-view"
+                        size="22"
                         style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='DefaultView'?  'blue'  :  'gray'"
                         title="Default view: tree of children for the selected parent"
