@@ -2629,7 +2629,7 @@ export class WidgetNavigatorComponent {
         // Select all selected Common Parent Nodes
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonParentViewSelectAll', '@Start');
 
-        this.commonParentSelected.forEach(scp => scp.isSelected = false);
+        this.commonParentSelected.forEach(scp => scp.isSelected = true);
     }
     
     clickCloseCommonParentViewPopup() {
