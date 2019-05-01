@@ -620,8 +620,8 @@ dimensions are set in app.html, and cannot be changed here. -->
     <!-- POPUP FORMS -->
 
     <!-- Common Parent Selection -->
-    <div class="customViewArea" *ngIf="showCommonParent">
-        <div class="customViewAreaTitle">
+    <div class="commonParentArea" *ngIf="showCommonParent">
+        <div class="commonParentAreaTitle">
             <b>Common Parent Selection</b>
             <clr-signpost>
                 <clr-icon shape="info-circle" style="margin-top: -4px;"
@@ -640,20 +640,20 @@ dimensions are set in app.html, and cannot be changed here. -->
                     </p>
                 </clr-signpost-content>
             </clr-signpost>
-            <div class="customViewAreaClose"
+            <div class="commonParentAreaClose"
                 (click)="clickCloseCommonParentViewPopup()"
                 >
                 <b>X</b>
             </div>
         </div>
 
-        <div class="customViewAreaText">
+        <div class="commonParentAreaText">
             Select two or more nodes from the list below, which was created while 
             exploring for relationship: {{ selectedRelationship }}, node:
             {{ selectedParentNode }}.  Then click the Show button below to view 
             the resultant graph.
         </div>
-        <div class="customViewAreaBlock" *ngFor="let row of childDataAll; let i = index"
+        <div class="commonParentAreaBlock" *ngFor="let row of childDataAll; let i = index"
             >
                 <div
                     >
