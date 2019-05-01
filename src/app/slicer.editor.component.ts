@@ -332,7 +332,7 @@ import { GlobalVariableService }      from './global-variable.service';
         };
     }
 
-    clickDataValue(id: number, index: number, ev: any){
+    clickDataValue(index: number, ev: any){
         // Clicked a Value, now ....
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDataValue', '@Start');
 
