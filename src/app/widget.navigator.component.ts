@@ -165,6 +165,7 @@ export class WidgetNavigatorComponent {
         isSelected: boolean;
     }[] = [];
     showCommonParent: boolean = false;
+    showCommonNode: boolean = false;
     showGraphHelp: boolean = false;
     showGraphNotes: boolean = false;
     showGraphProperties: boolean = false;
@@ -2585,7 +2586,7 @@ export class WidgetNavigatorComponent {
     }
 
     clickCommonParentShowForm() {
-        // Show the Common Node view form
+        // Show the Common Parent view form
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonParentShowForm', '@Start');
 
         // Refresh the graph
@@ -2616,7 +2617,7 @@ export class WidgetNavigatorComponent {
         this.commonParentSelected[commonParentIndex].isSelected = 
             !this.commonParentSelected[commonParentIndex].isSelected;
 
-        }
+    }
 
     clickCommonParentViewClearAll() {
         // Clear all selected Common Parent Nodes
@@ -2649,6 +2650,17 @@ export class WidgetNavigatorComponent {
 
         this.showCommonParent = false;
         this.checkShowGraph();
+
+    }
+
+    clickCommonNodeShowForm() {
+        // Show the Common Node view form
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonNodeShowForm', '@Start');
+
+        // Refresh the graph
+        this.selectedView = 'CommonNodeView';
+
+        this.showCommonNode = true;
 
     }
 

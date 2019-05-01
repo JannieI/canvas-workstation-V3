@@ -557,7 +557,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                         style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='CommonNodeView'?  'blue'  :  'gray'"
                         title="Common node view: show all parents to which a child and a specific node belongs"
-                        (click)="clickCommonNodeView()"
+                        (click)="clickCommonNodeShowForm()"
                         >
                     </clr-icon>
                 </span>
@@ -675,7 +675,7 @@ dimensions are set in app.html, and cannot be changed here. -->
     
         <div class="commonParentAreaBlock">
             <clr-datagrid>
-                <clr-dg-column>Node ({{ commonParentSelected?.length }} selected }}</clr-dg-column>
+                <clr-dg-column>Node ({{ commonParentSelected?.length }}) </clr-dg-column>
 
                 <clr-dg-row *clrDgItems="let row of commonParentSelected; let i = index"
                     [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
@@ -697,6 +697,88 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div>
     </div>
 
+
+
+
+
+    <!-- Common Node Selection -->
+    <div class="commonParentArea" *ngIf="showCommonNode">
+        <div class="commonParentAreaTitle">
+            <b>Common Node Selection</b>
+            <clr-signpost>
+                <clr-icon shape="info-circle" style="margin-top: -4px;"
+                    clrSignpostTrigger>
+                </clr-icon>
+                <clr-signpost-content *clrIfOpen
+                    [clrPosition]="'bottom-middle'">
+                    <h5 style="margin-top: 0; color:gray;">
+                        Help
+                    </h5>
+                    <p style="margin-top: 0; color:gray; text-align: left;">
+                        Select two or more nodes from the list below, which was created while 
+                        exploring for relationship: {{ selectedRelationship }}, node:
+                        {{ selectedParentNode }}.  Then click the Show button below to view 
+                        the resultant graph.
+                    </p>
+                </clr-signpost-content>
+            </clr-signpost>
+            <div class="commonParentAreaClose"
+                (click)="clickCloseCommonParentViewPopup()"
+                >
+                <b>X</b>
+            </div>
+        </div>
+
+        <div class="commonParentAreaText">
+            Select two or more nodes from the list below, which was created while 
+            exploring for relationship: {{ selectedRelationship }}, node:
+            {{ selectedParentNode }}.  Then click  
+            <button class="btn btn-link" 
+                style="margin-top: 2px;"
+                (click)="clickCommonParentView()"
+                >
+                Show
+            </button>
+            to view the resultant graph.  Click 
+            <clr-icon shape="times" style="cursor: pointer; color: blue; margin-top: 0px;"
+                size="20"    
+                (click)="clickCommonParentViewClearAll()"
+                >
+            </clr-icon>
+            to CLEAR all nodes, or click
+            <clr-icon shape="check" style="cursor: pointer; color: blue; margin-top: 0px;"
+                size="20"    
+                (click)="clickCommonParentViewSelectAll()"
+                >
+            </clr-icon>
+            to SELECT all the nodes.
+        
+        </div>
+    
+        <div class="commonParentAreaBlock">
+            <clr-datagrid>
+                <clr-dg-column>Node ({{ commonParentSelected?.length }}) </clr-dg-column>
+
+                <clr-dg-row *clrDgItems="let row of commonParentSelected; let i = index"
+                    [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
+                    [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
+                    [style.color]="row.isSelected? 'black'  :  'darkgray'"
+    
+                    (click)="clickCommonParentNode(row)"
+                    >
+                    <clr-dg-cell>{{ row.childNode }}</clr-dg-cell>
+                </clr-dg-row>
+
+                <clr-dg-footer>
+                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                    of {{pagination.totalItems}} rows
+                    <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
+                </clr-dg-footer>
+
+            </clr-datagrid>
+        </div>
+    </div>
+    
 
 
 
