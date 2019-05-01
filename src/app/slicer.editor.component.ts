@@ -339,7 +339,7 @@ import { GlobalVariableService }      from './global-variable.service';
         this.dataValues[index]['isSelected'] = ev.target.checked;
     }
 
-    clickDataBins(id: number, index: number, ev: any){
+    clickDataBins(index: number, ev: any){
         // Clicked a Bin, now ....
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDataBins', '@Start');
 
