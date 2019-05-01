@@ -159,6 +159,7 @@ export class WidgetNavigatorComponent {
     specification: any;             // Full spec for Vega, or other grammar
 
     // Popups and forms
+    commonParentSelected: string[] = [];
     showCommonParent: boolean = false;
     showGraphHelp: boolean = false;
     showGraphNotes: boolean = false;
@@ -2581,6 +2582,19 @@ export class WidgetNavigatorComponent {
 
         this.showCommonParent = true;
 
+    }
+
+    clickCommonParentNode(selectedCommonParentNode: string) {
+        // User clicked a node in the Common Parents list: toggle from selected list
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonParentNode', '@Start');
+
+        let commonParentIndex: number = this.commonParentSelected.findIndex(
+            cp => cp === selectedCommonParentNode);
+        if (commonParentIndex >= 0) {
+            this.commonParentSelected.splice(commonParentIndex, 1);
+        } else {
+            this.commonParentSelected.push(selectedCommonParentNode);
+        };
     }
 
     clickCloseCommonParentViewPopup() {

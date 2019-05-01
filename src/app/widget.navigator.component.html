@@ -669,10 +669,11 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div> -->
         <div class="commonParentAreaBlock">
             <clr-datagrid>
-                <clr-dg-column>Child</clr-dg-column>
+                <clr-dg-column>Node</clr-dg-column>
 
                 <clr-dg-row *clrDgItems="let row of childDataAll;
                     let i = index"
+                    (click)="clickCommonParentNode(row)"
                     >
                     <clr-dg-cell>{{ row }}</clr-dg-cell>
                 </clr-dg-row>
