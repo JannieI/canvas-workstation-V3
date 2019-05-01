@@ -2663,6 +2663,13 @@ export class WidgetNavigatorComponent {
         this.showCommonNode = true;
 
     }
+    
+    clickCloseCommonNodeViewPopup() {
+        // Close the popup for Common Nodes
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseCommonNodeViewPopup', '@Start');
+
+        this.showCommonParent = false;
+    }
 
     clickCommonNodeView() {
         // Show the Common Parent view = list of all nodes where any children has the
@@ -2672,6 +2679,7 @@ export class WidgetNavigatorComponent {
 
         // Refresh the graph
         this.selectedView = 'CommonNodeView'
+        this.showCommonNode = false;
 
         this.checkShowGraph();
 
