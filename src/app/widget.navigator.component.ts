@@ -159,6 +159,7 @@ export class WidgetNavigatorComponent {
     specification: any;             // Full spec for Vega, or other grammar
 
     // Popups and forms
+    showCommonParent: boolean = false;
     showGraphHelp: boolean = false;
     showGraphNotes: boolean = false;
     showGraphProperties: boolean = false;
@@ -2580,6 +2581,7 @@ export class WidgetNavigatorComponent {
         // Refresh the graph
         this.selectedView = 'CommonParentView';
 
+        this.showCommonParent = true;
         this.checkShowGraph();
 
     }
