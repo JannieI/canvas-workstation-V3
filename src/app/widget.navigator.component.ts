@@ -2585,29 +2585,33 @@ export class WidgetNavigatorComponent {
         this.selectedView = 'CommonParentView';
 
         this.commonParentSelected = [];
-        this.childDataAll.forEach(chld = > 
+        this.childDataAll.forEach(chld => 
             this.commonParentSelected.push(
                 { 
-                    childNode: chld; 
-                    isSelected: false;
+                    childNode: chld, 
+                    isSelected: false
                 }
-            );
+            )
+        );
         this.showCommonParent = true;
 
     }
 
-    clickCommonParentNode(selectedCommonParentNode: string) {
+    clickCommonParentNode(selectedCommonParentNode: { 
+        childNode: string; 
+        isSelected: boolean;
+    }) {
         // User clicked a node in the Common Parents list: toggle from selected list
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonParentNode', '@Start');
-
+console.log('xx INPUT selectedCommonParentNode', selectedCommonParentNode)
         let commonParentIndex: number = this.commonParentSelected.findIndex(
-            cp => cp === selectedCommonParentNode);
-        if (commonParentIndex >= 0) {
+            cp => cp.childNode === selectedCommonParentNode.childNode);
+        if (selectedCommonParentNode) {
             this.commonParentSelected.splice(commonParentIndex, 1);
         } else {
             this.commonParentSelected.push(selectedCommonParentNode);
         };
-        console.log('xx this.commonParentSelected', this.commonParentSelected)
+        console.log('xx OUTPUT this.commonParentSelected', this.commonParentSelected)
     }
 
     clickCloseCommonParentViewPopup() {
