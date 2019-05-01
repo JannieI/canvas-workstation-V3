@@ -33,13 +33,13 @@
         grid-row-start: 2;
         grid-row-end: 24;
         height: 100%;
-        margin: 18px;
+        margin: 12px;
         text-align: left;
         z-index: 102;
     }
         .commonParentAreaTitle {
             font-size: 0.6rem;
-            margin: 18px;
+            margin: 8px;
             text-align: left;
         }
         .commonParentAreaClose {
@@ -48,11 +48,11 @@
             margin-right: 12px;
         }
         .commonParentAreaText {
-            margin: 18px;
+            margin: 12px;
         }
         .commonParentAreaBlock {
             border-radius: 4px;
-            margin: 18px;
+            margin: 12px;
             overflow-y: scroll;
         }
 
@@ -69,7 +69,7 @@
         grid-row-start: 2;
         grid-row-end: 24;
         height: 100%;
-        margin: 18px;
+        margin: 12px;
         text-align: left;
         z-index: 102;
     }
