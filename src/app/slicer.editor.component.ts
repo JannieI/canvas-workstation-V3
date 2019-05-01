@@ -112,7 +112,7 @@ import { GlobalVariableService }      from './global-variable.service';
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in slicer.editor reading canvasBackgroundcolors: ' + err);
             });
-                
+
         // TODO - fix hardcoding
         // Get Bin values
 
@@ -218,7 +218,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
     }
 
-    clickDataFields(id: number, index: number){
+    clickDataFields(index: number){
         // Clicked a Field, now load the Values
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDataFields', '@Start');
 
@@ -303,16 +303,16 @@ import { GlobalVariableService }      from './global-variable.service';
 
         // Determine 3 bins
         if (this.showMultipleBins) {
-        
+
             let maxValueBinLarge: number = Math.max(...fieldValues);
             let minValueBinSmall: number = Math.round( (Math.min(...fieldValues) - 0.01) * 100) / 100;
             if (maxValueBinLarge === minValueBinSmall) {
                 maxValueBinLarge = minValueBinSmall + 1;
             };
             let gap: number = (maxValueBinLarge - minValueBinSmall) / 3;
-            let maxValueBinMedium: number = Math.round(  
+            let maxValueBinMedium: number = Math.round(
                 ( minValueBinSmall + ( gap * 2 ) ) * 100) / 100;
-            let maxValueBinSmall: number = Math.round( 
+            let maxValueBinSmall: number = Math.round(
                 ( minValueBinSmall + gap) * 100) / 100;
 
             let minValueBinMedium: number = maxValueBinSmall;
@@ -331,7 +331,7 @@ import { GlobalVariableService }      from './global-variable.service';
             );
         };
     }
-  
+
     clickDataValue(id: number, index: number, ev: any){
         // Clicked a Value, now ....
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDataValue', '@Start');
@@ -431,8 +431,8 @@ import { GlobalVariableService }      from './global-variable.service';
                 this.localWidget.slicerBins.push(
                     {
                         isSelected: bn.isSelected,
-                        name: bn.name, 
-                        fromValue: bn.fromValue, 
+                        name: bn.name,
+                        fromValue: bn.fromValue,
                         toValue: bn.toValue
                     })
             };
@@ -452,9 +452,9 @@ import { GlobalVariableService }      from './global-variable.service';
 
         //     // Refresh Ws that are related to Sl
         //     this.globalVariableService.currentWidgets.forEach(w => {
-        //         if (w.datasourceID === this.localWidget.datasourceID  
-        //             &&  
-        //             w.datasetID === this.localWidget.datasetID  
+        //         if (w.datasourceID === this.localWidget.datasourceID
+        //             &&
+        //             w.datasetID === this.localWidget.datasetID
         //             && w.widgetType != 'Slicer') {
         //             console.warn('xx Sl-Edt flt', w.id, w.widgetType, w.containerWidth)
         //             this.globalVariableService.changedWidget.next(w);
@@ -519,9 +519,9 @@ import { GlobalVariableService }      from './global-variable.service';
                     this.errorMessage = err.slice(0, 100);
                     console.error('Error in slicer.editor adding widgets: ' + err);
                 });
-    
+
         } else {
- 
+
             // Update global W and DB
             this.globalVariableService.saveWidget(this.localWidget)
                 .then(res => {
@@ -556,13 +556,13 @@ import { GlobalVariableService }      from './global-variable.service';
                     );
 
                     this.formDataSlicersClosed.emit(this.localWidget);
-                    
+
                 })
                 .catch(err => {
                     this.errorMessage = err.slice(0, 100);
                     console.error('Error in slicer.editor saveWidget: ' + err);
                 });
-                
+
         };
     }
 

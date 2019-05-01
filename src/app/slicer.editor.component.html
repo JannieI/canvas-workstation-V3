@@ -21,8 +21,8 @@
                             <p style="margin-top: 0; color:gray;">
                                 This form allows for the adding of a new Slicer, or the editing
                                 of an existing Slicer.  Select the Datasource that must be sliced
-                                (filtered) in the left hand table.  Then select the field from 
-                                the list provided.  Enhance the slicer (i.e. sorting), and then 
+                                (filtered) in the left hand table.  Then select the field from
+                                the list provided.  Enhance the slicer (i.e. sorting), and then
                                 select the detail values to be filtered on (in case all the values
                                 are not used).  Last, format the slicer in the right hand area.
                                 Click the X or press Escape to close this form.
@@ -66,7 +66,7 @@
 
                         <clr-dg-row
                             *ngFor="let row of dataFields; let i = index"
-                            (click)="clickDataFields(row.id, i)"
+                            (click)="clickDataFields(i)"
                             >
                             <clr-dg-cell>
                                 {{ row }}
