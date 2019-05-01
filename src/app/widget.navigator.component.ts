@@ -2672,6 +2672,16 @@ export class WidgetNavigatorComponent {
         this.showDistanceFromNode = false;
     }
 
+    clickDistanceFromNodeShowForm() {
+        // Show the Distance From Nodes view form
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDistanceFromNodeShowForm', '@Start');
+
+        // Refresh the graph
+        this.selectedView = 'CommonNodeView';
+
+        this.showDistanceFromNode = true;
+
+    }
     clickCommonNodeView() {
         // Show the Common Parent view = list of all nodes where any children has the
         // same parent as a specified node
