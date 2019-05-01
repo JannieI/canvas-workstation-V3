@@ -653,13 +653,34 @@ dimensions are set in app.html, and cannot be changed here. -->
             {{ selectedParentNode }}.  Then click the Show button below to view 
             the resultant graph.
         </div>
-        <div class="commonParentAreaBlock" *ngFor="let row of childDataAll; let i = index"
+        <!-- <div class="commonParentAreaBlock" *ngFor="let row of childDataAll; let i = index"
             >
                 <div
                     >
                     {{ row }}
                 </div>
+        </div> -->
+        <div class="commonParentAreaBlock">
+            <clr-datagrid>
+                <clr-dg-column>Child</clr-dg-column>
+
+                <clr-dg-row *clrDgItems="let row of childDataAll;
+                    let i = index"
+                    >
+                    <clr-dg-cell>{{ row }}</clr-dg-cell>
+                </clr-dg-row>
+
+                <clr-dg-footer>
+                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                    of {{pagination.totalItems}} rows
+                    <clr-dg-pagination #pagination [clrDgPageSize]="9"></clr-dg-pagination>
+                </clr-dg-footer>
+
+            </clr-datagrid>
         </div>
+
+
+
         <div>
             <button class="btn btn-link" 
                 style="margin-top: 2px;"
