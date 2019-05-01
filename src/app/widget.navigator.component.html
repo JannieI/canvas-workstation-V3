@@ -788,17 +788,19 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div>
     
         <div class="distanceFromNodeAreaBlock">
-                From Node:
-                <input type="text"
-                    title="Add new name"
-                    placeholder="Mr van Wyk, Rene"
-                    >
-                To Node:
-                <input type="text"
-                    title="Add new name"
-                    placeholder="Mr Beggs, Colin"
-                    >
-                    
+            From Node:
+            <input type="text"
+                title="Add new name"
+                placeholder="Mr van Wyk, Rene"
+                >
+            To Node:
+            <input type="text"
+                title="Add new name"
+                placeholder="Mr Beggs, Colin"
+                >
+            <span class="spinner spinner-inline" *ngIf="spinner">
+                Loading...
+            </span>
         </div>
     </div>
     

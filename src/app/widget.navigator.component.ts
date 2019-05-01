@@ -171,7 +171,7 @@ export class WidgetNavigatorComponent {
     showGraphNotes: boolean = false;
     showGraphProperties: boolean = false;
     showNavBarExplore: boolean = true;
-
+    spinner: boolean = false;
     watchListFiltered: boolean = false;
 
 
@@ -2713,6 +2713,7 @@ export class WidgetNavigatorComponent {
         // Refresh the graph
         this.selectedView = 'DistanceView'
         this.showDistanceFromNode = false;
+        this.spinner = true;
         
         this.checkShowGraph();
 
