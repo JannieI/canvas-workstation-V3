@@ -2595,6 +2595,7 @@ export class WidgetNavigatorComponent {
         } else {
             this.commonParentSelected.push(selectedCommonParentNode);
         };
+        console.log('xx this.commonParentSelected', this.commonParentSelected)
     }
 
     clickCloseCommonParentViewPopup() {
