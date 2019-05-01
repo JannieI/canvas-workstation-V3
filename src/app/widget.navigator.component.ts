@@ -2618,9 +2618,16 @@ export class WidgetNavigatorComponent {
 
         }
 
+    clickCommonParentViewClearAll() {
+        // Clear all selected Common Parent Nodes
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonParentViewClearAll', '@Start');
+
+        this.commonParentSelected.forEach(scp => scp.isSelected = false);
+    }
+    
     clickCloseCommonParentViewPopup() {
         // Close the popup for Common Parents
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonParentView', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseCommonParentViewPopup', '@Start');
 
         this.showCommonParent = false;
     }
