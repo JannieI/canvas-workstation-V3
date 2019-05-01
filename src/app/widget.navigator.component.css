@@ -57,6 +57,41 @@
         }
 
 
+        .commonNodeArea {
+            background-color: beige;
+            border: 1px solid black;
+            border-radius: 6px;
+            font-size: 0.5rem;
+            grid-column-start: 2;
+            /* autoprefixer: off */
+            grid-column-end: 40;
+            grid-row-start: 2;
+            grid-row-end: 24;
+            height: 100%;
+            margin: 12px;
+            text-align: left;
+            z-index: 102;
+        }
+            .commonNodeAreaTitle {
+                font-size: 0.6rem;
+                margin: 8px;
+                text-align: left;
+            }
+            .commonNodeAreaClose {
+                cursor: pointer;
+                float: right;
+                margin-right: 12px;
+            }
+            .commonNodeAreaText {
+                margin: 12px;
+            }
+            .commonNodeAreaBlock {
+                border-radius: 4px;
+                margin: 12px;
+                overflow-y: scroll;
+            }
+    
+
 
     .customViewArea {
         background-color: beige;

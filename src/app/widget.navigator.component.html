@@ -702,8 +702,8 @@ dimensions are set in app.html, and cannot be changed here. -->
 
 
     <!-- Common Node Selection -->
-    <div class="commonParentArea" *ngIf="showCommonNode">
-        <div class="commonParentAreaTitle">
+    <div class="commonNodeArea" *ngIf="showCommonNode">
+        <div class="commonNodeAreaTitle">
             <b>Common Node Selection</b>
             <clr-signpost>
                 <clr-icon shape="info-circle" style="margin-top: -4px;"
@@ -722,14 +722,14 @@ dimensions are set in app.html, and cannot be changed here. -->
                     </p>
                 </clr-signpost-content>
             </clr-signpost>
-            <div class="commonParentAreaClose"
+            <div class="commonNodeAreaClose"
                 (click)="clickCloseCommonNodeViewPopup()"
                 >
                 <b>X</b>
             </div>
         </div>
 
-        <div class="commonParentAreaText">
+        <div class="commonNodeAreaText">
             Select two or more nodes from the list below, which was created while 
             exploring for relationship: {{ selectedRelationship }}, node:
             {{ selectedParentNode }}.  Then click  
@@ -755,7 +755,7 @@ dimensions are set in app.html, and cannot be changed here. -->
         
         </div>
     
-        <div class="commonParentAreaBlock">
+        <div class="commonNodeAreaBlock">
             <clr-datagrid>
                 <clr-dg-column>Node ({{ commonParentSelected?.length }}) </clr-dg-column>
 

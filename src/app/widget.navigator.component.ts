@@ -2637,7 +2637,7 @@ export class WidgetNavigatorComponent {
         // Close the popup for Common Parents
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseCommonParentViewPopup', '@Start');
 
-        this.showCommonParent = false;
+        this.showCommonNode = false;
     }
 
     clickCommonParentView() {
