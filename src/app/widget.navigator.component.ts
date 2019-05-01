@@ -27,6 +27,7 @@ import { Widget } from './models'
 import { parse } from 'vega';
 import { View } from 'vega';
 import vegaTooltip from 'vega-tooltip';
+import { ChildActivationEnd } from '@angular/router';
 
 const MORE_TO_FILTER: string = 'Filter for more ...';
 
@@ -159,7 +160,10 @@ export class WidgetNavigatorComponent {
     specification: any;             // Full spec for Vega, or other grammar
 
     // Popups and forms
-    commonParentSelected: string[] = [];
+    commonParentSelected: { 
+        childNode: string; 
+        isSelected: boolean;
+    }[] = [];
     showCommonParent: boolean = false;
     showGraphHelp: boolean = false;
     showGraphNotes: boolean = false;
@@ -2580,6 +2584,14 @@ export class WidgetNavigatorComponent {
         // Refresh the graph
         this.selectedView = 'CommonParentView';
 
+        this.commonParentSelected = [];
+        this.childDataAll.forEach(chld = > 
+            this.commonParentSelected.push(
+                { 
+                    childNode: chld; 
+                    isSelected: false;
+                }
+            );
         this.showCommonParent = true;
 
     }
