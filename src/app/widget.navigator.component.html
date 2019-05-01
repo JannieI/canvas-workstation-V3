@@ -544,7 +544,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                         style="cursor: pointer; float: left; margin-left: 6px; margin-top: 4px;"
                         [style.color]="selectedView=='CommonParentView'?  'blue'  :  'gray'"
                         title="Common parent view: show all parents to which any 2 or more children belong"
-                        (click)="clickCommonParentView()"
+                        (click)="clickCommonParentShowForm()"
                         >
                     </clr-icon>
                 </span>
@@ -641,7 +641,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 </clr-signpost-content>
             </clr-signpost>
             <div class="customViewAreaClose"
-                (click)="clickCloseCustomViewPopup()"
+                (click)=""
                 >
                 <b>X</b>
             </div>

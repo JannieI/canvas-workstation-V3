@@ -2583,6 +2583,13 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickCloseCommonParentViewPopup() {
+        // Close the popup for Common Parents
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonParentView', '@Start');
+
+        this.showCommonParent = false;
+    }
+
     clickCommonParentView() {
         // Show the graph of Common Parents for the selected Nodes
         // Example: which directors of Absa are also direcytors of another company
@@ -2591,7 +2598,7 @@ export class WidgetNavigatorComponent {
         // Refresh the graph
         this.selectedView = 'CommonParentView';
 
-        this.showCommonParent = true;
+        this.showCommonParent = false;
         this.checkShowGraph();
 
     }
