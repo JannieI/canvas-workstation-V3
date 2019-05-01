@@ -656,7 +656,6 @@ dimensions are set in app.html, and cannot be changed here. -->
         <div class="customViewAreaBlock" *ngFor="let row of childDataAll; let i = index"
             >
                 <div
-                    (click)="clickShowCustomView(i, row.id)"
                     >
                     {{ row }}
                 </div>
