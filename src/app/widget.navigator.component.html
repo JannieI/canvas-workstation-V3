@@ -657,16 +657,18 @@ dimensions are set in app.html, and cannot be changed here. -->
                 >
                 Show
             </button>
-            to view the resultant graph.
-
+            to view the resultant graph.  Click 
+            <clr-icon shape="times" style="cursor: pointer; margin-top: 2px;"
+                >
+            </clr-icon>
+            to CLEAR all nodes, or click
+            <clr-icon shape="check" style="cursor: pointer; margin-top: 2px;"
+                >
+            </clr-icon>
+            to SELECT all the nodes.
+        
         </div>
-        <!-- <div class="commonParentAreaBlock" *ngFor="let row of childDataAll; let i = index"
-            >
-                <div
-                    >
-                    {{ row }}
-                </div>
-        </div> -->
+    
         <div class="commonParentAreaBlock">
             <clr-datagrid>
                 <clr-dg-column>Node</clr-dg-column>
