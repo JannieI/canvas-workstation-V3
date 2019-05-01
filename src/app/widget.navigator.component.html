@@ -697,10 +697,6 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div>
     </div>
 
-
-
-
-
     <!-- Common Node Selection -->
     <div class="commonNodeArea" *ngIf="showCommonNode">
         <div class="commonNodeAreaTitle">
@@ -757,6 +753,57 @@ dimensions are set in app.html, and cannot be changed here. -->
 
 
 
+    <!-- Distance from Node Selection -->
+    <div class="distanceFromNodeArea" *ngIf="showCommonNode">
+        <div class="distanceFromNodeAreaTitle">
+            <b>Common Node Selection</b>
+            <clr-signpost>
+                <clr-icon shape="info-circle" style="margin-top: -4px;"
+                    clrSignpostTrigger>
+                </clr-icon>
+                <clr-signpost-content *clrIfOpen
+                    [clrPosition]="'bottom-middle'">
+                    <h5 style="margin-top: 0; color:gray;">
+                        Help
+                    </h5>
+                    <p style="margin-top: 0; color:gray; text-align: left;">
+                        Select a nodes for which to list a common (parent) node for any of the 
+                        children of relationship: {{ selectedRelationship }}, node:
+                        {{ selectedParentNode }}.  Then click the Show button below to view 
+                        the resultant graph.
+                    </p>
+                </clr-signpost-content>
+            </clr-signpost>
+            <div class="distanceFromNodeAreaClose"
+                (click)="clickCloseCommonNodeViewPopup()"
+                >
+                <b>X</b>
+            </div>
+        </div>
+
+        <div class="distanceFromNodeAreaText">
+            Select a nodes for which to list a common (parent) node for any of the 
+            children of relationship: {{ selectedRelationship }}, node:
+            {{ selectedParentNode }}.  Then click 
+            <button class="btn btn-link" 
+                style="margin-top: 2px;"
+                (click)="clickCommonNodeView()"
+                >
+                Show
+            </button>
+            to view the resultant graph.       
+        </div>
+    
+        <div class="distanceFromNodeAreaBlock">
+                Node:
+                <input type="text"
+                    title="Add new name"
+                    placeholder="Mr van Wyk, Rene"
+                    >
+    
+        </div>
+    </div>
+    
 
 
 
