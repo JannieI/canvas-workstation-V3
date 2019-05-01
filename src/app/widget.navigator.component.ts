@@ -2712,7 +2712,8 @@ export class WidgetNavigatorComponent {
 
         // Refresh the graph
         this.selectedView = 'DistanceView'
-
+        this.showDistanceFromNode = false;
+        
         this.checkShowGraph();
 
     }
