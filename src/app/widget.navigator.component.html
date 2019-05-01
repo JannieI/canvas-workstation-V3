@@ -641,7 +641,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 </clr-signpost-content>
             </clr-signpost>
             <div class="customViewAreaClose"
-                (click)=""
+                (click)="clickCloseCommonParentViewPopup()"
                 >
                 <b>X</b>
             </div>
@@ -653,10 +653,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             {{ selectedParentNode }}.  Then click the Show button below to view 
             the resultant graph.
         </div>
-        <div class="customViewAreaBlock" *ngFor="let row of viewChildAll; let i = index"
-            [style.background-color]="row.id==selectedCustomViewID? 'white'  :  'rgb(235, 232, 232)'"
-            [style.border]="row.id==selectedCustomViewID? '2px solid black'  :  '1px solid gray'"
-            [style.color]="row.id==selectedCustomViewID? 'black'  :  'darkgray'"
+        <div class="customViewAreaBlock" *ngFor="let row of childDataAll; let i = index"
             >
                 <div
                     (click)="clickShowCustomView(i, row.id)"
@@ -667,9 +664,9 @@ dimensions are set in app.html, and cannot be changed here. -->
         <div>
             <button class="btn btn-link" 
                 style="margin-top: 2px;"
-                (click)="clickClearHistory()"
+                (click)="clickCommonParentView()"
                 >
-                Clear
+                Show
             </button>
         </div>
     </div>
