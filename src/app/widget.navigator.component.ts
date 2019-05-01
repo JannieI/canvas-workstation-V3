@@ -2665,23 +2665,6 @@ export class WidgetNavigatorComponent {
 
     }
     
-    clickCloseDistanceFromNodeViewPopup() {
-        // Close the popup for Distance from Nodes View
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseDistanceFromNodeViewPopup', '@Start');
-
-        this.showDistanceFromNode = false;
-    }
-
-    clickDistanceFromNodeShowForm() {
-        // Show the Distance From Nodes view form
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDistanceFromNodeShowForm', '@Start');
-
-        // Refresh the graph
-        this.selectedView = 'CommonNodeView';
-
-        this.showDistanceFromNode = true;
-
-    }
     clickCommonNodeView() {
         // Show the Common Parent view = list of all nodes where any children has the
         // same parent as a specified node
@@ -2703,6 +2686,24 @@ export class WidgetNavigatorComponent {
         this.showCommonParent = false;
     }
 
+    clickCloseDistanceFromNodeViewPopup() {
+        // Close the popup for Distance from Nodes View
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseDistanceFromNodeViewPopup', '@Start');
+
+        this.showDistanceFromNode = false;
+    }
+
+    clickDistanceFromNodeShowForm() {
+        // Show the Distance From Nodes view form
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDistanceFromNodeShowForm', '@Start');
+
+        // Refresh the graph
+        this.selectedView = 'CommonNodeView';
+
+        this.showDistanceFromNode = true;
+
+    }
+    
     clickDistanceView() {
         // Show the Distance view = sub tree with all nodes between a given child and
         // a specified node
