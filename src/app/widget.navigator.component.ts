@@ -941,18 +941,25 @@ export class WidgetNavigatorComponent {
 
     }
 
-    createGraphCommonParentView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
+    createGraphCommonParentView(
+        inputHeight: number = 0, 
+        inputWidth: number = 0, 
+        addToHistory: boolean = true
+        ) {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphCommonParentView', '@Start');
 
         // Reset
         this.graphData = [];
 
-        console.log('xx this.childDataAll', this.childDataAll)
+        let childNodesSelected: string[] = this.commonParentSelected
+            .filter(cp => cp.isSelected)
+            .map(cp => cp.childNode);
+        console.log('xx this.childNodesSelected', childNodesSelected)
 
-        if (this.childDataAll.length > 0) {
+        if (childNodesSelected.length > 0) {
 
-            this.graphData = this.constructGraphDataForCommonParents(this.childDataAll);
+            this.graphData = this.constructGraphDataForCommonParents(childNodesSelected);
 
             // TODO
             // 1. add to History
@@ -2603,13 +2610,13 @@ export class WidgetNavigatorComponent {
     }) {
         // User clicked a node in the Common Parents list: toggle from selected list
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonParentNode', '@Start');
-        console.log('xx INPUT selectedCommonParentNode', selCommonParentNode)
+
         let commonParentIndex: number = this.commonParentSelected.findIndex(
             cp => cp.childNode === selCommonParentNode.childNode);
         this.commonParentSelected[commonParentIndex].isSelected = 
             !this.commonParentSelected[commonParentIndex].isSelected;
-        console.log('xx OUTPUTthis.commonParentSelected', this.commonParentSelected)
-    }
+
+        }
 
     clickCloseCommonParentViewPopup() {
         // Close the popup for Common Parents
