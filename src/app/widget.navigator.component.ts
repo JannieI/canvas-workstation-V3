@@ -521,7 +521,7 @@ export class WidgetNavigatorComponent {
     }
 
     clickSelectHistory(index: number, historyID: number) {
-        // Highlight slected row in istory
+        // Highlight selected row in istory
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickSelectHistory', '@Start');
 
         this.selectedHistoryID = historyID;
@@ -2572,9 +2572,19 @@ export class WidgetNavigatorComponent {
         this.checkShowGraph();
     }
 
+    clickCommonParentShowForm() {
+        // Show the Common Node view form
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonParentShowForm', '@Start');
+
+        // Refresh the graph
+        this.selectedView = 'CommonParentView';
+
+        this.showCommonParent = true;
+
+    }
+
     clickCommonParentView() {
-        // Show the Common Node view = list of all nodes where 2 or more children have the
-        // same parent
+        // Show the graph of Common Parents for the selected Nodes
         // Example: which directors of Absa are also direcytors of another company
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCommonParentView', '@Start');
 
