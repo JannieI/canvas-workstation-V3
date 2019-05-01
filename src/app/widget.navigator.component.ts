@@ -165,6 +165,7 @@ export class WidgetNavigatorComponent {
         isSelected: boolean;
     }[] = [];
     showCommonParent: boolean = false;
+    showDistanceFromNode: boolean = false;
     showCommonNode: boolean = false;
     showGraphHelp: boolean = false;
     showGraphNotes: boolean = false;
@@ -2664,11 +2665,11 @@ export class WidgetNavigatorComponent {
 
     }
     
-    clickCloseCommonNodeViewPopup() {
-        // Close the popup for Common Nodes
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseCommonNodeViewPopup', '@Start');
+    clickCloseDistanceFromNodeViewPopup() {
+        // Close the popup for Distance from Nodes View
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseDistanceFromNodeViewPopup', '@Start');
 
-        this.showCommonParent = false;
+        this.showDistanceFromNode = false;
     }
 
     clickCommonNodeView() {
@@ -2683,6 +2684,13 @@ export class WidgetNavigatorComponent {
 
         this.checkShowGraph();
 
+    }
+    
+    clickCloseCommonNodeViewPopup() {
+        // Close the popup for Common Nodes
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseCommonNodeViewPopup', '@Start');
+
+        this.showCommonParent = false;
     }
 
     clickDistanceView() {
