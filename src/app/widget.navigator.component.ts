@@ -2699,7 +2699,7 @@ export class WidgetNavigatorComponent {
 
         // Refresh the graph
         this.selectedView = 'CommonNodeView';
-
+        this.spinner = false;
         this.showDistanceFromNode = true;
 
     }
@@ -2714,7 +2714,7 @@ export class WidgetNavigatorComponent {
         this.selectedView = 'DistanceView'
         this.showDistanceFromNode = false;
         this.spinner = true;
-        
+        console.log('xx this.spinner',  this.spinner)
         this.checkShowGraph();
 
     }
