@@ -104,7 +104,7 @@ export class WidgetNavigatorComponent {
 
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
 
-    ngParentNodeFilterDropdown: string[] = [];          // Dropdown: Parent Nodes Filter
+    ngParentNodeFilterKeyDropdown: string[] = [];          // Dropdown: Parent Nodes Filter
     ngParentNodeFilterSelectedFieldName: string = '';   // Parent Node Filter
     ngParentNodeFilterSelectedOperator: string = '';    // Parent Node Filter
     ngParentNodeFilterSelectedValue: string = '';       // Parent Node Filter
@@ -615,10 +615,10 @@ export class WidgetNavigatorComponent {
         this.clickChildFilterClear();
 
         // Set Parent Node Property Filter properties
-        this.ngParentNodeFilterDropdown = this.networkProperties
+        this.ngParentNodeFilterKeyDropdown = this.networkProperties
             .filter(np => np.nodeType == this.selectedParentNodeType && np.propertyKey != '')
             .map(np => np.propertyKey);
-        this.ngParentNodeFilterDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterDropdown);
+        this.ngParentNodeFilterKeyDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterKeyDropdown);
 
         // Reset
         this.visibleNumberChildrenStart = 0;
@@ -2407,7 +2407,7 @@ export class WidgetNavigatorComponent {
         // Clear the Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClear', '@Start');
 
-        this.ngParentNodeFilterDropdown = [];
+        this.ngParentNodeFilterKeyDropdown = [];
         this.ngParentNodeFilterSelectedFieldName = '';
         this.ngParentNodeFilterSelectedOperator = '';
         this.ngParentNodeFilterSelectedValue = '';
@@ -2447,7 +2447,7 @@ export class WidgetNavigatorComponent {
         this.parentNodesFilteredList = Array.from(new Set(this.parentNodesFilteredList));
 
         // Filter Parent Nodes
-        this.ngParentNodeFilterDropdown = this.ngParentNodeFilterDropdown
+        this.ngParentNodeFilterKeyDropdown = this.ngParentNodeFilterKeyDropdown
             .filter(pn => this.parentNodesFilteredList.indexOf(pn) >= 0
             );
     }
