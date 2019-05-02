@@ -117,7 +117,7 @@ export class WidgetNavigatorComponent {
     ngChildNodeFilterKeyDropdown: string[] = [];        // Dropdown: Child Nodes Keys Filter
     ngChildNodeFilterPropertyDropdown: string[] = [];   // Dropdown: Child Nodes PropertiesFilter
     ngChildNodeFilterSelectedFieldName: string = '';    // Child Node Filter
-    ngChildNodeFilterSelectedOperator: string = '';     // Child Node Filter
+    ngChildNodeFilterSelectedOperator: string = 'Equal';     // Child Node Filter
     ngChildNodeFilterSelectedValue: string = '';        // Child Node Filter
     ngChildFilterShowTop: string = '';                  // Show top n Child Nodes
     ngChildFilterSortFieldName: string = '';            // Sort Child Nodes
@@ -2478,13 +2478,14 @@ export class WidgetNavigatorComponent {
         this.ngChildNodeFilterPropertyDropdown = ['', ...this.ngChildNodeFilterPropertyDropdown];
 
     }
+    
     clickChildFilterClear() {
         // Clear Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClear', '@Start');
 
         this.ngChildNodeFilterKeyDropdown = [];
         this.ngChildNodeFilterSelectedFieldName = '';
-        this.ngChildNodeFilterSelectedOperator = '';
+        this.ngChildNodeFilterSelectedOperator = 'Equal';
         this.ngChildNodeFilterSelectedValue = '';
         this.ngChildFilterShowTop = '';
         this.ngChildFilterSortFieldName = '';
