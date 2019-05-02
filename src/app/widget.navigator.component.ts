@@ -2406,17 +2406,17 @@ export class WidgetNavigatorComponent {
     //     });
     // }
 
-    changeParentFilterKey(ev: any) {
+    changeParentFilterKey() {
         // Build the property values for the selected key in the Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClear', '@Start');
 
-        this.selectedParentNode = ev.target.value;
-        console.llog('xx key ...', this.ngParentNodeFilterSelectedFieldName, this.selectedParentNode)
-        // ngParentNodeFilterPropertyDropdown
-        // this.ngParentNodeFilterKeyDropdown = this.networkProperties
-        //     .filter(np => np.nodeType == this.selectedParentNodeType && np.propertyKey != '')
-        //     .map(np => np.propertyKey);
-        // this.ngParentNodeFilterKeyDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterKeyDropdown);
+        console.log('xx key ...', this.ngParentNodeFilterSelectedFieldName)
+        this.ngParentNodeFilterPropertyDropdown = this.networkProperties
+            .filter(np => np.nodeType == this.selectedParentNodeType 
+                    && 
+                    np.propertyKey === this.ngParentNodeFilterSelectedFieldName)
+            .map(np => np.propertyValue);
+        this.ngParentNodeFilterPropertyDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterKeyDropdown);
 
     }
 
