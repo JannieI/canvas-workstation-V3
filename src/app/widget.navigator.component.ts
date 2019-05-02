@@ -902,19 +902,47 @@ export class WidgetNavigatorComponent {
         // Find unique Nodes
         let uniqueNodeTypes: string[] = this.distinctNodeTypes();
 
-        // Count relationships
+        // Count unique Node Types
         let nodeCount: number = -1;
         let uniqueNodesWithCount: { nodeType: string; nodeCount: number }[] = [];
         for (var i = 0; i < uniqueNodeTypes.length; i++) {
-            nodeCount = this.networkRelationships.filter(x => x.leftNodeType == uniqueNodeTypes[i]).length;
-            console.log('xx nodeCount', nodeCount)
-            nodeCount = nodeCount + this.networkRelationships
-                .filter(x => x.rightNodeType == uniqueNodeTypes[i]).length;
+
+            // Count unique Parent Nodes per Node Type
+            let leftParentNodes: string [] = this.networkRelationships
+                .filter(x => x.leftNodeType == uniqueNodeTypes[i])
+                .map(nr => nr.leftNodeName);
+            let rightParentNodes: string [] = this.networkRelationships
+                .filter(x => x.rightNodeType == uniqueNodeTypes[i])
+                .map(nr => nr.rightNodeName);
+            let uniqueNodes: string[] = leftParentNodes.concat(rightParentNodes);
+            uniqueNodes = Array.from(new Set(uniqueNodes));
+
+            nodeCount = uniqueNodes.length;
+            console.log('xx nodeCount', uniqueNodeTypes[i], nodeCount)
             uniqueNodesWithCount.push(
                 {
                     nodeType: uniqueNodeTypes[i],
                     nodeCount: nodeCount
                 });
+
+            // Unique Relationships per Node Type
+            let leftRelationships: string [] = this.networkRelationships
+                .filter(x => x.leftNodeType == uniqueNodeTypes[i])
+                .map(nr => nr.relationshipLeftToRight);
+            let rightRelationships: string [] = this.networkRelationships
+                .filter(x => x.rightNodeType == uniqueNodeTypes[i])
+                .map(nr => nr.relationshipRightToLeft);
+            let uniqueRelationships: string[] = leftRelationships.concat(rightRelationships);
+            uniqueRelationships = this.navUniqifySortNodes(uniqueRelationships);
+
+            nodeCount = uniqueRelationships.length;
+            console.log('xx nodeCount', uniqueNodeTypes[i], nodeCount)
+            uniqueRelationshipsWithCount.push(
+                {
+                    nodeType: uniqueNodeTypes[i],
+                    nodeCount: nodeCount
+                });
+
         };
         console.log('xx uniqueNodesWithCount', uniqueNodesWithCount)
         // Set data
