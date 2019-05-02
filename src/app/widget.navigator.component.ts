@@ -1342,11 +1342,15 @@ export class WidgetNavigatorComponent {
             console.log('xx this.childDataAll', this.childDataAll, this.networkProperties)
             let childFilter: NavigatorProperties[] = this.networkProperties
                 .filter(np => this.childDataAll.indexOf(np.nodeName) >= 0);
-console.log('x childFilter', childFilter)
+
             this.ngChildNodeFilterKeyDropdown = childFilter.map(cf => cf.propertyKey);
-            console.log('xx ngChildNodeFilterKeyDropdown', this.ngChildNodeFilterKeyDropdown)
+            this.ngChildNodeFilterKeyDropdown =  this.navUniqifySortNodes(this.ngChildNodeFilterKeyDropdown);
+            this.ngChildNodeFilterKeyDropdown = ['', ...this.ngChildNodeFilterKeyDropdown];
+
             this.ngChildNodeFilterPropertyDropdown = childFilter.map(cf => cf.propertyValue);
-            console.log('xx ngChildNodeFilterPropertyDropdown', this.ngChildNodeFilterPropertyDropdown)
+            this.ngChildNodeFilterPropertyDropdown = this.navUniqifySortNodes(this.ngChildNodeFilterPropertyDropdown);
+            this.ngChildNodeFilterPropertyDropdown = ['', ...this.ngChildNodeFilterPropertyDropdown];
+
             // Return
             return localGraphData;
 
