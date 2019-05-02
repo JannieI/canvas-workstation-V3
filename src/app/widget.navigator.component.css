@@ -193,7 +193,6 @@
         .networkAreaBlock {
             border-radius: 4px;
             margin: 18px;
-            overflow-y: scroll; 
         }
 
     .historyArea {
