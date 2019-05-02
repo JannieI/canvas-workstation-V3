@@ -2450,7 +2450,6 @@ export class WidgetNavigatorComponent {
         this.ngParentNodeFilterDropdown = this.ngParentNodeFilterDropdown
             .filter(pn => this.parentNodesFilteredList.indexOf(pn) >= 0
             );
-
     }
 
     clickRelationshipFilterClear() {
