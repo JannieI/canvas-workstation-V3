@@ -488,7 +488,7 @@ export class WidgetNavigatorComponent {
 
                                 };
 
-
+                                // Get History for this Network
                                 this.ngHistory = this.historyAll
                                     .filter(h => h.networkID === networkID)
                                     .sort((a, b) => {
@@ -501,6 +501,9 @@ export class WidgetNavigatorComponent {
                                         return 0;
                                     });
 
+                                // Close Navigated popup
+                                this.showHistory = false;
+
                                 // Click the first row
                                 if (this.ngHistory.length > 0) {
                                     this.clickHistory(0, this.ngHistory[0].id);
@@ -509,9 +512,6 @@ export class WidgetNavigatorComponent {
                                     this.selectedView = 'SummaryView';
                                     this.clickNetworkSummaryView();
                                 };
-
-                                // Close Navigated popup
-                                this.showHistory = false;
                             })
                             .catch(err => {
                                 this.errorMessage = err.slice(0, 100);
