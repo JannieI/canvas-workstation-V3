@@ -2434,10 +2434,6 @@ export class WidgetNavigatorComponent {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterSave', '@Start');
 
-        // TODO - for now, only one filter on one option.  In future, consider more than one as
-        // data structurs allows it
-        console.log('xx ngParentNodeFilterSelectedFieldName', this.ngParentNodeFilterSelectedFieldName)
-        console.log('xx ngParentNodeFilterSelectedValue', this.ngParentNodeFilterSelectedValue)
         // Validation
         if (this.ngParentNodeFilterSelectedFieldName === '') {
             this.parentFilterErrorMessage = 'The field name is compulsory';
@@ -2453,7 +2449,6 @@ export class WidgetNavigatorComponent {
         };
 
         // Create Filtered List of ParentNodes
-        // TODO - do other operator than ==
         this.parentNodesFilteredList = this.networkProperties
             .filter(np => np.propertyKey === this.ngParentNodeFilterSelectedFieldName
                 &&
@@ -2462,12 +2457,11 @@ export class WidgetNavigatorComponent {
 
         // Make unique
         this.parentNodesFilteredList = Array.from(new Set(this.parentNodesFilteredList));
-console.log('xx parentNodesFilteredList', this.parentNodesFilteredList)
+
         // Filter Parent Nodes
         this.ngDropdownParentNodes = this.ngDropdownParentNodes
             .filter(pn => this.parentNodesFilteredList.indexOf(pn) >= 0
             );
-            console.log('xx ngDropdownParentNodes', this.ngDropdownParentNodes)
     }
 
     clickRelationshipFilterClear() {
