@@ -899,12 +899,20 @@ export class WidgetNavigatorComponent {
             return;
         };
 
+        // Set data for Parent
+        this.graphData = [];
+        this.graphData.push(
+            {
+                "id": 1,
+                "name": "Summary"
+            });
+
         // Find unique Nodes
         let uniqueNodeTypes: string[] = this.distinctNodeTypes();
 
         // Count unique Node Types
         let nodeCount: number = -1;
-        let uniqueNodesWithCount: { nodeType: string; nodeCount: number }[] = [];
+
         for (var i = 0; i < uniqueNodeTypes.length; i++) {
 
             // Count unique Parent Nodes per Node Type
@@ -919,12 +927,16 @@ export class WidgetNavigatorComponent {
 
             nodeCount = uniqueNodes.length;
             console.log('xx nodeCount', uniqueNodeTypes[i], nodeCount)
-            uniqueNodesWithCount.push(
-                {
-                    nodeType: uniqueNodeTypes[i],
-                    nodeCount: nodeCount
-                });
 
+            // Add Node data, with count
+            this.graphData.push(
+                {
+                    id: i + 2,
+                    name: uniqueNodeTypes[i] + ' (' + nodeCount.toString() + ')',
+                    parent: 1
+                }
+            );
+    
             // Unique Relationships per Node Type
             let leftRelationships: string [] = this.networkRelationships
                 .filter(x => x.leftNodeType == uniqueNodeTypes[i])
@@ -936,32 +948,8 @@ export class WidgetNavigatorComponent {
             uniqueRelationships = this.navUniqifySortNodes(uniqueRelationships);
 
             nodeCount = uniqueRelationships.length;
-            console.log('xx nodeCount', uniqueNodeTypes[i], nodeCount)
-            uniqueRelationshipsWithCount.push(
-                {
-                    nodeType: uniqueNodeTypes[i],
-                    nodeCount: nodeCount
-                });
+            console.log('xx uniqueRelationships', uniqueNodeTypes[i], uniqueRelationships)
 
-        };
-        console.log('xx uniqueNodesWithCount', uniqueNodesWithCount)
-        // Set data
-        this.graphData = [];
-        this.graphData.push(
-            {
-                "id": 1,
-                "name": "Summary"
-            });
-        for (var i = 0; i < uniqueNodeTypes.length; i++) {
-
-            this.graphData.push(
-                {
-                    id: i + 2,
-                    name: uniqueNodesWithCount[i].nodeType + ' ('
-                        + uniqueNodesWithCount[i].nodeCount.toString() + ')',
-                    parent: 1
-                }
-            );
         };
 
         // Set info
