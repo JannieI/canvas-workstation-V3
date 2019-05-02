@@ -502,7 +502,7 @@ export class WidgetNavigatorComponent {
                                     });
 
                                 // Close Navigated popup
-                                this.showHistory = false;
+                                this.showNetwork = false;
 
                                 // Click the first row
                                 if (this.ngHistory.length > 0) {
