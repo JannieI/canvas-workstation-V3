@@ -933,6 +933,7 @@ export class WidgetNavigatorComponent {
 
             // Add Node data, with count
             nodeID = nodeID + 1;
+            console.log('xx nodeID before push parent', nodeID)
             this.graphData.push(
                 {
                     id: nodeID,
@@ -957,11 +958,11 @@ export class WidgetNavigatorComponent {
                 // Count unique Nodes per Relationship and Node Type
                 let leftRelationships: string [] = this.networkRelationships
                     .filter(x => x.leftNodeType == uniqueNodeTypes[parentNodeIndex])
-                    .filter(x => x.relationshipLeftToRight == uniqueRelationshipNodes[relationshipIndex])
+                    .filter(x => x.relationshipLeftToRight == uniqueRelationships[relationshipIndex])
                     .map(nr => nr.leftNodeName);
                 let rightRelationships: string [] = this.networkRelationships
                 .filter(x => x.rightNodeType == uniqueNodeTypes[parentNodeIndex])
-                .filter(x => x.relationshipRightToLeft == uniqueRelationshipNodes[relationshipIndex])
+                .filter(x => x.relationshipRightToLeft == uniqueRelationships[relationshipIndex])
                     .map(nr => nr.rightNodeName);
                 let uniqueRelationshipNodes: string[] = leftRelationships.concat(rightRelationships);
                 uniqueRelationshipNodes = Array.from(new Set(uniqueRelationshipNodes));
@@ -972,21 +973,22 @@ export class WidgetNavigatorComponent {
 
                 // Add Node data, with count
                 relationshipID = nodeID + parentNodeIndex + 1;
+                console.log('xx relationshipID', relationshipID, nodeID)
                 this.graphData.push(
                     {
                         id: relationshipID,
-                        name: uniqueRelationshipNodes[relationshipIndex] + ' (' + relationshipCount.toString() + ')',
+                        name: uniqueRelationships[relationshipIndex] + ' (' + relationshipCount.toString() + ')',
                         parent: nodeID
                     }
                 );
-
 
             };
 
             // Increment NodeID with nr of kids
             nodeID = nodeID + uniqueRelationships.length;
+            console.log('xx nodeID @END', nodeID)
 
-            console.log('xx uniqueRelationships', uniqueNodeTypes[parentNodeIndex], uniqueRelationships)
+            console.log('xx uniqueRelationships for ', uniqueNodeTypes[parentNodeIndex], uniqueRelationships)
 
         };
 
