@@ -1339,7 +1339,6 @@ export class WidgetNavigatorComponent {
 
             // Create Child Filters
             // TODO - should be done more efficiently, or less often (ie when open ChildFilter)
-            console.log('xx this.childDataAll', this.childDataAll, this.networkProperties)
             let childFilter: NavigatorProperties[] = this.networkProperties
                 .filter(np => this.childDataAll.indexOf(np.nodeName) >= 0);
 
@@ -2471,7 +2470,23 @@ export class WidgetNavigatorComponent {
         this.relationshipsFilteredList = Array.from(new Set(this.relationshipsFilteredList));
 
     }
+     
+    constructChildFilterData(inputChildren: string[]) {
+        // Construct Data (key + property) used in Child Filter
+        this.globalFunctionService.printToConsole(this.constructor.name, 'constructChildFilterData', '@Start');
 
+        let childFilter: NavigatorProperties[] = this.networkProperties
+            .filter(np => inputChildren.indexOf(np.nodeName) >= 0);
+
+        this.ngChildNodeFilterKeyDropdown = childFilter.map(cf => cf.propertyKey);
+        this.ngChildNodeFilterKeyDropdown =  this.navUniqifySortNodes(this.ngChildNodeFilterKeyDropdown);
+        this.ngChildNodeFilterKeyDropdown = ['', ...this.ngChildNodeFilterKeyDropdown];
+
+        this.ngChildNodeFilterPropertyDropdown = childFilter.map(cf => cf.propertyValue);
+        this.ngChildNodeFilterPropertyDropdown = this.navUniqifySortNodes(this.ngChildNodeFilterPropertyDropdown);
+        this.ngChildNodeFilterPropertyDropdown = ['', ...this.ngChildNodeFilterPropertyDropdown];
+
+    }
     clickChildFilterClear() {
         // Clear Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClear', '@Start');
