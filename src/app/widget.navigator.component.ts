@@ -2700,13 +2700,13 @@ export class WidgetNavigatorComponent {
 
         // Refresh the graph
         this.selectedView = 'DistanceView'
-        this.showDistanceFromNode = false;
         this.spinner = true;
         console.log('xx this.spinner',  this.spinner)
 
         // No CPU power to display spinner, thus delay start of calc method
         setTimeout( () => {
             this.checkShowGraph();
+            this.showDistanceFromNode = false;
         }, 30);
 
     }
