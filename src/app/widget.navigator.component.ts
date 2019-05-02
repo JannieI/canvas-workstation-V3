@@ -128,7 +128,6 @@ export class WidgetNavigatorComponent {
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
     childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
     childFilterErrorMessage: string = '';
-    filterID: number = -1;
     firstAdjacencyCellRowNr: number = -1;
     historyBackIndex: number = 0;                       // Note: this initial value is important
     parentFilterErrorMessage: string = '';              // Error Msg
@@ -2478,7 +2477,7 @@ export class WidgetNavigatorComponent {
         this.ngChildNodeFilterPropertyDropdown = ['', ...this.ngChildNodeFilterPropertyDropdown];
 
     }
-    
+
     clickChildFilterClear() {
         // Clear Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClear', '@Start');
