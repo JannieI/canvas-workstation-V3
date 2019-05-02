@@ -2412,10 +2412,8 @@ export class WidgetNavigatorComponent {
         // Make unique
         this.parentNodesFilteredList = Array.from(new Set(this.parentNodesFilteredList));
 
-        // Filter Parent Nodes
-        this.ngDropdownParentNodes = this.ngDropdownParentNodes
-            .filter(pn => this.parentNodesFilteredList.indexOf(pn) >= 0
-            );
+        // Filter Child Nodes and Show Graph
+        this.checkShowGraph();
     }
 
     clickRelationshipFilterClear() {
@@ -2503,11 +2501,11 @@ export class WidgetNavigatorComponent {
             this.childFilterErrorMessage = 'The field name is compulsory';
             return;
         };
-        if (this.ngChildNodeFilterSelectedOperator) {
+        if (this.ngChildNodeFilterSelectedOperator === '') {
             this.childFilterErrorMessage = 'The operator is compulsory';
             return;
         };
-        if (this.ngChildNodeFilterSelectedValue) {
+        if (this.ngChildNodeFilterSelectedValue === '') {
             this.childFilterErrorMessage = 'The value is compulsory';
             return;
         };
