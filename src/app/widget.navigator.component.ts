@@ -929,11 +929,10 @@ export class WidgetNavigatorComponent {
             uniqueNodes = Array.from(new Set(uniqueNodes));
 
             nodeCount = uniqueNodes.length;
-            console.log('xx nodeCount', uniqueNodeTypes[parentNodeIndex], nodeCount)
 
             // Add Node data, with count
             nodeID = nodeID + 1;
-            console.log('xx nodeID before push parent', nodeID)
+
             this.graphData.push(
                 {
                     id: nodeID,
@@ -968,12 +967,10 @@ export class WidgetNavigatorComponent {
                 uniqueRelationshipNodes = Array.from(new Set(uniqueRelationshipNodes));
 
                 relationshipCount = uniqueRelationshipNodes.length;
-                console.log('xx relationshipCount', uniqueNodeTypes[parentNodeIndex], 
-                uniqueRelationshipNodes[relationshipIndex], relationshipCount)
 
                 // Add Node data, with count
                 relationshipID = nodeID + parentNodeIndex + 1;
-                console.log('xx relationshipID', relationshipID, nodeID)
+
                 this.graphData.push(
                     {
                         id: relationshipID,
@@ -986,9 +983,6 @@ export class WidgetNavigatorComponent {
 
             // Increment NodeID with nr of kids
             nodeID = nodeID + uniqueRelationships.length;
-            console.log('xx nodeID @END', nodeID)
-
-            console.log('xx uniqueRelationships for ', uniqueNodeTypes[parentNodeIndex], uniqueRelationships)
 
         };
 
