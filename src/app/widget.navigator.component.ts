@@ -2352,60 +2352,6 @@ export class WidgetNavigatorComponent {
 
     }
 
-    //[]a//     this.globalFunctionService.printToConsole(this.constructor.name, 'navSingleRoute', '@Start');
-
-    //     console.log('xx navSingleRoute START node-parent-path', this.navRecursionCounter, navStartNode, parentNode, path)
-
-    //     // Safety }
-
-    //     this.navRecursionCounter = this.navRecursionCounter + 1;
-    //     if (this.navRecursionCounter > this.navMaxRecursion) {
-    //         console.log('xx navSingleRoute navMaxRecursion EXCEEDED')
-    //         return;
-    //     };
-
-    //     // Add to path
-    //     path.push(navStartNode);
-    //     this.navVisitedNodes.push(navStartNode);
-
-    //     // Get children of start Node in the SAME path
-    //     let childrenOfStartNode: string[] = this.navNextNodesInPath(navStartNode, relationship);
-    //     console.log('xx navSingleRoute childrenOfStartNode', childrenOfStartNode)
-
-    //     // Create new path, minus navStartNode and parentNode
-    //     let newChildrendOfStartNode: string [] = [];
-    //     childrenOfStartNode.forEach(child => {
-    //         if (child != navStartNode
-    //             &&
-    //             child != parentNode
-    //             &&
-    //             path.indexOf(child) < 0
-    //             &&
-    //             this.navVisitedNodes.indexOf(child) < 0
-    //             ) {
-    //             newChildrendOfStartNode.push(child)
-    //         };
-    //     });
-    //     console.log('xx navSingleRoute newChildrendOfStartNode', newChildrendOfStartNode);
-
-    //     // Single, unique route if pathNew is empty
-    //     if (newChildrendOfStartNode.length == 0) {
-    //         this.singleRoutesArray.push(path);
-    //         console.log('xx navSingleRoute ROUTE path', path);
-    //         this.navSinglePaths.push(path);
-    //         path = [];
-    //         return;
-    //     };
-
-    //     // Call recursively with new path
-    //     newChildrendOfStartNode.forEach(child =>  {
-    //         let newPath: string[] = [];
-    //         path.forEach(c => newPath.push(c));
-    //         console.log('xx newPath', newPath);
-    //         this.navSingleRoute(child, navStartNode, relationship, newPath);
-    //     });
-    // }
-
     changeParentFilterKey() {
         // Build the property values for the selected key in the Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentFilterKey', '@Start');
@@ -2428,6 +2374,10 @@ export class WidgetNavigatorComponent {
         this.ngParentNodeFilterSelectedOperator = 'Equal';
         this.ngParentNodeFilterSelectedValue = '';
         this.parentNodesFilteredList = [];
+
+        // Fill Dropdowns
+        this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
+        this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
     }
 
     clickParentFilterSave() {
