@@ -289,7 +289,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                         >
                     </clr-icon>
                 </span>
-                
+
                 <!-- Navigation - nr children shown and jumping -->
                 <span style="float: right;" *ngIf="graphLevels>1">
                     <span>
@@ -641,9 +641,9 @@ dimensions are set in app.html, and cannot be changed here. -->
                         Help
                     </h5>
                     <p style="margin-top: 0; color:gray; text-align: left;">
-                        Select two or more nodes from the list below, which was created while 
+                        Select two or more nodes from the list below, which was created while
                         exploring for relationship: {{ selectedRelationship }}, node:
-                        {{ selectedParentNode }}.  Then click the Show button below to view 
+                        {{ selectedParentNode }}.  Then click the Show button below to view
                         the resultant graph.
                     </p>
                 </clr-signpost-content>
@@ -656,31 +656,31 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div>
 
         <div class="commonParentAreaText">
-            Select two or more nodes from the list below, which was created while 
+            Select two or more nodes from the list below, which was created while
             exploring for relationship: {{ selectedRelationship }}, node:
-            {{ selectedParentNode }}.  Then click  
-            <button class="btn btn-link" 
+            {{ selectedParentNode }}.  Then click
+            <button class="btn btn-link"
                 style="margin-top: 2px;"
                 (click)="clickCommonParentView()"
                 >
                 Show
             </button>
-            to view the resultant graph.  Click 
+            to view the resultant graph.  Click
             <clr-icon shape="times" style="cursor: pointer; color: blue; margin-top: 0px;"
-                size="20"    
+                size="20"
                 (click)="clickCommonParentViewClearAll()"
                 >
             </clr-icon>
             to CLEAR all nodes, or click
             <clr-icon shape="check" style="cursor: pointer; color: blue; margin-top: 0px;"
-                size="20"    
+                size="20"
                 (click)="clickCommonParentViewSelectAll()"
                 >
             </clr-icon>
             to SELECT all the nodes.
-        
+
         </div>
-    
+
         <div class="commonParentAreaBlock">
             <clr-datagrid>
                 <clr-dg-column>Node ({{ commonParentSelected?.length }}) </clr-dg-column>
@@ -689,7 +689,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                     [style.background-color]="row.isSelected? 'white'  :  'rgb(235, 232, 232)'"
                     [style.border]="row.isSelected? '2px solid black'  :  '1px solid gray'"
                     [style.color]="row.isSelected? 'black'  :  'darkgray'"
-    
+
                     (click)="clickCommonParentNode(row)"
                     >
                     <clr-dg-cell>{{ row.childNode }}</clr-dg-cell>
@@ -719,9 +719,9 @@ dimensions are set in app.html, and cannot be changed here. -->
                         Help
                     </h5>
                     <p style="margin-top: 0; color:gray; text-align: left;">
-                        Select a node for which to list a common (parent) node for any of the 
+                        Select a node for which to list a common (parent) node for any of the
                         children of relationship: {{ selectedRelationship }}, node:
-                        {{ selectedParentNode }}.  Then click the Show button below to view 
+                        {{ selectedParentNode }}.  Then click the Show button below to view
                         the resultant graph.
                     </p>
                 </clr-signpost-content>
@@ -734,28 +734,28 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div>
 
         <div class="commonNodeAreaText">
-            Select a nodes for which to list a common (parent) node for any of the 
+            Select a nodes for which to list a common (parent) node for any of the
             children of relationship: {{ selectedRelationship }}, node:
-            {{ selectedParentNode }}.  Then click 
-            <button class="btn btn-link" 
+            {{ selectedParentNode }}.  Then click
+            <button class="btn btn-link"
                 style="margin-top: 2px;"
                 (click)="clickCommonNodeView()"
                 >
                 Show
             </button>
-            to view the resultant graph.       
+            to view the resultant graph.
         </div>
-    
+
         <div class="commonNodeAreaBlock">
                 Node:
                 <input type="text"
                     title="Add new name"
                     placeholder="Mr van Wyk, Rene"
                     >
-    
+
         </div>
     </div>
-    
+
     <!-- Distance from Node Selection -->
     <div class="distanceFromNodeArea" *ngIf="showDistanceFromNode">
         <div class="distanceFromNodeAreaTitle">
@@ -771,7 +771,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                     </h5>
                     <p style="margin-top: 0; color:gray; text-align: left;">
                         Select two nodes for which the distance (all nodes and relationships
-                        inbetween) will be shown.  Then click the Show button below to view 
+                        inbetween) will be shown.  Then click the Show button below to view
                         the resultant graph.
                     </p>
                 </clr-signpost-content>
@@ -785,16 +785,16 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         <div class="distanceFromNodeAreaText">
             Select two nodes for which the distance (all nodes and relationships
-            inbetween) will be shown.  Then click  
-            <button class="btn btn-link" 
+            inbetween) will be shown.  Then click
+            <button class="btn btn-link"
                 style="margin-top: 2px;"
                 (click)="clickDistanceView()"
                 >
                 Show
             </button>
-            to view the resultant graph.       
+            to view the resultant graph.
         </div>
-    
+
         <div class="distanceFromNodeAreaBlock">
             From Node:
             <input type="text"
@@ -811,7 +811,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             </span>
         </div>
     </div>
-    
+
     <!-- Show list of Custom View -->
     <div class="customViewArea" *ngIf="showCustomView">
         <div class="customViewAreaTitle">
@@ -930,8 +930,8 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         <div class="historyAreaText">
             Select a previously shown graph by clicking it.  Double click the trash icon to
-            delete an item from the Navigated list.  Click 
-            <button class="btn btn-link" 
+            delete an item from the Navigated list.  Click
+            <button class="btn btn-link"
                 style="margin-top: 2px;"
                 (click)="clickClearHistory()"
                 >

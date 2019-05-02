@@ -104,7 +104,8 @@ export class WidgetNavigatorComponent {
 
     watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
 
-    ngParentNodeFilterKeyDropdown: string[] = [];          // Dropdown: Parent Nodes Filter
+    ngParentNodeFilterKeyDropdown: string[] = [];       // Dropdown: Parent Nodes Keys Filter
+    ngParentNodeFilterPropertyDropdown: string[] = [];  // Dropdown: Parent Nodes Properties Filter
     ngParentNodeFilterSelectedFieldName: string = '';   // Parent Node Filter
     ngParentNodeFilterSelectedOperator: string = '';    // Parent Node Filter
     ngParentNodeFilterSelectedValue: string = '';       // Parent Node Filter
@@ -619,6 +620,8 @@ export class WidgetNavigatorComponent {
             .filter(np => np.nodeType == this.selectedParentNodeType && np.propertyKey != '')
             .map(np => np.propertyKey);
         this.ngParentNodeFilterKeyDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterKeyDropdown);
+
+        this.ngParentNodeFilterPropertyDropdown.push('Koos');
 
         // Reset
         this.visibleNumberChildrenStart = 0;
