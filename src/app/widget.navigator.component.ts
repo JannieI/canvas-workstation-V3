@@ -2530,6 +2530,9 @@ export class WidgetNavigatorComponent {
             .filter(pn => this.childNodesFilteredList.indexOf(pn) >= 0
             );
 
+        // Refresh the Graph
+        this.checkShowGraph();
+
     }
 
     clickNetworkSummaryView() {
