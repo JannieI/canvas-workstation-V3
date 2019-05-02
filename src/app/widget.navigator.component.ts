@@ -107,7 +107,7 @@ export class WidgetNavigatorComponent {
     ngParentNodeFilterKeyDropdown: string[] = [];       // Dropdown: Parent Nodes Keys Filter
     ngParentNodeFilterPropertyDropdown: string[] = [];  // Dropdown: Parent Nodes Properties Filter
     ngParentNodeFilterSelectedFieldName: string = '';   // Parent Node Filter
-    ngParentNodeFilterSelectedOperator: string = '';    // Parent Node Filter
+    ngParentNodeFilterSelectedOperator: string = 'Equal';    // Parent Node Filter
     ngParentNodeFilterSelectedValue: string = '';       // Parent Node Filter
     parentNodesFilteredList: string[] = [];             // List of Nodes, after filtered on NodeProperties
 
@@ -130,7 +130,7 @@ export class WidgetNavigatorComponent {
     filterID: number = -1;
     firstAdjacencyCellRowNr: number = -1;
     historyBackIndex: number = 0;                       // Note: this initial value is important
-    parentFilterErrorMessage: string = '';
+    parentFilterErrorMessage: string = '';              // Error Msg
     parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
     ngRelationshipRoles: string[] = [];
     relationshipFilterErrorMessage: string = '';
@@ -2408,16 +2408,15 @@ export class WidgetNavigatorComponent {
 
     changeParentFilterKey() {
         // Build the property values for the selected key in the Parent Filter
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClear', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentFilterKey', '@Start');
 
-        console.log('xx key ...', this.ngParentNodeFilterSelectedFieldName)
         this.ngParentNodeFilterPropertyDropdown = this.networkProperties
             .filter(np => np.nodeType == this.selectedParentNodeType 
                     && 
                     np.propertyKey === this.ngParentNodeFilterSelectedFieldName)
             .map(np => np.propertyValue);
-        this.ngParentNodeFilterPropertyDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterKeyDropdown);
-
+        this.ngParentNodeFilterPropertyDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterPropertyDropdown);
+        this.ngParentNodeFilterPropertyDropdown = ['', ...this.ngParentNodeFilterPropertyDropdown];
     }
 
     clickParentFilterClear() {
@@ -2426,7 +2425,7 @@ export class WidgetNavigatorComponent {
 
         this.ngParentNodeFilterKeyDropdown = [];
         this.ngParentNodeFilterSelectedFieldName = '';
-        this.ngParentNodeFilterSelectedOperator = '';
+        this.ngParentNodeFilterSelectedOperator = 'Equal';
         this.ngParentNodeFilterSelectedValue = '';
         this.parentNodesFilteredList = [];
     }
@@ -2435,20 +2434,21 @@ export class WidgetNavigatorComponent {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterSave', '@Start');
 
-        // TODO - for now, only one filter by choice.  In future, consider more than one as
+        // TODO - for now, only one filter on one option.  In future, consider more than one as
         // data structurs allows it
-
+        console.log('xx ngParentNodeFilterSelectedFieldName', this.ngParentNodeFilterSelectedFieldName)
+        console.log('xx ngParentNodeFilterSelectedValue', this.ngParentNodeFilterSelectedValue)
         // Validation
         if (this.ngParentNodeFilterSelectedFieldName === '') {
             this.parentFilterErrorMessage = 'The field name is compulsory';
             return;
         };
-        if (this.ngParentNodeFilterSelectedOperator) {
-            this.parentFilterErrorMessage = 'The operator is compulsory';
+        if (this.ngParentNodeFilterSelectedOperator === '') {
+            this.parentFilterErrorMessage === 'The operator is compulsory';
             return;
         };
-        if (this.ngParentNodeFilterSelectedValue) {
-            this.parentFilterErrorMessage = 'The value is compulsory';
+        if (this.ngParentNodeFilterSelectedValue === '') {
+            this.parentFilterErrorMessage === 'The value is compulsory';
             return;
         };
 
@@ -2462,11 +2462,12 @@ export class WidgetNavigatorComponent {
 
         // Make unique
         this.parentNodesFilteredList = Array.from(new Set(this.parentNodesFilteredList));
-
+console.log('xx parentNodesFilteredList', this.parentNodesFilteredList)
         // Filter Parent Nodes
-        this.ngParentNodeFilterKeyDropdown = this.ngParentNodeFilterKeyDropdown
+        this.ngDropdownParentNodes = this.ngDropdownParentNodes
             .filter(pn => this.parentNodesFilteredList.indexOf(pn) >= 0
             );
+            console.log('xx ngDropdownParentNodes', this.ngDropdownParentNodes)
     }
 
     clickRelationshipFilterClear() {
