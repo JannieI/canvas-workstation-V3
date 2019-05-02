@@ -1249,16 +1249,22 @@ export class WidgetNavigatorComponent {
             // Network Summary -> Fill Node Type
             if (that.selectedView === 'SummaryView') {
                 console.log('xx summ View')
-                that.selectedParentNodeType = childNodeClicked;
-                that.selectedParentNode = '';
-                that.selectedRelationship =  '';
-                let ev: any = {
-                    target: {
-                        value: childNodeClicked
-                    }
-                };
 
-                that.changeParentNodeType(ev);
+                // Select the Node Type, if one was clicked
+                if (that.ngDropdownParentNodeTypes.indexOf(childNodeClicked) >= 0) {
+                    console.log('xx nodeType clicked')
+                    that.selectedParentNodeType = childNodeClicked;
+                    that.selectedParentNode = '';
+                    that.selectedRelationship =  '';
+                    let ev: any = {
+                        target: {
+                            value: childNodeClicked
+                        }
+                    };
+    
+                    that.changeParentNodeType(ev);
+    
+                }
             } else {
                 // Find Child in list of visible children
                 let childClickedNodeType: string = '';
