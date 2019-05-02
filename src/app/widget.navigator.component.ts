@@ -2487,6 +2487,10 @@ export class WidgetNavigatorComponent {
         this.ngChildFilterShowTop = '';
         this.ngChildFilterSortFieldName = '';
         this.childNodesFilteredList = [];
+
+        // Refresh the Graph
+        this.checkShowGraph();
+        
     }
 
     clickChildFilterSave() {
