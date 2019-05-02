@@ -2687,6 +2687,7 @@ export class WidgetNavigatorComponent {
         // Refresh the graph
         this.selectedView = 'CommonNodeView';
         this.spinner = false;
+        
         this.showDistanceFromNode = true;
 
     }
@@ -2702,7 +2703,11 @@ export class WidgetNavigatorComponent {
         this.showDistanceFromNode = false;
         this.spinner = true;
         console.log('xx this.spinner',  this.spinner)
-        this.checkShowGraph();
+
+        // No CPU power to display spinner, thus delay start of calc method
+        setTimeout( () => {
+            this.checkShowGraph();
+        }, 30);
 
     }
 
