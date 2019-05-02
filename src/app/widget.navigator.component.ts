@@ -621,7 +621,8 @@ export class WidgetNavigatorComponent {
             .map(np => np.propertyKey);
         this.ngParentNodeFilterKeyDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterKeyDropdown);
 
-        this.ngParentNodeFilterPropertyDropdown.push('Koos');
+        // Reset filter properties
+        this.ngParentNodeFilterPropertyDropdown = [];
 
         // Reset
         this.visibleNumberChildrenStart = 0;
@@ -2405,6 +2406,19 @@ export class WidgetNavigatorComponent {
     //     });
     // }
 
+    changeParentFilterKey(ev: any) {
+        // Build the property values for the selected key in the Parent Filter
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClear', '@Start');
+
+        this.selectedParentNode = ev.target.value;
+        console.llog('xx key ...', this.ngParentNodeFilterSelectedFieldName, this.selectedParentNode)
+        // ngParentNodeFilterPropertyDropdown
+        // this.ngParentNodeFilterKeyDropdown = this.networkProperties
+        //     .filter(np => np.nodeType == this.selectedParentNodeType && np.propertyKey != '')
+        //     .map(np => np.propertyKey);
+        // this.ngParentNodeFilterKeyDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterKeyDropdown);
+
+    }
 
     clickParentFilterClear() {
         // Clear the Parent Filter

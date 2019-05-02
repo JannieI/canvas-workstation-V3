@@ -60,6 +60,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                     Field:
                     <select id="selects_3"
                         [(ngModel)]="ngParentNodeFilterSelectedFieldName"
+                        (change)="changeParentFilterKey($event)"
                         name="ngParentFilterFieldName"
                         >
                         <option *ngFor="let row of ngParentNodeFilterKeyDropdown">
