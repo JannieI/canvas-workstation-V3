@@ -377,7 +377,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                                     [(ngModel)]="ngChildNodeFilterSelectedFieldName"
                                     name="ngChildNodeFilterSelectedFieldName"
                                     >
-                                    <option *ngFor="let row of ngChildNodeFilterDropdown">
+                                    <option *ngFor="let row of ngChildNodeFilterKeyDropdown">
                                         {{ row }}
                                     </option>
                                 </select>
@@ -394,10 +394,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                                     <option>Not Equal</option>
                                     <option>Greater Than</option>
                                     <option>Greater Than Equal</option>
-                                    <option>Range</option>
-                                    <option>One Of</option>
-                                    <option>Valid</option>
-                                    <option>Selection</option>
                                 </select>
                             </div>
 
@@ -409,7 +405,15 @@ dimensions are set in app.html, and cannot be changed here. -->
                                     placeholder=""
                                     title="Enter a value for the filter. "
                                     >
-                            </div>
+                                <select id="selects_3"
+                                    [(ngModel)]="ngParentNodeFilterSelectedValue"
+                                    name="ngParentNodeFilterSelectedValue"
+                                    >
+                                    <option *ngFor="let row of ngChildNodeFilterPropertyDropdown">
+                                        {{ row }}
+                                    </option>
+                                </select>
+                                        </div>
 
                             <div class="graphAreaChildFilterValueTitle">
                                 Show top:

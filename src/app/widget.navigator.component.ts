@@ -114,7 +114,8 @@ export class WidgetNavigatorComponent {
     ngSelectedRelationshipFilterRole: string = '';      // Relationship Role Filter
     relationshipsFilteredList: string[] = [];           // List of Relationships, after filtered on NodeProperties
 
-    ngChildNodeFilterDropdown: string[] = [];           // Dropdown: Child Nodes Filter
+    ngChildNodeFilterKeyDropdown: string[] = [];        // Dropdown: Child Nodes Keys Filter
+    ngChildNodeFilterPropertyDropdown: string[] = [];   // Dropdown: Child Nodes PropertiesFilter
     ngChildNodeFilterSelectedFieldName: string = '';    // Child Node Filter
     ngChildNodeFilterSelectedOperator: string = '';     // Child Node Filter
     ngChildNodeFilterSelectedValue: string = '';        // Child Node Filter
@@ -161,8 +162,8 @@ export class WidgetNavigatorComponent {
     specification: any;             // Full spec for Vega, or other grammar
 
     // Popups and forms
-    commonParentSelected: { 
-        childNode: string; 
+    commonParentSelected: {
+        childNode: string;
         isSelected: boolean;
     }[] = [];
     showCommonParent: boolean = false;
@@ -948,8 +949,8 @@ export class WidgetNavigatorComponent {
     }
 
     createGraphCommonParentView(
-        inputHeight: number = 0, 
-        inputWidth: number = 0, 
+        inputHeight: number = 0,
+        inputWidth: number = 0,
         addToHistory: boolean = true
         ) {
         // Create the data for the view
@@ -1336,6 +1337,16 @@ export class WidgetNavigatorComponent {
                 });
             });
 
+            // Create Child Filters
+            // TODO - should be done more efficiently, or less often (ie when open ChildFilter)
+            console.log('xx this.childDataAll', this.childDataAll, this.networkProperties)
+            let childFilter: NavigatorProperties[] = this.networkProperties
+                .filter(np => this.childDataAll.indexOf(np.nodeName) >= 0);
+console.log('x childFilter', childFilter)
+            this.ngChildNodeFilterKeyDropdown = childFilter.map(cf => cf.propertyKey);
+            console.log('xx ngChildNodeFilterKeyDropdown', this.ngChildNodeFilterKeyDropdown)
+            this.ngChildNodeFilterPropertyDropdown = childFilter.map(cf => cf.propertyValue);
+            console.log('xx ngChildNodeFilterPropertyDropdown', this.ngChildNodeFilterPropertyDropdown)
             // Return
             return localGraphData;
 
@@ -2357,8 +2368,8 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeParentFilterKey', '@Start');
 
         this.ngParentNodeFilterPropertyDropdown = this.networkProperties
-            .filter(np => np.nodeType == this.selectedParentNodeType 
-                    && 
+            .filter(np => np.nodeType == this.selectedParentNodeType
+                    &&
                     np.propertyKey === this.ngParentNodeFilterSelectedFieldName)
             .map(np => np.propertyValue);
         this.ngParentNodeFilterPropertyDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterPropertyDropdown);
@@ -2461,7 +2472,7 @@ export class WidgetNavigatorComponent {
         // Clear Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClear', '@Start');
 
-        this.ngChildNodeFilterDropdown = [];
+        this.ngChildNodeFilterKeyDropdown = [];
         this.ngChildNodeFilterSelectedFieldName = '';
         this.ngChildNodeFilterSelectedOperator = '';
         this.ngChildNodeFilterSelectedValue = '';
@@ -2503,7 +2514,7 @@ export class WidgetNavigatorComponent {
         this.childNodesFilteredList = Array.from(new Set(this.childNodesFilteredList));
 
         // Filter Child Nodes
-        this.ngChildNodeFilterDropdown = this.ngChildNodeFilterDropdown
+        this.ngChildNodeFilterKeyDropdown = this.ngChildNodeFilterKeyDropdown
             .filter(pn => this.childNodesFilteredList.indexOf(pn) >= 0
             );
 
@@ -2555,10 +2566,10 @@ export class WidgetNavigatorComponent {
         this.selectedView = 'CommonParentView';
 
         this.commonParentSelected = [];
-        this.childDataAll.forEach(chld => 
+        this.childDataAll.forEach(chld =>
             this.commonParentSelected.push(
-                { 
-                    childNode: chld, 
+                {
+                    childNode: chld,
                     isSelected: false
                 }
             )
@@ -2567,8 +2578,8 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickCommonParentNode(selCommonParentNode: { 
-        childNode: string; 
+    clickCommonParentNode(selCommonParentNode: {
+        childNode: string;
         isSelected: boolean;
     }) {
         // User clicked a node in the Common Parents list: toggle from selected list
@@ -2576,7 +2587,7 @@ export class WidgetNavigatorComponent {
 
         let commonParentIndex: number = this.commonParentSelected.findIndex(
             cp => cp.childNode === selCommonParentNode.childNode);
-        this.commonParentSelected[commonParentIndex].isSelected = 
+        this.commonParentSelected[commonParentIndex].isSelected =
             !this.commonParentSelected[commonParentIndex].isSelected;
 
     }
@@ -2594,7 +2605,7 @@ export class WidgetNavigatorComponent {
 
         this.commonParentSelected.forEach(scp => scp.isSelected = true);
     }
-    
+
     clickCloseCommonParentViewPopup() {
         // Close the popup for Common Parents
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseCommonParentViewPopup', '@Start');
@@ -2625,7 +2636,7 @@ export class WidgetNavigatorComponent {
         this.showCommonNode = true;
 
     }
-    
+
     clickCommonNodeView() {
         // Show the Common Parent view = list of all nodes where any children has the
         // same parent as a specified node
@@ -2639,7 +2650,7 @@ export class WidgetNavigatorComponent {
         this.checkShowGraph();
 
     }
-    
+
     clickCloseCommonNodeViewPopup() {
         // Close the popup for Common Nodes
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseCommonNodeViewPopup', '@Start');
@@ -2664,7 +2675,7 @@ export class WidgetNavigatorComponent {
         this.showDistanceFromNode = true;
 
     }
-    
+
     clickDistanceView() {
         // Show the Distance view = sub tree with all nodes between a given child and
         // a specified node
