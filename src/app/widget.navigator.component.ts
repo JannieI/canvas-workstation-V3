@@ -168,6 +168,7 @@ export class WidgetNavigatorComponent {
     showCommonParent: boolean = false;
     showDistanceFromNode: boolean = false;
     showCommonNode: boolean = false;
+    showNodeContextMenu: boolean = false;
     showGraphHelp: boolean = false;
     showGraphNotes: boolean = false;
     showGraphProperties: boolean = false;
@@ -1310,7 +1311,11 @@ export class WidgetNavigatorComponent {
             // Needs separate object, else item.datum.text is sometimes undefined.
             let datumClick: any = item.datum;
             let childNodeOvered: string = datumClick.name;
-            console.log('xx MOUSEover !!', childNodeOvered)
+            console.log('xx MOUSEover !!', childNodeOvered, event, item)
+
+
+            that.showNodeContextMenu = true;
+
         });
 
         view.renderer('svg')
