@@ -1482,7 +1482,7 @@ export class WidgetNavigatorComponent {
             } else {
                 relationships = this.distinctRelationships('All', parentNodeName);
             };
-            
+
             // Set length
             this.graphDataLength = relationships.length;
 
@@ -1546,7 +1546,14 @@ export class WidgetNavigatorComponent {
 
         // 4. parent - relationship - roles - children
         if (isAddLevelForRelationship  &&  isAddLevelForOnRole) {
-            let relationships: string[] = this.distinctRelationships('All', parentNodeName)
+            let relationships: string[] = [];
+            
+            // Filter Relationships
+            if (this.selectedRelationship != 'All') {
+                relationships = [this.selectedRelationship];
+            } else {
+                relationships = this.distinctRelationships('All', parentNodeName);
+            };
 
             // Set length
             this.graphDataLength = relationships.length;
