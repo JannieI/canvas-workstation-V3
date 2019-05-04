@@ -8,11 +8,14 @@ dimensions are set in app.html, and cannot be changed here. -->
 
     <!-- GRAPH AREA HEADER -->
     <div class="graphHeaderContainer">
-        <div class="graphHeaderText">
+        <div *ngIf="showNavBarExplore">
+            Solutions for {{ graphTitle }}
+        </div>    
+        <div class="graphHeaderText" *ngIf="showNavBarExplore">
             For Node(s)
         </div>
 
-        <div class="select graphHeaderParentNodeType"
+        <div class="select graphHeaderParentNodeType" *ngIf="showNavBarExplore"
             title="Select a node type for which children must be shown"
             >
             <select [(ngModel)]="selectedParentNodeType"
@@ -26,7 +29,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             </select>
         </div>
 
-        <div class="select graphHeaderParentNode"
+        <div class="select graphHeaderParentNode" *ngIf="showNavBarExplore"
             title="Select a specific node for which children must be shown"
             >
             <select [(ngModel)]="selectedParentNode"
@@ -39,7 +42,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             </select>
         </div>
 
-        <clr-signpost style="width: 400;">
+        <clr-signpost style="width: 400;" *ngIf="showNavBarExplore">
             <clr-icon shape="filter"
                 size="12"
                 style="color: blue; margin-top: -4px;"
@@ -113,7 +116,8 @@ dimensions are set in app.html, and cannot be changed here. -->
             </clr-signpost-content>
         </clr-signpost>
 
-        <clr-dropdown class="graphHeaderMenuText">
+        <!-- Drop Down Bar Menu -->
+        <clr-dropdown class="graphHeaderMenuText" *ngIf="showNavBarExplore">
             <button
                 type="button"
                 class="btn btn-link btn-sm"
@@ -181,11 +185,13 @@ dimensions are set in app.html, and cannot be changed here. -->
             </clr-dropdown-menu>
         </clr-dropdown>
 
+        <!-- Relationship -->
         <br>
-        <div class="graphHeaderText">
+        <div class="graphHeaderText" *ngIf="showNavBarExplore">
             Show Relationship(s)
         </div>
-        <div class="select graphHeaderRelationship"
+
+        <div class="select graphHeaderRelationship" *ngIf="showNavBarExplore"
             title="Select a relationship to filter on"
             >
             <select [(ngModel)]="selectedRelationship"
@@ -198,7 +204,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             </select>
         </div>
 
-        <clr-signpost style="width: 400;" *ngIf="selectedRelationship">
+        <clr-signpost style="width: 400;" *ngIf="selectedRelationship  &&  showNavBarExplore">
             <clr-icon shape="filter"
                 style="color: blue; margin-top: -4px;"
                 title="Filter the relationships to show less in the dropdown"
@@ -252,6 +258,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             Back
         </span>
 
+        <!-- Explore / Solution Menu Bar -->
         <div class="graphAreaTitle">
             <div class="errorMessage">
                 {{ errorMessage }}
