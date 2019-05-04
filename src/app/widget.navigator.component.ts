@@ -1474,8 +1474,15 @@ export class WidgetNavigatorComponent {
 
         // 3. parent - relationship - children
         if (isAddLevelForRelationship  &&  !isAddLevelForOnRole) {
-            let relationships: string[] = this.distinctRelationships('All', parentNodeName)
-
+            let relationships: string[] = [];
+            
+            // Filter Relationships
+            if (this.selectedRelationship != 'All') {
+                relationships = [this.selectedRelationship];
+            } else {
+                relationships = this.distinctRelationships('All', parentNodeName);
+            };
+            
             // Set length
             this.graphDataLength = relationships.length;
 
@@ -2027,43 +2034,43 @@ export class WidgetNavigatorComponent {
         // Fill ParentNode type Dropdown
         let leftRelationships: string[] = this.networkRelationships
             .filter(nr => (
-                            (
-                                nr.leftNodeType === selectedParentNodeType
-                                &&  selectedParentNodeType != 'All'
-                            )
-                            ||
-                            selectedParentNodeType == 'All'
-                           )
+                (
+                    nr.leftNodeType === selectedParentNodeType
+                    &&  selectedParentNodeType != 'All'
+                )
+                ||
+                selectedParentNodeType == 'All'
+                )
             )
             .filter(nr => selectedParentNodeName == 'All'
-                          ||
-                          (
-                              selectedParentNodeName != 'All'
-                              &&
-                              nr.leftNodeName === selectedParentNodeName
-                          )
+                ||
+                (
+                    selectedParentNodeName != 'All'
+                    &&
+                    nr.leftNodeName === selectedParentNodeName
+                )
             )
             .filter(nr => nr.relationshipLeftToRight != '')
             .map(nr => nr.relationshipLeftToRight);
 
         let rightRelationships: string[] = this.networkRelationships
             .filter(nr => (
-                            (
-                                nr.rightNodeType === selectedParentNodeType
-                                &&
-                                selectedParentNodeType != 'All'
-                            )
-                            ||
-                            selectedParentNodeType == 'All'
-                           )
+                (
+                    nr.rightNodeType === selectedParentNodeType
+                    &&
+                    selectedParentNodeType != 'All'
+                )
+                ||
+                selectedParentNodeType == 'All'
+                )
             )
             .filter(nr => selectedParentNodeName == 'All'
-                          ||
-                          (
-                              selectedParentNodeName != 'All'
-                              &&
-                              nr.rightNodeName === selectedParentNodeName
-                          )
+                ||
+                (
+                    selectedParentNodeName != 'All'
+                    &&
+                    nr.rightNodeName === selectedParentNodeName
+                )
             )
             .filter(nr => nr.relationshipRightToLeft != '')
             .map(nr => nr.relationshipRightToLeft);
