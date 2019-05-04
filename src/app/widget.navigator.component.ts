@@ -2755,7 +2755,7 @@ export class WidgetNavigatorComponent {
         // Close the popup for Common Nodes
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseCommonNodeViewPopup', '@Start');
 
-        this.showCommonParent = false;
+        this.showCommonNode = false;
     }
 
     clickCloseDistanceFromNodeViewPopup() {
