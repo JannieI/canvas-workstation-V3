@@ -1544,7 +1544,7 @@ export class WidgetNavigatorComponent {
 
         };
 
-        // 4. parent - relationship - roles - children
+         // 4. parent - relationship - roles - children
         if (isAddLevelForRelationship  &&  isAddLevelForOnRole) {
             let relationships: string[] = [];
             
@@ -1554,7 +1554,7 @@ export class WidgetNavigatorComponent {
             } else {
                 relationships = this.distinctRelationships('All', parentNodeName);
             };
-
+            
             // Set length
             this.graphDataLength = relationships.length;
 
@@ -2634,6 +2634,16 @@ export class WidgetNavigatorComponent {
         // Show the default view = tree with children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickDefaultView', '@Start');
 
+        // No ready to View
+        if (this.selectedParentNodeType == ''
+            ||
+            this.selectedParentNode == ''
+            ||
+            this.selectedRelationship == ''
+        ) {
+            return;
+        };
+        
         // Refresh the graph
         this.selectedView = 'DefaultView'
 
