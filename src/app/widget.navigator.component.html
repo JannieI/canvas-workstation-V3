@@ -8,9 +8,6 @@ dimensions are set in app.html, and cannot be changed here. -->
 
     <!-- GRAPH AREA HEADER -->
     <div class="graphHeaderContainer">
-        <div *ngIf="showNavBarExplore">
-            Solutions for {{ graphTitle }}
-        </div>    
         <div class="graphHeaderText" *ngIf="showNavBarExplore">
             For Node(s)
         </div>
@@ -258,6 +255,11 @@ dimensions are set in app.html, and cannot be changed here. -->
             Back
         </span>
 
+        <!-- Solutions Heading -->
+        <div class="graphHeaderText" *ngIf="!showNavBarExplore">
+            Solutions for {{ graphTitle }}
+        </div>    
+    
         <!-- Explore / Solution Menu Bar -->
         <div class="graphAreaTitle">
             <div class="errorMessage">

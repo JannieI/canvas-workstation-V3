@@ -147,7 +147,7 @@ export class WidgetNavigatorComponent {
 
     // Form layout and elements
     graphNotes: string = 'Optional Additional information';
-    graphTitle: string = 'Directors for Absa, filtered by age (9/24)';
+    graphTitle: string = 'Directors for Absa, filtered by age (1/12)';
     showHistory: boolean = false;
     showNetwork: boolean = false;       // Show Network popup
     showCustomView: boolean = false;    // Show Custom View popup
@@ -2710,7 +2710,7 @@ export class WidgetNavigatorComponent {
         // Close the popup for Common Parents
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseCommonParentViewPopup', '@Start');
 
-        this.showCommonNode = false;
+        this.showCommonParent = false;
     }
 
     clickCommonParentView() {
