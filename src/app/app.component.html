@@ -4714,6 +4714,13 @@
 </data-datasourceOverview>
 
 
+<!-- Modal: Data Networks -->
+<data-networks
+    *ngIf="showModalNetworks"
+    (formDataNetworksClosed)="handleCloseDataNetworks($event)">Load Data Networks ...
+</data-networks>
+
+
 <!-- Modal: Data Combination Append -->
 <data-combination-append
     *ngIf="showModalCombinationAppend"
