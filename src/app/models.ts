@@ -1693,6 +1693,24 @@ export class CanvasHttpResponse {
     "token"?: string;                       // Token, only provided by Login
 }
 
+export class NavigatorNetwork {
+   _id?: string;                           // Mongo ID (read only)
+   id: number;                             // Unique record ID
+
+   name: string;                           // Name of Network
+   description: string;                    // Description of the Network
+
+   accessType: string;                     // How to access D: Private, Public, AccessList
+   subDatasources: number[];               // Array of related sub DS ids, used for networks
+
+   // Who: Create and Edit info
+   createMethod: string;                   // Method how Network was created, ie directFile, ..., managedSQLEditor
+   createdBy: string;                      // Creator
+   createdOn: Date;                        // DateTime Created
+   editor: string;                         // Last Edited By
+   dateEdited: Date;                       // Last Edited On
+}
+
 export class NavigatorRelationship {
         id: number;                         // Unique record ID
         networkID: number;                  // FK to Network

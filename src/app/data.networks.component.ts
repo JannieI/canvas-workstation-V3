@@ -25,7 +25,7 @@ import { CanvasAuditTrail }           from './models';
     templateUrl: './data.networks.component.html',
     styleUrls: ['./data.networks.component.css']
 })
-export class DataNetworksComponent implements OnInit {
+export class DataNetworksComponent implements OnInit { 
 
     @Output() formDataNetworksClosed: EventEmitter<string> = new EventEmitter();
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
