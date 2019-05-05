@@ -113,6 +113,7 @@ import { DataTransformationComponent }          from './data.transformation.comp
 import { DataEditDatasourceComponent }          from './data.editDatasource.component';
 import { DatasourceDescriptionComponent }       from './data.description.component';
 import { DataDatasourceOverviewComponent }      from './data.datasourceOverview.component';
+import { DataNetworksComponent }                from './data.networks.component';
 import { DataCombinationComponent }             from './data.combination.component';
 import { DataCombinationAppendComponent }       from './data.combination.append.component';
 import { DatasourceShareComponent }             from './data.share.component';
@@ -222,6 +223,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataTransformationComponent,
         DataEditDatasourceComponent,
         DatasourceDescriptionComponent,
+        DataNetworksComponent,
         DataCombinationComponent,
         DataCombinationAppendComponent,
         DatasourceShareComponent,
