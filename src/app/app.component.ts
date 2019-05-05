@@ -1784,7 +1784,15 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectExport = false;
 
     }
+    
+    handleCloseDataNetworks(action: string) {
+        // Handle close of Networks form
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseDataNetworks', '@Start');
 
+        this.menuOptionClickPostAction();
+
+        this.showModalNetworks = false;
+    }
 
     handleCloseDataCombinationAppend(action: string) {
         // Handle close of CombinationAppend form
