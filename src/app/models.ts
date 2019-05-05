@@ -1696,15 +1696,12 @@ export class CanvasHttpResponse {
 export class NavigatorNetwork {
    _id?: string;                           // Mongo ID (read only)
    id: number;                             // Unique record ID
-
    name: string;                           // Name of Network
    description: string;                    // Description of the Network
 
    accessType: string;                     // How to access D: Private, Public, AccessList
    subDatasources: number[];               // Array of related sub DS ids, used for networks
 
-   // Who: Create and Edit info
-   createMethod: string;                   // Method how Network was created, ie directFile, ..., managedSQLEditor
    createdBy: string;                      // Creator
    createdOn: Date;                        // DateTime Created
    editor: string;                         // Last Edited By
