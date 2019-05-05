@@ -233,6 +233,18 @@ export class WidgetNavigatorComponent {
                 console.error('Error in Navigator.OnInit reading datasources: ' + err);
             });
 
+            console.log('xx pre ...')
+        // Read Networks from DB
+        this.globalVariableService.getResource('navigatorNetworks')
+            .then(res => {
+                console.log('xx post navigatorNetworks ...', res)
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Navigator.OnInit reading networks: ' + err);
+            });
+
+            
     }
 
     clickMenuShowNetworks() {
