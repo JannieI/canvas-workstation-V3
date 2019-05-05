@@ -297,6 +297,7 @@ export class AppComponent implements OnInit {
     showGridSubscription: Subscription;    // Observable
     showMainMenu: boolean = true;
     showModalBusinessGlossary: boolean = false;
+    showModalNetworks: boolean = false;
     showModalCombinationAppend: boolean = false;
     showModalCollaborateAuditTrail: boolean = false;
     showModalCollaborateMessages: boolean = false;
@@ -1783,6 +1784,7 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectExport = false;
 
     }
+
 
     handleCloseDataCombinationAppend(action: string) {
         // Handle close of CombinationAppend form
@@ -3978,6 +3980,31 @@ export class AppComponent implements OnInit {
         };
 
         this.showModalDataOverview = true;
+    }
+
+    clickMenuDataNetworks() {
+        // Show form to Add / Edit Networks
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuDataNetworks', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanCreateRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You cannot add a new Datasource (role must be added to your user)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        if (!this.menuOptionClickPreAction()) {
+            return;
+        };
+
+        this.showModalNetworks = true;
     }
 
     clickMenuDataCombinationAppend() {
