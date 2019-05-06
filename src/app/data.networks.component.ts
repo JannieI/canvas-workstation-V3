@@ -18,6 +18,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
+import { Datasource }                 from './models';
 import { NavigatorNetwork }           from './models';
 
 @Component({
@@ -43,9 +44,11 @@ export class DataNetworksComponent implements OnInit {
 
     }
 
+    datasourceNames: string[] = [];
+    datasources: Datasource[] = [];
     editing: boolean = false;  // TODO - must be received via @Input
-    navigatorNetworks: NavigatorNetwork[];
     errorMessage: string = '';
+    navigatorNetworks: NavigatorNetwork[];
     selectedRow: number = 0;
     selectedNavigatorNetwork: NavigatorNetwork = null;
     selectedNetworkName: string = '';

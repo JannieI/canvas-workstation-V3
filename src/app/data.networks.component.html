@@ -111,8 +111,9 @@
                             name="repeatFrequency"
                             [disabled]="!editing  &&  !adding"
                             >
-                            <option>DS 1</option>
-                            <option>DS 2</option>
+                            <option *ngFor="let row of datasourceNames; let i = index">
+                                {{ row }}
+                            </option>
                         </select>
                     </div>
 
@@ -125,8 +126,9 @@
                             name="repeatFrequency"
                             [disabled]="!editing  &&  !adding"
                             >
-                            <option>DS 1</option>
-                            <option>DS 2</option>
+                            <option *ngFor="let row of datasourceNames; let i = index">
+                                {{ row }}
+                            </option>
                         </select>
                     </div>
 
