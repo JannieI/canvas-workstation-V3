@@ -84,6 +84,13 @@ export class DataNetworksComponent implements OnInit {
 		this.formDataNetworksClosed.emit('Close');
     }
 
+    clickAdd() {
+        // Add, and then close the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+		this.formDataNetworksClosed.emit('Update');
+    }
+
     clickSave() {
         // Save, and then close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
