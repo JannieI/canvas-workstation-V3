@@ -130,13 +130,22 @@
                         </select>
                     </div>
 
-                    <div class="gridButtonCancel" *ngIf="editing">
+                    <div class="gridButtonCancel">
                         <button
                             type="button"
                             class="btn btn-secondary"
                             (click)="clickClose()"
                             >
                             Cancel
+                        </button>
+                    </div>
+                    <div class="gridButtonAdd" *ngIf="!editing">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickSave()"
+                            >
+                            Add
                         </button>
                     </div>
                     <div class="gridButtonAdd" *ngIf="editing">
@@ -148,7 +157,7 @@
                             Save
                         </button>
                     </div>
-
+    
 
 
 
