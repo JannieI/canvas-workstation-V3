@@ -49,6 +49,8 @@ export class DataNetworksComponent implements OnInit {
     editing: boolean = false;  // TODO - must be received via @Input
     errorMessage: string = '';
     navigatorNetworks: NavigatorNetwork[];
+    selectedDashboardRelationshipID: number = -1;
+    selectedDashboardPropertyID: number = -1;
     selectedRow: number = 0;
     selectedNavigatorNetwork: NavigatorNetwork = null;
     selectedNetworkName: string = '';
@@ -115,8 +117,20 @@ export class DataNetworksComponent implements OnInit {
     changeSelectPropertyDS(ev: any) {
         // User selected a Property DS
         this.globalFunctionService.printToConsole(this.constructor.name,'changeSelectPropertyDS', '@Start');
+        let selectedDashboardString: string = ev.target.value;
 
-        console.log('xx ev.target.value', ev.target.value);
+        if (selectedDashboardString != 'None') {
+
+            // Get D info
+            let openBracket: number = selectedDashboardString.indexOf('(');
+            let closeBracket: number = selectedDashboardString.indexOf(')');
+            this.selectedDashboardRelationshipID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
+
+        } else {
+            this.selectedDashboardRelationshipID = null;
+        };
+
+        console.log('xx ev.target.value', ev.target.value), this.selectedDashboardRelationshipID;
 
     }
 
