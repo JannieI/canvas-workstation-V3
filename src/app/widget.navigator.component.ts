@@ -233,16 +233,32 @@ export class WidgetNavigatorComponent {
                 console.error('Error in Navigator.OnInit reading datasources: ' + err);
             });
 
-            console.log('xx pre ...')
+
+
+
         // Read Networks from DB
-        this.globalVariableService.getResource('navigatorNetworks')
-            .then(res => {
-                console.log('xx post navigatorNetworks ...', res)
-            })
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Navigator.OnInit reading networks: ' + err);
-            });
+        // TODO - Build Into rest !!!!
+        // this.globalVariableService.getResource('navigatorNetworks')
+        //     .then(res => {
+        //         console.log('xx post navigatorNetworks ...', res)
+        //         this.globalVariableService.getData(
+        //             'datasourceID=' + res[0].subDatasources[0].toString()
+        //         )
+        //             .then(res => {
+        //                 console.log('xx post navigatorNetwork Rel', res[0]);
+        //             })
+        //             .catch(err => console.log('xx post navigatorNetwork Rel', err))
+        //     this.globalVariableService.getData(
+        //             'datasourceID=' + res[0].subDatasources[1].toString()
+        //         )
+        //             .then(res => {
+        //                 console.log('xx post navigatorNetwork Prop', res[0])
+        //             })
+        //             .catch(err => console.log('xx post navigatorNetwork Rel', err))
+        //     })
+        //     .catch(err => {
+        //         console.error('Error in Navigator.OnInit reading networks: ' + err);
+        //     });
 
             
     }
