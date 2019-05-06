@@ -47,7 +47,9 @@ export class DataNetworksComponent implements OnInit {
     navigatorNetworks: NavigatorNetwork[];
     errorMessage: string = '';
     selectedRow: number = 0;
-    selectedNavigatorNetwork: NavigatorNetwork[] = [];
+    selectedNavigatorNetwork: NavigatorNetwork = null;
+    selectedNetworkName: string = '';
+    selectedNetworkDescription: string = '';
     selectedPropertyDS: number = -1;
     selectedRelationshipDS: number = -1;
 

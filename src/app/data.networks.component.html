@@ -75,7 +75,7 @@
                         <b>Name:</b>
                     </div>
                     <div class="gridScheduleName">
-                            <input [(ngModel)]="selectedNavigatorNetwork.name"
+                            <input [(ngModel)]="selectedNetworkName"
                             type="text"
                             name="name"
                             placeholder="Name of the Schedule"
@@ -92,7 +92,7 @@
                         <b>Description:</b>
                     </div>
                     <div class="gridScheduleDescription">
-                            <input [(ngModel)]="selectedNavigatorNetwork.description"
+                            <input [(ngModel)]="selectedNetworkDescription" 
                             type="text"
                             name="name"
                             placeholder="Description of the Schedule"
@@ -126,7 +126,7 @@
                         </select>
                     </div>
 
-                    <div class="gridButtonCancel" *ngIf="editing  ||  adding">
+                    <div class="gridButtonCancel" *ngIf="editing">
                         <button
                             type="button"
                             class="btn btn-secondary"
@@ -135,7 +135,7 @@
                             Cancel
                         </button>
                     </div>
-                    <div class="gridButtonAdd" *ngIf="editing  ||  adding">
+                    <div class="gridButtonAdd" *ngIf="editing">
                         <button
                             type="button"
                             class="btn btn-primary"
