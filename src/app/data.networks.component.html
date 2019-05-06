@@ -109,7 +109,7 @@
                         >
                         <select [(ngModel)]="selectedRelationshipDS"
                             name="repeatFrequency"
-                            [disabled]="!editing  &&  !adding"
+                            (change)="changeSelectRelationshipDS($event)" 
                             >
                             <option *ngFor="let row of datasourceNames; let i = index">
                                 {{ row }}
@@ -124,7 +124,7 @@
                         >
                         <select [(ngModel)]="selectedPropertyDS"
                             name="repeatFrequency"
-                            [disabled]="!editing  &&  !adding"
+                            (change)="changeSelectPropertyDS($event)"
                             >
                             <option *ngFor="let row of datasourceNames; let i = index">
                                 {{ row }}

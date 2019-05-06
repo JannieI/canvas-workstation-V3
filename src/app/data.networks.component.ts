@@ -104,6 +104,13 @@ export class DataNetworksComponent implements OnInit {
         this.selectedRow = index;
     }
 
+    changeSelectRelationshipDS(ev: any) {
+        // User selected a Relationship DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeSelectRelationshipDS', '@Start');
+
+        console.log('xx ev.target.value', ev.target.value);
+
+    }
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
