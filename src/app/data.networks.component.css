@@ -47,7 +47,7 @@
     .gridTable {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 21;
+        grid-column-end: 12;
         grid-row-start: 2;
         grid-row-end: 18;
         margin-left: 20px;
