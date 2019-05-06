@@ -18,7 +18,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { NavigatorHistory }           from './models';
+import { NavigatorNetwork }           from './models';
 
 @Component({
     selector: 'data-networks',
@@ -37,15 +37,19 @@ export class DataNetworksComponent implements OnInit {
 
         // Known ones
         if (event.code === 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose('Close');
+            this.clickClose();
             return;
         };
 
     }
 
-    navigatorNetworks: NavigatorHistory[];
+    editing: boolean = false;  // TODO - must be received via @Input
+    navigatorNetworks: NavigatorNetwork[];
     errorMessage: string = '';
     selectedRow: number = 0;
+    selectedNavigatorNetwork: NavigatorNetwork[] = [];
+    selectedPropertyDS: number = -1;
+    selectedRelationshipDS: number = -1;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -71,10 +75,12 @@ export class DataNetworksComponent implements OnInit {
         this.selectedRow = index;
     }
 
-    clickClose(action: string) {
+    clickClose() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formDataNetworksClosed.emit(action);
+		this.formDataNetworksClosed.emit('Close');
     }
+
+
 }

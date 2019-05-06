@@ -1,12 +1,12 @@
 <div class="modal modalBox">
         <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
-    
+
                 <div class="gridOverall">
-                    <button type="button" class="closeButton" (click)="clickClose('Close')">
+                    <button type="button" class="closeButton" (click)="clickClose()">
                         <b>X</b>
                     </button>
-    
+
                     <div class="gridTitle">
                         <b>Networks.</b>
                         <clr-signpost>
@@ -25,13 +25,13 @@
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
-    
+
                     </div>
-    
+
                     <div class="gridErrorMessage">
                         {{ errorMessage }}
                     </div>
-    
+
                     <div class="gridTable">
                         <clr-datagrid>
                             <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
@@ -42,7 +42,7 @@
                             <clr-dg-column [clrDgField]="'createdOn'">CreatedOn</clr-dg-column>
                             <clr-dg-column [clrDgField]="'editor'">Editor</clr-dg-column>
                             <clr-dg-column [clrDgField]="'dateEdited'">EditedOn</clr-dg-column>
-    
+
                             <clr-dg-row *clrDgItems="let row of navigatorNetworks;
                                 let i = index"
                                 [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
@@ -58,16 +58,16 @@
                                 <clr-dg-cell>{{ row.editor }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.dateEdited }}</clr-dg-cell>
                             </clr-dg-row>
-    
+
                             <clr-dg-footer>
                                 {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                                 of {{pagination.totalItems}} rows
                                 <clr-dg-pagination #pagination [clrDgPageSize]="9"></clr-dg-pagination>
                             </clr-dg-footer>
-    
+
                         </clr-datagrid>
                     </div>
-    
+
 
 
 
@@ -75,7 +75,7 @@
                         <b>Name:</b>
                     </div>
                     <div class="gridScheduleName">
-                            <input [(ngModel)]="selectedDashboardSchedule.name"
+                            <input [(ngModel)]="selectedNavigatorNetwork.name"
                             type="text"
                             name="name"
                             placeholder="Name of the Schedule"
@@ -87,12 +87,12 @@
                             [disabled]="!editing  &&  !adding"
                             >
                     </div>
-    
+
                     <div class="gridScheduleDescriptionTitle">
                         <b>Description:</b>
                     </div>
                     <div class="gridScheduleDescription">
-                            <input [(ngModel)]="selectedDashboardSchedule.description"
+                            <input [(ngModel)]="selectedNavigatorNetwork.description"
                             type="text"
                             name="name"
                             placeholder="Description of the Schedule"
@@ -107,7 +107,7 @@
 
                     <div class="select gridgridRelationshipDS"
                         >
-                        <select [(ngModel)]="selectedDashboardSchedule.repeatFrequency"
+                        <select [(ngModel)]="selectedRelationshipDS"
                             name="repeatFrequency"
                             [disabled]="!editing  &&  !adding"
                             >
@@ -117,7 +117,7 @@
                     </div>
                     <div class="select gridPropertyDS"
                         >
-                        <select [(ngModel)]="selectedDashboardSchedule.repeatFrequency"
+                        <select [(ngModel)]="selectedPropertyDS"
                             name="repeatFrequency"
                             [disabled]="!editing  &&  !adding"
                             >
@@ -125,12 +125,12 @@
                             <option>DS 2</option>
                         </select>
                     </div>
-    
+
                     <div class="gridButtonCancel" *ngIf="editing  ||  adding">
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            (click)="clickCancel()"
+                            (click)="clickClose()"
                             >
                             Cancel
                         </button>
@@ -144,15 +144,14 @@
                             Save
                         </button>
                     </div>
-        
+
 
 
 
 
                 </div>
-    
+
             </div>
         </div>
     </div>
-    
-    
+
