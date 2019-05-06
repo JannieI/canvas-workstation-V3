@@ -68,6 +68,87 @@
                         </clr-datagrid>
                     </div>
     
+
+
+                    <div class="select gridgridRelationshipDS"
+                        >
+                        <select [(ngModel)]="selectedDashboardSchedule.repeatFrequency"
+                            name="repeatFrequency"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                            <option>DS 1</option>
+                            <option>DS 2</option>
+                        </select>
+                    </div>
+                    <div class="select gridPropertyDS"
+                        >
+                        <select [(ngModel)]="selectedDashboardSchedule.repeatFrequency"
+                            name="repeatFrequency"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                            <option>DS 1</option>
+                            <option>DS 2</option>
+                        </select>
+                    </div>
+
+
+                    <div class="gridScheduleNameTitle">
+                        <b>Name:</b>
+                    </div>
+                    <div class="gridScheduleName">
+                            <input [(ngModel)]="selectedDashboardSchedule.name"
+                            type="text"
+                            name="name"
+                            placeholder="Name of the Schedule"
+                            #nameVar="ngModel"
+                            required
+                            minlength="2"
+                            maxlength="250"
+                            [style.color]="!nameVar.valid  &&  editing ? 'red' : 'gray'"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                    </div>
+    
+                    <div class="gridScheduleDescriptionTitle">
+                        <b>Description:</b>
+                    </div>
+                    <div class="gridScheduleDescription">
+                            <input [(ngModel)]="selectedDashboardSchedule.description"
+                            type="text"
+                            name="name"
+                            placeholder="Description of the Schedule"
+                            #descriptionVar="ngModel"
+                            required
+                            minlength="2"
+                            maxlength="500"
+                            [style.color]="!descriptionVar.valid  &&  editing ? 'red' : 'gray'"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                    </div>
+    
+                    <div class="gridButtonCancel" *ngIf="editing  ||  adding">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickCancel()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="gridButtonAdd" *ngIf="editing  ||  adding">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                    </div>
+        
+
+
+
+
                 </div>
     
             </div>
