@@ -111,6 +111,15 @@ export class DataNetworksComponent implements OnInit {
         console.log('xx ev.target.value', ev.target.value);
 
     }
+
+    changeSelectPropertyDS(ev: any) {
+        // User selected a Property DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeSelectPropertyDS', '@Start');
+
+        console.log('xx ev.target.value', ev.target.value);
+
+    }
+
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
