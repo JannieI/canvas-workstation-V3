@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
 
                 <div class="gridOverall">
@@ -34,7 +34,7 @@
 
                     <div class="gridTable">
                         <clr-datagrid>
-                            <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
+                            <!-- <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column> -->
                             <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
                             <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
                             <!-- <clr-dg-column [clrDgField]="'accessType'">AccessType</clr-dg-column>
@@ -49,7 +49,7 @@
                                 [style.color]="(i == selectedRow)? 'white' : 'gray'"
                                 (click)="clickRow(i, row.id)"
                                 >
-                                <clr-dg-cell>{{ row.id }}</clr-dg-cell>
+                                <!-- <clr-dg-cell>{{ row.id }}</clr-dg-cell> -->
                                 <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.description }}</clr-dg-cell>
                                 <!-- <clr-dg-cell>{{ row.accessType }}</clr-dg-cell>

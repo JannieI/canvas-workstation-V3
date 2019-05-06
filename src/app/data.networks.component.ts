@@ -68,6 +68,30 @@ export class DataNetworksComponent implements OnInit {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in Data.Networks reading navigatorNetworks: ' + err);
             });
+
+        // Get Datasource list
+        this.globalVariableService.getResource('datasources')
+            .then(res => {
+                this.datasources = res;
+                this.datasources.forEach(ds => {
+                    this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
+                });
+                this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
+                    if (obj1.toLowerCase() > obj2.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.toLowerCase() < obj2.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Data.Networks reading datasources: ' + err);
+            });
+
+
     }
 
     clickRow(index: number, id: number) {
