@@ -37,11 +37,11 @@
                             <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
                             <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
                             <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
-                            <clr-dg-column [clrDgField]="'accessType'">AccessType</clr-dg-column>
+                            <!-- <clr-dg-column [clrDgField]="'accessType'">AccessType</clr-dg-column>
                             <clr-dg-column [clrDgField]="'createdBy'">Creator</clr-dg-column>
                             <clr-dg-column [clrDgField]="'createdOn'">CreatedOn</clr-dg-column>
                             <clr-dg-column [clrDgField]="'editor'">Editor</clr-dg-column>
-                            <clr-dg-column [clrDgField]="'dateEdited'">EditedOn</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'dateEdited'">EditedOn</clr-dg-column> -->
 
                             <clr-dg-row *clrDgItems="let row of navigatorNetworks;
                                 let i = index"
@@ -52,11 +52,11 @@
                                 <clr-dg-cell>{{ row.id }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.description }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.accessType }}</clr-dg-cell>
+                                <!-- <clr-dg-cell>{{ row.accessType }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.createdBy }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.createdOn }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.editor }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.dateEdited }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.dateEdited }}</clr-dg-cell> -->
                             </clr-dg-row>
 
                             <clr-dg-footer>
@@ -68,13 +68,10 @@
                         </clr-datagrid>
                     </div>
 
-
-
-
-                    <div class="gridScheduleNameTitle">
+                    <div class="gridNetworkNameTitle">
                         <b>Name:</b>
                     </div>
-                    <div class="gridScheduleName">
+                    <div class="gridNetworkName">
                             <input [(ngModel)]="selectedNetworkName"
                             type="text"
                             name="name"
@@ -88,10 +85,10 @@
                             >
                     </div>
 
-                    <div class="gridScheduleDescriptionTitle">
+                    <div class="gridNetworkDescriptionTitle">
                         <b>Description:</b>
                     </div>
-                    <div class="gridScheduleDescription">
+                    <div class="gridNetworkDescription">
                             <input [(ngModel)]="selectedNetworkDescription" 
                             type="text"
                             name="name"
@@ -105,7 +102,10 @@
                             >
                     </div>
 
-                    <div class="select gridgridRelationshipDS"
+                    <div class="gridRelationshipDSTitle">
+                        <b>Relationship:</b>
+                    </div>   
+                    <div class="select gridRelationshipDS"
                         >
                         <select [(ngModel)]="selectedRelationshipDS"
                             name="repeatFrequency"
@@ -115,6 +115,10 @@
                             <option>DS 2</option>
                         </select>
                     </div>
+
+                    <div class="gridPropertyDSTitle">
+                        <b>Property:</b>
+                    </div>   
                     <div class="select gridPropertyDS"
                         >
                         <select [(ngModel)]="selectedPropertyDS"
