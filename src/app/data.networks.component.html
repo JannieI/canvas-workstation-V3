@@ -70,27 +70,6 @@
     
 
 
-                    <div class="select gridgridRelationshipDS"
-                        >
-                        <select [(ngModel)]="selectedDashboardSchedule.repeatFrequency"
-                            name="repeatFrequency"
-                            [disabled]="!editing  &&  !adding"
-                            >
-                            <option>DS 1</option>
-                            <option>DS 2</option>
-                        </select>
-                    </div>
-                    <div class="select gridPropertyDS"
-                        >
-                        <select [(ngModel)]="selectedDashboardSchedule.repeatFrequency"
-                            name="repeatFrequency"
-                            [disabled]="!editing  &&  !adding"
-                            >
-                            <option>DS 1</option>
-                            <option>DS 2</option>
-                        </select>
-                    </div>
-
 
                     <div class="gridScheduleNameTitle">
                         <b>Name:</b>
@@ -124,6 +103,27 @@
                             [style.color]="!descriptionVar.valid  &&  editing ? 'red' : 'gray'"
                             [disabled]="!editing  &&  !adding"
                             >
+                    </div>
+
+                    <div class="select gridgridRelationshipDS"
+                        >
+                        <select [(ngModel)]="selectedDashboardSchedule.repeatFrequency"
+                            name="repeatFrequency"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                            <option>DS 1</option>
+                            <option>DS 2</option>
+                        </select>
+                    </div>
+                    <div class="select gridPropertyDS"
+                        >
+                        <select [(ngModel)]="selectedDashboardSchedule.repeatFrequency"
+                            name="repeatFrequency"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                            <option>DS 1</option>
+                            <option>DS 2</option>
+                        </select>
                     </div>
     
                     <div class="gridButtonCancel" *ngIf="editing  ||  adding">
