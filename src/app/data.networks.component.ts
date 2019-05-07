@@ -111,20 +111,29 @@ export class DataNetworksComponent implements OnInit {
         this.selectedNetworkName = this.navigatorNetworks[this.selectedRow].name;
         this.selectedNetworkDescription = this.navigatorNetworks[this.selectedRow].description;
         this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].relationshipDatasourceID;
-        this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].propertiesDatasourceID;
+        this.selectedDashboardPropertyID = this.navigatorNetworks[this.selectedRow].propertiesDatasourceID;
         
         // Find the Relationship record
         let relationshipIndex: number = this.datasources.findIndex(
             ds => ds.id == this.selectedDashboardRelationshipID); 
-        this.selectedRelationshipDS =  this.datasources[relationshipIndex] + ' (' 
-            + this.datasources[relationshipIndex].id + ')';
+        if (relationshipIndex >= 0) {
+            this.selectedRelationshipDS = this.datasources[relationshipIndex] + ' (' 
+                + this.datasources[relationshipIndex].id + ')';
+        } else {
+            this.selectedRelationshipDS = '';
+        };
         
         // Find the Property record
         let propertyIndex: number = this.datasources.findIndex(
-            ds => ds.id == this.selectedDashboardRelationshipID); 
-        this.selectedPropertyDS =  this.datasources[relationshipIndex] + ' (' 
-            + this.datasources[relationshipIndex].id + ')';
+            ds => ds.id == this.selectedDashboardPropertyID); 
+        if (propertyIndex >= 0) {
+            this.selectedPropertyDS = this.datasources[propertyIndex] + ' (' 
+                + this.datasources[propertyIndex].id + ')';
+        } else {
+            this.selectedPropertyDS = '';
+        };
         
+            console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
     }
 
     changeSelectRelationshipDS(ev: any) {
