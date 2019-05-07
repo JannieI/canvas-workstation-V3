@@ -117,7 +117,7 @@ export class DataNetworksComponent implements OnInit {
         let relationshipIndex: number = this.datasources.findIndex(
             ds => ds.id == this.selectedDashboardRelationshipID); 
         if (relationshipIndex >= 0) {
-            this.selectedRelationshipDS = this.datasources[relationshipIndex] + ' (' 
+            this.selectedRelationshipDS = this.datasources[relationshipIndex].name + ' (' 
                 + this.datasources[relationshipIndex].id + ')';
         } else {
             this.selectedRelationshipDS = '';
@@ -127,7 +127,7 @@ export class DataNetworksComponent implements OnInit {
         let propertyIndex: number = this.datasources.findIndex(
             ds => ds.id == this.selectedDashboardPropertyID); 
         if (propertyIndex >= 0) {
-            this.selectedPropertyDS = this.datasources[propertyIndex] + ' (' 
+            this.selectedPropertyDS = this.datasources[propertyIndex].name + ' (' 
                 + this.datasources[propertyIndex].id + ')';
         } else {
             this.selectedPropertyDS = '';
