@@ -249,14 +249,9 @@ export class DataNetworksComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation input
-        if (this.selectedRelationshipDS == '') {
-            this.errorMessage == 'The relationship Datasource is compulsory';
+        if (this.validateInput() != '') {
             return;
         };
-        if (this.selectedPropertyDS == '') {
-            this.errorMessage == 'The property is Datasource compulsory';
-            return;
-        }
 
         // Get DSs
         let openBracket: number = this.selectedRelationshipDS.indexOf('(');
