@@ -47,7 +47,7 @@
     .gridTable {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 11;
+        grid-column-end: 9;
         grid-row-start: 2;
         grid-row-end: 18;
         margin-left: 2px;
@@ -55,16 +55,16 @@
     }
 
     .gridNetworkNameTitle {
-        grid-column-start: 12;
+        grid-column-start: 9;
         /* autoprefixer: off */
-        grid-column-end: 14;
+        grid-column-end: 11;
         grid-row-start: 2;
         grid-row-end: 3;
-        margin: 2px 2px 2px 2px;
+        margin: 12px 2px 2px 2px;
         text-align: left;
     }
     .gridNetworkName {
-        grid-column-start: 14;
+        grid-column-start: 11;
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 2;
@@ -74,16 +74,16 @@
     }
 
     .gridNetworkDescriptionTitle {
-        grid-column-start: 12;
+        grid-column-start: 9;
         /* autoprefixer: off */
-        grid-column-end: 14;
+        grid-column-end: 11;
         grid-row-start: 4;
         grid-row-end: 5;
-        margin: 2px 2px 2px 2px;
+        margin: 12px 2px 2px 2px;
         text-align: left;
     }
     .gridNetworkDescription {
-        grid-column-start: 14;
+        grid-column-start: 11;
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 4;
@@ -93,16 +93,16 @@
     }
 
     .gridRelationshipDSTitle {
-        grid-column-start: 12;
+        grid-column-start: 9;
         /* autoprefixer: off */
-        grid-column-end: 14;
+        grid-column-end: 11;
         grid-row-start: 6;
         grid-row-end: 7;
-        margin: 2px 2px 2px 2px;
+        margin: 12px 2px 2px 2px;
         text-align: left;
     }
     .gridRelationshipDS {
-        grid-column-start: 14;
+        grid-column-start: 11;
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 6;
@@ -111,16 +111,16 @@
         text-align: left;
     }
     .gridPropertyDSTitle {
-        grid-column-start: 12;
+        grid-column-start: 9;
         /* autoprefixer: off */
-        grid-column-end: 14;
+        grid-column-end: 11;
         grid-row-start: 8;
         grid-row-end: 9;
-        margin: 2px 2px 2px 2px;
+        margin: 12px 2px 2px 2px;
         text-align: left;
     }
     .gridPropertyDS {
-        grid-column-start: 14;
+        grid-column-start: 11;
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 8;
@@ -130,18 +130,18 @@
     }
 
     .gridButtonCancel {
-        grid-column-start: 12;
+        grid-column-start: 11;
         /* autoprefixer: off */
-        grid-column-end: 15;
+        grid-column-end: 13;
         grid-row-start: 10;
         grid-row-end: 11;
-        margin: 2px 2px 2px 2px;
+        margin: 12px 2px 2px 2px;
         text-align: left;
     }
     .gridButtonAdd {
-        grid-column-start: 17;
+        grid-column-start: 16;
         /* autoprefixer: off */
-        grid-column-end: 19;
+        grid-column-end: 18;
         grid-row-start: 10;
         grid-row-end: 11;
         margin: 2px 2px 2px 2px;
