@@ -105,6 +105,16 @@ export class DataNetworksComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         this.selectedRow = index;
+
+        // Show data for selected record
+        console.log('xx ...', this.navigatorNetworks[this.selectedRow])
+        this.selectedNetworkName = this.navigatorNetworks[this.selectedRow].name;
+        this.selectedNetworkDescription = this.navigatorNetworks[this.selectedRow].description;
+        this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].subDatasources[0];
+        this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].subDatasources[1];
+
+        // let relationshipIndex: number = 
+        
     }
 
     changeSelectRelationshipDS(ev: any) {
