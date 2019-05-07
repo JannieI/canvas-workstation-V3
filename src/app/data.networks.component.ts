@@ -264,8 +264,9 @@ export class DataNetworksComponent implements OnInit {
             this.selectedRelationshipDS);
 
         // Validate DS as a relationship DS
-        this.validateRelationshipDS(this.selectedDashboardRelationshipID);
-
+        if (this.validateRelationshipDS(this.selectedDashboardRelationshipID) != '') {
+            return;
+        };
 
         // Find the Property record
         // openBracket = this.selectedPropertyDS.indexOf('(');
@@ -274,37 +275,12 @@ export class DataNetworksComponent implements OnInit {
         this.selectedDashboardPropertyID = this.constructIDfromString(
             this.selectedPropertyDS);
 
-        let propertyIndex: number = this.datasources.findIndex(
-            ds => ds.id == this.selectedDashboardPropertyID);
-        if (propertyIndex >= 0) {
-
-            // Validate the schema
-            // TODO - must make sure MetaData is always 100% good
-            // TODO - there MUST be a better way !!!
-            let isBadDS: boolean = false;
-            let requiredFields: string[] = ['networkID',
-                'nodeID',
-                'nodeType',
-                'nodeName',
-                'propertyKey',
-                'propertyValue'
-            ];
-            
-            // Check if any field is missing
-            requiredFields.forEach(field => {
-                if (this.datasources[propertyIndex].dataFields.indexOf(field) < 0) { 
-                    isBadDS = true
-                };
-            });
-            if (isBadDS) {
-                this.errorMessage = 'The selected property Datasource does not have all the required fields';
-                return;
-            };
-
-        } else {
-            this.errorMessage = 'Error: the property Datasource ID '
-                + this.selectedDashboardPropertyID.toString() + ' does not exist!' ;
+            // Validate DS as a relationship DS
+        if (this.validatePropertyDS(this.selectedDashboardPropertyID) != '') {
+            return;
         };
+
+
 
             console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
 
@@ -401,4 +377,50 @@ export class DataNetworksComponent implements OnInit {
         // Return
         return this.errorMessage;
     }
+
+    validatePropertyDS(datasourceID: number): string {
+        // Validate that the given DS ID is a valid Navigatior Property datasource
+        // - checks the shape.  Then returns '' / errorMessage
+        this.globalFunctionService.printToConsole(this.constructor.name,'validatePropertyDS', '@Start');
+
+        // Reset 
+        this.errorMessage = '';
+
+        let propertyIndex: number = this.datasources.findIndex(
+            ds => ds.id == datasourceID);
+        if (propertyIndex >= 0) {
+
+            // Validate the schema
+            // TODO - must make sure MetaData is always 100% good
+            // TODO - there MUST be a better way !!!
+            let isBadDS: boolean = false;
+            let requiredFields: string[] = ['networkID',
+                'nodeID',
+                'nodeType',
+                'nodeName',
+                'propertyKey',
+                'propertyValue'
+            ];
+            
+            // Check if any field is missing
+            requiredFields.forEach(field => {
+                if (this.datasources[propertyIndex].dataFields.indexOf(field) < 0) { 
+                    isBadDS = true
+                };
+            });
+            if (isBadDS) {
+                this.errorMessage = 'The selected property Datasource does not have all the required fields';
+                return this.errorMessage;
+            };
+
+        } else {
+            this.errorMessage = 'Error: the property Datasource ID '
+                + this.selectedDashboardPropertyID.toString() + ' does not exist!' ;
+            return this.errorMessage;
+        };    
+
+        // Return
+        return this.errorMessage;
+    }
+
 }
