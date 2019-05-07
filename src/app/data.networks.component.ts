@@ -194,7 +194,7 @@ export class DataNetworksComponent implements OnInit {
         // Save, and then close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
        
-        // Validation
+        // Validation input
         if (this.selectedRelationshipDS == '') {
             this.errorMessage == 'The relationship Datasource is compulsory';
             return;
@@ -204,7 +204,7 @@ export class DataNetworksComponent implements OnInit {
             return;
         }
 
-        // Get D info
+        // Get DSs
        let openBracket: number = this.selectedRelationshipDS.indexOf('(');
        let closeBracket: number = this.selectedRelationshipDS.indexOf(')');
        this.selectedDashboardRelationshipID = +this.selectedRelationshipDS.substring(openBracket + 1, closeBracket);
@@ -217,24 +217,28 @@ export class DataNetworksComponent implements OnInit {
         let relationshipIndex: number = this.datasources.findIndex(
             ds => ds.id == this.selectedDashboardRelationshipID); 
         if (relationshipIndex >= 0) {
-            this.selectedRelationshipDS = this.datasources[relationshipIndex].name + ' (' 
-                + this.datasources[relationshipIndex].id + ')';
+            Object.keys(this.datasources[relationshipIndex]).forEach(key => {
+                console.log('xx key', key);
+            });
         } else {
-            this.selectedRelationshipDS = '';
+            this.errorMessage = 'Error: the Datasource ID ' 
+                + this.selectedDashboardRelationshipID.toString() + ' does not exist!' ;
         };
         
         // Find the Property record
         let propertyIndex: number = this.datasources.findIndex(
             ds => ds.id == this.selectedDashboardPropertyID); 
         if (propertyIndex >= 0) {
-            this.selectedPropertyDS = this.datasources[propertyIndex].name + ' (' 
-                + this.datasources[propertyIndex].id + ')';
+
         } else {
-            this.selectedPropertyDS = '';
+            this.errorMessage = 'Error: the Datasource ID ' 
+                + this.selectedDashboardPropertyID.toString() + ' does not exist!' ;
         };
         
             console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
   
+        // Validate DS layout
+        
     //   this.formDataNetworksClosed.emit('Update');
     }
 }
