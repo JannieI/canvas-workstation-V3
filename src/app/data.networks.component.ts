@@ -110,8 +110,20 @@ export class DataNetworksComponent implements OnInit {
     changeSelectRelationshipDS(ev: any) {
         // User selected a Relationship DS
         this.globalFunctionService.printToConsole(this.constructor.name,'changeSelectRelationshipDS', '@Start');
+        
+        let selectedDashboardString: string = ev.target.value;
+        if (selectedDashboardString != 'None') {
 
-        console.log('xx ev.target.value', ev.target.value);
+            // Get D info
+            let openBracket: number = selectedDashboardString.indexOf('(');
+            let closeBracket: number = selectedDashboardString.indexOf(')');
+            this.selectedDashboardRelationshipID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
+
+        } else {
+            this.selectedDashboardRelationshipID = null;
+        };
+
+        console.log('xx ev.target.value', ev.target.value, this.selectedDashboardRelationshipID);
 
     }
 
@@ -131,7 +143,7 @@ export class DataNetworksComponent implements OnInit {
             this.selectedDashboardRelationshipID = null;
         };
 
-        console.log('xx ev.target.value', ev.target.value), this.selectedDashboardRelationshipID;
+        console.log('xx ev.target.value', ev.target.value, this.selectedDashboardRelationshipID);
 
     }
 
