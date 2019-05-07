@@ -222,8 +222,10 @@ export class DataNetworksComponent implements OnInit {
         // Add
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddSave', '@Start');
 
-        // Reset
-        this.errorMessage = '';
+        // Validation input
+        if (this.validateInput() != '') {
+            return;
+        };
 
         // Create new Network record
         let today = new Date();
@@ -245,9 +247,6 @@ export class DataNetworksComponent implements OnInit {
         // Save, and then close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Reset
-        this.errorMessage = '';
-
         // Validation input
         if (this.validateInput() != '') {
             return;
@@ -258,10 +257,6 @@ export class DataNetworksComponent implements OnInit {
         let closeBracket: number = this.selectedRelationshipDS.indexOf(')');
         this.selectedDashboardRelationshipID = +this.selectedRelationshipDS.substring(openBracket + 1, closeBracket);
         
-        openBracket = this.selectedPropertyDS.indexOf('(');
-        closeBracket = this.selectedPropertyDS.indexOf(')');
-        this.selectedDashboardPropertyID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
-
         // Find the Relationship DS record
         let relationshipIndex: number = this.datasources.findIndex(
             ds => ds.id == this.selectedDashboardRelationshipID);
@@ -300,6 +295,10 @@ export class DataNetworksComponent implements OnInit {
         };
 
         // Find the Property record
+        openBracket = this.selectedPropertyDS.indexOf('(');
+        closeBracket = this.selectedPropertyDS.indexOf(')');
+        this.selectedDashboardPropertyID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
+
         let propertyIndex: number = this.datasources.findIndex(
             ds => ds.id == this.selectedDashboardPropertyID);
         if (propertyIndex >= 0) {
@@ -358,5 +357,23 @@ export class DataNetworksComponent implements OnInit {
         // Else all good
         return this.errorMessage;
         
+    }
+
+    constructIDfromString(inputStringWithID: string): number {
+        // Extracts the ID from a string in the format "text (id)"
+        // Returns -1 if anything happened
+        this.globalFunctionService.printToConsole(this.constructor.name,'constructIDfromString', '@Start');
+
+        let openBracket: number = inputStringWithID.indexOf('(');
+        let closeBracket: number = inputStringWithID.indexOf(')');
+        let idString: string = inputStringWithID.substring(openBracket + 1, closeBracket);
+
+        // Return
+        if (typeof idString != 'number') {
+            return -1;
+        } else {
+            return +idString;
+        };
+
     }
 }
