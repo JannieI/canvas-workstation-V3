@@ -166,10 +166,10 @@ export class DataNetworksComponent implements OnInit {
             // Get D info
             let openBracket: number = selectedDashboardString.indexOf('(');
             let closeBracket: number = selectedDashboardString.indexOf(')');
-            this.selectedDashboardRelationshipID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
+            this.selectedDashboardPropertyID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
 
         } else {
-            this.selectedDashboardRelationshipID = null;
+            this.selectedDashboardPropertyID = null;
         };
 
         console.log('xx ev.target.value', ev.target.value, this.selectedDashboardRelationshipID);
@@ -208,11 +208,33 @@ export class DataNetworksComponent implements OnInit {
        let openBracket: number = this.selectedRelationshipDS.indexOf('(');
        let closeBracket: number = this.selectedRelationshipDS.indexOf(')');
        this.selectedDashboardRelationshipID = +this.selectedRelationshipDS.substring(openBracket + 1, closeBracket);
-      // Get D info
-      let openBracket: number = this.selectedPropertyDS.indexOf('(');
-      let closeBracket: number = this.selectedPropertyDS.indexOf(')');
-      this.selectedDashboardRelationshipID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
+      openBracket = this.selectedPropertyDS.indexOf('(');
+      closeBracket = this.selectedPropertyDS.indexOf(')');
+      this.selectedDashboardPropertyID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
 
+
+        // Find the Relationship record
+        let relationshipIndex: number = this.datasources.findIndex(
+            ds => ds.id == this.selectedDashboardRelationshipID); 
+        if (relationshipIndex >= 0) {
+            this.selectedRelationshipDS = this.datasources[relationshipIndex].name + ' (' 
+                + this.datasources[relationshipIndex].id + ')';
+        } else {
+            this.selectedRelationshipDS = '';
+        };
+        
+        // Find the Property record
+        let propertyIndex: number = this.datasources.findIndex(
+            ds => ds.id == this.selectedDashboardPropertyID); 
+        if (propertyIndex >= 0) {
+            this.selectedPropertyDS = this.datasources[propertyIndex].name + ' (' 
+                + this.datasources[propertyIndex].id + ')';
+        } else {
+            this.selectedPropertyDS = '';
+        };
+        
+            console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
+  
     //   this.formDataNetworksClosed.emit('Update');
     }
 }
