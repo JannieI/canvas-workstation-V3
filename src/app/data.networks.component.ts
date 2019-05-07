@@ -112,7 +112,8 @@ export class DataNetworksComponent implements OnInit {
         this.selectedNetworkDescription = this.navigatorNetworks[this.selectedRow].description;
         this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].subDatasources[0];
         this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].subDatasources[1];
-
+        relationshipDatasourceID
+        propertiesDatasourceID
         // let relationshipIndex: number = 
         
     }

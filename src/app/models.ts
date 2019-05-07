@@ -1694,32 +1694,32 @@ export class CanvasHttpResponse {
 }
 
 export class NavigatorNetwork {
-   _id?: string;                           // Mongo ID (read only)
-   id: number;                             // Unique record ID
-   name: string;                           // Name of Network
-   description: string;                    // Description of the Network
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique record ID
+    name: string;                           // Name of Network
+    description: string;                    // Description of the Network
 
-   accessType: string;                     // How to access D: Private, Public, AccessList
-   subDatasources: number[];               // Array of related sub DS ids, used for networks
-
-   createdBy: string;                      // Creator
-   createdOn: Date;                        // DateTime Created
-   editor: string;                         // Last Edited By
-   dateEdited: Date;                       // Last Edited On
+    accessType: string;                     // How to access D: Private, Public, AccessList
+    relationshipDatasourceID: number;       // ID for the DS that contains the relationships
+    propertiesDatasourceID: number;         // ID for DS that contains the Properties
+    createdBy: string;                      // Creator
+    createdOn: Date;                        // DateTime Created
+    editor: string;                         // Last Edited By
+    dateEdited: Date;                       // Last Edited On
 }
 
 export class NavigatorRelationship {
-        id: number;                         // Unique record ID
-        networkID: number;                  // FK to Network
-        leftNodeID: number;                 // FK of left Node to Node Property table
-        leftNodeType: string;               // Type of left Node, ie Company
-        leftNodeName: string;               // Name of left Node, ie Absa
-        relationshipLeftToRight: string;    // ie Director (Left = Absa, Right = Koos)
-        relationshipRightToLeft: string;    // ie Director-Of (Right = Koos, Left = Absa)
-        rightNodeID: number;                // FK of right Node to Node Property table
-        rightNodeType: string;              // Type of right Node, ie Person
-        rightNodeName: string;              // Name of right Node, ie Koos
-        relationshipProperty: string;       // Property of the relationship, ie Executive / Non-Executive
+    id: number;                             // Unique record ID
+    networkID: number;                      // FK to Network
+    leftNodeID: number;                     // FK of left Node to Node Property table
+    leftNodeType: string;                   // Type of left Node, ie Company
+    leftNodeName: string;                   // Name of left Node, ie Absa
+    relationshipLeftToRight: string;        // ie Director (Left = Absa, Right = Koos)
+    relationshipRightToLeft: string;        // ie Director-Of (Right = Koos, Left = Absa)
+    rightNodeID: number;                    // FK of right Node to Node Property table
+    rightNodeType: string;                  // Type of right Node, ie Person
+    rightNodeName: string;                  // Name of right Node, ie Koos
+    relationshipProperty: string;           // Property of the relationship, ie Executive / Non-Executive
 }
 
 export class NavigatorProperties {
