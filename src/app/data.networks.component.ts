@@ -104,6 +104,9 @@ export class DataNetworksComponent implements OnInit {
         // User clicked a row, now refresh the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+
         this.selectedRow = index;
 
         // Show data for selected record
@@ -140,6 +143,9 @@ export class DataNetworksComponent implements OnInit {
         // User selected a Relationship DS
         this.globalFunctionService.printToConsole(this.constructor.name,'changeSelectRelationshipDS', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+
         let selectedDashboardString: string = ev.target.value;
         if (selectedDashboardString != 'None') {
 
@@ -159,6 +165,10 @@ export class DataNetworksComponent implements OnInit {
     changeSelectPropertyDS(ev: any) {
         // User selected a Property DS
         this.globalFunctionService.printToConsole(this.constructor.name,'changeSelectPropertyDS', '@Start');
+ 
+        // Reset
+        this.errorMessage = '';
+
         let selectedDashboardString: string = ev.target.value;
 
         if (selectedDashboardString != 'None') {
@@ -180,6 +190,9 @@ export class DataNetworksComponent implements OnInit {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+
 		this.formDataNetworksClosed.emit('Close');
     }
 
@@ -187,12 +200,18 @@ export class DataNetworksComponent implements OnInit {
         // Add, and then close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
-		this.formDataNetworksClosed.emit('Update');
+        // Reset
+        this.errorMessage = '';
+
+		// this.formDataNetworksClosed.emit('Update');
     }
 
     clickSave() {
         // Save, and then close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Reset
+        this.errorMessage = '';
 
         // Validation input
         if (this.selectedRelationshipDS == '') {
@@ -241,7 +260,7 @@ export class DataNetworksComponent implements OnInit {
                 };
             });
             if (isBadDS) {
-                this.errorMessage = 'The selected Datasource does not have all the required fields');
+                this.errorMessage = 'The selected Datasource does not have all the required fields';
                 return;
             };
 
