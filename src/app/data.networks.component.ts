@@ -224,13 +224,13 @@ export class DataNetworksComponent implements OnInit {
         }
 
         // Get DSs
-       let openBracket: number = this.selectedRelationshipDS.indexOf('(');
-       let closeBracket: number = this.selectedRelationshipDS.indexOf(')');
-       this.selectedDashboardRelationshipID = +this.selectedRelationshipDS.substring(openBracket + 1, closeBracket);
-      openBracket = this.selectedPropertyDS.indexOf('(');
-      closeBracket = this.selectedPropertyDS.indexOf(')');
-      this.selectedDashboardPropertyID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
-
+        let openBracket: number = this.selectedRelationshipDS.indexOf('(');
+        let closeBracket: number = this.selectedRelationshipDS.indexOf(')');
+        this.selectedDashboardRelationshipID = +this.selectedRelationshipDS.substring(openBracket + 1, closeBracket);
+        
+        openBracket = this.selectedPropertyDS.indexOf('(');
+        closeBracket = this.selectedPropertyDS.indexOf(')');
+        this.selectedDashboardPropertyID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
 
         // Find the Relationship DS record
         let relationshipIndex: number = this.datasources.findIndex(
@@ -260,12 +260,12 @@ export class DataNetworksComponent implements OnInit {
                 };
             });
             if (isBadDS) {
-                this.errorMessage = 'The selected Datasource does not have all the required fields';
+                this.errorMessage = 'The selected relationship Datasource does not have all the required fields';
                 return;
             };
 
         } else {
-            this.errorMessage = 'Error: the Datasource ID '
+            this.errorMessage = 'Error: the relationship Datasource ID '
                 + this.selectedDashboardRelationshipID.toString() + ' does not exist!' ;
         };
 
@@ -274,8 +274,31 @@ export class DataNetworksComponent implements OnInit {
             ds => ds.id == this.selectedDashboardPropertyID);
         if (propertyIndex >= 0) {
 
+            // Validate the schema
+            // TODO - must make sure MetaData is always 100% good
+            // TODO - there MUST be a better way !!!
+            let isBadDS: boolean = false;
+            let requiredFields: string[] = ['networkID',
+                'nodeID',
+                'nodeType',
+                'nodeName',
+                'propertyKey',
+                'propertyValue'
+            ];
+            
+            // Check if any field is missing
+            requiredFields.forEach(field => {
+                if (this.datasources[propertyIndex].dataFields.indexOf(field) < 0) { 
+                    isBadDS = true
+                };
+            });
+            if (isBadDS) {
+                this.errorMessage = 'The selected property Datasource does not have all the required fields';
+                return;
+            };
+
         } else {
-            this.errorMessage = 'Error: the Datasource ID '
+            this.errorMessage = 'Error: the property Datasource ID '
                 + this.selectedDashboardPropertyID.toString() + ' does not exist!' ;
         };
 
