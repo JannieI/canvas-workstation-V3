@@ -90,6 +90,7 @@ export class DataNetworksComponent implements OnInit {
                     };
                     return 0;
                 });
+                this.datasourceNames = ['', ...this.datasourceNames];
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
