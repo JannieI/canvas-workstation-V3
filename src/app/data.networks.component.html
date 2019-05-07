@@ -74,7 +74,8 @@
                             #nameVar="ngModel"
                             required
                             minlength="2"
-                            maxlength="250"
+                            maxlength="150"
+                            size="40"
                             [style.color]="!nameVar.valid  &&  editing ? 'red' : 'gray'"
                             [disabled]="!editing  &&  !adding"
                             >
@@ -84,7 +85,7 @@
                         <b>Description:</b>
                     </div>
                     <div class="gridNetworkDescription">
-                            <input [(ngModel)]="selectedNetworkDescription" 
+                            <input [(ngModel)]="selectedNetworkDescription"
                             type="text"
                             name="name"
                             placeholder="Description of the Schedule"
@@ -92,6 +93,7 @@
                             required
                             minlength="2"
                             maxlength="500"
+                            size="40"
                             [style.color]="!descriptionVar.valid  &&  editing ? 'red' : 'gray'"
                             [disabled]="!editing  &&  !adding"
                             >
@@ -99,12 +101,12 @@
 
                     <div class="gridRelationshipDSTitle">
                         <b>Relationship:</b>
-                    </div>   
+                    </div>
                     <div class="select gridRelationshipDS"
                         >
                         <select [(ngModel)]="selectedRelationshipDS"
                             name="repeatFrequency"
-                            (change)="changeSelectRelationshipDS($event)" 
+                            (change)="changeSelectRelationshipDS($event)"
                             >
                             <option *ngFor="let row of datasourceNames; let i = index">
                                 {{ row }}
@@ -114,7 +116,7 @@
 
                     <div class="gridPropertyDSTitle">
                         <b>Property:</b>
-                    </div>   
+                    </div>
                     <div class="select gridPropertyDS"
                         >
                         <select [(ngModel)]="selectedPropertyDS"
@@ -164,10 +166,6 @@
                             Save
                         </button>
                     </div>
-    
-
-
-
 
                 </div>
 
