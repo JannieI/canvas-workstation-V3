@@ -157,10 +157,12 @@ export class DataNetworksComponent implements OnInit {
         if (selectedDashboardString != 'None') {
 
             // Get D info
-            let openBracket: number = selectedDashboardString.indexOf('(');
-            let closeBracket: number = selectedDashboardString.indexOf(')');
-            this.selectedDashboardRelationshipID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
-
+            // let openBracket: number = selectedDashboardString.indexOf('(');
+            // let closeBracket: number = selectedDashboardString.indexOf(')');
+            // this.selectedDashboardRelationshipID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
+            this.selectedDashboardRelationshipID = this.constructIDfromString(
+                this.selectedRelationshipDS);
+    
         } else {
             this.selectedDashboardRelationshipID = null;
         };
@@ -181,10 +183,12 @@ export class DataNetworksComponent implements OnInit {
         if (selectedDashboardString != 'None') {
 
             // Get D info
-            let openBracket: number = selectedDashboardString.indexOf('(');
-            let closeBracket: number = selectedDashboardString.indexOf(')');
-            this.selectedDashboardPropertyID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
-
+            // let openBracket: number = selectedDashboardString.indexOf('(');
+            // let closeBracket: number = selectedDashboardString.indexOf(')');
+            // this.selectedDashboardPropertyID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
+            this.selectedDashboardPropertyID = this.constructIDfromString(
+                this.selectedPropertyDS);
+    
         } else {
             this.selectedDashboardPropertyID = null;
         };
@@ -259,42 +263,9 @@ export class DataNetworksComponent implements OnInit {
         this.selectedDashboardRelationshipID = this.constructIDfromString(
             this.selectedRelationshipDS);
 
-        // Find the Relationship DS record
-        let relationshipIndex: number = this.datasources.findIndex(
-            ds => ds.id == this.selectedDashboardRelationshipID);
-        if (relationshipIndex >= 0) {
+        // Validate DS as a relationship DS
+        this.validateRelationshipDS(this.selectedDashboardRelationshipID);
 
-            // Validate the schema
-            // TODO - must make sure MetaData is always 100% good
-            // TODO - there MUST be a better way !!!
-            let isBadDS: boolean = false;
-            let requiredFields: string[] = ['networkID',
-                'leftNodeID',
-                'leftNodeType',
-                'leftNodeName',
-                'relationshipLeftToRight',
-                'relationshipRightToLeft',
-                'rightNodeID',
-                'rightNodeType',
-                'rightNodeName',
-                'relationshipProperty'
-            ];
-            
-            // Check if any field is missing
-            requiredFields.forEach(field => {
-                if (this.datasources[relationshipIndex].dataFields.indexOf(field) < 0) { 
-                    isBadDS = true
-                };
-            });
-            if (isBadDS) {
-                this.errorMessage = 'The selected relationship Datasource does not have all the required fields';
-                return;
-            };
-
-        } else {
-            this.errorMessage = 'Error: the relationship Datasource ID '
-                + this.selectedDashboardRelationshipID.toString() + ' does not exist!' ;
-        };
 
         // Find the Property record
         // openBracket = this.selectedPropertyDS.indexOf('(');
@@ -379,5 +350,55 @@ export class DataNetworksComponent implements OnInit {
             return +idString;
         };
 
+    }
+
+    validateRelationshipDS(datasourceID: number): string {
+        // Validate that the given DS ID is a valid Navigatior Relationship datasource
+        // - checks the shape.  Then returns '' / errorMessage
+        this.globalFunctionService.printToConsole(this.constructor.name,'validateRelationshipDS', '@Start');
+
+        // Reset 
+        this.errorMessage = '';
+
+        // Find the Relationship DS record
+        let relationshipIndex: number = this.datasources.findIndex(
+            ds => ds.id == datasourceID);
+        if (relationshipIndex >= 0) {
+
+            // Validate the schema
+            // TODO - must make sure MetaData is always 100% good
+            // TODO - there MUST be a better way !!!
+            let isBadDS: boolean = false;
+            let requiredFields: string[] = ['networkID',
+                'leftNodeID',
+                'leftNodeType',
+                'leftNodeName',
+                'relationshipLeftToRight',
+                'relationshipRightToLeft',
+                'rightNodeID',
+                'rightNodeType',
+                'rightNodeName',
+                'relationshipProperty'
+            ];
+            
+            // Check if any field is missing
+            requiredFields.forEach(field => {
+                if (this.datasources[relationshipIndex].dataFields.indexOf(field) < 0) { 
+                    isBadDS = true
+                };
+            });
+            if (isBadDS) {
+                this.errorMessage = 'The selected relationship Datasource does not have all the required fields';
+                return this.errorMessage;
+            };
+
+        } else {
+            this.errorMessage = 'Error: the relationship Datasource ID '
+                + this.selectedDashboardRelationshipID.toString() + ' does not exist!' ;
+            return this.errorMessage;
+        };
+
+        // Return
+        return this.errorMessage;
     }
 }
