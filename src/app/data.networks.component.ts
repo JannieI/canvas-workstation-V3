@@ -91,6 +91,11 @@ export class DataNetworksComponent implements OnInit {
                     return 0;
                 });
                 this.datasourceNames = ['', ...this.datasourceNames];
+
+                // Select the first nework
+                if (this.navigatorNetworks.length > 0) {
+                    this.clickRow(0, this.navigatorNetworks[0].id);
+                };
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
