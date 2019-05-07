@@ -262,7 +262,7 @@ export class DataNetworksComponent implements OnInit {
         // this.selectedDashboardRelationshipID = +this.selectedRelationshipDS.substring(openBracket + 1, closeBracket);
         this.selectedDashboardRelationshipID = this.constructIDfromString(
             this.selectedRelationshipDS);
-
+console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRelationshipID)
         // Validate DS as a relationship DS
         if (this.validateRelationshipDS(this.selectedDashboardRelationshipID) != '') {
             return;
@@ -320,7 +320,8 @@ export class DataNetworksComponent implements OnInit {
         let idString: string = inputStringWithID.substring(openBracket + 1, closeBracket);
 
         // Return
-        if (typeof idString != 'number') {
+        var str1 = "mkyong"
+        if(isNaN(parseInt(idString)){
             return -1;
         } else {
             return +idString;
