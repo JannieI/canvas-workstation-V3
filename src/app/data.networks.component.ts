@@ -26,7 +26,7 @@ import { NavigatorNetwork }           from './models';
     templateUrl: './data.networks.component.html',
     styleUrls: ['./data.networks.component.css']
 })
-export class DataNetworksComponent implements OnInit { 
+export class DataNetworksComponent implements OnInit {
 
     @Output() formDataNetworksClosed: EventEmitter<string> = new EventEmitter();
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
@@ -112,34 +112,34 @@ export class DataNetworksComponent implements OnInit {
         this.selectedNetworkDescription = this.navigatorNetworks[this.selectedRow].description;
         this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].relationshipDatasourceID;
         this.selectedDashboardPropertyID = this.navigatorNetworks[this.selectedRow].propertiesDatasourceID;
-        
+
         // Find the Relationship record
         let relationshipIndex: number = this.datasources.findIndex(
-            ds => ds.id == this.selectedDashboardRelationshipID); 
+            ds => ds.id == this.selectedDashboardRelationshipID);
         if (relationshipIndex >= 0) {
-            this.selectedRelationshipDS = this.datasources[relationshipIndex].name + ' (' 
+            this.selectedRelationshipDS = this.datasources[relationshipIndex].name + ' ('
                 + this.datasources[relationshipIndex].id + ')';
         } else {
             this.selectedRelationshipDS = '';
         };
-        
+
         // Find the Property record
         let propertyIndex: number = this.datasources.findIndex(
-            ds => ds.id == this.selectedDashboardPropertyID); 
+            ds => ds.id == this.selectedDashboardPropertyID);
         if (propertyIndex >= 0) {
-            this.selectedPropertyDS = this.datasources[propertyIndex].name + ' (' 
+            this.selectedPropertyDS = this.datasources[propertyIndex].name + ' ('
                 + this.datasources[propertyIndex].id + ')';
         } else {
             this.selectedPropertyDS = '';
         };
-        
+
             console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
     }
 
     changeSelectRelationshipDS(ev: any) {
         // User selected a Relationship DS
         this.globalFunctionService.printToConsole(this.constructor.name,'changeSelectRelationshipDS', '@Start');
-        
+
         let selectedDashboardString: string = ev.target.value;
         if (selectedDashboardString != 'None') {
 
@@ -193,7 +193,7 @@ export class DataNetworksComponent implements OnInit {
     clickSave() {
         // Save, and then close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-       
+
         // Validation input
         if (this.selectedRelationshipDS == '') {
             this.errorMessage == 'The relationship Datasource is compulsory';
@@ -213,32 +213,57 @@ export class DataNetworksComponent implements OnInit {
       this.selectedDashboardPropertyID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
 
 
-        // Find the Relationship record
+        // Find the Relationship DS record
         let relationshipIndex: number = this.datasources.findIndex(
-            ds => ds.id == this.selectedDashboardRelationshipID); 
+            ds => ds.id == this.selectedDashboardRelationshipID);
         if (relationshipIndex >= 0) {
-            Object.keys(this.datasources[relationshipIndex]).forEach(key => {
-                console.log('xx key', key);
+
+            // Validate the schema
+            // TODO - must make sure MetaData is always 100% good
+            // TODO - there MUST be a better way !!!
+            let isBadDS: boolean = false;
+            let requiredFields: string[] = ['networkID',
+                'leftNodeID',
+                'leftNodeType',
+                'leftNodeName',
+                'relationshipLeftToRight',
+                'relationshipRightToLeft',
+                'rightNodeID',
+                'rightNodeType',
+                'rightNodeName',
+                'relationshipProperty'
+            ];
+            
+            // Check if any field is missing
+            requiredFields.forEach(field => {
+                if (this.datasources[relationshipIndex].dataFields.indexOf(field) < 0) { 
+                    isBadDS = true
+                };
             });
+            if (isBadDS) {
+                this.errorMessage = 'The selected Datasource does not have all the required fields');
+                return;
+            };
+
         } else {
-            this.errorMessage = 'Error: the Datasource ID ' 
+            this.errorMessage = 'Error: the Datasource ID '
                 + this.selectedDashboardRelationshipID.toString() + ' does not exist!' ;
         };
-        
+
         // Find the Property record
         let propertyIndex: number = this.datasources.findIndex(
-            ds => ds.id == this.selectedDashboardPropertyID); 
+            ds => ds.id == this.selectedDashboardPropertyID);
         if (propertyIndex >= 0) {
 
         } else {
-            this.errorMessage = 'Error: the Datasource ID ' 
+            this.errorMessage = 'Error: the Datasource ID '
                 + this.selectedDashboardPropertyID.toString() + ' does not exist!' ;
         };
-        
+
             console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
-  
+
         // Validate DS layout
-        
+
     //   this.formDataNetworksClosed.emit('Update');
     }
 }
