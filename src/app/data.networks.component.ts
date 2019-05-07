@@ -46,7 +46,7 @@ export class DataNetworksComponent implements OnInit {
 
     datasourceNames: string[] = [];
     datasources: Datasource[] = [];
-    editing: boolean = false;  // TODO - must be received via @Input
+    editing: boolean = true;  // TODO - must be received via @Input
     errorMessage: string = '';
     navigatorNetworks: NavigatorNetwork[];
     selectedDashboardRelationshipID: number = -1;
@@ -193,7 +193,26 @@ export class DataNetworksComponent implements OnInit {
     clickSave() {
         // Save, and then close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+       
+        // Validation
+        if (this.selectedRelationshipDS == '') {
+            this.errorMessage == 'The relationship Datasource is compulsory';
+            return;
+        };
+        if (this.selectedPropertyDS == '') {
+            this.errorMessage == 'The property is Datasource compulsory';
+            return;
+        }
 
-		this.formDataNetworksClosed.emit('Update');
+        // Get D info
+       let openBracket: number = this.selectedRelationshipDS.indexOf('(');
+       let closeBracket: number = this.selectedRelationshipDS.indexOf(')');
+       this.selectedDashboardRelationshipID = +this.selectedRelationshipDS.substring(openBracket + 1, closeBracket);
+      // Get D info
+      let openBracket: number = this.selectedPropertyDS.indexOf('(');
+      let closeBracket: number = this.selectedPropertyDS.indexOf(')');
+      this.selectedDashboardRelationshipID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
+
+    //   this.formDataNetworksClosed.emit('Update');
     }
 }
