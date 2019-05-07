@@ -320,11 +320,10 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
         let idString: string = inputStringWithID.substring(openBracket + 1, closeBracket);
 
         // Return
-        var str1 = "mkyong"
-        if(isNaN(parseInt(idString)){
+        if(isNaN(parseInt(idString))) {
             return -1;
         } else {
-            return +idString;
+            return parseInt(idString);
         };
 
     }
@@ -406,6 +405,7 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
             // Check if any field is missing
             requiredFields.forEach(field => {
                 if (this.datasources[propertyIndex].dataFields.indexOf(field) < 0) { 
+                    console.log('xx bad field', field)
                     isBadDS = true
                 };
             });
