@@ -55,7 +55,7 @@ export class DataNetworksComponent implements OnInit {
     selectedNavigatorNetwork: NavigatorNetwork = null;
     selectedNetworkName: string = '';
     selectedNetworkDescription: string = '';
-    selectedPropertyDS: number = -1;
+    selectedPropertyDS: string = '';
     selectedRelationshipDS: string = '';
 
     constructor(
@@ -119,7 +119,12 @@ export class DataNetworksComponent implements OnInit {
         this.selectedRelationshipDS =  this.datasources[relationshipIndex] + ' (' 
             + this.datasources[relationshipIndex].id + ')';
         
-  
+        // Find the Property record
+        let propertyIndex: number = this.datasources.findIndex(
+            ds => ds.id == this.selectedDashboardRelationshipID); 
+        this.selectedPropertyDS =  this.datasources[relationshipIndex] + ' (' 
+            + this.datasources[relationshipIndex].id + ')';
+        
     }
 
     changeSelectRelationshipDS(ev: any) {
