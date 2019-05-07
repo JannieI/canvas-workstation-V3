@@ -253,10 +253,12 @@ export class DataNetworksComponent implements OnInit {
         };
 
         // Get DSs
-        let openBracket: number = this.selectedRelationshipDS.indexOf('(');
-        let closeBracket: number = this.selectedRelationshipDS.indexOf(')');
-        this.selectedDashboardRelationshipID = +this.selectedRelationshipDS.substring(openBracket + 1, closeBracket);
-        
+        // let openBracket: number = this.selectedRelationshipDS.indexOf('(');
+        // let closeBracket: number = this.selectedRelationshipDS.indexOf(')');
+        // this.selectedDashboardRelationshipID = +this.selectedRelationshipDS.substring(openBracket + 1, closeBracket);
+        this.selectedDashboardRelationshipID = this.constructIDfromString(
+            this.selectedRelationshipDS);
+
         // Find the Relationship DS record
         let relationshipIndex: number = this.datasources.findIndex(
             ds => ds.id == this.selectedDashboardRelationshipID);
@@ -295,9 +297,11 @@ export class DataNetworksComponent implements OnInit {
         };
 
         // Find the Property record
-        openBracket = this.selectedPropertyDS.indexOf('(');
-        closeBracket = this.selectedPropertyDS.indexOf(')');
-        this.selectedDashboardPropertyID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
+        // openBracket = this.selectedPropertyDS.indexOf('(');
+        // closeBracket = this.selectedPropertyDS.indexOf(')');
+        // this.selectedDashboardPropertyID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
+        this.selectedDashboardPropertyID = this.constructIDfromString(
+            this.selectedPropertyDS);
 
         let propertyIndex: number = this.datasources.findIndex(
             ds => ds.id == this.selectedDashboardPropertyID);
