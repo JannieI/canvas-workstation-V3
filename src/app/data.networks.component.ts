@@ -204,13 +204,23 @@ export class DataNetworksComponent implements OnInit {
     }
 
     clickAdd() {
-        // Add, and then close the form
+        // Switch to add mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         // Reset
         this.errorMessage = '';
 
-		// this.formDataNetworksClosed.emit('Update');
+        this.editing = false;
+    }
+
+    clickAddSave() {
+        // Add
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAddSave', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+
+        this.editing = true;
     }
 
     clickSave() {

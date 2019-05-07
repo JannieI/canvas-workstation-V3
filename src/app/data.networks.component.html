@@ -127,7 +127,7 @@
                         </select>
                     </div>
 
-                    <div class="gridButtonCancel">
+                    <div class="gridButtonCancel" *ngIf="!editing">
                         <button
                             type="button"
                             class="btn btn-secondary"
@@ -136,13 +136,23 @@
                             Cancel
                         </button>
                     </div>
+                    <div class="gridButtonCancel" *ngIf="editing">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickAdd()"
+                            >
+                            Add
+                        </button>
+                    </div>
+
                     <div class="gridButtonAdd" *ngIf="!editing">
                         <button
                             type="button"
                             class="btn btn-primary"
-                            (click)="clickAdd()"
+                            (click)="clickAddSave()"
                             >
-                            Add
+                            Save
                         </button>
                     </div>
                     <div class="gridButtonAdd" *ngIf="editing">
