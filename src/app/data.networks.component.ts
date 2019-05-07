@@ -56,7 +56,7 @@ export class DataNetworksComponent implements OnInit {
     selectedNetworkName: string = '';
     selectedNetworkDescription: string = '';
     selectedPropertyDS: number = -1;
-    selectedRelationshipDS: number = -1;
+    selectedRelationshipDS: string = '';
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -110,12 +110,16 @@ export class DataNetworksComponent implements OnInit {
         console.log('xx ...', this.navigatorNetworks[this.selectedRow])
         this.selectedNetworkName = this.navigatorNetworks[this.selectedRow].name;
         this.selectedNetworkDescription = this.navigatorNetworks[this.selectedRow].description;
-        this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].subDatasources[0];
-        this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].subDatasources[1];
-        relationshipDatasourceID
-        propertiesDatasourceID
-        // let relationshipIndex: number = 
+        this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].relationshipDatasourceID;
+        this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].propertiesDatasourceID;
         
+        // Find the Relationship record
+        let relationshipIndex: number = this.datasources.findIndex(
+            ds => ds.id == this.selectedDashboardRelationshipID); 
+        this.selectedRelationshipDS =  this.datasources[relationshipIndex] + ' (' 
+            + this.datasources[relationshipIndex].id + ')';
+        
+  
     }
 
     changeSelectRelationshipDS(ev: any) {
