@@ -48,6 +48,7 @@
                                 [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRow)? 'white' : 'gray'"
                                 (click)="clickRow(i, row.id)"
+                                style="cursor: pointer;"
                                 >
                                 <!-- <clr-dg-cell>{{ row.id }}</clr-dg-cell> -->
                                 <clr-dg-cell>{{ row.name }}</clr-dg-cell>
