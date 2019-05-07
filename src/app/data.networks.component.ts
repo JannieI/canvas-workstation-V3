@@ -209,6 +209,11 @@ export class DataNetworksComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.selectedNetworkName = '';
+        this.selectedNetworkDescription = '';
+        this.selectedRelationshipDS = '';
+        this.selectedPropertyDS = '';
+        this.editing = true;
 
         this.editing = false;
     }
@@ -216,11 +221,6 @@ export class DataNetworksComponent implements OnInit {
     clickAddSave() {
         // Add
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddSave', '@Start');
-
-        // Reset
-        this.errorMessage = '';
-
-        this.editing = true;
     }
 
     clickSave() {
