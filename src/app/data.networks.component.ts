@@ -221,7 +221,25 @@ export class DataNetworksComponent implements OnInit {
     clickAddSave() {
         // Add
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddSave', '@Start');
-    }
+
+        // Reset
+        this.errorMessage = '';
+
+        // Create new Network record
+        let today = new Date();
+        let navigatorNetworkNew: NavigatorNetwork = {
+            id: null,
+            name: this.selectedNetworkName,
+            description: this.selectedNetworkDescription,
+            accessType: '',
+            relationshipDatasourceID: this.selectedDashboardRelationshipID,
+            propertiesDatasourceID: this.selectedDashboardPropertyID,
+            createdBy: this.globalVariableService.currentUser.userID,
+            createdOn: today,
+            editor: '',
+            dateEdited: null
+        };
+    };
 
     clickSave() {
         // Save, and then close the form
