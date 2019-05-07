@@ -343,4 +343,25 @@ export class DataNetworksComponent implements OnInit {
 
     //   this.formDataNetworksClosed.emit('Update');
     }
+
+    validateInput(): string {
+        // Validates the input, and returns '' / errorMessage
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        // Validation input
+        if (this.selectedRelationshipDS == '') {
+            this.errorMessage = 'The relationship Datasource is compulsory';
+            return this.errorMessage;
+        };
+        if (this.selectedPropertyDS == '') {
+            this.errorMessage = 'The property is Datasource compulsory';
+            return this.errorMessage;
+        };
+
+        // Else all good
+        return this.errorMessage;
+        
+    }
 }
