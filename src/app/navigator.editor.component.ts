@@ -159,7 +159,7 @@ export class NavigatorEditorComponent implements OnInit {
         this.errorMessage = '';
 
         let selectedDashboardString: string = ev.target.value;
-        if (selectedDashboardString != 'None') {
+        if (selectedDashboardString != '') {
 
             // Get D info
             this.selectedNavigatorNetworkID = this.constructIDfromString(
@@ -169,8 +169,17 @@ export class NavigatorEditorComponent implements OnInit {
             this.selectedNavigatorNetworkID = null;
         };
 
-        console.log('xx ev.target.value', ev.target.value, this.selectedNavigatorNetworkID);
+    }
 
+    clickCancel() {
+        // Switch to Edit mode
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
+
+        // Load and return
+        if (this.navigatorNetworks.length > 0) {
+            this.clickRow(0, this.navigatorNetworks[0].id)
+        }
+        this.editing = true;
     }
 
     clickClose() {

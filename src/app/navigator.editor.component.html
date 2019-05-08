@@ -39,8 +39,8 @@
 
                         <clr-dg-row *clrDgItems="let row of navigators;
                             let i = index"
-                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                            [style.background-color]="(i == selectedRowID)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRowID)? 'white' : 'gray'"
                             (click)="clickRow(i, row.id)"
                             style="cursor: pointer;"
                             >
@@ -103,7 +103,7 @@
                     <button
                         type="button"
                         class="btn btn-secondary"
-                        (click)="clickClose()"
+                        (click)="clickCancel()"
                         >
                         Cancel
                     </button>
