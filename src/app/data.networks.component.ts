@@ -245,6 +245,18 @@ export class DataNetworksComponent implements OnInit {
             editor: '',
             dateEdited: null
         };
+
+        // Add to DB and locally
+        this.globalVariableService.addResource('navigatorNetworks', navigatorNetworkNew)
+            .then(res => {
+                this.navigatorNetworks.push(res);
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Data.Networks adding navigatorNetworks: ' + err);
+            });
+
+
     };
 
     clickSave() {
