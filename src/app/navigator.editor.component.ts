@@ -83,8 +83,8 @@ export class NavigatorEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.getResource('widgets')
-            .then (nw => {
-                this.navigators = nw;
+            .then (w => {
+                this.navigators = w;
                 
                 // Select the first nework
                 if (this.navigators.length > 0) {
@@ -93,20 +93,13 @@ export class NavigatorEditorComponent implements OnInit {
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.Networks reading navigators: ' + err);
+                console.error('Error in Navigator Editor reading widgets: ' + err);
             });
 
         // Get Datasource list
-        this.globalVariableService.getResource('datasources')
+        this.globalVariableService.getResource('navigatorNetworks')
             .then(res => {
                 this.datasources = res;
-
-                let datasourceRelationships: Datasource[] = this.datasources.filter(
-                    ds => { 
-                        let temp: validationReturn = this.validateRelationshipDS(ds.id)
-                        if (temp.isValid) return true;
-                    }
-                );
 
                 datasourceRelationships.forEach(ds => {
                     this.datasourceRelationshipNames.push(ds.name + ' (' + ds.id + ')');
@@ -148,7 +141,7 @@ export class NavigatorEditorComponent implements OnInit {
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.Networks reading datasources: ' + err);
+                console.error('Error in Navigator Editor reading datasources: ' + err);
             });
 
     }
@@ -306,7 +299,7 @@ export class NavigatorEditorComponent implements OnInit {
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.Networks adding navigators: ' + err);
+                console.error('Error in Navigator Editor adding navigators: ' + err);
             });
 
         // Back to editing

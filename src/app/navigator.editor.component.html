@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="gridRelationshipDSTitle">
-                    <b>Relationship:</b>
+                    <b>Network:</b>
                 </div>
                 <div class="select gridRelationshipDS"
                     >
@@ -94,21 +94,6 @@
                         (change)="changeSelectRelationshipDS($event)"
                         >
                         <option *ngFor="let row of datasourceRelationshipNames; let i = index">
-                            {{ row }}
-                        </option>
-                    </select>
-                </div>
-
-                <div class="gridPropertyDSTitle">
-                    <b>Property:</b>
-                </div>
-                <div class="select gridPropertyDS"
-                    >
-                    <select [(ngModel)]="selectedPropertyDS"
-                        name="repeatFrequency"
-                        (change)="changeSelectPropertyDS($event)"
-                        >
-                        <option *ngFor="let row of datasourcePropertyNames; let i = index">
                             {{ row }}
                         </option>
                     </select>
