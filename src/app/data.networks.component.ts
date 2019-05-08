@@ -74,32 +74,20 @@ export class DataNetworksComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getResource('navigatorNetworks')
-            .then (nw => {
-                this.navigatorNetworks = nw;
-                
-                // Select the first nework
-                if (this.navigatorNetworks.length > 0) {
-                    this.clickRow(0, this.navigatorNetworks[0].id);
-                };
-            })
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.Networks reading navigatorNetworks: ' + err);
-            });
-
         // Get Datasource list
         this.globalVariableService.getResource('datasources')
             .then(res => {
                 this.datasources = res;
 
+                // Filter those that are relationships
                 let datasourceRelationships: Datasource[] = this.datasources.filter(
                     ds => { 
-                        let temp: validationReturn = this.validateRelationshipDS(ds.id)
+                        let temp: validationReturn = this.validateRelationshipDS(ds.id);
                         if (temp.isValid) return true;
                     }
                 );
 
+                // Construct list of names and ids
                 datasourceRelationships.forEach(ds => {
                     this.datasourceRelationshipNames.push(ds.name + ' (' + ds.id + ')');
                 });
@@ -115,6 +103,7 @@ export class DataNetworksComponent implements OnInit {
                 });
                 this.datasourceRelationshipNames = ['', ...this.datasourceRelationshipNames];
 
+                // Filter those that are properties
                 let datasourceProperty: Datasource[] = this.datasources.filter(
                     ds => { 
                         let temp: validationReturn = this.validatePropertyDS(ds.id)
@@ -122,6 +111,7 @@ export class DataNetworksComponent implements OnInit {
                     }
                 );
 
+                // Construct list of names and ids
                 datasourceProperty.forEach(ds => {
                     this.datasourcePropertyNames.push(ds.name + ' (' + ds.id + ')');
                 });
@@ -136,6 +126,24 @@ export class DataNetworksComponent implements OnInit {
                     return 0;
                 });
                 this.datasourcePropertyNames = ['', ...this.datasourcePropertyNames];
+                
+                // Get Networks
+                this.globalVariableService.getResource('navigatorNetworks')
+                    .then (nw => {
+                        this.navigatorNetworks = nw;
+                        
+                        // Select the first nework, or be ready to Add
+                        if (this.navigatorNetworks.length > 0) {
+                            this.clickRow(0, this.navigatorNetworks[0].id);
+                        } else {
+                            this.editing = false;
+                        };
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Data.Networks reading navigatorNetworks: ' + err);
+                    });
+    
 
             })
             .catch(err => {
@@ -155,7 +163,6 @@ export class DataNetworksComponent implements OnInit {
         this.selectedRow = index;
 
         // Show data for selected record
-        console.log('xx ...', this.navigatorNetworks[this.selectedRow])
         this.selectedNetworkName = this.navigatorNetworks[this.selectedRow].name;
         this.selectedNetworkDescription = this.navigatorNetworks[this.selectedRow].description;
         this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].relationshipDatasourceID;
@@ -192,12 +199,9 @@ export class DataNetworksComponent implements OnInit {
         this.errorMessage = '';
 
         let selectedDashboardString: string = ev.target.value;
-        if (selectedDashboardString != 'None') {
+        if (selectedDashboardString != '') {
 
             // Get D info
-            // let openBracket: number = selectedDashboardString.indexOf('(');
-            // let closeBracket: number = selectedDashboardString.indexOf(')');
-            // this.selectedDashboardRelationshipID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
             this.selectedDashboardRelationshipID = this.constructIDfromString(
                 this.selectedRelationshipDS);
     
@@ -218,12 +222,9 @@ export class DataNetworksComponent implements OnInit {
 
         let selectedDashboardString: string = ev.target.value;
 
-        if (selectedDashboardString != 'None') {
+        if (selectedDashboardString != '') {
 
             // Get D info
-            // let openBracket: number = selectedDashboardString.indexOf('(');
-            // let closeBracket: number = selectedDashboardString.indexOf(')');
-            // this.selectedDashboardPropertyID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
             this.selectedDashboardPropertyID = this.constructIDfromString(
                 this.selectedPropertyDS);
     
@@ -354,12 +355,9 @@ export class DataNetworksComponent implements OnInit {
         };
 
         // Get DSs
-        // let openBracket: number = this.selectedRelationshipDS.indexOf('(');
-        // let closeBracket: number = this.selectedRelationshipDS.indexOf(')');
-        // this.selectedDashboardRelationshipID = +this.selectedRelationshipDS.substring(openBracket + 1, closeBracket);
         this.selectedDashboardRelationshipID = this.constructIDfromString(
             this.selectedRelationshipDS);
-console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRelationshipID)
+
         // Validate DS as a relationship DS
         let validation: validationReturn = this.validateRelationshipDS(
             this.selectedDashboardRelationshipID);
@@ -382,6 +380,38 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
             return;
         };
     
+
+        // Create new Network record
+        let today = new Date();
+        let navigatorNetworkNew: NavigatorNetwork = {
+            id: null,
+            name: this.selectedNetworkName,
+            description: this.selectedNetworkDescription,
+            accessType: '',
+            relationshipDatasourceID: this.selectedDashboardRelationshipID,
+            propertiesDatasourceID: this.selectedDashboardPropertyID,
+            createdBy: this.globalVariableService.currentUser.userID,
+            createdOn: today,
+            editor: '',
+            dateEdited: null
+        };
+
+        // Add to DB and locally
+        this.globalVariableService.addResource('navigatorNetworks', navigatorNetworkNew)
+            .then(res => {
+                this.navigatorNetworks.push(res);
+                let networkIndex: number = this.navigatorNetworks.findIndex(
+                    nw => nw.id == res.id
+                );
+                if (networkIndex >= 0) {
+                    this.selectedRow = networkIndex;
+                    this.clickRow(this.selectedRow, res.id);
+                }
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Data.Networks adding navigatorNetworks: ' + err);
+            });
 
 
             console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
