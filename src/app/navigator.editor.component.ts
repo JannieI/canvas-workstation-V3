@@ -402,68 +402,6 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
 
     }
 
-    validateRelationshipDS(datasourceID: number): validationReturn {
-        // Validate that the given DS ID is a valid Navigatior Relationship datasource
-        // - checks the shape.  Then returns '' / errorMessage
-        this.globalFunctionService.printToConsole(this.constructor.name,'validateRelationshipDS', '@Start');
-
-        // Find the Relationship DS record
-        let relationshipIndex: number = this.datasources.findIndex(
-            ds => ds.id == datasourceID);
-        if (relationshipIndex >= 0) {
-
-            // No fields
-            if (this.datasources[relationshipIndex].dataFields == null) {
-                return { 
-                    isValid: false, 
-                    errorMessage: 'The Datasource does not have any fields metadata' 
-                };
-            };
-
-            // Validate the schema
-            // TODO - must make sure MetaData is always 100% good
-            // TODO - there MUST be a better way !!!
-            let isBadDS: boolean = false;
-            let requiredFields: string[] = [
-                'leftNodeID',
-                'leftNodeType',
-                'leftNodeName',
-                'relationshipLeftToRight',
-                'relationshipRightToLeft',
-                'rightNodeID',
-                'rightNodeType',
-                'rightNodeName',
-                'relationshipProperty'
-            ];
-
-            // Check if any field is missing
-            requiredFields.forEach(field => {
-                if (this.datasources[relationshipIndex].dataFields.indexOf(field) < 0) { 
-                    isBadDS = true
-                };
-            });
-            if (isBadDS) {
-                return { 
-                    isValid: false, 
-                    errorMessage: 'The selected relationship Datasource does not have all the required fields' 
-                };
-            };
-
-        } else {
-            return { 
-                isValid: false, 
-                errorMessage: 'Error: the relationship Datasource ID ' 
-                    + this.selectedDashboardRelationshipID.toString() + ' does not exist!' 
-            };
-        };
-
-        // Return
-        return { 
-            isValid: true, 
-            errorMessage: '' 
-        };
-    }
-
     validatePropertyDS(datasourceID: number): validationReturn {
         // Validate that the given DS ID is a valid Navigatior Property datasource
         // - checks the shape.  Then returns '' / errorMessage
