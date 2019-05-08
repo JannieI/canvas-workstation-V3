@@ -50,7 +50,8 @@ export class DataNetworksComponent implements OnInit {
 
     }
 
-    datasourceNames: string[] = [];
+    datasourceRelationshipNames: string[] = [];
+    datasourcePropertyNames: string[] = [];
     datasources: Datasource[] = [];
     editing: boolean = true;  // TODO - must be received via @Input
     errorMessage: string = '';
@@ -94,14 +95,16 @@ export class DataNetworksComponent implements OnInit {
 
                 let datasourceRelationships: Datasource[] = this.datasources.filter(
                     ds => { 
-                        if(this.validateRelationshipDS(ds.id).isValid) return true;
+                        let temp: validationReturn = this.validateRelationshipDS(ds.id)
+                        console.log('xx temp', ds.id, ds.dataFields, temp)
+                        if (temp.isValid) return true;
                     }
                 );
                 console.log('xx datasourceRelationships', datasourceRelationships)
                 datasourceRelationships.forEach(ds => {
-                    this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
+                    this.datasourceRelationshipNames.push(ds.name + ' (' + ds.id + ')');
                 });
-                this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
+                this.datasourceRelationshipNames = this.datasourceRelationshipNames.sort( (obj1,obj2) => {
                     if (obj1.toLowerCase() > obj2.toLowerCase()) {
                         return 1;
                     };
@@ -110,7 +113,7 @@ export class DataNetworksComponent implements OnInit {
                     };
                     return 0;
                 });
-                this.datasourceNames = ['', ...this.datasourceNames];
+                this.datasourceRelationshipNames = ['', ...this.datasourceRelationshipNames];
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -399,7 +402,7 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
                 'rightNodeName',
                 'relationshipProperty'
             ];
-            
+
             // Check if any field is missing
             requiredFields.forEach(field => {
                 if (this.datasources[relationshipIndex].dataFields.indexOf(field) < 0) { 
@@ -423,7 +426,7 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
 
         // Return
         return { 
-            isValid: false, 
+            isValid: true, 
             errorMessage: '' 
         };
     }
@@ -473,7 +476,7 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
 
         // Return
         return { 
-            isValid: false, 
+            isValid: true, 
             errorMessage: '' 
         };
     }
