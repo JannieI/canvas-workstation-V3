@@ -4922,6 +4922,20 @@
 </widget-delete>
 
 
+<!-- Modal: Navigator editor -->
+<widget-editorNEW
+    *ngIf="showModalNavigatorEditor"
+    [showDatasourcePopup]="showDatasourcePopup"
+    [selectedWidgetLayout]="selectedWidgetLayout"
+    [newWidget]="newWidget"
+    [canSave]="canSave"
+    [selectedWidget]="selectedWidget"
+    [newWidgetContainerLeft]="newWidgetContainerLeft"
+    [newWidgetContainerTop]="newWidgetContainerTop"
+    (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Load Navigator Editor ...
+</widget-editorNEW>
+
+
 <!-- Modal: widget editor -->
 <widget-editorNEW
     *ngIf="showModalWidgetEditor"

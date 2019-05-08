@@ -375,6 +375,7 @@ export class AppComponent implements OnInit {
     showModalManagedDataDataDictionary: boolean = false;
     showModalManagedDataDataQuality: boolean = false;
     showModalManagedDataOwnership: boolean = false;
+    showModalNavigatorEditor: boolean = false;
     showModalTableEditor: boolean = false;
     showModalSlicerEditor: boolean = false;
     showModalGroups: boolean = false;
@@ -4605,7 +4606,7 @@ export class AppComponent implements OnInit {
         this.newWidget = true;
         this.showDatasourcePopup = true;
         this.canSave = true;
-        this.showModalWidgetEditor = true;
+        this.showModalNavigatorEditor = true;
     }
 
     clickMenuWidgetNew(widgetLayout: WidgetLayout = null) {
