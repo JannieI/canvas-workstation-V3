@@ -64,7 +64,8 @@ export class NavigatorEditorComponent implements OnInit {
     navigatorNetworks: NavigatorNetwork[] = [];
     selectedNavigatorNetworkID: number = -1;
     selectedDashboardPropertyID: number = -1;
-    selectedRow: number = 0;
+    selectedRowID: number = -1;
+    selectedRowIndex: number = -1;
     selectedNetworkName: string = '';
     selectedNetworkDescription: string = '';
     selectedNavigatorNetwork: string = '';
@@ -78,23 +79,6 @@ export class NavigatorEditorComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
-        // Get Navigators
-        this.globalVariableService.getResource(
-            'widgets', 'filterObject={"widgetType": "Navigator"}'
-            )
-            .then (w => {
-                this.navigators = w;
-
-                // Select the first nework
-                if (this.navigators.length > 0) {
-                    this.clickRow(0, this.navigators[0].id);
-                };
-            })
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Navigator Editor reading widgets: ' + err);
-            });
 
         // Get Datasource list
         this.globalVariableService.getResource('navigatorNetworks')
@@ -116,6 +100,23 @@ export class NavigatorEditorComponent implements OnInit {
                 });
                 this.navigatorNetworkNames = ['', ...this.navigatorNetworkNames];
 
+                // Get Navigators
+                this.globalVariableService.getResource(
+                    'widgets', 'filterObject={"widgetType": "Navigator"}'
+                    )
+                    .then (w => {
+                        this.navigators = w;
+
+                        // Select the first nework
+                        if (this.navigators.length > 0) {
+                            this.clickRow(0, this.navigators[0].id);
+                        };
+                    })
+                    .catch(err => {
+                        this.errorMessage = err.slice(0, 100);
+                        console.error('Error in Navigator Editor reading widgets: ' + err);
+                    });
+
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -130,16 +131,15 @@ export class NavigatorEditorComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
-
-        this.selectedRow = index;
+        this.selectedRowID = id;
+        this.selectedRowIndex = index;
 
         // Show data for selected record
-        console.log('xx ...', this.navigators[this.selectedRow])
-        this.selectedNetworkName = this.navigators[this.selectedRow].name;
-        this.selectedNetworkDescription = this.navigators[this.selectedRow].description;
-        this.selectedNavigatorNetworkID = this.navigators[this.selectedRow].navigatorNetworkID;
+        this.selectedNetworkName = this.navigators[this.selectedRowIndex].name;
+        this.selectedNetworkDescription = this.navigators[this.selectedRowIndex].description;
+        this.selectedNavigatorNetworkID = this.navigators[this.selectedRowIndex].navigatorNetworkID;
 
-        // Find the Relationship record
+        // Find the Network record
         let networkIndex: number = this.navigatorNetworks.findIndex(
             nw => nw.id == this.selectedNavigatorNetworkID);
         if (networkIndex >= 0) {
@@ -149,7 +149,6 @@ export class NavigatorEditorComponent implements OnInit {
             this.selectedNavigatorNetwork = '';
         };
 
-            console.log('xx this.selectedRelationshipDS', this.selectedNavigatorNetwork)
     }
 
     changeSelectNetwork(ev: any) {
@@ -225,8 +224,8 @@ export class NavigatorEditorComponent implements OnInit {
                     nw => nw.id == res.id
                 );
                 if (networkIndex >= 0) {
-                    this.selectedRow = networkIndex;
-                    this.clickRow(this.selectedRow, res.id);
+                    this.selectedRowIndex = networkIndex;
+                    this.clickRow(this.selectedRowIndex, res.id);
                 }
             })
             .catch(err => {
