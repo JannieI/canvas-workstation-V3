@@ -301,6 +301,8 @@ export class DataNetworksComponent implements OnInit {
                 console.error('Error in Data.Networks adding navigatorNetworks: ' + err);
             });
 
+        // Back to editing
+        this.editing = true;
     };
 
     clickSave() {
