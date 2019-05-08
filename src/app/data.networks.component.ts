@@ -269,10 +269,15 @@ export class DataNetworksComponent implements OnInit {
                 console.error('Error in Data.Networks deleting navigatorNetworks: ' + err);
             });
     }
+
     clickCancel() {
         // Switch to Edit mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
 
+        // Load and return
+        if (this.navigatorNetworks.length > 0) {
+            this.clickRow(0, this.navigatorNetworks[0].id)
+        }
         this.editing = true;
     }
 
