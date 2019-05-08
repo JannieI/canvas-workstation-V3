@@ -414,13 +414,10 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
         };
     }
 
-    validatePropertyDS(datasourceID: number): string {
+    validatePropertyDS(datasourceID: number): validationReturn {
         // Validate that the given DS ID is a valid Navigatior Property datasource
         // - checks the shape.  Then returns '' / errorMessage
         this.globalFunctionService.printToConsole(this.constructor.name,'validatePropertyDS', '@Start');
-
-        // Reset 
-        this.errorMessage = '';
 
         let propertyIndex: number = this.datasources.findIndex(
             ds => ds.id == datasourceID);
@@ -446,18 +443,25 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
                 };
             });
             if (isBadDS) {
-                this.errorMessage = 'The selected property Datasource does not have all the required fields';
-                return this.errorMessage;
+                return { 
+                    isValid: false, 
+                    errorMessage: 'The selected property Datasource does not have all the required fields'
+                };
             };
 
         } else {
-            this.errorMessage = 'Error: the property Datasource ID '
-                + this.selectedDashboardPropertyID.toString() + ' does not exist!' ;
-            return this.errorMessage;
+            return { 
+                isValid: false, 
+                errorMessage: 'Error: the property Datasource ID '
+                    + this.selectedDashboardPropertyID.toString() + ' does not exist!'
+            };
         };    
 
         // Return
-        return this.errorMessage;
+        return { 
+            isValid: false, 
+            errorMessage: '' 
+        };
     }
 
 }
