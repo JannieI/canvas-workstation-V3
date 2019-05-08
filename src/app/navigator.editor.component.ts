@@ -109,6 +109,8 @@ export class NavigatorEditorComponent implements OnInit {
                         // Select the first nework
                         if (this.navigators.length > 0) {
                             this.clickRow(0, this.navigators[0].id);
+                        } else {
+                            this.editing = false;
                         };
                     })
                     .catch(err => {

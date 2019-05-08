@@ -144,7 +144,6 @@ export class DataNetworksComponent implements OnInit {
                         console.error('Error in Data.Networks reading navigatorNetworks: ' + err);
                     });
     
-
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
