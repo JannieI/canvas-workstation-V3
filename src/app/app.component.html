@@ -4923,17 +4923,15 @@
 
 
 <!-- Modal: Navigator editor -->
-<widget-editorNEW
+<navigator-editor
     *ngIf="showModalNavigatorEditor"
-    [showDatasourcePopup]="showDatasourcePopup"
-    [selectedWidgetLayout]="selectedWidgetLayout"
     [newWidget]="newWidget"
-    [canSave]="canSave"
     [selectedWidget]="selectedWidget"
     [newWidgetContainerLeft]="newWidgetContainerLeft"
     [newWidgetContainerTop]="newWidgetContainerTop"
+    [canSave]="canSave"
     (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Load Navigator Editor ...
-</widget-editorNEW>
+</navigator-editor>
 
 
 <!-- Modal: widget editor -->

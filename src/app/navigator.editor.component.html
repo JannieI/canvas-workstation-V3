@@ -1,0 +1,179 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
+
+                <div class="gridTitle">
+                    <b>Navigator Editor.</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;">
+                                This form is used to Add / Edit a Network.  Networks
+                                consist of Nodes and Relationships, and can be viewed
+                                with the Canvas Navigator.  Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+
+                </div>
+
+                <div class="gridErrorMessage">
+                    {{ errorMessage }}
+                </div>
+
+                <div class="gridTable">
+                    <clr-datagrid>
+                        <!-- <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column> -->
+                        <clr-dg-column>Delete</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+                        <!-- <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column> -->
+                        <!-- <clr-dg-column [clrDgField]="'accessType'">AccessType</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'createdBy'">Creator</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'createdOn'">CreatedOn</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'editor'">Editor</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'dateEdited'">EditedOn</clr-dg-column> -->
+
+                        <clr-dg-row *clrDgItems="let row of navigatorNetworks;
+                            let i = index"
+                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                            (click)="clickRow(i, row.id)"
+                            style="cursor: pointer;"
+                            >
+                            <!-- <clr-dg-cell>{{ row.id }}</clr-dg-cell> -->
+                            <clr-dg-cell>
+                                <clr-icon shape="trash"
+                                    (dblclick)="dblclickDeleteNetwork(i, row.id)"> 
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                            <!-- <clr-dg-cell>{{ row.description }}</clr-dg-cell> -->
+                            <!-- <clr-dg-cell>{{ row.accessType }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.createdBy }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.createdOn }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.editor }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.dateEdited }}</clr-dg-cell> -->
+                        </clr-dg-row>
+
+                    </clr-datagrid>
+                </div>
+
+                <div class="gridNetworkNameTitle">
+                    <b>Name:</b>
+                </div>
+                <div class="gridNetworkName">
+                        <input [(ngModel)]="selectedNetworkName"
+                        type="text"
+                        name="name"
+                        placeholder="Name of the Schedule"
+                        #nameVar="ngModel"
+                        required
+                        minlength="2"
+                        maxlength="150"
+                        size="43"
+                        [style.color]="!nameVar.valid  &&  editing ? 'red' : 'gray'"
+                        >
+                </div>
+
+                <div class="gridNetworkDescriptionTitle">
+                    <b>Description:</b>
+                </div>
+                <div class="gridNetworkDescription">
+                        <input [(ngModel)]="selectedNetworkDescription"
+                        type="text"
+                        name="name"
+                        placeholder="Description of the Schedule"
+                        #descriptionVar="ngModel"
+                        required
+                        minlength="2"
+                        maxlength="500"
+                        size="43"
+                        [style.color]="!descriptionVar.valid  &&  editing ? 'red' : 'gray'"
+                        >
+                </div>
+
+                <div class="gridRelationshipDSTitle">
+                    <b>Relationship:</b>
+                </div>
+                <div class="select gridRelationshipDS"
+                    >
+                    <select [(ngModel)]="selectedRelationshipDS"
+                        name="repeatFrequency"
+                        (change)="changeSelectRelationshipDS($event)"
+                        >
+                        <option *ngFor="let row of datasourceRelationshipNames; let i = index">
+                            {{ row }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="gridPropertyDSTitle">
+                    <b>Property:</b>
+                </div>
+                <div class="select gridPropertyDS"
+                    >
+                    <select [(ngModel)]="selectedPropertyDS"
+                        name="repeatFrequency"
+                        (change)="changeSelectPropertyDS($event)"
+                        >
+                        <option *ngFor="let row of datasourcePropertyNames; let i = index">
+                            {{ row }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="gridButtonCancel" *ngIf="!editing">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose()"
+                        >
+                        Cancel
+                    </button>
+                </div>
+                <div class="gridButtonCancel" *ngIf="editing">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickAdd()"
+                        >
+                        Add
+                    </button>
+                </div>
+
+                <div class="gridButtonAdd" *ngIf="!editing">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickAddSave()"
+                        >
+                        Save
+                    </button>
+                </div>
+                <div class="gridButtonAdd" *ngIf="editing">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickSave()"
+                        >
+                        Save
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
