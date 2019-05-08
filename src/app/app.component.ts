@@ -1579,6 +1579,37 @@ export class AppComponent implements OnInit {
         this.showTitleForm = false;
     }
 
+    handleCloseNavigatorEditor(changedWidget: Widget) {    
+        // Handle closing routine for Navigator Editor
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseNavigatorEditor', '@Start');
+
+        // Cancel => changedWidget = null
+        if (changedWidget != null) {
+
+            // Add to Action log
+            this.globalVariableService.actionUpsert(
+                null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                changedWidget.id,
+                'Widget',
+                this.newWidget? 'Add' : 'Edit',
+                '',
+                'App handleCloseWidgetEditor',
+                null,
+                null,
+                this.newWidget? null : this.selectedWidget,
+                changedWidget
+            );
+
+            this.globalVariableService.changedWidget.next(changedWidget);
+        }
+
+        this.menuOptionClickPostAction();
+        console.warn('xx app W', this.selectedWidget, changedWidget, this.currentWidgets)
+        this.showModalNavigatorEditor = false;
+    }
+
     handleCloseWidgetEditor(changedWidget: Widget) {    //widgetsToRefresh: number) {
         // Handle closing routine for Widget Editor
         this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseWidgetEditor', '@Start');

@@ -42,7 +42,7 @@ export class NavigatorEditorComponent implements OnInit {
     @Input() newWidgetContainerTop: number;
     @Input() canSave: boolean = true;
 
-    @Output() formDataNetworksClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formNavigatorEditorClosed: EventEmitter<string> = new EventEmitter();
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
     @HostListener('window:keyup', ['$event'])
@@ -250,7 +250,7 @@ export class NavigatorEditorComponent implements OnInit {
         // Reset
         this.errorMessage = '';
 
-		this.formDataNetworksClosed.emit('Close');
+		this.formNavigatorEditorClosed.emit('Close');
     }
 
     dblclickDeleteNetwork(index: number, networkID: number) {
