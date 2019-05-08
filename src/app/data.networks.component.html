@@ -46,8 +46,8 @@
 
                             <clr-dg-row *clrDgItems="let row of navigatorNetworks;
                                 let i = index"
-                                [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                                [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                 (click)="clickRow(i, row.id)"
                                 style="cursor: pointer;"
                                 >

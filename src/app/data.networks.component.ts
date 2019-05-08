@@ -58,7 +58,8 @@ export class DataNetworksComponent implements OnInit {
     navigatorNetworks: NavigatorNetwork[] = [];
     selectedDashboardRelationshipID: number = -1;
     selectedDashboardPropertyID: number = -1;
-    selectedRow: number = 0;
+    selectedRowID: number = -1;
+    selectedRowIndex: number = 0;
     selectedNavigatorNetwork: NavigatorNetwork = null;
     selectedNetworkName: string = '';
     selectedNetworkDescription: string = '';
@@ -159,14 +160,14 @@ export class DataNetworksComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
-
-        this.selectedRow = index;
+        this.selectedRowID = id;
+        this.selectedRowIndex = index;
 
         // Show data for selected record
-        this.selectedNetworkName = this.navigatorNetworks[this.selectedRow].name;
-        this.selectedNetworkDescription = this.navigatorNetworks[this.selectedRow].description;
-        this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].relationshipDatasourceID;
-        this.selectedDashboardPropertyID = this.navigatorNetworks[this.selectedRow].propertiesDatasourceID;
+        this.selectedNetworkName = this.navigatorNetworks[this.selectedRowIndex].name;
+        this.selectedNetworkDescription = this.navigatorNetworks[this.selectedRowIndex].description;
+        this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRowIndex].relationshipDatasourceID;
+        this.selectedDashboardPropertyID = this.navigatorNetworks[this.selectedRowIndex].propertiesDatasourceID;
 
         // Find the Relationship record
         let relationshipIndex: number = this.datasources.findIndex(
@@ -188,7 +189,6 @@ export class DataNetworksComponent implements OnInit {
             this.selectedPropertyDS = '';
         };
 
-            console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
     }
 
     changeSelectRelationshipDS(ev: any) {
@@ -329,8 +329,8 @@ export class DataNetworksComponent implements OnInit {
                     nw => nw.id == res.id
                 );
                 if (networkIndex >= 0) {
-                    this.selectedRow = networkIndex;
-                    this.clickRow(this.selectedRow, res.id);
+                    this.selectedRowIndex = networkIndex;
+                    this.clickRow(this.selectedRowIndex, res.id);
                 }
             })
             .catch(err => {
@@ -354,34 +354,34 @@ export class DataNetworksComponent implements OnInit {
             return;
         };
 
-        // Get DSs
-        this.selectedDashboardRelationshipID = this.constructIDfromString(
-            this.selectedRelationshipDS);
+        // // Get DSs
+        // this.selectedDashboardRelationshipID = this.constructIDfromString(
+        //     this.selectedRelationshipDS);
 
-        // Validate DS as a relationship DS
-        let validation: validationReturn = this.validateRelationshipDS(
-            this.selectedDashboardRelationshipID);
-        if (!validation.isValid) {
-            this.errorMessage = validation.errorMessage;
-            return;
-        };
+        // // Validate DS as a relationship DS
+        // let validation: validationReturn = this.validateRelationshipDS(
+        //     this.selectedDashboardRelationshipID);
+        // if (!validation.isValid) {
+        //     this.errorMessage = validation.errorMessage;
+        //     return;
+        // };
 
-        // Find the Property record
-        // openBracket = this.selectedPropertyDS.indexOf('(');
-        // closeBracket = this.selectedPropertyDS.indexOf(')');
-        // this.selectedDashboardPropertyID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
-        this.selectedDashboardPropertyID = this.constructIDfromString(
-            this.selectedPropertyDS);
+        // // Find the Property record
+        // // openBracket = this.selectedPropertyDS.indexOf('(');
+        // // closeBracket = this.selectedPropertyDS.indexOf(')');
+        // // this.selectedDashboardPropertyID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
+        // this.selectedDashboardPropertyID = this.constructIDfromString(
+        //     this.selectedPropertyDS);
 
-        // Validate DS as a relationship DS
-        validation = this.validatePropertyDS(this.selectedDashboardPropertyID);
-        if (!validation.isValid) {
-            this.errorMessage = validation.errorMessage;
-            return;
-        };
+        // // Validate DS as a relationship DS
+        // validation = this.validatePropertyDS(this.selectedDashboardPropertyID);
+        // if (!validation.isValid) {
+        //     this.errorMessage = validation.errorMessage;
+        //     return;
+        // };
     
-
-        // Create new Network record
+        selectedRowID
+        // Update Network record
         let today = new Date();
         let navigatorNetworkNew: NavigatorNetwork = {
             id: null,
@@ -404,8 +404,8 @@ export class DataNetworksComponent implements OnInit {
                     nw => nw.id == res.id
                 );
                 if (networkIndex >= 0) {
-                    this.selectedRow = networkIndex;
-                    this.clickRow(this.selectedRow, res.id);
+                    this.selectedRowIndex = networkIndex;
+                    this.clickRow(this.selectedRowIndex, res.id);
                 }
             })
             .catch(err => {
