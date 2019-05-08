@@ -376,6 +376,13 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
             ds => ds.id == datasourceID);
         if (relationshipIndex >= 0) {
 
+            if (this.datasources[relationshipIndex].dataFields == null) {
+                return { 
+                    isValid: false, 
+                    errorMessage: 'The Datasource does not have any fields metadata' 
+                };
+            };
+
             // Validate the schema
             // TODO - must make sure MetaData is always 100% good
             // TODO - there MUST be a better way !!!
