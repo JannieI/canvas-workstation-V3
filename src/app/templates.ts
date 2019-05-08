@@ -645,6 +645,7 @@ export const widgetTemplate: Widget =
         "shapeTextColour": "",
         "shapeTextColourName": "",
         "shapeValue": "",
+        "navigatorNetworkID": null,
         "navigatorSelectParentNodeType": "",
         "navigatorSelectParentNodeName": "",
         "navigatorSelectRelationship": "",
