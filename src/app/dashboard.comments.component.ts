@@ -181,13 +181,14 @@ export class DashboardCommentsComponent implements OnInit {
         let dt = new Date();
 
         let newComment: CanvasComment =
-            {id: null,
-            dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            widgetID: this.selectedWidgetID,
-            comment: this.commentText,
-            creator: this.globalVariableService.currentUser.userID,
-            createdOn: dt
-        };
+            {
+                id: null,
+                dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                widgetID: this.selectedWidgetID,
+                comment: this.commentText,
+                creator: this.globalVariableService.currentUser.userID,
+                createdOn: dt
+            };
 
         // Globally and locally
         this.globalVariableService.addResource('canvasComments', newComment)

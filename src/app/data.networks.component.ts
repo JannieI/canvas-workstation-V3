@@ -269,6 +269,9 @@ export class DataNetworksComponent implements OnInit {
         // Save, and then close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Reset 
+        this.errorMessage = '';
+
         // Validation input
         if (this.validateInput() != '') {
             return;
@@ -346,13 +349,10 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
 
     }
 
-    validateRelationshipDS(datasourceID: number): string {
+    validateRelationshipDS(datasourceID: number): { valid: boolean; errorMessage: string } {
         // Validate that the given DS ID is a valid Navigatior Relationship datasource
         // - checks the shape.  Then returns '' / errorMessage
         this.globalFunctionService.printToConsole(this.constructor.name,'validateRelationshipDS', '@Start');
-
-        // Reset 
-        this.errorMessage = '';
 
         // Find the Relationship DS record
         let relationshipIndex: number = this.datasources.findIndex(
@@ -382,18 +382,17 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
                 };
             });
             if (isBadDS) {
-                this.errorMessage = 'The selected relationship Datasource does not have all the required fields';
-                return this.errorMessage;
+                return { valid: false, errorMessage: 'The selected relationship Datasource does not have all the required fields' };
             };
 
         } else {
-            this.errorMessage = 'Error: the relationship Datasource ID '
+            this.errorMessage = 
                 + this.selectedDashboardRelationshipID.toString() + ' does not exist!' ;
-            return this.errorMessage;
+            return { valid: false, errorMessage: 'Error: the relationship Datasource ID ' };
         };
 
         // Return
-        return this.errorMessage;
+        return { valid: false, errorMessage: '' };
     }
 
     validatePropertyDS(datasourceID: number): string {
