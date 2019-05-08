@@ -1710,7 +1710,6 @@ export class NavigatorNetwork {
 
 export class NavigatorRelationship {
     id: number;                             // Unique record ID
-    networkID: number;                      // FK to Network
     leftNodeID: number;                     // FK of left Node to Node Property table
     leftNodeType: string;                   // Type of left Node, ie Company
     leftNodeName: string;                   // Name of left Node, ie Absa
