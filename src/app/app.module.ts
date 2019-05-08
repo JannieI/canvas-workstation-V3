@@ -52,7 +52,8 @@ import { DashboardSubscribeComponent }         from './dashboard.subscribe.compo
 import { DashboardDataQualityComponent }       from './dashboard.dataquality.component';
 import { DashboardUsagestatsComponent }        from './dashboard.usagestats.component';
 
-import { WidgetEditorComponentNEW }      from './widget.editor.componentNEW';
+import { NavigatorEditorComponent }   from './navigator.editor.component';
+import { WidgetEditorComponentNEW }   from './widget.editor.componentNEW';
 import { WidgetCheckpointsComponent } from './widget.checkpoints.component';
 import { WidgetLinksComponent }       from './widget.hyperlinks.component';
 import { WidgetCrossFilterComponent }          from './widget.crossFilter.component';
@@ -243,6 +244,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataRefreshRepeatComponent,
         DataDeleteDatasourceComponent,
 
+        NavigatorEditorComponent,
         WidgetEditorComponentNEW,
         WidgetCheckpointsComponent,
         WidgetLinksComponent,
