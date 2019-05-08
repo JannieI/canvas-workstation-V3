@@ -26,6 +26,12 @@ import { NavigatorNetwork }           from './models';
     templateUrl: './data.networks.component.html',
     styleUrls: ['./data.networks.component.css']
 })
+
+interface validationReturn { 
+    valid: boolean; 
+    errorMessage: string 
+};
+
 export class DataNetworksComponent implements OnInit {
 
     @Output() formDataNetworksClosed: EventEmitter<string> = new EventEmitter();
