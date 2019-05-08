@@ -4547,6 +4547,67 @@ export class AppComponent implements OnInit {
 
     // ***********************  CLICK WIDGET MENU OPTIONS ************************ //
 
+    clickMenuNavigatorNew() {
+        // Open Navigator Editor
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuNavigatorNew', '@Start');
+
+        // Reset
+        this.showDashboardContextMenu = false;
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        if (!this.menuOptionClickPreAction()) {
+            return;
+        };
+
+        // Reset position if not dragged.
+        if (!this.paletteDrag) {
+            this.newWidgetContainerLeft = 0;
+            this.newWidgetContainerTop = 0;
+        } else {
+            this.paletteDrag = false;
+        };
+
+        // Set Dimensions
+        // this.selectedWidgetLayout = widgetLayout;
+        // if (widgetLayout != null) {
+            this.newWidgetContainerLeft = 0;
+            this.newWidgetContainerTop = 0;
+        // } else {
+
+        // };
+
+        // Indicate new W and open Editor
+        this.newWidget = true;
+        this.showDatasourcePopup = true;
+        this.canSave = true;
+        this.showModalWidgetEditor = true;
+    }
+
     clickMenuWidgetNew(widgetLayout: WidgetLayout = null) {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetNew', '@Start');
