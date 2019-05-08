@@ -402,54 +402,5 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
 
     }
 
-    validatePropertyDS(datasourceID: number): validationReturn {
-        // Validate that the given DS ID is a valid Navigatior Property datasource
-        // - checks the shape.  Then returns '' / errorMessage
-        this.globalFunctionService.printToConsole(this.constructor.name,'validatePropertyDS', '@Start');
-
-        let propertyIndex: number = this.datasources.findIndex(
-            ds => ds.id == datasourceID);
-        if (propertyIndex >= 0) {
-
-            // Validate the schema
-            // TODO - must make sure MetaData is always 100% good
-            // TODO - there MUST be a better way !!!
-            let isBadDS: boolean = false;
-            let requiredFields: string[] = [
-                'nodeID',
-                'nodeType',
-                'nodeName',
-                'propertyKey',
-                'propertyValue'
-            ];
-            
-            // Check if any field is missing
-            requiredFields.forEach(field => {
-                if (this.datasources[propertyIndex].dataFields.indexOf(field) < 0) { 
-                    console.log('xx bad field', field)
-                    isBadDS = true
-                };
-            });
-            if (isBadDS) {
-                return { 
-                    isValid: false, 
-                    errorMessage: 'The selected property Datasource does not have all the required fields'
-                };
-            };
-
-        } else {
-            return { 
-                isValid: false, 
-                errorMessage: 'Error: the property Datasource ID '
-                    + this.selectedDashboardPropertyID.toString() + ' does not exist!'
-            };
-        };    
-
-        // Return
-        return { 
-            isValid: true, 
-            errorMessage: '' 
-        };
-    }
 
 }
