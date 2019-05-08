@@ -21,16 +21,16 @@ import { GlobalVariableService}       from './global-variable.service';
 import { Datasource }                 from './models';
 import { NavigatorNetwork }           from './models';
 
+interface validationReturn { 
+    valid: boolean; 
+    errorMessage: string 
+};
+
 @Component({
     selector: 'data-networks',
     templateUrl: './data.networks.component.html',
     styleUrls: ['./data.networks.component.css']
 })
-
-interface validationReturn { 
-    valid: boolean; 
-    errorMessage: string 
-};
 
 export class DataNetworksComponent implements OnInit {
 
@@ -388,17 +388,25 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
                 };
             });
             if (isBadDS) {
-                return { valid: false, errorMessage: 'The selected relationship Datasource does not have all the required fields' };
+                return { 
+                    valid: false, 
+                    errorMessage: 'The selected relationship Datasource does not have all the required fields' 
+                };
             };
 
         } else {
-            this.errorMessage = 
-                + this.selectedDashboardRelationshipID.toString() + ' does not exist!' ;
-            return { valid: false, errorMessage: 'Error: the relationship Datasource ID ' };
+            return { 
+                valid: false, 
+                errorMessage: 'Error: the relationship Datasource ID ' 
+                    + this.selectedDashboardRelationshipID.toString() + ' does not exist!' 
+            };
         };
 
         // Return
-        return { valid: false, errorMessage: '' };
+        return { 
+            valid: false, 
+            errorMessage: '' 
+        };
     }
 
     validatePropertyDS(datasourceID: number): string {
