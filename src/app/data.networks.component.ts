@@ -380,37 +380,41 @@ export class DataNetworksComponent implements OnInit {
         //     return;
         // };
     
-        selectedRowID
+        
         // Update Network record
         let today = new Date();
-        let navigatorNetworkNew: NavigatorNetwork = {
-            id: null,
-            name: this.selectedNetworkName,
-            description: this.selectedNetworkDescription,
-            accessType: '',
-            relationshipDatasourceID: this.selectedDashboardRelationshipID,
-            propertiesDatasourceID: this.selectedDashboardPropertyID,
-            createdBy: this.globalVariableService.currentUser.userID,
-            createdOn: today,
-            editor: '',
-            dateEdited: null
+        let navigatorNetworkIndex: number = this.navigatorNetworks.findIndex(
+            nw => nw.id == this.selectedRowID
+        );
+        if (navigatorNetworkIndex < 0) {
+            this.errorMessage = 'Error finding Network record';
+            return;
         };
 
+        this.navigatorNetworks[navigatorNetworkIndex].name = this.selectedNetworkName;
+        this.navigatorNetworks[navigatorNetworkIndex].description = this.selectedNetworkDescription;
+        this.navigatorNetworks[navigatorNetworkIndex].relationshipDatasourceID = this.selectedDashboardRelationshipID;
+        this.navigatorNetworks[navigatorNetworkIndex].propertiesDatasourceID = this.selectedDashboardPropertyID;
+        this.navigatorNetworks[navigatorNetworkIndex].editor = this.globalVariableService.currentUser.userID;
+        this.navigatorNetworks[navigatorNetworkIndex].dateEdited = today;
+
         // Add to DB and locally
-        this.globalVariableService.addResource('navigatorNetworks', navigatorNetworkNew)
+        this.globalVariableService.saveResource(
+            'navigatorNetworks', this.navigatorNetworks[navigatorNetworkIndex]
+            )
             .then(res => {
-                this.navigatorNetworks.push(res);
-                let networkIndex: number = this.navigatorNetworks.findIndex(
-                    nw => nw.id == res.id
-                );
-                if (networkIndex >= 0) {
-                    this.selectedRowIndex = networkIndex;
-                    this.clickRow(this.selectedRowIndex, res.id);
-                }
+                // this.navigatorNetworks.push(res);
+                // let networkIndex: number = this.navigatorNetworks.findIndex(
+                //     nw => nw.id == res.id
+                // );
+                // if (networkIndex >= 0) {
+                //     this.selectedRowIndex = networkIndex;
+                //     this.clickRow(this.selectedRowIndex, res.id);
+                // }
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.Networks adding navigatorNetworks: ' + err);
+                console.error('Error in Data.Networks saving navigatorNetworks: ' + err);
             });
 
 
