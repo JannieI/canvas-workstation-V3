@@ -1723,7 +1723,6 @@ export class NavigatorRelationship {
 }
 
 export class NavigatorProperties {
-    networkID: number;                      // FK to Network
     nodeID: number;                         // ID of Node, ie 1
     nodeType: string;                       // Type of Node, ie Company
     nodeName: string;                       // Node Name, ie Absa
