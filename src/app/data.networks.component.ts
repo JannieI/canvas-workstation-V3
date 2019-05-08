@@ -22,7 +22,7 @@ import { Datasource }                 from './models';
 import { NavigatorNetwork }           from './models';
 
 interface validationReturn { 
-    valid: boolean; 
+    isValid: boolean; 
     errorMessage: string 
 };
 
@@ -291,7 +291,10 @@ export class DataNetworksComponent implements OnInit {
             this.selectedRelationshipDS);
 console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRelationshipID)
         // Validate DS as a relationship DS
-        if (this.validateRelationshipDS(this.selectedDashboardRelationshipID) != '') {
+        let validation: validationReturn = this.validateRelationshipDS(
+            this.selectedDashboardRelationshipID);
+        if (!validation.isValid) {
+            this.errorMessage = validation.errorMessage;
             return;
         };
 
@@ -302,11 +305,13 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
         this.selectedDashboardPropertyID = this.constructIDfromString(
             this.selectedPropertyDS);
 
-            // Validate DS as a relationship DS
-        if (this.validatePropertyDS(this.selectedDashboardPropertyID) != '') {
+        // Validate DS as a relationship DS
+        validation = this.validatePropertyDS(this.selectedDashboardPropertyID);
+        if (!validation.isValid) {
+            this.errorMessage = validation.errorMessage;
             return;
         };
-
+    
 
 
             console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
@@ -355,7 +360,7 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
 
     }
 
-    validateRelationshipDS(datasourceID: number): { valid: boolean; errorMessage: string } {
+    validateRelationshipDS(datasourceID: number): validationReturn {
         // Validate that the given DS ID is a valid Navigatior Relationship datasource
         // - checks the shape.  Then returns '' / errorMessage
         this.globalFunctionService.printToConsole(this.constructor.name,'validateRelationshipDS', '@Start');
@@ -389,14 +394,14 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
             });
             if (isBadDS) {
                 return { 
-                    valid: false, 
+                    isValid: false, 
                     errorMessage: 'The selected relationship Datasource does not have all the required fields' 
                 };
             };
 
         } else {
             return { 
-                valid: false, 
+                isValid: false, 
                 errorMessage: 'Error: the relationship Datasource ID ' 
                     + this.selectedDashboardRelationshipID.toString() + ' does not exist!' 
             };
@@ -404,7 +409,7 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
 
         // Return
         return { 
-            valid: false, 
+            isValid: false, 
             errorMessage: '' 
         };
     }
