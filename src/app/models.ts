@@ -1566,7 +1566,6 @@ export class Widget {
     shapeValue: string;                     // Value to display
 
     // Navigator
-    navigatorNetworkID: number;             // FK to Network with data structures
     navigatorSelectParentNodeType: string;  // Last Parent Node Type selected
     navigatorSelectParentNodeName: string;  // Last Parent Node Name selected
     navigatorSelectRelationship: string;    // Last Relationship selected

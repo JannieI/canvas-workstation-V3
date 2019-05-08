@@ -162,9 +162,6 @@ export class NavigatorEditorComponent implements OnInit {
         if (selectedDashboardString != 'None') {
 
             // Get D info
-            // let openBracket: number = selectedDashboardString.indexOf('(');
-            // let closeBracket: number = selectedDashboardString.indexOf(')');
-            // this.selectedDashboardRelationshipID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
             this.selectedNavigatorNetworkID = this.constructIDfromString(
                 this.selectedNavigatorNetwork);
     
@@ -258,19 +255,9 @@ export class NavigatorEditorComponent implements OnInit {
         };
 
         // Get DSs
-        // let openBracket: number = this.selectedRelationshipDS.indexOf('(');
-        // let closeBracket: number = this.selectedRelationshipDS.indexOf(')');
-        // this.selectedDashboardRelationshipID = +this.selectedRelationshipDS.substring(openBracket + 1, closeBracket);
         this.selectedNavigatorNetworkID = this.constructIDfromString(
             this.selectedNavigatorNetwork);
 console.log('xx this.selectedDashboardRelationshipID', this.selectedNavigatorNetworkID)
-        // Validate DS as a relationship DS
-        let validation: validationReturn = this.validateRelationshipDS(
-            this.selectedNavigatorNetworkID);
-        if (!validation.isValid) {
-            this.errorMessage = validation.errorMessage;
-            return;
-        };
 
 
             console.log('xx this.selectedRelationshipDS', this.selectedNavigatorNetwork)
@@ -287,7 +274,7 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedNavigatorNet
         this.errorMessage = '';
         // Validation input
         if (this.selectedNavigatorNetwork == '') {
-            this.errorMessage = 'The relationship Datasource is compulsory';
+            this.errorMessage = 'The network is compulsory';
             return this.errorMessage;
         };
 
