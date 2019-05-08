@@ -39,7 +39,6 @@ export class DataNetworksComponent implements OnInit {
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
-        console.log(event);
         event.preventDefault();
 
         // Known ones
@@ -58,13 +57,13 @@ export class DataNetworksComponent implements OnInit {
     navigatorNetworks: NavigatorNetwork[] = [];
     selectedDashboardRelationshipID: number = -1;
     selectedDashboardPropertyID: number = -1;
-    selectedRowID: number = -1;
-    selectedRowIndex: number = 0;
     selectedNavigatorNetwork: NavigatorNetwork = null;
     selectedNetworkName: string = '';
     selectedNetworkDescription: string = '';
     selectedPropertyDS: string = '';
     selectedRelationshipDS: string = '';
+    selectedRowID: number = -1;
+    selectedRowIndex: number = 0;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -209,8 +208,6 @@ export class DataNetworksComponent implements OnInit {
             this.selectedDashboardRelationshipID = null;
         };
 
-        console.log('xx ev.target.value', ev.target.value, this.selectedDashboardRelationshipID);
-
     }
 
     changeSelectPropertyDS(ev: any) {
@@ -231,8 +228,6 @@ export class DataNetworksComponent implements OnInit {
         } else {
             this.selectedDashboardPropertyID = null;
         };
-
-        console.log('xx ev.target.value', ev.target.value, this.selectedDashboardRelationshipID);
 
     }
 
@@ -354,33 +349,6 @@ export class DataNetworksComponent implements OnInit {
             return;
         };
 
-        // // Get DSs
-        // this.selectedDashboardRelationshipID = this.constructIDfromString(
-        //     this.selectedRelationshipDS);
-
-        // // Validate DS as a relationship DS
-        // let validation: validationReturn = this.validateRelationshipDS(
-        //     this.selectedDashboardRelationshipID);
-        // if (!validation.isValid) {
-        //     this.errorMessage = validation.errorMessage;
-        //     return;
-        // };
-
-        // // Find the Property record
-        // // openBracket = this.selectedPropertyDS.indexOf('(');
-        // // closeBracket = this.selectedPropertyDS.indexOf(')');
-        // // this.selectedDashboardPropertyID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
-        // this.selectedDashboardPropertyID = this.constructIDfromString(
-        //     this.selectedPropertyDS);
-
-        // // Validate DS as a relationship DS
-        // validation = this.validatePropertyDS(this.selectedDashboardPropertyID);
-        // if (!validation.isValid) {
-        //     this.errorMessage = validation.errorMessage;
-        //     return;
-        // };
-    
-        
         // Update Network record
         let today = new Date();
         let navigatorNetworkIndex: number = this.navigatorNetworks.findIndex(
@@ -402,27 +370,11 @@ export class DataNetworksComponent implements OnInit {
         this.globalVariableService.saveResource(
             'navigatorNetworks', this.navigatorNetworks[navigatorNetworkIndex]
             )
-            .then(res => {
-                // this.navigatorNetworks.push(res);
-                // let networkIndex: number = this.navigatorNetworks.findIndex(
-                //     nw => nw.id == res.id
-                // );
-                // if (networkIndex >= 0) {
-                //     this.selectedRowIndex = networkIndex;
-                //     this.clickRow(this.selectedRowIndex, res.id);
-                // }
-            })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in Data.Networks saving navigatorNetworks: ' + err);
             });
 
-
-            console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
-
-        // Validate DS layout
-
-    //   this.formDataNetworksClosed.emit('Update');
     }
 
     validateInput(): string {
@@ -431,6 +383,7 @@ export class DataNetworksComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+
         // Validation input
         if (this.selectedRelationshipDS == '') {
             this.errorMessage = 'The relationship Datasource is compulsory';
@@ -550,7 +503,6 @@ export class DataNetworksComponent implements OnInit {
             // Check if any field is missing
             requiredFields.forEach(field => {
                 if (this.datasources[propertyIndex].dataFields.indexOf(field) < 0) { 
-                    console.log('xx bad field', field)
                     isBadDS = true
                 };
             });
