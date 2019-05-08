@@ -22,9 +22,9 @@ import { GlobalVariableService}       from './global-variable.service';
 import { NavigatorNetwork }           from './models';
 import { Widget }                     from './models';
 
-interface validationReturn { 
-    isValid: boolean; 
-    errorMessage: string 
+interface validationReturn {
+    isValid: boolean;
+    errorMessage: string
 };
 
 @Component({
@@ -69,6 +69,7 @@ export class NavigatorEditorComponent implements OnInit {
     selectedNetworkDescription: string = '';
     selectedNavigatorNetwork: string = '';
 
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -84,7 +85,7 @@ export class NavigatorEditorComponent implements OnInit {
             )
             .then (w => {
                 this.navigators = w;
-                
+
                 // Select the first nework
                 if (this.navigators.length > 0) {
                     this.clickRow(0, this.navigators[0].id);
@@ -137,7 +138,7 @@ export class NavigatorEditorComponent implements OnInit {
         this.selectedNetworkName = this.navigators[this.selectedRow].name;
         this.selectedNetworkDescription = this.navigators[this.selectedRow].description;
         this.selectedNavigatorNetworkID = this.navigators[this.selectedRow].navigatorNetworkID;
-        
+
         // Find the Relationship record
         let networkIndex: number = this.navigatorNetworks.findIndex(
             nw => nw.id == this.selectedNavigatorNetworkID);
@@ -164,7 +165,7 @@ export class NavigatorEditorComponent implements OnInit {
             // Get D info
             this.selectedNavigatorNetworkID = this.constructIDfromString(
                 this.selectedNavigatorNetwork);
-    
+
         } else {
             this.selectedNavigatorNetworkID = null;
         };
@@ -206,23 +207,18 @@ export class NavigatorEditorComponent implements OnInit {
             return;
         };
 
-        // Create new Network record
+        // Create new Navigator record
         let today = new Date();
-        let navigatorNew: Widget = {
-            id: null,
-            name: this.selectedNetworkName,
-            description: this.selectedNetworkDescription,
-            accessType: '',
-            relationshipDatasourceID: this.selectedNavigatorNetworkID,
-            propertiesDatasourceID: this.selectedDashboardPropertyID,
-            createdBy: this.globalVariableService.currentUser.userID,
-            createdOn: today,
-            editor: '',
-            dateEdited: null
-        };
+        let localWidget: Widget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
+        localWidget.id = null;
+        localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
+        localWidget.widgetCreatedOn = today;
+        localWidget.widgetCreatedBy = this.globalVariableService.currentUser.userID;
+        localWidget.widgetUpdatedOn = null;
+        localWidget.widgetUpdatedBy = '';
 
         // Add to DB and locally
-        this.globalVariableService.addResource('widgets', navigatorNew)
+        this.globalVariableService.addResource('widgets', localWidget)
             .then(res => {
                 this.navigators.push(res);
                 let networkIndex: number = this.navigators.findIndex(
@@ -246,7 +242,7 @@ export class NavigatorEditorComponent implements OnInit {
         // Save, and then close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Reset 
+        // Reset
         this.errorMessage = '';
 
         // Validation input
@@ -280,7 +276,7 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedNavigatorNet
 
         // Else all good
         return this.errorMessage;
-        
+
     }
 
     constructIDfromString(inputStringWithID: string): number {
