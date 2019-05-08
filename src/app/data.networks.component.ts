@@ -345,7 +345,7 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
             // TODO - must make sure MetaData is always 100% good
             // TODO - there MUST be a better way !!!
             let isBadDS: boolean = false;
-            let requiredFields: string[] = ['networkID',
+            let requiredFields: string[] = [
                 'leftNodeID',
                 'leftNodeType',
                 'leftNodeName',
@@ -394,7 +394,7 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
             // TODO - must make sure MetaData is always 100% good
             // TODO - there MUST be a better way !!!
             let isBadDS: boolean = false;
-            let requiredFields: string[] = ['networkID',
+            let requiredFields: string[] = [
                 'nodeID',
                 'nodeType',
                 'nodeName',
