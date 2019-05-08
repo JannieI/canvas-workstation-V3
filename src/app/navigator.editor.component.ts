@@ -256,7 +256,7 @@ export class NavigatorEditorComponent implements OnInit {
             return;
         };
 
-        // Update Network record
+        // Update Navigator record
         let today = new Date();
         let navigatorIndex: number = this.navigators.findIndex(
             nav => nav.id == this.selectedRowID
@@ -266,12 +266,12 @@ export class NavigatorEditorComponent implements OnInit {
             return;
         };
 
-        let localWidget: Widget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
+        // Update local info
         this.navigators[navigatorIndex].navigatorNetworkID = this.selectedNavigatorNetworkID;
         this.navigators[navigatorIndex].widgetUpdatedOn = today;
         this.navigators[navigatorIndex].widgetUpdatedBy = this.globalVariableService.currentUser.userID;
 
-        // Add to DB and locally
+        // Add to DB
         this.globalVariableService.saveResource(
             'widgets', this.navigators[navigatorIndex]
             )
