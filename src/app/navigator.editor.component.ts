@@ -19,7 +19,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Datasource }                 from './models';
 import { NavigatorNetwork }           from './models';
 import { Widget }                     from './models';
 
@@ -59,8 +58,6 @@ export class NavigatorEditorComponent implements OnInit {
     }
 
     datasourceRelationshipNames: string[] = [];
-    datasourcePropertyNames: string[] = [];
-    datasources: Datasource[] = [];
     editing: boolean = true;  // TODO - must be received via @Input
     errorMessage: string = '';
     navigators: NavigatorNetwork[] = [];
@@ -70,7 +67,6 @@ export class NavigatorEditorComponent implements OnInit {
     selectedNavigatorNetwork: NavigatorNetwork = null;
     selectedNetworkName: string = '';
     selectedNetworkDescription: string = '';
-    selectedPropertyDS: string = '';
     selectedRelationshipDS: string = '';
 
     constructor(
@@ -116,28 +112,6 @@ export class NavigatorEditorComponent implements OnInit {
                 });
                 this.datasourceRelationshipNames = ['', ...this.datasourceRelationshipNames];
 
-                let datasourceProperty: Datasource[] = this.datasources.filter(
-                    ds => { 
-                        let temp: validationReturn = this.validatePropertyDS(ds.id)
-                        if (temp.isValid) return true;
-                    }
-                );
-
-                datasourceProperty.forEach(ds => {
-                    this.datasourcePropertyNames.push(ds.name + ' (' + ds.id + ')');
-                });
-
-                this.datasourcePropertyNames = this.datasourcePropertyNames.sort( (obj1,obj2) => {
-                    if (obj1.toLowerCase() > obj2.toLowerCase()) {
-                        return 1;
-                    };
-                    if (obj1.toLowerCase() < obj2.toLowerCase()) {
-                        return -1;
-                    };
-                    return 0;
-                });
-                this.datasourcePropertyNames = ['', ...this.datasourcePropertyNames];
-
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -172,16 +146,6 @@ export class NavigatorEditorComponent implements OnInit {
             this.selectedRelationshipDS = '';
         };
 
-        // Find the Property record
-        let propertyIndex: number = this.datasources.findIndex(
-            ds => ds.id == this.selectedDashboardPropertyID);
-        if (propertyIndex >= 0) {
-            this.selectedPropertyDS = this.datasources[propertyIndex].name + ' ('
-                + this.datasources[propertyIndex].id + ')';
-        } else {
-            this.selectedPropertyDS = '';
-        };
-
             console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
     }
 
@@ -204,32 +168,6 @@ export class NavigatorEditorComponent implements OnInit {
     
         } else {
             this.selectedDashboardRelationshipID = null;
-        };
-
-        console.log('xx ev.target.value', ev.target.value, this.selectedDashboardRelationshipID);
-
-    }
-
-    changeSelectPropertyDS(ev: any) {
-        // User selected a Property DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeSelectPropertyDS', '@Start');
- 
-        // Reset
-        this.errorMessage = '';
-
-        let selectedDashboardString: string = ev.target.value;
-
-        if (selectedDashboardString != 'None') {
-
-            // Get D info
-            // let openBracket: number = selectedDashboardString.indexOf('(');
-            // let closeBracket: number = selectedDashboardString.indexOf(')');
-            // this.selectedDashboardPropertyID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
-            this.selectedDashboardPropertyID = this.constructIDfromString(
-                this.selectedPropertyDS);
-    
-        } else {
-            this.selectedDashboardPropertyID = null;
         };
 
         console.log('xx ev.target.value', ev.target.value, this.selectedDashboardRelationshipID);
