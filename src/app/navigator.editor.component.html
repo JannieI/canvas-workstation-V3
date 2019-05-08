@@ -84,14 +84,14 @@
                         >
                 </div>
 
-                <div class="gridRelationshipDSTitle">
+                <div class="gridNetworkTitle">
                     <b>Network:</b>
                 </div>
-                <div class="select gridRelationshipDS"
+                <div class="select gridNetwork"
                     >
                     <select [(ngModel)]="selectedRelationshipDS"
                         name="repeatFrequency"
-                        (change)="changeSelectRelationshipDS($event)"
+                        (change)="changeSelectNetwork($event)"
                         >
                         <option *ngFor="let row of navigatorNetworkNames; let i = index">
                             {{ row }}

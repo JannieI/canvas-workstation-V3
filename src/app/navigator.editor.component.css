@@ -94,7 +94,7 @@
         text-align: left;
     }
 
-    .gridRelationshipDSTitle {
+    .gridNetworkTitle {
         grid-column-start: 9;
         /* autoprefixer: off */
         grid-column-end: 11;
@@ -103,7 +103,7 @@
         margin: 2px 2px 2px 12px;
         text-align: left;
     }
-    .gridRelationshipDS {
+    .gridNetwork {
         grid-column-start: 11;
         /* autoprefixer: off */
         grid-column-end: 21;

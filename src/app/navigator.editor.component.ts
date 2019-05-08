@@ -138,8 +138,7 @@ export class NavigatorEditorComponent implements OnInit {
         this.selectedNetworkName = this.navigators[this.selectedRow].name;
         this.selectedNetworkDescription = this.navigators[this.selectedRow].description;
         this.selectedDashboardRelationshipID = this.navigators[this.selectedRow].relationshipDatasourceID;
-        this.selectedDashboardPropertyID = this.navigators[this.selectedRow].propertiesDatasourceID;
-
+        
         // Find the Relationship record
         let relationshipIndex: number = this.datasources.findIndex(
             ds => ds.id == this.selectedDashboardRelationshipID);
@@ -153,9 +152,9 @@ export class NavigatorEditorComponent implements OnInit {
             console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS)
     }
 
-    changeSelectRelationshipDS(ev: any) {
-        // User selected a Relationship DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeSelectRelationshipDS', '@Start');
+    changeSelectNetwork(ev: any) {
+        // User selected a Network
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeSelectNetwork', '@Start');
 
         // Reset
         this.errorMessage = '';
@@ -213,7 +212,7 @@ export class NavigatorEditorComponent implements OnInit {
 
         // Create new Network record
         let today = new Date();
-        let navigatorNetworkNew: NavigatorNetwork = {
+        let navigatorNew: Widget = {
             id: null,
             name: this.selectedNetworkName,
             description: this.selectedNetworkDescription,
@@ -227,7 +226,7 @@ export class NavigatorEditorComponent implements OnInit {
         };
 
         // Add to DB and locally
-        this.globalVariableService.addResource('widgets', navigatorNetworkNew)
+        this.globalVariableService.addResource('widgets', navigatorNew)
             .then(res => {
                 this.navigators.push(res);
                 let networkIndex: number = this.navigators.findIndex(
