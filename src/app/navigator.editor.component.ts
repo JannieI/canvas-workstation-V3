@@ -63,7 +63,7 @@ export class NavigatorEditorComponent implements OnInit {
     datasources: Datasource[] = [];
     editing: boolean = true;  // TODO - must be received via @Input
     errorMessage: string = '';
-    navigatorNetworks: NavigatorNetwork[] = [];
+    navigators: NavigatorNetwork[] = [];
     selectedDashboardRelationshipID: number = -1;
     selectedDashboardPropertyID: number = -1;
     selectedRow: number = 0;
@@ -82,18 +82,18 @@ export class NavigatorEditorComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getResource('navigatorNetworks')
+        this.globalVariableService.getResource('widgets')
             .then (nw => {
-                this.navigatorNetworks = nw;
+                this.navigators = nw;
                 
                 // Select the first nework
-                if (this.navigatorNetworks.length > 0) {
-                    this.clickRow(0, this.navigatorNetworks[0].id);
+                if (this.navigators.length > 0) {
+                    this.clickRow(0, this.navigators[0].id);
                 };
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.Networks reading navigatorNetworks: ' + err);
+                console.error('Error in Data.Networks reading navigators: ' + err);
             });
 
         // Get Datasource list
@@ -163,11 +163,11 @@ export class NavigatorEditorComponent implements OnInit {
         this.selectedRow = index;
 
         // Show data for selected record
-        console.log('xx ...', this.navigatorNetworks[this.selectedRow])
-        this.selectedNetworkName = this.navigatorNetworks[this.selectedRow].name;
-        this.selectedNetworkDescription = this.navigatorNetworks[this.selectedRow].description;
-        this.selectedDashboardRelationshipID = this.navigatorNetworks[this.selectedRow].relationshipDatasourceID;
-        this.selectedDashboardPropertyID = this.navigatorNetworks[this.selectedRow].propertiesDatasourceID;
+        console.log('xx ...', this.navigators[this.selectedRow])
+        this.selectedNetworkName = this.navigators[this.selectedRow].name;
+        this.selectedNetworkDescription = this.navigators[this.selectedRow].description;
+        this.selectedDashboardRelationshipID = this.navigators[this.selectedRow].relationshipDatasourceID;
+        this.selectedDashboardPropertyID = this.navigators[this.selectedRow].propertiesDatasourceID;
 
         // Find the Relationship record
         let relationshipIndex: number = this.datasources.findIndex(
@@ -253,31 +253,6 @@ export class NavigatorEditorComponent implements OnInit {
 		this.formNavigatorEditorClosed.emit('Close');
     }
 
-    dblclickDeleteNetwork(index: number, networkID: number) {
-        // Delete a network
-        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDeleteNetwork', '@Start');
-    
-        this.globalVariableService.deleteResource('navigatorNetworks', networkID)
-            .then(res => {
-                // Remove from Local & clear
-                this.selectedNetworkName = '';
-                this.selectedNetworkDescription = '';
-                this.selectedRelationshipDS = '';
-                this.selectedPropertyDS = '';
-                this.navigatorNetworks = this.navigatorNetworks.filter(
-                    nw => nw.id != networkID
-                );
-
-                if (this.navigatorNetworks.length > 0) {
-                    this.clickRow(0, this.navigatorNetworks[0].id)
-                }
-            })
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.Networks deleting navigatorNetworks: ' + err);
-            });
-    }
-
     clickAdd() {
         // Switch to add mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
@@ -318,10 +293,10 @@ export class NavigatorEditorComponent implements OnInit {
         };
 
         // Add to DB and locally
-        this.globalVariableService.addResource('navigatorNetworks', navigatorNetworkNew)
+        this.globalVariableService.addResource('widgets', navigatorNetworkNew)
             .then(res => {
-                this.navigatorNetworks.push(res);
-                let networkIndex: number = this.navigatorNetworks.findIndex(
+                this.navigators.push(res);
+                let networkIndex: number = this.navigators.findIndex(
                     nw => nw.id == res.id
                 );
                 if (networkIndex >= 0) {
@@ -331,7 +306,7 @@ export class NavigatorEditorComponent implements OnInit {
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.Networks adding navigatorNetworks: ' + err);
+                console.error('Error in Data.Networks adding navigators: ' + err);
             });
 
         // Back to editing

@@ -19,9 +19,10 @@
                                 Help
                             </h5>
                             <p style="margin-top: 0; color:gray;">
-                                This form is used to Add / Edit a Network.  Networks
-                                consist of Nodes and Relationships, and can be viewed
-                                with the Canvas Navigator.  Click the X or press Escape to close this form.
+                                This form is used to Add / Edit a Navigator Widget.  
+                                Navigators visualise networks of Nodes and Relationships, 
+                                which can be added on the Data menu as a Network.
+                                Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
@@ -34,36 +35,16 @@
 
                 <div class="gridTable">
                     <clr-datagrid>
-                        <!-- <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column> -->
-                        <clr-dg-column>Delete</clr-dg-column>
                         <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
-                        <!-- <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column> -->
-                        <!-- <clr-dg-column [clrDgField]="'accessType'">AccessType</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'createdBy'">Creator</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'createdOn'">CreatedOn</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'editor'">Editor</clr-dg-column>
-                        <clr-dg-column [clrDgField]="'dateEdited'">EditedOn</clr-dg-column> -->
 
-                        <clr-dg-row *clrDgItems="let row of navigatorNetworks;
+                        <clr-dg-row *clrDgItems="let row of navigators;
                             let i = index"
                             [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
                             (click)="clickRow(i, row.id)"
                             style="cursor: pointer;"
                             >
-                            <!-- <clr-dg-cell>{{ row.id }}</clr-dg-cell> -->
-                            <clr-dg-cell>
-                                <clr-icon shape="trash"
-                                    (dblclick)="dblclickDeleteNetwork(i, row.id)"> 
-                                </clr-icon>
-                            </clr-dg-cell>
                             <clr-dg-cell>{{ row.name }}</clr-dg-cell>
-                            <!-- <clr-dg-cell>{{ row.description }}</clr-dg-cell> -->
-                            <!-- <clr-dg-cell>{{ row.accessType }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.createdBy }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.createdOn }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.editor }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.dateEdited }}</clr-dg-cell> -->
                         </clr-dg-row>
 
                     </clr-datagrid>
