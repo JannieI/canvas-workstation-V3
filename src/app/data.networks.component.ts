@@ -94,9 +94,10 @@ export class DataNetworksComponent implements OnInit {
 
                 let datasourceRelationships: Datasource[] = this.datasources.filter(
                     ds => { 
-                        if(this.validateRelationshipDS(ds.id)) return true;
+                        if(this.validateRelationshipDS(ds.id).isValid) return true;
                     }
                 );
+                console.log('xx datasourceRelationships', datasourceRelationships)
                 datasourceRelationships.forEach(ds => {
                     this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
                 });
@@ -115,7 +116,6 @@ export class DataNetworksComponent implements OnInit {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in Data.Networks reading datasources: ' + err);
             });
-
 
     }
 
@@ -376,6 +376,7 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
             ds => ds.id == datasourceID);
         if (relationshipIndex >= 0) {
 
+            // No fields
             if (this.datasources[relationshipIndex].dataFields == null) {
                 return { 
                     isValid: false, 
