@@ -91,7 +91,13 @@ export class DataNetworksComponent implements OnInit {
         this.globalVariableService.getResource('datasources')
             .then(res => {
                 this.datasources = res;
-                this.datasources.forEach(ds => {
+
+                let datasourceRelationships: Datasource[] = this.datasources.filter(
+                    ds => { 
+                        if(this.validateRelationshipDS(ds.id)) return true;
+                    }
+                );
+                datasourceRelationships.forEach(ds => {
                     this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
                 });
                 this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
