@@ -104,6 +104,7 @@ export class DataNetworksComponent implements OnInit {
                 datasourceRelationships.forEach(ds => {
                     this.datasourceRelationshipNames.push(ds.name + ' (' + ds.id + ')');
                 });
+                console.log('xx this.datasourceRelationshipNames', this.datasourceRelationshipNames)
                 this.datasourceRelationshipNames = this.datasourceRelationshipNames.sort( (obj1,obj2) => {
                     if (obj1.toLowerCase() > obj2.toLowerCase()) {
                         return 1;
@@ -114,6 +115,30 @@ export class DataNetworksComponent implements OnInit {
                     return 0;
                 });
                 this.datasourceRelationshipNames = ['', ...this.datasourceRelationshipNames];
+
+                let datasourceProperty: Datasource[] = this.datasources.filter(
+                    ds => { 
+                        let temp: validationReturn = this.validateRelationshipDS(ds.id)
+                        console.log('xx temp', ds.id, ds.dataFields, temp)
+                        if (temp.isValid) return true;
+                    }
+                );
+                console.log('xx datasourceProperty', datasourceProperty)
+                datasourceProperty.forEach(ds => {
+                    this.datasourcePropertyNames.push(ds.name + ' (' + ds.id + ')');
+                });
+                console.log('xx this.datasourcePropertyNames', this.datasourcePropertyNames)
+                this.datasourcePropertyNames = this.datasourcePropertyNames.sort( (obj1,obj2) => {
+                    if (obj1.toLowerCase() > obj2.toLowerCase()) {
+                        return 1;
+                    };
+                    if (obj1.toLowerCase() < obj2.toLowerCase()) {
+                        return -1;
+                    };
+                    return 0;
+                });
+                this.datasourcePropertyNames = ['', ...this.datasourcePropertyNames];
+
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
