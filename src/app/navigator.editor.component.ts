@@ -62,13 +62,12 @@ export class NavigatorEditorComponent implements OnInit {
     errorMessage: string = '';
     navigators: Widget[] = [];
     navigatorNetworks: NavigatorNetwork[] = [];
-    selectedDashboardRelationshipID: number = -1;
+    selectedNavigatorNetworkID: number = -1;
     selectedDashboardPropertyID: number = -1;
     selectedRow: number = 0;
-    selectedNavigatorNetwork: NavigatorNetwork = null;
     selectedNetworkName: string = '';
     selectedNetworkDescription: string = '';
-    selectedRelationshipDS: string = '';
+    selectedNavigatorNetwork: string = '';
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -137,19 +136,19 @@ export class NavigatorEditorComponent implements OnInit {
         console.log('xx ...', this.navigators[this.selectedRow])
         this.selectedNetworkName = this.navigators[this.selectedRow].name;
         this.selectedNetworkDescription = this.navigators[this.selectedRow].description;
-        this.selectedDashboardRelationshipID = this.navigators[this.selectedRow].relationshipDatasourceID;
+        this.selectedNavigatorNetworkID = this.navigators[this.selectedRow].navigatorNetworkID;
         
         // Find the Relationship record
-        let relationshipIndex: number = this.datasources.findIndex(
-            ds => ds.id == this.selectedDashboardRelationshipID);
-        if (relationshipIndex >= 0) {
-            this.selectedRelationshipDS = this.datasources[relationshipIndex].name + ' ('
-                + this.datasources[relationshipIndex].id + ')';
+        let networkIndex: number = this.navigatorNetworks.findIndex(
+            nw => nw.id == this.selectedNavigatorNetworkID);
+        if (networkIndex >= 0) {
+            this.selectedNavigatorNetwork = this.navigatorNetworks[networkIndex].name + ' ('
+                + this.navigatorNetworks[networkIndex].id + ')';
         } else {
-            this.selectedRelationshipDS = '';
+            this.selectedNavigatorNetwork = '';
         };
 
-            console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS)
+            console.log('xx this.selectedRelationshipDS', this.selectedNavigatorNetwork)
     }
 
     changeSelectNetwork(ev: any) {
@@ -166,14 +165,14 @@ export class NavigatorEditorComponent implements OnInit {
             // let openBracket: number = selectedDashboardString.indexOf('(');
             // let closeBracket: number = selectedDashboardString.indexOf(')');
             // this.selectedDashboardRelationshipID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
-            this.selectedDashboardRelationshipID = this.constructIDfromString(
-                this.selectedRelationshipDS);
+            this.selectedNavigatorNetworkID = this.constructIDfromString(
+                this.selectedNavigatorNetwork);
     
         } else {
-            this.selectedDashboardRelationshipID = null;
+            this.selectedNavigatorNetworkID = null;
         };
 
-        console.log('xx ev.target.value', ev.target.value, this.selectedDashboardRelationshipID);
+        console.log('xx ev.target.value', ev.target.value, this.selectedNavigatorNetworkID);
 
     }
 
@@ -195,7 +194,7 @@ export class NavigatorEditorComponent implements OnInit {
         this.errorMessage = '';
         this.selectedNetworkName = '';
         this.selectedNetworkDescription = '';
-        this.selectedRelationshipDS = '';
+        this.selectedNavigatorNetwork = '';
         this.editing = true;
 
         this.editing = false;
@@ -217,7 +216,7 @@ export class NavigatorEditorComponent implements OnInit {
             name: this.selectedNetworkName,
             description: this.selectedNetworkDescription,
             accessType: '',
-            relationshipDatasourceID: this.selectedDashboardRelationshipID,
+            relationshipDatasourceID: this.selectedNavigatorNetworkID,
             propertiesDatasourceID: this.selectedDashboardPropertyID,
             createdBy: this.globalVariableService.currentUser.userID,
             createdOn: today,
@@ -262,19 +261,19 @@ export class NavigatorEditorComponent implements OnInit {
         // let openBracket: number = this.selectedRelationshipDS.indexOf('(');
         // let closeBracket: number = this.selectedRelationshipDS.indexOf(')');
         // this.selectedDashboardRelationshipID = +this.selectedRelationshipDS.substring(openBracket + 1, closeBracket);
-        this.selectedDashboardRelationshipID = this.constructIDfromString(
-            this.selectedRelationshipDS);
-console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRelationshipID)
+        this.selectedNavigatorNetworkID = this.constructIDfromString(
+            this.selectedNavigatorNetwork);
+console.log('xx this.selectedDashboardRelationshipID', this.selectedNavigatorNetworkID)
         // Validate DS as a relationship DS
         let validation: validationReturn = this.validateRelationshipDS(
-            this.selectedDashboardRelationshipID);
+            this.selectedNavigatorNetworkID);
         if (!validation.isValid) {
             this.errorMessage = validation.errorMessage;
             return;
         };
 
 
-            console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS)
+            console.log('xx this.selectedRelationshipDS', this.selectedNavigatorNetwork)
 
 
     //   this.formDataNetworksClosed.emit('Update');
@@ -287,7 +286,7 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
         // Reset
         this.errorMessage = '';
         // Validation input
-        if (this.selectedRelationshipDS == '') {
+        if (this.selectedNavigatorNetwork == '') {
             this.errorMessage = 'The relationship Datasource is compulsory';
             return this.errorMessage;
         };
