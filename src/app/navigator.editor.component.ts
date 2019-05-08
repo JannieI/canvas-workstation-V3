@@ -57,10 +57,11 @@ export class NavigatorEditorComponent implements OnInit {
 
     }
 
-    datasourceRelationshipNames: string[] = [];
+    navigatorNetworkNames: string[] = [];
     editing: boolean = true;  // TODO - must be received via @Input
     errorMessage: string = '';
-    navigators: NavigatorNetwork[] = [];
+    navigators: Widget[] = [];
+    navigatorNetworks: NavigatorNetwork[] = [];
     selectedDashboardRelationshipID: number = -1;
     selectedDashboardPropertyID: number = -1;
     selectedRow: number = 0;
@@ -78,7 +79,10 @@ export class NavigatorEditorComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getResource('widgets')
+        // Get Navigators
+        this.globalVariableService.getResource(
+            'widgets', 'filterObject={"widgetType": "Navigator"}'
+            )
             .then (w => {
                 this.navigators = w;
                 
@@ -95,13 +99,13 @@ export class NavigatorEditorComponent implements OnInit {
         // Get Datasource list
         this.globalVariableService.getResource('navigatorNetworks')
             .then(res => {
-                this.datasources = res;
+                this.navigatorNetworks = res;
 
-                datasourceRelationships.forEach(ds => {
-                    this.datasourceRelationshipNames.push(ds.name + ' (' + ds.id + ')');
+                this.navigatorNetworks.forEach(ds => {
+                    this.navigatorNetworkNames.push(ds.name + ' (' + ds.id + ')');
                 });
 
-                this.datasourceRelationshipNames = this.datasourceRelationshipNames.sort( (obj1,obj2) => {
+                this.navigatorNetworkNames = this.navigatorNetworkNames.sort( (obj1,obj2) => {
                     if (obj1.toLowerCase() > obj2.toLowerCase()) {
                         return 1;
                     };
@@ -110,7 +114,7 @@ export class NavigatorEditorComponent implements OnInit {
                     };
                     return 0;
                 });
-                this.datasourceRelationshipNames = ['', ...this.datasourceRelationshipNames];
+                this.navigatorNetworkNames = ['', ...this.navigatorNetworkNames];
 
             })
             .catch(err => {
@@ -146,7 +150,7 @@ export class NavigatorEditorComponent implements OnInit {
             this.selectedRelationshipDS = '';
         };
 
-            console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
+            console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS)
     }
 
     changeSelectRelationshipDS(ev: any) {
@@ -193,7 +197,6 @@ export class NavigatorEditorComponent implements OnInit {
         this.selectedNetworkName = '';
         this.selectedNetworkDescription = '';
         this.selectedRelationshipDS = '';
-        this.selectedPropertyDS = '';
         this.editing = true;
 
         this.editing = false;
@@ -271,25 +274,9 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
             return;
         };
 
-        // Find the Property record
-        // openBracket = this.selectedPropertyDS.indexOf('(');
-        // closeBracket = this.selectedPropertyDS.indexOf(')');
-        // this.selectedDashboardPropertyID = +this.selectedPropertyDS.substring(openBracket + 1, closeBracket);
-        this.selectedDashboardPropertyID = this.constructIDfromString(
-            this.selectedPropertyDS);
 
-        // Validate DS as a relationship DS
-        validation = this.validatePropertyDS(this.selectedDashboardPropertyID);
-        if (!validation.isValid) {
-            this.errorMessage = validation.errorMessage;
-            return;
-        };
-    
+            console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS)
 
-
-            console.log('xx this.selectedRelationshipDS', this.selectedRelationshipDS, this.selectedPropertyDS)
-
-        // Validate DS layout
 
     //   this.formDataNetworksClosed.emit('Update');
     }
@@ -303,10 +290,6 @@ console.log('xx this.selectedDashboardRelationshipID', this.selectedDashboardRel
         // Validation input
         if (this.selectedRelationshipDS == '') {
             this.errorMessage = 'The relationship Datasource is compulsory';
-            return this.errorMessage;
-        };
-        if (this.selectedPropertyDS == '') {
-            this.errorMessage = 'The property is Datasource compulsory';
             return this.errorMessage;
         };
 
