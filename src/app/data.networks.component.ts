@@ -250,12 +250,18 @@ export class DataNetworksComponent implements OnInit {
         this.globalVariableService.addResource('navigatorNetworks', navigatorNetworkNew)
             .then(res => {
                 this.navigatorNetworks.push(res);
+                let networkIndex: number = this.navigatorNetworks.findIndex(
+                    nw => nw.id == res.id
+                );
+                if (networkIndex >= 0) {
+                    this.selectedRow = networkIndex;
+                    this.clickRow(this.selectedRow, res.id);
+                }
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in Data.Networks adding navigatorNetworks: ' + err);
             });
-
 
     };
 
