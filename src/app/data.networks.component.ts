@@ -287,7 +287,6 @@ export class DataNetworksComponent implements OnInit {
         this.selectedNetworkDescription = '';
         this.selectedRelationshipDS = '';
         this.selectedPropertyDS = '';
-        this.editing = true;
 
         this.editing = false;
     }

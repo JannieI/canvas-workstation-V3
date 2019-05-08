@@ -63,7 +63,6 @@ export class NavigatorEditorComponent implements OnInit {
     navigators: Widget[] = [];
     navigatorNetworks: NavigatorNetwork[] = [];
     selectedNavigatorNetworkID: number = -1;
-    selectedDashboardPropertyID: number = -1;
     selectedRowID: number = -1;
     selectedRowIndex: number = -1;
     selectedNetworkName: string = '';
@@ -201,7 +200,6 @@ export class NavigatorEditorComponent implements OnInit {
         this.selectedNetworkName = '';
         this.selectedNetworkDescription = '';
         this.selectedNavigatorNetwork = '';
-        this.editing = true;
 
         this.editing = false;
     }
@@ -258,17 +256,31 @@ export class NavigatorEditorComponent implements OnInit {
             return;
         };
 
-        // Get DSs
-        this.selectedNavigatorNetworkID = this.constructIDfromString(
-            this.selectedNavigatorNetwork);
-console.log('xx this.selectedDashboardRelationshipID', this.selectedNavigatorNetworkID)
+        // Update Network record
+        let today = new Date();
+        let navigatorIndex: number = this.navigators.findIndex(
+            nav => nav.id == this.selectedRowID
+        );
+        if (navigatorIndex < 0) {
+            this.errorMessage = 'Error finding Navigator record';
+            return;
+        };
 
+        let localWidget: Widget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
+        this.navigators[navigatorIndex].navigatorNetworkID = this.selectedNavigatorNetworkID;
+        this.navigators[navigatorIndex].widgetUpdatedOn = today;
+        this.navigators[navigatorIndex].widgetUpdatedBy = this.globalVariableService.currentUser.userID;
 
-            console.log('xx this.selectedRelationshipDS', this.selectedNavigatorNetwork)
+        // Add to DB and locally
+        this.globalVariableService.saveResource(
+            'widgets', this.navigators[navigatorIndex]
+            )
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Data.Networks saving widgets: ' + err);
+            });
 
-
-    //   this.formDataNetworksClosed.emit('Update');
-    }
+        }
 
     validateInput(): string {
         // Validates the input, and returns '' / errorMessage
