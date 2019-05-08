@@ -245,6 +245,31 @@ export class DataNetworksComponent implements OnInit {
 		this.formDataNetworksClosed.emit('Close');
     }
 
+    dblclickDeleteNetwork(index: number, networkID: number) {
+        // Delete a network
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDeleteNetwork', '@Start');
+    
+        this.globalVariableService.deleteResource('navigatorNetworks', networkID)
+            .then(res => {
+                // Remove from Local & clear
+                this.selectedNetworkName = '';
+                this.selectedNetworkDescription = '';
+                this.selectedRelationshipDS = '';
+                this.selectedPropertyDS = '';
+                this.navigatorNetworks = this.navigatorNetworks.filter(
+                    nw => nw.id != networkID
+                );
+
+                if (this.navigatorNetworks.length > 0) {
+                    this.clickRow(0, this.navigatorNetworks[0].id)
+                }
+            })
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Data.Networks deleting navigatorNetworks: ' + err);
+            });
+    }
+
     clickAdd() {
         // Switch to add mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');

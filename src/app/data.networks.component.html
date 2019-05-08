@@ -35,6 +35,7 @@
                     <div class="gridTable">
                         <clr-datagrid>
                             <!-- <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column> -->
+                            <clr-dg-column>Delete</clr-dg-column>
                             <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
                             <!-- <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column> -->
                             <!-- <clr-dg-column [clrDgField]="'accessType'">AccessType</clr-dg-column>
@@ -51,6 +52,11 @@
                                 style="cursor: pointer;"
                                 >
                                 <!-- <clr-dg-cell>{{ row.id }}</clr-dg-cell> -->
+                                <clr-dg-cell>
+                                    <clr-icon shape="trash"
+                                        (dblclick)="dblclickDeleteNetwork(i, row.id)"> 
+                                    </clr-icon>
+                                </clr-dg-cell>
                                 <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                                 <!-- <clr-dg-cell>{{ row.description }}</clr-dg-cell> -->
                                 <!-- <clr-dg-cell>{{ row.accessType }}</clr-dg-cell>
