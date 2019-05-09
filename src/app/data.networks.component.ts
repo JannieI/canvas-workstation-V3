@@ -269,6 +269,13 @@ export class DataNetworksComponent implements OnInit {
         // Switch to Edit mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.selectedNetworkName = '';
+        this.selectedNetworkDescription = '';
+        this.selectedRelationshipDS = '';
+        this.selectedPropertyDS = '';
+
         // Load and return
         if (this.navigatorNetworks.length > 0) {
             this.clickRow(0, this.navigatorNetworks[0].id)
