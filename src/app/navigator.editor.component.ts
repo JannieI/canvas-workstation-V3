@@ -179,7 +179,8 @@ export class NavigatorEditorComponent implements OnInit {
         // Load and return
         if (this.navigatorNetworks.length > 0) {
             this.clickRow(0, this.navigatorNetworks[0].id)
-        }
+        };
+
         this.editing = true;
     }
 
@@ -219,6 +220,8 @@ export class NavigatorEditorComponent implements OnInit {
         let today = new Date();
         let localWidget: Widget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
         localWidget.id = null;
+        localWidget.name = this.selectedNetworkName;
+        localWidget.description = this.selectedNetworkDescription;
         localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
         localWidget.widgetCreatedOn = today;
         localWidget.widgetCreatedBy = this.globalVariableService.currentUser.userID;
