@@ -228,6 +228,7 @@ export class NavigatorEditorComponent implements OnInit {
         localWidget.id = null;
         localWidget.name = this.selectedNetworkName;
         localWidget.description = this.selectedNetworkDescription;
+        localWidget.widgetType=='Navigator';
         localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
         localWidget.widgetCreatedOn = today;
         localWidget.widgetCreatedBy = this.globalVariableService.currentUser.userID;
@@ -242,8 +243,9 @@ export class NavigatorEditorComponent implements OnInit {
                     nw => nw.id == res.id
                 );
                 if (networkIndex >= 0) {
+                    this.selectedRowID = this.navigators[networkIndex].id;
                     this.selectedRowIndex = networkIndex;
-                    this.clickRow(this.selectedRowIndex, res.id);
+                    this.clickRow(this.selectedRowIndex, this.selectedRowID);
                 }
             })
             .catch(err => {
