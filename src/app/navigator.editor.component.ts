@@ -280,6 +280,8 @@ export class NavigatorEditorComponent implements OnInit {
         };
 
         // Update local info
+        this.navigators[navigatorIndex].name = this.selectedNetworkName;
+        this.navigators[navigatorIndex].description = this.selectedNetworkDescription;
         this.navigators[navigatorIndex].navigatorNetworkID = this.selectedNavigatorNetworkID;
         this.navigators[navigatorIndex].widgetUpdatedOn = today;
         this.navigators[navigatorIndex].widgetUpdatedBy = this.globalVariableService.currentUser.userID;
