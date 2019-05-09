@@ -225,6 +225,8 @@ export class NavigatorEditorComponent implements OnInit {
         // Create new Navigator record
         let today = new Date();
         let localWidget: Widget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
+        localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+        localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
         localWidget.id = null;
         localWidget.name = this.selectedNetworkName;
         localWidget.description = this.selectedNetworkDescription;
@@ -292,7 +294,7 @@ export class NavigatorEditorComponent implements OnInit {
             )
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
-                console.error('Error in Data.Networks saving widgets: ' + err);
+                console.error('Error in Navigator.Editor saving widgets: ' + err);
             });
 
         }
@@ -303,6 +305,7 @@ export class NavigatorEditorComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+
         // Validation input
         if (this.selectedNavigatorNetwork == '') {
             this.errorMessage = 'The network is compulsory';
@@ -331,6 +334,5 @@ export class NavigatorEditorComponent implements OnInit {
         };
 
     }
-
 
 }
