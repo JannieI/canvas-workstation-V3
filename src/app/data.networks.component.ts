@@ -329,8 +329,9 @@ export class DataNetworksComponent implements OnInit {
                     nw => nw.id == res.id
                 );
                 if (networkIndex >= 0) {
+                    this.selectedRowID = this.navigatorNetworks[networkIndex].id;
                     this.selectedRowIndex = networkIndex;
-                    this.clickRow(this.selectedRowIndex, res.id);
+                    this.clickRow(this.selectedRowIndex, this.selectedRowID);
                 }
             })
             .catch(err => {
