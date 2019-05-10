@@ -242,6 +242,7 @@ export class WidgetNavigatorComponent {
                 let networkIndex: number = this.ngNetworks.findIndex(
                     nw => nw.id == this.localWidget.navigatorNetworkID
                 );
+                console.log('xx networkIndex', networkIndex)
                 if (networkIndex >= 0) {
                     this.selectedNetworkID = this.ngNetworks[networkIndex].id;
 
@@ -430,6 +431,7 @@ export class WidgetNavigatorComponent {
 
         // Read the Data for this W from the DB
         if (this.selectedNetworkID >= 0) {
+            console.log('xx selectedNetworkRelationshipID', this.selectedNetworkRelationshipID)
 
             this.selectedNetworkRelationshipID = this.ngNetworks[index].relationshipDatasourceID;
             this.globalVariableService.getData(
@@ -442,8 +444,8 @@ export class WidgetNavigatorComponent {
                     this.ngDropdownParentNodeTypes = this.distinctNodeTypes();
                     this.ngDropdownParentNodeTypes = ['', ...this.ngDropdownParentNodeTypes];
 
-                    console.log('xx BEFORE BUG', this.selectedNetworkPropertiesID)
                     this.selectedNetworkPropertiesID = this.ngNetworks[index].propertiesDatasourceID;
+                    console.log('xx BEFORE BUG', this.selectedNetworkPropertiesID)
                     this.globalVariableService.getData(
                         'datasourceID=' + this.selectedNetworkPropertiesID.toString()
                     )

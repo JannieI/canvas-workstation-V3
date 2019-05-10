@@ -5888,7 +5888,7 @@ export class AppComponent implements OnInit {
             return;
         };
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType === 'Graph') {
+            if (w.isSelected  &&  w.widgetType === 'Navigator') {
                 this.selectedWidget = w;
             };
         });
