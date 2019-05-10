@@ -41,7 +41,7 @@ export class NavigatorEditorComponent implements OnInit {
     @Input() newWidgetContainerTop: number;
     @Input() canSave: boolean = true;
 
-    @Output() formNavigatorEditorClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formNavigatorEditorClosed: EventEmitter<Widget> = new EventEmitter();
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
     @HostListener('window:keyup', ['$event'])
@@ -197,7 +197,7 @@ export class NavigatorEditorComponent implements OnInit {
         // Reset
         this.errorMessage = '';
 
-		this.formNavigatorEditorClosed.emit('Close');
+		this.formNavigatorEditorClosed.emit(null);
     }
 
     clickAdd() {
@@ -233,7 +233,6 @@ export class NavigatorEditorComponent implements OnInit {
         localWidget.widgetType=='Navigator';
         localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
 
-
         // Populate predefined dimensions, considering layouts
         if (localWidget.graphLayers[0].graphColorScheme === ''
             ||  localWidget.graphLayers[0].graphColorScheme == null) {
@@ -255,7 +254,7 @@ export class NavigatorEditorComponent implements OnInit {
             if (graphspec != null) {
                 w.graphSpecification = JSON.parse(graphspec.replace("$schema","_schema"));
             };
-
+        });
 
         localWidget.widgetCreatedOn = today;
         localWidget.widgetCreatedBy = this.globalVariableService.currentUser.userID;
@@ -275,37 +274,37 @@ export class NavigatorEditorComponent implements OnInit {
                     this.clickRow(this.selectedRowIndex, this.selectedRowID);
                 };
 
-                        // Action
-                        // TODO - cater for errors + make more generic
-                        let actID: number = this.globalVariableService.actionUpsert(
-                            null,
-                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                            localWidget.id,
-                            'Widget',
-                            'Add',
-                            'Add Navigator',
-                            'Nav Ed clickSave',
-                            null,
-                            null,
-                            null,
-                            localWidget,
-                            false               // Dont log to DB yet
-                        );
+                // Action
+                // TODO - cater for errors + make more generic
+                let actID: number = this.globalVariableService.actionUpsert(
+                    null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    localWidget.id,
+                    'Widget',
+                    'Add',
+                    'Add Navigator',
+                    'Nav Ed clickSave',
+                    null,
+                    null,
+                    null,
+                    localWidget,
+                    false               // Dont log to DB yet
+                );
 
-                        // Tell user
-                        this.globalVariableService.showStatusBarMessage(
-                            {
-                                message: 'Graph Added',
-                                uiArea: 'StatusBar',
-                                classfication: 'Info',
-                                timeout: 3000,
-                                defaultMessage: ''
-                            }
-                        );
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Navigator Added',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
 
-                        // Return to main menu
-                        this.formWidgetEditorClosed.emit(this.localWidget);
+                // Return to main menu
+                this.formNavigatorEditorClosed.emit(localWidget);
 
             })
             .catch(err => {
