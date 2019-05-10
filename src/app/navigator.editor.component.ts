@@ -73,7 +73,14 @@ export class NavigatorEditorComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        selectedWidget
+        // Fill local Widget
+        if (this.newWidget) {
+            this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
+        } else {
+            this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget))
+
+        };
+
         // Get Datasource list
         this.globalVariableService.getResource('navigatorNetworks')
             .then(res => {
@@ -143,45 +150,44 @@ export class NavigatorEditorComponent implements OnInit {
 
         // Create new Navigator record
         let today = new Date();
-        let localWidget: Widget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
-        localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-        localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
-        localWidget.id = null;
-        localWidget.name = this.selectedNetworkName;
-        localWidget.description = this.selectedNetworkDescription;
-        localWidget.widgetType=='Navigator';
-        localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
+        this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+        this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+        this.localWidget.id = null;
+        this.localWidget.name = this.selectedNetworkName;
+        this.localWidget.description = this.selectedNetworkDescription;
+        this.localWidget.widgetType=='Navigator';
+        this.localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
 
         // Populate predefined dimensions, considering layouts
-        if (localWidget.graphLayers[0].graphColorScheme === ''
-            ||  localWidget.graphLayers[0].graphColorScheme == null) {
-            localWidget.graphLayers[0].graphColorScheme = 'None';
+        if (this.localWidget.graphLayers[0].graphColorScheme === ''
+            ||  this.localWidget.graphLayers[0].graphColorScheme == null) {
+            this.localWidget.graphLayers[0].graphColorScheme = 'None';
         };
-        localWidget.containerLeft = 100;
-        localWidget.containerHeight = 600;
-        localWidget.containerTop = 100;
-        localWidget.containerWidth = 600;
+        this.localWidget.containerLeft = 100;
+        this.localWidget.containerHeight = 600;
+        this.localWidget.containerTop = 100;
+        this.localWidget.containerWidth = 600;
         if (this.newWidgetContainerLeft > 0) {
-            localWidget.containerLeft = this.newWidgetContainerLeft;
+            this.localWidget.containerLeft = this.newWidgetContainerLeft;
         };
         if (this.newWidgetContainerTop > 0) {
-            localWidget.containerTop = this.newWidgetContainerTop;
+            this.localWidget.containerTop = this.newWidgetContainerTop;
         };
 
-        localWidget.graphLayers.forEach(w => {
+        this.localWidget.graphLayers.forEach(w => {
             let graphspec: string = JSON.stringify(w.graphSpecification);
             if (graphspec != null) {
                 w.graphSpecification = JSON.parse(graphspec.replace("$schema","_schema"));
             };
         });
 
-        localWidget.widgetCreatedOn = today;
-        localWidget.widgetCreatedBy = this.globalVariableService.currentUser.userID;
-        localWidget.widgetUpdatedOn = null;
-        localWidget.widgetUpdatedBy = '';
+        this.localWidget.widgetCreatedOn = today;
+        this.localWidget.widgetCreatedBy = this.globalVariableService.currentUser.userID;
+        this.localWidget.widgetUpdatedOn = null;
+        this.localWidget.widgetUpdatedBy = '';
 
         // Add to DB and locally
-        this.globalVariableService.addResource('widgets', localWidget)
+        this.globalVariableService.addResource('widgets', this.localWidget)
             .then(res => {
 
                 // Tell user
@@ -196,7 +202,7 @@ export class NavigatorEditorComponent implements OnInit {
                 );
 
                 // Return to main menu
-                this.formNavigatorEditorClosed.emit(localWidget);
+                this.formNavigatorEditorClosed.emit(this.localWidget);
 
             })
             .catch(err => {
