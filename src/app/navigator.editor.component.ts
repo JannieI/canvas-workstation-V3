@@ -4,13 +4,11 @@
 
 // Angular
 import { Component }                  from '@angular/core';
-import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { ViewChild }                  from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -22,10 +20,6 @@ import { GlobalVariableService}       from './global-variable.service';
 import { NavigatorNetwork }           from './models';
 import { Widget }                     from './models';
 
-interface validationReturn {
-    isValid: boolean;
-    errorMessage: string
-};
 
 @Component({
     selector: 'navigator-editor',
@@ -42,7 +36,6 @@ export class NavigatorEditorComponent implements OnInit {
     @Input() canSave: boolean = true;
 
     @Output() formNavigatorEditorClosed: EventEmitter<Widget> = new EventEmitter();
-    @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
