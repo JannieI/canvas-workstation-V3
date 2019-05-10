@@ -223,15 +223,6 @@ export class NavigatorEditorComponent implements OnInit {
         // Add to DB and locally
         this.globalVariableService.addResource('widgets', localWidget)
             .then(res => {
-                this.navigators.push(res);
-                let networkIndex: number = this.navigators.findIndex(
-                    nw => nw.id == res.id
-                );
-                if (networkIndex >= 0) {
-                    this.selectedRowID = this.navigators[networkIndex].id;
-                    this.selectedRowIndex = networkIndex;
-                    this.clickRow(this.selectedRowIndex, this.selectedRowID);
-                };
 
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(
