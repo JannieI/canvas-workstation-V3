@@ -5833,6 +5833,81 @@ export class AppComponent implements OnInit {
         this.showModalWidgetExport = true;
     }
 
+    clickMenuNavigatorDelete() {
+        // Delete the selected Navigator
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuNavigatorDelete', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        // Must have access to this D
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            'CanEdit')) {
+                this.showMessage(
+                    'No Edit access to this Dashboard',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+        };
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        if (!this.checkForOnlyOneWidget()) {
+            return;
+        };
+        if (!this.checkForOnlyOneWidget('Navigator')) {
+            return;
+        };
+
+        if (!this.menuOptionClickPreAction()) {
+            return;
+        };
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType === 'Graph') {
+                this.selectedWidget = w;
+            };
+        });
+
+        // Check if Locked
+        if (this.selectedWidget.isLocked) {
+            this.showMessage(
+                'Widget is locked (unlock using menu option)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        this.showModalWidgetDelete = true;
+    }
+
     clickMenuWidgetDelete() {
         // Delete the selected W
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuWidgetDelete', '@Start');
@@ -9120,14 +9195,18 @@ export class AppComponent implements OnInit {
                     if (this.checkForOnlyOneWidget('Shape', true)) {
                         this.clickMenuShapeDelete();
                     } else {
-                        // Lost
-                        this.showMessage(
-                            'Select a graph, slicer, table or shape',
-                            'StatusBar',
-                            'Warning',
-                            3000,
-                            ''
-                        );
+                        if (this.checkForOnlyOneWidget('Navigator', true)) {
+                            this.clickMenuNavigatorDelete();
+                        } else {
+                                // Lost
+                            this.showMessage(
+                                'Select a graph, slicer, table or shape',
+                                'StatusBar',
+                                'Warning',
+                                3000,
+                                ''
+                            );
+                        };
                     };
                 };
             };
