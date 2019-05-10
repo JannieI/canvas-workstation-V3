@@ -158,7 +158,7 @@ export class NavigatorEditorComponent implements OnInit {
         this.localWidget.id = null;
         this.localWidget.name = this.selectedNetworkName;
         this.localWidget.description = this.selectedNetworkDescription;
-        this.localWidget.widgetType=='Navigator';
+        this.localWidget.widgetType = 'Navigator';
         this.localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
 
         // Populate predefined dimensions, considering layouts
