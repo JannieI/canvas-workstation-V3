@@ -55,6 +55,7 @@ export class NavigatorEditorComponent implements OnInit {
     localWidget: Widget;
     navigators: Widget[] = [];
     navigatorNetworks: NavigatorNetwork[] = [];
+    oldWidget: Widget = null;                       // W at start
     selectedNavigatorNetworkID: number = -1;
     selectedRowID: number = -1;
     selectedRowIndex: number = -1;
@@ -77,8 +78,10 @@ export class NavigatorEditorComponent implements OnInit {
         if (this.newWidget) {
             this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
         } else {
-            this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget))
 
+            // Deep copy original W
+            this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+            this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget))
         };
 
         // Get Datasource list
@@ -224,17 +227,50 @@ export class NavigatorEditorComponent implements OnInit {
         };
 
         // Update local info
-        this.navigators[navigatorIndex].name = this.selectedNetworkName;
-        this.navigators[navigatorIndex].description = this.selectedNetworkDescription;
-        this.navigators[navigatorIndex].navigatorNetworkID = this.selectedNavigatorNetworkID;
-        this.navigators[navigatorIndex].widgetUpdatedOn = today;
-        this.navigators[navigatorIndex].widgetUpdatedBy = this.globalVariableService.currentUser.userID;
+        let today = new Date();
+        this.localWidget.name = this.selectedNetworkName;
+        this.localWidget.description = this.selectedNetworkDescription;
+        this.localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
+        this.localWidget.widgetUpdatedOn = today;
+        this.localWidget.widgetUpdatedBy = this.globalVariableService.currentUser.userID;
 
         // Add to DB
-        this.globalVariableService.saveResource(
-            'widgets', this.navigators[navigatorIndex]
-            )
-            .catch(err => {
+        this.globalVariableService.saveWidget(this.localWidget)
+            .then(res => {
+
+                // Action
+                // TODO - cater for errors + make more generic
+                let actID: number = this.globalVariableService.actionUpsert(
+                    null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    this.localWidget.id,
+                    'Widget',
+                    'Edit',
+                    'Update Widget',
+                    'W Ed clickSave',
+                    null,
+                    null,
+                    this.oldWidget,
+                    this.localWidget,
+                    false               // Dont log to DB yet
+                );
+
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Navigator Saved',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+
+                this.formNavigatorEditorClosed.emit(this.localWidget);
+
+            })
+                    .catch(err => {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in Navigator.Editor saving widgets: ' + err);
             });
