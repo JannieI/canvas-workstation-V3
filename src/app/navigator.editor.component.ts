@@ -82,6 +82,12 @@ export class NavigatorEditorComponent implements OnInit {
             // Deep copy original W
             this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget))
+
+            this.selectedNetworkName = this.localWidget.name;
+            this.selectedNetworkDescription = this.localWidget.description;
+            this.selectedNetworkTitle = this.localWidget.titleText;
+            this.selectedNavigatorNetworkID = this.localWidget.navigatorNetworkID;
+    
         };
 
         // Get Datasource list
