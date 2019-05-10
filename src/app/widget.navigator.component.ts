@@ -239,25 +239,20 @@ export class WidgetNavigatorComponent {
         this.globalVariableService.getResource('navigatorNetworks')
             .then(res => {
                 this.ngNetworks = res;
-                this.globalVariableService.getData(
-                    'datasourceID=' + res[0].relationshipDatasourceID.toString()
-                )
-                    .then(res => {
-                        console.log('xx post navigatorNetwork Rel', res[0]);
-                    })
-                    .catch(err => console.log('xx post navigatorNetwork Rel', err))
-            this.globalVariableService.getData(
-                    'datasourceID=' + res[0].propertiesDatasourceID.toString()
-                )
-                    .then(res => {
-                        console.log('xx post navigatorNetwork Prop', res[0])
-                    })
-                    .catch(err => console.log('xx post navigatorNetwork Rel', err))
+                let networkIndex: number = this.ngNetworks.findIndex(
+                    nw => nw.id == this.localWidget.navigatorNetworkID
+                );
+                if (networkIndex >= 0) {
+                    this.selectedNetworkID = this.ngNetworks[networkIndex].id;
+
+                    this.clickNetwork(networkIndex, this.selectedNetworkID);
+                } else {
+                    this.clickNetwork(0, this.ngNetworks[0].id);
+                };
             })
             .catch(err => {
-                console.error('Error in Navigator.OnInit reading networks: ' + err);
-            });
-
+                    console.error('Error in Navigator.OnInit reading networks: ' + err);
+                });
             
     }
 
