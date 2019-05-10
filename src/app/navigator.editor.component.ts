@@ -194,19 +194,6 @@ export class NavigatorEditorComponent implements OnInit {
 		this.formNavigatorEditorClosed.emit(null);
     }
 
-    clickAdd() {
-        // Switch to add mode
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
-
-        // Reset
-        this.errorMessage = '';
-        this.selectedNetworkName = '';
-        this.selectedNetworkDescription = '';
-        this.selectedNavigatorNetwork = '';
-
-        this.editing = false;
-    }
-
     clickAddSave() {
         // Add
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddSave', '@Start');

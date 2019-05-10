@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
             <div class="gridOverall">
@@ -89,10 +89,10 @@
                         >
                 </div>
 
-                <div class="gridNavigatorTitle">
+                <div class="gridNavigatorNetworkTitle">
                     <b>Network:</b>
                 </div>
-                <div class="select gridNavigator"
+                <div class="select gridNavigatorNetwork"
                     >
                     <select [(ngModel)]="selectedNavigatorNetwork"
                         name="repeatFrequency"
@@ -104,7 +104,7 @@
                     </select>
                 </div>
 
-                <div class="gridButtonCancel" *ngIf="!editing">
+                <div class="gridButtonCancel">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -113,7 +113,7 @@
                         Cancel
                     </button>
                 </div>
-                <div class="gridButtonCancel" *ngIf="editing">
+                <div class="gridButtonAdd" *ngIf="!editing">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -123,11 +123,11 @@
                     </button>
                 </div>
 
-                <div class="gridButtonAdd" *ngIf="!editing">
+                <div class="gridButtonSave" *ngIf="editing">
                     <button
                         type="button"
                         class="btn btn-primary"
-                        (click)="clickAddSave()"
+                        (click)="clickSave()"
                         >
                         Save
                     </button>
