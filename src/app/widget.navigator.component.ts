@@ -27,7 +27,6 @@ import { Widget }                     from './models'
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
 import vegaTooltip                    from 'vega-tooltip';
-import { ChildActivationEnd }         from '@angular/router';
 
 const MORE_TO_FILTER: string = 'Filter for more ...';
 
@@ -69,7 +68,7 @@ export class WidgetNavigatorComponent {
             name: string;
             description: string;
         }[] = [];                                       // Custom Views
-    ngNetworks: Datasource[] = [];                      // All Networks (DS with isNetwork = True)
+    ngNetworks: NavigatorNetwork[] = [];                // All Networks (DS with isNetwork = True)
     ngHistory: NavigatorHistory[] = [];                 // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
 
@@ -437,121 +436,114 @@ export class WidgetNavigatorComponent {
         // Read the Data for this W from the DB
         if (this.selectedNetworkID >= 0) {
 
-            if (this.ngNetworks[index].subDatasources.length != 2) {
-                // TODO - make friendly
-                console.log('ERROR ...')
-            } else {
+            this.selectedNetworkRelationshipID = this.ngNetworks[index].relationshipDatasourceID;
+            this.globalVariableService.getData(
+                'datasourceID=' + this.selectedNetworkRelationshipID.toString()
+            )
+                .then(res => {
+                    this.networkRelationships = res;
 
-                this.selectedNetworkRelationshipID = this.ngNetworks[index].subDatasources[0];
-                this.globalVariableService.getData(
-                    'datasourceID=' + this.selectedNetworkRelationshipID.toString()
-                )
-                    .then(res => {
-                        this.networkRelationships = res;
+                    // Fill ParentNode type Dropdown
+                    this.ngDropdownParentNodeTypes = this.distinctNodeTypes();
+                    this.ngDropdownParentNodeTypes = ['', ...this.ngDropdownParentNodeTypes];
 
-                        // Fill ParentNode type Dropdown
-                        this.ngDropdownParentNodeTypes = this.distinctNodeTypes();
-                        this.ngDropdownParentNodeTypes = ['', ...this.ngDropdownParentNodeTypes];
+                    this.selectedNetworkPropertiesID = this.ngNetworks[index].propertiesDatasourceID;
+                    this.globalVariableService.getData(
+                        'datasourceID=' + this.selectedNetworkPropertiesID.toString()
+                    )
+                        .then(res => {
+                            this.networkProperties = res;
 
-                        this.selectedNetworkPropertiesID = this.ngNetworks[index].subDatasources[1];
-                        this.globalVariableService.getData(
-                            'datasourceID=' + this.selectedNetworkPropertiesID.toString()
-                        )
-                            .then(res => {
-                                this.networkProperties = res;
+                            // Disable Views
+                            this.isViewsDisabled = true;
 
-                                // Disable Views
-                                this.isViewsDisabled = true;
+                            // Dropdown
+                            this.ngNodeProperties = this.distinctNodeProperties();
+                            this.ngNodeProperties = ['', ...this.ngNodeProperties];
 
-                                // Dropdown
-                                this.ngNodeProperties = this.distinctNodeProperties();
-                                this.ngNodeProperties = ['', ...this.ngNodeProperties];
+                            // Clear the rest & reset pointers
+                            this.ngDropdownParentNodes = [];
+                            this.ngDropdownRelationships = [];
+                            this.parentNodeFilter = [];
+                            this.childNodeFilter = [];
 
-                                // Clear the rest & reset pointers
-                                this.ngDropdownParentNodes = [];
-                                this.ngDropdownRelationships = [];
-                                this.parentNodeFilter = [];
-                                this.childNodeFilter = [];
+                            this.selectedParentNodeType = '';
+                            this.selectedParentNode = '';
+                            this.selectedRelationship = '';
+                            this.selectedParentFilterID = -1;
+                            this.selectedChildFilterID = -1;
 
-                                this.selectedParentNodeType = '';
-                                this.selectedParentNode = '';
-                                this.selectedRelationship = '';
-                                this.selectedParentFilterID = -1;
-                                this.selectedChildFilterID = -1;
-
-                                // On startup
-                                if (this.startupNavigatorSelectParentNodeType != '') {
-                                    this.selectedParentNodeType = this.localWidget.navigatorSelectParentNodeType;
-                                    this.startupNavigatorSelectParentNodeType = '';
-                                    let ev: any = {
-                                        target: {
-                                            value: this.selectedParentNodeType
-                                        }
-                                    };
-                                    this.changeParentNodeType(ev);
-
-                                    if (this.startupNavigatorSelectParentNodeName != '') {
-                                        this.selectedParentNode = this.startupNavigatorSelectParentNodeName;
-                                        this.startupNavigatorSelectParentNodeName = '';
-                                    };
-                                    if (this.startupNavigatorSelectRelationship != '') {
-                                        this.selectedRelationship = this.startupNavigatorSelectRelationship;
-                                        this.startupNavigatorSelectRelationship = '';
-                                        if (this.selectedRelationship != 'All'
-                                            &&
-                                            this.selectedRelationship != ''
-                                            &&
-                                            this.selectedParentNode != ''
-                                            ) {
-                                            this.ngRelationshipRoles = this.distinctRelationshipRoles(
-                                                this.selectedParentNode, this.selectedRelationship);
-                                        };
-                                    };
-                                    if (this.startupNavigatorSelectView != '') {
-                                        this.selectedView = this.startupNavigatorSelectView;
-                                        this.startupNavigatorSelectView = '';
-                                        this.clickDefaultView();
-                                    };
-                                    console.log('xx this.selectedView', this.selectedView )
-
+                            // On startup
+                            if (this.startupNavigatorSelectParentNodeType != '') {
+                                this.selectedParentNodeType = this.localWidget.navigatorSelectParentNodeType;
+                                this.startupNavigatorSelectParentNodeType = '';
+                                let ev: any = {
+                                    target: {
+                                        value: this.selectedParentNodeType
+                                    }
                                 };
+                                this.changeParentNodeType(ev);
 
-                                // Get History for this Network
-                                this.ngHistory = this.historyAll
-                                    .filter(h => h.networkID === networkID)
-                                    .sort((a, b) => {
-                                        if (a.id < b.id) {
-                                            return 1;
-                                        };
-                                        if (a.id > b.id) {
-                                            return -1;
-                                        };
-                                        return 0;
-                                    });
-
-                                // Close Navigated popup
-                                this.showNetwork = false;
-
-                                // Click the first row
-                                if (this.ngHistory.length > 0) {
-                                    this.clickHistory(0, this.ngHistory[0].id);
-                                } else {
-                                    // Clear the graph
-                                    this.selectedView = 'SummaryView';
-                                    this.clickNetworkSummaryView();
+                                if (this.startupNavigatorSelectParentNodeName != '') {
+                                    this.selectedParentNode = this.startupNavigatorSelectParentNodeName;
+                                    this.startupNavigatorSelectParentNodeName = '';
                                 };
-                            })
-                            .catch(err => {
-                                this.errorMessage = err.slice(0, 100);
-                                console.error('Error in Navigator.OnInit reading clientData: ' + err);
-                            });
-                    })
-                    .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
-                        console.error('Error in Navigator.OnInit reading clientData: ' + err);
-                    });
+                                if (this.startupNavigatorSelectRelationship != '') {
+                                    this.selectedRelationship = this.startupNavigatorSelectRelationship;
+                                    this.startupNavigatorSelectRelationship = '';
+                                    if (this.selectedRelationship != 'All'
+                                        &&
+                                        this.selectedRelationship != ''
+                                        &&
+                                        this.selectedParentNode != ''
+                                        ) {
+                                        this.ngRelationshipRoles = this.distinctRelationshipRoles(
+                                            this.selectedParentNode, this.selectedRelationship);
+                                    };
+                                };
+                                if (this.startupNavigatorSelectView != '') {
+                                    this.selectedView = this.startupNavigatorSelectView;
+                                    this.startupNavigatorSelectView = '';
+                                    this.clickDefaultView();
+                                };
+                                console.log('xx this.selectedView', this.selectedView )
 
-            };
+                            };
+
+                            // Get History for this Network
+                            this.ngHistory = this.historyAll
+                                .filter(h => h.networkID === networkID)
+                                .sort((a, b) => {
+                                    if (a.id < b.id) {
+                                        return 1;
+                                    };
+                                    if (a.id > b.id) {
+                                        return -1;
+                                    };
+                                    return 0;
+                                });
+
+                            // Close Navigated popup
+                            this.showNetwork = false;
+
+                            // Click the first row
+                            if (this.ngHistory.length > 0) {
+                                this.clickHistory(0, this.ngHistory[0].id);
+                            } else {
+                                // Clear the graph
+                                this.selectedView = 'SummaryView';
+                                this.clickNetworkSummaryView();
+                            };
+                        })
+                        .catch(err => {
+                            this.errorMessage = err.slice(0, 100);
+                            console.error('Error in Navigator.OnInit reading clientData: ' + err);
+                        });
+                })
+                .catch(err => {
+                    this.errorMessage = err.slice(0, 100);
+                    console.error('Error in Navigator.OnInit reading clientData: ' + err);
+                });
         };
 
     }
