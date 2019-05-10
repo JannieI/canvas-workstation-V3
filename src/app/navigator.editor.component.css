@@ -65,7 +65,7 @@
         text-align: left;
     }
     .gridNavigatorTitle {
-        grid-column-start: 4;
+        grid-column-start: 5;
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 7;
@@ -84,7 +84,7 @@
         text-align: left;
     }
     .gridNavigatorName {
-        grid-column-start: 4;
+        grid-column-start: 5;
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 9;
@@ -103,7 +103,7 @@
         text-align: left;
     }
     .gridNavigatorDescription {
-        grid-column-start: 4;
+        grid-column-start: 5;
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 11;
@@ -122,7 +122,7 @@
         text-align: left;
     }
     .gridNavigatorNetwork {
-        grid-column-start: 4;
+        grid-column-start: 5;
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 13;
@@ -141,18 +141,18 @@
         text-align: left;
     }
     .gridButtonAdd {
-        grid-column-start: 12;
+        grid-column-start: 14;
         /* autoprefixer: off */
-        grid-column-end: 14;
+        grid-column-end: 16;
         grid-row-start: 15;
         grid-row-end: 16;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridButtonSave {
-        grid-column-start: 12;
+        grid-column-start: 14;
         /* autoprefixer: off */
-        grid-column-end: 14;
+        grid-column-end: 16;
         grid-row-start: 15;
         grid-row-end: 16;
         margin: 2px 2px 2px 2px;

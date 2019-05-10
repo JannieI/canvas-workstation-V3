@@ -442,6 +442,7 @@ export class WidgetNavigatorComponent {
                     this.ngDropdownParentNodeTypes = this.distinctNodeTypes();
                     this.ngDropdownParentNodeTypes = ['', ...this.ngDropdownParentNodeTypes];
 
+                    console.log('xx BEFORE BUG', this.selectedNetworkPropertiesID)
                     this.selectedNetworkPropertiesID = this.ngNetworks[index].propertiesDatasourceID;
                     this.globalVariableService.getData(
                         'datasourceID=' + this.selectedNetworkPropertiesID.toString()

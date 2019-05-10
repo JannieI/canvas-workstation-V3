@@ -158,6 +158,7 @@ export class NavigatorEditorComponent implements OnInit {
         this.localWidget.id = null;
         this.localWidget.name = this.selectedNetworkName;
         this.localWidget.description = this.selectedNetworkDescription;
+        this.localWidget.titleText = this.selectedNetworkTitle;
         this.localWidget.widgetType = 'Navigator';
         this.localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
 
@@ -230,6 +231,7 @@ export class NavigatorEditorComponent implements OnInit {
         let today = new Date();
         this.localWidget.name = this.selectedNetworkName;
         this.localWidget.description = this.selectedNetworkDescription;
+        this.localWidget.titleText = this.selectedNetworkTitle;
         this.localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
         this.localWidget.widgetUpdatedOn = today;
         this.localWidget.widgetUpdatedBy = this.globalVariableService.currentUser.userID;
