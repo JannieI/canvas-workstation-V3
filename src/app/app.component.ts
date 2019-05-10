@@ -4701,6 +4701,137 @@ export class AppComponent implements OnInit {
         this.showModalWidgetEditor = true;
     }
 
+    clickMenuNavigatorEdit(
+        widgetID: number = null,
+        widgetIndex: number = null,
+        canSave: boolean = true) {
+        // Open Navigator Editor
+        //  widgetID - optional W-ID to open, does not depend on what was selected
+        //  widgetIndex - optional [W] index to open, does not depend on what was selected
+        //  canSave - if Saving is allowed in W Editor
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuNavigatorEdit', '@Start');
+
+        // Permissions
+        if (canSave) {
+            if (!this.globalVariableService.currentUser.dashboardCanEditRole
+                &&
+                !this.globalVariableService.currentUser.isAdministrator) {
+                this.showMessage(
+                    'You do not have Edit Permissions (role must be added)',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+            };
+
+            // Must have access to this D
+            if (!this.globalVariableService.dashboardPermissionCheck(
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                'CanEdit')) {
+                    this.showMessage(
+                        'No Edit access to this Dashboard',
+                        'StatusBar',
+                        'Warning',
+                        3000,
+                        ''
+                    );
+                    return;
+            };
+
+            // Has to be in editMode
+            if (!this.editMode) {
+                this.showMessage(
+                    this.globalVariableService.canvasSettings.notInEditModeMsg,
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+            };
+        };
+
+        // Indicate edit W and open Editor, which will work with selected W
+        if (widgetIndex == null) {
+
+
+            if (widgetID == null) {
+
+                // Can only edit one W at a time, so ignore if multiple selected
+                if (!this.checkForOnlyOneWidget()) {
+                    return
+                };
+                if (!this.checkForOnlyOneWidget('Navigator')) {
+                    return
+                };
+
+                this.currentWidgets.forEach(w => {
+                    if (w.isSelected  &&  w.widgetType === 'Navigator') {
+                        this.selectedWidget = w;
+                    };
+                });
+
+            } else {
+                let widgetIndex: number = this.currentWidgets.findIndex(w => w.id === widgetID);
+                if (widgetIndex < 0) {
+                    this.showMessage(
+                        'Widget does not exist in list',
+                        'StatusBar',
+                        'Error',
+                        3000,
+                        ''
+                    );
+
+                } else {
+                    this.selectedWidget = this.currentWidgets[widgetIndex];
+                }
+            };
+
+        } else {
+            this.selectedWidget = this.currentWidgets[widgetIndex];
+        };
+
+        // Check if Locked - after id is obtained
+        if (this.selectedWidget == null) {
+            this.showMessage(
+                'No Navigator selected',
+                'StatusBar',
+                'Info',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        // Check if Locked - after id is obtained
+        if (canSave) {
+            if (this.selectedWidget.isLocked) {
+                this.showMessage(
+                    'Navigator is locked (unlock using menu option)',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+            };
+        };
+
+        if (!this.menuOptionClickPreAction()) {
+            return;
+        };
+
+        this.newWidget = false;
+        this.newWidgetContainerLeft = 0;
+        this.newWidgetContainerTop = 0;
+        this.showDatasourcePopup = false;
+        this.canSave = canSave;
+
+        this.showModalNavigatorEditor = true;
+    }
+
     clickMenuWidgetEdit(
         widgetID: number = null,
         widgetIndex: number = null,
