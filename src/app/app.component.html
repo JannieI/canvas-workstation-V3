@@ -1128,13 +1128,34 @@
                         </button>
 
                         <div class="dropdown-divider"></div>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuWidgetDelete()"
-                            title="Delete selected Widget"
-                            >
-                            Delete Graph
-                        </button>
+
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Submenu with more Edit options"
+                                >
+                                Edit
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuWidgetDelete()"
+                                    title="Delete selected Widget"
+                                    >
+                                    Delete Graph
+                                </button>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuNavigatorDelete()"
+                                    title="Delete selected Navigator"
+                                    >
+                                    Delete Navigator
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
