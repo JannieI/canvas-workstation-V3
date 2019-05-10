@@ -51,7 +51,6 @@ export class NavigatorEditorComponent implements OnInit {
     }
 
     navigatorNetworkNames: string[] = [];
-    editing: boolean = true;  // TODO - must be received via @Input
     errorMessage: string = '';
     navigators: Widget[] = [];
     navigatorNetworks: NavigatorNetwork[] = [];
@@ -92,25 +91,6 @@ export class NavigatorEditorComponent implements OnInit {
                     return 0;
                 });
                 this.navigatorNetworkNames = ['', ...this.navigatorNetworkNames];
-
-                // Get Navigators
-                this.globalVariableService.getResource(
-                    'widgets', 'filterObject={"widgetType": "Navigator"}'
-                    )
-                    .then (w => {
-                        this.navigators = w;
-
-                        // Select the first nework
-                        if (this.navigators.length > 0) {
-                            this.clickRow(0, this.navigators[0].id);
-                        } else {
-                            this.editing = false;
-                        };
-                    })
-                    .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
-                        console.error('Error in Navigator Editor reading widgets: ' + err);
-                    });
 
             })
             .catch(err => {
@@ -180,8 +160,6 @@ export class NavigatorEditorComponent implements OnInit {
         if (this.navigatorNetworks.length > 0) {
             this.clickRow(0, this.navigatorNetworks[0].id)
         };
-
-        this.editing = true;
     }
 
     clickClose() {
@@ -194,9 +172,9 @@ export class NavigatorEditorComponent implements OnInit {
 		this.formNavigatorEditorClosed.emit(null);
     }
 
-    clickAddSave() {
-        // Add
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAddSave', '@Start');
+    clickAdd() {
+        // Add Navigator
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         // Validation input
         if (this.validateInput() != '') {
@@ -274,9 +252,6 @@ export class NavigatorEditorComponent implements OnInit {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in Navigator Editor adding navigators: ' + err);
             });
-
-        // Back to editing
-        this.editing = true;
     };
 
     clickSave() {
