@@ -102,32 +102,6 @@ export class NavigatorEditorComponent implements OnInit {
 
     }
 
-    clickRow(index: number, id: number) {
-        // User clicked a row, now refresh the graph
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-
-        // Reset
-        this.errorMessage = '';
-        this.selectedRowID = id;
-        this.selectedRowIndex = index;
-
-        // Show data for selected record
-        this.selectedNetworkName = this.navigators[this.selectedRowIndex].name;
-        this.selectedNetworkDescription = this.navigators[this.selectedRowIndex].description;
-        this.selectedNavigatorNetworkID = this.navigators[this.selectedRowIndex].navigatorNetworkID;
-
-        // Find the Network record
-        let networkIndex: number = this.navigatorNetworks.findIndex(
-            nw => nw.id == this.selectedNavigatorNetworkID);
-        if (networkIndex >= 0) {
-            this.selectedNavigatorNetwork = this.navigatorNetworks[networkIndex].name + ' ('
-                + this.navigatorNetworks[networkIndex].id + ')';
-        } else {
-            this.selectedNavigatorNetwork = '';
-        };
-
-    }
-
     changeSelectNetwork(ev: any) {
         // User selected a Network
         this.globalFunctionService.printToConsole(this.constructor.name,'changeSelectNetwork', '@Start');
