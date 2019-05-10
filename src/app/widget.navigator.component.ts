@@ -3,31 +3,31 @@
  */
 
 // From Angular
-import { Component } from '@angular/core';
-import { ElementRef } from '@angular/core';
-import { HostListener } from '@angular/core';
-import { Input } from '@angular/core';
-import { OnInit } from '@angular/core';
-import { ViewChild } from '@angular/core';
+import { Component }                  from '@angular/core';
+import { ElementRef }                 from '@angular/core';
+import { HostListener }               from '@angular/core';
+import { Input }                      from '@angular/core';
+import { OnInit }                     from '@angular/core';
+import { ViewChild }                  from '@angular/core';
 
 // Our Services
-import { GlobalVariableService } from './global-variable.service';
-import { GlobalFunctionService } from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
+import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
-import { Datasource } from './models'
-import { NavigatorHistory } from './models'
-import { NavigatorRelationship } from './models'
-import { NavigatorProperties } from './models'
-import { NavigatorNodeFiler } from './models'
-import { NavigatorWatchList } from './models'
-import { Widget } from './models'
+import { NavigatorHistory }           from './models'
+import { NavigatorNetwork }           from './models'
+import { NavigatorRelationship }      from './models'
+import { NavigatorProperties }        from './models'
+import { NavigatorNodeFilter }        from './models'
+import { NavigatorWatchList }         from './models'
+import { Widget }                     from './models'
 
 // Functions, 3rd Party
-import { parse } from 'vega';
-import { View } from 'vega';
-import vegaTooltip from 'vega-tooltip';
-import { ChildActivationEnd } from '@angular/router';
+import { parse }                      from 'vega';
+import { View }                       from 'vega';
+import vegaTooltip                    from 'vega-tooltip';
+import { ChildActivationEnd }         from '@angular/router';
 
 const MORE_TO_FILTER: string = 'Filter for more ...';
 
@@ -51,15 +51,14 @@ export class WidgetNavigatorComponent {
 
     // Note about the structure of the data:
     // The data for the Networks are stored locally in the this.networks variable, and
-    // in a DS in the Database, lets call it DSn.  DSn has a property subDatasources[],
-    // subDS.  These point to the rest of the DSs used in a network:
-    //  - DSn = network name, description, access, etc
-    //  - subDS[0] = id of the DS that keeps the relationships, say DSrel.
-    //  - subDS[1] = id of the DS that keeps the Node properties, say DSpr.
+    // in NavigatorNetworks in the Database, lets call it NavNw.  NavNw has two properties
+    // to hold the data:
+    //  - relationshipDatasourceID = id of the DS that keeps the relationships, say DSrel.
+    //  - propertiesDatasourceID = id of the DS that keeps the Node properties, say DSpr.
     //
     // The folowing shapes are temporary, and only used in this routine (not stored in the DB):
     //  - NavigatorHistory
-    //  - NavigatorNodeFiler
+    //  - NavigatorNodeFilter
     errorMessage: string = '';                          // Error on form
     graphData: any[] = [];                              // data formatted for Vega
     graphDataLength: number = 0;
@@ -69,7 +68,7 @@ export class WidgetNavigatorComponent {
             id: number;
             name: string;
             description: string;
-        }[] = [];                                              // Custom Views
+        }[] = [];                                       // Custom Views
     ngNetworks: Datasource[] = [];                      // All Networks (DS with isNetwork = True)
     ngHistory: NavigatorHistory[] = [];                 // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
@@ -126,12 +125,12 @@ export class WidgetNavigatorComponent {
     // Working
     childDataAll: string[] = [];                        // List of ALL children after filter (ie all levels)
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
-    childNodeFilter: NavigatorNodeFiler[] = [];         // Actual Filter
+    childNodeFilter: NavigatorNodeFilter[] = [];         // Actual Filter
     childFilterErrorMessage: string = '';
     firstAdjacencyCellRowNr: number = -1;
     historyBackIndex: number = 0;                       // Note: this initial value is important
     parentFilterErrorMessage: string = '';              // Error Msg
-    parentNodeFilter: NavigatorNodeFiler[] = [];        // Actual Filter
+    parentNodeFilter: NavigatorNodeFilter[] = [];        // Actual Filter
     ngRelationshipRoles: string[] = [];
     relationshipFilterErrorMessage: string = '';
     routesPerNode: any[] = [];                          // Array of routes with one starting point
@@ -209,56 +208,56 @@ export class WidgetNavigatorComponent {
         this.tempCreateDummyData();
 
         // Read DS for all Networks from DB
-        this.globalVariableService.getResource('datasources', 'filterObject={"isNetworkShape": true}')
-            .then(res => {
-                this.ngNetworks = res;
-                console.log('xx this.ngNetworks', this.ngNetworks)
-                // Find DS for selected W inside Networks
-                let networkIndex: number = this.ngNetworks.findIndex(
-                    nw => nw.id == this.localWidget.datasourceID);
+        // this.globalVariableService.getResource('datasources', 'filterObject={"isNetworkShape": true}')
+        //     .then(res => {
+        //         this.ngNetworks = res;
+        //         console.log('xx this.ngNetworks', this.ngNetworks)
+        //         // Find DS for selected W inside Networks
+        //         let networkIndex: number = this.ngNetworks.findIndex(
+        //             nw => nw.id == this.localWidget.datasourceID);
 
-                // Select the network for the current W, else the first one
-                if (this.ngNetworks.length > 0) {
-                    if (networkIndex >= 0) {
-                        this.selectedNetworkID = this.ngNetworks[networkIndex].id;
+        //         // Select the network for the current W, else the first one
+        //         if (this.ngNetworks.length > 0) {
+        //             if (networkIndex >= 0) {
+        //                 this.selectedNetworkID = this.ngNetworks[networkIndex].id;
 
-                        this.clickNetwork(networkIndex, this.selectedNetworkID);
-                    } else {
-                        this.clickNetwork(0, this.ngNetworks[0].id);
-                    };
-                };
-            })
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Navigator.OnInit reading datasources: ' + err);
-            });
+        //                 this.clickNetwork(networkIndex, this.selectedNetworkID);
+        //             } else {
+        //                 this.clickNetwork(0, this.ngNetworks[0].id);
+        //             };
+        //         };
+        //     })
+        //     .catch(err => {
+        //         this.errorMessage = err.slice(0, 100);
+        //         console.error('Error in Navigator.OnInit reading datasources: ' + err);
+        //     });
 
 
 
 
         // Read Networks from DB
         // TODO - Build Into rest !!!!
-        // this.globalVariableService.getResource('navigatorNetworks')
-        //     .then(res => {
-        //         console.log('xx post navigatorNetworks ...', res)
-        //         this.globalVariableService.getData(
-        //             'datasourceID=' + res[0].subDatasources[0].toString()
-        //         )
-        //             .then(res => {
-        //                 console.log('xx post navigatorNetwork Rel', res[0]);
-        //             })
-        //             .catch(err => console.log('xx post navigatorNetwork Rel', err))
-        //     this.globalVariableService.getData(
-        //             'datasourceID=' + res[0].subDatasources[1].toString()
-        //         )
-        //             .then(res => {
-        //                 console.log('xx post navigatorNetwork Prop', res[0])
-        //             })
-        //             .catch(err => console.log('xx post navigatorNetwork Rel', err))
-        //     })
-        //     .catch(err => {
-        //         console.error('Error in Navigator.OnInit reading networks: ' + err);
-        //     });
+        this.globalVariableService.getResource('navigatorNetworks')
+            .then(res => {
+                this.ngNetworks = res;
+                this.globalVariableService.getData(
+                    'datasourceID=' + res[0].relationshipDatasourceID.toString()
+                )
+                    .then(res => {
+                        console.log('xx post navigatorNetwork Rel', res[0]);
+                    })
+                    .catch(err => console.log('xx post navigatorNetwork Rel', err))
+            this.globalVariableService.getData(
+                    'datasourceID=' + res[0].propertiesDatasourceID.toString()
+                )
+                    .then(res => {
+                        console.log('xx post navigatorNetwork Prop', res[0])
+                    })
+                    .catch(err => console.log('xx post navigatorNetwork Rel', err))
+            })
+            .catch(err => {
+                console.error('Error in Navigator.OnInit reading networks: ' + err);
+            });
 
             
     }

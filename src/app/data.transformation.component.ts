@@ -22,9 +22,11 @@ import { DatasourceTransformation }     from './models';
 import { Transformation }               from './models';
 import { DatasourceTransformationValues }   from './models';
 import { TransformationItemParameter }  from './models';
-import { TransformationType }           from './models';
 import { TransformationParameterType }  from './models';
-import { TransformQuery, TransformConnection, TransformItem } from './models';
+import { TransformationType }           from './models';
+import { TransformConnection }          from './models';
+import { TransformItem }                from './models';
+import { TransformQuery }               from './models';
 
 // JI - love your comments, very clear !!
 

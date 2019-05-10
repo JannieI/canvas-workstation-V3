@@ -1699,7 +1699,6 @@ export class NavigatorNetwork {
     id: number;                             // Unique record ID
     name: string;                           // Name of Network
     description: string;                    // Description of the Network
-
     accessType: string;                     // How to access D: Private, Public, AccessList
     relationshipDatasourceID: number;       // ID for the DS that contains the relationships
     propertiesDatasourceID: number;         // ID for DS that contains the Properties
@@ -1764,7 +1763,7 @@ export class NavigatorHistory {
     view: string;
 }
 
-export class NavigatorNodeFiler {
+export class NavigatorNodeFilter {
     id: number;
     field: string;
     operator: string;
