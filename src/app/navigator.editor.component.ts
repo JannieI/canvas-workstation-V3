@@ -232,6 +232,31 @@ export class NavigatorEditorComponent implements OnInit {
         localWidget.description = this.selectedNetworkDescription;
         localWidget.widgetType=='Navigator';
         localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
+
+
+        // Populate predefined dimensions, considering layouts
+        if (localWidget.graphLayers[0].graphColorScheme === ''
+            ||  localWidget.graphLayers[0].graphColorScheme == null) {
+            localWidget.graphLayers[0].graphColorScheme = 'None';
+        };
+        localWidget.containerLeft = 100;
+        localWidget.containerHeight = 600;
+        localWidget.containerTop = 100;
+        localWidget.containerWidth = 600;
+        if (this.newWidgetContainerLeft > 0) {
+            localWidget.containerLeft = this.newWidgetContainerLeft;
+        };
+        if (this.newWidgetContainerTop > 0) {
+            localWidget.containerTop = this.newWidgetContainerTop;
+        };
+
+        localWidget.graphLayers.forEach(w => {
+            let graphspec: string = JSON.stringify(w.graphSpecification);
+            if (graphspec != null) {
+                w.graphSpecification = JSON.parse(graphspec.replace("$schema","_schema"));
+            };
+
+
         localWidget.widgetCreatedOn = today;
         localWidget.widgetCreatedBy = this.globalVariableService.currentUser.userID;
         localWidget.widgetUpdatedOn = null;
@@ -248,7 +273,40 @@ export class NavigatorEditorComponent implements OnInit {
                     this.selectedRowID = this.navigators[networkIndex].id;
                     this.selectedRowIndex = networkIndex;
                     this.clickRow(this.selectedRowIndex, this.selectedRowID);
-                }
+                };
+
+                        // Action
+                        // TODO - cater for errors + make more generic
+                        let actID: number = this.globalVariableService.actionUpsert(
+                            null,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                            this.localWidget.id,
+                            'Widget',
+                            'Edit',
+                            'Update Title',
+                            'W Title clickSave',
+                            null,
+                            null,
+                            null,
+                            this.localWidget,
+                            false               // Dont log to DB yet
+                        );
+
+                        // Tell user
+                        this.globalVariableService.showStatusBarMessage(
+                            {
+                                message: 'Graph Added',
+                                uiArea: 'StatusBar',
+                                classfication: 'Info',
+                                timeout: 3000,
+                                defaultMessage: ''
+                            }
+                        );
+
+                        // Return to main menu
+                        this.formWidgetEditorClosed.emit(this.localWidget);
+
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
