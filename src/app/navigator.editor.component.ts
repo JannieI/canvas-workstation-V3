@@ -58,8 +58,9 @@ export class NavigatorEditorComponent implements OnInit {
     selectedNavigatorNetworkID: number = -1;
     selectedRowID: number = -1;
     selectedRowIndex: number = -1;
-    selectedNetworkName: string = '';
     selectedNetworkDescription: string = '';
+    selectedNetworkName: string = '';
+    selectedNetworkTitle: string = '';
     selectedNavigatorNetwork: string = '';
 
 

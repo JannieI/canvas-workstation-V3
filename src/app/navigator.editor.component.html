@@ -29,25 +29,30 @@
 
                 </div>
 
+                <div class="gridText">
+                    This form is used to Add / Edit a Navigator Widget.  
+                    Navigators visualise networks of Nodes and Relationships, 
+                    which can be added on the Data menu as a Network.
+                </div>
                 <div class="gridErrorMessage">
                     {{ errorMessage }}
                 </div>
 
-                <div class="gridTable">
-                    <clr-datagrid>
-                        <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
-
-                        <clr-dg-row *clrDgItems="let row of navigators;
-                            let i = index"
-                            [style.background-color]="(i == selectedRowID)? '#123456' : 'white'"
-                            [style.color]="(i == selectedRowID)? 'white' : 'gray'"
-                            (click)="clickRow(i, row.id)"
-                            style="cursor: pointer;"
-                            >
-                            <clr-dg-cell>{{ row.name }}</clr-dg-cell>
-                        </clr-dg-row>
-
-                    </clr-datagrid>
+                <div class="gridNavigatorTitleTitle">
+                    <b>Title:</b>
+                </div>
+                <div class="gridNavigatorTitle">
+                        <input [(ngModel)]="selectedNetworkTitle" 
+                        type="text"
+                        name="selectedNetworkTitle"
+                        placeholder="Title shown on title bar"
+                        #selectedNetworkTitleVar="ngModel"
+                        required
+                        minlength="2"
+                        maxlength="150"
+                        size="43"
+                        [style.color]="!selectedNetworkTitleVar.valid  &&  editing ? 'red' : 'gray'"
+                        >
                 </div>
 
                 <div class="gridNavigatorNameTitle">
@@ -56,14 +61,14 @@
                 <div class="gridNavigatorName">
                         <input [(ngModel)]="selectedNetworkName"
                         type="text"
-                        name="name"
-                        placeholder="Name of the Schedule"
-                        #nameVar="ngModel"
+                        name="selectedNetworkName"
+                        placeholder="Internal Name of the Widget"
+                        #selectedNetworkNameVar="ngModel"
                         required
                         minlength="2"
                         maxlength="150"
                         size="43"
-                        [style.color]="!nameVar.valid  &&  editing ? 'red' : 'gray'"
+                        [style.color]="!selectedNetworkNameVar.valid  &&  editing ? 'red' : 'gray'"
                         >
                 </div>
 
@@ -74,7 +79,7 @@
                         <input [(ngModel)]="selectedNetworkDescription"
                         type="text"
                         name="name"
-                        placeholder="Description of the Schedule"
+                        placeholder="Description of the Widget"
                         #descriptionVar="ngModel"
                         required
                         minlength="2"

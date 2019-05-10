@@ -45,7 +45,7 @@
         text-align: left;
     }
 
-    .gridTable {
+    .gridText {
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 9;
@@ -53,7 +53,25 @@
         grid-row-end: 18;
         margin-left: 2px;
         text-align: left;
-        overflow-y: scroll;
+    }
+
+    .gridNavigatorTitleTitle {
+        grid-column-start: 9;
+        /* autoprefixer: off */
+        grid-column-end: 11;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+    .gridNavigatorTitle {
+        grid-column-start: 11;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: 2px 2px 2px 22px;
+        text-align: left;
     }
 
     .gridNavigatorNameTitle {
