@@ -281,7 +281,7 @@ export class NavigatorEditorComponent implements OnInit {
                             null,
                             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                            this.localWidget.id,
+                            localWidget.id,
                             'Widget',
                             'Edit',
                             'Update Title',
@@ -289,7 +289,7 @@ export class NavigatorEditorComponent implements OnInit {
                             null,
                             null,
                             null,
-                            this.localWidget,
+                            localWidget,
                             false               // Dont log to DB yet
                         );
 
