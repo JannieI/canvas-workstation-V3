@@ -274,24 +274,6 @@ export class NavigatorEditorComponent implements OnInit {
                     this.clickRow(this.selectedRowIndex, this.selectedRowID);
                 };
 
-                // Action
-                // TODO - cater for errors + make more generic
-                let actID: number = this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    localWidget.id,
-                    'Widget',
-                    'Add',
-                    'Add Navigator',
-                    'Nav Ed clickSave',
-                    null,
-                    null,
-                    null,
-                    localWidget,
-                    false               // Dont log to DB yet
-                );
-
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(
                     {

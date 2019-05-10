@@ -1595,7 +1595,7 @@ export class AppComponent implements OnInit {
                 'Widget',
                 this.newWidget? 'Add' : 'Edit',
                 '',
-                'App handleCloseWidgetEditor',
+                'App handleCloseNavigatorEditor',
                 null,
                 null,
                 this.newWidget? null : this.selectedWidget,

@@ -15,7 +15,7 @@ import { ViewChild }                  from '@angular/core';
 // Our models
 import { CSScolor }                   from './models';
 import { Datasource }                 from './models';
-import { WidgetFilter }                from './models';
+import { WidgetFilter }               from './models';
 import { GraphHistory }               from './models';
 import { GraphCalculation }           from './models';
 import { Widget }                     from './models';
@@ -25,7 +25,7 @@ import { WidgetGraph }                from './models';
 
 
 // Our Services
-import { GlobalFunctionService } 		  from './global-function.service';
+import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Functions, 3rd Party
@@ -39,9 +39,7 @@ import { timeUnits }                  from './templates';
 import { vegaColorSchemes }           from './templates';
 import { aggregations }               from './templates';
 
-// import {  }                  from './templates';
-// import {  }                  from './templates';
-// import {  }                  from './templates';
+
 const dragFieldMessage: string = 'Drag a field here ...';
 
 export interface dataSchemaInterface {
