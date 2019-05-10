@@ -52,6 +52,7 @@ export class NavigatorEditorComponent implements OnInit {
 
     navigatorNetworkNames: string[] = [];
     errorMessage: string = '';
+    localWidget: Widget;
     navigators: Widget[] = [];
     navigatorNetworks: NavigatorNetwork[] = [];
     selectedNavigatorNetworkID: number = -1;
@@ -72,6 +73,7 @@ export class NavigatorEditorComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        selectedWidget
         // Get Datasource list
         this.globalVariableService.getResource('navigatorNetworks')
             .then(res => {
@@ -144,22 +146,6 @@ export class NavigatorEditorComponent implements OnInit {
             this.selectedNavigatorNetworkID = null;
         };
 
-    }
-
-    clickCancel() {
-        // Switch to Edit mode
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
-
-        // Reset
-        this.errorMessage = '';
-        this.selectedNetworkName = '';
-        this.selectedNetworkDescription = '';
-        this.selectedNavigatorNetwork = '';
-
-        // Load and return
-        if (this.navigatorNetworks.length > 0) {
-            this.clickRow(0, this.navigatorNetworks[0].id)
-        };
     }
 
     clickClose() {
@@ -254,16 +240,6 @@ export class NavigatorEditorComponent implements OnInit {
 
         // Validation input
         if (this.validateInput() != '') {
-            return;
-        };
-
-        // Update Navigator record
-        let today = new Date();
-        let navigatorIndex: number = this.navigators.findIndex(
-            nav => nav.id == this.selectedRowID
-        );
-        if (navigatorIndex < 0) {
-            this.errorMessage = 'Error finding Navigator record';
             return;
         };
 
