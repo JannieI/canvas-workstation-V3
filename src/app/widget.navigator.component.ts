@@ -431,9 +431,10 @@ export class WidgetNavigatorComponent {
 
         // Read the Data for this W from the DB
         if (this.selectedNetworkID >= 0) {
+            
+            this.selectedNetworkRelationshipID = this.ngNetworks[index].relationshipDatasourceID;
             console.log('xx selectedNetworkRelationshipID', this.selectedNetworkRelationshipID)
 
-            this.selectedNetworkRelationshipID = this.ngNetworks[index].relationshipDatasourceID;
             this.globalVariableService.getData(
                 'datasourceID=' + this.selectedNetworkRelationshipID.toString()
             )
@@ -458,7 +459,7 @@ export class WidgetNavigatorComponent {
                             // Dropdown
                             this.ngNodeProperties = this.distinctNodeProperties();
                             this.ngNodeProperties = ['', ...this.ngNodeProperties];
-
+console.log('xx debug 1')
                             // Clear the rest & reset pointers
                             this.ngDropdownParentNodes = [];
                             this.ngDropdownRelationships = [];
@@ -470,6 +471,7 @@ export class WidgetNavigatorComponent {
                             this.selectedRelationship = '';
                             this.selectedParentFilterID = -1;
                             this.selectedChildFilterID = -1;
+                            console.log('xx debug 2')
 
                             // On startup
                             if (this.startupNavigatorSelectParentNodeType != '') {
@@ -480,7 +482,9 @@ export class WidgetNavigatorComponent {
                                         value: this.selectedParentNodeType
                                     }
                                 };
+                                console.log('xx debug 3')
                                 this.changeParentNodeType(ev);
+                                console.log('xx debug 4')
 
                                 if (this.startupNavigatorSelectParentNodeName != '') {
                                     this.selectedParentNode = this.startupNavigatorSelectParentNodeName;
@@ -495,11 +499,14 @@ export class WidgetNavigatorComponent {
                                         &&
                                         this.selectedParentNode != ''
                                         ) {
-                                        this.ngRelationshipRoles = this.distinctRelationshipRoles(
+                                            console.log('xx debug 5')
+                                            this.ngRelationshipRoles = this.distinctRelationshipRoles(
                                             this.selectedParentNode, this.selectedRelationship);
                                     };
                                 };
+                                console.log('xx debug 6')
                                 if (this.startupNavigatorSelectView != '') {
+                                    console.log('xx debug 7')
                                     this.selectedView = this.startupNavigatorSelectView;
                                     this.startupNavigatorSelectView = '';
                                     this.clickDefaultView();
@@ -520,6 +527,7 @@ export class WidgetNavigatorComponent {
                                     };
                                     return 0;
                                 });
+                                console.log('xx debug 8')
 
                             // Close Navigated popup
                             this.showNetwork = false;
@@ -528,6 +536,7 @@ export class WidgetNavigatorComponent {
                             if (this.ngHistory.length > 0) {
                                 this.clickHistory(0, this.ngHistory[0].id);
                             } else {
+                                console.log('xx debug 9')
                                 // Clear the graph
                                 this.selectedView = 'SummaryView';
                                 this.clickNetworkSummaryView();
@@ -613,12 +622,15 @@ export class WidgetNavigatorComponent {
         };
 
         // Fill Dropdowns
+        console.log('xx debug 3.1')
         this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        console.log('xx debug 3.2')
 
         // Fill Relationships Dropdown
         this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType, 'All');
         this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
+        console.log('xx debug 3.3')
 
         // Reduce size of Dropdown
         if (this.ngDropdownRelationships.length > 20) {
@@ -627,23 +639,29 @@ export class WidgetNavigatorComponent {
 
         // Clear Relationship roles
         this.ngRelationshipRoles = [];
+        console.log('xx debug 3.4')
 
         // Clear all Filters
         this.clickParentFilterClear();
+        console.log('xx debug 3.5')
         this.clickRelationshipFilterClear();
+        console.log('xx debug 3.6')
         this.clickChildFilterClear();
+        console.log('xx debug 3.7')
 
         // Set Parent Node Property Filter properties
         this.ngParentNodeFilterKeyDropdown = this.networkProperties
             .filter(np => np.nodeType == this.selectedParentNodeType && np.propertyKey != '')
             .map(np => np.propertyKey);
         this.ngParentNodeFilterKeyDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterKeyDropdown);
+        console.log('xx debug 3.8')
 
         // Reset filter properties
         this.ngParentNodeFilterPropertyDropdown = [];
 
         // Reset
         this.visibleNumberChildrenStart = 0;
+        console.log('xx debug 3.9')
 
     }
 
@@ -2586,7 +2604,7 @@ export class WidgetNavigatorComponent {
         this.childNodesFilteredList = [];
 
         // Refresh the Graph
-        this.checkShowGraph();
+        // this.checkShowGraph();
         
     }
 
