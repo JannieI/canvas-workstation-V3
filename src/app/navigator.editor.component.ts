@@ -47,6 +47,20 @@ export class NavigatorEditorComponent implements OnInit {
             this.clickClose();
             return;
         };
+        if (
+            (event.code === 'Enter'  ||  event.code === 'NumpadEnter')
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
+           ) {
+            if (this.newWidget) {
+                this.clickAdd();
+            } else {
+                this.clickSave();
+            };
+            return;
+        };
 
     }
 
