@@ -74,22 +74,6 @@ export class NavigatorEditorComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Fill local Widget
-        if (this.newWidget) {
-            this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
-        } else {
-
-            // Deep copy original W
-            this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-            this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget))
-
-            this.selectedNetworkName = this.localWidget.name;
-            this.selectedNetworkDescription = this.localWidget.description;
-            this.selectedNetworkTitle = this.localWidget.titleText;
-            this.selectedNavigatorNetworkID = this.localWidget.navigatorNetworkID;
-    
-        };
-
         // Get Datasource list
         this.globalVariableService.getResource('navigatorNetworks')
             .then(res => {
@@ -109,6 +93,30 @@ export class NavigatorEditorComponent implements OnInit {
                     return 0;
                 });
                 this.navigatorNetworkNames = ['', ...this.navigatorNetworkNames];
+
+                // Fill local Widget
+                if (this.newWidget) {
+                    this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
+                } else {
+
+                    // Deep copy original W
+                    this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+                    this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget))
+
+                    this.selectedNetworkName = this.localWidget.name;
+                    this.selectedNetworkDescription = this.localWidget.description;
+                    this.selectedNetworkTitle = this.localWidget.titleText;
+                    this.selectedNavigatorNetworkID = this.localWidget.navigatorNetworkID;
+
+                    let networkIndex: number = this.navigatorNetworks.findIndex(
+                        nw => nw.id == this.selectedNavigatorNetworkID);
+                    if (networkIndex >= 0) {
+                        this.selectedNavigatorNetwork = 
+                            this.navigatorNetworks[networkIndex].name + ' (' 
+                            + this.selectedNavigatorNetworkID + ')';
+                    };
+            
+                };
 
             })
             .catch(err => {
