@@ -9109,6 +9109,10 @@ export class AppComponent implements OnInit {
             this.clickMenuWidgetEdit(widgetID);
             return;
         };
+        if (widgetType === 'Navigator') {
+            this.clickMenuNavigatorEdit(widgetID);
+            return;
+        };
         if (widgetType === 'Slicer') {
             this.clickMenuSlicerEdit(widgetID);
             return;
