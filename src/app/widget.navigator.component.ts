@@ -2626,7 +2626,17 @@ console.log('xx debug 1')
         this.childNodesFilteredList = [];
         
     }
+    
+    clickChildFilterClearAndShow() {
+        // Clear Parent Filter
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClearAndShow', '@Start');
 
+        this.clickChildFilterClear();
+
+        // Refresh the Graph
+        this.checkShowGraph();
+        
+    }
 
     clickChildFilterSave() {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
