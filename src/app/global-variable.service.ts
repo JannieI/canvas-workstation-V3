@@ -64,9 +64,9 @@ import { dashboardTabTemplate }       from './templates';
 import { finalFields }                from './templates';
 import { serverTypes }                from './templates';
 import { vlTemplate }                 from './templates';
+import { widgetNavigatorVegaSpecification } from './templates';
 import { widgetTemplateInner }        from './templates';
 import { widgetTemplate }             from './templates';
-
 
 @Injectable()
 export class GlobalVariableService {
@@ -106,6 +106,7 @@ export class GlobalVariableService {
     dashboardTabTemplate: DashboardTab = dashboardTabTemplate;
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
+    widgetNavigatorVegaSpecification: any = widgetNavigatorVegaSpecification;
     widgetTemplateInner: any = widgetTemplateInner;
     serverTypes: TributaryServerType[] = serverTypes;
 
