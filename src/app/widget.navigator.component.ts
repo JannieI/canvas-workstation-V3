@@ -1252,6 +1252,7 @@ console.log('xx debug 1')
         // Re-create the Vega spec, and show the graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'showGraph', '@Start');
 
+        console.log('xx before CreateVega', this.localWidget)
         // Create specification
         this.specification = this.globalVariableService.createVegaSpec(
             this.localWidget,

@@ -3898,8 +3898,9 @@ export class GlobalVariableService {
 
                 return specification;
             };
-            if (widget.graphLayers[0].graphMark === 'navigator') {
-
+            if (widget.graphLayers[0].graphMark.toLocaleLowerCase() === 'navigator') {
+                console.log('xx GV widget.dataFiltered', widget.dataFiltered)
+                specification['data'][0]['values'] = widget.dataFiltered;
                 return specification;
             };
 
