@@ -206,43 +206,14 @@ export class WidgetNavigatorComponent {
         // Populate persisted data - TODO via DB
         this.tempCreateDummyData();
 
-        // Read DS for all Networks from DB
-        // this.globalVariableService.getResource('datasources', 'filterObject={"isNetworkShape": true}')
-        //     .then(res => {
-        //         this.ngNetworks = res;
-        //         console.log('xx this.ngNetworks', this.ngNetworks)
-        //         // Find DS for selected W inside Networks
-        //         let networkIndex: number = this.ngNetworks.findIndex(
-        //             nw => nw.id == this.localWidget.datasourceID);
-
-        //         // Select the network for the current W, else the first one
-        //         if (this.ngNetworks.length > 0) {
-        //             if (networkIndex >= 0) {
-        //                 this.selectedNetworkID = this.ngNetworks[networkIndex].id;
-
-        //                 this.clickNetwork(networkIndex, this.selectedNetworkID);
-        //             } else {
-        //                 this.clickNetwork(0, this.ngNetworks[0].id);
-        //             };
-        //         };
-        //     })
-        //     .catch(err => {
-        //         this.errorMessage = err.slice(0, 100);
-        //         console.error('Error in Navigator.OnInit reading datasources: ' + err);
-        //     });
-
-
-
-
         // Read Networks from DB
-        // TODO - Build Into rest !!!!
         this.globalVariableService.getResource('navigatorNetworks')
             .then(res => {
                 this.ngNetworks = res;
                 let networkIndex: number = this.ngNetworks.findIndex(
                     nw => nw.id == this.localWidget.navigatorNetworkID
                 );
-                console.log('xx networkIndex', networkIndex)
+
                 if (networkIndex >= 0) {
                     this.selectedNetworkID = this.ngNetworks[networkIndex].id;
 
@@ -433,7 +404,6 @@ export class WidgetNavigatorComponent {
         if (this.selectedNetworkID >= 0) {
             
             this.selectedNetworkRelationshipID = this.ngNetworks[index].relationshipDatasourceID;
-            console.log('xx selectedNetworkRelationshipID', this.selectedNetworkRelationshipID)
 
             this.globalVariableService.getData(
                 'datasourceID=' + this.selectedNetworkRelationshipID.toString()
@@ -446,7 +416,7 @@ export class WidgetNavigatorComponent {
                     this.ngDropdownParentNodeTypes = ['', ...this.ngDropdownParentNodeTypes];
 
                     this.selectedNetworkPropertiesID = this.ngNetworks[index].propertiesDatasourceID;
-                    console.log('xx BEFORE BUG', this.selectedNetworkPropertiesID)
+
                     this.globalVariableService.getData(
                         'datasourceID=' + this.selectedNetworkPropertiesID.toString()
                     )
@@ -459,7 +429,7 @@ export class WidgetNavigatorComponent {
                             // Dropdown
                             this.ngNodeProperties = this.distinctNodeProperties();
                             this.ngNodeProperties = ['', ...this.ngNodeProperties];
-console.log('xx debug 1')
+
                             // Clear the rest & reset pointers
                             this.ngDropdownParentNodes = [];
                             this.ngDropdownRelationships = [];
@@ -471,7 +441,6 @@ console.log('xx debug 1')
                             this.selectedRelationship = '';
                             this.selectedParentFilterID = -1;
                             this.selectedChildFilterID = -1;
-                            console.log('xx debug 2')
 
                             // On startup
                             if (this.startupNavigatorSelectParentNodeType != '') {
@@ -482,9 +451,8 @@ console.log('xx debug 1')
                                         value: this.selectedParentNodeType
                                     }
                                 };
-                                console.log('xx debug 3')
+
                                 this.changeParentNodeType(ev);
-                                console.log('xx debug 4')
 
                                 if (this.startupNavigatorSelectParentNodeName != '') {
                                     this.selectedParentNode = this.startupNavigatorSelectParentNodeName;
@@ -499,19 +467,15 @@ console.log('xx debug 1')
                                         &&
                                         this.selectedParentNode != ''
                                         ) {
-                                            console.log('xx debug 5')
                                             this.ngRelationshipRoles = this.distinctRelationshipRoles(
                                             this.selectedParentNode, this.selectedRelationship);
                                     };
                                 };
-                                console.log('xx debug 6')
                                 if (this.startupNavigatorSelectView != '') {
-                                    console.log('xx debug 7')
                                     this.selectedView = this.startupNavigatorSelectView;
                                     this.startupNavigatorSelectView = '';
                                     this.clickDefaultView();
                                 };
-                                console.log('xx this.selectedView', this.selectedView )
 
                             };
 
@@ -527,7 +491,6 @@ console.log('xx debug 1')
                                     };
                                     return 0;
                                 });
-                                console.log('xx debug 8')
 
                             // Close Navigated popup
                             this.showNetwork = false;
@@ -536,7 +499,7 @@ console.log('xx debug 1')
                             if (this.ngHistory.length > 0) {
                                 this.clickHistory(0, this.ngHistory[0].id);
                             } else {
-                                console.log('xx debug 9')
+
                                 // Clear the graph
                                 this.selectedView = 'SummaryView';
                                 this.clickNetworkSummaryView();
@@ -622,15 +585,12 @@ console.log('xx debug 1')
         };
 
         // Fill Dropdowns
-        console.log('xx debug 3.1')
         this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
-        console.log('xx debug 3.2')
 
         // Fill Relationships Dropdown
         this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType, 'All');
         this.ngDropdownRelationships = ['All', ...this.ngDropdownRelationships];
-        console.log('xx debug 3.3')
 
         // Reduce size of Dropdown
         if (this.ngDropdownRelationships.length > 20) {
@@ -639,29 +599,23 @@ console.log('xx debug 1')
 
         // Clear Relationship roles
         this.ngRelationshipRoles = [];
-        console.log('xx debug 3.4')
 
         // Clear all Filters
         this.clickParentFilterClear();
-        console.log('xx debug 3.5')
         this.clickRelationshipFilterClear();
-        console.log('xx debug 3.6')
         this.clickChildFilterClear();
-        console.log('xx debug 3.7')
 
         // Set Parent Node Property Filter properties
         this.ngParentNodeFilterKeyDropdown = this.networkProperties
             .filter(np => np.nodeType == this.selectedParentNodeType && np.propertyKey != '')
             .map(np => np.propertyKey);
         this.ngParentNodeFilterKeyDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterKeyDropdown);
-        console.log('xx debug 3.8')
 
         // Reset filter properties
         this.ngParentNodeFilterPropertyDropdown = [];
 
         // Reset
         this.visibleNumberChildrenStart = 0;
-        console.log('xx debug 3.9')
 
     }
 
@@ -797,7 +751,7 @@ console.log('xx debug 1')
     createGraphDefaultView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
         // Create the data for the view
         this.globalFunctionService.printToConsole(this.constructor.name, 'createGraphDefaultView', '@Start');
-        console.log('xx createGraphDefaultView ', addToHistory)
+
         // Build data and graph if all parent & relationship fields selected
         if (this.selectedParentNodeType != ''
             && this.selectedParentNode != ''
@@ -852,7 +806,7 @@ console.log('xx debug 1')
                     childFilterValue = this.childNodeFilter[0].value;
 
                 };
-                console.log('xx 7')
+
                 // Add history
                 this.selectedHistoryID = this.ngHistory.length;
                 let historyNew: NavigatorHistory =
@@ -884,8 +838,6 @@ console.log('xx debug 1')
                 };
                 this.ngHistory = [historyNew, ...this.ngHistory];
                 this.historyAll = [historyNew, ...this.historyAll];
-                console.log('xx 8', this.ngHistory, this.showAdditionalLevelForRelationships,
-                this.showAdditionalLevelForRoles)
             };
 
             // Set H & W
@@ -901,7 +853,7 @@ console.log('xx debug 1')
             };
         } else {
             this.graphTitle = '';
-            console.log('xx 9')
+
             // Set data
             this.graphData = [];
             this.graphData.push(
@@ -1052,7 +1004,6 @@ console.log('xx debug 1')
         let childNodesSelected: string[] = this.commonParentSelected
             .filter(cp => cp.isSelected)
             .map(cp => cp.childNode);
-        console.log('xx this.childNodesSelected', childNodesSelected)
 
         if (childNodesSelected.length > 0) {
 
@@ -1087,8 +1038,6 @@ console.log('xx debug 1')
 
         // Reset
         this.graphData = [];
-
-        console.log('xx this.childDataAll', this.childDataAll)
 
         if (this.childDataAll.length > 0) {
 
@@ -1191,7 +1140,6 @@ console.log('xx debug 1')
                 ['All'],
                 'All'
                 );
-            console.log('xx distinctParents', distinctParents)
 
             // Construct graph data
             this.graphData = [];
@@ -1252,7 +1200,6 @@ console.log('xx debug 1')
         // Re-create the Vega spec, and show the graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'showGraph', '@Start');
 
-        console.log('xx before CreateVega', this.localWidget)
         // Create specification
         this.specification = this.globalVariableService.createVegaSpec(
             this.localWidget,
@@ -1261,7 +1208,6 @@ console.log('xx debug 1')
             this.showSpecificGraphLayer,
             0
         );
-        console.log('xx this.specification', this.graphTitle, this.graphData, this.specification)
 
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
@@ -1290,11 +1236,9 @@ console.log('xx debug 1')
 
             // Network Summary -> Fill Node Type
             if (that.selectedView === 'SummaryView') {
-                console.log('xx summ View')
 
                 // Select the Node Type, if one was clicked
                 if (that.ngDropdownParentNodeTypes.indexOf(childNodeClicked) >= 0) {
-                    console.log('xx nodeType clicked')
                     that.selectedParentNodeType = childNodeClicked;
                     that.selectedParentNode = '';
                     that.selectedRelationship =  '';
@@ -1392,7 +1336,6 @@ console.log('xx debug 1')
 
         // Reset the data which will now be created
         let localGraphData = [];
-        console.log('xx localGraphData 0', JSON.parse(JSON.stringify(localGraphData)))
 
         // Add Parent
         localGraphData.push(
@@ -1400,7 +1343,6 @@ console.log('xx debug 1')
                 "id": startID,
                 "name": this.constructNodeName(parentNodeName)
             });
-            console.log('xx localGraphData 0', JSON.parse(JSON.stringify(localGraphData)))
 
         // There are 4 scenarios, each one creating a different amount of sub-levels
 
@@ -1701,18 +1643,16 @@ console.log('xx debug 1')
             parentRelationshipPerNode = parentRelationshipPerNode
                 .concat(this.parentRelationshipPerNode(nd));
         });
-        console.log('xx  1 inputNodes', inputNodes, parentRelationshipPerNode)
 
         // Loop on children: if anyone is in inputNode array, add it
         // parentRelationshipPerNode = parentRelationshipPerNode
         //     .filter(pr => inputNodes.indexOf(pr.nodeName) >= 0);
 
-        console.log('xx filtered', parentRelationshipPerNode)
         // Create a distinct list of ParentNodes
         let parentNodesUnique: string[] = [];
         parentNodesUnique = parentRelationshipPerNode.map(nr => nr.parentNodeName);
         parentNodesUnique = this.navUniqifySortNodes(parentNodesUnique);
-        console.log('xx parentNodesUnique', parentNodesUnique)
+
         // Array of parentNodes + count with 2 or more occurances
         let parentsCount: { parentNode: string; count: number}[] = [];
         let counter: number = 0;
@@ -1733,7 +1673,7 @@ console.log('xx debug 1')
             };
                 return 0;
         });
-        console.log('xx parentsCount', parentsCount)
+
         // Build the graph Data
         let localGraphData: any[] = [];
 
@@ -1828,21 +1768,18 @@ console.log('xx debug 1')
 
         // Get unique parents for targetNode
         let parentNodesUnique: string[] = this.distinctParentNodes(targetNode, ['All'], 'All');
-        console.log('xx  uniqueParents', parentNodesUnique)
 
         // List all ParentNode - relationship - Child relationships for unique Parents
         parentNodesUnique.forEach(par => {
             childrenRelationshipPerParent = childrenRelationshipPerParent
                 .concat(this.parentRelationshipPerNode(par));
         });
-        console.log('xx parentRelationshipPerNode', childrenRelationshipPerParent)
 
         // Array of parentNodes with targetNode & at least one inputNodes element
         childrenRelationshipPerParent = childrenRelationshipPerParent
             .filter(nr => (inputNodes.indexOf(nr.parentNodeName) >= 0)
                            ||
                            nr.parentNodeName === targetNode);
-        console.log('xx parentRelationshipPerNode FILTERED', childrenRelationshipPerParent)
 
         // Get >1 element
         let parentsCount: { parentNode: string; count: number}[] = [];
@@ -1864,7 +1801,6 @@ console.log('xx debug 1')
             };
                 return 0;
         });
-        console.log('xx parentsCount', parentsCount)
 
         // Build the graph Data
         let localGraphData: any[] = [];
@@ -1959,7 +1895,6 @@ console.log('xx debug 1')
 
         // Stop if target reached
         if (nodeName === targetNodeName) {
-            console.log('xx nav2WalkInPath @END path REACHED TARGET', iterationCount, path);
 
             // Add last Node, push to routes and stop recursion
             path.push(nodeName);
@@ -1972,7 +1907,6 @@ console.log('xx debug 1')
         // Stop if Cyclical
         if (path.indexOf(nodeName) >= 0) {
             path.push(nodeName + '*');
-            console.log('xx nav2WalkInPath @END path CYCLCLE', iterationCount, path);
 
             for (var i = 0; i < path.length; i++) {
                 if (path[i].indexOf(targetNodeName) >= 0) {
@@ -2353,7 +2287,7 @@ console.log('xx debug 1')
 
         // Make sure it is unique, non-null list
         nodeProperties = this.navUniqifySortNodes(nodeProperties);
-        console.log('xx nodeProperties', nodeProperties)
+
         // Return
         return nodeProperties;
     }
@@ -2626,7 +2560,7 @@ console.log('xx debug 1')
         this.childNodesFilteredList = [];
         
     }
-    
+
     clickChildFilterClearAndShow() {
         // Clear Parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickChildFilterClearAndShow', '@Start');
@@ -2856,7 +2790,6 @@ console.log('xx debug 1')
         // Refresh the graph
         this.selectedView = 'DistanceView'
         this.spinner = true;
-        console.log('xx this.spinner',  this.spinner)
 
         // No CPU power to display spinner, thus delay start of calc method
         setTimeout( () => {
@@ -2945,7 +2878,6 @@ console.log('xx debug 1')
         this.specification['data'][0]['values'] = this.graphData;
         this.specification['title'] = this.graphTitle;
 
-        console.log('xx summ', this.graphHeight, this.graphWidth, this.graphData, this.specification)
         // TODO - decide if we need to update the Widget Data too ?
         // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
 
