@@ -660,6 +660,162 @@ export const widgetTemplate: Widget =
         "widgetUpdatedBy": ""
     };
 
+export const widgetNavigatorVegaSpecification: any =
+    {
+        "_schema" : "https://vega.github.io/schema/vega/v5.json",
+        "width" : 380,
+        "height" : 380,
+        "padding" : 5,
+        "data" : [ 
+            {
+                "name" : "tree",
+                "values" : [],
+                "transform" : [ 
+                    {
+                        "type" : "stratify",
+                        "key" : "id",
+                        "parentKey" : "parent"
+                    }, 
+                    {
+                        "type" : "tree",
+                        "method" : "tidy",
+                        "size" : [ 
+                            {
+                                "signal" : "height"
+                            }, 
+                            {
+                                "signal" : "width - 100"
+                            }
+                        ],
+                        "as" : [ 
+                            "y", 
+                            "x", 
+                            "depth", 
+                            "children"
+                        ]
+                    }
+                ]
+            }, 
+            {
+                "name" : "links",
+                "source" : "tree",
+                "transform" : [ 
+                    {
+                        "type" : "treelinks"
+                    }, 
+                    {
+                        "type" : "linkpath",
+                        "orient" : "horizontal",
+                        "shape" : "diagonal"
+                    }
+                ]
+            }
+        ],
+        "scales" : [ 
+            {
+                "name" : "color",
+                "type" : "linear",
+                "range" : {
+                    "scheme" : "magma"
+                },
+                "domain" : {
+                    "data" : "tree",
+                    "field" : "depth"
+                },
+                "zero" : true
+            }
+        ],
+        "marks" : [ 
+            {
+                "type" : "path",
+                "from" : {
+                    "data" : "links"
+                },
+                "encode" : {
+                    "enter" : {
+                        "tooltip" : {
+                            "signal" : "{'Unemployment Rate': '0.1%'}"
+                        }
+                    },
+                    "update" : {
+                        "path" : {
+                            "field" : "path"
+                        },
+                        "stroke" : {
+                            "value" : "#ccc"
+                        }
+                    }
+                }
+            }, 
+            {
+                "type" : "symbol",
+                "from" : {
+                    "data" : "tree"
+                },
+                "encode" : {
+                    "enter" : {
+                        "size" : {
+                            "value" : 100
+                        },
+                        "stroke" : {
+                            "value" : "#fff"
+                        }
+                    },
+                    "update" : {
+                        "x" : {
+                            "field" : "x"
+                        },
+                        "y" : {
+                            "field" : "y"
+                        },
+                        "fill" : {
+                            "scale" : "color",
+                            "field" : "depth"
+                        }
+                    }
+                }
+            }, 
+            {
+                "type" : "text",
+                "from" : {
+                    "data" : "tree"
+                },
+                "encode" : {
+                    "enter" : {
+                        "text" : {
+                            "field" : "name"
+                        },
+                        "fontSize" : {
+                            "value" : 9
+                        },
+                        "baseline" : {
+                            "value" : "middle"
+                        }
+                    },
+                    "update" : {
+                        "x" : {
+                            "field" : "x"
+                        },
+                        "y" : {
+                            "field" : "y"
+                        },
+                        "dx" : {
+                            "signal" : "datum.children ? -7 : 7"
+                        },
+                        "align" : {
+                            "signal" : "datum.children ? 'right' : 'left'"
+                        },
+                        "opacity" : {
+                            "signal" : 1
+                        }
+                    }
+                }
+            }
+        ],
+        "description" : "",
+        "title" : "Navigator"
+}
+
 export const dashboardTemplate: Dashboard =
     {
         id: null,

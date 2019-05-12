@@ -3842,7 +3842,7 @@ export class GlobalVariableService {
         specificLayerToShow: number = 0): dl.spec.TopLevelExtentedSpec {
 
         // Creates and returns a specification for Vega visual grammar
-        // The specification All the information needed to create
+        // The widget contains All the information needed to create the specification
         if (this.sessionDebugging) {
             let widgetID: number = widget.id;
             console.log('%c  Global-Variables createVegaSpec starts',
