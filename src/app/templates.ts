@@ -563,6 +563,7 @@ export const widgetTemplate: Widget =
             "transformationType": ""
         }],
         "graphCalculations": [],
+        "graphFilters" [],
         "widgetFilters": [],
         "sampleNumberRows": 0,
 

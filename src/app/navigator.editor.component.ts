@@ -197,7 +197,8 @@ export class NavigatorEditorComponent implements OnInit {
         this.localWidget.visualGrammarType = "custom";
         this.localWidget.widgetType = 'Navigator';
         this.localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
-
+        this.localWidget.containerHasTitle = true;
+        
         // Populate predefined dimensions, considering layouts
         if (this.localWidget.graphLayers[0].graphColorScheme === ''
             ||  this.localWidget.graphLayers[0].graphColorScheme == null) {
