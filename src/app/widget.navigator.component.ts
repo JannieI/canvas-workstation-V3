@@ -2506,7 +2506,7 @@ console.log('xx debug 1')
 
         this.clickParentFilterClear();
 
-        // Filter Child Nodes and Show Graph
+        // Show Graph
         this.checkShowGraph();
     }
 
@@ -2549,6 +2549,17 @@ console.log('xx debug 1')
         this.ngSelectedRelationshipFilterRole = '';
         this.relationshipsFilteredList = [];
     }
+
+    clickRelationshipFilterClearAndShow() {
+        // Clear the Relationship Filter
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickRelationshipFilterClearAndShow', '@Start');
+
+        this.clickRelationshipFilterClear();
+
+        // Show Graph
+        this.checkShowGraph();
+    }
+
 
     clickRelationshipFilterSave() {
         // Add Relationship Filter, and create list of relationships as a result of the filter
@@ -2613,11 +2624,9 @@ console.log('xx debug 1')
         this.ngChildFilterShowTop = '';
         this.ngChildFilterSortFieldName = '';
         this.childNodesFilteredList = [];
-
-        // Refresh the Graph
-        // this.checkShowGraph();
         
     }
+
 
     clickChildFilterSave() {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
