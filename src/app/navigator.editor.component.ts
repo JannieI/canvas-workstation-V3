@@ -181,7 +181,7 @@ export class NavigatorEditorComponent implements OnInit {
             return;
         };
 
-        // Create new Navigator record
+        // Create new Navigator record - Take note of the specific settings !
         let today = new Date();
         this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
@@ -189,6 +189,12 @@ export class NavigatorEditorComponent implements OnInit {
         this.localWidget.name = this.selectedNetworkName;
         this.localWidget.description = this.selectedNetworkDescription;
         this.localWidget.titleText = this.selectedNetworkTitle;
+        this.localWidget.navigatorSelectParentNodeType = "";
+        this.localWidget.navigatorSelectParentNodeName = "";
+        this.localWidget.navigatorSelectRelationship = "";
+        this.localWidget.navigatorSelectView = "";
+        this.localWidget.visualGrammar = "Vega";
+        this.localWidget.visualGrammarType = "custom";
         this.localWidget.widgetType = 'Navigator';
         this.localWidget.navigatorNetworkID = this.selectedNavigatorNetworkID;
 
