@@ -3859,6 +3859,7 @@ export class GlobalVariableService {
         if (widget.graphLayers == null  ||  widget.graphLayers.length === 0) {
             return;
         };
+        console.log('xx CreateVega widget.graphLayers.length', widget.graphLayers.length, widget.visualGrammarType, widget.graphLayers[0].graphMark.toLocaleLowerCase() === 'navigator')
 
         // Custom visualGrammarType - return after each one
         if (widget.visualGrammarType.toLowerCase() === 'custom') {
