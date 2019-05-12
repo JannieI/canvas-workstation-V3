@@ -111,6 +111,8 @@ export class NavigatorEditorComponent implements OnInit {
                 // Fill local Widget
                 if (this.newWidget) {
                     this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
+                    this.localWidget.graphLayers[0].graphSpecification =
+                        this.globalVariableService.widgetNavigatorVegaSpecification;
                 } else {
 
                     // Deep copy original W
