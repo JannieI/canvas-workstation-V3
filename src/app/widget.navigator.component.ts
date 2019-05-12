@@ -2486,7 +2486,7 @@ console.log('xx debug 1')
     }
 
     clickParentFilterClear() {
-        // Clear the Parent Filter
+        // Clear the Parent Filter fields
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClear', '@Start');
 
         this.ngParentNodeFilterKeyDropdown = [];
@@ -2498,6 +2498,16 @@ console.log('xx debug 1')
         // Fill Dropdowns
         this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+    }
+
+    clickParentFilterClearAndShow() {
+        // Clear the Parent Filter and Show the graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClearAndShow', '@Start');
+
+        this.clickParentFilterClear();
+
+        // Filter Child Nodes and Show Graph
+        this.checkShowGraph();
     }
 
     clickParentFilterSave() {
