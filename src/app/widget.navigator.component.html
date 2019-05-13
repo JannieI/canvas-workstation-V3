@@ -472,7 +472,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                         >
                         Relationship
                     </span>
-                    <span *ngIf="this.ngRelationshipRoles?.length>0"
+                    <span *ngIf="ngRelationshipRoles?.length>0"
                         style="cursor: pointer; font-size: 0.45rem; margin-left: 8px;"
                         [style.color]="showAdditionalLevelForRoles?  'black'  :  'gray'"
                         [style.font-weight]="showAdditionalLevelForRoles? 'bold' : 'normal'"
@@ -480,6 +480,13 @@ dimensions are set in app.html, and cannot be changed here. -->
                         (click)="clickAdditionalLevelRole()"
                         >
                         Role
+                    </span>
+                    <span *ngIf="selectedRelationship != 'All'"
+                        style="cursor: pointer; font-size: 0.45rem; margin-left: 8px;"
+                        title="Add the current Chilren to the Parent Nodes filter as SOME"
+                        (click)="clickAdditionalLevelRole()"
+                        >
+                        Shift
                     </span>
 
                     <!-- Additional Properties to show -->
