@@ -863,18 +863,6 @@ export class WidgetNavigatorComponent {
                 });
         };
 
-        // // Set H & W
-        // if (inputWidth != 0) {
-        //     this.graphWidth = inputWidth;
-        // } else {
-        //     if (this.localWidget.graphLayers.length > 0) {
-        //         this.graphWidth = this.localWidget.graphLayers[0].graphSpecification.width;
-        //     };
-        // };
-        // if (this.graphWidth < 100) {
-        //     this.graphWidth = 100;
-        // };
-
         // Dimension it
         this.graphHeight = 400; //this.localWidget.graphLayers[0].graphSpecification.height;
         this.graphWidth = 400; //this.localWidget.graphLayers[0].graphSpecification.width;
@@ -1317,7 +1305,8 @@ export class WidgetNavigatorComponent {
         relationships: string[],
         isAddLevelForRelationship: boolean = false,
         isAddLevelForOnRole: boolean = false,
-        startID: number = 1
+        startID: number = 1,
+        parentID: number = null
         ): any[] {
         // Creates the graphData for a Unit: parent - relationship(s) - children (1 level deep)
         // This can be called multiple times from calling routines
@@ -1325,10 +1314,13 @@ export class WidgetNavigatorComponent {
         //  parentNodeName - SINGLE parent NodeName
         //  relationships - array of relationships, can be 1, some or 'All'
         //  isBreakOnRelationship - add a level per relationship, ie Absa - directors - children
-        //     Absa - shareholders - children, etc
+        //                          Absa - shareholders - children, etc
         //  isBreakOnRole - break EACH relationship on roles (if there are any), ie
-        //     Absa - Executive - children, Absa Non-Executive - children (if relationship = Director)
-        //  startID - id in graphData where parent starts (the rest of the rest has this as their parent)
+        //                  Absa - Executive - children, Absa Non-Executive - children 
+        //                  (if relationship = Director)
+        //  startID - optional id in graphData of the root, where parent starts (the rest 
+        //            of the records has this as their parent)
+        //  parentID - optional id for the parent of the Parent-Node
         this.globalFunctionService.printToConsole(this.constructor.name, 'constructGraphDataForUnit', '@Start');
 
         // Reset list of ALL children
@@ -1337,14 +1329,27 @@ export class WidgetNavigatorComponent {
         // Reset the data which will now be created
         let localGraphData = [];
 
-        // Add Parent
-        localGraphData.push(
-            {
-                "id": startID,
-                "name": this.constructNodeName(parentNodeName)
-            });
+        // Add Parent-Node as Root if required
+        if (startID == 1) {
+            localGraphData.push(
+                {
+                    "id": startID,
+                    "name": this.constructNodeName(parentNodeName)
+                });
+        };
+
+        // Add Parent-Node as Parent if required
+        if (parentID != null) {
+            localGraphData.push(
+                {
+                    "id": startID,
+                    "name": this.constructNodeName(parentNodeName),
+                    "parent": parentID
+                });
+        };
 
         // There are 4 scenarios, each one creating a different amount of sub-levels
+        // *************************************************************************
 
         // 1. parent - children
         if (!isAddLevelForRelationship  &&  !isAddLevelForOnRole) {
