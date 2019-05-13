@@ -774,8 +774,8 @@ export class WidgetNavigatorComponent {
             };
 
             // Format the graphData
-            if (this.selectedRelationship === 'All') {
-                let startID: number = 1;
+            if (this.selectedParentNode === 'All') {
+                let startID: number = 2;
                 console.log('xx ', this.childDataAll)
 
                 // Start the data with a Root node
@@ -796,13 +796,14 @@ export class WidgetNavigatorComponent {
 
                 parentNodes.forEach(parent => {
                     let oneParentChildren: any = this.constructGraphDataForUnit(
-                        this.selectedParentNode,
+                        parent,
                         [this.selectedRelationship],
                         this.showAdditionalLevelForRelationships?  true  :  false,
                         this.showAdditionalLevelForRoles?  true  :  false,
                         startID,
                         parentID);
-                        startID = startID + oneParentChildren.length + 1;
+                    
+                    startID = startID + oneParentChildren.length + 1;
                     console.log('xx startID oneParentChildren', startID, oneParentChildren)
                     this.graphData = this.graphData.concat(oneParentChildren);
                 })
