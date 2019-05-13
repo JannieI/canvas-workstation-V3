@@ -776,7 +776,6 @@ export class WidgetNavigatorComponent {
             // Format the graphData
             if (this.selectedParentNode === 'All') {
                 let startID: number = 2;
-                console.log('xx ', this.childDataAll)
 
                 // Start the data with a Root node
                 this.graphData = [];
@@ -794,6 +793,11 @@ export class WidgetNavigatorComponent {
                 let parentNodes: string [] = this.distinctNodesPerNodeType(
                     this.selectedParentNodeType);
 
+                if (parentNodes.length > 50) {
+                    this.errorMessage = 'There are more than 50 parents.  Reduce this with a filter.';
+                    return;
+                };
+
                 parentNodes.forEach(parent => {
                     let oneParentChildren: any = this.constructGraphDataForUnit(
                         parent,
@@ -804,7 +808,6 @@ export class WidgetNavigatorComponent {
                         parentID);
                     
                     startID = startID + oneParentChildren.length + 1;
-                    console.log('xx startID oneParentChildren', startID, oneParentChildren)
                     this.graphData = this.graphData.concat(oneParentChildren);
                 })
             } else {
@@ -901,7 +904,9 @@ export class WidgetNavigatorComponent {
         // Dimension it
         this.graphHeight = 400; //this.localWidget.graphLayers[0].graphSpecification.height;
         this.graphWidth = 400; //this.localWidget.graphLayers[0].graphSpecification.width;
-
+        if (this.graphData.length > 15) {
+            this.graphHeight = this.graphData.length * 25;
+        };
     }
 
     createGraphDataSummaryView(inputHeight: number = 0, inputWidth: number = 0, addToHistory: boolean = true) {
