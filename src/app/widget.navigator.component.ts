@@ -794,6 +794,12 @@ export class WidgetNavigatorComponent {
                 let parentNodes: string [] = this.distinctNodesPerNodeType(
                     this.selectedParentNodeType);
 
+                // Filter on filtered Parents
+                parentNodes = parentNodes.filter(
+                    parent => this.parentNodesFilteredList.indexOf(parent) >= 0
+                );
+
+                // Put some limitation on the size
                 if (parentNodes.length > 50) {
                     this.errorMessage = 'There are more than 50 parents.  Reduce this with a filter.';
                     return;
@@ -2995,11 +3001,21 @@ export class WidgetNavigatorComponent {
         // Change selection fields
         console.log('xx this.selectedChildNodeType', this.selectedChildNodeType, this.childDataAll)
         this.selectedParentNodeType = this.selectedChildNodeType;
-        this.selectedParentNode = 'All';
+        this.selectedParentNode = '';
         this.selectedRelationship = '';
+        let ev: any = {
+            target: {
+                value: this.selectedChildNodeType
+            }
+        };
 
-        this.childNodesFilteredList = [];
-        this.childDataAll.forEach(child => this.childNodesFilteredList.push(child));
+        this.changeParentNodeType(ev);
+
+        this.selectedParentNode = 'All';
+
+        this.parentNodesFilteredList = [];
+        this.childDataAll.forEach(child => this.parentNodesFilteredList.push(child));
+        console.log('xx this.parentNodesFilteredList', this.parentNodesFilteredList)
     }
 
     clickPageFirst() {
