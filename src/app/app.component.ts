@@ -211,6 +211,7 @@ export class AppComponent implements OnInit {
 
     }
 
+    allowNavigatorAdd: boolean = false;
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
     combinationType: string;                    // Type passed to Combinations form
@@ -471,6 +472,16 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
+
+
+
+        // TODO - just testing stuff ...  Delete later
+
+        this['allowNavigatorAdd'] = true;
+        console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
+        let test: string = 'allowNavigatorAdd';
+        this[test] = false;
+        console.log('xx allowNavigatorAdd 2', this.allowNavigatorAdd)
 
         // Process for Authentication, Login, tokens between Canvas-Server and Canvas-Client:
 

@@ -766,7 +766,7 @@ export class WidgetNavigatorComponent {
             };
 
             this.graphTitle = this.graphTitle +
-                this.selectedRelationship=='All'?  'All relationships'
+                this.selectedRelationship == 'All'?  'All relationships'
                 :  this.selectedRelationship + '(s)';
             this.graphTitle = this.graphTitle + ' for '
                 + this.selectedParentNode;

@@ -30,6 +30,30 @@ export class CanvasSettings {
 
 }
 
+export class license {
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID (added for consistency with other models)
+    companyName: string;                    // FK to Company Name
+    name: string;                           // Name of license, also called Product
+    description: string;                    // Description
+    slaDetails: string;                     // SLA ie response times, etc
+    purchasePrice: number;                  // Purchase price in specifed currency
+    purchaseCurrency: number;               // Purchase currency, default is ZAR
+    purchasedOn: Date;                      // Date of initial purchase
+    purchasedBy: string;                    // Client resprsentative who signed deal
+    createdBy: string;                      // UserID who created this record
+    lastUpdatedOn: Date;                    // Changes made on
+    lastUpdateBy: string;                   // Changes authorised by
+    validUntil: Date;                       // This license will be invalid after this date
+    numberUsersPurchased: number;           // Nr of users allowed for this license
+    usersActivate: string[];                // UserIDs that are active on this lisence
+                                            // This is self-allocated by the user manager
+    menuOptionsAllowed: string[];           // Array of menu options allowed (note spelling)
+    widgetTypesAllowed: string[];           // Array of widget Types allowed (note spelling)
+    datasourcesAllowed: string[];           // Array of Datasources allowed (note spelling)
+
+}
+
 export class CanvasAction {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique id per action
