@@ -774,12 +774,46 @@ export class WidgetNavigatorComponent {
             };
 
             // Format the graphData
-            this.graphData = this.constructGraphDataForUnit(
-                this.selectedParentNode,
-                [this.selectedRelationship],
-                this.showAdditionalLevelForRelationships?  true  :  false,
-                this.showAdditionalLevelForRoles?  true  :  false
-            );
+            if (this.selectedRelationship === 'All') {
+                let startID: number = 1;
+                console.log('xx ', this.childDataAll)
+
+                // Start the data with a Root node
+                this.graphData = [];
+                this.graphData.push(
+                    {
+                        "id": 1,
+                        "name": 'All'
+                    });
+    
+                // Setup
+                this.childDataAll = [];
+                let parentID: number = 1;
+
+                // Get the parent for All, and loop on them
+                let parentNodes: string [] = this.distinctNodesPerNodeType(
+                    this.selectedParentNodeType);
+
+                parentNodes.forEach(parent => {
+                    let oneParentChildren: any = this.constructGraphDataForUnit(
+                        this.selectedParentNode,
+                        [this.selectedRelationship],
+                        this.showAdditionalLevelForRelationships?  true  :  false,
+                        this.showAdditionalLevelForRoles?  true  :  false,
+                        startID,
+                        parentID);
+                        startID = startID + oneParentChildren.length + 1;
+                    console.log('xx startID oneParentChildren', startID, oneParentChildren)
+                    this.graphData = this.graphData.concat(oneParentChildren);
+                })
+            } else {
+                this.graphData = this.constructGraphDataForUnit(
+                    this.selectedParentNode,
+                    [this.selectedRelationship],
+                    this.showAdditionalLevelForRelationships?  true  :  false,
+                    this.showAdditionalLevelForRoles?  true  :  false
+                );
+            };
 
             // Add to History
             // TODO - keep ParentNodeID of selected for here
