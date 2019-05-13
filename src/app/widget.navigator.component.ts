@@ -778,6 +778,7 @@ export class WidgetNavigatorComponent {
             } else {
                 this.graphTitle = '';
             };
+            this.graphDataLength = 0;
 
             this.graphTitle = this.graphTitle +
                 this.selectedRelationship == 'All'?  'All relationships'
@@ -1424,7 +1425,7 @@ export class WidgetNavigatorComponent {
             );
 
             // Set length
-            this.graphDataLength = localChildDataAll.length;
+            this.graphDataLength = this.graphDataLength + localChildDataAll.length;
 
             // Get visible children
             let localChildDataVisible = localChildDataAll.splice(
@@ -1463,7 +1464,7 @@ export class WidgetNavigatorComponent {
                     parentNodeName, this.selectedRelationship);
 
             // Set length
-            this.graphDataLength = relationshipRoles.length;
+            this.graphDataLength = this.graphDataLength + relationshipRoles.length;
 
             // Reduce amount shown
             relationshipRoles = relationshipRoles.splice(
@@ -1535,7 +1536,7 @@ export class WidgetNavigatorComponent {
             };
 
             // Set length
-            this.graphDataLength = relationships.length;
+            this.graphDataLength = this.graphDataLength + relationships.length;
 
             // Reduce amount shown
             relationships = relationships.splice(
@@ -1607,7 +1608,7 @@ export class WidgetNavigatorComponent {
             };
             
             // Set length
-            this.graphDataLength = relationships.length;
+            this.graphDataLength = this.graphDataLength + relationships.length;
 
             // Reduce amount shown
             relationships = relationships.splice(
