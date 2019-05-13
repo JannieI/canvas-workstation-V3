@@ -2235,9 +2235,12 @@ export class WidgetNavigatorComponent {
                           )
                 )
             .filter(nr => nr.rightNodeName != '');
-            
+
         let leftChildren: string[] = leftChildrenRelationship
             .map(nr => nr.rightNodeName);
+
+        let leftRelationship: string[] = leftChildrenRelationship
+            .map(nr => nr.relationshipLeftToRight);
             
         let rightChildrenRelationship: NavigatorRelationship[] = this.networkRelationships
             .filter(nr => (selectedParentNodeType === 'All'
@@ -2277,9 +2280,11 @@ export class WidgetNavigatorComponent {
         let rightChildren: string[] = rightChildrenRelationship
             .map(nr => nr.leftNodeName);
 
-        let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
+        let rightRelationship: string[] = leftChildrenRelationship
+            .map(nr => nr.relationshipRightToLeft);
 
-        // Remember Child Node Type IF only one relationship
+        // Get a list of unique children
+        let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
 
         // Filter if a Child filter is active
         if (this.childNodesFilteredList.length > 0) {
@@ -2288,6 +2293,14 @@ export class WidgetNavigatorComponent {
 
         // Make sure it is unique, non-null list
         nodeChildren = this.navUniqifySortNodes(nodeChildren);
+
+        // Get a list of unique relati0nships                    
+        let nodeRelationship: string[] = Array.from(new Set(leftRelationship.concat(rightRelationship)));
+
+        // Remember Child Node Type IF only one relationship
+        if (nodeRelationship.length == 1) {
+            this.selectedRelationship = nodeRelationship[0];
+        };
 
         // Return
         return nodeChildren;
@@ -2980,7 +2993,7 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageFirst', '@Start');
 
         // Change selection fields
-        this.
+        console.log('xx this.selectedRelationship', this.this.selectedRelationship)
     }
 
     clickPageFirst() {
