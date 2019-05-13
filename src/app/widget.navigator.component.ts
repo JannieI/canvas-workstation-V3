@@ -2239,8 +2239,8 @@ export class WidgetNavigatorComponent {
         let leftChildren: string[] = leftChildrenRelationship
             .map(nr => nr.rightNodeName);
 
-        let leftRelationship: string[] = leftChildrenRelationship
-            .map(nr => nr.relationshipLeftToRight);
+        let leftChildNodeType: string[] = leftChildrenRelationship
+            .map(nr => nr.rightNodeType);
             
         let rightChildrenRelationship: NavigatorRelationship[] = this.networkRelationships
             .filter(nr => (selectedParentNodeType === 'All'
@@ -2280,8 +2280,8 @@ export class WidgetNavigatorComponent {
         let rightChildren: string[] = rightChildrenRelationship
             .map(nr => nr.leftNodeName);
 
-        let rightRelationship: string[] = leftChildrenRelationship
-            .map(nr => nr.relationshipRightToLeft);
+        let rightChildNodeType: string[] = leftChildrenRelationship
+            .map(nr => nr.rightNodeType);
 
         // Get a list of unique children
         let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
@@ -2295,11 +2295,11 @@ export class WidgetNavigatorComponent {
         nodeChildren = this.navUniqifySortNodes(nodeChildren);
 
         // Get a list of unique relati0nships                    
-        let nodeRelationship: string[] = Array.from(new Set(leftRelationship.concat(rightRelationship)));
+        let nodeChildNodeType: string[] = Array.from(new Set(leftChildNodeType.concat(rightChildNodeType)));
 
         // Remember Child Node Type IF only one relationship
-        if (nodeRelationship.length == 1) {
-            this.selectedRelationship = nodeRelationship[0];
+        if (nodeChildNodeType.length == 1) {
+            this.selectedChildNodeType = nodeChildNodeType[0];
         };
 
         // Return
@@ -2990,10 +2990,10 @@ export class WidgetNavigatorComponent {
 
     clickShiftChildren() {
         // Move to the current Children into the parent Filter
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageFirst', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickShiftChildren', '@Start');
 
         // Change selection fields
-        console.log('xx this.selectedRelationship', this.this.selectedRelationship)
+        console.log('xx this.selectedChildNodeType', this.selectedChildNodeType)
     }
 
     clickPageFirst() {
