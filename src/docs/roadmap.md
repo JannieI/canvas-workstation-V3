@@ -1023,6 +1023,7 @@ This document describes items for later versions of Canvas.
     Users and Groups:
     ----------------
     - enhance granting of permissions on the form: can add new Dashboards to a user, group, OR show all of them and check / uncheck.  Think clearly about UI and use case.
+    - load from Client system, ie their payroll
 
     Widget Groups:
     --------------
