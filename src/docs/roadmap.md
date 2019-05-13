@@ -526,7 +526,8 @@ This document describes items for later versions of Canvas.
     - MELT function (Pandas) to un-pivot data, and then test with the World Bank (or other economical data)
     - Consider a multi-server setup, where a company has many branches.
     - Testing: get an autmated way to test all routes, as well as the desired response for set records
-    - 
+    - add Server / Database migration tool to move from Test to Dev, or between Companies.
+    - consider multiple Databasis per company (Later)
 
 
     Data Confidentiallity:

@@ -125,12 +125,12 @@ export class WidgetNavigatorComponent {
     // Working
     childDataAll: string[] = [];                        // List of ALL children after filter (ie all levels)
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
-    childNodeFilter: NavigatorNodeFilter[] = [];         // Actual Filter
+    childNodeFilter: NavigatorNodeFilter[] = [];        // Actual Filter
     childFilterErrorMessage: string = '';
     firstAdjacencyCellRowNr: number = -1;
     historyBackIndex: number = 0;                       // Note: this initial value is important
     parentFilterErrorMessage: string = '';              // Error Msg
-    parentNodeFilter: NavigatorNodeFilter[] = [];        // Actual Filter
+    parentNodeFilter: NavigatorNodeFilter[] = [];       // Actual Filter
     ngRelationshipRoles: string[] = [];
     relationshipFilterErrorMessage: string = '';
     routesPerNode: any[] = [];                          // Array of routes with one starting point
@@ -1387,7 +1387,7 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'constructGraphDataForUnit', '@Start');
 
         // Reset list of ALL children
-        this.childDataAll = [];
+        // this.childDataAll = [];
 
         // Reset the data which will now be created
         let localGraphData = [];
