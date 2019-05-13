@@ -93,6 +93,7 @@ export class WidgetNavigatorComponent {
     selectedParentNode: string = '';                    // Dropdown: selected Parent Node
     selectedRelationship: string = '';                  // Dropdown: selected Relationship
     selectedChildFilterID: number = -1;
+    selectedChildNodeType: string = '';
     selectedParentFilterID: number = -1;
 
     startupNavigatorSelectParentNodeType: string = '';  // Startup value of the Parent Node Type
@@ -2193,14 +2194,14 @@ export class WidgetNavigatorComponent {
     distinctChildrenNodes(
         selectedParentNodeType: string,
         selectedParentNodeName: string,
-        selectRelationships: string[],
+        selectedRelationships: string[],
         selectedRelationshipFilterRole: string
         ): string[] {
         // Return distinct array of Children for the selected Info
         this.globalFunctionService.printToConsole(this.constructor.name, 'distinctChildrenNodes', '@Start');
 
         // Fill ParentNode type Dropdown
-        let leftChildren: string[] = this.networkRelationships
+        let leftChildrenRelationship: NavigatorRelationship[] = this.networkRelationships
             .filter(nr => (selectedParentNodeType === 'All'
                            ||
                            (
@@ -2218,12 +2219,12 @@ export class WidgetNavigatorComponent {
                           )
             )
             .filter(nr => (
-                            selectRelationships.length == 1
+                            selectedRelationships.length == 1
                             &&
-                            selectRelationships[0] == 'All'
+                            selectedRelationships[0] == 'All'
                           )
                           ||
-                          selectRelationships.indexOf(nr.relationshipLeftToRight) >= 0
+                          selectedRelationships.indexOf(nr.relationshipLeftToRight) >= 0
             )
             .filter(nr => selectedRelationshipFilterRole === 'All'
                           ||
@@ -2233,10 +2234,12 @@ export class WidgetNavigatorComponent {
                               nr.relationshipProperty === selectedRelationshipFilterRole
                           )
                 )
-            .filter(nr => nr.rightNodeName != '')
+            .filter(nr => nr.rightNodeName != '');
+            
+        let leftChildren: string[] = leftChildrenRelationship
             .map(nr => nr.rightNodeName);
-
-        let rightChildren: string[] = this.networkRelationships
+            
+        let rightChildrenRelationship: NavigatorRelationship[] = this.networkRelationships
             .filter(nr => (selectedParentNodeType === 'All'
                            ||
                            (
@@ -2254,12 +2257,12 @@ export class WidgetNavigatorComponent {
                           )
             )
             .filter(nr => (
-                            selectRelationships.length === 1
+                            selectedRelationships.length === 1
                             &&
-                            selectRelationships[0] === 'All'
+                            selectedRelationships[0] === 'All'
                           )
                           ||
-                          selectRelationships.indexOf(nr.relationshipRightToLeft) >= 0
+                          selectedRelationships.indexOf(nr.relationshipRightToLeft) >= 0
             )
             .filter(nr => selectedRelationshipFilterRole === 'All'
                           ||
@@ -2269,10 +2272,14 @@ export class WidgetNavigatorComponent {
                               nr.relationshipProperty === selectedRelationshipFilterRole
                           )
             )
-            .filter(nr => nr.leftNodeName != '')
+            .filter(nr => nr.leftNodeName != '');
+
+        let rightChildren: string[] = rightChildrenRelationship
             .map(nr => nr.leftNodeName);
 
         let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
+
+        // Remember Child Node Type IF only one relationship
 
         // Filter if a Child filter is active
         if (this.childNodesFilteredList.length > 0) {
