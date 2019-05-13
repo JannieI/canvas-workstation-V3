@@ -2968,6 +2968,14 @@ export class WidgetNavigatorComponent {
         this.checkShowGraph();
     }
 
+    clickShiftChildren() {
+        // Move to the current Children into the parent Filter
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageFirst', '@Start');
+
+        // Change selection fields
+        this.
+    }
+
     clickPageFirst() {
         // Move to the First page of children
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickPageFirst', '@Start');

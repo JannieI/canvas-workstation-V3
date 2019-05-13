@@ -481,10 +481,10 @@ dimensions are set in app.html, and cannot be changed here. -->
                         >
                         Role
                     </span>
-                    <span *ngIf="selectedRelationship != 'All'"
+                    <span *ngIf="selectedRelationship != 'All'  &&  selectedView=='DefaultView'"
                         style="cursor: pointer; font-size: 0.45rem; margin-left: 8px;"
                         title="Add the current Chilren to the Parent Nodes filter as SOME"
-                        (click)="clickAdditionalLevelRole()"
+                        (click)="clickShiftChildren()" 
                         >
                         Shift
                     </span>
