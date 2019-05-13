@@ -2993,7 +2993,13 @@ export class WidgetNavigatorComponent {
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickShiftChildren', '@Start');
 
         // Change selection fields
-        console.log('xx this.selectedChildNodeType', this.selectedChildNodeType)
+        console.log('xx this.selectedChildNodeType', this.selectedChildNodeType, this.childDataAll)
+        this.selectedParentNodeType = this.selectedChildNodeType;
+        this.selectedParentNode = 'Some';
+        this.selectedRelationship = '';
+
+        this.childNodesFilteredList = [];
+        this.childDataAll.forEach(child => this.childNodesFilteredList.push(child));
     }
 
     clickPageFirst() {
