@@ -291,6 +291,23 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickMenuExportChildren() {
+        // Export the current Children
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuExportChildren', '@Start');
+
+        let fileName: string = 'Nav Network'
+        let newW: Widget = JSON.parse(JSON.stringify(this.selectedWidget));
+        newW.dataFiltered = [];
+        // var obj = JSON.stringify(newW);
+        var obj = ' text';
+        
+        var a = document.createElement('a');
+        a.setAttribute('href', 'data:text/plain;charset=utf-u, ' + encodeURIComponent(JSON.stringify(obj)));
+        a.setAttribute('download', fileName);
+        a.click()
+
+    }
+
     clickCloseCustomViewPopup() {
         // Close CustomView popup
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseCustomViewPopup', '@Start');
