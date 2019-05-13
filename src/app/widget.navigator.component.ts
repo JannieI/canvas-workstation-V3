@@ -809,9 +809,11 @@ export class WidgetNavigatorComponent {
                     this.selectedParentNodeType);
 
                 // Filter on filtered Parents
-                parentNodes = parentNodes.filter(
-                    parent => this.parentNodesFilteredList.indexOf(parent) >= 0
-                );
+                if (this.parentNodesFilteredList.length > 0) {
+                    parentNodes = parentNodes.filter(
+                        parent => this.parentNodesFilteredList.indexOf(parent) >= 0
+                    );
+                };
 
                 // Put some limitation on the size
                 if (parentNodes.length > 50) {
