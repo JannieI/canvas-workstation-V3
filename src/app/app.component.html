@@ -4962,7 +4962,10 @@
     class="formPopupDashboard"
     *ngIf="showModalWidgetDelete"
     [selectedWidget]="selectedWidget"
-    (formWidgetDeleteClosed)="handleCloseWidgetDelete($event)">Load Widget Delete ...
+    (formWidgetDeleteClosed)="handleCloseWidgetDelete($event)"
+    (formNavigatorDeleteClosed)="handleCloseNavigatorDelete($event)"
+    
+    >Load Widget Delete ...
 </widget-delete>
 
 
