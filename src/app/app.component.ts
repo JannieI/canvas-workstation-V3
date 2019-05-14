@@ -476,7 +476,7 @@ export class AppComponent implements OnInit {
 
 
 
-        
+
         // TODO - just testing stuff ...  Delete later
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
@@ -2272,6 +2272,38 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalWidgetExport = false;
+    }
+
+    handleCloseNavigatorDelete(action: string) {
+        // Handles the response to the Delete Navigator form
+        this.globalFunctionService.printToConsole(this.constructor.name, 'handleCloseNavigatorDelete', '@Start');
+
+        // Delete, if so requested
+        if (action === 'delete') {
+
+            // Add to Action log
+            this.globalVariableService.actionUpsert(
+                null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                this.selectedWidget.id,
+                'Widget',
+                'Delete',
+                '',
+                'App handleCloseNavigatorDelete',
+                null,
+                null,
+                this.selectedWidget,
+                null
+            );
+
+            this.deleteWidget('Navigator');
+        };
+
+        this.menuOptionClickPostAction();
+
+        // Hide modal form
+        this.showModalWidgetDelete = false;
     }
 
     handleCloseWidgetDelete(action: string) {
