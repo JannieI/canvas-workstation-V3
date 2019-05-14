@@ -118,7 +118,6 @@ export class WidgetNavigatorComponent {
     ngChildNodeFilterSelectedFieldName: string = '';    // Child Node Filter
     ngChildNodeFilterSelectedOperator: string = 'Equal';     // Child Node Filter
     ngChildNodeFilterSelectedValue: string = '';        // Child Node Filter
-    ngChildFilterShowTop: string = '';                  // Show top n Child Nodes
     ngChildFilterSortFieldName: string = '';            // Sort Child Nodes
     childNodesFilteredList: string[] = [];              // List of Nodes, after filtered on NodeProperties
 
@@ -1260,7 +1259,7 @@ export class WidgetNavigatorComponent {
             this.showSpecificGraphLayer,
             0
         );
-
+console.log('xx this.specification', this.specification)
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
         this.specification['title'] = this.graphTitle;
@@ -2643,7 +2642,6 @@ export class WidgetNavigatorComponent {
         this.ngChildNodeFilterSelectedFieldName = '';
         this.ngChildNodeFilterSelectedOperator = 'Equal';
         this.ngChildNodeFilterSelectedValue = '';
-        this.ngChildFilterShowTop = '';
         this.ngChildFilterSortFieldName = '';
         this.childNodesFilteredList = [];
         
