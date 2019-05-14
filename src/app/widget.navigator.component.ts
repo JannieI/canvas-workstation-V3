@@ -1265,6 +1265,12 @@ console.log('xx this.specification', this.specification)
 
         // Save W
         // TODO - only save 3 fields via a PUT
+        this.localWidget.navigatorSelectParentNodeType = this.selectedParentNodeType;
+        this.localWidget.navigatorSelectParentNodeName = this.selectedParentNode;
+        this.localWidget.navigatorSelectRelationship = this.selectedRelationship;
+        this.localWidget.navigatorNetworkID = this.selectedNetworkID;
+        this.localWidget.dataFiltered = this.graphData;
+
         this.globalVariableService.saveResource('widgets', this.localWidget)
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
