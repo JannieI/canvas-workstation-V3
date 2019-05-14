@@ -118,7 +118,6 @@ export class WidgetNavigatorComponent {
     ngChildNodeFilterSelectedFieldName: string = '';    // Child Node Filter
     ngChildNodeFilterSelectedOperator: string = 'Equal';     // Child Node Filter
     ngChildNodeFilterSelectedValue: string = '';        // Child Node Filter
-    ngChildFilterSortFieldName: string = '';            // Sort Child Nodes
     childNodesFilteredList: string[] = [];              // List of Nodes, after filtered on NodeProperties
 
     // Working
@@ -2642,7 +2641,6 @@ console.log('xx this.specification', this.specification)
         this.ngChildNodeFilterSelectedFieldName = '';
         this.ngChildNodeFilterSelectedOperator = 'Equal';
         this.ngChildNodeFilterSelectedValue = '';
-        this.ngChildFilterSortFieldName = '';
         this.childNodesFilteredList = [];
         
     }
