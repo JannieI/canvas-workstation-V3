@@ -35,7 +35,8 @@ export class WidgetDeleteComponent implements OnInit {
     @Input() selectedWidget: Widget;
     @ViewChild('widgetDOM')  widgetDOM: ElementRef;
     @Output() formWidgetDeleteClosed: EventEmitter<string> = new EventEmitter();
-
+    @Output() formNavigatorDeleteClosed: EventEmitter<string> = new EventEmitter();
+    
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
         console.log(event);
@@ -154,7 +155,11 @@ console.log('xx specification', this.specification)
         // Close the form.  Action = '', or 'delete' to instruct calling routine to delete it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-	  	this.formWidgetDeleteClosed.emit(action);
+        if (this.selectedWidget.widgetType === 'Navigator') {
+            this.formNavigatorDeleteClosed.emit(action);
+        } else {
+            this.formWidgetDeleteClosed.emit(action);
+        };
     }
 
 }
