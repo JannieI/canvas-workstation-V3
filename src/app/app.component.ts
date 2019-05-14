@@ -475,13 +475,20 @@ export class AppComponent implements OnInit {
 
 
 
-        // TODO - just testing stuff ...  Delete later
 
+        
+        // TODO - just testing stuff ...  Delete later
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
         let test: string = 'allowNavigatorAdd';
-        this[test] = false;
+        this[test] = true;
         console.log('xx allowNavigatorAdd 2', this.allowNavigatorAdd)
+
+
+
+
+
+
 
         // Process for Authentication, Login, tokens between Canvas-Server and Canvas-Client:
 

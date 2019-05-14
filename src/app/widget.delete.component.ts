@@ -132,7 +132,7 @@ export class WidgetDeleteComponent implements OnInit {
                 localWidget.graphHeight,
                 localWidget.graphWidth
             );
-
+console.log('xx specification', this.specification)
             // Render in DOM
             let view = new View(parse(this.specification));
             view.renderer('svg')

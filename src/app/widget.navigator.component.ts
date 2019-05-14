@@ -1263,8 +1263,13 @@ console.log('xx this.specification', this.specification)
         this.specification['data'][0]['values'] = this.graphData;
         this.specification['title'] = this.graphTitle;
 
-        // TODO - decide if we need to update the Widget Data too ?
-        // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
+        // Save W
+        // TODO - only save 3 fields via a PUT
+        this.globalVariableService.saveResource('widgets', this.localWidget)
+            .catch(err => {
+                this.errorMessage = err.slice(0, 100);
+                console.error('Error in Navigator.OnInit saving widgets: ' + err);
+            });
 
         // Render in DOM
         let view = new View(parse(this.specification));
@@ -2735,13 +2740,13 @@ console.log('xx this.specification', this.specification)
         // Refresh the graph
         this.selectedView = 'DefaultView'
 
-        // Save W
-        // TODO - only save 3 fields via a PUT
-        this.globalVariableService.saveResource('widgets', this.localWidget)
-            .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Navigator.OnInit saving widgets: ' + err);
-            });
+        // // Save W
+        // // TODO - only save 3 fields via a PUT
+        // this.globalVariableService.saveResource('widgets', this.localWidget)
+        //     .catch(err => {
+        //         this.errorMessage = err.slice(0, 100);
+        //         console.error('Error in Navigator.OnInit saving widgets: ' + err);
+        //     });
 
         this.checkShowGraph();
     }
