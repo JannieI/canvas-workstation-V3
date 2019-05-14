@@ -2893,95 +2893,95 @@ console.log('xx this.specification', this.specification)
 
     }
 
-    clickNodeTypeView() {
-        // Show the Node Type View = full tree with all children of a given node type
-        // Example: all beneficiary shareholders of company and subsidiaries
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickNodeTypeView', '@Start');
+    // clickNodeTypeView() {
+    //     // Show the Node Type View = full tree with all children of a given node type
+    //     // Example: all beneficiary shareholders of company and subsidiaries
+    //     this.globalFunctionService.printToConsole(this.constructor.name, 'clickNodeTypeView', '@Start');
 
-        // Refresh the graph
-        // this.selectedView = 'NodeTypeView'
+    //     // Refresh the graph
+    //     // this.selectedView = 'NodeTypeView'
 
-        this.graphData = [];
-        this.graphData.push(
-            {
-                "id": 1,
-                "name": ""
-            });
-        this.graphData.push({
-            id: 2,
-            name: "Absa",
-            parent: 1
-        });
-        this.graphData.push({
-            id: 3,
-            name: "Glenis (Shareholder",
-            parent: 2
-        });
-        this.graphData.push({
-            id: 4,
-            name: "Old Mutual",
-            parent: 1
-        });
-        this.graphData.push({
-            id: 5,
-            name: "Nedbank",
-            parent: 4
-        });
-        this.graphData.push({
-            id: 6,
-            name: "Zaheer",
-            parent: 5
-        });
-        this.graphData.push({
-            id: 7,
-            name: "Capitec",
-            parent: 5
-        });
-        this.graphData.push({
-            id: 8,
-            name: "Bernard (Shareholder)",
-            parent: 7
-        });
+    //     this.graphData = [];
+    //     this.graphData.push(
+    //         {
+    //             "id": 1,
+    //             "name": ""
+    //         });
+    //     this.graphData.push({
+    //         id: 2,
+    //         name: "Absa",
+    //         parent: 1
+    //     });
+    //     this.graphData.push({
+    //         id: 3,
+    //         name: "Glenis (Shareholder",
+    //         parent: 2
+    //     });
+    //     this.graphData.push({
+    //         id: 4,
+    //         name: "Old Mutual",
+    //         parent: 1
+    //     });
+    //     this.graphData.push({
+    //         id: 5,
+    //         name: "Nedbank",
+    //         parent: 4
+    //     });
+    //     this.graphData.push({
+    //         id: 6,
+    //         name: "Zaheer",
+    //         parent: 5
+    //     });
+    //     this.graphData.push({
+    //         id: 7,
+    //         name: "Capitec",
+    //         parent: 5
+    //     });
+    //     this.graphData.push({
+    //         id: 8,
+    //         name: "Bernard (Shareholder)",
+    //         parent: 7
+    //     });
 
-        this.graphTitle = 'Beneficiary Shareholders of Top 40 companies';
+    //     this.graphTitle = 'Beneficiary Shareholders of Top 40 companies';
 
-        // Dimension it
-        this.graphHeight = 300; //this.localWidget.graphLayers[0].graphSpecification.height;
-        this.graphWidth = 300; //this.localWidget.graphLayers[0].graphSpecification.width;
+    //     // Dimension it
+    //     this.graphHeight = 300; //this.localWidget.graphLayers[0].graphSpecification.height;
+    //     this.graphWidth = 300; //this.localWidget.graphLayers[0].graphSpecification.width;
 
-        // Create specification
-        this.specification = this.globalVariableService.createVegaSpec(
-            this.localWidget,
-            this.graphHeight,
-            this.graphWidth,
-            this.showSpecificGraphLayer,
-            0
-        );
+    //     // Create specification
+    //     this.specification = this.globalVariableService.createVegaSpec(
+    //         this.localWidget,
+    //         this.graphHeight,
+    //         this.graphWidth,
+    //         this.showSpecificGraphLayer,
+    //         0
+    //     );
 
-        // Load the data
-        this.specification['data'][0]['values'] = this.graphData;
-        this.specification['title'] = this.graphTitle;
+    //     // Load the data
+    //     this.specification['data'][0]['values'] = this.graphData;
+    //     this.specification['title'] = this.graphTitle;
 
-        // TODO - decide if we need to update the Widget Data too ?
-        // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
+    //     // TODO - decide if we need to update the Widget Data too ?
+    //     // this.specification.graphLayers[0].graphSpecification.data = this.graphData;
 
-        // Render in DOM
-        let view = new View(parse(this.specification));
-        view.addEventListener('click', function (event, item) {
-            // Needs separate object, else item.datum.text is sometimes undefined.
-            let datumClick: any = item.datum;
-            console.log('xx CLICK NodTyp', item, item.datum.text, datumClick.name);
-            this.selectedParentNodeType = 'Person';
-            this.selectedParentNode = 'Koos';
-            this.selectedRelationship = 'Director-Of';
-        });
-        view.renderer('svg')
-            .initialize(this.dragWidget.nativeElement)
-            .hover()
-            .run()
-            .finalize();
+    //     // Render in DOM
+    //     let view = new View(parse(this.specification));
+    //     view.addEventListener('click', function (event, item) {
+    //         // Needs separate object, else item.datum.text is sometimes undefined.
+    //         let datumClick: any = item.datum;
+    //         console.log('xx CLICK NodTyp', item, item.datum.text, datumClick.name);
+    //         this.selectedParentNodeType = 'Person';
+    //         this.selectedParentNode = 'Koos';
+    //         this.selectedRelationship = 'Director-Of';
+    //     });
+    //     view.renderer('svg')
+    //         .initialize(this.dragWidget.nativeElement)
+    //         .hover()
+    //         .run()
+    //         .finalize();
 
-    }
+    // }
 
     clickAdditionalLevelRelationship() {
         // Add an additional level to the default view, based on diffrent relationships
