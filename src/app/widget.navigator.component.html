@@ -1027,9 +1027,9 @@ dimensions are set in app.html, and cannot be changed here. -->
 
     </div>
 
-    <!-- Show Watchlists -->
-    <div class="networkArea" *ngIf="showWatchList">
-        <div class="networkAreaTitle">
+    <!-- Show WatchLists -->
+    <div class="watchList" *ngIf="showWatchList">
+        <div class="watchListTitle">
             <b>Networks</b>
             <clr-signpost>
                 <clr-icon shape="info-circle" style="margin-top: -4px;"
@@ -1041,25 +1041,22 @@ dimensions are set in app.html, and cannot be changed here. -->
                         Help
                     </h5>
                     <p style="margin-top: 0; color:gray; text-align: left;">
-                        A network is a pre-defined web of nodes and relationships.  For example,
-                        it can be the relationships between companies, subsidaries,
-                        directors (executive and non-executive), shareholders, etc.
-                        A company can create more than one network for their data.
+                        A WatchList is a filter on a pre-defined list of nodes.  The user
+                        can have different watchlists per Node Type.
                     </p>
                 </clr-signpost-content>
             </clr-signpost>
-            <div class="networkAreaClose"
+            <div class="watchListClose"
                 (click)="clickCloseNetworksPopup()"
                 >
                 <b>X</b>
             </div>
         </div>
 
-        <div class="networkAreaText">
-            Select the name of a network to graph by clicking it.  A summary of the network will be
-            shown, after which you can select specific nodes and relationships to browse.
+        <div class="watchListText">
+            Select the name of a watchlist ....
         </div>
-        <div class="networkAreaBlock" *ngFor="let row of ngNetworks; let i = index"
+        <div class="watchListBlock" *ngFor="let row of ngNetworks; let i = index"
             [style.background-color]="row.id==selectedNetworkID? 'white'  :  'rgb(235, 232, 232)'"
             [style.border]="row.id==selectedNetworkID? '2px solid black'  :  '1px solid gray'"
             [style.color]="row.id==selectedNetworkID? 'black'  :  'darkgray'"
