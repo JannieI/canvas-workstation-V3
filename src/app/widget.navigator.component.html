@@ -1030,7 +1030,7 @@ dimensions are set in app.html, and cannot be changed here. -->
     <!-- Show WatchLists -->
     <div class="watchList" *ngIf="showWatchList">
         <div class="watchListTitle">
-            <b>Networks</b>
+            <b>WatchLists</b>
             <clr-signpost>
                 <clr-icon shape="info-circle" style="margin-top: -4px;"
                     clrSignpostTrigger>
@@ -1047,22 +1047,24 @@ dimensions are set in app.html, and cannot be changed here. -->
                 </clr-signpost-content>
             </clr-signpost>
             <div class="watchListClose"
-                (click)="clickCloseNetworksPopup()"
+                (click)="clickCloseWatchListsPopup()"
                 >
                 <b>X</b>
             </div>
         </div>
 
         <div class="watchListText">
-            Select the name of a watchlist ....
+            Each node type can have a WatchList of nodes (which will be used to filter on).
+            Start off by adding a node type to the list.  Then select a node type and add 
+            nodes for it on the right.
         </div>
-        <div class="watchListBlock" *ngFor="let row of ngNetworks; let i = index"
-            [style.background-color]="row.id==selectedNetworkID? 'white'  :  'rgb(235, 232, 232)'"
-            [style.border]="row.id==selectedNetworkID? '2px solid black'  :  '1px solid gray'"
-            [style.color]="row.id==selectedNetworkID? 'black'  :  'darkgray'"
+        <div class="watchListBlock" *ngFor="let row of ngWatchLists; let i = index"
+            [style.background-color]="row.id==selectedWatchListID? 'white'  :  'rgb(235, 232, 232)'" 
+            [style.border]="row.id==selectedWatchListID? '2px solid black'  :  '1px solid gray'" 
+            [style.color]="row.id==selectedWatchListID? 'black'  :  'darkgray'" 
             >
                 <div
-                    (click)="clickNetwork(i, row.id)"
+                    (click)="clickWatchListNodeType(i, row.id)" 
                     >
                     {{ row.name }} 
                     ({{ row.description}})

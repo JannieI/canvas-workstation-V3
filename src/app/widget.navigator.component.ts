@@ -69,6 +69,7 @@ export class WidgetNavigatorComponent {
             description: string;
         }[] = [];                                       // Custom Views
     ngNetworks: NavigatorNetwork[] = [];                // All Networks (DS with isNetwork = True)
+    ngWatchLists: ...
     ngHistory: NavigatorHistory[] = [];                 // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
 
@@ -79,14 +80,15 @@ export class WidgetNavigatorComponent {
     ngDropdownRelationships: string[] = [];             // Dropdown: Relationships
     ngNodeProperties: string[] = [];                    // Dropdown: Properties per Parent Node Type
 
+    isViewsDisabled: boolean = false;                   // True if all views are disabled
+    selectedAdditonalProperty: string = '';             // Property to shown with Nodes in graph
     selectedCustomViewID: number = -1;                  // Select Custom View ID
+    selectedHistoryID: number = -1;                     // History ID
     selectedNetworkID: number = -1;                     // Select NW ID
     selectedNetworkRelationshipID: number = -1;         // DSid for DSrel
     selectedNetworkPropertiesID: number = -1;           // DSid for DSprop
-    selectedHistoryID: number = -1;                     // History ID
-    selectedAdditonalProperty: string = '';             // Property to shown with Nodes in graph
+    selectedWatchListID: number = -1;                   // Watchlist
     selectedView: string = 'DefaultView';               // Selected View Name
-    isViewsDisabled: boolean = false;                   // True if all views are disabled
 
     // Selected - value selected in a dropdown
     selectedParentNodeType: string = '';                // Dropdown: selected Parent Node Type
@@ -312,6 +314,14 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickCloseWatchListsPopup() {
+        // Close WatchLists popup
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseWatchListsPopup', '@Start');
+
+        this.showWatchLists = false;
+
+    }
+    
     clickCloseNetworksPopup() {
         // Close network popup
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickCloseNetworksPopup', '@Start');
@@ -401,7 +411,7 @@ export class WidgetNavigatorComponent {
         this.checkShowGraph();
 
     }
-
+    
     clickNetwork(index: number, networkID: number) {
         // Clicked a network (or called from ngOnInit)
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickNetwork', '@Start');
@@ -530,6 +540,24 @@ export class WidgetNavigatorComponent {
                 });
         };
 
+    }
+
+    clickWatchListNodeType(index: number, networkID: number) {
+        // Clicked a WatchList
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickWatchListNodeType', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.parentFilterErrorMessage = '';
+        this.childFilterErrorMessage = '';
+
+        // Remember the ID of the selected Network
+        this.selectedNetworkID = networkID;
+
+        // Read the Data for this W from the DB
+        if (this.selectedNetworkID >= 0) {
+            
+        }
     }
 
     clickSelectHistory(index: number, historyID: number) {
