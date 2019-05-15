@@ -145,12 +145,13 @@ export class WidgetNavigatorComponent {
     // Form layout and elements
     graphNotes: string = 'Optional Additional information';
     graphTitle: string = 'Directors for Absa, filtered by age (1/12)';
-    showHistory: boolean = false;
-    showNetwork: boolean = false;       // Show Network popup
-    showCustomView: boolean = false;    // Show Custom View popup
     showAdditionalLevelForRelationships: boolean = false;     // True to add level to graph with all Relationships
     showAdditionalLevelForRoles: boolean = false;             // True to add level to graph with Relationship Roles
+    showCustomView: boolean = false;    // Show Custom View popup
+    showHistory: boolean = false;
+    showNetwork: boolean = false;       // Show Network popup
     showProperty: boolean = false;          // True to show selected Property with Nodes in graph
+    showWatchList: boolean = false;
 
     // Widget and Graph (Vega)
     localWidget: Widget;                            // W to modify, copied from selected

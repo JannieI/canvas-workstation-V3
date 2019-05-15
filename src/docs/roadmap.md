@@ -1175,6 +1175,7 @@ This document describes items for later versions of Canvas.
     - do we do data virtualization???  If so, get best practice and key points
     - ask Joya for unique marketing method, ie not billboards
     - title of TIBCO person: Senior Solutions Engineer ...
+    - Marketing material: look at www.bluwave.co.za, BI Solution !!
 
     New Events:
     - generic place to store events, say Date, Category, DS-id (optional), Code, Description, Capturer/Source, CaptureDateTime. With form to capture and view.
