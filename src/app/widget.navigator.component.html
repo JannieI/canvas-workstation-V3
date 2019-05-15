@@ -1036,7 +1036,7 @@ dimensions are set in app.html, and cannot be changed here. -->
     </div>
 
     <!-- Show WatchLists -->
-    <div class="watchList" *ngIf="showWatchList">
+    <div class="watchList" *ngIf="showWatchLists">
         <div class="watchListTitle">
             <b>WatchLists</b>
             <clr-signpost>
@@ -1074,8 +1074,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <div
                     (click)="clickWatchListNodeType(i, row.id)" 
                     >
-                    {{ row.name }} 
-                    ({{ row.description}})
+                    {{ row.nodeType }} 
                 </div>
         </div>
     </div>

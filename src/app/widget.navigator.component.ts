@@ -154,7 +154,6 @@ export class WidgetNavigatorComponent {
     showHistory: boolean = false;
     showNetwork: boolean = false;       // Show Network popup
     showProperty: boolean = false;      // True to show selected Property with Nodes in graph
-    showWatchList: boolean = false;
 
     // Widget and Graph (Vega)
     localWidget: Widget;                // W to modify, copied from selected
@@ -259,7 +258,7 @@ export class WidgetNavigatorComponent {
         // Clicked Menu to open popup to manage WatchLists
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowWatchLists', '@Start');
 
-        this.showWatchList= true;
+        this.showWatchLists = true;
     }
 
 
