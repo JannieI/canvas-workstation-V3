@@ -32,10 +32,11 @@ export class CanvasSettings {
 
 // Describes a Product in Canvas.  This contains a list of features, which could be
 // menu options, or specific items.  Examples of these are widgetTypes, Datasources
+// Only users with the CanManageProduct role can add/edit/delete recors in this table
 export class canvasProduct {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID (added for consistency with other models)
-    version: number;                        // Current version.  Older versions are stored in licenseHistory
+    version: number;                        // Current version.  Older versions are stored in productHistory
     name: string;                           // Name of license, also called Product
     description: string;                    // Description
     menuOptionsAllowed: string[];           // Array of menu options allowed (note spelling)
@@ -56,6 +57,7 @@ export class canvasProduct {
 // and y features.  Each license was bought on a date and authorised by an individual.  It
 // also indicates the amount, duration (expiry date) and number of users that may be
 // activated.  Activation can be managed by any user with the CanActivateLicense role.
+// Only users with the CanManageLicense role can add/edit/delete recors in this table
 export class canvasLicense {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID (added for consistency with other models)
