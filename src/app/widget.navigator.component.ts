@@ -69,7 +69,7 @@ export class WidgetNavigatorComponent {
             description: string;
         }[] = [];                                       // Custom Views
     ngNetworks: NavigatorNetwork[] = [];                // All Networks (DS with isNetwork = True)
-    ngWatchLists: ...
+    ngWatchLists: NavigatorWatchList[];                 // Watchlists defined by the user
     ngHistory: NavigatorHistory[] = [];                 // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
 
@@ -150,13 +150,14 @@ export class WidgetNavigatorComponent {
     showAdditionalLevelForRelationships: boolean = false;     // True to add level to graph with all Relationships
     showAdditionalLevelForRoles: boolean = false;             // True to add level to graph with Relationship Roles
     showCustomView: boolean = false;    // Show Custom View popup
+    showWatchLists: boolean = false;    // Show Watchlists
     showHistory: boolean = false;
     showNetwork: boolean = false;       // Show Network popup
-    showProperty: boolean = false;          // True to show selected Property with Nodes in graph
+    showProperty: boolean = false;      // True to show selected Property with Nodes in graph
     showWatchList: boolean = false;
 
     // Widget and Graph (Vega)
-    localWidget: Widget;                            // W to modify, copied from selected
+    localWidget: Widget;                // W to modify, copied from selected
     showSpecificGraphLayer: boolean = false;
     specification: any;             // Full spec for Vega, or other grammar
 
@@ -258,10 +259,7 @@ export class WidgetNavigatorComponent {
         // Clicked Menu to open popup to manage WatchLists
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowWatchLists', '@Start');
 
-        // Show current values
-        // this.visibleNumberChildrenShownInput = this.visibleNumberChildrenShown;
-
-        this.showGraphProperties = true;
+        this.showWatchList= true;
     }
 
 
