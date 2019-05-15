@@ -254,6 +254,17 @@ export class WidgetNavigatorComponent {
         this.showGraphProperties = true;
     }
 
+    clickMenuShowWatchLists() {
+        // Clicked Menu to open popup to manage WatchLists
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowWatchLists', '@Start');
+
+        // Show current values
+        // this.visibleNumberChildrenShownInput = this.visibleNumberChildrenShown;
+
+        this.showGraphProperties = true;
+    }
+
+
     clickMenuShowGraphNotes() {
         // Clicked the Menu to show popup to edit notes at bottom of graph
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphNotes', '@Start');
