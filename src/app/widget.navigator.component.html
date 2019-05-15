@@ -157,6 +157,14 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <button
                     type="button"
                     clrDropdownItem
+                    (click)="clickMenuShowWatchLists()"
+                    title="Manage Watch Lists per Node Type"
+                    >
+                    Watch Lists
+                </button>
+                <button
+                    type="button"
+                    clrDropdownItem
                     (click)="clickMenuShowGraphNotes()"
                     title="Show popup to edit notes at bottom of graph"
                     >
@@ -1047,7 +1055,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 </clr-signpost-content>
             </clr-signpost>
             <div class="watchListClose"
-                (click)="clickCloseWatchListsPopup()"
+                (click)="clickCloseWatchListsPopup()" 
                 >
                 <b>X</b>
             </div>
