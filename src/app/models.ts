@@ -261,7 +261,9 @@ export class CanvasLicenseHistory {
     purchasePrice: number;                  // Purchase price in specifed currency
     purchaseCurrency: number;               // Purchase currency, default is ZAR
     purchasedOn: Date;                      // Date of initial purchase
-    purchasedBy: string;                    // Client resprsentative who signed deal
+    purchasedBy: string;                    // Client representative who signed deal
+    renewedOn: Date;                        // Date of renewal
+    renewedBy: string;                      // Client representative who signed deal
     lastUpdatedOn: Date;                    // Changes made on
     lastUpdateBy: string;                   // Changes authorised by
     validUntil: Date;                       // This license will be invalid after this date
