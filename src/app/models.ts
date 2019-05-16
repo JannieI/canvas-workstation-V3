@@ -52,7 +52,7 @@ export class CanvasProduct {
 }
 
 // Company = Client.
-export class Company {
+export class CanvasCompany {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID (added for consistency with other models)
     companyName: string;                    // Company Name
@@ -60,6 +60,18 @@ export class Company {
     countryIncorporate: string;             // South Africa, UK, etc
 }
 
+// Incidents 
+export class CanvasIncident {
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID (added for consistency with other models)
+    companyName: string;                    // FK to Company Name
+    userID: string;                         // FK to user who experienced the incident
+    dateRegistered: Date;                   // Received from Client
+    dateDue: Date;                          // Promised or according to SLA
+    dateClose: Date;                        // Confirmed with Client
+    incidentDescription: string;            // Detail of issue
+    resolutionDescription: string;          // How problem was solved
+}
 
 // History of changes to canvasProducts.  Each time a product definition is changed,
 // a new version with the SAME id field is created.  The current version is stored in the 
