@@ -247,6 +247,8 @@ export class CanvasLicense {
 // History of changes to canvasLicenses.  Each time a license is upgraded to a new version,
 // the current record is stored in the canvasLicenseHistory collection with the SAME id
 // field and all affected users are updated as well.
+// Note that renewals is also seen as an update, as the renewal and validUntil fields are
+// updated.
 // TODO - should be replaced with generic Table Audit trail if Table is marked as
 //        sensitive / auditable
 export class CanvasLicenseHistory {
