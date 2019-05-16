@@ -60,7 +60,8 @@ export class CanvasCompany {
     countryIncorporate: string;             // South Africa, UK, etc
 }
 
-// Incidents 
+// Incidents - either registered automatically from Client Canvas Server, or 
+// manually captured by Clarity Analytics staff
 export class CanvasIncident {
     _id?: string;                           // Mongo ID (read only)
     id: number;                             // Unique ID (added for consistency with other models)
@@ -71,6 +72,20 @@ export class CanvasIncident {
     dateClose: Date;                        // Confirmed with Client
     incidentDescription: string;            // Detail of issue
     resolutionDescription: string;          // How problem was solved
+}
+
+// Contract = Legal agreements with any other party
+export class CanvasContracts {
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID (added for consistency with other models)
+    companyName: string;                    // FK to Company Name
+    contactUserID: string;                  // FK to user who is the contact person - ie for sending, etc
+    signedUserID: string;                   // FK to user who signed the contract
+    dateSendForSignature: Date;             // Received from Client
+    dateSigned: Date;                       // Promised or according to SLA
+    contractDescription: string;            // Short description of the contract
+    contractType: string;                   // FK to the type of contract
+    contractStatus: string;                 // FK to the contract status
 }
 
 // History of changes to canvasProducts.  Each time a product definition is changed,
