@@ -30,6 +30,32 @@ export class CanvasSettings {
 
 }
 
+// Lookup table that describes the different roles in Canvas.  Currently we have:
+//  CanManageProduct              - Can manage the definition of Products, ie what features are included
+//  CanActivateLicense            - Can activate users for a license, up to max nr purchased
+//  CanManageLicense              - Can manage Licenses, ie what Product is included
+//  isAdministrator               - Can add/delete users to the group,
+//  dashboardCanCreateRole        - Can create Dashboards
+//  dashboardCanViewRole          - Can view Dashboards
+//  dashboardCanEditRole          - Can change / edit Dashboards
+//  dashboardCanSaveRole          - Can save changes to a Dashboards
+//  dashboardCanDeleteRole        - Can delete a Dashboard
+//  dashboardCanGrantAccessRole   - Can change access to a Dashboard
+//  dashboardCanAddDatasourceRole - Can change add DS to a Dashboard
+//  datasourceCanCreateRole       - Can create Datasource
+//  datasourceCanViewRole         - Can view Datasource
+//  datasourceCanEditRole         - Can change / edit Datasource
+//  datasourceCanDeleteRole       - Can delete a Datasource
+//  datasourceCanGrantAccessRole  - Can change access to a Datasource
+//  canManageGroupRole            - Can add/delete users to Group
+export class CanvasRole {
+    _id?: string;                           // Mongo ID (read only)
+    id: number;                             // Unique ID (added for consistency with other models)
+    role: number;                           // Role name
+    description: string;                    // Description of what this role can do
+
+}
+
 // Describes a Product in Canvas.  This contains a list of features, which could be
 // menu options, or specific items.  Examples of these are widgetTypes, Datasources
 // Only users with the CanManageProduct role can add/edit/delete recors in this table
