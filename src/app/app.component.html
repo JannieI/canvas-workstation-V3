@@ -1731,6 +1731,7 @@
                             clrDropdownItem
                             (click)="clickMenuArrangeBackward()"
                             title="Move selected Widgets backward in z-plane"
+                            [disabled]="!allowMenuArrangeBackward" 
                             >
                             Backward
                         </button>
@@ -1738,6 +1739,7 @@
                             clrDropdownItem
                             (click)="clickMenuArrangeForward()"
                             title="Move selected Widgets forward in z-plane"
+                            [disabled]="!allowMenuArrangeForward" 
                             >
                             Forward
                         </button>
@@ -1745,6 +1747,7 @@
                             clrDropdownItem
                             (click)="clickMenuArrangeBack()"
                             title="Move selected Widgets to the back in z-plane"
+                            [disabled]="!allowMenuArrangeBack" 
                             >
                             Back
                         </button>
@@ -1752,6 +1755,7 @@
                             clrDropdownItem
                             (click)="clickMenuArrangeFront()"
                             title="Move selected Widgets to the front in z-plane"
+                            [disabled]="!allowMenuArrangeFront" 
                             >
                             Front
                         </button>
@@ -1771,6 +1775,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignLeft()"
                                     title="Align selected Widgets to the left"
+                                    [disabled]="!allowMenuArrangeAlignLeft" 
                                     >
                                     Left
                                 </button>
@@ -1778,12 +1783,14 @@
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignCenter()"
                                     title="Align selected Widgets to the center"
+                                    [disabled]="!allowMenuArrangeAlignCenter" 
                                     >
                                     Center</button>
                                 <button type="button" class="dropdown-item"
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignRight()"
                                     title="Align selected Widgets to the right"
+                                    [disabled]="!allowMenuArrangeAlignRight" 
                                     >
                                     Right</button>
                                 <div class="dropdown-divider"></div>
@@ -1791,6 +1798,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignTop()"
                                     title="Align selected Widgets to the top"
+                                    [disabled]="!allowMenuArrangeAlignTop" 
                                     >
                                     Top
                                 </button>
@@ -1798,12 +1806,14 @@
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignMiddle()"
                                     title="Align selected Widgets to the middle"
+                                    [disabled]="!allowMenuArrangeAlignMiddle" 
                                     >
                                     Middle</button>
                                 <button type="button" class="dropdown-item"
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignBottom()"
                                     title="Align selected Widgets to the bottom"
+                                    [disabled]="!allowMenuArrangeAlignBottom" 
                                     >
                                     Bottom</button>
                                 <div class="dropdown-divider"></div>
@@ -1811,6 +1821,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignCenterHorisontally()"
                                     title="Align selected Widgets horisontally on page"
+                                    [disabled]="!allowMenuArrangeCenterHorisontally" 
                                     >
                                     Center horisontally
                                     <clr-icon shape="two-way-arrows down"></clr-icon>
@@ -1819,6 +1830,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignCenterVertically()"
                                     title="Align selected Widgets vertically on page"
+                                    [disabled]="!allowMenuArrangeCenterVertically" 
                                     >
                                     Center vertically
                                     <clr-icon shape="two-way-arrows right"></clr-icon>
