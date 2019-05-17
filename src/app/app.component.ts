@@ -345,16 +345,34 @@ export class AppComponent implements OnInit {
     allowMenuShapePaste: boolean = false;
     allowMenuShapeDelete: boolean = false;
     allowMenuShapeDeleteAll: boolean = false;
-
-    allowMenuView: boolean = false;
-    allowMenuView: boolean = false;
-    allowMenuView: boolean = false;
-    allowMenuView: boolean = false;
-    allowMenuView: boolean = false;
-    allowMenuView: boolean = false;
-    allowMenuView: boolean = false;
-    allowMenuView: boolean = false;
-    allowMenuView: boolean = false;
+    allowMenuViewHideMenu: boolean = false;
+    allowMenuViewPrintPreview: boolean = false;
+    allowMenuViewTreeview: boolean = false;
+    allowMenuViewShowPalette: boolean = false;
+    allowMenuViewShowGrid: boolean = false;
+    allowMenuViewSnapToGrid: boolean = false;
+    allowMenuViewGridSize: boolean = false;
+    allowMenuViewZoom: boolean = false;
+    allowMenuViewZoom100: boolean = false;
+    allowMenuArrangeBackward: boolean = false;
+    allowMenuArrangeForward: boolean = false;
+    allowMenuArrangeBack: boolean = false;
+    allowMenuArrangeFront: boolean = false;
+    allowMenuArrangeAlignLeft: boolean = false;
+    allowMenuArrangeAlignCenter: boolean = false;
+    allowMenuArrangeAlignRight: boolean = false;
+    allowMenuArrangeAlignTop: boolean = false;
+    allowMenuArrangeAlignMiddle: boolean = false;
+    allowMenuArrangeAlignBottom: boolean = false;
+    allowMenuArrangeCenterHorisontally: boolean = false;
+    allowMenuArrangeCenterVertically: boolean = false;
+    allowMenuArrangeGroup: boolean = false;
+    allowMenuArrangeUngroup: boolean = false;
+    allowMenuArrangeDistributeHorisontally: boolean = false;
+    allowMenuArrangeDistributeVertically: boolean = false;
+    allowMenuArrangeSameVertically: boolean = false;
+    allowMenuArrangeSameHorisontally: boolean = false;
+    allowMenuArrangeSameBoth: boolean = false;
 
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
@@ -11406,16 +11424,36 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuShapeDelete');
         userAllowedFeatures.push('allowMenuShapeDeleteAll');
 
-        userAllowedFeatures.push('allowMenuView')
-        userAllowedFeatures.push('allowMenuView')
-        userAllowedFeatures.push('allowMenuView')
-        userAllowedFeatures.push('allowMenuView')
-        userAllowedFeatures.push('allowMenuView')
-        userAllowedFeatures.push('allowMenuView')
-        userAllowedFeatures.push('allowMenuView')
-        userAllowedFeatures.push('allowMenuView')
-        userAllowedFeatures.push('allowMenuView')
+        userAllowedFeatures.push('allowMenuViewHideMenu')
+        userAllowedFeatures.push('allowMenuViewPrintPreview')
+        userAllowedFeatures.push('allowMenuViewTreeview')
+        userAllowedFeatures.push('allowMenuViewShowPalette')
+        userAllowedFeatures.push('allowMenuViewShowGrid')
+        userAllowedFeatures.push('allowMenuViewSnapToGrid')
+        userAllowedFeatures.push('allowMenuViewGridSize')
+        userAllowedFeatures.push('allowMenuViewZoom')
+        userAllowedFeatures.push('allowMenuViewZoom100')
 
+        userAllowedFeatures.push('allowMenuArrangeBackward');
+        userAllowedFeatures.push('allowMenuArrangeForward');
+        userAllowedFeatures.push('allowMenuArrangeBack');
+        userAllowedFeatures.push('allowMenuArrangeFront');
+        userAllowedFeatures.push('allowMenuArrangeAlignLeft');
+        userAllowedFeatures.push('allowMenuArrangeAlignCenter');
+        userAllowedFeatures.push('allowMenuArrangeAlignRight');
+        userAllowedFeatures.push('allowMenuArrangeAlignTop');
+        userAllowedFeatures.push('allowMenuArrangeAlignMiddle');
+        userAllowedFeatures.push('allowMenuArrangeAlignBottom');
+        userAllowedFeatures.push('allowMenuArrangeCenterHorisontally');
+        userAllowedFeatures.push('allowMenuArrangeCenterVertically');
+        userAllowedFeatures.push('allowMenuArrangeGroup');
+        userAllowedFeatures.push('allowMenuArrangeUngroup');
+        userAllowedFeatures.push('allowMenuArrangeDistributeHorisontally');
+        userAllowedFeatures.push('allowMenuArrangeDistributeVertically');
+        userAllowedFeatures.push('allowMenuArrangeSameVertically');
+        userAllowedFeatures.push('allowMenuArrangeSameHorisontally');
+        userAllowedFeatures.push('allowMenuArrangeSameBoth');
+        
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
         let test: string = 'allowNavigatorAdd111';
