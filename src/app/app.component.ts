@@ -312,7 +312,6 @@ export class AppComponent implements OnInit {
     allowMenuGraphPaste: boolean = false;
     allowMenuGraphDelete: boolean = false;
     allowMenuNavigatorDelete: boolean = false;
-    
     allowMenuTableAdd: boolean = false;
     allowMenuTableEdit: boolean = false;
     allowMenuTableComments: boolean = false;
@@ -324,6 +323,16 @@ export class AppComponent implements OnInit {
     allowMenuTableDuplicate: boolean = false;
     allowMenuTableLockUnlock: boolean = false;
     allowMenuTableDelete: boolean = false;
+    allowMenuSlicerAdd: boolean = false;
+    allowMenuSlicerEdit: boolean = false;
+    allowMenuSlicerComments: boolean = false;
+    allowMenuSlicerContainer: boolean = false;
+    allowMenuSlicerDataQuality: boolean = false;
+    allowMenuSlicerDuplicate: boolean = false;
+    allowMenuSlicerExpand: boolean = false;
+    allowMenuSlicerExport: boolean = false;
+    allowMenuSlicerLockUnlock: boolean = false;
+    allowMenuSlicerDelete: boolean = false;
 
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
@@ -11350,6 +11359,17 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuTableDuplicate');
         userAllowedFeatures.push('allowMenuTableLockUnlock');
         userAllowedFeatures.push('allowMenuTableDelete');
+
+        userAllowedFeatures.push('allowMenuSlicerAdd');
+        userAllowedFeatures.push('allowMenuSlicerEdit');
+        userAllowedFeatures.push('allowMenuSlicerComments');
+        userAllowedFeatures.push('allowMenuSlicerContainer');
+        userAllowedFeatures.push('allowMenuSlicerDataQuality');
+        userAllowedFeatures.push('allowMenuSlicerDuplicate');
+        userAllowedFeatures.push('allowMenuSlicerExpand');
+        userAllowedFeatures.push('allowMenuSlicerExport');
+        userAllowedFeatures.push('allowMenuSlicerLockUnlock');
+        userAllowedFeatures.push('allowMenuSlicerDelete');
 
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)

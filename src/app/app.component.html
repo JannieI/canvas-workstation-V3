@@ -1503,6 +1503,7 @@
                             clrDropdownItem
                             (click)="clickMenuShapeNew()"
                             title="Add a new Shape to this Dashboard"
+                            [disabled]="!allowMenuShapeAdd" 
                             >
                             Add Shape
                         </button>
@@ -1510,6 +1511,7 @@
                             clrDropdownItem
                             (click)="clickMenuShapeEdit()"
                             title="Edit the selected Shape"
+                            [disabled]="!allowMenuShapeEdit" 
                             >
                             Edit Shape
                         </button>
@@ -1518,6 +1520,7 @@
                             clrDropdownItem
                             (click)="clickMenuShapeComments()"
                             title="Comments for selected Shape"
+                            [disabled]="!allowMenuShapeComments" 
                             >
                             Comments
                         </button>
@@ -1525,6 +1528,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetContainer('Shape')"
                             title="Change container properties for selected Shape"
+                            [disabled]="!allowMenuShapeContainer" 
                             >
                             Container
                         </button>
@@ -1532,6 +1536,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetCopy()"
                             title="Copy selected Shape"
+                            [disabled]="!allowMenuShapeCopy" 
                             >
                             Copy (Ctrl-C)
                         </button>
@@ -1539,6 +1544,7 @@
                             clrDropdownItem
                             (click)="clickMenuPaletteDuplicate()"
                             title="Duplicate selected Shape"
+                            [disabled]="!allowMenuShapeDuplicate" 
                             >
                             Duplicate
                         </button>
@@ -1546,6 +1552,7 @@
                             clrDropdownItem
                             (click)="clickMenuShapeEditTitle()"
                             title="Edit title of selected Widget"
+                            [disabled]="!allowMenuShapeTitleEdit" 
                             >
                             Edit Title
                         </button>
@@ -1553,6 +1560,7 @@
                             clrDropdownItem
                             (click)="clickMenuShapeHyperLinks()"
                             title="Manage hyperlinks on selected Shape"
+                            [disabled]="!allowMenuShapeHyperlinks" 
                             >
                             Hyperlinks
                         </button>
