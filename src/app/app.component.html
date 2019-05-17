@@ -36,6 +36,7 @@
                             clrDropdownItem
                             (click)="clickMenuEditMode()"
                             title="Enable EditMode to make changes"
+                            [disabled]="!allowEditMode" 
                             >
                             {{ editMenuText }}
                         </button>
@@ -45,6 +46,7 @@
                             clrDropdownItem
                             title="Undo previous action"
                             (click)="clickMenuEditUndo()"
+                            [disabled]="!allowEditUndo" 
                             >
                             Undo (Ctrl-Z)
                         </button>
@@ -52,6 +54,7 @@
                             clrDropdownItem
                             title="Redo previous action"
                             (click)="clickMenuEditRedo()"
+                            [disabled]="!allowEditRedo" 
                             >
                             Redo (Ctrl-Y)
                         </button>
@@ -61,6 +64,7 @@
                             clrDropdownItem
                             title="Select all the Widgets on this Tab"
                             (click)="clickMenuEditSelectAllNone('All')"
+                            [disabled]="!allowSelectAll" 
                             >
                             Select All
                         </button>
@@ -68,6 +72,7 @@
                             clrDropdownItem
                             title="UnSelect all the Widgets on this Tab"
                             (click)="clickMenuEditSelectAllNone('None')"
+                            [disabled]="!allowSelectNone" 
                             >
                             Select None
                         </button>
@@ -87,6 +92,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuEditContainerStylesAdd()"
                                     title="Add a new container style"
+                                    [disabled]="!allowContainerStylesAdd" 
                                     >
                                     Add
                                 </button>
@@ -94,6 +100,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuEditContainerStylesEdit()"
                                     title="Edit or Delete an existing container style"
+                                    [disabled]="!allowContainerStylesEdit" 
                                     >
                                     Edit / Delete
                                 </button>
@@ -103,6 +110,7 @@
                             clrDropdownItem
                             title="Manage Colours to be used in Widgets in Canvas"
                             (click)="clickMenuEditManageColours('None')"
+                            [disabled]="!allowManageColours" 
                             >
                             Manage Colours
                         </button>

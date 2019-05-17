@@ -11121,7 +11121,7 @@ export class AppComponent implements OnInit {
         // Activate the menu options
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
-        let test: string = 'allowNavigatorAdd';
+        let test: string = 'allowNavigatorAdd111';
         this[test] = false;
         console.log('xx allowNavigatorAdd 2', this.allowNavigatorAdd)
         
