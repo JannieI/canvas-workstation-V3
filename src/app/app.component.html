@@ -1925,6 +1925,7 @@
                             clrDropdownItem
                             (click)="clickMenuHelpDemo()"
                             title="Demo Dashboards for clarification"
+                            [disabled]="!allowMenuHelpDemo" 
                             >
                             Demo
                         </button>
@@ -1932,6 +1933,7 @@
                             clrDropdownItem
                             (click)="clickHelpGettingStarted()"
                             title="Getting started with Canvas"
+                            [disabled]="!allowMenuHelpGettingStarted" 
                             >
                             Getting started with Canvas
                         </button>
@@ -1939,6 +1941,7 @@
                             clrDropdownItem
                             (click)="clickHelpGetData()"
                             title="How to add Datasources to a Dashboard"
+                            [disabled]="!allowMenuHelpGettingData" 
                             >
                             Getting data
                         </button>
@@ -1946,6 +1949,7 @@
                             clrDropdownItem
                             (click)="clickHelpCreateDashboard()"
                             title="Easy steps to create a Dashboard"
+                            [disabled]="!allowMenuHelpCreatingDashboard" 
                             >
                             Creating a Dashboard
                         </button>
@@ -1953,6 +1957,7 @@
                             clrDropdownItem
                             (click)="clickHelpCreateWidget()"
                             title="Steps to create a Widget (graph, table, etc)"
+                            [disabled]="!allowMenuHelpCreatingWidget" 
                             >
                             Creating a Widget
                         </button>
@@ -1960,6 +1965,7 @@
                             clrDropdownItem
                             (click)="clickHelpTransformData()"
                             title="How to transform the data in a Datasource"
+                            [disabled]="!allowMenuHelpTransformingData" 
                             >
                             Transforming data
                         </button>
@@ -1968,6 +1974,7 @@
                             clrDropdownItem
                             (click)="clickHelpTutorials()"
                             title="Tutorials in selected functionality"
+                            [disabled]="!allowMenuHelpTutorials" 
                             >
                             Tutorials
                         </button>
@@ -1975,6 +1982,7 @@
                             clrDropdownItem
                             (click)="clickHelpDocumentation()"
                             title="Full documentation"
+                            [disabled]="!allowMenuHelpDocumentation" 
                             >
                             Documentation
                         </button>
@@ -1983,6 +1991,7 @@
                             clrDropdownItem
                             (click)="clickHelpDocumentation()"
                             title="How and where to get support"
+                            [disabled]="!allowMenuHelpSupport" 
                             >
                             Support
                         </button>
