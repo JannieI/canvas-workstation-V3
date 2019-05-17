@@ -1094,6 +1094,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetStoredTemplateAdd()"
                                     title="Add the selected Widget as a Widget Template"
+                                    [disabled]="!allowMenuGraphTemplatesAdd" 
                                     >
                                     Add Template
                                 </button>
@@ -1101,6 +1102,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetStoredTemplateInsertWidget()"
                                     title="Select a template and insert as a Widget"
+                                    [disabled]="!allowMenuGraphTemplatesInsert" 
                                     >
                                     Insert Template
                                 </button>
@@ -1122,6 +1124,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetCrossFilter()"
                                     title="Define a cross filter for selected Widget"
+                                    [disabled]="!allowMenuGraphCrossFilter" 
                                     >
                                     Cross Filter
                                 </button>
@@ -1129,6 +1132,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetExpand()"
                                     title="Expand Dataset for selected Widget"
+                                    [disabled]="!allowMenuGraphExpand" 
                                     >
                                     Expand Graph
                                 </button>
@@ -1136,6 +1140,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetExport()"
                                     title="Export Dataset for selected Widget"
+                                    [disabled]="!allowMenuGraphExport" 
                                     >
                                     Export Graph
                                 </button>
@@ -1145,6 +1150,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetBusinessGlossary()"
                                     title="Business Glossary for Datasource of the selected Widget"
+                                    [disabled]="!allowMenuGraphBusinessGlossary" 
                                     >
                                     Business Glossary
                                 </button>
@@ -1152,6 +1158,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetDataDictionary()"
                                     title="Data Dictionary for Datasource of the selected Widget"
+                                    [disabled]="!allowMenuGraphDataDictionary" 
                                     >
                                     Data Dictionary
                                 </button>
@@ -1159,6 +1166,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetDataQuality()"
                                     title="Data quality issues for the selected Widget"
+                                    [disabled]="!allowMenuGraphDataQuality" 
                                     >
                                     Data Quality
                                 </button>
@@ -1166,6 +1174,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetDataSummary()"
                                     title="Data Summary for Datasource of the selected Widget"
+                                    [disabled]="!allowMenuGraphDataSummary" 
                                     >
                                     Data Summary
                                 </button>
@@ -1175,6 +1184,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetRefresh()"
                                     title="Refresh Datasource linked to selected Widget"
+                                    [disabled]="!allowMenuGraphRefresh" 
                                     >
                                     Refresh
                                 </button>
@@ -1185,6 +1195,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetCopy()"
                             title="Copy selected Widget"
+                            [disabled]="!allowMenuGraphCopy" 
                             >
                             Copy (Ctrl-C)
                         </button>
@@ -1192,6 +1203,7 @@
                             clrDropdownItem
                             (click)="clickMenuPaletteDuplicate()"
                             title="Duplicate selected Widget"
+                            [disabled]="!allowMenuGraphDuplicate" 
                             >
                             Duplicate
                         </button>
@@ -1199,6 +1211,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetLockUnlock()"
                             title="Toggle Lock/UnLock for the selected Widget"
+                            [disabled]="!allowMenuGraphLockUnlock" 
                             >
                             Lock/UnLock
                         </button>
@@ -1206,12 +1219,12 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetPaste()"
                             title="Paste previously copied Widget"
+                            [disabled]="!allowMenuGraphPaste" 
                             >
                             Paste (Ctrl-V)
                         </button>
 
                         <div class="dropdown-divider"></div>
-
 
                         <clr-dropdown>
                             <button
