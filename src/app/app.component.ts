@@ -473,23 +473,6 @@ export class AppComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
-
-
-
-
-        // TODO - just testing stuff ...  Delete later
-        this['allowNavigatorAdd'] = true;
-        console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
-        let test: string = 'allowNavigatorAdd';
-        this[test] = true;
-        console.log('xx allowNavigatorAdd 2', this.allowNavigatorAdd)
-
-
-
-
-
-
-
         // Process for Authentication, Login, tokens between Canvas-Server and Canvas-Client:
 
         // On App startup (ngOnInit):
@@ -956,6 +939,9 @@ export class AppComponent implements OnInit {
 
                     });
                 });
+
+                // Set the features according to the license: Menu, widgetTypes, DSes, etc
+                this.setFeatures();
 
             } else  {
                 // get canvasSettings from DB too

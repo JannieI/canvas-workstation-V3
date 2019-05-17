@@ -160,7 +160,7 @@ export class CanvasContractStatus {
     createdOn: Date;                        // Date record was created
 }
 
-// Activations of licenses.  A license is purchased for a number of users, say 5.  Any
+// Activation of licenses.  A license is purchased for a number of users, say 5.  Any
 // user in the company with the role of CanActivateLicense can then activate up to 5
 // users.  Records are never deleted; only the activeTo field is completed.  Thus,
 // the number of activations with activeTo = null must be <= 5.
