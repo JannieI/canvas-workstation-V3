@@ -284,7 +284,35 @@ export class AppComponent implements OnInit {
     allowMenuDatasourceRefreshOnce: boolean = false;
     allowMenuDatasourceRefreshRepeat: boolean = false;
     allowMenuDatasourceDelete: boolean = false;
-
+    allowMenuGraphAdd: boolean = false;
+    allowMenuNavigatorAdd: boolean = false;
+    allowMenuGraphEdit: boolean = false;
+    allowMenuNavigatorEdit: boolean = false;
+    allowMenuGraphContainer: boolean = false;
+    allowMenuGraphDescription: boolean = false;
+    allowMenuGraphTitleEdit: boolean = false;
+    allowMenuGraphFullScreen: boolean = false;
+    allowMenuGraphAnnotations: boolean = false;
+    allowMenuGraphCheckpoints: boolean = false;
+    allowMenuGraphComments: boolean = false;
+    allowMenuGraphHyperlinks: boolean = false;
+    allowMenuGraphTemplatesAdd: boolean = false;
+    allowMenuGraphTemplatesInsert: boolean = false;
+    allowMenuGraphCrossFilter: boolean = false;
+    allowMenuGraphExpand: boolean = false;
+    allowMenuGraphExport: boolean = false;
+    allowMenuGraphBusinessGlossary: boolean = false;
+    allowMenuGraphDataDictionary: boolean = false;
+    allowMenuGraphDataQuality: boolean = false;
+    allowMenuGraphDataSummary: boolean = false;
+    allowMenuGraphRefresh: boolean = false;
+    allowMenuGraphCopy: boolean = false;
+    allowMenuGraphDuplicate: boolean = false;
+    allowMenuGraphLockUnlock: boolean = false;
+    allowMenuGraphPaste: boolean = false;
+    allowMenuGraphDelete: boolean = false;
+    allowMenuNavigatorDelete: boolean = false;
+    
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
     combinationType: string;                    // Type passed to Combinations form
@@ -11270,6 +11298,34 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuDatasourceRefreshRepeat');
         userAllowedFeatures.push('allowMenuDatasourceDelete');
 
+        userAllowedFeatures.push('allowMenuGraphAdd');
+        userAllowedFeatures.push('allowMenuNavigatorAdd');
+        userAllowedFeatures.push('allowMenuGraphEdit');
+        userAllowedFeatures.push('allowMenuNavigatorEdit');
+        userAllowedFeatures.push('allowMenuGraphContainer');
+        userAllowedFeatures.push('allowMenuGraphDescription');
+        userAllowedFeatures.push('allowMenuGraphTitleEdit');
+        userAllowedFeatures.push('allowMenuGraphFullScreen');
+        userAllowedFeatures.push('allowMenuGraphAnnotations');
+        userAllowedFeatures.push('allowMenuGraphCheckpoints');
+        userAllowedFeatures.push('allowMenuGraphComments');
+        userAllowedFeatures.push('allowMenuGraphHyperlinks');
+        userAllowedFeatures.push('allowMenuGraphTemplatesAdd');
+        userAllowedFeatures.push('allowMenuGraphTemplatesInsert');
+        userAllowedFeatures.push('allowMenuGraphCrossFilter');
+        userAllowedFeatures.push('allowMenuGraphExpand');
+        userAllowedFeatures.push('allowMenuGraphExport');
+        userAllowedFeatures.push('allowMenuGraphBusinessGlossary');
+        userAllowedFeatures.push('allowMenuGraphDataDictionary');
+        userAllowedFeatures.push('allowMenuGraphDataQuality');
+        userAllowedFeatures.push('allowMenuGraphDataSummary');
+        userAllowedFeatures.push('allowMenuGraphRefresh');
+        userAllowedFeatures.push('allowMenuGraphCopy');
+        userAllowedFeatures.push('allowMenuGraphDuplicate');
+        userAllowedFeatures.push('allowMenuGraphLockUnlock');
+        userAllowedFeatures.push('allowMenuGraphPaste');
+        userAllowedFeatures.push('allowMenuGraphDelete');
+        userAllowedFeatures.push('allowMenuNavigatorDelete');
 
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
