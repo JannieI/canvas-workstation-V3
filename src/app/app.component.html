@@ -1240,6 +1240,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetDelete()"
                                     title="Delete selected Widget"
+                                    [disabled]="!allowMenuGraphDelete" 
                                     >
                                     Delete Graph
                                 </button>
@@ -1247,6 +1248,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuNavigatorDelete()"
                                     title="Delete selected Navigator"
+                                    [disabled]="!allowMenuNavigatorDelete" 
                                     >
                                     Delete Navigator
                                 </button>
