@@ -220,6 +220,32 @@ export class AppComponent implements OnInit {
     allowContainerStylesAdd: boolean = false;
     allowContainerStylesEdit: boolean = false;
     allowManageColours: boolean = false;
+    allowMenuDashboardNew: boolean = false;
+    allowMenuDashboardRecent: boolean = false;
+    allowMenuDashboardOpen: boolean = false;
+    allowMenuDashboardDetails: boolean = false;
+    allowMenuDashboardComments: boolean = false;
+    allowMenuDashboardDescription: boolean = false;
+    allowMenuDashboardDataQuality: boolean = false;
+    allowMenuDashboardFavourite: boolean = false;
+    allowMenuDashboardTags: boolean = false;
+    allowMenuDashboardTemplates: boolean = false;
+    allowMenuDashboardThemes: boolean = false;
+    allowMenuDashboardUsageStats: boolean = false;
+    allowMenuDashboardSave: boolean = false;
+    allowMenuDashboardSaveAs: boolean = false;
+    allowMenuDashboardExport: boolean = false;
+    allowMenuDashboardRename: boolean = false;
+    allowMenuDashboardDiscard: boolean = false;
+    allowMenuDashboardShare: boolean = false;
+    allowMenuDashboardSnapshots: boolean = false;
+    allowMenuDashboardSchedulesManage: boolean = false;
+    allowMenuDashboardSchedulesShowAll: boolean = false;
+    allowMenuDashboardScheduleLog: boolean = false;
+    allowMenuDashboardSubscribe: boolean = false;
+    allowMenuDashboardPrint: boolean = false;
+    allowMenuDashboardDelete: boolean = false;
+    allowMenuDashboardDeleteBulk: boolean = false;
 
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
@@ -11140,6 +11166,34 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowContainerStylesEdit');
         userAllowedFeatures.push('allowManageColours');
 
+        userAllowedFeatures.push('allowMenuDashboardNew');
+        userAllowedFeatures.push('allowMenuDashboardRecent');
+        userAllowedFeatures.push('allowMenuDashboardOpen');
+        userAllowedFeatures.push('allowMenuDashboardDetails');
+        userAllowedFeatures.push('allowMenuDashboardComments');
+        userAllowedFeatures.push('allowMenuDashboardDescription');
+        userAllowedFeatures.push('allowMenuDashboardDataQuality');
+        userAllowedFeatures.push('allowMenuDashboardFavourite');
+        userAllowedFeatures.push('allowMenuDashboardTags');
+        userAllowedFeatures.push('allowMenuDashboardTemplates');
+        userAllowedFeatures.push('allowMenuDashboardThemes');
+        userAllowedFeatures.push('allowMenuDashboardUsageStats');
+        userAllowedFeatures.push('allowMenuDashboardSave');
+        userAllowedFeatures.push('allowMenuDashboardSaveAs');
+        userAllowedFeatures.push('allowMenuDashboardExport');
+        userAllowedFeatures.push('allowMenuDashboardRename');
+        userAllowedFeatures.push('allowMenuDashboardDiscard');
+        userAllowedFeatures.push('allowMenuDashboardShare');
+        userAllowedFeatures.push('allowMenuDashboardSnapshots');
+        userAllowedFeatures.push('allowMenuDashboardSchedulesManage');
+        userAllowedFeatures.push('allowMenuDashboardSchedulesShowAll');
+        userAllowedFeatures.push('allowMenuDashboardScheduleLog');
+        userAllowedFeatures.push('allowMenuDashboardSubscribe');
+        userAllowedFeatures.push('allowMenuDashboardPrint');
+        userAllowedFeatures.push('allowMenuDashboardDelete');
+        userAllowedFeatures.push('allowMenuDashboardDeleteBulk');
+
+        
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
         let test: string = 'allowNavigatorAdd111';
