@@ -134,6 +134,7 @@
                             clrDropdownItem
                             title="Add a new Dashboard"
                             (click)="clickDashboardNew()"
+                            [disabled]="!allowDashboardNew" 
                             >
                             Add Dashboard
                         </button>
@@ -144,6 +145,7 @@
                                 clrDropdownTrigger
                                 title="Show recently opened Dashboards"
                                 (click)="clickRecentDashboard()"
+                                [disabled]="!allowDashboardRecent" 
                                 >
                                 Recent
                             </button>
@@ -178,6 +180,7 @@
                                     clrDropdownItem
                                     title="Open a Dashboard"
                                     (click)="clickDashboardOpen()"
+                                    [disabled]="!allowDashboardOpen" 
                                     >
                                     Existing Dashboard
                                 </button>
@@ -190,6 +193,7 @@
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
                                 title="Submenu with more options"
+                                [disabled]="!allowDashboardDetails" 
                                 >
                                 Details
                             </button>
@@ -200,6 +204,7 @@
                                     clrDropdownItem
                                     title="See and add Comments for this Dashboard"
                                     (click)="clickMenuDashboardDetailComments()"
+                                    [disabled]="!allowDashboardComments" 
                                     >
                                     Comments
                                 </button>
@@ -207,6 +212,7 @@
                                     clrDropdownItem
                                     title="Edit Dashboard Description details"
                                     (click)="clickMenuDashboardDetailDescription()"
+                                    [disabled]="!allowDashboardDescription" 
                                     >
                                     Descripton
                                 </button>
@@ -215,6 +221,7 @@
                                     clrDropdownItem
                                     title="View Data Quality issues for this Dashboard"
                                     (click)="clickMenuDashboardDetailDataQuality()"
+                                    [disabled]="!allowDashboardDataQuality" 
                                     >
                                     Data Quality
                                 </button>
@@ -222,6 +229,7 @@
                                     clrDropdownItem
                                     title="Mark/UnMark this Dashboard as a favourite"
                                     (click)="clickMenuDashboardDetailFavourite()"
+                                    [disabled]="!allowDashboardFavourite" 
                                     >
                                     Favourite
                                     <clr-icon
@@ -235,6 +243,7 @@
                                     clrDropdownItem
                                     title="Manage tags for this Dashboard"
                                     (click)="clickMenuDashboardDetailTags()"
+                                    [disabled]="!allowDashboardTags" 
                                     >
                                     Tags
                                 </button>
@@ -243,6 +252,7 @@
                                     clrDropdownItem
                                     title="Add/Delete a template for this Dashboard"
                                     (click)="clickMenuDashboardDetailTemplate()"
+                                    [disabled]="!allowDashboardTemplates" 
                                     >
                                     Template
                                 </button>
@@ -251,6 +261,7 @@
                                     clrDropdownItem
                                     title="Manage Dashboard theme"
                                     (click)="clickMenuDashboardDetailTheme()"
+                                    [disabled]="!allowDashboardThemes" 
                                     >
                                     Theme
                                 </button>
@@ -259,6 +270,7 @@
                                     clrDropdownItem
                                     title="Show usage stats for this Dashboard"
                                     (click)="clickMenuDashboardUsageStats()"
+                                    [disabled]="!allowDashboardUsageStats" 
                                     >
                                     Usage Stats
                                 </button>
