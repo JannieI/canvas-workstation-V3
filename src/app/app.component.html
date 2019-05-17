@@ -2016,6 +2016,7 @@
                         clrDropdownItem
                         (click)="clickMenuCollaborateAuditTrail()"
                         title="Show Audit Trail"
+                        [disabled]="!allowMenuActionsShowAuditTrails" 
                         >
                         Audit Trail
                     </button>
@@ -2023,6 +2024,7 @@
                         clrDropdownItem
                         (click)="clickMenuCollaborateMessages()"
                         title="Manage Messages"
+                        [disabled]="!allowMenuActionsShowMessages" 
                         >
                         Messages
                     </button>
@@ -2030,6 +2032,7 @@
                         clrDropdownItem
                         (click)="clickMenuCollaborateTasks()"
                         title="Manage Tasks"
+                        [disabled]="!allowMenuActionsShowTasks" 
                         >
                         Tasks
                     </button>
@@ -2038,6 +2041,7 @@
                         clrDropdownItem
                         (click)="clickMenuCollaborateSendMessageAdd()"
                         title="Send a Canvas Message"
+                        [disabled]="!allowMenuActionsSendMessage" 
                         >
                         Send Message
                     </button>
@@ -2045,6 +2049,7 @@
                         clrDropdownItem
                         (click)="clickMenuCollaborateSendEmailAdd()"
                         title="Send an email"
+                        [disabled]="!allowMenuActionsSendEmail" 
                         >
                         Send Email
                     </button>
@@ -2052,6 +2057,7 @@
                         clrDropdownItem
                         (click)="clickMenuCollaborateTaskAdd()"
                         title="Add a new Task"
+                        [disabled]="!allowMenuActionsAddTask" 
                         >
                         Add Task
                     </button>
@@ -2060,6 +2066,7 @@
                         clrDropdownItem
                         (click)="clickMenuViewDontDisturb()"
                         title="Toggles a background grid"
+                        [disabled]="!allowMenuActionsDontDisturb" 
                         >
                         Dont Disturb
                         <clr-icon shape="check" size="12" *ngIf="dontDisturb"></clr-icon>
@@ -2068,6 +2075,7 @@
                         clrDropdownItem
                         (click)="clickMenuViewSystemMessages()"
                         title="System generated messages"
+                        [disabled]="!allowMenuActionsSystemMessages" 
                         >
                         System Messages
                     </button>
