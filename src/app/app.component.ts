@@ -333,6 +333,18 @@ export class AppComponent implements OnInit {
     allowMenuSlicerExport: boolean = false;
     allowMenuSlicerLockUnlock: boolean = false;
     allowMenuSlicerDelete: boolean = false;
+    allowMenuShapeAdd: boolean = false;
+    allowMenuShapeEdit: boolean = false;
+    allowMenuShapeComments: boolean = false;
+    allowMenuShapeContainer: boolean = false;
+    allowMenuShapeCopy: boolean = false;
+    allowMenuShapeDuplicate: boolean = false;
+    allowMenuShapeTitleEdit: boolean = false;
+    allowMenuShapeHyperlinks: boolean = false;
+    allowMenuShapeLockUnlock: boolean = false;
+    allowMenuShapePaste: boolean = false;
+    allowMenuShapeDelete: boolean = false;
+    allowMenuShapeDeleteAll: boolean = false;
 
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
@@ -11370,6 +11382,19 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuSlicerExport');
         userAllowedFeatures.push('allowMenuSlicerLockUnlock');
         userAllowedFeatures.push('allowMenuSlicerDelete');
+
+        userAllowedFeatures.push('aallowMenuShapeAdd');
+        userAllowedFeatures.push('aallowMenuShapeEdit');
+        userAllowedFeatures.push('aallowMenuShapeComments');
+        userAllowedFeatures.push('aallowMenuShapeContainer');
+        userAllowedFeatures.push('aallowMenuShapeCopy');
+        userAllowedFeatures.push('aallowMenuShapeDuplicate');
+        userAllowedFeatures.push('aallowMenuShapeTitleEdit');
+        userAllowedFeatures.push('aallowMenuShapeHyperlinks');
+        userAllowedFeatures.push('aallowMenuShapeLockUnlock');
+        userAllowedFeatures.push('aallowMenuShapePaste');
+        userAllowedFeatures.push('aallowMenuShapeDelete');
+        userAllowedFeatures.push('aallowMenuShapeDeleteAll');
 
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
