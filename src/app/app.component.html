@@ -953,6 +953,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetNew()"
                                     title="Add a new Widget"
+                                    [disabled]="!allowMenuGraphAdd" 
                                     >
                                     Add Graph
                                 </button>
@@ -960,6 +961,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuNavigatorNew()"
                                     title="Add a new Navigator Widget"
+                                    [disabled]="!allowMenuNavigatorAdd" 
                                     [disabled]="!allowMenuNavigatorAdd" 
                                     >
                                     Add Navigator
@@ -982,6 +984,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetEdit()"
                                     title="Edit selected Widget"
+                                    [disabled]="!allowMenuGraphEdit" 
                                     >
                                     Edit Graph
                                 </button>
@@ -989,6 +992,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuNavigatorEdit()"
                                     title="Edit the selected Navigator Widget"
+                                    [disabled]="!allowMenuNavigatorEdit" 
                                     >
                                     Edit Navigator
                                 </button>
@@ -1011,6 +1015,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetContainer('Graph')"
                                     title="Change container properties for selected Widget"
+                                    [disabled]="!allowMenuGraphContainer" 
                                     >
                                     Container
                                 </button>
@@ -1018,6 +1023,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetDescription()"
                                     title="Description for the selected Widget"
+                                    [disabled]="!allowMenuGraphDescription" 
                                     >
                                     Description
                                 </button>
@@ -1025,6 +1031,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetEditTitle()"
                                     title="Edit title of selected Widget"
+                                    [disabled]="!allowMenuGraphTitleEdit" 
                                     >
                                     Edit Title
                                 </button>
@@ -1033,6 +1040,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetFullScreen()"
                                     title="Show the selected Widget in full screen"
+                                    [disabled]="!allowMenuGraphFullScreen" 
                                     >
                                     Full Screen
                                 </button>
@@ -1042,6 +1050,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetAnnotations()"
                                     title="Annotations for selected Widget"
+                                    [disabled]="!allowMenuGraphAnnotations" 
                                     >
                                     Annotations
                                 </button>
@@ -1049,6 +1058,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetCheckpoints()"
                                     title="Managing checkpoints for selected Widget"
+                                    [disabled]="!allowMenuGraphCheckpoints" 
                                     >
                                     Graph Checkpoints
                                 </button>
@@ -1056,12 +1066,14 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetComments()"
                                     title="Comments for selected Widget"
+                                    [disabled]="!allowMenuGraphComments" 
                                     >
                                     Comments
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
                                     (click)="clickMenuWidgetHyperlinks()"
+                                    [disabled]="!allowMenuGraphHyperlinks" 
                                     >
                                     Hyperlinks
                                 </button>
