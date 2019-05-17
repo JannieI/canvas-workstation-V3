@@ -313,6 +313,18 @@ export class AppComponent implements OnInit {
     allowMenuGraphDelete: boolean = false;
     allowMenuNavigatorDelete: boolean = false;
     
+    allowMenuTableAdd: boolean = false;
+    allowMenuTableEdit: boolean = false;
+    allowMenuTableComments: boolean = false;
+    allowMenuTableContainer: boolean = false;
+    allowMenuTableCrossFilter: boolean = false;
+    allowMenuTableDataQuality: boolean = false;
+    allowMenuTableExpand: boolean = false;
+    allowMenuTableExport: boolean = false;
+    allowMenuTableDuplicate: boolean = false;
+    allowMenuTableLockUnlock: boolean = false;
+    allowMenuTableDelete: boolean = false;
+
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
     combinationType: string;                    // Type passed to Combinations form
@@ -11326,6 +11338,18 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuGraphPaste');
         userAllowedFeatures.push('allowMenuGraphDelete');
         userAllowedFeatures.push('allowMenuNavigatorDelete');
+
+        userAllowedFeatures.push('allowMenuTableAdd');
+        userAllowedFeatures.push('allowMenuTableEdit');
+        userAllowedFeatures.push('allowMenuTableComments');
+        userAllowedFeatures.push('allowMenuTableContainer');
+        userAllowedFeatures.push('allowMenuTableCrossFilter');
+        userAllowedFeatures.push('allowMenuTableDataQuality');
+        userAllowedFeatures.push('allowMenuTableExpand');
+        userAllowedFeatures.push('allowMenuTableExport');
+        userAllowedFeatures.push('allowMenuTableDuplicate');
+        userAllowedFeatures.push('allowMenuTableLockUnlock');
+        userAllowedFeatures.push('allowMenuTableDelete');
 
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
