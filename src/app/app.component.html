@@ -717,6 +717,7 @@
                             clrDropdownItem
                             title="Edit Datasources"
                             (click)="clickMenuDataEditDatasource()"
+                            [disabled]="!allowMenuDatasourceEdit" 
                             >
                             Edit
                         </button>
@@ -727,6 +728,7 @@
                             clrDropdownItem
                             title="Datasource descriptive information, ie accessType"
                             (click)="clickMenuDataDatasourceDescription()"
+                            [disabled]="!allowMenuDatasourceDescriptions" 
                             >
                             Descriptions
                         </button>
@@ -737,6 +739,7 @@
                             clrDropdownItem
                             title="Show an overview of Datasources"
                             (click)="clickMenuDatasourceOverview()"
+                            [disabled]="!allowMenuDatasourceOverview" 
                             >
                             Overview
                         </button>
@@ -747,6 +750,7 @@
                             clrDropdownItem
                             title="Share permissions to Datasources with AccessLists"
                             (click)="clickMenuDataShare()"
+                            [disabled]="!allowMenuDatasourceShare" 
                             >
                             Share
                         </button>
@@ -760,6 +764,7 @@
                                 clrDropdownItem
                                 title="Add / Edit Networks (nodes and relationship structures)"
                                 (click)="clickMenuDataNetworks()"
+                                [disabled]="!allowMenuDatasourceNetworks" 
                                 >
                                 Networks
                             </button>
@@ -783,6 +788,7 @@
                                         clrDropdownItem
                                         title="Append selected Datasources below each other"
                                         (click)="clickMenuDataCombinationAppend()"
+                                        [disabled]="!allowMenuDatasourceCombinationsAppend" 
                                         >
                                         Append
                                     </button>
@@ -793,6 +799,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataCombinations('Join')"
                                         title="Join existing Datasources next to each other on a common field "
+                                        [disabled]="!allowMenuDatasourceCombinationsJoin" 
                                         >
                                         Join
                                     </button>
@@ -801,6 +808,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataCombinations('Intersection')"
                                         title="Show only rows in a Datasource where a key field exists in a second Datasource"
+                                        [disabled]="!allowMenuDatasourceCombinationsIntersection" 
                                         >
                                         Intersection
                                     </button>
@@ -809,6 +817,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataCombinations('Minus')"
                                         title="Show rows in a Datasource where a key field does NOT exist in a second Datasource"
+                                        [disabled]="!allowMenuDatasourceCombinationsMinusSubtract" 
                                         >
                                         Minus/Subtract
                                     </button>
@@ -823,6 +832,7 @@
                             clrDropdownItem
                             title="Show a summary of Data Usage Datasources (ie Dashboard where used)"
                             (click)="clickMenuDatasourceUsage()"
+                            [disabled]="!allowMenuDatasourceUsage" 
                             >
                             Usage
                         </button>
@@ -844,6 +854,7 @@
                                     clrDropdownItem
                                     title="Manage scheduled runs for this Datasource"
                                     (click)="clickMenuDatasourceScheduleEdit()"
+                                    [disabled]="!allowMenuDatasourceSchedulesManage" 
                                     >
                                     Manage
                                 </button>
@@ -852,6 +863,7 @@
                                     clrDropdownItem
                                     title="Shows all scheduled runs"
                                     (click)="clickMenuDatasourceSchedule()"
+                                    [disabled]="!allowMenuDatasourceSchedulesShowAll" 
                                     >
                                     Show All
                                 </button>
@@ -860,12 +872,12 @@
                                     clrDropdownItem
                                     title="Shows all scheduled runs"
                                     (click)="clickMenuDatasourceScheduleLog()"
+                                    [disabled]="!allowMenuDatasourceScheduleLogs" 
                                     >
                                     Schedule Logs
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-
 
                         <clr-dropdown>
                             <button
@@ -885,6 +897,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuDatasourceRefreshOnce()"
                                     title="Refresh all or some Datasources once off"
+                                    [disabled]="!allowMenuDatasourceRefreshOnce" 
                                     >
                                     Once
                                 </button>
@@ -893,6 +906,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuDatasourceRefreshRepeat()"
                                     title="Refresh Datasources for this Dashboard repeatedly"
+                                    [disabled]="!allowMenuDatasourceRefreshRepeat" 
                                     >
                                     Repeat
                                 </button>
@@ -906,6 +920,7 @@
                             clrDropdownItem
                             (click)="clickMenuDataDeleteDatasource()"
                             title="Shows a list of Datasources to delete from"
+                            [disabled]="!allowMenuDatasourceDelete" 
                             >
                             Delete
                         </button>
