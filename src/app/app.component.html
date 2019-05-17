@@ -615,6 +615,7 @@
                                         clrDropdownItem
                                         title="Manage Data Connections (to Databases, used in Datasources)"
                                         (click)="clickMenuDataManagedConnection()"
+                                        [disabled]="!allowMenuDatasourceCreateManagedConnections" 
                                         >
                                         Connections
                                     </button>
@@ -625,6 +626,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedQueryBuilder()"
                                         title="Create a new Datasources using Query Builder"
+                                        [disabled]="!allowMenuDatasourceCreateManagedQueryBuilder" 
                                         >
                                         New Query Builder
                                     </button>
@@ -633,6 +635,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedSQLEditor()"
                                         title="Create a new Datasources using the SQL Editor"
+                                        [disabled]="!allowMenuDatasourceCreateManagedSQL" 
                                         >
                                         New SQL Editor
                                     </button>
@@ -641,6 +644,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedGraphQLEditor()"
                                         title="Create a new Datasources using the GraphQL Editor"
+                                        [disabled]="!allowMenuDatasourceCreateManagedGraphQL" 
                                         >
                                         New GraphQL Editor
                                     </button>
@@ -649,6 +653,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedNoSQLEditor()"
                                         title="Create a new Datasources using the NoSQL query Editor"
+                                        [disabled]="!allowMenuDatasourceCreateManagedNoSQL" 
                                         >
                                         New NoSQL Editor
                                     </button>
@@ -657,6 +662,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedNeo4jEditor()"
                                         title="Create a new Datasources using the Neo4j Editor"
+                                        [disabled]="!allowMenuDatasourceCreateManagedNeo4j" 
                                         >
                                         New Ne04j Editor
                                     </button>
@@ -667,6 +673,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataBussGlossary()"
                                         title="Manage Business Glossary for Datasources"
+                                        [disabled]="!allowMenuDatasourceBusinessGlossary" 
                                         >
                                         Manage Business Glossary
                                     </button>
@@ -675,6 +682,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedDataDictionary()"
                                         title="Manage Data Dictionary for Datasources"
+                                        [disabled]="!allowMenuDatasourceDataDictionary" 
                                         >
                                         Manage Data Dictionary
                                     </button>
@@ -683,6 +691,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedDataOwnership()"
                                         title="Manage Data Ownership for Datasources"
+                                        [disabled]="!allowMenuDatasourceOwnership" 
                                         >
                                         Manage Data Ownership
                                     </button>
@@ -691,6 +700,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedDataQuality()"
                                         title="Manage Data Quality for Datasources"
+                                        [disabled]="!allowMenuDatasourceDataQuality" 
                                         >
                                         Manage Data Quality
                                     </button>
