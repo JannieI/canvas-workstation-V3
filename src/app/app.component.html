@@ -1404,6 +1404,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerAdd()"
                             title="Add a new Slicer"
+                            [disabled]="!allowMenuSlicerAdd" 
                             >
                             Add Slicer
                         </button>
@@ -1411,6 +1412,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerEdit()"
                             title="Edit selected Slicer"
+                            [disabled]="!allowMenuSlicerEdit" 
                             >
                             Edit Slicer
                         </button>
@@ -1420,6 +1422,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerComments()"
                             title="Comments for selected Slicer"
+                            [disabled]="!allowMenuSlicerComments" 
                             >
                             Comments
                         </button>
@@ -1427,6 +1430,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetContainer('Slicer')"
                             title="Change container properties for selected Slicer"
+                            [disabled]="!allowMenuSlicerContainer" 
                             >
                             Container
                         </button>
@@ -1434,6 +1438,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerDataQuality()"
                             title="Data quality for selected Slicer"
+                            [disabled]="!allowMenuSlicerDataQuality" 
                             >
                             Data Quality
                         </button>
@@ -1441,6 +1446,7 @@
                             clrDropdownItem
                             (click)="clickMenuPaletteDuplicate()"
                             title="Duplicate selected Slicer"
+                            [disabled]="!allowMenuSlicerDuplicate" 
                             >
                             Duplicate
                         </button>
@@ -1448,6 +1454,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerExpand()"
                             title="Expand Dataset for selected Slicer"
+                            [disabled]="!allowMenuSlicerExpand" 
                             >
                             Expand
                         </button>
@@ -1455,6 +1462,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerExport()"
                             title="Export Dataset for selected Slicer"
+                            [disabled]="!allowMenuSlicerExport" 
                             >
                             Export
                         </button>
@@ -1462,6 +1470,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetLockUnlock()"
                             title="Toggle Lock/UnLock for the selected Slicer"
+                            [disabled]="!allowMenuSlicerLockUnlock" 
                             >
                             Lock/UnLock
                         </button>
@@ -1471,6 +1480,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerDelete()"
                             title="Delete selected Slicer"
+                            [disabled]="!allowMenuSlicerDelete" 
                             >
                             Delete Slicer
                         </button>
