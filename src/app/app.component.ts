@@ -373,6 +373,15 @@ export class AppComponent implements OnInit {
     allowMenuArrangeSameVertically: boolean = false;
     allowMenuArrangeSameHorisontally: boolean = false;
     allowMenuArrangeSameBoth: boolean = false;
+    allowMenuHelpDemo: boolean = false;
+    allowMenuHelpGettingStarted: boolean = false;
+    allowMenuHelpGettingData: boolean = false;
+    allowMenuHelpCreatingDashboard: boolean = false;
+    allowMenuHelpCreatingWidget: boolean = false;
+    allowMenuHelpTransformingData: boolean = false;
+    allowMenuHelpTutorials: boolean = false;
+    allowMenuHelpDocumentation: boolean = false;
+    allowMenuHelpSupport: boolean = false;
 
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
@@ -11453,6 +11462,17 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuArrangeSameVertically');
         userAllowedFeatures.push('allowMenuArrangeSameHorisontally');
         userAllowedFeatures.push('allowMenuArrangeSameBoth');
+
+        userAllowedFeatures.push('allowMenuHelpDemo');
+        userAllowedFeatures.push('allowMenuHelpGettingStarted');
+        userAllowedFeatures.push('allowMenuHelpGettingData');
+        userAllowedFeatures.push('allowMenuHelpCreatingDashboard');
+        userAllowedFeatures.push('allowMenuHelpCreatingWidget');
+        userAllowedFeatures.push('allowMenuHelpTransformingData');
+        userAllowedFeatures.push('allowMenuHelpTutorials');
+        userAllowedFeatures.push('allowMenuHelpDocumentation');
+        userAllowedFeatures.push('allowMenuHelpSupport');
+
         
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
