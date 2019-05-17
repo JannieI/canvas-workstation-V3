@@ -1841,12 +1841,14 @@
                         <button type="button"
                             clrDropdownItem (click)="clickMenuArrangeGroup()"
                             title="Group selected Widgets"
+                            [disabled]="!allowMenuArrangeGroup" 
                             >
                             Group
                         </button>
                         <button type="button"
                             clrDropdownItem (click)="clickMenuArrangeUnGroup()"
                             title="Ungroup previosly selected Widgets"
+                            [disabled]="!allowMenuArrangeUngroup" 
                             >
                             Ungroup
                         </button>
@@ -1854,6 +1856,7 @@
                         <button type="button"
                             clrDropdownItem (click)="clickMenuArrangeDistributeHorisontal()"
                             title="Distribute selected Widgets horisontally"
+                            [disabled]="!allowMenuArrangeDistribute" 
                             >
                             Distribute
                             <clr-icon shape="two-way-arrows"></clr-icon>
@@ -1861,6 +1864,7 @@
                         <button type="button"
                             clrDropdownItem (click)="clickMenuArrangeDistributeVertical()"
                             title="Distribute selected Widgets vertically"
+                            [disabled]="!allowMenuArrangeDistribute" 
                             >
                             Distribute
                             <clr-icon shape="two-way-arrows right"></clr-icon>
@@ -1880,6 +1884,7 @@
                                 <button type="button"
                                     clrDropdownItem (click)="clickMenuArrangeSameSizeVertically()"
                                     title="Make selected Widgets the same size vertically"
+                                    [disabled]="!allowMenuArrangeSameVertically" 
                                     >
                                     Same vertically
                                 </button>
@@ -1887,6 +1892,7 @@
                                 <button type="button"
                                     clrDropdownItem (click)="clickMenuArrangeSameSizeHorisontally()"
                                     title="Make selected Widgets the same size horisontally"
+                                    [disabled]="!allowMenuArrangeSameHorisontally" 
                                     >
                                     Same horisontally
                                 </button>
@@ -1894,6 +1900,7 @@
                                 <button type="button"
                                     clrDropdownItem (click)="clickMenuArrangeSameSize()"
                                     title="Make selected Widgets the same size"
+                                    [disabled]="!allowMenuArrangeSameBoth" 
                                     >
                                     Same both
                                 </button>
