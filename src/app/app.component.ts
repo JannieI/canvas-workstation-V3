@@ -390,6 +390,15 @@ export class AppComponent implements OnInit {
     allowMenuActionsAddTask: boolean = false;
     allowMenuActionsDontDisturb: boolean = false;
     allowMenuActionsSystemMessages: boolean = false;
+    allowMenuSystemGroups: boolean = false;
+    allowMenuSystemMyPermissions: boolean = false;
+    allowMenuSystemMyProfile: boolean = false;
+    allowMenuSystemPaletteButtonBar: boolean = false;
+    allowMenuSystemPreferences: boolean = false;
+    allowMenuSystemUsers: boolean = false;
+    allowMenuSystemSettings: boolean = false;
+    allowMenuSystemLogin: boolean = false;
+    allowMenuSystemLogout: boolean = false;
 
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
@@ -11489,6 +11498,16 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuActionsAddTask')
         userAllowedFeatures.push('allowMenuActionsDontDisturb')
         userAllowedFeatures.push('allowMenuActionsSystemMessages')
+
+        userAllowedFeatures.push('allowMenuSystemGroups');
+        userAllowedFeatures.push('allowMenuSystemMyPermissions');
+        userAllowedFeatures.push('allowMenuSystemMyProfile');
+        userAllowedFeatures.push('allowMenuSystemPaletteButtonBar');
+        userAllowedFeatures.push('allowMenuSystemPreferences');
+        userAllowedFeatures.push('allowMenuSystemUsers');
+        userAllowedFeatures.push('allowMenuSystemSettings');
+        userAllowedFeatures.push('allowMenuSystemLogin');
+        userAllowedFeatures.push('allowMenuSystemLogout');
 
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
