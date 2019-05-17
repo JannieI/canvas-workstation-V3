@@ -346,6 +346,16 @@ export class AppComponent implements OnInit {
     allowMenuShapeDelete: boolean = false;
     allowMenuShapeDeleteAll: boolean = false;
 
+    allowMenuView: boolean = false;
+    allowMenuView: boolean = false;
+    allowMenuView: boolean = false;
+    allowMenuView: boolean = false;
+    allowMenuView: boolean = false;
+    allowMenuView: boolean = false;
+    allowMenuView: boolean = false;
+    allowMenuView: boolean = false;
+    allowMenuView: boolean = false;
+
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
     combinationType: string;                    // Type passed to Combinations form
@@ -11383,18 +11393,28 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuSlicerLockUnlock');
         userAllowedFeatures.push('allowMenuSlicerDelete');
 
-        userAllowedFeatures.push('aallowMenuShapeAdd');
-        userAllowedFeatures.push('aallowMenuShapeEdit');
-        userAllowedFeatures.push('aallowMenuShapeComments');
-        userAllowedFeatures.push('aallowMenuShapeContainer');
-        userAllowedFeatures.push('aallowMenuShapeCopy');
-        userAllowedFeatures.push('aallowMenuShapeDuplicate');
-        userAllowedFeatures.push('aallowMenuShapeTitleEdit');
-        userAllowedFeatures.push('aallowMenuShapeHyperlinks');
-        userAllowedFeatures.push('aallowMenuShapeLockUnlock');
-        userAllowedFeatures.push('aallowMenuShapePaste');
-        userAllowedFeatures.push('aallowMenuShapeDelete');
-        userAllowedFeatures.push('aallowMenuShapeDeleteAll');
+        userAllowedFeatures.push('allowMenuShapeAdd');
+        userAllowedFeatures.push('allowMenuShapeEdit');
+        userAllowedFeatures.push('allowMenuShapeComments');
+        userAllowedFeatures.push('allowMenuShapeContainer');
+        userAllowedFeatures.push('allowMenuShapeCopy');
+        userAllowedFeatures.push('allowMenuShapeDuplicate');
+        userAllowedFeatures.push('allowMenuShapeTitleEdit');
+        userAllowedFeatures.push('allowMenuShapeHyperlinks');
+        userAllowedFeatures.push('allowMenuShapeLockUnlock');
+        userAllowedFeatures.push('allowMenuShapePaste');
+        userAllowedFeatures.push('allowMenuShapeDelete');
+        userAllowedFeatures.push('allowMenuShapeDeleteAll');
+
+        userAllowedFeatures.push('allowMenuView')
+        userAllowedFeatures.push('allowMenuView')
+        userAllowedFeatures.push('allowMenuView')
+        userAllowedFeatures.push('allowMenuView')
+        userAllowedFeatures.push('allowMenuView')
+        userAllowedFeatures.push('allowMenuView')
+        userAllowedFeatures.push('allowMenuView')
+        userAllowedFeatures.push('allowMenuView')
+        userAllowedFeatures.push('allowMenuView')
 
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
