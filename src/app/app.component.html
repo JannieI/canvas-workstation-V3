@@ -2111,7 +2111,7 @@
                         (click)="clickMenuGroups()"
                         title="Show Groups with its users"
                         [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
+                        [disabled] = "!allowMenuSystem"
                         >
                         Groups
                     </button>
@@ -2120,7 +2120,7 @@
                         (click)="clickMenuUserMyPermissions()"
                         title="Show my Permissions"
                         [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
+                        [disabled] = "!allowMenuSystem"
                         >
                         My Permissions
                     </button>
@@ -2129,7 +2129,7 @@
                         (click)="clickMenuUserMyProfile()"
                         title="Show my profile"
                         [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
+                        [disabled] = "!allowMenuSystem"
                         >
                         My Profile
                     </button>
@@ -2138,7 +2138,7 @@
                         (click)="clickMenuUserPaletteButtonBar()"
                         title="Manage Palette ButtonBar"
                         [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
+                        [disabled] = "!allowMenuSystem"
                         >
                         Palette ButtonBar
                     </button>
@@ -2147,7 +2147,7 @@
                         (click)="clickMenuUserPreferences()"
                         title="Show my Preferences"
                         [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
+                        [disabled] = "!allowMenuSystem"
                         >
                         Preferences
                     </button>
@@ -2156,7 +2156,7 @@
                         (click)="clickMenuUsers()"
                         title="Show Users with its groups"
                         [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
+                        [disabled] = "!allowMenuSystem"
                         >
                         Users
                     </button>
@@ -2165,7 +2165,7 @@
                         (click)="clickMenuUserSystemSettings()"
                         title="Show System Settings"
                         [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
+                        [disabled] = "!allowMenuSystem"
                         >
                         System Settings
                     </button>
@@ -2175,7 +2175,7 @@
                         clrDropdownItem
                         title="Log out of Canvas"
                         [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
+                        [disabled] = "!allowMenuSystem"
                         (click)="clickMenuUserLogin()"
                         >
                         Login
@@ -2185,7 +2185,7 @@
                         clrDropdownItem
                         title="Log out of Canvas"
                         [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
+                        [disabled] = "!allowMenuSystem"
                         (click)="clickMenuUserLogout()"
                         >
                         Log out
