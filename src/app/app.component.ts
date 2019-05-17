@@ -382,6 +382,14 @@ export class AppComponent implements OnInit {
     allowMenuHelpTutorials: boolean = false;
     allowMenuHelpDocumentation: boolean = false;
     allowMenuHelpSupport: boolean = false;
+    allowMenuActionsShowAuditTrails: boolean = false;
+    allowMenuActionsShowMessages: boolean = false;
+    allowMenuActionsShowTasks: boolean = false;
+    allowMenuActionsSendMessage: boolean = false;
+    allowMenuActionsSendEmail: boolean = false;
+    allowMenuActionsAddTask: boolean = false;
+    allowMenuActionsDontDisturb: boolean = false;
+    allowMenuActionsSystemMessages: boolean = false;
 
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
@@ -11473,7 +11481,15 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuHelpDocumentation');
         userAllowedFeatures.push('allowMenuHelpSupport');
 
-        
+        userAllowedFeatures.push('allowMenuActionsShowAuditTrails')
+        userAllowedFeatures.push('allowMenuActionsShowMessages')
+        userAllowedFeatures.push('allowMenuActionsShowTasks')
+        userAllowedFeatures.push('allowMenuActionsSendMessage')
+        userAllowedFeatures.push('allowMenuActionsSendEmail')
+        userAllowedFeatures.push('allowMenuActionsAddTask')
+        userAllowedFeatures.push('allowMenuActionsDontDisturb')
+        userAllowedFeatures.push('allowMenuActionsSystemMessages')
+
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
         let test: string = 'allowNavigatorAdd111';
