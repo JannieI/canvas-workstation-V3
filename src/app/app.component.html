@@ -36,7 +36,7 @@
                             clrDropdownItem
                             (click)="clickMenuEditMode()"
                             title="Enable EditMode to make changes"
-                            [disabled]="!allowMenuEditMode" 
+                            [disabled]="!allowEditMode" 
                             >
                             {{ editMenuText }}
                         </button>
@@ -46,7 +46,7 @@
                             clrDropdownItem
                             title="Undo previous action"
                             (click)="clickMenuEditUndo()"
-                            [disabled]="!allowMenuEditUndo" 
+                            [disabled]="!allowEditUndo" 
                             >
                             Undo (Ctrl-Z)
                         </button>
@@ -54,7 +54,7 @@
                             clrDropdownItem
                             title="Redo previous action"
                             (click)="clickMenuEditRedo()"
-                            [disabled]="!allowMenuEditRedo" 
+                            [disabled]="!allowEditRedo" 
                             >
                             Redo (Ctrl-Y)
                         </button>
@@ -64,7 +64,7 @@
                             clrDropdownItem
                             title="Select all the Widgets on this Tab"
                             (click)="clickMenuEditSelectAllNone('All')"
-                            [disabled]="!allowMenuSelectAll" 
+                            [disabled]="!allowSelectAll" 
                             >
                             Select All
                         </button>
@@ -72,7 +72,7 @@
                             clrDropdownItem
                             title="UnSelect all the Widgets on this Tab"
                             (click)="clickMenuEditSelectAllNone('None')"
-                            [disabled]="!allowMenuSelectNone" 
+                            [disabled]="!allowSelectNone" 
                             >
                             Select None
                         </button>
@@ -92,7 +92,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuEditContainerStylesAdd()"
                                     title="Add a new container style"
-                                    [disabled]="!allowMenuContainerStylesAdd" 
+                                    [disabled]="!allowContainerStylesAdd" 
                                     >
                                     Add
                                 </button>
@@ -100,7 +100,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuEditContainerStylesEdit()"
                                     title="Edit or Delete an existing container style"
-                                    [disabled]="!allowMenuContainerStylesEdit" 
+                                    [disabled]="!allowContainerStylesEdit" 
                                     >
                                     Edit / Delete
                                 </button>
@@ -110,7 +110,7 @@
                             clrDropdownItem
                             title="Manage Colours to be used in Widgets in Canvas"
                             (click)="clickMenuEditManageColours('None')"
-                            [disabled]="!allowMenuManageColours" 
+                            [disabled]="!allowManageColours" 
                             >
                             Manage Colours
                         </button>
@@ -134,7 +134,7 @@
                             clrDropdownItem
                             title="Add a new Dashboard"
                             (click)="clickDashboardNew()"
-                            [disabled]="!allowMenuDashboardNew" 
+                            [disabled]="!allowDashboardNew" 
                             >
                             Add Dashboard
                         </button>
@@ -145,7 +145,7 @@
                                 clrDropdownTrigger
                                 title="Show recently opened Dashboards"
                                 (click)="clickRecentDashboard()"
-                                [disabled]="!allowMenuDashboardRecent" 
+                                [disabled]="!allowDashboardRecent" 
                                 >
                                 Recent
                             </button>
@@ -180,7 +180,7 @@
                                     clrDropdownItem
                                     title="Open a Dashboard"
                                     (click)="clickDashboardOpen()"
-                                    [disabled]="!allowMenuDashboardOpen" 
+                                    [disabled]="!allowDashboardOpen" 
                                     >
                                     Existing Dashboard
                                 </button>
@@ -193,7 +193,7 @@
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
                                 title="Submenu with more options"
-                                [disabled]="!allowMenuDashboardDetails" 
+                                [disabled]="!allowDashboardDetails" 
                                 >
                                 Details
                             </button>
@@ -204,7 +204,7 @@
                                     clrDropdownItem
                                     title="See and add Comments for this Dashboard"
                                     (click)="clickMenuDashboardDetailComments()"
-                                    [disabled]="!allowMenuDashboardComments" 
+                                    [disabled]="!allowDashboardComments" 
                                     >
                                     Comments
                                 </button>
@@ -212,7 +212,7 @@
                                     clrDropdownItem
                                     title="Edit Dashboard Description details"
                                     (click)="clickMenuDashboardDetailDescription()"
-                                    [disabled]="!allowMenuDashboardDescription" 
+                                    [disabled]="!allowDashboardDescription" 
                                     >
                                     Descripton
                                 </button>
@@ -221,7 +221,7 @@
                                     clrDropdownItem
                                     title="View Data Quality issues for this Dashboard"
                                     (click)="clickMenuDashboardDetailDataQuality()"
-                                    [disabled]="!allowMenuDashboardDataQuality" 
+                                    [disabled]="!allowDashboardDataQuality" 
                                     >
                                     Data Quality
                                 </button>
@@ -229,7 +229,7 @@
                                     clrDropdownItem
                                     title="Mark/UnMark this Dashboard as a favourite"
                                     (click)="clickMenuDashboardDetailFavourite()"
-                                    [disabled]="!allowMenuDashboardFavourite" 
+                                    [disabled]="!allowDashboardFavourite" 
                                     >
                                     Favourite
                                     <clr-icon
@@ -243,7 +243,7 @@
                                     clrDropdownItem
                                     title="Manage tags for this Dashboard"
                                     (click)="clickMenuDashboardDetailTags()"
-                                    [disabled]="!allowMenuDashboardTags" 
+                                    [disabled]="!allowDashboardTags" 
                                     >
                                     Tags
                                 </button>
@@ -252,7 +252,7 @@
                                     clrDropdownItem
                                     title="Add/Delete a template for this Dashboard"
                                     (click)="clickMenuDashboardDetailTemplate()"
-                                    [disabled]="!allowMenuDashboardTemplates" 
+                                    [disabled]="!allowDashboardTemplates" 
                                     >
                                     Template
                                 </button>
@@ -261,7 +261,7 @@
                                     clrDropdownItem
                                     title="Manage Dashboard theme"
                                     (click)="clickMenuDashboardDetailTheme()"
-                                    [disabled]="!allowMenuDashboardThemes" 
+                                    [disabled]="!allowDashboardThemes" 
                                     >
                                     Theme
                                 </button>
@@ -270,7 +270,7 @@
                                     clrDropdownItem
                                     title="Show usage stats for this Dashboard"
                                     (click)="clickMenuDashboardUsageStats()"
-                                    [disabled]="!allowMenuDashboardUsageStats" 
+                                    [disabled]="!allowDashboardUsageStats" 
                                     >
                                     Usage Stats
                                 </button>
@@ -292,7 +292,7 @@
                                     clrDropdownItem
                                     title="Save the current Draft Dashboard (to the original)"
                                     (click)="clickDashboardSave()"
-                                    [disabled]="!allowMenuDashboardSave" 
+                                    [disabled]="!allowDashboardSave" 
                                     >
                                     Save
                                 </button>
@@ -300,7 +300,7 @@
                                     clrDropdownItem
                                     title="Save the current Dashboard under a new name (copy)"
                                     (click)="clickDashboardSaveAs()"
-                                    [disabled]="!allowMenuDashboardSaveAs" 
+                                    [disabled]="!allowDashboardSaveAs" 
                                     >
                                     Save As
                                 </button>
@@ -308,7 +308,7 @@
                                     clrDropdownItem
                                     title="Export the current Dashboard to a text file"
                                     (click)="clickDashboardExport()"
-                                    [disabled]="!allowMenuDashboardExport" 
+                                    [disabled]="!allowDashboardExport" 
                                     >
                                     Export
                                 </button>
@@ -318,7 +318,7 @@
                                     clrDropdownItem
                                     title="Rename an existing Dashboard"
                                     (click)="clickDashboardRename()"
-                                    [disabled]="!allowMenuDashboardRename" 
+                                    [disabled]="!allowDashboardRename" 
                                     >
                                     Rename
                                 </button>
@@ -328,7 +328,7 @@
                                     clrDropdownItem
                                     title="Discard changes to the current Dashboard"
                                     (click)="clickDashboardDiscard()"
-                                    [disabled]="!allowMenuDashboardDiscard" 
+                                    [disabled]="!allowDashboardDiscard" 
                                     >
                                     Discard
                                 </button>
@@ -338,7 +338,7 @@
                             clrDropdownItem
                             title="Share access to a Dashboard"
                             (click)="clickDashboardShare()"
-                            [disabled]="!allowMenuDashboardShare" 
+                            [disabled]="!allowDashboardShare" 
                             >
                             Share
                         </button>
@@ -346,7 +346,7 @@
                             clrDropdownItem
                             title="Manage Snapshots of the current Dashboard"
                             (click)="clickDashboardSnapshots()"
-                            [disabled]="!allowMenuDashboardSnapshots" 
+                            [disabled]="!allowDashboardSnapshots" 
                             >
                             Snapshots
                         </button>
@@ -366,7 +366,7 @@
                                     clrDropdownItem
                                     title="Manage scheduled runs for this Dashboard"
                                     (click)="clickMenuDashboardScheduleEdit()"
-                                    [disabled]="!allowMenuDashboardSchedulesManage" 
+                                    [disabled]="!allowDashboardSchedulesManage" 
                                     >
                                     Manage
                                 </button>
@@ -375,7 +375,7 @@
                                     clrDropdownItem
                                     title="Shows all scheduled runs"
                                     (click)="clickMenuDashboardSchedule()"
-                                    [disabled]="!allowMenuDashboardSchedulesShowAll" 
+                                    [disabled]="!allowDashboardSchedulesShowAll" 
                                     >
                                     Show All
                                 </button>
@@ -384,7 +384,7 @@
                                     clrDropdownItem
                                     title="Shows all scheduled runs"
                                     (click)="clickMenuDashboardScheduleLog()"
-                                    [disabled]="!allowMenuDashboardScheduleLog" 
+                                    [disabled]="!allowDashboardScheduleLog" 
                                     >
                                     Schedule Log
                                 </button>
@@ -395,7 +395,7 @@
                                     (click)="clickMenuDashboardSubscribe()"
                                     title="Manage Subscriptions"
                                     [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                                    [disabled]="!allowMenuDashboardSubscribe" 
+                                    [disabled]="!allowDashboardSubscribe" 
                                     >
                                     Subscribe
                                 </button>
@@ -408,7 +408,7 @@
                             clrDropdownItem
                             title="Print the current Dashboard"
                             (click)="clickMenuDashboardPrint()"
-                            [disabled]="!allowMenuDashboardPrint" 
+                            [disabled]="!allowDashboardPrint" 
                             >
                             Print
                         </button>
@@ -419,7 +419,7 @@
                             clrDropdownItem
                             title="Delete the current Dashboard"
                             (click)="clickMenuDashboardDelete()"
-                            [disabled]="!allowMenuDashboardDelete" 
+                            [disabled]="!allowDashboardDelete" 
                             >
                             Delete
                         </button>
@@ -429,7 +429,7 @@
                             clrDropdownItem
                             title="Delete multiple Dashboards"
                             (click)="clickMenuDashboardDeleteBulk()"
-                            [disabled]="!allowMenuDashboardDeleteBulk" 
+                            [disabled]="!allowDashboardDeleteBulk" 
                             >
                             Bulk Delete
                         </button>
@@ -923,7 +923,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuNavigatorNew()"
                                     title="Add a new Navigator Widget"
-                                    [disabled]="!allowMenuNavigatorAdd" 
+                                    [disabled]="!allowNavigatorAdd" 
                                     >
                                     Add Navigator
                                 </button>
