@@ -1271,6 +1271,7 @@
                             clrDropdownItem
                             (click)="clickMenuTableAdd()"
                             title="Add a new Table"
+                            [disabled]="!allowMenuTableAdd" 
                             >
                             Add Table
                         </button>
@@ -1278,10 +1279,10 @@
                             clrDropdownItem
                             (click)="clickMenuTableEdit()"
                             title="Edit selected Table"
+                            [disabled]="!allowMenuTableEdit" 
                             >
                             Edit Table
                         </button>
-
 
                         <clr-dropdown>
                             <button
@@ -1298,6 +1299,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuTableComments()"
                                     title="Comments for selected Table"
+                                    [disabled]="!allowMenuTableComments" 
                                     >
                                     Comments
                                 </button>
@@ -1305,6 +1307,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetContainer('Table')"
                                     title="Change container properties for selected Table"
+                                    [disabled]="!allowMenuTableContainer" 
                                     >
                                     Container
                                 </button>
@@ -1325,6 +1328,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetCrossFilter()"
                                     title="Define a cross filter for selected Widget"
+                                    [disabled]="!allowMenuTableCrossFilter" 
                                     >
                                     Cross Filter
                                 </button>
@@ -1333,6 +1337,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuTableDataQuality()"
                                     title="Data quality issues for selected Table"
+                                    [disabled]="!allowMenuTableDataQuality" 
                                     >
                                     Data Quality
                                 </button>
@@ -1340,6 +1345,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuTableExpand()"
                                     title="Expand Dataset for selected Table"
+                                    [disabled]="!allowMenuTableExpand" 
                                     >
                                     Expand
                                 </button>
@@ -1347,6 +1353,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuTableExport()"
                                     title="Export Dataset for selected Table"
+                                    [disabled]="!allowMenuTableExport" 
                                     >
                                     Export
                                 </button>
@@ -1357,6 +1364,7 @@
                             clrDropdownItem
                             (click)="clickMenuPaletteDuplicate()"
                             title="Duplicate selected Table"
+                            [disabled]="!allowMenuTableDuplicate" 
                             >
                             Duplicate
                         </button>
@@ -1364,6 +1372,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetLockUnlock()"
                             title="Toggle Lock/UnLock for the selected Table"
+                            [disabled]="!allowMenuTableLockUnlock" 
                             >
                             Lock/UnLock
                         </button>
@@ -1372,6 +1381,7 @@
                             clrDropdownItem
                             (click)="clickMenuTableDelete()"
                             title="Delete selected Table"
+                            [disabled]="!allowMenuTableDelete" 
                             >
                             Delete Table
                         </button>
