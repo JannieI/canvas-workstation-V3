@@ -467,6 +467,7 @@
                                         clrDropdownItem
                                         title="Create a new Datasources using the SQL Editor"
                                         (click)="clickMenuDataCreateSQLEditor()"
+                                        [disabled]="!allowMenuDatasourceCreate" 
                                         >
                                         Using SQL Editor
                                     </button>
@@ -491,6 +492,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a Comma Separated Value TEXT file"
                                     (click)="clickMenuDataDirectFileCSV()"
+                                    [disabled]="!allowMenuDatasourceCreateCSV" 
                                     >
                                     From CSV File
                                 </button>
@@ -499,6 +501,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a JSON TEXT file"
                                     (click)="clickMenuDataDirectFileJSON()"
+                                    [disabled]="!allowMenuDatasourceCreateJSON" 
                                     >
                                     From JSON File
                                 </button>
@@ -507,6 +510,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a Spreadsheet"
                                     (click)="clickMenuDataDirectFileSpreadsheet()"
+                                    [disabled]="!allowMenuDatasourceCreateSpeadsheet" 
                                     >
                                     From Spreadsheet
                                 </button>
@@ -515,6 +519,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a Google Sheets Spreadsheet"
                                     (click)="clickMenuDataDirectGoogleSheets()"
+                                    [disabled]="!allowMenuDatasourceCreateGoogleSheets" 
                                     >
                                     From Google Sheets
                                 </button>
@@ -525,6 +530,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a SQL Database using the Query Builder"
                                     (click)="clickMenuDataDirectQueryBuilder()"
+                                    [disabled]="!allowMenuDatasourceCreateQueryBuilder" 
                                     >
                                     From SQL Database (QB)
                                 </button>
@@ -533,6 +539,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a SQL Database using SQL statements in the Editor"
                                     (click)="clickMenuDataDirectSQLEditor()"
+                                    [disabled]="!allowMenuDatasourceCreateDirectSQL" 
                                     >
                                     Using SQL Editor
                                 </button>
@@ -541,6 +548,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a NoSQL Database"
                                     (click)="clickMenuDataDirectNoSQL()"
+                                    [disabled]="!allowMenuDatasourceCreateDirectNoSQL" 
                                     >
                                     From NoSQL Database
                                 </button>
@@ -549,6 +557,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuDataDirectService()"
                                     title="Create a new Datasources from a Service"
+                                    [disabled]="!allowMenuDatasourceCreateDirectService" 
                                     >
                                     From Service
                                 </button>
@@ -557,6 +566,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuDataDirectWeb()"
                                     title="Create a new Datasources from a web page"
+                                    [disabled]="!allowMenuDatasourceCreateDirectWeb" 
                                     >
                                     From Web
                                 </button>
@@ -567,6 +577,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuDataDirectImport()"
                                     title="Import a new Datasources from an external file"
+                                    [disabled]="!allowMenuDatasourceCreateDirectImport" 
                                     >
                                     Import
                                 </button>
@@ -575,6 +586,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuDataDirectExport()"
                                     title="Export a Datasources to an external file"
+                                    [disabled]="!allowMenuDatasourceCreateDirectExport" 
                                     >
                                     Export
                                 </button>
