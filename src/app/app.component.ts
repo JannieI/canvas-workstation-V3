@@ -212,6 +212,15 @@ export class AppComponent implements OnInit {
     }
 
     allowNavigatorAdd: boolean = false;
+    allowEditMode: boolean = false;
+    allowEditUndo: boolean = false;
+    allowEditRedo: boolean = false;
+    allowSelectAll: boolean = false;
+    allowSelectNone: boolean = false;
+    allowContainerStylesAdd: boolean = false;
+    allowContainerStylesEdit: boolean = false;
+    allowManageColours: boolean = false;
+
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
     combinationType: string;                    // Type passed to Combinations form
@@ -11119,6 +11128,18 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'setFeatures', '@Start');
 
         // Activate the menu options
+
+        // TODO - Fix this !!!
+        let userAllowedFeatures: string[] = [];
+        userAllowedFeatures.push('allowEditMode');
+        userAllowedFeatures.push('allowEditUndo');
+        userAllowedFeatures.push('allowEditRedo');
+        userAllowedFeatures.push('allowSelectAll');
+        userAllowedFeatures.push('allowSelectNone');
+        userAllowedFeatures.push('allowContainerStylesAdd');
+        userAllowedFeatures.push('allowContainerStylesEdit');
+        userAllowedFeatures.push('allowManageColours');
+
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
         let test: string = 'allowNavigatorAdd111';
