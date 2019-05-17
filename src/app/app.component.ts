@@ -246,6 +246,44 @@ export class AppComponent implements OnInit {
     allowMenuDashboardPrint: boolean = false;
     allowMenuDashboardDelete: boolean = false;
     allowMenuDashboardDeleteBulk: boolean = false;
+    allowMenuDatasourceCreate: boolean = false;
+    allowMenuDatasourceCreateCSV: boolean = false;
+    allowMenuDatasourceCreateJSON: boolean = false;
+    allowMenuDatasourceCreateSpeadsheet: boolean = false;
+    allowMenuDatasourceCreateGoogleSheets: boolean = false;
+    allowMenuDatasourceCreateQueryBuilder: boolean = false;
+    allowMenuDatasourceCreateDirectSQL: boolean = false;
+    allowMenuDatasourceCreateDirectNoSQL: boolean = false;
+    allowMenuDatasourceCreateDirectService: boolean = false;
+    allowMenuDatasourceCreateDirectWeb: boolean = false;
+    allowMenuDatasourceCreateDirectImport: boolean = false;
+    allowMenuDatasourceCreateDirectExport: boolean = false;
+    allowMenuDatasourceCreateManagedConnections: boolean = false;
+    allowMenuDatasourceCreateManagedQueryBuilder: boolean = false;
+    allowMenuDatasourceCreateManagedSQL: boolean = false;
+    allowMenuDatasourceCreateManagedGraphQL: boolean = false;
+    allowMenuDatasourceCreateManagedNoSQL: boolean = false;
+    allowMenuDatasourceCreateManagedNeo4j: boolean = false;
+    allowMenuDatasourceBusinessGlossary: boolean = false;
+    allowMenuDatasourceDataDictionary: boolean = false;
+    allowMenuDatasourceOwnership: boolean = false;
+    allowMenuDatasourceDataQuality: boolean = false;
+    allowMenuDatasourceEdit: boolean = false;
+    allowMenuDatasourceDescriptions: boolean = false;
+    allowMenuDatasourceOverview: boolean = false;
+    allowMenuDatasourceShare: boolean = false;
+    allowMenuDatasourceNetworks: boolean = false;
+    allowMenuDatasourceCombinationsAppend: boolean = false;
+    allowMenuDatasourceCombinationsJoin: boolean = false;
+    allowMenuDatasourceCombinationsIntersection: boolean = false;
+    allowMenuDatasourceCombinationsMinusSubtract: boolean = false;
+    allowMenuDatasourceUsage: boolean = false;
+    allowMenuDatasourceSchedulesManage: boolean = false;
+    allowMenuDatasourceSchedulesShowAll: boolean = false;
+    allowMenuDatasourceScheduleLogs: boolean = false;
+    allowMenuDatasourceRefreshOnce: boolean = false;
+    allowMenuDatasourceRefreshRepeat: boolean = false;
+    allowMenuDatasourceDelete: boolean = false;
 
     canSave: boolean = true;                    // False when Explore menu option on Graph
     changedWidgetSubscription: Subscription;    // Observable
@@ -11193,7 +11231,46 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuDashboardDelete');
         userAllowedFeatures.push('allowMenuDashboardDeleteBulk');
 
-        
+        userAllowedFeatures.push('allowMenuDatasourceCreate');
+        userAllowedFeatures.push('allowMenuDatasourceCreateCSV');
+        userAllowedFeatures.push('allowMenuDatasourceCreateJSON');
+        userAllowedFeatures.push('allowMenuDatasourceCreateSpeadsheet');
+        userAllowedFeatures.push('allowMenuDatasourceCreateGoogleSheets');
+        userAllowedFeatures.push('allowMenuDatasourceCreateQueryBuilder');
+        userAllowedFeatures.push('allowMenuDatasourceCreateDirectSQL');
+        userAllowedFeatures.push('allowMenuDatasourceCreateDirectNoSQL');
+        userAllowedFeatures.push('allowMenuDatasourceCreateDirectService');
+        userAllowedFeatures.push('allowMenuDatasourceCreateDirectWeb');
+        userAllowedFeatures.push('allowMenuDatasourceCreateDirectImport');
+        userAllowedFeatures.push('allowMenuDatasourceCreateDirectExport');
+        userAllowedFeatures.push('allowMenuDatasourceCreateManagedConnections');
+        userAllowedFeatures.push('allowMenuDatasourceCreateManagedQueryBuilder');
+        userAllowedFeatures.push('allowMenuDatasourceCreateManagedSQL');
+        userAllowedFeatures.push('allowMenuDatasourceCreateManagedGraphQL');
+        userAllowedFeatures.push('allowMenuDatasourceCreateManagedNoSQL');
+        userAllowedFeatures.push('allowMenuDatasourceCreateManagedNeo4j');
+        userAllowedFeatures.push('allowMenuDatasourceBusinessGlossary');
+        userAllowedFeatures.push('allowMenuDatasourceDataDictionary');
+        userAllowedFeatures.push('allowMenuDatasourceOwnership');
+        userAllowedFeatures.push('allowMenuDatasourceDataQuality');
+        userAllowedFeatures.push('allowMenuDatasourceEdit');
+        userAllowedFeatures.push('allowMenuDatasourceDescriptions');
+        userAllowedFeatures.push('allowMenuDatasourceOverview');
+        userAllowedFeatures.push('allowMenuDatasourceShare');
+        userAllowedFeatures.push('allowMenuDatasourceNetworks');
+        userAllowedFeatures.push('allowMenuDatasourceCombinationsAppend');
+        userAllowedFeatures.push('allowMenuDatasourceCombinationsJoin');
+        userAllowedFeatures.push('allowMenuDatasourceCombinationsIntersection');
+        userAllowedFeatures.push('allowMenuDatasourceCombinationsMinusSubtract');
+        userAllowedFeatures.push('allowMenuDatasourceUsage');
+        userAllowedFeatures.push('allowMenuDatasourceSchedulesManage');
+        userAllowedFeatures.push('allowMenuDatasourceSchedulesShowAll');
+        userAllowedFeatures.push('allowMenuDatasourceScheduleLogs');
+        userAllowedFeatures.push('allowMenuDatasourceRefreshOnce');
+        userAllowedFeatures.push('allowMenuDatasourceRefreshRepeat');
+        userAllowedFeatures.push('allowMenuDatasourceDelete');
+
+
         this['allowNavigatorAdd'] = true;
         console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
         let test: string = 'allowNavigatorAdd111';
