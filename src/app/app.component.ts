@@ -11114,6 +11114,19 @@ export class AppComponent implements OnInit {
         });
     }
 
+    setFeatures() {
+        // Toggles Menu Option (disables/not) based on license
+        this.globalFunctionService.printToConsole(this.constructor.name, 'setFeatures', '@Start');
+
+        // Activate the menu options
+        this['allowNavigatorAdd'] = true;
+        console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
+        let test: string = 'allowNavigatorAdd';
+        this[test] = false;
+        console.log('xx allowNavigatorAdd 2', this.allowNavigatorAdd)
+        
+        
+    }
 }
 
 // Naming conventions
