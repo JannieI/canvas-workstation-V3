@@ -714,21 +714,21 @@ export class WidgetNavigatorComponent {
         // Add to available
         this.ngWatchListNodesToAdd.push(selectedNode);
                 
-        // Remove from Watchlist Node
+        // Remove from Watchlist Nodes
         let watchListsIndex: number = this.ngWatchLists
             .findIndex(wln => wln.nodeType === this.selectedWatchListNodeType);
         let watchListsNodeSubIndex: number = -1;
         if (watchListsIndex >= 0) {
             watchListsNodeSubIndex = this.ngWatchLists[watchListsIndex].nodes
-                .findIndex(wln => wln === this.selectedWatchListNodeType);
-        if (watchListsIndex >= 0) {
-            this.ngWatchLists.splice(watchListsIndex, 1);
+                .findIndex(wln => wln === selectedNode);
+        if (watchListsNodeSubIndex >= 0) {
+            this.ngWatchLists[watchListsIndex].nodes.splice(watchListsNodeSubIndex, 1);
         };
 
         // Update the Node types if that was the last one
         if (this.ngWatchListNodes.length == 0) {
             let watchListNodeTypeIndex: number = this.ngWatchListNodeTypes
-                .findIndex(wln => wln === selectedNode);
+                .findIndex(wln => wln === this.selectedWatchListNodeType);
                 
             if (watchListNodeTypeIndex >= 0) {
 
@@ -743,6 +743,7 @@ export class WidgetNavigatorComponent {
 
                 // Reselect the Node Type
                 this.selectedWatchListNodeType = '';
+                this.ngWatchListNodes = [];
                 if (this.ngWatchListNodeTypes.length > 0) {
                     this.clickWatchListNodeType(0, this.ngWatchListNodeTypes[0]);
                 };
