@@ -71,6 +71,7 @@ export class WidgetNavigatorComponent {
     ngNetworks: NavigatorNetwork[] = [];                // All Networks (DS with isNetwork = True)
     ngWatchLists: NavigatorWatchList[] = [];            // Watchlists defined by the user
     ngWatchListNodeTypes: string[] = [];                // Unique Node Types per Watchlist
+    ngWatchListNodeTypesToAdd: string[] = [];           // Unique Node Types that can be added per Watchlist
     ngWatchListNodes: string[] = [];                    // Unique Nodes per Watchlist
     
     ngHistory: NavigatorHistory[] = [];                 // History for current network
@@ -211,23 +212,6 @@ export class WidgetNavigatorComponent {
 
         // Populate persisted data - TODO via DB
         this.tempCreateDummyData();
-
-        // Create arays for HTML
-        this.ngWatchListNodeTypes = this.ngWatchLists
-            .map(x => x.nodeType)
-            .sort( (a,b) => {
-                if (a > b) {
-                    return 1;
-                };
-                if (a < b) {
-                    return -1;
-                };
-                return 0;
-            });
-
-        if (this.ngWatchListNodeTypes.length > 0) {
-            this.clickWatchListNodeType(0, this.ngWatchListNodeTypes[0]);
-        };
     
         // Read Networks from DB
         this.globalVariableService.getResource('navigatorNetworks')
@@ -468,8 +452,13 @@ export class WidgetNavigatorComponent {
                     this.ngDropdownParentNodeTypes = this.distinctNodeTypes();
                     this.ngDropdownParentNodeTypes = ['', ...this.ngDropdownParentNodeTypes];
 
+                    // Set selected Network
                     this.selectedNetworkPropertiesID = this.ngNetworks[index].propertiesDatasourceID;
 
+                    // Set WatchList Node Types
+                    this.ngWatchListNodeTypesToAdd = this.ngDropdownParentNodeTypes
+                        .filter
+                    // Get the data
                     this.globalVariableService.getData(
                         'datasourceID=' + this.selectedNetworkPropertiesID.toString()
                     )
@@ -3251,6 +3240,14 @@ console.log('xx this.specification', this.specification)
             userID: 'JannieI',
             nodeType: 'Person',
             nodes: ['Rene van Wyke', 'Abigale Israel']
+        };
+        this.ngWatchLists.push(watchListNew);
+        watchListNew =
+        {
+            id: 3,
+            userID: 'JenS',
+            nodeType: 'Person',
+            nodes: ['Gubba Chunior']
         };
         this.ngWatchLists.push(watchListNew);
 
