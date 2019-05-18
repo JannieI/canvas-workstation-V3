@@ -1081,7 +1081,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             <div *ngFor="let row of ngWatchListNodes; let i = index"
                 >
                 <clr-icon shape="trash" class="selectIcon1" size="12"
-                    (dblclick)="dblclickWatchListNode(i, row)"
+                    (click)="clickWatchListNode(i, row)" 
                     >
                 </clr-icon>
                 {{ row }}

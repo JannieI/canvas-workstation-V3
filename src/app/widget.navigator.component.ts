@@ -588,16 +588,20 @@ export class WidgetNavigatorComponent {
         };
     }
 
-    dblclickWatchListNode(index: number, selectedNodeType: string) {
-        // Dbl Clicked a WatchList Node
-        this.globalFunctionService.printToConsole(this.constructor.name, 'dblclickWatchListNode', '@Start');
+    clickWatchListNode(index: number, selectedNodeType: string) {
+        // Clicked Trash icon on a WatchList Node
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickWatchListNode', '@Start');
 
         // Reset
         this.errorMessage = '';
         this.ngWatchListNodes = [];
 
-        // Remember the selected NodeType
-        this.selectedWatchListNode = selectedNodeType;
+        // TODO - must add to DB
+        let watchListNodeIndex: number = this.ngWatchListNodes
+            .findIndex(wln => wln === selectedNodeType);
+        if (watchListNodeIndex >= 0) {
+            this.ngWatchListNodes.splice(watchListNodeIndex, 1);
+        };
 
     }
 
