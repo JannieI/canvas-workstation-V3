@@ -579,9 +579,11 @@ export class WidgetNavigatorComponent {
         this.selectedWatchListNodeType = nodeType;
 
         // Fill the Nodes
-        this.ngWatchListNodes = this.ngWatchLists
-            .filter(wl => wl.nodeType == this.selectedWatchListNodeType)
-            .map(x => x.nodes)
+        let watchlistIndex: number = this.ngWatchLists
+            .findIndex(wl => wl.nodeType == this.selectedWatchListNodeType)
+        if (watchlistIndex >= 0) {
+            this.ngWatchListNodes = this.ngWatchLists[watchlistIndex].nodes;
+        };
     }
 
     clickSelectHistory(index: number, historyID: number) {
