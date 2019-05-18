@@ -859,7 +859,8 @@ export class AppComponent implements OnInit {
                 );
 
                 // Template used
-                this.globalVariableService
+                this.globalVariableService.templateInUse.subscribe(tmpl =>
+                    this.templateInUse = tmpl);
 
                 // Snap to grid
                 this.snapToGrid = this.globalVariableService.currentUser.preferenceSnapToGrid;
@@ -11510,8 +11511,10 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuSystemLogout');
 
         userAllowedFeatures.forEach(feature => {
-            this[feature] = true;
+            this[feature] = false;
         });
+
+        console.log('xx allowEditMode', this.allowEditMode)
         // this['allowNavigatorAdd'] = true;
         // console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
         // let test: string = 'allowNavigatorAdd111';
