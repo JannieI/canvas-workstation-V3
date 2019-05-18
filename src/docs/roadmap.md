@@ -78,6 +78,10 @@ This document describes items for later versions of Canvas.
         - Finalise group membership / roles
         - Add UserID to ALL data and code -> where needed ... [FROM DatasourcePermission]
         - It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
+        - decide if rights are permanent, or if one gets it temporary (like sudo ... in Ubuntu)
+        - make enums / Lookup tables where required, ie Permission types
+        - proper form with user management - Ivan discussion
+        - process for 'Forgot password'
 
 
     Refactoring / tech debt / necessary improvements:
@@ -153,7 +157,7 @@ This document describes items for later versions of Canvas.
         - data bars inside text values
         - sub totals and grand totals
         - can add labels, once
-        - Sybrin wants to see previous versions of the Datasources!
+        - Sybrin wants to see previous versions of the Datasources!  We MUST keep the previous versions of the DS, with an easy way to 1. roll back  2. see the Delta
         - export to Excel, pdf (Power BI can export to pdf with drill down !!)
 
 
@@ -586,7 +590,7 @@ This document describes items for later versions of Canvas.
     - Delete icon to delete here (name ~ title may not be clear)
     - click and goto tab where W lives
     - add Tabs, to show hierarchy better: Tab -< Ws - DS + Sl, Tab -< Sl -< Ws + DS
-
+    - Easy way to see who has access to What
     - consider case-INsensitive testing in filterSlicer, or make it a user-defined setting
     - Give the user a vote - via like?  Create a sense of belonging and community
     - Consider multi-W actions, ie to move ALL selected objects - remember complexity since Sl and W sits in different components ...  Also, the current code is specific to ONE

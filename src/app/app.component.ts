@@ -858,16 +858,12 @@ export class AppComponent implements OnInit {
                     this.dontDisturb = ddb
                 );
 
-                // Template used
-                this.globalVariableService.templateInUse.subscribe(tmpl =>
-                    this.templateInUse = tmpl);
-
                 // Snap to grid
                 this.snapToGrid = this.globalVariableService.currentUser.preferenceSnapToGrid;
 
                 // Current user
                 this.currentUserID = this.globalVariableService.currentUser.userID;
-
+                console.log('xx this.currentUserID', this.currentUserID)
                 // Template used
                 this.templateInUseSubscription = this.globalVariableService.templateInUse.subscribe(
                     i => this.templateInUse = i
@@ -11311,14 +11307,14 @@ export class AppComponent implements OnInit {
 
         // TODO - Fix this !!!
         let userAllowedFeatures: string[] = [];
-        userAllowedFeatures.push('allowEditMode');
-        userAllowedFeatures.push('allowEditUndo');
-        userAllowedFeatures.push('allowEditRedo');
-        userAllowedFeatures.push('allowSelectAll');
-        userAllowedFeatures.push('allowSelectNone');
-        userAllowedFeatures.push('allowContainerStylesAdd');
-        userAllowedFeatures.push('allowContainerStylesEdit');
-        userAllowedFeatures.push('allowManageColours');
+        userAllowedFeatures.push('allowMenuEditMode');
+        userAllowedFeatures.push('allowMenuEditUndo');
+        userAllowedFeatures.push('allowMenuEditRedo');
+        userAllowedFeatures.push('allowMenuSelectAll');
+        userAllowedFeatures.push('allowMenuSelectNone');
+        userAllowedFeatures.push('allowMenuContainerStylesAdd');
+        userAllowedFeatures.push('allowMenuContainerStylesEdit');
+        userAllowedFeatures.push('allowMenuManageColours');
 
         userAllowedFeatures.push('allowMenuDashboardNew');
         userAllowedFeatures.push('allowMenuDashboardRecent');
@@ -11511,7 +11507,7 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuSystemLogout');
 
         userAllowedFeatures.forEach(feature => {
-            this[feature] = false;
+            this[feature] = true;
         });
 
         console.log('xx allowEditMode', this.allowEditMode)
