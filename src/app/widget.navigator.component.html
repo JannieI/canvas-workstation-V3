@@ -1079,10 +1079,7 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         <div class="watchListBlockNodes">
             <div *ngFor="let row of ngWatchListNodes; let i = index"
-                [style.background-color]="row==selectedWatchListNode? 'white'  :  'rgb(235, 232, 232)'"
-                [style.border]="row==selectedWatchListNode? '2px solid black'  :  '1px solid gray'"
-                [style.color]="row==selectedWatchListNode? 'black'  :  'darkgray'"
-                (click)="clickWatchListNode(i, row)"
+                (dblclick)="dblclickWatchListNodeType(i, row)"
                 >
                 {{ row }}
             </div>

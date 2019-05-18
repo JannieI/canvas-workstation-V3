@@ -588,9 +588,9 @@ export class WidgetNavigatorComponent {
         };
     }
 
-    clickWatchListNode(index: number, selectedNodeType: string) {
-        // Clicked a WatchList Node
-        this.globalFunctionService.printToConsole(this.constructor.name, 'cliclickWatchListNodeckWatchListNode', '@Start');
+    dblclickWatchListNode(index: number, selectedNodeType: string) {
+        // Dbl Clicked a WatchList Node
+        this.globalFunctionService.printToConsole(this.constructor.name, 'dblclickWatchListNode', '@Start');
 
         // Reset
         this.errorMessage = '';
