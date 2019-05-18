@@ -277,6 +277,10 @@ export class WidgetNavigatorComponent {
                 return 0;
             });
 
+        // Set WatchList Node Types to Add
+        this.ngWatchListNodeTypesToAdd = this.ngDropdownParentNodeTypes
+            .filter(nt => this.ngWatchListNodeTypes.indexOf(nt) < 0);
+
         if (this.ngWatchListNodeTypes.length > 0) {
             this.clickWatchListNodeType(0, this.ngWatchListNodeTypes[0]);
         };
@@ -475,9 +479,6 @@ export class WidgetNavigatorComponent {
                     // Set selected Network
                     this.selectedNetworkPropertiesID = this.ngNetworks[index].propertiesDatasourceID;
 
-                    // Set WatchList Node Types
-                    this.ngWatchListNodeTypesToAdd = this.ngDropdownParentNodeTypes
-                        .filter
                     // Get the data
                     this.globalVariableService.getData(
                         'datasourceID=' + this.selectedNetworkPropertiesID.toString()
