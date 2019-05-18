@@ -615,6 +615,15 @@ export class WidgetNavigatorComponent {
                 return 0;
             });
 
+        // Add to WatchList
+        this.ngWatchLists.push(
+            {
+                id: this.ngWatchLists.length + 1,
+                userID: this.globalVariableService.currentUser.userID,
+                nodeType: this.selectedWatchListNodeTypeToAdd,
+                nodes: []
+            }
+        );
     }
 
     clickWatchListNodeAdd() {
