@@ -31,9 +31,13 @@ export class CanvasSettings {
 }
 
 // Lookup table that describes the different roles in Canvas.  Currently we have:
-//  CanManageProduct              - Can manage the definition of Products, ie what features are included
-//  CanActivateLicense            - Can activate users for a license, up to max nr purchased
-//  CanManageLicense              - Can manage Licenses, ie what Product is included
+//  canManageProduct              - Can manage the definition of Products, ie what features are included
+//  canActivateLicense            - Can activate users for a license, up to max nr purchased
+//  canManageLicense              - Can manage Licenses, ie what Product is included
+//  userCanManageUsers            - Can add / edit Users
+//  userCanManageGroups           - Can add / edit Groups, and allocate users to groups
+//  isGuest                       - Can view Dashboards, etc.  VERY limited
+//  datasourceIsDiscoverable      - Can see name, description and metadata.  NOT data
 //  isAdministrator               - Can add/delete users to the group,
 //  dashboardCanCreateRole        - Can create Dashboards
 //  dashboardCanViewRole          - Can view Dashboards
@@ -58,9 +62,13 @@ export class CanvasRole {
 
 // Describes a Product in Canvas.  This contains a list of features, which could be
 // menu options, or specific items.  Examples of these are widgetTypes, Datasources
-// Only users with the CanManageProduct role can add/edit/delete recors in this table
-export class CanvasProduct {
+// Only users with the canManageProduct role can add/edit/delete recors in this table
+export class canvasProduct {
     _id?: string;                           // Mongo ID (read only)
+    //  userCanManageUsers
+    //  userCanManageGroups
+    //  isGuest
+    //  
     id: number;                             // Unique ID (added for consistency with other models)
     version: number;                        // Current version.  Older versions are stored in productHistory
     name: string;                           // Name of license, also called Product
