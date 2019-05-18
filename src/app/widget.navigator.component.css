@@ -5,6 +5,7 @@
     grid-template-columns: repeat(40, 1fr);
     grid-template-rows: repeat(26, 1fr);
     margin-bottom: 24px;
+    margin-right: -12px;
     margin-top: -20px;
     overflow: hidden;
 }
@@ -170,13 +171,13 @@
         font-size: 0.5rem;
         grid-template-columns: repeat(26, 1fr);
         grid-template-rows: repeat(40, 1fr);
-        grid-column-start: 1;
+        grid-column-start: 2;
         /* autoprefixer: off */
-        grid-column-end: 40;
+        grid-column-end: 41;
         grid-row-start: 1;
         grid-row-end: 26;
         height: 100%;
-        margin: 18px;
+        margin: 0px;
         text-align: left;
         z-index: 102;
     }
