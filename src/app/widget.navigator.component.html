@@ -1066,6 +1066,24 @@ dimensions are set in app.html, and cannot be changed here. -->
             Start off by adding a node type to the list.  Then select a node type and add
             nodes for it on the right.
         </div>
+
+        <div class="watchListAddNodeType">
+            Node Type:
+            <select [(ngModel)]="selectedParentNodeType"
+                (change)="changeParentNodeType($event)"
+                name="selectedParentNodeType"
+                >
+                <option *ngFor="let row of ngDropdownParentNodeTypes">
+                    {{ row }}
+                </option>
+
+            </select>
+            <button class="btn btn-link" (click)="clickParentFilterClearAndShow()">
+                Add
+            </button>
+
+        </div>
+
         <div class="watchListBlockNodeTypes">
             <div *ngFor="let row of ngWatchListNodeTypes; let i = index"
                 [style.background-color]="row==selectedWatchListNodeType? 'white'  :  'rgb(235, 232, 232)'"

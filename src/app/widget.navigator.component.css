@@ -207,7 +207,15 @@
             grid-column-end: 26;
             grid-row-start: 2;
             grid-row-end: 3;
-            margin: 18px;
+            margin-left: 18px;
+        }
+        .watchListAddNodeType {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 26;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            margin-left: 18px;
         }
         .watchListBlockNodeTypes {
             border-radius: 4px;
