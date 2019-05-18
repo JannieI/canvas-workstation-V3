@@ -639,6 +639,16 @@ export class WidgetNavigatorComponent {
             return;
         };
 
+
+        // Remove from the available list
+        let watchNodeIndex: number = this.ngWatchListNodesToAdd
+            .findIndex(nt => nt == this.selectedWatchListNodeTypeToAdd);
+        if (watchNodeIndex >= 0) {
+            this.ngWatchListNodesToAdd = this.ngWatchListNodesToAdd
+                .splice(watchNodeIndex, 1);
+        };
+
+        // Add to the list of Node being watched
         this.ngWatchListNodes.push(this.selectedWatchListNodeTypeToAdd);
         this.ngWatchListNodes = this.ngWatchListNodes.sort( (a,b) => {
                 if (a > b) {
@@ -649,6 +659,14 @@ export class WidgetNavigatorComponent {
                 };
                 return 0;
             });
+
+        // Add to WatchList
+        let watchlistIndex: number = this.ngWatchLists
+            .findIndex(wl => wl.nodeType === this.selectedWatchListNodeType);
+        if (watchlistIndex >= 0) {
+            this.ngWatchLists[watchlistIndex].nodes
+                .push(this.selectedWatchListNodeTypeToAdd);
+        };
 
     }
 
