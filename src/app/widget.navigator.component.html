@@ -1078,9 +1078,9 @@ dimensions are set in app.html, and cannot be changed here. -->
                 </div>
         </div>
         <div class="watchListBlock" *ngFor="let row of ngWatchListNodes; let i = index"
-            [style.background-color]="row==selectedWatchListNodes? 'white'  :  'rgb(235, 232, 232)'"
-            [style.border]="row==selectedWatchListNodes? '2px solid black'  :  '1px solid gray'"
-            [style.color]="row==selectedWatchListNodes? 'black'  :  'darkgray'"
+            [style.background-color]="row==selectedWatchListNode? 'white'  :  'rgb(235, 232, 232)'"
+            [style.border]="row==selectedWatchListNode? '2px solid black'  :  '1px solid gray'"
+            [style.color]="row==selectedWatchListNode? 'black'  :  'darkgray'"
             >
                 <div
                     (click)="clickWatchListNode(i, row)"

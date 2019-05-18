@@ -91,6 +91,7 @@ export class WidgetNavigatorComponent {
     selectedNetworkRelationshipID: number = -1;         // DSid for DSrel
     selectedNetworkPropertiesID: number = -1;           // DSid for DSprop
     selectedWatchListNodeType: string = '';             // Watchlist Node Type selected
+    selectedWatchListNode: string = '';                 // Watchlist Node selected
     selectedView: string = 'DefaultView';               // Selected View Name
 
     // Selected - value selected in a dropdown
