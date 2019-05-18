@@ -157,7 +157,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <button
                     type="button"
                     clrDropdownItem
-                    (click)="clickMenuShowWatchLists()" 
+                    (click)="clickMenuShowWatchLists()"
                     title="Manage Watch Lists per Node Type"
                     >
                     Watch Lists
@@ -273,8 +273,8 @@ dimensions are set in app.html, and cannot be changed here. -->
         <!-- Solutions Heading -->
         <div class="graphHeaderText" *ngIf="!showNavBarExplore">
             Solutions for {{ graphTitle }}
-        </div>    
-    
+        </div>
+
         <!-- Explore / Solution Menu Bar -->
         <div class="graphAreaTitle">
             <div class="errorMessage">
@@ -477,7 +477,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                     <span *ngIf="selectedRelationship != 'All'  &&  selectedView=='DefaultView'  &&  selectedChildNodeType != ''"
                         style="cursor: pointer; font-size: 0.45rem; margin-left: 8px;"
                         title="Add the current Chilren to the Parent Nodes filter as SOME"
-                        (click)="clickShiftChildren()" 
+                        (click)="clickShiftChildren()"
                         >
                         Shift
                     </span>
@@ -901,7 +901,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <div
                     (click)="clickNetwork(i, row.id)"
                     >
-                    {{ row.name }} 
+                    {{ row.name }}
                     ({{ row.description}})
                 </div>
         </div>
@@ -1055,7 +1055,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 </clr-signpost-content>
             </clr-signpost>
             <div class="watchListClose"
-                (click)="clickCloseWatchListsPopup()" 
+                (click)="clickCloseWatchListsPopup()"
                 >
                 <b>X</b>
             </div>
@@ -1063,18 +1063,18 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         <div class="watchListText">
             Each node type can have a WatchList of nodes (which will be used to filter on).
-            Start off by adding a node type to the list.  Then select a node type and add 
+            Start off by adding a node type to the list.  Then select a node type and add
             nodes for it on the right.
         </div>
-        <div class="watchListBlock" *ngFor="let row of ngWatchLists; let i = index"
-            [style.background-color]="row.id==selectedWatchListID? 'white'  :  'rgb(235, 232, 232)'" 
-            [style.border]="row.id==selectedWatchListID? '2px solid black'  :  '1px solid gray'" 
-            [style.color]="row.id==selectedWatchListID? 'black'  :  'darkgray'" 
+        <div class="watchListBlock" *ngFor="let row of ngWatchListNodeTypes; let i = index"
+            [style.background-color]="row==selectedWatchListNodeType? 'white'  :  'rgb(235, 232, 232)'"
+            [style.border]="row==selectedWatchListNodeType? '2px solid black'  :  '1px solid gray'"
+            [style.color]="row==selectedWatchListNodeType? 'black'  :  'darkgray'"
             >
                 <div
-                    (click)="clickWatchListNodeType(i, row.id)" 
+                    (click)="clickWatchListNodeType(i, row)"
                     >
-                    {{ row.nodeType }} 
+                    {{ row }}
                 </div>
         </div>
     </div>

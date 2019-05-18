@@ -70,6 +70,9 @@ export class WidgetNavigatorComponent {
         }[] = [];                                       // Custom Views
     ngNetworks: NavigatorNetwork[] = [];                // All Networks (DS with isNetwork = True)
     ngWatchLists: NavigatorWatchList[];                 // Watchlists defined by the user
+    ngWatchListNodeTypes: string[];                     // Unique Node Types per Watchlist
+    ngWatchListNodes: string[];                         // Unique Nodes per Watchlist
+    
     ngHistory: NavigatorHistory[] = [];                 // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
 
@@ -87,7 +90,7 @@ export class WidgetNavigatorComponent {
     selectedNetworkID: number = -1;                     // Select NW ID
     selectedNetworkRelationshipID: number = -1;         // DSid for DSrel
     selectedNetworkPropertiesID: number = -1;           // DSid for DSprop
-    selectedWatchListID: number = -1;                   // Watchlist
+    selectedWatchListNodeType: string = '';             // Watchlist Node Type selected
     selectedView: string = 'DefaultView';               // Selected View Name
 
     // Selected - value selected in a dropdown
@@ -205,6 +208,22 @@ export class WidgetNavigatorComponent {
 
         // Populate persisted data - TODO via DB
         this.tempCreateDummyData();
+
+        // Create arays for HTML
+        this.ngWatchListNodeTypes = this.ngWatchLists
+            .map(x => x.nodeType)
+            .sort( (a,b) => {
+                if (a > b) {
+                    return 1;
+                };
+                if (a < b) {
+                    return -1;
+                };
+                return 0;
+            });
+        // ngWatchListNodeTypes
+        // ngWatchListNodes
+    
 
         // Read Networks from DB
         this.globalVariableService.getResource('navigatorNetworks')
@@ -548,22 +567,21 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickWatchListNodeType(index: number, networkID: number) {
+    clickWatchListNodeType(index: number, nodeType: string) {
         // Clicked a WatchList
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickWatchListNodeType', '@Start');
 
         // Reset
         this.errorMessage = '';
-        this.parentFilterErrorMessage = '';
-        this.childFilterErrorMessage = '';
+        this.ngWatchListNodes = [];
 
-        // Remember the ID of the selected Network
-        this.selectedNetworkID = networkID;
+        // Remember the selected NodeType
+        this.selectedWatchListNodeType = nodeType;
 
-        // Read the Data for this W from the DB
-        if (this.selectedNetworkID >= 0) {
-            
-        }
+        // Fill the Nodes
+        this.ngWatchListNodes = this.ngWatchLists
+            .filter(wl => wl.nodeType == this.selectedWatchListNodeType)
+            .map(x => x.nodes)
     }
 
     clickSelectHistory(index: number, historyID: number) {
@@ -3138,7 +3156,7 @@ console.log('xx this.specification', this.specification)
             nodeType: 'Company',
             nodes: ['Absa', 'PSG']
         };
-        this.watchList.push(watchListNew);
+        this.ngWatchLists.push(watchListNew);
 
         this.ngCustomViews.push(
             {
