@@ -212,6 +212,14 @@
         .watchListAddNodeType {
             grid-column-start: 1;
             /* autoprefixer: off */
+            grid-column-end: 13;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            margin-left: 18px;
+        }
+        .watchListAddNode {
+            grid-column-start: 14;
+            /* autoprefixer: off */
             grid-column-end: 26;
             grid-row-start: 3;
             grid-row-end: 4;

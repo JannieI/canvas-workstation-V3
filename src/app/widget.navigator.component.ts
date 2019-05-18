@@ -101,7 +101,8 @@ export class WidgetNavigatorComponent {
     selectedChildFilterID: number = -1;
     selectedChildNodeType: string = '';
     selectedParentFilterID: number = -1;
-    selectedWatchListNodeTypeToAdd: string = '';        // Selected in WL Add drop down
+    selectedWatchListNodeTypeToAdd: string = '';        // Selected Node Type in WL Add drop down
+    selectedWatchListNodeToAdd: string = '';            // Selected Node in WL Add drop down
 
     startupNavigatorSelectParentNodeType: string = '';  // Startup value of the Parent Node Type
     startupNavigatorSelectParentNodeName: string = '';  // Startup value of the Parent Node Name
