@@ -279,14 +279,16 @@ export class WidgetNavigatorComponent {
 
         // Set WatchList Node Types to Add
         this.ngWatchListNodeTypesToAdd = this.ngDropdownParentNodeTypes
-            .filter(nt => this.ngWatchListNodeTypes.indexOf(nt) < 0);
+            .filter(nt => this.ngWatchListNodeTypes.indexOf(nt) < 0)
+            .filter(nt => nt != '');
 
+        // Clear and then set the Nodes list
+        this.ngWatchListNodes = [];
         if (this.ngWatchListNodeTypes.length > 0) {
             this.clickWatchListNodeType(0, this.ngWatchListNodeTypes[0]);
         };
 
-        this.ngWatchListNodes = [];
-
+        // Show the form
         this.showWatchLists = true;
     }
 
@@ -594,6 +596,15 @@ export class WidgetNavigatorComponent {
             return;
         };
 
+        // Remove from the available list
+        let watchNodeTypeIndex: number = this.ngWatchListNodeTypesToAdd
+            .findIndex(nt => nt == this.selectedWatchListNodeTypeToAdd);
+        if (watchNodeTypeIndex >= 0) {
+            this.ngWatchListNodeTypesToAdd = this.ngWatchListNodeTypesToAdd
+                .splice(watchNodeTypeIndex, 1);
+        };
+        
+        // Add to the list of Node Types being watched
         this.ngWatchListNodeTypes.push(this.selectedWatchListNodeTypeToAdd);
         this.ngWatchListNodeTypes = this.ngWatchListNodeTypes.sort( (a,b) => {
                 if (a > b) {
@@ -3258,7 +3269,7 @@ console.log('xx this.specification', this.specification)
         watchListNew =
         {
             id: 2,
-            userID: 'JannieI',
+            userID: 'JohnathonB',
             nodeType: 'Person',
             nodes: ['Rene van Wyke', 'Abigale Israel']
         };
