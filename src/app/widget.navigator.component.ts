@@ -69,9 +69,9 @@ export class WidgetNavigatorComponent {
             description: string;
         }[] = [];                                       // Custom Views
     ngNetworks: NavigatorNetwork[] = [];                // All Networks (DS with isNetwork = True)
-    ngWatchLists: NavigatorWatchList[];                 // Watchlists defined by the user
-    ngWatchListNodeTypes: string[];                     // Unique Node Types per Watchlist
-    ngWatchListNodes: string[];                         // Unique Nodes per Watchlist
+    ngWatchLists: NavigatorWatchList[] = [];            // Watchlists defined by the user
+    ngWatchListNodeTypes: string[] = [];                // Unique Node Types per Watchlist
+    ngWatchListNodes: string[] = [];                    // Unique Nodes per Watchlist
     
     ngHistory: NavigatorHistory[] = [];                 // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
