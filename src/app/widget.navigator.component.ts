@@ -652,9 +652,9 @@ export class WidgetNavigatorComponent {
         };
     }
 
-    clickWatchListNode(index: number, selectedNodeType: string) {
-        // Clicked Trash icon on a WatchList Node
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickWatchListNode', '@Start');
+    clickWatchDeleteListNode(index: number, selectedNodeType: string) {
+        // Clicked Trash icon on a WatchList Node - delete it
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickWatchDeleteListNode', '@Start');
 
         // Reset
         this.errorMessage = '';
