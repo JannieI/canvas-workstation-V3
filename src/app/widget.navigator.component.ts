@@ -609,6 +609,13 @@ export class WidgetNavigatorComponent {
             if (watchListNodeTypeIndex >= 0) {
                 this.ngWatchListNodeTypes.splice(watchListNodeTypeIndex, 1);
             };
+
+            // Reselect the Node Type
+            this.selectedWatchListNodeType = '';
+            if (this.selectedWatchListNodeType.length > 0) {
+                this.clickWatchListNodeType(0, this.selectedWatchListNodeType[0]);
+            };
+
         };
 
     }
