@@ -103,8 +103,6 @@ export class WidgetNavigatorComponent {
     startupNavigatorSelectRelationship: string = '';    // Startup value of the Relationship
     startupNavigatorSelectView: string = '';            // Startup value of the View
 
-    watchList: NavigatorWatchList[] = [];               // Watchlist per user and per NodeType
-
     ngParentNodeFilterKeyDropdown: string[] = [];       // Dropdown: Parent Nodes Keys Filter
     ngParentNodeFilterPropertyDropdown: string[] = [];  // Dropdown: Parent Nodes Properties Filter
     ngParentNodeFilterSelectedFieldName: string = '';   // Parent Node Filter
