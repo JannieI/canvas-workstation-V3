@@ -1069,9 +1069,8 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         <div class="watchListAddNodeType">
             Node Type:
-            <select [(ngModel)]="selectedParentNodeType"
-                (change)="changeParentNodeType($event)"
-                name="selectedParentNodeType"
+            <select [(ngModel)]="selectedWatchListNodeTypeToAdd"
+                name="selectedWatchListNodeType"
                 >
                 <option *ngFor="let row of ngDropdownParentNodeTypes">
                     {{ row }}
