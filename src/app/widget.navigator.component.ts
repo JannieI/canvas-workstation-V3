@@ -570,6 +570,16 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickWatchListNodeTypeAdd() {
+        // Clicked a WatchList Node Type
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickWatchListNodeTypeAdd', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+
+        console.log('xx selectedWatchListNodeTypeToAdd', this.selectedWatchListNodeTypeToAdd)
+    }
+
     clickWatchListNodeType(index: number, selectedNodeType: string) {
         // Clicked a WatchList Node Type
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickWatchListNodeType', '@Start');
@@ -603,8 +613,6 @@ export class WidgetNavigatorComponent {
             this.ngWatchListNodes.splice(watchListNodeIndex, 1);
         };
 
-        console.log('xx selectedNodeType', selectedNodeType)
-
         // Update the Node types if that was the last one
         if (this.ngWatchListNodes.length == 0) {
             let watchListNodeTypeIndex: number = this.ngWatchListNodeTypes
@@ -613,7 +621,6 @@ export class WidgetNavigatorComponent {
                 this.ngWatchListNodeTypes.splice(watchListNodeTypeIndex, 1);
                 
                 // Reselect the Node Type
-                console.log('xx watchListNodeTypeIndex', watchListNodeTypeIndex)
                 this.selectedWatchListNodeType = '';
                 if (this.ngWatchListNodeTypes.length > 0) {
                     this.clickWatchListNodeType(0, this.ngWatchListNodeTypes[0]);
@@ -3116,7 +3123,6 @@ console.log('xx this.specification', this.specification)
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickShiftChildren', '@Start');
 
         // Change selection fields
-        console.log('xx this.selectedChildNodeType', this.selectedChildNodeType, this.childDataAll)
         this.selectedParentNodeType = this.selectedChildNodeType;
         this.selectedParentNode = '';
         this.selectedRelationship = '';
@@ -3132,7 +3138,6 @@ console.log('xx this.specification', this.specification)
 
         this.parentNodesFilteredList = [];
         this.childDataAll.forEach(child => this.parentNodesFilteredList.push(child));
-        console.log('xx this.parentNodesFilteredList', this.parentNodesFilteredList)
     }
 
     clickPageFirst() {
