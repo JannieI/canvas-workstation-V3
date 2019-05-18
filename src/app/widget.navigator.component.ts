@@ -72,6 +72,7 @@ export class WidgetNavigatorComponent {
     ngWatchLists: NavigatorWatchList[] = [];            // Watchlists defined by the user
     ngWatchListNodeTypes: string[] = [];                // Unique Node Types per Watchlist
     ngWatchListNodeTypesToAdd: string[] = [];           // Unique Node Types that can be added per Watchlist
+    ngWatchListNodesToAdd: string[] = [];               // Unique Nodes per Node Type that can be added per Watchlist
     ngWatchListNodes: string[] = [];                    // Unique Nodes per Watchlist
     
     ngHistory: NavigatorHistory[] = [];                 // History for current network
@@ -179,8 +180,6 @@ export class WidgetNavigatorComponent {
     showGraphProperties: boolean = false;
     showNavBarExplore: boolean = true;
     spinner: boolean = false;
-    watchListFiltered: boolean = false;
-
 
     navMaxRecursion: number = 100;
     navRecursionCounter: number = 0;
@@ -263,7 +262,7 @@ export class WidgetNavigatorComponent {
         // Clicked Menu to open popup to manage WatchLists
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowWatchLists', '@Start');
 
-        // Create arrays for Form
+        // Node Types for current user
         this.ngWatchListNodeTypes = this.ngWatchLists
             .filter(wl => wl.userID === this.globalVariableService.currentUser.userID)
             .map(x => x.nodeType)
@@ -277,13 +276,14 @@ export class WidgetNavigatorComponent {
                 return 0;
             });
 
-        // Set WatchList Node Types to Add
+        // Set WatchList Node Types to Add (NOT in above list)
         this.ngWatchListNodeTypesToAdd = this.ngDropdownParentNodeTypes
             .filter(nt => this.ngWatchListNodeTypes.indexOf(nt) < 0)
             .filter(nt => nt != '');
 
-        // Clear and then set the Nodes list
+        // Clear Nodes to show and Nodes to Add, and then set the Nodes list
         this.ngWatchListNodes = [];
+        this.ngWatchListNodesToAdd = [];
         if (this.ngWatchListNodeTypes.length > 0) {
             this.clickWatchListNodeType(0, this.ngWatchListNodeTypes[0]);
         };
@@ -291,7 +291,6 @@ export class WidgetNavigatorComponent {
         // Show the form
         this.showWatchLists = true;
     }
-
 
     clickMenuShowGraphNotes() {
         // Clicked the Menu to show popup to edit notes at bottom of graph
@@ -603,16 +602,16 @@ export class WidgetNavigatorComponent {
             this.ngWatchListNodeTypesToAdd = this.ngWatchListNodeTypesToAdd
                 .splice(watchNodeTypeIndex, 1);
         };
-        
+
         // Add to the list of Node Types being watched
         this.ngWatchListNodeTypes.push(this.selectedWatchListNodeTypeToAdd);
         this.ngWatchListNodeTypes = this.ngWatchListNodeTypes.sort( (a,b) => {
-                if (a > b) {
-                    return 1;
-                };
-                if (a < b) {
-                    return -1;
-                };
+            if (a > b) {
+                return 1;
+            };
+            if (a < b) {
+                return -1;
+            };
                 return 0;
             });
 
