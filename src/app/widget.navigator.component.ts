@@ -571,13 +571,23 @@ export class WidgetNavigatorComponent {
     }
 
     clickWatchListNodeTypeAdd() {
-        // Clicked a WatchList Node Type
+        // Clicked a WatchList Node Type to Add
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickWatchListNodeTypeAdd', '@Start');
 
         // Reset
         this.errorMessage = '';
 
-        console.log('xx selectedWatchListNodeTypeToAdd', this.selectedWatchListNodeTypeToAdd)
+        this.ngWatchListNodeTypes.push(this.selectedWatchListNodeTypeToAdd);
+        this.ngWatchListNodeTypes = this.ngWatchListNodeTypes.sort( (a,b) => {
+                if (a > b) {
+                    return 1;
+                };
+                if (a < b) {
+                    return -1;
+                };
+                return 0;
+            });
+
     }
 
     clickWatchListNodeType(index: number, selectedNodeType: string) {
