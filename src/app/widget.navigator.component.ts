@@ -591,6 +591,26 @@ export class WidgetNavigatorComponent {
 
     }
 
+    clickWatchListNodeAdd() {
+        // Clicked a WatchList Node to Add
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickWatchListNodeAdd', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+
+        this.ngWatchListNodes.push(this.selectedWatchListNodeTypeToAdd);
+        this.ngWatchListNodes = this.ngWatchListNodes.sort( (a,b) => {
+                if (a > b) {
+                    return 1;
+                };
+                if (a < b) {
+                    return -1;
+                };
+                return 0;
+            });
+
+    }
+
     clickWatchListNodeType(index: number, selectedNodeType: string) {
         // Clicked a WatchList Node Type
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickWatchListNodeType', '@Start');
