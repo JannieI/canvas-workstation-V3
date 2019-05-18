@@ -263,7 +263,7 @@ export class WidgetNavigatorComponent {
         // Clicked Menu to open popup to manage WatchLists
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowWatchLists', '@Start');
 
-        // Create arays for HTML
+        // Create arrays for Form
         this.ngWatchListNodeTypes = this.ngWatchLists
             .filter(wl => wl.userID === this.globalVariableService.currentUser.userID)
             .map(x => x.nodeType)
@@ -280,6 +280,8 @@ export class WidgetNavigatorComponent {
         if (this.ngWatchListNodeTypes.length > 0) {
             this.clickWatchListNodeType(0, this.ngWatchListNodeTypes[0]);
         };
+
+        this.ngWatchListNodes = [];
 
         this.showWatchLists = true;
     }
