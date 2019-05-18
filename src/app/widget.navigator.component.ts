@@ -696,7 +696,7 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickWatchDeleteListNode(index: number, selectedNodeType: string) {
+    clickWatchDeleteListNode(index: number, selectedNode: string) {
         // Clicked Trash icon on a WatchList Node - delete it
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickWatchDeleteListNode', '@Start');
 
@@ -704,19 +704,43 @@ export class WidgetNavigatorComponent {
         this.errorMessage = '';
 
         // TODO - must add to DB
+        // Remove Node
         let watchListNodeIndex: number = this.ngWatchListNodes
-            .findIndex(wln => wln === selectedNodeType);
+            .findIndex(wln => wln === selectedNode);
         if (watchListNodeIndex >= 0) {
             this.ngWatchListNodes.splice(watchListNodeIndex, 1);
+        };
+
+        // Add to available
+        this.ngWatchListNodesToAdd.push(selectedNode);
+                
+        // Remove from Watchlist Node
+        let watchListsIndex: number = this.ngWatchLists
+            .findIndex(wln => wln.nodeType === this.selectedWatchListNodeType);
+        let watchListsNodeSubIndex: number = -1;
+        if (watchListsIndex >= 0) {
+            watchListsNodeSubIndex = this.ngWatchLists[watchListsIndex].nodes
+                .findIndex(wln => wln === this.selectedWatchListNodeType);
+        if (watchListsIndex >= 0) {
+            this.ngWatchLists.splice(watchListsIndex, 1);
         };
 
         // Update the Node types if that was the last one
         if (this.ngWatchListNodes.length == 0) {
             let watchListNodeTypeIndex: number = this.ngWatchListNodeTypes
-                .findIndex(wln => wln === this.selectedWatchListNodeType);
+                .findIndex(wln => wln === selectedNode);
+                
             if (watchListNodeTypeIndex >= 0) {
+
+                // Remove from Node Types, and Add to availble Node Types
+                this.ngWatchListNodeTypesToAdd.push(this.selectedWatchListNodeType);
                 this.ngWatchListNodeTypes.splice(watchListNodeTypeIndex, 1);
                 
+                // Remove from Watchlist
+                if (watchListsIndex >= 0) {
+                    this.ngWatchLists.splice(watchListsIndex, 1);
+                };
+
                 // Reselect the Node Type
                 this.selectedWatchListNodeType = '';
                 if (this.ngWatchListNodeTypes.length > 0) {
