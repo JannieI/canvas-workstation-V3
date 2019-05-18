@@ -36,7 +36,7 @@
                             clrDropdownItem
                             (click)="clickMenuEditMode()"
                             title="Enable EditMode to make changes"
-                            [disabled]="!allowMenuEditMode" 
+                            [disabled]="!allowMenuEditMode"
                             >
                             {{ editMenuText }}
                         </button>
@@ -46,7 +46,7 @@
                             clrDropdownItem
                             title="Undo previous action"
                             (click)="clickMenuEditUndo()"
-                            [disabled]="!allowMenuEditUndo" 
+                            [disabled]="!allowMenuEditUndo"
                             >
                             Undo (Ctrl-Z)
                         </button>
@@ -54,7 +54,7 @@
                             clrDropdownItem
                             title="Redo previous action"
                             (click)="clickMenuEditRedo()"
-                            [disabled]="!allowMenuEditRedo" 
+                            [disabled]="!allowMenuEditRedo"
                             >
                             Redo (Ctrl-Y)
                         </button>
@@ -64,7 +64,7 @@
                             clrDropdownItem
                             title="Select all the Widgets on this Tab"
                             (click)="clickMenuEditSelectAllNone('All')"
-                            [disabled]="!allowMenuSelectAll" 
+                            [disabled]="!allowMenuSelectAll"
                             >
                             Select All
                         </button>
@@ -72,7 +72,7 @@
                             clrDropdownItem
                             title="UnSelect all the Widgets on this Tab"
                             (click)="clickMenuEditSelectAllNone('None')"
-                            [disabled]="!allowMenuSelectNone" 
+                            [disabled]="!allowMenuSelectNone"
                             >
                             Select None
                         </button>
@@ -92,7 +92,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuEditContainerStylesAdd()"
                                     title="Add a new container style"
-                                    [disabled]="!allowMenuContainerStylesAdd" 
+                                    [disabled]="!allowMenuContainerStylesAdd"
                                     >
                                     Add
                                 </button>
@@ -100,7 +100,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuEditContainerStylesEdit()"
                                     title="Edit or Delete an existing container style"
-                                    [disabled]="!allowMenuContainerStylesEdit" 
+                                    [disabled]="!allowMenuContainerStylesEdit"
                                     >
                                     Edit / Delete
                                 </button>
@@ -110,7 +110,7 @@
                             clrDropdownItem
                             title="Manage Colours to be used in Widgets in Canvas"
                             (click)="clickMenuEditManageColours('None')"
-                            [disabled]="!allowMenuManageColours" 
+                            [disabled]="!allowMenuManageColours"
                             >
                             Manage Colours
                         </button>
@@ -134,7 +134,7 @@
                             clrDropdownItem
                             title="Add a new Dashboard"
                             (click)="clickDashboardNew()"
-                            [disabled]="!allowMenuDashboardNew" 
+                            [disabled]="!allowMenuDashboardNew"
                             >
                             Add Dashboard
                         </button>
@@ -145,7 +145,7 @@
                                 clrDropdownTrigger
                                 title="Show recently opened Dashboards"
                                 (click)="clickRecentDashboard()"
-                                [disabled]="!allowMenuDashboardRecent" 
+                                [disabled]="!allowMenuDashboardRecent"
                                 >
                                 Recent
                             </button>
@@ -180,7 +180,7 @@
                                     clrDropdownItem
                                     title="Open a Dashboard"
                                     (click)="clickDashboardOpen()"
-                                    [disabled]="!allowMenuDashboardOpen" 
+                                    [disabled]="!allowMenuDashboardOpen"
                                     >
                                     Existing Dashboard
                                 </button>
@@ -193,7 +193,7 @@
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
                                 title="Submenu with more options"
-                                [disabled]="!allowMenuDashboardDetails" 
+                                [disabled]="!allowMenuDashboardDetails"
                                 >
                                 Details
                             </button>
@@ -204,7 +204,7 @@
                                     clrDropdownItem
                                     title="See and add Comments for this Dashboard"
                                     (click)="clickMenuDashboardDetailComments()"
-                                    [disabled]="!allowMenuDashboardComments" 
+                                    [disabled]="!allowMenuDashboardComments"
                                     >
                                     Comments
                                 </button>
@@ -212,7 +212,7 @@
                                     clrDropdownItem
                                     title="Edit Dashboard Description details"
                                     (click)="clickMenuDashboardDetailDescription()"
-                                    [disabled]="!allowMenuDashboardDescription" 
+                                    [disabled]="!allowMenuDashboardDescription"
                                     >
                                     Descripton
                                 </button>
@@ -221,7 +221,7 @@
                                     clrDropdownItem
                                     title="View Data Quality issues for this Dashboard"
                                     (click)="clickMenuDashboardDetailDataQuality()"
-                                    [disabled]="!allowMenuDashboardDataQuality" 
+                                    [disabled]="!allowMenuDashboardDataQuality"
                                     >
                                     Data Quality
                                 </button>
@@ -229,7 +229,7 @@
                                     clrDropdownItem
                                     title="Mark/UnMark this Dashboard as a favourite"
                                     (click)="clickMenuDashboardDetailFavourite()"
-                                    [disabled]="!allowMenuDashboardFavourite" 
+                                    [disabled]="!allowMenuDashboardFavourite"
                                     >
                                     Favourite
                                     <clr-icon
@@ -243,7 +243,7 @@
                                     clrDropdownItem
                                     title="Manage tags for this Dashboard"
                                     (click)="clickMenuDashboardDetailTags()"
-                                    [disabled]="!allowMenuDashboardTags" 
+                                    [disabled]="!allowMenuDashboardTags"
                                     >
                                     Tags
                                 </button>
@@ -252,7 +252,7 @@
                                     clrDropdownItem
                                     title="Add/Delete a template for this Dashboard"
                                     (click)="clickMenuDashboardDetailTemplate()"
-                                    [disabled]="!allowMenuDashboardTemplates" 
+                                    [disabled]="!allowMenuDashboardTemplates"
                                     >
                                     Template
                                 </button>
@@ -261,7 +261,7 @@
                                     clrDropdownItem
                                     title="Manage Dashboard theme"
                                     (click)="clickMenuDashboardDetailTheme()"
-                                    [disabled]="!allowMenuDashboardThemes" 
+                                    [disabled]="!allowMenuDashboardThemes"
                                     >
                                     Theme
                                 </button>
@@ -270,7 +270,7 @@
                                     clrDropdownItem
                                     title="Show usage stats for this Dashboard"
                                     (click)="clickMenuDashboardUsageStats()"
-                                    [disabled]="!allowMenuDashboardUsageStats" 
+                                    [disabled]="!allowMenuDashboardUsageStats"
                                     >
                                     Usage Stats
                                 </button>
@@ -292,7 +292,7 @@
                                     clrDropdownItem
                                     title="Save the current Draft Dashboard (to the original)"
                                     (click)="clickDashboardSave()"
-                                    [disabled]="!allowMenuDashboardSave" 
+                                    [disabled]="!allowMenuDashboardSave"
                                     >
                                     Save
                                 </button>
@@ -300,7 +300,7 @@
                                     clrDropdownItem
                                     title="Save the current Dashboard under a new name (copy)"
                                     (click)="clickDashboardSaveAs()"
-                                    [disabled]="!allowMenuDashboardSaveAs" 
+                                    [disabled]="!allowMenuDashboardSaveAs"
                                     >
                                     Save As
                                 </button>
@@ -308,7 +308,7 @@
                                     clrDropdownItem
                                     title="Export the current Dashboard to a text file"
                                     (click)="clickDashboardExport()"
-                                    [disabled]="!allowMenuDashboardExport" 
+                                    [disabled]="!allowMenuDashboardExport"
                                     >
                                     Export
                                 </button>
@@ -318,7 +318,7 @@
                                     clrDropdownItem
                                     title="Rename an existing Dashboard"
                                     (click)="clickDashboardRename()"
-                                    [disabled]="!allowMenuDashboardRename" 
+                                    [disabled]="!allowMenuDashboardRename"
                                     >
                                     Rename
                                 </button>
@@ -328,7 +328,7 @@
                                     clrDropdownItem
                                     title="Discard changes to the current Dashboard"
                                     (click)="clickDashboardDiscard()"
-                                    [disabled]="!allowMenuDashboardDiscard" 
+                                    [disabled]="!allowMenuDashboardDiscard"
                                     >
                                     Discard
                                 </button>
@@ -338,7 +338,7 @@
                             clrDropdownItem
                             title="Share access to a Dashboard"
                             (click)="clickDashboardShare()"
-                            [disabled]="!allowMenuDashboardShare" 
+                            [disabled]="!allowMenuDashboardShare"
                             >
                             Share
                         </button>
@@ -346,7 +346,7 @@
                             clrDropdownItem
                             title="Manage Snapshots of the current Dashboard"
                             (click)="clickDashboardSnapshots()"
-                            [disabled]="!allowMenuDashboardSnapshots" 
+                            [disabled]="!allowMenuDashboardSnapshots"
                             >
                             Snapshots
                         </button>
@@ -366,7 +366,7 @@
                                     clrDropdownItem
                                     title="Manage scheduled runs for this Dashboard"
                                     (click)="clickMenuDashboardScheduleEdit()"
-                                    [disabled]="!allowMenuDashboardSchedulesManage" 
+                                    [disabled]="!allowMenuDashboardSchedulesManage"
                                     >
                                     Manage
                                 </button>
@@ -375,7 +375,7 @@
                                     clrDropdownItem
                                     title="Shows all scheduled runs"
                                     (click)="clickMenuDashboardSchedule()"
-                                    [disabled]="!allowMenuDashboardSchedulesShowAll" 
+                                    [disabled]="!allowMenuDashboardSchedulesShowAll"
                                     >
                                     Show All
                                 </button>
@@ -384,7 +384,7 @@
                                     clrDropdownItem
                                     title="Shows all scheduled runs"
                                     (click)="clickMenuDashboardScheduleLog()"
-                                    [disabled]="!allowMenuDashboardScheduleLog" 
+                                    [disabled]="!allowMenuDashboardScheduleLog"
                                     >
                                     Schedule Log
                                 </button>
@@ -395,7 +395,7 @@
                                     (click)="clickMenuDashboardSubscribe()"
                                     title="Manage Subscriptions"
                                     [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                                    [disabled]="!allowMenuDashboardSubscribe" 
+                                    [disabled]="!allowMenuDashboardSubscribe"
                                     >
                                     Subscribe
                                 </button>
@@ -408,7 +408,7 @@
                             clrDropdownItem
                             title="Print the current Dashboard"
                             (click)="clickMenuDashboardPrint()"
-                            [disabled]="!allowMenuDashboardPrint" 
+                            [disabled]="!allowMenuDashboardPrint"
                             >
                             Print
                         </button>
@@ -419,7 +419,7 @@
                             clrDropdownItem
                             title="Delete the current Dashboard"
                             (click)="clickMenuDashboardDelete()"
-                            [disabled]="!allowMenuDashboardDelete" 
+                            [disabled]="!allowMenuDashboardDelete"
                             >
                             Delete
                         </button>
@@ -429,7 +429,7 @@
                             clrDropdownItem
                             title="Delete multiple Dashboards"
                             (click)="clickMenuDashboardDeleteBulk()"
-                            [disabled]="!allowMenuDashboardDeleteBulk" 
+                            [disabled]="!allowMenuDashboardDeleteBulk"
                             >
                             Bulk Delete
                         </button>
@@ -467,7 +467,7 @@
                                         clrDropdownItem
                                         title="Create a new Datasources using the SQL Editor"
                                         (click)="clickMenuDataCreateSQLEditor()"
-                                        [disabled]="!allowMenuDatasourceCreate" 
+                                        [disabled]="!allowMenuDatasourceCreate"
                                         >
                                         Using SQL Editor
                                     </button>
@@ -492,7 +492,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a Comma Separated Value TEXT file"
                                     (click)="clickMenuDataDirectFileCSV()"
-                                    [disabled]="!allowMenuDatasourceCreateCSV" 
+                                    [disabled]="!allowMenuDatasourceCreateCSV"
                                     >
                                     From CSV File
                                 </button>
@@ -501,7 +501,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a JSON TEXT file"
                                     (click)="clickMenuDataDirectFileJSON()"
-                                    [disabled]="!allowMenuDatasourceCreateJSON" 
+                                    [disabled]="!allowMenuDatasourceCreateJSON"
                                     >
                                     From JSON File
                                 </button>
@@ -510,7 +510,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a Spreadsheet"
                                     (click)="clickMenuDataDirectFileSpreadsheet()"
-                                    [disabled]="!allowMenuDatasourceCreateSpeadsheet" 
+                                    [disabled]="!allowMenuDatasourceCreateSpeadsheet"
                                     >
                                     From Spreadsheet
                                 </button>
@@ -519,7 +519,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a Google Sheets Spreadsheet"
                                     (click)="clickMenuDataDirectGoogleSheets()"
-                                    [disabled]="!allowMenuDatasourceCreateGoogleSheets" 
+                                    [disabled]="!allowMenuDatasourceCreateGoogleSheets"
                                     >
                                     From Google Sheets
                                 </button>
@@ -530,7 +530,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a SQL Database using the Query Builder"
                                     (click)="clickMenuDataDirectQueryBuilder()"
-                                    [disabled]="!allowMenuDatasourceCreateQueryBuilder" 
+                                    [disabled]="!allowMenuDatasourceCreateQueryBuilder"
                                     >
                                     From SQL Database (QB)
                                 </button>
@@ -539,7 +539,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a SQL Database using SQL statements in the Editor"
                                     (click)="clickMenuDataDirectSQLEditor()"
-                                    [disabled]="!allowMenuDatasourceCreateDirectSQL" 
+                                    [disabled]="!allowMenuDatasourceCreateDirectSQL"
                                     >
                                     Using SQL Editor
                                 </button>
@@ -548,7 +548,7 @@
                                     clrDropdownItem
                                     title="Create a new Datasources from a NoSQL Database"
                                     (click)="clickMenuDataDirectNoSQL()"
-                                    [disabled]="!allowMenuDatasourceCreateDirectNoSQL" 
+                                    [disabled]="!allowMenuDatasourceCreateDirectNoSQL"
                                     >
                                     From NoSQL Database
                                 </button>
@@ -557,7 +557,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuDataDirectService()"
                                     title="Create a new Datasources from a Service"
-                                    [disabled]="!allowMenuDatasourceCreateDirectService" 
+                                    [disabled]="!allowMenuDatasourceCreateDirectService"
                                     >
                                     From Service
                                 </button>
@@ -566,7 +566,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuDataDirectWeb()"
                                     title="Create a new Datasources from a web page"
-                                    [disabled]="!allowMenuDatasourceCreateDirectWeb" 
+                                    [disabled]="!allowMenuDatasourceCreateDirectWeb"
                                     >
                                     From Web
                                 </button>
@@ -577,7 +577,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuDataDirectImport()"
                                     title="Import a new Datasources from an external file"
-                                    [disabled]="!allowMenuDatasourceCreateDirectImport" 
+                                    [disabled]="!allowMenuDatasourceCreateDirectImport"
                                     >
                                     Import
                                 </button>
@@ -586,7 +586,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuDataDirectExport()"
                                     title="Export a Datasources to an external file"
-                                    [disabled]="!allowMenuDatasourceCreateDirectExport" 
+                                    [disabled]="!allowMenuDatasourceCreateDirectExport"
                                     >
                                     Export
                                 </button>
@@ -615,7 +615,7 @@
                                         clrDropdownItem
                                         title="Manage Data Connections (to Databases, used in Datasources)"
                                         (click)="clickMenuDataManagedConnection()"
-                                        [disabled]="!allowMenuDatasourceCreateManagedConnections" 
+                                        [disabled]="!allowMenuDatasourceCreateManagedConnections"
                                         >
                                         Connections
                                     </button>
@@ -626,7 +626,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedQueryBuilder()"
                                         title="Create a new Datasources using Query Builder"
-                                        [disabled]="!allowMenuDatasourceCreateManagedQueryBuilder" 
+                                        [disabled]="!allowMenuDatasourceCreateManagedQueryBuilder"
                                         >
                                         New Query Builder
                                     </button>
@@ -635,7 +635,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedSQLEditor()"
                                         title="Create a new Datasources using the SQL Editor"
-                                        [disabled]="!allowMenuDatasourceCreateManagedSQL" 
+                                        [disabled]="!allowMenuDatasourceCreateManagedSQL"
                                         >
                                         New SQL Editor
                                     </button>
@@ -644,7 +644,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedGraphQLEditor()"
                                         title="Create a new Datasources using the GraphQL Editor"
-                                        [disabled]="!allowMenuDatasourceCreateManagedGraphQL" 
+                                        [disabled]="!allowMenuDatasourceCreateManagedGraphQL"
                                         >
                                         New GraphQL Editor
                                     </button>
@@ -653,7 +653,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedNoSQLEditor()"
                                         title="Create a new Datasources using the NoSQL query Editor"
-                                        [disabled]="!allowMenuDatasourceCreateManagedNoSQL" 
+                                        [disabled]="!allowMenuDatasourceCreateManagedNoSQL"
                                         >
                                         New NoSQL Editor
                                     </button>
@@ -662,7 +662,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedNeo4jEditor()"
                                         title="Create a new Datasources using the Neo4j Editor"
-                                        [disabled]="!allowMenuDatasourceCreateManagedNeo4j" 
+                                        [disabled]="!allowMenuDatasourceCreateManagedNeo4j"
                                         >
                                         New Ne04j Editor
                                     </button>
@@ -673,7 +673,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataBussGlossary()"
                                         title="Manage Business Glossary for Datasources"
-                                        [disabled]="!allowMenuDatasourceBusinessGlossary" 
+                                        [disabled]="!allowMenuDatasourceBusinessGlossary"
                                         >
                                         Manage Business Glossary
                                     </button>
@@ -682,7 +682,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedDataDictionary()"
                                         title="Manage Data Dictionary for Datasources"
-                                        [disabled]="!allowMenuDatasourceDataDictionary" 
+                                        [disabled]="!allowMenuDatasourceDataDictionary"
                                         >
                                         Manage Data Dictionary
                                     </button>
@@ -691,7 +691,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedDataOwnership()"
                                         title="Manage Data Ownership for Datasources"
-                                        [disabled]="!allowMenuDatasourceOwnership" 
+                                        [disabled]="!allowMenuDatasourceOwnership"
                                         >
                                         Manage Data Ownership
                                     </button>
@@ -700,7 +700,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataManagedDataQuality()"
                                         title="Manage Data Quality for Datasources"
-                                        [disabled]="!allowMenuDatasourceDataQuality" 
+                                        [disabled]="!allowMenuDatasourceDataQuality"
                                         >
                                         Manage Data Quality
                                     </button>
@@ -717,7 +717,7 @@
                             clrDropdownItem
                             title="Edit Datasources"
                             (click)="clickMenuDataEditDatasource()"
-                            [disabled]="!allowMenuDatasourceEdit" 
+                            [disabled]="!allowMenuDatasourceEdit"
                             >
                             Edit
                         </button>
@@ -728,7 +728,7 @@
                             clrDropdownItem
                             title="Datasource descriptive information, ie accessType"
                             (click)="clickMenuDataDatasourceDescription()"
-                            [disabled]="!allowMenuDatasourceDescriptions" 
+                            [disabled]="!allowMenuDatasourceDescriptions"
                             >
                             Descriptions
                         </button>
@@ -739,7 +739,7 @@
                             clrDropdownItem
                             title="Show an overview of Datasources"
                             (click)="clickMenuDatasourceOverview()"
-                            [disabled]="!allowMenuDatasourceOverview" 
+                            [disabled]="!allowMenuDatasourceOverview"
                             >
                             Overview
                         </button>
@@ -750,7 +750,7 @@
                             clrDropdownItem
                             title="Share permissions to Datasources with AccessLists"
                             (click)="clickMenuDataShare()"
-                            [disabled]="!allowMenuDatasourceShare" 
+                            [disabled]="!allowMenuDatasourceShare"
                             >
                             Share
                         </button>
@@ -764,7 +764,7 @@
                                 clrDropdownItem
                                 title="Add / Edit Networks (nodes and relationship structures)"
                                 (click)="clickMenuDataNetworks()"
-                                [disabled]="!allowMenuDatasourceNetworks" 
+                                [disabled]="!allowMenuDatasourceNetworks"
                                 >
                                 Networks
                             </button>
@@ -788,7 +788,7 @@
                                         clrDropdownItem
                                         title="Append selected Datasources below each other"
                                         (click)="clickMenuDataCombinationAppend()"
-                                        [disabled]="!allowMenuDatasourceCombinationsAppend" 
+                                        [disabled]="!allowMenuDatasourceCombinationsAppend"
                                         >
                                         Append
                                     </button>
@@ -799,7 +799,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataCombinations('Join')"
                                         title="Join existing Datasources next to each other on a common field "
-                                        [disabled]="!allowMenuDatasourceCombinationsJoin" 
+                                        [disabled]="!allowMenuDatasourceCombinationsJoin"
                                         >
                                         Join
                                     </button>
@@ -808,7 +808,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataCombinations('Intersection')"
                                         title="Show only rows in a Datasource where a key field exists in a second Datasource"
-                                        [disabled]="!allowMenuDatasourceCombinationsIntersection" 
+                                        [disabled]="!allowMenuDatasourceCombinationsIntersection"
                                         >
                                         Intersection
                                     </button>
@@ -817,7 +817,7 @@
                                         clrDropdownItem
                                         (click)="clickMenuDataCombinations('Minus')"
                                         title="Show rows in a Datasource where a key field does NOT exist in a second Datasource"
-                                        [disabled]="!allowMenuDatasourceCombinationsMinusSubtract" 
+                                        [disabled]="!allowMenuDatasourceCombinationsMinusSubtract"
                                         >
                                         Minus/Subtract
                                     </button>
@@ -832,7 +832,7 @@
                             clrDropdownItem
                             title="Show a summary of Data Usage Datasources (ie Dashboard where used)"
                             (click)="clickMenuDatasourceUsage()"
-                            [disabled]="!allowMenuDatasourceUsage" 
+                            [disabled]="!allowMenuDatasourceUsage"
                             >
                             Usage
                         </button>
@@ -854,7 +854,7 @@
                                     clrDropdownItem
                                     title="Manage scheduled runs for this Datasource"
                                     (click)="clickMenuDatasourceScheduleEdit()"
-                                    [disabled]="!allowMenuDatasourceSchedulesManage" 
+                                    [disabled]="!allowMenuDatasourceSchedulesManage"
                                     >
                                     Manage
                                 </button>
@@ -863,7 +863,7 @@
                                     clrDropdownItem
                                     title="Shows all scheduled runs"
                                     (click)="clickMenuDatasourceSchedule()"
-                                    [disabled]="!allowMenuDatasourceSchedulesShowAll" 
+                                    [disabled]="!allowMenuDatasourceSchedulesShowAll"
                                     >
                                     Show All
                                 </button>
@@ -872,7 +872,7 @@
                                     clrDropdownItem
                                     title="Shows all scheduled runs"
                                     (click)="clickMenuDatasourceScheduleLog()"
-                                    [disabled]="!allowMenuDatasourceScheduleLogs" 
+                                    [disabled]="!allowMenuDatasourceScheduleLogs"
                                     >
                                     Schedule Logs
                                 </button>
@@ -897,7 +897,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuDatasourceRefreshOnce()"
                                     title="Refresh all or some Datasources once off"
-                                    [disabled]="!allowMenuDatasourceRefreshOnce" 
+                                    [disabled]="!allowMenuDatasourceRefreshOnce"
                                     >
                                     Once
                                 </button>
@@ -906,7 +906,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuDatasourceRefreshRepeat()"
                                     title="Refresh Datasources for this Dashboard repeatedly"
-                                    [disabled]="!allowMenuDatasourceRefreshRepeat" 
+                                    [disabled]="!allowMenuDatasourceRefreshRepeat"
                                     >
                                     Repeat
                                 </button>
@@ -920,7 +920,7 @@
                             clrDropdownItem
                             (click)="clickMenuDataDeleteDatasource()"
                             title="Shows a list of Datasources to delete from"
-                            [disabled]="!allowMenuDatasourceDelete" 
+                            [disabled]="!allowMenuDatasourceDelete"
                             >
                             Delete
                         </button>
@@ -953,7 +953,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetNew()"
                                     title="Add a new Widget"
-                                    [disabled]="!allowMenuGraphAdd" 
+                                    [disabled]="!allowMenuGraphAdd"
                                     >
                                     Add Graph
                                 </button>
@@ -961,7 +961,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuNavigatorNew()"
                                     title="Add a new Navigator Widget"
-                                    [disabled]="!allowMenuNavigatorAdd" 
+                                    [disabled]="!allowMenuNavigatorAdd"
                                     >
                                     Add Navigator
                                 </button>
@@ -983,7 +983,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetEdit()"
                                     title="Edit selected Widget"
-                                    [disabled]="!allowMenuGraphEdit" 
+                                    [disabled]="!allowMenuGraphEdit"
                                     >
                                     Edit Graph
                                 </button>
@@ -991,7 +991,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuNavigatorEdit()"
                                     title="Edit the selected Navigator Widget"
-                                    [disabled]="!allowMenuNavigatorEdit" 
+                                    [disabled]="!allowMenuNavigatorEdit"
                                     >
                                     Edit Navigator
                                 </button>
@@ -1014,7 +1014,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetContainer('Graph')"
                                     title="Change container properties for selected Widget"
-                                    [disabled]="!allowMenuGraphContainer" 
+                                    [disabled]="!allowMenuGraphContainer"
                                     >
                                     Container
                                 </button>
@@ -1022,7 +1022,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetDescription()"
                                     title="Description for the selected Widget"
-                                    [disabled]="!allowMenuGraphDescription" 
+                                    [disabled]="!allowMenuGraphDescription"
                                     >
                                     Description
                                 </button>
@@ -1030,7 +1030,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetEditTitle()"
                                     title="Edit title of selected Widget"
-                                    [disabled]="!allowMenuGraphTitleEdit" 
+                                    [disabled]="!allowMenuGraphTitleEdit"
                                     >
                                     Edit Title
                                 </button>
@@ -1039,7 +1039,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetFullScreen()"
                                     title="Show the selected Widget in full screen"
-                                    [disabled]="!allowMenuGraphFullScreen" 
+                                    [disabled]="!allowMenuGraphFullScreen"
                                     >
                                     Full Screen
                                 </button>
@@ -1049,7 +1049,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetAnnotations()"
                                     title="Annotations for selected Widget"
-                                    [disabled]="!allowMenuGraphAnnotations" 
+                                    [disabled]="!allowMenuGraphAnnotations"
                                     >
                                     Annotations
                                 </button>
@@ -1057,7 +1057,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetCheckpoints()"
                                     title="Managing checkpoints for selected Widget"
-                                    [disabled]="!allowMenuGraphCheckpoints" 
+                                    [disabled]="!allowMenuGraphCheckpoints"
                                     >
                                     Graph Checkpoints
                                 </button>
@@ -1065,14 +1065,14 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetComments()"
                                     title="Comments for selected Widget"
-                                    [disabled]="!allowMenuGraphComments" 
+                                    [disabled]="!allowMenuGraphComments"
                                     >
                                     Comments
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
                                     (click)="clickMenuWidgetHyperlinks()"
-                                    [disabled]="!allowMenuGraphHyperlinks" 
+                                    [disabled]="!allowMenuGraphHyperlinks"
                                     >
                                     Hyperlinks
                                 </button>
@@ -1093,7 +1093,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetStoredTemplateAdd()"
                                     title="Add the selected Widget as a Widget Template"
-                                    [disabled]="!allowMenuGraphTemplatesAdd" 
+                                    [disabled]="!allowMenuGraphTemplatesAdd"
                                     >
                                     Add Template
                                 </button>
@@ -1101,7 +1101,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetStoredTemplateInsertWidget()"
                                     title="Select a template and insert as a Widget"
-                                    [disabled]="!allowMenuGraphTemplatesInsert" 
+                                    [disabled]="!allowMenuGraphTemplatesInsert"
                                     >
                                     Insert Template
                                 </button>
@@ -1123,7 +1123,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetCrossFilter()"
                                     title="Define a cross filter for selected Widget"
-                                    [disabled]="!allowMenuGraphCrossFilter" 
+                                    [disabled]="!allowMenuGraphCrossFilter"
                                     >
                                     Cross Filter
                                 </button>
@@ -1131,7 +1131,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetExpand()"
                                     title="Expand Dataset for selected Widget"
-                                    [disabled]="!allowMenuGraphExpand" 
+                                    [disabled]="!allowMenuGraphExpand"
                                     >
                                     Expand Graph
                                 </button>
@@ -1139,7 +1139,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetExport()"
                                     title="Export Dataset for selected Widget"
-                                    [disabled]="!allowMenuGraphExport" 
+                                    [disabled]="!allowMenuGraphExport"
                                     >
                                     Export Graph
                                 </button>
@@ -1149,7 +1149,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetBusinessGlossary()"
                                     title="Business Glossary for Datasource of the selected Widget"
-                                    [disabled]="!allowMenuGraphBusinessGlossary" 
+                                    [disabled]="!allowMenuGraphBusinessGlossary"
                                     >
                                     Business Glossary
                                 </button>
@@ -1157,7 +1157,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetDataDictionary()"
                                     title="Data Dictionary for Datasource of the selected Widget"
-                                    [disabled]="!allowMenuGraphDataDictionary" 
+                                    [disabled]="!allowMenuGraphDataDictionary"
                                     >
                                     Data Dictionary
                                 </button>
@@ -1165,7 +1165,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetDataQuality()"
                                     title="Data quality issues for the selected Widget"
-                                    [disabled]="!allowMenuGraphDataQuality" 
+                                    [disabled]="!allowMenuGraphDataQuality"
                                     >
                                     Data Quality
                                 </button>
@@ -1173,7 +1173,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetDataSummary()"
                                     title="Data Summary for Datasource of the selected Widget"
-                                    [disabled]="!allowMenuGraphDataSummary" 
+                                    [disabled]="!allowMenuGraphDataSummary"
                                     >
                                     Data Summary
                                 </button>
@@ -1183,7 +1183,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetRefresh()"
                                     title="Refresh Datasource linked to selected Widget"
-                                    [disabled]="!allowMenuGraphRefresh" 
+                                    [disabled]="!allowMenuGraphRefresh"
                                     >
                                     Refresh
                                 </button>
@@ -1194,7 +1194,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetCopy()"
                             title="Copy selected Widget"
-                            [disabled]="!allowMenuGraphCopy" 
+                            [disabled]="!allowMenuGraphCopy"
                             >
                             Copy (Ctrl-C)
                         </button>
@@ -1202,7 +1202,7 @@
                             clrDropdownItem
                             (click)="clickMenuPaletteDuplicate()"
                             title="Duplicate selected Widget"
-                            [disabled]="!allowMenuGraphDuplicate" 
+                            [disabled]="!allowMenuGraphDuplicate"
                             >
                             Duplicate
                         </button>
@@ -1210,7 +1210,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetLockUnlock()"
                             title="Toggle Lock/UnLock for the selected Widget"
-                            [disabled]="!allowMenuGraphLockUnlock" 
+                            [disabled]="!allowMenuGraphLockUnlock"
                             >
                             Lock/UnLock
                         </button>
@@ -1218,7 +1218,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetPaste()"
                             title="Paste previously copied Widget"
-                            [disabled]="!allowMenuGraphPaste" 
+                            [disabled]="!allowMenuGraphPaste"
                             >
                             Paste (Ctrl-V)
                         </button>
@@ -1239,7 +1239,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetDelete()"
                                     title="Delete selected Widget"
-                                    [disabled]="!allowMenuGraphDelete" 
+                                    [disabled]="!allowMenuGraphDelete"
                                     >
                                     Delete Graph
                                 </button>
@@ -1247,7 +1247,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuNavigatorDelete()"
                                     title="Delete selected Navigator"
-                                    [disabled]="!allowMenuNavigatorDelete" 
+                                    [disabled]="!allowMenuNavigatorDelete"
                                     >
                                     Delete Navigator
                                 </button>
@@ -1271,7 +1271,7 @@
                             clrDropdownItem
                             (click)="clickMenuTableAdd()"
                             title="Add a new Table"
-                            [disabled]="!allowMenuTableAdd" 
+                            [disabled]="!allowMenuTableAdd"
                             >
                             Add Table
                         </button>
@@ -1279,7 +1279,7 @@
                             clrDropdownItem
                             (click)="clickMenuTableEdit()"
                             title="Edit selected Table"
-                            [disabled]="!allowMenuTableEdit" 
+                            [disabled]="!allowMenuTableEdit"
                             >
                             Edit Table
                         </button>
@@ -1299,7 +1299,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuTableComments()"
                                     title="Comments for selected Table"
-                                    [disabled]="!allowMenuTableComments" 
+                                    [disabled]="!allowMenuTableComments"
                                     >
                                     Comments
                                 </button>
@@ -1307,7 +1307,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetContainer('Table')"
                                     title="Change container properties for selected Table"
-                                    [disabled]="!allowMenuTableContainer" 
+                                    [disabled]="!allowMenuTableContainer"
                                     >
                                     Container
                                 </button>
@@ -1328,7 +1328,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuWidgetCrossFilter()"
                                     title="Define a cross filter for selected Widget"
-                                    [disabled]="!allowMenuTableCrossFilter" 
+                                    [disabled]="!allowMenuTableCrossFilter"
                                     >
                                     Cross Filter
                                 </button>
@@ -1337,7 +1337,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuTableDataQuality()"
                                     title="Data quality issues for selected Table"
-                                    [disabled]="!allowMenuTableDataQuality" 
+                                    [disabled]="!allowMenuTableDataQuality"
                                     >
                                     Data Quality
                                 </button>
@@ -1345,7 +1345,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuTableExpand()"
                                     title="Expand Dataset for selected Table"
-                                    [disabled]="!allowMenuTableExpand" 
+                                    [disabled]="!allowMenuTableExpand"
                                     >
                                     Expand
                                 </button>
@@ -1353,7 +1353,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuTableExport()"
                                     title="Export Dataset for selected Table"
-                                    [disabled]="!allowMenuTableExport" 
+                                    [disabled]="!allowMenuTableExport"
                                     >
                                     Export
                                 </button>
@@ -1364,7 +1364,7 @@
                             clrDropdownItem
                             (click)="clickMenuPaletteDuplicate()"
                             title="Duplicate selected Table"
-                            [disabled]="!allowMenuTableDuplicate" 
+                            [disabled]="!allowMenuTableDuplicate"
                             >
                             Duplicate
                         </button>
@@ -1372,7 +1372,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetLockUnlock()"
                             title="Toggle Lock/UnLock for the selected Table"
-                            [disabled]="!allowMenuTableLockUnlock" 
+                            [disabled]="!allowMenuTableLockUnlock"
                             >
                             Lock/UnLock
                         </button>
@@ -1381,7 +1381,7 @@
                             clrDropdownItem
                             (click)="clickMenuTableDelete()"
                             title="Delete selected Table"
-                            [disabled]="!allowMenuTableDelete" 
+                            [disabled]="!allowMenuTableDelete"
                             >
                             Delete Table
                         </button>
@@ -1404,7 +1404,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerAdd()"
                             title="Add a new Slicer"
-                            [disabled]="!allowMenuSlicerAdd" 
+                            [disabled]="!allowMenuSlicerAdd"
                             >
                             Add Slicer
                         </button>
@@ -1412,7 +1412,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerEdit()"
                             title="Edit selected Slicer"
-                            [disabled]="!allowMenuSlicerEdit" 
+                            [disabled]="!allowMenuSlicerEdit"
                             >
                             Edit Slicer
                         </button>
@@ -1422,7 +1422,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerComments()"
                             title="Comments for selected Slicer"
-                            [disabled]="!allowMenuSlicerComments" 
+                            [disabled]="!allowMenuSlicerComments"
                             >
                             Comments
                         </button>
@@ -1430,7 +1430,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetContainer('Slicer')"
                             title="Change container properties for selected Slicer"
-                            [disabled]="!allowMenuSlicerContainer" 
+                            [disabled]="!allowMenuSlicerContainer"
                             >
                             Container
                         </button>
@@ -1438,7 +1438,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerDataQuality()"
                             title="Data quality for selected Slicer"
-                            [disabled]="!allowMenuSlicerDataQuality" 
+                            [disabled]="!allowMenuSlicerDataQuality"
                             >
                             Data Quality
                         </button>
@@ -1446,7 +1446,7 @@
                             clrDropdownItem
                             (click)="clickMenuPaletteDuplicate()"
                             title="Duplicate selected Slicer"
-                            [disabled]="!allowMenuSlicerDuplicate" 
+                            [disabled]="!allowMenuSlicerDuplicate"
                             >
                             Duplicate
                         </button>
@@ -1454,7 +1454,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerExpand()"
                             title="Expand Dataset for selected Slicer"
-                            [disabled]="!allowMenuSlicerExpand" 
+                            [disabled]="!allowMenuSlicerExpand"
                             >
                             Expand
                         </button>
@@ -1462,7 +1462,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerExport()"
                             title="Export Dataset for selected Slicer"
-                            [disabled]="!allowMenuSlicerExport" 
+                            [disabled]="!allowMenuSlicerExport"
                             >
                             Export
                         </button>
@@ -1470,7 +1470,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetLockUnlock()"
                             title="Toggle Lock/UnLock for the selected Slicer"
-                            [disabled]="!allowMenuSlicerLockUnlock" 
+                            [disabled]="!allowMenuSlicerLockUnlock"
                             >
                             Lock/UnLock
                         </button>
@@ -1480,7 +1480,7 @@
                             clrDropdownItem
                             (click)="clickMenuSlicerDelete()"
                             title="Delete selected Slicer"
-                            [disabled]="!allowMenuSlicerDelete" 
+                            [disabled]="!allowMenuSlicerDelete"
                             >
                             Delete Slicer
                         </button>
@@ -1503,7 +1503,7 @@
                             clrDropdownItem
                             (click)="clickMenuShapeNew()"
                             title="Add a new Shape to this Dashboard"
-                            [disabled]="!allowMenuShapeAdd" 
+                            [disabled]="!allowMenuShapeAdd"
                             >
                             Add Shape
                         </button>
@@ -1511,7 +1511,7 @@
                             clrDropdownItem
                             (click)="clickMenuShapeEdit()"
                             title="Edit the selected Shape"
-                            [disabled]="!allowMenuShapeEdit" 
+                            [disabled]="!allowMenuShapeEdit"
                             >
                             Edit Shape
                         </button>
@@ -1520,7 +1520,7 @@
                             clrDropdownItem
                             (click)="clickMenuShapeComments()"
                             title="Comments for selected Shape"
-                            [disabled]="!allowMenuShapeComments" 
+                            [disabled]="!allowMenuShapeComments"
                             >
                             Comments
                         </button>
@@ -1528,7 +1528,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetContainer('Shape')"
                             title="Change container properties for selected Shape"
-                            [disabled]="!allowMenuShapeContainer" 
+                            [disabled]="!allowMenuShapeContainer"
                             >
                             Container
                         </button>
@@ -1536,7 +1536,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetCopy()"
                             title="Copy selected Shape"
-                            [disabled]="!allowMenuShapeCopy" 
+                            [disabled]="!allowMenuShapeCopy"
                             >
                             Copy (Ctrl-C)
                         </button>
@@ -1544,7 +1544,7 @@
                             clrDropdownItem
                             (click)="clickMenuPaletteDuplicate()"
                             title="Duplicate selected Shape"
-                            [disabled]="!allowMenuShapeDuplicate" 
+                            [disabled]="!allowMenuShapeDuplicate"
                             >
                             Duplicate
                         </button>
@@ -1552,7 +1552,7 @@
                             clrDropdownItem
                             (click)="clickMenuShapeEditTitle()"
                             title="Edit title of selected Widget"
-                            [disabled]="!allowMenuShapeTitleEdit" 
+                            [disabled]="!allowMenuShapeTitleEdit"
                             >
                             Edit Title
                         </button>
@@ -1560,7 +1560,7 @@
                             clrDropdownItem
                             (click)="clickMenuShapeHyperLinks()"
                             title="Manage hyperlinks on selected Shape"
-                            [disabled]="!allowMenuShapeHyperlinks" 
+                            [disabled]="!allowMenuShapeHyperlinks"
                             >
                             Hyperlinks
                         </button>
@@ -1568,7 +1568,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetLockUnlock()"
                             title="Toggle Lock/UnLock for the selected Shape"
-                            [disabled]="!allowMenuShapeLockUnlock" 
+                            [disabled]="!allowMenuShapeLockUnlock"
                             >
                             Lock/UnLock
                         </button>
@@ -1576,7 +1576,7 @@
                             clrDropdownItem
                             (click)="clickMenuWidgetPaste()"
                             title="Paste previously copied Shape"
-                            [disabled]="!allowMenuShapePaste" 
+                            [disabled]="!allowMenuShapePaste"
                             >
                             Paste (Ctrl-V)
                         </button>
@@ -1586,7 +1586,7 @@
                             clrDropdownItem
                             (click)="clickMenuShapeDelete()"
                             title="Delete selected Shapes"
-                            [disabled]="!allowMenuShapeDelete" 
+                            [disabled]="!allowMenuShapeDelete"
                             >
                             Delete Shape
                         </button>
@@ -1594,7 +1594,7 @@
                             clrDropdownItem
                             (click)="clickMenuShapeDeleteAll()"
                             title="Delete ALL Shapes on the current tab"
-                            [disabled]="!allowMenuShapeDeleteAll" 
+                            [disabled]="!allowMenuShapeDeleteAll"
                             >
                             Delete ALL Shapes
                         </button>
@@ -1617,7 +1617,7 @@
                             clrDropdownItem
                             (click)="clickMenuViewHideMenu()"
                             title="Hide menu"
-                            [disabled]="!allowMenuViewHideMenu" 
+                            [disabled]="!allowMenuViewHideMenu"
                             >
                             Hide Menu
                         </button>
@@ -1626,7 +1626,7 @@
                             clrDropdownItem
                             (click)="clickMenuViewPrintPreview()"
                             title="Toggle print preview on/off"
-                            [disabled]="!allowMenuViewPrintPreview" 
+                            [disabled]="!allowMenuViewPrintPreview"
                             >
                             Print preview
                         </button>
@@ -1634,7 +1634,7 @@
                             clrDropdownItem
                             (click)="clickMenuDashboardTreeview()"
                             title="Create of TreeView of this Dashboard"
-                            [disabled]="!allowMenuViewTreeview" 
+                            [disabled]="!allowMenuViewTreeview"
                             >
                             Treeview
                         </button>
@@ -1643,7 +1643,7 @@
                             clrDropdownItem
                             (click)="clickMenuViewShowPalette()"
                             title="Toggles a background grid"
-                            [disabled]="!allowMenuViewShowPalette" 
+                            [disabled]="!allowMenuViewShowPalette"
                             >
                             Show Palette
                             <clr-icon shape="check" size="12" *ngIf="showPalette"></clr-icon>
@@ -1652,7 +1652,7 @@
                             clrDropdownItem
                             (click)="clickMenuViewShowGrid()"
                             title="Toggles a background grid"
-                            [disabled]="!allowMenuViewShowGrid" 
+                            [disabled]="!allowMenuViewShowGrid"
                             >
                             Show grid
                             <clr-icon shape="check" size="12" *ngIf="showGrid"></clr-icon>
@@ -1662,7 +1662,7 @@
                             clrDropdownItem
                             (click)="clickMenuViewSnapToGrid()"
                             title="Toggle whether resize and move will snap to a grid"
-                            [disabled]="!allowMenuViewSnapToGrid" 
+                            [disabled]="!allowMenuViewSnapToGrid"
                             >
                             Snap to Grid
                             <clr-icon shape="check" size="12" *ngIf="snapToGrid"></clr-icon>
@@ -1673,7 +1673,7 @@
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
                                 title="Size of the grid for this Dashboard"
-                                [disabled]="!allowMenuViewGridSize" 
+                                [disabled]="!allowMenuViewGridSize"
                                 >
                                 Grid size
                             </button>
@@ -1690,7 +1690,7 @@
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
                                 title="Zoom % for this Dashboard"
-                                [disabled]="!allowMenuViewZoom" 
+                                [disabled]="!allowMenuViewZoom"
                                 >
                                 Zoom %
                             </button>
@@ -1706,7 +1706,7 @@
                             clrDropdownItem
                             (click)="clickMenuViewZoom(0.6)"
                             title="100% zoom"
-                            [disabled]="!allowMenuViewZoom100" 
+                            [disabled]="!allowMenuViewZoom100"
                             >
                             Zoom 100%
                         </button>
@@ -1731,7 +1731,7 @@
                             clrDropdownItem
                             (click)="clickMenuArrangeBackward()"
                             title="Move selected Widgets backward in z-plane"
-                            [disabled]="!allowMenuArrangeBackward" 
+                            [disabled]="!allowMenuArrangeBackward"
                             >
                             Backward
                         </button>
@@ -1739,7 +1739,7 @@
                             clrDropdownItem
                             (click)="clickMenuArrangeForward()"
                             title="Move selected Widgets forward in z-plane"
-                            [disabled]="!allowMenuArrangeForward" 
+                            [disabled]="!allowMenuArrangeForward"
                             >
                             Forward
                         </button>
@@ -1747,7 +1747,7 @@
                             clrDropdownItem
                             (click)="clickMenuArrangeBack()"
                             title="Move selected Widgets to the back in z-plane"
-                            [disabled]="!allowMenuArrangeBack" 
+                            [disabled]="!allowMenuArrangeBack"
                             >
                             Back
                         </button>
@@ -1755,7 +1755,7 @@
                             clrDropdownItem
                             (click)="clickMenuArrangeFront()"
                             title="Move selected Widgets to the front in z-plane"
-                            [disabled]="!allowMenuArrangeFront" 
+                            [disabled]="!allowMenuArrangeFront"
                             >
                             Front
                         </button>
@@ -1775,7 +1775,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignLeft()"
                                     title="Align selected Widgets to the left"
-                                    [disabled]="!allowMenuArrangeAlignLeft" 
+                                    [disabled]="!allowMenuArrangeAlignLeft"
                                     >
                                     Left
                                 </button>
@@ -1783,14 +1783,14 @@
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignCenter()"
                                     title="Align selected Widgets to the center"
-                                    [disabled]="!allowMenuArrangeAlignCenter" 
+                                    [disabled]="!allowMenuArrangeAlignCenter"
                                     >
                                     Center</button>
                                 <button type="button" class="dropdown-item"
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignRight()"
                                     title="Align selected Widgets to the right"
-                                    [disabled]="!allowMenuArrangeAlignRight" 
+                                    [disabled]="!allowMenuArrangeAlignRight"
                                     >
                                     Right</button>
                                 <div class="dropdown-divider"></div>
@@ -1798,7 +1798,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignTop()"
                                     title="Align selected Widgets to the top"
-                                    [disabled]="!allowMenuArrangeAlignTop" 
+                                    [disabled]="!allowMenuArrangeAlignTop"
                                     >
                                     Top
                                 </button>
@@ -1806,14 +1806,14 @@
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignMiddle()"
                                     title="Align selected Widgets to the middle"
-                                    [disabled]="!allowMenuArrangeAlignMiddle" 
+                                    [disabled]="!allowMenuArrangeAlignMiddle"
                                     >
                                     Middle</button>
                                 <button type="button" class="dropdown-item"
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignBottom()"
                                     title="Align selected Widgets to the bottom"
-                                    [disabled]="!allowMenuArrangeAlignBottom" 
+                                    [disabled]="!allowMenuArrangeAlignBottom"
                                     >
                                     Bottom</button>
                                 <div class="dropdown-divider"></div>
@@ -1821,7 +1821,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignCenterHorisontally()"
                                     title="Align selected Widgets horisontally on page"
-                                    [disabled]="!allowMenuArrangeCenterHorisontally" 
+                                    [disabled]="!allowMenuArrangeCenterHorisontally"
                                     >
                                     Center horisontally
                                     <clr-icon shape="two-way-arrows down"></clr-icon>
@@ -1830,7 +1830,7 @@
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignCenterVertically()"
                                     title="Align selected Widgets vertically on page"
-                                    [disabled]="!allowMenuArrangeCenterVertically" 
+                                    [disabled]="!allowMenuArrangeCenterVertically"
                                     >
                                     Center vertically
                                     <clr-icon shape="two-way-arrows right"></clr-icon>
@@ -1841,14 +1841,14 @@
                         <button type="button"
                             clrDropdownItem (click)="clickMenuArrangeGroup()"
                             title="Group selected Widgets"
-                            [disabled]="!allowMenuArrangeGroup" 
+                            [disabled]="!allowMenuArrangeGroup"
                             >
                             Group
                         </button>
                         <button type="button"
                             clrDropdownItem (click)="clickMenuArrangeUnGroup()"
                             title="Ungroup previosly selected Widgets"
-                            [disabled]="!allowMenuArrangeUngroup" 
+                            [disabled]="!allowMenuArrangeUngroup"
                             >
                             Ungroup
                         </button>
@@ -1856,7 +1856,7 @@
                         <button type="button"
                             clrDropdownItem (click)="clickMenuArrangeDistributeHorisontal()"
                             title="Distribute selected Widgets horisontally"
-                            [disabled]="!allowMenuArrangeDistributeHorisontally" 
+                            [disabled]="!allowMenuArrangeDistributeHorisontally"
                             >
                             Distribute
                             <clr-icon shape="two-way-arrows"></clr-icon>
@@ -1864,7 +1864,7 @@
                         <button type="button"
                             clrDropdownItem (click)="clickMenuArrangeDistributeVertical()"
                             title="Distribute selected Widgets vertically"
-                            [disabled]="!allowMenuArrangeDistributeVertically" 
+                            [disabled]="!allowMenuArrangeDistributeVertically"
                             >
                             Distribute
                             <clr-icon shape="two-way-arrows right"></clr-icon>
@@ -1884,7 +1884,7 @@
                                 <button type="button"
                                     clrDropdownItem (click)="clickMenuArrangeSameSizeVertically()"
                                     title="Make selected Widgets the same size vertically"
-                                    [disabled]="!allowMenuArrangeSameVertically" 
+                                    [disabled]="!allowMenuArrangeSameVertically"
                                     >
                                     Same vertically
                                 </button>
@@ -1892,7 +1892,7 @@
                                 <button type="button"
                                     clrDropdownItem (click)="clickMenuArrangeSameSizeHorisontally()"
                                     title="Make selected Widgets the same size horisontally"
-                                    [disabled]="!allowMenuArrangeSameHorisontally" 
+                                    [disabled]="!allowMenuArrangeSameHorisontally"
                                     >
                                     Same horisontally
                                 </button>
@@ -1900,7 +1900,7 @@
                                 <button type="button"
                                     clrDropdownItem (click)="clickMenuArrangeSameSize()"
                                     title="Make selected Widgets the same size"
-                                    [disabled]="!allowMenuArrangeSameBoth" 
+                                    [disabled]="!allowMenuArrangeSameBoth"
                                     >
                                     Same both
                                 </button>
@@ -1925,7 +1925,7 @@
                             clrDropdownItem
                             (click)="clickMenuHelpDemo()"
                             title="Demo Dashboards for clarification"
-                            [disabled]="!allowMenuHelpDemo" 
+                            [disabled]="!allowMenuHelpDemo"
                             >
                             Demo
                         </button>
@@ -1933,7 +1933,7 @@
                             clrDropdownItem
                             (click)="clickHelpGettingStarted()"
                             title="Getting started with Canvas"
-                            [disabled]="!allowMenuHelpGettingStarted" 
+                            [disabled]="!allowMenuHelpGettingStarted"
                             >
                             Getting started with Canvas
                         </button>
@@ -1941,7 +1941,7 @@
                             clrDropdownItem
                             (click)="clickHelpGetData()"
                             title="How to add Datasources to a Dashboard"
-                            [disabled]="!allowMenuHelpGettingData" 
+                            [disabled]="!allowMenuHelpGettingData"
                             >
                             Getting data
                         </button>
@@ -1949,7 +1949,7 @@
                             clrDropdownItem
                             (click)="clickHelpCreateDashboard()"
                             title="Easy steps to create a Dashboard"
-                            [disabled]="!allowMenuHelpCreatingDashboard" 
+                            [disabled]="!allowMenuHelpCreatingDashboard"
                             >
                             Creating a Dashboard
                         </button>
@@ -1957,7 +1957,7 @@
                             clrDropdownItem
                             (click)="clickHelpCreateWidget()"
                             title="Steps to create a Widget (graph, table, etc)"
-                            [disabled]="!allowMenuHelpCreatingWidget" 
+                            [disabled]="!allowMenuHelpCreatingWidget"
                             >
                             Creating a Widget
                         </button>
@@ -1965,7 +1965,7 @@
                             clrDropdownItem
                             (click)="clickHelpTransformData()"
                             title="How to transform the data in a Datasource"
-                            [disabled]="!allowMenuHelpTransformingData" 
+                            [disabled]="!allowMenuHelpTransformingData"
                             >
                             Transforming data
                         </button>
@@ -1974,7 +1974,7 @@
                             clrDropdownItem
                             (click)="clickHelpTutorials()"
                             title="Tutorials in selected functionality"
-                            [disabled]="!allowMenuHelpTutorials" 
+                            [disabled]="!allowMenuHelpTutorials"
                             >
                             Tutorials
                         </button>
@@ -1982,7 +1982,7 @@
                             clrDropdownItem
                             (click)="clickHelpDocumentation()"
                             title="Full documentation"
-                            [disabled]="!allowMenuHelpDocumentation" 
+                            [disabled]="!allowMenuHelpDocumentation"
                             >
                             Documentation
                         </button>
@@ -1991,7 +1991,7 @@
                             clrDropdownItem
                             (click)="clickHelpDocumentation()"
                             title="How and where to get support"
-                            [disabled]="!allowMenuHelpSupport" 
+                            [disabled]="!allowMenuHelpSupport"
                             >
                             Support
                         </button>
@@ -2016,7 +2016,7 @@
                         clrDropdownItem
                         (click)="clickMenuCollaborateAuditTrail()"
                         title="Show Audit Trail"
-                        [disabled]="!allowMenuActionsShowAuditTrails" 
+                        [disabled]="!allowMenuActionsShowAuditTrails"
                         >
                         Audit Trail
                     </button>
@@ -2024,7 +2024,7 @@
                         clrDropdownItem
                         (click)="clickMenuCollaborateMessages()"
                         title="Manage Messages"
-                        [disabled]="!allowMenuActionsShowMessages" 
+                        [disabled]="!allowMenuActionsShowMessages"
                         >
                         Messages
                     </button>
@@ -2032,7 +2032,7 @@
                         clrDropdownItem
                         (click)="clickMenuCollaborateTasks()"
                         title="Manage Tasks"
-                        [disabled]="!allowMenuActionsShowTasks" 
+                        [disabled]="!allowMenuActionsShowTasks"
                         >
                         Tasks
                     </button>
@@ -2041,7 +2041,7 @@
                         clrDropdownItem
                         (click)="clickMenuCollaborateSendMessageAdd()"
                         title="Send a Canvas Message"
-                        [disabled]="!allowMenuActionsSendMessage" 
+                        [disabled]="!allowMenuActionsSendMessage"
                         >
                         Send Message
                     </button>
@@ -2049,7 +2049,7 @@
                         clrDropdownItem
                         (click)="clickMenuCollaborateSendEmailAdd()"
                         title="Send an email"
-                        [disabled]="!allowMenuActionsSendEmail" 
+                        [disabled]="!allowMenuActionsSendEmail"
                         >
                         Send Email
                     </button>
@@ -2057,7 +2057,7 @@
                         clrDropdownItem
                         (click)="clickMenuCollaborateTaskAdd()"
                         title="Add a new Task"
-                        [disabled]="!allowMenuActionsAddTask" 
+                        [disabled]="!allowMenuActionsAddTask"
                         >
                         Add Task
                     </button>
@@ -2066,7 +2066,7 @@
                         clrDropdownItem
                         (click)="clickMenuViewDontDisturb()"
                         title="Toggles a background grid"
-                        [disabled]="!allowMenuActionsDontDisturb" 
+                        [disabled]="!allowMenuActionsDontDisturb"
                         >
                         Dont Disturb
                         <clr-icon shape="check" size="12" *ngIf="dontDisturb"></clr-icon>
@@ -2075,7 +2075,7 @@
                         clrDropdownItem
                         (click)="clickMenuViewSystemMessages()"
                         title="System generated messages"
-                        [disabled]="!allowMenuActionsSystemMessages" 
+                        [disabled]="!allowMenuActionsSystemMessages"
                         >
                         System Messages
                     </button>
@@ -5136,7 +5136,7 @@
     [selectedWidget]="selectedWidget"
     (formWidgetDeleteClosed)="handleCloseWidgetDelete($event)"
     (formNavigatorDeleteClosed)="handleCloseNavigatorDelete($event)"
-    
+
     >Load Widget Delete ...
 </widget-delete>
 
@@ -5149,7 +5149,7 @@
     [newWidgetContainerLeft]="newWidgetContainerLeft"
     [newWidgetContainerTop]="newWidgetContainerTop"
     [canSave]="canSave"
-    (formNavigatorEditorClosed)="handleCloseNavigatorEditor($event)">Load Navigator Editor ... 
+    (formNavigatorEditorClosed)="handleCloseNavigatorEditor($event)">Load Navigator Editor ...
 </navigator-editor>
 
 
