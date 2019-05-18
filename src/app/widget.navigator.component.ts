@@ -639,7 +639,6 @@ export class WidgetNavigatorComponent {
             return;
         };
 
-
         // Remove from the available list
         let watchNodeIndex: number = this.ngWatchListNodesToAdd
             .findIndex(nt => nt == this.selectedWatchListNodeTypeToAdd);
@@ -687,6 +686,14 @@ export class WidgetNavigatorComponent {
         if (watchlistIndex >= 0) {
             this.ngWatchListNodes = this.ngWatchLists[watchlistIndex].nodes;
         };
+
+        // Fill the available Nodes
+        this.ngWatchListNodesToAdd = 
+            this.distinctNodesPerNodeType(this.selectedWatchListNodeType);
+        this.ngWatchListNodesToAdd = this.ngWatchListNodesToAdd
+            .filter(nt => this.ngWatchListNodes.indexOf(nt) < 0)
+            .filter(nt => nt != '');
+
     }
 
     clickWatchDeleteListNode(index: number, selectedNodeType: string) {
