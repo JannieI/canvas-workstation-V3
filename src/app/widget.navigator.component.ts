@@ -222,10 +222,11 @@ export class WidgetNavigatorComponent {
                 };
                 return 0;
             });
-        // ngWatchListNodeTypes
-        // ngWatchListNodes
-    
 
+        if (this.ngWatchListNodeTypes.length > 0) {
+            this.clickWatchListNodeType(0, this.ngWatchListNodeTypes[0]);
+        };
+    
         // Read Networks from DB
         this.globalVariableService.getResource('navigatorNetworks')
             .then(res => {
