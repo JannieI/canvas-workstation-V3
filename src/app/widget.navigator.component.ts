@@ -594,13 +594,21 @@ export class WidgetNavigatorComponent {
 
         // Reset
         this.errorMessage = '';
-        this.ngWatchListNodes = [];
 
         // TODO - must add to DB
         let watchListNodeIndex: number = this.ngWatchListNodes
             .findIndex(wln => wln === selectedNodeType);
         if (watchListNodeIndex >= 0) {
             this.ngWatchListNodes.splice(watchListNodeIndex, 1);
+        };
+
+        // Update the Node types if that was the last one
+        if (this.ngWatchListNodes.length == 0) {
+            let watchListNodeTypeIndex: number = this.ngWatchListNodeTypes
+                .findIndex(wln => wln === selectedNodeType);
+            if (watchListNodeTypeIndex >= 0) {
+                this.ngWatchListNodeTypes.splice(watchListNodeTypeIndex, 1);
+            };
         };
 
     }
