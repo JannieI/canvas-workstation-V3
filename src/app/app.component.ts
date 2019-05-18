@@ -11509,11 +11509,14 @@ export class AppComponent implements OnInit {
         userAllowedFeatures.push('allowMenuSystemLogin');
         userAllowedFeatures.push('allowMenuSystemLogout');
 
-        this['allowNavigatorAdd'] = true;
-        console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
-        let test: string = 'allowNavigatorAdd111';
-        this[test] = false;
-        console.log('xx allowNavigatorAdd 2', this.allowNavigatorAdd)
+        userAllowedFeatures.forEach(feature => {
+            this[feature] = true;
+        });
+        // this['allowNavigatorAdd'] = true;
+        // console.log('xx allowNavigatorAdd', this.allowNavigatorAdd)
+        // let test: string = 'allowNavigatorAdd111';
+        // this[test] = false;
+        // console.log('xx allowNavigatorAdd 2', this.allowNavigatorAdd)
         
         
     }
