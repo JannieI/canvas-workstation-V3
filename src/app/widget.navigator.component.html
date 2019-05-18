@@ -1077,6 +1077,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                     {{ row }}
                 </div>
         </div>
+
         <div class="watchListBlockNodes" *ngFor="let row of ngWatchListNodes; let i = index"
             [style.background-color]="row==selectedWatchListNode? 'white'  :  'rgb(235, 232, 232)'"
             [style.border]="row==selectedWatchListNode? '2px solid black'  :  '1px solid gray'"
@@ -1088,9 +1089,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                     {{ row }}
                 </div>
         </div>
-
-
-
     </div>
 
     <!-- Graph Notes -->
