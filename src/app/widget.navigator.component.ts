@@ -578,6 +578,12 @@ export class WidgetNavigatorComponent {
         // Reset
         this.errorMessage = '';
 
+        if (this.selectedWatchListNodeTypeToAdd === ''  
+            ||  
+            this.selectedWatchListNodeTypeToAdd == null) {
+            return;
+        };
+
         this.ngWatchListNodeTypes.push(this.selectedWatchListNodeTypeToAdd);
         this.ngWatchListNodeTypes = this.ngWatchListNodeTypes.sort( (a,b) => {
                 if (a > b) {
