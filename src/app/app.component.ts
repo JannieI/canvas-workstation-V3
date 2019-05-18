@@ -9317,13 +9317,13 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK PALETTE (specific) MENU OPTIONS ************************ //
-    clickMenuPaletteEdit(
+    dblclickMenuPaletteEdit(
         widgetID: number = null,
         widgetIndex: number = null,
         canSave: boolean = true,
         widgetType: string = '') {
-        // Clicked the Edit option on palette - decide what to do
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuPaletteEdit', '@Start');
+        // dblclicked the Edit option on palette - decide what to do
+        this.globalFunctionService.printToConsole(this.constructor.name, 'dblclickMenuPaletteEdit', '@Start');
 
         // Graph type has been supplied
         if (widgetType === 'Graph') {
