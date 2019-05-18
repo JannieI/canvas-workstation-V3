@@ -3174,6 +3174,14 @@ console.log('xx this.specification', this.specification)
             nodes: ['Absa', 'PSG']
         };
         this.ngWatchLists.push(watchListNew);
+        watchListNew =
+        {
+            id: 2,
+            userID: 'JannieI',
+            nodeType: 'Person',
+            nodes: ['Rene van Wyke', 'Abigale Israel']
+        };
+        this.ngWatchLists.push(watchListNew);
 
         this.ngCustomViews.push(
             {

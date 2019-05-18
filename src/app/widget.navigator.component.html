@@ -1066,28 +1066,26 @@ dimensions are set in app.html, and cannot be changed here. -->
             Start off by adding a node type to the list.  Then select a node type and add
             nodes for it on the right.
         </div>
-        <div class="watchListBlockNodeTypes" *ngFor="let row of ngWatchListNodeTypes; 
-            let i = index">
-                <div
-                    [style.background-color]="row==selectedWatchListNodeType? 'white'  :  'rgb(235, 232, 232)'"
-                    [style.border]="row==selectedWatchListNodeType? '2px solid black'  :  '1px solid gray'"
-                    [style.color]="row==selectedWatchListNodeType? 'black'  :  'darkgray'"
-                    (click)="clickWatchListNodeType(i, row)"
-                    >
-                    {{ row }}
-                </div>
+        <div class="watchListBlockNodeTypes">
+            <div *ngFor="let row of ngWatchListNodeTypes; let i = index"
+                [style.background-color]="row==selectedWatchListNodeType? 'white'  :  'rgb(235, 232, 232)'"
+                [style.border]="row==selectedWatchListNodeType? '2px solid black'  :  '1px solid gray'"
+                [style.color]="row==selectedWatchListNodeType? 'black'  :  'darkgray'"
+                (click)="clickWatchListNodeType(i, row)"
+                >
+                {{ row }}
+            </div>
         </div>
 
-        <div class="watchListBlockNodes" *ngFor="let row of ngWatchListNodes; 
-            let i = index">
-                <div
-                    [style.background-color]="row==selectedWatchListNode? 'white'  :  'rgb(235, 232, 232)'"
-                    [style.border]="row==selectedWatchListNode? '2px solid black'  :  '1px solid gray'"
-                    [style.color]="row==selectedWatchListNode? 'black'  :  'darkgray'"
-                    (click)="clickWatchListNode(i, row)"
-                    >
-                    {{ row }}
-                </div>
+        <div class="watchListBlockNodes">
+            <div *ngFor="let row of ngWatchListNodes; let i = index"
+                [style.background-color]="row==selectedWatchListNode? 'white'  :  'rgb(235, 232, 232)'"
+                [style.border]="row==selectedWatchListNode? '2px solid black'  :  '1px solid gray'"
+                [style.color]="row==selectedWatchListNode? 'black'  :  'darkgray'"
+                (click)="clickWatchListNode(i, row)"
+                >
+                {{ row }}
+            </div>
         </div>
     </div>
 
