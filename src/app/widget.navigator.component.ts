@@ -568,8 +568,8 @@ export class WidgetNavigatorComponent {
 
     }
 
-    clickWatchListNodeType(index: number, nodeType: string) {
-        // Clicked a WatchList
+    clickWatchListNodeType(index: number, selectedNodeType: string) {
+        // Clicked a WatchList Node Type
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickWatchListNodeType', '@Start');
 
         // Reset
@@ -577,7 +577,7 @@ export class WidgetNavigatorComponent {
         this.ngWatchListNodes = [];
 
         // Remember the selected NodeType
-        this.selectedWatchListNodeType = nodeType;
+        this.selectedWatchListNodeType = selectedNodeType;
 
         // Fill the Nodes
         let watchlistIndex: number = this.ngWatchLists
@@ -585,6 +585,19 @@ export class WidgetNavigatorComponent {
         if (watchlistIndex >= 0) {
             this.ngWatchListNodes = this.ngWatchLists[watchlistIndex].nodes;
         };
+    }
+
+    clickWatchListNode(index: number, selectedNodeType: string) {
+        // Clicked a WatchList Node
+        this.globalFunctionService.printToConsole(this.constructor.name, 'cliclickWatchListNodeckWatchListNode', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.ngWatchListNodes = [];
+
+        // Remember the selected NodeType
+        this.selectedWatchListNode = selectedNodeType;
+
     }
 
     clickSelectHistory(index: number, historyID: number) {
