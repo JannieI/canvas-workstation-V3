@@ -598,12 +598,9 @@ export class WidgetNavigatorComponent {
         // Remove from the available list
         let watchNodeTypeIndex: number = this.ngWatchListNodeTypesToAdd
             .findIndex(nt => nt == this.selectedWatchListNodeTypeToAdd);
-            console.log('xx watchNodeTypeIndex', watchNodeTypeIndex, this.ngWatchListNodeTypesToAdd)
         if (watchNodeTypeIndex >= 0) {
             this.ngWatchListNodeTypesToAdd.splice(watchNodeTypeIndex, 1);
-                console.log('xx watchNodeTypeIndex', watchNodeTypeIndex, this.ngWatchListNodeTypesToAdd)
             };
-        console.log('xx watchNodeTypeIndex', watchNodeTypeIndex, this.ngWatchListNodeTypesToAdd)
 
         // Add to the list of Node Types being watched
         this.ngWatchListNodeTypes.push(this.selectedWatchListNodeTypeToAdd);
@@ -645,8 +642,7 @@ export class WidgetNavigatorComponent {
         let watchNodeIndex: number = this.ngWatchListNodesToAdd
             .findIndex(nt => nt == this.selectedWatchListNodeTypeToAdd);
         if (watchNodeIndex >= 0) {
-            this.ngWatchListNodesToAdd = this.ngWatchListNodesToAdd
-                .splice(watchNodeIndex, 1);
+            this.ngWatchListNodesToAdd.splice(watchNodeIndex, 1);
         };
 
         // Add to the list of Node being watched
