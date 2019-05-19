@@ -282,7 +282,7 @@ export class WidgetNavigatorComponent {
             .filter(nt => nt != '');
 
         // Clear Nodes to show and Nodes to Add, and then set the Nodes list
-        this.ngWatchListNodes = [];
+        // this.ngWatchListNodes = [];
         this.ngWatchListNodesToAdd = [];
         if (this.ngWatchListNodeTypes.length > 0) {
             this.clickWatchListNodeType(0, this.ngWatchListNodeTypes[0]);
@@ -640,31 +640,35 @@ export class WidgetNavigatorComponent {
 
         // Remove from the available list
         let watchNodeIndex: number = this.ngWatchListNodesToAdd
-            .findIndex(nt => nt == this.selectedWatchListNodeTypeToAdd);
+            .findIndex(nt => nt == this.selectedWatchListNodeToAdd);
         if (watchNodeIndex >= 0) {
             this.ngWatchListNodesToAdd.splice(watchNodeIndex, 1);
         };
 
         // Add to the list of Node being watched
-        this.ngWatchListNodes.push(this.selectedWatchListNodeTypeToAdd);
-        this.ngWatchListNodes = this.ngWatchListNodes.sort( (a,b) => {
-                if (a > b) {
-                    return 1;
-                };
-                if (a < b) {
-                    return -1;
-                };
-                return 0;
-            });
+        // console.log('xx before push', this.ngWatchListNodes)
+        // this.ngWatchListNodes.push(this.selectedWatchListNodeToAdd);
+        // this.ngWatchListNodes = this.ngWatchListNodes.sort( (a,b) => {
+        //         if (a > b) {
+        //             return 1;
+        //         };
+        //         if (a < b) {
+        //             return -1;
+        //         };
+        //         return 0;
+        //     });
+        //     console.log('xx after push', this.ngWatchListNodes)
 
         // Add to WatchList
         let watchlistIndex: number = this.ngWatchLists
             .findIndex(wl => wl.nodeType === this.selectedWatchListNodeType);
         if (watchlistIndex >= 0) {
             this.ngWatchLists[watchlistIndex].nodes
-                .push(this.selectedWatchListNodeTypeToAdd);
+                .push(this.selectedWatchListNodeToAdd);
         };
+        console.log('xx end', this.ngWatchListNodes)
 
+        this.selectedWatchListNodeToAdd = '';
     }
 
     clickWatchListNodeType(index: number, selectedNodeType: string) {
@@ -673,12 +677,12 @@ export class WidgetNavigatorComponent {
 
         // Reset
         this.errorMessage = '';
-        this.ngWatchListNodes = [];
+        // this.ngWatchListNodes = [];
 
         // Remember the selected NodeType
         this.selectedWatchListNodeType = selectedNodeType;
 
-        // Fill the Nodes
+        // Fill the Nodes - NB: this is ByRef !!!!
         let watchlistIndex: number = this.ngWatchLists
             .findIndex(wl => wl.nodeType == this.selectedWatchListNodeType)
         if (watchlistIndex >= 0) {
@@ -692,6 +696,8 @@ export class WidgetNavigatorComponent {
             .filter(nt => this.ngWatchListNodes.indexOf(nt) < 0)
             .filter(nt => nt != '');
 
+        // Clear node
+        this.selectedWatchListNode = '';
     }
 
     clickWatchDeleteListNode(index: number, selectedNode: string) {
@@ -703,11 +709,11 @@ export class WidgetNavigatorComponent {
 
         // TODO - must add to DB
         // Remove Node
-        let watchListNodeIndex: number = this.ngWatchListNodes
-            .findIndex(wln => wln === selectedNode);
-        if (watchListNodeIndex >= 0) {
-            this.ngWatchListNodes.splice(watchListNodeIndex, 1);
-        };
+        // let watchListNodeIndex: number = this.ngWatchListNodes
+        //     .findIndex(wln => wln === selectedNode);
+        // if (watchListNodeIndex >= 0) {
+        //     this.ngWatchListNodes.splice(watchListNodeIndex, 1);
+        // };
 
         // Add to available
         this.ngWatchListNodesToAdd.push(selectedNode);
@@ -742,7 +748,7 @@ export class WidgetNavigatorComponent {
 
                 // Reselect the Node Type
                 this.selectedWatchListNodeType = '';
-                this.ngWatchListNodes = [];
+                // this.ngWatchListNodes = [];
                 if (this.ngWatchListNodeTypes.length > 0) {
                     this.clickWatchListNodeType(0, this.ngWatchListNodeTypes[0]);
                 };
