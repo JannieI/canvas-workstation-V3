@@ -220,7 +220,7 @@
         .watchListAddNodeTypeSelect {
             grid-column-start: 5;
             /* autoprefixer: off */
-            grid-column-end: 11;
+            grid-column-end: 26;
             grid-row-start: 3;
             grid-row-end: 4;
             margin-left: 6px;
@@ -231,7 +231,7 @@
             grid-column-end: 5;
             grid-row-start: 4;
             grid-row-end: 5;
-            margin-bottom: 12px;
+            margin-bottom: 18px;
             margin-left: 18px;
             margin-top: -12px;
         }
@@ -241,7 +241,7 @@
             grid-column-end: 26;
             grid-row-start: 4;
             grid-row-end: 5;
-            margin-bottom: 12px;
+            margin-bottom: 18px;
             margin-left: 6px;
             margin-top: -12px;
         }
