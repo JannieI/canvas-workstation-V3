@@ -117,7 +117,7 @@ export class WidgetNavigatorComponent {
     ngParentNodeFilterSelectedOperator: string = 'Equal';    // Parent Node Filter
     ngParentNodeFilterSelectedValue: string = '';       // Parent Node Filter
     parentNodesFilteredList: string[] = [];             // List of Nodes, after filtered on NodeProperties
-
+    parentNodesShiftList: string[] = [];                // List of Nodes, after Children were Shift-ed
     ngSelectedRelationshipFilterRole: string = '';      // Relationship Role Filter
     relationshipsFilteredList: string[] = [];           // List of Relationships, after filtered on NodeProperties
 
@@ -3292,7 +3292,7 @@ console.log('xx this.specification', this.specification)
         this.selectedParentNode = 'All';
 
         this.parentNodesFilteredList = [];
-        this.childDataAll.forEach(child => this.parentNodesFilteredList.push(child));
+        this.childDataAll.forEach(child => this.parentNodesShiftList.push(child));
     }
 
     clickPageFirst() {

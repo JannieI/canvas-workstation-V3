@@ -33,7 +33,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 (change)="changeParentNode($event)"
                 name="selectedParentNode"
                 >
-                <option *ngFor="let row of ngDropdownParentNodes">
+                <option *ngFor="let row of parentNodesFilteredList">
                     {{ row }}
                 </option>
             </select>
@@ -129,9 +129,46 @@ dimensions are set in app.html, and cannot be changed here. -->
                     <clr-tab>
                         <button clrTabLink>Watchlist</button>
                         <clr-tab-content *clrIfActive="true">
-                            <div class="clr-row clr-justify-content-between">
+                            <div class="clr-row clr-justify-content-between"
+                                style="margin-top: 18px;"
+                                >
                                 <div *ngFor="let row of ngWatchListNodes; let i = index"
-                                    style="background-color: rgb(232, 233, 250); 
+                                    style="background-color: rgb(232, 233, 250);
+                                    border-radius: 6px;
+                                    margin: 3px;
+                                    text-align: center;"
+                                    >
+                                    <span>
+                                        {{ row }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="btn-group btn-link">
+                                    <button class="btn" *ngIf="appliedNodeWatchlist"
+                                        (click)="clickParentWatchlistClearAndShow()"
+                                        >
+                                        Clear
+                                    </button>
+                                    <button class="btn" (click)="clickParentWatchlistApply()">
+                                        Apply
+                                    </button>
+                                </div>
+
+                                <span class="graphHeaderParentFilterErrorMessage">
+                                    {{ parentFilterErrorMessage }}
+                                </span>
+                            </div>
+                        </clr-tab-content>
+                    </clr-tab>
+                    <clr-tab>
+                        <button clrTabLink>Some (Shift)</button>
+                        <clr-tab-content *clrIfActive="true">
+                            <div class="clr-row clr-justify-content-between"
+                                style="margin-top: 18px;"
+                                >
+                                <div *ngFor="let row of parentNodesShiftList; let i = index"
+                                    style="background-color: rgb(232, 233, 250);
                                     border-radius: 6px;
                                     margin: 3px;
                                     text-align: center;"
@@ -1138,7 +1175,7 @@ dimensions are set in app.html, and cannot be changed here. -->
         <!-- </div>
 
         <div class="watchListAddNodeTypeButton"> -->
-            <button class="btn btn-link" 
+            <button class="btn btn-link"
                 style="margin-left: 18px; margin-top: -4px;"
                 (click)="clickWatchListNodeTypeAdd()"
                 >
@@ -1163,7 +1200,7 @@ dimensions are set in app.html, and cannot be changed here. -->
         <!-- </div>
 
         <div class="watchListAddNodeButton"> -->
-            <button class="btn btn-link" 
+            <button class="btn btn-link"
                 style="margin-left: 18px; margin-top: -4px;"
                 (click)="clickWatchListNodeAdd()"
                 >
@@ -1187,7 +1224,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             <div *ngFor="let row of ngWatchListNodes; let i = index"
                 >
                 <clr-icon shape="trash" class="selectIcon1" size="12"
-                    (click)="clickWatchDeleteListNode(i, row)" 
+                    (click)="clickWatchDeleteListNode(i, row)"
                     >
                 </clr-icon>
                 {{ row }}
