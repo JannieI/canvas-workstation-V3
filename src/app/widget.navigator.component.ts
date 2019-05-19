@@ -2755,6 +2755,16 @@ console.log('xx this.specification', this.specification)
         this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
         this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
     }
+    
+    clickParentWatchlistClearAndShow() {
+        // Clear the Parent Watchlist and Show the graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentWatchlistClearAndShow', '@Start');
+
+        this.clickParentWatchlistClear();
+
+        // Show Graph
+        this.checkShowGraph();
+    }
 
     clickParentFilterClearAndShow() {
         // Clear the Parent Filter and Show the graph
