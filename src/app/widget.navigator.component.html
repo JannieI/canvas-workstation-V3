@@ -56,59 +56,82 @@ dimensions are set in app.html, and cannot be changed here. -->
                     The dropdown will be reduced by the filter(s) below.  This filter will stay
                     active until it is changed here, or another node type is selected in the dropdown.
                 </p>
-                <div class="graphHeaderParentFilterFieldTitle">
-                    Field:
-                    <select id="selects_3"
-                        [(ngModel)]="ngParentNodeFilterSelectedFieldName"
-                        (change)="changeParentFilterKey()"
-                        name="ngParentFilterFieldName"
-                        >
-                        <option *ngFor="let row of ngParentNodeFilterKeyDropdown">
-                            {{ row }}
-                        </option>
-                    </select>
-                </div>
-                <div class="graphHeaderParentFilterOperatorTitle">
-                    Operator:
-                    <select id="selects_3"
-                        [(ngModel)]="ngParentNodeFilterSelectedOperator"
-                        name="ngParentNodeFilterSelectedOperator"
-                        >
-                        <option>Less Than</option>
-                        <option>Less Than Equal</option>
-                        <option>Equal</option>
-                        <option>Not Equal</option>
-                        <option>Greater Than</option>
-                        <option>Greater Than Equal</option>
-                    </select>
-                </div>
 
-                <div class="graphHeaderParentFilterValueTitle">
-                    Value:
-                    <select id="selects_3"
-                        [(ngModel)]="ngParentNodeFilterSelectedValue"
-                        name="ngParentNodeFilterSelectedValue"
-                        >
-                        <option *ngFor="let row of ngParentNodeFilterPropertyDropdown">
-                            {{ row }}
-                        </option>
-                    </select>
-                </div>
 
-                <div>
-                    <div class="btn-group btn-link">
-                        <button class="btn" (click)="clickParentFilterClearAndShow()">
-                            Clear
-                        </button>
-                        <button class="btn" (click)="clickParentFilterSave()">
-                            Save
-                        </button>
+
+                <ul id="demoTabs" class="nav" role="tablist">
+                    <li role="presentation" class="nav-item">
+                        <button id="tab1" class="btn btn-link nav-link active" aria-controls="panel1"
+                                aria-selected="true" type="button">Filter</button>
+                    </li>
+                    <li role="presentation" class="nav-item">
+                        <button id="tab2" class="btn btn-link nav-link" aria-controls="panel2"
+                                aria-selected="false" type="button">WatchList</button>
+                    </li>
+                </ul>
+                <section id="panel1" role="tabpanel" aria-labelledby="tab1" aria-hidden="showTabFilter">
+                    <div class="graphHeaderParentFilterFieldTitle">
+                        Field:
+                        <select id="selects_3"
+                            [(ngModel)]="ngParentNodeFilterSelectedFieldName"
+                            (change)="changeParentFilterKey()"
+                            name="ngParentFilterFieldName"
+                            >
+                            <option *ngFor="let row of ngParentNodeFilterKeyDropdown">
+                                {{ row }}
+                            </option>
+                        </select>
                     </div>
+                    <div class="graphHeaderParentFilterOperatorTitle">
+                        Operator:
+                        <select id="selects_3"
+                            [(ngModel)]="ngParentNodeFilterSelectedOperator"
+                            name="ngParentNodeFilterSelectedOperator"
+                            >
+                            <!-- <option>Less Than</option> -->
+                            <!-- <option>Less Than Equal</option> -->
+                            <option>Equal</option>
+                            <!-- <option>Not Equal</option> -->
+                            <!-- <option>Greater Than</option> -->
+                            <!-- <option>Greater Than Equal</option> -->
+                        </select>
+                    </div>
+    
+                    <div class="graphHeaderParentFilterValueTitle">
+                        Value:
+                        <select id="selects_3"
+                            [(ngModel)]="ngParentNodeFilterSelectedValue"
+                            name="ngParentNodeFilterSelectedValue"
+                            >
+                            <option *ngFor="let row of ngParentNodeFilterPropertyDropdown">
+                                {{ row }}
+                            </option>
+                        </select>
+                    </div>
+    
+                    <div>
+                        <div class="btn-group btn-link">
+                            <button class="btn" (click)="clickParentFilterClearAndShow()">
+                                Clear
+                            </button>
+                            <button class="btn" (click)="clickParentFilterSave()">
+                                Save
+                            </button>
+                        </div>
+    
+                        <span class="graphHeaderParentFilterErrorMessage">
+                            {{ parentFilterErrorMessage }}
+                        </span>
+                    </div>
+                </section>
+                <section id="panel2" role="tabpanel" aria-labelledby="tab2" aria-hidden="showTabWatchlist">
+                    Section 2 ...
+                </section>
 
-                    <span class="graphHeaderParentFilterErrorMessage">
-                        {{ parentFilterErrorMessage }}
-                    </span>
-                </div>
+
+
+
+
 
             </clr-signpost-content>
         </clr-signpost>

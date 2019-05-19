@@ -179,6 +179,8 @@ export class WidgetNavigatorComponent {
     showGraphNotes: boolean = false;
     showGraphProperties: boolean = false;
     showNavBarExplore: boolean = true;
+    showTabFilter: boolean = true;
+    showTabWatchlist: boolean = false;
     spinner: boolean = false;
 
     navMaxRecursion: number = 100;
