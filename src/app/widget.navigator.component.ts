@@ -695,6 +695,7 @@ export class WidgetNavigatorComponent {
         this.ngWatchListNodesToAdd = this.ngWatchListNodesToAdd
             .filter(nt => this.ngWatchListNodes.indexOf(nt) < 0)
             .filter(nt => nt != '');
+        this.ngWatchListNodesToAdd = ['', ...this.ngWatchListNodesToAdd];
 
         // Clear node
         this.selectedWatchListNodeToAdd = '';
