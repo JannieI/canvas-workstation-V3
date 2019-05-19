@@ -2767,6 +2767,10 @@ console.log('xx this.specification', this.specification)
             return;
         };
 
+        // Set filters
+        this.appliedNodeFilter = true;
+        this.appliedNodeWatchlist = false;
+        
         // Create Filtered List of ParentNodes
         this.parentNodesFilteredList = this.networkProperties
             .filter(np => np.propertyKey === this.ngParentNodeFilterSelectedFieldName
