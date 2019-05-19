@@ -120,8 +120,13 @@ dimensions are set in app.html, and cannot be changed here. -->
                         <button clrTabLink>Watchlist</button>
                         <clr-tab-content *clrIfActive="true">
                             <div class="clr-row clr-justify-content-between">
-                                <div class="clr-col-6" *ngFor="let row of ngWatchListNodes; let i = index">
-                                    <span style="border: 1px solid gray; border-radius: 6px;">
+                                <div *ngFor="let row of ngWatchListNodes; let i = index"
+                                    style="background-color: rgb(232, 233, 250); 
+                                    border-radius: 6px;
+                                    margin: 3px;
+                                    text-align: center;"
+                                    >
+                                    <span>
                                         {{ row }}
                                     </span>
                                 </div>
