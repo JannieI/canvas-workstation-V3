@@ -233,8 +233,24 @@
             grid-row-end: 4;
             margin-left: 18px;
         }
-        .watchListAddNode {
+        .watchListAddNodeText {
             grid-column-start: 14;
+            /* autoprefixer: off */
+            grid-column-end: 17;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            margin-left: 18px;
+        }
+        .watchListAddNodeSelect {
+            grid-column-start: 17;
+            /* autoprefixer: off */
+            grid-column-end: 24;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            margin-left: 18px;
+        }
+        .watchListAddNodeButton {
+            grid-column-start: 24;
             /* autoprefixer: off */
             grid-column-end: 26;
             grid-row-start: 3;
