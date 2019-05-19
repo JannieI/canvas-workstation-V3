@@ -2776,6 +2776,22 @@ console.log('xx this.specification', this.specification)
         this.checkShowGraph();
     }
 
+
+    clickParentWatchlistApply() {
+        // Add Parent Watchlist, and create list of parent nodes as a result of the Watchlist
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentWatchlistApply', '@Start');
+
+        // Set filters
+        this.appliedNodeFilter = false;
+        this.appliedNodeWatchlist = true;
+
+        // Create Filtered List of ParentNodes
+        this.parentNodesFilteredList = this.ngWatchListNodes;
+
+        // Filter Child Nodes and Show Graph
+        this.checkShowGraph();
+    }
+
     clickParentFilterApply() {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterApply', '@Start');
