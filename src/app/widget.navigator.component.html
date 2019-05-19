@@ -59,75 +59,70 @@ dimensions are set in app.html, and cannot be changed here. -->
 
 
 
-                <ul id="demoTabs" class="nav" role="tablist">
-                    <li role="presentation" class="nav-item">
-                        <button id="tab1" class="btn btn-link nav-link active" aria-controls="panel1"
-                                aria-selected="showTabFilter" type="button">Filter</button>
-                    </li>
-                    <li role="presentation" class="nav-item">
-                        <button id="tab2" class="btn btn-link nav-link" aria-controls="panel2"
-                                aria-selected="showTabFilter" type="button">WatchList</button>
-                    </li>
-                </ul>
-                <section id="panel1" role="tabpanel" aria-labelledby="tab1">
-                    <div class="graphHeaderParentFilterFieldTitle">
-                        Field:
-                        <select id="selects_3"
-                            [(ngModel)]="ngParentNodeFilterSelectedFieldName"
-                            (change)="changeParentFilterKey()"
-                            name="ngParentFilterFieldName"
-                            >
-                            <option *ngFor="let row of ngParentNodeFilterKeyDropdown">
-                                {{ row }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="graphHeaderParentFilterOperatorTitle">
-                        Operator:
-                        <select id="selects_3"
-                            [(ngModel)]="ngParentNodeFilterSelectedOperator"
-                            name="ngParentNodeFilterSelectedOperator"
-                            >
-                            <!-- <option>Less Than</option> -->
-                            <!-- <option>Less Than Equal</option> -->
-                            <option>Equal</option>
-                            <!-- <option>Not Equal</option> -->
-                            <!-- <option>Greater Than</option> -->
-                            <!-- <option>Greater Than Equal</option> -->
-                        </select>
-                    </div>
-    
-                    <div class="graphHeaderParentFilterValueTitle">
-                        Value:
-                        <select id="selects_3"
-                            [(ngModel)]="ngParentNodeFilterSelectedValue"
-                            name="ngParentNodeFilterSelectedValue"
-                            >
-                            <option *ngFor="let row of ngParentNodeFilterPropertyDropdown">
-                                {{ row }}
-                            </option>
-                        </select>
-                    </div>
-    
-                    <div>
-                        <div class="btn-group btn-link">
-                            <button class="btn" (click)="clickParentFilterClearAndShow()">
-                                Clear
-                            </button>
-                            <button class="btn" (click)="clickParentFilterSave()">
-                                Save
-                            </button>
-                        </div>
-    
-                        <span class="graphHeaderParentFilterErrorMessage">
-                            {{ parentFilterErrorMessage }}
-                        </span>
-                    </div>
-                </section>
-                <section id="panel2" role="tabpanel" aria-labelledby="tab2">
-                    Section 2 ...
-                </section>
+                <clr-tabs>
+                    <clr-tab>
+                        <button clrTabLink id="link1">Filter</button>
+                        <clr-tab-content id="content1" *clrIfActive>
+                            <div class="graphHeaderParentFilterFieldTitle">
+                                Field:
+                                <select id="selects_3"
+                                    [(ngModel)]="ngParentNodeFilterSelectedFieldName"
+                                    (change)="changeParentFilterKey()"
+                                    name="ngParentFilterFieldName"
+                                    >
+                                    <option *ngFor="let row of ngParentNodeFilterKeyDropdown">
+                                        {{ row }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="graphHeaderParentFilterOperatorTitle">
+                                Operator:
+                                <select id="selects_3"
+                                    [(ngModel)]="ngParentNodeFilterSelectedOperator"
+                                    name="ngParentNodeFilterSelectedOperator"
+                                    >
+                                    <!-- <option>Less Than</option> -->
+                                    <!-- <option>Less Than Equal</option> -->
+                                    <option>Equal</option>
+                                    <!-- <option>Not Equal</option> -->
+                                    <!-- <option>Greater Than</option> -->
+                                    <!-- <option>Greater Than Equal</option> -->
+                                </select>
+                            </div>
+                            <div class="graphHeaderParentFilterValueTitle">
+                                Value:
+                                <select id="selects_3"
+                                    [(ngModel)]="ngParentNodeFilterSelectedValue"
+                                    name="ngParentNodeFilterSelectedValue"
+                                    >
+                                    <option *ngFor="let row of ngParentNodeFilterPropertyDropdown">
+                                        {{ row }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <div class="btn-group btn-link">
+                                    <button class="btn" (click)="clickParentFilterClearAndShow()">
+                                        Clear
+                                    </button>
+                                    <button class="btn" (click)="clickParentFilterSave()">
+                                        Save
+                                    </button>
+                                </div>
 
+                                <span class="graphHeaderParentFilterErrorMessage">
+                                    {{ parentFilterErrorMessage }}
+                                </span>
+                            </div>
+                        </clr-tab-content>
+                    </clr-tab>
+                    <clr-tab>
+                        <button clrTabLink>Watchlist</button>
+                        <clr-tab-content *clrIfActive="true">
+                        ...
+                        </clr-tab-content>
+                    </clr-tab>
+                </clr-tabs>
 
 
 
