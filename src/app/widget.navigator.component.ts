@@ -697,7 +697,7 @@ export class WidgetNavigatorComponent {
             .filter(nt => nt != '');
 
         // Clear node
-        this.selectedWatchListNode = '';
+        this.selectedWatchListNodeToAdd = '';
     }
 
     clickWatchDeleteListNode(index: number, selectedNode: string) {
