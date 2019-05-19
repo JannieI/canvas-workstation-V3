@@ -52,6 +52,8 @@ export class CollaborateTasksComponent implements OnInit {
 
     canvasTasks: CanvasTask[] = [];
     canvasTasksOrignal: CanvasTask[] = [];
+    cloudActive: boolean = true;
+    dashboardActive: boolean = true;
     dashboardNames: string[] = [];
     dashboards: Dashboard[] = [];
     errorMessage: string = '';
