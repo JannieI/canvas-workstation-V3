@@ -225,14 +225,6 @@
             grid-row-end: 4;
             margin-left: 6px;
         }
-        .watchListAddNodeTypeButton {
-            grid-column-start: 11;
-            /* autoprefixer: off */
-            grid-column-end: 14;
-            grid-row-start: 3;
-            grid-row-end: 4;
-            margin-top: -12px;
-        }
         .watchListAddNodeText {
             grid-column-start: 1;
             /* autoprefixer: off */
@@ -241,23 +233,16 @@
             grid-row-end: 5;
             margin-bottom: 12px;
             margin-left: 18px;
+            margin-top: -12px;
         }
         .watchListAddNodeSelect {
             grid-column-start: 5;
             /* autoprefixer: off */
-            grid-column-end: 11;
+            grid-column-end: 26;
             grid-row-start: 4;
             grid-row-end: 5;
             margin-bottom: 12px;
-            margin-left: 18px;
-        }
-        .watchListAddNodeButton {
-            grid-column-start: 11;
-            /* autoprefixer: off */
-            grid-column-end: 14;
-            grid-row-start: 4;
-            grid-row-end: 5;
-            margin-bottom: 12px;
+            margin-left: 6px;
             margin-top: -12px;
         }
         .watchListBlockNodeTypes {
