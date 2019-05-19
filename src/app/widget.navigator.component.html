@@ -1067,8 +1067,11 @@ dimensions are set in app.html, and cannot be changed here. -->
             nodes for it on the right.
         </div>
 
-        <div class="watchListAddNodeType">
+        <div class="watchListAddNodeTypeText">
             Node Type:
+        </div>
+
+        <div class="watchListAddNodeTypeSelect">
             <select [(ngModel)]="selectedWatchListNodeTypeToAdd"
                 name="selectedWatchListNodeTypeToAdd"
                 >
@@ -1077,6 +1080,9 @@ dimensions are set in app.html, and cannot be changed here. -->
                 </option>
 
             </select>
+        </div>
+
+        <div class="watchListAddNodeTypeButton">
             <button class="btn btn-link" (click)="clickWatchListNodeTypeAdd()">
                 Add
             </button>

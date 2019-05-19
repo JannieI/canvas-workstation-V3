@@ -721,8 +721,9 @@ export class WidgetNavigatorComponent {
         if (watchListsIndex >= 0) {
             watchListsNodeSubIndex = this.ngWatchLists[watchListsIndex].nodes
                 .findIndex(wln => wln === selectedNode);
-        if (watchListsNodeSubIndex >= 0) {
-            this.ngWatchLists[watchListsIndex].nodes.splice(watchListsNodeSubIndex, 1);
+            if (watchListsNodeSubIndex >= 0) {
+                this.ngWatchLists[watchListsIndex].nodes.splice(watchListsNodeSubIndex, 1);
+            };
         };
 
         // Update the Node types if that was the last one
