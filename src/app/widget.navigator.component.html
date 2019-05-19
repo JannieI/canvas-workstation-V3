@@ -55,6 +55,16 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <p style="margin-top: 0; color:gray; text-align: left;">
                     The dropdown will be reduced by the filter(s) below.  This filter will stay
                     active until it is changed here, or another node type is selected in the dropdown.
+                    <span *ngIf="!appliedNodeFilter  &&  !appliedNodeWatchlist">
+                        You currently have NO filter applied.
+                    </span>
+                    <span *ngIf="appliedNodeFilter  &&  !appliedNodeWatchlist">
+                        You currently have a FILTER applied.
+                    </span>
+                    <span *ngIf="!appliedNodeFilter  &&  appliedNodeWatchlist">
+                        You currently have a WATCHLIST applied.
+                    </span>
+
                 </p>
 
 
@@ -102,11 +112,13 @@ dimensions are set in app.html, and cannot be changed here. -->
                             </div>
                             <div>
                                 <div class="btn-group btn-link">
-                                    <button class="btn" (click)="clickParentFilterClearAndShow()">
+                                    <button class="btn" *ngIf="appliedNodeFilter"
+                                        (click)="clickParentFilterClearAndShow()"
+                                        >
                                         Clear
                                     </button>
                                     <button class="btn" (click)="clickParentFilterSave()">
-                                        Save
+                                        Apply
                                     </button>
                                 </div>
 
@@ -130,6 +142,22 @@ dimensions are set in app.html, and cannot be changed here. -->
                                         {{ row }}
                                     </span>
                                 </div>
+                            </div>
+                            <div>
+                                <div class="btn-group btn-link">
+                                    <button class="btn" *ngIf="appliedNodeWatchlist"
+                                        (click)="clickParentFilterClearAndShow()"
+                                        >
+                                        Clear
+                                    </button>
+                                    <button class="btn" (click)="clickParentFilterSave()">
+                                        Apply
+                                    </button>
+                                </div>
+
+                                <span class="graphHeaderParentFilterErrorMessage">
+                                    {{ parentFilterErrorMessage }}
+                                </span>
                             </div>
                         </clr-tab-content>
                     </clr-tab>
