@@ -2728,11 +2728,28 @@ console.log('xx this.specification', this.specification)
         // Clear the Parent Filter fields
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClear', '@Start');
 
+        // Set filters
+        this.appliedNodeFilter = false;
+        this.appliedNodeWatchlist = false;
+
         this.ngParentNodeFilterKeyDropdown = [];
         this.ngParentNodeFilterSelectedFieldName = '';
         this.ngParentNodeFilterSelectedOperator = 'Equal';
         this.ngParentNodeFilterSelectedValue = '';
         this.parentNodesFilteredList = [];
+
+        // Fill Dropdowns
+        this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
+        this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+    }
+
+    clickParentWatchlistClear() {
+        // Clear the Parent watchlist
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentWatchlistClear', '@Start');
+
+        // Set filters
+        this.appliedNodeFilter = false;
+        this.appliedNodeWatchlist = false;
 
         // Fill Dropdowns
         this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
@@ -2749,9 +2766,9 @@ console.log('xx this.specification', this.specification)
         this.checkShowGraph();
     }
 
-    clickParentFilterSave() {
+    clickParentFilterApply() {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterSave', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterApply', '@Start');
 
         // Validation
         if (this.ngParentNodeFilterSelectedFieldName === '') {
@@ -2770,7 +2787,7 @@ console.log('xx this.specification', this.specification)
         // Set filters
         this.appliedNodeFilter = true;
         this.appliedNodeWatchlist = false;
-        
+
         // Create Filtered List of ParentNodes
         this.parentNodesFilteredList = this.networkProperties
             .filter(np => np.propertyKey === this.ngParentNodeFilterSelectedFieldName
