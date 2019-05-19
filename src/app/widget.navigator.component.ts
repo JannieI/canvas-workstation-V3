@@ -282,7 +282,6 @@ export class WidgetNavigatorComponent {
             .filter(nt => nt != '');
 
         // Clear Nodes to show and Nodes to Add, and then set the Nodes list
-        // this.ngWatchListNodes = [];
         this.ngWatchListNodesToAdd = [];
         if (this.ngWatchListNodeTypes.length > 0) {
             this.clickWatchListNodeType(0, this.ngWatchListNodeTypes[0]);
@@ -645,28 +644,13 @@ export class WidgetNavigatorComponent {
             this.ngWatchListNodesToAdd.splice(watchNodeIndex, 1);
         };
 
-        // Add to the list of Node being watched
-        // console.log('xx before push', this.ngWatchListNodes)
-        // this.ngWatchListNodes.push(this.selectedWatchListNodeToAdd);
-        // this.ngWatchListNodes = this.ngWatchListNodes.sort( (a,b) => {
-        //         if (a > b) {
-        //             return 1;
-        //         };
-        //         if (a < b) {
-        //             return -1;
-        //         };
-        //         return 0;
-        //     });
-        //     console.log('xx after push', this.ngWatchListNodes)
-
-        // Add to WatchList
+        // Add to WatchList (and thus to this.ngWatchListNodes)
         let watchlistIndex: number = this.ngWatchLists
             .findIndex(wl => wl.nodeType === this.selectedWatchListNodeType);
         if (watchlistIndex >= 0) {
             this.ngWatchLists[watchlistIndex].nodes
                 .push(this.selectedWatchListNodeToAdd);
         };
-        console.log('xx end', this.ngWatchListNodes)
 
         this.selectedWatchListNodeToAdd = '';
     }
@@ -707,14 +691,6 @@ export class WidgetNavigatorComponent {
 
         // Reset
         this.errorMessage = '';
-
-        // TODO - must add to DB
-        // Remove Node
-        // let watchListNodeIndex: number = this.ngWatchListNodes
-        //     .findIndex(wln => wln === selectedNode);
-        // if (watchListNodeIndex >= 0) {
-        //     this.ngWatchListNodes.splice(watchListNodeIndex, 1);
-        // };
 
         // Add to available
         this.ngWatchListNodesToAdd.push(selectedNode);
