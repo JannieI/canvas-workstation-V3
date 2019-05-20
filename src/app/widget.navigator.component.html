@@ -33,7 +33,8 @@ dimensions are set in app.html, and cannot be changed here. -->
                 (change)="changeParentNode($event)"
                 name="selectedParentNode"
                 >
-                <option *ngFor="let row of parentNodesFilteredList">
+                <!-- parentNodesFilteredList -->
+                <option *ngFor="let row of ngDropdownParentNodes">
                     {{ row }}
                 </option>
             </select>

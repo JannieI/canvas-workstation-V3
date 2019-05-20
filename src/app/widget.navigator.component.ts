@@ -215,7 +215,7 @@ export class WidgetNavigatorComponent {
 
         // Populate persisted data - TODO via DB
         this.tempCreateDummyData();
-    
+
         // Read Networks from DB
         this.globalVariableService.getResource('navigatorNetworks')
             .then(res => {

@@ -1139,12 +1139,24 @@ export class GlobalVariableService {
                 this.concoleLogStyleForCaching,
                 resource)
 
+
+
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + this.currentToken);
+
+
+
+
+
             // Get from HTTP server
             let pathUrl: string = resource + params;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
             console.warn('    Global-Variables getResource finalUrl for:',
                 resource, finalUrl);
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+            this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResult  => {
 
                     if(httpResult.statusCode != 'success') {
@@ -1262,7 +1274,9 @@ export class GlobalVariableService {
 
             // Get from HTTP server
             const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                // .set("Authorization", "JWT " + this.currentToken);
 
             let pathUrl: string = resource;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
@@ -1406,7 +1420,9 @@ export class GlobalVariableService {
         return new Promise<string>((resolve, reject) => {
 
             const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "Bearer " + this.currentToken);
 
             // Set final path
             let pathUrl: string = resource;
@@ -1568,7 +1584,8 @@ export class GlobalVariableService {
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
 
             let pathUrl: string = resource;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
