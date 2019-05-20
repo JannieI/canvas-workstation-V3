@@ -1808,9 +1808,10 @@ export class GlobalVariableService {
             // Clear related Actions in Memory
             this.actions = this.actions.filter(act => act.dashboardID != draftDashboardID);
 
-            // Perform steps (business logic in Server)
             const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + this.currentToken);
 
             let pathUrl: string = '/canvasDashboardDiscard';
             let finalUrl: string = this.canvasServerURI + pathUrl;
