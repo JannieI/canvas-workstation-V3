@@ -56,14 +56,17 @@ dimensions are set in app.html, and cannot be changed here. -->
                 <p style="margin-top: 0; color:gray; text-align: left;">
                     The dropdown will be reduced by the filter(s) below.  This filter will stay
                     active until it is changed here, or another node type is selected in the dropdown.
-                    <span *ngIf="!appliedNodeFilter  &&  !appliedNodeWatchlist">
+                    <span *ngIf="!appliedNodeFilter  &&  !appliedNodeWatchlist  &&  !appliedNodeShiftList">
                         You currently have NO filter applied.
                     </span>
-                    <span *ngIf="appliedNodeFilter  &&  !appliedNodeWatchlist">
+                    <span *ngIf="appliedNodeFilter  &&  !appliedNodeWatchlist  &&  !appliedNodeShiftList">
                         You currently have a FILTER applied.
                     </span>
-                    <span *ngIf="!appliedNodeFilter  &&  appliedNodeWatchlist">
+                    <span *ngIf="!appliedNodeFilter  &&  appliedNodeWatchlist  &&  !appliedNodeShiftList">
                         You currently have a WATCHLIST applied.
+                    </span>
+                    <span *ngIf="!appliedNodeFilter  &&  !appliedNodeWatchlist  &&  appliedNodeShiftList">
+                        You currently filter on previous Children .
                     </span>
 
                 </p>
@@ -206,6 +209,9 @@ dimensions are set in app.html, and cannot be changed here. -->
             </clr-signpost-content>
         </clr-signpost>
 
+        <span>
+            *
+        </span>
         <!-- Drop Down Bar Menu -->
         <clr-dropdown class="graphHeaderMenuText" *ngIf="showNavBarExplore">
             <button

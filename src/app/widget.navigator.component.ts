@@ -129,8 +129,9 @@ export class WidgetNavigatorComponent {
     childNodesFilteredList: string[] = [];              // List of Nodes, after filtered on NodeProperties
 
     // Working
-    appliedNodeFilter: boolean = false;
-    appliedNodeWatchlist: boolean = false;
+    appliedNodeFilter: boolean = false;                 // True if a Filter has been applied to Parent Nodes
+    appliedNodeWatchlist: boolean = false;              // True if a Watchlist has been applied to Parent Nodes
+    appliedNodeShiftList: boolean = false;              // True if a Shift (of children) has been applied to Parent Nodes
     childDataAll: string[] = [];                        // List of ALL children after filter (ie all levels)
     childDataVisible: any[] = [];                       // Visible children, based on nrShown
     childNodeFilter: NavigatorNodeFilter[] = [];        // Actual Filter
