@@ -2249,9 +2249,15 @@ export class GlobalVariableService {
                 console.time("      DURATION refreshLocalCacheMemory: " + resource);
 
                 // Get from HTTP server
+
+                const headers = new HttpHeaders()
+                    .set("Content-Type", "application/json")
+                    .set("Accept", "application/json")
+                    .set("Authorization", "JWT " + this.currentToken);
+
                 let pathUrl: string = resource;
                 let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
-                this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+                this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                     httpResult  => {
 
                         if(httpResult.statusCode != 'success') {
