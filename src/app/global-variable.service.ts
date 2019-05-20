@@ -5628,11 +5628,16 @@ export class GlobalVariableService {
                 resolve(false);
             };
 
+            const headers = new HttpHeaders()
+                .set("Authorization", "Bearer " + givenToken);
+
             this.http.post<Token>(
                 givenCanvasServerURI + '/auth/local/verify',
                 {
                     "companyName": givenCompanyName,
-                    "userID": givenUserID }
+                    "userID": givenUserID 
+                }, 
+                {headers}
                 ).subscribe(res => {
 
                 // Store locally
@@ -5643,6 +5648,8 @@ export class GlobalVariableService {
                     // TODO - must this be done here ??  Needed to setBaseUrl
                     this.canvasServerURI = givenCanvasServerURI;
 
+                    // The token is need in getDataCachingTable, so set it beforehand
+                    this.currentToken = givenToken;
 
                     // Refresh, but first get the cache
                     this.getDataCachingTable()
@@ -5673,7 +5680,6 @@ export class GlobalVariableService {
                                     this.canvasServerURI = givenCanvasServerURI;
                                     this.currentCompany = givenCompanyName;
                                     this.currentUserID = givenUserID;
-                                    this.currentToken = givenToken;
 
                                     // Register session start time
                                     let today = new Date();
