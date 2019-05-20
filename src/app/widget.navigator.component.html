@@ -40,7 +40,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             </select>
         </div>
 
-        <clr-signpost style="width: 400;" *ngIf="showNavBarExplore">
+        <clr-signpost style="width: 400;" *ngIf="showNavBarExplore  &&  selectedParentNodeType!=''">
             <clr-icon shape="filter"
                 size="12"
                 style="color: blue; margin-top: -4px;"
@@ -209,7 +209,7 @@ dimensions are set in app.html, and cannot be changed here. -->
             </clr-signpost-content>
         </clr-signpost>
 
-        <span>
+        <span *ngIf="appliedNodeFilter  ||  appliedNodeWatchlist  ||  appliedNodeShiftList">
             *
         </span>
         <!-- Drop Down Bar Menu -->
