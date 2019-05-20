@@ -1276,7 +1276,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                // .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             let pathUrl: string = resource;
             let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
