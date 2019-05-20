@@ -6072,7 +6072,13 @@ export class GlobalVariableService {
 
             let pathUrl: string = '/canvasDashboardSummary?id=' + dashboardID.toString();
             let finalUrl: string = this.canvasServerURI + pathUrl;
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + this.currentToken);
+
+            this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
@@ -6705,7 +6711,9 @@ console.log('xx post filter', results)
         return new Promise<object | null>((resolve, reject) => {
 
             const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + this.currentToken);
 
             let finalUrl: string = this.canvasServerURI + '/data';
 
