@@ -2835,7 +2835,10 @@ export class GlobalVariableService {
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + this.currentToken);
+
             // let pathUrl: string = 'data';
             // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
