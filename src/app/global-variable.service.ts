@@ -267,11 +267,16 @@ export class GlobalVariableService {
 
         return new Promise<boolean>((resolve, reject) => {
 
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + this.currentToken);
+
             // Load the current Dashboard Core info
             let pathUrl: string = '/canvasDashboardCore?id=' + dashboardID 
                 + '&dashboardTabID=' + dashboardTabID;
             let finalUrl: string = this.canvasServerURI + pathUrl;
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+            this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
