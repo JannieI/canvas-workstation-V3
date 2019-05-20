@@ -1139,17 +1139,10 @@ export class GlobalVariableService {
                 this.concoleLogStyleForCaching,
                 resource)
 
-
-
-
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
                 .set("Authorization", "JWT " + this.currentToken);
-
-
-
-
 
             // Get from HTTP server
             let pathUrl: string = resource + params;
