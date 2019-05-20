@@ -5967,7 +5967,12 @@ export class GlobalVariableService {
                 "&password=" + password;
             let finalUrl: string = this.canvasServerURI + '/clientData/' + pathUrl;
 
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + this.currentToken);
+
+            this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
