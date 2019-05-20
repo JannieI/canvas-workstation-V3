@@ -2752,9 +2752,14 @@ export class GlobalVariableService {
             };
             console.time("      DURATION getData: " + parameters);
 
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + this.currentToken);
+
             // let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + id.toString()
             let finalUrl: string = this.canvasServerURI + '/clientdata' + parameters;
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+            this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
