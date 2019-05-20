@@ -270,12 +270,13 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             // Load the current Dashboard Core info
             let pathUrl: string = '/canvasDashboardCore?id=' + dashboardID 
                 + '&dashboardTabID=' + dashboardTabID;
             let finalUrl: string = this.canvasServerURI + pathUrl;
+            
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
@@ -435,7 +436,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             let pathUrl: string = '/canvasDatasource';
             let finalUrl: string = this.canvasServerURI + pathUrl;
@@ -495,7 +496,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             let pathUrl: string = '/canvasDatasource';
             let finalUrl: string = this.canvasServerURI + pathUrl;
@@ -561,7 +562,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             let pathUrl: string = '/canvasDatasource';
             let finalUrl: string = this.canvasServerURI + pathUrl;
@@ -1154,7 +1155,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             // Get from HTTP server
             let pathUrl: string = resource + params;
@@ -1694,7 +1695,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             let pathUrl: string = '/canvasDashboardCopy?originalDashboardID='
                 + originalDashboardID + "&newName=" + newName + "&newState=" + newState;
@@ -1811,7 +1812,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             let pathUrl: string = '/canvasDashboardDiscard';
             let finalUrl: string = this.canvasServerURI + pathUrl;
@@ -1924,7 +1925,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             let pathUrl: string = '/canvasDashboardSaveDraft';
             let finalUrl: string = this.canvasServerURI + pathUrl;
@@ -2098,7 +2099,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             let pathUrl: string = '/canvasDashboardDelete';
             let finalUrl: string = this.canvasServerURI + pathUrl;
@@ -2253,7 +2254,7 @@ export class GlobalVariableService {
                 const headers = new HttpHeaders()
                     .set("Content-Type", "application/json")
                     .set("Accept", "application/json")
-                    .set("Authorization", "JWT " + this.currentToken);
+                    .set("Authorization", "Bearer " + this.currentToken);
 
                 let pathUrl: string = resource;
                 let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
@@ -2755,7 +2756,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             // let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + id.toString()
             let finalUrl: string = this.canvasServerURI + '/clientdata' + parameters;
@@ -2803,7 +2804,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
@@ -2837,7 +2838,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             // let pathUrl: string = 'data';
             // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
@@ -3480,7 +3481,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             let pathUrl: string = '/canvasDataMarkMessagesAsRead';
             let finalUrl: string = this.canvasServerURI + pathUrl;
@@ -3695,7 +3696,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             let pathUrl: string = 'dataCachingTable';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
@@ -5915,7 +5916,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 res  => {
@@ -5970,7 +5971,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 res  => {
@@ -6036,7 +6037,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 res  => {
@@ -6076,7 +6077,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 res  => {
@@ -6119,7 +6120,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + localToken.token);
+                .set("Authorization", "Bearer " + localToken.token);
             const sampleString: any = { "sample_size": sampleSize };
             this.http.post(pathUrl, sampleString, {headers})
             .subscribe(
@@ -6161,7 +6162,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + localToken.token);
+                .set("Authorization", "Bearer " + localToken.token);
             this.http.post(pathUrl, source, {headers})
             .subscribe(
                 res => {
@@ -6202,7 +6203,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + localToken.token);
+                .set("Authorization", "Bearer " + localToken.token);
             this.http.post(pathUrl, source, {headers})
             .subscribe(
                 res => {
@@ -6239,7 +6240,7 @@ export class GlobalVariableService {
             let localToken: Token = JSON.parse(localStorage.getItem('eazl-token'));
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
-                .set("Authorization", "JWT " + localToken.token);
+                .set("Authorization", "Bearer " + localToken.token);
 
             this.http.post(pathUrl, source, {headers})
             .subscribe(
@@ -6276,7 +6277,7 @@ export class GlobalVariableService {
             let localToken: Token = JSON.parse(localStorage.getItem('eazl-token'));
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
-                .set("Authorization", "JWT " + localToken.token);
+                .set("Authorization", "Bearer " + localToken.token);
 
             this.http.post(pathUrl, source, {headers})
             .subscribe(
@@ -6713,7 +6714,7 @@ console.log('xx post filter', results)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
-                .set("Authorization", "JWT " + this.currentToken);
+                .set("Authorization", "Bearer " + this.currentToken);
 
             let finalUrl: string = this.canvasServerURI + '/data';
 
