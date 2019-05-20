@@ -3692,9 +3692,14 @@ export class GlobalVariableService {
         // to determine what to load in memory !!  So, it cant work that way.
         return new Promise<DataCachingTable[]>((resolve, reject) => {
 
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Accept", "application/json")
+                .set("Authorization", "JWT " + this.currentToken);
+
             let pathUrl: string = 'dataCachingTable';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-            this.http.get<CanvasHttpResponse>(finalUrl).subscribe(
+            this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
                         reject(res.message);
