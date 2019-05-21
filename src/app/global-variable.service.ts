@@ -671,7 +671,7 @@ export class GlobalVariableService {
             let currentDatasource: Datasource = null;
             let currentDatasourceIndex: number = this.currentDatasources
                 .findIndex(ds => ds.id === datasourceID);
-
+                console.log('xx FAILURE', this.currentDatasources, this.datasources)
             if (currentDatasourceIndex < 0) {
                 let datasourceIndex: number = this.datasources
                     .findIndex(ds => ds.id === datasourceID);
@@ -2759,7 +2759,7 @@ export class GlobalVariableService {
                 .set("Authorization", "Bearer " + this.currentToken);
 
             // let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + id.toString()
-            let finalUrl: string = this.canvasServerURI + '/clientdata' + parameters;
+            let finalUrl: string = this.canvasServerURI + '/clientData' + parameters;
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 res  => {
                     if(res.statusCode != 'success') {
@@ -2843,7 +2843,7 @@ export class GlobalVariableService {
             // let pathUrl: string = 'data';
             // let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
-            let finalUrl: string = this.canvasServerURI + '/clientdata';
+            let finalUrl: string = this.canvasServerURI + '/clientData';
             this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
                 .subscribe(res => {
 
@@ -3005,6 +3005,8 @@ export class GlobalVariableService {
 
             // Add to DB
             this.addResource('dashboardSnapshots', newSn).then(res => {
+console.log('xx Ivan ADD res', res)
+
                 resolve(res);
             });
         });
@@ -5033,7 +5035,7 @@ export class GlobalVariableService {
                     + '&fields=id, comment '
 
                 ).then(lss => {
-
+console.log('xx Ivan lss', lss)
                     // Add if last snap was not an auto (null returned if no last snapshot)
                     if (lss != null) {
 
