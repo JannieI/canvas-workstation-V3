@@ -555,6 +555,11 @@ export class GlobalVariableService {
             console.log('%c  Global-Variables deleteDatasource starts',
                 this.concoleLogStyleForStartOfMethod, {id: datasourceID});
         };
+
+        if (datasourceID == null) {
+            console.error('Error in     Global-Variables deleteDatasource: given datasourceID should not be null');
+        };
+
         console.time("      DURATION deleteDatasource" + datasourceID.toString());
 
         return new Promise<any>((resolve, reject) => {
@@ -1695,7 +1700,7 @@ export class GlobalVariableService {
             if (newName == null) {
                 newName = ''
             };
-            
+
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
