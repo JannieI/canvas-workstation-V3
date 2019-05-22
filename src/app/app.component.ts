@@ -2876,7 +2876,7 @@ export class AppComponent implements OnInit {
 
                     } else {
 
-                        this.globalVariableService.dashboardCopy(originalDashboard.id, null, 'Draft')
+                        this.globalVariableService.dashboardCopy(originalDashboard.id, '', 'Draft')
                             .then(res => {
 
                                 let newDashboardID:number = res.dashboard.id;

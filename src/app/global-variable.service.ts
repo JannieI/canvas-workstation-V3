@@ -1692,6 +1692,10 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
+            if (newName == null) {
+                newName = ''
+            };
+            
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
                 .set("Accept", "application/json")
