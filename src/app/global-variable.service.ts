@@ -580,7 +580,7 @@ export class GlobalVariableService {
                         reject(res.message);
                         return;
                     };
-
+console.log('xx DEL DS res', res)
                     // Delete where DS was used in Stored Template
                     this.getResource('widgetStoredTemplates').then(swt => {
                         swt.forEach(swt => {

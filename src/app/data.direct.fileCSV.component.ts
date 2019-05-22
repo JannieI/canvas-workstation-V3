@@ -196,8 +196,10 @@ export class DataDirectFileCSVComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'loadFileContent',           '@Start');
 
         // Read file content into an Array: split on NewLine, then Comma
-        let arr: any = this.loadedFile.target.result.split(/\r|\n/).map(x => x.split(","));
+        // See https://en.wikipedia.org/wiki/Newline#Representation for NL, CR info
+        let arr: any = this.loadedFile.target.result.split(/\r\n|\n\r|\025|\n|\r/).map(x => x.split(/\",/));
         console.log('xx 1 arr[+this.headerRow];', arr[+this.headerRow])
+        console.log('xx 1 arr[3];', arr[3])
         // Remove single ticks, spaces and dots from Headers
         let re = /'/gi;
         for (var col = 0; col < arr[0].length; col++) {
