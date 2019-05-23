@@ -180,6 +180,7 @@ This document describes items for later versions of Canvas.
     ---------------
         - add Auth0, Google, Facebook
         - Sybrin wants their permissioning, which is complicated, bank compliant, AD included, etc
+        - cater for > 1 token stored in Browser, for multiple servers and companies.  How to decide which one to use !?
 
     Schema Validator:
     - See https://github.com/tdegrunt/jsonschema
