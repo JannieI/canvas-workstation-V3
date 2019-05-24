@@ -476,13 +476,14 @@ export class WidgetNavigatorComponent {
             )
                 .then(res => {
                     this.networkRelationships = res;
-
+console.log('xx 1')
                     // Fill ParentNode type Dropdown
                     this.ngDropdownParentNodeTypes = this.distinctNodeTypes();
                     this.ngDropdownParentNodeTypes = ['', ...this.ngDropdownParentNodeTypes];
 
                     // Set selected Network
                     this.selectedNetworkPropertiesID = this.ngNetworks[index].propertiesDatasourceID;
+                    console.log('xx 2')
 
                     // Get the data
                     this.globalVariableService.getData(
@@ -490,6 +491,7 @@ export class WidgetNavigatorComponent {
                     )
                         .then(res => {
                             this.networkProperties = res;
+                            console.log('xx 3')
 
                             // Disable Views
                             this.isViewsDisabled = true;
@@ -546,6 +548,7 @@ export class WidgetNavigatorComponent {
                                 };
 
                             };
+                            console.log('xx 4')
 
                             // Get History for this Network
                             this.ngHistory = this.historyAll
@@ -562,6 +565,7 @@ export class WidgetNavigatorComponent {
 
                             // Close Navigated popup
                             this.showNetwork = false;
+                            console.log('xx 5')
 
                             // Click the first row
                             if (this.ngHistory.length > 0) {
@@ -1482,8 +1486,8 @@ console.log('xx this.specification', this.specification)
 
         this.globalVariableService.saveResource('widgets', this.localWidget)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
-                console.error('Error in Navigator.OnInit saving widgets: ' + err);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
+                console.error('Error in Navigator.OnInit saving widgets: ', err);
             });
 
         // Render in DOM
