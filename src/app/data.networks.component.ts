@@ -339,7 +339,8 @@ export class DataNetworksComponent implements OnInit {
                     this.selectedRowID = this.navigatorNetworks[networkIndex].id;
                     this.selectedRowIndex = networkIndex;
                     this.clickRow(this.selectedRowIndex, this.selectedRowID);
-                }
+                };
+                this.message = 'Added';
             })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
@@ -384,6 +385,9 @@ export class DataNetworksComponent implements OnInit {
         this.globalVariableService.saveResource(
             'navigatorNetworks', this.navigatorNetworks[navigatorNetworkIndex]
             )
+            .then(res => {
+                this.message = 'Saved';
+            })
             .catch(err => {
                 this.errorMessage = err.slice(0, 100);
                 console.error('Error in Data.Networks saving navigatorNetworks: ' + err);
