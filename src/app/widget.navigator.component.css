@@ -343,7 +343,6 @@
             margin: 12px;
         }
         .historyAreaBlock {
-            background-color: red;
             border-radius: 4px;
             grid-column-start: 1;
             /* autoprefixer: off */
