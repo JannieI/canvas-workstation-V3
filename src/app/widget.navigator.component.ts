@@ -270,6 +270,7 @@ export class WidgetNavigatorComponent {
         // Node Types for current user
         this.ngWatchListNodeTypes = this.ngWatchLists
             .filter(wl => wl.userID === this.globalVariableService.currentUser.userID)
+            .filter(wl => this.ngDropdownParentNodeTypes.indexOf(wl.nodeType) >= 0)
             .map(x => x.nodeType)
             .sort( (a,b) => {
                 if (a > b) {

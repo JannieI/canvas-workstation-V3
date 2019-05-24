@@ -1183,13 +1183,13 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div>
 
         <div class="watchListAddNodeTypeText">
-            Available Node Types to add:
+            <b>Available Node Types to add:</b>
         </div>
 
         <div class="watchListAddNodeTypeSelect">
             <select [(ngModel)]="selectedWatchListNodeTypeToAdd"
                 name="selectedWatchListNodeTypeToAdd"
-                style="margin-top: -6px;"
+                style="margin-top: -18px;"
                 >
                 <option *ngFor="let row of ngWatchListNodeTypesToAdd">
                     {{ row }}
@@ -1200,7 +1200,7 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         <div class="watchListAddNodeTypeButton"> -->
             <button class="btn btn-link"
-                style="margin-left: 18px; margin-top: -4px;"
+                style="margin-left: 18px; margin-top: -12px;"
                 (click)="clickWatchListNodeTypeAdd()"
                 >
                 Add Node Type
@@ -1209,12 +1209,13 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div>
 
         <div class="watchListAddNodeText">
-            Add Node to {{ selectedWatchListNodeTypeToAdd }}:
+            <b>Add Node to {{ selectedWatchListNodeType }}:</b>
         </div>
 
         <div class="watchListAddNodeSelect">
             <select [(ngModel)]="selectedWatchListNodeToAdd"
                 name="selectedWatchListNodeToAdd"
+                style="margin-top: -18px;"
                 >
                 <option *ngFor="let row of ngWatchListNodesToAdd">
                     {{ row }}
@@ -1225,7 +1226,7 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         <div class="watchListAddNodeButton"> -->
             <button class="btn btn-link"
-                style="margin-left: 18px; margin-top: -4px;"
+                style="margin-left: 18px; margin-top: -12px;"
                 (click)="clickWatchListNodeAdd()"
                 >
                 Add Node
