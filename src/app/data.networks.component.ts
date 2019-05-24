@@ -159,6 +159,7 @@ export class DataNetworksComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.message = '';
         this.selectedRowID = id;
         this.selectedRowIndex = index;
 
@@ -196,6 +197,7 @@ export class DataNetworksComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.message = '';
 
         let selectedDashboardString: string = ev.target.value;
         if (selectedDashboardString != '') {
@@ -216,6 +218,7 @@ export class DataNetworksComponent implements OnInit {
  
         // Reset
         this.errorMessage = '';
+        this.message = '';
 
         let selectedDashboardString: string = ev.target.value;
 
@@ -237,6 +240,7 @@ export class DataNetworksComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.message = '';
 
 		this.formDataNetworksClosed.emit('Close');
     }
@@ -272,6 +276,7 @@ export class DataNetworksComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.message = '';
         this.selectedNetworkName = '';
         this.selectedNetworkDescription = '';
         this.selectedRelationshipDS = '';
@@ -290,6 +295,7 @@ export class DataNetworksComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.message = '';
         this.selectedNetworkName = '';
         this.selectedNetworkDescription = '';
         this.selectedRelationshipDS = '';
@@ -350,6 +356,7 @@ export class DataNetworksComponent implements OnInit {
 
         // Reset 
         this.errorMessage = '';
+        this.message = '';
 
         // Validation input
         if (this.validateInput() != '') {
@@ -390,6 +397,7 @@ export class DataNetworksComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.message = '';
 
         // Validation input
         if (this.selectedRelationshipDS == '') {
