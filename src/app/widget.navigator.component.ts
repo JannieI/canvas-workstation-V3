@@ -631,6 +631,9 @@ export class WidgetNavigatorComponent {
                 nodes: []
             }
         );
+
+        // Reset
+        this.selectedWatchListNodeTypeToAdd = '';
     }
 
     clickWatchListNodeAdd() {
