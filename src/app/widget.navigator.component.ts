@@ -470,20 +470,20 @@ export class WidgetNavigatorComponent {
         if (this.selectedNetworkID >= 0) {
             
             this.selectedNetworkRelationshipID = this.ngNetworks[index].relationshipDatasourceID;
+            console.log('xx 0', this.selectedNetworkID)
 
             this.globalVariableService.getData(
                 'datasourceID=' + this.selectedNetworkRelationshipID.toString()
             )
                 .then(res => {
                     this.networkRelationships = res;
-console.log('xx 1')
+
                     // Fill ParentNode type Dropdown
                     this.ngDropdownParentNodeTypes = this.distinctNodeTypes();
                     this.ngDropdownParentNodeTypes = ['', ...this.ngDropdownParentNodeTypes];
 
                     // Set selected Network
                     this.selectedNetworkPropertiesID = this.ngNetworks[index].propertiesDatasourceID;
-                    console.log('xx 2')
 
                     // Get the data
                     this.globalVariableService.getData(
@@ -491,7 +491,6 @@ console.log('xx 1')
                     )
                         .then(res => {
                             this.networkProperties = res;
-                            console.log('xx 3')
 
                             // Disable Views
                             this.isViewsDisabled = true;
@@ -548,7 +547,6 @@ console.log('xx 1')
                                 };
 
                             };
-                            console.log('xx 4')
 
                             // Get History for this Network
                             this.ngHistory = this.historyAll
@@ -562,10 +560,10 @@ console.log('xx 1')
                                     };
                                     return 0;
                                 });
+                                console.log('xx this.ngHistory', this.ngHistory)
 
                             // Close Navigated popup
                             this.showNetwork = false;
-                            console.log('xx 5')
 
                             // Click the first row
                             if (this.ngHistory.length > 0) {
@@ -1111,6 +1109,7 @@ console.log('xx 1')
                 };
                 this.ngHistory = [historyNew, ...this.ngHistory];
                 this.historyAll = [historyNew, ...this.historyAll];
+                console.log('xx this.ngHistory', this.ngHistory)
             };
 
             // Set H & W
@@ -1471,7 +1470,8 @@ console.log('xx 1')
             this.showSpecificGraphLayer,
             0
         );
-console.log('xx this.specification', this.specification)
+        console.log('xx this.specification', this.specification)
+
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
         this.specification['title'] = this.graphTitle;
