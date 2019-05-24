@@ -1057,10 +1057,15 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         </div>
 
-        <div class="historyAreaText" *ngIf="ngHistory?.length == 0">
+        <div class="historyAreaTextNone" *ngIf="ngHistory?.length == 0">
             <br>
             <br>
-            No previous history to show
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <b>No previous history to show</b>
         </div>
         <div class="historyAreaBlock">
             <div class="historyAreaBlockSmall" *ngFor="let row of ngHistory; let i = index"
