@@ -1036,8 +1036,8 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         <div class="historyAreaText">
             Select a previously shown graph by clicking it.  Click the trash icon to
-            delete an item from the Navigated list.  Click the 
-            <clr-icon 
+            delete an item from the Navigated list.  Click the
+            <clr-icon
                 shape="arrow right"
                 size="12"
                 >
@@ -1063,7 +1063,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                 [style.color]="selectedHistoryID==row.id? 'black'  :  'darkgray'"
                 (click)="clickSelectHistory(i, row.id)"
                 >
-                <clr-icon (dblclick)="dblclickDeleteHistory(i, row.id)"
+                <clr-icon (click)="clickDeleteHistory(i, row.id)"
                     shape="trash"
                     size="12"
                     >

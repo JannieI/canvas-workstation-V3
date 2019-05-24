@@ -380,9 +380,9 @@ export class WidgetNavigatorComponent {
 
     }
 
-    dblclickDeleteHistory(index: number, historyID: number) {
+    clickDeleteHistory(index: number, historyID: number) {
         // Delete selected history row.  If current, move to first
-        this.globalFunctionService.printToConsole(this.constructor.name, 'dblclickDeleteHistory', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickDeleteHistory', '@Start');
 
         this.ngHistory = this.ngHistory.filter(h => h.id != historyID);
         this.historyAll = this.historyAll.filter(h => h.id != historyID);
