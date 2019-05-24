@@ -370,8 +370,11 @@ dimensions are set in app.html, and cannot be changed here. -->
         </span>
 
         <!-- Solutions Heading -->
-        <div class="graphHeaderText" *ngIf="!showNavBarExplore">
+        <div class="graphHeaderSolutionsHeader" *ngIf="!showNavBarExplore">
             Solutions for {{ graphTitle }}
+        </div>
+        <div class="graphHeaderSolutionsText" *ngIf="!showNavBarExplore">
+            Click <b>EXPLORE</b> to change back to the default graph.
         </div>
 
         <!-- Explore / Solution Menu Bar -->

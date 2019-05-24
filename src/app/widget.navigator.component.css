@@ -376,7 +376,7 @@
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 41;
-            grid-row-start: 6;
+            grid-row-start: 7;
             grid-row-end: 26;
             margin: 4px;
             overflow-y: scroll; 
@@ -496,8 +496,18 @@
         grid-row-end: 5;
         text-align: left;
     }
-
-        .graphHeaderText{
+        .graphHeaderSolutionsHeader {
+            display: inline-block; 
+            font-size: 0.65rem;
+            margin-left: 32px;
+            margin-top: -24px;
+        }
+        .graphHeaderSolutionsText {
+            display: inline-block; 
+            margin-left: 32px;
+            margin-top: 6px;
+        }
+        .graphHeaderText {
             display: inline-block; 
             margin-left: 20px;
             margin-right: 12px;
