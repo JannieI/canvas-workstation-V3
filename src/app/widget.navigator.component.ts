@@ -286,6 +286,7 @@ export class WidgetNavigatorComponent {
         this.ngWatchListNodeTypesToAdd = this.ngDropdownParentNodeTypes
             .filter(nt => this.ngWatchListNodeTypes.indexOf(nt) < 0)
             .filter(nt => nt != '');
+        this.ngWatchListNodeTypesToAdd = ['', ...this.ngWatchListNodeTypesToAdd];
 
         // Clear Nodes to show and Nodes to Add, and then set the Nodes list
         this.ngWatchListNodesToAdd = [];

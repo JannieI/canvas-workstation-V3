@@ -1189,18 +1189,16 @@ dimensions are set in app.html, and cannot be changed here. -->
         <div class="watchListAddNodeTypeSelect">
             <select [(ngModel)]="selectedWatchListNodeTypeToAdd"
                 name="selectedWatchListNodeTypeToAdd"
-                style="margin-top: -18px;"
+                style="margin-top: -20px;"
                 >
                 <option *ngFor="let row of ngWatchListNodeTypesToAdd">
                     {{ row }}
                 </option>
 
             </select>
-        <!-- </div>
 
-        <div class="watchListAddNodeTypeButton"> -->
             <button class="btn btn-link"
-                style="margin-left: 18px; margin-top: -12px;"
+                style="margin-left: 18px; margin-top: 0px;"
                 (click)="clickWatchListNodeTypeAdd()"
                 >
                 Add Node Type
@@ -1215,7 +1213,7 @@ dimensions are set in app.html, and cannot be changed here. -->
         <div class="watchListAddNodeSelect">
             <select [(ngModel)]="selectedWatchListNodeToAdd"
                 name="selectedWatchListNodeToAdd"
-                style="margin-top: -18px;"
+                style="margin-top: -6px;"
                 >
                 <option *ngFor="let row of ngWatchListNodesToAdd">
                     {{ row }}
@@ -1226,7 +1224,7 @@ dimensions are set in app.html, and cannot be changed here. -->
 
         <div class="watchListAddNodeButton"> -->
             <button class="btn btn-link"
-                style="margin-left: 18px; margin-top: -12px;"
+                style="margin-left: 18px; margin-top: 2px;"
                 (click)="clickWatchListNodeAdd()"
                 >
                 Add Node

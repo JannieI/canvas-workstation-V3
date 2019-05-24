@@ -220,6 +220,7 @@
             grid-row-start: 3;
             grid-row-end: 4;
             margin-left: 6px;
+            margin-top: -6px;
         }
         .watchListAddNodeText {
             grid-column-start: 1;
@@ -239,7 +240,7 @@
             grid-row-end: 5;
             margin-bottom: 18px;
             margin-left: 6px;
-            margin-top: -12px;
+            margin-top: -18px;
         }
         .watchListBlockNodeTypes {
             border-radius: 4px;
