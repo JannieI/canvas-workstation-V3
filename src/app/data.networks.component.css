@@ -132,18 +132,27 @@
     }
 
     .gridButtonCancel {
-        grid-column-start: 12;
+        grid-column-start: 11;
         /* autoprefixer: off */
-        grid-column-end: 15;
+        grid-column-end: 13;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridMessage {
+        grid-column-start: 15;
+        /* autoprefixer: off */
+        grid-column-end: 16;
         grid-row-start: 10;
         grid-row-end: 11;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridButtonAdd {
-        grid-column-start: 17;
+        grid-column-start: 18;
         /* autoprefixer: off */
-        grid-column-end: 19;
+        grid-column-end: 20;
         grid-row-start: 10;
         grid-row-end: 11;
         margin: 2px 2px 2px 2px;

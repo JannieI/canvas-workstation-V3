@@ -54,6 +54,7 @@ export class DataNetworksComponent implements OnInit {
     datasources: Datasource[] = [];
     editing: boolean = true;  // TODO - must be received via @Input
     errorMessage: string = '';
+    message: string = '';
     navigatorNetworks: NavigatorNetwork[] = [];
     selectedDashboardRelationshipID: number = -1;
     selectedDashboardPropertyID: number = -1;
