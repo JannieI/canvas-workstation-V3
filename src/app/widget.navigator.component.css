@@ -319,6 +319,10 @@
             grid-row-end: 26;
             margin: 18px;
         }
+            .networkAreaBlockSmall {
+                border-radius: 4px;
+                margin: 4px;
+            }
 
     .historyArea {
         background-color: white;
@@ -377,10 +381,10 @@
             margin: 4px;
             overflow-y: scroll; 
         }
-        .historyAreaBlockSmall {
-            border-radius: 4px;
-            margin: 4px;
-        }
+            .historyAreaBlockSmall {
+                border-radius: 4px;
+                margin: 4px;
+            }
 
     .propertyArea {
         /* display: inline-block; */
