@@ -1569,7 +1569,7 @@ This document describes items for later versions of Canvas.
 
     - Window
         - add this!
-        - How to show comparison between current and previous period ?
+        - How to show comparison between current and previous period ?  See https://support.google.com/datastudio/answer/9272806?utm_medium=email&utm_source=newsletter&utm_campaign=maydatastudio&utm_content=en#date_comparison
         - Make rank without a GroupBy field - is there a use case for this?
 
     - Filters
