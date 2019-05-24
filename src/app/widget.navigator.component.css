@@ -348,8 +348,8 @@
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 41;
-            grid-row-start: 5;
-            grid-row-end: 25;
+            grid-row-start: 6;
+            grid-row-end: 26;
             margin: 4px;
             overflow-y: scroll; 
         }
