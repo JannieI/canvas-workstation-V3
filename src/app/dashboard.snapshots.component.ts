@@ -77,7 +77,7 @@ export class DashboardSnapshotsComponent implements OnInit {
             + '}')
             .then(i => this.currentDashboardSnapshots = i.slice())
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.snapshots reading dashboardSnapshots: ' + err);
             });
 
@@ -109,7 +109,7 @@ export class DashboardSnapshotsComponent implements OnInit {
             this.currentDashboardSnapshots.splice(index, 1)
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in Dashboard.snapshots deleting dashboardSnapshots: ' + err);
         });
 }
@@ -123,7 +123,7 @@ export class DashboardSnapshotsComponent implements OnInit {
             this.currentDashboardSnapshots.push(res);
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in Dashboard.snapshots adding dashboardSnapshots: ' + err);
         });
 }
