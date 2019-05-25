@@ -102,7 +102,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                 this.clearRecord();
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.scheduleEdit reading datasources: ' + err);
             });
 
@@ -114,7 +114,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.scheduleEdit reading datasourceSchedules: ' + err);
             });
 }
@@ -364,7 +364,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.scheduleEdit adding datasourceSchedules: ' + err);
                 });
         };
@@ -381,7 +381,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                 'datasourceSchedules', this.selectedDatasourceSchedule
                 ).then(res => console.log('Saved'))
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.scheduleEdit saving datasourceSchedules: ' + err);
                 });
         };
@@ -427,7 +427,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                 );
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.scheduleEdit deleting datasourceSchedules: ' + err);
             });
     
