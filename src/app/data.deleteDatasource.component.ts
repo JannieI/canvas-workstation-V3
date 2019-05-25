@@ -80,12 +80,12 @@ export class DataDeleteDatasourceComponent implements OnInit {
                         });
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in Datasource.delete reading widgets: ' + err);
                     });
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.delete reading datasources: ' + err);
             });
 
