@@ -134,7 +134,7 @@ export class DashboardDescriptionComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.description reading dashboards: ' + err);
             });
 
@@ -197,7 +197,7 @@ export class DashboardDescriptionComponent implements OnInit {
             
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.description reading canvasBackgroundcolors: ' + err);
             });
     }
@@ -295,7 +295,7 @@ export class DashboardDescriptionComponent implements OnInit {
         // Update global D
         this.globalVariableService.saveResource('dashboards', this.selectedDashboard)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.description saving dashboards: ' + err);
             });
 
