@@ -105,7 +105,7 @@ export class DataCombinationAppendComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in dataCombination.append reading datasources: ' + err);
             });
 
@@ -114,7 +114,7 @@ export class DataCombinationAppendComponent implements OnInit {
                 this.widgets = res;
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in dataCombination.append reading widgets: ' + err);
             });
     
@@ -159,7 +159,7 @@ export class DataCombinationAppendComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in dataCombination.append getData: ' + err);
                 });
         };
