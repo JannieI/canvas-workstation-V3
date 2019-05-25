@@ -1034,10 +1034,12 @@ export class WidgetNavigatorComponent {
                 this.childDataAll = [];
                 let parentID: number = 1;
 
-                // Get the parent for All, and loop on them
+                // Get the parent for All (that is the Full or Filtered list), and loop on them
                 // let parentNodes: string [] = this.distinctNodesPerNodeType(
                 //     this.selectedParentNodeType);
-                let parentNodes: string [] = this.ngDropdownParentNodes;
+                let parentNodes: string [] = this.ngDropdownParentNodes.filter(
+                    par => par != ''  &&  par != 'All'
+                );
 
                 // Filter on filtered Parents
                 // if (this.parentNodesFilteredList.length > 0) {
