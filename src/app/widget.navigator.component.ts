@@ -840,6 +840,13 @@ export class WidgetNavigatorComponent {
             .map(np => np.propertyKey);
         this.ngParentNodeFilterKeyDropdown = this.navUniqifySortNodes(this.ngParentNodeFilterKeyDropdown);
 
+        // Reset Watchlist for this node type
+        let watchlistIndex: number = this.ngWatchLists
+            .findIndex(wl => wl.nodeType == this.selectedParentNodeType)
+        if (watchlistIndex >= 0) {
+            this.ngWatchListNodes = this.ngWatchLists[watchlistIndex].nodes;
+        };
+
         // Reset filter properties
         this.ngParentNodeFilterPropertyDropdown = [];
 
