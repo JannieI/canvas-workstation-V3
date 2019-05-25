@@ -59,13 +59,13 @@ export class DataDatasourceScheduleComponent implements OnInit {
         this.globalVariableService.getResource('datasources')
             .then(data => this.datasources = data)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.schedules reading datasources: ' + err);
             });
         this.globalVariableService.getResource('datasourceSchedules')
             .then(data => this.datasourceSchedules = data)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.schedules reading datasourceSchedules: ' + err);
             });
     }
