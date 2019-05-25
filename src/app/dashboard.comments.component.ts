@@ -91,7 +91,7 @@ export class DashboardCommentsComponent implements OnInit {
                 this.indexLastRecord = this.canvasComments.length - 1;
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.comments reading canvasComments: ' + err);
             });
     }
@@ -158,7 +158,7 @@ export class DashboardCommentsComponent implements OnInit {
                     this.message = 'Comment saved';
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.comments saving canvasComments: ' + err);
                 });
     
@@ -200,7 +200,7 @@ export class DashboardCommentsComponent implements OnInit {
                     this.indexLastRecord = this.canvasComments.length - 1;
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.comments adding canvasComments: ' + err);
             });
 
