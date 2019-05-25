@@ -92,7 +92,7 @@ export class DashboardSaveComponent implements OnInit {
             })
             .catch(err => {
                 console.error('Error in Dashboard.saveDraft saving Draft dashboard: ' + err)
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             });
 
     }
