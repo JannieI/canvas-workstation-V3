@@ -59,7 +59,7 @@ export class DashboardScheduleLogComponent implements OnInit {
         this.globalVariableService.getResource('dashboardScheduleLog')
             .then (cau => this.dashboardScheduleLog = cau)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.scheduleLog reading logs: ' + err);
             });
     }
