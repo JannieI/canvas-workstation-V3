@@ -3437,12 +3437,12 @@ export class WidgetNavigatorComponent {
         );
     }
 
-    constructParentNodesDropDown(filterNodes: string[]): string[] {
-        // Construct Parent Nodes DropDown
+    constructParentNodesDropDown(selectedParentNodeType: string, filterNodes: string[]): string[] {
+        // Construct Parent Nodes DropDown for given Parent Node and optional filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'constructParentNodesDropDown', '@Start');
 
-        // Fill Dropdowns
-        let parentNodes: string[] = this.distinctNodesPerNodeType(this.selectedParentNodeType);
+        // Fill Dropdowns.  All means all the ones in the full or filtered list
+        let parentNodes: string[] = this.distinctNodesPerNodeType(selectedParentNodeType);
         parentNodes = ['', 'All', ...this.ngDropdownParentNodes];
 
         // Optional Filter
