@@ -817,8 +817,9 @@ export class WidgetNavigatorComponent {
         };
 
         // Fill Dropdowns
-        this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
-        this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        // this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
+        // this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        this.ngDropdownParentNodes = this.constructParentNodesDropDown(this.selectedParentNodeType)
 
         // Fill Relationships Dropdown
         this.ngDropdownRelationships = this.distinctRelationships(this.selectedParentNodeType, 'All');
@@ -3437,7 +3438,10 @@ export class WidgetNavigatorComponent {
         );
     }
 
-    constructParentNodesDropDown(selectedParentNodeType: string, filterNodes: string[]): string[] {
+    constructParentNodesDropDown(
+        selectedParentNodeType: string, 
+        filterNodes: string[] = []
+        ): string[] {
         // Construct Parent Nodes DropDown for given Parent Node and optional filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'constructParentNodesDropDown', '@Start');
 
