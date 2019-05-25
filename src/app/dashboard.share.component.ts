@@ -78,13 +78,13 @@ export class DashboardShareComponent implements OnInit {
                         this.dashboardPermissions = dP;
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in Dashboard.share reading canvasGroups: ' + err);
                     });
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.share reading canvasGroups: ' + err);
             });
 
@@ -121,7 +121,7 @@ export class DashboardShareComponent implements OnInit {
             dPIDs.forEach(id => 
                 this.globalVariableService.deleteResource('dashboardPermissions', id)
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in Dashboard.share deleting dashboardPermissions: ' + err);
                     })
             );
@@ -131,7 +131,7 @@ export class DashboardShareComponent implements OnInit {
         this.selectedDashboard.accessType = this.accessType;
         this.globalVariableService.saveResource('dashboards', this.selectedDashboard)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.share saving dashboards: ' + err);
             });
 
@@ -206,7 +206,7 @@ export class DashboardShareComponent implements OnInit {
                 this.dashboardPermissions.push(res);
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.share adding dashboardPermissions: ' + err);
             });
     }
@@ -237,7 +237,7 @@ export class DashboardShareComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.share adding dashboardPermissions: ' + err);
             });
 
@@ -293,7 +293,7 @@ export class DashboardShareComponent implements OnInit {
                 this.dashboardPermissions[index]
                 )
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.share saving dashboardPermissions: ' + err);
                 });
         };
@@ -330,7 +330,7 @@ export class DashboardShareComponent implements OnInit {
                 this.dashboardPermissions[index]
                 )
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.share saving dashboardPermissions: ' + err);
                 });
 
@@ -368,7 +368,7 @@ export class DashboardShareComponent implements OnInit {
                 this.dashboardPermissions[index]
                 )
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.share saving dashboardPermissions: ' + err);
                 });
 
@@ -406,7 +406,7 @@ export class DashboardShareComponent implements OnInit {
                 this.dashboardPermissions[index]
                 )
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.share saving dashboardPermissions: ' + err);
                 });
 
@@ -445,7 +445,7 @@ export class DashboardShareComponent implements OnInit {
                 this.dashboardPermissions[index]
                 )
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.share saving dashboardPermissions: ' + err);
                 });
 
@@ -484,7 +484,7 @@ export class DashboardShareComponent implements OnInit {
                 this.dashboardPermissions[index]
                 )
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.share saving dashboardPermissions: ' + err);
                 });
 
