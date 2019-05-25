@@ -75,7 +75,7 @@ export class DashboardSubscribeComponent implements OnInit {
                 this.dashboards = data;
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.subscribe reading dashboards: ' + err);
             });
 
@@ -113,7 +113,7 @@ export class DashboardSubscribeComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.subscribe reading dashboardSubscriptions: ' + err);
             });
         
@@ -137,7 +137,7 @@ export class DashboardSubscribeComponent implements OnInit {
                 this.dashboardSubscriptions[index])
                 .then(res => console.log('Saved'))
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.subscribe saving dashboardSubscriptions: ' + err);
                 });
         };
@@ -162,7 +162,7 @@ export class DashboardSubscribeComponent implements OnInit {
                 this.dashboardSubscriptions[index])
                 .then(res => console.log('Saved'))
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.subscribe saving dashboardSubscriptions: ' + err);
                 });
     
@@ -187,7 +187,7 @@ export class DashboardSubscribeComponent implements OnInit {
                 this.dashboardSubscriptions[index])
                 .then(res => console.log('Saved'))
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.subscribe saving dashboardSubscriptions: ' + err);
                 });
     
@@ -212,7 +212,7 @@ export class DashboardSubscribeComponent implements OnInit {
                 this.dashboardSubscriptions[index])
                 .then(res => console.log('Saved'))
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.subscribe saving dashboardSubscriptions: ' + err);
                 });
     
@@ -254,7 +254,7 @@ export class DashboardSubscribeComponent implements OnInit {
                 this.dashboardSubscriptions[index])
                 .then(res => console.log('Saved'))
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.subscribe saving dashboardSubscriptions: ' + err);
                 });
             };
@@ -348,7 +348,7 @@ export class DashboardSubscribeComponent implements OnInit {
                     };
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.subscribe adding dashboardSubscriptions: ' + err);
                 });
         } else {
@@ -394,7 +394,7 @@ export class DashboardSubscribeComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.subscribe deleting dashboardSubscriptions: ' + err);
             });
         
