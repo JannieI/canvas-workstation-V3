@@ -93,7 +93,7 @@ export class DashboardTagsComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.tags reading dashboardTags: ' + err);
             });
 
@@ -151,7 +151,7 @@ export class DashboardTagsComponent implements OnInit {
                 this.selectedDashboardTags.push(res);
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.tags adding dashboardTags: ' + err);
             });
 
@@ -193,7 +193,7 @@ export class DashboardTagsComponent implements OnInit {
             this.selectedDashboardTags.push(res);
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in Dashboard.tags adding dashboardTags: ' + err);
         });
 
@@ -210,7 +210,7 @@ export class DashboardTagsComponent implements OnInit {
                 this.selectedDashboardTags.splice(index, 1);
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.tags deleting dashboardTags: ' + err);
             });
 
