@@ -131,17 +131,17 @@ export class CollaborateTasksComponent implements OnInit {
                         })
                         .catch(err => {
                             console.error('Error in Collaborate.addTask reading dashboards: ' + err)
-                            this.errorMessage = err.slice(0, 100);
+                            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         });
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in Collaborate.tasks reading canvasUsers: ' + err);
                     });
     
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Collaborate.tasks reading canvasTasks: ' + err);
             });
 
