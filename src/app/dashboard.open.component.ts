@@ -101,7 +101,7 @@ export class DashboardOpenComponent implements OnInit {
             this.groups = res;
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in Dashboard.open reading canvasGroups: ' + err);
         });
 
@@ -111,7 +111,7 @@ export class DashboardOpenComponent implements OnInit {
                 this.datasources = res;
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.open reading datasources: ' + err);
             });
 
@@ -139,7 +139,7 @@ export class DashboardOpenComponent implements OnInit {
                 });
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.open reading dashboards: ' + err);
             });
 }
@@ -180,7 +180,7 @@ export class DashboardOpenComponent implements OnInit {
         this.globalVariableService.getResource('canvasAuditTrails')
             .then( res => this.canvasAuditTrails = res)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.open reading canvasAuditTrails: ' + err);
             });
 
@@ -190,7 +190,7 @@ export class DashboardOpenComponent implements OnInit {
                 this.dashboardTags = res
             )
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.open reading dashboardTags: ' + err);
             });
 
@@ -198,7 +198,7 @@ export class DashboardOpenComponent implements OnInit {
         this.globalVariableService.getResource('dashboardScheduleLog')
             .then(res => this.dashboardScheduleLog = res)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.open reading dashboardScheduleLog: ' + err);
             });
 
@@ -206,7 +206,7 @@ export class DashboardOpenComponent implements OnInit {
         this.globalVariableService.getResource('dashboardSchedules')
             .then(res => this.dashboardSchedules = res)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.open reading dashboardSchedules: ' + err);
             });
     
@@ -354,7 +354,7 @@ export class DashboardOpenComponent implements OnInit {
                     });
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.open reading dashboardPermissions: ' + err);
                 });
 
@@ -374,7 +374,7 @@ export class DashboardOpenComponent implements OnInit {
                     });
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.open reading dashboardPermissions: ' + err);
                 });
         };
@@ -404,7 +404,7 @@ export class DashboardOpenComponent implements OnInit {
                     });
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.open reading dashboardPermissions: ' + err);
                 });
 
@@ -500,7 +500,7 @@ export class DashboardOpenComponent implements OnInit {
                     this.dashboards = this.dashboards.filter(d => dISs.indexOf(d.id) >= 0);
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.open reading widgets: ' + err);
                 });
 
