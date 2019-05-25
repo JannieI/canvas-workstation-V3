@@ -3450,7 +3450,7 @@ export class WidgetNavigatorComponent {
 
         // Fill Dropdowns.  All means all the ones in the full or filtered list
         let parentNodes: string[] = this.distinctNodesPerNodeType(selectedParentNodeType);
-        parentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        parentNodes = ['', 'All', ...parentNodes];
 
         // Optional Filter
         if (filterNodes.length > 0) {
