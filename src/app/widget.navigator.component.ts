@@ -1005,8 +1005,12 @@ export class WidgetNavigatorComponent {
             };
             this.graphDataLength = 0;
 
+            let quantifier: string = 'All';
+            if (this.appliedNodeFilter  ||  this.appliedNodeWatchlist  ||  this.appliedNodeShiftList) {
+                quantifier = 'Some';
+            };
             this.graphTitle = this.graphTitle +
-                this.selectedRelationship == 'All'?  'All relationships'
+                this.selectedRelationship == 'All'?  quantifier + ' relationships'
                 :  this.selectedRelationship + '(s)';
             this.graphTitle = this.graphTitle + ' for '
                 + this.selectedParentNode;
@@ -1023,7 +1027,7 @@ export class WidgetNavigatorComponent {
                 this.graphData.push(
                     {
                         "id": 1,
-                        "name": 'All'
+                        "name": quantifier      // 'All'
                     });
     
                 // Setup
@@ -1031,15 +1035,16 @@ export class WidgetNavigatorComponent {
                 let parentID: number = 1;
 
                 // Get the parent for All, and loop on them
-                let parentNodes: string [] = this.distinctNodesPerNodeType(
-                    this.selectedParentNodeType);
+                // let parentNodes: string [] = this.distinctNodesPerNodeType(
+                //     this.selectedParentNodeType);
+                let parentNodes: string [] = this.ngDropdownParentNodes;
 
                 // Filter on filtered Parents
-                if (this.parentNodesFilteredList.length > 0) {
-                    parentNodes = parentNodes.filter(
-                        parent => this.parentNodesFilteredList.indexOf(parent) >= 0
-                    );
-                };
+                // if (this.parentNodesFilteredList.length > 0) {
+                //     parentNodes = parentNodes.filter(
+                //         parent => this.parentNodesFilteredList.indexOf(parent) >= 0
+                //     );
+                // };
 
                 // Put some limitation on the size
                 if (parentNodes.length > 50) {
