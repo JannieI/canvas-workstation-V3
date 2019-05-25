@@ -361,14 +361,14 @@ export class DashboardNewComponent implements OnInit {
                                                         );
                                                     })
                                                     .catch(err => {
-                                                        this.errorMessage = err.slice(0, 100);
+                                                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                                                         console.error('Error in Dashboard.new with widgetLayouts: ' + err);
                                                     });
                                                 };
                                             });
                                         })
                                         .catch(err => {
-                                            this.errorMessage = err.slice(0, 100);
+                                            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                                             console.error('Error in Dashboard.new with dashboardLayouts: ' + err);
                                         });
                                 } else {
@@ -379,28 +379,28 @@ export class DashboardNewComponent implements OnInit {
                                 this.formDashboardNewClosed.emit('Created');
                             })
                             .catch(err => {
-                                this.errorMessage = err.slice(0, 100);
+                                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                                 console.error('Error in Dashboard.new with amendDashboardRecent: ' + err);
                             });
                         });
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in Dashboard.new with dashboardTabs: ' + err);
                     });
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.new with dashboards: ' + err);
                 });
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.new with addDashboard: ' + err);
             });
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in Dashboard.new with addDashboard: ' + err);
         });
 
