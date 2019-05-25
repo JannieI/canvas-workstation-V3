@@ -59,7 +59,7 @@ export class CollaborateAuditTrailComponent implements OnInit {
         this.globalVariableService.getResource('canvasAuditTrails')
             .then (cau => this.canvasAuditTrail = cau)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Collaborate.auditTrail reading auditTrails: ' + err);
             });
     }
