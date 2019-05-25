@@ -2779,8 +2779,10 @@ export class WidgetNavigatorComponent {
         this.appliedNodeWatchlist = false;
 
         // Fill Dropdowns
-        this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
-        this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        // this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
+        // this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        this.ngDropdownParentNodes = this.constructParentNodesDropDown(this.selectedParentNodeType);
+
     }
     
     clickParentWatchlistClearAndShow() {
@@ -2817,7 +2819,7 @@ export class WidgetNavigatorComponent {
         this.ngDropdownParentNodes = this.constructParentNodesDropDown(
             this.selectedParentNodeType, this.ngWatchListNodes
         );
-        console.log('xx this.ngDropdownParentNodes', this.ngDropdownParentNodes) 
+
         // Filter Child Nodes and Show Graph
         this.checkShowGraph();
     }
