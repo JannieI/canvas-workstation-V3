@@ -102,7 +102,7 @@ export class DashboardDiscardComponent implements OnInit {
                 this.formDashboardDiscardClosed.emit(action); 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.discard with discardDashboard: ' + err);
             });
     }
