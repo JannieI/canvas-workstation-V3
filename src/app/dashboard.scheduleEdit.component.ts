@@ -96,7 +96,7 @@ export class DashboardScheduleEditComponent implements OnInit {
                   };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.scheduleEdit reading dashboardSchedules: ' + err);
             });
     }
@@ -320,7 +320,7 @@ export class DashboardScheduleEditComponent implements OnInit {
                     this.message = 'Added Schedule';
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.scheduleEdit adding dashboardSchedules: ' + err);
                 });
             };
@@ -336,7 +336,7 @@ export class DashboardScheduleEditComponent implements OnInit {
             this.globalVariableService.saveResource('dashboardSchedules', this.selectedDashboardSchedule)
                 .then(res => this.message = 'Saved Schedule')
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.scheduleEdit savding dashboardSchedules: ' + err);
                 });
             };
@@ -381,7 +381,7 @@ export class DashboardScheduleEditComponent implements OnInit {
                     sch => sch.id != id);
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.scheduleEdit deleting dashboardSchedules: ' + err);
             });
 
