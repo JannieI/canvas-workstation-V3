@@ -139,17 +139,17 @@ export class CollaborateTaskAddComponent implements OnInit {
                         })
                         .catch(err => {
                             console.error('Error in Collaborate.addTask reading dashboards: ' + err)
-                            this.errorMessage = err.slice(0, 100);
+                            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         });
                 })
                 .catch(err => {
                     console.error('Error in Collaborate.addTask reading canvasUsers: ' + err)
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 });
             })
             .catch(err => {
                 console.error('Error in Collaborate.addTask reading canvasTasks: ' + err)
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             });
     }
 
@@ -234,7 +234,7 @@ export class CollaborateTaskAddComponent implements OnInit {
             })
             .catch(err => {
                 console.error('Error in Collaborate.addTask adding canvasTasks: ' + err)
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             });
     }
 
