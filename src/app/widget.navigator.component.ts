@@ -2766,8 +2766,9 @@ export class WidgetNavigatorComponent {
         this.parentNodesFilteredList = [];
 
         // Fill Dropdowns
-        this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
-        this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        // this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
+        // this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        this.ngDropdownParentNodes = this.constructParentNodesDropDown(this.selectedParentNodeType);
     }
 
     clickParentWatchlistClear() {
