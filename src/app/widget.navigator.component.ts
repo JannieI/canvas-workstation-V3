@@ -2857,6 +2857,11 @@ export class WidgetNavigatorComponent {
         // Make unique
         this.parentNodesFilteredList = Array.from(new Set(this.parentNodesFilteredList));
 
+        // Filter Parent Nodes
+        this.ngDropdownParentNodes = this.constructParentNodesDropDown(
+            this.selectedParentNodeType, this.parentNodesFilteredList
+        );
+
         // Filter Child Nodes and Show Graph
         this.checkShowGraph();
     }
