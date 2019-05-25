@@ -74,7 +74,8 @@ export class WidgetNavigatorComponent {
     ngWatchListNodeTypesToAdd: string[] = [];           // Unique Node Types that can be added per Watchlist
     ngWatchListNodesToAdd: string[] = [];               // Unique Nodes per Node Type that can be added per Watchlist
     ngWatchListNodes: string[] = [];                    // Unique Nodes per Watchlist
-    
+    ngWatchListSelectedNodeType: string[] = [];         // Unique Nodes in Watchlist for selected Node Type
+
     ngHistory: NavigatorHistory[] = [];                 // History for current network
     historyAll: NavigatorHistory[] = [];                // All history for All networks
 
@@ -217,6 +218,10 @@ export class WidgetNavigatorComponent {
         // Populate persisted data - TODO via DB
         this.tempCreateDummyData();
 
+        // Filter only Watchlist items for current user (so received from DB)
+        this.ngWatchLists = this.ngWatchLists
+            .filter(wl => wl.userID === this.globalVariableService.currentUser.userID)
+
         // Read Networks from DB
         this.globalVariableService.getResource('navigatorNetworks')
             .then(res => {
@@ -269,7 +274,6 @@ export class WidgetNavigatorComponent {
 
         // Node Types for current user
         this.ngWatchListNodeTypes = this.ngWatchLists
-            .filter(wl => wl.userID === this.globalVariableService.currentUser.userID)
             .filter(wl => this.ngDropdownParentNodeTypes.indexOf(wl.nodeType) >= 0)
             .map(x => x.nodeType)
             .sort( (a,b) => {
@@ -472,7 +476,6 @@ export class WidgetNavigatorComponent {
         if (this.selectedNetworkID >= 0) {
             
             this.selectedNetworkRelationshipID = this.ngNetworks[index].relationshipDatasourceID;
-            console.log('xx 0', this.selectedNetworkID)
 
             this.globalVariableService.getData(
                 'datasourceID=' + this.selectedNetworkRelationshipID.toString()
@@ -684,7 +687,7 @@ export class WidgetNavigatorComponent {
         if (watchlistIndex >= 0) {
             this.ngWatchListNodes = this.ngWatchLists[watchlistIndex].nodes;
         };
-
+        console.log('xx watchlistIndex', watchlistIndex, this.ngWatchLists)
         // Fill the available Nodes
         this.ngWatchListNodesToAdd = 
             this.distinctNodesPerNodeType(this.selectedWatchListNodeType);
@@ -844,7 +847,7 @@ export class WidgetNavigatorComponent {
         let watchlistIndex: number = this.ngWatchLists
             .findIndex(wl => wl.nodeType == this.selectedParentNodeType)
         if (watchlistIndex >= 0) {
-            this.ngWatchListNodes = this.ngWatchLists[watchlistIndex].nodes;
+            this.ngWatchListSelectedNodeType = this.ngWatchLists[watchlistIndex].nodes;
         };
 
         // Reset filter properties
@@ -1121,7 +1124,6 @@ export class WidgetNavigatorComponent {
                 };
                 this.ngHistory = [historyNew, ...this.ngHistory];
                 this.historyAll = [historyNew, ...this.historyAll];
-                console.log('xx this.ngHistory', this.ngHistory)
             };
 
             // Set H & W

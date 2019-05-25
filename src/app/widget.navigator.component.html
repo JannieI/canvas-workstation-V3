@@ -136,7 +136,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                             <div class="clr-row clr-justify-content-between"
                                 style="margin-top: 18px;"
                                 >
-                                <div *ngFor="let row of ngWatchListNodes; let i = index"
+                                <div *ngFor="let row of ngWatchListSelectedNodeType; let i = index" 
                                     style="background-color: rgb(232, 233, 250);
                                     border-radius: 6px;
                                     margin: 3px;
@@ -201,10 +201,6 @@ dimensions are set in app.html, and cannot be changed here. -->
                         </clr-tab-content>
                     </clr-tab>
                 </clr-tabs>
-
-
-
-
 
             </clr-signpost-content>
         </clr-signpost>
