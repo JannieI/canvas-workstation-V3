@@ -61,7 +61,7 @@ export class DataDirectExportComponent implements OnInit {
             this.datasources = res;
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in Datasource.export reading datasources: ' + err);
         });        
     }
