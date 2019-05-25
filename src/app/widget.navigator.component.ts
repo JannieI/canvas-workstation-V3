@@ -3437,5 +3437,22 @@ export class WidgetNavigatorComponent {
         );
     }
 
+    constructParentNodesDropDown(filterNodes: string[]): string[] {
+        // Construct Parent Nodes DropDown
+        this.globalFunctionService.printToConsole(this.constructor.name, 'constructParentNodesDropDown', '@Start');
+
+        // Fill Dropdowns
+        let parentNodes: string[] = this.distinctNodesPerNodeType(this.selectedParentNodeType);
+        parentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+
+        // Optional Filter
+        if (filterNodes.length > 0) {
+            parentNodes = parentNodes.filter(pn => filterNodes.indexOf(pn) >= 0)
+        };
+
+        // Return
+        return parentNodes;
+
+    }
 }
 
