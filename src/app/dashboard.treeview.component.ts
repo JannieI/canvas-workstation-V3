@@ -200,7 +200,7 @@ export class DashboardTreeviewComponent implements OnInit {
                                                             };
                                                         })
                                                         .catch(err => {
-                                                            this.errorMessage = err.slice(0, 100);
+                                                            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                                                             console.error('Error in Dashboard.treeview reading dataQualityIssues: ' + err);
                                                         });
                                             
@@ -224,23 +224,23 @@ export class DashboardTreeviewComponent implements OnInit {
 
                                     })
                                     .catch(err => {
-                                        this.errorMessage = err.slice(0, 100);
+                                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                                         console.error('Error in Dashboard.treeview reading datasources: ' + err);
                                     });
                             })
                             .catch(err => {
-                                this.errorMessage = err.slice(0, 100);
+                                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                                 console.error('Error in Dashboard.treeview reading widgets: ' + err);
                             });
     
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in Dashboard.treeview reading dashboardTabs: ' + err);
                     });
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.treeview reading dashboards: ' + err);
             });
     }
