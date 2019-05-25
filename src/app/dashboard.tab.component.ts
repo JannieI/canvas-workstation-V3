@@ -99,7 +99,7 @@ export class DashboardTabComponent {
                     };
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.tab finding dashboardTabs: ' + err);
                 });
         };
@@ -140,7 +140,7 @@ export class DashboardTabComponent {
                 ];
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Dashboard.tab reading canvasBackgroundcolors: ' + err);
             });
     }
@@ -286,7 +286,7 @@ export class DashboardTabComponent {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.tab adding dashboardTabs: ' + err);
                 });
 
@@ -315,7 +315,7 @@ export class DashboardTabComponent {
                     this.formDashboardTabClosed.emit(tab)
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Dashboard.tab saving dashboardTabs: ' + err);
                 });
         }
