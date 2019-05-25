@@ -133,7 +133,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 this.spinner = false;
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.googleSheets getTributaryData: ' + err);
                 this.spinner = false;
 
@@ -197,7 +197,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in direct.GoogleSheets clickSave: ' + err);
                 });
 
@@ -235,7 +235,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in direct.GoogleSheets clickSave: ' + err);
                 });
         };
