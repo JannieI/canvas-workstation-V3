@@ -177,7 +177,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.spreadsheet getTributaryInspect: ' + err);
             });
 
@@ -302,7 +302,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 this.worksheetDataFull = res;
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.spreadsheet getTributaryData: ' + err);
             });
 
@@ -371,7 +371,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in direct.Spreadsheet clickAdd: ' + err);
                 });
 
@@ -408,7 +408,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in direct.Spreadsheet clickAdd: ' + err);
                 });
 
