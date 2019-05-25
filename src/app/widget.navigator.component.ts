@@ -2806,8 +2806,11 @@ export class WidgetNavigatorComponent {
         this.appliedNodeWatchlist = true;
 
         // Create Filtered List of ParentNodes
-        this.parentNodesFilteredList = this.ngWatchListNodes;
-
+        // this.parentNodesFilteredList = this.ngWatchListNodes;
+        this.ngDropdownParentNodes = this.constructParentNodesDropDown(
+            this.selectedParentNodeType, this.ngWatchListNodes
+        );
+        console.log('xx this.ngDropdownParentNodes', this.ngDropdownParentNodes) 
         // Filter Child Nodes and Show Graph
         this.checkShowGraph();
     }
