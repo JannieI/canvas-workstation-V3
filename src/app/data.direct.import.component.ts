@@ -165,7 +165,7 @@ export class DataDirectImportComponent implements OnInit {
         datasource.description = this.datasourceDescription;
         this.globalVariableService.addResource('datasources', datasource)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.import addResource: ' + err);
             });
 
