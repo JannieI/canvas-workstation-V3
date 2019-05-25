@@ -105,7 +105,7 @@ export class CollaborateMessageContentComponent implements OnInit {
                             });
                         })
                         .catch(err => {
-                            this.errorMessage = err.slice(0, 100);
+                            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                             console.error('Error in Collaborate.messageContant canvasGroups: ' + err)
                         });
                 
@@ -124,7 +124,7 @@ export class CollaborateMessageContentComponent implements OnInit {
                     this.groupNames = ['', ...this.groupNames];
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Collaborate.messageContant canvasUsers: ' + err)
                 });
 
@@ -134,7 +134,7 @@ export class CollaborateMessageContentComponent implements OnInit {
 
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in Collaborate.messageContant Startup: ' + err)
         });
 }
@@ -268,7 +268,7 @@ export class CollaborateMessageContentComponent implements OnInit {
                 this.formMessageContentClosed.emit(action);
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Collaborate.messageContant Send: ' + err)
             });
 
