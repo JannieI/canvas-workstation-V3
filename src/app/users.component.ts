@@ -88,7 +88,7 @@ export class UsersComponent implements OnInit {
 
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in users reading canvasUsers: ' + err);
         });
 
@@ -135,7 +135,7 @@ export class UsersComponent implements OnInit {
             });
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in users reading dashboards: ' + err);
         });
 
@@ -170,7 +170,7 @@ export class UsersComponent implements OnInit {
             this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in users saving dashboardPermissions: ' + err);
                 });
                        
@@ -205,7 +205,7 @@ export class UsersComponent implements OnInit {
             this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in users saving dashboardPermissions: ' + err);
                 });
                 
@@ -240,7 +240,7 @@ export class UsersComponent implements OnInit {
             this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in users saving dashboardPermissions: ' + err);
                 });
                 
@@ -275,7 +275,7 @@ export class UsersComponent implements OnInit {
             this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in users saving dashboardPermissions: ' + err);
                 });
                 
@@ -311,7 +311,7 @@ export class UsersComponent implements OnInit {
             this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in users saving dashboardPermissions: ' + err);
                 });
                 
@@ -347,7 +347,7 @@ export class UsersComponent implements OnInit {
             this.globalVariableService.saveResource('dashboardPermissions',
                 this.dashboardPermissions[index])
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in users saving dashboardPermissions: ' + err);
                 });
                 
@@ -375,7 +375,7 @@ export class UsersComponent implements OnInit {
             };
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in users deleting canvasUsers: ' + err);
         });
     }
@@ -417,7 +417,7 @@ export class UsersComponent implements OnInit {
             this.users[this.selectedRow] = newUser;
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in users saving canvasUsers: ' + err);
         });
 
@@ -524,7 +524,7 @@ export class UsersComponent implements OnInit {
 
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in users adding canvasUsers: ' + err);
         });
 
