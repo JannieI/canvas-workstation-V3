@@ -4,7 +4,10 @@ dimensions are set in app.html, and cannot be changed here. -->
     [style.height.px]="selectedWidget.containerHeight - 30"
     [style.width.px]="selectedWidget.containerWidth - 20"
     >
+<div class="popupMenu" *ngIf="showPopupNavMenu"
+    (click)="clickPopupNavMenu()">
 
+</div>
 
     <!-- GRAPH AREA HEADER -->
     <div class="graphHeaderContainer">

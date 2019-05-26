@@ -182,6 +182,7 @@ export class WidgetNavigatorComponent {
     showGraphNotes: boolean = false;
     showGraphProperties: boolean = false;
     showNavBarExplore: boolean = true;
+    showPopupNavMenu: boolean = false;
     showTabFilter: boolean = true;
     showTabWatchlist: boolean = false;
     spinner: boolean = false;
@@ -1598,7 +1599,7 @@ export class WidgetNavigatorComponent {
             let childNodeOvered: string = datumClick.name;
             console.log('xx MOUSEover !!', childNodeOvered, event, item)
 
-
+            that.showPopupNavMenu = true;
             that.showNodeContextMenu = true;
 
         });
@@ -3533,6 +3534,13 @@ export class WidgetNavigatorComponent {
         // Return
         return parentNodes;
 
+    }
+
+    clickPopupNavMenu() {
+        // Click the popup Nav menu
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickPopupNavMenu', '@Start');
+
+        this.showPopupNavMenu = false;
     }
 }
 
