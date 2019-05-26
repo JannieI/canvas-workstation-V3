@@ -183,6 +183,8 @@ export class WidgetNavigatorComponent {
     showGraphProperties: boolean = false;
     showNavBarExplore: boolean = true;
     showPopupNavMenu: boolean = false;
+    leftPopupNavMenu: number = 200;
+    topPopupNavMenu: number = 200;
     showTabFilter: boolean = true;
     showTabWatchlist: boolean = false;
     spinner: boolean = false;
@@ -1601,6 +1603,8 @@ export class WidgetNavigatorComponent {
 
             that.showPopupNavMenu = true;
             that.showNodeContextMenu = true;
+            that.leftPopupNavMenu = 500;
+            that.topPopupNavMenu = 300;
 
         });
 

@@ -4,10 +4,6 @@ dimensions are set in app.html, and cannot be changed here. -->
     [style.height.px]="selectedWidget.containerHeight - 30"
     [style.width.px]="selectedWidget.containerWidth - 20"
     >
-<div class="popupMenu" *ngIf="showPopupNavMenu"
-    (click)="clickPopupNavMenu()">
-
-</div>
 
     <!-- GRAPH AREA HEADER -->
     <div class="graphHeaderContainer">
@@ -1329,5 +1325,25 @@ dimensions are set in app.html, and cannot be changed here. -->
         </div>
 
     </div>
+
+</div>
+<div class="popupMenuXXX" *ngIf="showPopupNavMenu"
+    (click)="clickPopupNavMenu()"
+    >
+    <svg [style.height]="50"
+        [style.width]="50"
+        [style.margin.px]="2"
+        [style.left.px]="leftPopupNavMenu"
+        [style.right.px]="topPopupNavMenu"
+        >
+        <circle
+            [style.cx]="25"
+            [style.cy]="25"
+            [style.r]="13"
+            [style.stroke]="'black'"
+            [style.stroke-width.px]="2"
+            [style.fill]="'gray'"
+            />
+    </svg>
 
 </div>
