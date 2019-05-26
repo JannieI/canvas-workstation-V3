@@ -117,7 +117,6 @@ export class WidgetNavigatorComponent {
     ngParentNodeFilterSelectedFieldName: string = '';   // Parent Node Filter
     ngParentNodeFilterSelectedOperator: string = 'Equal';    // Parent Node Filter
     ngParentNodeFilterSelectedValue: string = '';       // Parent Node Filter
-    // parentNodesFilteredList: string[] = [];             // List of Nodes, after filtered on NodeProperties
     parentNodesShiftList: string[] = [];                // List of Nodes, after Children were Shift-ed
     ngSelectedRelationshipFilterRole: string = '';      // Relationship Role Filter
     relationshipsFilteredList: string[] = [];           // List of Relationships, after filtered on NodeProperties
@@ -1046,13 +1045,6 @@ export class WidgetNavigatorComponent {
                 let parentNodes: string [] = this.ngDropdownParentNodes.filter(
                     par => par != ''  &&  par != 'All'
                 );
-
-                // Filter on filtered Parents
-                // if (this.parentNodesFilteredList.length > 0) {
-                //     parentNodes = parentNodes.filter(
-                //         parent => this.parentNodesFilteredList.indexOf(parent) >= 0
-                //     );
-                // };
 
                 // Put some limitation on the size
                 if (parentNodes.length > 50) {
@@ -2307,16 +2299,6 @@ export class WidgetNavigatorComponent {
             .map(nr => nr.rightNodeName);
         let nodesPerNodeType = Array.from(new Set(leftNodeTypes.concat(rightNodeTypes)));
 
-        // TODO - fix for Other Than Equal Operator
-        // Filter parent Nodes IF a filter active
-        // if (this.ngParentNodeFilterSelectedFieldName != ''
-        //     &&
-        //     this.ngParentNodeFilterSelectedOperator != '') {
-        //     nodesPerNodeType = nodesPerNodeType.filter(
-        //         x => this.parentNodesFilteredList.indexOf(x) >= 0
-        //     );
-        // };
-
         // Make sure it is unique, non-null list
         nodesPerNodeType = this.navUniqifySortNodes(nodesPerNodeType);
 
@@ -2768,12 +2750,8 @@ export class WidgetNavigatorComponent {
         this.ngParentNodeFilterKeyDropdown = [];
         this.ngParentNodeFilterSelectedFieldName = '';
         this.ngParentNodeFilterSelectedOperator = 'Equal';
-        this.ngParentNodeFilterSelectedValue = '';
-        // this.parentNodesFilteredList = [];
 
-        // Fill Dropdowns
-        // this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
-        // this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        // Fill Dropdown
         this.ngDropdownParentNodes = this.constructParentNodesDropDown(this.selectedParentNodeType);
     }
 
@@ -2822,7 +2800,6 @@ export class WidgetNavigatorComponent {
         this.appliedNodeWatchlist = true;
 
         // Create Filtered List of ParentNodes
-        // this.parentNodesFilteredList = this.ngWatchListNodes;
         this.ngDropdownParentNodes = this.constructParentNodesDropDown(
             this.selectedParentNodeType, this.ngWatchListNodes
         );
@@ -3337,7 +3314,6 @@ export class WidgetNavigatorComponent {
         this.appliedNodeShiftList = true;
 
         // Remember the list to use as a filter
-        // this.parentNodesFilteredList = [];
         this.childDataAll.forEach(child => this.parentNodesShiftList.push(child));
         this.parentNodesShiftList = Array.from(new Set(this.parentNodesShiftList));
 
