@@ -1640,6 +1640,7 @@ export class WidgetNavigatorComponent {
 
         // Reset the data which will now be created
         let localGraphData = [];
+        this.graphDataLength = 0;
 
         // Add Parent-Node as Root if required
         if (startID == 1) {
