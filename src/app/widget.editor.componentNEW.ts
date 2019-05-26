@@ -289,7 +289,7 @@ export interface dataSchemaInterface {
                 ];
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.editor reading canvasBackgroundcolors: ' + err);
             });
 
@@ -562,7 +562,7 @@ export interface dataSchemaInterface {
                         }                        
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in widget.editor reading widgets: ' + err);
                     });
             })
@@ -1133,12 +1133,12 @@ export interface dataSchemaInterface {
 
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in widget.editor adding widgets: ' + err);
                     });
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.editor reading widgetCheckpoints: ' + err);
             });
     
@@ -1181,7 +1181,7 @@ export interface dataSchemaInterface {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in widget.editor saving widgets: ' + err);
                 });
     
@@ -2388,7 +2388,7 @@ export interface dataSchemaInterface {
                 this.showPreview = true;
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.editor clickDSrow: ' + err);
             });
     }
