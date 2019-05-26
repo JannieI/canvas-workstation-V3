@@ -165,7 +165,7 @@ dimensions are set in app.html, and cannot be changed here. -->
                             </div>
                         </clr-tab-content>
                     </clr-tab>
-                    
+
                     <clr-tab>
                         <button clrTabLink>Some (Shift)</button>
                         <clr-tab-content *clrIfActive="true">
@@ -186,11 +186,11 @@ dimensions are set in app.html, and cannot be changed here. -->
                             <div>
                                 <div class="btn-group btn-link">
                                     <button class="btn" *ngIf="appliedNodeWatchlist"
-                                        (click)="clickParentWatchlistClearAndShow()"
+                                        (click)="clickParentShiftClearAndShow()"
                                         >
                                         Clear
                                     </button>
-                                    <button class="btn" (click)="clickParentWatchlistApply()">
+                                    <button class="btn" (click)="clickParentShiftClearAndShow()">
                                         Apply
                                     </button>
                                 </div>

@@ -2766,73 +2766,6 @@ export class WidgetNavigatorComponent {
         this.checkShowGraph();
     }
 
-    clickParentWatchlistClear() {
-        // Clear the Parent watchlist
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentWatchlistClear', '@Start');
-
-        // Set filters
-        this.appliedNodeFilter = false;
-        this.appliedNodeWatchlist = false;
-
-        // Fill Dropdowns
-        // this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
-        // this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
-        this.ngDropdownParentNodes = this.constructParentNodesDropDown(this.selectedParentNodeType);
-
-    }
-    
-    clickParentWatchlistClearAndShow() {
-        // Clear the Parent Watchlist and Show the graph
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentWatchlistClearAndShow', '@Start');
-
-        this.clickParentWatchlistClear();
-
-        // Show Graph
-        this.checkShowGraph();
-    }
-
-    clickParentShiftlistClear() {
-        // Clear the Parent Shiftlist
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentShiftlistClear', '@Start');
-
-        // Set filters
-        this.appliedNodeFilter = false;
-        this.appliedNodeWatchlist = false;
-        this.appliedNodeShiftList = false;
-
-        // Fill Dropdowns
-        this.ngDropdownParentNodes = this.constructParentNodesDropDown(this.selectedParentNodeType);
-
-    }
-
-    clickParentShiftClearAndShow() {
-        // Clear the Parent Shift and Show the graph
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentShiftClearAndShow', '@Start');
-
-        this.clickParentShiftlistClear();
-
-        // Show Graph
-        this.checkShowGraph();
-    }
-
-
-    clickParentWatchlistApply() {
-        // Add Parent Watchlist, and create list of parent nodes as a result of the Watchlist
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentWatchlistApply', '@Start');
-
-        // Set filters
-        this.appliedNodeFilter = false;
-        this.appliedNodeWatchlist = true;
-
-        // Create Filtered List of ParentNodes
-        this.ngDropdownParentNodes = this.constructParentNodesDropDown(
-            this.selectedParentNodeType, this.ngWatchListNodes
-        );
-
-        // Filter Child Nodes and Show Graph
-        this.checkShowGraph();
-    }
-
     clickParentFilterApply() {
         // Add Parent Filter, and create list of parent nodes as a result of the filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterApply', '@Start');
@@ -2868,6 +2801,90 @@ export class WidgetNavigatorComponent {
         // Filter Parent Nodes
         this.ngDropdownParentNodes = this.constructParentNodesDropDown(
             this.selectedParentNodeType, parentNodesFilteredList
+        );
+
+        // Filter Child Nodes and Show Graph
+        this.checkShowGraph();
+    }
+
+    clickParentWatchlistClear() {
+        // Clear the Parent watchlist
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentWatchlistClear', '@Start');
+
+        // Set filters
+        this.appliedNodeFilter = false;
+        this.appliedNodeWatchlist = false;
+
+        // Fill Dropdowns
+        // this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
+        // this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        this.ngDropdownParentNodes = this.constructParentNodesDropDown(this.selectedParentNodeType);
+
+    }
+    
+    clickParentWatchlistClearAndShow() {
+        // Clear the Parent Watchlist and Show the graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentWatchlistClearAndShow', '@Start');
+
+        this.clickParentWatchlistClear();
+
+        // Show Graph
+        this.checkShowGraph();
+    }
+
+    clickParentWatchlistApply() {
+        // Add Parent Watchlist, and create list of parent nodes as a result of the Watchlist
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentWatchlistApply', '@Start');
+
+        // Set filters
+        this.appliedNodeFilter = false;
+        this.appliedNodeWatchlist = true;
+
+        // Create Filtered List of ParentNodes
+        this.ngDropdownParentNodes = this.constructParentNodesDropDown(
+            this.selectedParentNodeType, this.ngWatchListNodes
+        );
+
+        // Filter Child Nodes and Show Graph
+        this.checkShowGraph();
+    }
+
+    clickParentShiftlistClear() {
+        // Clear the Parent Shiftlist
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentShiftlistClear', '@Start');
+
+        // Set filters
+        this.appliedNodeFilter = false;
+        this.appliedNodeWatchlist = false;
+        this.appliedNodeShiftList = false;
+
+        // Fill Dropdowns
+        this.ngDropdownParentNodes = this.constructParentNodesDropDown(this.selectedParentNodeType);
+
+    }
+
+    clickParentShiftClearAndShow() {
+        // Clear the Parent Shift and Show the graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentShiftClearAndShow', '@Start');
+
+        this.clickParentShiftlistClear();
+
+        // Show Graph
+        this.checkShowGraph();
+    }
+
+    clickParentShiftlistApply() {
+        // Add Parent Shiftlist, and create list of parent nodes as a result of the Shiftlist
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentShiftlistApply', '@Start');
+
+        // Set filters
+        this.appliedNodeFilter = false;
+        this.appliedNodeWatchlist = false;
+        this.appliedNodeShiftList = true;
+
+        // Create Filtered List of ParentNodes
+        this.ngDropdownParentNodes = this.constructParentNodesDropDown(
+            this.selectedParentNodeType, this.parentNodesShiftList
         );
 
         // Filter Child Nodes and Show Graph
