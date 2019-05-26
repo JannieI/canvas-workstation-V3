@@ -73,7 +73,7 @@ export class MyProfileComponent implements OnInit {
                     .slice();
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 45);
+                this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
                 console.error('Error in myProfile reading dashboardPermissions: ' + err);
             });
 
