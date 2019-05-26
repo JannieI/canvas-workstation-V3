@@ -3367,6 +3367,7 @@ export class WidgetNavigatorComponent {
         // Construct parent nodes
         this.ngDropdownParentNodes = [];
         this.childDataAll.forEach(child => this.ngDropdownParentNodes.push(child));
+        this.ngDropdownParentNodes = Array.from(new Set(this.ngDropdownParentNodes));
         this.ngDropdownParentNodes.sort((a, b) => {
             if (a > b) return 1;
             if (a < b) return -1;
