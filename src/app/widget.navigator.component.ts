@@ -3327,10 +3327,12 @@ export class WidgetNavigatorComponent {
 
         this.changeParentNodeType(ev);
 
-        this.selectedParentNode = 'All';
+        // this.selectedParentNode = 'All';
 
         this.parentNodesFilteredList = [];
+        this.ngDropdownParentNodes = [];
         this.childDataAll.forEach(child => this.parentNodesShiftList.push(child));
+        this.childDataAll.forEach(child => this.ngDropdownParentNodes.push(child));
     }
 
     clickPageFirst() {
