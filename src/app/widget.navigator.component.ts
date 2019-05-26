@@ -1307,7 +1307,7 @@ export class WidgetNavigatorComponent {
             // Set info
             this.graphTitle = 'Common parent view';
             this.graphDataLength = this.graphData.length;
-            this.calcGraphDataDimensions(this.graphData.length);
+            // this.calcGraphDataDimensions(this.graphData.length);
 
         };
 
@@ -1342,7 +1342,7 @@ export class WidgetNavigatorComponent {
             // Set info
             this.graphTitle = 'Common Node view';
             this.graphDataLength = this.graphData.length;
-            this.calcGraphDataDimensions(this.graphData.length);
+            // this.calcGraphDataDimensions(this.graphData.length);
 
         };
 
@@ -1387,7 +1387,7 @@ export class WidgetNavigatorComponent {
         // Set info
         this.graphTitle = 'Distance view';
         this.graphDataLength = this.routesPerNode.length;
-        this.calcGraphDataDimensions(this.routesPerNode.length);
+        // this.calcGraphDataDimensions(this.routesPerNode.length);
 
     }
 
@@ -1445,7 +1445,7 @@ export class WidgetNavigatorComponent {
             // Set info
             this.graphTitle = 'Distance view';
             this.graphDataLength = this.graphData.length;
-            this.calcGraphDataDimensions(this.graphData.length);
+            // this.calcGraphDataDimensions(this.graphData.length);
 
 
         };
