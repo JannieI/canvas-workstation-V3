@@ -127,23 +127,23 @@ export class DatasourceShareComponent implements OnInit {
                             this.groupNames = ['', ...this.groupNames];
                         })
                         .catch(err => {
-                            this.errorMessage = err.slice(0, 100);
+                            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                             console.error('Error in Datasource.share reading canvasGroups: ' + err);
                         });
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in Datasource.share reading canvasUsers: ' + err);
                     });
     
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.share getDatasourcePermissions: ' + err);
                 });
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.share reading datasources: ' + err);
             });
 
@@ -189,7 +189,7 @@ export class DatasourceShareComponent implements OnInit {
                     this.infoMessage = 'Changes saved';
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.share saving datasourcePermissions: ' + err);
                 });
         };
@@ -227,7 +227,7 @@ export class DatasourceShareComponent implements OnInit {
                     this.infoMessage = 'Changes saved';
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.share saving datasourcePermissions: ' + err);
                 });
         };
@@ -265,7 +265,7 @@ export class DatasourceShareComponent implements OnInit {
                     this.infoMessage = 'Changes saved';
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.share saving datasourcePermissions: ' + err);
                 });
         };
@@ -302,7 +302,7 @@ export class DatasourceShareComponent implements OnInit {
                     this.infoMessage = 'Changes saved';
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.share saving datasourcePermissions: ' + err);
                 });
         };
@@ -340,7 +340,7 @@ export class DatasourceShareComponent implements OnInit {
                     this.infoMessage = 'Changes saved';
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.share saving datasourcePermissions: ' + err);
                 });
 
@@ -354,7 +354,7 @@ export class DatasourceShareComponent implements OnInit {
         this.datasourcePermissions.splice(index,1);
         this.globalVariableService.deleteResource('datasourcePermissions', id)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.share deleting datasourcePermissions: ' + err);
             });
 }
@@ -420,7 +420,7 @@ export class DatasourceShareComponent implements OnInit {
             newDatasourcePermision
             ).then(res => this.datasourcePermissions.push(res))
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.share adding datasourcePermissions: ' + err);
             });
 
