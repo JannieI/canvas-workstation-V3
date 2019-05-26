@@ -95,12 +95,12 @@ export class GroupsComponent implements OnInit {
                         };
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in groups reading canvasUsers: ' + err);
                     });
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in groups reading canvasGroups: ' + err);
             });
         }
@@ -154,7 +154,7 @@ export class GroupsComponent implements OnInit {
             };
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in groups deleting canvasGroups: ' + err);
         });
 }
@@ -192,7 +192,7 @@ export class GroupsComponent implements OnInit {
             this.canvasGroups[this.selectedRow] = newGroup;
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in groups saving canvasGroups: ' + err);
         });
 
@@ -234,7 +234,7 @@ export class GroupsComponent implements OnInit {
 
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in groups adding canvasGroups: ' + err);
         });
 
