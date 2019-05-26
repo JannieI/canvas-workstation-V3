@@ -136,7 +136,7 @@ export class NavigatorEditorComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Navigator Editor reading datasources: ' + err);
             });
 
@@ -247,7 +247,7 @@ export class NavigatorEditorComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Navigator Editor adding navigators: ' + err);
             });
     };
@@ -310,7 +310,7 @@ export class NavigatorEditorComponent implements OnInit {
 
             })
                     .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Navigator.Editor saving widgets: ' + err);
             });
 
