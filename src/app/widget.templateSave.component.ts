@@ -85,7 +85,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widgetTemplate.save reading widgetStoredTemplates: ' + err);
             });
     }
@@ -132,7 +132,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
             this.globalVariableService.addResource('widgetStoredTemplates', newWidgetStoredTemplate)
                 .then(res => {this.formWidgetTemplateSavedClosed.emit('Saved')})
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in widgetTemplate.save adding widgetStoredTemplates: ' + err);
                 });
             } else {
@@ -153,7 +153,7 @@ export class WidgetTemplateSaveComponent implements OnInit {
             this.globalVariableService.saveResource('widgetStoredTemplates', newWidgetStoredTemplate)
                 .then(res => {this.formWidgetTemplateSavedClosed.emit('Saved')})
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in widgetTemplate.save saving widgetStoredTemplates: ' + err);
                 });
     
