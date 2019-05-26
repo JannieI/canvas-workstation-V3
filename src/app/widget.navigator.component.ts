@@ -3043,7 +3043,7 @@ export class WidgetNavigatorComponent {
         // // TODO - only save 3 fields via a PUT
         // this.globalVariableService.saveResource('widgets', this.localWidget)
         //     .catch(err => {
-        //         this.errorMessage = err.slice(0, 100);
+        //         this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
         //         console.error('Error in Navigator.OnInit saving widgets: ' + err);
         //     });
 
