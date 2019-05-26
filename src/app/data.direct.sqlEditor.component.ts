@@ -151,7 +151,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 })
                 .catch(err => {
                     this.spinner = false;
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource SQL getListTables: ' + err);
                 });
 
@@ -227,7 +227,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
             })
             .catch(err => {
                 this.spinner = false;
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource SQL getExecQuery: ' + err);
             });
 
@@ -267,7 +267,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
             })
             .catch(err => {
                 this.spinner = false;
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource SQL getListFields: ' + err);
             });
     }
@@ -349,7 +349,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
                     this.globalVariableService.saveResource('datasources', this.selectedDatasource)
                         .catch(err => {
-                            this.errorMessage = err.slice(0, 100);
+                            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                             console.error('Error in Datasource SQL saveResource: ' + err);
                         });
         
@@ -358,7 +358,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                     this.savedMessage = 'Datasource updated';
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource SQL saveData: ' + err);
                 });
 
@@ -391,7 +391,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource SQL addDatasourceNew: ' + err);
                 });
 
