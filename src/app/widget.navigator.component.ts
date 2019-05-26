@@ -2769,7 +2769,7 @@ export class WidgetNavigatorComponent {
         this.ngParentNodeFilterSelectedFieldName = '';
         this.ngParentNodeFilterSelectedOperator = 'Equal';
         this.ngParentNodeFilterSelectedValue = '';
-        this.parentNodesFilteredList = [];
+        // this.parentNodesFilteredList = [];
 
         // Fill Dropdowns
         // this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
