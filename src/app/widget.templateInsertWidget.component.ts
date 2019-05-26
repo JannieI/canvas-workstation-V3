@@ -77,7 +77,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
             this.widgets = res;
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in widgetTemplate.insert reading widgets: ' + err);
         });
 
@@ -89,7 +89,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                         this.widgetGraphs = graphs;
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in widgetTemplate.insert reading widgetGraphs: ' + err);
                     });
     
@@ -123,7 +123,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widgetTemplate.insert reading widgetStoredTemplates: ' + err);
             });
     }
@@ -211,7 +211,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widgetTemplate.insert clickRow: ' + err);
             });
 
@@ -289,7 +289,7 @@ export class WidgetTemplateInsertWidgetComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in widgetTemplate.insert addding widgets: ' + err);
                 });
     
