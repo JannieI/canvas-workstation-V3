@@ -2551,14 +2551,16 @@ export class WidgetNavigatorComponent {
         // Make sure it is unique, non-null list
         nodeChildren = this.navUniqifySortNodes(nodeChildren);
 
-        // Get a list of unique relati0nships                    
+        // Get a list of unique relationships                    
         let nodeChildNodeType: string[] = Array.from(new Set(leftChildNodeType.concat(rightChildNodeType)));
 
         // Remember Child Node Type IF only one relationship
         if (nodeChildNodeType.length == 1) {
             this.selectedChildNodeType = nodeChildNodeType[0];
+        } else {
+            this.selectedChildNodeType = '';
         };
-
+        console.log('xx distinctChildrenNodes this.selectedChildNodeType', nodeChildNodeType, this.selectedChildNodeType, nodeChildren)
         // Return
         return nodeChildren;
     }
@@ -3345,6 +3347,8 @@ export class WidgetNavigatorComponent {
         // Move to the current Children into the parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickShiftChildren', '@Start');
 
+        console.log('xx clickShiftChildren this.selectedChildNodeType', this.selectedChildNodeType)
+
         // Change selection fields
         this.selectedParentNodeType = this.selectedChildNodeType;
         this.selectedParentNode = '';
@@ -3358,6 +3362,8 @@ export class WidgetNavigatorComponent {
         this.changeParentNodeType(ev);
 
         // Set the filter
+        this.appliedNodeFilter = false;
+        this.appliedNodeWatchlist = false;
         this.appliedNodeShiftList = true;
 
         // Remember the list to use as a filter
