@@ -220,7 +220,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in table.editor reading widgetGraphs: ' + err);
                 });
     
@@ -331,7 +331,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in table.editor adding widgets: ' + err);
                 });
 
@@ -374,7 +374,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in table.editor saveWidget: ' + err);
                 });
 
