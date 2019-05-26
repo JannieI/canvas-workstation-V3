@@ -261,9 +261,6 @@ export class WidgetNavigatorComponent {
         // Clicked Menu to open popup to edit graph properties like title
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickMenuShowGraphProperties', '@Start');
 
-        // Show current values
-        // this.visibleNumberChildrenShownInput = this.visibleNumberChildrenShown;
-
         this.showGraphProperties = true;
     }
 
@@ -1266,7 +1263,7 @@ export class WidgetNavigatorComponent {
         // Set info
         this.graphTitle = 'Summary of ' + this.ngNetworks[networkIndex].name;
         this.graphDataLength = 2;
-        this.calcGraphDataDimensions(2);
+        // this.calcGraphDataDimensions(2);
 
         // Dimension it
         this.graphHeight = 400; //this.localWidget.graphLayers[0].graphSpecification.height;
@@ -1493,6 +1490,9 @@ export class WidgetNavigatorComponent {
             0
         );
         console.log('xx this.specification', this.specification)
+
+        // Set the paging
+        this.calcGraphDataDimensions(this.graphDataLength);
 
         // Load the data
         this.specification['data'][0]['values'] = this.graphData;
