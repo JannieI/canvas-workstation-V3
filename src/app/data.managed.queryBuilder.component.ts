@@ -96,7 +96,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 this.dataConnectionNames = ['', ...this.dataConnectionNames];
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in managed.QB reading dataConnections: ' + err);
             });
 
@@ -247,7 +247,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             .catch(err => {
                 this.spinner = false;
                 this.helpMessage = '';
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in managed.QB reading dataConnections: ' + err);
             });
 
@@ -374,7 +374,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 this.showPreview = true;
                 this.helpMessage = '';
                 this.spinner = false;
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in managed.QB reading dataConnections: ' + err);   
             });
 
@@ -528,7 +528,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in manged.QueryBuilder clicksave: ' + err);
             });
 
