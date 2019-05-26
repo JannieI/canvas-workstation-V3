@@ -81,7 +81,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in userpalette reading paletteButtonBars: ' + err);
         });
 
@@ -160,7 +160,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 this.globalVariableService.addPaletteButtonsSelected(newPaletteButton)
                     .then(res => this.paletteButtonsSelected.push(res))
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in userpalette addPaletteButtonsSelected: ' + err);
                     });
 
@@ -216,7 +216,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
                         this.paletteButtonsSelected.splice(paletteSelectedIndex, 1);
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in userpalette deletePaletteButtonsSelected: ' + err);
                     });
             };
@@ -295,7 +295,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
                     this.paletteButtonsSelected[paletteIndex]
                 )
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in userpalette savePaletteButtonsSelected: ' + err);
                 });
             };
@@ -374,7 +374,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
                     this.paletteButtonsSelected[paletteIndex]
                 )
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in userpalette savePaletteButtonsSelected: ' + err);
                 });
             };
