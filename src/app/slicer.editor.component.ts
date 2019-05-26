@@ -109,7 +109,7 @@ import { GlobalVariableService }      from './global-variable.service';
                 ];
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in slicer.editor reading canvasBackgroundcolors: ' + err);
             });
 
@@ -516,7 +516,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in slicer.editor adding widgets: ' + err);
                 });
 
@@ -559,7 +559,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in slicer.editor saveWidget: ' + err);
                 });
 
