@@ -141,13 +141,13 @@ export class DataNetworksComponent implements OnInit {
                         };
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 100);
+                        this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                         console.error('Error in Data.Networks reading navigatorNetworks: ' + err);
                     });
     
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Data.Networks reading datasources: ' + err);
             });
 
@@ -265,7 +265,7 @@ export class DataNetworksComponent implements OnInit {
                 }
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Data.Networks deleting navigatorNetworks: ' + err);
             });
     }
@@ -343,7 +343,7 @@ export class DataNetworksComponent implements OnInit {
                 this.message = 'Added';
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Data.Networks adding navigatorNetworks: ' + err);
             });
 
@@ -389,7 +389,7 @@ export class DataNetworksComponent implements OnInit {
                 this.message = 'Saved';
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Data.Networks saving navigatorNetworks: ' + err);
             });
 
