@@ -3327,7 +3327,8 @@ export class WidgetNavigatorComponent {
 
         this.changeParentNodeType(ev);
 
-        // this.selectedParentNode = 'All';
+        // Set the filter
+        this.appliedNodeShiftList = true;
 
         // Remember the list to use as a filter
         this.parentNodesFilteredList = [];
