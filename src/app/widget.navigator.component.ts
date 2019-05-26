@@ -875,6 +875,12 @@ export class WidgetNavigatorComponent {
 
         // Reset
         this.visibleNumberChildrenStart = 0;
+        this.appliedNodeFilter = false;
+        this.appliedNodeShiftList = false;
+        this.appliedNodeWatchlist = false;
+        this.parentNodesShiftList = [];
+        
+        // Get roles
         if (this.selectedRelationship != 'All'
             &&
             this.selectedRelationship != ''
