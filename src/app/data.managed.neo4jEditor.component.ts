@@ -84,7 +84,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
             })
             .catch(err => {
                 this.spinner = false;
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in managed.neo4j reading dataConnections: ' + err);
             });
 
@@ -222,13 +222,13 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 })
                 .catch(err => {
                     this.spinner = false;
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in managed.neo4j getTributaryData: ' + err);
                 });
             })
             .catch(err => {
                 this.spinner = false;
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in managed.neo4j getTributaryInspect: ' + err);
             });
 
@@ -285,7 +285,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 })
                 .catch(err => {
                     this.spinner = false;
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in managed.neo4j saveDatasource: ' + err);
                 });
 
@@ -308,7 +308,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 })
                 .catch(err => {
                     this.spinner = false;
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in direct.Neo4j clickAdd: ' + err);
                 });
         };
