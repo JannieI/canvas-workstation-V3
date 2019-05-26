@@ -103,7 +103,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.checkpoint reading widgetCheckpoints: ' + err);
             });
     }
@@ -174,7 +174,7 @@ export class WidgetCheckpointsComponent implements OnInit {
                 this.clickRow(0, res.id);
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.checkpoint adding widgetCheckpoints: ' + err);
             });
     
@@ -223,7 +223,7 @@ export class WidgetCheckpointsComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.checkpoint deleting widgetCheckpoints: ' + err);
             });
         }
