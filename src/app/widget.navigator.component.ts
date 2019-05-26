@@ -2493,6 +2493,7 @@ export class WidgetNavigatorComponent {
                 )
             .filter(nr => nr.rightNodeName != '');
 
+        // Get the Children of the Left
         let leftChildren: string[] = leftChildrenRelationship
             .map(nr => nr.rightNodeName);
 
@@ -2534,16 +2535,17 @@ export class WidgetNavigatorComponent {
             )
             .filter(nr => nr.leftNodeName != '');
 
+        // Get the Children of the Right
         let rightChildren: string[] = rightChildrenRelationship
             .map(nr => nr.leftNodeName);
 
-        let rightChildNodeType: string[] = leftChildrenRelationship
+        let rightChildNodeType: string[] = rightChildrenRelationship
             .map(nr => nr.leftNodeType);
 
         // Get a list of unique children
         let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
 
-        console.log('xx nodeChildren', leftChildren, rightChildren, nodeChildren);
+        console.log('xx leftChildNodeType rightChildNodeType', leftChildNodeType, rightChildNodeType);
         // Filter if a Child filter is active
         if (this.childNodesFilteredList.length > 0) {
             nodeChildren = nodeChildren.filter(c => this.childNodesFilteredList.indexOf(c) >= 0);
