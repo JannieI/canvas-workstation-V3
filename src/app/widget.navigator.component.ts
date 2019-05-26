@@ -3329,10 +3329,20 @@ export class WidgetNavigatorComponent {
 
         // this.selectedParentNode = 'All';
 
+        // Remember the list to use as a filter
         this.parentNodesFilteredList = [];
-        this.ngDropdownParentNodes = [];
         this.childDataAll.forEach(child => this.parentNodesShiftList.push(child));
+
+        // Construct parent nodes
+        this.ngDropdownParentNodes = [];
         this.childDataAll.forEach(child => this.ngDropdownParentNodes.push(child));
+        this.ngDropdownParentNodes.sort((a, b) => {
+            if (a > b) return 1;
+            if (a < b) return -1;
+            return 0;
+        });
+        this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        console.log('xx this.childDataAll', this.childDataAll)
     }
 
     clickPageFirst() {
