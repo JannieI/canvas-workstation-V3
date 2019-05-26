@@ -1193,7 +1193,6 @@ export class WidgetNavigatorComponent {
         let nodeID: number = 1;
         let relationshipCount: number = 0;
         let relationshipID: number = 0;
-        let uniqueNodes: string[] = [];
 
         for (var parentNodeIndex = 0; parentNodeIndex < uniqueNodeTypes.length; parentNodeIndex++) {
 
@@ -1204,7 +1203,7 @@ export class WidgetNavigatorComponent {
             let rightParentNodes: string [] = this.networkRelationships
                 .filter(x => x.rightNodeType == uniqueNodeTypes[parentNodeIndex])
                 .map(nr => nr.rightNodeName);
-            uniqueNodes = leftParentNodes.concat(rightParentNodes);
+            let uniqueNodes: string[] = leftParentNodes.concat(rightParentNodes);
             uniqueNodes = Array.from(new Set(uniqueNodes));
 
             nodeCount = uniqueNodes.length;
@@ -1265,10 +1264,10 @@ export class WidgetNavigatorComponent {
 
         };
 
-        // Set info - Note that graphDataLenght is different to other graphs: we only want to count
-        // the number of unique node, not the graphData.length as in most cases
+        // Set info - Note that graphDataLength is different to other graphs: we only want to count
+        // the number of unique Node Types, not the graphData.length as in most cases
+        this.graphDataLength = uniqueNodeTypes.length;
         this.graphTitle = 'Summary of ' + this.ngNetworks[networkIndex].name;
-        this.graphDataLength = uniqueNodes.length;
 
         // Dimension it
         this.graphHeight = 400; //this.localWidget.graphLayers[0].graphSpecification.height;
