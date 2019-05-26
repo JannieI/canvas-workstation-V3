@@ -114,7 +114,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.containerStyleEdit reading containerStyles: ' + err);
             });
 
@@ -151,7 +151,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                 ];
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.containerStyleEdit reading canvasBackgroundcolors: ' + err);
             });
 
@@ -438,7 +438,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                 this.containerStyles[localIndex] = newContainerStyle;
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.containerStyleEdit saving containerStyles: ' + err);
             });
 
@@ -518,12 +518,12 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                     this.infoMessage = 'Style deleted';
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in widget.containerStyleEdit deleting containerStyles: ' + err);
                 });
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in widget.containerStyleEdit reading widgets: ' + err);
         });
     }
