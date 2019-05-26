@@ -88,7 +88,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
                 });
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.ownership reading datasources: ' + err);
             });
 
@@ -111,7 +111,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
                 });
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.ownership reading canvasUsers: ' + err);
             });
 
@@ -136,7 +136,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.ownership reading dataOwnerships: ' + err);
             });
     
@@ -278,7 +278,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.ownership adding dataOwnerships: ' + err);
                 });
             };
@@ -297,7 +297,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
             };
             this.globalVariableService.saveResource('dataOwnerships', this.selectedDataOwnership)
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.ownership saving dataOwnerships: ' + err);
                 });
             };
@@ -341,7 +341,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
                 this.dataOwnerships = this.dataOwnerships.filter(dow => dow.id != id)
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.ownership deleting dataOwnerships: ' + err);
             });
 
