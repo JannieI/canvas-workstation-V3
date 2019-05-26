@@ -879,7 +879,7 @@ export class WidgetNavigatorComponent {
         this.appliedNodeShiftList = false;
         this.appliedNodeWatchlist = false;
         this.parentNodesShiftList = [];
-        
+
         // Get roles
         if (this.selectedRelationship != 'All'
             &&
@@ -2309,13 +2309,13 @@ export class WidgetNavigatorComponent {
 
         // TODO - fix for Other Than Equal Operator
         // Filter parent Nodes IF a filter active
-        if (this.ngParentNodeFilterSelectedFieldName != ''
-            &&
-            this.ngParentNodeFilterSelectedOperator != '') {
-            nodesPerNodeType = nodesPerNodeType.filter(
-                x => this.parentNodesFilteredList.indexOf(x) >= 0
-            );
-        };
+        // if (this.ngParentNodeFilterSelectedFieldName != ''
+        //     &&
+        //     this.ngParentNodeFilterSelectedOperator != '') {
+        //     nodesPerNodeType = nodesPerNodeType.filter(
+        //         x => this.parentNodesFilteredList.indexOf(x) >= 0
+        //     );
+        // };
 
         // Make sure it is unique, non-null list
         nodesPerNodeType = this.navUniqifySortNodes(nodesPerNodeType);
