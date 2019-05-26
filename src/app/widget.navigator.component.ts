@@ -1072,6 +1072,9 @@ export class WidgetNavigatorComponent {
                 );
             };
 
+            // Set paging
+            this.graphDataLength = this.graphData.length;
+            
             // Add to History
             // TODO - keep ParentNodeID of selected for here
             // TODO - cater for more than 1 Filter; Parent and Child
@@ -1147,6 +1150,7 @@ export class WidgetNavigatorComponent {
 
             // Set data
             this.graphData = [];
+            this.graphDataLength = 1;
             this.graphData.push(
                 {
                     "id": 1,
