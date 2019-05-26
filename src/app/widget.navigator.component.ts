@@ -3339,6 +3339,7 @@ export class WidgetNavigatorComponent {
         // Remember the list to use as a filter
         // this.parentNodesFilteredList = [];
         this.childDataAll.forEach(child => this.parentNodesShiftList.push(child));
+        this.parentNodesShiftList = Array.from(new Set(this.parentNodesShiftList));
 
         // Construct parent nodes
         this.ngDropdownParentNodes = [];
