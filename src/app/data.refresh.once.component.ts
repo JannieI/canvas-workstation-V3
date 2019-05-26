@@ -90,13 +90,13 @@ export class DataRefreshOnceComponent implements OnInit {
                     });
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.refreshOnce reading widgets: ' + err);
                 });
 
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in managed.SQL Datasource.refreshOnce reading datasources: ' + err);
         });
 
@@ -145,7 +145,7 @@ export class DataRefreshOnceComponent implements OnInit {
                 this.currentData = res.dataFiltered.slice(0,5);
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in managed.SQL Datasource.refreshOnce getCurrentDatasource: ' + err);
             });
 
