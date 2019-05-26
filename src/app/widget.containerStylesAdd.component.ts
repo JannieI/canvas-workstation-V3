@@ -106,7 +106,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
             
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.containerStyleAdd reading canvasBackgroundcolors: ' + err);
             });
 
@@ -293,7 +293,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.containerStyleAdd adding containerStyles: ' + err);
             });
     }
