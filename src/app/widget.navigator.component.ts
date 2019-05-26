@@ -1007,7 +1007,6 @@ export class WidgetNavigatorComponent {
             } else {
                 this.graphTitle = '';
             };
-            this.graphDataLength = 0;
 
             let quantifier: string = 'All';
             if (this.appliedNodeFilter  ||  this.appliedNodeWatchlist  ||  this.appliedNodeShiftList) {
@@ -1072,9 +1071,6 @@ export class WidgetNavigatorComponent {
                 );
             };
 
-            // Set paging
-            this.graphDataLength = this.graphData.length;
-            
             // Add to History
             // TODO - keep ParentNodeID of selected for here
             // TODO - cater for more than 1 Filter; Parent and Child
@@ -1150,13 +1146,17 @@ export class WidgetNavigatorComponent {
 
             // Set data
             this.graphData = [];
-            this.graphDataLength = 1;
             this.graphData.push(
                 {
                     "id": 1,
                     "name": "Select a Parent using the dropdowns at the top"
                 });
+
         };
+
+        // Set paging
+        this.graphDataLength = this.graphData.length;
+        console.log('xx this.graphDataLength', this.graphDataLength)
 
         // Dimension it
         this.graphHeight = 400; //this.localWidget.graphLayers[0].graphSpecification.height;
@@ -1266,8 +1266,7 @@ export class WidgetNavigatorComponent {
 
         // Set info
         this.graphTitle = 'Summary of ' + this.ngNetworks[networkIndex].name;
-        this.graphDataLength = 2;
-        // this.calcGraphDataDimensions(2);
+        this.graphDataLength = this.graphData.length;
 
         // Dimension it
         this.graphHeight = 400; //this.localWidget.graphLayers[0].graphSpecification.height;
@@ -2567,7 +2566,7 @@ export class WidgetNavigatorComponent {
         } else {
             this.selectedChildNodeType = '';
         };
-        console.log('xx distinctChildrenNodes this.selectedChildNodeType', nodeChildNodeType, this.selectedChildNodeType, nodeChildren)
+
         // Return
         return nodeChildren;
     }
@@ -3353,8 +3352,6 @@ export class WidgetNavigatorComponent {
     clickShiftChildren() {
         // Move to the current Children into the parent Filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickShiftChildren', '@Start');
-
-        console.log('xx clickShiftChildren this.selectedChildNodeType', this.selectedChildNodeType)
 
         // Change selection fields
         this.selectedParentNodeType = this.selectedChildNodeType;
