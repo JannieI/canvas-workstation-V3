@@ -86,7 +86,7 @@ export class DataManageDataQualityComponent implements OnInit {
                 });
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.dataQuality reading datasources: ' + err);
             });
 
@@ -99,7 +99,7 @@ export class DataManageDataQualityComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.dataQuality reading dataQualityIssues: ' + err);
             });
 
@@ -236,7 +236,7 @@ export class DataManageDataQualityComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.dataQuality adding dataQualityIssues: ' + err);
                 });
             };
@@ -256,7 +256,7 @@ export class DataManageDataQualityComponent implements OnInit {
                 'dataQualityIssues', 
                 this.selectedDataQualityIssue
                 ).catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.dataQuality saving dataQualityIssues: ' + err);
                 });
     
@@ -302,7 +302,7 @@ export class DataManageDataQualityComponent implements OnInit {
                     dq => dq.id != id);
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.dataQuality deleting dataQualityIssues: ' + err);
             });
 
