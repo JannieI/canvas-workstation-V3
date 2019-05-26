@@ -835,6 +835,7 @@ export class WidgetNavigatorComponent {
         // Clear all Filters
         this.clickParentFilterClear();
         this.clickRelationshipFilterClear();
+        this.filterc
         this.clickChildFilterClear();
 
         // Set Parent Node Property Filter properties
@@ -2755,6 +2756,16 @@ export class WidgetNavigatorComponent {
         this.ngDropdownParentNodes = this.constructParentNodesDropDown(this.selectedParentNodeType);
     }
 
+    clickParentFilterClearAndShow() {
+        // Clear the Parent Filter and Show the graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClearAndShow', '@Start');
+
+        this.clickParentFilterClear();
+
+        // Show Graph
+        this.checkShowGraph();
+    }
+
     clickParentWatchlistClear() {
         // Clear the Parent watchlist
         this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentWatchlistClear', '@Start');
@@ -2778,6 +2789,22 @@ export class WidgetNavigatorComponent {
 
         // Show Graph
         this.checkShowGraph();
+    }
+
+    clickParentShiftlistClear() {
+        // Clear the Parent Shiftlist
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentShiftlistClear', '@Start');
+
+        // Set filters
+        this.appliedNodeFilter = false;
+        this.appliedNodeWatchlist = false;
+        this.appliedNodeShiftList = false;
+
+        // Fill Dropdowns
+        // this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
+        // this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
+        this.ngDropdownParentNodes = this.constructParentNodesDropDown(this.selectedParentNodeType);
+
     }
 
     clickParentFilterClearAndShow() {
