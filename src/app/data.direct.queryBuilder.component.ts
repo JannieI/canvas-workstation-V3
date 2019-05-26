@@ -232,7 +232,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             })
             .catch(err => {
                 this.spinner = false;
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.queryBuilder getTributaryInspect: ' + err);
             });
 
@@ -364,7 +364,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 this.showPreview = true;
                 this.helpMessage = '';
                 this.spinner = false;
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.queryBuilder getTributaryData: ' + err);
             });
 
@@ -517,7 +517,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in direct.QueryBuilder clickSave: ' + err);
             });
 
