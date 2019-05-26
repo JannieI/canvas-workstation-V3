@@ -117,14 +117,14 @@ export class WidgetLinksComponent implements OnInit {
                     };
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in widget.hyperLink reading dashboardTabs: ' + err);
                 });
                 
 
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in widget.hyperLink reading dashboards: ' + err);
         });
 
@@ -159,7 +159,7 @@ export class WidgetLinksComponent implements OnInit {
         // Save to DB
         this.globalVariableService.saveWidget(this.selectedWidget)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.hyperlink saveWidget: ' + err);
             });
 
@@ -185,7 +185,7 @@ export class WidgetLinksComponent implements OnInit {
         // Save to DB
         this.globalVariableService.saveWidget(this.selectedWidget)
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in widget.hyperlink saveWidget: ' + err);
             });
 
