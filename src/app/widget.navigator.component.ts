@@ -117,7 +117,7 @@ export class WidgetNavigatorComponent {
     ngParentNodeFilterSelectedFieldName: string = '';   // Parent Node Filter
     ngParentNodeFilterSelectedOperator: string = 'Equal';    // Parent Node Filter
     ngParentNodeFilterSelectedValue: string = '';       // Parent Node Filter
-    parentNodesFilteredList: string[] = [];             // List of Nodes, after filtered on NodeProperties
+    // parentNodesFilteredList: string[] = [];             // List of Nodes, after filtered on NodeProperties
     parentNodesShiftList: string[] = [];                // List of Nodes, after Children were Shift-ed
     ngSelectedRelationshipFilterRole: string = '';      // Relationship Role Filter
     relationshipsFilteredList: string[] = [];           // List of Relationships, after filtered on NodeProperties
