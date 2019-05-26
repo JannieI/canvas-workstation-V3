@@ -82,7 +82,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                 this.dataConnectionNames = ['', ...this.dataConnectionNames];
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in managed.noSQL reading dataConnections: ' + err);
             });
 
@@ -183,7 +183,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
         })
         .catch(err => {
             this.spinner = false;
-            this.errorMessage = err.slice(0, 100);
+            this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
             console.error('Error in managed.noSQL getTributaryData: ' + err);
         }); 
     }
@@ -238,7 +238,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                     this.savedMessage = 'Datasource updated';
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in managed.noSQL saveDatasource: ' + err);
                 });
     
@@ -261,7 +261,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                 })
                 .catch(err => {
                     this.spinner = false;
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in managed.NoSQL clickAdd: ' + err);
                 });
         };
