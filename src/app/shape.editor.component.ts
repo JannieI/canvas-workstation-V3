@@ -233,7 +233,7 @@ export class ShapeEditComponent implements OnInit {
                 ];
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in shape.editor reading canvasBackgroundcolors: ' + err);
             });
             
@@ -700,7 +700,7 @@ export class ShapeEditComponent implements OnInit {
                     this.formShapeEditClosed.emit(this.localWidget);
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in shape.editor adding widgets: ' + err);
                 });
     
@@ -744,7 +744,7 @@ export class ShapeEditComponent implements OnInit {
                     this.formShapeEditClosed.emit(this.localWidget);
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in shape.editor saveWidget: ' + err);
                 });
             };
