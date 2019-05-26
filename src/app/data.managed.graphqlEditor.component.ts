@@ -83,7 +83,7 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                 this.dataConnectionNames = ['', ...this.dataConnectionNames];
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in managed.GraphQL reading dataConnections: ' + err);
             });
 
@@ -234,13 +234,13 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                 })
                 .catch(err => {
                     this.spinner = false;
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in managed.GraphQL getTributarydata: ' + err);
                     });
             })
             .catch(err => {
                 this.spinner = false;
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in managed.GraphQL getTributaryInspector: ' + err);
             });
 
@@ -297,7 +297,7 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                 })
                 .catch(err => {
                     this.spinner = false;
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in managed.GraphQL saveDatasource: ' + err);
                 });
 
@@ -320,7 +320,7 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                 })
                 .catch(err => {
                     this.spinner = false;
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in direct.GraphQL clickAdd: ' + err);
                 });
             };
