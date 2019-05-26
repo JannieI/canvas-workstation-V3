@@ -170,13 +170,13 @@ export class PreferencesComponent implements OnInit {
                         });
                     })
                     .catch(err => {
-                        this.errorMessage = err.slice(0, 45);
+                        this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
                         console.error('Error in preferences reading dashboardTabs: ' + err);
                     });
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 45);
+                this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
                 console.error('Error in preferences reading dashboards: ' + err);
             });
 }
@@ -315,7 +315,7 @@ export class PreferencesComponent implements OnInit {
                 }
             )
             .catch(err => {
-                this.errorMessage = err.slice(0, 45);
+                this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
                 console.error('Error in preferences saving canvasUsers: ' + err);
             });
 
@@ -354,7 +354,7 @@ export class PreferencesComponent implements OnInit {
                 console.log('dataCachingTable after RESET:', this.globalVariableService.dataCachingTable)
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 45);
+                this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
                 console.error('Error in preferences clickResetLocalCache: ' + err);
             });
 
