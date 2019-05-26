@@ -2538,14 +2538,15 @@ export class WidgetNavigatorComponent {
             .map(nr => nr.leftNodeName);
 
         let rightChildNodeType: string[] = leftChildrenRelationship
-            .map(nr => nr.rightNodeType);
+            .map(nr => nr.leftNodeType);
 
         // Get a list of unique children
         let nodeChildren: string[] = Array.from(new Set(leftChildren.concat(rightChildren)));
 
+        console.log('xx nodeChildren', leftChildren, rightChildren, nodeChildren);
         // Filter if a Child filter is active
         if (this.childNodesFilteredList.length > 0) {
-                nodeChildren = nodeChildren.filter(c => this.childNodesFilteredList.indexOf(c) >= 0);
+            nodeChildren = nodeChildren.filter(c => this.childNodesFilteredList.indexOf(c) >= 0);
         };
 
         // Make sure it is unique, non-null list
