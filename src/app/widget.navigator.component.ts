@@ -2747,6 +2747,7 @@ export class WidgetNavigatorComponent {
         // Set filters
         this.appliedNodeFilter = false;
         this.appliedNodeWatchlist = false;
+        this.appliedNodeShiftList = false;
 
         this.ngParentNodeFilterKeyDropdown = [];
         this.ngParentNodeFilterSelectedFieldName = '';
@@ -2787,6 +2788,7 @@ export class WidgetNavigatorComponent {
         // Set filters
         this.appliedNodeFilter = true;
         this.appliedNodeWatchlist = false;
+        this.appliedNodeShiftList = false;
 
         // Create Filtered List of ParentNodes
         let parentNodesFilteredList: string[] = this.networkProperties
@@ -2814,6 +2816,7 @@ export class WidgetNavigatorComponent {
         // Set filters
         this.appliedNodeFilter = false;
         this.appliedNodeWatchlist = false;
+        this.appliedNodeShiftList = false;
 
         // Fill Dropdowns
         // this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
@@ -2839,6 +2842,7 @@ export class WidgetNavigatorComponent {
         // Set filters
         this.appliedNodeFilter = false;
         this.appliedNodeWatchlist = true;
+        this.appliedNodeShiftList = false;
 
         // Create Filtered List of ParentNodes
         this.ngDropdownParentNodes = this.constructParentNodesDropDown(
