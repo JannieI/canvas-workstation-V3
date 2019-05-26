@@ -68,7 +68,7 @@ export class DataManagedConnectionComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Managed.connections getResource: ' + err);
             });
 
@@ -198,7 +198,7 @@ export class DataManagedConnectionComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Managed.connections addResource: ' + err);
                 });
         };
@@ -218,7 +218,7 @@ export class DataManagedConnectionComponent implements OnInit {
                 this.selectedConnection
                 )
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Managed.connections saveResource: ' + err);
                 });
             };
@@ -262,7 +262,7 @@ export class DataManagedConnectionComponent implements OnInit {
                 this.dataConnections = this.dataConnections.filter(dc => dc.id != id);
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Managed.connections deleteResource: ' + err);
             });
 
