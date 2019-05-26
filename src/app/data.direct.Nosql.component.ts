@@ -207,7 +207,7 @@ export class DataDirectNoSQLComponent implements OnInit {
                 });
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.noSQL getTributaryInspect: ' + err);
                 this.spinner = false;
                 this.errorMessage = 'Error connecting to server: check login or permissions'
@@ -268,7 +268,7 @@ export class DataDirectNoSQLComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in direct.noSQL clickAdd: ' + err);
                 });
 
@@ -290,7 +290,7 @@ export class DataDirectNoSQLComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in direct.noSQL clickAdd: ' + err);
                 });
         };
