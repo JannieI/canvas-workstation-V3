@@ -834,8 +834,9 @@ export class WidgetNavigatorComponent {
 
         // Clear all Filters
         this.clickParentFilterClear();
+        this.clickParentShiftlistClear();
+        this.clickParentWatchlistClear();
         this.clickRelationshipFilterClear();
-        this.filterc
         this.clickChildFilterClear();
 
         // Set Parent Node Property Filter properties
