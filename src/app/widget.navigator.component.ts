@@ -2854,18 +2854,18 @@ export class WidgetNavigatorComponent {
         this.appliedNodeWatchlist = false;
 
         // Create Filtered List of ParentNodes
-        this.parentNodesFilteredList = this.networkProperties
+        let parentNodesFilteredList: string[] = this.networkProperties
             .filter(np => np.propertyKey === this.ngParentNodeFilterSelectedFieldName
                 &&
                 np.propertyValue === this.ngParentNodeFilterSelectedValue)
             .map(np => np.nodeName);
 
         // Make unique
-        this.parentNodesFilteredList = Array.from(new Set(this.parentNodesFilteredList));
+        parentNodesFilteredList = Array.from(new Set(parentNodesFilteredList));
 
         // Filter Parent Nodes
         this.ngDropdownParentNodes = this.constructParentNodesDropDown(
-            this.selectedParentNodeType, this.parentNodesFilteredList
+            this.selectedParentNodeType, parentNodesFilteredList
         );
 
         // Filter Child Nodes and Show Graph
