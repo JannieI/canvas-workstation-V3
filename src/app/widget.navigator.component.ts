@@ -3337,7 +3337,7 @@ export class WidgetNavigatorComponent {
         this.appliedNodeShiftList = true;
 
         // Remember the list to use as a filter
-        this.parentNodesFilteredList = [];
+        // this.parentNodesFilteredList = [];
         this.childDataAll.forEach(child => this.parentNodesShiftList.push(child));
 
         // Construct parent nodes
