@@ -2801,17 +2801,15 @@ export class WidgetNavigatorComponent {
         this.appliedNodeShiftList = false;
 
         // Fill Dropdowns
-        // this.ngDropdownParentNodes = this.distinctNodesPerNodeType(this.selectedParentNodeType);
-        // this.ngDropdownParentNodes = ['', 'All', ...this.ngDropdownParentNodes];
         this.ngDropdownParentNodes = this.constructParentNodesDropDown(this.selectedParentNodeType);
 
     }
 
-    clickParentFilterClearAndShow() {
-        // Clear the Parent Filter and Show the graph
-        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentFilterClearAndShow', '@Start');
+    clickParentShiftClearAndShow() {
+        // Clear the Parent Shift and Show the graph
+        this.globalFunctionService.printToConsole(this.constructor.name, 'clickParentShiftClearAndShow', '@Start');
 
-        this.clickParentFilterClear();
+        this.clickParentShiftlistClear();
 
         // Show Graph
         this.checkShowGraph();
