@@ -76,7 +76,7 @@ export class ManageColoursComponent implements OnInit {
                 });
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 45);
+                this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
                 console.error('Error in manage.colours reading canvasBackgroundcolorsDefault: ' + err);
             });
         this.globalVariableService.getResource('canvasBackgroundcolors').then(res => {
@@ -95,7 +95,7 @@ export class ManageColoursComponent implements OnInit {
         
         })
         .catch(err => {
-            this.errorMessage = err.slice(0, 45);
+            this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
             console.error('Error in manage.colours reading canvasBackgroundcolors: ' + err);
         });
 
@@ -179,7 +179,7 @@ export class ManageColoursComponent implements OnInit {
                 });                
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 45);
+                this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
                 console.error('Error in manage.colours adding canvasBackgroundcolorsDefault: ' + err);
             });
 
@@ -233,7 +233,7 @@ export class ManageColoursComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 45);
+                this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
                 console.error('Error in manage.colours adding canvasBackgroundcolorsDefault: ' + err);
             });
 
@@ -263,7 +263,7 @@ export class ManageColoursComponent implements OnInit {
                 });                
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 45);
+                this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
                 console.error('Error in manage.colours deleting canvasBackgroundcolorsDefault: ' + err);
             });
 
