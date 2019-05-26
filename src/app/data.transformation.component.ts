@@ -334,7 +334,7 @@ export class DataTransformationComponent implements OnInit {
               .catch(() => {
                   // JI - I have added a .log for each error, and also show the error returned
                     // .catch(err => {
-                    //     this.errorMessage = err.slice(0, 100);
+                    //     this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     //     console.error('Error in Datasource.share reading canvasGroups: ' + err);
                     // });
 

@@ -135,7 +135,7 @@ export class LoginComponent implements OnInit {
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 45);
+                this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
                 console.error('Error in login registerCanvasUser: ' + err);
             });
 
@@ -199,14 +199,14 @@ export class LoginComponent implements OnInit {
                             this.formUserLoginClosed.emit('LoggedIn');
                         })
                         .catch(err => {
-                            this.errorMessage = err.slice(0, 45);
+                            this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
                             console.error('Error in login verifyCanvasUser: ' + err);
                         });
             
                 };
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 45);
+                this.errorMessage = !err.message?  err.slice(0, 45)  :  err.message.slice(0, 45);
                 console.error('Error in login loginCanvasServer: ' + err);
             });
 
