@@ -142,7 +142,7 @@ export class DataDirectWebComponent implements OnInit {
 
             })
             .catch(err => {
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.web getTributaryInspect: ' + err);
             });
 
@@ -194,7 +194,7 @@ export class DataDirectWebComponent implements OnInit {
             })
             .catch(err => {
                 this.spinner = false;
-                this.errorMessage = err.slice(0, 100);
+                this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                 console.error('Error in Datasource.web getTributaryData: ' + err);
             });
     }
@@ -250,7 +250,7 @@ export class DataDirectWebComponent implements OnInit {
                     this.savedMessage = 'Datasource updated';
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in Datasource.web saveDatasource: ' + err);
                 });
     
@@ -284,7 +284,7 @@ export class DataDirectWebComponent implements OnInit {
 
                 })
                 .catch(err => {
-                    this.errorMessage = err.slice(0, 100);
+                    this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
                     console.error('Error in direct.Web clickSave: ' + err);
                 });
             };
