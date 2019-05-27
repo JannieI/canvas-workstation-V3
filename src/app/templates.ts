@@ -734,7 +734,7 @@ export const widgetNavigatorVegaSpecification: any =
                 "encode" : {
                     "enter" : {
                         "tooltip" : {
-                            "signal" : "{'Unemployment Rate': '0.1%'}"
+                            "signal" : "{'Rate': '0.1%'}"
                         }
                     },
                     "update" : {

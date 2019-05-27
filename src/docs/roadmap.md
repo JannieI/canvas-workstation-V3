@@ -400,6 +400,24 @@ This document describes items for later versions of Canvas.
     To consider for LATER versions:
 
 
+    Navigator:
+    ---------
+    - made nodes larger
+    - show popup menu when click node ~ Neo
+    - expand graph using clicks ~ Neo
+    - colour per node type
+    - text on/in relationship line ~ Neo
+    - use abbreviations for relationships (in brackets)
+    - investigate Vega Affinity graph
+    - query inside graph 
+    - improve and expand Custom Views
+    - gray / black nodes based on filter
+    - change font size in Graph Property popup form
+    - change label font size based on nr of items ?
+    - add image to label, ie photo
+    - hover label - show text and highlighted links
+    - click nodes to group and add colour
+    - 
     System, Limits:
     --------------
     - consider hard max limits: cannot read more than 10000 rows from Excel, etc ?
