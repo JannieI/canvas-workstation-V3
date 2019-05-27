@@ -417,7 +417,18 @@ This document describes items for later versions of Canvas.
     - add image to label, ie photo
     - hover label - show text and highlighted links
     - click nodes to group and add colour
-    - 
+    - search on nodes and highlight them
+    - attach docs: click on node menu to open
+    - query on distance: a person less than 3 nodes from me
+    - select with cursor
+    - select with rectangle drawn!
+    - sort and rank nodes?
+    - add zoom
+    - add children from a node popup menu (thus tree can grow)
+    - make relationship filter multi-select
+    - combine with other widgets, ie matrix of blocks to show children
+    - tooltip on hover
+    
     System, Limits:
     --------------
     - consider hard max limits: cannot read more than 10000 rows from Excel, etc ?
