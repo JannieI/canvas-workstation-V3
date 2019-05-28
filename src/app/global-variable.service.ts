@@ -291,14 +291,11 @@ export class GlobalVariableService {
                         reject('Data in response object is an empty array; it should contain data');
                         return;
                     };
-
-                    // Use first entry in data array
-                    let res: any = httpResponse[0];
                      
-                    this.currentDashboards = res.data.dashboards;
-                    this.currentDashboardTabs  = res.data.dashboardTabs;
-                    this.currentWidgets  = res.data.widgets;
-                    this.currentWidgetCheckpoints  = res.data.widgetCheckpoints;
+                    this.currentDashboards = httpResponse.data[0].dashboards;
+                    this.currentDashboardTabs  = httpResponse.data[0].dashboardTabs;
+                    this.currentWidgets  = httpResponse.data[0].widgets;
+                    this.currentWidgetCheckpoints  = httpResponse.data[0].widgetCheckpoints;
 
                     // Load D-Template
                     let hasAccess: boolean = false;
