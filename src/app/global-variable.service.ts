@@ -3853,13 +3853,21 @@ console.log('xx Ivan ADD res', res)
             let pathUrl: string = 'dataCachingTable';
             let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
+                httpResponse  => {
+                    if(httpResponse.statusCode != 'success') {
+                        reject(httpResponse.message);
+                        return;
+                    };
+                    if(httpResponse.statusCode != 'success') {
+                        reject(httpResponse.message);
+                        return;
+                    };
+                    if(httpResponse.data == null) {
+                        reject('Data in response object is null; it should be an array');
                         return;
                     };
 
-                    this.dataCachingTable = res.data;
+                    this.dataCachingTable = httpResponse.data;
 
                     // TODO - should be done by the Server
                     // NB - need to remember cache has been refreshed locally
