@@ -599,10 +599,6 @@ export class GlobalVariableService {
                         reject('Data in response object is null; it should be an array');
                         return;
                     };
-                    if(httpResponse.data.length == 0) {
-                        reject('Data in response object is an empty array; it should contain data');
-                        return;
-                    };
 
                     // Delete where DS was used in Stored Template
                     this.getResource('widgetStoredTemplates').then(swt => {
@@ -1892,10 +1888,6 @@ export class GlobalVariableService {
                         };
                         if(httpResponse.data == null) {
                             reject('Data in response object is null; it should be an array');
-                            return;
-                        };
-                        if(httpResponse.data.length == 0) {
-                            reject('Data in response object is an empty array; it should contain data');
                             return;
                         };
     
