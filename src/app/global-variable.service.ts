@@ -1217,9 +1217,6 @@ export class GlobalVariableService {
                         return;
                     };
 
-                    // Use first entry
-                    let res: any = httpResponse[0];
-
                     // If cached, fill local info
                     if (dataCachingTableIndex >= 0) {
                         localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
@@ -1233,10 +1230,10 @@ export class GlobalVariableService {
 
                             if (localVariableName != null) {
                                 this[localVariableName] = [];
-                                this[localVariableName] = res.data;
+                                this[localVariableName] = httpResponse.data[0];
                                 let rowCount: number = -1;
-                                if (res.data != null) {
-                                    rowCount = res.data.length;
+                                if (httpResponse.data[0] != null) {
+                                    rowCount = httpResponse.data[0].length;
                                 };
                                 console.log('%c    Global-Variables getResource updated cached Memory for ',
                                     this.concoleLogStyleForCaching,
@@ -1253,7 +1250,7 @@ export class GlobalVariableService {
 
                                 this.dbCanvasAppDatabase.table(localTableName).clear().then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName)
-                                    .bulkPut(httpResult.data)
+                                    .bulkPut(httpResponse.data[0])
                                     .then(resPut => {
 
                                         // Count
@@ -1293,9 +1290,9 @@ export class GlobalVariableService {
 
                     console.log('%c    Global-Variables getResource data retured from HTTP for: ',
                         this.concoleLogStyleForCaching,
-                        resource, httpResult.data, this.datasourcePermissions);
+                        resource, httpResponse.data[0], this.datasourcePermissions);
                     console.timeEnd("      DURATION getResource: " + resource);
-                    resolve(httpResult.data);
+                    resolve(httpResponse.data[0]);
                     return;
                 },
                 err => {
