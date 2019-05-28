@@ -2868,9 +2868,17 @@ export class GlobalVariableService {
             // let finalUrl: string = this.canvasServerURI + '/clientdata?id=' + id.toString()
             let finalUrl: string = this.canvasServerURI + '/clientData' + parameters;
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
+                httpResponse  => {
+                    if(httpResponse.statusCode != 'success') {
+                        reject(httpResponse.message);
+                        return;
+                    };
+                    if(httpResponse.data == null) {
+                        reject('Data in response object is null; it should be an array');
+                        return;
+                    };
+                    if(httpResponse.data.length == 0) {
+                        reject('Data in response object is an empty array; it should contain data');
                         return;
                     };
 
@@ -2879,11 +2887,11 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getData ends',
                             this.concoleLogStyleForEndOfMethod,
-                            {res})
+                            {res: httpResponse})
                     };
                     
                     console.timeEnd("      DURATION getData: " + parameters);
-                    resolve(res.data);
+                    resolve(httpResponse.data);
                 },
                 err => {
                     console.error('Error in     Global-Variables getData', err);
