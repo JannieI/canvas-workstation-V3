@@ -5974,22 +5974,19 @@ console.log('xx Ivan lss', lss)
                     "userID": givenUserID,
                     "password": givenPassword
                 }
-                ).subscribe(res => {
+                ).subscribe(httpResponse => {
 
-                    if (res.statusCode === 'failed') {
-                        console.warn('Error in     Global-Variables registerCanvasUser Failed: ' + res.message, res);
-
-                        resolve('Failed: ' + res.message);
+                    if (httpResponse.statusCode === 'failed') {
+                        console.warn('Error in     Global-Variables registerCanvasUser Failed: ' + httpResponse.message, httpResponse);
+                        resolve('Failed: ' + httpResponse.message);
                     };
-                    if (res.statusCode === 'success') {
-                        console.warn('Success: ' + res.message);
-
-                        resolve('Success: ' + res.message);
+                    if (httpResponse.statusCode === 'success') {
+                        console.warn('Success: ' + httpResponse.message);
+                        resolve('Success: ' + httpResponse.message);
                     };
-                    if (res.statusCode === 'error') {
-                        console.warn('Error: ' + res.message);
-
-                        resolve('Error: ' + res.message);
+                    if (httpResponse.statusCode === 'error') {
+                        console.warn('Error: ' + httpResponse.message);
+                        resolve('Error: ' + httpResponse.message);
                     };
             },
             err => {
