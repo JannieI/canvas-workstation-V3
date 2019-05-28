@@ -284,7 +284,18 @@ export class GlobalVariableService {
                         return;
                     };
 
-                    // 
+                    if(httpResponse.data == null) {
+                        reject('Data in response object is null; it should be an array');
+                        return;
+                    };
+                    if(httpResponse.data.length == 0) {
+                        reject('Data in response object is an empty array; it should contain data');
+                        return;
+                    };
+
+                    // Use first entry in data array
+                    let res: any = httpResponse[0];
+                     
                     this.currentDashboards = res.data.dashboards;
                     this.currentDashboardTabs  = res.data.dashboardTabs;
                     this.currentWidgets  = res.data.widgets;
