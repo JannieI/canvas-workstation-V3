@@ -1331,14 +1331,21 @@ export class GlobalVariableService {
             console.warn('    Global-Variables addResource finalUrl for:', resource, finalUrl);
 
             this.http.post<CanvasHttpResponse>(finalUrl, data, {headers}).subscribe(
-                httpResult  => {
+                httpResponse  => {
                     console.log('%c    Global-Variables addResource - inside POST HTTP, return:',
-                        this.concoleLogStyleForCaching,
-                        httpResult)
+                        this.concoleLogStyleForCaching, httpResponse);
 
-                    if(httpResult.statusCode != 'success') {
+                    if(httpResponse.statusCode != 'success') {
                         console.timeEnd("      DURATION addResource " + resource + ' ' + unique.toString());
-                        reject(httpResult.message);
+                        reject(httpResponse.message);
+                        return;
+                    };
+                    if(httpResponse.data == null) {
+                        reject('Data in response object is null; it should be an array');
+                        return;
+                    };
+                    if(httpResponse.data.length == 0) {
+                        reject('Data in response object is an empty array; it should contain data');
                         return;
                     };
 
@@ -1369,13 +1376,13 @@ export class GlobalVariableService {
                             if (localVariableName != null) {
 
                                 let localIndex: number = this[localVariableName].findIndex(rec =>
-                                    rec.id === httpResult.data.id
+                                    rec.id === httpResponse.data[0].id
                                 );
 
                                 if (localIndex >= 0) {
-                                    this[localVariableName][localIndex] = httpResult.data;
+                                    this[localVariableName][localIndex] = httpResponse.data[0];
                                 } else {
-                                    this[localVariableName].push(httpResult.data);
+                                    this[localVariableName].push(httpResponse.data[0]);
                                 }
                                 console.log('%c    Global-Variables addResource updated cached Memory for:',
                                     this.concoleLogStyleForCaching,
@@ -1395,7 +1402,7 @@ export class GlobalVariableService {
 
                                 this.dbCanvasAppDatabase.table(localTableName).clear().then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName)
-                                    .bulkPut(httpResult.data)
+                                    .bulkPut(httpResponse.data[0])
                                     .then(resPut => {
 
                                         // Count
@@ -1438,9 +1445,9 @@ export class GlobalVariableService {
 
                     console.log('%c    Global-Variables addResource data retured from HTTP',
                         this.concoleLogStyleForCaching,
-                        httpResult.data);
+                        httpResponse.data[0]);
                     console.timeEnd("      DURATION addResource " + resource + ' ' + unique.toString());
-                    resolve(httpResult.data);
+                    resolve(httpResponse.data[0]);
                     return;
                 },
                 err => {
