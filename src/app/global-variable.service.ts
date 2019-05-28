@@ -1894,11 +1894,19 @@ export class GlobalVariableService {
             this.http.put<CanvasHttpResponse>(finalUrl + '?draftDashboardID='
                 + draftDashboardID + '&originalDashboardID=' + originalDashboardID, null, {headers})
                 .subscribe(
-                    res => {
-                        if(res.statusCode != 'success') {
-                            reject('Error deleting Draft Dashboard: '+ res.message);
+                    httpResponse => {
+                        if(httpResponse.statusCode != 'success') {
+                            reject('Error deleting Draft Dashboard: '+ httpResponse.message);
                         };
-
+                        if(httpResponse.data == null) {
+                            reject('Data in response object is null; it should be an array');
+                            return;
+                        };
+                        if(httpResponse.data.length == 0) {
+                            reject('Data in response object is an empty array; it should contain data');
+                            return;
+                        };
+    
                         // TODO - make this DRY
                         // Add / Amend the cache
                         let draftDashboardIndex: number = this.dashboards.findIndex(
