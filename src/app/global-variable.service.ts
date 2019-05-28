@@ -721,6 +721,7 @@ export class GlobalVariableService {
             // Get DS.dataFull
             this.getData('datasourceID=' + datasourceID)
                 .then(res => {
+                    
                     currentDatasource.dataFull = res;
 
                     //  Create DS.DS-Filter using active DS.DS-Filters
@@ -1195,17 +1196,32 @@ export class GlobalVariableService {
             console.warn('    Global-Variables getResource finalUrl for:',
                 resource, finalUrl);
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
-                httpResult  => {
+                httpResponse  => {
 
-                    if(httpResult.statusCode != 'success') {
+                    if(httpResponse.statusCode != 'success') {
                         if (this.sessionDebugging) {
-                            console.log('Error getResource FAILED', {httpResult});
+                            console.log('Error getResource FAILED', {httpResponse});
                         };
-
+                        if(httpResponse.statusCode != 'success') {
+                            reject(httpResponse.message);
+                            return;
+                        };
+                        if(httpResponse.data == null) {
+                            reject('Data in response object is null; it should be an array');
+                            return;
+                        };
+                        if(httpResponse.data.length == 0) {
+                            reject('Data in response object is an empty array; it should contain data');
+                            return;
+                        };
+    
                         console.timeEnd("      DURATION getResource: " + resource);
-                        reject(httpResult.message);
+                        reject(httpResponse.message);
                         return;
                     };
+
+                    // Use first entry
+                    let res: any = httpResponse[0];
 
                     // If cached, fill local info
                     if (dataCachingTableIndex >= 0) {
@@ -1220,10 +1236,10 @@ export class GlobalVariableService {
 
                             if (localVariableName != null) {
                                 this[localVariableName] = [];
-                                this[localVariableName] = httpResult.data;
+                                this[localVariableName] = res.data;
                                 let rowCount: number = -1;
-                                if (httpResult.data != null) {
-                                    rowCount = httpResult.data.length;
+                                if (res.data != null) {
+                                    rowCount = res.data.length;
                                 };
                                 console.log('%c    Global-Variables getResource updated cached Memory for ',
                                     this.concoleLogStyleForCaching,
@@ -1751,9 +1767,6 @@ export class GlobalVariableService {
                         reject('Data in response object is an empty array; it should contain data');
                         return;
                     };
-
-                    // Use first entry in data array
-                    let res: any = httpResponse[0];
                      
                     // TODO - make this DRY
                     // Add / Amend the cache
@@ -1762,25 +1775,25 @@ export class GlobalVariableService {
                             d => d.id === originalDashboardID
                         );
                         if (dashboardIndex >= 0) {
-                            this.dashboards[dashboardIndex].draftID = res.data.dashboard.id;
+                            this.dashboards[dashboardIndex].draftID = httpResponse.data[0].dashboard.id;
                         };
                     };
 
-                    this.dashboards.push(res.data.dashboard);
-                    this.currentDashboards.push(res.data.dashboard);
-                    res.data.dashboardTabs.forEach(tab =>
+                    this.dashboards.push(httpResponse.data[0].dashboard);
+                    this.currentDashboards.push(httpResponse.data[0].dashboard);
+                    httpResponse.data[0].dashboardTabs.forEach(tab =>
                         {
                             this.dashboardTabs.push(tab);
                             this.currentDashboardTabs.push(tab);
                         }
                     );
-                    res.data.widgets.forEach(widget =>
+                    httpResponse.data[0].widgets.forEach(widget =>
                         {
                             this.widgets.push(widget);
                             this.currentWidgets.push(widget);
                         }
                     );
-                    res.data.widgetCheckpoints.forEach(widgetCheckpoint =>
+                    httpResponse.data[0].widgetCheckpoints.forEach(widgetCheckpoint =>
                         {
                             this.widgetCheckpoints.push(widgetCheckpoint);
                             this.currentWidgetCheckpoints.push(widgetCheckpoint);
@@ -1793,7 +1806,7 @@ export class GlobalVariableService {
                             "Draft created for current Dashboard", this.currentDashboardTabs)
                     };
 
-                    resolve(res.data);
+                    resolve(httpResponse.data[0]);
                 },
                 err => {
                     reject(err.message)
