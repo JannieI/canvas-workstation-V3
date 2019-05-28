@@ -283,7 +283,6 @@ export class GlobalVariableService {
                         reject(httpResponse.message);
                         return;
                     };
-
                     if(httpResponse.data == null) {
                         reject('Data in response object is null; it should be an array');
                         return;
@@ -454,15 +453,24 @@ export class GlobalVariableService {
             let finalUrl: string = this.canvasServerURI + pathUrl;
 
             this.http.post<CanvasHttpResponse>(finalUrl, body, {headers}).subscribe(
-                res  => {
+                httpResponse  => {
 
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
+                    if(httpResponse.statusCode != 'success') {
+                        reject(httpResponse.message);
+                        return;
+                    };
+                    if(httpResponse.data == null) {
+                        reject('Data in response object is null; it should be an array');
+                        return;
+                    };
+                    if(httpResponse.data.length == 0) {
+                        reject('Data in response object is an empty array; it should contain data');
                         return;
                     };
 
+
                     // Add to global vars
-                    let datasourceAdded: Datasource = res.data.datasource;
+                    let datasourceAdded: Datasource = httpResponse.data[0].datasource;
 
                     if (datasourceAdded != null) {
                         let datasourceIndex: number = this.datasources.findIndex(ds => ds.id === datasourceAdded.id);
