@@ -1653,10 +1653,18 @@ export class GlobalVariableService {
             console.warn('    Global-Variables deleteResource finalUrl for:', resource, finalUrl);
             this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + id, {headers})
             .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
+                httpResponse => {
+                    if(httpResponse.statusCode != 'success') {
                         console.timeEnd("      DURATION deleteResource" + resource +  ' ' + id.toString());
-                        reject(res.message);
+                        reject(httpResponse.message);
+                        return;
+                    };
+                    if(httpResponse.data == null) {
+                        reject('Data in response object is null; it should be an array');
+                        return;
+                    };
+                    if(httpResponse.data.length == 0) {
+                        reject('Data in response object is an empty array; it should contain data');
                         return;
                     };
 
