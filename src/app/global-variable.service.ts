@@ -564,14 +564,6 @@ export class GlobalVariableService {
                     reject(err.message)
                 }
             );
-            // } else {
-            //     if (this.sessionDebugging) {
-            //         console.log('%c    Global-Variables getDatasources ends',
-            //             this.concoleLogStyleForEndOfMethod)
-            //     };
-
-            //     resolve("success");
-            // }
         });
     };
     
@@ -601,13 +593,21 @@ export class GlobalVariableService {
             console.warn('    Global-Variables deleteDatasource finalUrl for:', finalUrl);
             this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + datasourceID, {headers})
             .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
+                httpResponse => {
+                    if(httpResponse.statusCode != 'success') {
                         console.timeEnd("      DURATION deleteDatasource" + ' ' + datasourceID.toString());
-                        reject(res.message);
+                        reject(httpResponse.message);
                         return;
                     };
-console.log('xx DEL DS res', res)
+                    if(httpResponse.data == null) {
+                        reject('Data in response object is null; it should be an array');
+                        return;
+                    };
+                    if(httpResponse.data.length == 0) {
+                        reject('Data in response object is an empty array; it should contain data');
+                        return;
+                    };
+
                     // Delete where DS was used in Stored Template
                     this.getResource('widgetStoredTemplates').then(swt => {
                         swt.forEach(swt => {
