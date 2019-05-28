@@ -280,6 +280,7 @@ export class GlobalVariableService {
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
+                        console.warn('Error in Global Variables refreshCurrentDashboardInfo: ' + httpResponse.message);
                         reject('Error in Global Variables refreshCurrentDashboardInfo: ' + httpResponse.message);
                         return;
                     };
@@ -453,6 +454,7 @@ export class GlobalVariableService {
                 httpResponse  => {
 
                     if(httpResponse.statusCode != 'success') {
+                        console.warn('Error in Global Variables addDatasource: ' + httpResponse.message);
                         reject('Error in Global Variables addDatasource: ' + httpResponse.message);
                         return;
                     };
@@ -521,6 +523,7 @@ export class GlobalVariableService {
                 httpResponse  => {
 
                     if(httpResponse.statusCode != 'success') {
+                        console.warn('Error in Global Variables saveDatasource: ' + httpResponse.message);
                         reject('Error in Global Variables saveDatasource: ' + httpResponse.message);
                         return;
                     };
@@ -1200,6 +1203,7 @@ export class GlobalVariableService {
                             console.log('Error getResource FAILED', {httpResponse});
                         };
                         console.timeEnd("      DURATION getResource: " + resource);
+                        console.warn('Error in Global Variables getResource: ' + httpResponse.message);
                         reject('Error in Global Variables getResource: ' + httpResponse.message);
                         return;
                     };
@@ -1332,6 +1336,7 @@ export class GlobalVariableService {
 
                     if(httpResponse.statusCode != 'success') {
                         console.timeEnd("      DURATION addResource " + resource + ' ' + unique.toString());
+                        console.warn('Error in Global Variables addResource: ' + httpResponse.message);
                         reject('Error in Global Variables addResource: ' + httpResponse.message);
                         return;
                     };
@@ -1488,6 +1493,7 @@ export class GlobalVariableService {
                 httpResponse => {
                     if(httpResponse.statusCode != 'success') {
                         console.timeEnd("      DURATION saveResource " + resource + ' ' + data.id.toString());
+                        console.warn('Error in Global Variables saveResource: ' + httpResponse.message);
                         reject('Error in Global Variables saveResource: ' + httpResponse.message);
                         return;
                     };
@@ -1654,6 +1660,7 @@ export class GlobalVariableService {
                 httpResponse => {
                     if(httpResponse.statusCode != 'success') {
                         console.timeEnd("      DURATION deleteResource" + resource +  ' ' + id.toString());
+                        console.warn('Error in Global Variables deleteResource: ' + httpResponse.message);
                         reject('Error in Global Variables deleteResource: ' + httpResponse.message);
                         return;
                     };
@@ -1768,6 +1775,7 @@ export class GlobalVariableService {
             this.http.post<CanvasHttpResponse>(finalUrl, "", {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
+                        reject('Error in Global Variables dashboardCopy: ' + httpResponse.message);
                         reject('Error in Global Variables dashboardCopy: ' + httpResponse.message);
                         return;
                     };
@@ -1894,6 +1902,7 @@ export class GlobalVariableService {
                 .subscribe(
                     httpResponse => {
                         if(httpResponse.statusCode != 'success') {
+                            console.warn('Error deleting Draft Dashboard: '+ httpResponse.message);
                             reject('Error deleting Draft Dashboard: '+ httpResponse.message);
                         };
                         if(httpResponse.data == null) {
@@ -2015,6 +2024,7 @@ export class GlobalVariableService {
                 .subscribe(
                     httpResponse => {
                         if(httpResponse.statusCode != 'success') {
+                            console.warn('Error saving Draft Dashboard: '+ httpResponse.message);
                             reject('Error saving Draft Dashboard: '+ httpResponse.message);
                         };
                         if(httpResponse.data == null) {
@@ -2191,6 +2201,7 @@ export class GlobalVariableService {
                 .subscribe(
                     httpResponse => {
                         if(httpResponse.statusCode != 'success') {
+                            console.warn('Error in Global Variables deleteDashboardInfo: ' + httpResponse.message);
                             reject('Error in Global Variables deleteDashboardInfo: ' + httpResponse.message);
                             return;
                         };
@@ -2352,7 +2363,7 @@ export class GlobalVariableService {
 
                         if(httpResponse.statusCode != 'success') {
                             if (this.sessionDebugging) {
-                                console.log('Error refreshLocalCacheMemory FAILED', {httpResult: httpResponse});
+                                console.warn('Error refreshLocalCacheMemory FAILED', {httpResult: httpResponse});
                             };
 
                             console.timeEnd("      DURATION refreshLocalCacheMemory: " + resource);
@@ -2360,7 +2371,7 @@ export class GlobalVariableService {
                             return;
                         };
                         if(httpResponse.data == null) {
-                            console.log('Error refreshLocalCacheMemory FAILED: Data in response object is null; it should be an array');
+                            console.warn('Error refreshLocalCacheMemory FAILED: Data in response object is null; it should be an array');
                             return;
                         };
                         if(httpResponse.data.length == 0) {
@@ -2860,6 +2871,7 @@ export class GlobalVariableService {
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
+                        console.warn('Error in Global Variables getData: ' + httpResponse.message);
                         reject('Error in Global Variables getData: ' + httpResponse.message);
                         return;
                     };
@@ -2917,6 +2929,7 @@ export class GlobalVariableService {
                         console.log('saveData SAVED', {res: httpResponse})
                     };
                     if(httpResponse.statusCode != 'success') {
+                        console.warn('Error in Global Variables saveData: ' + httpResponse.message);
                         reject('Error in Global Variables saveData: ' + httpResponse.message);
                         return;
                     };
@@ -2961,6 +2974,7 @@ export class GlobalVariableService {
                         console.log('deleteData DELETED id: ', {id})
                     };
                     if(httpResponse.statusCode != 'success') {
+                        console.warn('Error in Global Variables deleteData: ' + httpResponse.message);
                         reject('Error in Global Variables deleteData: ' + httpResponse.message);
                         return;
                     };
@@ -3612,6 +3626,7 @@ console.log('xx Ivan ADD res', res)
                 .subscribe(
                     httpResponse => {
                         if(httpResponse.statusCode != 'success') {
+                            console.warn('Error in Global Variables marking Messages as read: '+ httpResponse.message);
                             reject('Error in Global Variables marking Messages as read: '+ httpResponse.message);
                         };
                         if(httpResponse.data == null) {
@@ -3829,7 +3844,8 @@ console.log('xx Ivan ADD res', res)
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
-                        reject('Error in Global Variables getDataCachingTable: ' + (httpResponse.message);
+                        console.warn('Error in Global Variables getDataCachingTable: ' + httpResponse.message);
+                        reject('Error in Global Variables getDataCachingTable: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
@@ -6114,6 +6130,7 @@ console.log('xx Ivan lss', lss)
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
+                        console.warn('Error in Global Variables getListFields: ' + httpResponse.message);
                         reject('Error in Global Variables getListFields: ' + httpResponse.message);
                         return;
                     };
@@ -6184,6 +6201,7 @@ console.log('xx Ivan lss', lss)
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
+                        console.warn('Error in Global Variables getExecQuery: ' + httpResponse.message);
                         reject('Error in Global Variables getExecQuery: ' + httpResponse.message);
                         return;
                     };
@@ -6228,6 +6246,7 @@ console.log('xx Ivan lss', lss)
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
+                        console.warn('Error in Global Variables getDashboardSummary: ' + httpResponse.message);
                         reject('Error in Global Variables getDashboardSummary: ' + httpResponse.message);
                         return;
                     };
@@ -6875,6 +6894,7 @@ console.log('xx post filter', results)
             .subscribe(
                 httpResponse => {
                     if(httpResponse.statusCode != 'success') {
+                        console.warn('Error in Global Variables sendTransformationQuery: ' + httpResponse.message);
                         reject('Error in Global Variables sendTransformationQuery: ' + httpResponse.message);
                         return;
                     };
