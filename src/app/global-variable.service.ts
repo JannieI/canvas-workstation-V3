@@ -531,10 +531,6 @@ export class GlobalVariableService {
                         reject('Data in response object is null; it should be an array');
                         return;
                     };
-                    if(httpResponse.data.length == 0) {
-                        reject('Data in response object is an empty array; it should contain data');
-                        return;
-                    };
 
                     // Update Datasources
                     let datasourceIndex: number = this.datasources.findIndex(
@@ -1199,9 +1195,6 @@ export class GlobalVariableService {
                 httpResponse  => {
 
                     if(httpResponse.statusCode != 'success') {
-                        if (this.sessionDebugging) {
-                            console.log('Error getResource FAILED', {httpResponse});
-                        };
                         console.timeEnd("      DURATION getResource: " + resource);
                         console.warn('Error in Global Variables getResource: ' + httpResponse.message);
                         reject('Error in Global Variables getResource: ' + httpResponse.message);
@@ -1501,10 +1494,6 @@ export class GlobalVariableService {
                         reject('Data in response object is null; it should be an array');
                         return;
                     };
-                    if(httpResponse.data.length == 0) {
-                        reject('Data in response object is an empty array; it should contain data');
-                        return;
-                    };
 
                     // Assume worse case that all has to be obtained from HTTP server
                     let isFresh: boolean = false;
@@ -1668,10 +1657,6 @@ export class GlobalVariableService {
                         reject('Data in response object is null; it should be an array');
                         return;
                     };
-                    if(httpResponse.data.length == 0) {
-                        reject('Data in response object is an empty array; it should contain data');
-                        return;
-                    };
 
                     // Update NrComments field if a W is linked
                     // TODO - how do we fix this !!!???
@@ -1775,7 +1760,7 @@ export class GlobalVariableService {
             this.http.post<CanvasHttpResponse>(finalUrl, "", {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
-                        reject('Error in Global Variables dashboardCopy: ' + httpResponse.message);
+                        console.warn('Error in Global Variables dashboardCopy: ' + httpResponse.message);
                         reject('Error in Global Variables dashboardCopy: ' + httpResponse.message);
                         return;
                     };
