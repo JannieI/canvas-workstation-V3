@@ -5778,7 +5778,27 @@ console.log('xx Ivan lss', lss)
                     this.getDataCachingTable()
                         .then( () => {
 
-                            this.getResource('canvasUsers').then(usr => {
+                            this.getResource('canvasUsers').then(
+
+                                httpResponse  => {
+
+                                if(httpResponse.statusCode != 'success') {
+                                    console.warn('Error in Global Variables verifyCanvasUser: ' + httpResponse.message);
+                                    reject('Error in Global Variables verifyCanvasUser: ' + httpResponse.message);
+                                    return;
+                                };
+                                if(httpResponse.data == null) {
+                                        reject('Data in response object is null; it should be an array');
+                                        return;
+                                };
+                                if(httpResponse.data.length == 0) {
+                                    reject('Data in response object is an empty array; it should contain data');
+                                    return;
+                                };
+                
+                                // Set first entry
+                                let usr:any = httpResponse.data[0];
+
                                 let foundIndex: number = usr.findIndex(u => u.userID === givenUserID);
                                 if (foundIndex < 0) {
 
