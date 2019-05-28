@@ -3632,10 +3632,19 @@ console.log('xx Ivan ADD res', res)
             this.http.put<CanvasHttpResponse>(finalUrl + '?userID='
                 + userID, null, {headers})
                 .subscribe(
-                    res => {
-                        if(res.statusCode != 'success') {
-                            reject('Error marking Messages as read: '+ res.message);
+                    httpResponse => {
+                        if(httpResponse.statusCode != 'success') {
+                            reject('Error marking Messages as read: '+ httpResponse.message);
                         };
+                        if(httpResponse.statusCode != 'success') {
+                            reject(httpResponse.message);
+                            return;
+                        };
+                        if(httpResponse.data == null) {
+                            reject('Data in response object is null; it should be an array');
+                            return;
+                        };
+
                         resolve("Done");
                     },
                     err => {
