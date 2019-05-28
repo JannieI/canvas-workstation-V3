@@ -278,12 +278,13 @@ export class GlobalVariableService {
             let finalUrl: string = this.canvasServerURI + pathUrl;
             
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
+                httpResponse  => {
+                    if(httpResponse.statusCode != 'success') {
+                        reject(httpResponse.message);
                         return;
                     };
 
+                    // 
                     this.currentDashboards = res.data.dashboards;
                     this.currentDashboardTabs  = res.data.dashboardTabs;
                     this.currentWidgets  = res.data.widgets;
@@ -1711,12 +1712,23 @@ console.log('xx DEL DS res', res)
             let finalUrl: string = this.canvasServerURI + pathUrl;
             console.log('finalUrl', finalUrl)
             this.http.post<CanvasHttpResponse>(finalUrl, "", {headers}).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
+                httpResponse  => {
+                    if(httpResponse.statusCode != 'success') {
+                        reject(httpResponse.message);
+                        return;
+                    };
+                    if(httpResponse.data == null) {
+                        reject('Data in response object is null; it should be an array');
+                        return;
+                    };
+                    if(httpResponse.data.length == 0) {
+                        reject('Data in response object is an empty array; it should contain data');
                         return;
                     };
 
+                    // Use first entry in data array
+                    let res: any = httpResponse[0];
+                     
                     // TODO - make this DRY
                     // Add / Amend the cache
                     if (newState === 'Draft') {
