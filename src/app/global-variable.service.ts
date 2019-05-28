@@ -6082,9 +6082,17 @@ console.log('xx Ivan lss', lss)
                 .set("Authorization", "Bearer " + this.currentToken);
 
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
-                res  => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
+                httpResponse  => {
+                    if(httpResponse.statusCode != 'success') {
+                        reject(httpResponse.message);
+                        return;
+                    };
+                    if(httpResponse.statusCode != 'success') {
+                        reject(httpResponse.message);
+                        return;
+                    };
+                    if(httpResponse.data == null) {
+                        reject('Data in response object is null; it should be an array');
                         return;
                     };
 
@@ -6092,9 +6100,9 @@ console.log('xx Ivan lss', lss)
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getListTables ends',
                             this.concoleLogStyleForEndOfMethod,
-                            res.data);
+                            httpResponse.data);
                     };
-                    resolve(res);
+                    resolve(httpResponse);
                 },
                 err => {
                     reject(err.message  || err.sqlMessage);
