@@ -1200,20 +1200,17 @@ export class GlobalVariableService {
                             console.log('Error getResource FAILED', {httpResponse});
                         };
                         if(httpResponse.statusCode != 'success') {
+                            console.timeEnd("      DURATION getResource: " + resource);
                             reject(httpResponse.message);
                             return;
                         };
-                        if(httpResponse.data == null) {
+                    };
+                    if(httpResponse.data == null) {
                             reject('Data in response object is null; it should be an array');
                             return;
-                        };
-                        if(httpResponse.data.length == 0) {
-                            reject('Data in response object is an empty array; it should contain data');
-                            return;
-                        };
-    
-                        console.timeEnd("      DURATION getResource: " + resource);
-                        reject(httpResponse.message);
+                    };
+                    if(httpResponse.data.length == 0) {
+                        reject('Data in response object is an empty array; it should contain data');
                         return;
                     };
 
@@ -1490,10 +1487,18 @@ export class GlobalVariableService {
 
             this.http.put<CanvasHttpResponse>(finalUrl + '?id=' + copyData.id, copyData, {headers})
             .subscribe(
-                httpResult => {
-                    if(httpResult.statusCode != 'success') {
+                httpResponse => {
+                    if(httpResponse.statusCode != 'success') {
                         console.timeEnd("      DURATION saveResource " + resource + ' ' + data.id.toString());
-                        reject(httpResult.message);
+                        reject(httpResponse.message);
+                        return;
+                    };
+                    if(httpResponse.data == null) {
+                        reject('Data in response object is null; it should be an array');
+                        return;
+                    };
+                    if(httpResponse.data.length == 0) {
+                        reject('Data in response object is an empty array; it should contain data');
                         return;
                     };
 
