@@ -6026,22 +6026,22 @@ console.log('xx Ivan lss', lss)
                     "userID": givenUserID,
                     "password": givenPassword
                 }
-                ).subscribe(res => {
+                ).subscribe(httpResponse => {
 
-                    if (res.statusCode === 'failed') {
-                        console.warn('Error in     Global-Variables loginCanvasUser Failed: ' + res.message);
+                    if (httpResponse.statusCode === 'failed') {
+                        console.warn('Error in     Global-Variables loginCanvasUser Failed: ' + httpResponse.message);
 
-                        resolve({ message:'Failed: ' + res.message, token: null});
+                        resolve({ message:'Failed: ' + httpResponse.message, token: null});
                     };
-                    if (res.statusCode === 'success') {
-                        console.warn('    Global-Variables loginCanvasUser Success: ' + res.message);
+                    if (httpResponse.statusCode === 'success') {
+                        console.warn('    Global-Variables loginCanvasUser Success: ' + httpResponse.message);
 
-                        resolve({ message:'Success: ' + res.message, token: res.token});
+                        resolve({ message:'Success: ' + httpResponse.message, token: httpResponse.token});
                     };
-                    if (res.statusCode === 'error') {
-                        console.warn('Error in     Global-Variables loginCanvasUser Error: ' + res.message);
+                    if (httpResponse.statusCode === 'error') {
+                        console.warn('Error in     Global-Variables loginCanvasUser Error: ' + httpResponse.message);
 
-                        resolve({ message:'Error: ' + res.message, token: null});
+                        resolve({ message:'Error: ' + httpResponse.message, token: null});
                     };
             },
             err => {
