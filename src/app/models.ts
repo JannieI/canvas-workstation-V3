@@ -1919,7 +1919,7 @@ export class CanvasHttpResponse {
     // error = error on the server, ie TS or Node or Mongo error
     "resourceOrRoute": string;              // Client requests a Single resource (ie dashboards) or compound route (ie DiscardDashboard)
     "message" : string;                     // Info Text message (short errorMessage for errors)
-    "data": any;                            // Data returned, ie Json Array
+    "data": any[];                          // Data returned, ie Json Array
     "metaData"?: {                          // OPTIONAL metadata, not always filled in by Server
         "server"?: {
             "serverName": string;           // Name of Server

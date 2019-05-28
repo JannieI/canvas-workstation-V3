@@ -316,10 +316,11 @@ export class DashboardNewComponent implements OnInit {
             newDashboard.state = 'Draft';
             newDashboard.originalID = newD.id;
             this.globalVariableService.addDashboard(newDashboard).then(draftD => {
-
+console.log('xx add', draftD)
                 // Reset draftID on Original
                 newD.draftID = draftD.id;
                 this.globalVariableService.saveResource('dashboards', newD).then(originalD => {
+                    console.log('xx sav', originalD)
 
                     // Add Original Tab to DB
                     let newDashboardTab: DashboardTab = this.globalVariableService.dashboardTabTemplate;
