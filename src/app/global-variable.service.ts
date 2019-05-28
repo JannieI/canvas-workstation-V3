@@ -2195,9 +2195,17 @@ export class GlobalVariableService {
             let finalUrl: string = this.canvasServerURI + pathUrl;
             this.http.delete<CanvasHttpResponse>(finalUrl + '?id=' + dashboardID, {headers})
                 .subscribe(
-                    res => {
-                        if(res.statusCode != 'success') {
-                            reject(res.message);
+                    httpResponse => {
+                        if(httpResponse.statusCode != 'success') {
+                            reject(httpResponse.message);
+                            return;
+                        };
+                        if(httpResponse.data == null) {
+                            reject('Data in response object is null; it should be an array');
+                            return;
+                        };
+                        if(httpResponse.data.length == 0) {
+                            reject('Data in response object is an empty array; it should contain data');
                             return;
                         };
 
