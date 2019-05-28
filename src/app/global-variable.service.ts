@@ -289,7 +289,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data.length == 0) {
-                        reject('Data in response object is an empty array; it should contain data');
+                        reject('Data in refreshCurrentDashboardInfo response object is an empty array; it should contain data');
                         return;
                     };
                      
@@ -463,7 +463,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data.length == 0) {
-                        reject('Data in response object is an empty array; it should contain data');
+                        reject('Data in addDatasource response object is an empty array; it should contain data');
                         return;
                     };
 
@@ -529,6 +529,10 @@ export class GlobalVariableService {
                     };
                     if(httpResponse.data == null) {
                         reject('Data in response object is null; it should be an array');
+                        return;
+                    };
+                    if(httpResponse.data.length == 0) {
+                        reject('Data in saveDatasource response object is an empty array; it should contain data');
                         return;
                     };
 
@@ -597,6 +601,10 @@ export class GlobalVariableService {
                     };
                     if(httpResponse.data == null) {
                         reject('Data in response object is null; it should be an array');
+                        return;
+                    };
+                    if(httpResponse.data.length == 0) {
+                        reject('Data in deleteDatasource response object is an empty array; it should contain data');
                         return;
                     };
 
@@ -1200,10 +1208,6 @@ export class GlobalVariableService {
                             reject('Data in response object is null; it should be an array');
                             return;
                     };
-                    if(httpResponse.data.length == 0) {
-                        reject('Data in response object is an empty array; it should contain data');
-                        return;
-                    };
 
                     // If cached, fill local info
                     if (dataCachingTableIndex >= 0) {
@@ -1218,10 +1222,10 @@ export class GlobalVariableService {
 
                             if (localVariableName != null) {
                                 this[localVariableName] = [];
-                                this[localVariableName] = httpResponse.data[0];
+                                this[localVariableName] = httpResponse.data;
                                 let rowCount: number = -1;
-                                if (httpResponse.data[0] != null) {
-                                    rowCount = httpResponse.data[0].length;
+                                if (httpResponse.data != null) {
+                                    rowCount = httpResponse.data.length;
                                 };
                                 console.log('%c    Global-Variables getResource updated cached Memory for ',
                                     this.concoleLogStyleForCaching,
@@ -1238,7 +1242,7 @@ export class GlobalVariableService {
 
                                 this.dbCanvasAppDatabase.table(localTableName).clear().then(res => {
                                     this.dbCanvasAppDatabase.table(localTableName)
-                                    .bulkPut(httpResponse.data[0])
+                                    .bulkPut(httpResponse.data)
                                     .then(resPut => {
 
                                         // Count
@@ -1278,9 +1282,9 @@ export class GlobalVariableService {
 
                     console.log('%c    Global-Variables getResource data retured from HTTP for: ',
                         this.concoleLogStyleForCaching,
-                        resource, httpResponse.data[0], this.datasourcePermissions);
+                        resource, httpResponse.data, this.datasourcePermissions);
                     console.timeEnd("      DURATION getResource: " + resource);
-                    resolve(httpResponse.data[0]);
+                    resolve(httpResponse.data);
                     return;
                 },
                 err => {
@@ -1331,10 +1335,6 @@ export class GlobalVariableService {
                     };
                     if(httpResponse.data == null) {
                         reject('Data in response object is null; it should be an array');
-                        return;
-                    };
-                    if(httpResponse.data.length == 0) {
-                        reject('Data in response object is an empty array; it should contain data');
                         return;
                     };
 
@@ -1762,10 +1762,6 @@ export class GlobalVariableService {
                     };
                     if(httpResponse.data == null) {
                         reject('Data in response object is null; it should be an array');
-                        return;
-                    };
-                    if(httpResponse.data.length == 0) {
-                        reject('Data in response object is an empty array; it should contain data');
                         return;
                     };
                      
@@ -5762,7 +5758,7 @@ console.log('xx Ivan lss', lss)
                 }, 
                 {headers}
                 ).subscribe(res => {
-
+console.log('xx res', res)
                 // Store locally
                 // localStorage.setItem("canvs-token", JSON.stringify(token));
 
@@ -5778,26 +5774,7 @@ console.log('xx Ivan lss', lss)
                     this.getDataCachingTable()
                         .then( () => {
 
-                            this.getResource('canvasUsers').then(
-
-                                httpResponse  => {
-
-                                if(httpResponse.statusCode != 'success') {
-                                    console.warn('Error in Global Variables verifyCanvasUser: ' + httpResponse.message);
-                                    reject('Error in Global Variables verifyCanvasUser: ' + httpResponse.message);
-                                    return;
-                                };
-                                if(httpResponse.data == null) {
-                                        reject('Data in response object is null; it should be an array');
-                                        return;
-                                };
-                                if(httpResponse.data.length == 0) {
-                                    reject('Data in response object is an empty array; it should contain data');
-                                    return;
-                                };
-                
-                                // Set first entry
-                                let usr:any = httpResponse.data[0];
+                            this.getResource('canvasUsers').then(usr  => {
 
                                 let foundIndex: number = usr.findIndex(u => u.userID === givenUserID);
                                 if (foundIndex < 0) {
