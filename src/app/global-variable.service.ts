@@ -2921,15 +2921,28 @@ export class GlobalVariableService {
                 .set("Accept", "application/json")
                 .set("Authorization", "Bearer " + this.currentToken);
 
-            this.http.put(finalUrl + '/' + data.id, data, {headers})
+            this.http.put<CanvasHttpResponse>(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
-                res => {
+                httpResponse => {
 
                     // No local to Replace
 
                     if (this.sessionDebugging) {
-                        console.log('saveData SAVED', {res})
+                        console.log('saveData SAVED', {res: httpResponse})
                     };
+                    if(httpResponse.statusCode != 'success') {
+                        reject(httpResponse.message);
+                        return;
+                    };
+                    if(httpResponse.data == null) {
+                        reject('Data in response object is null; it should be an array');
+                        return;
+                    };
+                    if(httpResponse.data.length == 0) {
+                        reject('Data in response object is an empty array; it should contain data');
+                        return;
+                    };
+
                     resolve('Saved');
                 },
                 err => {
