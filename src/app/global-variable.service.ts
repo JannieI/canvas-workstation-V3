@@ -2356,31 +2356,40 @@ export class GlobalVariableService {
 
                 let pathUrl: string = resource;
                 let finalUrl: string = this.setBaseUrl(resource) + pathUrl;
+                
                 this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
-                    httpResult  => {
+                    httpResponse  => {
 
-                        if(httpResult.statusCode != 'success') {
+                        if(httpResponse.statusCode != 'success') {
                             if (this.sessionDebugging) {
-                                console.log('Error getResource FAILED', {httpResult});
+                                console.log('Error refreshLocalCacheMemory FAILED', {httpResult: httpResponse});
                             };
 
                             console.timeEnd("      DURATION refreshLocalCacheMemory: " + resource);
                             // reject(httpResult.message);
                             return;
                         };
+                        if(httpResponse.data == null) {
+                            console.log('Error refreshLocalCacheMemory FAILED: Data in response object is null; it should be an array');
+                            return;
+                        };
+                        if(httpResponse.data.length == 0) {
+                            console.log('Error refreshLocalCacheMemory FAILED: Data in response object is an empty array; it should contain data');
+                            return;
+                        };
 
                         // Find the return result - remember this comes back ASYNC,
                         // thus not the same order as the current loop
                         let resultIndex: number = this.dataCachingTable.findIndex(
-                            dct => dct.key === httpResult.resourceOrRoute);
+                            dct => dct.key === httpResponse.resourceOrRoute);
                         if (resultIndex >= 0) {
                             // Fill local Vars
                             if (this.dataCachingTable[resultIndex].localCacheableMemory) {
 
                                 if (this.dataCachingTable[resultIndex].localVariableName != null) {
                                     this[this.dataCachingTable[resultIndex].localVariableName] = [];
-                                    this[this.dataCachingTable[resultIndex].localVariableName] = httpResult.data;
-                                    console.log('%c    Global-Variables refreshLocalCache ' + httpResult.data.length.toString() + ' records updated cached Memory for ', resource);
+                                    this[this.dataCachingTable[resultIndex].localVariableName] = httpResponse.data;
+                                    console.log('%c    Global-Variables refreshLocalCache ' + httpResponse.data.length.toString() + ' records updated cached Memory for ', resource);
                                 };
 
                                 // TODO - should we fill Current Var here a well?
@@ -2393,13 +2402,13 @@ export class GlobalVariableService {
 
                                     this.dbCanvasAppDatabase.table(this.dataCachingTable[resultIndex].localTableName).clear().then(res => {
                                         this.dbCanvasAppDatabase.table(this.dataCachingTable[resultIndex].localTableName)
-                                        .bulkPut(httpResult.data)
+                                        .bulkPut(httpResponse.data)
                                         .then(resPut => {
 
                                             // Count
                                             this.dbCanvasAppDatabase.table(this.dataCachingTable[resultIndex].localTableName)
                                                 .count(resCount => {
-                                                    console.log('    Global-Variables refreshLocalCache ' + httpResult.data.length.toString() + ' records updated local Disc for:', resource);
+                                                    console.log('    Global-Variables refreshLocalCache ' + httpResponse.data.length.toString() + ' records updated local Disc for:', resource);
                                             });
                                         });
                                     });
