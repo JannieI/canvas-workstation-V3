@@ -6918,13 +6918,21 @@ console.log('xx post filter', results)
 
             this.http.put<CanvasHttpResponse>(finalUrl, copyData, {headers})
             .subscribe(
-                res => {
-                    if(res.statusCode != 'success') {
-                        reject(res.message);
+                httpResponse => {
+                    if(httpResponse.statusCode != 'success') {
+                        reject(httpResponse.message);
 						return;
                     };
+                    if(httpResponse.statusCode != 'success') {
+                        reject(httpResponse.message);
+                        return;
+                    };
+                    if(httpResponse.data == null) {
+                        reject('Data in response object is null; it should be an array');
+                        return;
+                    };
 
-                    console.log('return message :', res);
+                    console.log('return message :', httpResponse);
 
                     // // Replace local
                     // let localIndex: number = this.dashboards.findIndex(d =>
@@ -6944,7 +6952,7 @@ console.log('xx post filter', results)
                     //     console.log('saveDashboard SAVED', res.data)
                     // };
 
-                    resolve(res.data);
+                    resolve(httpResponse.data);
                 },
                 err => {
                     if (this.sessionDebugging) {
