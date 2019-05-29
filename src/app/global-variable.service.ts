@@ -2254,6 +2254,7 @@ export class GlobalVariableService {
                             console.error('Error in     Global-Variables deleteDashboardInfo', err);
                         };
 
+                        console.error('Error in     Global-Variables deleteDashboardInfo', err.message);
                         reject(err.message);
                     }
                 )
@@ -2356,11 +2357,11 @@ export class GlobalVariableService {
                             return;
                         };
                         if(httpResponse.data == null) {
-                            console.warn('Error in Global Variables deleteDashboardInfo: Data in response object is null; it should be an array');
+                            console.error('Error in Global Variables refreshLocalCacheMemory: Data in response object is null; it should be an array');
                             return;
                         };
                         if(httpResponse.data.length == 0) {
-                            console.log('Error in Global Variables deleteDashboardInfo: Data in response object is an empty array; it should contain data');
+                            console.error('Error in Global Variables refreshLocalCacheMemory: Data in response object is an empty array; it should contain data');
                             return;
                         };
 
@@ -2856,11 +2857,12 @@ export class GlobalVariableService {
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in Global Variables getData: ' + httpResponse.message);
+                        console.error('Error in Global Variables getData: ' + httpResponse.message);
                         reject('Error in Global Variables getData: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables getData: Data in response object is null; it should be an array');
                         reject('Error in Global Variables getData: Data in response object is null; it should be an array');
                         return;
                     };
@@ -2877,8 +2879,8 @@ export class GlobalVariableService {
                     resolve(httpResponse.data);
                 },
                 err => {
-                    console.error('Error in     Global-Variables getData', err);
                     console.timeEnd("      DURATION getData: " + parameters);
+                    console.error('Error in     Global-Variables getData', err);
                     reject(err.message);
                 }
             );
