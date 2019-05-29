@@ -285,7 +285,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables refreshCurrentDashboardInfo: Data in response object is null; it should be an array');
                         return;
                     };
                     if(httpResponse.data.length == 0) {
@@ -459,7 +459,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables addDatasource: Data in response object is null; it should be an array');
                         return;
                     };
                     if(httpResponse.data.length == 0) {
@@ -528,7 +528,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables saveDatasource: Data in response object is null; it should be an array');
                         return;
                     };
                     if(httpResponse.data.length == 0) {
@@ -600,7 +600,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables deleteDatasource: Data in response object is null; it should be an array');
                         return;
                     };
                     if(httpResponse.data.length == 0) {
@@ -1205,7 +1205,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                            reject('Data in response object is null; it should be an array');
+                            reject('Error in Global Variables getResource: Data in response object is null; it should be an array');
                             return;
                     };
 
@@ -1334,11 +1334,11 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Error addResource FAILED: Data in response object is null; it should be an array');
+                        reject('Error in Global Variables addResource: : Data in response object is null; it should be an array');
                         return;
                     };
                     if(httpResponse.data.length == 0) {
-                        console.log('Error addResource FAILED: Data in response object is an empty array; it should contain data');
+                        console.log('Error in Global Variables addResource: : Data in response object is an empty array; it should contain data');
                         return;
                     };
                 console.log('xx httpResponse.data[0].id', httpResponse.data[0].id)
@@ -1491,7 +1491,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables saveResource: Data in response object is null; it should be an array');
                         return;
                     };
 
@@ -1654,7 +1654,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables deleteResource: Data in response object is null; it should be an array');
                         return;
                     };
 
@@ -1765,7 +1765,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables dashboardCopy: Data in response object is null; it should be an array');
                         return;
                     };
                      
@@ -1883,11 +1883,11 @@ export class GlobalVariableService {
                 .subscribe(
                     httpResponse => {
                         if(httpResponse.statusCode != 'success') {
-                            console.warn('Error deleting Draft Dashboard: '+ httpResponse.message);
-                            reject('Error deleting Draft Dashboard: '+ httpResponse.message);
+                            console.warn('Error deleting discardDashboard: '+ httpResponse.message);
+                            reject('Error deleting discardDashboard: '+ httpResponse.message);
                         };
                         if(httpResponse.data == null) {
-                            reject('Data in response object is null; it should be an array');
+                            reject('Error in Global Variables discardDashboard: Data in response object is null; it should be an array');
                             return;
                         };
     
@@ -2001,11 +2001,11 @@ export class GlobalVariableService {
                 .subscribe(
                     httpResponse => {
                         if(httpResponse.statusCode != 'success') {
-                            console.warn('Error saving Draft Dashboard: '+ httpResponse.message);
-                            reject('Error saving Draft Dashboard: '+ httpResponse.message);
+                            console.warn('Error in Global Variables saveDashboard: '+ httpResponse.message);
+                            reject('Error in Global Variables saveDashboard: '+ httpResponse.message);
                         };
                         if(httpResponse.data == null) {
-                            reject('Data in response object is null; it should be an array');
+                            reject('Error in Global Variables saveDashboard: Data in response object is null; it should be an array');
                             return;
                         };
 
@@ -2183,7 +2183,7 @@ export class GlobalVariableService {
                             return;
                         };
                         if(httpResponse.data == null) {
-                            reject('Data in response object is null; it should be an array');
+                            reject('Error in Global Variables deleteDashboardInfo: Data in response object is null; it should be an array');
                             return;
                         };
 
@@ -2348,11 +2348,11 @@ export class GlobalVariableService {
                             return;
                         };
                         if(httpResponse.data == null) {
-                            console.warn('Error refreshLocalCacheMemory FAILED: Data in response object is null; it should be an array');
+                            console.warn('Error in Global Variables deleteDashboardInfo: Data in response object is null; it should be an array');
                             return;
                         };
                         if(httpResponse.data.length == 0) {
-                            console.log('Error refreshLocalCacheMemory FAILED: Data in response object is an empty array; it should contain data');
+                            console.log('Error in Global Variables deleteDashboardInfo: Data in response object is an empty array; it should contain data');
                             return;
                         };
 
@@ -2853,7 +2853,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables getData: Data in response object is null; it should be an array');
                         return;
                     };
 
@@ -2911,7 +2911,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables saveData: Data in response object is null; it should be an array');
                         return;
                     };
 
@@ -2956,7 +2956,7 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables deleteData: Data in response object is null; it should be an array');
                         return;
                     };
             
@@ -3607,7 +3607,7 @@ console.log('xx Ivan ADD res', res)
                             reject('Error in Global Variables marking Messages as read: '+ httpResponse.message);
                         };
                         if(httpResponse.data == null) {
-                            reject('Data in response object is null; it should be an array');
+                            reject('Error in Global Variables marking Messages as read: Data in response object is null; it should be an array');
                             return;
                         };
 
@@ -3826,7 +3826,7 @@ console.log('xx Ivan ADD res', res)
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables getDataCachingTable: Data in response object is null; it should be an array');
                         return;
                     };
 
@@ -6053,7 +6053,7 @@ console.log('xx res', res)
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables getListTables: Data in response object is null; it should be an array');
                         return;
                     };
 
@@ -6113,7 +6113,7 @@ console.log('xx res', res)
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables getListFields: Data in response object is null; it should be an array');
                         return;
                     };
 
@@ -6184,7 +6184,7 @@ console.log('xx res', res)
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables getExecQuery: Data in response object is null; it should be an array');
                         return;
                     };
 
@@ -6229,7 +6229,7 @@ console.log('xx res', res)
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables getDashboardSummary: Data in response object is null; it should be an array');
                         return;
                     };
 
@@ -6877,7 +6877,7 @@ console.log('xx post filter', results)
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error in Global Variables sendTransformationQuery: Data in response object is null; it should be an array');
                         return;
                     };
 
