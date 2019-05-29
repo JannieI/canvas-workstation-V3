@@ -466,8 +466,8 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data.length == 0) {
-                        console.error('Data in addDatasource response object is an empty array; it should contain data');
-                        reject('Data in addDatasource response object is an empty array; it should contain data');
+                        console.error('Error in Global Variables addDatasource Data in addDatasource response object is an empty array; it should contain data');
+                        reject('Error in Global Variables addDatasource Data in addDatasource response object is an empty array; it should contain data');
                         return;
                     };
 
@@ -538,8 +538,8 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data.length == 0) {
-                        console.error('Data in saveDatasource response object is an empty array; it should contain data');
-                        reject('Data in saveDatasource response object is an empty array; it should contain data');
+                        console.error('Error in Global Variables saveDatasource Data in saveDatasource response object is an empty array; it should contain data');
+                        reject('Error in Global Variables saveDatasource Data in saveDatasource response object is an empty array; it should contain data');
                         return;
                     };
 
@@ -1877,8 +1877,8 @@ export class GlobalVariableService {
             let originalDashboardID: number = originalDashboard.id;
 
             if (draftDashboard.state != 'Draft') {
-                console.error('This is not a draft Dashboard');
-                reject('This is not a draft Dashboard');
+                console.error('Error deleting discardDashboard: This is not a draft Dashboard');
+                reject('Error deleting discardDashboard: This is not a draft Dashboard');
             };
 
             // Clear related Actions in Memory
@@ -1931,7 +1931,7 @@ export class GlobalVariableService {
                             this.dbDataCachingTable.table("localDataCachingTable")
                                 .bulkPut(this.dataCachingTable)
                                 .catch(err => {
-                                    console.error('Error in     Global-Variables saveDraftDashboard', err)
+                                    console.error('Error in     Global-Variables discardDashboard', err)
                                     reject(err.message)
                                 });
 
@@ -1948,7 +1948,7 @@ export class GlobalVariableService {
                     },
                     err => {
                         console.error('Error in     Global-Variables discardDashboard', err);
-                        reject('Error discardDashboard FAILED: ' + err.message);
+                        reject('Error discardDashboard : ' + err.message);
                     }
                 )
         })
@@ -1977,8 +1977,8 @@ export class GlobalVariableService {
             let originalDashboardID: number = originalDashboard.id;
 
             if (draftDashboard.state != 'Draft') {
-                console.error('This is not a draft Dashboard');
-                reject('This is not a draft Dashboard');
+                console.error('Error in  Global-Variables saveDraftDashboard: This is not a draft Dashboard');
+                reject('Error in  Global-Variables saveDraftDashboard: This is not a draft Dashboard');
             };
 
             // Clear related Actions in Memory
@@ -1997,7 +1997,7 @@ export class GlobalVariableService {
                 this.dbDataCachingTable.table("localDataCachingTable")
                     .bulkPut(this.dataCachingTable)
                     .catch(err => {
-                        console.error('Error in     Global-Variables saveDraftDashboard', err)
+                        console.error('Error in  Global-Variables saveDraftDashboard', err)
                         reject(err.message)
                     });
 
@@ -2017,12 +2017,12 @@ export class GlobalVariableService {
                 .subscribe(
                     httpResponse => {
                         if(httpResponse.statusCode != 'success') {
-                            console.error('Error in Global Variables saveDashboard: '+ httpResponse.message);
-                            reject('Error in Global Variables saveDashboard: '+ httpResponse.message);
+                            console.error('Error in Global Variables saveDraftDashboard: '+ httpResponse.message);
+                            reject('Error in Global Variables saveDraftDashboard: '+ httpResponse.message);
                         };
                         if(httpResponse.data == null) {
-                            console.error('Error in Global Variables saveDashboard: Data in response object is null; it should be an array');
-                            reject('Error in Global Variables saveDashboard: Data in response object is null; it should be an array');
+                            console.error('Error in Global Variables saveDraftDashboard: Data in response object is null; it should be an array');
+                            reject('Error in Global Variables saveDraftDashboard: Data in response object is null; it should be an array');
                             return;
                         };
 
@@ -2051,8 +2051,8 @@ export class GlobalVariableService {
                         resolve(originalDashboardID);
                     },
                     err => {
-                        console.error('Error in     Global-Variables saveDraftDashboard', err);
-                        reject('Error saveDraftDashboard FAILED: ' + err.message);
+                        console.error('Error in Global-Variables saveDraftDashboard', err);
+                        reject('Error saveDraftDashboard : ' + err.message);
                     }
                 )
 
@@ -2260,10 +2260,6 @@ export class GlobalVariableService {
                         resolve('Deleted');
                     },
                     err => {
-                        if (this.sessionDebugging) {
-                            console.error('Error in     Global-Variables deleteDashboardInfo', err);
-                        };
-
                         console.error('Error in     Global-Variables deleteDashboardInfo', err.message);
                         reject(err.message);
                     }
@@ -5978,7 +5974,7 @@ console.log('xx res', res)
                     };
             },
             err => {
-                console.error('Error in     Global-Variables Registration', err);
+                console.error('Error in     Global-Variables registerCanvasUser', err);
                 resolve('Error: Registration FAILED ' + err.message);
             });
         });
@@ -6153,7 +6149,7 @@ console.log('xx res', res)
                     resolve(httpResponse);
                 },
                 err => {
-                    console.error('Error in Global-Variables getListTables', err.message);
+                    console.error('Error in Global-Variables getListFields', err.message);
                     reject(err.message  ||  err.sqlMessage);
                 }
             )
