@@ -1486,11 +1486,12 @@ export class GlobalVariableService {
                 httpResponse => {
                     if(httpResponse.statusCode != 'success') {
                         console.timeEnd("      DURATION saveResource " + resource + ' ' + data.id.toString());
-                        console.warn('Error in Global Variables saveResource: ' + httpResponse.message);
+                        console.error('Error in Global Variables saveResource: ' + httpResponse.message);
                         reject('Error in Global Variables saveResource: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables saveResource: Data in response object is null; it should be an array');
                         reject('Error in Global Variables saveResource: Data in response object is null; it should be an array');
                         return;
                     };
@@ -1615,10 +1616,8 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    if (this.sessionDebugging) {
-                        console.error('Error in     Global-Variables saveResource', err);
-                    };
                     console.timeEnd("      DURATION saveResource " + resource + ' ' + data.id.toString());
+                    console.error('Error in     Global-Variables saveResource', err);
                     reject(err.message);
                 }
             )
@@ -1649,11 +1648,12 @@ export class GlobalVariableService {
                 httpResponse => {
                     if(httpResponse.statusCode != 'success') {
                         console.timeEnd("      DURATION deleteResource" + resource +  ' ' + id.toString());
-                        console.warn('Error in Global Variables deleteResource: ' + httpResponse.message);
+                        console.error('Error in Global Variables deleteResource: ' + httpResponse.message);
                         reject('Error in Global Variables deleteResource: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables deleteResource: Data in response object is null; it should be an array');
                         reject('Error in Global Variables deleteResource: Data in response object is null; it should be an array');
                         return;
                     };
@@ -1727,6 +1727,7 @@ export class GlobalVariableService {
                     };
 
                     console.timeEnd("      DURATION deleteResource" + resource +  ' ' + id.toString());
+                    console.error('Error in Global Variables deleteResource: ', err.message);
                     reject(err.message);
                 }
             )
