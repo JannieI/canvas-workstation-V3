@@ -48,7 +48,7 @@
     .gridAddName {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 6;
+        grid-column-end: 7;
         grid-row-start: 3;
         grid-row-end: 4;
     }

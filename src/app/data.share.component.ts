@@ -79,6 +79,7 @@ export class DatasourceShareComponent implements OnInit {
 
                 this.globalVariableService.getDatasourcePermissions().then (dp => {
                     this.datasourcePermissions = dp.slice();
+                    console.log('xx this.datasourcePermissions', this.datasourcePermissions)
                     this.datasourcePermissions.forEach(tdsp => {
                         tdsp.name = this.datasources.filter(
                             ds => ds.id === tdsp.datasourceID)[0].name;

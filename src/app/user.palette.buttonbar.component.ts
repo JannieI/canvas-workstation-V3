@@ -53,15 +53,13 @@ export class UserPaletteButtonBarComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
 	) {}
 
-
-    // usr palette dataShare  dataSchedule
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Set Selected and Total Available Arrays
         this.globalVariableService.getResource('paletteButtonBars').then( pb => {
-console.log('xx pb', pb)
+
             // Total list of available buttons afresh from DB - slice is NB for ByVal
             this.paletteButtons = pb.slice();
             this.paletteButtonsOriginal = pb.slice();
