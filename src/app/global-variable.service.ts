@@ -1334,10 +1334,14 @@ export class GlobalVariableService {
                         return;
                     };
                     if(httpResponse.data == null) {
-                        reject('Data in response object is null; it should be an array');
+                        reject('Error addResource FAILED: Data in response object is null; it should be an array');
                         return;
                     };
-
+                    if(httpResponse.data.length == 0) {
+                        console.log('Error addResource FAILED: Data in response object is an empty array; it should contain data');
+                        return;
+                    };
+                console.log('xx httpResponse.data[0].id', httpResponse.data[0].id)
                     // Assume worse case that all has to be obtained from HTTP server
                     let isFresh: boolean = false;
                     let localCacheableMemory: boolean = false;
@@ -2858,7 +2862,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getData ends',
                             this.concoleLogStyleForEndOfMethod,
-                            {res: httpResponse})
+                            httpResponse)
                     };
                     
                     console.timeEnd("      DURATION getData: " + parameters);

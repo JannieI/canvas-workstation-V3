@@ -494,8 +494,8 @@ export class WidgetNavigatorComponent {
                         'datasourceID=' + this.selectedNetworkPropertiesID.toString()
                     )
                         .then(res => {
-                            this.networkProperties = res;
-
+                            this.networkProperties = res.slice();
+                            console.log('xx this.networkProperties', this.networkProperties)
                             // Disable Views
                             this.isViewsDisabled = true;
 
@@ -1513,6 +1513,7 @@ export class WidgetNavigatorComponent {
         this.localWidget.navigatorNetworkID = this.selectedNetworkID;
         this.localWidget.dataFiltered = this.graphData;
 
+        console.log('xx this.localWidget', this.localWidget)
         this.globalVariableService.saveResource('widgets', this.localWidget)
             .catch(err => {
                 this.errorMessage = !err.message?  err.slice(0, 100)  :  err.message.slice(0, 100);
