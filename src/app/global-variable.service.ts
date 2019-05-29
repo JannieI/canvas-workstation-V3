@@ -280,15 +280,17 @@ export class GlobalVariableService {
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in Global Variables refreshCurrentDashboardInfo: ' + httpResponse.message);
+                        console.error('Error in Global Variables refreshCurrentDashboardInfo: ' + httpResponse.message);
                         reject('Error in Global Variables refreshCurrentDashboardInfo: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables refreshCurrentDashboardInfo: Data in response object is null; it should be an array');
                         reject('Error in Global Variables refreshCurrentDashboardInfo: Data in response object is null; it should be an array');
                         return;
                     };
                     if(httpResponse.data.length == 0) {
+                        console.error('Data in refreshCurrentDashboardInfo response object is an empty array; it should contain data');
                         reject('Data in refreshCurrentDashboardInfo response object is an empty array; it should contain data');
                         return;
                     };
@@ -409,7 +411,7 @@ export class GlobalVariableService {
 
                                 })
                                 .catch(err => {
-                                    console.error('Error in     Global-Variables refreshCurrentDashboardInfo', err)
+                                    console.error('Error in Global-Variables refreshCurrentDashboardInfo', err)
                                     if (err != null) {
                                         reject(err.message);
                                     } else {
@@ -454,15 +456,17 @@ export class GlobalVariableService {
                 httpResponse  => {
 
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in Global Variables addDatasource: ' + httpResponse.message);
+                        console.error('Error in Global Variables addDatasource: ' + httpResponse.message);
                         reject('Error in Global Variables addDatasource: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables addDatasource: Data in response object is null; it should be an array');
                         reject('Error in Global Variables addDatasource: Data in response object is null; it should be an array');
                         return;
                     };
                     if(httpResponse.data.length == 0) {
+                        console.error('Data in addDatasource response object is an empty array; it should contain data');
                         reject('Data in addDatasource response object is an empty array; it should contain data');
                         return;
                     };
@@ -478,7 +482,7 @@ export class GlobalVariableService {
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables addDatasourceNEW ends',
+                        console.log('%c    Global-Variables addDatasource ends',
                             this.concoleLogStyleForEndOfMethod,
                             "Datasource and related records saved", this.datasources)
                     };
@@ -486,6 +490,7 @@ export class GlobalVariableService {
                     resolve("success");
                 },
                 err => {
+                    console.log('Error in Global-Variables addDatasource', err.message)
                     reject(err.message)
                 }
             );
@@ -523,15 +528,17 @@ export class GlobalVariableService {
                 httpResponse  => {
 
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in Global Variables saveDatasource: ' + httpResponse.message);
+                        console.error('Error in Global Variables saveDatasource: ' + httpResponse.message);
                         reject('Error in Global Variables saveDatasource: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables saveDatasource: Data in response object is null; it should be an array');
                         reject('Error in Global Variables saveDatasource: Data in response object is null; it should be an array');
                         return;
                     };
                     if(httpResponse.data.length == 0) {
+                        console.error('Data in saveDatasource response object is an empty array; it should contain data');
                         reject('Data in saveDatasource response object is an empty array; it should contain data');
                         return;
                     };
@@ -553,7 +560,7 @@ export class GlobalVariableService {
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables saveDatasourceNEW ends',
+                        console.log('%c    Global-Variables saveDatasource ends',
                             this.concoleLogStyleForEndOfMethod,
                             "Datasource and related records saved", this.datasources, this.currentDatasources);
                     };
@@ -561,6 +568,7 @@ export class GlobalVariableService {
                     resolve("success");
                 },
                 err => {
+                    console.error('Error in Global-Variables saveDatasource', err.message)
                     reject(err.message)
                 }
             );
@@ -596,14 +604,17 @@ export class GlobalVariableService {
                 httpResponse => {
                     if(httpResponse.statusCode != 'success') {
                         console.timeEnd("      DURATION deleteDatasource" + ' ' + datasourceID.toString());
+                        console.log('Error in Global Variables deleteDatasource: ' + httpResponse.message);
                         reject('Error in Global Variables deleteDatasource: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.log('Error in Global Variables deleteDatasource: Data in response object is null; it should be an array');
                         reject('Error in Global Variables deleteDatasource: Data in response object is null; it should be an array');
                         return;
                     };
                     if(httpResponse.data.length == 0) {
+                        console.log('Data in deleteDatasource response object is an empty array; it should contain data');
                         reject('Data in deleteDatasource response object is an empty array; it should contain data');
                         return;
                     };
@@ -678,6 +689,7 @@ export class GlobalVariableService {
                     };
 
                     console.timeEnd("      DURATION deleteDatasource" + datasourceID.toString());
+                    console.error('Error in Global-Variables deleteDatasource', err.message);
                     reject(err.message);
                 }
             )
@@ -1200,13 +1212,14 @@ export class GlobalVariableService {
 
                     if(httpResponse.statusCode != 'success') {
                         console.timeEnd("      DURATION getResource: " + resource);
-                        console.warn('Error in Global Variables getResource: ' + httpResponse.message);
+                        console.error('Error in Global Variables getResource: ' + httpResponse.message);
                         reject('Error in Global Variables getResource: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
-                            reject('Error in Global Variables getResource: Data in response object is null; it should be an array');
-                            return;
+                        console.error('Error in Global Variables getResource: Data in response object is null; it should be an array');
+                        reject('Error in Global Variables getResource: Data in response object is null; it should be an array');
+                        return;
                     };
 
                     // If cached, fill local info
@@ -1288,10 +1301,8 @@ export class GlobalVariableService {
                     return;
                 },
                 err => {
-                    if (this.sessionDebugging) {
-                        console.error('Error in     Global-Variables getResource', err);
-                    };
                     console.timeEnd("      DURATION getResource: " + resource);
+                    console.error('Error in Global-Variables getResource', err);
                     reject(err.message)
                 }
             );
@@ -1329,16 +1340,18 @@ export class GlobalVariableService {
 
                     if(httpResponse.statusCode != 'success') {
                         console.timeEnd("      DURATION addResource " + resource + ' ' + unique.toString());
-                        console.warn('Error in Global Variables addResource: ' + httpResponse.message);
+                        console.error('Error in Global Variables addResource: ' + httpResponse.message);
                         reject('Error in Global Variables addResource: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables addResource: : Data in response object is null; it should be an array');
                         reject('Error in Global Variables addResource: : Data in response object is null; it should be an array');
                         return;
                     };
                     if(httpResponse.data.length == 0) {
-                        console.log('Error in Global Variables addResource: : Data in response object is an empty array; it should contain data');
+                        console.error('Error in Global Variables addResource: : Data in response object is an empty array; it should contain data');
+                        reject('Error in Global Variables addResource: : Data in response object is an empty array; it should contain data');
                         return;
                     };
                 console.log('xx httpResponse.data[0].id', httpResponse.data[0].id)
@@ -1444,11 +1457,8 @@ export class GlobalVariableService {
                     return;
                 },
                 err => {
-                    if (this.sessionDebugging) {
-                        console.error('Error in     Global-Variables addResource', err);
-                    };
-
                     console.timeEnd("      DURATION addResource " + resource + ' ' + unique.toString());
+                    console.error('Error in     Global-Variables addResource', err);
                     reject(err.message)
                 }
             );
@@ -2916,11 +2926,12 @@ export class GlobalVariableService {
                         console.log('saveData SAVED', {res: httpResponse})
                     };
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in Global Variables saveData: ' + httpResponse.message);
+                        console.error('Error in Global Variables saveData: ' + httpResponse.message);
                         reject('Error in Global Variables saveData: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables saveData: Data in response object is null; it should be an array');
                         reject('Error in Global Variables saveData: Data in response object is null; it should be an array');
                         return;
                     };
@@ -2961,11 +2972,12 @@ export class GlobalVariableService {
                         console.log('deleteData DELETED id: ', {id})
                     };
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in Global Variables deleteData: ' + httpResponse.message);
+                        console.error('Error in Global Variables deleteData: ' + httpResponse.message);
                         reject('Error in Global Variables deleteData: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables deleteData: Data in response object is null; it should be an array');
                         reject('Error in Global Variables deleteData: Data in response object is null; it should be an array');
                         return;
                     };
@@ -3470,7 +3482,6 @@ console.log('xx Ivan ADD res', res)
                 })
                 .catch(err => {
                     console.error('Error in     Global-Variables saveWidget', err);
-
                     reject(err.message);
                 });
         });
@@ -3613,10 +3624,11 @@ console.log('xx Ivan ADD res', res)
                 .subscribe(
                     httpResponse => {
                         if(httpResponse.statusCode != 'success') {
-                            console.warn('Error in Global Variables marking Messages as read: '+ httpResponse.message);
+                            console.error('Error in Global Variables marking Messages as read: '+ httpResponse.message);
                             reject('Error in Global Variables marking Messages as read: '+ httpResponse.message);
                         };
                         if(httpResponse.data == null) {
+                            console.error('Error in Global Variables marking Messages as read: Data in response object is null; it should be an array');
                             reject('Error in Global Variables marking Messages as read: Data in response object is null; it should be an array');
                             return;
                         };
@@ -3831,11 +3843,12 @@ console.log('xx Ivan ADD res', res)
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in Global Variables getDataCachingTable: ' + httpResponse.message);
+                        console.error('Error in Global Variables getDataCachingTable: ' + httpResponse.message);
                         reject('Error in Global Variables getDataCachingTable: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables getDataCachingTable: Data in response object is null; it should be an array');
                         reject('Error in Global Variables getDataCachingTable: Data in response object is null; it should be an array');
                         return;
                     };
@@ -3860,6 +3873,7 @@ console.log('xx Ivan ADD res', res)
                     resolve(this.dataCachingTable);
                 },
                 err => {
+                    console.error('Error in Global-Variables getDataCachingTable', err.message)
                     reject(err.message)
                 }
             );
@@ -6058,11 +6072,12 @@ console.log('xx res', res)
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in     Global-Variables getListTables Failed: ' + httpResponse.message, httpResponse);
+                        console.error('Error in     Global-Variables getListTables Failed: ' + httpResponse.message, httpResponse);
                         reject('Error in Global Variables getListTables: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables getListTables: Data in response object is null; it should be an array');
                         reject('Error in Global Variables getListTables: Data in response object is null; it should be an array');
                         return;
                     };
@@ -6076,6 +6091,7 @@ console.log('xx res', res)
                     resolve(httpResponse);
                 },
                 err => {
+                    console.error('Error in Global-Variables getListTables', err);
                     reject(err.message  || err.sqlMessage);
                 }
             )
@@ -6118,11 +6134,12 @@ console.log('xx res', res)
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in Global Variables getListFields: ' + httpResponse.message);
+                        console.error('Error in Global Variables getListFields: ' + httpResponse.message);
                         reject('Error in Global Variables getListFields: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables getListFields: Data in response object is null; it should be an array');
                         reject('Error in Global Variables getListFields: Data in response object is null; it should be an array');
                         return;
                     };
@@ -6136,6 +6153,7 @@ console.log('xx res', res)
                     resolve(httpResponse);
                 },
                 err => {
+                    console.error('Error in Global-Variables getListTables', err.message);
                     reject(err.message  ||  err.sqlMessage);
                 }
             )
@@ -6189,11 +6207,12 @@ console.log('xx res', res)
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in Global Variables getExecQuery: ' + httpResponse.message);
+                        console.error('Error in Global Variables getExecQuery: ' + httpResponse.message);
                         reject('Error in Global Variables getExecQuery: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables getExecQuery: Data in response object is null; it should be an array');
                         reject('Error in Global Variables getExecQuery: Data in response object is null; it should be an array');
                         return;
                     };
@@ -6207,6 +6226,7 @@ console.log('xx res', res)
                     resolve(httpResponse);
                 },
                 err => {
+                    console.error('Error in Global-Variables getExecQuery', err.message);
                     reject(err.message  || err.sqlMessage);
                 }
             )
@@ -6234,11 +6254,12 @@ console.log('xx res', res)
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in Global Variables getDashboardSummary: ' + httpResponse.message);
+                        console.error('Error in Global Variables getDashboardSummary: ' + httpResponse.message);
                         reject('Error in Global Variables getDashboardSummary: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables getDashboardSummary: Data in response object is null; it should be an array');
                         reject('Error in Global Variables getDashboardSummary: Data in response object is null; it should be an array');
                         return;
                     };
@@ -6252,6 +6273,7 @@ console.log('xx res', res)
                     resolve(httpResponse);
                 },
                 err => {
+                    console.error('Error in Global-Variables canvasDashboardSummary', err.message)
                     reject(err.message)
                 }
             );
@@ -6290,9 +6312,7 @@ console.log('xx res', res)
                     resolve(res);
                 },
                 err => {
-                    if (this.sessionDebugging) {
-                        console.error('Error in     Global-Variables tributaryCreateSession', err);
-                    };
+                    console.error('Error in Global-Variables tributaryCreateSession', err);
                     reject(err.message);
                 }
             )
@@ -6331,9 +6351,7 @@ console.log('xx res', res)
                     resolve(res);
                 },
                 err => {
-                    if (this.sessionDebugging) {
-                        console.error('Error in     Global-Variables tributaryInspect', err);
-                    };
+                    console.error('Error in Global-Variables tributaryInspect', err);
                     reject(err.message);
                 }
             )
@@ -6372,9 +6390,7 @@ console.log('xx res', res)
                     resolve(res);
                 },
                 err => {
-                    if (this.sessionDebugging) {
-                        console.error('Error in     Global-Variables tributaryExecute', err);
-                    };
+                    console.error('Error in Global-Variables tributaryExecute', err);
                     reject(err.message);
                 }
             )
@@ -6409,10 +6425,7 @@ console.log('xx res', res)
                     resolve(res);
                 },
                 err => {
-                    if (this.sessionDebugging) {
-                        console.error('Error in     Global-Variables getTributaryData', err);
-                    };
-
+                    console.error('Error in Global-Variables getTributaryData', err);
                     reject(err.message);
                 }
             )
@@ -6446,8 +6459,7 @@ console.log('xx res', res)
                     resolve(res);
                 },
                 err => {
-                    if (this.sessionDebugging) {
-                    };
+                    console.error('Error in Global Variables getTributaryInspect', err.message);
                     reject(err.message);
                 }
             )
@@ -6882,11 +6894,12 @@ console.log('xx post filter', results)
             .subscribe(
                 httpResponse => {
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in Global Variables sendTransformationQuery: ' + httpResponse.message);
+                        console.error('Error in Global Variables sendTransformationQuery: ' + httpResponse.message);
                         reject('Error in Global Variables sendTransformationQuery: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables sendTransformationQuery: Data in response object is null; it should be an array');
                         reject('Error in Global Variables sendTransformationQuery: Data in response object is null; it should be an array');
                         return;
                     };
@@ -6914,10 +6927,7 @@ console.log('xx post filter', results)
                     resolve(httpResponse.data);
                 },
                 err => {
-                    if (this.sessionDebugging) {
-                        console.log('Error saveDashboard FAILED', {err});
-                    };
-
+                    console.log('Error Global Variables sendTransformation', err);
                     reject(null);
                 }
             )
