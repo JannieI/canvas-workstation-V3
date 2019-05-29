@@ -1761,11 +1761,12 @@ export class GlobalVariableService {
             this.http.post<CanvasHttpResponse>(finalUrl, "", {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
-                        console.warn('Error in Global Variables dashboardCopy: ' + httpResponse.message);
+                        console.error('Error in Global Variables dashboardCopy: ' + httpResponse.message);
                         reject('Error in Global Variables dashboardCopy: ' + httpResponse.message);
                         return;
                     };
                     if(httpResponse.data == null) {
+                        console.error('Error in Global Variables dashboardCopy: Data in response object is null; it should be an array');
                         reject('Error in Global Variables dashboardCopy: Data in response object is null; it should be an array');
                         return;
                     };
@@ -1811,6 +1812,7 @@ export class GlobalVariableService {
                     resolve(httpResponse.data[0]);
                 },
                 err => {
+                    console.error('Error in Global Variables dashboardCopy:', err.message)
                     reject(err.message)
                 }
             );
@@ -1865,6 +1867,7 @@ export class GlobalVariableService {
             let originalDashboardID: number = originalDashboard.id;
 
             if (draftDashboard.state != 'Draft') {
+                console.error('This is not a draft Dashboard');
                 reject('This is not a draft Dashboard');
             };
 
@@ -1884,10 +1887,11 @@ export class GlobalVariableService {
                 .subscribe(
                     httpResponse => {
                         if(httpResponse.statusCode != 'success') {
-                            console.warn('Error deleting discardDashboard: '+ httpResponse.message);
+                            console.error('Error deleting discardDashboard: '+ httpResponse.message);
                             reject('Error deleting discardDashboard: '+ httpResponse.message);
                         };
                         if(httpResponse.data == null) {
+                            console.error('Error in Global Variables discardDashboard: Data in response object is null; it should be an array');
                             reject('Error in Global Variables discardDashboard: Data in response object is null; it should be an array');
                             return;
                         };
@@ -1963,6 +1967,7 @@ export class GlobalVariableService {
             let originalDashboardID: number = originalDashboard.id;
 
             if (draftDashboard.state != 'Draft') {
+                console.error('This is not a draft Dashboard');
                 reject('This is not a draft Dashboard');
             };
 
@@ -2002,10 +2007,11 @@ export class GlobalVariableService {
                 .subscribe(
                     httpResponse => {
                         if(httpResponse.statusCode != 'success') {
-                            console.warn('Error in Global Variables saveDashboard: '+ httpResponse.message);
+                            console.error('Error in Global Variables saveDashboard: '+ httpResponse.message);
                             reject('Error in Global Variables saveDashboard: '+ httpResponse.message);
                         };
                         if(httpResponse.data == null) {
+                            console.error('Error in Global Variables saveDashboard: Data in response object is null; it should be an array');
                             reject('Error in Global Variables saveDashboard: Data in response object is null; it should be an array');
                             return;
                         };
@@ -2179,11 +2185,12 @@ export class GlobalVariableService {
                 .subscribe(
                     httpResponse => {
                         if(httpResponse.statusCode != 'success') {
-                            console.warn('Error in Global Variables deleteDashboardInfo: ' + httpResponse.message);
+                            console.error('Error in Global Variables deleteDashboardInfo: ' + httpResponse.message);
                             reject('Error in Global Variables deleteDashboardInfo: ' + httpResponse.message);
                             return;
                         };
                         if(httpResponse.data == null) {
+                            console.error('Error in Global Variables deleteDashboardInfo: Data in response object is null; it should be an array');
                             reject('Error in Global Variables deleteDashboardInfo: Data in response object is null; it should be an array');
                             return;
                         };
