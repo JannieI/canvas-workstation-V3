@@ -53,13 +53,15 @@ export class UserPaletteButtonBarComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
 	) {}
 
+
+    // usr palette dataShare  dataSchedule
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Set Selected and Total Available Arrays
         this.globalVariableService.getResource('paletteButtonBars').then( pb => {
-
+console.log('xx pb', pb)
             // Total list of available buttons afresh from DB - slice is NB for ByVal
             this.paletteButtons = pb.slice();
             this.paletteButtonsOriginal = pb.slice();
@@ -71,8 +73,10 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
             // Loop on selected ones in Available, and remove them
             for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
+
+                // Cater for the case where it has been deleted
                 this.paletteButtonsSelected.forEach(pbs => {
-                    if (this.paletteButtons[i].id === pbs.paletteButtonBarID) {
+                    if (this.paletteButtons[i]  &&  this.paletteButtons[i].id === pbs.paletteButtonBarID) {
 
                         this.paletteButtons.splice(i, 1)
                     };
