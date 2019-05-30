@@ -227,6 +227,7 @@ export class WidgetNavigatorComponent {
         // Read Networks from DB
         this.globalVariableService.getResource('navigatorNetworks')
             .then(res => {
+                console.log('xx res', res)
                 this.ngNetworks = res;
                 let networkIndex: number = this.ngNetworks.findIndex(
                     nw => nw.id == this.localWidget.navigatorNetworkID
