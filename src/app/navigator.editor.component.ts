@@ -230,7 +230,7 @@ export class NavigatorEditorComponent implements OnInit {
         // Add to DB and locally
         this.globalVariableService.addResource('widgets', this.localWidget)
             .then(res => {
-console.log('xx Nav add res', res)
+
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(
                     {
