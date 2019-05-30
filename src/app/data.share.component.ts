@@ -77,6 +77,11 @@ export class DatasourceShareComponent implements OnInit {
                     .filter(ds => ds.accessType === 'AccessList')
                     .slice();
 
+                // Pre-select first one
+                if (this.datasources.length > 0) {
+                    this.selectedDatasource = this.datasources[0].name;
+                };
+
                 this.globalVariableService.getDatasourcePermissions().then (dp => {
                     this.datasourcePermissions = dp.slice();
                     console.log('xx this.datasourcePermissions', this.datasourcePermissions)
