@@ -243,6 +243,8 @@ console.log('xx Nav add res', res)
                 );
 
                 // Return to main menu
+                this.localWidget.id = res._id;
+                this.localWidget.id = res.id;
                 this.formNavigatorEditorClosed.emit(this.localWidget);
 
             })

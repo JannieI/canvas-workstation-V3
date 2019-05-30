@@ -328,7 +328,7 @@ export class GlobalVariableService {
                                 );
 
                                 if (templateDashboard == null) {
-                                    console.error('Error in     Global-Variables refreshCurrentDashboardInfo: Dashboard template id does not exist in Dashboards Array')
+                                    console.error('Error in Global-Variables refreshCurrentDashboardInfo: Dashboard template id does not exist in Dashboards Array')
                                     this.templateInUse.next(false);
                                 } else {
                                     this.currentDashboards.push(templateDashboard[0]);
@@ -584,7 +584,7 @@ export class GlobalVariableService {
         };
 
         if (datasourceID == null) {
-            console.error('Error in     Global-Variables deleteDatasource: given datasourceID should not be null');
+            console.error('Error in Global-Variables deleteDatasource: given datasourceID should not be null');
         };
 
         console.time("      DURATION deleteDatasource" + datasourceID.toString());
@@ -685,7 +685,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.error('Error in     Global-Variables deleteDatasource', err);
+                        console.error('Error in Global-Variables deleteDatasource', err);
                     };
 
                     console.timeEnd("      DURATION deleteDatasource" + datasourceID.toString());
@@ -723,7 +723,7 @@ export class GlobalVariableService {
                     currentDatasource = this.datasources[datasourceIndex];
                     this.currentDatasources.push(currentDatasource)
                 } else {
-                    console.error('Error in     Global-Variables getCurrentDatasource: Datasource does not exists in this.datasources id:', datasourceID)
+                    console.error('Error in Global-Variables getCurrentDatasource: Datasource does not exists in this.datasources id:', datasourceID)
                     reject('Datasource does not exist in datasources array for id: ' + datasourceID)
                 };
             } else {
@@ -742,7 +742,7 @@ export class GlobalVariableService {
 
                 })
                 .catch(err => {
-                    console.error('Error in     Global-Variables getCurrentDatasource', err)
+                    console.error('Error in Global-Variables getCurrentDatasource', err)
                     reject(err.message)
                 })
 
@@ -1458,7 +1458,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.timeEnd("      DURATION addResource " + resource + ' ' + unique.toString());
-                    console.error('Error in     Global-Variables addResource', err);
+                    console.error('Error in Global-Variables addResource', err);
                     reject(err.message)
                 }
             );
@@ -1627,7 +1627,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.timeEnd("      DURATION saveResource " + resource + ' ' + data.id.toString());
-                    console.error('Error in     Global-Variables saveResource', err);
+                    console.error('Error in Global-Variables saveResource', err);
                     reject(err.message);
                 }
             )
@@ -1733,7 +1733,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.error('Error in     Global-Variables deleteResource', err);
+                        console.error('Error in Global-Variables deleteResource', err);
                     };
 
                     console.timeEnd("      DURATION deleteResource" + resource +  ' ' + id.toString());
@@ -1931,7 +1931,7 @@ export class GlobalVariableService {
                             this.dbDataCachingTable.table("localDataCachingTable")
                                 .bulkPut(this.dataCachingTable)
                                 .catch(err => {
-                                    console.error('Error in     Global-Variables discardDashboard', err)
+                                    console.error('Error in Global-Variables discardDashboard', err)
                                     reject(err.message)
                                 });
 
@@ -1947,7 +1947,7 @@ export class GlobalVariableService {
                         resolve(originalDashboardID);
                     },
                     err => {
-                        console.error('Error in     Global-Variables discardDashboard', err);
+                        console.error('Error in Global-Variables discardDashboard', err);
                         reject('Error discardDashboard : ' + err.message);
                     }
                 )
@@ -2260,7 +2260,7 @@ export class GlobalVariableService {
                         resolve('Deleted');
                     },
                     err => {
-                        console.error('Error in     Global-Variables deleteDashboardInfo', err.message);
+                        console.error('Error in Global-Variables deleteDashboardInfo', err.message);
                         reject(err.message);
                     }
                 )
@@ -2308,7 +2308,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.error('Error in     Global-Variables addDashboard', err);
+                    console.error('Error in Global-Variables addDashboard', err);
                     reject(err.message);
                 }
             )
@@ -2367,7 +2367,7 @@ export class GlobalVariableService {
                             return;
                         };
                         if(httpResponse.data.length == 0) {
-                            console.error('Error in Global Variables refreshLocalCacheMemory: Data in response object is an empty array; it should contain data');
+                            console.warn('Global Variables refreshLocalCacheMemory: Data for ' + resource + ' in response object is an empty array; it should contain data');
                             return;
                         };
 
@@ -2438,7 +2438,7 @@ export class GlobalVariableService {
                     },
                     err => {
                         if (this.sessionDebugging) {
-                            console.error('Error in     Global-Variables refreshLocalCache', err);
+                            console.error('Error in Global-Variables refreshLocalCache', err);
                         };
                         console.timeEnd("      DURATION refreshLocalCache: " + resource);
                     }
@@ -2705,7 +2705,7 @@ export class GlobalVariableService {
                     resolve(temp);
                 })
                 .catch(err => {
-                    console.error('Error in     Global-Variables getDashboardsRecent', err)
+                    console.error('Error in Global-Variables getDashboardsRecent', err)
                     reject(err.message)
                 });
         });
@@ -2760,7 +2760,7 @@ export class GlobalVariableService {
                         resolve(dR)
                     })
                     .catch(err => {
-                        console.error('Error in     Global-Variables amendDashboardsRecent', err)
+                        console.error('Error in Global-Variables amendDashboardsRecent', err)
                         reject(err)
                     });
             });
@@ -2797,7 +2797,7 @@ export class GlobalVariableService {
                         resolve(recentDashboard)
                     })
                     .catch(err => {
-                        console.error('Error in     Global-Variables amendDashboardsRecent', err)
+                        console.error('Error in Global-Variables amendDashboardsRecent', err)
                         reject(err)
                     });
             });
@@ -2886,7 +2886,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.timeEnd("      DURATION getData: " + parameters);
-                    console.error('Error in     Global-Variables getData', err);
+                    console.error('Error in Global-Variables getData', err);
                     reject(err.message);
                 }
             );
@@ -2935,7 +2935,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.error('Error in     Global-Variables saveData', err);
+                    console.error('Error in Global-Variables saveData', err);
                     reject(err.message);
                 }
             )
@@ -2981,7 +2981,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.error('Error in     Global-Variables deleteData', err);
+                    console.error('Error in Global-Variables deleteData', err);
                     reject(err.message);
                 }
             )
@@ -3177,7 +3177,7 @@ console.log('xx Ivan ADD res', res)
                     resolve(this.datasourcePermissions);
                 })
                 .catch(err => {
-                    console.error('Error in     Global-Variables getDatasourcePermissions', err)
+                    console.error('Error in Global-Variables getDatasourcePermissions', err)
                     reject(err.message)
                 });
         });
@@ -3217,7 +3217,7 @@ console.log('xx Ivan ADD res', res)
                     resolve(this.canvasSettings);
                 })
                 .catch(err => {
-                    console.error('Error in     Global-Variables getSystemSettings', err);
+                    console.error('Error in Global-Variables getSystemSettings', err);
                     reject(err.message)
                 });
         });
@@ -3253,7 +3253,7 @@ console.log('xx Ivan ADD res', res)
                     resolve(res);
                 })
                 .catch(err => {
-                    console.error('Error in     Global-Variables addPaletteButtonsSelected', err);
+                    console.error('Error in Global-Variables addPaletteButtonsSelected', err);
                     reject(err.message);
                 })
         });
@@ -3287,7 +3287,7 @@ console.log('xx Ivan ADD res', res)
                     resolve('Saved');
                 })
                 .catch( err => {
-                    console.error('Error in     Global-Variables savePaletteButtonsSelected', err);
+                    console.error('Error in Global-Variables savePaletteButtonsSelected', err);
                     reject(err.message);
                 })
         });
@@ -3335,7 +3335,7 @@ console.log('xx Ivan ADD res', res)
                     resolve('Deleted');
                 })
                 .catch( err => {
-                    console.error('Error in     Global-Variables deletePaletteButtonsSelected', err);
+                    console.error('Error in Global-Variables deletePaletteButtonsSelected', err);
                     reject(err.message);
                 })
 
@@ -3444,7 +3444,7 @@ console.log('xx Ivan ADD res', res)
                     resolve(this.widgets);
                 })
                 .catch(err => {
-                    console.error('Error in     Global-Variables getWidgets', err);
+                    console.error('Error in Global-Variables getWidgets', err);
                     reject(err.message)
                 });
 
@@ -3477,7 +3477,7 @@ console.log('xx Ivan ADD res', res)
                     resolve('Saved');
                 })
                 .catch(err => {
-                    console.error('Error in     Global-Variables saveWidget', err);
+                    console.error('Error in Global-Variables saveWidget', err);
                     reject(err.message);
                 });
         });
@@ -3546,7 +3546,7 @@ console.log('xx Ivan ADD res', res)
                 };
             })
             .catch(err => {
-                console.error('Error in     Global-Variables duplicateSingleWidget', err);
+                console.error('Error in Global-Variables duplicateSingleWidget', err);
 
             });
 
@@ -3590,7 +3590,7 @@ console.log('xx Ivan ADD res', res)
                     resolve('Deleted');
                 })
                 .catch(err => {
-                    console.error('Error in     Global-Variables deleteWidget', err);
+                    console.error('Error in Global-Variables deleteWidget', err);
                     reject(err.message);
                 }
             )
@@ -3632,7 +3632,7 @@ console.log('xx Ivan ADD res', res)
                         resolve("Done");
                     },
                     err => {
-                        console.error('Error in     Global-Variables  marking MessagesAsRead: ', err);
+                        console.error('Error in Global-Variables  marking MessagesAsRead: ', err);
                         reject('Error marking Messages as read FAILED: ' + err.message);
                     }
                 )
@@ -3916,7 +3916,7 @@ console.log('xx Ivan ADD res', res)
         // Assume we have all currentD info
         if ( ( (tabToShow === 'Previous')  ||  (tabToShow === 'Next') )  &&
             (this.currentDashboardInfo == null) ) {
-            console.error('Error in     Global-Variables refreshCurrentDashboard returned since this.currentDashboardInfo == null')
+            console.error('Error in Global-Variables refreshCurrentDashboard returned since this.currentDashboardInfo == null')
             return 'Error';
         };
 
@@ -3926,7 +3926,7 @@ console.log('xx Ivan ADD res', res)
 
         if (tabToShow != '') {
             if (currentDashboardTabs.length === 0) {
-                console.error('Error in     Global-Variables refreshCurrentDashboard returned since currentDashboardTabs.length === 0', dashboardID, this.dashboards, this.dashboardTabs)
+                console.error('Error in Global-Variables refreshCurrentDashboard returned since currentDashboardTabs.length === 0', dashboardID, this.dashboards, this.dashboardTabs)
                 return 'Error';
             };
             if (tabToShow === 'First') {
@@ -5893,20 +5893,20 @@ console.log('xx res', res)
                                             resolve(true);
                                         })
                                         .catch(err => {
-                                            console.error('Error in     Global-Variables verifyCanvasUser: ', err);
+                                            console.error('Error in Global-Variables verifyCanvasUser: ', err);
                                             reject(err.message);
                                         })
 
                                 };
                             })
                             .catch(err => {
-                                console.error('Error in     Global-Variables verifyCanvasUser: ', err);
+                                console.error('Error in Global-Variables verifyCanvasUser: ', err);
                                 reject(err.message);
                             })
 
                         })
                         .catch(err => {
-                            console.error('Error in     Global-Variables verifyCanvasUser: ', err);
+                            console.error('Error in Global-Variables verifyCanvasUser: ', err);
                             reject(err.message);
                         })
 
@@ -5919,7 +5919,7 @@ console.log('xx res', res)
             err => {
                 console.log('Error Registration FAILED on : ',
                 givenCanvasServerURI, {err});
-                console.warn('Error in     Global-Variables verifyCanvasUser - HTTP Error'), err;
+                console.warn('Error in Global-Variables verifyCanvasUser - HTTP Error'), err;
                 resolve(false);
             });
 
@@ -5961,7 +5961,7 @@ console.log('xx res', res)
                 ).subscribe(httpResponse => {
 
                     if (httpResponse.statusCode === 'failed') {
-                        console.warn('Error in     Global-Variables registerCanvasUser Failed: ' + httpResponse.message, httpResponse);
+                        console.warn('Error in Global-Variables registerCanvasUser Failed: ' + httpResponse.message, httpResponse);
                         resolve('Failed: ' + httpResponse.message);
                     };
                     if (httpResponse.statusCode === 'success') {
@@ -5974,7 +5974,7 @@ console.log('xx res', res)
                     };
             },
             err => {
-                console.error('Error in     Global-Variables registerCanvasUser', err);
+                console.error('Error in Global-Variables registerCanvasUser', err);
                 resolve('Error: Registration FAILED ' + err.message);
             });
         });
@@ -6013,7 +6013,7 @@ console.log('xx res', res)
                 ).subscribe(httpResponse => {
 
                     if (httpResponse.statusCode === 'failed') {
-                        console.warn('Error in     Global-Variables loginCanvasUser Failed: ' + httpResponse.message);
+                        console.warn('Error in Global-Variables loginCanvasUser Failed: ' + httpResponse.message);
 
                         resolve({ message:'Failed: ' + httpResponse.message, token: null});
                     };
@@ -6023,13 +6023,13 @@ console.log('xx res', res)
                         resolve({ message:'Success: ' + httpResponse.message, token: httpResponse.token});
                     };
                     if (httpResponse.statusCode === 'error') {
-                        console.warn('Error in     Global-Variables loginCanvasUser Error: ' + httpResponse.message);
+                        console.warn('Error in Global-Variables loginCanvasUser Error: ' + httpResponse.message);
 
                         resolve({ message:'Error: ' + httpResponse.message, token: null});
                     };
             },
             err => {
-                console.error('Error in     Global-Variables loginCanvasUser Error: ', err);
+                console.error('Error in Global-Variables loginCanvasUser Error: ', err);
                 resolve({ message:'Error: Login FAILED ' + err.message, token: null});
             });
         });
@@ -6068,7 +6068,7 @@ console.log('xx res', res)
             this.http.get<CanvasHttpResponse>(finalUrl, {headers}).subscribe(
                 httpResponse  => {
                     if(httpResponse.statusCode != 'success') {
-                        console.error('Error in     Global-Variables getListTables Failed: ' + httpResponse.message, httpResponse);
+                        console.error('Error in Global-Variables getListTables Failed: ' + httpResponse.message, httpResponse);
                         reject('Error in Global Variables getListTables: ' + httpResponse.message);
                         return;
                     };
