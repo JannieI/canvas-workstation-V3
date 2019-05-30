@@ -86,7 +86,7 @@ export class DatasourceShareComponent implements OnInit {
                     this.datasourcePermissions = dp.slice();
                     console.log('xx this.datasourcePermissions', this.datasourcePermissions)
                     this.datasourcePermissions.forEach(tdsp => {
-                        console.log('xx tdsp', tdsp)
+
                         let dsIndex: number = this.datasources.findIndex(
                             ds => ds.id === tdsp.datasourceID);
                         if (dsIndex >= 0) {
@@ -95,7 +95,7 @@ export class DatasourceShareComponent implements OnInit {
                             tdsp.name = 'Datasource deleted';
                         };
                     });
-                    console.log('xx 1')
+
                     this.datasourcePermissions = this.datasourcePermissions.sort( (obj1, obj2) => {
                         if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
                             return 1;
@@ -105,7 +105,6 @@ export class DatasourceShareComponent implements OnInit {
                         };
                         return 0;
                     });
-                    console.log('xx 2')
 
                     this.globalVariableService.getResource('canvasUsers').then(usr => {
                         this.userNames = usr.sort((n1,n2) => {
@@ -122,7 +121,6 @@ export class DatasourceShareComponent implements OnInit {
                         .map(u => u.userID);
                         this.userNames = ['', ...this.userNames];
                         this.users = usr;
-                        console.log('xx 3')
 
                         this.globalVariableService.getResource('canvasGroups').then(grp => {
                             this.groupNames = grp.sort((n1,n2) => {
@@ -137,7 +135,6 @@ export class DatasourceShareComponent implements OnInit {
                                 return 0;
                             })
                             .map(g => g.name);
-                            console.log('xx 4')
 
                             this.groups = grp.slice();
                             this.groupNames = ['', ...this.groupNames];
